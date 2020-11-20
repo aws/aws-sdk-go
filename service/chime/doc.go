@@ -33,7 +33,7 @@
 // commands, see the Amazon Chime commands (https://docs.aws.amazon.com/cli/latest/reference/chime/index.html)
 // in the AWS CLI Command Reference.
 //
-// Using REST API
+// Using REST
 //
 // If you use REST to make API calls, you must authenticate your request by
 // providing a signature. Amazon Chime supports Signature Version 4. For more

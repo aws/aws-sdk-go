@@ -787,7 +787,8 @@
         "method":"PUT",
         "requestUri":"/{Bucket}?ownershipControls"
       },
-      "input":{"shape":"PutBucketOwnershipControlsRequest"}
+      "input":{"shape":"PutBucketOwnershipControlsRequest"},
+      "httpChecksumRequired":true
     },
     "PutBucketPolicy":{
       "name":"PutBucketPolicy",
@@ -5353,8 +5354,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5441,8 +5440,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5468,8 +5465,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5576,8 +5571,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5613,8 +5606,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5696,8 +5687,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5758,8 +5747,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5791,8 +5778,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5828,8 +5813,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5860,8 +5843,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5892,8 +5873,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5929,8 +5908,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -5981,8 +5958,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -6078,8 +6053,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -6127,8 +6100,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -6403,8 +6374,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -6451,8 +6420,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },
@@ -6483,8 +6450,6 @@
         },
         "ContentMD5":{
           "shape":"ContentMD5",
-          "deprecated":true,
-          "deprecatedMessage":"Content-MD5 header will now be automatically computed and injected in associated operation's Http request.",
           "location":"header",
           "locationName":"Content-MD5"
         },

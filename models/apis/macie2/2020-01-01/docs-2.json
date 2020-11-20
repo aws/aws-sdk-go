@@ -637,12 +637,30 @@
         "IpAddressDetails$IpOwner" : "<p>The registered owner of the IP address.</p>"
       }
     },
+    "IsDefinedInJob" : {
+      "base" : null,
+      "refs" : {
+        "JobDetails$IsDefinedInJob" : "<p>Specifies whether any one-time or recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - One or more jobs is configured to analyze data in the bucket, and at least one of those jobs has a status other than CANCELLED.</p></li> <li><p>FALSE - No jobs are configured to analyze data in the bucket, or all the jobs that are configured to analyze data in the bucket have a status of CANCELLED.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul> <p></p>"
+      }
+    },
+    "IsMonitoredByJob" : {
+      "base" : null,
+      "refs" : {
+        "JobDetails$IsMonitoredByJob" : "<p>Specifies whether any recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - One or more recurring jobs is configured to analyze data in the bucket, and at least one of those jobs has a status other than CANCELLED.</p></li> <li><p>FALSE - No recurring jobs are configured to analyze data in the bucket, or all the recurring jobs that are configured to analyze data in the bucket have a status of CANCELLED.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul>"
+      }
+    },
     "JobComparator" : {
       "base" : "<p>The operator to use in a condition. Valid values are:</p>",
       "refs" : {
         "ListJobsFilterTerm$Comparator" : "<p>The operator to use to filter the results.</p>",
         "SimpleScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - EQ (equals) or NE (not equals)</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - Any operator except CONTAINS</p></li> <li><p>OBJECT_SIZE - Any operator except CONTAINS</p></li> <li><p>TAG - EQ (equals) or NE (not equals)</p></li></ul>",
         "TagScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators are EQ (equals) or NE (not equals).</p>"
+      }
+    },
+    "JobDetails" : {
+      "base" : "<p>Specifies whether any one-time or recurring classification jobs are configured to analyze data in an S3 bucket, and, if so, the details of the job that ran most recently.</p>",
+      "refs" : {
+        "BucketMetadata$JobDetails" : "<p>Specifies whether any one-time or recurring classification jobs are configured to analyze data in the bucket, and, if so, the details of the job that ran most recently.</p>"
       }
     },
     "JobScheduleFrequency" : {
@@ -668,9 +686,9 @@
     "JobStatus" : {
       "base" : "<p>The status of a classification job. Possible values are:</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job and didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing all the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you don't resume the job within 30 days of pausing it, the job will expire and be cancelled.</p></li></ul>",
-        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job and didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing all the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you don't resume the job within 30 days of pausing it, the job will expire and be cancelled.</p></li></ul>",
-        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. You can't resume a job after you cancel it. This value is valid only if the job's current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job's current status is USER_PAUSED. If you specify this value, Amazon Macie immediately resumes the job.</p></li> <li><p>USER_PAUSED - Pauses the job. This value is valid only if the job's current status is IDLE or RUNNING. If you specify this value and the job is currently running, Macie immediately stops running the job.</p> <p>To resume a job after you pause it, change the job's status to RUNNING. If you don't resume a job within 30 days of pausing it, the job expires and Macie cancels it. You can't resume a job after it's cancelled.</p></li></ul>"
+        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job while it had a status of RUNNING and you didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume the job within 30 days of pausing it, the job expires and is cancelled. To check the job's expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
+        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job while it had a status of RUNNING and you didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume the job within 30 days of pausing it, the job expires and is cancelled. To check the job's expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
+        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. You can't resume a job after you cancel it. This value is valid only if the job's current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job's current status is USER_PAUSED. If you specify this value, Amazon Macie immediately resumes processing from the point where you paused the job. Otherwise, Macie resumes the job according to the schedule and other configuration settings for the job.</p></li> <li><p>USER_PAUSED - Pauses the job. This value is valid only if the job's current status is IDLE or RUNNING. If you specify this value and the job's current status is RUNNING, Macie immediately begins to pause all processing tasks for the job.</p> <p>If you pause a job when its status is RUNNING and you don't resume the job within 30 days, the job expires and Macie cancels it. You can't resume a job after it's cancelled.</p></li></ul>"
       }
     },
     "JobSummary" : {
@@ -925,7 +943,7 @@
       }
     },
     "S3BucketDefinitionForJob" : {
-      "base" : "<p>Specifies which S3 buckets contain the objects that a classification job analyzes.</p>",
+      "base" : "<p>Specifies which AWS account owns the S3 buckets that a classification job analyzes, and the buckets to analyze for the account.</p>",
       "refs" : {
         "__listOfS3BucketDefinitionForJob$member" : null
       }
@@ -1233,7 +1251,7 @@
       }
     },
     "UserPausedDetails" : {
-      "base" : "<p>Provides information about when a classification job was paused and when it will expire and be cancelled if it isn't resumed. This object is present only if a job's current status (jobStatus) is USER_PAUSED.</p>",
+      "base" : "<p>Provides information about when a classification job was paused and when it will expire and be cancelled if it isn't resumed. This object is present only if a job's current status (jobStatus) is USER_PAUSED. The information in this object applies only to a job that was paused while it had a status of RUNNING.</p>",
       "refs" : {
         "DescribeClassificationJobResponse$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job will expire and be cancelled if it isn't resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>",
         "JobSummary$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job will expire and be cancelled if it isn't resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>"
@@ -1398,7 +1416,7 @@
       "base" : null,
       "refs" : {
         "JobSummary$BucketDefinitions" : "<p>The S3 buckets that the job is configured to analyze.</p>",
-        "S3JobDefinition$BucketDefinitions" : "<p>An array of objects, one for each bucket that contains objects to analyze.</p>"
+        "S3JobDefinition$BucketDefinitions" : "<p>An array of objects, one for each AWS account that owns buckets to analyze. Each object specifies the account ID for an account and one or more buckets to analyze for the account.</p>"
       }
     },
     "__listOfTagValuePair" : {
@@ -1451,7 +1469,7 @@
         "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
         "CreateInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account to send the invitation to.</p>",
         "CriterionAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified property value for findings.</p>",
-        "CriterionAdditionalProperties$EqExactMatch" : "<p>A condition that requires an array field on a finding to exactly match the specified property values. You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
+        "CriterionAdditionalProperties$EqExactMatch" : "<p>A condition that requires an array field to exactly match the specified property values. You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
         "CriterionAdditionalProperties$Neq" : "<p>A not equal to condition to apply to a specified property value for findings.</p>",
         "DeclineInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to decline.</p>",
         "DeleteInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to delete.</p>",
@@ -1476,8 +1494,8 @@
         "BucketCountByEffectivePermission$PubliclyReadable" : "<p>The total number of buckets that allow the general public to have read access to the bucket.</p>",
         "BucketCountByEffectivePermission$PubliclyWritable" : "<p>The total number of buckets that allow the general public to have write access to the bucket.</p>",
         "BucketCountByEffectivePermission$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate permissions settings for. Macie can't determine whether these buckets are publicly accessible.</p>",
-        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) to encrypt objects. These buckets use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
-        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3-managed key to encrypt objects. These buckets use Amazon S3-managed (SSE-S3) encryption.</p>",
+        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) to encrypt objects. These buckets use AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.</p>",
+        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3 managed key to encrypt objects. These buckets use Amazon S3 managed (SSE-S3) encryption.</p>",
         "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt objects by default. Default encryption is disabled for these buckets.</p>",
         "BucketCountBySharedAccessType$External" : "<p>The total number of buckets that are shared with an AWS account that isn't part of the same Amazon Macie organization.</p>",
         "BucketCountBySharedAccessType$Internal" : "<p>The total number of buckets that are shared with an AWS account that's part of the same Amazon Macie organization.</p>",
@@ -1512,8 +1530,8 @@
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
         "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side (SSE-C) encryption.</p>",
-        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
-        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3-managed key. The objects use Amazon S3-managed (SSE-S3) encryption.</p>",
+        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.</p>",
+        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3 managed key. The objects use Amazon S3 managed (SSE-S3) encryption.</p>",
         "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
         "ObjectLevelStatistics$FileType" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects don't have a file name extension for a supported file or storage format.</p>",
         "ObjectLevelStatistics$StorageClass" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class.</p>",
@@ -1648,6 +1666,7 @@
         "IpOwner$AsnOrg" : "<p>The organization identifier that's associated with the autonomous system number (ASN) for the autonomous system that included the IP address.</p>",
         "IpOwner$Isp" : "<p>The name of the internet service provider (ISP) that owned the IP address.</p>",
         "IpOwner$Org" : "<p>The name of the organization that owned the IP address.</p>",
+        "JobDetails$LastJobId" : "<p>The unique identifier for the job that ran most recently (either the latest run of a recurring job or the only run of a one-time job) and is configured to analyze data in the bucket.</p> <p>This value is null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
         "JobSummary$JobId" : "<p>The unique identifier for the job.</p>",
         "JobSummary$Name" : "<p>The custom name of the job.</p>",
         "KeyValuePair$Key" : "<p>One part of a key-value pair that comprises a tag. A tag key is a general label that acts as a category for more specific tag values.</p>",
@@ -1670,7 +1689,7 @@
         "ResourceNotFoundException$Message" : "<p>The explanation of the error that occurred.</p>",
         "S3Bucket$Arn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "S3Bucket$Name" : "<p>The name of the bucket.</p>",
-        "S3BucketDefinitionForJob$AccountId" : "<p>The unique identifier for the AWS account that owns one or more of the buckets. If specified, the job analyzes objects in all the buckets that are owned by the account and meet other conditions specified for the job.</p>",
+        "S3BucketDefinitionForJob$AccountId" : "<p>The unique identifier for the AWS account that owns the buckets. If you specify this value and don't specify a value for the buckets array, the job analyzes objects in all the buckets that are owned by the account and meet other conditions specified for the job.</p>",
         "S3BucketOwner$DisplayName" : "<p>The display name of the user who owns the bucket.</p>",
         "S3BucketOwner$Id" : "<p>The AWS account ID for the user who owns the bucket.</p>",
         "S3Destination$BucketName" : "<p>The name of the bucket.</p>",
@@ -1724,7 +1743,7 @@
         "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the bucket from Amazon S3.</p>",
         "CustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "DescribeClassificationJobResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
-        "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job last ran.</p>",
+        "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job started. If the job is a recurring job, this value indicates when the most recent run started.</p>",
         "Finding$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was created.</p>",
         "Finding$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was last updated. For sensitive data findings, this value is the same as the value for the createdAt property. All sensitive data findings are considered new (unique) because they derive from individual classification jobs.</p>",
         "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the buckets from Amazon S3.</p>",
@@ -1734,6 +1753,7 @@
         "GetMemberResponse$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when an Amazon Macie membership invitation was last sent to the account. This value is null if a Macie invitation hasn't been sent to the account.</p>",
         "GetMemberResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the master account.</p>",
         "Invitation$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the invitation was sent.</p>",
+        "JobDetails$LastJobRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job (lastJobId) started. If the job is a recurring job, this value indicates when the most recent run started.</p> <p>This value is null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
         "JobSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
         "Member$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when an Amazon Macie membership invitation was last sent to the account. This value is null if a Macie invitation hasn't been sent to the account.</p>",
         "Member$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the master account.</p>",

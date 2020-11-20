@@ -75,8 +75,7 @@ func (c *Chime) AssociatePhoneNumberWithUserRequest(input *AssociatePhoneNumberW
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -176,8 +175,7 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorRequest(input *AssociateP
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -278,8 +276,7 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorGroupRequest(input *Assoc
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -381,8 +378,7 @@ func (c *Chime) AssociateSigninDelegateGroupsWithAccountRequest(input *Associate
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -479,8 +475,7 @@ func (c *Chime) BatchCreateAttendeeRequest(input *BatchCreateAttendeeInput) (req
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -588,8 +583,7 @@ func (c *Chime) BatchCreateRoomMembershipRequest(input *BatchCreateRoomMembershi
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -687,8 +681,7 @@ func (c *Chime) BatchDeletePhoneNumberRequest(input *BatchDeletePhoneNumberInput
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -799,8 +792,7 @@ func (c *Chime) BatchSuspendUserRequest(input *BatchSuspendUserInput) (req *requ
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -904,8 +896,7 @@ func (c *Chime) BatchUnsuspendUserRequest(input *BatchUnsuspendUserInput) (req *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -1012,8 +1003,7 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -1112,8 +1102,7 @@ func (c *Chime) BatchUpdateUserRequest(input *BatchUpdateUserInput) (req *reques
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -1213,8 +1202,7 @@ func (c *Chime) CreateAccountRequest(input *CreateAccountInput) (req *request.Re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -1245,6 +1233,325 @@ func (c *Chime) CreateAccount(input *CreateAccountInput) (*CreateAccountOutput, 
 // for more information on using Contexts.
 func (c *Chime) CreateAccountWithContext(ctx aws.Context, input *CreateAccountInput, opts ...request.Option) (*CreateAccountOutput, error) {
 	req, out := c.CreateAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAppInstance = "CreateAppInstance"
+
+// CreateAppInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAppInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAppInstance for more information on using the CreateAppInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAppInstanceRequest method.
+//    req, resp := client.CreateAppInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAppInstance
+func (c *Chime) CreateAppInstanceRequest(input *CreateAppInstanceInput) (req *request.Request, output *CreateAppInstanceOutput) {
+	op := &request.Operation{
+		Name:       opCreateAppInstance,
+		HTTPMethod: "POST",
+		HTTPPath:   "/app-instances",
+	}
+
+	if input == nil {
+		input = &CreateAppInstanceInput{}
+	}
+
+	output = &CreateAppInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateAppInstance API operation for Amazon Chime.
+//
+// Creates an Amazon Chime Messaging SDK AppInstance under an AWS Account. Only
+// Messaging SDK customers use this API. CreateAppInstance supports idempotency
+// behavior as described in the AWS API Standard.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateAppInstance for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAppInstance
+func (c *Chime) CreateAppInstance(input *CreateAppInstanceInput) (*CreateAppInstanceOutput, error) {
+	req, out := c.CreateAppInstanceRequest(input)
+	return out, req.Send()
+}
+
+// CreateAppInstanceWithContext is the same as CreateAppInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAppInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateAppInstanceWithContext(ctx aws.Context, input *CreateAppInstanceInput, opts ...request.Option) (*CreateAppInstanceOutput, error) {
+	req, out := c.CreateAppInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAppInstanceAdmin = "CreateAppInstanceAdmin"
+
+// CreateAppInstanceAdminRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAppInstanceAdmin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAppInstanceAdmin for more information on using the CreateAppInstanceAdmin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAppInstanceAdminRequest method.
+//    req, resp := client.CreateAppInstanceAdminRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAppInstanceAdmin
+func (c *Chime) CreateAppInstanceAdminRequest(input *CreateAppInstanceAdminInput) (req *request.Request, output *CreateAppInstanceAdminOutput) {
+	op := &request.Operation{
+		Name:       opCreateAppInstanceAdmin,
+		HTTPMethod: "POST",
+		HTTPPath:   "/app-instances/{appInstanceArn}/admins",
+	}
+
+	if input == nil {
+		input = &CreateAppInstanceAdminInput{}
+	}
+
+	output = &CreateAppInstanceAdminOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateAppInstanceAdmin API operation for Amazon Chime.
+//
+// Promotes an AppInstanceUser to an AppInstanceAdmin. The promoted user can
+// perform the following actions.
+//
+//    * ChannelModerator actions across all channels in the app instance.
+//
+//    * DeleteChannelMessage actions.
+//
+// Only an AppInstanceUser can be promoted to an AppInstanceAdmin role.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateAppInstanceAdmin for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAppInstanceAdmin
+func (c *Chime) CreateAppInstanceAdmin(input *CreateAppInstanceAdminInput) (*CreateAppInstanceAdminOutput, error) {
+	req, out := c.CreateAppInstanceAdminRequest(input)
+	return out, req.Send()
+}
+
+// CreateAppInstanceAdminWithContext is the same as CreateAppInstanceAdmin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAppInstanceAdmin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateAppInstanceAdminWithContext(ctx aws.Context, input *CreateAppInstanceAdminInput, opts ...request.Option) (*CreateAppInstanceAdminOutput, error) {
+	req, out := c.CreateAppInstanceAdminRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAppInstanceUser = "CreateAppInstanceUser"
+
+// CreateAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAppInstanceUser for more information on using the CreateAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAppInstanceUserRequest method.
+//    req, resp := client.CreateAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAppInstanceUser
+func (c *Chime) CreateAppInstanceUserRequest(input *CreateAppInstanceUserInput) (req *request.Request, output *CreateAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opCreateAppInstanceUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/app-instance-users",
+	}
+
+	if input == nil {
+		input = &CreateAppInstanceUserInput{}
+	}
+
+	output = &CreateAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateAppInstanceUser API operation for Amazon Chime.
+//
+// Creates a user under an Amazon Chime AppInstance. The request consists of
+// a unique appInstanceUserId and Name for that user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateAppInstanceUser
+func (c *Chime) CreateAppInstanceUser(input *CreateAppInstanceUserInput) (*CreateAppInstanceUserOutput, error) {
+	req, out := c.CreateAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// CreateAppInstanceUserWithContext is the same as CreateAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateAppInstanceUserWithContext(ctx aws.Context, input *CreateAppInstanceUserInput, opts ...request.Option) (*CreateAppInstanceUserOutput, error) {
+	req, out := c.CreateAppInstanceUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1310,8 +1617,7 @@ func (c *Chime) CreateAttendeeRequest(input *CreateAttendeeInput) (req *request.
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -1414,8 +1720,7 @@ func (c *Chime) CreateBotRequest(input *CreateBotInput) (req *request.Request, o
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -1449,6 +1754,453 @@ func (c *Chime) CreateBot(input *CreateBotInput) (*CreateBotOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) CreateBotWithContext(ctx aws.Context, input *CreateBotInput, opts ...request.Option) (*CreateBotOutput, error) {
 	req, out := c.CreateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateChannel = "CreateChannel"
+
+// CreateChannelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateChannel for more information on using the CreateChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateChannelRequest method.
+//    req, resp := client.CreateChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannel
+func (c *Chime) CreateChannelRequest(input *CreateChannelInput) (req *request.Request, output *CreateChannelOutput) {
+	op := &request.Operation{
+		Name:       opCreateChannel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels",
+	}
+
+	if input == nil {
+		input = &CreateChannelInput{}
+	}
+
+	output = &CreateChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateChannel API operation for Amazon Chime.
+//
+// Creates a channel to which you can add users and send messages.
+//
+// Restriction: You can't change a channel's privacy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateChannel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannel
+func (c *Chime) CreateChannel(input *CreateChannelInput) (*CreateChannelOutput, error) {
+	req, out := c.CreateChannelRequest(input)
+	return out, req.Send()
+}
+
+// CreateChannelWithContext is the same as CreateChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateChannelWithContext(ctx aws.Context, input *CreateChannelInput, opts ...request.Option) (*CreateChannelOutput, error) {
+	req, out := c.CreateChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateChannelBan = "CreateChannelBan"
+
+// CreateChannelBanRequest generates a "aws/request.Request" representing the
+// client's request for the CreateChannelBan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateChannelBan for more information on using the CreateChannelBan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateChannelBanRequest method.
+//    req, resp := client.CreateChannelBanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannelBan
+func (c *Chime) CreateChannelBanRequest(input *CreateChannelBanInput) (req *request.Request, output *CreateChannelBanOutput) {
+	op := &request.Operation{
+		Name:       opCreateChannelBan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels/{channelArn}/bans",
+	}
+
+	if input == nil {
+		input = &CreateChannelBanInput{}
+	}
+
+	output = &CreateChannelBanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateChannelBan API operation for Amazon Chime.
+//
+// Permanently bans a member from a channel. Moderators can't add banned members
+// to a channel. To undo a ban, you first have to DeleteChannelBan, and then
+// CreateChannelMembership. Bans are cleaned up when you delete users or channels.
+//
+// If you ban a user who is already part of a channel, that user is automatically
+// kicked from the channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateChannelBan for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannelBan
+func (c *Chime) CreateChannelBan(input *CreateChannelBanInput) (*CreateChannelBanOutput, error) {
+	req, out := c.CreateChannelBanRequest(input)
+	return out, req.Send()
+}
+
+// CreateChannelBanWithContext is the same as CreateChannelBan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateChannelBan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateChannelBanWithContext(ctx aws.Context, input *CreateChannelBanInput, opts ...request.Option) (*CreateChannelBanOutput, error) {
+	req, out := c.CreateChannelBanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateChannelMembership = "CreateChannelMembership"
+
+// CreateChannelMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the CreateChannelMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateChannelMembership for more information on using the CreateChannelMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateChannelMembershipRequest method.
+//    req, resp := client.CreateChannelMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannelMembership
+func (c *Chime) CreateChannelMembershipRequest(input *CreateChannelMembershipInput) (req *request.Request, output *CreateChannelMembershipOutput) {
+	op := &request.Operation{
+		Name:       opCreateChannelMembership,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels/{channelArn}/memberships",
+	}
+
+	if input == nil {
+		input = &CreateChannelMembershipInput{}
+	}
+
+	output = &CreateChannelMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateChannelMembership API operation for Amazon Chime.
+//
+// Adds a user to a channel. The InvitedBy response field is derived from the
+// request header. A channel member can:
+//
+//    * List messages
+//
+//    * Send messages
+//
+//    * Receive messages
+//
+//    * Edit their own messages
+//
+//    * Leave the channel
+//
+// Privacy settings impact this action as follows:
+//
+//    * Public Channels: You do not need to be a member to list messages, but
+//    you must be a member to send messages.
+//
+//    * Private Channels: You must be a member to list or send messages.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateChannelMembership for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannelMembership
+func (c *Chime) CreateChannelMembership(input *CreateChannelMembershipInput) (*CreateChannelMembershipOutput, error) {
+	req, out := c.CreateChannelMembershipRequest(input)
+	return out, req.Send()
+}
+
+// CreateChannelMembershipWithContext is the same as CreateChannelMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateChannelMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateChannelMembershipWithContext(ctx aws.Context, input *CreateChannelMembershipInput, opts ...request.Option) (*CreateChannelMembershipOutput, error) {
+	req, out := c.CreateChannelMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateChannelModerator = "CreateChannelModerator"
+
+// CreateChannelModeratorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateChannelModerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateChannelModerator for more information on using the CreateChannelModerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateChannelModeratorRequest method.
+//    req, resp := client.CreateChannelModeratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannelModerator
+func (c *Chime) CreateChannelModeratorRequest(input *CreateChannelModeratorInput) (req *request.Request, output *CreateChannelModeratorOutput) {
+	op := &request.Operation{
+		Name:       opCreateChannelModerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels/{channelArn}/moderators",
+	}
+
+	if input == nil {
+		input = &CreateChannelModeratorInput{}
+	}
+
+	output = &CreateChannelModeratorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateChannelModerator API operation for Amazon Chime.
+//
+// Creates a new ChannelModerator. A channel moderator can:
+//
+//    * Add and remove other members of the channel.
+//
+//    * Add and remove other moderators of the channel.
+//
+//    * Add and remove user bans for the channel.
+//
+//    * Redact messages in the channel.
+//
+//    * List messages in the channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateChannelModerator for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateChannelModerator
+func (c *Chime) CreateChannelModerator(input *CreateChannelModeratorInput) (*CreateChannelModeratorOutput, error) {
+	req, out := c.CreateChannelModeratorRequest(input)
+	return out, req.Send()
+}
+
+// CreateChannelModeratorWithContext is the same as CreateChannelModerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateChannelModerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateChannelModeratorWithContext(ctx aws.Context, input *CreateChannelModeratorInput, opts ...request.Option) (*CreateChannelModeratorOutput, error) {
+	req, out := c.CreateChannelModeratorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1517,8 +2269,7 @@ func (c *Chime) CreateMeetingRequest(input *CreateMeetingInput) (req *request.Re
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
@@ -1622,8 +2373,7 @@ func (c *Chime) CreateMeetingDialOutRequest(input *CreateMeetingDialOutInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
@@ -1725,8 +2475,7 @@ func (c *Chime) CreateMeetingWithAttendeesRequest(input *CreateMeetingWithAttend
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
@@ -1826,8 +2575,7 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
@@ -1931,8 +2679,7 @@ func (c *Chime) CreateProxySessionRequest(input *CreateProxySessionInput) (req *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -2029,8 +2776,7 @@ func (c *Chime) CreateRoomRequest(input *CreateRoomInput) (req *request.Request,
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -2139,8 +2885,7 @@ func (c *Chime) CreateRoomMembershipRequest(input *CreateRoomMembershipInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
@@ -2234,8 +2979,7 @@ func (c *Chime) CreateSipMediaApplicationRequest(input *CreateSipMediaApplicatio
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
@@ -2340,8 +3084,7 @@ func (c *Chime) CreateSipMediaApplicationCallRequest(input *CreateSipMediaApplic
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ResourceLimitExceededException
 //   The request exceeds the resource limit.
@@ -2439,8 +3182,7 @@ func (c *Chime) CreateSipRuleRequest(input *CreateSipRuleInput) (req *request.Re
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
@@ -2551,8 +3293,7 @@ func (c *Chime) CreateUserRequest(input *CreateUserInput) (req *request.Request,
 //   of the resource.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -2653,8 +3394,7 @@ func (c *Chime) CreateVoiceConnectorRequest(input *CreateVoiceConnectorInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
@@ -2760,8 +3500,7 @@ func (c *Chime) CreateVoiceConnectorGroupRequest(input *CreateVoiceConnectorGrou
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
@@ -2877,8 +3616,7 @@ func (c *Chime) DeleteAccountRequest(input *DeleteAccountInput) (req *request.Re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -2913,6 +3651,403 @@ func (c *Chime) DeleteAccount(input *DeleteAccountInput) (*DeleteAccountOutput, 
 // for more information on using Contexts.
 func (c *Chime) DeleteAccountWithContext(ctx aws.Context, input *DeleteAccountInput, opts ...request.Option) (*DeleteAccountOutput, error) {
 	req, out := c.DeleteAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAppInstance = "DeleteAppInstance"
+
+// DeleteAppInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAppInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAppInstance for more information on using the DeleteAppInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAppInstanceRequest method.
+//    req, resp := client.DeleteAppInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstance
+func (c *Chime) DeleteAppInstanceRequest(input *DeleteAppInstanceInput) (req *request.Request, output *DeleteAppInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAppInstance,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/app-instances/{appInstanceArn}",
+	}
+
+	if input == nil {
+		input = &DeleteAppInstanceInput{}
+	}
+
+	output = &DeleteAppInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAppInstance API operation for Amazon Chime.
+//
+// Deletes an AppInstance and all associated data asynchronously.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteAppInstance for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstance
+func (c *Chime) DeleteAppInstance(input *DeleteAppInstanceInput) (*DeleteAppInstanceOutput, error) {
+	req, out := c.DeleteAppInstanceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppInstanceWithContext is the same as DeleteAppInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAppInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteAppInstanceWithContext(ctx aws.Context, input *DeleteAppInstanceInput, opts ...request.Option) (*DeleteAppInstanceOutput, error) {
+	req, out := c.DeleteAppInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAppInstanceAdmin = "DeleteAppInstanceAdmin"
+
+// DeleteAppInstanceAdminRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAppInstanceAdmin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAppInstanceAdmin for more information on using the DeleteAppInstanceAdmin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAppInstanceAdminRequest method.
+//    req, resp := client.DeleteAppInstanceAdminRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstanceAdmin
+func (c *Chime) DeleteAppInstanceAdminRequest(input *DeleteAppInstanceAdminInput) (req *request.Request, output *DeleteAppInstanceAdminOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAppInstanceAdmin,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/app-instances/{appInstanceArn}/admins/{appInstanceAdminArn}",
+	}
+
+	if input == nil {
+		input = &DeleteAppInstanceAdminInput{}
+	}
+
+	output = &DeleteAppInstanceAdminOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAppInstanceAdmin API operation for Amazon Chime.
+//
+// Demotes an AppInstanceAdmin to an AppInstanceUser. This action does not delete
+// the user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteAppInstanceAdmin for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstanceAdmin
+func (c *Chime) DeleteAppInstanceAdmin(input *DeleteAppInstanceAdminInput) (*DeleteAppInstanceAdminOutput, error) {
+	req, out := c.DeleteAppInstanceAdminRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppInstanceAdminWithContext is the same as DeleteAppInstanceAdmin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAppInstanceAdmin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteAppInstanceAdminWithContext(ctx aws.Context, input *DeleteAppInstanceAdminInput, opts ...request.Option) (*DeleteAppInstanceAdminOutput, error) {
+	req, out := c.DeleteAppInstanceAdminRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAppInstanceStreamingConfigurations = "DeleteAppInstanceStreamingConfigurations"
+
+// DeleteAppInstanceStreamingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAppInstanceStreamingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAppInstanceStreamingConfigurations for more information on using the DeleteAppInstanceStreamingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAppInstanceStreamingConfigurationsRequest method.
+//    req, resp := client.DeleteAppInstanceStreamingConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstanceStreamingConfigurations
+func (c *Chime) DeleteAppInstanceStreamingConfigurationsRequest(input *DeleteAppInstanceStreamingConfigurationsInput) (req *request.Request, output *DeleteAppInstanceStreamingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAppInstanceStreamingConfigurations,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/app-instances/{appInstanceArn}/streaming-configurations",
+	}
+
+	if input == nil {
+		input = &DeleteAppInstanceStreamingConfigurationsInput{}
+	}
+
+	output = &DeleteAppInstanceStreamingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAppInstanceStreamingConfigurations API operation for Amazon Chime.
+//
+// Deletes the streaming configurations of an app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteAppInstanceStreamingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstanceStreamingConfigurations
+func (c *Chime) DeleteAppInstanceStreamingConfigurations(input *DeleteAppInstanceStreamingConfigurationsInput) (*DeleteAppInstanceStreamingConfigurationsOutput, error) {
+	req, out := c.DeleteAppInstanceStreamingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppInstanceStreamingConfigurationsWithContext is the same as DeleteAppInstanceStreamingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAppInstanceStreamingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteAppInstanceStreamingConfigurationsWithContext(ctx aws.Context, input *DeleteAppInstanceStreamingConfigurationsInput, opts ...request.Option) (*DeleteAppInstanceStreamingConfigurationsOutput, error) {
+	req, out := c.DeleteAppInstanceStreamingConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAppInstanceUser = "DeleteAppInstanceUser"
+
+// DeleteAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAppInstanceUser for more information on using the DeleteAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAppInstanceUserRequest method.
+//    req, resp := client.DeleteAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstanceUser
+func (c *Chime) DeleteAppInstanceUserRequest(input *DeleteAppInstanceUserInput) (req *request.Request, output *DeleteAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAppInstanceUser,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}",
+	}
+
+	if input == nil {
+		input = &DeleteAppInstanceUserInput{}
+	}
+
+	output = &DeleteAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAppInstanceUser API operation for Amazon Chime.
+//
+// Deletes an AppInstanceUser.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteAppInstanceUser
+func (c *Chime) DeleteAppInstanceUser(input *DeleteAppInstanceUserInput) (*DeleteAppInstanceUserOutput, error) {
+	req, out := c.DeleteAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppInstanceUserWithContext is the same as DeleteAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteAppInstanceUserWithContext(ctx aws.Context, input *DeleteAppInstanceUserInput, opts ...request.Option) (*DeleteAppInstanceUserOutput, error) {
+	req, out := c.DeleteAppInstanceUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2981,8 +4116,7 @@ func (c *Chime) DeleteAttendeeRequest(input *DeleteAttendeeInput) (req *request.
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -3016,6 +4150,494 @@ func (c *Chime) DeleteAttendee(input *DeleteAttendeeInput) (*DeleteAttendeeOutpu
 // for more information on using Contexts.
 func (c *Chime) DeleteAttendeeWithContext(ctx aws.Context, input *DeleteAttendeeInput, opts ...request.Option) (*DeleteAttendeeOutput, error) {
 	req, out := c.DeleteAttendeeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannel = "DeleteChannel"
+
+// DeleteChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannel for more information on using the DeleteChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelRequest method.
+//    req, resp := client.DeleteChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannel
+func (c *Chime) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Request, output *DeleteChannelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannel,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channels/{channelArn}",
+	}
+
+	if input == nil {
+		input = &DeleteChannelInput{}
+	}
+
+	output = &DeleteChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteChannel API operation for Amazon Chime.
+//
+// Immediately makes a channel and its memberships inaccessible and marks them
+// for deletion. This is an irreversible process.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteChannel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannel
+func (c *Chime) DeleteChannel(input *DeleteChannelInput) (*DeleteChannelOutput, error) {
+	req, out := c.DeleteChannelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelWithContext is the same as DeleteChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteChannelWithContext(ctx aws.Context, input *DeleteChannelInput, opts ...request.Option) (*DeleteChannelOutput, error) {
+	req, out := c.DeleteChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannelBan = "DeleteChannelBan"
+
+// DeleteChannelBanRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannelBan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannelBan for more information on using the DeleteChannelBan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelBanRequest method.
+//    req, resp := client.DeleteChannelBanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelBan
+func (c *Chime) DeleteChannelBanRequest(input *DeleteChannelBanInput) (req *request.Request, output *DeleteChannelBanOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannelBan,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channels/{channelArn}/bans/{memberArn}",
+	}
+
+	if input == nil {
+		input = &DeleteChannelBanInput{}
+	}
+
+	output = &DeleteChannelBanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteChannelBan API operation for Amazon Chime.
+//
+// Removes a user from a channel's ban list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteChannelBan for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelBan
+func (c *Chime) DeleteChannelBan(input *DeleteChannelBanInput) (*DeleteChannelBanOutput, error) {
+	req, out := c.DeleteChannelBanRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelBanWithContext is the same as DeleteChannelBan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannelBan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteChannelBanWithContext(ctx aws.Context, input *DeleteChannelBanInput, opts ...request.Option) (*DeleteChannelBanOutput, error) {
+	req, out := c.DeleteChannelBanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannelMembership = "DeleteChannelMembership"
+
+// DeleteChannelMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannelMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannelMembership for more information on using the DeleteChannelMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelMembershipRequest method.
+//    req, resp := client.DeleteChannelMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelMembership
+func (c *Chime) DeleteChannelMembershipRequest(input *DeleteChannelMembershipInput) (req *request.Request, output *DeleteChannelMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannelMembership,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channels/{channelArn}/memberships/{memberArn}",
+	}
+
+	if input == nil {
+		input = &DeleteChannelMembershipInput{}
+	}
+
+	output = &DeleteChannelMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteChannelMembership API operation for Amazon Chime.
+//
+// Removes a member from a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteChannelMembership for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelMembership
+func (c *Chime) DeleteChannelMembership(input *DeleteChannelMembershipInput) (*DeleteChannelMembershipOutput, error) {
+	req, out := c.DeleteChannelMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelMembershipWithContext is the same as DeleteChannelMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannelMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteChannelMembershipWithContext(ctx aws.Context, input *DeleteChannelMembershipInput, opts ...request.Option) (*DeleteChannelMembershipOutput, error) {
+	req, out := c.DeleteChannelMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannelMessage = "DeleteChannelMessage"
+
+// DeleteChannelMessageRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannelMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannelMessage for more information on using the DeleteChannelMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelMessageRequest method.
+//    req, resp := client.DeleteChannelMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelMessage
+func (c *Chime) DeleteChannelMessageRequest(input *DeleteChannelMessageInput) (req *request.Request, output *DeleteChannelMessageOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannelMessage,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channels/{channelArn}/messages/{messageId}",
+	}
+
+	if input == nil {
+		input = &DeleteChannelMessageInput{}
+	}
+
+	output = &DeleteChannelMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteChannelMessage API operation for Amazon Chime.
+//
+// Deletes a channel message. Only admins can perform this action. Deletion
+// makes messages inaccessible immediately. A background process deletes any
+// revisions created by UpdateChannelMessage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteChannelMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelMessage
+func (c *Chime) DeleteChannelMessage(input *DeleteChannelMessageInput) (*DeleteChannelMessageOutput, error) {
+	req, out := c.DeleteChannelMessageRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelMessageWithContext is the same as DeleteChannelMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannelMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteChannelMessageWithContext(ctx aws.Context, input *DeleteChannelMessageInput, opts ...request.Option) (*DeleteChannelMessageOutput, error) {
+	req, out := c.DeleteChannelMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannelModerator = "DeleteChannelModerator"
+
+// DeleteChannelModeratorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannelModerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannelModerator for more information on using the DeleteChannelModerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelModeratorRequest method.
+//    req, resp := client.DeleteChannelModeratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelModerator
+func (c *Chime) DeleteChannelModeratorRequest(input *DeleteChannelModeratorInput) (req *request.Request, output *DeleteChannelModeratorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannelModerator,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channels/{channelArn}/moderators/{channelModeratorArn}",
+	}
+
+	if input == nil {
+		input = &DeleteChannelModeratorInput{}
+	}
+
+	output = &DeleteChannelModeratorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteChannelModerator API operation for Amazon Chime.
+//
+// Deletes a channel moderator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteChannelModerator for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteChannelModerator
+func (c *Chime) DeleteChannelModerator(input *DeleteChannelModeratorInput) (*DeleteChannelModeratorOutput, error) {
+	req, out := c.DeleteChannelModeratorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelModeratorWithContext is the same as DeleteChannelModerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannelModerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteChannelModeratorWithContext(ctx aws.Context, input *DeleteChannelModeratorInput, opts ...request.Option) (*DeleteChannelModeratorOutput, error) {
+	req, out := c.DeleteChannelModeratorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3083,8 +4705,7 @@ func (c *Chime) DeleteEventsConfigurationRequest(input *DeleteEventsConfiguratio
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -3179,8 +4800,7 @@ func (c *Chime) DeleteMeetingRequest(input *DeleteMeetingInput) (req *request.Re
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -3286,8 +4906,7 @@ func (c *Chime) DeletePhoneNumberRequest(input *DeletePhoneNumberInput) (req *re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -3386,8 +5005,7 @@ func (c *Chime) DeleteProxySessionRequest(input *DeleteProxySessionInput) (req *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -3482,8 +5100,7 @@ func (c *Chime) DeleteRoomRequest(input *DeleteRoomInput) (req *request.Request,
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -3587,8 +5204,7 @@ func (c *Chime) DeleteRoomMembershipRequest(input *DeleteRoomMembershipInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -3683,8 +5299,7 @@ func (c *Chime) DeleteSipMediaApplicationRequest(input *DeleteSipMediaApplicatio
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -3786,8 +5401,7 @@ func (c *Chime) DeleteSipRuleRequest(input *DeleteSipRuleInput) (req *request.Re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -3891,8 +5505,7 @@ func (c *Chime) DeleteVoiceConnectorRequest(input *DeleteVoiceConnectorInput) (r
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -3995,8 +5608,7 @@ func (c *Chime) DeleteVoiceConnectorEmergencyCallingConfigurationRequest(input *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4096,8 +5708,7 @@ func (c *Chime) DeleteVoiceConnectorGroupRequest(input *DeleteVoiceConnectorGrou
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4202,8 +5813,7 @@ func (c *Chime) DeleteVoiceConnectorOriginationRequest(input *DeleteVoiceConnect
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4301,8 +5911,7 @@ func (c *Chime) DeleteVoiceConnectorProxyRequest(input *DeleteVoiceConnectorProx
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4401,8 +6010,7 @@ func (c *Chime) DeleteVoiceConnectorStreamingConfigurationRequest(input *DeleteV
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4503,8 +6111,7 @@ func (c *Chime) DeleteVoiceConnectorTerminationRequest(input *DeleteVoiceConnect
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4603,8 +6210,7 @@ func (c *Chime) DeleteVoiceConnectorTerminationCredentialsRequest(input *DeleteV
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4635,6 +6241,880 @@ func (c *Chime) DeleteVoiceConnectorTerminationCredentials(input *DeleteVoiceCon
 // for more information on using Contexts.
 func (c *Chime) DeleteVoiceConnectorTerminationCredentialsWithContext(ctx aws.Context, input *DeleteVoiceConnectorTerminationCredentialsInput, opts ...request.Option) (*DeleteVoiceConnectorTerminationCredentialsOutput, error) {
 	req, out := c.DeleteVoiceConnectorTerminationCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAppInstance = "DescribeAppInstance"
+
+// DescribeAppInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAppInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAppInstance for more information on using the DescribeAppInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAppInstanceRequest method.
+//    req, resp := client.DescribeAppInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeAppInstance
+func (c *Chime) DescribeAppInstanceRequest(input *DescribeAppInstanceInput) (req *request.Request, output *DescribeAppInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAppInstance,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances/{appInstanceArn}",
+	}
+
+	if input == nil {
+		input = &DescribeAppInstanceInput{}
+	}
+
+	output = &DescribeAppInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeAppInstance API operation for Amazon Chime.
+//
+// Returns the full details of an AppInstance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeAppInstance for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeAppInstance
+func (c *Chime) DescribeAppInstance(input *DescribeAppInstanceInput) (*DescribeAppInstanceOutput, error) {
+	req, out := c.DescribeAppInstanceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAppInstanceWithContext is the same as DescribeAppInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAppInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeAppInstanceWithContext(ctx aws.Context, input *DescribeAppInstanceInput, opts ...request.Option) (*DescribeAppInstanceOutput, error) {
+	req, out := c.DescribeAppInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAppInstanceAdmin = "DescribeAppInstanceAdmin"
+
+// DescribeAppInstanceAdminRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAppInstanceAdmin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAppInstanceAdmin for more information on using the DescribeAppInstanceAdmin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAppInstanceAdminRequest method.
+//    req, resp := client.DescribeAppInstanceAdminRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeAppInstanceAdmin
+func (c *Chime) DescribeAppInstanceAdminRequest(input *DescribeAppInstanceAdminInput) (req *request.Request, output *DescribeAppInstanceAdminOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAppInstanceAdmin,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances/{appInstanceArn}/admins/{appInstanceAdminArn}",
+	}
+
+	if input == nil {
+		input = &DescribeAppInstanceAdminInput{}
+	}
+
+	output = &DescribeAppInstanceAdminOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeAppInstanceAdmin API operation for Amazon Chime.
+//
+// Returns the full details of an AppInstanceAdmin.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeAppInstanceAdmin for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeAppInstanceAdmin
+func (c *Chime) DescribeAppInstanceAdmin(input *DescribeAppInstanceAdminInput) (*DescribeAppInstanceAdminOutput, error) {
+	req, out := c.DescribeAppInstanceAdminRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAppInstanceAdminWithContext is the same as DescribeAppInstanceAdmin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAppInstanceAdmin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeAppInstanceAdminWithContext(ctx aws.Context, input *DescribeAppInstanceAdminInput, opts ...request.Option) (*DescribeAppInstanceAdminOutput, error) {
+	req, out := c.DescribeAppInstanceAdminRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAppInstanceUser = "DescribeAppInstanceUser"
+
+// DescribeAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAppInstanceUser for more information on using the DescribeAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAppInstanceUserRequest method.
+//    req, resp := client.DescribeAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeAppInstanceUser
+func (c *Chime) DescribeAppInstanceUserRequest(input *DescribeAppInstanceUserInput) (req *request.Request, output *DescribeAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAppInstanceUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}",
+	}
+
+	if input == nil {
+		input = &DescribeAppInstanceUserInput{}
+	}
+
+	output = &DescribeAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeAppInstanceUser API operation for Amazon Chime.
+//
+// Returns the full details of an AppInstanceUser.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeAppInstanceUser
+func (c *Chime) DescribeAppInstanceUser(input *DescribeAppInstanceUserInput) (*DescribeAppInstanceUserOutput, error) {
+	req, out := c.DescribeAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAppInstanceUserWithContext is the same as DescribeAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeAppInstanceUserWithContext(ctx aws.Context, input *DescribeAppInstanceUserInput, opts ...request.Option) (*DescribeAppInstanceUserOutput, error) {
+	req, out := c.DescribeAppInstanceUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannel = "DescribeChannel"
+
+// DescribeChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannel for more information on using the DescribeChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelRequest method.
+//    req, resp := client.DescribeChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannel
+func (c *Chime) DescribeChannelRequest(input *DescribeChannelInput) (req *request.Request, output *DescribeChannelOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannel,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}",
+	}
+
+	if input == nil {
+		input = &DescribeChannelInput{}
+	}
+
+	output = &DescribeChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeChannel API operation for Amazon Chime.
+//
+// Returns the full details of a channel in an Amazon Chime app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeChannel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannel
+func (c *Chime) DescribeChannel(input *DescribeChannelInput) (*DescribeChannelOutput, error) {
+	req, out := c.DescribeChannelRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelWithContext is the same as DescribeChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeChannelWithContext(ctx aws.Context, input *DescribeChannelInput, opts ...request.Option) (*DescribeChannelOutput, error) {
+	req, out := c.DescribeChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannelBan = "DescribeChannelBan"
+
+// DescribeChannelBanRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannelBan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannelBan for more information on using the DescribeChannelBan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelBanRequest method.
+//    req, resp := client.DescribeChannelBanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelBan
+func (c *Chime) DescribeChannelBanRequest(input *DescribeChannelBanInput) (req *request.Request, output *DescribeChannelBanOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannelBan,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/bans/{memberArn}",
+	}
+
+	if input == nil {
+		input = &DescribeChannelBanInput{}
+	}
+
+	output = &DescribeChannelBanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeChannelBan API operation for Amazon Chime.
+//
+// Returns the full details of a channel ban.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeChannelBan for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelBan
+func (c *Chime) DescribeChannelBan(input *DescribeChannelBanInput) (*DescribeChannelBanOutput, error) {
+	req, out := c.DescribeChannelBanRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelBanWithContext is the same as DescribeChannelBan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannelBan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeChannelBanWithContext(ctx aws.Context, input *DescribeChannelBanInput, opts ...request.Option) (*DescribeChannelBanOutput, error) {
+	req, out := c.DescribeChannelBanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannelMembership = "DescribeChannelMembership"
+
+// DescribeChannelMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannelMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannelMembership for more information on using the DescribeChannelMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelMembershipRequest method.
+//    req, resp := client.DescribeChannelMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelMembership
+func (c *Chime) DescribeChannelMembershipRequest(input *DescribeChannelMembershipInput) (req *request.Request, output *DescribeChannelMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannelMembership,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/memberships/{memberArn}",
+	}
+
+	if input == nil {
+		input = &DescribeChannelMembershipInput{}
+	}
+
+	output = &DescribeChannelMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeChannelMembership API operation for Amazon Chime.
+//
+// Returns the full details of a user's channel membership.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeChannelMembership for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelMembership
+func (c *Chime) DescribeChannelMembership(input *DescribeChannelMembershipInput) (*DescribeChannelMembershipOutput, error) {
+	req, out := c.DescribeChannelMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelMembershipWithContext is the same as DescribeChannelMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannelMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeChannelMembershipWithContext(ctx aws.Context, input *DescribeChannelMembershipInput, opts ...request.Option) (*DescribeChannelMembershipOutput, error) {
+	req, out := c.DescribeChannelMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannelMembershipForAppInstanceUser = "DescribeChannelMembershipForAppInstanceUser"
+
+// DescribeChannelMembershipForAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannelMembershipForAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannelMembershipForAppInstanceUser for more information on using the DescribeChannelMembershipForAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelMembershipForAppInstanceUserRequest method.
+//    req, resp := client.DescribeChannelMembershipForAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelMembershipForAppInstanceUser
+func (c *Chime) DescribeChannelMembershipForAppInstanceUserRequest(input *DescribeChannelMembershipForAppInstanceUserInput) (req *request.Request, output *DescribeChannelMembershipForAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannelMembershipForAppInstanceUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}?scope=app-instance-user-membership",
+	}
+
+	if input == nil {
+		input = &DescribeChannelMembershipForAppInstanceUserInput{}
+	}
+
+	output = &DescribeChannelMembershipForAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeChannelMembershipForAppInstanceUser API operation for Amazon Chime.
+//
+// Returns the details of a channel based on the membership of the AppInstanceUser
+// specified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeChannelMembershipForAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelMembershipForAppInstanceUser
+func (c *Chime) DescribeChannelMembershipForAppInstanceUser(input *DescribeChannelMembershipForAppInstanceUserInput) (*DescribeChannelMembershipForAppInstanceUserOutput, error) {
+	req, out := c.DescribeChannelMembershipForAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelMembershipForAppInstanceUserWithContext is the same as DescribeChannelMembershipForAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannelMembershipForAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeChannelMembershipForAppInstanceUserWithContext(ctx aws.Context, input *DescribeChannelMembershipForAppInstanceUserInput, opts ...request.Option) (*DescribeChannelMembershipForAppInstanceUserOutput, error) {
+	req, out := c.DescribeChannelMembershipForAppInstanceUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannelModeratedByAppInstanceUser = "DescribeChannelModeratedByAppInstanceUser"
+
+// DescribeChannelModeratedByAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannelModeratedByAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannelModeratedByAppInstanceUser for more information on using the DescribeChannelModeratedByAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelModeratedByAppInstanceUserRequest method.
+//    req, resp := client.DescribeChannelModeratedByAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelModeratedByAppInstanceUser
+func (c *Chime) DescribeChannelModeratedByAppInstanceUserRequest(input *DescribeChannelModeratedByAppInstanceUserInput) (req *request.Request, output *DescribeChannelModeratedByAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannelModeratedByAppInstanceUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}?scope=app-instance-user-moderated-channel",
+	}
+
+	if input == nil {
+		input = &DescribeChannelModeratedByAppInstanceUserInput{}
+	}
+
+	output = &DescribeChannelModeratedByAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeChannelModeratedByAppInstanceUser API operation for Amazon Chime.
+//
+// Returns the full details of a channel moderated by the specified AppInstanceUser.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeChannelModeratedByAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelModeratedByAppInstanceUser
+func (c *Chime) DescribeChannelModeratedByAppInstanceUser(input *DescribeChannelModeratedByAppInstanceUserInput) (*DescribeChannelModeratedByAppInstanceUserOutput, error) {
+	req, out := c.DescribeChannelModeratedByAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelModeratedByAppInstanceUserWithContext is the same as DescribeChannelModeratedByAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannelModeratedByAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeChannelModeratedByAppInstanceUserWithContext(ctx aws.Context, input *DescribeChannelModeratedByAppInstanceUserInput, opts ...request.Option) (*DescribeChannelModeratedByAppInstanceUserOutput, error) {
+	req, out := c.DescribeChannelModeratedByAppInstanceUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannelModerator = "DescribeChannelModerator"
+
+// DescribeChannelModeratorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannelModerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannelModerator for more information on using the DescribeChannelModerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelModeratorRequest method.
+//    req, resp := client.DescribeChannelModeratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelModerator
+func (c *Chime) DescribeChannelModeratorRequest(input *DescribeChannelModeratorInput) (req *request.Request, output *DescribeChannelModeratorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannelModerator,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/moderators/{channelModeratorArn}",
+	}
+
+	if input == nil {
+		input = &DescribeChannelModeratorInput{}
+	}
+
+	output = &DescribeChannelModeratorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeChannelModerator API operation for Amazon Chime.
+//
+// Returns the full details of a single ChannelModerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DescribeChannelModerator for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DescribeChannelModerator
+func (c *Chime) DescribeChannelModerator(input *DescribeChannelModeratorInput) (*DescribeChannelModeratorOutput, error) {
+	req, out := c.DescribeChannelModeratorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelModeratorWithContext is the same as DescribeChannelModerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannelModerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DescribeChannelModeratorWithContext(ctx aws.Context, input *DescribeChannelModeratorInput, opts ...request.Option) (*DescribeChannelModeratorOutput, error) {
+	req, out := c.DescribeChannelModeratorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4703,8 +7183,7 @@ func (c *Chime) DisassociatePhoneNumberFromUserRequest(input *DisassociatePhoneN
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4802,8 +7281,7 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorRequest(input *Disasso
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -4901,8 +7379,7 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorGroupRequest(input *Di
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5001,8 +7478,7 @@ func (c *Chime) DisassociateSigninDelegateGroupsFromAccountRequest(input *Disass
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5100,8 +7576,7 @@ func (c *Chime) GetAccountRequest(input *GetAccountInput) (req *request.Request,
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5204,8 +7679,7 @@ func (c *Chime) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -5233,6 +7707,202 @@ func (c *Chime) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountS
 // for more information on using Contexts.
 func (c *Chime) GetAccountSettingsWithContext(ctx aws.Context, input *GetAccountSettingsInput, opts ...request.Option) (*GetAccountSettingsOutput, error) {
 	req, out := c.GetAccountSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAppInstanceRetentionSettings = "GetAppInstanceRetentionSettings"
+
+// GetAppInstanceRetentionSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the GetAppInstanceRetentionSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAppInstanceRetentionSettings for more information on using the GetAppInstanceRetentionSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAppInstanceRetentionSettingsRequest method.
+//    req, resp := client.GetAppInstanceRetentionSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAppInstanceRetentionSettings
+func (c *Chime) GetAppInstanceRetentionSettingsRequest(input *GetAppInstanceRetentionSettingsInput) (req *request.Request, output *GetAppInstanceRetentionSettingsOutput) {
+	op := &request.Operation{
+		Name:       opGetAppInstanceRetentionSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances/{appInstanceArn}/retention-settings",
+	}
+
+	if input == nil {
+		input = &GetAppInstanceRetentionSettingsInput{}
+	}
+
+	output = &GetAppInstanceRetentionSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAppInstanceRetentionSettings API operation for Amazon Chime.
+//
+// Gets the retention settings for an app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetAppInstanceRetentionSettings for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAppInstanceRetentionSettings
+func (c *Chime) GetAppInstanceRetentionSettings(input *GetAppInstanceRetentionSettingsInput) (*GetAppInstanceRetentionSettingsOutput, error) {
+	req, out := c.GetAppInstanceRetentionSettingsRequest(input)
+	return out, req.Send()
+}
+
+// GetAppInstanceRetentionSettingsWithContext is the same as GetAppInstanceRetentionSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAppInstanceRetentionSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetAppInstanceRetentionSettingsWithContext(ctx aws.Context, input *GetAppInstanceRetentionSettingsInput, opts ...request.Option) (*GetAppInstanceRetentionSettingsOutput, error) {
+	req, out := c.GetAppInstanceRetentionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAppInstanceStreamingConfigurations = "GetAppInstanceStreamingConfigurations"
+
+// GetAppInstanceStreamingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetAppInstanceStreamingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAppInstanceStreamingConfigurations for more information on using the GetAppInstanceStreamingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAppInstanceStreamingConfigurationsRequest method.
+//    req, resp := client.GetAppInstanceStreamingConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAppInstanceStreamingConfigurations
+func (c *Chime) GetAppInstanceStreamingConfigurationsRequest(input *GetAppInstanceStreamingConfigurationsInput) (req *request.Request, output *GetAppInstanceStreamingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opGetAppInstanceStreamingConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances/{appInstanceArn}/streaming-configurations",
+	}
+
+	if input == nil {
+		input = &GetAppInstanceStreamingConfigurationsInput{}
+	}
+
+	output = &GetAppInstanceStreamingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAppInstanceStreamingConfigurations API operation for Amazon Chime.
+//
+// Gets the streaming settings for an app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetAppInstanceStreamingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetAppInstanceStreamingConfigurations
+func (c *Chime) GetAppInstanceStreamingConfigurations(input *GetAppInstanceStreamingConfigurationsInput) (*GetAppInstanceStreamingConfigurationsOutput, error) {
+	req, out := c.GetAppInstanceStreamingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// GetAppInstanceStreamingConfigurationsWithContext is the same as GetAppInstanceStreamingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAppInstanceStreamingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetAppInstanceStreamingConfigurationsWithContext(ctx aws.Context, input *GetAppInstanceStreamingConfigurationsInput, opts ...request.Option) (*GetAppInstanceStreamingConfigurationsOutput, error) {
+	req, out := c.GetAppInstanceStreamingConfigurationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5299,8 +7969,7 @@ func (c *Chime) GetAttendeeRequest(input *GetAttendeeInput) (req *request.Reques
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -5401,8 +8070,7 @@ func (c *Chime) GetBotRequest(input *GetBotInput) (req *request.Request, output 
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -5433,6 +8101,105 @@ func (c *Chime) GetBot(input *GetBotInput) (*GetBotOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) GetBotWithContext(ctx aws.Context, input *GetBotInput, opts ...request.Option) (*GetBotOutput, error) {
 	req, out := c.GetBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetChannelMessage = "GetChannelMessage"
+
+// GetChannelMessageRequest generates a "aws/request.Request" representing the
+// client's request for the GetChannelMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetChannelMessage for more information on using the GetChannelMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetChannelMessageRequest method.
+//    req, resp := client.GetChannelMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetChannelMessage
+func (c *Chime) GetChannelMessageRequest(input *GetChannelMessageInput) (req *request.Request, output *GetChannelMessageOutput) {
+	op := &request.Operation{
+		Name:       opGetChannelMessage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/messages/{messageId}",
+	}
+
+	if input == nil {
+		input = &GetChannelMessageInput{}
+	}
+
+	output = &GetChannelMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetChannelMessage API operation for Amazon Chime.
+//
+// Gets the full details of a channel message.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetChannelMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetChannelMessage
+func (c *Chime) GetChannelMessage(input *GetChannelMessageInput) (*GetChannelMessageOutput, error) {
+	req, out := c.GetChannelMessageRequest(input)
+	return out, req.Send()
+}
+
+// GetChannelMessageWithContext is the same as GetChannelMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetChannelMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetChannelMessageWithContext(ctx aws.Context, input *GetChannelMessageInput, opts ...request.Option) (*GetChannelMessageOutput, error) {
+	req, out := c.GetChannelMessageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5500,8 +8267,7 @@ func (c *Chime) GetEventsConfigurationRequest(input *GetEventsConfigurationInput
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5596,8 +8362,7 @@ func (c *Chime) GetGlobalSettingsRequest(input *GetGlobalSettingsInput) (req *re
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5694,8 +8459,7 @@ func (c *Chime) GetMeetingRequest(input *GetMeetingInput) (req *request.Request,
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -5729,6 +8493,99 @@ func (c *Chime) GetMeeting(input *GetMeetingInput) (*GetMeetingOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) GetMeetingWithContext(ctx aws.Context, input *GetMeetingInput, opts ...request.Option) (*GetMeetingOutput, error) {
 	req, out := c.GetMeetingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMessagingSessionEndpoint = "GetMessagingSessionEndpoint"
+
+// GetMessagingSessionEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the GetMessagingSessionEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMessagingSessionEndpoint for more information on using the GetMessagingSessionEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMessagingSessionEndpointRequest method.
+//    req, resp := client.GetMessagingSessionEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMessagingSessionEndpoint
+func (c *Chime) GetMessagingSessionEndpointRequest(input *GetMessagingSessionEndpointInput) (req *request.Request, output *GetMessagingSessionEndpointOutput) {
+	op := &request.Operation{
+		Name:       opGetMessagingSessionEndpoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/endpoints/messaging-session",
+	}
+
+	if input == nil {
+		input = &GetMessagingSessionEndpointInput{}
+	}
+
+	output = &GetMessagingSessionEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetMessagingSessionEndpoint API operation for Amazon Chime.
+//
+// The endpoint for the messaging session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetMessagingSessionEndpoint for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMessagingSessionEndpoint
+func (c *Chime) GetMessagingSessionEndpoint(input *GetMessagingSessionEndpointInput) (*GetMessagingSessionEndpointOutput, error) {
+	req, out := c.GetMessagingSessionEndpointRequest(input)
+	return out, req.Send()
+}
+
+// GetMessagingSessionEndpointWithContext is the same as GetMessagingSessionEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMessagingSessionEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetMessagingSessionEndpointWithContext(ctx aws.Context, input *GetMessagingSessionEndpointInput, opts ...request.Option) (*GetMessagingSessionEndpointOutput, error) {
+	req, out := c.GetMessagingSessionEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5796,8 +8653,7 @@ func (c *Chime) GetPhoneNumberRequest(input *GetPhoneNumberInput) (req *request.
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5895,8 +8751,7 @@ func (c *Chime) GetPhoneNumberOrderRequest(input *GetPhoneNumberOrderInput) (req
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -5991,8 +8846,7 @@ func (c *Chime) GetPhoneNumberSettingsRequest(input *GetPhoneNumberSettingsInput
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6090,8 +8944,7 @@ func (c *Chime) GetProxySessionRequest(input *GetProxySessionInput) (req *reques
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6194,8 +9047,7 @@ func (c *Chime) GetRetentionSettingsRequest(input *GetRetentionSettingsInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -6287,8 +9139,7 @@ func (c *Chime) GetRoomRequest(input *GetRoomInput) (req *request.Request, outpu
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -6389,8 +9240,7 @@ func (c *Chime) GetSipMediaApplicationRequest(input *GetSipMediaApplicationInput
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6487,8 +9337,7 @@ func (c *Chime) GetSipMediaApplicationLoggingConfigurationRequest(input *GetSipM
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6586,8 +9435,7 @@ func (c *Chime) GetSipRuleRequest(input *GetSipRuleInput) (req *request.Request,
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6688,8 +9536,7 @@ func (c *Chime) GetUserRequest(input *GetUserInput) (req *request.Request, outpu
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6787,8 +9634,7 @@ func (c *Chime) GetUserSettingsRequest(input *GetUserSettingsInput) (req *reques
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6886,8 +9732,7 @@ func (c *Chime) GetVoiceConnectorRequest(input *GetVoiceConnectorInput) (req *re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -6985,8 +9830,7 @@ func (c *Chime) GetVoiceConnectorEmergencyCallingConfigurationRequest(input *Get
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7084,8 +9928,7 @@ func (c *Chime) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGroupInput
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7167,7 +10010,7 @@ func (c *Chime) GetVoiceConnectorLoggingConfigurationRequest(input *GetVoiceConn
 //
 // Retrieves the logging configuration details for the specified Amazon Chime
 // Voice Connector. Shows whether SIP message logs are enabled for sending to
-// Amazon CloudWatch Logs.
+// Amazon CloudWatch.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7184,8 +10027,7 @@ func (c *Chime) GetVoiceConnectorLoggingConfigurationRequest(input *GetVoiceConn
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7283,8 +10125,7 @@ func (c *Chime) GetVoiceConnectorOriginationRequest(input *GetVoiceConnectorOrig
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7382,8 +10223,7 @@ func (c *Chime) GetVoiceConnectorProxyRequest(input *GetVoiceConnectorProxyInput
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7483,8 +10323,7 @@ func (c *Chime) GetVoiceConnectorStreamingConfigurationRequest(input *GetVoiceCo
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7582,8 +10421,7 @@ func (c *Chime) GetVoiceConnectorTerminationRequest(input *GetVoiceConnectorTerm
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7681,8 +10519,7 @@ func (c *Chime) GetVoiceConnectorTerminationHealthRequest(input *GetVoiceConnect
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7781,8 +10618,7 @@ func (c *Chime) InviteUsersRequest(input *InviteUsersInput) (req *request.Reques
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7888,8 +10724,7 @@ func (c *Chime) ListAccountsRequest(input *ListAccountsInput) (req *request.Requ
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -7977,6 +10812,471 @@ func (c *Chime) ListAccountsPagesWithContext(ctx aws.Context, input *ListAccount
 	return p.Err()
 }
 
+const opListAppInstanceAdmins = "ListAppInstanceAdmins"
+
+// ListAppInstanceAdminsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppInstanceAdmins operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppInstanceAdmins for more information on using the ListAppInstanceAdmins
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAppInstanceAdminsRequest method.
+//    req, resp := client.ListAppInstanceAdminsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAppInstanceAdmins
+func (c *Chime) ListAppInstanceAdminsRequest(input *ListAppInstanceAdminsInput) (req *request.Request, output *ListAppInstanceAdminsOutput) {
+	op := &request.Operation{
+		Name:       opListAppInstanceAdmins,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances/{appInstanceArn}/admins",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAppInstanceAdminsInput{}
+	}
+
+	output = &ListAppInstanceAdminsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAppInstanceAdmins API operation for Amazon Chime.
+//
+// Returns a list of the administrators in the app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListAppInstanceAdmins for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAppInstanceAdmins
+func (c *Chime) ListAppInstanceAdmins(input *ListAppInstanceAdminsInput) (*ListAppInstanceAdminsOutput, error) {
+	req, out := c.ListAppInstanceAdminsRequest(input)
+	return out, req.Send()
+}
+
+// ListAppInstanceAdminsWithContext is the same as ListAppInstanceAdmins with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppInstanceAdmins for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAppInstanceAdminsWithContext(ctx aws.Context, input *ListAppInstanceAdminsInput, opts ...request.Option) (*ListAppInstanceAdminsOutput, error) {
+	req, out := c.ListAppInstanceAdminsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAppInstanceAdminsPages iterates over the pages of a ListAppInstanceAdmins operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppInstanceAdmins method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAppInstanceAdmins operation.
+//    pageNum := 0
+//    err := client.ListAppInstanceAdminsPages(params,
+//        func(page *chime.ListAppInstanceAdminsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListAppInstanceAdminsPages(input *ListAppInstanceAdminsInput, fn func(*ListAppInstanceAdminsOutput, bool) bool) error {
+	return c.ListAppInstanceAdminsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppInstanceAdminsPagesWithContext same as ListAppInstanceAdminsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAppInstanceAdminsPagesWithContext(ctx aws.Context, input *ListAppInstanceAdminsInput, fn func(*ListAppInstanceAdminsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppInstanceAdminsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppInstanceAdminsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppInstanceAdminsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAppInstanceUsers = "ListAppInstanceUsers"
+
+// ListAppInstanceUsersRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppInstanceUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppInstanceUsers for more information on using the ListAppInstanceUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAppInstanceUsersRequest method.
+//    req, resp := client.ListAppInstanceUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAppInstanceUsers
+func (c *Chime) ListAppInstanceUsersRequest(input *ListAppInstanceUsersInput) (req *request.Request, output *ListAppInstanceUsersOutput) {
+	op := &request.Operation{
+		Name:       opListAppInstanceUsers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instance-users",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAppInstanceUsersInput{}
+	}
+
+	output = &ListAppInstanceUsersOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAppInstanceUsers API operation for Amazon Chime.
+//
+// List all AppInstanceUsers created under a single app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListAppInstanceUsers for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAppInstanceUsers
+func (c *Chime) ListAppInstanceUsers(input *ListAppInstanceUsersInput) (*ListAppInstanceUsersOutput, error) {
+	req, out := c.ListAppInstanceUsersRequest(input)
+	return out, req.Send()
+}
+
+// ListAppInstanceUsersWithContext is the same as ListAppInstanceUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppInstanceUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAppInstanceUsersWithContext(ctx aws.Context, input *ListAppInstanceUsersInput, opts ...request.Option) (*ListAppInstanceUsersOutput, error) {
+	req, out := c.ListAppInstanceUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAppInstanceUsersPages iterates over the pages of a ListAppInstanceUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppInstanceUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAppInstanceUsers operation.
+//    pageNum := 0
+//    err := client.ListAppInstanceUsersPages(params,
+//        func(page *chime.ListAppInstanceUsersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListAppInstanceUsersPages(input *ListAppInstanceUsersInput, fn func(*ListAppInstanceUsersOutput, bool) bool) error {
+	return c.ListAppInstanceUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppInstanceUsersPagesWithContext same as ListAppInstanceUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAppInstanceUsersPagesWithContext(ctx aws.Context, input *ListAppInstanceUsersInput, fn func(*ListAppInstanceUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppInstanceUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppInstanceUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppInstanceUsersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAppInstances = "ListAppInstances"
+
+// ListAppInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppInstances operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppInstances for more information on using the ListAppInstances
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAppInstancesRequest method.
+//    req, resp := client.ListAppInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAppInstances
+func (c *Chime) ListAppInstancesRequest(input *ListAppInstancesInput) (req *request.Request, output *ListAppInstancesOutput) {
+	op := &request.Operation{
+		Name:       opListAppInstances,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instances",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAppInstancesInput{}
+	}
+
+	output = &ListAppInstancesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAppInstances API operation for Amazon Chime.
+//
+// Lists all Amazon Chime app instances created under a single AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListAppInstances for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListAppInstances
+func (c *Chime) ListAppInstances(input *ListAppInstancesInput) (*ListAppInstancesOutput, error) {
+	req, out := c.ListAppInstancesRequest(input)
+	return out, req.Send()
+}
+
+// ListAppInstancesWithContext is the same as ListAppInstances with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppInstances for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAppInstancesWithContext(ctx aws.Context, input *ListAppInstancesInput, opts ...request.Option) (*ListAppInstancesOutput, error) {
+	req, out := c.ListAppInstancesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAppInstancesPages iterates over the pages of a ListAppInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAppInstances operation.
+//    pageNum := 0
+//    err := client.ListAppInstancesPages(params,
+//        func(page *chime.ListAppInstancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListAppInstancesPages(input *ListAppInstancesInput, fn func(*ListAppInstancesOutput, bool) bool) error {
+	return c.ListAppInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppInstancesPagesWithContext same as ListAppInstancesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListAppInstancesPagesWithContext(ctx aws.Context, input *ListAppInstancesInput, fn func(*ListAppInstancesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppInstancesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppInstancesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppInstancesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListAttendeeTags = "ListAttendeeTags"
 
 // ListAttendeeTagsRequest generates a "aws/request.Request" representing the
@@ -8035,8 +11335,7 @@ func (c *Chime) ListAttendeeTagsRequest(input *ListAttendeeTagsInput) (req *requ
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -8141,8 +11440,7 @@ func (c *Chime) ListAttendeesRequest(input *ListAttendeesInput) (req *request.Re
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -8301,8 +11599,7 @@ func (c *Chime) ListBotsRequest(input *ListBotsInput) (req *request.Request, out
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -8390,6 +11687,1098 @@ func (c *Chime) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, 
 	return p.Err()
 }
 
+const opListChannelBans = "ListChannelBans"
+
+// ListChannelBansRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannelBans operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannelBans for more information on using the ListChannelBans
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelBansRequest method.
+//    req, resp := client.ListChannelBansRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelBans
+func (c *Chime) ListChannelBansRequest(input *ListChannelBansInput) (req *request.Request, output *ListChannelBansOutput) {
+	op := &request.Operation{
+		Name:       opListChannelBans,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/bans",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelBansInput{}
+	}
+
+	output = &ListChannelBansOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannelBans API operation for Amazon Chime.
+//
+// Lists all the users banned from a particular channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannelBans for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelBans
+func (c *Chime) ListChannelBans(input *ListChannelBansInput) (*ListChannelBansOutput, error) {
+	req, out := c.ListChannelBansRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelBansWithContext is the same as ListChannelBans with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannelBans for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelBansWithContext(ctx aws.Context, input *ListChannelBansInput, opts ...request.Option) (*ListChannelBansOutput, error) {
+	req, out := c.ListChannelBansRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelBansPages iterates over the pages of a ListChannelBans operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannelBans method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannelBans operation.
+//    pageNum := 0
+//    err := client.ListChannelBansPages(params,
+//        func(page *chime.ListChannelBansOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelBansPages(input *ListChannelBansInput, fn func(*ListChannelBansOutput, bool) bool) error {
+	return c.ListChannelBansPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelBansPagesWithContext same as ListChannelBansPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelBansPagesWithContext(ctx aws.Context, input *ListChannelBansInput, fn func(*ListChannelBansOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelBansInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelBansRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelBansOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListChannelMemberships = "ListChannelMemberships"
+
+// ListChannelMembershipsRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannelMemberships operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannelMemberships for more information on using the ListChannelMemberships
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelMembershipsRequest method.
+//    req, resp := client.ListChannelMembershipsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelMemberships
+func (c *Chime) ListChannelMembershipsRequest(input *ListChannelMembershipsInput) (req *request.Request, output *ListChannelMembershipsOutput) {
+	op := &request.Operation{
+		Name:       opListChannelMemberships,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/memberships",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelMembershipsInput{}
+	}
+
+	output = &ListChannelMembershipsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannelMemberships API operation for Amazon Chime.
+//
+// Lists all channel memberships in a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannelMemberships for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelMemberships
+func (c *Chime) ListChannelMemberships(input *ListChannelMembershipsInput) (*ListChannelMembershipsOutput, error) {
+	req, out := c.ListChannelMembershipsRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelMembershipsWithContext is the same as ListChannelMemberships with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannelMemberships for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelMembershipsWithContext(ctx aws.Context, input *ListChannelMembershipsInput, opts ...request.Option) (*ListChannelMembershipsOutput, error) {
+	req, out := c.ListChannelMembershipsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelMembershipsPages iterates over the pages of a ListChannelMemberships operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannelMemberships method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannelMemberships operation.
+//    pageNum := 0
+//    err := client.ListChannelMembershipsPages(params,
+//        func(page *chime.ListChannelMembershipsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelMembershipsPages(input *ListChannelMembershipsInput, fn func(*ListChannelMembershipsOutput, bool) bool) error {
+	return c.ListChannelMembershipsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelMembershipsPagesWithContext same as ListChannelMembershipsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelMembershipsPagesWithContext(ctx aws.Context, input *ListChannelMembershipsInput, fn func(*ListChannelMembershipsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelMembershipsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelMembershipsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelMembershipsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListChannelMembershipsForAppInstanceUser = "ListChannelMembershipsForAppInstanceUser"
+
+// ListChannelMembershipsForAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannelMembershipsForAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannelMembershipsForAppInstanceUser for more information on using the ListChannelMembershipsForAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelMembershipsForAppInstanceUserRequest method.
+//    req, resp := client.ListChannelMembershipsForAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelMembershipsForAppInstanceUser
+func (c *Chime) ListChannelMembershipsForAppInstanceUserRequest(input *ListChannelMembershipsForAppInstanceUserInput) (req *request.Request, output *ListChannelMembershipsForAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opListChannelMembershipsForAppInstanceUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels?scope=app-instance-user-memberships",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelMembershipsForAppInstanceUserInput{}
+	}
+
+	output = &ListChannelMembershipsForAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannelMembershipsForAppInstanceUser API operation for Amazon Chime.
+//
+// Lists all channels that a particular AppInstanceUser is a part of. Only an
+// AppInstanceAdmin can call the API with a user ARN that is not their own.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannelMembershipsForAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelMembershipsForAppInstanceUser
+func (c *Chime) ListChannelMembershipsForAppInstanceUser(input *ListChannelMembershipsForAppInstanceUserInput) (*ListChannelMembershipsForAppInstanceUserOutput, error) {
+	req, out := c.ListChannelMembershipsForAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelMembershipsForAppInstanceUserWithContext is the same as ListChannelMembershipsForAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannelMembershipsForAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelMembershipsForAppInstanceUserWithContext(ctx aws.Context, input *ListChannelMembershipsForAppInstanceUserInput, opts ...request.Option) (*ListChannelMembershipsForAppInstanceUserOutput, error) {
+	req, out := c.ListChannelMembershipsForAppInstanceUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelMembershipsForAppInstanceUserPages iterates over the pages of a ListChannelMembershipsForAppInstanceUser operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannelMembershipsForAppInstanceUser method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannelMembershipsForAppInstanceUser operation.
+//    pageNum := 0
+//    err := client.ListChannelMembershipsForAppInstanceUserPages(params,
+//        func(page *chime.ListChannelMembershipsForAppInstanceUserOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelMembershipsForAppInstanceUserPages(input *ListChannelMembershipsForAppInstanceUserInput, fn func(*ListChannelMembershipsForAppInstanceUserOutput, bool) bool) error {
+	return c.ListChannelMembershipsForAppInstanceUserPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelMembershipsForAppInstanceUserPagesWithContext same as ListChannelMembershipsForAppInstanceUserPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelMembershipsForAppInstanceUserPagesWithContext(ctx aws.Context, input *ListChannelMembershipsForAppInstanceUserInput, fn func(*ListChannelMembershipsForAppInstanceUserOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelMembershipsForAppInstanceUserInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelMembershipsForAppInstanceUserRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelMembershipsForAppInstanceUserOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListChannelMessages = "ListChannelMessages"
+
+// ListChannelMessagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannelMessages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannelMessages for more information on using the ListChannelMessages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelMessagesRequest method.
+//    req, resp := client.ListChannelMessagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelMessages
+func (c *Chime) ListChannelMessagesRequest(input *ListChannelMessagesInput) (req *request.Request, output *ListChannelMessagesOutput) {
+	op := &request.Operation{
+		Name:       opListChannelMessages,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/messages",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelMessagesInput{}
+	}
+
+	output = &ListChannelMessagesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannelMessages API operation for Amazon Chime.
+//
+// List all the messages in a channel. Returns a paginated list of ChannelMessages.
+// Sorted in descending order by default, based on the creation timestamp.
+//
+// Redacted messages appear in the results as empty, since they are only redacted,
+// not deleted. Deleted messages do not appear in the results. This action always
+// returns the latest version of an edited message.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannelMessages for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelMessages
+func (c *Chime) ListChannelMessages(input *ListChannelMessagesInput) (*ListChannelMessagesOutput, error) {
+	req, out := c.ListChannelMessagesRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelMessagesWithContext is the same as ListChannelMessages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannelMessages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelMessagesWithContext(ctx aws.Context, input *ListChannelMessagesInput, opts ...request.Option) (*ListChannelMessagesOutput, error) {
+	req, out := c.ListChannelMessagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelMessagesPages iterates over the pages of a ListChannelMessages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannelMessages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannelMessages operation.
+//    pageNum := 0
+//    err := client.ListChannelMessagesPages(params,
+//        func(page *chime.ListChannelMessagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelMessagesPages(input *ListChannelMessagesInput, fn func(*ListChannelMessagesOutput, bool) bool) error {
+	return c.ListChannelMessagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelMessagesPagesWithContext same as ListChannelMessagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelMessagesPagesWithContext(ctx aws.Context, input *ListChannelMessagesInput, fn func(*ListChannelMessagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelMessagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelMessagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelMessagesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListChannelModerators = "ListChannelModerators"
+
+// ListChannelModeratorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannelModerators operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannelModerators for more information on using the ListChannelModerators
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelModeratorsRequest method.
+//    req, resp := client.ListChannelModeratorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelModerators
+func (c *Chime) ListChannelModeratorsRequest(input *ListChannelModeratorsInput) (req *request.Request, output *ListChannelModeratorsOutput) {
+	op := &request.Operation{
+		Name:       opListChannelModerators,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/moderators",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelModeratorsInput{}
+	}
+
+	output = &ListChannelModeratorsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannelModerators API operation for Amazon Chime.
+//
+// Lists all the moderators for a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannelModerators for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelModerators
+func (c *Chime) ListChannelModerators(input *ListChannelModeratorsInput) (*ListChannelModeratorsOutput, error) {
+	req, out := c.ListChannelModeratorsRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelModeratorsWithContext is the same as ListChannelModerators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannelModerators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelModeratorsWithContext(ctx aws.Context, input *ListChannelModeratorsInput, opts ...request.Option) (*ListChannelModeratorsOutput, error) {
+	req, out := c.ListChannelModeratorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelModeratorsPages iterates over the pages of a ListChannelModerators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannelModerators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannelModerators operation.
+//    pageNum := 0
+//    err := client.ListChannelModeratorsPages(params,
+//        func(page *chime.ListChannelModeratorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelModeratorsPages(input *ListChannelModeratorsInput, fn func(*ListChannelModeratorsOutput, bool) bool) error {
+	return c.ListChannelModeratorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelModeratorsPagesWithContext same as ListChannelModeratorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelModeratorsPagesWithContext(ctx aws.Context, input *ListChannelModeratorsInput, fn func(*ListChannelModeratorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelModeratorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelModeratorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelModeratorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListChannels = "ListChannels"
+
+// ListChannelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannels for more information on using the ListChannels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelsRequest method.
+//    req, resp := client.ListChannelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannels
+func (c *Chime) ListChannelsRequest(input *ListChannelsInput) (req *request.Request, output *ListChannelsOutput) {
+	op := &request.Operation{
+		Name:       opListChannels,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelsInput{}
+	}
+
+	output = &ListChannelsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannels API operation for Amazon Chime.
+//
+// Lists all Channels created under a single Chime App as a paginated list.
+// You can specify filters to narrow results.
+//
+// Functionality & restrictions
+//
+//    * Use privacy = PUBLIC to retrieve all public channels in the account
+//
+//    * Only an AppInstanceAdmin can set privacy = PRIVATE to list the private
+//    channels in an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannels for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannels
+func (c *Chime) ListChannels(input *ListChannelsInput) (*ListChannelsOutput, error) {
+	req, out := c.ListChannelsRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelsWithContext is the same as ListChannels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelsWithContext(ctx aws.Context, input *ListChannelsInput, opts ...request.Option) (*ListChannelsOutput, error) {
+	req, out := c.ListChannelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelsPages iterates over the pages of a ListChannels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannels operation.
+//    pageNum := 0
+//    err := client.ListChannelsPages(params,
+//        func(page *chime.ListChannelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelsPages(input *ListChannelsInput, fn func(*ListChannelsOutput, bool) bool) error {
+	return c.ListChannelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelsPagesWithContext same as ListChannelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelsPagesWithContext(ctx aws.Context, input *ListChannelsInput, fn func(*ListChannelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListChannelsModeratedByAppInstanceUser = "ListChannelsModeratedByAppInstanceUser"
+
+// ListChannelsModeratedByAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannelsModeratedByAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannelsModeratedByAppInstanceUser for more information on using the ListChannelsModeratedByAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelsModeratedByAppInstanceUserRequest method.
+//    req, resp := client.ListChannelsModeratedByAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelsModeratedByAppInstanceUser
+func (c *Chime) ListChannelsModeratedByAppInstanceUserRequest(input *ListChannelsModeratedByAppInstanceUserInput) (req *request.Request, output *ListChannelsModeratedByAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opListChannelsModeratedByAppInstanceUser,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels?scope=app-instance-user-moderated-channels",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelsModeratedByAppInstanceUserInput{}
+	}
+
+	output = &ListChannelsModeratedByAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListChannelsModeratedByAppInstanceUser API operation for Amazon Chime.
+//
+// A list of the channels moderated by an app instance user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListChannelsModeratedByAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListChannelsModeratedByAppInstanceUser
+func (c *Chime) ListChannelsModeratedByAppInstanceUser(input *ListChannelsModeratedByAppInstanceUserInput) (*ListChannelsModeratedByAppInstanceUserOutput, error) {
+	req, out := c.ListChannelsModeratedByAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelsModeratedByAppInstanceUserWithContext is the same as ListChannelsModeratedByAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannelsModeratedByAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelsModeratedByAppInstanceUserWithContext(ctx aws.Context, input *ListChannelsModeratedByAppInstanceUserInput, opts ...request.Option) (*ListChannelsModeratedByAppInstanceUserOutput, error) {
+	req, out := c.ListChannelsModeratedByAppInstanceUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelsModeratedByAppInstanceUserPages iterates over the pages of a ListChannelsModeratedByAppInstanceUser operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannelsModeratedByAppInstanceUser method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannelsModeratedByAppInstanceUser operation.
+//    pageNum := 0
+//    err := client.ListChannelsModeratedByAppInstanceUserPages(params,
+//        func(page *chime.ListChannelsModeratedByAppInstanceUserOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListChannelsModeratedByAppInstanceUserPages(input *ListChannelsModeratedByAppInstanceUserInput, fn func(*ListChannelsModeratedByAppInstanceUserOutput, bool) bool) error {
+	return c.ListChannelsModeratedByAppInstanceUserPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelsModeratedByAppInstanceUserPagesWithContext same as ListChannelsModeratedByAppInstanceUserPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListChannelsModeratedByAppInstanceUserPagesWithContext(ctx aws.Context, input *ListChannelsModeratedByAppInstanceUserInput, fn func(*ListChannelsModeratedByAppInstanceUserOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelsModeratedByAppInstanceUserInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelsModeratedByAppInstanceUserRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelsModeratedByAppInstanceUserOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListMeetingTags = "ListMeetingTags"
 
 // ListMeetingTagsRequest generates a "aws/request.Request" representing the
@@ -8448,8 +12837,7 @@ func (c *Chime) ListMeetingTagsRequest(input *ListMeetingTagsInput) (req *reques
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -8554,8 +12942,7 @@ func (c *Chime) ListMeetingsRequest(input *ListMeetingsInput) (req *request.Requ
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -8707,8 +13094,7 @@ func (c *Chime) ListPhoneNumberOrdersRequest(input *ListPhoneNumberOrdersInput) 
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -8861,8 +13247,7 @@ func (c *Chime) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *requ
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -9017,8 +13402,7 @@ func (c *Chime) ListProxySessionsRequest(input *ListProxySessionsInput) (req *re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -9174,8 +13558,7 @@ func (c *Chime) ListRoomMembershipsRequest(input *ListRoomMembershipsInput) (req
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -9332,8 +13715,7 @@ func (c *Chime) ListRoomsRequest(input *ListRoomsInput) (req *request.Request, o
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -9452,6 +13834,12 @@ func (c *Chime) ListSipMediaApplicationsRequest(input *ListSipMediaApplicationsI
 		Name:       opListSipMediaApplications,
 		HTTPMethod: "GET",
 		HTTPPath:   "/sip-media-applications",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -9479,8 +13867,7 @@ func (c *Chime) ListSipMediaApplicationsRequest(input *ListSipMediaApplicationsI
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -9516,6 +13903,58 @@ func (c *Chime) ListSipMediaApplicationsWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+// ListSipMediaApplicationsPages iterates over the pages of a ListSipMediaApplications operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSipMediaApplications method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSipMediaApplications operation.
+//    pageNum := 0
+//    err := client.ListSipMediaApplicationsPages(params,
+//        func(page *chime.ListSipMediaApplicationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListSipMediaApplicationsPages(input *ListSipMediaApplicationsInput, fn func(*ListSipMediaApplicationsOutput, bool) bool) error {
+	return c.ListSipMediaApplicationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSipMediaApplicationsPagesWithContext same as ListSipMediaApplicationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListSipMediaApplicationsPagesWithContext(ctx aws.Context, input *ListSipMediaApplicationsInput, fn func(*ListSipMediaApplicationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSipMediaApplicationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSipMediaApplicationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSipMediaApplicationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSipRules = "ListSipRules"
 
 // ListSipRulesRequest generates a "aws/request.Request" representing the
@@ -9547,6 +13986,12 @@ func (c *Chime) ListSipRulesRequest(input *ListSipRulesInput) (req *request.Requ
 		Name:       opListSipRules,
 		HTTPMethod: "GET",
 		HTTPPath:   "/sip-rules",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -9574,8 +14019,7 @@ func (c *Chime) ListSipRulesRequest(input *ListSipRulesInput) (req *request.Requ
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -9609,6 +14053,58 @@ func (c *Chime) ListSipRulesWithContext(ctx aws.Context, input *ListSipRulesInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListSipRulesPages iterates over the pages of a ListSipRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSipRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSipRules operation.
+//    pageNum := 0
+//    err := client.ListSipRulesPages(params,
+//        func(page *chime.ListSipRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListSipRulesPages(input *ListSipRulesInput, fn func(*ListSipRulesOutput, bool) bool) error {
+	return c.ListSipRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSipRulesPagesWithContext same as ListSipRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListSipRulesPagesWithContext(ctx aws.Context, input *ListSipRulesInput, fn func(*ListSipRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSipRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSipRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSipRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -9669,8 +14165,7 @@ func (c *Chime) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -9775,8 +14270,7 @@ func (c *Chime) ListUsersRequest(input *ListUsersInput) (req *request.Request, o
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -9929,8 +14423,7 @@ func (c *Chime) ListVoiceConnectorGroupsRequest(input *ListVoiceConnectorGroupsI
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10079,8 +14572,7 @@ func (c *Chime) ListVoiceConnectorTerminationCredentialsRequest(input *ListVoice
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10180,8 +14672,7 @@ func (c *Chime) ListVoiceConnectorsRequest(input *ListVoiceConnectorsInput) (req
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10332,8 +14823,7 @@ func (c *Chime) LogoutUserRequest(input *LogoutUserInput) (req *request.Request,
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10364,6 +14854,206 @@ func (c *Chime) LogoutUser(input *LogoutUserInput) (*LogoutUserOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) LogoutUserWithContext(ctx aws.Context, input *LogoutUserInput, opts ...request.Option) (*LogoutUserOutput, error) {
 	req, out := c.LogoutUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutAppInstanceRetentionSettings = "PutAppInstanceRetentionSettings"
+
+// PutAppInstanceRetentionSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the PutAppInstanceRetentionSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAppInstanceRetentionSettings for more information on using the PutAppInstanceRetentionSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAppInstanceRetentionSettingsRequest method.
+//    req, resp := client.PutAppInstanceRetentionSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutAppInstanceRetentionSettings
+func (c *Chime) PutAppInstanceRetentionSettingsRequest(input *PutAppInstanceRetentionSettingsInput) (req *request.Request, output *PutAppInstanceRetentionSettingsOutput) {
+	op := &request.Operation{
+		Name:       opPutAppInstanceRetentionSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/app-instances/{appInstanceArn}/retention-settings",
+	}
+
+	if input == nil {
+		input = &PutAppInstanceRetentionSettingsInput{}
+	}
+
+	output = &PutAppInstanceRetentionSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// PutAppInstanceRetentionSettings API operation for Amazon Chime.
+//
+// Sets the amount of time in days that a given app instance retains data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation PutAppInstanceRetentionSettings for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutAppInstanceRetentionSettings
+func (c *Chime) PutAppInstanceRetentionSettings(input *PutAppInstanceRetentionSettingsInput) (*PutAppInstanceRetentionSettingsOutput, error) {
+	req, out := c.PutAppInstanceRetentionSettingsRequest(input)
+	return out, req.Send()
+}
+
+// PutAppInstanceRetentionSettingsWithContext is the same as PutAppInstanceRetentionSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAppInstanceRetentionSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) PutAppInstanceRetentionSettingsWithContext(ctx aws.Context, input *PutAppInstanceRetentionSettingsInput, opts ...request.Option) (*PutAppInstanceRetentionSettingsOutput, error) {
+	req, out := c.PutAppInstanceRetentionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutAppInstanceStreamingConfigurations = "PutAppInstanceStreamingConfigurations"
+
+// PutAppInstanceStreamingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the PutAppInstanceStreamingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAppInstanceStreamingConfigurations for more information on using the PutAppInstanceStreamingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAppInstanceStreamingConfigurationsRequest method.
+//    req, resp := client.PutAppInstanceStreamingConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutAppInstanceStreamingConfigurations
+func (c *Chime) PutAppInstanceStreamingConfigurationsRequest(input *PutAppInstanceStreamingConfigurationsInput) (req *request.Request, output *PutAppInstanceStreamingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opPutAppInstanceStreamingConfigurations,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/app-instances/{appInstanceArn}/streaming-configurations",
+	}
+
+	if input == nil {
+		input = &PutAppInstanceStreamingConfigurationsInput{}
+	}
+
+	output = &PutAppInstanceStreamingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutAppInstanceStreamingConfigurations API operation for Amazon Chime.
+//
+// The data streaming configurations of an app instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation PutAppInstanceStreamingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutAppInstanceStreamingConfigurations
+func (c *Chime) PutAppInstanceStreamingConfigurations(input *PutAppInstanceStreamingConfigurationsInput) (*PutAppInstanceStreamingConfigurationsOutput, error) {
+	req, out := c.PutAppInstanceStreamingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// PutAppInstanceStreamingConfigurationsWithContext is the same as PutAppInstanceStreamingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAppInstanceStreamingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) PutAppInstanceStreamingConfigurationsWithContext(ctx aws.Context, input *PutAppInstanceStreamingConfigurationsInput, opts ...request.Option) (*PutAppInstanceStreamingConfigurationsOutput, error) {
+	req, out := c.PutAppInstanceStreamingConfigurationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10432,8 +15122,7 @@ func (c *Chime) PutEventsConfigurationRequest(input *PutEventsConfigurationInput
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10543,8 +15232,7 @@ func (c *Chime) PutRetentionSettingsRequest(input *PutRetentionSettingsInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ConflictException
 //   The request could not be processed because of conflict in the current state
@@ -10642,8 +15330,7 @@ func (c *Chime) PutSipMediaApplicationLoggingConfigurationRequest(input *PutSipM
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10743,8 +15430,7 @@ func (c *Chime) PutVoiceConnectorEmergencyCallingConfigurationRequest(input *Put
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10843,8 +15529,7 @@ func (c *Chime) PutVoiceConnectorLoggingConfigurationRequest(input *PutVoiceConn
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -10944,8 +15629,7 @@ func (c *Chime) PutVoiceConnectorOriginationRequest(input *PutVoiceConnectorOrig
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11046,8 +15730,7 @@ func (c *Chime) PutVoiceConnectorProxyRequest(input *PutVoiceConnectorProxyInput
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11147,8 +15830,7 @@ func (c *Chime) PutVoiceConnectorStreamingConfigurationRequest(input *PutVoiceCo
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11248,8 +15930,7 @@ func (c *Chime) PutVoiceConnectorTerminationRequest(input *PutVoiceConnectorTerm
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11350,8 +16031,7 @@ func (c *Chime) PutVoiceConnectorTerminationCredentialsRequest(input *PutVoiceCo
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11382,6 +16062,103 @@ func (c *Chime) PutVoiceConnectorTerminationCredentials(input *PutVoiceConnector
 // for more information on using Contexts.
 func (c *Chime) PutVoiceConnectorTerminationCredentialsWithContext(ctx aws.Context, input *PutVoiceConnectorTerminationCredentialsInput, opts ...request.Option) (*PutVoiceConnectorTerminationCredentialsOutput, error) {
 	req, out := c.PutVoiceConnectorTerminationCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRedactChannelMessage = "RedactChannelMessage"
+
+// RedactChannelMessageRequest generates a "aws/request.Request" representing the
+// client's request for the RedactChannelMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RedactChannelMessage for more information on using the RedactChannelMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RedactChannelMessageRequest method.
+//    req, resp := client.RedactChannelMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RedactChannelMessage
+func (c *Chime) RedactChannelMessageRequest(input *RedactChannelMessageInput) (req *request.Request, output *RedactChannelMessageOutput) {
+	op := &request.Operation{
+		Name:       opRedactChannelMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels/{channelArn}/messages/{messageId}?operation=redact",
+	}
+
+	if input == nil {
+		input = &RedactChannelMessageInput{}
+	}
+
+	output = &RedactChannelMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// RedactChannelMessage API operation for Amazon Chime.
+//
+// Redacts message content, but not metadata. The message exists in the back
+// end, but the action returns null content, and the state shows as redacted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation RedactChannelMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/RedactChannelMessage
+func (c *Chime) RedactChannelMessage(input *RedactChannelMessageInput) (*RedactChannelMessageOutput, error) {
+	req, out := c.RedactChannelMessageRequest(input)
+	return out, req.Send()
+}
+
+// RedactChannelMessageWithContext is the same as RedactChannelMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RedactChannelMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) RedactChannelMessageWithContext(ctx aws.Context, input *RedactChannelMessageInput, opts ...request.Option) (*RedactChannelMessageOutput, error) {
+	req, out := c.RedactChannelMessageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11446,8 +16223,7 @@ func (c *Chime) RedactConversationMessageRequest(input *RedactConversationMessag
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -11531,7 +16307,7 @@ func (c *Chime) RedactRoomMessageRequest(input *RedactRoomMessageInput) (req *re
 
 // RedactRoomMessage API operation for Amazon Chime.
 //
-// Redacts the specified message from the specified Amazon Chime chat room.
+// Redacts the specified message from the specified Amazon Chime channel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11545,8 +16321,7 @@ func (c *Chime) RedactRoomMessageRequest(input *RedactRoomMessageInput) (req *re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
@@ -11646,8 +16421,7 @@ func (c *Chime) RegenerateSecurityTokenRequest(input *RegenerateSecurityTokenInp
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11745,8 +16519,7 @@ func (c *Chime) ResetPersonalPINRequest(input *ResetPersonalPINInput) (req *requ
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11843,8 +16616,7 @@ func (c *Chime) RestorePhoneNumberRequest(input *RestorePhoneNumberInput) (req *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -11941,8 +16713,7 @@ func (c *Chime) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhoneNu
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * AccessDeniedException
 //   You don't have permissions to perform the requested operation.
@@ -11976,6 +16747,109 @@ func (c *Chime) SearchAvailablePhoneNumbers(input *SearchAvailablePhoneNumbersIn
 // for more information on using Contexts.
 func (c *Chime) SearchAvailablePhoneNumbersWithContext(ctx aws.Context, input *SearchAvailablePhoneNumbersInput, opts ...request.Option) (*SearchAvailablePhoneNumbersOutput, error) {
 	req, out := c.SearchAvailablePhoneNumbersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendChannelMessage = "SendChannelMessage"
+
+// SendChannelMessageRequest generates a "aws/request.Request" representing the
+// client's request for the SendChannelMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendChannelMessage for more information on using the SendChannelMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendChannelMessageRequest method.
+//    req, resp := client.SendChannelMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/SendChannelMessage
+func (c *Chime) SendChannelMessageRequest(input *SendChannelMessageInput) (req *request.Request, output *SendChannelMessageOutput) {
+	op := &request.Operation{
+		Name:       opSendChannelMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels/{channelArn}/messages",
+	}
+
+	if input == nil {
+		input = &SendChannelMessageInput{}
+	}
+
+	output = &SendChannelMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// SendChannelMessage API operation for Amazon Chime.
+//
+// Sends a message to a particular channel that the member is a part of.
+//
+// STANDARD messages can contain 4KB of data and the 1KB of metadata. CONTROL
+// messages can contain 30 bytes of data and no metadata.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation SendChannelMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/SendChannelMessage
+func (c *Chime) SendChannelMessage(input *SendChannelMessageInput) (*SendChannelMessageOutput, error) {
+	req, out := c.SendChannelMessageRequest(input)
+	return out, req.Send()
+}
+
+// SendChannelMessageWithContext is the same as SendChannelMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendChannelMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) SendChannelMessageWithContext(ctx aws.Context, input *SendChannelMessageInput, opts ...request.Option) (*SendChannelMessageOutput, error) {
+	req, out := c.SendChannelMessageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12040,8 +16914,7 @@ func (c *Chime) TagAttendeeRequest(input *TagAttendeeInput) (req *request.Reques
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -12142,8 +17015,7 @@ func (c *Chime) TagMeetingRequest(input *TagMeetingInput) (req *request.Request,
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -12244,8 +17116,7 @@ func (c *Chime) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -12340,8 +17211,7 @@ func (c *Chime) UntagAttendeeRequest(input *UntagAttendeeInput) (req *request.Re
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -12439,8 +17309,7 @@ func (c *Chime) UntagMeetingRequest(input *UntagMeetingInput) (req *request.Requ
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -12538,8 +17407,7 @@ func (c *Chime) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -12637,8 +17505,7 @@ func (c *Chime) UpdateAccountRequest(input *UpdateAccountInput) (req *request.Re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -12742,8 +17609,7 @@ func (c *Chime) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput) 
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ConflictException
 //   The request could not be processed because of conflict in the current state
@@ -12775,6 +17641,206 @@ func (c *Chime) UpdateAccountSettings(input *UpdateAccountSettingsInput) (*Updat
 // for more information on using Contexts.
 func (c *Chime) UpdateAccountSettingsWithContext(ctx aws.Context, input *UpdateAccountSettingsInput, opts ...request.Option) (*UpdateAccountSettingsOutput, error) {
 	req, out := c.UpdateAccountSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAppInstance = "UpdateAppInstance"
+
+// UpdateAppInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAppInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAppInstance for more information on using the UpdateAppInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAppInstanceRequest method.
+//    req, resp := client.UpdateAppInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateAppInstance
+func (c *Chime) UpdateAppInstanceRequest(input *UpdateAppInstanceInput) (req *request.Request, output *UpdateAppInstanceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAppInstance,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/app-instances/{appInstanceArn}",
+	}
+
+	if input == nil {
+		input = &UpdateAppInstanceInput{}
+	}
+
+	output = &UpdateAppInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateAppInstance API operation for Amazon Chime.
+//
+// Updates AppInstance metadata.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateAppInstance for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateAppInstance
+func (c *Chime) UpdateAppInstance(input *UpdateAppInstanceInput) (*UpdateAppInstanceOutput, error) {
+	req, out := c.UpdateAppInstanceRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAppInstanceWithContext is the same as UpdateAppInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAppInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateAppInstanceWithContext(ctx aws.Context, input *UpdateAppInstanceInput, opts ...request.Option) (*UpdateAppInstanceOutput, error) {
+	req, out := c.UpdateAppInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAppInstanceUser = "UpdateAppInstanceUser"
+
+// UpdateAppInstanceUserRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAppInstanceUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAppInstanceUser for more information on using the UpdateAppInstanceUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAppInstanceUserRequest method.
+//    req, resp := client.UpdateAppInstanceUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateAppInstanceUser
+func (c *Chime) UpdateAppInstanceUserRequest(input *UpdateAppInstanceUserInput) (req *request.Request, output *UpdateAppInstanceUserOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAppInstanceUser,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}",
+	}
+
+	if input == nil {
+		input = &UpdateAppInstanceUserInput{}
+	}
+
+	output = &UpdateAppInstanceUserOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("identity-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateAppInstanceUser API operation for Amazon Chime.
+//
+// Updates the details for an AppInstanceUser. You can update names and metadata.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateAppInstanceUser for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateAppInstanceUser
+func (c *Chime) UpdateAppInstanceUser(input *UpdateAppInstanceUserInput) (*UpdateAppInstanceUserOutput, error) {
+	req, out := c.UpdateAppInstanceUserRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAppInstanceUserWithContext is the same as UpdateAppInstanceUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAppInstanceUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateAppInstanceUserWithContext(ctx aws.Context, input *UpdateAppInstanceUserInput, opts ...request.Option) (*UpdateAppInstanceUserOutput, error) {
+	req, out := c.UpdateAppInstanceUserRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12842,8 +17908,7 @@ func (c *Chime) UpdateBotRequest(input *UpdateBotInput) (req *request.Request, o
 //   The service encountered an unexpected error.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -12874,6 +17939,308 @@ func (c *Chime) UpdateBot(input *UpdateBotInput) (*UpdateBotOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) UpdateBotWithContext(ctx aws.Context, input *UpdateBotInput, opts ...request.Option) (*UpdateBotOutput, error) {
 	req, out := c.UpdateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateChannel = "UpdateChannel"
+
+// UpdateChannelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateChannel for more information on using the UpdateChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateChannelRequest method.
+//    req, resp := client.UpdateChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateChannel
+func (c *Chime) UpdateChannelRequest(input *UpdateChannelInput) (req *request.Request, output *UpdateChannelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channels/{channelArn}",
+	}
+
+	if input == nil {
+		input = &UpdateChannelInput{}
+	}
+
+	output = &UpdateChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateChannel API operation for Amazon Chime.
+//
+// Update a channel's attributes.
+//
+// Restriction: You can't change a channel's privacy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateChannel for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateChannel
+func (c *Chime) UpdateChannel(input *UpdateChannelInput) (*UpdateChannelOutput, error) {
+	req, out := c.UpdateChannelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateChannelWithContext is the same as UpdateChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateChannelWithContext(ctx aws.Context, input *UpdateChannelInput, opts ...request.Option) (*UpdateChannelOutput, error) {
+	req, out := c.UpdateChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateChannelMessage = "UpdateChannelMessage"
+
+// UpdateChannelMessageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateChannelMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateChannelMessage for more information on using the UpdateChannelMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateChannelMessageRequest method.
+//    req, resp := client.UpdateChannelMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateChannelMessage
+func (c *Chime) UpdateChannelMessageRequest(input *UpdateChannelMessageInput) (req *request.Request, output *UpdateChannelMessageOutput) {
+	op := &request.Operation{
+		Name:       opUpdateChannelMessage,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channels/{channelArn}/messages/{messageId}",
+	}
+
+	if input == nil {
+		input = &UpdateChannelMessageInput{}
+	}
+
+	output = &UpdateChannelMessageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateChannelMessage API operation for Amazon Chime.
+//
+// Updates the content of a message.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateChannelMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateChannelMessage
+func (c *Chime) UpdateChannelMessage(input *UpdateChannelMessageInput) (*UpdateChannelMessageOutput, error) {
+	req, out := c.UpdateChannelMessageRequest(input)
+	return out, req.Send()
+}
+
+// UpdateChannelMessageWithContext is the same as UpdateChannelMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateChannelMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateChannelMessageWithContext(ctx aws.Context, input *UpdateChannelMessageInput, opts ...request.Option) (*UpdateChannelMessageOutput, error) {
+	req, out := c.UpdateChannelMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateChannelReadMarker = "UpdateChannelReadMarker"
+
+// UpdateChannelReadMarkerRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateChannelReadMarker operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateChannelReadMarker for more information on using the UpdateChannelReadMarker
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateChannelReadMarkerRequest method.
+//    req, resp := client.UpdateChannelReadMarkerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateChannelReadMarker
+func (c *Chime) UpdateChannelReadMarkerRequest(input *UpdateChannelReadMarkerInput) (req *request.Request, output *UpdateChannelReadMarkerOutput) {
+	op := &request.Operation{
+		Name:       opUpdateChannelReadMarker,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channels/{channelArn}/readMarker",
+	}
+
+	if input == nil {
+		input = &UpdateChannelReadMarkerInput{}
+	}
+
+	output = &UpdateChannelReadMarkerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UpdateChannelReadMarker API operation for Amazon Chime.
+//
+// Sets the timestamp to the point when a user last read messages in a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateChannelReadMarker for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateChannelReadMarker
+func (c *Chime) UpdateChannelReadMarker(input *UpdateChannelReadMarkerInput) (*UpdateChannelReadMarkerOutput, error) {
+	req, out := c.UpdateChannelReadMarkerRequest(input)
+	return out, req.Send()
+}
+
+// UpdateChannelReadMarkerWithContext is the same as UpdateChannelReadMarker with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateChannelReadMarker for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateChannelReadMarkerWithContext(ctx aws.Context, input *UpdateChannelReadMarkerInput, opts ...request.Option) (*UpdateChannelReadMarkerOutput, error) {
+	req, out := c.UpdateChannelReadMarkerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12939,8 +18306,7 @@ func (c *Chime) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsInput) (r
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13047,8 +18413,7 @@ func (c *Chime) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13146,8 +18511,7 @@ func (c *Chime) UpdatePhoneNumberSettingsRequest(input *UpdatePhoneNumberSetting
 //   The client is not currently authorized to make the request.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13244,8 +18608,7 @@ func (c *Chime) UpdateProxySessionRequest(input *UpdateProxySessionInput) (req *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13340,8 +18703,7 @@ func (c *Chime) UpdateRoomRequest(input *UpdateRoomInput) (req *request.Request,
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * NotFoundException
 //   One or more of the resources in the request does not exist in the system.
@@ -13447,8 +18809,7 @@ func (c *Chime) UpdateRoomMembershipRequest(input *UpdateRoomMembershipInput) (r
 //   The input parameters don't match the service's restrictions.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -13542,8 +18903,7 @@ func (c *Chime) UpdateSipMediaApplicationRequest(input *UpdateSipMediaApplicatio
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13644,8 +19004,7 @@ func (c *Chime) UpdateSipRuleRequest(input *UpdateSipRuleInput) (req *request.Re
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13750,8 +19109,7 @@ func (c *Chime) UpdateUserRequest(input *UpdateUserInput) (req *request.Request,
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13849,8 +19207,7 @@ func (c *Chime) UpdateUserSettingsRequest(input *UpdateUserSettingsInput) (req *
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -13947,8 +19304,7 @@ func (c *Chime) UpdateVoiceConnectorRequest(input *UpdateVoiceConnectorInput) (r
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -14046,8 +19402,7 @@ func (c *Chime) UpdateVoiceConnectorGroupRequest(input *UpdateVoiceConnectorGrou
 //   One or more of the resources in the request does not exist in the system.
 //
 //   * ForbiddenException
-//   The client is permanently forbidden from making the request. For example,
-//   when a user tries to create an account from an unsupported Region.
+//   The client is permanently forbidden from making the request.
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
@@ -14311,6 +19666,404 @@ func (s *AlexaForBusinessMetadata) SetAlexaForBusinessRoomArn(v string) *AlexaFo
 // SetIsAlexaForBusinessEnabled sets the IsAlexaForBusinessEnabled field's value.
 func (s *AlexaForBusinessMetadata) SetIsAlexaForBusinessEnabled(v bool) *AlexaForBusinessMetadata {
 	s.IsAlexaForBusinessEnabled = &v
+	return s
+}
+
+// An instance of a Chime messaging application.
+type AppInstance struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the messaging instance.
+	AppInstanceArn *string `min:"5" type:"string"`
+
+	// The time at which an app instance was created. In epoch milliseconds.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The time an app instance was last updated. In epoch milliseconds.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The metadata of an app instance.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name of an app instance.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s AppInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstance) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *AppInstance) SetAppInstanceArn(v string) *AppInstance {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *AppInstance) SetCreatedTimestamp(v time.Time) *AppInstance {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *AppInstance) SetLastUpdatedTimestamp(v time.Time) *AppInstance {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *AppInstance) SetMetadata(v string) *AppInstance {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppInstance) SetName(v string) *AppInstance {
+	s.Name = &v
+	return s
+}
+
+// Promotes a user to the administrator role for the duration of an app instance.
+type AppInstanceAdmin struct {
+	_ struct{} `type:"structure"`
+
+	// The name and metadata of the app instance administrator.
+	Admin *Identity `type:"structure"`
+
+	// The ARN of the app instance administrator.
+	AppInstanceArn *string `min:"5" type:"string"`
+
+	// The time at which an administrator was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s AppInstanceAdmin) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceAdmin) GoString() string {
+	return s.String()
+}
+
+// SetAdmin sets the Admin field's value.
+func (s *AppInstanceAdmin) SetAdmin(v *Identity) *AppInstanceAdmin {
+	s.Admin = v
+	return s
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *AppInstanceAdmin) SetAppInstanceArn(v string) *AppInstanceAdmin {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *AppInstanceAdmin) SetCreatedTimestamp(v time.Time) *AppInstanceAdmin {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// The identity and metadata of an administrator.
+type AppInstanceAdminSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name and metadata of the app instance administrator.
+	Admin *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s AppInstanceAdminSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceAdminSummary) GoString() string {
+	return s.String()
+}
+
+// SetAdmin sets the Admin field's value.
+func (s *AppInstanceAdminSummary) SetAdmin(v *Identity) *AppInstanceAdminSummary {
+	s.Admin = v
+	return s
+}
+
+// The length of time in days to retain messages.
+type AppInstanceRetentionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The length of time in days to retain a channel.
+	ChannelRetentionSettings *ChannelRetentionSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s AppInstanceRetentionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceRetentionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AppInstanceRetentionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AppInstanceRetentionSettings"}
+	if s.ChannelRetentionSettings != nil {
+		if err := s.ChannelRetentionSettings.Validate(); err != nil {
+			invalidParams.AddNested("ChannelRetentionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelRetentionSettings sets the ChannelRetentionSettings field's value.
+func (s *AppInstanceRetentionSettings) SetChannelRetentionSettings(v *ChannelRetentionSettings) *AppInstanceRetentionSettings {
+	s.ChannelRetentionSettings = v
+	return s
+}
+
+// The streaming configuration of an app instance.
+type AppInstanceStreamingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The data type of the app instance.
+	//
+	// AppInstanceDataType is a required field
+	AppInstanceDataType *string `type:"string" required:"true" enum:"AppInstanceDataType"`
+
+	// The resource ARN.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s AppInstanceStreamingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceStreamingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AppInstanceStreamingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AppInstanceStreamingConfiguration"}
+	if s.AppInstanceDataType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceDataType"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceDataType sets the AppInstanceDataType field's value.
+func (s *AppInstanceStreamingConfiguration) SetAppInstanceDataType(v string) *AppInstanceStreamingConfiguration {
+	s.AppInstanceDataType = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *AppInstanceStreamingConfiguration) SetResourceArn(v string) *AppInstanceStreamingConfiguration {
+	s.ResourceArn = &v
+	return s
+}
+
+// The summary data for an app instance.
+type AppInstanceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The app instance ARN.
+	AppInstanceArn *string `min:"5" type:"string"`
+
+	// The metadata of the app instance summary.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name of the app instance summary.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s AppInstanceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceSummary) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *AppInstanceSummary) SetAppInstanceArn(v string) *AppInstanceSummary {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *AppInstanceSummary) SetMetadata(v string) *AppInstanceSummary {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppInstanceSummary) SetName(v string) *AppInstanceSummary {
+	s.Name = &v
+	return s
+}
+
+// The app instance user.
+type AppInstanceUser struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance user.
+	AppInstanceUserArn *string `min:"5" type:"string"`
+
+	// The time at which the app instance user was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The time at which the app instance user was last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The metadata of the app instance user.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name of the app instance user.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s AppInstanceUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceUser) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *AppInstanceUser) SetAppInstanceUserArn(v string) *AppInstanceUser {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *AppInstanceUser) SetCreatedTimestamp(v time.Time) *AppInstanceUser {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *AppInstanceUser) SetLastUpdatedTimestamp(v time.Time) *AppInstanceUser {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *AppInstanceUser) SetMetadata(v string) *AppInstanceUser {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppInstanceUser) SetName(v string) *AppInstanceUser {
+	s.Name = &v
+	return s
+}
+
+// Lists the channels to which app instance users belong.
+type AppInstanceUserMembershipSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which a summary was last read.
+	ReadMarkerTimestamp *time.Time `type:"timestamp"`
+
+	// The type of channel summary,
+	Type *string `type:"string" enum:"ChannelMembershipType"`
+}
+
+// String returns the string representation
+func (s AppInstanceUserMembershipSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceUserMembershipSummary) GoString() string {
+	return s.String()
+}
+
+// SetReadMarkerTimestamp sets the ReadMarkerTimestamp field's value.
+func (s *AppInstanceUserMembershipSummary) SetReadMarkerTimestamp(v time.Time) *AppInstanceUserMembershipSummary {
+	s.ReadMarkerTimestamp = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AppInstanceUserMembershipSummary) SetType(v string) *AppInstanceUserMembershipSummary {
+	s.Type = &v
+	return s
+}
+
+// The app instance user summary data .
+type AppInstanceUserSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance user.
+	AppInstanceUserArn *string `min:"5" type:"string"`
+
+	// The metadata in an app instance user summary.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name in an app instance user summary.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s AppInstanceUserSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppInstanceUserSummary) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *AppInstanceUserSummary) SetAppInstanceUserArn(v string) *AppInstanceUserSummary {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *AppInstanceUserSummary) SetMetadata(v string) *AppInstanceUserSummary {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppInstanceUserSummary) SetName(v string) *AppInstanceUserSummary {
+	s.Name = &v
 	return s
 }
 
@@ -15468,6 +21221,717 @@ func (s *BusinessCallingSettings) SetCdrBucket(v string) *BusinessCallingSetting
 	return s
 }
 
+// Creates a channel.
+type Channel struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The administrator who created the channel.
+	CreatedBy *Identity `type:"structure"`
+
+	// The time at which the administrator created the channel.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The time at which a member sent the last message in a session.
+	LastMessageTimestamp *time.Time `type:"timestamp"`
+
+	// The time at which a channel was last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The metadata of the channel.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The mode of the channel.
+	Mode *string `type:"string" enum:"ChannelMode"`
+
+	// The name of the channel.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The channel's privacy setting, PUBLIC or HIDDEN.
+	Privacy *string `type:"string" enum:"ChannelPrivacy"`
+}
+
+// String returns the string representation
+func (s Channel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Channel) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *Channel) SetChannelArn(v string) *Channel {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *Channel) SetCreatedBy(v *Identity) *Channel {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *Channel) SetCreatedTimestamp(v time.Time) *Channel {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetLastMessageTimestamp sets the LastMessageTimestamp field's value.
+func (s *Channel) SetLastMessageTimestamp(v time.Time) *Channel {
+	s.LastMessageTimestamp = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *Channel) SetLastUpdatedTimestamp(v time.Time) *Channel {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *Channel) SetMetadata(v string) *Channel {
+	s.Metadata = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *Channel) SetMode(v string) *Channel {
+	s.Mode = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Channel) SetName(v string) *Channel {
+	s.Name = &v
+	return s
+}
+
+// SetPrivacy sets the Privacy field's value.
+func (s *Channel) SetPrivacy(v string) *Channel {
+	s.Privacy = &v
+	return s
+}
+
+// Bans a user from a channel.
+type ChannelBan struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel from which a member is being banned.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The parameter of the action.
+	CreatedBy *Identity `type:"structure"`
+
+	// The time at which the ban was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The member being banned from the channel.
+	Member *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelBan) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelBan) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ChannelBan) SetChannelArn(v string) *ChannelBan {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *ChannelBan) SetCreatedBy(v *Identity) *ChannelBan {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ChannelBan) SetCreatedTimestamp(v time.Time) *ChannelBan {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *ChannelBan) SetMember(v *Identity) *ChannelBan {
+	s.Member = v
+	return s
+}
+
+// The summary data for the channel ban.
+type ChannelBanSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The member being banned from a channel.
+	Member *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelBanSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelBanSummary) GoString() string {
+	return s.String()
+}
+
+// SetMember sets the Member field's value.
+func (s *ChannelBanSummary) SetMember(v *Identity) *ChannelBanSummary {
+	s.Member = v
+	return s
+}
+
+// Creates a channel member.
+type ChannelMembership struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the member's channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The time at which the channel membership was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The identifier of the member who invited another member. Taken from the message
+	// header.
+	InvitedBy *Identity `type:"structure"`
+
+	// The time at which a channel membership was last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The data of the channel member.
+	Member *Identity `type:"structure"`
+
+	// The membership type set for the channel member.
+	Type *string `type:"string" enum:"ChannelMembershipType"`
+}
+
+// String returns the string representation
+func (s ChannelMembership) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelMembership) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ChannelMembership) SetChannelArn(v string) *ChannelMembership {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ChannelMembership) SetCreatedTimestamp(v time.Time) *ChannelMembership {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetInvitedBy sets the InvitedBy field's value.
+func (s *ChannelMembership) SetInvitedBy(v *Identity) *ChannelMembership {
+	s.InvitedBy = v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ChannelMembership) SetLastUpdatedTimestamp(v time.Time) *ChannelMembership {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *ChannelMembership) SetMember(v *Identity) *ChannelMembership {
+	s.Member = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ChannelMembership) SetType(v string) *ChannelMembership {
+	s.Type = &v
+	return s
+}
+
+// Returns the channel membership summary data for an app instance.
+type ChannelMembershipForAppInstanceUserSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the channel membership data for an app instance.
+	AppInstanceUserMembershipSummary *AppInstanceUserMembershipSummary `type:"structure"`
+
+	// The summary data for a channel.
+	ChannelSummary *ChannelSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelMembershipForAppInstanceUserSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelMembershipForAppInstanceUserSummary) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserMembershipSummary sets the AppInstanceUserMembershipSummary field's value.
+func (s *ChannelMembershipForAppInstanceUserSummary) SetAppInstanceUserMembershipSummary(v *AppInstanceUserMembershipSummary) *ChannelMembershipForAppInstanceUserSummary {
+	s.AppInstanceUserMembershipSummary = v
+	return s
+}
+
+// SetChannelSummary sets the ChannelSummary field's value.
+func (s *ChannelMembershipForAppInstanceUserSummary) SetChannelSummary(v *ChannelSummary) *ChannelMembershipForAppInstanceUserSummary {
+	s.ChannelSummary = v
+	return s
+}
+
+// The summary data of a channel membership.
+type ChannelMembershipSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A member's summary data.
+	Member *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelMembershipSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelMembershipSummary) GoString() string {
+	return s.String()
+}
+
+// SetMember sets the Member field's value.
+func (s *ChannelMembershipSummary) SetMember(v *Identity) *ChannelMembershipSummary {
+	s.Member = v
+	return s
+}
+
+// Creates a message in a channel.
+type ChannelMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The message content.
+	Content *string `type:"string" sensitive:"true"`
+
+	// The time at which the message was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The time at which a message was edited.
+	LastEditedTimestamp *time.Time `type:"timestamp"`
+
+	// The time at which a message was updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The ID of a message.
+	MessageId *string `min:"1" type:"string"`
+
+	// The message metadata.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	Persistence *string `type:"string" enum:"ChannelMessagePersistenceType"`
+
+	// Hides the content of a message. The message still exists on the back end,
+	// but this action only returns metadata.
+	Redacted *bool `type:"boolean"`
+
+	// The message sender.
+	Sender *Identity `type:"structure"`
+
+	// The message type.
+	Type *string `type:"string" enum:"ChannelMessageType"`
+}
+
+// String returns the string representation
+func (s ChannelMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelMessage) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ChannelMessage) SetChannelArn(v string) *ChannelMessage {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *ChannelMessage) SetContent(v string) *ChannelMessage {
+	s.Content = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ChannelMessage) SetCreatedTimestamp(v time.Time) *ChannelMessage {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetLastEditedTimestamp sets the LastEditedTimestamp field's value.
+func (s *ChannelMessage) SetLastEditedTimestamp(v time.Time) *ChannelMessage {
+	s.LastEditedTimestamp = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ChannelMessage) SetLastUpdatedTimestamp(v time.Time) *ChannelMessage {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *ChannelMessage) SetMessageId(v string) *ChannelMessage {
+	s.MessageId = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *ChannelMessage) SetMetadata(v string) *ChannelMessage {
+	s.Metadata = &v
+	return s
+}
+
+// SetPersistence sets the Persistence field's value.
+func (s *ChannelMessage) SetPersistence(v string) *ChannelMessage {
+	s.Persistence = &v
+	return s
+}
+
+// SetRedacted sets the Redacted field's value.
+func (s *ChannelMessage) SetRedacted(v bool) *ChannelMessage {
+	s.Redacted = &v
+	return s
+}
+
+// SetSender sets the Sender field's value.
+func (s *ChannelMessage) SetSender(v *Identity) *ChannelMessage {
+	s.Sender = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ChannelMessage) SetType(v string) *ChannelMessage {
+	s.Type = &v
+	return s
+}
+
+// A summary of the messages in a channel.
+type ChannelMessageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the message summary.
+	Content *string `type:"string" sensitive:"true"`
+
+	// The time at which the message summary was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	LastEditedTimestamp *time.Time `type:"timestamp"`
+
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The ID of the message summary.
+	MessageId *string `min:"1" type:"string"`
+
+	// The metadata of the message summary.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// Redacts the content of a message summary.
+	Redacted *bool `type:"boolean"`
+
+	// The sender of the message summary.
+	Sender *Identity `type:"structure"`
+
+	// The type of message summary.
+	Type *string `type:"string" enum:"ChannelMessageType"`
+}
+
+// String returns the string representation
+func (s ChannelMessageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelMessageSummary) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *ChannelMessageSummary) SetContent(v string) *ChannelMessageSummary {
+	s.Content = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ChannelMessageSummary) SetCreatedTimestamp(v time.Time) *ChannelMessageSummary {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetLastEditedTimestamp sets the LastEditedTimestamp field's value.
+func (s *ChannelMessageSummary) SetLastEditedTimestamp(v time.Time) *ChannelMessageSummary {
+	s.LastEditedTimestamp = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ChannelMessageSummary) SetLastUpdatedTimestamp(v time.Time) *ChannelMessageSummary {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *ChannelMessageSummary) SetMessageId(v string) *ChannelMessageSummary {
+	s.MessageId = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *ChannelMessageSummary) SetMetadata(v string) *ChannelMessageSummary {
+	s.Metadata = &v
+	return s
+}
+
+// SetRedacted sets the Redacted field's value.
+func (s *ChannelMessageSummary) SetRedacted(v bool) *ChannelMessageSummary {
+	s.Redacted = &v
+	return s
+}
+
+// SetSender sets the Sender field's value.
+func (s *ChannelMessageSummary) SetSender(v *Identity) *ChannelMessageSummary {
+	s.Sender = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ChannelMessageSummary) SetType(v string) *ChannelMessageSummary {
+	s.Type = &v
+	return s
+}
+
+// Returns the summary data for a moderated channel.
+type ChannelModeratedByAppInstanceUserSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The summary data for a channel.
+	ChannelSummary *ChannelSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelModeratedByAppInstanceUserSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelModeratedByAppInstanceUserSummary) GoString() string {
+	return s.String()
+}
+
+// SetChannelSummary sets the ChannelSummary field's value.
+func (s *ChannelModeratedByAppInstanceUserSummary) SetChannelSummary(v *ChannelSummary) *ChannelModeratedByAppInstanceUserSummary {
+	s.ChannelSummary = v
+	return s
+}
+
+// Creates a moderator on a channel.
+type ChannelModerator struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the moderator's channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The member who created the moderator.
+	CreatedBy *Identity `type:"structure"`
+
+	// The time at which the moderator was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The moderator's data.
+	Moderator *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelModerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelModerator) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ChannelModerator) SetChannelArn(v string) *ChannelModerator {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *ChannelModerator) SetCreatedBy(v *Identity) *ChannelModerator {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *ChannelModerator) SetCreatedTimestamp(v time.Time) *ChannelModerator {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetModerator sets the Moderator field's value.
+func (s *ChannelModerator) SetModerator(v *Identity) *ChannelModerator {
+	s.Moderator = v
+	return s
+}
+
+// Summary data of the moderators in a channel.
+type ChannelModeratorSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The data for a moderator.
+	Moderator *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChannelModeratorSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelModeratorSummary) GoString() string {
+	return s.String()
+}
+
+// SetModerator sets the Moderator field's value.
+func (s *ChannelModeratorSummary) SetModerator(v *Identity) *ChannelModeratorSummary {
+	s.Moderator = v
+	return s
+}
+
+// The retention settings for a channel.
+type ChannelRetentionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The time in days to retain a channel.
+	RetentionDays *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ChannelRetentionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelRetentionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChannelRetentionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChannelRetentionSettings"}
+	if s.RetentionDays != nil && *s.RetentionDays < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("RetentionDays", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *ChannelRetentionSettings) SetRetentionDays(v int64) *ChannelRetentionSettings {
+	s.RetentionDays = &v
+	return s
+}
+
+// The summary data for a channel.
+type ChannelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel summary.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The time at which the last message in a channel was sent.
+	LastMessageTimestamp *time.Time `type:"timestamp"`
+
+	// The metadata of the channel summary.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The summary mode of the channel.
+	Mode *string `type:"string" enum:"ChannelMode"`
+
+	// The parameter of the action.
+	Name *string `min:"1" type:"string" sensitive:"true"`
+
+	// The privacy setting of the channel being summarized, PUBLIC or HIDDEN.
+	Privacy *string `type:"string" enum:"ChannelPrivacy"`
+}
+
+// String returns the string representation
+func (s ChannelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelSummary) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ChannelSummary) SetChannelArn(v string) *ChannelSummary {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetLastMessageTimestamp sets the LastMessageTimestamp field's value.
+func (s *ChannelSummary) SetLastMessageTimestamp(v time.Time) *ChannelSummary {
+	s.LastMessageTimestamp = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *ChannelSummary) SetMetadata(v string) *ChannelSummary {
+	s.Metadata = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *ChannelSummary) SetMode(v string) *ChannelSummary {
+	s.Mode = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ChannelSummary) SetName(v string) *ChannelSummary {
+	s.Name = &v
+	return s
+}
+
+// SetPrivacy sets the Privacy field's value.
+func (s *ChannelSummary) SetPrivacy(v string) *ChannelSummary {
+	s.Privacy = &v
+	return s
+}
+
 // The request could not be processed because of conflict in the current state
 // of the resource.
 type ConflictException struct {
@@ -15627,6 +22091,300 @@ func (s CreateAccountOutput) GoString() string {
 // SetAccount sets the Account field's value.
 func (s *CreateAccountOutput) SetAccount(v *Account) *CreateAccountOutput {
 	s.Account = v
+	return s
+}
+
+type CreateAppInstanceAdminInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the administrator of the current app instance.
+	//
+	// AppInstanceAdminArn is a required field
+	AppInstanceAdminArn *string `min:"5" type:"string" required:"true"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAppInstanceAdminInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInstanceAdminInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAppInstanceAdminInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAppInstanceAdminInput"}
+	if s.AppInstanceAdminArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceAdminArn"))
+	}
+	if s.AppInstanceAdminArn != nil && len(*s.AppInstanceAdminArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceAdminArn", 5))
+	}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceAdminArn sets the AppInstanceAdminArn field's value.
+func (s *CreateAppInstanceAdminInput) SetAppInstanceAdminArn(v string) *CreateAppInstanceAdminInput {
+	s.AppInstanceAdminArn = &v
+	return s
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *CreateAppInstanceAdminInput) SetAppInstanceArn(v string) *CreateAppInstanceAdminInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type CreateAppInstanceAdminOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name and ARN of the admin for the app instance.
+	AppInstanceAdmin *Identity `type:"structure"`
+
+	// The ARN of the of the admin for the app instance.
+	AppInstanceArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAppInstanceAdminOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInstanceAdminOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceAdmin sets the AppInstanceAdmin field's value.
+func (s *CreateAppInstanceAdminOutput) SetAppInstanceAdmin(v *Identity) *CreateAppInstanceAdminOutput {
+	s.AppInstanceAdmin = v
+	return s
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *CreateAppInstanceAdminOutput) SetAppInstanceArn(v string) *CreateAppInstanceAdminOutput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type CreateAppInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ClientRequestToken of the app instance.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The metadata of the app instance. Limited to a 1KB string in UTF-8.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name of the app instance.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateAppInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAppInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAppInstanceInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateAppInstanceInput) SetClientRequestToken(v string) *CreateAppInstanceInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *CreateAppInstanceInput) SetMetadata(v string) *CreateAppInstanceInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAppInstanceInput) SetName(v string) *CreateAppInstanceInput {
+	s.Name = &v
+	return s
+}
+
+type CreateAppInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the app instance.
+	AppInstanceArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAppInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *CreateAppInstanceOutput) SetAppInstanceArn(v string) *CreateAppInstanceOutput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type CreateAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance request.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `min:"5" type:"string" required:"true"`
+
+	// The user ID of the app instance.
+	//
+	// AppInstanceUserId is a required field
+	AppInstanceUserId *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The token assigned to the user requesting an app instance.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The request's metadata. Limited to a 1KB string in UTF-8.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The user's name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAppInstanceUserInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.AppInstanceUserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserId"))
+	}
+	if s.AppInstanceUserId != nil && len(*s.AppInstanceUserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserId", 1))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *CreateAppInstanceUserInput) SetAppInstanceArn(v string) *CreateAppInstanceUserInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetAppInstanceUserId sets the AppInstanceUserId field's value.
+func (s *CreateAppInstanceUserInput) SetAppInstanceUserId(v string) *CreateAppInstanceUserInput {
+	s.AppInstanceUserId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateAppInstanceUserInput) SetClientRequestToken(v string) *CreateAppInstanceUserInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *CreateAppInstanceUserInput) SetMetadata(v string) *CreateAppInstanceUserInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAppInstanceUserInput) SetName(v string) *CreateAppInstanceUserInput {
+	s.Name = &v
+	return s
+}
+
+type CreateAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The user's ARN.
+	AppInstanceUserArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *CreateAppInstanceUserOutput) SetAppInstanceUserArn(v string) *CreateAppInstanceUserOutput {
+	s.AppInstanceUserArn = &v
 	return s
 }
 
@@ -15790,6 +22548,9 @@ type CreateAttendeeRequestItem struct {
 	// to an identity managed by a builder application. If you create an attendee
 	// with the same external user id, the service returns the existing record.
 	//
+	// The Amazon Chime SDK external user ID. Links the attendee to an identity
+	// managed by a builder application.
+	//
 	// ExternalUserId is a required field
 	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
 
@@ -15932,6 +22693,439 @@ func (s CreateBotOutput) GoString() string {
 // SetBot sets the Bot field's value.
 func (s *CreateBotOutput) SetBot(v *Bot) *CreateBotOutput {
 	s.Bot = v
+	return s
+}
+
+type CreateChannelBanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the ban request.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the member being banned.
+	//
+	// MemberArn is a required field
+	MemberArn *string `min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateChannelBanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelBanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateChannelBanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateChannelBanInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelBanInput) SetChannelArn(v string) *CreateChannelBanInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *CreateChannelBanInput) SetMemberArn(v string) *CreateChannelBanInput {
+	s.MemberArn = &v
+	return s
+}
+
+type CreateChannelBanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the response to the ban request.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The ChannelArn and BannedIdentity of the member in the ban response.
+	Member *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateChannelBanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelBanOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelBanOutput) SetChannelArn(v string) *CreateChannelBanOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *CreateChannelBanOutput) SetMember(v *Identity) *CreateChannelBanOutput {
+	s.Member = v
+	return s
+}
+
+type CreateChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel request.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `min:"5" type:"string" required:"true"`
+
+	// The client token for the request. An Idempotency token.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The metadata of the creation request. Limited to 1KB and UTF-8.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The channel mode: UNRESTRICTED or RESTRICTED. Administrators, moderators,
+	// and channel members can add themselves and other members to unrestricted
+	// channels. Only administrators and moderators can add members to restricted
+	// channels.
+	Mode *string `type:"string" enum:"ChannelMode"`
+
+	// The name of the channel.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The channel's privacy level: PUBLIC or PRIVATE. Private channels aren't discoverable
+	// by users outside the channel. Public channels are discoverable by anyone
+	// in the app instance.
+	Privacy *string `type:"string" enum:"ChannelPrivacy"`
+
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateChannelInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *CreateChannelInput) SetAppInstanceArn(v string) *CreateChannelInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateChannelInput) SetClientRequestToken(v string) *CreateChannelInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *CreateChannelInput) SetMetadata(v string) *CreateChannelInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *CreateChannelInput) SetMode(v string) *CreateChannelInput {
+	s.Mode = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateChannelInput) SetName(v string) *CreateChannelInput {
+	s.Name = &v
+	return s
+}
+
+// SetPrivacy sets the Privacy field's value.
+func (s *CreateChannelInput) SetPrivacy(v string) *CreateChannelInput {
+	s.Privacy = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateChannelInput) SetTags(v []*Tag) *CreateChannelInput {
+	s.Tags = v
+	return s
+}
+
+type CreateChannelMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel to which you're adding users.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the member you want to add to the channel.
+	//
+	// MemberArn is a required field
+	MemberArn *string `min:"5" type:"string" required:"true"`
+
+	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
+	// returned as part of ListChannelMemberships. Hidden members are only returned
+	// if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden
+	// members are not returned. This is only supported by moderators.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ChannelMembershipType"`
+}
+
+// String returns the string representation
+func (s CreateChannelMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateChannelMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateChannelMembershipInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelMembershipInput) SetChannelArn(v string) *CreateChannelMembershipInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *CreateChannelMembershipInput) SetMemberArn(v string) *CreateChannelMembershipInput {
+	s.MemberArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateChannelMembershipInput) SetType(v string) *CreateChannelMembershipInput {
+	s.Type = &v
+	return s
+}
+
+type CreateChannelMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The ARN and metadata of the member being added.
+	Member *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateChannelMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelMembershipOutput) SetChannelArn(v string) *CreateChannelMembershipOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *CreateChannelMembershipOutput) SetMember(v *Identity) *CreateChannelMembershipOutput {
+	s.Member = v
+	return s
+}
+
+type CreateChannelModeratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the moderator.
+	//
+	// ChannelModeratorArn is a required field
+	ChannelModeratorArn *string `min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateChannelModeratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelModeratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateChannelModeratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateChannelModeratorInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChannelModeratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelModeratorArn"))
+	}
+	if s.ChannelModeratorArn != nil && len(*s.ChannelModeratorArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelModeratorArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelModeratorInput) SetChannelArn(v string) *CreateChannelModeratorInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelModeratorArn sets the ChannelModeratorArn field's value.
+func (s *CreateChannelModeratorInput) SetChannelModeratorArn(v string) *CreateChannelModeratorInput {
+	s.ChannelModeratorArn = &v
+	return s
+}
+
+type CreateChannelModeratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The ARNs of the channel and the moderator.
+	ChannelModerator *Identity `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateChannelModeratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelModeratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelModeratorOutput) SetChannelArn(v string) *CreateChannelModeratorOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelModerator sets the ChannelModerator field's value.
+func (s *CreateChannelModeratorOutput) SetChannelModerator(v *Identity) *CreateChannelModeratorOutput {
+	s.ChannelModerator = v
+	return s
+}
+
+type CreateChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *CreateChannelOutput) SetChannelArn(v string) *CreateChannelOutput {
+	s.ChannelArn = &v
 	return s
 }
 
@@ -17514,6 +24708,243 @@ func (s DeleteAccountOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteAppInstanceAdminInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance's administrator.
+	//
+	// AppInstanceAdminArn is a required field
+	AppInstanceAdminArn *string `location:"uri" locationName:"appInstanceAdminArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceAdminInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceAdminInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppInstanceAdminInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppInstanceAdminInput"}
+	if s.AppInstanceAdminArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceAdminArn"))
+	}
+	if s.AppInstanceAdminArn != nil && len(*s.AppInstanceAdminArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceAdminArn", 5))
+	}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceAdminArn sets the AppInstanceAdminArn field's value.
+func (s *DeleteAppInstanceAdminInput) SetAppInstanceAdminArn(v string) *DeleteAppInstanceAdminInput {
+	s.AppInstanceAdminArn = &v
+	return s
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *DeleteAppInstanceAdminInput) SetAppInstanceArn(v string) *DeleteAppInstanceAdminInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type DeleteAppInstanceAdminOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceAdminOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceAdminOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAppInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppInstanceInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *DeleteAppInstanceInput) SetAppInstanceArn(v string) *DeleteAppInstanceInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type DeleteAppInstanceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAppInstanceStreamingConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the streaming configurations being deleted.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceStreamingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceStreamingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppInstanceStreamingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppInstanceStreamingConfigurationsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *DeleteAppInstanceStreamingConfigurationsInput) SetAppInstanceArn(v string) *DeleteAppInstanceStreamingConfigurationsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type DeleteAppInstanceStreamingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceStreamingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceStreamingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the user request being deleted.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppInstanceUserInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *DeleteAppInstanceUserInput) SetAppInstanceUserArn(v string) *DeleteAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+type DeleteAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteAttendeeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17583,6 +25014,349 @@ func (s DeleteAttendeeOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteAttendeeOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteChannelBanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel from which the app instance user was banned.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the app instance user that you want to reinstate.
+	//
+	// MemberArn is a required field
+	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelBanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelBanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelBanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelBanInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DeleteChannelBanInput) SetChannelArn(v string) *DeleteChannelBanInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *DeleteChannelBanInput) SetMemberArn(v string) *DeleteChannelBanInput {
+	s.MemberArn = &v
+	return s
+}
+
+type DeleteChannelBanOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelBanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelBanOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel being deleted.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DeleteChannelInput) SetChannelArn(v string) *DeleteChannelInput {
+	s.ChannelArn = &v
+	return s
+}
+
+type DeleteChannelMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel from which you want to remove the user.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the member that you're removing from the channel.
+	//
+	// MemberArn is a required field
+	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelMembershipInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DeleteChannelMembershipInput) SetChannelArn(v string) *DeleteChannelMembershipInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *DeleteChannelMembershipInput) SetMemberArn(v string) *DeleteChannelMembershipInput {
+	s.MemberArn = &v
+	return s
+}
+
+type DeleteChannelMembershipOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelMembershipOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteChannelMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ID of the message being deleted.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelMessageInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DeleteChannelMessageInput) SetChannelArn(v string) *DeleteChannelMessageInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *DeleteChannelMessageInput) SetMessageId(v string) *DeleteChannelMessageInput {
+	s.MessageId = &v
+	return s
+}
+
+type DeleteChannelMessageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelMessageOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteChannelModeratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the moderator being deleted.
+	//
+	// ChannelModeratorArn is a required field
+	ChannelModeratorArn *string `location:"uri" locationName:"channelModeratorArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelModeratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelModeratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelModeratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelModeratorInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChannelModeratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelModeratorArn"))
+	}
+	if s.ChannelModeratorArn != nil && len(*s.ChannelModeratorArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelModeratorArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DeleteChannelModeratorInput) SetChannelArn(v string) *DeleteChannelModeratorInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelModeratorArn sets the ChannelModeratorArn field's value.
+func (s *DeleteChannelModeratorInput) SetChannelModeratorArn(v string) *DeleteChannelModeratorInput {
+	s.ChannelModeratorArn = &v
+	return s
+}
+
+type DeleteChannelModeratorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelModeratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelModeratorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteChannelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelOutput) GoString() string {
 	return s.String()
 }
 
@@ -18566,6 +26340,686 @@ func (s DeleteVoiceConnectorTerminationOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeAppInstanceAdminInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance administrator.
+	//
+	// AppInstanceAdminArn is a required field
+	AppInstanceAdminArn *string `location:"uri" locationName:"appInstanceAdminArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAppInstanceAdminInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppInstanceAdminInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAppInstanceAdminInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAppInstanceAdminInput"}
+	if s.AppInstanceAdminArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceAdminArn"))
+	}
+	if s.AppInstanceAdminArn != nil && len(*s.AppInstanceAdminArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceAdminArn", 5))
+	}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceAdminArn sets the AppInstanceAdminArn field's value.
+func (s *DescribeAppInstanceAdminInput) SetAppInstanceAdminArn(v string) *DescribeAppInstanceAdminInput {
+	s.AppInstanceAdminArn = &v
+	return s
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *DescribeAppInstanceAdminInput) SetAppInstanceArn(v string) *DescribeAppInstanceAdminInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type DescribeAppInstanceAdminOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN and name of the app instance user, the ARN of the app instance, and
+	// the created and last-updated timestamps. All timestamps use epoch milliseconds.
+	AppInstanceAdmin *AppInstanceAdmin `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAppInstanceAdminOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppInstanceAdminOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceAdmin sets the AppInstanceAdmin field's value.
+func (s *DescribeAppInstanceAdminOutput) SetAppInstanceAdmin(v *AppInstanceAdmin) *DescribeAppInstanceAdminOutput {
+	s.AppInstanceAdmin = v
+	return s
+}
+
+type DescribeAppInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAppInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAppInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAppInstanceInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *DescribeAppInstanceInput) SetAppInstanceArn(v string) *DescribeAppInstanceInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type DescribeAppInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN, metadata, created and last-updated timestamps, and the name of the
+	// app instance. All timestamps use epoch milliseconds.
+	AppInstance *AppInstance `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAppInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstance sets the AppInstance field's value.
+func (s *DescribeAppInstanceOutput) SetAppInstance(v *AppInstance) *DescribeAppInstanceOutput {
+	s.AppInstance = v
+	return s
+}
+
+type DescribeAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance user.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAppInstanceUserInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *DescribeAppInstanceUserInput) SetAppInstanceUserArn(v string) *DescribeAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+type DescribeAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the app instance user.
+	AppInstanceUser *AppInstanceUser `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUser sets the AppInstanceUser field's value.
+func (s *DescribeAppInstanceUserOutput) SetAppInstanceUser(v *AppInstanceUser) *DescribeAppInstanceUserOutput {
+	s.AppInstanceUser = v
+	return s
+}
+
+type DescribeChannelBanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel from which the user is banned.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the member being banned.
+	//
+	// MemberArn is a required field
+	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelBanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelBanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelBanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelBanInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DescribeChannelBanInput) SetChannelArn(v string) *DescribeChannelBanInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *DescribeChannelBanInput) SetMemberArn(v string) *DescribeChannelBanInput {
+	s.MemberArn = &v
+	return s
+}
+
+type DescribeChannelBanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The the details of the ban.
+	ChannelBan *ChannelBan `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChannelBanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelBanOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelBan sets the ChannelBan field's value.
+func (s *DescribeChannelBanOutput) SetChannelBan(v *ChannelBan) *DescribeChannelBanOutput {
+	s.ChannelBan = v
+	return s
+}
+
+type DescribeChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DescribeChannelInput) SetChannelArn(v string) *DescribeChannelInput {
+	s.ChannelArn = &v
+	return s
+}
+
+type DescribeChannelMembershipForAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the user in a channel.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the channel to which the user belongs.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelMembershipForAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelMembershipForAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelMembershipForAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelMembershipForAppInstanceUserInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *DescribeChannelMembershipForAppInstanceUserInput) SetAppInstanceUserArn(v string) *DescribeChannelMembershipForAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DescribeChannelMembershipForAppInstanceUserInput) SetChannelArn(v string) *DescribeChannelMembershipForAppInstanceUserInput {
+	s.ChannelArn = &v
+	return s
+}
+
+type DescribeChannelMembershipForAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The channel to which a user belongs.
+	ChannelMembership *ChannelMembershipForAppInstanceUserSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChannelMembershipForAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelMembershipForAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelMembership sets the ChannelMembership field's value.
+func (s *DescribeChannelMembershipForAppInstanceUserOutput) SetChannelMembership(v *ChannelMembershipForAppInstanceUserSummary) *DescribeChannelMembershipForAppInstanceUserOutput {
+	s.ChannelMembership = v
+	return s
+}
+
+type DescribeChannelMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the member.
+	//
+	// MemberArn is a required field
+	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelMembershipInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DescribeChannelMembershipInput) SetChannelArn(v string) *DescribeChannelMembershipInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *DescribeChannelMembershipInput) SetMemberArn(v string) *DescribeChannelMembershipInput {
+	s.MemberArn = &v
+	return s
+}
+
+type DescribeChannelMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the membership.
+	ChannelMembership *ChannelMembership `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChannelMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelMembership sets the ChannelMembership field's value.
+func (s *DescribeChannelMembershipOutput) SetChannelMembership(v *ChannelMembership) *DescribeChannelMembershipOutput {
+	s.ChannelMembership = v
+	return s
+}
+
+type DescribeChannelModeratedByAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance user in the moderated channel.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the moderated channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelModeratedByAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelModeratedByAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelModeratedByAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelModeratedByAppInstanceUserInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *DescribeChannelModeratedByAppInstanceUserInput) SetAppInstanceUserArn(v string) *DescribeChannelModeratedByAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DescribeChannelModeratedByAppInstanceUserInput) SetChannelArn(v string) *DescribeChannelModeratedByAppInstanceUserInput {
+	s.ChannelArn = &v
+	return s
+}
+
+type DescribeChannelModeratedByAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The moderated channel.
+	Channel *ChannelModeratedByAppInstanceUserSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChannelModeratedByAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelModeratedByAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannel sets the Channel field's value.
+func (s *DescribeChannelModeratedByAppInstanceUserOutput) SetChannel(v *ChannelModeratedByAppInstanceUserSummary) *DescribeChannelModeratedByAppInstanceUserOutput {
+	s.Channel = v
+	return s
+}
+
+type DescribeChannelModeratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ARN of the channel moderator.
+	//
+	// ChannelModeratorArn is a required field
+	ChannelModeratorArn *string `location:"uri" locationName:"channelModeratorArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelModeratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelModeratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelModeratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelModeratorInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChannelModeratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelModeratorArn"))
+	}
+	if s.ChannelModeratorArn != nil && len(*s.ChannelModeratorArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelModeratorArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *DescribeChannelModeratorInput) SetChannelArn(v string) *DescribeChannelModeratorInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelModeratorArn sets the ChannelModeratorArn field's value.
+func (s *DescribeChannelModeratorInput) SetChannelModeratorArn(v string) *DescribeChannelModeratorInput {
+	s.ChannelModeratorArn = &v
+	return s
+}
+
+type DescribeChannelModeratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the channel moderator.
+	ChannelModerator *ChannelModerator `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChannelModeratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelModeratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelModerator sets the ChannelModerator field's value.
+func (s *DescribeChannelModeratorOutput) SetChannelModerator(v *ChannelModerator) *DescribeChannelModeratorOutput {
+	s.ChannelModerator = v
+	return s
+}
+
+type DescribeChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The channel details.
+	Channel *Channel `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannel sets the Channel field's value.
+func (s *DescribeChannelOutput) SetChannel(v *Channel) *DescribeChannelOutput {
+	s.Channel = v
+	return s
+}
+
 type DisassociatePhoneNumberFromUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18959,8 +27413,7 @@ func (s *EventsConfiguration) SetOutboundEventsHTTPSEndpoint(v string) *EventsCo
 	return s
 }
 
-// The client is permanently forbidden from making the request. For example,
-// when a user tries to create an account from an unsupported Region.
+// The client is permanently forbidden from making the request.
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19200,6 +27653,144 @@ func (s *GetAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *GetAc
 	return s
 }
 
+type GetAppInstanceRetentionSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAppInstanceRetentionSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppInstanceRetentionSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAppInstanceRetentionSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAppInstanceRetentionSettingsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *GetAppInstanceRetentionSettingsInput) SetAppInstanceArn(v string) *GetAppInstanceRetentionSettingsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type GetAppInstanceRetentionSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The retention settings for the app instance.
+	AppInstanceRetentionSettings *AppInstanceRetentionSettings `type:"structure"`
+
+	// The timestamp representing the time at which the specified items are retained,
+	// in Epoch Seconds.
+	InitiateDeletionTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s GetAppInstanceRetentionSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppInstanceRetentionSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceRetentionSettings sets the AppInstanceRetentionSettings field's value.
+func (s *GetAppInstanceRetentionSettingsOutput) SetAppInstanceRetentionSettings(v *AppInstanceRetentionSettings) *GetAppInstanceRetentionSettingsOutput {
+	s.AppInstanceRetentionSettings = v
+	return s
+}
+
+// SetInitiateDeletionTimestamp sets the InitiateDeletionTimestamp field's value.
+func (s *GetAppInstanceRetentionSettingsOutput) SetInitiateDeletionTimestamp(v time.Time) *GetAppInstanceRetentionSettingsOutput {
+	s.InitiateDeletionTimestamp = &v
+	return s
+}
+
+type GetAppInstanceStreamingConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAppInstanceStreamingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppInstanceStreamingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAppInstanceStreamingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAppInstanceStreamingConfigurationsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *GetAppInstanceStreamingConfigurationsInput) SetAppInstanceArn(v string) *GetAppInstanceStreamingConfigurationsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type GetAppInstanceStreamingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The streaming settings.
+	AppInstanceStreamingConfigurations []*AppInstanceStreamingConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s GetAppInstanceStreamingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAppInstanceStreamingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceStreamingConfigurations sets the AppInstanceStreamingConfigurations field's value.
+func (s *GetAppInstanceStreamingConfigurationsOutput) SetAppInstanceStreamingConfigurations(v []*AppInstanceStreamingConfiguration) *GetAppInstanceStreamingConfigurationsOutput {
+	s.AppInstanceStreamingConfigurations = v
+	return s
+}
+
 type GetAttendeeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19359,6 +27950,87 @@ func (s GetBotOutput) GoString() string {
 // SetBot sets the Bot field's value.
 func (s *GetBotOutput) SetBot(v *Bot) *GetBotOutput {
 	s.Bot = v
+	return s
+}
+
+type GetChannelMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ID of the message.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetChannelMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChannelMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetChannelMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetChannelMessageInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *GetChannelMessageInput) SetChannelArn(v string) *GetChannelMessageInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *GetChannelMessageInput) SetMessageId(v string) *GetChannelMessageInput {
+	s.MessageId = &v
+	return s
+}
+
+type GetChannelMessageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of and content in the message.
+	ChannelMessage *ChannelMessage `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetChannelMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChannelMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelMessage sets the ChannelMessage field's value.
+func (s *GetChannelMessageOutput) SetChannelMessage(v *ChannelMessage) *GetChannelMessageOutput {
+	s.ChannelMessage = v
 	return s
 }
 
@@ -19550,6 +28222,43 @@ func (s GetMeetingOutput) GoString() string {
 // SetMeeting sets the Meeting field's value.
 func (s *GetMeetingOutput) SetMeeting(v *Meeting) *GetMeetingOutput {
 	s.Meeting = v
+	return s
+}
+
+type GetMessagingSessionEndpointInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMessagingSessionEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMessagingSessionEndpointInput) GoString() string {
+	return s.String()
+}
+
+type GetMessagingSessionEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint returned in the response.
+	Endpoint *MessagingSessionEndpoint `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMessagingSessionEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMessagingSessionEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *GetMessagingSessionEndpointOutput) SetEndpoint(v *MessagingSessionEndpoint) *GetMessagingSessionEndpointOutput {
+	s.Endpoint = v
 	return s
 }
 
@@ -20893,6 +29602,39 @@ func (s *GetVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Get
 	return s
 }
 
+// The ARN and name of a user.
+type Identity struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN in an Identity.
+	Arn *string `min:"5" type:"string"`
+
+	// The name in an Identity.
+	Name *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s Identity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Identity) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Identity) SetArn(v string) *Identity {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Identity) SetName(v string) *Identity {
+	s.Name = &v
+	return s
+}
+
 // Invitation object returned after emailing users to invite them to join the
 // Amazon Chime Team account.
 type Invite struct {
@@ -21126,6 +29868,293 @@ func (s *ListAccountsOutput) SetAccounts(v []*Account) *ListAccountsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAccountsOutput) SetNextToken(v string) *ListAccountsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstanceAdminsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of administrators that you want to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token returned from previous API requests until the number of administrators
+	// is reached.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListAppInstanceAdminsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppInstanceAdminsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppInstanceAdminsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppInstanceAdminsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *ListAppInstanceAdminsInput) SetAppInstanceArn(v string) *ListAppInstanceAdminsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppInstanceAdminsInput) SetMaxResults(v int64) *ListAppInstanceAdminsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstanceAdminsInput) SetNextToken(v string) *ListAppInstanceAdminsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstanceAdminsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information for each administrator.
+	AppInstanceAdmins []*AppInstanceAdminSummary `type:"list"`
+
+	// The ARN of the app instance.
+	AppInstanceArn *string `min:"5" type:"string"`
+
+	// The token returned from previous API requests until the number of administrators
+	// is reached.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListAppInstanceAdminsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppInstanceAdminsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceAdmins sets the AppInstanceAdmins field's value.
+func (s *ListAppInstanceAdminsOutput) SetAppInstanceAdmins(v []*AppInstanceAdminSummary) *ListAppInstanceAdminsOutput {
+	s.AppInstanceAdmins = v
+	return s
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *ListAppInstanceAdminsOutput) SetAppInstanceArn(v string) *ListAppInstanceAdminsOutput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstanceAdminsOutput) SetNextToken(v string) *ListAppInstanceAdminsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstanceUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"querystring" locationName:"app-instance-arn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of requests that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested users are returned.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListAppInstanceUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppInstanceUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppInstanceUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppInstanceUsersInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *ListAppInstanceUsersInput) SetAppInstanceArn(v string) *ListAppInstanceUsersInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppInstanceUsersInput) SetMaxResults(v int64) *ListAppInstanceUsersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstanceUsersInput) SetNextToken(v string) *ListAppInstanceUsersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstanceUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	AppInstanceArn *string `min:"5" type:"string"`
+
+	// The information for each of the requested app instance users.
+	AppInstanceUsers []*AppInstanceUserSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested users are returned.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListAppInstanceUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppInstanceUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *ListAppInstanceUsersOutput) SetAppInstanceArn(v string) *ListAppInstanceUsersOutput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetAppInstanceUsers sets the AppInstanceUsers field's value.
+func (s *ListAppInstanceUsersOutput) SetAppInstanceUsers(v []*AppInstanceUserSummary) *ListAppInstanceUsersOutput {
+	s.AppInstanceUsers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstanceUsersOutput) SetNextToken(v string) *ListAppInstanceUsersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstancesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of app instances that you want to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API requests until you reach the maximum number
+	// of app instances.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListAppInstancesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppInstancesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppInstancesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppInstancesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppInstancesInput) SetMaxResults(v int64) *ListAppInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstancesInput) SetNextToken(v string) *ListAppInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information for each app instance.
+	AppInstances []*AppInstanceSummary `type:"list"`
+
+	// The token passed by previous API requests until the maximum number of app
+	// instances is reached.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListAppInstancesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppInstancesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstances sets the AppInstances field's value.
+func (s *ListAppInstancesOutput) SetAppInstances(v []*AppInstanceSummary) *ListAppInstancesOutput {
+	s.AppInstances = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstancesOutput) SetNextToken(v string) *ListAppInstancesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -21396,6 +30425,749 @@ func (s *ListBotsOutput) SetBots(v []*Bot) *ListBotsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelBansInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of bans that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested bans are returned.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelBansInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelBansInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelBansInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelBansInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelBansInput) SetChannelArn(v string) *ListChannelBansInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelBansInput) SetMaxResults(v int64) *ListChannelBansInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelBansInput) SetNextToken(v string) *ListChannelBansInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelBansOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The information for each requested ban.
+	ChannelBans []*ChannelBanSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested bans are returned.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelBansOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelBansOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelBansOutput) SetChannelArn(v string) *ListChannelBansOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelBans sets the ChannelBans field's value.
+func (s *ListChannelBansOutput) SetChannelBans(v []*ChannelBanSummary) *ListChannelBansOutput {
+	s.ChannelBans = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelBansOutput) SetNextToken(v string) *ListChannelBansOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelMembershipsForAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance users
+	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
+
+	// The maximum number of users that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token returned from previous API requests until the number of channel
+	// memberships is reached.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelMembershipsForAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelMembershipsForAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelMembershipsForAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelMembershipsForAppInstanceUserInput"}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *ListChannelMembershipsForAppInstanceUserInput) SetAppInstanceUserArn(v string) *ListChannelMembershipsForAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelMembershipsForAppInstanceUserInput) SetMaxResults(v int64) *ListChannelMembershipsForAppInstanceUserInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelMembershipsForAppInstanceUserInput) SetNextToken(v string) *ListChannelMembershipsForAppInstanceUserInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelMembershipsForAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token passed by previous API calls until all requested users are returned.
+	ChannelMemberships []*ChannelMembershipForAppInstanceUserSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested users are returned.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelMembershipsForAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelMembershipsForAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelMemberships sets the ChannelMemberships field's value.
+func (s *ListChannelMembershipsForAppInstanceUserOutput) SetChannelMemberships(v []*ChannelMembershipForAppInstanceUserSummary) *ListChannelMembershipsForAppInstanceUserOutput {
+	s.ChannelMemberships = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelMembershipsForAppInstanceUserOutput) SetNextToken(v string) *ListChannelMembershipsForAppInstanceUserOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelMembershipsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of channel memberships that you want returned.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of channel memberships that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested channel memberships
+	// are returned..
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+
+	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
+	// returned as part of ListChannelMemberships. Hidden members are only returned
+	// if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden
+	// members are not returned.
+	Type *string `location:"querystring" locationName:"type" type:"string" enum:"ChannelMembershipType"`
+}
+
+// String returns the string representation
+func (s ListChannelMembershipsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelMembershipsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelMembershipsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelMembershipsInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelMembershipsInput) SetChannelArn(v string) *ListChannelMembershipsInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelMembershipsInput) SetMaxResults(v int64) *ListChannelMembershipsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelMembershipsInput) SetNextToken(v string) *ListChannelMembershipsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListChannelMembershipsInput) SetType(v string) *ListChannelMembershipsInput {
+	s.Type = &v
+	return s
+}
+
+type ListChannelMembershipsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The information for the requested channel memberships.
+	ChannelMemberships []*ChannelMembershipSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested channel memberships
+	// are returned.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelMembershipsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelMembershipsOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelMembershipsOutput) SetChannelArn(v string) *ListChannelMembershipsOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelMemberships sets the ChannelMemberships field's value.
+func (s *ListChannelMembershipsOutput) SetChannelMemberships(v []*ChannelMembershipSummary) *ListChannelMembershipsOutput {
+	s.ChannelMemberships = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelMembershipsOutput) SetNextToken(v string) *ListChannelMembershipsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelMessagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of messages that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested messages are returned.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+
+	// The final or ending time stamp for your requested messages.
+	NotAfter *time.Time `location:"querystring" locationName:"not-after" type:"timestamp"`
+
+	// The initial or starting time stamp for your requested messages.
+	NotBefore *time.Time `location:"querystring" locationName:"not-before" type:"timestamp"`
+
+	// The order in which you want messages sorted. Default is Descending, based
+	// on time created.
+	SortOrder *string `location:"querystring" locationName:"sort-order" type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListChannelMessagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelMessagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelMessagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelMessagesInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelMessagesInput) SetChannelArn(v string) *ListChannelMessagesInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelMessagesInput) SetMaxResults(v int64) *ListChannelMessagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelMessagesInput) SetNextToken(v string) *ListChannelMessagesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetNotAfter sets the NotAfter field's value.
+func (s *ListChannelMessagesInput) SetNotAfter(v time.Time) *ListChannelMessagesInput {
+	s.NotAfter = &v
+	return s
+}
+
+// SetNotBefore sets the NotBefore field's value.
+func (s *ListChannelMessagesInput) SetNotBefore(v time.Time) *ListChannelMessagesInput {
+	s.NotBefore = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListChannelMessagesInput) SetSortOrder(v string) *ListChannelMessagesInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListChannelMessagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel containing the requested messages.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The information about and content of each requested message.
+	ChannelMessages []*ChannelMessageSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested messages are returned.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelMessagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelMessagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelMessagesOutput) SetChannelArn(v string) *ListChannelMessagesOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelMessages sets the ChannelMessages field's value.
+func (s *ListChannelMessagesOutput) SetChannelMessages(v []*ChannelMessageSummary) *ListChannelMessagesOutput {
+	s.ChannelMessages = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelMessagesOutput) SetNextToken(v string) *ListChannelMessagesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelModeratorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of moderators that you want returned.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested moderators are
+	// returned.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelModeratorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelModeratorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelModeratorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelModeratorsInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelModeratorsInput) SetChannelArn(v string) *ListChannelModeratorsInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelModeratorsInput) SetMaxResults(v int64) *ListChannelModeratorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelModeratorsInput) SetNextToken(v string) *ListChannelModeratorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelModeratorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The information about and names of each moderator.
+	ChannelModerators []*ChannelModeratorSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested moderators are
+	// returned.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelModeratorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelModeratorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListChannelModeratorsOutput) SetChannelArn(v string) *ListChannelModeratorsOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChannelModerators sets the ChannelModerators field's value.
+func (s *ListChannelModeratorsOutput) SetChannelModerators(v []*ChannelModeratorSummary) *ListChannelModeratorsOutput {
+	s.ChannelModerators = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelModeratorsOutput) SetNextToken(v string) *ListChannelModeratorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"querystring" locationName:"app-instance-arn" min:"5" type:"string" required:"true"`
+
+	// The maximum number of channels that you want to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested channels are returned.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+
+	// The privacy setting. PUBLIC retrieves all the public channels. PRIVATE retrieves
+	// private channels. Only an app instance administrator can retrieve private
+	// channels.
+	Privacy *string `location:"querystring" locationName:"privacy" type:"string" enum:"ChannelPrivacy"`
+}
+
+// String returns the string representation
+func (s ListChannelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *ListChannelsInput) SetAppInstanceArn(v string) *ListChannelsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelsInput) SetMaxResults(v int64) *ListChannelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelsInput) SetNextToken(v string) *ListChannelsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrivacy sets the Privacy field's value.
+func (s *ListChannelsInput) SetPrivacy(v string) *ListChannelsInput {
+	s.Privacy = &v
+	return s
+}
+
+type ListChannelsModeratedByAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the user in the moderated channel.
+	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
+
+	// The maximum number of channels in the request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token returned from previous API requests until the number of channels
+	// moderated by the user is reached.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelsModeratedByAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelsModeratedByAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelsModeratedByAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelsModeratedByAppInstanceUserInput"}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *ListChannelsModeratedByAppInstanceUserInput) SetAppInstanceUserArn(v string) *ListChannelsModeratedByAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelsModeratedByAppInstanceUserInput) SetMaxResults(v int64) *ListChannelsModeratedByAppInstanceUserInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelsModeratedByAppInstanceUserInput) SetNextToken(v string) *ListChannelsModeratedByAppInstanceUserInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelsModeratedByAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The moderated channels in the request.
+	Channels []*ChannelModeratedByAppInstanceUserSummary `type:"list"`
+
+	// The token returned from previous API requests until the number of channels
+	// moderated by the user is reached.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelsModeratedByAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelsModeratedByAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannels sets the Channels field's value.
+func (s *ListChannelsModeratedByAppInstanceUserOutput) SetChannels(v []*ChannelModeratedByAppInstanceUserSummary) *ListChannelsModeratedByAppInstanceUserOutput {
+	s.Channels = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelsModeratedByAppInstanceUserOutput) SetNextToken(v string) *ListChannelsModeratedByAppInstanceUserOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListChannelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information about each channel.
+	Channels []*ChannelSummary `type:"list"`
+
+	// The token returned from previous API requests until the number of channels
+	// is reached.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ListChannelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannels sets the Channels field's value.
+func (s *ListChannelsOutput) SetChannels(v []*ChannelSummary) *ListChannelsOutput {
+	s.Channels = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -23022,6 +32794,30 @@ func (s *MembershipItem) SetRole(v string) *MembershipItem {
 	return s
 }
 
+// The endpoint of a meeting session.
+type MessagingSessionEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The URL of a meeting session endpoint.
+	Url *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MessagingSessionEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MessagingSessionEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *MessagingSessionEndpoint) SetUrl(v string) *MessagingSessionEndpoint {
+	s.Url = &v
+	return s
+}
+
 // One or more of the resources in the request does not exist in the system.
 type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -23820,6 +33616,189 @@ func (s *ProxySession) SetUpdatedTimestamp(v time.Time) *ProxySession {
 // SetVoiceConnectorId sets the VoiceConnectorId field's value.
 func (s *ProxySession) SetVoiceConnectorId(v string) *ProxySession {
 	s.VoiceConnectorId = &v
+	return s
+}
+
+type PutAppInstanceRetentionSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+
+	// The time in days to retain data. Data type: number.
+	//
+	// AppInstanceRetentionSettings is a required field
+	AppInstanceRetentionSettings *AppInstanceRetentionSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAppInstanceRetentionSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAppInstanceRetentionSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAppInstanceRetentionSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAppInstanceRetentionSettingsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.AppInstanceRetentionSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceRetentionSettings"))
+	}
+	if s.AppInstanceRetentionSettings != nil {
+		if err := s.AppInstanceRetentionSettings.Validate(); err != nil {
+			invalidParams.AddNested("AppInstanceRetentionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *PutAppInstanceRetentionSettingsInput) SetAppInstanceArn(v string) *PutAppInstanceRetentionSettingsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetAppInstanceRetentionSettings sets the AppInstanceRetentionSettings field's value.
+func (s *PutAppInstanceRetentionSettingsInput) SetAppInstanceRetentionSettings(v *AppInstanceRetentionSettings) *PutAppInstanceRetentionSettingsInput {
+	s.AppInstanceRetentionSettings = v
+	return s
+}
+
+type PutAppInstanceRetentionSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time in days to retain data. Data type: number.
+	AppInstanceRetentionSettings *AppInstanceRetentionSettings `type:"structure"`
+
+	// The time at which the API deletes data.
+	InitiateDeletionTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s PutAppInstanceRetentionSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAppInstanceRetentionSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceRetentionSettings sets the AppInstanceRetentionSettings field's value.
+func (s *PutAppInstanceRetentionSettingsOutput) SetAppInstanceRetentionSettings(v *AppInstanceRetentionSettings) *PutAppInstanceRetentionSettingsOutput {
+	s.AppInstanceRetentionSettings = v
+	return s
+}
+
+// SetInitiateDeletionTimestamp sets the InitiateDeletionTimestamp field's value.
+func (s *PutAppInstanceRetentionSettingsOutput) SetInitiateDeletionTimestamp(v time.Time) *PutAppInstanceRetentionSettingsOutput {
+	s.InitiateDeletionTimestamp = &v
+	return s
+}
+
+type PutAppInstanceStreamingConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+
+	// The streaming configurations set for an app instance.
+	//
+	// AppInstanceStreamingConfigurations is a required field
+	AppInstanceStreamingConfigurations []*AppInstanceStreamingConfiguration `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAppInstanceStreamingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAppInstanceStreamingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAppInstanceStreamingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAppInstanceStreamingConfigurationsInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.AppInstanceStreamingConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceStreamingConfigurations"))
+	}
+	if s.AppInstanceStreamingConfigurations != nil && len(s.AppInstanceStreamingConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceStreamingConfigurations", 1))
+	}
+	if s.AppInstanceStreamingConfigurations != nil {
+		for i, v := range s.AppInstanceStreamingConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AppInstanceStreamingConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *PutAppInstanceStreamingConfigurationsInput) SetAppInstanceArn(v string) *PutAppInstanceStreamingConfigurationsInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetAppInstanceStreamingConfigurations sets the AppInstanceStreamingConfigurations field's value.
+func (s *PutAppInstanceStreamingConfigurationsInput) SetAppInstanceStreamingConfigurations(v []*AppInstanceStreamingConfiguration) *PutAppInstanceStreamingConfigurationsInput {
+	s.AppInstanceStreamingConfigurations = v
+	return s
+}
+
+type PutAppInstanceStreamingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The streaming configurations of an app instance.
+	AppInstanceStreamingConfigurations []*AppInstanceStreamingConfiguration `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s PutAppInstanceStreamingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAppInstanceStreamingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceStreamingConfigurations sets the AppInstanceStreamingConfigurations field's value.
+func (s *PutAppInstanceStreamingConfigurationsOutput) SetAppInstanceStreamingConfigurations(v []*AppInstanceStreamingConfiguration) *PutAppInstanceStreamingConfigurationsOutput {
+	s.AppInstanceStreamingConfigurations = v
 	return s
 }
 
@@ -24677,6 +34656,96 @@ func (s *PutVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Put
 	return s
 }
 
+type RedactChannelMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel containing the messages that you want to redact.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The ID of the message being redacted.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RedactChannelMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactChannelMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedactChannelMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedactChannelMessageInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *RedactChannelMessageInput) SetChannelArn(v string) *RedactChannelMessageInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *RedactChannelMessageInput) SetMessageId(v string) *RedactChannelMessageInput {
+	s.MessageId = &v
+	return s
+}
+
+type RedactChannelMessageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel containing the messages that you want to redact.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The ID of the message being redacted.
+	MessageId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s RedactChannelMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactChannelMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *RedactChannelMessageOutput) SetChannelArn(v string) *RedactChannelMessageOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *RedactChannelMessageOutput) SetMessageId(v string) *RedactChannelMessageOutput {
+	s.MessageId = &v
+	return s
+}
+
 type RedactConversationMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25475,6 +35544,145 @@ func (s SearchAvailablePhoneNumbersOutput) GoString() string {
 // SetE164PhoneNumbers sets the E164PhoneNumbers field's value.
 func (s *SearchAvailablePhoneNumbersOutput) SetE164PhoneNumbers(v []*string) *SearchAvailablePhoneNumbersOutput {
 	s.E164PhoneNumbers = v
+	return s
+}
+
+type SendChannelMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The Idempotency token for each client request.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The content of the message.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The optional metadata for each message.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// Boolean that controls whether the message is persisted on the back end. Required.
+	//
+	// Persistence is a required field
+	Persistence *string `type:"string" required:"true" enum:"ChannelMessagePersistenceType"`
+
+	// The type of message, STANDARD or CONTROL.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ChannelMessageType"`
+}
+
+// String returns the string representation
+func (s SendChannelMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendChannelMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendChannelMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendChannelMessageInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.Persistence == nil {
+		invalidParams.Add(request.NewErrParamRequired("Persistence"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *SendChannelMessageInput) SetChannelArn(v string) *SendChannelMessageInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *SendChannelMessageInput) SetClientRequestToken(v string) *SendChannelMessageInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *SendChannelMessageInput) SetContent(v string) *SendChannelMessageInput {
+	s.Content = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *SendChannelMessageInput) SetMetadata(v string) *SendChannelMessageInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetPersistence sets the Persistence field's value.
+func (s *SendChannelMessageInput) SetPersistence(v string) *SendChannelMessageInput {
+	s.Persistence = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SendChannelMessageInput) SetType(v string) *SendChannelMessageInput {
+	s.Type = &v
+	return s
+}
+
+type SendChannelMessageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The ID string assigned to each message.
+	MessageId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s SendChannelMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendChannelMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *SendChannelMessageOutput) SetChannelArn(v string) *SendChannelMessageOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *SendChannelMessageOutput) SetMessageId(v string) *SendChannelMessageOutput {
+	s.MessageId = &v
 	return s
 }
 
@@ -27078,6 +37286,186 @@ func (s UpdateAccountSettingsOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateAppInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	//
+	// AppInstanceArn is a required field
+	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
+
+	// The metadata that you want to change.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name that you want to change.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s UpdateAppInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAppInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAppInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAppInstanceInput"}
+	if s.AppInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceArn"))
+	}
+	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *UpdateAppInstanceInput) SetAppInstanceArn(v string) *UpdateAppInstanceInput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *UpdateAppInstanceInput) SetMetadata(v string) *UpdateAppInstanceInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAppInstanceInput) SetName(v string) *UpdateAppInstanceInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateAppInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance.
+	AppInstanceArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateAppInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAppInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceArn sets the AppInstanceArn field's value.
+func (s *UpdateAppInstanceOutput) SetAppInstanceArn(v string) *UpdateAppInstanceOutput {
+	s.AppInstanceArn = &v
+	return s
+}
+
+type UpdateAppInstanceUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance user.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
+
+	// The metadata of the app instance user.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The name of the app instance user.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s UpdateAppInstanceUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAppInstanceUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAppInstanceUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAppInstanceUserInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *UpdateAppInstanceUserInput) SetAppInstanceUserArn(v string) *UpdateAppInstanceUserInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *UpdateAppInstanceUserInput) SetMetadata(v string) *UpdateAppInstanceUserInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAppInstanceUserInput) SetName(v string) *UpdateAppInstanceUserInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateAppInstanceUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the app instance user.
+	AppInstanceUserArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateAppInstanceUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAppInstanceUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *UpdateAppInstanceUserOutput) SetAppInstanceUserArn(v string) *UpdateAppInstanceUserOutput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
 type UpdateBotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27165,6 +37553,282 @@ func (s UpdateBotOutput) GoString() string {
 // SetBot sets the Bot field's value.
 func (s *UpdateBotOutput) SetBot(v *Bot) *UpdateBotOutput {
 	s.Bot = v
+	return s
+}
+
+type UpdateChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The metadata of the channel.
+	Metadata *string `type:"string" sensitive:"true"`
+
+	// The mode of the update request.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"ChannelMode"`
+
+	// The name of the channel.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s UpdateChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateChannelInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *UpdateChannelInput) SetChannelArn(v string) *UpdateChannelInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *UpdateChannelInput) SetMetadata(v string) *UpdateChannelInput {
+	s.Metadata = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *UpdateChannelInput) SetMode(v string) *UpdateChannelInput {
+	s.Mode = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateChannelInput) SetName(v string) *UpdateChannelInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateChannelMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The content of the message being updated.
+	Content *string `type:"string" sensitive:"true"`
+
+	// The ID string of the message being updated.
+	//
+	// MessageId is a required field
+	MessageId *string `location:"uri" locationName:"messageId" min:"1" type:"string" required:"true"`
+
+	// The metadata of the message being updated.
+	Metadata *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s UpdateChannelMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateChannelMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateChannelMessageInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.MessageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageId"))
+	}
+	if s.MessageId != nil && len(*s.MessageId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *UpdateChannelMessageInput) SetChannelArn(v string) *UpdateChannelMessageInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *UpdateChannelMessageInput) SetContent(v string) *UpdateChannelMessageInput {
+	s.Content = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *UpdateChannelMessageInput) SetMessageId(v string) *UpdateChannelMessageInput {
+	s.MessageId = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *UpdateChannelMessageInput) SetMetadata(v string) *UpdateChannelMessageInput {
+	s.Metadata = &v
+	return s
+}
+
+type UpdateChannelMessageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The ID string of the message being updated.
+	MessageId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateChannelMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *UpdateChannelMessageOutput) SetChannelArn(v string) *UpdateChannelMessageOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *UpdateChannelMessageOutput) SetMessageId(v string) *UpdateChannelMessageOutput {
+	s.MessageId = &v
+	return s
+}
+
+type UpdateChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *UpdateChannelOutput) SetChannelArn(v string) *UpdateChannelOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+type UpdateChannelReadMarkerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateChannelReadMarkerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelReadMarkerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateChannelReadMarkerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateChannelReadMarkerInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *UpdateChannelReadMarkerInput) SetChannelArn(v string) *UpdateChannelReadMarkerInput {
+	s.ChannelArn = &v
+	return s
+}
+
+type UpdateChannelReadMarkerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateChannelReadMarkerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelReadMarkerOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *UpdateChannelReadMarkerOutput) SetChannelArn(v string) *UpdateChannelReadMarkerOutput {
+	s.ChannelArn = &v
 	return s
 }
 
@@ -28873,6 +39537,22 @@ func AccountType_Values() []string {
 }
 
 const (
+	// AppInstanceDataTypeChannel is a AppInstanceDataType enum value
+	AppInstanceDataTypeChannel = "Channel"
+
+	// AppInstanceDataTypeChannelMessage is a AppInstanceDataType enum value
+	AppInstanceDataTypeChannelMessage = "ChannelMessage"
+)
+
+// AppInstanceDataType_Values returns all elements of the AppInstanceDataType enum
+func AppInstanceDataType_Values() []string {
+	return []string{
+		AppInstanceDataTypeChannel,
+		AppInstanceDataTypeChannelMessage,
+	}
+}
+
+const (
 	// BotTypeChatBot is a BotType enum value
 	BotTypeChatBot = "ChatBot"
 )
@@ -28921,6 +39601,86 @@ func Capability_Values() []string {
 	return []string{
 		CapabilityVoice,
 		CapabilitySms,
+	}
+}
+
+const (
+	// ChannelMembershipTypeDefault is a ChannelMembershipType enum value
+	ChannelMembershipTypeDefault = "DEFAULT"
+
+	// ChannelMembershipTypeHidden is a ChannelMembershipType enum value
+	ChannelMembershipTypeHidden = "HIDDEN"
+)
+
+// ChannelMembershipType_Values returns all elements of the ChannelMembershipType enum
+func ChannelMembershipType_Values() []string {
+	return []string{
+		ChannelMembershipTypeDefault,
+		ChannelMembershipTypeHidden,
+	}
+}
+
+const (
+	// ChannelMessagePersistenceTypePersistent is a ChannelMessagePersistenceType enum value
+	ChannelMessagePersistenceTypePersistent = "PERSISTENT"
+
+	// ChannelMessagePersistenceTypeNonPersistent is a ChannelMessagePersistenceType enum value
+	ChannelMessagePersistenceTypeNonPersistent = "NON_PERSISTENT"
+)
+
+// ChannelMessagePersistenceType_Values returns all elements of the ChannelMessagePersistenceType enum
+func ChannelMessagePersistenceType_Values() []string {
+	return []string{
+		ChannelMessagePersistenceTypePersistent,
+		ChannelMessagePersistenceTypeNonPersistent,
+	}
+}
+
+const (
+	// ChannelMessageTypeStandard is a ChannelMessageType enum value
+	ChannelMessageTypeStandard = "STANDARD"
+
+	// ChannelMessageTypeControl is a ChannelMessageType enum value
+	ChannelMessageTypeControl = "CONTROL"
+)
+
+// ChannelMessageType_Values returns all elements of the ChannelMessageType enum
+func ChannelMessageType_Values() []string {
+	return []string{
+		ChannelMessageTypeStandard,
+		ChannelMessageTypeControl,
+	}
+}
+
+const (
+	// ChannelModeUnrestricted is a ChannelMode enum value
+	ChannelModeUnrestricted = "UNRESTRICTED"
+
+	// ChannelModeRestricted is a ChannelMode enum value
+	ChannelModeRestricted = "RESTRICTED"
+)
+
+// ChannelMode_Values returns all elements of the ChannelMode enum
+func ChannelMode_Values() []string {
+	return []string{
+		ChannelModeUnrestricted,
+		ChannelModeRestricted,
+	}
+}
+
+const (
+	// ChannelPrivacyPublic is a ChannelPrivacy enum value
+	ChannelPrivacyPublic = "PUBLIC"
+
+	// ChannelPrivacyPrivate is a ChannelPrivacy enum value
+	ChannelPrivacyPrivate = "PRIVATE"
+)
+
+// ChannelPrivacy_Values returns all elements of the ChannelPrivacy enum
+func ChannelPrivacy_Values() []string {
+	return []string{
+		ChannelPrivacyPublic,
+		ChannelPrivacyPrivate,
 	}
 }
 
@@ -29357,6 +40117,22 @@ func SipRuleTriggerType_Values() []string {
 	return []string{
 		SipRuleTriggerTypeToPhoneNumber,
 		SipRuleTriggerTypeRequestUriHostname,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 

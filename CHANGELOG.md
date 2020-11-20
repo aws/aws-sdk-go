@@ -1,3 +1,21 @@
+Release v1.35.33 (2020-11-20)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API
+* `service/chime`: Updates service API, documentation, and paginators
+  * The Amazon Chime SDK for messaging provides the building blocks needed to build chat and other real-time collaboration features.
+* `service/cloudhsmv2`: Updates service API and documentation
+  * Added managed backup retention, a feature that enables customers to retain backups for a configurable period after which CloudHSM service will automatically delete them.
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/cognito-identity`: Updates service API and paginators
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/kafka`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Add new documentation regarding automatically generated Content-MD5 headers when using the SDK or CLI.
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
 Release v1.35.32 (2020-11-19)
 ===
 

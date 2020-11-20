@@ -37,7 +37,7 @@ const opAssociateAttributeGroup = "AssociateAttributeGroup"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/AssociateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateAttributeGroup
 func (c *AppRegistry) AssociateAttributeGroupRequest(input *AssociateAttributeGroupInput) (req *request.Request, output *AssociateAttributeGroupOutput) {
 	op := &request.Operation{
 		Name:       opAssociateAttributeGroup,
@@ -57,9 +57,9 @@ func (c *AppRegistry) AssociateAttributeGroupRequest(input *AssociateAttributeGr
 // AssociateAttributeGroup API operation for AWS Service Catalog App Registry.
 //
 // Associates an attribute group with an application to augment the application's
-// metadata with the group's attributes. This way applications can be described
-// with user-defined details which are machine-readable (e.g. for third-party
-// integrations).
+// metadata with the group's attributes. This feature enables applications to
+// be described with user-defined details that are machine-readable, such as
+// third-party integrations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -81,7 +81,7 @@ func (c *AppRegistry) AssociateAttributeGroupRequest(input *AssociateAttributeGr
 //   * ServiceQuotaExceededException
 //   The maximum number of resources per account has been reached.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/AssociateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateAttributeGroup
 func (c *AppRegistry) AssociateAttributeGroup(input *AssociateAttributeGroupInput) (*AssociateAttributeGroupOutput, error) {
 	req, out := c.AssociateAttributeGroupRequest(input)
 	return out, req.Send()
@@ -128,7 +128,7 @@ const opAssociateResource = "AssociateResource"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/AssociateResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateResource
 func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (req *request.Request, output *AssociateResourceOutput) {
 	op := &request.Operation{
 		Name:       opAssociateResource,
@@ -171,7 +171,7 @@ func (c *AppRegistry) AssociateResourceRequest(input *AssociateResourceInput) (r
 //   There was a conflict when processing the request (for example, a resource
 //   with the given name already exists within the account).
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/AssociateResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/AssociateResource
 func (c *AppRegistry) AssociateResource(input *AssociateResourceInput) (*AssociateResourceOutput, error) {
 	req, out := c.AssociateResourceRequest(input)
 	return out, req.Send()
@@ -218,7 +218,7 @@ const opCreateApplication = "CreateApplication"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/CreateApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/CreateApplication
 func (c *AppRegistry) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *CreateApplicationOutput) {
 	op := &request.Operation{
 		Name:       opCreateApplication,
@@ -258,7 +258,7 @@ func (c *AppRegistry) CreateApplicationRequest(input *CreateApplicationInput) (r
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/CreateApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/CreateApplication
 func (c *AppRegistry) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
 	req, out := c.CreateApplicationRequest(input)
 	return out, req.Send()
@@ -305,7 +305,7 @@ const opCreateAttributeGroup = "CreateAttributeGroup"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/CreateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/CreateAttributeGroup
 func (c *AppRegistry) CreateAttributeGroupRequest(input *CreateAttributeGroupInput) (req *request.Request, output *CreateAttributeGroupOutput) {
 	op := &request.Operation{
 		Name:       opCreateAttributeGroup,
@@ -325,7 +325,7 @@ func (c *AppRegistry) CreateAttributeGroupRequest(input *CreateAttributeGroupInp
 // CreateAttributeGroup API operation for AWS Service Catalog App Registry.
 //
 // Creates a new attribute group as a container for user-defined attributes.
-// This approach enables users to have full control over their cloud application's
+// This feature enables users to have full control over their cloud application's
 // metadata in a rich machine-readable format to facilitate integration with
 // automated workflows and third-party tools.
 //
@@ -350,7 +350,7 @@ func (c *AppRegistry) CreateAttributeGroupRequest(input *CreateAttributeGroupInp
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/CreateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/CreateAttributeGroup
 func (c *AppRegistry) CreateAttributeGroup(input *CreateAttributeGroupInput) (*CreateAttributeGroupOutput, error) {
 	req, out := c.CreateAttributeGroupRequest(input)
 	return out, req.Send()
@@ -397,7 +397,7 @@ const opDeleteApplication = "DeleteApplication"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DeleteApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DeleteApplication
 func (c *AppRegistry) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
 	op := &request.Operation{
 		Name:       opDeleteApplication,
@@ -416,7 +416,9 @@ func (c *AppRegistry) DeleteApplicationRequest(input *DeleteApplicationInput) (r
 
 // DeleteApplication API operation for AWS Service Catalog App Registry.
 //
-// Delete an application, specified either by its application ID or name.
+// Deletes an application that is specified either by its application ID or
+// name. All associated attribute groups and resources must be disassociated
+// from it before deleting an application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -435,7 +437,7 @@ func (c *AppRegistry) DeleteApplicationRequest(input *DeleteApplicationInput) (r
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DeleteApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DeleteApplication
 func (c *AppRegistry) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
 	req, out := c.DeleteApplicationRequest(input)
 	return out, req.Send()
@@ -482,7 +484,7 @@ const opDeleteAttributeGroup = "DeleteAttributeGroup"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DeleteAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DeleteAttributeGroup
 func (c *AppRegistry) DeleteAttributeGroupRequest(input *DeleteAttributeGroupInput) (req *request.Request, output *DeleteAttributeGroupOutput) {
 	op := &request.Operation{
 		Name:       opDeleteAttributeGroup,
@@ -521,7 +523,7 @@ func (c *AppRegistry) DeleteAttributeGroupRequest(input *DeleteAttributeGroupInp
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DeleteAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DeleteAttributeGroup
 func (c *AppRegistry) DeleteAttributeGroup(input *DeleteAttributeGroupInput) (*DeleteAttributeGroupOutput, error) {
 	req, out := c.DeleteAttributeGroupRequest(input)
 	return out, req.Send()
@@ -568,7 +570,7 @@ const opDisassociateAttributeGroup = "DisassociateAttributeGroup"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DisassociateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DisassociateAttributeGroup
 func (c *AppRegistry) DisassociateAttributeGroupRequest(input *DisassociateAttributeGroupInput) (req *request.Request, output *DisassociateAttributeGroupOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateAttributeGroup,
@@ -608,7 +610,7 @@ func (c *AppRegistry) DisassociateAttributeGroupRequest(input *DisassociateAttri
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DisassociateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DisassociateAttributeGroup
 func (c *AppRegistry) DisassociateAttributeGroup(input *DisassociateAttributeGroupInput) (*DisassociateAttributeGroupOutput, error) {
 	req, out := c.DisassociateAttributeGroupRequest(input)
 	return out, req.Send()
@@ -655,7 +657,7 @@ const opDisassociateResource = "DisassociateResource"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DisassociateResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DisassociateResource
 func (c *AppRegistry) DisassociateResourceRequest(input *DisassociateResourceInput) (req *request.Request, output *DisassociateResourceOutput) {
 	op := &request.Operation{
 		Name:       opDisassociateResource,
@@ -691,7 +693,7 @@ func (c *AppRegistry) DisassociateResourceRequest(input *DisassociateResourceInp
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/DisassociateResource
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/DisassociateResource
 func (c *AppRegistry) DisassociateResource(input *DisassociateResourceInput) (*DisassociateResourceOutput, error) {
 	req, out := c.DisassociateResourceRequest(input)
 	return out, req.Send()
@@ -738,7 +740,7 @@ const opGetApplication = "GetApplication"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/GetApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetApplication
 func (c *AppRegistry) GetApplicationRequest(input *GetApplicationInput) (req *request.Request, output *GetApplicationOutput) {
 	op := &request.Operation{
 		Name:       opGetApplication,
@@ -781,7 +783,7 @@ func (c *AppRegistry) GetApplicationRequest(input *GetApplicationInput) (req *re
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/GetApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetApplication
 func (c *AppRegistry) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
 	req, out := c.GetApplicationRequest(input)
 	return out, req.Send()
@@ -828,7 +830,7 @@ const opGetAttributeGroup = "GetAttributeGroup"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/GetAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetAttributeGroup
 func (c *AppRegistry) GetAttributeGroupRequest(input *GetAttributeGroupInput) (req *request.Request, output *GetAttributeGroupOutput) {
 	op := &request.Operation{
 		Name:       opGetAttributeGroup,
@@ -847,7 +849,8 @@ func (c *AppRegistry) GetAttributeGroupRequest(input *GetAttributeGroupInput) (r
 
 // GetAttributeGroup API operation for AWS Service Catalog App Registry.
 //
-// Retrieves an attribute group, either by its name or its ID.
+// Retrieves an attribute group, either by its name or its ID. The attribute
+// group can be specified either by its unique ID or by its name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -866,7 +869,7 @@ func (c *AppRegistry) GetAttributeGroupRequest(input *GetAttributeGroupInput) (r
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/GetAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetAttributeGroup
 func (c *AppRegistry) GetAttributeGroup(input *GetAttributeGroupInput) (*GetAttributeGroupOutput, error) {
 	req, out := c.GetAttributeGroupRequest(input)
 	return out, req.Send()
@@ -913,7 +916,7 @@ const opListApplications = "ListApplications"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListApplications
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListApplications
 func (c *AppRegistry) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
 	op := &request.Operation{
 		Name:       opListApplications,
@@ -954,7 +957,7 @@ func (c *AppRegistry) ListApplicationsRequest(input *ListApplicationsInput) (req
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListApplications
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListApplications
 func (c *AppRegistry) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
 	req, out := c.ListApplicationsRequest(input)
 	return out, req.Send()
@@ -1053,7 +1056,7 @@ const opListAssociatedAttributeGroups = "ListAssociatedAttributeGroups"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListAssociatedAttributeGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAssociatedAttributeGroups
 func (c *AppRegistry) ListAssociatedAttributeGroupsRequest(input *ListAssociatedAttributeGroupsInput) (req *request.Request, output *ListAssociatedAttributeGroupsOutput) {
 	op := &request.Operation{
 		Name:       opListAssociatedAttributeGroups,
@@ -1098,7 +1101,7 @@ func (c *AppRegistry) ListAssociatedAttributeGroupsRequest(input *ListAssociated
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListAssociatedAttributeGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAssociatedAttributeGroups
 func (c *AppRegistry) ListAssociatedAttributeGroups(input *ListAssociatedAttributeGroupsInput) (*ListAssociatedAttributeGroupsOutput, error) {
 	req, out := c.ListAssociatedAttributeGroupsRequest(input)
 	return out, req.Send()
@@ -1197,7 +1200,7 @@ const opListAssociatedResources = "ListAssociatedResources"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListAssociatedResources
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAssociatedResources
 func (c *AppRegistry) ListAssociatedResourcesRequest(input *ListAssociatedResourcesInput) (req *request.Request, output *ListAssociatedResourcesOutput) {
 	op := &request.Operation{
 		Name:       opListAssociatedResources,
@@ -1242,7 +1245,7 @@ func (c *AppRegistry) ListAssociatedResourcesRequest(input *ListAssociatedResour
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListAssociatedResources
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAssociatedResources
 func (c *AppRegistry) ListAssociatedResources(input *ListAssociatedResourcesInput) (*ListAssociatedResourcesOutput, error) {
 	req, out := c.ListAssociatedResourcesRequest(input)
 	return out, req.Send()
@@ -1341,7 +1344,7 @@ const opListAttributeGroups = "ListAttributeGroups"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListAttributeGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAttributeGroups
 func (c *AppRegistry) ListAttributeGroupsRequest(input *ListAttributeGroupsInput) (req *request.Request, output *ListAttributeGroupsOutput) {
 	op := &request.Operation{
 		Name:       opListAttributeGroups,
@@ -1382,7 +1385,7 @@ func (c *AppRegistry) ListAttributeGroupsRequest(input *ListAttributeGroupsInput
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/ListAttributeGroups
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/ListAttributeGroups
 func (c *AppRegistry) ListAttributeGroups(input *ListAttributeGroupsInput) (*ListAttributeGroupsOutput, error) {
 	req, out := c.ListAttributeGroupsRequest(input)
 	return out, req.Send()
@@ -1481,7 +1484,7 @@ const opUpdateApplication = "UpdateApplication"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/UpdateApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateApplication
 func (c *AppRegistry) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *UpdateApplicationOutput) {
 	op := &request.Operation{
 		Name:       opUpdateApplication,
@@ -1520,7 +1523,7 @@ func (c *AppRegistry) UpdateApplicationRequest(input *UpdateApplicationInput) (r
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/UpdateApplication
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateApplication
 func (c *AppRegistry) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
 	return out, req.Send()
@@ -1567,7 +1570,7 @@ const opUpdateAttributeGroup = "UpdateAttributeGroup"
 //        fmt.Println(resp)
 //    }
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/UpdateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateAttributeGroup
 func (c *AppRegistry) UpdateAttributeGroupRequest(input *UpdateAttributeGroupInput) (req *request.Request, output *UpdateAttributeGroupOutput) {
 	op := &request.Operation{
 		Name:       opUpdateAttributeGroup,
@@ -1609,7 +1612,7 @@ func (c *AppRegistry) UpdateAttributeGroupRequest(input *UpdateAttributeGroupInp
 //   * InternalServerException
 //   The service is experiencing internal problems.
 //
-// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry/UpdateAttributeGroup
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/UpdateAttributeGroup
 func (c *AppRegistry) UpdateAttributeGroup(input *UpdateAttributeGroupInput) (*UpdateAttributeGroupOutput, error) {
 	req, out := c.UpdateAttributeGroupRequest(input)
 	return out, req.Send()
@@ -1889,6 +1892,8 @@ type AssociateResourceInput struct {
 	// Resource is a required field
 	Resource *string `location:"uri" locationName:"resource" min:"1" type:"string" required:"true"`
 
+	// The type of resource of which the application will be associated.
+	//
 	// ResourceType is a required field
 	ResourceType *string `location:"uri" locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 }
@@ -1987,7 +1992,8 @@ func (s *AssociateResourceOutput) SetResourceArn(v string) *AssociateResourceOut
 type AttributeGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource name (ARN) that specifies the application across services.
+	// The Amazon resource name (ARN) that specifies the attribute group across
+	// services.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was created.
@@ -2067,7 +2073,8 @@ func (s *AttributeGroup) SetTags(v map[string]*string) *AttributeGroup {
 type AttributeGroupSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource name (ARN) that specifies the application across services.
+	// The Amazon resource name (ARN) that specifies the attribute group across
+	// services.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was created.
@@ -2194,9 +2201,11 @@ func (s *ConflictException) RequestID() string {
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier that you provide to ensure idempotency. If multiple requests
-	// differ only by the clientToken, the same response is returned for each repeated
-	// request.
+	// A unique identifier that you provide to ensure idempotency. If you retry
+	// a request that completed successfully using the same client token and the
+	// same parameters, the retry succeeds without performing any further actions.
+	// If you retry a successful request using the same client token, but one or
+	// more of the parameters are different, the retry fails.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the application.
@@ -2268,7 +2277,7 @@ func (s *CreateApplicationInput) SetTags(v map[string]*string) *CreateApplicatio
 type CreateApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the application.
+	// Information about the application.
 	Application *Application `locationName:"application" type:"structure"`
 }
 
@@ -2297,9 +2306,11 @@ type CreateAttributeGroupInput struct {
 	// Attributes is a required field
 	Attributes *string `locationName:"attributes" min:"1" type:"string" required:"true"`
 
-	// A unique identifier that you provide to ensure idempotency. If multiple requests
-	// differ only by the clientToken, the same response is returned for each repeated
-	// request.
+	// A unique identifier that you provide to ensure idempotency. If you retry
+	// a request that completed successfully using the same client token and the
+	// same parameters, the retry succeeds without performing any further actions.
+	// If you retry a successful request using the same client token, but one or
+	// more of the parameters are different, the retry fails.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the attribute group that the user provides.
@@ -2382,8 +2393,7 @@ func (s *CreateAttributeGroupInput) SetTags(v map[string]*string) *CreateAttribu
 type CreateAttributeGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// Information about the attribute group.
 	AttributeGroup *AttributeGroup `locationName:"attributeGroup" type:"structure"`
 }
 
@@ -2447,7 +2457,7 @@ func (s *DeleteApplicationInput) SetApplication(v string) *DeleteApplicationInpu
 type DeleteApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the application.
+	// Information about the deleted application.
 	Application *ApplicationSummary `locationName:"application" type:"structure"`
 }
 
@@ -2512,8 +2522,7 @@ func (s *DeleteAttributeGroupInput) SetAttributeGroup(v string) *DeleteAttribute
 type DeleteAttributeGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// Information about the deleted attribute group.
 	AttributeGroup *AttributeGroupSummary `locationName:"attributeGroup" type:"structure"`
 }
 
@@ -2595,12 +2604,10 @@ func (s *DisassociateAttributeGroupInput) SetAttributeGroup(v string) *Disassoci
 type DisassociateAttributeGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource name (ARN) of the application that was augmented with
-	// attributes.
+	// The Amazon resource name (ARN) that specifies the application.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
 
-	// The Amazon resource name (ARN) of the attribute group that contains the application's
-	// new attributes.
+	// The Amazon resource name (ARN) that specifies the attribute group.
 	AttributeGroupArn *string `locationName:"attributeGroupArn" type:"string"`
 }
 
@@ -2634,12 +2641,12 @@ type DisassociateResourceInput struct {
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
 
-	// The name or ID of the resource of which the application will be associated.
+	// The name or ID of the resource.
 	//
 	// Resource is a required field
 	Resource *string `location:"uri" locationName:"resource" min:"1" type:"string" required:"true"`
 
-	// The type of the resource that's being disassociated.
+	// The type of the resource that is being disassociated.
 	//
 	// ResourceType is a required field
 	ResourceType *string `location:"uri" locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
@@ -2704,8 +2711,7 @@ func (s *DisassociateResourceInput) SetResourceType(v string) *DisassociateResou
 type DisassociateResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource name (ARN) of the application that was augmented with
-	// attributes.
+	// The Amazon resource name (ARN) that specifies the application.
 	ApplicationArn *string `locationName:"applicationArn" type:"string"`
 
 	// The Amazon resource name (ARN) that specifies the resource.
@@ -2801,7 +2807,7 @@ type GetApplicationOutput struct {
 	// you are creating the application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// Key-value pairs you can use to associate with the application.
+	// Key-value pairs associated with the application.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -2908,7 +2914,8 @@ func (s *GetAttributeGroupInput) SetAttributeGroup(v string) *GetAttributeGroupI
 type GetAttributeGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource name (ARN) that specifies the application across services.
+	// The Amazon resource name (ARN) that specifies the attribute group across
+	// services.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// A JSON string in the form of nested key-value pairs that represent the attributes
@@ -2921,7 +2928,7 @@ type GetAttributeGroupOutput struct {
 	// The description of the attribute group that the user provides.
 	Description *string `locationName:"description" type:"string"`
 
-	// The identifier of the application.
+	// The identifier of the attribute group.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
@@ -2932,7 +2939,7 @@ type GetAttributeGroupOutput struct {
 	// The name of the attribute group.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// Key-value pairs you can use to associate with the attribute group.
+	// Key-value pairs associated with the attribute group.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -3102,7 +3109,7 @@ func (s *ListApplicationsInput) SetNextToken(v string) *ListApplicationsInput {
 type ListApplicationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the application.
+	// This list of applications.
 	Applications []*ApplicationSummary `locationName:"applications" type:"list"`
 
 	// The token to use to get the next page of results after a previous API call.
@@ -3301,7 +3308,7 @@ type ListAssociatedResourcesOutput struct {
 	// The token to use to get the next page of results after a previous API call.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// The name or ID of the resource of which the application will be associated.
+	// Information about the resources.
 	Resources []*ResourceInfo `locationName:"resources" type:"list"`
 }
 
@@ -3379,7 +3386,7 @@ func (s *ListAttributeGroupsInput) SetNextToken(v string) *ListAttributeGroupsIn
 type ListAttributeGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of attribute group IDs.
+	// This list of attribute groups.
 	AttributeGroups []*AttributeGroupSummary `locationName:"attributeGroups" type:"list"`
 
 	// The token to use to get the next page of results after a previous API call.
@@ -3412,7 +3419,7 @@ func (s *ListAttributeGroupsOutput) SetNextToken(v string) *ListAttributeGroupsO
 type ResourceInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon resource name (ARN) that specifies the application across services.
+	// The Amazon resource name (ARN) that specifies the resource across services.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The name of the resource.
@@ -3556,17 +3563,16 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the application. The name must be unique in the region
-	// in which you are updating the attribute group.
+	// The name or ID of the application that will be updated.
 	//
 	// Application is a required field
 	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
 
-	// The description of the application.
+	// The new description of the application.
 	Description *string `locationName:"description" type:"string"`
 
-	// The anme of the application. The name must be unique in the region in which
-	// you are creating the application.
+	// The new name of the application. The name must be unique in the region in
+	// which you are updating the application.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -3620,7 +3626,7 @@ func (s *UpdateApplicationInput) SetName(v string) *UpdateApplicationInput {
 type UpdateApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the application.
+	// The updated information of the application.
 	Application *Application `locationName:"application" type:"structure"`
 }
 
@@ -3720,8 +3726,7 @@ func (s *UpdateAttributeGroupInput) SetName(v string) *UpdateAttributeGroupInput
 type UpdateAttributeGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name or ID of the attribute group that holds the attributes to describe
-	// the application.
+	// The updated information of the attribute group.
 	AttributeGroup *AttributeGroup `locationName:"attributeGroup" type:"structure"`
 }
 

@@ -1918,6 +1918,12 @@ var awsPartition = partition{
 						Region: "eu-west-3",
 					},
 				},
+				"sa-east-1": endpoint{
+					Hostname: "rds.sa-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "sa-east-1",
+					},
+				},
 				"us-east-1": endpoint{
 					Hostname: "rds.us-east-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -8391,10 +8397,22 @@ var awsusgovPartition = partition{
 				Protocols: []string{"https"},
 			},
 			Endpoints: endpoints{
+				"dataplane-us-gov-east-1": endpoint{
+					Hostname: "greengrass-ats.iot.us-gov-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-east-1",
+					},
+				},
 				"dataplane-us-gov-west-1": endpoint{
 					Hostname: "greengrass-ats.iot.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
+					},
+				},
+				"fips-us-gov-east-1": endpoint{
+					Hostname: "greengrass-fips.us-gov-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-east-1",
 					},
 				},
 				"us-gov-east-1": endpoint{},
@@ -9736,6 +9754,12 @@ var awsisobPartition = partition{
 			},
 		},
 		"cloudtrail": service{
+
+			Endpoints: endpoints{
+				"us-isob-east-1": endpoint{},
+			},
+		},
+		"codedeploy": service{
 
 			Endpoints: endpoints{
 				"us-isob-east-1": endpoint{},

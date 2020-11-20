@@ -14,6 +14,12 @@
 // For more information about CodeGuru Reviewer, see the Amazon CodeGuru Reviewer
 // User Guide (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html).
 //
+// To improve the security of your CodeGuru Reviewer API calls, you can establish
+// a private connection between your VPC and CodeGuru Reviewer by creating an
+// interface VPC endpoint. For more information, see CodeGuru Reviewer and interface
+// VPC endpoints (AWS PrivateLink) (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/vpc-interface-endpoints.html)
+// in the Amazon CodeGuru Reviewer User Guide.
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19 for more information on this service.
 //
 // See codegurureviewer package documentation for more information.

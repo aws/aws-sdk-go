@@ -30,8 +30,7 @@ const (
 	// ErrCodeForbiddenException for service response error code
 	// "ForbiddenException".
 	//
-	// The client is permanently forbidden from making the request. For example,
-	// when a user tries to create an account from an unsupported Region.
+	// The client is permanently forbidden from making the request.
 	ErrCodeForbiddenException = "ForbiddenException"
 
 	// ErrCodeNotFoundException for service response error code

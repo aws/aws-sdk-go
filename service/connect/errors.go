@@ -68,6 +68,12 @@ const (
 	// The contact is not permitted.
 	ErrCodeOutboundContactNotPermittedException = "OutboundContactNotPermittedException"
 
+	// ErrCodeResourceConflictException for service response error code
+	// "ResourceConflictException".
+	//
+	// A resource already has that name.
+	ErrCodeResourceConflictException = "ResourceConflictException"
+
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
@@ -79,6 +85,12 @@ const (
 	//
 	// The specified resource was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// The service quota has been exceeded.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
@@ -104,8 +116,10 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidRequestException":              newErrorInvalidRequestException,
 	"LimitExceededException":               newErrorLimitExceededException,
 	"OutboundContactNotPermittedException": newErrorOutboundContactNotPermittedException,
+	"ResourceConflictException":            newErrorResourceConflictException,
 	"ResourceInUseException":               newErrorResourceInUseException,
 	"ResourceNotFoundException":            newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException":        newErrorServiceQuotaExceededException,
 	"ThrottlingException":                  newErrorThrottlingException,
 	"UserNotFoundException":                newErrorUserNotFoundException,
 }

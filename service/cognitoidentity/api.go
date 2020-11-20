@@ -1159,6 +1159,12 @@ func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput
 		Name:       opListIdentityPools,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1220,6 +1226,58 @@ func (c *CognitoIdentity) ListIdentityPoolsWithContext(ctx aws.Context, input *L
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListIdentityPoolsPages iterates over the pages of a ListIdentityPools operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIdentityPools method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListIdentityPools operation.
+//    pageNum := 0
+//    err := client.ListIdentityPoolsPages(params,
+//        func(page *cognitoidentity.ListIdentityPoolsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CognitoIdentity) ListIdentityPoolsPages(input *ListIdentityPoolsInput, fn func(*ListIdentityPoolsOutput, bool) bool) error {
+	return c.ListIdentityPoolsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIdentityPoolsPagesWithContext same as ListIdentityPoolsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CognitoIdentity) ListIdentityPoolsPagesWithContext(ctx aws.Context, input *ListIdentityPoolsInput, fn func(*ListIdentityPoolsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIdentityPoolsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIdentityPoolsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIdentityPoolsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"

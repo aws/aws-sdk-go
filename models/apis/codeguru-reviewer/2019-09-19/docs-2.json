@@ -1,9 +1,9 @@
 {
   "version": "2.0",
-  "service": "<p>This section provides documentation for the Amazon CodeGuru Reviewer API operations. CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommends fixes in your Java code.</p> <p>By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the <i> <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html\">Amazon CodeGuru Reviewer User Guide</a>.</i> </p>",
+  "service": "<p>This section provides documentation for the Amazon CodeGuru Reviewer API operations. CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommends fixes in your Java code.</p> <p>By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the <i> <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html\">Amazon CodeGuru Reviewer User Guide</a>.</i> </p> <p> To improve the security of your CodeGuru Reviewer API calls, you can establish a private connection between your VPC and CodeGuru Reviewer by creating an <i>interface VPC endpoint</i>. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/vpc-interface-endpoints.html\">CodeGuru Reviewer and interface VPC endpoints (AWS PrivateLink)</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>. </p>",
   "operations": {
     "AssociateRepository": "<p> Use to associate an AWS CodeCommit repository or a repostory managed by AWS CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews source code changes in the repository's pull requests and provides automatic recommendations. You can view recommendations using the CodeGuru Reviewer console. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/recommendations.html\">Recommendations in Amazon CodeGuru Reviewer</a> in the <i>Amazon CodeGuru Reviewer User Guide.</i> </p> <p>If you associate a CodeCommit repository, it must be in the same AWS Region and AWS account where its CodeGuru Reviewer code reviews are configured.</p> <p>Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar Connections to connect to CodeGuru Reviewer. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/reviewer-ug/step-one.html#select-repository-source-provider\">Connect to a repository source provider</a> in the <i>Amazon CodeGuru Reviewer User Guide.</i> </p> <note> <p> You cannot use the CodeGuru Reviewer SDK or the AWS CLI to associate a GitHub repository with Amazon CodeGuru Reviewer. To associate a GitHub repository, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-with-guru.html\">Getting started with CodeGuru Reviewer</a> in the <i>CodeGuru Reviewer User Guide.</i> </p> </note>",
-    "CreateCodeReview": "<p> Use to create a code review for a repository analysis. </p>",
+    "CreateCodeReview": "<p> Use to create a code review with a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html\"> <code>CodeReviewType</code> </a> of <code>RepositoryAnalysis</code>. This type of code review analyzes all code under a specified branch in an associated repository. <code>PullRequest</code> code reviews are automatically triggered by a pull request so cannot be created using this method. </p>",
     "DescribeCodeReview": "<p> Returns the metadata associated with the code review along with its status.</p>",
     "DescribeRecommendationFeedback": "<p> Describes the customer feedback for a CodeGuru Reviewer recommendation. </p>",
     "DescribeRepositoryAssociation": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object that contains information about the requested repository association. </p>",
@@ -12,7 +12,10 @@
     "ListRecommendationFeedback": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RecommendationFeedbackSummary.html\"> <code>RecommendationFeedbackSummary</code> </a> objects that contain customer recommendation feedback for all CodeGuru Reviewer users. </p>",
     "ListRecommendations": "<p> Returns the list of all recommendations for a completed code review. </p>",
     "ListRepositoryAssociations": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html\"> <code>RepositoryAssociationSummary</code> </a> objects that contain summary information about a repository association. You can filter the returned list by <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html#reviewer-Type-RepositoryAssociationSummary-ProviderType\"> <code>ProviderType</code> </a>, <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html#reviewer-Type-RepositoryAssociationSummary-Name\"> <code>Name</code> </a>, <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html#reviewer-Type-RepositoryAssociationSummary-State\"> <code>State</code> </a>, and <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociationSummary.html#reviewer-Type-RepositoryAssociationSummary-Owner\"> <code>Owner</code> </a>. </p>",
-    "PutRecommendationFeedback": "<p> Stores customer feedback for a CodeGuru Reviewer recommendation. When this API is called again with different reactions the previous feedback is overwritten. </p>"
+    "ListTagsForResource": "<p>Returns the list of tags associated with an associated repository resource.</p>",
+    "PutRecommendationFeedback": "<p> Stores customer feedback for a CodeGuru Reviewer recommendation. When this API is called again with different reactions the previous feedback is overwritten. </p>",
+    "TagResource": "<p>Adds one or more tags to an associated repository.</p>",
+    "UntagResource": "<p>Removes a tag from an associated repository.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -25,17 +28,14 @@
       "refs": {
         "CodeReview$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
         "CodeReviewSummary$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
-        "CreateCodeReviewRequest$RepositoryAssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <code>ListRepositories</code>. </p> <p> A code review can only be created on an associated repository. This is the ARN of the associated repository. </p>",
         "DescribeCodeReviewRequest$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
         "DescribeRecommendationFeedbackRequest$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
-        "DescribeRepositoryAssociationRequest$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <code>ListRepositories</code>. </p>",
-        "DisassociateRepositoryRequest$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <code>ListRepositories</code>. </p>",
         "ListRecommendationFeedbackRequest$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
         "ListRecommendationsRequest$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
         "PutRecommendationFeedbackRequest$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
         "RecommendationFeedback$CodeReviewArn": "<p>The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html\"> <code>CodeReview</code> </a> object. </p>",
         "RepositoryAssociation$AssociationArn": "<p>The Amazon Resource Name (ARN) identifying the repository association.</p>",
-        "RepositoryAssociationSummary$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <code>ListRepositories</code>. </p>"
+        "RepositoryAssociationSummary$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>"
       }
     },
     "AssociateRepositoryRequest": {
@@ -46,6 +46,18 @@
     "AssociateRepositoryResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AssociationArn": {
+      "base": null,
+      "refs": {
+        "CodeReview$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> that contains the reviewed source code. You can retrieve associated repository ARNs by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>",
+        "CreateCodeReviewRequest$RepositoryAssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p> <p> A code review can only be created on an associated repository. This is the ARN of the associated repository. </p>",
+        "DescribeRepositoryAssociationRequest$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>",
+        "DisassociateRepositoryRequest$AssociationArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>",
+        "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>",
+        "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>",
+        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object. You can retrieve this ARN by calling <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html\"> <code>ListRepositoryAssociations</code> </a>. </p>"
       }
     },
     "AssociationId": {
@@ -75,7 +87,7 @@
       }
     },
     "CodeReview": {
-      "base": "<p> Information about a code review. </p>",
+      "base": "<p> Information about a code review. A code review belongs to the associated repository that contains the reviewed code. </p>",
       "refs": {
         "CreateCodeReviewResponse$CodeReview": null,
         "DescribeCodeReviewResponse$CodeReview": "<p> Information about the code review. </p>"
@@ -84,7 +96,7 @@
     "CodeReviewName": {
       "base": null,
       "refs": {
-        "CreateCodeReviewRequest$Name": "<p> The name of the code review. Each code review of the same code review type must have a unique name in your AWS account. </p>"
+        "CreateCodeReviewRequest$Name": "<p> The name of the code review. The name of each code review in your AWS account must be unique. </p>"
       }
     },
     "CodeReviewSummaries": {
@@ -102,7 +114,7 @@
     "CodeReviewType": {
       "base": "<p> The type of a code review. There are two code review types: </p> <ul> <li> <p> <code>PullRequest</code> - A code review that is automatically triggered by a pull request on an assocaited repository. Because this type of code review is automatically generated, you cannot specify this code review type using <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p> </li> <li> <p> <code>RepositoryAnalysis</code> - A code review that analyzes all code under a specified branch in an associated respository. The assocated repository is specified using its ARN in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p> </li> </ul>",
       "refs": {
-        "CreateCodeReviewRequest$Type": "<p> The type of code review to create. This is specified using a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html\"> <code>CodeReviewType</code> </a> object. </p>"
+        "CreateCodeReviewRequest$Type": "<p> The type of code review to create. This is specified using a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html\"> <code>CodeReviewType</code> </a> object. You can create a code review only of type <code>RepositoryAnalysis</code>. </p>"
       }
     },
     "CommitDiffSourceCodeType": {
@@ -274,6 +286,16 @@
       }
     },
     "ListRepositoryAssociationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -465,7 +487,7 @@
     "RepositoryAnalysis": {
       "base": "<p> A code review type that analyzes all code under a specified branch in an associated respository. The assocated repository is specified using its ARN when you call <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p>",
       "refs": {
-        "CodeReviewType$RepositoryAnalysis": "<p> A code review that analyzes all code under a specified branch in an associated respository. The assocated repository is specified using its ARN in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a> </p>"
+        "CodeReviewType$RepositoryAnalysis": "<p> A code review that analyzes all code under a specified branch in an associated respository. The assocated repository is specified using its ARN in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p>"
       }
     },
     "RepositoryAssociation": {
@@ -479,15 +501,15 @@
     "RepositoryAssociationState": {
       "base": null,
       "refs": {
-        "RepositoryAssociation$State": "<p>The state of the repository association.</p> <p>The valid repository association states are:</p> <ul> <li> <p> <b>Associated</b>: The repository association is complete. </p> </li> <li> <p> <b>Associating</b>: CodeGuru Reviewer is: </p> <ul> <li> <p> Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review. </p> <note> <p> If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered. </p> </note> </li> <li> <p> Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository. </p> </li> </ul> </li> <li> <p> <b>Failed</b>: The repository failed to associate or disassociate. </p> </li> <li> <p> <b>Disassociating</b>: CodeGuru Reviewer is removing the repository's pull request notifications and source code access. </p> </li> </ul>",
+        "RepositoryAssociation$State": "<p>The state of the repository association.</p> <p>The valid repository association states are:</p> <ul> <li> <p> <b>Associated</b>: The repository association is complete. </p> </li> <li> <p> <b>Associating</b>: CodeGuru Reviewer is: </p> <ul> <li> <p> Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review. </p> <note> <p> If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered. </p> </note> </li> <li> <p> Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository. </p> </li> </ul> </li> <li> <p> <b>Failed</b>: The repository failed to associate or disassociate. </p> </li> <li> <p> <b>Disassociating</b>: CodeGuru Reviewer is removing the repository's pull request notifications and source code access. </p> </li> <li> <p> <b>Disassociated</b>: CodeGuru Reviewer successfully disassociated the repository. You can create a new association with this repository if you want to review source code in it later. You can control access to code reviews created in an associated repository with tags after it has been disassociated. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html\">Using tags to control access to associated repositories</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>. </p> </li> </ul>",
         "RepositoryAssociationStates$member": null,
-        "RepositoryAssociationSummary$State": "<p>The state of the repository association.</p> <p>The valid repository association states are:</p> <ul> <li> <p> <b>Associated</b>: The repository association is complete. </p> </li> <li> <p> <b>Associating</b>: CodeGuru Reviewer is: </p> <ul> <li> <p> Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review. </p> <note> <p> If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered. </p> </note> </li> <li> <p> Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository. </p> </li> </ul> </li> <li> <p> <b>Failed</b>: The repository failed to associate or disassociate. </p> </li> <li> <p> <b>Disassociating</b>: CodeGuru Reviewer is removing the repository's pull request notifications and source code access. </p> </li> </ul>"
+        "RepositoryAssociationSummary$State": "<p>The state of the repository association.</p> <p>The valid repository association states are:</p> <ul> <li> <p> <b>Associated</b>: The repository association is complete. </p> </li> <li> <p> <b>Associating</b>: CodeGuru Reviewer is: </p> <ul> <li> <p> Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review. </p> <note> <p> If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered. </p> </note> </li> <li> <p> Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository. </p> </li> </ul> </li> <li> <p> <b>Failed</b>: The repository failed to associate or disassociate. </p> </li> <li> <p> <b>Disassociating</b>: CodeGuru Reviewer is removing the repository's pull request notifications and source code access. </p> </li> <li> <p> <b>Disassociated</b>: CodeGuru Reviewer successfully disassociated the repository. You can create a new association with this repository if you want to review source code in it later. You can control access to code reviews created in an associated repository with tags after it has been disassociated. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html\">Using tags to control access to associated repositories</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>. </p> </li> </ul>"
       }
     },
     "RepositoryAssociationStates": {
       "base": null,
       "refs": {
-        "ListRepositoryAssociationsRequest$States": "<p>List of repository association states to use as a filter.</p> <p>The valid repository association states are:</p> <ul> <li> <p> <b>Associated</b>: The repository association is complete. </p> </li> <li> <p> <b>Associating</b>: CodeGuru Reviewer is: </p> <ul> <li> <p> Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review. </p> <note> <p> If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered. </p> </note> </li> <li> <p> Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository. </p> </li> </ul> </li> <li> <p> <b>Failed</b>: The repository failed to associate or disassociate. </p> </li> <li> <p> <b>Disassociating</b>: CodeGuru Reviewer is removing the repository's pull request notifications and source code access. </p> </li> </ul>"
+        "ListRepositoryAssociationsRequest$States": "<p>List of repository association states to use as a filter.</p> <p>The valid repository association states are:</p> <ul> <li> <p> <b>Associated</b>: The repository association is complete. </p> </li> <li> <p> <b>Associating</b>: CodeGuru Reviewer is: </p> <ul> <li> <p> Setting up pull request notifications. This is required for pull requests to trigger a CodeGuru Reviewer review. </p> <note> <p> If your repository <code>ProviderType</code> is <code>GitHub</code>, <code>GitHub Enterprise Server</code>, or <code>Bitbucket</code>, CodeGuru Reviewer creates webhooks in your repository to trigger CodeGuru Reviewer reviews. If you delete these webhooks, reviews of code in your repository cannot be triggered. </p> </note> </li> <li> <p> Setting up source code access. This is required for CodeGuru Reviewer to securely clone code in your repository. </p> </li> </ul> </li> <li> <p> <b>Failed</b>: The repository failed to associate or disassociate. </p> </li> <li> <p> <b>Disassociating</b>: CodeGuru Reviewer is removing the repository's pull request notifications and source code access. </p> </li> <li> <p> <b>Disassociated</b>: CodeGuru Reviewer successfully disassociated the repository. You can create a new association with this repository if you want to review source code in it later. You can control access to code reviews created in an associated repository with tags after it has been disassociated. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html\">Using tags to control access to associated repositories</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>. </p> </li> </ul>"
       }
     },
     "RepositoryAssociationSummaries": {
@@ -533,6 +555,46 @@
         "RepositoryAssociation$StateReason": "<p>A description of why the repository association is in the current state.</p>"
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>A list of the keys for each tag you want to remove from an associated repository.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "AssociateRepositoryRequest$Tags": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>",
+        "AssociateRepositoryResponse$Tags": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>",
+        "DescribeRepositoryAssociationResponse$Tags": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>",
+        "DisassociateRepositoryResponse$Tags": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>",
+        "ListTagsForResourceResponse$Tags": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>",
+        "TagResourceRequest$Tags": "<p> An array of key-value pairs used to tag an associated repository. A tag is a custom attribute label with two parts: </p> <ul> <li> <p>A <i>tag key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag keys are case sensitive.</p> </li> <li> <p>An optional field known as a <i>tag value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag value is the same as using an empty string. Like tag keys, tag values are case sensitive.</p> </li> </ul>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "Text": {
       "base": null,
       "refs": {
@@ -571,6 +633,16 @@
         "CodeReview$Type": "<p> The type of code review. </p>",
         "CodeReviewSummary$Type": "<p> The type of the code review. </p>",
         "ListCodeReviewsRequest$Type": "<p> The type of code reviews to list in the response. </p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UserId": {

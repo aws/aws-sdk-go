@@ -107,7 +107,8 @@
         {"shape":"InvalidIdentityPoolConfigurationException"},
         {"shape":"InternalErrorException"},
         {"shape":"ExternalServiceException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "GetId":{
       "name":"GetId",
@@ -126,7 +127,8 @@
         {"shape":"InternalErrorException"},
         {"shape":"LimitExceededException"},
         {"shape":"ExternalServiceException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "GetIdentityPoolRoles":{
       "name":"GetIdentityPoolRoles",
@@ -161,7 +163,8 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalErrorException"},
         {"shape":"ExternalServiceException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "GetOpenIdTokenForDeveloperIdentity":{
       "name":"GetOpenIdTokenForDeveloperIdentity",
@@ -327,7 +330,8 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalErrorException"},
         {"shape":"ExternalServiceException"}
-      ]
+      ],
+      "authtype":"none"
     },
     "UntagResource":{
       "name":"UntagResource",
@@ -846,7 +850,7 @@
     "MappingRulesList":{
       "type":"list",
       "member":{"shape":"MappingRule"},
-      "max":25,
+      "max":400,
       "min":1
     },
     "MergeDeveloperIdentitiesInput":{
@@ -884,6 +888,7 @@
     "OIDCToken":{"type":"string"},
     "PaginationKey":{
       "type":"string",
+      "max":65535,
       "min":1,
       "pattern":"[\\S]+"
     },
@@ -930,6 +935,8 @@
     },
     "RoleType":{
       "type":"string",
+      "max":128,
+      "min":1,
       "pattern":"(un)?authenticated"
     },
     "RolesMap":{

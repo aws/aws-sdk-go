@@ -11941,7 +11941,9 @@ type TagRef struct {
 
 	// The optional part of a key-value pair that make up a tag. A value acts as
 	// a descriptor within a tag category (key).
-	Value *string `locationName:"value" type:"string"`
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -11962,6 +11964,9 @@ func (s *TagRef) Validate() error {
 	}
 	if s.Key != nil && len(*s.Key) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
 	}
 
 	if invalidParams.Len() > 0 {

@@ -8,7 +8,7 @@
 // applications, their resources, and the application metadata that you use
 // within your enterprise.
 //
-// See https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry for more information on this service.
+// See https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24 for more information on this service.
 //
 // See appregistry package documentation for more information.
 // https://docs.aws.amazon.com/sdk-for-go/api/service/appregistry/

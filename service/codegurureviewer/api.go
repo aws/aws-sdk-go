@@ -170,7 +170,11 @@ func (c *CodeGuruReviewer) CreateCodeReviewRequest(input *CreateCodeReviewInput)
 
 // CreateCodeReview API operation for Amazon CodeGuru Reviewer.
 //
-// Use to create a code review for a repository analysis.
+// Use to create a code review with a CodeReviewType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html)
+// of RepositoryAnalysis. This type of code review analyzes all code under a
+// specified branch in an associated repository. PullRequest code reviews are
+// automatically triggered by a pull request so cannot be created using this
+// method.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1186,6 +1190,91 @@ func (c *CodeGuruReviewer) ListRepositoryAssociationsPagesWithContext(ctx aws.Co
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListTagsForResource
+func (c *CodeGuruReviewer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon CodeGuru Reviewer.
+//
+// Returns the list of tags associated with an associated repository resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/ListTagsForResource
+func (c *CodeGuruReviewer) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutRecommendationFeedback = "PutRecommendationFeedback"
 
 // PutRecommendationFeedbackRequest generates a "aws/request.Request" representing the
@@ -1279,6 +1368,178 @@ func (c *CodeGuruReviewer) PutRecommendationFeedbackWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/TagResource
+func (c *CodeGuruReviewer) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon CodeGuru Reviewer.
+//
+// Adds one or more tags to an associated repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/TagResource
+func (c *CodeGuruReviewer) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/UntagResource
+func (c *CodeGuruReviewer) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon CodeGuru Reviewer.
+//
+// Removes a tag from an associated repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CodeGuru Reviewer's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The server encountered an internal error and is unable to complete the request.
+//
+//   * ValidationException
+//   The input fails to satisfy the specified constraints.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codeguru-reviewer-2019-09-19/UntagResource
+func (c *CodeGuruReviewer) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeGuruReviewer) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You do not have sufficient access to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -1346,6 +1607,17 @@ type AssociateRepositoryInput struct {
 	//
 	// Repository is a required field
 	Repository *Repository `type:"structure" required:"true"`
+
+	// An array of key-value pairs used to tag an associated repository. A tag is
+	// a custom attribute label with two parts:
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case sensitive.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -1366,6 +1638,9 @@ func (s *AssociateRepositoryInput) Validate() error {
 	}
 	if s.Repository == nil {
 		invalidParams.Add(request.NewErrParamRequired("Repository"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
 	if s.Repository != nil {
 		if err := s.Repository.Validate(); err != nil {
@@ -1391,11 +1666,28 @@ func (s *AssociateRepositoryInput) SetRepository(v *Repository) *AssociateReposi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *AssociateRepositoryInput) SetTags(v map[string]*string) *AssociateRepositoryInput {
+	s.Tags = v
+	return s
+}
+
 type AssociateRepositoryOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the repository association.
 	RepositoryAssociation *RepositoryAssociation `type:"structure"`
+
+	// An array of key-value pairs used to tag an associated repository. A tag is
+	// a custom attribute label with two parts:
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case sensitive.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -1411,6 +1703,12 @@ func (s AssociateRepositoryOutput) GoString() string {
 // SetRepositoryAssociation sets the RepositoryAssociation field's value.
 func (s *AssociateRepositoryOutput) SetRepositoryAssociation(v *RepositoryAssociation) *AssociateRepositoryOutput {
 	s.RepositoryAssociation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssociateRepositoryOutput) SetTags(v map[string]*string) *AssociateRepositoryOutput {
+	s.Tags = v
 	return s
 }
 
@@ -1460,9 +1758,15 @@ func (s *CodeCommitRepository) SetName(v string) *CodeCommitRepository {
 	return s
 }
 
-// Information about a code review.
+// Information about a code review. A code review belongs to the associated
+// repository that contains the reviewed code.
 type CodeReview struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
+	// that contains the reviewed source code. You can retrieve associated repository
+	// ARNs by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
+	AssociationArn *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the CodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html)
 	// object.
@@ -1526,6 +1830,12 @@ func (s CodeReview) String() string {
 // GoString returns the string representation
 func (s CodeReview) GoString() string {
 	return s.String()
+}
+
+// SetAssociationArn sets the AssociationArn field's value.
+func (s *CodeReview) SetAssociationArn(v string) *CodeReview {
+	s.AssociationArn = &v
+	return s
 }
 
 // SetCodeReviewArn sets the CodeReviewArn field's value.
@@ -1750,7 +2060,7 @@ type CodeReviewType struct {
 
 	// A code review that analyzes all code under a specified branch in an associated
 	// respository. The assocated repository is specified using its ARN in CreateCodeReview
-	// (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview)
+	// (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
 	//
 	// RepositoryAnalysis is a required field
 	RepositoryAnalysis *RepositoryAnalysis `type:"structure" required:"true"`
@@ -1889,14 +2199,14 @@ type CreateCodeReviewInput struct {
 	// of duplicate code reviews if there are failures and retries.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The name of the code review. Each code review of the same code review type
-	// must have a unique name in your AWS account.
+	// The name of the code review. The name of each code review in your AWS account
+	// must be unique.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
-	// object. You can retrieve this ARN by calling ListRepositories.
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
 	//
 	// A code review can only be created on an associated repository. This is the
 	// ARN of the associated repository.
@@ -1906,7 +2216,7 @@ type CreateCodeReviewInput struct {
 
 	// The type of code review to create. This is specified using a CodeReviewType
 	// (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html)
-	// object.
+	// object. You can create a code review only of type RepositoryAnalysis.
 	//
 	// Type is a required field
 	Type *CodeReviewType `type:"structure" required:"true"`
@@ -1982,7 +2292,8 @@ func (s *CreateCodeReviewInput) SetType(v *CodeReviewType) *CreateCodeReviewInpu
 type CreateCodeReviewOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a code review.
+	// Information about a code review. A code review belongs to the associated
+	// repository that contains the reviewed code.
 	CodeReview *CodeReview `type:"structure"`
 }
 
@@ -2172,7 +2483,7 @@ type DescribeRepositoryAssociationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
-	// object. You can retrieve this ARN by calling ListRepositories.
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
 	//
 	// AssociationArn is a required field
 	AssociationArn *string `location:"uri" locationName:"AssociationArn" min:"1" type:"string" required:"true"`
@@ -2215,6 +2526,17 @@ type DescribeRepositoryAssociationOutput struct {
 
 	// Information about the repository association.
 	RepositoryAssociation *RepositoryAssociation `type:"structure"`
+
+	// An array of key-value pairs used to tag an associated repository. A tag is
+	// a custom attribute label with two parts:
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case sensitive.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -2233,11 +2555,17 @@ func (s *DescribeRepositoryAssociationOutput) SetRepositoryAssociation(v *Reposi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *DescribeRepositoryAssociationOutput) SetTags(v map[string]*string) *DescribeRepositoryAssociationOutput {
+	s.Tags = v
+	return s
+}
+
 type DisassociateRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
-	// object. You can retrieve this ARN by calling ListRepositories.
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
 	//
 	// AssociationArn is a required field
 	AssociationArn *string `location:"uri" locationName:"AssociationArn" min:"1" type:"string" required:"true"`
@@ -2280,6 +2608,17 @@ type DisassociateRepositoryOutput struct {
 
 	// Information about the disassociated repository.
 	RepositoryAssociation *RepositoryAssociation `type:"structure"`
+
+	// An array of key-value pairs used to tag an associated repository. A tag is
+	// a custom attribute label with two parts:
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case sensitive.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -2295,6 +2634,12 @@ func (s DisassociateRepositoryOutput) GoString() string {
 // SetRepositoryAssociation sets the RepositoryAssociation field's value.
 func (s *DisassociateRepositoryOutput) SetRepositoryAssociation(v *RepositoryAssociation) *DisassociateRepositoryOutput {
 	s.RepositoryAssociation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DisassociateRepositoryOutput) SetTags(v map[string]*string) *DisassociateRepositoryOutput {
+	s.Tags = v
 	return s
 }
 
@@ -2787,6 +3132,14 @@ type ListRepositoryAssociationsInput struct {
 	//
 	//    * Disassociating: CodeGuru Reviewer is removing the repository's pull
 	//    request notifications and source code access.
+	//
+	//    * Disassociated: CodeGuru Reviewer successfully disassociated the repository.
+	//    You can create a new association with this repository if you want to review
+	//    source code in it later. You can control access to code reviews created
+	//    in an associated repository with tags after it has been disassociated.
+	//    For more information, see Using tags to control access to associated repositories
+	//    (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html)
+	//    in the Amazon CodeGuru Reviewer User Guide.
 	States []*string `location:"querystring" locationName:"State" min:"1" type:"list"`
 }
 
@@ -2896,6 +3249,79 @@ func (s *ListRepositoryAssociationsOutput) SetNextToken(v string) *ListRepositor
 // SetRepositoryAssociationSummaries sets the RepositoryAssociationSummaries field's value.
 func (s *ListRepositoryAssociationsOutput) SetRepositoryAssociationSummaries(v []*RepositoryAssociationSummary) *ListRepositoryAssociationsOutput {
 	s.RepositoryAssociationSummaries = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of key-value pairs used to tag an associated repository. A tag is
+	// a custom attribute label with two parts:
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case sensitive.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -3494,6 +3920,14 @@ type RepositoryAssociation struct {
 	//
 	//    * Disassociating: CodeGuru Reviewer is removing the repository's pull
 	//    request notifications and source code access.
+	//
+	//    * Disassociated: CodeGuru Reviewer successfully disassociated the repository.
+	//    You can create a new association with this repository if you want to review
+	//    source code in it later. You can control access to code reviews created
+	//    in an associated repository with tags after it has been disassociated.
+	//    For more information, see Using tags to control access to associated repositories
+	//    (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html)
+	//    in the Amazon CodeGuru Reviewer User Guide.
 	State *string `type:"string" enum:"RepositoryAssociationState"`
 
 	// A description of why the repository association is in the current state.
@@ -3577,7 +4011,7 @@ type RepositoryAssociationSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
-	// object. You can retrieve this ARN by calling ListRepositories.
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
 	AssociationArn *string `min:"1" type:"string"`
 
 	// The repository association ID.
@@ -3624,6 +4058,14 @@ type RepositoryAssociationSummary struct {
 	//
 	//    * Disassociating: CodeGuru Reviewer is removing the repository's pull
 	//    request notifications and source code access.
+	//
+	//    * Disassociated: CodeGuru Reviewer successfully disassociated the repository.
+	//    You can create a new association with this repository if you want to review
+	//    source code in it later. You can control access to code reviews created
+	//    in an associated repository with tags after it has been disassociated.
+	//    For more information, see Using tags to control access to associated repositories
+	//    (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/auth-and-access-control-using-tags.html)
+	//    in the Amazon CodeGuru Reviewer User Guide.
 	State *string `type:"string" enum:"RepositoryAssociationState"`
 }
 
@@ -3822,6 +4264,87 @@ func (s *SourceCodeType) SetRepositoryHead(v *RepositoryHeadSourceCodeType) *Sou
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// An array of key-value pairs used to tag an associated repository. A tag is
+	// a custom attribute label with two parts:
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case sensitive.
+	//
+	// Tags is a required field
+	Tags map[string]*string `min:"1" type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Information about a third-party source repository connected to CodeGuru Reviewer.
 type ThirdPartySourceRepository struct {
 	_ struct{} `type:"structure"`
@@ -3953,6 +4476,79 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
+	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// A list of the keys for each tag you want to remove from an associated repository.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The input fails to satisfy the specified constraints.
@@ -4087,6 +4683,9 @@ const (
 
 	// RepositoryAssociationStateDisassociating is a RepositoryAssociationState enum value
 	RepositoryAssociationStateDisassociating = "Disassociating"
+
+	// RepositoryAssociationStateDisassociated is a RepositoryAssociationState enum value
+	RepositoryAssociationStateDisassociated = "Disassociated"
 )
 
 // RepositoryAssociationState_Values returns all elements of the RepositoryAssociationState enum
@@ -4096,6 +4695,7 @@ func RepositoryAssociationState_Values() []string {
 		RepositoryAssociationStateAssociating,
 		RepositoryAssociationStateFailed,
 		RepositoryAssociationStateDisassociating,
+		RepositoryAssociationStateDisassociated,
 	}
 }
 
