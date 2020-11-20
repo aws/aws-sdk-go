@@ -2212,6 +2212,10 @@
           "shape": "__long",
           "locationName": "classifiableSizeInBytes"
         },
+        "jobDetails": {
+          "shape": "JobDetails",
+          "locationName": "jobDetails"
+        },
         "lastUpdated": {
           "shape": "__timestampIso8601",
           "locationName": "lastUpdated"
@@ -3962,6 +3966,22 @@
         }
       }
     },
+    "IsDefinedInJob": {
+      "type": "string",
+      "enum": [
+        "TRUE",
+        "FALSE",
+        "UNKNOWN"
+      ]
+    },
+    "IsMonitoredByJob": {
+      "type": "string",
+      "enum": [
+        "TRUE",
+        "FALSE",
+        "UNKNOWN"
+      ]
+    },
     "JobComparator": {
       "type": "string",
       "enum": [
@@ -3973,6 +3993,27 @@
         "NE",
         "CONTAINS"
       ]
+    },
+    "JobDetails": {
+      "type": "structure",
+      "members": {
+        "isDefinedInJob": {
+          "shape": "IsDefinedInJob",
+          "locationName": "isDefinedInJob"
+        },
+        "isMonitoredByJob": {
+          "shape": "IsMonitoredByJob",
+          "locationName": "isMonitoredByJob"
+        },
+        "lastJobId": {
+          "shape": "__string",
+          "locationName": "lastJobId"
+        },
+        "lastJobRunTime": {
+          "shape": "__timestampIso8601",
+          "locationName": "lastJobRunTime"
+        }
+      }
     },
     "JobScheduleFrequency": {
       "type": "structure",

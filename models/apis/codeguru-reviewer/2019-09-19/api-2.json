@@ -172,6 +172,20 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "PutRecommendationFeedback":{
       "name":"PutRecommendationFeedback",
       "http":{
@@ -186,6 +200,34 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     }
   },
@@ -212,14 +254,22 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagMap"}
       }
     },
     "AssociateRepositoryResponse":{
       "type":"structure",
       "members":{
-        "RepositoryAssociation":{"shape":"RepositoryAssociation"}
+        "RepositoryAssociation":{"shape":"RepositoryAssociation"},
+        "Tags":{"shape":"TagMap"}
       }
+    },
+    "AssociationArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws[^:\\s]*:codeguru-reviewer:[^:\\s]+:[\\d]{12}:association:[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
     "AssociationId":{
       "type":"string",
@@ -259,6 +309,7 @@
         "Type":{"shape":"Type"},
         "PullRequestId":{"shape":"PullRequestId"},
         "SourceCodeType":{"shape":"SourceCodeType"},
+        "AssociationArn":{"shape":"AssociationArn"},
         "Metrics":{"shape":"Metrics"}
       }
     },
@@ -330,7 +381,7 @@
       ],
       "members":{
         "Name":{"shape":"CodeReviewName"},
-        "RepositoryAssociationArn":{"shape":"Arn"},
+        "RepositoryAssociationArn":{"shape":"AssociationArn"},
         "Type":{"shape":"CodeReviewType"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
@@ -396,7 +447,7 @@
       "required":["AssociationArn"],
       "members":{
         "AssociationArn":{
-          "shape":"Arn",
+          "shape":"AssociationArn",
           "location":"uri",
           "locationName":"AssociationArn"
         }
@@ -405,7 +456,8 @@
     "DescribeRepositoryAssociationResponse":{
       "type":"structure",
       "members":{
-        "RepositoryAssociation":{"shape":"RepositoryAssociation"}
+        "RepositoryAssociation":{"shape":"RepositoryAssociation"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "DisassociateRepositoryRequest":{
@@ -413,7 +465,7 @@
       "required":["AssociationArn"],
       "members":{
         "AssociationArn":{
-          "shape":"Arn",
+          "shape":"AssociationArn",
           "location":"uri",
           "locationName":"AssociationArn"
         }
@@ -422,7 +474,8 @@
     "DisassociateRepositoryResponse":{
       "type":"structure",
       "members":{
-        "RepositoryAssociation":{"shape":"RepositoryAssociation"}
+        "RepositoryAssociation":{"shape":"RepositoryAssociation"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "ErrorMessage":{"type":"string"},
@@ -611,6 +664,23 @@
       "members":{
         "RepositoryAssociationSummaries":{"shape":"RepositoryAssociationSummaries"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"AssociationArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagMap"}
       }
     },
     "MaxResults":{
@@ -805,13 +875,14 @@
         "Associated",
         "Associating",
         "Failed",
-        "Disassociating"
+        "Disassociating",
+        "Disassociated"
       ]
     },
     "RepositoryAssociationStates":{
       "type":"list",
       "member":{"shape":"RepositoryAssociationState"},
-      "max":3,
+      "max":5,
       "min":1
     },
     "RepositoryAssociationSummaries":{
@@ -864,6 +935,48 @@
       "max":256,
       "min":0
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":1
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "Tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AssociationArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256
+    },
     "Text":{
       "type":"string",
       "max":2048,
@@ -897,6 +1010,30 @@
         "PullRequest",
         "RepositoryAnalysis"
       ]
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AssociationArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UserId":{
       "type":"string",

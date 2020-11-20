@@ -109,6 +109,14 @@ type CloudHSMV2API interface {
 	ListTagsPages(*cloudhsmv2.ListTagsInput, func(*cloudhsmv2.ListTagsOutput, bool) bool) error
 	ListTagsPagesWithContext(aws.Context, *cloudhsmv2.ListTagsInput, func(*cloudhsmv2.ListTagsOutput, bool) bool, ...request.Option) error
 
+	ModifyBackupAttributes(*cloudhsmv2.ModifyBackupAttributesInput) (*cloudhsmv2.ModifyBackupAttributesOutput, error)
+	ModifyBackupAttributesWithContext(aws.Context, *cloudhsmv2.ModifyBackupAttributesInput, ...request.Option) (*cloudhsmv2.ModifyBackupAttributesOutput, error)
+	ModifyBackupAttributesRequest(*cloudhsmv2.ModifyBackupAttributesInput) (*request.Request, *cloudhsmv2.ModifyBackupAttributesOutput)
+
+	ModifyCluster(*cloudhsmv2.ModifyClusterInput) (*cloudhsmv2.ModifyClusterOutput, error)
+	ModifyClusterWithContext(aws.Context, *cloudhsmv2.ModifyClusterInput, ...request.Option) (*cloudhsmv2.ModifyClusterOutput, error)
+	ModifyClusterRequest(*cloudhsmv2.ModifyClusterInput) (*request.Request, *cloudhsmv2.ModifyClusterOutput)
+
 	RestoreBackup(*cloudhsmv2.RestoreBackupInput) (*cloudhsmv2.RestoreBackupOutput, error)
 	RestoreBackupWithContext(aws.Context, *cloudhsmv2.RestoreBackupInput, ...request.Option) (*cloudhsmv2.RestoreBackupOutput, error)
 	RestoreBackupRequest(*cloudhsmv2.RestoreBackupInput) (*request.Request, *cloudhsmv2.RestoreBackupOutput)

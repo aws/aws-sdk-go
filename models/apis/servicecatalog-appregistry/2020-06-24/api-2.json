@@ -10,7 +10,7 @@
     "serviceId":"Service Catalog AppRegistry",
     "signatureVersion":"v4",
     "signingName":"servicecatalog",
-    "uid":"AWS242AppRegistry"
+    "uid":"AWS242AppRegistry-2020-06-24"
   },
   "operations":{
     "AssociateAttributeGroup":{

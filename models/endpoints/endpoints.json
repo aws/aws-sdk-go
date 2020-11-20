@@ -1800,6 +1800,12 @@
             },
             "hostname" : "rds.eu-west-3.amazonaws.com"
           },
+          "sa-east-1" : {
+            "credentialScope" : {
+              "region" : "sa-east-1"
+            },
+            "hostname" : "rds.sa-east-1.amazonaws.com"
+          },
           "us-east-1" : {
             "credentialScope" : {
               "region" : "us-east-1"
@@ -8017,11 +8023,23 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
+          "dataplane-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "greengrass-ats.iot.us-gov-east-1.amazonaws.com"
+          },
           "dataplane-us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
             "hostname" : "greengrass-ats.iot.us-gov-west-1.amazonaws.com"
+          },
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "greengrass-fips.us-gov-east-1.amazonaws.com"
           },
           "us-gov-east-1" : { },
           "us-gov-west-1" : {
@@ -9235,6 +9253,11 @@
         }
       },
       "cloudtrail" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "codedeploy" : {
         "endpoints" : {
           "us-isob-east-1" : { }
         }

@@ -108,6 +108,9 @@ type CognitoIdentityAPI interface {
 	ListIdentityPoolsWithContext(aws.Context, *cognitoidentity.ListIdentityPoolsInput, ...request.Option) (*cognitoidentity.ListIdentityPoolsOutput, error)
 	ListIdentityPoolsRequest(*cognitoidentity.ListIdentityPoolsInput) (*request.Request, *cognitoidentity.ListIdentityPoolsOutput)
 
+	ListIdentityPoolsPages(*cognitoidentity.ListIdentityPoolsInput, func(*cognitoidentity.ListIdentityPoolsOutput, bool) bool) error
+	ListIdentityPoolsPagesWithContext(aws.Context, *cognitoidentity.ListIdentityPoolsInput, func(*cognitoidentity.ListIdentityPoolsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*cognitoidentity.ListTagsForResourceInput) (*cognitoidentity.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *cognitoidentity.ListTagsForResourceInput, ...request.Option) (*cognitoidentity.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*cognitoidentity.ListTagsForResourceInput) (*request.Request, *cognitoidentity.ListTagsForResourceOutput)

@@ -2,30 +2,52 @@
   "version": "2.0",
   "service": "<p>Amazon Connect is a cloud-based contact center solution that makes it easy to set up and manage a customer contact center and provide reliable customer engagement at any scale.</p> <p>Amazon Connect provides rich metrics and real-time reporting that allow you to optimize contact routing. You can also resolve customer issues more efficiently by putting customers in touch with the right agents.</p> <p>There are limits to the number of Amazon Connect resources that you can create and limits to the number of requests that you can make per second. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <p>To connect programmatically to an AWS service, you use an endpoint. For a list of Amazon Connect endpoints, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/connect_region.html\">Amazon Connect Endpoints</a>.</p> <note> <p>Working with contact flows? Check out the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p> </note>",
   "operations": {
+    "AssociateApprovedOrigin": "<p>Associates an approved origin to an Amazon Connect instance.</p>",
+    "AssociateInstanceStorageConfig": "<p>Associates a storage resource type for the first time. You can only associate one type of storage configuration in a single call. This means, for example, that you can't define an instance with multiple S3 buckets for storing chat transcripts.</p> <p>This API does not create a resource that doesn't exist. It only associates it to the instance. Ensure that the resource being specified in the storage configuration, like an Amazon S3 bucket, exists when being used for association.</p>",
+    "AssociateLambdaFunction": "<p>Allows the specified Amazon Connect instance to access the specified Lambda function.</p>",
+    "AssociateLexBot": "<p>Allows the specified Amazon Connect instance to access the specified Amazon Lex bot.</p>",
     "AssociateRoutingProfileQueues": "<p>Associates a set of queues with a routing profile.</p>",
+    "AssociateSecurityKey": "<p>Associates a security key to the instance.</p>",
     "CreateContactFlow": "<p>Creates a contact flow for the specified Amazon Connect instance.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
+    "CreateInstance": "<p>Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage (such as Amazon S3, or Kinesis) or allow for any configurations on features such as Contact Lens for Amazon Connect. </p>",
     "CreateRoutingProfile": "<p>Creates a new routing profile.</p>",
     "CreateUser": "<p>Creates a user account for the specified Amazon Connect instance.</p> <p>For information about how to create user accounts using the Amazon Connect console, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html\">Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "CreateUserHierarchyGroup": "<p>Creates a new user hierarchy group.</p>",
+    "DeleteInstance": "<p>Deletes the Amazon Connect instance.</p>",
     "DeleteUser": "<p>Deletes a user account from the specified Amazon Connect instance.</p> <p>For information about what happens to a user's data when their account is deleted, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html\">Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "DeleteUserHierarchyGroup": "<p>Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups.</p>",
     "DescribeContactFlow": "<p>Describes the specified contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
+    "DescribeInstance": "<p>Returns the current state of the specified instance identifier. It tracks the instance while it is being created and returns an error status if applicable. </p> <p>If an instance is not created successfully, the instance status reason field returns details relevant to the reason. The instance in a failed state is returned only for 24 hours after the CreateInstance API was invoked.</p>",
+    "DescribeInstanceAttribute": "<p>Describes the specified instance attribute.</p>",
+    "DescribeInstanceStorageConfig": "<p>Retrieves the current storage configurations for the specified resource type, association ID, and instance ID.</p>",
     "DescribeRoutingProfile": "<p>Describes the specified routing profile.</p>",
     "DescribeUser": "<p>Describes the specified user account. You can find the instance ID in the console (it’s the final part of the ARN). The console does not display the user IDs. Instead, list the users and note the IDs provided in the output.</p>",
     "DescribeUserHierarchyGroup": "<p>Describes the specified hierarchy group.</p>",
     "DescribeUserHierarchyStructure": "<p>Describes the hierarchy structure of the specified Amazon Connect instance.</p>",
+    "DisassociateApprovedOrigin": "<p>Revokes access to integrated applications from Amazon Connect.</p>",
+    "DisassociateInstanceStorageConfig": "<p>Removes the storage type configurations for the specified resource type and association ID.</p>",
+    "DisassociateLambdaFunction": "<p>Remove the Lambda function from the drop-down options available in the relevant contact flow blocks.</p>",
+    "DisassociateLexBot": "<p>Revokes authorization from the specified instance to access the specified Amazon Lex bot.</p>",
     "DisassociateRoutingProfileQueues": "<p>Disassociates a set of queues from a routing profile.</p>",
+    "DisassociateSecurityKey": "<p>Deletes the specified security key.</p>",
     "GetContactAttributes": "<p>Retrieves the contact attributes for the specified contact.</p>",
     "GetCurrentMetricData": "<p>Gets the real-time metric data from the specified Amazon Connect instance.</p> <p>For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html\">Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "GetFederationToken": "<p>Retrieves a token for federation.</p>",
     "GetMetricData": "<p>Gets historical metric data from the specified Amazon Connect instance.</p> <p>For a description of each historical metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html\">Historical Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListApprovedOrigins": "<p>Returns a paginated list of all approved origins associated with the instance.</p>",
     "ListContactFlows": "<p>Provides information about the contact flows for the specified Amazon Connect instance.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p> <p>For more information about contact flows, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html\">Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListHoursOfOperations": "<p>Provides information about the hours of operation for the specified Amazon Connect instance.</p> <p>For more information about hours of operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html\">Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListInstanceAttributes": "<p>Returns a paginated list of all attribute types for the given instance.</p>",
+    "ListInstanceStorageConfigs": "<p>Returns a paginated list of storage configs for the identified instance and resource type.</p>",
+    "ListInstances": "<p>Return a list of instances which are in active state, creation-in-progress state, and failed state. Instances that aren't successfully created (they are in a failed state) are returned only for 24 hours after the CreateInstance API was invoked.</p>",
+    "ListLambdaFunctions": "<p>Returns a paginated list of all the Lambda functions that show up in the drop-down options in the relevant contact flow blocks.</p>",
+    "ListLexBots": "<p>Returns a paginated list of all the Amazon Lex bots currently associated with the instance.</p>",
     "ListPhoneNumbers": "<p>Provides information about the phone numbers for the specified Amazon Connect instance. </p> <p>For more information about phone numbers, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html\">Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListPrompts": "<p>Provides information about the prompts for the specified Amazon Connect instance.</p>",
     "ListQueues": "<p>Provides information about the queues for the specified Amazon Connect instance.</p> <p>For more information about queues, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html\">Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListRoutingProfileQueues": "<p>List the queues associated with a routing profile.</p>",
     "ListRoutingProfiles": "<p>Provides summary information about the routing profiles for the specified Amazon Connect instance.</p> <p>For more information about routing profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html\">Routing Profiles</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html\">Create a Routing Profile</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "ListSecurityKeys": "<p>Returns a paginated list of all security keys associated with the instance.</p>",
     "ListSecurityProfiles": "<p>Provides summary information about the security profiles for the specified Amazon Connect instance.</p> <p>For more information about security profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html\">Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListUserHierarchyGroups": "<p>Provides summary information about the hierarchy groups for the specified Amazon Connect instance.</p> <p>For more information about agent hierarchies, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html\">Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -42,6 +64,8 @@
     "UpdateContactAttributes": "<p>Creates or updates the contact attributes associated with the specified contact.</p> <p>You can add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p> <b>Important:</b> You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
     "UpdateContactFlowContent": "<p>Updates the specified contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "UpdateContactFlowName": "<p>The name of the contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
+    "UpdateInstanceAttribute": "<p>Updates the value for the specified attribute type.</p>",
+    "UpdateInstanceStorageConfig": "<p>Updates an existing configuration for a resource type. This API is idempotent.</p>",
     "UpdateRoutingProfileConcurrency": "<p>Updates the channels that agents can handle in the Contact Control Panel (CCP) for a routing profile.</p>",
     "UpdateRoutingProfileDefaultOutboundQueue": "<p>Updates the default outbound queue of a routing profile.</p>",
     "UpdateRoutingProfileName": "<p>Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
@@ -61,6 +85,7 @@
         "ContactFlow$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "ContactFlowSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "CreateContactFlowResponse$ContactFlowArn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
+        "CreateInstanceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
         "CreateRoutingProfileResponse$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "CreateUserHierarchyGroupResponse$HierarchyGroupArn": "<p>The Amazon Resource Name (ARN) of the hierarchy group. </p>",
         "CreateUserResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
@@ -68,6 +93,12 @@
         "HierarchyGroupSummary$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
         "HierarchyLevel$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy level.</p>",
         "HoursOfOperationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the hours of operation.</p>",
+        "Instance$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
+        "Instance$ServiceRole": "<p>The service role of the instance.</p>",
+        "InstanceSummary$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
+        "InstanceSummary$ServiceRole": "<p>The service role of the instance.</p>",
+        "KinesisFirehoseConfig$FirehoseArn": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
+        "KinesisStreamConfig$StreamArn": "<p>The Amazon Resource Name (ARN) of the data stream.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "PhoneNumberSummary$Arn": "<p>The Amazon Resource Name (ARN) of the phone number.</p>",
         "PromptSummary$Arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
@@ -110,9 +141,64 @@
         "UserSummary$Username": "<p>The Amazon Connect user name of the user account.</p>"
       }
     },
+    "AssociateApprovedOriginRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateInstanceStorageConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateInstanceStorageConfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateLambdaFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateLexBotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociateRoutingProfileQueuesRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "AssociateSecurityKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateSecurityKeyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociationId": {
+      "base": null,
+      "refs": {
+        "AssociateInstanceStorageConfigResponse$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "AssociateSecurityKeyResponse$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "DescribeInstanceStorageConfigRequest$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "DisassociateInstanceStorageConfigRequest$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "DisassociateSecurityKeyRequest$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "InstanceStorageConfig$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "SecurityKey$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>",
+        "UpdateInstanceStorageConfigRequest$AssociationId": "<p>The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.</p>"
+      }
+    },
+    "Attribute": {
+      "base": "<p>A toggle for an individual feature at the instance level.</p>",
+      "refs": {
+        "AttributesList$member": null,
+        "DescribeInstanceAttributeResponse$Attribute": "<p>The type of attribute.</p>"
       }
     },
     "AttributeName": {
@@ -136,10 +222,29 @@
         "UpdateContactAttributesRequest$Attributes": "<p>The Amazon Connect attributes. These attributes can be accessed in contact flows just like any other contact attributes.</p> <p>You can have up to 32,768 UTF-8 bytes across all attributes for a contact. Attribute keys can include only alphanumeric, dash, and underscore characters.</p>"
       }
     },
+    "AttributesList": {
+      "base": null,
+      "refs": {
+        "ListInstanceAttributesResponse$Attributes": "<p>The attribute types.</p>"
+      }
+    },
     "AutoAccept": {
       "base": null,
       "refs": {
         "UserPhoneConfig$AutoAccept": "<p>The Auto accept setting.</p>"
+      }
+    },
+    "BotName": {
+      "base": null,
+      "refs": {
+        "DisassociateLexBotRequest$BotName": "<p>The name of the Amazon Lex bot. Maximum character limit of 50.</p>",
+        "LexBot$Name": "<p>The name of the Amazon Lex bot.</p>"
+      }
+    },
+    "BucketName": {
+      "base": null,
+      "refs": {
+        "S3Config$BucketName": "<p>The S3 bucket name.</p>"
       }
     },
     "Channel": {
@@ -179,6 +284,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
         "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartOutboundVoiceContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. If the contact is disconnected, a new contact is started.</p>"
       }
@@ -304,6 +410,16 @@
       "refs": {
       }
     },
+    "CreateInstanceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateInstanceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateRoutingProfileRequest": {
       "base": null,
       "refs": {
@@ -390,6 +506,11 @@
         "RoutingProfileQueueConfigSummary$Delay": "<p>The delay, in seconds, that a contact should be in the queue before they are routed to an available agent. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html\">Queues: priority and delay</a> in the <i>Amazon Connect Administrator Guide</i>.</p>"
       }
     },
+    "DeleteInstanceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteUserHierarchyGroupRequest": {
       "base": null,
       "refs": {
@@ -406,6 +527,36 @@
       }
     },
     "DescribeContactFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceAttributeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceStorageConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInstanceStorageConfigResponse": {
       "base": null,
       "refs": {
       }
@@ -462,6 +613,28 @@
         "HistoricalMetricResult$Dimensions": "<p>The dimension for the metrics.</p>"
       }
     },
+    "DirectoryAlias": {
+      "base": null,
+      "refs": {
+        "CreateInstanceRequest$InstanceAlias": "<p>The name for your instance.</p>",
+        "Instance$InstanceAlias": "<p>The alias of instance.</p>",
+        "InstanceSummary$InstanceAlias": "<p>The alias of the instance.</p>"
+      }
+    },
+    "DirectoryId": {
+      "base": null,
+      "refs": {
+        "CreateInstanceRequest$DirectoryId": "<p>The identifier for the directory.</p>"
+      }
+    },
+    "DirectoryType": {
+      "base": null,
+      "refs": {
+        "CreateInstanceRequest$IdentityManagementType": "<p>The type of identity management for your Amazon Connect users.</p>",
+        "Instance$IdentityManagementType": "<p>The identity management type.</p>",
+        "InstanceSummary$IdentityManagementType": "<p>The identity management type of the instance.</p>"
+      }
+    },
     "DirectoryUserId": {
       "base": null,
       "refs": {
@@ -469,7 +642,32 @@
         "User$DirectoryUserId": "<p>The identifier of the user account in the directory used for identity management.</p>"
       }
     },
+    "DisassociateApprovedOriginRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateInstanceStorageConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateLambdaFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateLexBotRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateRoutingProfileQueuesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateSecurityKeyRequest": {
       "base": null,
       "refs": {
       }
@@ -491,11 +689,38 @@
         "UserIdentityInfo$Email": "<p>The email address. If you are using SAML for identity management and include this parameter, an error is returned.</p>"
       }
     },
+    "EncryptionConfig": {
+      "base": "<p>The encryption configuration.</p>",
+      "refs": {
+        "KinesisVideoStreamConfig$EncryptionConfig": "<p>The encryption configuration.</p>",
+        "S3Config$EncryptionConfig": "<p>The S3 encryption configuration.</p>"
+      }
+    },
+    "EncryptionType": {
+      "base": null,
+      "refs": {
+        "EncryptionConfig$EncryptionType": "<p>The type of encryption.</p>"
+      }
+    },
     "Filters": {
       "base": "<p>Contains the filter to apply when retrieving metrics.</p>",
       "refs": {
         "GetCurrentMetricDataRequest$Filters": "<p>The queues, up to 100, or channels, to use to filter the metrics returned. Metric data is retrieved only for the resources associated with the queues or channels included in the filter. You can include both queue IDs and queue ARNs in the same request. Both <code>VOICE</code> and <code>CHAT</code> channels are supported.</p>",
         "GetMetricDataRequest$Filters": "<p>The queues, up to 100, or channels, to use to filter the metrics returned. Metric data is retrieved only for the resources associated with the queues or channels included in the filter. You can include both queue IDs and queue ARNs in the same request. Both <code>VOICE</code> and <code>CHAT</code> channels are supported.</p>"
+      }
+    },
+    "FunctionArn": {
+      "base": null,
+      "refs": {
+        "AssociateLambdaFunctionRequest$FunctionArn": "<p>The Amazon Resource Name (ARN) for the Lambda function being associated. Maximum number of characters allowed is 140.</p>",
+        "DisassociateLambdaFunctionRequest$FunctionArn": "<p>The Amazon Resource Name (ARN) of the Lambda function being disassociated.</p>",
+        "FunctionArnsList$member": null
+      }
+    },
+    "FunctionArnsList": {
+      "base": null,
+      "refs": {
+        "ListLambdaFunctionsResponse$LambdaFunctions": "<p>The Lambdafunction ARNs associated with the specified instance.</p>"
       }
     },
     "GetContactAttributesRequest": {
@@ -693,6 +918,12 @@
         "GetMetricDataRequest$HistoricalMetrics": "<p>The metrics to retrieve. Specify the name, unit, and statistic for each metric. The following historical metrics are available. For a description of each metric, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html\">Historical Metrics Definitions</a> in the <i>Amazon Connect Administrator Guide</i>.</p> <dl> <dt>ABANDON_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>AFTER_CONTACT_WORK_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>API_CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CALLBACK_CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_ABANDONED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_AGENT_HUNG_UP_FIRST</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_CONSULTED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_HANDLED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_HANDLED_INCOMING</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_HANDLED_OUTBOUND</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_HOLD_ABANDONS</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_MISSED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_QUEUED</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_IN</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_IN_FROM_QUEUE</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_OUT</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>CONTACTS_TRANSFERRED_OUT_FROM_QUEUE</dt> <dd> <p>Unit: COUNT</p> <p>Statistic: SUM</p> </dd> <dt>HANDLE_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>HOLD_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>INTERACTION_AND_HOLD_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>INTERACTION_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>OCCUPANCY</dt> <dd> <p>Unit: PERCENT</p> <p>Statistic: AVG</p> </dd> <dt>QUEUE_ANSWER_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: AVG</p> </dd> <dt>QUEUED_TIME</dt> <dd> <p>Unit: SECONDS</p> <p>Statistic: MAX</p> </dd> <dt>SERVICE_LEVEL</dt> <dd> <p>Unit: PERCENT</p> <p>Statistic: AVG</p> <p>Threshold: Only \"Less than\" comparisons are supported, with the following service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300, 600</p> </dd> </dl>"
       }
     },
+    "Hours": {
+      "base": null,
+      "refs": {
+        "KinesisVideoStreamConfig$RetentionPeriodHours": "<p>The number of hours data is retained in the stream. Kinesis Video Streams retains the data in a data store that is associated with the stream.</p> <p>The default value is 0, indicating that the stream does not persist data.</p>"
+      }
+    },
     "HoursOfOperationId": {
       "base": null,
       "refs": {
@@ -717,33 +948,85 @@
         "ListHoursOfOperationsResponse$HoursOfOperationSummaryList": "<p>Information about the hours of operation.</p>"
       }
     },
+    "InboundCallsEnabled": {
+      "base": null,
+      "refs": {
+        "CreateInstanceRequest$InboundCallsEnabled": "<p>Whether your contact center handles incoming contacts.</p>",
+        "Instance$InboundCallsEnabled": "<p>Whether inbound calls are enabled.</p>",
+        "InstanceSummary$InboundCallsEnabled": "<p>Whether inbound calls are enabled.</p>"
+      }
+    },
+    "Instance": {
+      "base": "<p>The Amazon Connect instance.</p>",
+      "refs": {
+        "DescribeInstanceResponse$Instance": "<p>The name of the instance.</p>"
+      }
+    },
+    "InstanceAttributeType": {
+      "base": null,
+      "refs": {
+        "Attribute$AttributeType": "<p>The type of attribute.</p>",
+        "DescribeInstanceAttributeRequest$AttributeType": "<p>The type of attribute.</p>",
+        "UpdateInstanceAttributeRequest$AttributeType": "<p>The type of attribute.</p>"
+      }
+    },
+    "InstanceAttributeValue": {
+      "base": null,
+      "refs": {
+        "Attribute$Value": "<p>The value of the attribute.</p>",
+        "UpdateInstanceAttributeRequest$Value": "<p>The value for the attribute. Maximum character limit is 100. </p>"
+      }
+    },
     "InstanceId": {
       "base": null,
       "refs": {
+        "AssociateApprovedOriginRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "AssociateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "AssociateLambdaFunctionRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "AssociateLexBotRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "CreateInstanceResponse$Id": "<p>The identifier for the instance.</p>",
         "CreateRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DeleteInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DeleteUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DeleteUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DescribeInstanceAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DescribeInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DescribeInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeUserHierarchyStructureRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DisassociateApprovedOriginRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DisassociateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DisassociateLambdaFunctionRequest$InstanceId": "<p>The identifier of the Amazon Connect instance..</p>",
+        "DisassociateLexBotRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DisassociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DisassociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetCurrentMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetFederationTokenRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "GetMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "Instance$Id": "<p>The identifier of the Amazon Connect instance.</p>",
+        "InstanceSummary$Id": "<p>The identifier of the instance.</p>",
+        "ListApprovedOriginsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListContactFlowsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListHoursOfOperationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "ListInstanceAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "ListInstanceStorageConfigsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "ListLambdaFunctionsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "ListLexBotsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListPhoneNumbersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListPromptsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListRoutingProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "ListSecurityKeysRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListUserHierarchyGroupsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "ListUsersRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
@@ -758,6 +1041,8 @@
         "UpdateContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactFlowContentRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactFlowNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "UpdateInstanceAttributeRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "UpdateInstanceStorageConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateRoutingProfileConcurrencyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateRoutingProfileDefaultOutboundQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateRoutingProfileNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
@@ -769,6 +1054,56 @@
         "UpdateUserPhoneConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateUserRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateUserSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>"
+      }
+    },
+    "InstanceStatus": {
+      "base": null,
+      "refs": {
+        "Instance$InstanceStatus": "<p>The state of the instance.</p>",
+        "InstanceSummary$InstanceStatus": "<p>The state of the instance.</p>"
+      }
+    },
+    "InstanceStatusReason": {
+      "base": "<p>Relevant details why the instance was not successfully created.</p>",
+      "refs": {
+        "Instance$StatusReason": "<p>Relevant details why the instance was not successfully created. </p>"
+      }
+    },
+    "InstanceStorageConfig": {
+      "base": "<p>The storage configuration for the instance.</p>",
+      "refs": {
+        "AssociateInstanceStorageConfigRequest$StorageConfig": "<p>A valid storage type.</p>",
+        "DescribeInstanceStorageConfigResponse$StorageConfig": "<p>A valid storage type.</p>",
+        "InstanceStorageConfigs$member": null,
+        "UpdateInstanceStorageConfigRequest$StorageConfig": null
+      }
+    },
+    "InstanceStorageConfigs": {
+      "base": null,
+      "refs": {
+        "ListInstanceStorageConfigsResponse$StorageConfigs": "<p>A valid storage type.</p>"
+      }
+    },
+    "InstanceStorageResourceType": {
+      "base": null,
+      "refs": {
+        "AssociateInstanceStorageConfigRequest$ResourceType": "<p>A valid resource type.</p>",
+        "DescribeInstanceStorageConfigRequest$ResourceType": "<p>A valid resource type.</p>",
+        "DisassociateInstanceStorageConfigRequest$ResourceType": "<p>A valid resource type.</p>",
+        "ListInstanceStorageConfigsRequest$ResourceType": "<p>A valid resource type.</p>",
+        "UpdateInstanceStorageConfigRequest$ResourceType": "<p>A valid resource type.</p>"
+      }
+    },
+    "InstanceSummary": {
+      "base": "<p>Information about the instance.</p>",
+      "refs": {
+        "InstanceSummaryList$member": null
+      }
+    },
+    "InstanceSummaryList": {
+      "base": null,
+      "refs": {
+        "ListInstancesResponse$InstanceSummaryList": "<p>Information about the instances.</p>"
       }
     },
     "InternalServiceException": {
@@ -791,8 +1126,62 @@
       "refs": {
       }
     },
+    "KeyId": {
+      "base": null,
+      "refs": {
+        "EncryptionConfig$KeyId": "<p>The identifier of the encryption key.</p>"
+      }
+    },
+    "KinesisFirehoseConfig": {
+      "base": "<p>Configuration information of a Kinesis Firehose delivery stream.</p>",
+      "refs": {
+        "InstanceStorageConfig$KinesisFirehoseConfig": "<p>The configuration of the Kinesis Firehose delivery stream.</p>"
+      }
+    },
+    "KinesisStreamConfig": {
+      "base": "<p>Configuration information of a Kinesis data stream.</p>",
+      "refs": {
+        "InstanceStorageConfig$KinesisStreamConfig": "<p>The configuration of the Kinesis data stream.</p>"
+      }
+    },
+    "KinesisVideoStreamConfig": {
+      "base": "<p>Configuration information of a Kinesis video stream.</p>",
+      "refs": {
+        "InstanceStorageConfig$KinesisVideoStreamConfig": "<p>The configuration of the Kinesis video stream.</p>"
+      }
+    },
+    "LexBot": {
+      "base": "<p>Configuration information of an Amazon Lex bot.</p>",
+      "refs": {
+        "AssociateLexBotRequest$LexBot": "<p>The Amazon Lex box to associate with the instance.</p>",
+        "LexBotsList$member": null
+      }
+    },
+    "LexBotsList": {
+      "base": null,
+      "refs": {
+        "ListLexBotsResponse$LexBots": "<p>The the names and regions of the Amazon Lex bots associated with the specified instance.</p>"
+      }
+    },
+    "LexRegion": {
+      "base": null,
+      "refs": {
+        "DisassociateLexBotRequest$LexRegion": "<p>The Region in which the Amazon Lex bot has been created.</p>",
+        "LexBot$LexRegion": "<p>The Region the Amazon Lex bot was created in.</p>"
+      }
+    },
     "LimitExceededException": {
       "base": "<p>The allowed limit for the resource has been exceeded.</p>",
+      "refs": {
+      }
+    },
+    "ListApprovedOriginsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApprovedOriginsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -812,6 +1201,56 @@
       }
     },
     "ListHoursOfOperationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInstanceAttributesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInstanceAttributesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInstanceStorageConfigsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInstanceStorageConfigsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInstancesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInstancesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLambdaFunctionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLambdaFunctionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLexBotsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLexBotsResponse": {
       "base": null,
       "refs": {
       }
@@ -866,6 +1305,16 @@
       "refs": {
       }
     },
+    "ListSecurityKeysRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSecurityKeysResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListSecurityProfilesRequest": {
       "base": null,
       "refs": {
@@ -906,6 +1355,13 @@
       "refs": {
       }
     },
+    "MaxResult10": {
+      "base": null,
+      "refs": {
+        "ListInstanceStorageConfigsRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>",
+        "ListInstancesRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>"
+      }
+    },
     "MaxResult100": {
       "base": null,
       "refs": {
@@ -926,6 +1382,26 @@
         "ListSecurityProfilesRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>",
         "ListUserHierarchyGroupsRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>",
         "ListUsersRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>"
+      }
+    },
+    "MaxResult2": {
+      "base": null,
+      "refs": {
+        "ListSecurityKeysRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>"
+      }
+    },
+    "MaxResult25": {
+      "base": null,
+      "refs": {
+        "ListApprovedOriginsRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>",
+        "ListLambdaFunctionsRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>",
+        "ListLexBotsRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>"
+      }
+    },
+    "MaxResult7": {
+      "base": null,
+      "refs": {
+        "ListInstanceAttributesRequest$MaxResults": "<p>The maximimum number of results to return per page.</p>"
       }
     },
     "MediaConcurrencies": {
@@ -954,8 +1430,10 @@
         "InvalidRequestException$Message": "<p>The message.</p>",
         "LimitExceededException$Message": "<p>The message.</p>",
         "OutboundContactNotPermittedException$Message": "<p>The message.</p>",
+        "ResourceConflictException$Message": null,
         "ResourceInUseException$Message": null,
         "ResourceNotFoundException$Message": "<p>The message.</p>",
+        "ServiceQuotaExceededException$Message": null,
         "ThrottlingException$Message": null,
         "UserNotFoundException$Message": null
       }
@@ -967,10 +1445,22 @@
         "GetCurrentMetricDataResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p> <p>The token expires after 5 minutes from the time it is created. Subsequent requests that use the token must use the same request parameters as the request that generated the token.</p>",
         "GetMetricDataRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "GetMetricDataResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p> <p>The token expires after 5 minutes from the time it is created. Subsequent requests that use the token must use the same request parameters as the request that generated the token.</p>",
+        "ListApprovedOriginsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListApprovedOriginsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListContactFlowsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListContactFlowsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListHoursOfOperationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListHoursOfOperationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListInstanceAttributesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListInstanceAttributesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListInstanceStorageConfigsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListInstanceStorageConfigsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListInstancesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListInstancesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListLambdaFunctionsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListLambdaFunctionsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListLexBotsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListLexBotsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListPhoneNumbersRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListPhoneNumbersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListPromptsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -981,6 +1471,8 @@
         "ListRoutingProfileQueuesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListRoutingProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListRoutingProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListSecurityKeysRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListSecurityKeysResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListSecurityProfilesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListSecurityProfilesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListUserHierarchyGroupsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
@@ -989,9 +1481,38 @@
         "ListUsersResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>"
       }
     },
+    "Origin": {
+      "base": null,
+      "refs": {
+        "AssociateApprovedOriginRequest$Origin": "<p>The domain to add to your allow list.</p>",
+        "DisassociateApprovedOriginRequest$Origin": "<p>The domain URL of the integrated application.</p>",
+        "OriginsList$member": null
+      }
+    },
+    "OriginsList": {
+      "base": null,
+      "refs": {
+        "ListApprovedOriginsResponse$Origins": "<p>The approved origins.</p>"
+      }
+    },
+    "OutboundCallsEnabled": {
+      "base": null,
+      "refs": {
+        "CreateInstanceRequest$OutboundCallsEnabled": "<p>Whether your contact center allows outbound calls.</p>",
+        "Instance$OutboundCallsEnabled": "<p>Whether outbound calls are enabled.</p>",
+        "InstanceSummary$OutboundCallsEnabled": "<p>Whether outbound calls are enabled.</p>"
+      }
+    },
     "OutboundContactNotPermittedException": {
       "base": "<p>The contact is not permitted.</p>",
       "refs": {
+      }
+    },
+    "PEM": {
+      "base": null,
+      "refs": {
+        "AssociateSecurityKeyRequest$Key": "<p>A valid security key in PEM format.</p>",
+        "SecurityKey$Key": "<p>The key of the security key.</p>"
       }
     },
     "ParticipantDetails": {
@@ -1075,6 +1596,13 @@
       "base": null,
       "refs": {
         "UserPhoneConfig$PhoneType": "<p>The phone type.</p>"
+      }
+    },
+    "Prefix": {
+      "base": null,
+      "refs": {
+        "KinesisVideoStreamConfig$Prefix": "<p>The prefix of the video stream.</p>",
+        "S3Config$BucketPrefix": "<p>The S3 bucket prefix.</p>"
       }
     },
     "Priority": {
@@ -1182,6 +1710,11 @@
       "base": null,
       "refs": {
         "Filters$Queues": "<p>The queues to use to filter the metrics. You can specify up to 100 queues per request.</p>"
+      }
+    },
+    "ResourceConflictException": {
+      "base": "<p>A resource already has that name.</p>",
+      "refs": {
       }
     },
     "ResourceInUseException": {
@@ -1303,6 +1836,24 @@
         "ListRoutingProfilesResponse$RoutingProfileSummaryList": "<p>Information about the routing profiles.</p>"
       }
     },
+    "S3Config": {
+      "base": "<p>Information about the S3 storage type.</p>",
+      "refs": {
+        "InstanceStorageConfig$S3Config": "<p>The S3 configuration.</p>"
+      }
+    },
+    "SecurityKey": {
+      "base": "<p>Configuration information of the security key.</p>",
+      "refs": {
+        "SecurityKeysList$member": null
+      }
+    },
+    "SecurityKeysList": {
+      "base": null,
+      "refs": {
+        "ListSecurityKeysResponse$SecurityKeys": "<p>The security keys.</p>"
+      }
+    },
     "SecurityProfileId": {
       "base": null,
       "refs": {
@@ -1341,6 +1892,11 @@
       "refs": {
         "Credentials$AccessToken": "<p>An access token generated for a federated user to access Amazon Connect.</p>",
         "Credentials$RefreshToken": "<p>Renews a token generated for a user to access the Amazon Connect instance.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The service quota has been exceeded.</p>",
+      "refs": {
       }
     },
     "StartChatContactRequest": {
@@ -1397,6 +1953,18 @@
     "StopContactResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "StorageType": {
+      "base": null,
+      "refs": {
+        "InstanceStorageConfig$StorageType": "<p>A valid storage type.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "InstanceStatusReason$Message": "<p>The message.</p>"
       }
     },
     "SuspendContactRecordingRequest": {
@@ -1463,6 +2031,13 @@
       "refs": {
       }
     },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "Instance$CreatedTime": "<p>When the instance was created.</p>",
+        "InstanceSummary$CreatedTime": "<p>When the instance was created.</p>"
+      }
+    },
     "Unit": {
       "base": null,
       "refs": {
@@ -1491,6 +2066,16 @@
       }
     },
     "UpdateContactFlowNameRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateInstanceAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateInstanceStorageConfigRequest": {
       "base": null,
       "refs": {
       }
@@ -1630,7 +2215,8 @@
         "Credentials$RefreshTokenExpiration": "<p>Renews the expiration timer for a generated token.</p>",
         "GetCurrentMetricDataResponse$DataSnapshotTime": "<p>The time at which the metrics were retrieved and cached for pagination.</p>",
         "GetMetricDataRequest$StartTime": "<p>The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of historical metrics data. The time must be specified using a multiple of 5 minutes, such as 10:05, 10:10, 10:15.</p> <p>The start time cannot be earlier than 24 hours before the time of the request. Historical metrics are available only for 24 hours.</p>",
-        "GetMetricDataRequest$EndTime": "<p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10, and must be later than the start time timestamp.</p> <p>The time range between the start and end time must be less than 24 hours.</p>"
+        "GetMetricDataRequest$EndTime": "<p>The timestamp, in UNIX Epoch time format, at which to end the reporting interval for the retrieval of historical metrics data. The time must be specified using an interval of 5 minutes, such as 11:00, 11:05, 11:10, and must be later than the start time timestamp.</p> <p>The time range between the start and end time must be less than 24 hours.</p>",
+        "SecurityKey$CreationTime": "<p>When the security key was created.</p>"
       }
     }
   }

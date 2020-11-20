@@ -13,6 +13,74 @@
     "uid":"connect-2017-08-08"
   },
   "operations":{
+    "AssociateApprovedOrigin":{
+      "name":"AssociateApprovedOrigin",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/approved-origin"
+      },
+      "input":{"shape":"AssociateApprovedOriginRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "AssociateInstanceStorageConfig":{
+      "name":"AssociateInstanceStorageConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/storage-config"
+      },
+      "input":{"shape":"AssociateInstanceStorageConfigRequest"},
+      "output":{"shape":"AssociateInstanceStorageConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "AssociateLambdaFunction":{
+      "name":"AssociateLambdaFunction",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/lambda-function"
+      },
+      "input":{"shape":"AssociateLambdaFunctionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "AssociateLexBot":{
+      "name":"AssociateLexBot",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/lex-bot"
+      },
+      "input":{"shape":"AssociateLexBotRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "AssociateRoutingProfileQueues":{
       "name":"AssociateRoutingProfileQueues",
       "http":{
@@ -26,6 +94,24 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "AssociateSecurityKey":{
+      "name":"AssociateSecurityKey",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/security-key"
+      },
+      "input":{"shape":"AssociateSecurityKeyRequest"},
+      "output":{"shape":"AssociateSecurityKeyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateContactFlow":{
@@ -44,6 +130,22 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "CreateInstance":{
+      "name":"CreateInstance",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance"
+      },
+      "input":{"shape":"CreateInstanceRequest"},
+      "output":{"shape":"CreateInstanceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -101,6 +203,19 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DeleteInstance":{
+      "name":"DeleteInstance",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}"
+      },
+      "input":{"shape":"DeleteInstanceRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DeleteUser":{
       "name":"DeleteUser",
       "http":{
@@ -147,6 +262,52 @@
         {"shape":"ContactFlowNotPublishedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DescribeInstance":{
+      "name":"DescribeInstance",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}"
+      },
+      "input":{"shape":"DescribeInstanceRequest"},
+      "output":{"shape":"DescribeInstanceResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "DescribeInstanceAttribute":{
+      "name":"DescribeInstanceAttribute",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/attribute/{AttributeType}"
+      },
+      "input":{"shape":"DescribeInstanceAttributeRequest"},
+      "output":{"shape":"DescribeInstanceAttributeResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DescribeInstanceStorageConfig":{
+      "name":"DescribeInstanceStorageConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/storage-config/{AssociationId}"
+      },
+      "input":{"shape":"DescribeInstanceStorageConfigRequest"},
+      "output":{"shape":"DescribeInstanceStorageConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeRoutingProfile":{
@@ -213,6 +374,66 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DisassociateApprovedOrigin":{
+      "name":"DisassociateApprovedOrigin",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/approved-origin"
+      },
+      "input":{"shape":"DisassociateApprovedOriginRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DisassociateInstanceStorageConfig":{
+      "name":"DisassociateInstanceStorageConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/storage-config/{AssociationId}"
+      },
+      "input":{"shape":"DisassociateInstanceStorageConfigRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DisassociateLambdaFunction":{
+      "name":"DisassociateLambdaFunction",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/lambda-function"
+      },
+      "input":{"shape":"DisassociateLambdaFunctionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DisassociateLexBot":{
+      "name":"DisassociateLexBot",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/lex-bot"
+      },
+      "input":{"shape":"DisassociateLexBotRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DisassociateRoutingProfileQueues":{
       "name":"DisassociateRoutingProfileQueues",
       "http":{
@@ -226,6 +447,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "DisassociateSecurityKey":{
+      "name":"DisassociateSecurityKey",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/security-key/{AssociationId}"
+      },
+      "input":{"shape":"DisassociateSecurityKeyRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetContactAttributes":{
@@ -291,6 +527,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ListApprovedOrigins":{
+      "name":"ListApprovedOrigins",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/approved-origins"
+      },
+      "input":{"shape":"ListApprovedOriginsRequest"},
+      "output":{"shape":"ListApprovedOriginsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListContactFlows":{
       "name":"ListContactFlows",
       "http":{
@@ -321,6 +573,83 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListInstanceAttributes":{
+      "name":"ListInstanceAttributes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/attributes"
+      },
+      "input":{"shape":"ListInstanceAttributesRequest"},
+      "output":{"shape":"ListInstanceAttributesResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListInstanceStorageConfigs":{
+      "name":"ListInstanceStorageConfigs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/storage-configs"
+      },
+      "input":{"shape":"ListInstanceStorageConfigsRequest"},
+      "output":{"shape":"ListInstanceStorageConfigsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListInstances":{
+      "name":"ListInstances",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance"
+      },
+      "input":{"shape":"ListInstancesRequest"},
+      "output":{"shape":"ListInstancesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListLambdaFunctions":{
+      "name":"ListLambdaFunctions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/lambda-functions"
+      },
+      "input":{"shape":"ListLambdaFunctionsRequest"},
+      "output":{"shape":"ListLambdaFunctionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListLexBots":{
+      "name":"ListLexBots",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/lex-bots"
+      },
+      "input":{"shape":"ListLexBotsRequest"},
+      "output":{"shape":"ListLexBotsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListPhoneNumbers":{
@@ -401,6 +730,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListSecurityKeys":{
+      "name":"ListSecurityKeys",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/security-keys"
+      },
+      "input":{"shape":"ListSecurityKeysRequest"},
+      "output":{"shape":"ListSecurityKeysResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListSecurityProfiles":{
@@ -651,6 +996,36 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateInstanceAttribute":{
+      "name":"UpdateInstanceAttribute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/instance/{InstanceId}/attribute/{AttributeType}"
+      },
+      "input":{"shape":"UpdateInstanceAttributeRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateInstanceStorageConfig":{
+      "name":"UpdateInstanceStorageConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/instance/{InstanceId}/storage-config/{AssociationId}"
+      },
+      "input":{"shape":"UpdateInstanceStorageConfigRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "UpdateRoutingProfileConcurrency":{
       "name":"UpdateRoutingProfileConcurrency",
       "http":{
@@ -841,6 +1216,74 @@
       "max":100,
       "min":1
     },
+    "AssociateApprovedOriginRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Origin"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Origin":{"shape":"Origin"}
+      }
+    },
+    "AssociateInstanceStorageConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ResourceType",
+        "StorageConfig"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceType":{"shape":"InstanceStorageResourceType"},
+        "StorageConfig":{"shape":"InstanceStorageConfig"}
+      }
+    },
+    "AssociateInstanceStorageConfigResponse":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"AssociationId"}
+      }
+    },
+    "AssociateLambdaFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "FunctionArn"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "FunctionArn":{"shape":"FunctionArn"}
+      }
+    },
+    "AssociateLexBotRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "LexBot"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "LexBot":{"shape":"LexBot"}
+      }
+    },
     "AssociateRoutingProfileQueuesRequest":{
       "type":"structure",
       "required":[
@@ -862,6 +1305,39 @@
         "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"}
       }
     },
+    "AssociateSecurityKeyRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Key"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Key":{"shape":"PEM"}
+      }
+    },
+    "AssociateSecurityKeyResponse":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"AssociationId"}
+      }
+    },
+    "AssociationId":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "Attribute":{
+      "type":"structure",
+      "members":{
+        "AttributeType":{"shape":"InstanceAttributeType"},
+        "Value":{"shape":"InstanceAttributeValue"}
+      }
+    },
     "AttributeName":{
       "type":"string",
       "max":32767,
@@ -877,7 +1353,20 @@
       "key":{"shape":"AttributeName"},
       "value":{"shape":"AttributeValue"}
     },
+    "AttributesList":{
+      "type":"list",
+      "member":{"shape":"Attribute"}
+    },
     "AutoAccept":{"type":"boolean"},
+    "BotName":{
+      "type":"string",
+      "max":50
+    },
+    "BucketName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "Channel":{
       "type":"string",
       "enum":[
@@ -1025,6 +1514,29 @@
       "members":{
         "ContactFlowId":{"shape":"ContactFlowId"},
         "ContactFlowArn":{"shape":"ARN"}
+      }
+    },
+    "CreateInstanceRequest":{
+      "type":"structure",
+      "required":[
+        "IdentityManagementType",
+        "InboundCallsEnabled",
+        "OutboundCallsEnabled"
+      ],
+      "members":{
+        "ClientToken":{"shape":"ClientToken"},
+        "IdentityManagementType":{"shape":"DirectoryType"},
+        "InstanceAlias":{"shape":"DirectoryAlias"},
+        "DirectoryId":{"shape":"DirectoryId"},
+        "InboundCallsEnabled":{"shape":"InboundCallsEnabled"},
+        "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"}
+      }
+    },
+    "CreateInstanceResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InstanceId"},
+        "Arn":{"shape":"ARN"}
       }
     },
     "CreateRoutingProfileRequest":{
@@ -1181,6 +1693,17 @@
       "max":9999,
       "min":0
     },
+    "DeleteInstanceRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
+    },
     "DeleteUserHierarchyGroupRequest":{
       "type":"structure",
       "required":[
@@ -1242,6 +1765,79 @@
       "type":"structure",
       "members":{
         "ContactFlow":{"shape":"ContactFlow"}
+      }
+    },
+    "DescribeInstanceAttributeRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "AttributeType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AttributeType":{
+          "shape":"InstanceAttributeType",
+          "location":"uri",
+          "locationName":"AttributeType"
+        }
+      }
+    },
+    "DescribeInstanceAttributeResponse":{
+      "type":"structure",
+      "members":{
+        "Attribute":{"shape":"Attribute"}
+      }
+    },
+    "DescribeInstanceRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
+    },
+    "DescribeInstanceResponse":{
+      "type":"structure",
+      "members":{
+        "Instance":{"shape":"Instance"}
+      }
+    },
+    "DescribeInstanceStorageConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "AssociationId",
+        "ResourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AssociationId":{
+          "shape":"AssociationId",
+          "location":"uri",
+          "locationName":"AssociationId"
+        },
+        "ResourceType":{
+          "shape":"InstanceStorageResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "DescribeInstanceStorageConfigResponse":{
+      "type":"structure",
+      "members":{
+        "StorageConfig":{"shape":"InstanceStorageConfig"}
       }
     },
     "DescribeRoutingProfileRequest":{
@@ -1351,7 +1947,116 @@
         "Channel":{"shape":"Channel"}
       }
     },
+    "DirectoryAlias":{
+      "type":"string",
+      "max":62,
+      "min":1,
+      "pattern":"^(?!d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*$",
+      "sensitive":true
+    },
+    "DirectoryId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^d-[0-9a-f]{10}$"
+    },
+    "DirectoryType":{
+      "type":"string",
+      "enum":[
+        "SAML",
+        "CONNECT_MANAGED",
+        "EXISTING_DIRECTORY"
+      ]
+    },
     "DirectoryUserId":{"type":"string"},
+    "DisassociateApprovedOriginRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Origin"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Origin":{
+          "shape":"Origin",
+          "location":"querystring",
+          "locationName":"origin"
+        }
+      }
+    },
+    "DisassociateInstanceStorageConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "AssociationId",
+        "ResourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AssociationId":{
+          "shape":"AssociationId",
+          "location":"uri",
+          "locationName":"AssociationId"
+        },
+        "ResourceType":{
+          "shape":"InstanceStorageResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "DisassociateLambdaFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "FunctionArn"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "FunctionArn":{
+          "shape":"FunctionArn",
+          "location":"querystring",
+          "locationName":"functionArn"
+        }
+      }
+    },
+    "DisassociateLexBotRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "BotName",
+        "LexRegion"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "BotName":{
+          "shape":"BotName",
+          "location":"querystring",
+          "locationName":"botName"
+        },
+        "LexRegion":{
+          "shape":"LexRegion",
+          "location":"querystring",
+          "locationName":"lexRegion"
+        }
+      }
+    },
     "DisassociateRoutingProfileQueuesRequest":{
       "type":"structure",
       "required":[
@@ -1373,6 +2078,25 @@
         "QueueReferences":{"shape":"RoutingProfileQueueReferenceList"}
       }
     },
+    "DisassociateSecurityKeyRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "AssociationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AssociationId":{
+          "shape":"AssociationId",
+          "location":"uri",
+          "locationName":"AssociationId"
+        }
+      }
+    },
     "DisplayName":{
       "type":"string",
       "max":256,
@@ -1387,12 +2111,36 @@
       "exception":true
     },
     "Email":{"type":"string"},
+    "EncryptionConfig":{
+      "type":"structure",
+      "required":[
+        "EncryptionType",
+        "KeyId"
+      ],
+      "members":{
+        "EncryptionType":{"shape":"EncryptionType"},
+        "KeyId":{"shape":"KeyId"}
+      }
+    },
+    "EncryptionType":{
+      "type":"string",
+      "enum":["KMS"]
+    },
     "Filters":{
       "type":"structure",
       "members":{
         "Queues":{"shape":"Queues"},
         "Channels":{"shape":"Channels"}
       }
+    },
+    "FunctionArn":{
+      "type":"string",
+      "max":140,
+      "min":1
+    },
+    "FunctionArnsList":{
+      "type":"list",
+      "member":{"shape":"FunctionArn"}
     },
     "GetContactAttributesRequest":{
       "type":"structure",
@@ -1655,6 +2403,11 @@
       "type":"list",
       "member":{"shape":"HistoricalMetric"}
     },
+    "Hours":{
+      "type":"integer",
+      "max":87600,
+      "min":0
+    },
     "HoursOfOperationId":{"type":"string"},
     "HoursOfOperationName":{"type":"string"},
     "HoursOfOperationSummary":{
@@ -1669,10 +2422,102 @@
       "type":"list",
       "member":{"shape":"HoursOfOperationSummary"}
     },
+    "InboundCallsEnabled":{"type":"boolean"},
+    "Instance":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InstanceId"},
+        "Arn":{"shape":"ARN"},
+        "IdentityManagementType":{"shape":"DirectoryType"},
+        "InstanceAlias":{"shape":"DirectoryAlias"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "ServiceRole":{"shape":"ARN"},
+        "InstanceStatus":{"shape":"InstanceStatus"},
+        "StatusReason":{"shape":"InstanceStatusReason"},
+        "InboundCallsEnabled":{"shape":"InboundCallsEnabled"},
+        "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"}
+      }
+    },
+    "InstanceAttributeType":{
+      "type":"string",
+      "enum":[
+        "INBOUND_CALLS",
+        "OUTBOUND_CALLS",
+        "CONTACTFLOW_LOGS",
+        "CONTACT_LENS",
+        "AUTO_RESOLVE_BEST_VOICES",
+        "USE_CUSTOM_TTS_VOICES",
+        "EARLY_MEDIA"
+      ]
+    },
+    "InstanceAttributeValue":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
     "InstanceId":{
       "type":"string",
       "max":100,
       "min":1
+    },
+    "InstanceStatus":{
+      "type":"string",
+      "enum":[
+        "CREATION_IN_PROGRESS",
+        "ACTIVE",
+        "CREATION_FAILED"
+      ]
+    },
+    "InstanceStatusReason":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      }
+    },
+    "InstanceStorageConfig":{
+      "type":"structure",
+      "required":["StorageType"],
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "StorageType":{"shape":"StorageType"},
+        "S3Config":{"shape":"S3Config"},
+        "KinesisVideoStreamConfig":{"shape":"KinesisVideoStreamConfig"},
+        "KinesisStreamConfig":{"shape":"KinesisStreamConfig"},
+        "KinesisFirehoseConfig":{"shape":"KinesisFirehoseConfig"}
+      }
+    },
+    "InstanceStorageConfigs":{
+      "type":"list",
+      "member":{"shape":"InstanceStorageConfig"}
+    },
+    "InstanceStorageResourceType":{
+      "type":"string",
+      "enum":[
+        "CHAT_TRANSCRIPTS",
+        "CALL_RECORDINGS",
+        "SCHEDULED_REPORTS",
+        "MEDIA_STREAMS",
+        "CONTACT_TRACE_RECORDS",
+        "AGENT_EVENTS"
+      ]
+    },
+    "InstanceSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InstanceId"},
+        "Arn":{"shape":"ARN"},
+        "IdentityManagementType":{"shape":"DirectoryType"},
+        "InstanceAlias":{"shape":"DirectoryAlias"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "ServiceRole":{"shape":"ARN"},
+        "InstanceStatus":{"shape":"InstanceStatus"},
+        "InboundCallsEnabled":{"shape":"InboundCallsEnabled"},
+        "OutboundCallsEnabled":{"shape":"OutboundCallsEnabled"}
+      }
+    },
+    "InstanceSummaryList":{
+      "type":"list",
+      "member":{"shape":"InstanceSummary"}
     },
     "InternalServiceException":{
       "type":"structure",
@@ -1706,6 +2551,53 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "KeyId":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "KinesisFirehoseConfig":{
+      "type":"structure",
+      "required":["FirehoseArn"],
+      "members":{
+        "FirehoseArn":{"shape":"ARN"}
+      }
+    },
+    "KinesisStreamConfig":{
+      "type":"structure",
+      "required":["StreamArn"],
+      "members":{
+        "StreamArn":{"shape":"ARN"}
+      }
+    },
+    "KinesisVideoStreamConfig":{
+      "type":"structure",
+      "required":[
+        "Prefix",
+        "RetentionPeriodHours",
+        "EncryptionConfig"
+      ],
+      "members":{
+        "Prefix":{"shape":"Prefix"},
+        "RetentionPeriodHours":{"shape":"Hours"},
+        "EncryptionConfig":{"shape":"EncryptionConfig"}
+      }
+    },
+    "LexBot":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"BotName"},
+        "LexRegion":{"shape":"LexRegion"}
+      }
+    },
+    "LexBotsList":{
+      "type":"list",
+      "member":{"shape":"LexBot"}
+    },
+    "LexRegion":{
+      "type":"string",
+      "max":60
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -1713,6 +2605,35 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "ListApprovedOriginsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult25",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListApprovedOriginsResponse":{
+      "type":"structure",
+      "members":{
+        "Origins":{"shape":"OriginsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "ListContactFlowsRequest":{
       "type":"structure",
@@ -1772,6 +2693,153 @@
       "type":"structure",
       "members":{
         "HoursOfOperationSummaryList":{"shape":"HoursOfOperationSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInstanceAttributesRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult7",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListInstanceAttributesResponse":{
+      "type":"structure",
+      "members":{
+        "Attributes":{"shape":"AttributesList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInstanceStorageConfigsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ResourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ResourceType":{
+          "shape":"InstanceStorageResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult10",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListInstanceStorageConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "StorageConfigs":{"shape":"InstanceStorageConfigs"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInstancesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult10",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListInstancesResponse":{
+      "type":"structure",
+      "members":{
+        "InstanceSummaryList":{"shape":"InstanceSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListLambdaFunctionsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult25",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListLambdaFunctionsResponse":{
+      "type":"structure",
+      "members":{
+        "LambdaFunctions":{"shape":"FunctionArnsList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListLexBotsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult25",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListLexBotsResponse":{
+      "type":"structure",
+      "members":{
+        "LexBots":{"shape":"LexBotsList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1941,6 +3009,35 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListSecurityKeysRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult2",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListSecurityKeysResponse":{
+      "type":"structure",
+      "members":{
+        "SecurityKeys":{"shape":"SecurityKeysList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSecurityProfilesRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -2045,6 +3142,11 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "MaxResult10":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
     "MaxResult100":{
       "type":"integer",
       "max":100,
@@ -2053,6 +3155,21 @@
     "MaxResult1000":{
       "type":"integer",
       "max":1000,
+      "min":1
+    },
+    "MaxResult2":{
+      "type":"integer",
+      "max":2,
+      "min":1
+    },
+    "MaxResult25":{
+      "type":"integer",
+      "max":25,
+      "min":1
+    },
+    "MaxResult7":{
+      "type":"integer",
+      "max":7,
       "min":1
     },
     "MediaConcurrencies":{
@@ -2072,6 +3189,15 @@
     },
     "Message":{"type":"string"},
     "NextToken":{"type":"string"},
+    "Origin":{
+      "type":"string",
+      "max":267
+    },
+    "OriginsList":{
+      "type":"list",
+      "member":{"shape":"Origin"}
+    },
+    "OutboundCallsEnabled":{"type":"boolean"},
     "OutboundContactNotPermittedException":{
       "type":"structure",
       "members":{
@@ -2079,6 +3205,11 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "PEM":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "ParticipantDetails":{
       "type":"structure",
@@ -2383,6 +3514,11 @@
         "DESK_PHONE"
       ]
     },
+    "Prefix":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "Priority":{
       "type":"integer",
       "max":99,
@@ -2470,6 +3606,14 @@
       "member":{"shape":"QueueId"},
       "max":100,
       "min":1
+    },
+    "ResourceConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "ResourceInUseException":{
       "type":"structure",
@@ -2618,6 +3762,30 @@
       "type":"list",
       "member":{"shape":"RoutingProfileSummary"}
     },
+    "S3Config":{
+      "type":"structure",
+      "required":[
+        "BucketName",
+        "BucketPrefix"
+      ],
+      "members":{
+        "BucketName":{"shape":"BucketName"},
+        "BucketPrefix":{"shape":"Prefix"},
+        "EncryptionConfig":{"shape":"EncryptionConfig"}
+      }
+    },
+    "SecurityKey":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{"shape":"AssociationId"},
+        "Key":{"shape":"PEM"},
+        "CreationTime":{"shape":"timestamp"}
+      }
+    },
+    "SecurityKeysList":{
+      "type":"list",
+      "member":{"shape":"SecurityKey"}
+    },
     "SecurityProfileId":{"type":"string"},
     "SecurityProfileIds":{
       "type":"list",
@@ -2641,6 +3809,14 @@
     "SecurityToken":{
       "type":"string",
       "sensitive":true
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
     },
     "StartChatContactRequest":{
       "type":"structure",
@@ -2757,6 +3933,16 @@
       "members":{
       }
     },
+    "StorageType":{
+      "type":"string",
+      "enum":[
+        "S3",
+        "KINESIS_VIDEO_STREAM",
+        "KINESIS_STREAM",
+        "KINESIS_FIREHOSE"
+      ]
+    },
+    "String":{"type":"string"},
     "SuspendContactRecordingRequest":{
       "type":"structure",
       "required":[
@@ -2832,6 +4018,7 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "Timestamp":{"type":"timestamp"},
     "Unit":{
       "type":"string",
       "enum":[
@@ -2917,6 +4104,54 @@
         },
         "Name":{"shape":"ContactFlowName"},
         "Description":{"shape":"ContactFlowDescription"}
+      }
+    },
+    "UpdateInstanceAttributeRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "AttributeType",
+        "Value"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AttributeType":{
+          "shape":"InstanceAttributeType",
+          "location":"uri",
+          "locationName":"AttributeType"
+        },
+        "Value":{"shape":"InstanceAttributeValue"}
+      }
+    },
+    "UpdateInstanceStorageConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "AssociationId",
+        "ResourceType",
+        "StorageConfig"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AssociationId":{
+          "shape":"AssociationId",
+          "location":"uri",
+          "locationName":"AssociationId"
+        },
+        "ResourceType":{
+          "shape":"InstanceStorageResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "StorageConfig":{"shape":"InstanceStorageConfig"}
       }
     },
     "UpdateRoutingProfileConcurrencyRequest":{

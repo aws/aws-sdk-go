@@ -13,6 +13,403 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAssociateApprovedOrigin = "AssociateApprovedOrigin"
+
+// AssociateApprovedOriginRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateApprovedOrigin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateApprovedOrigin for more information on using the AssociateApprovedOrigin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateApprovedOriginRequest method.
+//    req, resp := client.AssociateApprovedOriginRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateApprovedOrigin
+func (c *Connect) AssociateApprovedOriginRequest(input *AssociateApprovedOriginInput) (req *request.Request, output *AssociateApprovedOriginOutput) {
+	op := &request.Operation{
+		Name:       opAssociateApprovedOrigin,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/approved-origin",
+	}
+
+	if input == nil {
+		input = &AssociateApprovedOriginInput{}
+	}
+
+	output = &AssociateApprovedOriginOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateApprovedOrigin API operation for Amazon Connect Service.
+//
+// Associates an approved origin to an Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateApprovedOrigin for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateApprovedOrigin
+func (c *Connect) AssociateApprovedOrigin(input *AssociateApprovedOriginInput) (*AssociateApprovedOriginOutput, error) {
+	req, out := c.AssociateApprovedOriginRequest(input)
+	return out, req.Send()
+}
+
+// AssociateApprovedOriginWithContext is the same as AssociateApprovedOrigin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateApprovedOrigin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateApprovedOriginWithContext(ctx aws.Context, input *AssociateApprovedOriginInput, opts ...request.Option) (*AssociateApprovedOriginOutput, error) {
+	req, out := c.AssociateApprovedOriginRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateInstanceStorageConfig = "AssociateInstanceStorageConfig"
+
+// AssociateInstanceStorageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateInstanceStorageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateInstanceStorageConfig for more information on using the AssociateInstanceStorageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateInstanceStorageConfigRequest method.
+//    req, resp := client.AssociateInstanceStorageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateInstanceStorageConfig
+func (c *Connect) AssociateInstanceStorageConfigRequest(input *AssociateInstanceStorageConfigInput) (req *request.Request, output *AssociateInstanceStorageConfigOutput) {
+	op := &request.Operation{
+		Name:       opAssociateInstanceStorageConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/storage-config",
+	}
+
+	if input == nil {
+		input = &AssociateInstanceStorageConfigInput{}
+	}
+
+	output = &AssociateInstanceStorageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// Associates a storage resource type for the first time. You can only associate
+// one type of storage configuration in a single call. This means, for example,
+// that you can't define an instance with multiple S3 buckets for storing chat
+// transcripts.
+//
+// This API does not create a resource that doesn't exist. It only associates
+// it to the instance. Ensure that the resource being specified in the storage
+// configuration, like an Amazon S3 bucket, exists when being used for association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateInstanceStorageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateInstanceStorageConfig
+func (c *Connect) AssociateInstanceStorageConfig(input *AssociateInstanceStorageConfigInput) (*AssociateInstanceStorageConfigOutput, error) {
+	req, out := c.AssociateInstanceStorageConfigRequest(input)
+	return out, req.Send()
+}
+
+// AssociateInstanceStorageConfigWithContext is the same as AssociateInstanceStorageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateInstanceStorageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateInstanceStorageConfigWithContext(ctx aws.Context, input *AssociateInstanceStorageConfigInput, opts ...request.Option) (*AssociateInstanceStorageConfigOutput, error) {
+	req, out := c.AssociateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateLambdaFunction = "AssociateLambdaFunction"
+
+// AssociateLambdaFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateLambdaFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateLambdaFunction for more information on using the AssociateLambdaFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateLambdaFunctionRequest method.
+//    req, resp := client.AssociateLambdaFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLambdaFunction
+func (c *Connect) AssociateLambdaFunctionRequest(input *AssociateLambdaFunctionInput) (req *request.Request, output *AssociateLambdaFunctionOutput) {
+	op := &request.Operation{
+		Name:       opAssociateLambdaFunction,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/lambda-function",
+	}
+
+	if input == nil {
+		input = &AssociateLambdaFunctionInput{}
+	}
+
+	output = &AssociateLambdaFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateLambdaFunction API operation for Amazon Connect Service.
+//
+// Allows the specified Amazon Connect instance to access the specified Lambda
+// function.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateLambdaFunction for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLambdaFunction
+func (c *Connect) AssociateLambdaFunction(input *AssociateLambdaFunctionInput) (*AssociateLambdaFunctionOutput, error) {
+	req, out := c.AssociateLambdaFunctionRequest(input)
+	return out, req.Send()
+}
+
+// AssociateLambdaFunctionWithContext is the same as AssociateLambdaFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateLambdaFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateLambdaFunctionWithContext(ctx aws.Context, input *AssociateLambdaFunctionInput, opts ...request.Option) (*AssociateLambdaFunctionOutput, error) {
+	req, out := c.AssociateLambdaFunctionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateLexBot = "AssociateLexBot"
+
+// AssociateLexBotRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateLexBot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateLexBot for more information on using the AssociateLexBot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateLexBotRequest method.
+//    req, resp := client.AssociateLexBotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLexBot
+func (c *Connect) AssociateLexBotRequest(input *AssociateLexBotInput) (req *request.Request, output *AssociateLexBotOutput) {
+	op := &request.Operation{
+		Name:       opAssociateLexBot,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/lex-bot",
+	}
+
+	if input == nil {
+		input = &AssociateLexBotInput{}
+	}
+
+	output = &AssociateLexBotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateLexBot API operation for Amazon Connect Service.
+//
+// Allows the specified Amazon Connect instance to access the specified Amazon
+// Lex bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateLexBot for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateLexBot
+func (c *Connect) AssociateLexBot(input *AssociateLexBotInput) (*AssociateLexBotOutput, error) {
+	req, out := c.AssociateLexBotRequest(input)
+	return out, req.Send()
+}
+
+// AssociateLexBotWithContext is the same as AssociateLexBot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateLexBot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateLexBotWithContext(ctx aws.Context, input *AssociateLexBotInput, opts ...request.Option) (*AssociateLexBotOutput, error) {
+	req, out := c.AssociateLexBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateRoutingProfileQueues = "AssociateRoutingProfileQueues"
 
 // AssociateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
@@ -100,6 +497,103 @@ func (c *Connect) AssociateRoutingProfileQueues(input *AssociateRoutingProfileQu
 // for more information on using Contexts.
 func (c *Connect) AssociateRoutingProfileQueuesWithContext(ctx aws.Context, input *AssociateRoutingProfileQueuesInput, opts ...request.Option) (*AssociateRoutingProfileQueuesOutput, error) {
 	req, out := c.AssociateRoutingProfileQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateSecurityKey = "AssociateSecurityKey"
+
+// AssociateSecurityKeyRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateSecurityKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateSecurityKey for more information on using the AssociateSecurityKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateSecurityKeyRequest method.
+//    req, resp := client.AssociateSecurityKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateSecurityKey
+func (c *Connect) AssociateSecurityKeyRequest(input *AssociateSecurityKeyInput) (req *request.Request, output *AssociateSecurityKeyOutput) {
+	op := &request.Operation{
+		Name:       opAssociateSecurityKey,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/security-key",
+	}
+
+	if input == nil {
+		input = &AssociateSecurityKeyInput{}
+	}
+
+	output = &AssociateSecurityKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateSecurityKey API operation for Amazon Connect Service.
+//
+// Associates a security key to the instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateSecurityKey for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateSecurityKey
+func (c *Connect) AssociateSecurityKey(input *AssociateSecurityKeyInput) (*AssociateSecurityKeyOutput, error) {
+	req, out := c.AssociateSecurityKeyRequest(input)
+	return out, req.Send()
+}
+
+// AssociateSecurityKeyWithContext is the same as AssociateSecurityKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateSecurityKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateSecurityKeyWithContext(ctx aws.Context, input *AssociateSecurityKeyInput, opts ...request.Option) (*AssociateSecurityKeyOutput, error) {
+	req, out := c.AssociateSecurityKeyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -203,6 +697,99 @@ func (c *Connect) CreateContactFlow(input *CreateContactFlowInput) (*CreateConta
 // for more information on using Contexts.
 func (c *Connect) CreateContactFlowWithContext(ctx aws.Context, input *CreateContactFlowInput, opts ...request.Option) (*CreateContactFlowOutput, error) {
 	req, out := c.CreateContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateInstance = "CreateInstance"
+
+// CreateInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateInstance for more information on using the CreateInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateInstanceRequest method.
+//    req, resp := client.CreateInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateInstance
+func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *request.Request, output *CreateInstanceOutput) {
+	op := &request.Operation{
+		Name:       opCreateInstance,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance",
+	}
+
+	if input == nil {
+		input = &CreateInstanceInput{}
+	}
+
+	output = &CreateInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateInstance API operation for Amazon Connect Service.
+//
+// Initiates an Amazon Connect instance with all the supported channels enabled.
+// It does not attach any storage (such as Amazon S3, or Kinesis) or allow for
+// any configurations on features such as Contact Lens for Amazon Connect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateInstance for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateInstance
+func (c *Connect) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOutput, error) {
+	req, out := c.CreateInstanceRequest(input)
+	return out, req.Send()
+}
+
+// CreateInstanceWithContext is the same as CreateInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateInstanceWithContext(ctx aws.Context, input *CreateInstanceInput, opts ...request.Option) (*CreateInstanceOutput, error) {
+	req, out := c.CreateInstanceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -503,6 +1090,92 @@ func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opDeleteInstance = "DeleteInstance"
+
+// DeleteInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteInstance for more information on using the DeleteInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteInstanceRequest method.
+//    req, resp := client.DeleteInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteInstance
+func (c *Connect) DeleteInstanceRequest(input *DeleteInstanceInput) (req *request.Request, output *DeleteInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteInstance,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &DeleteInstanceInput{}
+	}
+
+	output = &DeleteInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteInstance API operation for Amazon Connect Service.
+//
+// Deletes the Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteInstance for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteInstance
+func (c *Connect) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOutput, error) {
+	req, out := c.DeleteInstanceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteInstanceWithContext is the same as DeleteInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteInstanceWithContext(ctx aws.Context, input *DeleteInstanceInput, opts ...request.Option) (*DeleteInstanceOutput, error) {
+	req, out := c.DeleteInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a "aws/request.Request" representing the
@@ -787,6 +1460,279 @@ func (c *Connect) DescribeContactFlow(input *DescribeContactFlowInput) (*Describ
 // for more information on using Contexts.
 func (c *Connect) DescribeContactFlowWithContext(ctx aws.Context, input *DescribeContactFlowInput, opts ...request.Option) (*DescribeContactFlowOutput, error) {
 	req, out := c.DescribeContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeInstance = "DescribeInstance"
+
+// DescribeInstanceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstance operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInstance for more information on using the DescribeInstance
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInstanceRequest method.
+//    req, resp := client.DescribeInstanceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstance
+func (c *Connect) DescribeInstanceRequest(input *DescribeInstanceInput) (req *request.Request, output *DescribeInstanceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInstance,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &DescribeInstanceInput{}
+	}
+
+	output = &DescribeInstanceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInstance API operation for Amazon Connect Service.
+//
+// Returns the current state of the specified instance identifier. It tracks
+// the instance while it is being created and returns an error status if applicable.
+//
+// If an instance is not created successfully, the instance status reason field
+// returns details relevant to the reason. The instance in a failed state is
+// returned only for 24 hours after the CreateInstance API was invoked.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeInstance for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstance
+func (c *Connect) DescribeInstance(input *DescribeInstanceInput) (*DescribeInstanceOutput, error) {
+	req, out := c.DescribeInstanceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInstanceWithContext is the same as DescribeInstance with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstance for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeInstanceWithContext(ctx aws.Context, input *DescribeInstanceInput, opts ...request.Option) (*DescribeInstanceOutput, error) {
+	req, out := c.DescribeInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeInstanceAttribute = "DescribeInstanceAttribute"
+
+// DescribeInstanceAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInstanceAttribute for more information on using the DescribeInstanceAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInstanceAttributeRequest method.
+//    req, resp := client.DescribeInstanceAttributeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceAttribute
+func (c *Connect) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *request.Request, output *DescribeInstanceAttributeOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInstanceAttribute,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/attribute/{AttributeType}",
+	}
+
+	if input == nil {
+		input = &DescribeInstanceAttributeInput{}
+	}
+
+	output = &DescribeInstanceAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInstanceAttribute API operation for Amazon Connect Service.
+//
+// Describes the specified instance attribute.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeInstanceAttribute for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceAttribute
+func (c *Connect) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (*DescribeInstanceAttributeOutput, error) {
+	req, out := c.DescribeInstanceAttributeRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInstanceAttributeWithContext is the same as DescribeInstanceAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstanceAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeInstanceAttributeWithContext(ctx aws.Context, input *DescribeInstanceAttributeInput, opts ...request.Option) (*DescribeInstanceAttributeOutput, error) {
+	req, out := c.DescribeInstanceAttributeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeInstanceStorageConfig = "DescribeInstanceStorageConfig"
+
+// DescribeInstanceStorageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInstanceStorageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInstanceStorageConfig for more information on using the DescribeInstanceStorageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInstanceStorageConfigRequest method.
+//    req, resp := client.DescribeInstanceStorageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceStorageConfig
+func (c *Connect) DescribeInstanceStorageConfigRequest(input *DescribeInstanceStorageConfigInput) (req *request.Request, output *DescribeInstanceStorageConfigOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInstanceStorageConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/storage-config/{AssociationId}",
+	}
+
+	if input == nil {
+		input = &DescribeInstanceStorageConfigInput{}
+	}
+
+	output = &DescribeInstanceStorageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// Retrieves the current storage configurations for the specified resource type,
+// association ID, and instance ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeInstanceStorageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstanceStorageConfig
+func (c *Connect) DescribeInstanceStorageConfig(input *DescribeInstanceStorageConfigInput) (*DescribeInstanceStorageConfigOutput, error) {
+	req, out := c.DescribeInstanceStorageConfigRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInstanceStorageConfigWithContext is the same as DescribeInstanceStorageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInstanceStorageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeInstanceStorageConfigWithContext(ctx aws.Context, input *DescribeInstanceStorageConfigInput, opts ...request.Option) (*DescribeInstanceStorageConfigOutput, error) {
+	req, out := c.DescribeInstanceStorageConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1158,6 +2104,377 @@ func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDisassociateApprovedOrigin = "DisassociateApprovedOrigin"
+
+// DisassociateApprovedOriginRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateApprovedOrigin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateApprovedOrigin for more information on using the DisassociateApprovedOrigin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateApprovedOriginRequest method.
+//    req, resp := client.DisassociateApprovedOriginRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateApprovedOrigin
+func (c *Connect) DisassociateApprovedOriginRequest(input *DisassociateApprovedOriginInput) (req *request.Request, output *DisassociateApprovedOriginOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateApprovedOrigin,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/approved-origin",
+	}
+
+	if input == nil {
+		input = &DisassociateApprovedOriginInput{}
+	}
+
+	output = &DisassociateApprovedOriginOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateApprovedOrigin API operation for Amazon Connect Service.
+//
+// Revokes access to integrated applications from Amazon Connect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateApprovedOrigin for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateApprovedOrigin
+func (c *Connect) DisassociateApprovedOrigin(input *DisassociateApprovedOriginInput) (*DisassociateApprovedOriginOutput, error) {
+	req, out := c.DisassociateApprovedOriginRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateApprovedOriginWithContext is the same as DisassociateApprovedOrigin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateApprovedOrigin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateApprovedOriginWithContext(ctx aws.Context, input *DisassociateApprovedOriginInput, opts ...request.Option) (*DisassociateApprovedOriginOutput, error) {
+	req, out := c.DisassociateApprovedOriginRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateInstanceStorageConfig = "DisassociateInstanceStorageConfig"
+
+// DisassociateInstanceStorageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateInstanceStorageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateInstanceStorageConfig for more information on using the DisassociateInstanceStorageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateInstanceStorageConfigRequest method.
+//    req, resp := client.DisassociateInstanceStorageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateInstanceStorageConfig
+func (c *Connect) DisassociateInstanceStorageConfigRequest(input *DisassociateInstanceStorageConfigInput) (req *request.Request, output *DisassociateInstanceStorageConfigOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateInstanceStorageConfig,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/storage-config/{AssociationId}",
+	}
+
+	if input == nil {
+		input = &DisassociateInstanceStorageConfigInput{}
+	}
+
+	output = &DisassociateInstanceStorageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// Removes the storage type configurations for the specified resource type and
+// association ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateInstanceStorageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateInstanceStorageConfig
+func (c *Connect) DisassociateInstanceStorageConfig(input *DisassociateInstanceStorageConfigInput) (*DisassociateInstanceStorageConfigOutput, error) {
+	req, out := c.DisassociateInstanceStorageConfigRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateInstanceStorageConfigWithContext is the same as DisassociateInstanceStorageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateInstanceStorageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateInstanceStorageConfigWithContext(ctx aws.Context, input *DisassociateInstanceStorageConfigInput, opts ...request.Option) (*DisassociateInstanceStorageConfigOutput, error) {
+	req, out := c.DisassociateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateLambdaFunction = "DisassociateLambdaFunction"
+
+// DisassociateLambdaFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateLambdaFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateLambdaFunction for more information on using the DisassociateLambdaFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateLambdaFunctionRequest method.
+//    req, resp := client.DisassociateLambdaFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLambdaFunction
+func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFunctionInput) (req *request.Request, output *DisassociateLambdaFunctionOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateLambdaFunction,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/lambda-function",
+	}
+
+	if input == nil {
+		input = &DisassociateLambdaFunctionInput{}
+	}
+
+	output = &DisassociateLambdaFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateLambdaFunction API operation for Amazon Connect Service.
+//
+// Remove the Lambda function from the drop-down options available in the relevant
+// contact flow blocks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateLambdaFunction for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLambdaFunction
+func (c *Connect) DisassociateLambdaFunction(input *DisassociateLambdaFunctionInput) (*DisassociateLambdaFunctionOutput, error) {
+	req, out := c.DisassociateLambdaFunctionRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateLambdaFunctionWithContext is the same as DisassociateLambdaFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateLambdaFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateLambdaFunctionWithContext(ctx aws.Context, input *DisassociateLambdaFunctionInput, opts ...request.Option) (*DisassociateLambdaFunctionOutput, error) {
+	req, out := c.DisassociateLambdaFunctionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateLexBot = "DisassociateLexBot"
+
+// DisassociateLexBotRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateLexBot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateLexBot for more information on using the DisassociateLexBot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateLexBotRequest method.
+//    req, resp := client.DisassociateLexBotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLexBot
+func (c *Connect) DisassociateLexBotRequest(input *DisassociateLexBotInput) (req *request.Request, output *DisassociateLexBotOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateLexBot,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/lex-bot",
+	}
+
+	if input == nil {
+		input = &DisassociateLexBotInput{}
+	}
+
+	output = &DisassociateLexBotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateLexBot API operation for Amazon Connect Service.
+//
+// Revokes authorization from the specified instance to access the specified
+// Amazon Lex bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateLexBot for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateLexBot
+func (c *Connect) DisassociateLexBot(input *DisassociateLexBotInput) (*DisassociateLexBotOutput, error) {
+	req, out := c.DisassociateLexBotRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateLexBotWithContext is the same as DisassociateLexBot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateLexBot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateLexBotWithContext(ctx aws.Context, input *DisassociateLexBotInput, opts ...request.Option) (*DisassociateLexBotOutput, error) {
+	req, out := c.DisassociateLexBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateRoutingProfileQueues = "DisassociateRoutingProfileQueues"
 
 // DisassociateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
@@ -1245,6 +2562,98 @@ func (c *Connect) DisassociateRoutingProfileQueues(input *DisassociateRoutingPro
 // for more information on using Contexts.
 func (c *Connect) DisassociateRoutingProfileQueuesWithContext(ctx aws.Context, input *DisassociateRoutingProfileQueuesInput, opts ...request.Option) (*DisassociateRoutingProfileQueuesOutput, error) {
 	req, out := c.DisassociateRoutingProfileQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateSecurityKey = "DisassociateSecurityKey"
+
+// DisassociateSecurityKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateSecurityKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateSecurityKey for more information on using the DisassociateSecurityKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateSecurityKeyRequest method.
+//    req, resp := client.DisassociateSecurityKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateSecurityKey
+func (c *Connect) DisassociateSecurityKeyRequest(input *DisassociateSecurityKeyInput) (req *request.Request, output *DisassociateSecurityKeyOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateSecurityKey,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/security-key/{AssociationId}",
+	}
+
+	if input == nil {
+		input = &DisassociateSecurityKeyInput{}
+	}
+
+	output = &DisassociateSecurityKeyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateSecurityKey API operation for Amazon Connect Service.
+//
+// Deletes the specified security key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateSecurityKey for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateSecurityKey
+func (c *Connect) DisassociateSecurityKey(input *DisassociateSecurityKeyInput) (*DisassociateSecurityKeyOutput, error) {
+	req, out := c.DisassociateSecurityKeyRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateSecurityKeyWithContext is the same as DisassociateSecurityKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateSecurityKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateSecurityKeyWithContext(ctx aws.Context, input *DisassociateSecurityKeyInput, opts ...request.Option) (*DisassociateSecurityKeyOutput, error) {
+	req, out := c.DisassociateSecurityKeyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1734,6 +3143,155 @@ func (c *Connect) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMetri
 	return p.Err()
 }
 
+const opListApprovedOrigins = "ListApprovedOrigins"
+
+// ListApprovedOriginsRequest generates a "aws/request.Request" representing the
+// client's request for the ListApprovedOrigins operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListApprovedOrigins for more information on using the ListApprovedOrigins
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListApprovedOriginsRequest method.
+//    req, resp := client.ListApprovedOriginsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListApprovedOrigins
+func (c *Connect) ListApprovedOriginsRequest(input *ListApprovedOriginsInput) (req *request.Request, output *ListApprovedOriginsOutput) {
+	op := &request.Operation{
+		Name:       opListApprovedOrigins,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/approved-origins",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListApprovedOriginsInput{}
+	}
+
+	output = &ListApprovedOriginsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListApprovedOrigins API operation for Amazon Connect Service.
+//
+// Returns a paginated list of all approved origins associated with the instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListApprovedOrigins for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListApprovedOrigins
+func (c *Connect) ListApprovedOrigins(input *ListApprovedOriginsInput) (*ListApprovedOriginsOutput, error) {
+	req, out := c.ListApprovedOriginsRequest(input)
+	return out, req.Send()
+}
+
+// ListApprovedOriginsWithContext is the same as ListApprovedOrigins with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListApprovedOrigins for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListApprovedOriginsWithContext(ctx aws.Context, input *ListApprovedOriginsInput, opts ...request.Option) (*ListApprovedOriginsOutput, error) {
+	req, out := c.ListApprovedOriginsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListApprovedOriginsPages iterates over the pages of a ListApprovedOrigins operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListApprovedOrigins method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListApprovedOrigins operation.
+//    pageNum := 0
+//    err := client.ListApprovedOriginsPages(params,
+//        func(page *connect.ListApprovedOriginsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListApprovedOriginsPages(input *ListApprovedOriginsInput, fn func(*ListApprovedOriginsOutput, bool) bool) error {
+	return c.ListApprovedOriginsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListApprovedOriginsPagesWithContext same as ListApprovedOriginsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListApprovedOriginsPagesWithContext(ctx aws.Context, input *ListApprovedOriginsInput, fn func(*ListApprovedOriginsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListApprovedOriginsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListApprovedOriginsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListApprovedOriginsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListContactFlows = "ListContactFlows"
 
 // ListContactFlowsRequest generates a "aws/request.Request" representing the
@@ -2037,6 +3595,748 @@ func (c *Connect) ListHoursOfOperationsPagesWithContext(ctx aws.Context, input *
 
 	for p.Next() {
 		if !fn(p.Page().(*ListHoursOfOperationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListInstanceAttributes = "ListInstanceAttributes"
+
+// ListInstanceAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the ListInstanceAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInstanceAttributes for more information on using the ListInstanceAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListInstanceAttributesRequest method.
+//    req, resp := client.ListInstanceAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceAttributes
+func (c *Connect) ListInstanceAttributesRequest(input *ListInstanceAttributesInput) (req *request.Request, output *ListInstanceAttributesOutput) {
+	op := &request.Operation{
+		Name:       opListInstanceAttributes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/attributes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInstanceAttributesInput{}
+	}
+
+	output = &ListInstanceAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInstanceAttributes API operation for Amazon Connect Service.
+//
+// Returns a paginated list of all attribute types for the given instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListInstanceAttributes for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceAttributes
+func (c *Connect) ListInstanceAttributes(input *ListInstanceAttributesInput) (*ListInstanceAttributesOutput, error) {
+	req, out := c.ListInstanceAttributesRequest(input)
+	return out, req.Send()
+}
+
+// ListInstanceAttributesWithContext is the same as ListInstanceAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInstanceAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListInstanceAttributesWithContext(ctx aws.Context, input *ListInstanceAttributesInput, opts ...request.Option) (*ListInstanceAttributesOutput, error) {
+	req, out := c.ListInstanceAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInstanceAttributesPages iterates over the pages of a ListInstanceAttributes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInstanceAttributes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInstanceAttributes operation.
+//    pageNum := 0
+//    err := client.ListInstanceAttributesPages(params,
+//        func(page *connect.ListInstanceAttributesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListInstanceAttributesPages(input *ListInstanceAttributesInput, fn func(*ListInstanceAttributesOutput, bool) bool) error {
+	return c.ListInstanceAttributesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInstanceAttributesPagesWithContext same as ListInstanceAttributesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListInstanceAttributesPagesWithContext(ctx aws.Context, input *ListInstanceAttributesInput, fn func(*ListInstanceAttributesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInstanceAttributesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInstanceAttributesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInstanceAttributesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListInstanceStorageConfigs = "ListInstanceStorageConfigs"
+
+// ListInstanceStorageConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInstanceStorageConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInstanceStorageConfigs for more information on using the ListInstanceStorageConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListInstanceStorageConfigsRequest method.
+//    req, resp := client.ListInstanceStorageConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceStorageConfigs
+func (c *Connect) ListInstanceStorageConfigsRequest(input *ListInstanceStorageConfigsInput) (req *request.Request, output *ListInstanceStorageConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListInstanceStorageConfigs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/storage-configs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInstanceStorageConfigsInput{}
+	}
+
+	output = &ListInstanceStorageConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInstanceStorageConfigs API operation for Amazon Connect Service.
+//
+// Returns a paginated list of storage configs for the identified instance and
+// resource type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListInstanceStorageConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstanceStorageConfigs
+func (c *Connect) ListInstanceStorageConfigs(input *ListInstanceStorageConfigsInput) (*ListInstanceStorageConfigsOutput, error) {
+	req, out := c.ListInstanceStorageConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListInstanceStorageConfigsWithContext is the same as ListInstanceStorageConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInstanceStorageConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListInstanceStorageConfigsWithContext(ctx aws.Context, input *ListInstanceStorageConfigsInput, opts ...request.Option) (*ListInstanceStorageConfigsOutput, error) {
+	req, out := c.ListInstanceStorageConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInstanceStorageConfigsPages iterates over the pages of a ListInstanceStorageConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInstanceStorageConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInstanceStorageConfigs operation.
+//    pageNum := 0
+//    err := client.ListInstanceStorageConfigsPages(params,
+//        func(page *connect.ListInstanceStorageConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListInstanceStorageConfigsPages(input *ListInstanceStorageConfigsInput, fn func(*ListInstanceStorageConfigsOutput, bool) bool) error {
+	return c.ListInstanceStorageConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInstanceStorageConfigsPagesWithContext same as ListInstanceStorageConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListInstanceStorageConfigsPagesWithContext(ctx aws.Context, input *ListInstanceStorageConfigsInput, fn func(*ListInstanceStorageConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInstanceStorageConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInstanceStorageConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInstanceStorageConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListInstances = "ListInstances"
+
+// ListInstancesRequest generates a "aws/request.Request" representing the
+// client's request for the ListInstances operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInstances for more information on using the ListInstances
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListInstancesRequest method.
+//    req, resp := client.ListInstancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstances
+func (c *Connect) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
+	op := &request.Operation{
+		Name:       opListInstances,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInstancesInput{}
+	}
+
+	output = &ListInstancesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInstances API operation for Amazon Connect Service.
+//
+// Return a list of instances which are in active state, creation-in-progress
+// state, and failed state. Instances that aren't successfully created (they
+// are in a failed state) are returned only for 24 hours after the CreateInstance
+// API was invoked.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListInstances for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstances
+func (c *Connect) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
+	req, out := c.ListInstancesRequest(input)
+	return out, req.Send()
+}
+
+// ListInstancesWithContext is the same as ListInstances with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInstances for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListInstancesWithContext(ctx aws.Context, input *ListInstancesInput, opts ...request.Option) (*ListInstancesOutput, error) {
+	req, out := c.ListInstancesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInstancesPages iterates over the pages of a ListInstances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInstances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInstances operation.
+//    pageNum := 0
+//    err := client.ListInstancesPages(params,
+//        func(page *connect.ListInstancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListInstancesPages(input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool) error {
+	return c.ListInstancesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInstancesPagesWithContext same as ListInstancesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListInstancesPagesWithContext(ctx aws.Context, input *ListInstancesInput, fn func(*ListInstancesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInstancesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInstancesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInstancesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListLambdaFunctions = "ListLambdaFunctions"
+
+// ListLambdaFunctionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLambdaFunctions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLambdaFunctions for more information on using the ListLambdaFunctions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLambdaFunctionsRequest method.
+//    req, resp := client.ListLambdaFunctionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLambdaFunctions
+func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (req *request.Request, output *ListLambdaFunctionsOutput) {
+	op := &request.Operation{
+		Name:       opListLambdaFunctions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/lambda-functions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLambdaFunctionsInput{}
+	}
+
+	output = &ListLambdaFunctionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLambdaFunctions API operation for Amazon Connect Service.
+//
+// Returns a paginated list of all the Lambda functions that show up in the
+// drop-down options in the relevant contact flow blocks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListLambdaFunctions for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLambdaFunctions
+func (c *Connect) ListLambdaFunctions(input *ListLambdaFunctionsInput) (*ListLambdaFunctionsOutput, error) {
+	req, out := c.ListLambdaFunctionsRequest(input)
+	return out, req.Send()
+}
+
+// ListLambdaFunctionsWithContext is the same as ListLambdaFunctions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLambdaFunctions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListLambdaFunctionsWithContext(ctx aws.Context, input *ListLambdaFunctionsInput, opts ...request.Option) (*ListLambdaFunctionsOutput, error) {
+	req, out := c.ListLambdaFunctionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLambdaFunctionsPages iterates over the pages of a ListLambdaFunctions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLambdaFunctions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListLambdaFunctions operation.
+//    pageNum := 0
+//    err := client.ListLambdaFunctionsPages(params,
+//        func(page *connect.ListLambdaFunctionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListLambdaFunctionsPages(input *ListLambdaFunctionsInput, fn func(*ListLambdaFunctionsOutput, bool) bool) error {
+	return c.ListLambdaFunctionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLambdaFunctionsPagesWithContext same as ListLambdaFunctionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListLambdaFunctionsPagesWithContext(ctx aws.Context, input *ListLambdaFunctionsInput, fn func(*ListLambdaFunctionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLambdaFunctionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLambdaFunctionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLambdaFunctionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListLexBots = "ListLexBots"
+
+// ListLexBotsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLexBots operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLexBots for more information on using the ListLexBots
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLexBotsRequest method.
+//    req, resp := client.ListLexBotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLexBots
+func (c *Connect) ListLexBotsRequest(input *ListLexBotsInput) (req *request.Request, output *ListLexBotsOutput) {
+	op := &request.Operation{
+		Name:       opListLexBots,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/lex-bots",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLexBotsInput{}
+	}
+
+	output = &ListLexBotsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLexBots API operation for Amazon Connect Service.
+//
+// Returns a paginated list of all the Amazon Lex bots currently associated
+// with the instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListLexBots for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListLexBots
+func (c *Connect) ListLexBots(input *ListLexBotsInput) (*ListLexBotsOutput, error) {
+	req, out := c.ListLexBotsRequest(input)
+	return out, req.Send()
+}
+
+// ListLexBotsWithContext is the same as ListLexBots with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLexBots for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListLexBotsWithContext(ctx aws.Context, input *ListLexBotsInput, opts ...request.Option) (*ListLexBotsOutput, error) {
+	req, out := c.ListLexBotsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLexBotsPages iterates over the pages of a ListLexBots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLexBots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListLexBots operation.
+//    pageNum := 0
+//    err := client.ListLexBotsPages(params,
+//        func(page *connect.ListLexBotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListLexBotsPages(input *ListLexBotsInput, fn func(*ListLexBotsOutput, bool) bool) error {
+	return c.ListLexBotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLexBotsPagesWithContext same as ListLexBotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListLexBotsPagesWithContext(ctx aws.Context, input *ListLexBotsInput, fn func(*ListLexBotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLexBotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLexBotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLexBotsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2795,6 +5095,155 @@ func (c *Connect) ListRoutingProfilesPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListRoutingProfilesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSecurityKeys = "ListSecurityKeys"
+
+// ListSecurityKeysRequest generates a "aws/request.Request" representing the
+// client's request for the ListSecurityKeys operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSecurityKeys for more information on using the ListSecurityKeys
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSecurityKeysRequest method.
+//    req, resp := client.ListSecurityKeysRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityKeys
+func (c *Connect) ListSecurityKeysRequest(input *ListSecurityKeysInput) (req *request.Request, output *ListSecurityKeysOutput) {
+	op := &request.Operation{
+		Name:       opListSecurityKeys,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/security-keys",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSecurityKeysInput{}
+	}
+
+	output = &ListSecurityKeysOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSecurityKeys API operation for Amazon Connect Service.
+//
+// Returns a paginated list of all security keys associated with the instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListSecurityKeys for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityKeys
+func (c *Connect) ListSecurityKeys(input *ListSecurityKeysInput) (*ListSecurityKeysOutput, error) {
+	req, out := c.ListSecurityKeysRequest(input)
+	return out, req.Send()
+}
+
+// ListSecurityKeysWithContext is the same as ListSecurityKeys with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSecurityKeys for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityKeysWithContext(ctx aws.Context, input *ListSecurityKeysInput, opts ...request.Option) (*ListSecurityKeysOutput, error) {
+	req, out := c.ListSecurityKeysRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSecurityKeysPages iterates over the pages of a ListSecurityKeys operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSecurityKeys method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSecurityKeys operation.
+//    pageNum := 0
+//    err := client.ListSecurityKeysPages(params,
+//        func(page *connect.ListSecurityKeysOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListSecurityKeysPages(input *ListSecurityKeysInput, fn func(*ListSecurityKeysOutput, bool) bool) error {
+	return c.ListSecurityKeysPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSecurityKeysPagesWithContext same as ListSecurityKeysPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityKeysPagesWithContext(ctx aws.Context, input *ListSecurityKeysInput, fn func(*ListSecurityKeysOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSecurityKeysInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSecurityKeysRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityKeysOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4538,6 +6987,190 @@ func (c *Connect) UpdateContactFlowNameWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateInstanceAttribute = "UpdateInstanceAttribute"
+
+// UpdateInstanceAttributeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateInstanceAttribute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateInstanceAttribute for more information on using the UpdateInstanceAttribute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateInstanceAttributeRequest method.
+//    req, resp := client.UpdateInstanceAttributeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceAttribute
+func (c *Connect) UpdateInstanceAttributeRequest(input *UpdateInstanceAttributeInput) (req *request.Request, output *UpdateInstanceAttributeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateInstanceAttribute,
+		HTTPMethod: "POST",
+		HTTPPath:   "/instance/{InstanceId}/attribute/{AttributeType}",
+	}
+
+	if input == nil {
+		input = &UpdateInstanceAttributeInput{}
+	}
+
+	output = &UpdateInstanceAttributeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateInstanceAttribute API operation for Amazon Connect Service.
+//
+// Updates the value for the specified attribute type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateInstanceAttribute for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceAttribute
+func (c *Connect) UpdateInstanceAttribute(input *UpdateInstanceAttributeInput) (*UpdateInstanceAttributeOutput, error) {
+	req, out := c.UpdateInstanceAttributeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateInstanceAttributeWithContext is the same as UpdateInstanceAttribute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateInstanceAttribute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateInstanceAttributeWithContext(ctx aws.Context, input *UpdateInstanceAttributeInput, opts ...request.Option) (*UpdateInstanceAttributeOutput, error) {
+	req, out := c.UpdateInstanceAttributeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateInstanceStorageConfig = "UpdateInstanceStorageConfig"
+
+// UpdateInstanceStorageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateInstanceStorageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateInstanceStorageConfig for more information on using the UpdateInstanceStorageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateInstanceStorageConfigRequest method.
+//    req, resp := client.UpdateInstanceStorageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceStorageConfig
+func (c *Connect) UpdateInstanceStorageConfigRequest(input *UpdateInstanceStorageConfigInput) (req *request.Request, output *UpdateInstanceStorageConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateInstanceStorageConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/instance/{InstanceId}/storage-config/{AssociationId}",
+	}
+
+	if input == nil {
+		input = &UpdateInstanceStorageConfigInput{}
+	}
+
+	output = &UpdateInstanceStorageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// Updates an existing configuration for a resource type. This API is idempotent.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateInstanceStorageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateInstanceStorageConfig
+func (c *Connect) UpdateInstanceStorageConfig(input *UpdateInstanceStorageConfigInput) (*UpdateInstanceStorageConfigOutput, error) {
+	req, out := c.UpdateInstanceStorageConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateInstanceStorageConfigWithContext is the same as UpdateInstanceStorageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateInstanceStorageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateInstanceStorageConfigWithContext(ctx aws.Context, input *UpdateInstanceStorageConfigInput, opts ...request.Option) (*UpdateInstanceStorageConfigOutput, error) {
+	req, out := c.UpdateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRoutingProfileConcurrency = "UpdateRoutingProfileConcurrency"
 
 // UpdateRoutingProfileConcurrencyRequest generates a "aws/request.Request" representing the
@@ -5570,6 +8203,315 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+type AssociateApprovedOriginInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The domain to add to your allow list.
+	//
+	// Origin is a required field
+	Origin *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateApprovedOriginInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateApprovedOriginInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateApprovedOriginInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateApprovedOriginInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Origin == nil {
+		invalidParams.Add(request.NewErrParamRequired("Origin"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateApprovedOriginInput) SetInstanceId(v string) *AssociateApprovedOriginInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetOrigin sets the Origin field's value.
+func (s *AssociateApprovedOriginInput) SetOrigin(v string) *AssociateApprovedOriginInput {
+	s.Origin = &v
+	return s
+}
+
+type AssociateApprovedOriginOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateApprovedOriginOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateApprovedOriginOutput) GoString() string {
+	return s.String()
+}
+
+type AssociateInstanceStorageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A valid resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"InstanceStorageResourceType"`
+
+	// A valid storage type.
+	//
+	// StorageConfig is a required field
+	StorageConfig *InstanceStorageConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateInstanceStorageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateInstanceStorageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateInstanceStorageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateInstanceStorageConfigInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.StorageConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageConfig"))
+	}
+	if s.StorageConfig != nil {
+		if err := s.StorageConfig.Validate(); err != nil {
+			invalidParams.AddNested("StorageConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateInstanceStorageConfigInput) SetInstanceId(v string) *AssociateInstanceStorageConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AssociateInstanceStorageConfigInput) SetResourceType(v string) *AssociateInstanceStorageConfigInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStorageConfig sets the StorageConfig field's value.
+func (s *AssociateInstanceStorageConfigInput) SetStorageConfig(v *InstanceStorageConfig) *AssociateInstanceStorageConfigInput {
+	s.StorageConfig = v
+	return s
+}
+
+type AssociateInstanceStorageConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	AssociationId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateInstanceStorageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateInstanceStorageConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *AssociateInstanceStorageConfigOutput) SetAssociationId(v string) *AssociateInstanceStorageConfigOutput {
+	s.AssociationId = &v
+	return s
+}
+
+type AssociateLambdaFunctionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the Lambda function being associated.
+	// Maximum number of characters allowed is 140.
+	//
+	// FunctionArn is a required field
+	FunctionArn *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateLambdaFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateLambdaFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateLambdaFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateLambdaFunctionInput"}
+	if s.FunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionArn"))
+	}
+	if s.FunctionArn != nil && len(*s.FunctionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionArn", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *AssociateLambdaFunctionInput) SetFunctionArn(v string) *AssociateLambdaFunctionInput {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateLambdaFunctionInput) SetInstanceId(v string) *AssociateLambdaFunctionInput {
+	s.InstanceId = &v
+	return s
+}
+
+type AssociateLambdaFunctionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateLambdaFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateLambdaFunctionOutput) GoString() string {
+	return s.String()
+}
+
+type AssociateLexBotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The Amazon Lex box to associate with the instance.
+	//
+	// LexBot is a required field
+	LexBot *LexBot `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateLexBotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateLexBotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateLexBotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateLexBotInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexBot == nil {
+		invalidParams.Add(request.NewErrParamRequired("LexBot"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateLexBotInput) SetInstanceId(v string) *AssociateLexBotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *AssociateLexBotInput) SetLexBot(v *LexBot) *AssociateLexBotInput {
+	s.LexBot = v
+	return s
+}
+
+type AssociateLexBotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateLexBotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateLexBotOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5667,6 +8609,121 @@ func (s AssociateRoutingProfileQueuesOutput) String() string {
 // GoString returns the string representation
 func (s AssociateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
+}
+
+type AssociateSecurityKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A valid security key in PEM format.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateSecurityKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateSecurityKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateSecurityKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateSecurityKeyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateSecurityKeyInput) SetInstanceId(v string) *AssociateSecurityKeyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *AssociateSecurityKeyInput) SetKey(v string) *AssociateSecurityKeyInput {
+	s.Key = &v
+	return s
+}
+
+type AssociateSecurityKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	AssociationId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateSecurityKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateSecurityKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *AssociateSecurityKeyOutput) SetAssociationId(v string) *AssociateSecurityKeyOutput {
+	s.AssociationId = &v
+	return s
+}
+
+// A toggle for an individual feature at the instance level.
+type Attribute struct {
+	_ struct{} `type:"structure"`
+
+	// The type of attribute.
+	AttributeType *string `type:"string" enum:"InstanceAttributeType"`
+
+	// The value of the attribute.
+	Value *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Attribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Attribute) GoString() string {
+	return s.String()
+}
+
+// SetAttributeType sets the AttributeType field's value.
+func (s *Attribute) SetAttributeType(v string) *Attribute {
+	s.AttributeType = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Attribute) SetValue(v string) *Attribute {
+	s.Value = &v
+	return s
 }
 
 // A chat message.
@@ -6113,6 +9170,137 @@ func (s *CreateContactFlowOutput) SetContactFlowArn(v string) *CreateContactFlow
 // SetContactFlowId sets the ContactFlowId field's value.
 func (s *CreateContactFlowOutput) SetContactFlowId(v string) *CreateContactFlowOutput {
 	s.ContactFlowId = &v
+	return s
+}
+
+type CreateInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The idempotency token.
+	ClientToken *string `type:"string"`
+
+	// The identifier for the directory.
+	DirectoryId *string `min:"12" type:"string"`
+
+	// The type of identity management for your Amazon Connect users.
+	//
+	// IdentityManagementType is a required field
+	IdentityManagementType *string `type:"string" required:"true" enum:"DirectoryType"`
+
+	// Whether your contact center handles incoming contacts.
+	//
+	// InboundCallsEnabled is a required field
+	InboundCallsEnabled *bool `type:"boolean" required:"true"`
+
+	// The name for your instance.
+	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
+
+	// Whether your contact center allows outbound calls.
+	//
+	// OutboundCallsEnabled is a required field
+	OutboundCallsEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateInstanceInput"}
+	if s.DirectoryId != nil && len(*s.DirectoryId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 12))
+	}
+	if s.IdentityManagementType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityManagementType"))
+	}
+	if s.InboundCallsEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("InboundCallsEnabled"))
+	}
+	if s.InstanceAlias != nil && len(*s.InstanceAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceAlias", 1))
+	}
+	if s.OutboundCallsEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutboundCallsEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateInstanceInput) SetClientToken(v string) *CreateInstanceInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *CreateInstanceInput) SetDirectoryId(v string) *CreateInstanceInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetIdentityManagementType sets the IdentityManagementType field's value.
+func (s *CreateInstanceInput) SetIdentityManagementType(v string) *CreateInstanceInput {
+	s.IdentityManagementType = &v
+	return s
+}
+
+// SetInboundCallsEnabled sets the InboundCallsEnabled field's value.
+func (s *CreateInstanceInput) SetInboundCallsEnabled(v bool) *CreateInstanceInput {
+	s.InboundCallsEnabled = &v
+	return s
+}
+
+// SetInstanceAlias sets the InstanceAlias field's value.
+func (s *CreateInstanceInput) SetInstanceAlias(v string) *CreateInstanceInput {
+	s.InstanceAlias = &v
+	return s
+}
+
+// SetOutboundCallsEnabled sets the OutboundCallsEnabled field's value.
+func (s *CreateInstanceInput) SetOutboundCallsEnabled(v bool) *CreateInstanceInput {
+	s.OutboundCallsEnabled = &v
+	return s
+}
+
+type CreateInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the instance.
+	Arn *string `type:"string"`
+
+	// The identifier for the instance.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateInstanceOutput) SetArn(v string) *CreateInstanceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateInstanceOutput) SetId(v string) *CreateInstanceOutput {
+	s.Id = &v
 	return s
 }
 
@@ -6754,6 +9942,61 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 	return s
 }
 
+type DeleteInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteInstanceInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteInstanceInput) SetInstanceId(v string) *DeleteInstanceInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteInstanceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInstanceOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteUserHierarchyGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6976,6 +10219,247 @@ func (s DescribeContactFlowOutput) GoString() string {
 // SetContactFlow sets the ContactFlow field's value.
 func (s *DescribeContactFlowOutput) SetContactFlow(v *ContactFlow) *DescribeContactFlowOutput {
 	s.ContactFlow = v
+	return s
+}
+
+type DescribeInstanceAttributeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of attribute.
+	//
+	// AttributeType is a required field
+	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstanceAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstanceAttributeInput"}
+	if s.AttributeType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeType"))
+	}
+	if s.AttributeType != nil && len(*s.AttributeType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeType", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeType sets the AttributeType field's value.
+func (s *DescribeInstanceAttributeInput) SetAttributeType(v string) *DescribeInstanceAttributeInput {
+	s.AttributeType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeInstanceAttributeInput) SetInstanceId(v string) *DescribeInstanceAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeInstanceAttributeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of attribute.
+	Attribute *Attribute `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceAttributeOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *DescribeInstanceAttributeOutput) SetAttribute(v *Attribute) *DescribeInstanceAttributeOutput {
+	s.Attribute = v
+	return s
+}
+
+type DescribeInstanceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstanceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstanceInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeInstanceInput) SetInstanceId(v string) *DescribeInstanceInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeInstanceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the instance.
+	Instance *Instance `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstance sets the Instance field's value.
+func (s *DescribeInstanceOutput) SetInstance(v *Instance) *DescribeInstanceOutput {
+	s.Instance = v
+	return s
+}
+
+type DescribeInstanceStorageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A valid resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceStorageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceStorageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInstanceStorageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInstanceStorageConfigInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DescribeInstanceStorageConfigInput) SetAssociationId(v string) *DescribeInstanceStorageConfigInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeInstanceStorageConfigInput) SetInstanceId(v string) *DescribeInstanceStorageConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DescribeInstanceStorageConfigInput) SetResourceType(v string) *DescribeInstanceStorageConfigInput {
+	s.ResourceType = &v
+	return s
+}
+
+type DescribeInstanceStorageConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A valid storage type.
+	StorageConfig *InstanceStorageConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceStorageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceStorageConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageConfig sets the StorageConfig field's value.
+func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorageConfig) *DescribeInstanceStorageConfigOutput {
+	s.StorageConfig = v
 	return s
 }
 
@@ -7376,6 +10860,317 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 	return s
 }
 
+type DisassociateApprovedOriginInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The domain URL of the integrated application.
+	//
+	// Origin is a required field
+	Origin *string `location:"querystring" locationName:"origin" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateApprovedOriginInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateApprovedOriginInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateApprovedOriginInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateApprovedOriginInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Origin == nil {
+		invalidParams.Add(request.NewErrParamRequired("Origin"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateApprovedOriginInput) SetInstanceId(v string) *DisassociateApprovedOriginInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetOrigin sets the Origin field's value.
+func (s *DisassociateApprovedOriginInput) SetOrigin(v string) *DisassociateApprovedOriginInput {
+	s.Origin = &v
+	return s
+}
+
+type DisassociateApprovedOriginOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateApprovedOriginOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateApprovedOriginOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateInstanceStorageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A valid resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
+}
+
+// String returns the string representation
+func (s DisassociateInstanceStorageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateInstanceStorageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateInstanceStorageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateInstanceStorageConfigInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateInstanceStorageConfigInput) SetAssociationId(v string) *DisassociateInstanceStorageConfigInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateInstanceStorageConfigInput) SetInstanceId(v string) *DisassociateInstanceStorageConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DisassociateInstanceStorageConfigInput) SetResourceType(v string) *DisassociateInstanceStorageConfigInput {
+	s.ResourceType = &v
+	return s
+}
+
+type DisassociateInstanceStorageConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateInstanceStorageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateInstanceStorageConfigOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateLambdaFunctionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function being disassociated.
+	//
+	// FunctionArn is a required field
+	FunctionArn *string `location:"querystring" locationName:"functionArn" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance..
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateLambdaFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateLambdaFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateLambdaFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateLambdaFunctionInput"}
+	if s.FunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionArn"))
+	}
+	if s.FunctionArn != nil && len(*s.FunctionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionArn", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *DisassociateLambdaFunctionInput) SetFunctionArn(v string) *DisassociateLambdaFunctionInput {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateLambdaFunctionInput) SetInstanceId(v string) *DisassociateLambdaFunctionInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DisassociateLambdaFunctionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateLambdaFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateLambdaFunctionOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateLexBotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon Lex bot. Maximum character limit of 50.
+	//
+	// BotName is a required field
+	BotName *string `location:"querystring" locationName:"botName" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The Region in which the Amazon Lex bot has been created.
+	//
+	// LexRegion is a required field
+	LexRegion *string `location:"querystring" locationName:"lexRegion" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateLexBotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateLexBotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateLexBotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateLexBotInput"}
+	if s.BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LexRegion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotName sets the BotName field's value.
+func (s *DisassociateLexBotInput) SetBotName(v string) *DisassociateLexBotInput {
+	s.BotName = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateLexBotInput) SetInstanceId(v string) *DisassociateLexBotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexRegion sets the LexRegion field's value.
+func (s *DisassociateLexBotInput) SetLexRegion(v string) *DisassociateLexBotInput {
+	s.LexRegion = &v
+	return s
+}
+
+type DisassociateLexBotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateLexBotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateLexBotOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7472,6 +11267,79 @@ func (s DisassociateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateSecurityKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateSecurityKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateSecurityKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateSecurityKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateSecurityKeyInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateSecurityKeyInput) SetAssociationId(v string) *DisassociateSecurityKeyInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateSecurityKeyInput) SetInstanceId(v string) *DisassociateSecurityKeyInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DisassociateSecurityKeyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateSecurityKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateSecurityKeyOutput) GoString() string {
+	return s.String()
+}
+
 // A resource with the specified name already exists.
 type DuplicateResourceException struct {
 	_            struct{}                  `type:"structure"`
@@ -7526,6 +11394,62 @@ func (s *DuplicateResourceException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DuplicateResourceException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The encryption configuration.
+type EncryptionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of encryption.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `type:"string" required:"true" enum:"EncryptionType"`
+
+	// The identifier of the encryption key.
+	//
+	// KeyId is a required field
+	KeyId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EncryptionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EncryptionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionConfig"}
+	if s.EncryptionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncryptionType"))
+	}
+	if s.KeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyId"))
+	}
+	if s.KeyId != nil && len(*s.KeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *EncryptionConfig) SetEncryptionType(v string) *EncryptionConfig {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *EncryptionConfig) SetKeyId(v string) *EncryptionConfig {
+	s.KeyId = &v
+	return s
 }
 
 // Contains the filter to apply when retrieving metrics.
@@ -8877,6 +12801,339 @@ func (s *HoursOfOperationSummary) SetName(v string) *HoursOfOperationSummary {
 	return s
 }
 
+// The Amazon Connect instance.
+type Instance struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the instance.
+	Arn *string `type:"string"`
+
+	// When the instance was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The identifier of the Amazon Connect instance.
+	Id *string `min:"1" type:"string"`
+
+	// The identity management type.
+	IdentityManagementType *string `type:"string" enum:"DirectoryType"`
+
+	// Whether inbound calls are enabled.
+	InboundCallsEnabled *bool `type:"boolean"`
+
+	// The alias of instance.
+	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
+
+	// The state of the instance.
+	InstanceStatus *string `type:"string" enum:"InstanceStatus"`
+
+	// Whether outbound calls are enabled.
+	OutboundCallsEnabled *bool `type:"boolean"`
+
+	// The service role of the instance.
+	ServiceRole *string `type:"string"`
+
+	// Relevant details why the instance was not successfully created.
+	StatusReason *InstanceStatusReason `type:"structure"`
+}
+
+// String returns the string representation
+func (s Instance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Instance) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Instance) SetArn(v string) *Instance {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Instance) SetCreatedTime(v time.Time) *Instance {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *Instance) SetId(v string) *Instance {
+	s.Id = &v
+	return s
+}
+
+// SetIdentityManagementType sets the IdentityManagementType field's value.
+func (s *Instance) SetIdentityManagementType(v string) *Instance {
+	s.IdentityManagementType = &v
+	return s
+}
+
+// SetInboundCallsEnabled sets the InboundCallsEnabled field's value.
+func (s *Instance) SetInboundCallsEnabled(v bool) *Instance {
+	s.InboundCallsEnabled = &v
+	return s
+}
+
+// SetInstanceAlias sets the InstanceAlias field's value.
+func (s *Instance) SetInstanceAlias(v string) *Instance {
+	s.InstanceAlias = &v
+	return s
+}
+
+// SetInstanceStatus sets the InstanceStatus field's value.
+func (s *Instance) SetInstanceStatus(v string) *Instance {
+	s.InstanceStatus = &v
+	return s
+}
+
+// SetOutboundCallsEnabled sets the OutboundCallsEnabled field's value.
+func (s *Instance) SetOutboundCallsEnabled(v bool) *Instance {
+	s.OutboundCallsEnabled = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *Instance) SetServiceRole(v string) *Instance {
+	s.ServiceRole = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *Instance) SetStatusReason(v *InstanceStatusReason) *Instance {
+	s.StatusReason = v
+	return s
+}
+
+// Relevant details why the instance was not successfully created.
+type InstanceStatusReason struct {
+	_ struct{} `type:"structure"`
+
+	// The message.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InstanceStatusReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStatusReason) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *InstanceStatusReason) SetMessage(v string) *InstanceStatusReason {
+	s.Message = &v
+	return s
+}
+
+// The storage configuration for the instance.
+type InstanceStorageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	AssociationId *string `min:"1" type:"string"`
+
+	// The configuration of the Kinesis Firehose delivery stream.
+	KinesisFirehoseConfig *KinesisFirehoseConfig `type:"structure"`
+
+	// The configuration of the Kinesis data stream.
+	KinesisStreamConfig *KinesisStreamConfig `type:"structure"`
+
+	// The configuration of the Kinesis video stream.
+	KinesisVideoStreamConfig *KinesisVideoStreamConfig `type:"structure"`
+
+	// The S3 configuration.
+	S3Config *S3Config `type:"structure"`
+
+	// A valid storage type.
+	//
+	// StorageType is a required field
+	StorageType *string `type:"string" required:"true" enum:"StorageType"`
+}
+
+// String returns the string representation
+func (s InstanceStorageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStorageConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceStorageConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceStorageConfig"}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.StorageType == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageType"))
+	}
+	if s.KinesisFirehoseConfig != nil {
+		if err := s.KinesisFirehoseConfig.Validate(); err != nil {
+			invalidParams.AddNested("KinesisFirehoseConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.KinesisStreamConfig != nil {
+		if err := s.KinesisStreamConfig.Validate(); err != nil {
+			invalidParams.AddNested("KinesisStreamConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.KinesisVideoStreamConfig != nil {
+		if err := s.KinesisVideoStreamConfig.Validate(); err != nil {
+			invalidParams.AddNested("KinesisVideoStreamConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Config != nil {
+		if err := s.S3Config.Validate(); err != nil {
+			invalidParams.AddNested("S3Config", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *InstanceStorageConfig) SetAssociationId(v string) *InstanceStorageConfig {
+	s.AssociationId = &v
+	return s
+}
+
+// SetKinesisFirehoseConfig sets the KinesisFirehoseConfig field's value.
+func (s *InstanceStorageConfig) SetKinesisFirehoseConfig(v *KinesisFirehoseConfig) *InstanceStorageConfig {
+	s.KinesisFirehoseConfig = v
+	return s
+}
+
+// SetKinesisStreamConfig sets the KinesisStreamConfig field's value.
+func (s *InstanceStorageConfig) SetKinesisStreamConfig(v *KinesisStreamConfig) *InstanceStorageConfig {
+	s.KinesisStreamConfig = v
+	return s
+}
+
+// SetKinesisVideoStreamConfig sets the KinesisVideoStreamConfig field's value.
+func (s *InstanceStorageConfig) SetKinesisVideoStreamConfig(v *KinesisVideoStreamConfig) *InstanceStorageConfig {
+	s.KinesisVideoStreamConfig = v
+	return s
+}
+
+// SetS3Config sets the S3Config field's value.
+func (s *InstanceStorageConfig) SetS3Config(v *S3Config) *InstanceStorageConfig {
+	s.S3Config = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *InstanceStorageConfig) SetStorageType(v string) *InstanceStorageConfig {
+	s.StorageType = &v
+	return s
+}
+
+// Information about the instance.
+type InstanceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the instance.
+	Arn *string `type:"string"`
+
+	// When the instance was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The identifier of the instance.
+	Id *string `min:"1" type:"string"`
+
+	// The identity management type of the instance.
+	IdentityManagementType *string `type:"string" enum:"DirectoryType"`
+
+	// Whether inbound calls are enabled.
+	InboundCallsEnabled *bool `type:"boolean"`
+
+	// The alias of the instance.
+	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
+
+	// The state of the instance.
+	InstanceStatus *string `type:"string" enum:"InstanceStatus"`
+
+	// Whether outbound calls are enabled.
+	OutboundCallsEnabled *bool `type:"boolean"`
+
+	// The service role of the instance.
+	ServiceRole *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InstanceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *InstanceSummary) SetArn(v string) *InstanceSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *InstanceSummary) SetCreatedTime(v time.Time) *InstanceSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *InstanceSummary) SetId(v string) *InstanceSummary {
+	s.Id = &v
+	return s
+}
+
+// SetIdentityManagementType sets the IdentityManagementType field's value.
+func (s *InstanceSummary) SetIdentityManagementType(v string) *InstanceSummary {
+	s.IdentityManagementType = &v
+	return s
+}
+
+// SetInboundCallsEnabled sets the InboundCallsEnabled field's value.
+func (s *InstanceSummary) SetInboundCallsEnabled(v bool) *InstanceSummary {
+	s.InboundCallsEnabled = &v
+	return s
+}
+
+// SetInstanceAlias sets the InstanceAlias field's value.
+func (s *InstanceSummary) SetInstanceAlias(v string) *InstanceSummary {
+	s.InstanceAlias = &v
+	return s
+}
+
+// SetInstanceStatus sets the InstanceStatus field's value.
+func (s *InstanceSummary) SetInstanceStatus(v string) *InstanceSummary {
+	s.InstanceStatus = &v
+	return s
+}
+
+// SetOutboundCallsEnabled sets the OutboundCallsEnabled field's value.
+func (s *InstanceSummary) SetOutboundCallsEnabled(v bool) *InstanceSummary {
+	s.OutboundCallsEnabled = &v
+	return s
+}
+
+// SetServiceRole sets the ServiceRole field's value.
+func (s *InstanceSummary) SetServiceRole(v string) *InstanceSummary {
+	s.ServiceRole = &v
+	return s
+}
+
 // Request processing failed due to an error or failure with the service.
 type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
@@ -9107,6 +13364,195 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configuration information of a Kinesis Firehose delivery stream.
+type KinesisFirehoseConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the delivery stream.
+	//
+	// FirehoseArn is a required field
+	FirehoseArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s KinesisFirehoseConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KinesisFirehoseConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisFirehoseConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisFirehoseConfig"}
+	if s.FirehoseArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirehoseArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirehoseArn sets the FirehoseArn field's value.
+func (s *KinesisFirehoseConfig) SetFirehoseArn(v string) *KinesisFirehoseConfig {
+	s.FirehoseArn = &v
+	return s
+}
+
+// Configuration information of a Kinesis data stream.
+type KinesisStreamConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the data stream.
+	//
+	// StreamArn is a required field
+	StreamArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s KinesisStreamConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KinesisStreamConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisStreamConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisStreamConfig"}
+	if s.StreamArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamArn sets the StreamArn field's value.
+func (s *KinesisStreamConfig) SetStreamArn(v string) *KinesisStreamConfig {
+	s.StreamArn = &v
+	return s
+}
+
+// Configuration information of a Kinesis video stream.
+type KinesisVideoStreamConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption configuration.
+	//
+	// EncryptionConfig is a required field
+	EncryptionConfig *EncryptionConfig `type:"structure" required:"true"`
+
+	// The prefix of the video stream.
+	//
+	// Prefix is a required field
+	Prefix *string `min:"1" type:"string" required:"true"`
+
+	// The number of hours data is retained in the stream. Kinesis Video Streams
+	// retains the data in a data store that is associated with the stream.
+	//
+	// The default value is 0, indicating that the stream does not persist data.
+	//
+	// RetentionPeriodHours is a required field
+	RetentionPeriodHours *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s KinesisVideoStreamConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KinesisVideoStreamConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KinesisVideoStreamConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KinesisVideoStreamConfig"}
+	if s.EncryptionConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncryptionConfig"))
+	}
+	if s.Prefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("Prefix"))
+	}
+	if s.Prefix != nil && len(*s.Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Prefix", 1))
+	}
+	if s.RetentionPeriodHours == nil {
+		invalidParams.Add(request.NewErrParamRequired("RetentionPeriodHours"))
+	}
+	if s.EncryptionConfig != nil {
+		if err := s.EncryptionConfig.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionConfig sets the EncryptionConfig field's value.
+func (s *KinesisVideoStreamConfig) SetEncryptionConfig(v *EncryptionConfig) *KinesisVideoStreamConfig {
+	s.EncryptionConfig = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *KinesisVideoStreamConfig) SetPrefix(v string) *KinesisVideoStreamConfig {
+	s.Prefix = &v
+	return s
+}
+
+// SetRetentionPeriodHours sets the RetentionPeriodHours field's value.
+func (s *KinesisVideoStreamConfig) SetRetentionPeriodHours(v int64) *KinesisVideoStreamConfig {
+	s.RetentionPeriodHours = &v
+	return s
+}
+
+// Configuration information of an Amazon Lex bot.
+type LexBot struct {
+	_ struct{} `type:"structure"`
+
+	// The Region the Amazon Lex bot was created in.
+	LexRegion *string `type:"string"`
+
+	// The name of the Amazon Lex bot.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s LexBot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LexBot) GoString() string {
+	return s.String()
+}
+
+// SetLexRegion sets the LexRegion field's value.
+func (s *LexBot) SetLexRegion(v string) *LexBot {
+	s.LexRegion = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *LexBot) SetName(v string) *LexBot {
+	s.Name = &v
+	return s
+}
+
 // The allowed limit for the resource has been exceeded.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -9162,6 +13608,101 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListApprovedOriginsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListApprovedOriginsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListApprovedOriginsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListApprovedOriginsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListApprovedOriginsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListApprovedOriginsInput) SetInstanceId(v string) *ListApprovedOriginsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListApprovedOriginsInput) SetMaxResults(v int64) *ListApprovedOriginsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApprovedOriginsInput) SetNextToken(v string) *ListApprovedOriginsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListApprovedOriginsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// The approved origins.
+	Origins []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ListApprovedOriginsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListApprovedOriginsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApprovedOriginsOutput) SetNextToken(v string) *ListApprovedOriginsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrigins sets the Origins field's value.
+func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOriginsOutput {
+	s.Origins = v
+	return s
 }
 
 type ListContactFlowsInput struct {
@@ -9359,6 +13900,479 @@ func (s *ListHoursOfOperationsOutput) SetHoursOfOperationSummaryList(v []*HoursO
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListHoursOfOperationsOutput) SetNextToken(v string) *ListHoursOfOperationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInstanceAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListInstanceAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInstanceAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInstanceAttributesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListInstanceAttributesInput) SetInstanceId(v string) *ListInstanceAttributesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInstanceAttributesInput) SetMaxResults(v int64) *ListInstanceAttributesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInstanceAttributesInput) SetNextToken(v string) *ListInstanceAttributesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInstanceAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute types.
+	Attributes []*Attribute `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListInstanceAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *ListInstanceAttributesOutput) SetAttributes(v []*Attribute) *ListInstanceAttributesOutput {
+	s.Attributes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInstanceAttributesOutput) SetNextToken(v string) *ListInstanceAttributesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInstanceStorageConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// A valid resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
+}
+
+// String returns the string representation
+func (s ListInstanceStorageConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceStorageConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInstanceStorageConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInstanceStorageConfigsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListInstanceStorageConfigsInput) SetInstanceId(v string) *ListInstanceStorageConfigsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInstanceStorageConfigsInput) SetMaxResults(v int64) *ListInstanceStorageConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInstanceStorageConfigsInput) SetNextToken(v string) *ListInstanceStorageConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ListInstanceStorageConfigsInput) SetResourceType(v string) *ListInstanceStorageConfigsInput {
+	s.ResourceType = &v
+	return s
+}
+
+type ListInstanceStorageConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// A valid storage type.
+	StorageConfigs []*InstanceStorageConfig `type:"list"`
+}
+
+// String returns the string representation
+func (s ListInstanceStorageConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceStorageConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInstanceStorageConfigsOutput) SetNextToken(v string) *ListInstanceStorageConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageConfigs sets the StorageConfigs field's value.
+func (s *ListInstanceStorageConfigsOutput) SetStorageConfigs(v []*InstanceStorageConfig) *ListInstanceStorageConfigsOutput {
+	s.StorageConfigs = v
+	return s
+}
+
+type ListInstancesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListInstancesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInstancesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInstancesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInstancesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInstancesInput) SetMaxResults(v int64) *ListInstancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInstancesInput) SetNextToken(v string) *ListInstancesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListInstancesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the instances.
+	InstanceSummaryList []*InstanceSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListInstancesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInstancesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInstanceSummaryList sets the InstanceSummaryList field's value.
+func (s *ListInstancesOutput) SetInstanceSummaryList(v []*InstanceSummary) *ListInstancesOutput {
+	s.InstanceSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLambdaFunctionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListLambdaFunctionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLambdaFunctionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLambdaFunctionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLambdaFunctionsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListLambdaFunctionsInput) SetInstanceId(v string) *ListLambdaFunctionsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLambdaFunctionsInput) SetMaxResults(v int64) *ListLambdaFunctionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLambdaFunctionsInput) SetNextToken(v string) *ListLambdaFunctionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLambdaFunctionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Lambdafunction ARNs associated with the specified instance.
+	LambdaFunctions []*string `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListLambdaFunctionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLambdaFunctionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLambdaFunctions sets the LambdaFunctions field's value.
+func (s *ListLambdaFunctionsOutput) SetLambdaFunctions(v []*string) *ListLambdaFunctionsOutput {
+	s.LambdaFunctions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLambdaFunctionsOutput) SetNextToken(v string) *ListLambdaFunctionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLexBotsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListLexBotsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLexBotsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLexBotsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLexBotsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListLexBotsInput) SetInstanceId(v string) *ListLexBotsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLexBotsInput) SetMaxResults(v int64) *ListLexBotsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLexBotsInput) SetNextToken(v string) *ListLexBotsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLexBotsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The the names and regions of the Amazon Lex bots associated with the specified
+	// instance.
+	LexBots []*LexBot `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListLexBotsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLexBotsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLexBots sets the LexBots field's value.
+func (s *ListLexBotsOutput) SetLexBots(v []*LexBot) *ListLexBotsOutput {
+	s.LexBots = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLexBotsOutput) SetNextToken(v string) *ListLexBotsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -9879,6 +14893,101 @@ func (s *ListRoutingProfilesOutput) SetNextToken(v string) *ListRoutingProfilesO
 // SetRoutingProfileSummaryList sets the RoutingProfileSummaryList field's value.
 func (s *ListRoutingProfilesOutput) SetRoutingProfileSummaryList(v []*RoutingProfileSummary) *ListRoutingProfilesOutput {
 	s.RoutingProfileSummaryList = v
+	return s
+}
+
+type ListSecurityKeysInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListSecurityKeysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSecurityKeysInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSecurityKeysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSecurityKeysInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListSecurityKeysInput) SetInstanceId(v string) *ListSecurityKeysInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSecurityKeysInput) SetMaxResults(v int64) *ListSecurityKeysInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityKeysInput) SetNextToken(v string) *ListSecurityKeysInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSecurityKeysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// The security keys.
+	SecurityKeys []*SecurityKey `type:"list"`
+}
+
+// String returns the string representation
+func (s ListSecurityKeysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSecurityKeysOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityKeysOutput) SetNextToken(v string) *ListSecurityKeysOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityKeys sets the SecurityKeys field's value.
+func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurityKeysOutput {
+	s.SecurityKeys = v
 	return s
 }
 
@@ -10597,6 +15706,62 @@ func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 	return s
 }
 
+// A resource already has that name.
+type ResourceConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceConflictException(v protocol.ResponseMetadata) error {
+	return &ResourceConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceConflictException) Code() string {
+	return "ResourceConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // That resource is already in use. Please try another.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
@@ -11155,6 +16320,122 @@ func (s *RoutingProfileSummary) SetName(v string) *RoutingProfileSummary {
 	return s
 }
 
+// Information about the S3 storage type.
+type S3Config struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 bucket name.
+	//
+	// BucketName is a required field
+	BucketName *string `min:"1" type:"string" required:"true"`
+
+	// The S3 bucket prefix.
+	//
+	// BucketPrefix is a required field
+	BucketPrefix *string `min:"1" type:"string" required:"true"`
+
+	// The S3 encryption configuration.
+	EncryptionConfig *EncryptionConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s S3Config) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3Config) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Config) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Config"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 1))
+	}
+	if s.BucketPrefix == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketPrefix"))
+	}
+	if s.BucketPrefix != nil && len(*s.BucketPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketPrefix", 1))
+	}
+	if s.EncryptionConfig != nil {
+		if err := s.EncryptionConfig.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3Config) SetBucketName(v string) *S3Config {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketPrefix sets the BucketPrefix field's value.
+func (s *S3Config) SetBucketPrefix(v string) *S3Config {
+	s.BucketPrefix = &v
+	return s
+}
+
+// SetEncryptionConfig sets the EncryptionConfig field's value.
+func (s *S3Config) SetEncryptionConfig(v *EncryptionConfig) *S3Config {
+	s.EncryptionConfig = v
+	return s
+}
+
+// Configuration information of the security key.
+type SecurityKey struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	AssociationId *string `min:"1" type:"string"`
+
+	// When the security key was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The key of the security key.
+	Key *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s SecurityKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityKey) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *SecurityKey) SetAssociationId(v string) *SecurityKey {
+	s.AssociationId = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *SecurityKey) SetCreationTime(v time.Time) *SecurityKey {
+	s.CreationTime = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *SecurityKey) SetKey(v string) *SecurityKey {
+	s.Key = &v
+	return s
+}
+
 // Contains information about a security profile.
 type SecurityProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -11195,6 +16476,62 @@ func (s *SecurityProfileSummary) SetId(v string) *SecurityProfileSummary {
 func (s *SecurityProfileSummary) SetName(v string) *SecurityProfileSummary {
 	s.Name = &v
 	return s
+}
+
+// The service quota has been exceeded.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type StartChatContactInput struct {
@@ -12364,6 +17701,201 @@ func (s UpdateContactFlowNameOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateContactFlowNameOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateInstanceAttributeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of attribute.
+	//
+	// AttributeType is a required field
+	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The value for the attribute. Maximum character limit is 100.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateInstanceAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateInstanceAttributeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateInstanceAttributeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateInstanceAttributeInput"}
+	if s.AttributeType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeType"))
+	}
+	if s.AttributeType != nil && len(*s.AttributeType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeType", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeType sets the AttributeType field's value.
+func (s *UpdateInstanceAttributeInput) SetAttributeType(v string) *UpdateInstanceAttributeInput {
+	s.AttributeType = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateInstanceAttributeInput) SetInstanceId(v string) *UpdateInstanceAttributeInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *UpdateInstanceAttributeInput) SetValue(v string) *UpdateInstanceAttributeInput {
+	s.Value = &v
+	return s
+}
+
+type UpdateInstanceAttributeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateInstanceAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateInstanceAttributeOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateInstanceStorageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The existing association identifier that uniquely identifies the resource
+	// type and storage config for the given instance ID.
+	//
+	// AssociationId is a required field
+	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// A valid resource type.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true" enum:"InstanceStorageResourceType"`
+
+	// The storage configuration for the instance.
+	//
+	// StorageConfig is a required field
+	StorageConfig *InstanceStorageConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateInstanceStorageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateInstanceStorageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateInstanceStorageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateInstanceStorageConfigInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.AssociationId != nil && len(*s.AssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.StorageConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageConfig"))
+	}
+	if s.StorageConfig != nil {
+		if err := s.StorageConfig.Validate(); err != nil {
+			invalidParams.AddNested("StorageConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *UpdateInstanceStorageConfigInput) SetAssociationId(v string) *UpdateInstanceStorageConfigInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateInstanceStorageConfigInput) SetInstanceId(v string) *UpdateInstanceStorageConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *UpdateInstanceStorageConfigInput) SetResourceType(v string) *UpdateInstanceStorageConfigInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetStorageConfig sets the StorageConfig field's value.
+func (s *UpdateInstanceStorageConfigInput) SetStorageConfig(v *InstanceStorageConfig) *UpdateInstanceStorageConfigInput {
+	s.StorageConfig = v
+	return s
+}
+
+type UpdateInstanceStorageConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateInstanceStorageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
 
@@ -13830,6 +19362,38 @@ func CurrentMetricName_Values() []string {
 }
 
 const (
+	// DirectoryTypeSaml is a DirectoryType enum value
+	DirectoryTypeSaml = "SAML"
+
+	// DirectoryTypeConnectManaged is a DirectoryType enum value
+	DirectoryTypeConnectManaged = "CONNECT_MANAGED"
+
+	// DirectoryTypeExistingDirectory is a DirectoryType enum value
+	DirectoryTypeExistingDirectory = "EXISTING_DIRECTORY"
+)
+
+// DirectoryType_Values returns all elements of the DirectoryType enum
+func DirectoryType_Values() []string {
+	return []string{
+		DirectoryTypeSaml,
+		DirectoryTypeConnectManaged,
+		DirectoryTypeExistingDirectory,
+	}
+}
+
+const (
+	// EncryptionTypeKms is a EncryptionType enum value
+	EncryptionTypeKms = "KMS"
+)
+
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypeKms,
+	}
+}
+
+const (
 	// GroupingQueue is a Grouping enum value
 	GroupingQueue = "QUEUE"
 
@@ -13951,6 +19515,94 @@ func HistoricalMetricName_Values() []string {
 		HistoricalMetricNameInteractionTime,
 		HistoricalMetricNameInteractionAndHoldTime,
 		HistoricalMetricNameServiceLevel,
+	}
+}
+
+const (
+	// InstanceAttributeTypeInboundCalls is a InstanceAttributeType enum value
+	InstanceAttributeTypeInboundCalls = "INBOUND_CALLS"
+
+	// InstanceAttributeTypeOutboundCalls is a InstanceAttributeType enum value
+	InstanceAttributeTypeOutboundCalls = "OUTBOUND_CALLS"
+
+	// InstanceAttributeTypeContactflowLogs is a InstanceAttributeType enum value
+	InstanceAttributeTypeContactflowLogs = "CONTACTFLOW_LOGS"
+
+	// InstanceAttributeTypeContactLens is a InstanceAttributeType enum value
+	InstanceAttributeTypeContactLens = "CONTACT_LENS"
+
+	// InstanceAttributeTypeAutoResolveBestVoices is a InstanceAttributeType enum value
+	InstanceAttributeTypeAutoResolveBestVoices = "AUTO_RESOLVE_BEST_VOICES"
+
+	// InstanceAttributeTypeUseCustomTtsVoices is a InstanceAttributeType enum value
+	InstanceAttributeTypeUseCustomTtsVoices = "USE_CUSTOM_TTS_VOICES"
+
+	// InstanceAttributeTypeEarlyMedia is a InstanceAttributeType enum value
+	InstanceAttributeTypeEarlyMedia = "EARLY_MEDIA"
+)
+
+// InstanceAttributeType_Values returns all elements of the InstanceAttributeType enum
+func InstanceAttributeType_Values() []string {
+	return []string{
+		InstanceAttributeTypeInboundCalls,
+		InstanceAttributeTypeOutboundCalls,
+		InstanceAttributeTypeContactflowLogs,
+		InstanceAttributeTypeContactLens,
+		InstanceAttributeTypeAutoResolveBestVoices,
+		InstanceAttributeTypeUseCustomTtsVoices,
+		InstanceAttributeTypeEarlyMedia,
+	}
+}
+
+const (
+	// InstanceStatusCreationInProgress is a InstanceStatus enum value
+	InstanceStatusCreationInProgress = "CREATION_IN_PROGRESS"
+
+	// InstanceStatusActive is a InstanceStatus enum value
+	InstanceStatusActive = "ACTIVE"
+
+	// InstanceStatusCreationFailed is a InstanceStatus enum value
+	InstanceStatusCreationFailed = "CREATION_FAILED"
+)
+
+// InstanceStatus_Values returns all elements of the InstanceStatus enum
+func InstanceStatus_Values() []string {
+	return []string{
+		InstanceStatusCreationInProgress,
+		InstanceStatusActive,
+		InstanceStatusCreationFailed,
+	}
+}
+
+const (
+	// InstanceStorageResourceTypeChatTranscripts is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeChatTranscripts = "CHAT_TRANSCRIPTS"
+
+	// InstanceStorageResourceTypeCallRecordings is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeCallRecordings = "CALL_RECORDINGS"
+
+	// InstanceStorageResourceTypeScheduledReports is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeScheduledReports = "SCHEDULED_REPORTS"
+
+	// InstanceStorageResourceTypeMediaStreams is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeMediaStreams = "MEDIA_STREAMS"
+
+	// InstanceStorageResourceTypeContactTraceRecords is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeContactTraceRecords = "CONTACT_TRACE_RECORDS"
+
+	// InstanceStorageResourceTypeAgentEvents is a InstanceStorageResourceType enum value
+	InstanceStorageResourceTypeAgentEvents = "AGENT_EVENTS"
+)
+
+// InstanceStorageResourceType_Values returns all elements of the InstanceStorageResourceType enum
+func InstanceStorageResourceType_Values() []string {
+	return []string{
+		InstanceStorageResourceTypeChatTranscripts,
+		InstanceStorageResourceTypeCallRecordings,
+		InstanceStorageResourceTypeScheduledReports,
+		InstanceStorageResourceTypeMediaStreams,
+		InstanceStorageResourceTypeContactTraceRecords,
+		InstanceStorageResourceTypeAgentEvents,
 	}
 }
 
@@ -15011,6 +20663,30 @@ func Statistic_Values() []string {
 		StatisticSum,
 		StatisticMax,
 		StatisticAvg,
+	}
+}
+
+const (
+	// StorageTypeS3 is a StorageType enum value
+	StorageTypeS3 = "S3"
+
+	// StorageTypeKinesisVideoStream is a StorageType enum value
+	StorageTypeKinesisVideoStream = "KINESIS_VIDEO_STREAM"
+
+	// StorageTypeKinesisStream is a StorageType enum value
+	StorageTypeKinesisStream = "KINESIS_STREAM"
+
+	// StorageTypeKinesisFirehose is a StorageType enum value
+	StorageTypeKinesisFirehose = "KINESIS_FIREHOSE"
+)
+
+// StorageType_Values returns all elements of the StorageType enum
+func StorageType_Values() []string {
+	return []string{
+		StorageTypeS3,
+		StorageTypeKinesisVideoStream,
+		StorageTypeKinesisStream,
+		StorageTypeKinesisFirehose,
 	}
 }
 

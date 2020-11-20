@@ -6658,6 +6658,11 @@ type BucketMetadata struct {
 
 	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
 
+	// Specifies whether any one-time or recurring classification jobs are configured
+	// to analyze data in an S3 bucket, and, if so, the details of the job that
+	// ran most recently.
+	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
+
 	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp" timestampFormat:"iso8601"`
 
 	ObjectCount *int64 `locationName:"objectCount" type:"long"`
@@ -6744,6 +6749,12 @@ func (s *BucketMetadata) SetClassifiableObjectCount(v int64) *BucketMetadata {
 // SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
 func (s *BucketMetadata) SetClassifiableSizeInBytes(v int64) *BucketMetadata {
 	s.ClassifiableSizeInBytes = &v
+	return s
+}
+
+// SetJobDetails sets the JobDetails field's value.
+func (s *BucketMetadata) SetJobDetails(v *JobDetails) *BucketMetadata {
+	s.JobDetails = v
 	return s
 }
 
@@ -8590,7 +8601,9 @@ type DescribeClassificationJobOutput struct {
 
 	// Provides information about when a classification job was paused and when
 	// it will expire and be cancelled if it isn't resumed. This object is present
-	// only if a job's current status (jobStatus) is USER_PAUSED.
+	// only if a job's current status (jobStatus) is USER_PAUSED. The information
+	// in this object applies only to a job that was paused while it had a status
+	// of RUNNING.
 	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
@@ -10893,6 +10906,55 @@ func (s *IpOwner) SetOrg(v string) *IpOwner {
 	return s
 }
 
+// Specifies whether any one-time or recurring classification jobs are configured
+// to analyze data in an S3 bucket, and, if so, the details of the job that
+// ran most recently.
+type JobDetails struct {
+	_ struct{} `type:"structure"`
+
+	IsDefinedInJob *string `locationName:"isDefinedInJob" type:"string" enum:"IsDefinedInJob"`
+
+	IsMonitoredByJob *string `locationName:"isMonitoredByJob" type:"string" enum:"IsMonitoredByJob"`
+
+	LastJobId *string `locationName:"lastJobId" type:"string"`
+
+	LastJobRunTime *time.Time `locationName:"lastJobRunTime" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s JobDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobDetails) GoString() string {
+	return s.String()
+}
+
+// SetIsDefinedInJob sets the IsDefinedInJob field's value.
+func (s *JobDetails) SetIsDefinedInJob(v string) *JobDetails {
+	s.IsDefinedInJob = &v
+	return s
+}
+
+// SetIsMonitoredByJob sets the IsMonitoredByJob field's value.
+func (s *JobDetails) SetIsMonitoredByJob(v string) *JobDetails {
+	s.IsMonitoredByJob = &v
+	return s
+}
+
+// SetLastJobId sets the LastJobId field's value.
+func (s *JobDetails) SetLastJobId(v string) *JobDetails {
+	s.LastJobId = &v
+	return s
+}
+
+// SetLastJobRunTime sets the LastJobRunTime field's value.
+func (s *JobDetails) SetLastJobRunTime(v time.Time) *JobDetails {
+	s.LastJobRunTime = &v
+	return s
+}
+
 // Specifies the recurrence pattern for running a classification job.
 type JobScheduleFrequency struct {
 	_ struct{} `type:"structure"`
@@ -11024,7 +11086,9 @@ type JobSummary struct {
 
 	// Provides information about when a classification job was paused and when
 	// it will expire and be cancelled if it isn't resumed. This object is present
-	// only if a job's current status (jobStatus) is USER_PAUSED.
+	// only if a job's current status (jobStatus) is USER_PAUSED. The information
+	// in this object applies only to a job that was paused while it had a status
+	// of RUNNING.
 	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
@@ -12566,8 +12630,8 @@ func (s *S3Bucket) SetTags(v []*KeyValuePair) *S3Bucket {
 	return s
 }
 
-// Specifies which S3 buckets contain the objects that a classification job
-// analyzes.
+// Specifies which AWS account owns the S3 buckets that a classification job
+// analyzes, and the buckets to analyze for the account.
 type S3BucketDefinitionForJob struct {
 	_ struct{} `type:"structure"`
 
@@ -14433,7 +14497,9 @@ func (s *UserIdentityRoot) SetPrincipalId(v string) *UserIdentityRoot {
 
 // Provides information about when a classification job was paused and when
 // it will expire and be cancelled if it isn't resumed. This object is present
-// only if a job's current status (jobStatus) is USER_PAUSED.
+// only if a job's current status (jobStatus) is USER_PAUSED. The information
+// in this object applies only to a job that was paused while it had a status
+// of RUNNING.
 type UserPausedDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -14846,6 +14912,46 @@ func GroupBy_Values() []string {
 		GroupByType,
 		GroupByClassificationDetailsJobId,
 		GroupBySeverityDescription,
+	}
+}
+
+const (
+	// IsDefinedInJobTrue is a IsDefinedInJob enum value
+	IsDefinedInJobTrue = "TRUE"
+
+	// IsDefinedInJobFalse is a IsDefinedInJob enum value
+	IsDefinedInJobFalse = "FALSE"
+
+	// IsDefinedInJobUnknown is a IsDefinedInJob enum value
+	IsDefinedInJobUnknown = "UNKNOWN"
+)
+
+// IsDefinedInJob_Values returns all elements of the IsDefinedInJob enum
+func IsDefinedInJob_Values() []string {
+	return []string{
+		IsDefinedInJobTrue,
+		IsDefinedInJobFalse,
+		IsDefinedInJobUnknown,
+	}
+}
+
+const (
+	// IsMonitoredByJobTrue is a IsMonitoredByJob enum value
+	IsMonitoredByJobTrue = "TRUE"
+
+	// IsMonitoredByJobFalse is a IsMonitoredByJob enum value
+	IsMonitoredByJobFalse = "FALSE"
+
+	// IsMonitoredByJobUnknown is a IsMonitoredByJob enum value
+	IsMonitoredByJobUnknown = "UNKNOWN"
+)
+
+// IsMonitoredByJob_Values returns all elements of the IsMonitoredByJob enum
+func IsMonitoredByJob_Values() []string {
+	return []string{
+		IsMonitoredByJobTrue,
+		IsMonitoredByJobFalse,
+		IsMonitoredByJobUnknown,
 	}
 }
 
