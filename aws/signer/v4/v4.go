@@ -325,8 +325,6 @@ func (v4 Signer) SignString(awsContext aws.Context, stringToSign string, service
 		ExpireTime:             exp,
 		ServiceName:            service,
 		Region:                 region,
-		DisableURIPathEscaping: v4.DisableURIPathEscaping,
-		unsignedPayload:        v4.UnsignedPayload,
 	}
 
 	var err error
