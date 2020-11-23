@@ -488,7 +488,8 @@
         "ResourceArn":{"shape":"String"},
         "ResourceType":{"shape":"ResourceType"},
         "ResourceOwnerId":{"shape":"String"},
-        "AssociationTime":{"shape":"DateTime"}
+        "AssociationTime":{"shape":"DateTime"},
+        "AmiAssociationScope":{"shape":"String"}
       }
     },
     "LicenseConfigurationAssociations":{
@@ -551,7 +552,8 @@
       "type":"structure",
       "required":["LicenseConfigurationArn"],
       "members":{
-        "LicenseConfigurationArn":{"shape":"String"}
+        "LicenseConfigurationArn":{"shape":"String"},
+        "AmiAssociationScope":{"shape":"String"}
       }
     },
     "LicenseSpecifications":{

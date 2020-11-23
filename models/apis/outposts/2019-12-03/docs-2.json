@@ -235,6 +235,26 @@
         "Site$Name": null
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagMap$key": null
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateOutpostInput$Tags": "<p>The tags to apply to the Outpost.</p>",
+        "Outpost$Tags": "<p>The Outpost tags.</p>",
+        "Site$Tags": "<p>The site tags.</p>"
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "Token": {
       "base": "<p>The pagination token.</p>",
       "refs": {

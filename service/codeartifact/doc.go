@@ -4,10 +4,10 @@
 // requests to CodeArtifact.
 //
 // AWS CodeArtifact is a fully managed artifact repository compatible with language-native
-// package managers and build tools such as npm, Apache Maven, and pip. You
-// can use CodeArtifact to share packages with development teams and pull packages.
-// Packages can be pulled from both public and CodeArtifact repositories. You
-// can also create an upstream relationship between a CodeArtifact repository
+// package managers and build tools such as npm, Apache Maven, NuGet, and pip.
+// You can use CodeArtifact to share packages with development teams and pull
+// packages. Packages can be pulled from both public and CodeArtifact repositories.
+// You can also create an upstream relationship between a CodeArtifact repository
 // and another repository, which effectively merges their contents from the
 // point of view of a package manager client.
 //
@@ -21,7 +21,7 @@
 //    each of which maps to a set of assets, or files. Repositories are polyglot,
 //    so a single repository can contain packages of any supported type. Each
 //    repository exposes endpoints for fetching and publishing packages using
-//    tools like the npm CLI, the Maven CLI ( mvn ), and pip .
+//    tools like the npm CLI, the NuGet CLI, the Maven CLI ( mvn ), and pip .
 //
 //    * Domain: Repositories are aggregated into a higher-level entity known
 //    as a domain. All package assets and metadata are stored in the domain,
@@ -41,7 +41,8 @@
 //    to resolve dependencies and install the software. CodeArtifact supports
 //    npm (https://docs.aws.amazon.com/codeartifact/latest/ug/using-npm.html),
 //    PyPI (https://docs.aws.amazon.com/codeartifact/latest/ug/using-python.html),
-//    and Maven (https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven)
+//    Maven (https://docs.aws.amazon.com/codeartifact/latest/ug/using-maven),
+//    and NuGet (https://docs.aws.amazon.com/codeartifact/latest/ug/using-nuget)
 //    package formats. In CodeArtifact, a package consists of: A name (for example,
 //    webpack is the name of a popular npm package) An optional namespace (for
 //    example, @types in @types/node) A set of versions (for example, 1.0.0,
@@ -122,7 +123,7 @@
 //
 //    * GetRepositoryEndpoint: Returns the endpoint of a repository for a specific
 //    package format. A repository has one endpoint for each package format:
-//    npm pypi maven
+//    npm pypi maven nuget
 //
 //    * GetRepositoryPermissionsPolicy: Returns the resource policy that is
 //    set on a repository.
@@ -145,10 +146,16 @@
 //
 //    * ListRepositoriesInDomain: Returns a list of the repositories in a domain.
 //
+//    * ListTagsForResource: Returns a list of the tags associated with a resource.
+//
 //    * PutDomainPermissionsPolicy: Attaches a resource policy to a domain.
 //
 //    * PutRepositoryPermissionsPolicy: Sets the resource policy on a repository
 //    that specifies permissions to access it.
+//
+//    * TagResource: Adds or updates tags for a resource.
+//
+//    * UntagResource: Removes a tag from a resource.
 //
 //    * UpdatePackageVersionsStatus: Updates the status of one or more versions
 //    of a package.

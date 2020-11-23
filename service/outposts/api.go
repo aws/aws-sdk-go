@@ -824,6 +824,9 @@ type CreateOutpostInput struct {
 	//
 	// SiteId is a required field
 	SiteId *string `min:"1" type:"string" required:"true"`
+
+	// The tags to apply to the Outpost.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -860,6 +863,9 @@ func (s *CreateOutpostInput) Validate() error {
 	if s.SiteId != nil && len(*s.SiteId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -894,6 +900,12 @@ func (s *CreateOutpostInput) SetName(v string) *CreateOutpostInput {
 // SetSiteId sets the SiteId field's value.
 func (s *CreateOutpostInput) SetSiteId(v string) *CreateOutpostInput {
 	s.SiteId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOutpostInput) SetTags(v map[string]*string) *CreateOutpostInput {
+	s.Tags = v
 	return s
 }
 
@@ -1539,6 +1551,9 @@ type Outpost struct {
 
 	// The ID of the site.
 	SiteId *string `min:"1" type:"string"`
+
+	// The Outpost tags.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -1602,6 +1617,12 @@ func (s *Outpost) SetOwnerId(v string) *Outpost {
 // SetSiteId sets the SiteId field's value.
 func (s *Outpost) SetSiteId(v string) *Outpost {
 	s.SiteId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Outpost) SetTags(v map[string]*string) *Outpost {
+	s.Tags = v
 	return s
 }
 
@@ -1676,6 +1697,9 @@ type Site struct {
 
 	// The ID of the site.
 	SiteId *string `min:"1" type:"string"`
+
+	// The site tags.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -1709,6 +1733,12 @@ func (s *Site) SetName(v string) *Site {
 // SetSiteId sets the SiteId field's value.
 func (s *Site) SetSiteId(v string) *Site {
 	s.SiteId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Site) SetTags(v map[string]*string) *Site {
+	s.Tags = v
 	return s
 }
 

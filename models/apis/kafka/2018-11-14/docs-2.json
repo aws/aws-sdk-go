@@ -131,9 +131,9 @@
     "ClusterState" : {
       "base" : "<p>The state of a Kafka cluster.</p>",
       "refs" : {
-        "ClusterInfo$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>",
-        "CreateClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>",
-        "DeleteClusterResponse$State" : "<p>The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.</p>"
+        "ClusterInfo$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
+        "CreateClusterResponse$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
+        "DeleteClusterResponse$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>"
       }
     },
     "CompatibleKafkaVersion" : {

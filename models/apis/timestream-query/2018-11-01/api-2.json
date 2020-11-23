@@ -141,6 +141,7 @@
         "Endpoints":{"shape":"Endpoints"}
       }
     },
+    "Double":{"type":"double"},
     "Endpoint":{
       "type":"structure",
       "required":[
@@ -219,7 +220,16 @@
         "QueryId":{"shape":"QueryId"},
         "NextToken":{"shape":"String"},
         "Rows":{"shape":"RowList"},
-        "ColumnInfo":{"shape":"ColumnInfoList"}
+        "ColumnInfo":{"shape":"ColumnInfoList"},
+        "QueryStatus":{"shape":"QueryStatus"}
+      }
+    },
+    "QueryStatus":{
+      "type":"structure",
+      "members":{
+        "ProgressPercentage":{"shape":"Double"},
+        "CumulativeBytesScanned":{"shape":"Long"},
+        "CumulativeBytesMetered":{"shape":"Long"}
       }
     },
     "QueryString":{

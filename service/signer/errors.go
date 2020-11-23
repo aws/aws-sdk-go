@@ -21,6 +21,12 @@ const (
 	// also occurs when you call a tagging API on a cancelled signing profile.
 	ErrCodeBadRequestException = "BadRequestException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// The resource encountered a conflicting state.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServiceErrorException for service response error code
 	// "InternalServiceErrorException".
 	//
@@ -39,11 +45,27 @@ const (
 	// A specified resource could not be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeServiceLimitExceededException for service response error code
+	// "ServiceLimitExceededException".
+	//
+	// The client is making a request that exceeds service limits.
+	ErrCodeServiceLimitExceededException = "ServiceLimitExceededException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The signing job has been throttled.
+	// The request was denied due to request throttling.
+	//
+	// Instead of this error, TooManyRequestsException should be used.
 	ErrCodeThrottlingException = "ThrottlingException"
+
+	// ErrCodeTooManyRequestsException for service response error code
+	// "TooManyRequestsException".
+	//
+	// The allowed number of job-signing requests has been exceeded.
+	//
+	// This error supersedes the error ThrottlingException.
+	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
@@ -55,9 +77,12 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
 	"BadRequestException":           newErrorBadRequestException,
+	"ConflictException":             newErrorConflictException,
 	"InternalServiceErrorException": newErrorInternalServiceErrorException,
 	"NotFoundException":             newErrorNotFoundException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceLimitExceededException": newErrorServiceLimitExceededException,
 	"ThrottlingException":           newErrorThrottlingException,
+	"TooManyRequestsException":      newErrorTooManyRequestsException,
 	"ValidationException":           newErrorValidationException,
 }

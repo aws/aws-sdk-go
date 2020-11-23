@@ -1908,7 +1908,8 @@
       "enum":[
         "npm",
         "pypi",
-        "maven"
+        "maven",
+        "nuget"
       ]
     },
     "PackageName":{
@@ -1983,7 +1984,8 @@
     },
     "PackageVersionList":{
       "type":"list",
-      "member":{"shape":"PackageVersion"}
+      "member":{"shape":"PackageVersion"},
+      "max":100
     },
     "PackageVersionRevision":{
       "type":"string",

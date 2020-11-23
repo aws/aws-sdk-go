@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon CloudWatch Application Insights for .NET and SQL Server</fullname> <p> Amazon CloudWatch Application Insights for .NET and SQL Server is a service that helps you detect common problems with your .NET and SQL Server-based applications. It enables you to pinpoint the source of issues in your applications (built with technologies such as Microsoft IIS, .NET, and Microsoft SQL Server), by providing key insights into detected problems.</p> <p>After you onboard your application, CloudWatch Application Insights for .NET and SQL Server identifies, recommends, and sets up metrics and logs. It continuously analyzes and correlates your metrics and logs for unusual behavior to surface actionable problems with your application. For example, if your application is slow and unresponsive and leading to HTTP 500 errors in your Application Load Balancer (ALB), Application Insights informs you that a memory pressure problem with your SQL Server database is occurring. It bases this analysis on impactful metrics and log errors. </p>",
+  "service": "<fullname>Amazon CloudWatch Application Insights</fullname> <p> Amazon CloudWatch Application Insights is a service that helps you detect common problems with your applications. It enables you to pinpoint the source of issues in your applications (built with technologies such as Microsoft IIS, .NET, and Microsoft SQL Server), by providing key insights into detected problems.</p> <p>After you onboard your application, CloudWatch Application Insights identifies, recommends, and sets up metrics and logs. It continuously analyzes and correlates your metrics and logs for unusual behavior to surface actionable problems with your application. For example, if your application is slow and unresponsive and leading to HTTP 500 errors in your Application Load Balancer (ALB), Application Insights informs you that a memory pressure problem with your SQL Server database is occurring. It bases this analysis on impactful metrics and log errors. </p>",
   "operations": {
     "CreateApplication": "<p>Adds an application that is created from a resource group.</p>",
     "CreateComponent": "<p>Creates a custom component by grouping similar standalone instances to monitor.</p>",
@@ -31,6 +31,11 @@
     "UpdateLogPattern": "<p>Adds a log pattern to a <code>LogPatternSet</code>.</p>"
   },
   "shapes": {
+    "AccessDeniedException": {
+      "base": "<p> User does not have permissions to perform this action. </p>",
+      "refs": {
+      }
+    },
     "AffectedResource": {
       "base": null,
       "refs": {
@@ -147,13 +152,10 @@
       "base": null,
       "refs": {
         "ApplicationComponent$ComponentName": "<p>The name of the component.</p>",
-        "CreateComponentRequest$ComponentName": "<p>The name of the component.</p>",
-        "DeleteComponentRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentConfigurationRecommendationRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentRequest$ComponentName": "<p>The name of the component.</p>",
-        "UpdateComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>",
-        "UpdateComponentRequest$ComponentName": "<p>The name of the component.</p>"
+        "UpdateComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>"
       }
     },
     "ConfigurationEvent": {
@@ -233,6 +235,15 @@
     "CreateLogPatternResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CustomComponentName": {
+      "base": null,
+      "refs": {
+        "CreateComponentRequest$ComponentName": "<p>The name of the component.</p>",
+        "DeleteComponentRequest$ComponentName": "<p>The name of the component.</p>",
+        "UpdateComponentRequest$ComponentName": "<p>The name of the component.</p>",
+        "UpdateComponentRequest$NewComponentName": "<p>The new name of the component.</p>"
       }
     },
     "DeleteApplicationRequest": {
@@ -345,6 +356,36 @@
       "refs": {
       }
     },
+    "DetectedWorkload": {
+      "base": null,
+      "refs": {
+        "ApplicationComponent$DetectedWorkload": "<p> Workloads detected in the application component. </p>"
+      }
+    },
+    "EbsCause": {
+      "base": null,
+      "refs": {
+        "Observation$EbsCause": "<p> The cause of an EBS CloudWatch event. </p>"
+      }
+    },
+    "EbsEvent": {
+      "base": null,
+      "refs": {
+        "Observation$EbsEvent": "<p> The type of EBS CloudWatch event, such as <code>createVolume</code>, <code>deleteVolume</code> or <code>attachVolume</code>. </p>"
+      }
+    },
+    "EbsRequestId": {
+      "base": null,
+      "refs": {
+        "Observation$EbsRequestId": "<p> The request ID of an EBS CloudWatch event. </p>"
+      }
+    },
+    "EbsResult": {
+      "base": null,
+      "refs": {
+        "Observation$EbsResult": "<p> The result of an EBS CloudWatch event, such as <code>failed</code> or <code>succeeded</code>. </p>"
+      }
+    },
     "Ec2State": {
       "base": null,
       "refs": {
@@ -363,6 +404,7 @@
     "ErrorMsg": {
       "base": null,
       "refs": {
+        "AccessDeniedException$Message": null,
         "BadRequestException$Message": null,
         "InternalServerException$Message": null,
         "ResourceInUseException$Message": null,
@@ -551,24 +593,24 @@
         "CreateLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>",
         "DeleteLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>",
         "DescribeLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>",
-        "LogPattern$PatternName": "<p>The name of the log pattern. A log pattern name can contains at many as 50 characters, and it cannot be empty. The characters can be Unicode letters, digits or one of the following symbols: period, dash, underscore.</p>",
+        "LogPattern$PatternName": "<p>The name of the log pattern. A log pattern name can contain as many as 50 characters, and it cannot be empty. The characters can be Unicode letters, digits, or one of the following symbols: period, dash, underscore.</p>",
         "UpdateLogPatternRequest$PatternName": "<p>The name of the log pattern.</p>"
       }
     },
     "LogPatternRank": {
       "base": null,
       "refs": {
-        "CreateLogPatternRequest$Rank": "<p>Rank of the log pattern.</p>",
-        "LogPattern$Rank": "<p>Rank of the log pattern.</p>",
-        "UpdateLogPatternRequest$Rank": "<p>Rank of the log pattern.</p>"
+        "CreateLogPatternRequest$Rank": "<p>Rank of the log pattern. Must be a value between <code>1</code> and <code>1,000,000</code>. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank <code>1</code> will be the first to get matched to a log line. A pattern of rank <code>1,000,000</code> will be last to get matched. When you configure custom log patterns from the console, a <code>Low</code> severity pattern translates to a <code>750,000</code> rank. A <code>Medium</code> severity pattern translates to a <code>500,000</code> rank. And a <code>High</code> severity pattern translates to a <code>250,000</code> rank. Rank values less than <code>1</code> or greater than <code>1,000,000</code> are reserved for AWS-provided patterns. </p>",
+        "LogPattern$Rank": "<p>Rank of the log pattern. Must be a value between <code>1</code> and <code>1,000,000</code>. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank <code>1</code> will be the first to get matched to a log line. A pattern of rank <code>1,000,000</code> will be last to get matched. When you configure custom log patterns from the console, a <code>Low</code> severity pattern translates to a <code>750,000</code> rank. A <code>Medium</code> severity pattern translates to a <code>500,000</code> rank. And a <code>High</code> severity pattern translates to a <code>250,000</code> rank. Rank values less than <code>1</code> or greater than <code>1,000,000</code> are reserved for AWS-provided patterns. </p>",
+        "UpdateLogPatternRequest$Rank": "<p>Rank of the log pattern. Must be a value between <code>1</code> and <code>1,000,000</code>. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank <code>1</code> will be the first to get matched to a log line. A pattern of rank <code>1,000,000</code> will be last to get matched. When you configure custom log patterns from the console, a <code>Low</code> severity pattern translates to a <code>750,000</code> rank. A <code>Medium</code> severity pattern translates to a <code>500,000</code> rank. And a <code>High</code> severity pattern translates to a <code>250,000</code> rank. Rank values less than <code>1</code> or greater than <code>1,000,000</code> are reserved for AWS-provided patterns. </p>"
       }
     },
     "LogPatternRegex": {
       "base": null,
       "refs": {
-        "CreateLogPatternRequest$Pattern": "<p>The log pattern.</p>",
-        "LogPattern$Pattern": "<p>A regular expression that defines the log pattern. A log pattern can contains at many as 50 characters, and it cannot be empty.</p>",
-        "UpdateLogPatternRequest$Pattern": "<p>The log pattern.</p>"
+        "CreateLogPatternRequest$Pattern": "<p>The log pattern. The pattern must be DFA compatible. Patterns that utilize forward lookahead or backreference constructions are not supported.</p>",
+        "LogPattern$Pattern": "<p>A regular expression that defines the log pattern. A log pattern can contain as many as 50 characters, and it cannot be empty. The pattern must be DFA compatible. Patterns that utilize forward lookahead or backreference constructions are not supported.</p>",
+        "UpdateLogPatternRequest$Pattern": "<p>The log pattern. The pattern must be DFA compatible. Patterns that utilize forward lookahead or backreference constructions are not supported.</p>"
       }
     },
     "LogPatternSetList": {
@@ -584,7 +626,7 @@
         "DeleteLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
         "DescribeLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
         "ListLogPatternsRequest$PatternSetName": "<p>The name of the log pattern set.</p>",
-        "LogPattern$PatternSetName": "<p>The name of the log pattern. A log pattern name can contains at many as 30 characters, and it cannot be empty. The characters can be Unicode letters, digits or one of the following symbols: period, dash, underscore.</p>",
+        "LogPattern$PatternSetName": "<p>The name of the log pattern. A log pattern name can contain as many as 30 characters, and it cannot be empty. The characters can be Unicode letters, digits, or one of the following symbols: period, dash, underscore.</p>",
         "LogPatternSetList$member": null,
         "UpdateLogPatternRequest$PatternSetName": "<p>The name of the log pattern set.</p>"
       }
@@ -606,6 +648,18 @@
         "ListProblemsRequest$MaxResults": "<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>"
       }
     },
+    "MetaDataKey": {
+      "base": null,
+      "refs": {
+        "WorkloadMetaData$key": null
+      }
+    },
+    "MetaDataValue": {
+      "base": null,
+      "refs": {
+        "WorkloadMetaData$value": null
+      }
+    },
     "MetricName": {
       "base": null,
       "refs": {
@@ -624,12 +678,6 @@
         "ApplicationComponent$Monitor": "<p>Indicates whether the application component is monitored. </p>",
         "DescribeComponentConfigurationResponse$Monitor": "<p>Indicates whether the application component is monitored.</p>",
         "UpdateComponentConfigurationRequest$Monitor": "<p>Indicates whether the application component is monitored.</p>"
-      }
-    },
-    "NewComponentName": {
-      "base": null,
-      "refs": {
-        "UpdateComponentRequest$NewComponentName": "<p>The new name of the component.</p>"
       }
     },
     "Observation": {
@@ -666,6 +714,12 @@
         "ApplicationInfo$OpsItemSNSTopicArn": "<p> The SNS topic provided to Application Insights that is associated to the created opsItems to receive SNS notifications for opsItem updates. </p>",
         "CreateApplicationRequest$OpsItemSNSTopicArn": "<p> The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem. </p>",
         "UpdateApplicationRequest$OpsItemSNSTopicArn": "<p> The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem.</p>"
+      }
+    },
+    "OsType": {
+      "base": null,
+      "refs": {
+        "ApplicationComponent$OsType": "<p> The operating system of the component. </p>"
       }
     },
     "PaginationToken": {
@@ -706,6 +760,18 @@
         "ListProblemsResponse$ProblemList": "<p>The list of problems. </p>"
       }
     },
+    "RdsEventCategories": {
+      "base": null,
+      "refs": {
+        "Observation$RdsEventCategories": "<p> The category of an RDS event. </p>"
+      }
+    },
+    "RdsEventMessage": {
+      "base": null,
+      "refs": {
+        "Observation$RdsEventMessage": "<p> The message of an RDS event. </p>"
+      }
+    },
     "RelatedObservations": {
       "base": "<p>Describes observations related to the problem.</p>",
       "refs": {
@@ -715,6 +781,7 @@
     "Remarks": {
       "base": null,
       "refs": {
+        "ApplicationComponent$ComponentRemarks": "<p> If logging is supported for the resource type, indicates whether the component has configured logs to be monitored. </p>",
         "ApplicationInfo$Remarks": "<p>The issues on the user side that block Application Insights from successfully monitoring an application. Example remarks include:</p> <ul> <li> <p>“Configuring application, detected 1 Errors, 3 Warnings”</p> </li> <li> <p>“Configuring application, detected 1 Unconfigured Components”</p> </li> </ul>"
       }
     },
@@ -786,6 +853,12 @@
         "ApplicationComponent$ResourceType": "<p>The resource type. Supported resource types include EC2 instances, Auto Scaling group, Classic ELB, Application ELB, and SQS Queue.</p>"
       }
     },
+    "S3EventName": {
+      "base": null,
+      "refs": {
+        "Observation$S3EventName": "<p> The name of the S3 CloudWatch Event-based observation. </p>"
+      }
+    },
     "SeverityLevel": {
       "base": null,
       "refs": {
@@ -811,6 +884,30 @@
         "ListProblemsRequest$StartTime": "<p>The time when the problem was detected, in epoch seconds. If you don't specify a time frame for the request, problems within the past seven days are returned.</p>",
         "Observation$StartTime": "<p>The time when the observation was first detected, in epoch seconds.</p>",
         "Problem$StartTime": "<p>The time when the problem started, in epoch seconds.</p>"
+      }
+    },
+    "StatesArn": {
+      "base": null,
+      "refs": {
+        "Observation$StatesArn": "<p> The Amazon Resource Name (ARN) of the step function-based observation. </p>"
+      }
+    },
+    "StatesExecutionArn": {
+      "base": null,
+      "refs": {
+        "Observation$StatesExecutionArn": "<p> The Amazon Resource Name (ARN) of the step function execution-based observation. </p>"
+      }
+    },
+    "StatesInput": {
+      "base": null,
+      "refs": {
+        "Observation$StatesInput": "<p> The input to the step function-based observation. </p>"
+      }
+    },
+    "StatesStatus": {
+      "base": null,
+      "refs": {
+        "Observation$StatesStatus": "<p> The status of the step function-related observation. </p>"
       }
     },
     "Status": {
@@ -873,6 +970,7 @@
         "ApplicationComponent$Tier": "<p>The stack tier of the application component.</p>",
         "DescribeComponentConfigurationRecommendationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_CORE</code>, <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>",
         "DescribeComponentConfigurationResponse$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_CORE</code>, <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code> </p>",
+        "DetectedWorkload$key": null,
         "UpdateComponentConfigurationRequest$Tier": "<p>The tier of the application component. Supported tiers include <code>DOT_NET_WORKER</code>, <code>DOT_NET_WEB</code>, <code>DOT_NET_CORE</code>, <code>SQL_SERVER</code>, and <code>DEFAULT</code>.</p>"
       }
     },
@@ -952,6 +1050,12 @@
       "base": null,
       "refs": {
         "Observation$Value": "<p>The value of the source observation metric.</p>"
+      }
+    },
+    "WorkloadMetaData": {
+      "base": null,
+      "refs": {
+        "DetectedWorkload$value": null
       }
     },
     "XRayErrorPercent": {

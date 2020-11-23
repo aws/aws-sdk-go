@@ -368,6 +368,24 @@
         {"shape":"GlueEncryptionException"}
       ]
     },
+    "CreatePartitionIndex":{
+      "name":"CreatePartitionIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePartitionIndexRequest"},
+      "output":{"shape":"CreatePartitionIndexResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
     "CreateRegistry":{
       "name":"CreateRegistry",
       "http":{
@@ -648,6 +666,23 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "DeletePartitionIndex":{
+      "name":"DeletePartitionIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePartitionIndexRequest"},
+      "output":{"shape":"DeletePartitionIndexResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"GlueEncryptionException"}
       ]
     },
     "DeleteRegistry":{
@@ -2421,6 +2456,31 @@
       "exception":true
     },
     "AttemptCount":{"type":"integer"},
+    "BackfillError":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"BackfillErrorCode"},
+        "Partitions":{"shape":"BackfillErroredPartitionsList"}
+      }
+    },
+    "BackfillErrorCode":{
+      "type":"string",
+      "enum":[
+        "ENCRYPTED_PARTITION_ERROR",
+        "INTERNAL_ERROR",
+        "INVALID_PARTITION_TYPE_DATA_ERROR",
+        "MISSING_PARTITION_VALUE_ERROR",
+        "UNSUPPORTED_PARTITION_CHARACTER_ERROR"
+      ]
+    },
+    "BackfillErroredPartitionsList":{
+      "type":"list",
+      "member":{"shape":"PartitionValueList"}
+    },
+    "BackfillErrors":{
+      "type":"list",
+      "member":{"shape":"BackfillError"}
+    },
     "BatchCreatePartitionRequest":{
       "type":"structure",
       "required":[
@@ -3245,6 +3305,7 @@
         "Classifiers":{"shape":"ClassifierNameList"},
         "RecrawlPolicy":{"shape":"RecrawlPolicy"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
+        "LineageConfiguration":{"shape":"LineageConfiguration"},
         "State":{"shape":"CrawlerState"},
         "TablePrefix":{"shape":"TablePrefix"},
         "Schedule":{"shape":"Schedule"},
@@ -3258,6 +3319,13 @@
       }
     },
     "CrawlerConfiguration":{"type":"string"},
+    "CrawlerLineageSettings":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
     "CrawlerList":{
       "type":"list",
       "member":{"shape":"Crawler"}
@@ -3380,6 +3448,7 @@
         "TablePrefix":{"shape":"TablePrefix"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
         "RecrawlPolicy":{"shape":"RecrawlPolicy"},
+        "LineageConfiguration":{"shape":"LineageConfiguration"},
         "Configuration":{"shape":"CrawlerConfiguration"},
         "CrawlerSecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"},
         "Tags":{"shape":"TagsMap"}
@@ -3556,6 +3625,25 @@
       "type":"structure",
       "members":{
         "TransformId":{"shape":"HashString"}
+      }
+    },
+    "CreatePartitionIndexRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "PartitionIndex"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "PartitionIndex":{"shape":"PartitionIndex"}
+      }
+    },
+    "CreatePartitionIndexResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "CreatePartitionRequest":{
@@ -4045,6 +4133,25 @@
       "type":"structure",
       "members":{
         "TransformId":{"shape":"HashString"}
+      }
+    },
+    "DeletePartitionIndexRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "IndexName"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "IndexName":{"shape":"NameString"}
+      }
+    },
+    "DeletePartitionIndexResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeletePartitionRequest":{
@@ -5738,6 +5845,12 @@
       ]
     },
     "LatestSchemaVersionBoolean":{"type":"boolean"},
+    "LineageConfiguration":{
+      "type":"structure",
+      "members":{
+        "CrawlerLineageSettings":{"shape":"CrawlerLineageSettings"}
+      }
+    },
     "ListCrawlersRequest":{
       "type":"structure",
       "members":{
@@ -6235,7 +6348,8 @@
       "members":{
         "IndexName":{"shape":"NameString"},
         "Keys":{"shape":"KeySchemaElementList"},
-        "IndexStatus":{"shape":"PartitionIndexStatus"}
+        "IndexStatus":{"shape":"PartitionIndexStatus"},
+        "BackfillErrors":{"shape":"BackfillErrors"}
       }
     },
     "PartitionIndexDescriptorList":{
@@ -6249,7 +6363,12 @@
     },
     "PartitionIndexStatus":{
       "type":"string",
-      "enum":["ACTIVE"]
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "FAILED"
+      ]
     },
     "PartitionInput":{
       "type":"structure",
@@ -7658,6 +7777,7 @@
         "TablePrefix":{"shape":"TablePrefix"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
         "RecrawlPolicy":{"shape":"RecrawlPolicy"},
+        "LineageConfiguration":{"shape":"LineageConfiguration"},
         "Configuration":{"shape":"CrawlerConfiguration"},
         "CrawlerSecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"}
       }

@@ -27,7 +27,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
-        {"shape":"TagsAlreadyExistException"}
+        {"shape":"TagsAlreadyExistException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "CreateComponent":{
@@ -399,19 +400,30 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMsg"}
+      },
+      "exception":true
+    },
     "AffectedResource":{"type":"string"},
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
-      "min":1
+      "min":1,
+      "pattern":"^arn:aws(-\\w+)*:[\\w\\d-]+:([\\w\\d-]*)?:[\\w\\d_-]*([:/].+)*$"
     },
     "ApplicationComponent":{
       "type":"structure",
       "members":{
         "ComponentName":{"shape":"ComponentName"},
+        "ComponentRemarks":{"shape":"Remarks"},
         "ResourceType":{"shape":"ResourceType"},
+        "OsType":{"shape":"OsType"},
         "Tier":{"shape":"Tier"},
-        "Monitor":{"shape":"Monitor"}
+        "Monitor":{"shape":"Monitor"},
+        "DetectedWorkload":{"shape":"DetectedWorkload"}
       }
     },
     "ApplicationComponentList":{
@@ -448,7 +460,8 @@
       "enum":[
         "EC2",
         "CODE_DEPLOY",
-        "HEALTH"
+        "HEALTH",
+        "RDS"
       ]
     },
     "CodeDeployApplication":{"type":"string"},
@@ -459,9 +472,15 @@
     "ComponentConfiguration":{
       "type":"string",
       "max":10000,
-      "min":1
+      "min":1,
+      "pattern":"[\\S\\s]+"
     },
-    "ComponentName":{"type":"string"},
+    "ComponentName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"(?:^[\\d\\w\\-_\\.+]*$)|(?:^arn:aws(-\\w+)*:[\\w\\d-]+:([\\w\\d-]*)?:[\\w\\d_-]*([:/].+)*$)"
+    },
     "ConfigurationEvent":{
       "type":"structure",
       "members":{
@@ -484,6 +503,7 @@
       "type":"string",
       "enum":[
         "CLOUDWATCH_ALARM",
+        "CLOUDWATCH_LOG",
         "CLOUDFORMATION",
         "SSM_ASSOCIATION"
       ]
@@ -523,7 +543,7 @@
       ],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "ComponentName":{"shape":"ComponentName"},
+        "ComponentName":{"shape":"CustomComponentName"},
         "ResourceList":{"shape":"ResourceList"}
       }
     },
@@ -556,6 +576,12 @@
         "ResourceGroupName":{"shape":"ResourceGroupName"}
       }
     },
+    "CustomComponentName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[\\d\\w\\-_\\.+]*$"
+    },
     "DeleteApplicationRequest":{
       "type":"structure",
       "required":["ResourceGroupName"],
@@ -576,7 +602,7 @@
       ],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "ComponentName":{"shape":"ComponentName"}
+        "ComponentName":{"shape":"CustomComponentName"}
       }
     },
     "DeleteComponentResponse":{
@@ -730,6 +756,15 @@
         "Problem":{"shape":"Problem"}
       }
     },
+    "DetectedWorkload":{
+      "type":"map",
+      "key":{"shape":"Tier"},
+      "value":{"shape":"WorkloadMetaData"}
+    },
+    "EbsCause":{"type":"string"},
+    "EbsEvent":{"type":"string"},
+    "EbsRequestId":{"type":"string"},
+    "EbsResult":{"type":"string"},
     "Ec2State":{"type":"string"},
     "EndTime":{"type":"timestamp"},
     "ErrorMsg":{"type":"string"},
@@ -912,7 +947,8 @@
     "LogPatternRegex":{
       "type":"string",
       "max":50,
-      "min":1
+      "min":1,
+      "pattern":"[\\S\\s]+"
     },
     "LogPatternSetList":{
       "type":"list",
@@ -930,10 +966,11 @@
       "max":40,
       "min":1
     },
+    "MetaDataKey":{"type":"string"},
+    "MetaDataValue":{"type":"string"},
     "MetricName":{"type":"string"},
     "MetricNamespace":{"type":"string"},
     "Monitor":{"type":"boolean"},
-    "NewComponentName":{"type":"string"},
     "Observation":{
       "type":"structure",
       "members":{
@@ -964,6 +1001,17 @@
         "CodeDeployApplication":{"shape":"CodeDeployApplication"},
         "CodeDeployInstanceGroupId":{"shape":"CodeDeployInstanceGroupId"},
         "Ec2State":{"shape":"Ec2State"},
+        "RdsEventCategories":{"shape":"RdsEventCategories"},
+        "RdsEventMessage":{"shape":"RdsEventMessage"},
+        "S3EventName":{"shape":"S3EventName"},
+        "StatesExecutionArn":{"shape":"StatesExecutionArn"},
+        "StatesArn":{"shape":"StatesArn"},
+        "StatesStatus":{"shape":"StatesStatus"},
+        "StatesInput":{"shape":"StatesInput"},
+        "EbsEvent":{"shape":"EbsEvent"},
+        "EbsResult":{"shape":"EbsResult"},
+        "EbsCause":{"shape":"EbsCause"},
+        "EbsRequestId":{"shape":"EbsRequestId"},
         "XRayFaultPercent":{"shape":"XRayFaultPercent"},
         "XRayThrottlePercent":{"shape":"XRayThrottlePercent"},
         "XRayErrorPercent":{"shape":"XRayErrorPercent"},
@@ -987,9 +1035,22 @@
     "OpsItemSNSTopicArn":{
       "type":"string",
       "max":300,
-      "min":20
+      "min":20,
+      "pattern":"^arn:aws(-\\w+)*:[\\w\\d-]+:([\\w\\d-]*)?:[\\w\\d_-]*([:/].+)*$"
     },
-    "PaginationToken":{"type":"string"},
+    "OsType":{
+      "type":"string",
+      "enum":[
+        "WINDOWS",
+        "LINUX"
+      ]
+    },
+    "PaginationToken":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".+"
+    },
     "Problem":{
       "type":"structure",
       "members":{
@@ -1015,6 +1076,8 @@
       "type":"list",
       "member":{"shape":"Problem"}
     },
+    "RdsEventCategories":{"type":"string"},
+    "RdsEventMessage":{"type":"string"},
     "RelatedObservations":{
       "type":"structure",
       "members":{
@@ -1026,7 +1089,8 @@
     "ResourceARN":{
       "type":"string",
       "max":1011,
-      "min":1
+      "min":1,
+      "pattern":"^arn:aws(-\\w+)*:[\\w\\d-]+:([\\w\\d-]*)?:[\\w\\d_-]*([:/].+)*$"
     },
     "ResourceGroupName":{
       "type":"string",
@@ -1052,7 +1116,13 @@
       },
       "exception":true
     },
-    "ResourceType":{"type":"string"},
+    "ResourceType":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"[0-9a-zA-Z:_]*"
+    },
+    "S3EventName":{"type":"string"},
     "SeverityLevel":{
       "type":"string",
       "enum":[
@@ -1064,6 +1134,10 @@
     "SourceARN":{"type":"string"},
     "SourceType":{"type":"string"},
     "StartTime":{"type":"timestamp"},
+    "StatesArn":{"type":"string"},
+    "StatesExecutionArn":{"type":"string"},
+    "StatesInput":{"type":"string"},
+    "StatesStatus":{"type":"string"},
     "Status":{
       "type":"string",
       "enum":[
@@ -1086,7 +1160,8 @@
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagKeyList":{
       "type":"list",
@@ -1119,7 +1194,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagsAlreadyExistException":{
       "type":"structure",
@@ -1131,11 +1207,18 @@
     "Tier":{
       "type":"string",
       "enum":[
+        "CUSTOM",
         "DEFAULT",
         "DOT_NET_CORE",
         "DOT_NET_WORKER",
+        "DOT_NET_WEB_TIER",
         "DOT_NET_WEB",
-        "SQL_SERVER"
+        "SQL_SERVER",
+        "SQL_SERVER_ALWAYSON_AVAILABILITY_GROUP",
+        "MYSQL",
+        "POSTGRESQL",
+        "JAVA_JMX",
+        "ORACLE"
       ],
       "max":50,
       "min":1
@@ -1210,8 +1293,8 @@
       ],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "ComponentName":{"shape":"ComponentName"},
-        "NewComponentName":{"shape":"NewComponentName"},
+        "ComponentName":{"shape":"CustomComponentName"},
+        "NewComponentName":{"shape":"CustomComponentName"},
         "ResourceList":{"shape":"ResourceList"}
       }
     },
@@ -1250,6 +1333,11 @@
       "exception":true
     },
     "Value":{"type":"double"},
+    "WorkloadMetaData":{
+      "type":"map",
+      "key":{"shape":"MetaDataKey"},
+      "value":{"shape":"MetaDataValue"}
+    },
     "XRayErrorPercent":{"type":"integer"},
     "XRayFaultPercent":{"type":"integer"},
     "XRayNodeName":{"type":"string"},

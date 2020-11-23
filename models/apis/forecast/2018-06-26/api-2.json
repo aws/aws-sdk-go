@@ -107,6 +107,22 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreatePredictorBacktestExportJob":{
+      "name":"CreatePredictorBacktestExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePredictorBacktestExportJobRequest"},
+      "output":{"shape":"CreatePredictorBacktestExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "DeleteDataset":{
       "name":"DeleteDataset",
       "http":{
@@ -184,6 +200,20 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeletePredictorRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "DeletePredictorBacktestExportJob":{
+      "name":"DeletePredictorBacktestExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePredictorBacktestExportJobRequest"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
@@ -275,6 +305,20 @@
       ],
       "idempotent":true
     },
+    "DescribePredictorBacktestExportJob":{
+      "name":"DescribePredictorBacktestExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePredictorBacktestExportJobRequest"},
+      "output":{"shape":"DescribePredictorBacktestExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "GetAccuracyMetrics":{
       "name":"GetAccuracyMetrics",
       "http":{
@@ -352,6 +396,20 @@
       },
       "input":{"shape":"ListForecastsRequest"},
       "output":{"shape":"ListForecastsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"}
+      ],
+      "idempotent":true
+    },
+    "ListPredictorBacktestExportJobs":{
+      "name":"ListPredictorBacktestExportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPredictorBacktestExportJobsRequest"},
+      "output":{"shape":"ListPredictorBacktestExportJobsResponse"},
       "errors":[
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidInputException"}
@@ -588,6 +646,26 @@
         "ForecastArn":{"shape":"Arn"}
       }
     },
+    "CreatePredictorBacktestExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "PredictorBacktestExportJobName",
+        "PredictorArn",
+        "Destination"
+      ],
+      "members":{
+        "PredictorBacktestExportJobName":{"shape":"Name"},
+        "PredictorArn":{"shape":"Arn"},
+        "Destination":{"shape":"DataDestination"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreatePredictorBacktestExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "PredictorBacktestExportJobArn":{"shape":"Arn"}
+      }
+    },
     "CreatePredictorRequest":{
       "type":"structure",
       "required":[
@@ -719,6 +797,13 @@
         "ForecastArn":{"shape":"Arn"}
       }
     },
+    "DeletePredictorBacktestExportJobRequest":{
+      "type":"structure",
+      "required":["PredictorBacktestExportJobArn"],
+      "members":{
+        "PredictorBacktestExportJobArn":{"shape":"Arn"}
+      }
+    },
     "DeletePredictorRequest":{
       "type":"structure",
       "required":["PredictorArn"],
@@ -827,6 +912,26 @@
         "DatasetGroupArn":{"shape":"Arn"},
         "Status":{"shape":"String"},
         "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribePredictorBacktestExportJobRequest":{
+      "type":"structure",
+      "required":["PredictorBacktestExportJobArn"],
+      "members":{
+        "PredictorBacktestExportJobArn":{"shape":"Arn"}
+      }
+    },
+    "DescribePredictorBacktestExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "PredictorBacktestExportJobArn":{"shape":"Arn"},
+        "PredictorBacktestExportJobName":{"shape":"Name"},
+        "PredictorArn":{"shape":"Arn"},
+        "Destination":{"shape":"DataDestination"},
+        "Message":{"shape":"Message"},
+        "Status":{"shape":"Status"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModificationTime":{"shape":"Timestamp"}
       }
@@ -1198,6 +1303,21 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListPredictorBacktestExportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListPredictorBacktestExportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "PredictorBacktestExportJobs":{"shape":"PredictorBacktestExportJobs"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListPredictorsRequest":{
       "type":"structure",
       "members":{
@@ -1272,6 +1392,22 @@
       "type":"string",
       "max":256,
       "pattern":"^[a-zA-Z0-9\\-\\_\\.\\/\\[\\]\\,\\\"\\\\\\s]+$"
+    },
+    "PredictorBacktestExportJobSummary":{
+      "type":"structure",
+      "members":{
+        "PredictorBacktestExportJobArn":{"shape":"Arn"},
+        "PredictorBacktestExportJobName":{"shape":"Name"},
+        "Destination":{"shape":"DataDestination"},
+        "Status":{"shape":"Status"},
+        "Message":{"shape":"ErrorMessage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModificationTime":{"shape":"Timestamp"}
+      }
+    },
+    "PredictorBacktestExportJobs":{
+      "type":"list",
+      "member":{"shape":"PredictorBacktestExportJobSummary"}
     },
     "PredictorEvaluationResults":{
       "type":"list",

@@ -155,7 +155,8 @@
         "Description":{"shape":"OutpostDescription"},
         "SiteId":{"shape":"SiteId"},
         "AvailabilityZone":{"shape":"AvailabilityZone"},
-        "AvailabilityZoneId":{"shape":"AvailabilityZoneId"}
+        "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateOutpostOutput":{
@@ -338,7 +339,8 @@
         "Description":{"shape":"OutpostDescription"},
         "LifeCycleStatus":{"shape":"LifeCycleStatus"},
         "AvailabilityZone":{"shape":"AvailabilityZone"},
-        "AvailabilityZoneId":{"shape":"AvailabilityZoneId"}
+        "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "OutpostArn":{
@@ -385,7 +387,8 @@
         "SiteId":{"shape":"SiteId"},
         "AccountId":{"shape":"AccountId"},
         "Name":{"shape":"SiteName"},
-        "Description":{"shape":"SiteDescription"}
+        "Description":{"shape":"SiteDescription"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "SiteDescription":{
@@ -405,6 +408,24 @@
       "max":1000,
       "min":1,
       "pattern":"^[\\S ]+$"
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":1
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[\\S \\n]+$"
     },
     "Token":{
       "type":"string",

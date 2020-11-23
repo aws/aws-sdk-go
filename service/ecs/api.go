@@ -4847,6 +4847,94 @@ func (c *ECS) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInpu
 	return out, req.Send()
 }
 
+const opUpdateCapacityProvider = "UpdateCapacityProvider"
+
+// UpdateCapacityProviderRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCapacityProvider operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCapacityProvider for more information on using the UpdateCapacityProvider
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCapacityProviderRequest method.
+//    req, resp := client.UpdateCapacityProviderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateCapacityProvider
+func (c *ECS) UpdateCapacityProviderRequest(input *UpdateCapacityProviderInput) (req *request.Request, output *UpdateCapacityProviderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCapacityProvider,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCapacityProviderInput{}
+	}
+
+	output = &UpdateCapacityProviderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCapacityProvider API operation for Amazon EC2 Container Service.
+//
+// Modifies the parameters for a capacity provider.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EC2 Container Service's
+// API operation UpdateCapacityProvider for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   These errors are usually caused by a server issue.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an identifier that is not valid.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ecs-2014-11-13/UpdateCapacityProvider
+func (c *ECS) UpdateCapacityProvider(input *UpdateCapacityProviderInput) (*UpdateCapacityProviderOutput, error) {
+	req, out := c.UpdateCapacityProviderRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCapacityProviderWithContext is the same as UpdateCapacityProvider with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCapacityProvider for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ECS) UpdateCapacityProviderWithContext(ctx aws.Context, input *UpdateCapacityProviderInput, opts ...request.Option) (*UpdateCapacityProviderOutput, error) {
+	req, out := c.UpdateCapacityProviderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateClusterSettings = "UpdateClusterSettings"
 
 // UpdateClusterSettingsRequest generates a "aws/request.Request" representing the
@@ -6004,6 +6092,79 @@ func (s *AutoScalingGroupProvider) SetManagedScaling(v *ManagedScaling) *AutoSca
 
 // SetManagedTerminationProtection sets the ManagedTerminationProtection field's value.
 func (s *AutoScalingGroupProvider) SetManagedTerminationProtection(v string) *AutoScalingGroupProvider {
+	s.ManagedTerminationProtection = &v
+	return s
+}
+
+// The details of the Auto Scaling group capacity provider to update.
+type AutoScalingGroupProviderUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The managed scaling settings for the Auto Scaling group capacity provider.
+	//
+	// When managed scaling is enabled, Amazon ECS manages the scale-in and scale-out
+	// actions of the Auto Scaling group. Amazon ECS manages a target tracking scaling
+	// policy using an Amazon ECS-managed CloudWatch metric with the specified targetCapacity
+	// value as the target value for the metric. For more information, see Using
+	// Managed Scaling (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html#asg-capacity-providers-managed-scaling)
+	// in the Amazon Elastic Container Service Developer Guide.
+	//
+	// If managed scaling is disabled, the user must manage the scaling of the Auto
+	// Scaling group.
+	ManagedScaling *ManagedScaling `locationName:"managedScaling" type:"structure"`
+
+	// The managed termination protection setting to use for the Auto Scaling group
+	// capacity provider. This determines whether the Auto Scaling group has managed
+	// termination protection.
+	//
+	// When using managed termination protection, managed scaling must also be used
+	// otherwise managed termination protection will not work.
+	//
+	// When managed termination protection is enabled, Amazon ECS prevents the Amazon
+	// EC2 instances in an Auto Scaling group that contain tasks from being terminated
+	// during a scale-in action. The Auto Scaling group and each instance in the
+	// Auto Scaling group must have instance protection from scale-in actions enabled
+	// as well. For more information, see Instance Protection (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection)
+	// in the AWS Auto Scaling User Guide.
+	//
+	// When managed termination protection is disabled, your Amazon EC2 instances
+	// are not protected from termination when the Auto Scaling group scales in.
+	ManagedTerminationProtection *string `locationName:"managedTerminationProtection" type:"string" enum:"ManagedTerminationProtection"`
+}
+
+// String returns the string representation
+func (s AutoScalingGroupProviderUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoScalingGroupProviderUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoScalingGroupProviderUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoScalingGroupProviderUpdate"}
+	if s.ManagedScaling != nil {
+		if err := s.ManagedScaling.Validate(); err != nil {
+			invalidParams.AddNested("ManagedScaling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetManagedScaling sets the ManagedScaling field's value.
+func (s *AutoScalingGroupProviderUpdate) SetManagedScaling(v *ManagedScaling) *AutoScalingGroupProviderUpdate {
+	s.ManagedScaling = v
+	return s
+}
+
+// SetManagedTerminationProtection sets the ManagedTerminationProtection field's value.
+func (s *AutoScalingGroupProviderUpdate) SetManagedTerminationProtection(v string) *AutoScalingGroupProviderUpdate {
 	s.ManagedTerminationProtection = &v
 	return s
 }
@@ -7591,13 +7752,17 @@ type ContainerDefinition struct {
 	// the awsvpc network mode.
 	Ulimits []*Ulimit `locationName:"ulimits" type:"list"`
 
-	// The user name to use inside the container. This parameter maps to User in
-	// the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
+	// The user to use inside the container. This parameter maps to User in the
+	// Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 	// and the --user option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
 	//
-	// You can use the following formats. If specifying a UID or GID, you must specify
-	// it as a positive integer.
+	// When running tasks using the host network mode, you should not run containers
+	// using the root user (UID 0). It is considered best practice to use a non-root
+	// user.
+	//
+	// You can specify the user using the following formats. If specifying a UID
+	// or GID, you must specify it as a positive integer.
 	//
 	//    * user
 	//
@@ -9093,6 +9258,11 @@ func (s *CreateServiceInput) Validate() error {
 			}
 		}
 	}
+	if s.DeploymentConfiguration != nil {
+		if err := s.DeploymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DeploymentController != nil {
 		if err := s.DeploymentController.Validate(); err != nil {
 			invalidParams.AddNested("DeploymentController", err.(request.ErrInvalidParams))
@@ -10035,6 +10205,15 @@ type Deployment struct {
 	// to deploy or maintain.
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
 
+	// The number of consecutively failed tasks in the deployment. A task is considered
+	// a failure if the service scheduler can't launch the task, the task doesn't
+	// transition to a RUNNING state, or if it fails any of its defined health checks
+	// and is stopped.
+	//
+	// Once a service deployment has one or more successfully running tasks, the
+	// failed task count resets to zero and stops being evaluated.
+	FailedTasks *int64 `locationName:"failedTasks" type:"integer"`
+
 	// The ID of the deployment.
 	Id *string `locationName:"id" type:"string"`
 
@@ -10056,6 +10235,21 @@ type Deployment struct {
 	// information, see AWS Fargate Platform Versions (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	PlatformVersion *string `locationName:"platformVersion" type:"string"`
+
+	//
+	// The rolloutState of a service is only returned for services that use the
+	// rolling update (ECS) deployment type that are not behind a Classic Load Balancer.
+	//
+	// The rollout state of the deployment. When a service deployment is started,
+	// it begins in an IN_PROGRESS state. When the service reaches a steady state,
+	// the deployment will transition to a COMPLETED state. If the service fails
+	// to reach a steady state and circuit breaker is enabled, the deployment will
+	// transition to a FAILED state. A deployment in FAILED state will launch no
+	// new tasks. For more information, see DeploymentCircuitBreaker.
+	RolloutState *string `locationName:"rolloutState" type:"string" enum:"DeploymentRolloutState"`
+
+	// A description of the rollout state of a deployment.
+	RolloutStateReason *string `locationName:"rolloutStateReason" type:"string"`
 
 	// The number of tasks in the deployment that are in the RUNNING status.
 	RunningCount *int64 `locationName:"runningCount" type:"integer"`
@@ -10112,6 +10306,12 @@ func (s *Deployment) SetDesiredCount(v int64) *Deployment {
 	return s
 }
 
+// SetFailedTasks sets the FailedTasks field's value.
+func (s *Deployment) SetFailedTasks(v int64) *Deployment {
+	s.FailedTasks = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *Deployment) SetId(v string) *Deployment {
 	s.Id = &v
@@ -10142,6 +10342,18 @@ func (s *Deployment) SetPlatformVersion(v string) *Deployment {
 	return s
 }
 
+// SetRolloutState sets the RolloutState field's value.
+func (s *Deployment) SetRolloutState(v string) *Deployment {
+	s.RolloutState = &v
+	return s
+}
+
+// SetRolloutStateReason sets the RolloutStateReason field's value.
+func (s *Deployment) SetRolloutStateReason(v string) *Deployment {
+	s.RolloutStateReason = &v
+	return s
+}
+
 // SetRunningCount sets the RunningCount field's value.
 func (s *Deployment) SetRunningCount(v int64) *Deployment {
 	s.RunningCount = &v
@@ -10166,10 +10378,85 @@ func (s *Deployment) SetUpdatedAt(v time.Time) *Deployment {
 	return s
 }
 
+//
+// The deployment circuit breaker can only be used for services using the rolling
+// update (ECS) deployment type that are not behind a Classic Load Balancer.
+//
+// The deployment circuit breaker determines whether a service deployment will
+// fail if the service can't reach a steady state. If enabled, a service deployment
+// will transition to a failed state and stop launching new tasks. You can also
+// enable Amazon ECS to roll back your service to the last completed deployment
+// after a failure. For more information, see Rolling update (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html)
+// in the Amazon Elastic Container Service Developer Guide.
+type DeploymentCircuitBreaker struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to enable the deployment circuit breaker logic for the service.
+	//
+	// Enable is a required field
+	Enable *bool `locationName:"enable" type:"boolean" required:"true"`
+
+	// Whether to enable Amazon ECS to roll back the service if a service deployment
+	// fails. If rollback is enabled, when a service deployment fails, the service
+	// is rolled back to the last deployment that completed successfully.
+	//
+	// Rollback is a required field
+	Rollback *bool `locationName:"rollback" type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s DeploymentCircuitBreaker) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeploymentCircuitBreaker) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeploymentCircuitBreaker) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeploymentCircuitBreaker"}
+	if s.Enable == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enable"))
+	}
+	if s.Rollback == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rollback"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnable sets the Enable field's value.
+func (s *DeploymentCircuitBreaker) SetEnable(v bool) *DeploymentCircuitBreaker {
+	s.Enable = &v
+	return s
+}
+
+// SetRollback sets the Rollback field's value.
+func (s *DeploymentCircuitBreaker) SetRollback(v bool) *DeploymentCircuitBreaker {
+	s.Rollback = &v
+	return s
+}
+
 // Optional deployment parameters that control how many tasks run during a deployment
 // and the ordering of stopping and starting tasks.
 type DeploymentConfiguration struct {
 	_ struct{} `type:"structure"`
+
+	//
+	// The deployment circuit breaker can only be used for services using the rolling
+	// update (ECS) deployment type.
+	//
+	// The deployment circuit breaker determines whether a service deployment will
+	// fail if the service can't reach a steady state. If deployment circuit breaker
+	// is enabled, a service deployment will transition to a failed state and stop
+	// launching new tasks. If rollback is enabled, when a service deployment fails,
+	// the service is rolled back to the last deployment that completed successfully.
+	DeploymentCircuitBreaker *DeploymentCircuitBreaker `locationName:"deploymentCircuitBreaker" type:"structure"`
 
 	// If a service is using the rolling update (ECS) deployment type, the maximum
 	// percent parameter represents an upper limit on the number of tasks in a service
@@ -10225,6 +10512,27 @@ func (s DeploymentConfiguration) String() string {
 // GoString returns the string representation
 func (s DeploymentConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeploymentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeploymentConfiguration"}
+	if s.DeploymentCircuitBreaker != nil {
+		if err := s.DeploymentCircuitBreaker.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentCircuitBreaker", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentCircuitBreaker sets the DeploymentCircuitBreaker field's value.
+func (s *DeploymentConfiguration) SetDeploymentCircuitBreaker(v *DeploymentCircuitBreaker) *DeploymentConfiguration {
+	s.DeploymentCircuitBreaker = v
+	return s
 }
 
 // SetMaximumPercent sets the MaximumPercent field's value.
@@ -11584,27 +11892,16 @@ func (s *EnvironmentFile) SetValue(v string) *EnvironmentFile {
 type FSxWindowsFileServerAuthorizationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The authorization credential option to use.
-	//
-	// The authorization credential options can be provided using either the AWS
-	// Secrets Manager ARN or the AWS Systems Manager ARN. The ARNs refer to the
-	// stored credentials.
-	//
-	// options:
-	//
-	//    * ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	//    of an AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager)
-	//    secret.
-	//
-	//    * ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	//    of an AWS Systems Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/integration-ps-secretsmanager.html)
-	//    parameter.
+	// The authorization credential option to use. The authorization credential
+	// options can be provided using either the Amazon Resource Name (ARN) of an
+	// AWS Secrets Manager secret or AWS Systems Manager Parameter Store parameter.
+	// The ARNs refer to the stored credentials.
 	//
 	// CredentialsParameter is a required field
 	CredentialsParameter *string `locationName:"credentialsParameter" type:"string" required:"true"`
 
 	// A fully qualified domain name hosted by an AWS Directory Service (https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html)
-	// Managed Microsoft AD (Active Directory) or self-hosted EC2 AD.
+	// Managed Microsoft AD (Active Directory) or self-hosted AD on Amazon EC2.
 	//
 	// Domain is a required field
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -13751,23 +14048,19 @@ func (s *LogConfiguration) SetSecretOptions(v []*Secret) *LogConfiguration {
 type ManagedScaling struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of Amazon EC2 instances that Amazon ECS will scale out
-	// at one time. The scale in process is not affected by this parameter. If this
-	// parameter is omitted, the default value of 10000 is used.
+	// The period of time, in seconds, after a newly launched Amazon EC2 instance
+	// can contribute to CloudWatch metrics for Auto Scaling group. If this parameter
+	// is omitted, the default value of 300 seconds is used.
+	InstanceWarmupPeriod *int64 `locationName:"instanceWarmupPeriod" type:"integer"`
+
+	// The maximum number of container instances that Amazon ECS will scale in or
+	// scale out at one time. If this parameter is omitted, the default value of
+	// 10000 is used.
 	MaximumScalingStepSize *int64 `locationName:"maximumScalingStepSize" min:"1" type:"integer"`
 
-	// The minimum number of Amazon EC2 instances that Amazon ECS will scale out
-	// at one time. The scale in process is not affected by this parameter If this
-	// parameter is omitted, the default value of 1 is used.
-	//
-	// When additional capacity is required, Amazon ECS will scale up the minimum
-	// scaling step size even if the actual demand is less than the minimum scaling
-	// step size.
-	//
-	// If you use a capacity provider with an Auto Scaling group configured with
-	// more than one Amazon EC2 instance type or Availability Zone, Amazon ECS will
-	// scale up by the exact minimum scaling step size value and will ignore both
-	// the maximum scaling step size as well as the capacity demand.
+	// The minimum number of container instances that Amazon ECS will scale in or
+	// scale out at one time. If this parameter is omitted, the default value of
+	// 1 is used.
 	MinimumScalingStepSize *int64 `locationName:"minimumScalingStepSize" min:"1" type:"integer"`
 
 	// Whether or not to enable managed scaling for the capacity provider.
@@ -13807,6 +14100,12 @@ func (s *ManagedScaling) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInstanceWarmupPeriod sets the InstanceWarmupPeriod field's value.
+func (s *ManagedScaling) SetInstanceWarmupPeriod(v int64) *ManagedScaling {
+	s.InstanceWarmupPeriod = &v
+	return s
 }
 
 // SetMaximumScalingStepSize sets the MaximumScalingStepSize field's value.
@@ -14491,10 +14790,6 @@ func (s *PortMapping) SetProtocol(v string) *PortMapping {
 // are launched from the Amazon ECS-optimized AMI version 20190301 or later,
 // then they contain the required versions of the container agent and ecs-init.
 // For more information, see Amazon ECS-optimized Linux AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
-// in the Amazon Elastic Container Service Developer Guide.
-//
-// For tasks using the Fargate launch type, the task or service requires platform
-// version 1.3.0 or later.
 type ProxyConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -15283,19 +15578,24 @@ type RegisterTaskDefinitionInput struct {
 	Memory *string `locationName:"memory" type:"string"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
-	// values are none, bridge, awsvpc, and host. The default Docker network mode
-	// is bridge. If you are using the Fargate launch type, the awsvpc network mode
-	// is required. If you are using the EC2 launch type, any network mode can be
-	// used. If the network mode is set to none, you cannot specify port mappings
-	// in your container definitions, and the tasks containers do not have external
-	// connectivity. The host and awsvpc network modes offer the highest networking
-	// performance for containers because they use the EC2 network stack instead
-	// of the virtualized network stack provided by the bridge mode.
+	// values are none, bridge, awsvpc, and host. If no network mode is specified,
+	// the default is bridge.
+	//
+	// For Amazon ECS tasks on Fargate, the awsvpc network mode is required. For
+	// Amazon ECS tasks on Amazon EC2 instances, any network mode can be used. If
+	// the network mode is set to none, you cannot specify port mappings in your
+	// container definitions, and the tasks containers do not have external connectivity.
+	// The host and awsvpc network modes offer the highest networking performance
+	// for containers because they use the EC2 network stack instead of the virtualized
+	// network stack provided by the bridge mode.
 	//
 	// With the host and awsvpc network modes, exposed container ports are mapped
 	// directly to the corresponding host port (for the host network mode) or the
 	// attached elastic network interface port (for the awsvpc network mode), so
 	// you cannot take advantage of dynamic host port mappings.
+	//
+	// When using the host network mode, you should not run containers using the
+	// root user (UID 0). It is considered best practice to use a non-root user.
 	//
 	// If the network mode is awsvpc, the task is allocated an elastic network interface,
 	// and you must specify a NetworkConfiguration value when you create a service
@@ -15349,10 +15649,6 @@ type RegisterTaskDefinitionInput struct {
 	// are launched from the Amazon ECS-optimized AMI version 20190301 or later,
 	// then they contain the required versions of the container agent and ecs-init.
 	// For more information, see Amazon ECS-optimized Linux AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
-	// in the Amazon Elastic Container Service Developer Guide.
-	//
-	// For tasks using the Fargate launch type, the task or service requires platform
-	// version 1.3.0 or later.
 	ProxyConfiguration *ProxyConfiguration `locationName:"proxyConfiguration" type:"structure"`
 
 	// The task launch type that Amazon ECS should validate the task definition
@@ -18468,19 +18764,24 @@ type TaskDefinition struct {
 	Memory *string `locationName:"memory" type:"string"`
 
 	// The Docker networking mode to use for the containers in the task. The valid
-	// values are none, bridge, awsvpc, and host. The default Docker network mode
-	// is bridge. If you are using the Fargate launch type, the awsvpc network mode
-	// is required. If you are using the EC2 launch type, any network mode can be
-	// used. If the network mode is set to none, you cannot specify port mappings
-	// in your container definitions, and the tasks containers do not have external
-	// connectivity. The host and awsvpc network modes offer the highest networking
-	// performance for containers because they use the EC2 network stack instead
-	// of the virtualized network stack provided by the bridge mode.
+	// values are none, bridge, awsvpc, and host. If no network mode is specified,
+	// the default is bridge.
+	//
+	// For Amazon ECS tasks on Fargate, the awsvpc network mode is required. For
+	// Amazon ECS tasks on Amazon EC2 instances, any network mode can be used. If
+	// the network mode is set to none, you cannot specify port mappings in your
+	// container definitions, and the tasks containers do not have external connectivity.
+	// The host and awsvpc network modes offer the highest networking performance
+	// for containers because they use the EC2 network stack instead of the virtualized
+	// network stack provided by the bridge mode.
 	//
 	// With the host and awsvpc network modes, exposed container ports are mapped
 	// directly to the corresponding host port (for the host network mode) or the
 	// attached elastic network interface port (for the awsvpc network mode), so
 	// you cannot take advantage of dynamic host port mappings.
+	//
+	// When using the host network mode, you should not run containers using the
+	// root user (UID 0). It is considered best practice to use a non-root user.
 	//
 	// If the network mode is awsvpc, the task is allocated an elastic network interface,
 	// and you must specify a NetworkConfiguration value when you create a service
@@ -19459,6 +19760,87 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateCapacityProviderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the capacity provider to update.
+	//
+	// AutoScalingGroupProvider is a required field
+	AutoScalingGroupProvider *AutoScalingGroupProviderUpdate `locationName:"autoScalingGroupProvider" type:"structure" required:"true"`
+
+	// An object representing the parameters to update for the Auto Scaling group
+	// capacity provider.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateCapacityProviderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCapacityProviderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCapacityProviderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCapacityProviderInput"}
+	if s.AutoScalingGroupProvider == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoScalingGroupProvider"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.AutoScalingGroupProvider != nil {
+		if err := s.AutoScalingGroupProvider.Validate(); err != nil {
+			invalidParams.AddNested("AutoScalingGroupProvider", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoScalingGroupProvider sets the AutoScalingGroupProvider field's value.
+func (s *UpdateCapacityProviderInput) SetAutoScalingGroupProvider(v *AutoScalingGroupProviderUpdate) *UpdateCapacityProviderInput {
+	s.AutoScalingGroupProvider = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCapacityProviderInput) SetName(v string) *UpdateCapacityProviderInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateCapacityProviderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of a capacity provider.
+	CapacityProvider *CapacityProvider `locationName:"capacityProvider" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateCapacityProviderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCapacityProviderOutput) GoString() string {
+	return s.String()
+}
+
+// SetCapacityProvider sets the CapacityProvider field's value.
+func (s *UpdateCapacityProviderOutput) SetCapacityProvider(v *CapacityProvider) *UpdateCapacityProviderOutput {
+	s.CapacityProvider = v
+	return s
+}
+
 type UpdateClusterSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19900,6 +20282,11 @@ func (s *UpdateServiceInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CapacityProviderStrategy", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.DeploymentConfiguration != nil {
+		if err := s.DeploymentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.NetworkConfiguration != nil {
@@ -20481,6 +20868,15 @@ const (
 
 	// CapacityProviderUpdateStatusDeleteFailed is a CapacityProviderUpdateStatus enum value
 	CapacityProviderUpdateStatusDeleteFailed = "DELETE_FAILED"
+
+	// CapacityProviderUpdateStatusUpdateInProgress is a CapacityProviderUpdateStatus enum value
+	CapacityProviderUpdateStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// CapacityProviderUpdateStatusUpdateComplete is a CapacityProviderUpdateStatus enum value
+	CapacityProviderUpdateStatusUpdateComplete = "UPDATE_COMPLETE"
+
+	// CapacityProviderUpdateStatusUpdateFailed is a CapacityProviderUpdateStatus enum value
+	CapacityProviderUpdateStatusUpdateFailed = "UPDATE_FAILED"
 )
 
 // CapacityProviderUpdateStatus_Values returns all elements of the CapacityProviderUpdateStatus enum
@@ -20489,6 +20885,9 @@ func CapacityProviderUpdateStatus_Values() []string {
 		CapacityProviderUpdateStatusDeleteInProgress,
 		CapacityProviderUpdateStatusDeleteComplete,
 		CapacityProviderUpdateStatusDeleteFailed,
+		CapacityProviderUpdateStatusUpdateInProgress,
+		CapacityProviderUpdateStatusUpdateComplete,
+		CapacityProviderUpdateStatusUpdateFailed,
 	}
 }
 
@@ -20641,6 +21040,26 @@ func DeploymentControllerType_Values() []string {
 		DeploymentControllerTypeEcs,
 		DeploymentControllerTypeCodeDeploy,
 		DeploymentControllerTypeExternal,
+	}
+}
+
+const (
+	// DeploymentRolloutStateCompleted is a DeploymentRolloutState enum value
+	DeploymentRolloutStateCompleted = "COMPLETED"
+
+	// DeploymentRolloutStateFailed is a DeploymentRolloutState enum value
+	DeploymentRolloutStateFailed = "FAILED"
+
+	// DeploymentRolloutStateInProgress is a DeploymentRolloutState enum value
+	DeploymentRolloutStateInProgress = "IN_PROGRESS"
+)
+
+// DeploymentRolloutState_Values returns all elements of the DeploymentRolloutState enum
+func DeploymentRolloutState_Values() []string {
+	return []string{
+		DeploymentRolloutStateCompleted,
+		DeploymentRolloutStateFailed,
+		DeploymentRolloutStateInProgress,
 	}
 }
 

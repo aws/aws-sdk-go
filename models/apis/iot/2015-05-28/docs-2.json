@@ -3055,6 +3055,12 @@
         "OTAUpdateFile$fileName": "<p>The name of the file.</p>"
       }
     },
+    "FileType": {
+      "base": null,
+      "refs": {
+        "OTAUpdateFile$fileType": "<p>An integer value you can include in the job document to allow your devices to identify the type of file received from the cloud.</p>"
+      }
+    },
     "FindingId": {
       "base": null,
       "refs": {

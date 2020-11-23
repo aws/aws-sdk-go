@@ -295,6 +295,12 @@ func ExampleLambda_CreateFunction_shared00() {
 				fmt.Println(lambda.ErrCodeTooManyRequestsException, aerr.Error())
 			case lambda.ErrCodeCodeStorageExceededException:
 				fmt.Println(lambda.ErrCodeCodeStorageExceededException, aerr.Error())
+			case lambda.ErrCodeCodeVerificationFailedException:
+				fmt.Println(lambda.ErrCodeCodeVerificationFailedException, aerr.Error())
+			case lambda.ErrCodeInvalidCodeSignatureException:
+				fmt.Println(lambda.ErrCodeInvalidCodeSignatureException, aerr.Error())
+			case lambda.ErrCodeCodeSigningConfigNotFoundException:
+				fmt.Println(lambda.ErrCodeCodeSigningConfigNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2009,6 +2015,12 @@ func ExampleLambda_UpdateFunctionCode_shared00() {
 				fmt.Println(lambda.ErrCodePreconditionFailedException, aerr.Error())
 			case lambda.ErrCodeResourceConflictException:
 				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
+			case lambda.ErrCodeCodeVerificationFailedException:
+				fmt.Println(lambda.ErrCodeCodeVerificationFailedException, aerr.Error())
+			case lambda.ErrCodeInvalidCodeSignatureException:
+				fmt.Println(lambda.ErrCodeInvalidCodeSignatureException, aerr.Error())
+			case lambda.ErrCodeCodeSigningConfigNotFoundException:
+				fmt.Println(lambda.ErrCodeCodeSigningConfigNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -2050,6 +2062,12 @@ func ExampleLambda_UpdateFunctionConfiguration_shared00() {
 				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
 			case lambda.ErrCodePreconditionFailedException:
 				fmt.Println(lambda.ErrCodePreconditionFailedException, aerr.Error())
+			case lambda.ErrCodeCodeVerificationFailedException:
+				fmt.Println(lambda.ErrCodeCodeVerificationFailedException, aerr.Error())
+			case lambda.ErrCodeInvalidCodeSignatureException:
+				fmt.Println(lambda.ErrCodeInvalidCodeSignatureException, aerr.Error())
+			case lambda.ErrCodeCodeSigningConfigNotFoundException:
+				fmt.Println(lambda.ErrCodeCodeSigningConfigNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -3792,7 +3792,8 @@ type ClusterInfo struct {
 	// Settings for open monitoring using Prometheus.
 	OpenMonitoring *OpenMonitoring `locationName:"openMonitoring" type:"structure"`
 
-	// The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.
+	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
+	// FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 
 	// Tags attached to the cluster.
@@ -4558,7 +4559,8 @@ type CreateClusterOutput struct {
 	// The name of the MSK cluster.
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
-	// The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.
+	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
+	// FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 }
 
@@ -4778,7 +4780,8 @@ type DeleteClusterOutput struct {
 	// The Amazon Resource Name (ARN) of the cluster.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
-	// The state of the cluster. The possible states are CREATING, ACTIVE, and FAILED.
+	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
+	// FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 }
 
@@ -8356,14 +8359,20 @@ const (
 	// ClusterStateCreating is a ClusterState enum value
 	ClusterStateCreating = "CREATING"
 
-	// ClusterStateUpdating is a ClusterState enum value
-	ClusterStateUpdating = "UPDATING"
-
 	// ClusterStateDeleting is a ClusterState enum value
 	ClusterStateDeleting = "DELETING"
 
 	// ClusterStateFailed is a ClusterState enum value
 	ClusterStateFailed = "FAILED"
+
+	// ClusterStateMaintenance is a ClusterState enum value
+	ClusterStateMaintenance = "MAINTENANCE"
+
+	// ClusterStateRebootingBroker is a ClusterState enum value
+	ClusterStateRebootingBroker = "REBOOTING_BROKER"
+
+	// ClusterStateUpdating is a ClusterState enum value
+	ClusterStateUpdating = "UPDATING"
 )
 
 // ClusterState_Values returns all elements of the ClusterState enum
@@ -8371,9 +8380,11 @@ func ClusterState_Values() []string {
 	return []string{
 		ClusterStateActive,
 		ClusterStateCreating,
-		ClusterStateUpdating,
 		ClusterStateDeleting,
 		ClusterStateFailed,
+		ClusterStateMaintenance,
+		ClusterStateRebootingBroker,
+		ClusterStateUpdating,
 	}
 }
 

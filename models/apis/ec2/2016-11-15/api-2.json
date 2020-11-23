@@ -23649,6 +23649,22 @@
         "Role"
       ]
     },
+    "PrivateDnsDetails":{
+      "type":"structure",
+      "members":{
+        "PrivateDnsName":{
+          "shape":"String",
+          "locationName":"privateDnsName"
+        }
+      }
+    },
+    "PrivateDnsDetailsSet":{
+      "type":"list",
+      "member":{
+        "shape":"PrivateDnsDetails",
+        "locationName":"item"
+      }
+    },
     "PrivateDnsNameConfiguration":{
       "type":"structure",
       "members":{
@@ -26843,6 +26859,10 @@
         "PrivateDnsName":{
           "shape":"String",
           "locationName":"privateDnsName"
+        },
+        "PrivateDnsNames":{
+          "shape":"PrivateDnsDetailsSet",
+          "locationName":"privateDnsNameSet"
         },
         "VpcEndpointPolicySupported":{
           "shape":"Boolean",

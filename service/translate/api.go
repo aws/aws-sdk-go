@@ -13,6 +13,199 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opCreateParallelData = "CreateParallelData"
+
+// CreateParallelDataRequest generates a "aws/request.Request" representing the
+// client's request for the CreateParallelData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateParallelData for more information on using the CreateParallelData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateParallelDataRequest method.
+//    req, resp := client.CreateParallelDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/CreateParallelData
+func (c *Translate) CreateParallelDataRequest(input *CreateParallelDataInput) (req *request.Request, output *CreateParallelDataOutput) {
+	op := &request.Operation{
+		Name:       opCreateParallelData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateParallelDataInput{}
+	}
+
+	output = &CreateParallelDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateParallelData API operation for Amazon Translate.
+//
+// Creates a parallel data resource in Amazon Translate by importing an input
+// file from Amazon S3. Parallel data files contain examples of source phrases
+// and their translations from your translation memory. By adding parallel data,
+// you can influence the style, tone, and word choice in your translation output.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation CreateParallelData for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   The value of the parameter is invalid. Review the value of the parameter
+//   you are using to correct it, and then retry your operation.
+//
+//   * InvalidRequestException
+//   The request that you made is invalid. Check your request to determine why
+//   it's invalid and then retry the request.
+//
+//   * LimitExceededException
+//   The specified limit has been exceeded. Review your request and retry it with
+//   a quantity below the stated limit.
+//
+//   * TooManyRequestsException
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again.
+//
+//   * ConflictException
+//   There was a conflict processing the request. Try your request again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/CreateParallelData
+func (c *Translate) CreateParallelData(input *CreateParallelDataInput) (*CreateParallelDataOutput, error) {
+	req, out := c.CreateParallelDataRequest(input)
+	return out, req.Send()
+}
+
+// CreateParallelDataWithContext is the same as CreateParallelData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateParallelData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) CreateParallelDataWithContext(ctx aws.Context, input *CreateParallelDataInput, opts ...request.Option) (*CreateParallelDataOutput, error) {
+	req, out := c.CreateParallelDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteParallelData = "DeleteParallelData"
+
+// DeleteParallelDataRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteParallelData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteParallelData for more information on using the DeleteParallelData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteParallelDataRequest method.
+//    req, resp := client.DeleteParallelDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/DeleteParallelData
+func (c *Translate) DeleteParallelDataRequest(input *DeleteParallelDataInput) (req *request.Request, output *DeleteParallelDataOutput) {
+	op := &request.Operation{
+		Name:       opDeleteParallelData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteParallelDataInput{}
+	}
+
+	output = &DeleteParallelDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteParallelData API operation for Amazon Translate.
+//
+// Deletes a parallel data resource in Amazon Translate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation DeleteParallelData for usage and error information.
+//
+// Returned Error Types:
+//   * ConcurrentModificationException
+//   Another modification is being made. That modification must complete before
+//   you can make your change.
+//
+//   * ResourceNotFoundException
+//   The resource you are looking for has not been found. Review the resource
+//   you're looking for and see if a different resource will accomplish your needs
+//   before retrying the revised request.
+//
+//   * TooManyRequestsException
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/DeleteParallelData
+func (c *Translate) DeleteParallelData(input *DeleteParallelDataInput) (*DeleteParallelDataOutput, error) {
+	req, out := c.DeleteParallelDataRequest(input)
+	return out, req.Send()
+}
+
+// DeleteParallelDataWithContext is the same as DeleteParallelData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteParallelData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) DeleteParallelDataWithContext(ctx aws.Context, input *DeleteParallelDataInput, opts ...request.Option) (*DeleteParallelDataOutput, error) {
+	req, out := c.DeleteParallelDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteTerminology = "DeleteTerminology"
 
 // DeleteTerminologyRequest generates a "aws/request.Request" representing the
@@ -191,6 +384,98 @@ func (c *Translate) DescribeTextTranslationJob(input *DescribeTextTranslationJob
 // for more information on using Contexts.
 func (c *Translate) DescribeTextTranslationJobWithContext(ctx aws.Context, input *DescribeTextTranslationJobInput, opts ...request.Option) (*DescribeTextTranslationJobOutput, error) {
 	req, out := c.DescribeTextTranslationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetParallelData = "GetParallelData"
+
+// GetParallelDataRequest generates a "aws/request.Request" representing the
+// client's request for the GetParallelData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetParallelData for more information on using the GetParallelData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetParallelDataRequest method.
+//    req, resp := client.GetParallelDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/GetParallelData
+func (c *Translate) GetParallelDataRequest(input *GetParallelDataInput) (req *request.Request, output *GetParallelDataOutput) {
+	op := &request.Operation{
+		Name:       opGetParallelData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetParallelDataInput{}
+	}
+
+	output = &GetParallelDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetParallelData API operation for Amazon Translate.
+//
+// Provides information about a parallel data resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation GetParallelData for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource you are looking for has not been found. Review the resource
+//   you're looking for and see if a different resource will accomplish your needs
+//   before retrying the revised request.
+//
+//   * InvalidParameterValueException
+//   The value of the parameter is invalid. Review the value of the parameter
+//   you are using to correct it, and then retry your operation.
+//
+//   * TooManyRequestsException
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/GetParallelData
+func (c *Translate) GetParallelData(input *GetParallelDataInput) (*GetParallelDataOutput, error) {
+	req, out := c.GetParallelDataRequest(input)
+	return out, req.Send()
+}
+
+// GetParallelDataWithContext is the same as GetParallelData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetParallelData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) GetParallelDataWithContext(ctx aws.Context, input *GetParallelDataInput, opts ...request.Option) (*GetParallelDataOutput, error) {
+	req, out := c.GetParallelDataRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -386,6 +671,151 @@ func (c *Translate) ImportTerminologyWithContext(ctx aws.Context, input *ImportT
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListParallelData = "ListParallelData"
+
+// ListParallelDataRequest generates a "aws/request.Request" representing the
+// client's request for the ListParallelData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListParallelData for more information on using the ListParallelData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListParallelDataRequest method.
+//    req, resp := client.ListParallelDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ListParallelData
+func (c *Translate) ListParallelDataRequest(input *ListParallelDataInput) (req *request.Request, output *ListParallelDataOutput) {
+	op := &request.Operation{
+		Name:       opListParallelData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListParallelDataInput{}
+	}
+
+	output = &ListParallelDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListParallelData API operation for Amazon Translate.
+//
+// Provides a list of your parallel data resources in Amazon Translate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation ListParallelData for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   The value of the parameter is invalid. Review the value of the parameter
+//   you are using to correct it, and then retry your operation.
+//
+//   * TooManyRequestsException
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/ListParallelData
+func (c *Translate) ListParallelData(input *ListParallelDataInput) (*ListParallelDataOutput, error) {
+	req, out := c.ListParallelDataRequest(input)
+	return out, req.Send()
+}
+
+// ListParallelDataWithContext is the same as ListParallelData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListParallelData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) ListParallelDataWithContext(ctx aws.Context, input *ListParallelDataInput, opts ...request.Option) (*ListParallelDataOutput, error) {
+	req, out := c.ListParallelDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListParallelDataPages iterates over the pages of a ListParallelData operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListParallelData method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListParallelData operation.
+//    pageNum := 0
+//    err := client.ListParallelDataPages(params,
+//        func(page *translate.ListParallelDataOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Translate) ListParallelDataPages(input *ListParallelDataInput, fn func(*ListParallelDataOutput, bool) bool) error {
+	return c.ListParallelDataPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListParallelDataPagesWithContext same as ListParallelDataPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) ListParallelDataPagesWithContext(ctx aws.Context, input *ListParallelDataInput, fn func(*ListParallelDataOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListParallelDataInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListParallelDataRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListParallelDataOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTerminologies = "ListTerminologies"
@@ -995,6 +1425,114 @@ func (c *Translate) TextWithContext(ctx aws.Context, input *TextInput, opts ...r
 	return out, req.Send()
 }
 
+const opUpdateParallelData = "UpdateParallelData"
+
+// UpdateParallelDataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateParallelData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateParallelData for more information on using the UpdateParallelData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateParallelDataRequest method.
+//    req, resp := client.UpdateParallelDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/UpdateParallelData
+func (c *Translate) UpdateParallelDataRequest(input *UpdateParallelDataInput) (req *request.Request, output *UpdateParallelDataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateParallelData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateParallelDataInput{}
+	}
+
+	output = &UpdateParallelDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateParallelData API operation for Amazon Translate.
+//
+// Updates a previously created parallel data resource by importing a new input
+// file from Amazon S3.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Translate's
+// API operation UpdateParallelData for usage and error information.
+//
+// Returned Error Types:
+//   * ConcurrentModificationException
+//   Another modification is being made. That modification must complete before
+//   you can make your change.
+//
+//   * InvalidParameterValueException
+//   The value of the parameter is invalid. Review the value of the parameter
+//   you are using to correct it, and then retry your operation.
+//
+//   * InvalidRequestException
+//   The request that you made is invalid. Check your request to determine why
+//   it's invalid and then retry the request.
+//
+//   * LimitExceededException
+//   The specified limit has been exceeded. Review your request and retry it with
+//   a quantity below the stated limit.
+//
+//   * TooManyRequestsException
+//   You have made too many requests within a short period of time. Wait for a
+//   short time and then try your request again.
+//
+//   * ConflictException
+//   There was a conflict processing the request. Try your request again.
+//
+//   * ResourceNotFoundException
+//   The resource you are looking for has not been found. Review the resource
+//   you're looking for and see if a different resource will accomplish your needs
+//   before retrying the revised request.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/translate-2017-07-01/UpdateParallelData
+func (c *Translate) UpdateParallelData(input *UpdateParallelDataInput) (*UpdateParallelDataOutput, error) {
+	req, out := c.UpdateParallelDataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateParallelDataWithContext is the same as UpdateParallelData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateParallelData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Translate) UpdateParallelDataWithContext(ctx aws.Context, input *UpdateParallelDataInput, opts ...request.Option) (*UpdateParallelDataOutput, error) {
+	req, out := c.UpdateParallelDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // The custom terminology applied to the input text by Amazon Translate for
 // the translated text response. This is optional in the response and will only
 // be present if you specified terminology input in the request. Currently,
@@ -1032,6 +1570,322 @@ func (s *AppliedTerminology) SetName(v string) *AppliedTerminology {
 // SetTerms sets the Terms field's value.
 func (s *AppliedTerminology) SetTerms(v []*Term) *AppliedTerminology {
 	s.Terms = v
+	return s
+}
+
+// Another modification is being made. That modification must complete before
+// you can make your change.
+type ConcurrentModificationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConcurrentModificationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConcurrentModificationException) GoString() string {
+	return s.String()
+}
+
+func newErrorConcurrentModificationException(v protocol.ResponseMetadata) error {
+	return &ConcurrentModificationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConcurrentModificationException) Code() string {
+	return "ConcurrentModificationException"
+}
+
+// Message returns the exception's message.
+func (s *ConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConcurrentModificationException) OrigErr() error {
+	return nil
+}
+
+func (s *ConcurrentModificationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConcurrentModificationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConcurrentModificationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// There was a conflict processing the request. Try your request again.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type CreateParallelDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. This token is automatically generated
+	// when you use Amazon Translate through an AWS SDK.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A custom description for the parallel data resource in Amazon Translate.
+	Description *string `type:"string"`
+
+	// The encryption key used to encrypt this object.
+	EncryptionKey *EncryptionKey `type:"structure"`
+
+	// A custom name for the parallel data resource in Amazon Translate. You must
+	// assign a name that is unique in the account and region.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the format and S3 location of the parallel data input file.
+	//
+	// ParallelDataConfig is a required field
+	ParallelDataConfig *ParallelDataConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateParallelDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateParallelDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateParallelDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateParallelDataInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ParallelDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParallelDataConfig"))
+	}
+	if s.EncryptionKey != nil {
+		if err := s.EncryptionKey.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionKey", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ParallelDataConfig != nil {
+		if err := s.ParallelDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("ParallelDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateParallelDataInput) SetClientToken(v string) *CreateParallelDataInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateParallelDataInput) SetDescription(v string) *CreateParallelDataInput {
+	s.Description = &v
+	return s
+}
+
+// SetEncryptionKey sets the EncryptionKey field's value.
+func (s *CreateParallelDataInput) SetEncryptionKey(v *EncryptionKey) *CreateParallelDataInput {
+	s.EncryptionKey = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateParallelDataInput) SetName(v string) *CreateParallelDataInput {
+	s.Name = &v
+	return s
+}
+
+// SetParallelDataConfig sets the ParallelDataConfig field's value.
+func (s *CreateParallelDataInput) SetParallelDataConfig(v *ParallelDataConfig) *CreateParallelDataInput {
+	s.ParallelDataConfig = v
+	return s
+}
+
+type CreateParallelDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The custom name that you assigned to the parallel data resource.
+	Name *string `min:"1" type:"string"`
+
+	// The status of the parallel data resource. When the resource is ready for
+	// you to use, the status is ACTIVE.
+	Status *string `type:"string" enum:"ParallelDataStatus"`
+}
+
+// String returns the string representation
+func (s CreateParallelDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateParallelDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *CreateParallelDataOutput) SetName(v string) *CreateParallelDataOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateParallelDataOutput) SetStatus(v string) *CreateParallelDataOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteParallelDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the parallel data resource that is being deleted.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteParallelDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteParallelDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteParallelDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteParallelDataInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteParallelDataInput) SetName(v string) *DeleteParallelDataInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteParallelDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the parallel data resource that is being deleted.
+	Name *string `min:"1" type:"string"`
+
+	// The status of the parallel data deletion.
+	Status *string `type:"string" enum:"ParallelDataStatus"`
+}
+
+// String returns the string representation
+func (s DeleteParallelDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteParallelDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteParallelDataOutput) SetName(v string) *DeleteParallelDataOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteParallelDataOutput) SetStatus(v string) *DeleteParallelDataOutput {
+	s.Status = &v
 	return s
 }
 
@@ -1219,8 +2073,7 @@ func (s *DetectedLanguageLowConfidenceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The encryption key used to encrypt the custom terminologies used by Amazon
-// Translate.
+// The encryption key used to encrypt this object.
 type EncryptionKey struct {
 	_ struct{} `type:"structure"`
 
@@ -1274,6 +2127,105 @@ func (s *EncryptionKey) SetId(v string) *EncryptionKey {
 // SetType sets the Type field's value.
 func (s *EncryptionKey) SetType(v string) *EncryptionKey {
 	s.Type = &v
+	return s
+}
+
+type GetParallelDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the parallel data resource that is being retrieved.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetParallelDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetParallelDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetParallelDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetParallelDataInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetParallelDataInput) SetName(v string) *GetParallelDataInput {
+	s.Name = &v
+	return s
+}
+
+type GetParallelDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location of a file that provides any errors or warnings that
+	// were produced by your input file. This file was created when Amazon Translate
+	// attempted to create a parallel data resource. The location is returned as
+	// a presigned URL to that has a 30 minute expiration.
+	AuxiliaryDataLocation *ParallelDataDataLocation `type:"structure"`
+
+	// The location of the most recent parallel data input file that was successfully
+	// imported into Amazon Translate. The location is returned as a presigned URL
+	// that has a 30 minute expiration.
+	DataLocation *ParallelDataDataLocation `type:"structure"`
+
+	// The Amazon S3 location of a file that provides any errors or warnings that
+	// were produced by your input file. This file was created when Amazon Translate
+	// attempted to update a parallel data resource. The location is returned as
+	// a presigned URL to that has a 30 minute expiration.
+	LatestUpdateAttemptAuxiliaryDataLocation *ParallelDataDataLocation `type:"structure"`
+
+	// The properties of the parallel data resource that is being retrieved.
+	ParallelDataProperties *ParallelDataProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetParallelDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetParallelDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuxiliaryDataLocation sets the AuxiliaryDataLocation field's value.
+func (s *GetParallelDataOutput) SetAuxiliaryDataLocation(v *ParallelDataDataLocation) *GetParallelDataOutput {
+	s.AuxiliaryDataLocation = v
+	return s
+}
+
+// SetDataLocation sets the DataLocation field's value.
+func (s *GetParallelDataOutput) SetDataLocation(v *ParallelDataDataLocation) *GetParallelDataOutput {
+	s.DataLocation = v
+	return s
+}
+
+// SetLatestUpdateAttemptAuxiliaryDataLocation sets the LatestUpdateAttemptAuxiliaryDataLocation field's value.
+func (s *GetParallelDataOutput) SetLatestUpdateAttemptAuxiliaryDataLocation(v *ParallelDataDataLocation) *GetParallelDataOutput {
+	s.LatestUpdateAttemptAuxiliaryDataLocation = v
+	return s
+}
+
+// SetParallelDataProperties sets the ParallelDataProperties field's value.
+func (s *GetParallelDataOutput) SetParallelDataProperties(v *ParallelDataProperties) *GetParallelDataOutput {
+	s.ParallelDataProperties = v
 	return s
 }
 
@@ -1892,6 +2844,85 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListParallelDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of parallel data resources returned for each request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string that specifies the next page of results to return in a paginated
+	// response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListParallelDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListParallelDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListParallelDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListParallelDataInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListParallelDataInput) SetMaxResults(v int64) *ListParallelDataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListParallelDataInput) SetNextToken(v string) *ListParallelDataInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListParallelDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The string to use in a subsequent request to get the next page of results
+	// in a paginated response. This value is null if there are no additional pages.
+	NextToken *string `type:"string"`
+
+	// The properties of the parallel data resources returned by this request.
+	ParallelDataPropertiesList []*ParallelDataProperties `type:"list"`
+}
+
+// String returns the string representation
+func (s ListParallelDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListParallelDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListParallelDataOutput) SetNextToken(v string) *ListParallelDataOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetParallelDataPropertiesList sets the ParallelDataPropertiesList field's value.
+func (s *ListParallelDataOutput) SetParallelDataPropertiesList(v []*ParallelDataProperties) *ListParallelDataOutput {
+	s.ParallelDataPropertiesList = v
+	return s
+}
+
 type ListTerminologiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2106,6 +3137,277 @@ func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
 	return s
 }
 
+// Specifies the format and S3 location of the parallel data input file.
+type ParallelDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the parallel data input file.
+	//
+	// Format is a required field
+	Format *string `type:"string" required:"true" enum:"ParallelDataFormat"`
+
+	// The URI of the Amazon S3 folder that contains the parallel data input file.
+	// The folder must be in the same Region as the API endpoint you are calling.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ParallelDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ParallelDataConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParallelDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParallelDataConfig"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *ParallelDataConfig) SetFormat(v string) *ParallelDataConfig {
+	s.Format = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *ParallelDataConfig) SetS3Uri(v string) *ParallelDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// The location of the most recent parallel data input file that was successfully
+// imported into Amazon Translate.
+type ParallelDataDataLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location of the parallel data input file. The location is returned
+	// as a presigned URL to that has a 30 minute expiration.
+	//
+	// Location is a required field
+	Location *string `type:"string" required:"true"`
+
+	// Describes the repository that contains the parallel data input file.
+	//
+	// RepositoryType is a required field
+	RepositoryType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ParallelDataDataLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ParallelDataDataLocation) GoString() string {
+	return s.String()
+}
+
+// SetLocation sets the Location field's value.
+func (s *ParallelDataDataLocation) SetLocation(v string) *ParallelDataDataLocation {
+	s.Location = &v
+	return s
+}
+
+// SetRepositoryType sets the RepositoryType field's value.
+func (s *ParallelDataDataLocation) SetRepositoryType(v string) *ParallelDataDataLocation {
+	s.RepositoryType = &v
+	return s
+}
+
+// The properties of a parallel data resource.
+type ParallelDataProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the parallel data resource.
+	Arn *string `min:"1" type:"string"`
+
+	// The time at which the parallel data resource was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description assigned to the parallel data resource.
+	Description *string `type:"string"`
+
+	// The encryption key used to encrypt this object.
+	EncryptionKey *EncryptionKey `type:"structure"`
+
+	// The number of records unsuccessfully imported from the parallel data input
+	// file.
+	FailedRecordCount *int64 `type:"long"`
+
+	// The number of UTF-8 characters that Amazon Translate imported from the parallel
+	// data input file. This number includes only the characters in your translation
+	// examples. It does not include characters that are used to format your file.
+	// For example, if you provided a Translation Memory Exchange (.tmx) file, this
+	// number does not include the tags.
+	ImportedDataSize *int64 `type:"long"`
+
+	// The number of records successfully imported from the parallel data input
+	// file.
+	ImportedRecordCount *int64 `type:"long"`
+
+	// The time at which the parallel data resource was last updated.
+	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The time that the most recent update was attempted.
+	LatestUpdateAttemptAt *time.Time `type:"timestamp"`
+
+	// The status of the most recent update attempt for the parallel data resource.
+	LatestUpdateAttemptStatus *string `type:"string" enum:"ParallelDataStatus"`
+
+	// Additional information from Amazon Translate about the parallel data resource.
+	Message *string `type:"string"`
+
+	// The custom name assigned to the parallel data resource.
+	Name *string `min:"1" type:"string"`
+
+	// Specifies the format and S3 location of the parallel data input file.
+	ParallelDataConfig *ParallelDataConfig `type:"structure"`
+
+	// The number of items in the input file that Amazon Translate skipped when
+	// you created or updated the parallel data resource. For example, Amazon Translate
+	// skips empty records, empty target texts, and empty lines.
+	SkippedRecordCount *int64 `type:"long"`
+
+	// The source language of the translations in the parallel data file.
+	SourceLanguageCode *string `min:"2" type:"string"`
+
+	// The status of the parallel data resource. When the parallel data is ready
+	// for you to use, the status is ACTIVE.
+	Status *string `type:"string" enum:"ParallelDataStatus"`
+
+	// The language codes for the target languages available in the parallel data
+	// file. All possible target languages are returned as an array.
+	TargetLanguageCodes []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ParallelDataProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ParallelDataProperties) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ParallelDataProperties) SetArn(v string) *ParallelDataProperties {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ParallelDataProperties) SetCreatedAt(v time.Time) *ParallelDataProperties {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ParallelDataProperties) SetDescription(v string) *ParallelDataProperties {
+	s.Description = &v
+	return s
+}
+
+// SetEncryptionKey sets the EncryptionKey field's value.
+func (s *ParallelDataProperties) SetEncryptionKey(v *EncryptionKey) *ParallelDataProperties {
+	s.EncryptionKey = v
+	return s
+}
+
+// SetFailedRecordCount sets the FailedRecordCount field's value.
+func (s *ParallelDataProperties) SetFailedRecordCount(v int64) *ParallelDataProperties {
+	s.FailedRecordCount = &v
+	return s
+}
+
+// SetImportedDataSize sets the ImportedDataSize field's value.
+func (s *ParallelDataProperties) SetImportedDataSize(v int64) *ParallelDataProperties {
+	s.ImportedDataSize = &v
+	return s
+}
+
+// SetImportedRecordCount sets the ImportedRecordCount field's value.
+func (s *ParallelDataProperties) SetImportedRecordCount(v int64) *ParallelDataProperties {
+	s.ImportedRecordCount = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *ParallelDataProperties) SetLastUpdatedAt(v time.Time) *ParallelDataProperties {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetLatestUpdateAttemptAt sets the LatestUpdateAttemptAt field's value.
+func (s *ParallelDataProperties) SetLatestUpdateAttemptAt(v time.Time) *ParallelDataProperties {
+	s.LatestUpdateAttemptAt = &v
+	return s
+}
+
+// SetLatestUpdateAttemptStatus sets the LatestUpdateAttemptStatus field's value.
+func (s *ParallelDataProperties) SetLatestUpdateAttemptStatus(v string) *ParallelDataProperties {
+	s.LatestUpdateAttemptStatus = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ParallelDataProperties) SetMessage(v string) *ParallelDataProperties {
+	s.Message = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ParallelDataProperties) SetName(v string) *ParallelDataProperties {
+	s.Name = &v
+	return s
+}
+
+// SetParallelDataConfig sets the ParallelDataConfig field's value.
+func (s *ParallelDataProperties) SetParallelDataConfig(v *ParallelDataConfig) *ParallelDataProperties {
+	s.ParallelDataConfig = v
+	return s
+}
+
+// SetSkippedRecordCount sets the SkippedRecordCount field's value.
+func (s *ParallelDataProperties) SetSkippedRecordCount(v int64) *ParallelDataProperties {
+	s.SkippedRecordCount = &v
+	return s
+}
+
+// SetSourceLanguageCode sets the SourceLanguageCode field's value.
+func (s *ParallelDataProperties) SetSourceLanguageCode(v string) *ParallelDataProperties {
+	s.SourceLanguageCode = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ParallelDataProperties) SetStatus(v string) *ParallelDataProperties {
+	s.Status = &v
+	return s
+}
+
+// SetTargetLanguageCodes sets the TargetLanguageCodes field's value.
+func (s *ParallelDataProperties) SetTargetLanguageCodes(v []*string) *ParallelDataProperties {
+	s.TargetLanguageCodes = v
+	return s
+}
+
 // The resource you are looking for has not been found. Review the resource
 // you're looking for and see if a different resource will accomplish your needs
 // before retrying the revised request.
@@ -2249,6 +3551,11 @@ type StartTextTranslationJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
+	// The names of the parallel data resources to use in the batch translation
+	// job. For a list of available parallel data resources, use the ListParallelData
+	// operation.
+	ParallelDataNames []*string `type:"list"`
+
 	// The language code of the input language. For a list of language codes, see
 	// what-is-languages.
 	//
@@ -2355,6 +3662,12 @@ func (s *StartTextTranslationJobInput) SetJobName(v string) *StartTextTranslatio
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *StartTextTranslationJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartTextTranslationJobInput {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetParallelDataNames sets the ParallelDataNames field's value.
+func (s *StartTextTranslationJobInput) SetParallelDataNames(v []*string) *StartTextTranslationJobInput {
+	s.ParallelDataNames = v
 	return s
 }
 
@@ -3047,6 +4360,10 @@ type TextTranslationJobProperties struct {
 	// requested.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
 
+	// A list containing the names of the parallel data resources applied to the
+	// translation job.
+	ParallelDataNames []*string `type:"list"`
+
 	// The language code of the language of the source text. The language must be
 	// a language supported by Amazon Translate.
 	SourceLanguageCode *string `min:"2" type:"string"`
@@ -3125,6 +4442,12 @@ func (s *TextTranslationJobProperties) SetMessage(v string) *TextTranslationJobP
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *TextTranslationJobProperties) SetOutputDataConfig(v *OutputDataConfig) *TextTranslationJobProperties {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetParallelDataNames sets the ParallelDataNames field's value.
+func (s *TextTranslationJobProperties) SetParallelDataNames(v []*string) *TextTranslationJobProperties {
+	s.ParallelDataNames = v
 	return s
 }
 
@@ -3272,6 +4595,140 @@ func (s *UnsupportedLanguagePairException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type UpdateParallelDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. This token is automatically generated
+	// when you use Amazon Translate through an AWS SDK.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A custom description for the parallel data resource in Amazon Translate.
+	Description *string `type:"string"`
+
+	// The name of the parallel data resource being updated.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the format and S3 location of the parallel data input file.
+	//
+	// ParallelDataConfig is a required field
+	ParallelDataConfig *ParallelDataConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateParallelDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateParallelDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateParallelDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateParallelDataInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ParallelDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParallelDataConfig"))
+	}
+	if s.ParallelDataConfig != nil {
+		if err := s.ParallelDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("ParallelDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateParallelDataInput) SetClientToken(v string) *UpdateParallelDataInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateParallelDataInput) SetDescription(v string) *UpdateParallelDataInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateParallelDataInput) SetName(v string) *UpdateParallelDataInput {
+	s.Name = &v
+	return s
+}
+
+// SetParallelDataConfig sets the ParallelDataConfig field's value.
+func (s *UpdateParallelDataInput) SetParallelDataConfig(v *ParallelDataConfig) *UpdateParallelDataInput {
+	s.ParallelDataConfig = v
+	return s
+}
+
+type UpdateParallelDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the most recent update was attempted.
+	LatestUpdateAttemptAt *time.Time `type:"timestamp"`
+
+	// The status of the parallel data update attempt. When the updated parallel
+	// data resource is ready for you to use, the status is ACTIVE.
+	LatestUpdateAttemptStatus *string `type:"string" enum:"ParallelDataStatus"`
+
+	// The name of the parallel data resource being updated.
+	Name *string `min:"1" type:"string"`
+
+	// The status of the parallel data resource that you are attempting to update.
+	// Your update request is accepted only if this status is either ACTIVE or FAILED.
+	Status *string `type:"string" enum:"ParallelDataStatus"`
+}
+
+// String returns the string representation
+func (s UpdateParallelDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateParallelDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetLatestUpdateAttemptAt sets the LatestUpdateAttemptAt field's value.
+func (s *UpdateParallelDataOutput) SetLatestUpdateAttemptAt(v time.Time) *UpdateParallelDataOutput {
+	s.LatestUpdateAttemptAt = &v
+	return s
+}
+
+// SetLatestUpdateAttemptStatus sets the LatestUpdateAttemptStatus field's value.
+func (s *UpdateParallelDataOutput) SetLatestUpdateAttemptStatus(v string) *UpdateParallelDataOutput {
+	s.LatestUpdateAttemptStatus = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateParallelDataOutput) SetName(v string) *UpdateParallelDataOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateParallelDataOutput) SetStatus(v string) *UpdateParallelDataOutput {
+	s.Status = &v
+	return s
+}
+
 const (
 	// EncryptionKeyTypeKms is a EncryptionKeyType enum value
 	EncryptionKeyTypeKms = "KMS"
@@ -3329,6 +4786,54 @@ const (
 func MergeStrategy_Values() []string {
 	return []string{
 		MergeStrategyOverwrite,
+	}
+}
+
+const (
+	// ParallelDataFormatTsv is a ParallelDataFormat enum value
+	ParallelDataFormatTsv = "TSV"
+
+	// ParallelDataFormatCsv is a ParallelDataFormat enum value
+	ParallelDataFormatCsv = "CSV"
+
+	// ParallelDataFormatTmx is a ParallelDataFormat enum value
+	ParallelDataFormatTmx = "TMX"
+)
+
+// ParallelDataFormat_Values returns all elements of the ParallelDataFormat enum
+func ParallelDataFormat_Values() []string {
+	return []string{
+		ParallelDataFormatTsv,
+		ParallelDataFormatCsv,
+		ParallelDataFormatTmx,
+	}
+}
+
+const (
+	// ParallelDataStatusCreating is a ParallelDataStatus enum value
+	ParallelDataStatusCreating = "CREATING"
+
+	// ParallelDataStatusUpdating is a ParallelDataStatus enum value
+	ParallelDataStatusUpdating = "UPDATING"
+
+	// ParallelDataStatusActive is a ParallelDataStatus enum value
+	ParallelDataStatusActive = "ACTIVE"
+
+	// ParallelDataStatusDeleting is a ParallelDataStatus enum value
+	ParallelDataStatusDeleting = "DELETING"
+
+	// ParallelDataStatusFailed is a ParallelDataStatus enum value
+	ParallelDataStatusFailed = "FAILED"
+)
+
+// ParallelDataStatus_Values returns all elements of the ParallelDataStatus enum
+func ParallelDataStatus_Values() []string {
+	return []string{
+		ParallelDataStatusCreating,
+		ParallelDataStatusUpdating,
+		ParallelDataStatusActive,
+		ParallelDataStatusDeleting,
+		ParallelDataStatusFailed,
 	}
 }
 

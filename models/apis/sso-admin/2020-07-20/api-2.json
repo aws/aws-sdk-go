@@ -50,6 +50,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "CreateInstanceAccessControlAttributeConfiguration":{
+      "name":"CreateInstanceAccessControlAttributeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateInstanceAccessControlAttributeConfigurationRequest"},
+      "output":{"shape":"CreateInstanceAccessControlAttributeConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "CreatePermissionSet":{
       "name":"CreatePermissionSet",
       "http":{
@@ -102,6 +119,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "DeleteInstanceAccessControlAttributeConfiguration":{
+      "name":"DeleteInstanceAccessControlAttributeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteInstanceAccessControlAttributeConfigurationRequest"},
+      "output":{"shape":"DeleteInstanceAccessControlAttributeConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "DeletePermissionSet":{
       "name":"DeletePermissionSet",
       "http":{
@@ -149,6 +183,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeInstanceAccessControlAttributeConfiguration":{
+      "name":"DescribeInstanceAccessControlAttributeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceAccessControlAttributeConfigurationRequest"},
+      "output":{"shape":"DescribeInstanceAccessControlAttributeConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribePermissionSet":{
@@ -445,6 +495,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "UpdateInstanceAccessControlAttributeConfiguration":{
+      "name":"UpdateInstanceAccessControlAttributeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateInstanceAccessControlAttributeConfigurationRequest"},
+      "output":{"shape":"UpdateInstanceAccessControlAttributeConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "UpdatePermissionSet":{
       "name":"UpdatePermissionSet",
       "http":{
@@ -464,6 +531,48 @@
     }
   },
   "shapes":{
+    "AccessControlAttribute":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"AccessControlAttributeKey"},
+        "Value":{"shape":"AccessControlAttributeValue"}
+      }
+    },
+    "AccessControlAttributeKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]+"
+    },
+    "AccessControlAttributeList":{
+      "type":"list",
+      "member":{"shape":"AccessControlAttribute"},
+      "max":50,
+      "min":0
+    },
+    "AccessControlAttributeValue":{
+      "type":"structure",
+      "required":["Source"],
+      "members":{
+        "Source":{"shape":"AccessControlAttributeValueSourceList"}
+      }
+    },
+    "AccessControlAttributeValueSource":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@\\[\\]\\{\\}\\$\\\\\"]*"
+    },
+    "AccessControlAttributeValueSourceList":{
+      "type":"list",
+      "member":{"shape":"AccessControlAttributeValueSource"},
+      "max":1,
+      "min":1
+    },
     "AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -581,6 +690,22 @@
         "AccountAssignmentCreationStatus":{"shape":"AccountAssignmentOperationStatus"}
       }
     },
+    "CreateInstanceAccessControlAttributeConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "InstanceAccessControlAttributeConfiguration"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"}
+      }
+    },
+    "CreateInstanceAccessControlAttributeConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreatePermissionSetRequest":{
       "type":"structure",
       "required":[
@@ -644,6 +769,18 @@
       "members":{
       }
     },
+    "DeleteInstanceAccessControlAttributeConfigurationRequest":{
+      "type":"structure",
+      "required":["InstanceArn"],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"}
+      }
+    },
+    "DeleteInstanceAccessControlAttributeConfigurationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeletePermissionSetRequest":{
       "type":"structure",
       "required":[
@@ -692,6 +829,21 @@
       "type":"structure",
       "members":{
         "AccountAssignmentDeletionStatus":{"shape":"AccountAssignmentOperationStatus"}
+      }
+    },
+    "DescribeInstanceAccessControlAttributeConfigurationRequest":{
+      "type":"structure",
+      "required":["InstanceArn"],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"}
+      }
+    },
+    "DescribeInstanceAccessControlAttributeConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"InstanceAccessControlAttributeConfigurationStatus"},
+        "StatusReason":{"shape":"InstanceAccessControlAttributeConfigurationStatusReason"},
+        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"}
       }
     },
     "DescribePermissionSetProvisioningStatusRequest":{
@@ -781,6 +933,22 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9-]*"
     },
+    "InstanceAccessControlAttributeConfiguration":{
+      "type":"structure",
+      "required":["AccessControlAttributes"],
+      "members":{
+        "AccessControlAttributes":{"shape":"AccessControlAttributeList"}
+      }
+    },
+    "InstanceAccessControlAttributeConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "CREATION_IN_PROGRESS",
+        "CREATION_FAILED"
+      ]
+    },
+    "InstanceAccessControlAttributeConfigurationStatusReason":{"type":"string"},
     "InstanceArn":{
       "type":"string",
       "max":1224,
@@ -1261,6 +1429,22 @@
       }
     },
     "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateInstanceAccessControlAttributeConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceArn",
+        "InstanceAccessControlAttributeConfiguration"
+      ],
+      "members":{
+        "InstanceArn":{"shape":"InstanceArn"},
+        "InstanceAccessControlAttributeConfiguration":{"shape":"InstanceAccessControlAttributeConfiguration"}
+      }
+    },
+    "UpdateInstanceAccessControlAttributeConfigurationResponse":{
       "type":"structure",
       "members":{
       }

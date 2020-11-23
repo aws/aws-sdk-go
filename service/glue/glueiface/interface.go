@@ -152,6 +152,10 @@ type GlueAPI interface {
 	CreatePartitionWithContext(aws.Context, *glue.CreatePartitionInput, ...request.Option) (*glue.CreatePartitionOutput, error)
 	CreatePartitionRequest(*glue.CreatePartitionInput) (*request.Request, *glue.CreatePartitionOutput)
 
+	CreatePartitionIndex(*glue.CreatePartitionIndexInput) (*glue.CreatePartitionIndexOutput, error)
+	CreatePartitionIndexWithContext(aws.Context, *glue.CreatePartitionIndexInput, ...request.Option) (*glue.CreatePartitionIndexOutput, error)
+	CreatePartitionIndexRequest(*glue.CreatePartitionIndexInput) (*request.Request, *glue.CreatePartitionIndexOutput)
+
 	CreateRegistry(*glue.CreateRegistryInput) (*glue.CreateRegistryOutput, error)
 	CreateRegistryWithContext(aws.Context, *glue.CreateRegistryInput, ...request.Option) (*glue.CreateRegistryOutput, error)
 	CreateRegistryRequest(*glue.CreateRegistryInput) (*request.Request, *glue.CreateRegistryOutput)
@@ -223,6 +227,10 @@ type GlueAPI interface {
 	DeletePartition(*glue.DeletePartitionInput) (*glue.DeletePartitionOutput, error)
 	DeletePartitionWithContext(aws.Context, *glue.DeletePartitionInput, ...request.Option) (*glue.DeletePartitionOutput, error)
 	DeletePartitionRequest(*glue.DeletePartitionInput) (*request.Request, *glue.DeletePartitionOutput)
+
+	DeletePartitionIndex(*glue.DeletePartitionIndexInput) (*glue.DeletePartitionIndexOutput, error)
+	DeletePartitionIndexWithContext(aws.Context, *glue.DeletePartitionIndexInput, ...request.Option) (*glue.DeletePartitionIndexOutput, error)
+	DeletePartitionIndexRequest(*glue.DeletePartitionIndexInput) (*request.Request, *glue.DeletePartitionIndexOutput)
 
 	DeleteRegistry(*glue.DeleteRegistryInput) (*glue.DeleteRegistryOutput, error)
 	DeleteRegistryWithContext(aws.Context, *glue.DeleteRegistryInput, ...request.Option) (*glue.DeleteRegistryOutput, error)

@@ -13193,6 +13193,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	// offerings matching the specified offering type.
 	//
 	// Valid Values: "Light Utilization"|"Medium Utilization"|"Heavy Utilization"
+	// |"All Upfront"|"Partial Upfront"| "No Upfront"
 	OfferingType *string `type:"string"`
 
 	// The product description filter value. Use this parameter to show only the
