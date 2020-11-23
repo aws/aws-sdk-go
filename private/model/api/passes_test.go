@@ -576,6 +576,42 @@ func TestCreateInputOutputShapes(t *testing.T) {
 				"FirstOpInput", "FirstOpOutput",
 			},
 		},
+		"collidingShape": {
+			API: &API{
+				name:     "APIClientName",
+				Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef: ShapeRef{ShapeName: "FirstOpRequest"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "APIClientName"},
+							"ooF": {ShapeName: "APIClientNameList"},
+						},
+					},
+					"APIClientName": {
+						ShapeName: "APIClientName", Type: "structure",
+					},
+					"APIClientNameList": {
+						ShapeName: "APIClientNameList", Type: "list",
+						MemberRef: ShapeRef{ShapeName: "APIClientName"},
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"APIClientNameList", "APIClientName_",
+				"FirstOpInput", "FirstOpOutput",
+			},
+		},
 	}
 
 	for name, c := range cases {
