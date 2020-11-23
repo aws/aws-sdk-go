@@ -1245,9 +1245,11 @@
       "enum": [
         "ACTIVE",
         "CREATING",
-        "UPDATING",
         "DELETING",
-        "FAILED"
+        "FAILED",
+        "MAINTENANCE",
+        "REBOOTING_BROKER",
+        "UPDATING"
       ]
     },
     "CompatibleKafkaVersion" : {

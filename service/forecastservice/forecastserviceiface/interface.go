@@ -84,6 +84,10 @@ type ForecastServiceAPI interface {
 	CreatePredictorWithContext(aws.Context, *forecastservice.CreatePredictorInput, ...request.Option) (*forecastservice.CreatePredictorOutput, error)
 	CreatePredictorRequest(*forecastservice.CreatePredictorInput) (*request.Request, *forecastservice.CreatePredictorOutput)
 
+	CreatePredictorBacktestExportJob(*forecastservice.CreatePredictorBacktestExportJobInput) (*forecastservice.CreatePredictorBacktestExportJobOutput, error)
+	CreatePredictorBacktestExportJobWithContext(aws.Context, *forecastservice.CreatePredictorBacktestExportJobInput, ...request.Option) (*forecastservice.CreatePredictorBacktestExportJobOutput, error)
+	CreatePredictorBacktestExportJobRequest(*forecastservice.CreatePredictorBacktestExportJobInput) (*request.Request, *forecastservice.CreatePredictorBacktestExportJobOutput)
+
 	DeleteDataset(*forecastservice.DeleteDatasetInput) (*forecastservice.DeleteDatasetOutput, error)
 	DeleteDatasetWithContext(aws.Context, *forecastservice.DeleteDatasetInput, ...request.Option) (*forecastservice.DeleteDatasetOutput, error)
 	DeleteDatasetRequest(*forecastservice.DeleteDatasetInput) (*request.Request, *forecastservice.DeleteDatasetOutput)
@@ -108,6 +112,10 @@ type ForecastServiceAPI interface {
 	DeletePredictorWithContext(aws.Context, *forecastservice.DeletePredictorInput, ...request.Option) (*forecastservice.DeletePredictorOutput, error)
 	DeletePredictorRequest(*forecastservice.DeletePredictorInput) (*request.Request, *forecastservice.DeletePredictorOutput)
 
+	DeletePredictorBacktestExportJob(*forecastservice.DeletePredictorBacktestExportJobInput) (*forecastservice.DeletePredictorBacktestExportJobOutput, error)
+	DeletePredictorBacktestExportJobWithContext(aws.Context, *forecastservice.DeletePredictorBacktestExportJobInput, ...request.Option) (*forecastservice.DeletePredictorBacktestExportJobOutput, error)
+	DeletePredictorBacktestExportJobRequest(*forecastservice.DeletePredictorBacktestExportJobInput) (*request.Request, *forecastservice.DeletePredictorBacktestExportJobOutput)
+
 	DescribeDataset(*forecastservice.DescribeDatasetInput) (*forecastservice.DescribeDatasetOutput, error)
 	DescribeDatasetWithContext(aws.Context, *forecastservice.DescribeDatasetInput, ...request.Option) (*forecastservice.DescribeDatasetOutput, error)
 	DescribeDatasetRequest(*forecastservice.DescribeDatasetInput) (*request.Request, *forecastservice.DescribeDatasetOutput)
@@ -131,6 +139,10 @@ type ForecastServiceAPI interface {
 	DescribePredictor(*forecastservice.DescribePredictorInput) (*forecastservice.DescribePredictorOutput, error)
 	DescribePredictorWithContext(aws.Context, *forecastservice.DescribePredictorInput, ...request.Option) (*forecastservice.DescribePredictorOutput, error)
 	DescribePredictorRequest(*forecastservice.DescribePredictorInput) (*request.Request, *forecastservice.DescribePredictorOutput)
+
+	DescribePredictorBacktestExportJob(*forecastservice.DescribePredictorBacktestExportJobInput) (*forecastservice.DescribePredictorBacktestExportJobOutput, error)
+	DescribePredictorBacktestExportJobWithContext(aws.Context, *forecastservice.DescribePredictorBacktestExportJobInput, ...request.Option) (*forecastservice.DescribePredictorBacktestExportJobOutput, error)
+	DescribePredictorBacktestExportJobRequest(*forecastservice.DescribePredictorBacktestExportJobInput) (*request.Request, *forecastservice.DescribePredictorBacktestExportJobOutput)
 
 	GetAccuracyMetrics(*forecastservice.GetAccuracyMetricsInput) (*forecastservice.GetAccuracyMetricsOutput, error)
 	GetAccuracyMetricsWithContext(aws.Context, *forecastservice.GetAccuracyMetricsInput, ...request.Option) (*forecastservice.GetAccuracyMetricsOutput, error)
@@ -170,6 +182,13 @@ type ForecastServiceAPI interface {
 
 	ListForecastsPages(*forecastservice.ListForecastsInput, func(*forecastservice.ListForecastsOutput, bool) bool) error
 	ListForecastsPagesWithContext(aws.Context, *forecastservice.ListForecastsInput, func(*forecastservice.ListForecastsOutput, bool) bool, ...request.Option) error
+
+	ListPredictorBacktestExportJobs(*forecastservice.ListPredictorBacktestExportJobsInput) (*forecastservice.ListPredictorBacktestExportJobsOutput, error)
+	ListPredictorBacktestExportJobsWithContext(aws.Context, *forecastservice.ListPredictorBacktestExportJobsInput, ...request.Option) (*forecastservice.ListPredictorBacktestExportJobsOutput, error)
+	ListPredictorBacktestExportJobsRequest(*forecastservice.ListPredictorBacktestExportJobsInput) (*request.Request, *forecastservice.ListPredictorBacktestExportJobsOutput)
+
+	ListPredictorBacktestExportJobsPages(*forecastservice.ListPredictorBacktestExportJobsInput, func(*forecastservice.ListPredictorBacktestExportJobsOutput, bool) bool) error
+	ListPredictorBacktestExportJobsPagesWithContext(aws.Context, *forecastservice.ListPredictorBacktestExportJobsInput, func(*forecastservice.ListPredictorBacktestExportJobsOutput, bool) bool, ...request.Option) error
 
 	ListPredictors(*forecastservice.ListPredictorsInput) (*forecastservice.ListPredictorsOutput, error)
 	ListPredictorsWithContext(aws.Context, *forecastservice.ListPredictorsInput, ...request.Option) (*forecastservice.ListPredictorsOutput, error)

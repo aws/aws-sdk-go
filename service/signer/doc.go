@@ -3,15 +3,26 @@
 // Package signer provides the client and types for making API
 // requests to AWS Signer.
 //
-// With code signing for IoT, you can sign code that you create for any IoT
-// device that is supported by Amazon Web Services (AWS). Code signing is available
-// through Amazon FreeRTOS (http://docs.aws.amazon.com/freertos/latest/userguide/)
+// AWS Signer is a fully managed code signing service to help you ensure the
+// trust and integrity of your code.
+//
+// AWS Signer supports the following applications:
+//
+// With code signing for AWS Lambda, you can sign AWS Lambda deployment packages.
+// Integrated support is provided for Amazon S3, Amazon CloudWatch, and AWS
+// CloudTrail. In order to sign code, you create a signing profile and then
+// use Signer to sign Lambda zip files in S3.
+//
+// With code signing for IoT, you can sign code for any IoT device that is supported
+// by AWS. IoT code signing is available for Amazon FreeRTOS (http://docs.aws.amazon.com/freertos/latest/userguide/)
 // and AWS IoT Device Management (http://docs.aws.amazon.com/iot/latest/developerguide/),
-// and integrated with AWS Certificate Manager (ACM) (http://docs.aws.amazon.com/acm/latest/userguide/).
+// and is integrated with AWS Certificate Manager (ACM) (http://docs.aws.amazon.com/acm/latest/userguide/).
 // In order to sign code, you import a third-party code signing certificate
-// with ACM that is used to sign updates in Amazon FreeRTOS and AWS IoT Device
-// Management. For general information about using code signing, see the Code
-// Signing for IoT Developer Guide (http://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html).
+// using ACM, and use that to sign updates in Amazon FreeRTOS and AWS IoT Device
+// Management.
+//
+// For more information about AWS Signer, see the AWS Signer Developer Guide
+// (http://docs.aws.amazon.com/signer/latest/developerguide/Welcome.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25 for more information on this service.
 //

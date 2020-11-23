@@ -109,6 +109,10 @@ type CodeStarConnectionsAPI interface {
 	UntagResource(*codestarconnections.UntagResourceInput) (*codestarconnections.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *codestarconnections.UntagResourceInput, ...request.Option) (*codestarconnections.UntagResourceOutput, error)
 	UntagResourceRequest(*codestarconnections.UntagResourceInput) (*request.Request, *codestarconnections.UntagResourceOutput)
+
+	UpdateHost(*codestarconnections.UpdateHostInput) (*codestarconnections.UpdateHostOutput, error)
+	UpdateHostWithContext(aws.Context, *codestarconnections.UpdateHostInput, ...request.Option) (*codestarconnections.UpdateHostOutput, error)
+	UpdateHostRequest(*codestarconnections.UpdateHostInput) (*request.Request, *codestarconnections.UpdateHostOutput)
 }
 
 var _ CodeStarConnectionsAPI = (*codestarconnections.CodeStarConnections)(nil)

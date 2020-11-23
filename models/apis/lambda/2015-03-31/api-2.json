@@ -65,6 +65,20 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "CreateCodeSigningConfig":{
+      "name":"CreateCodeSigningConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-04-22/code-signing-configs/",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateCodeSigningConfigRequest"},
+      "output":{"shape":"CreateCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "CreateEventSourceMapping":{
       "name":"CreateEventSourceMapping",
       "http":{
@@ -97,7 +111,10 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceConflictException"},
         {"shape":"TooManyRequestsException"},
-        {"shape":"CodeStorageExceededException"}
+        {"shape":"CodeStorageExceededException"},
+        {"shape":"CodeVerificationFailedException"},
+        {"shape":"InvalidCodeSignatureException"},
+        {"shape":"CodeSigningConfigNotFoundException"}
       ]
     },
     "DeleteAlias":{
@@ -113,6 +130,22 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceConflictException"},
         {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "DeleteCodeSigningConfig":{
+      "name":"DeleteCodeSigningConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-04-22/code-signing-configs/{CodeSigningConfigArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteCodeSigningConfigRequest"},
+      "output":{"shape":"DeleteCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "DeleteEventSourceMapping":{
@@ -145,6 +178,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
+    "DeleteFunctionCodeSigningConfig":{
+      "name":"DeleteFunctionCodeSigningConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-06-30/functions/{FunctionName}/code-signing-config",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteFunctionCodeSigningConfigRequest"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"CodeSigningConfigNotFoundException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"ResourceConflictException"}
       ]
     },
@@ -238,6 +288,21 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "GetCodeSigningConfig":{
+      "name":"GetCodeSigningConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-04-22/code-signing-configs/{CodeSigningConfigArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCodeSigningConfigRequest"},
+      "output":{"shape":"GetCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetEventSourceMapping":{
       "name":"GetEventSourceMapping",
       "http":{
@@ -268,6 +333,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "GetFunctionCodeSigningConfig":{
+      "name":"GetFunctionCodeSigningConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-06-30/functions/{FunctionName}/code-signing-config",
+        "responseCode":200
+      },
+      "input":{"shape":"GetFunctionCodeSigningConfigRequest"},
+      "output":{"shape":"GetFunctionCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetFunctionConcurrency":{
@@ -470,6 +551,20 @@
         {"shape":"TooManyRequestsException"}
       ]
     },
+    "ListCodeSigningConfigs":{
+      "name":"ListCodeSigningConfigs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-04-22/code-signing-configs/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListCodeSigningConfigsRequest"},
+      "output":{"shape":"ListCodeSigningConfigsResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "ListEventSourceMappings":{
       "name":"ListEventSourceMappings",
       "http":{
@@ -515,6 +610,21 @@
         {"shape":"ServiceException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidParameterValueException"}
+      ]
+    },
+    "ListFunctionsByCodeSigningConfig":{
+      "name":"ListFunctionsByCodeSigningConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-04-22/code-signing-configs/{CodeSigningConfigArn}/functions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListFunctionsByCodeSigningConfigRequest"},
+      "output":{"shape":"ListFunctionsByCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListLayerVersions":{
@@ -629,6 +739,24 @@
         {"shape":"CodeStorageExceededException"},
         {"shape":"PreconditionFailedException"},
         {"shape":"ResourceConflictException"}
+      ]
+    },
+    "PutFunctionCodeSigningConfig":{
+      "name":"PutFunctionCodeSigningConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-06-30/functions/{FunctionName}/code-signing-config",
+        "responseCode":200
+      },
+      "input":{"shape":"PutFunctionCodeSigningConfigRequest"},
+      "output":{"shape":"PutFunctionCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"CodeSigningConfigNotFoundException"}
       ]
     },
     "PutFunctionConcurrency":{
@@ -763,6 +891,21 @@
         {"shape":"ResourceConflictException"}
       ]
     },
+    "UpdateCodeSigningConfig":{
+      "name":"UpdateCodeSigningConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-04-22/code-signing-configs/{CodeSigningConfigArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateCodeSigningConfigRequest"},
+      "output":{"shape":"UpdateCodeSigningConfigResponse"},
+      "errors":[
+        {"shape":"ServiceException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateEventSourceMapping":{
       "name":"UpdateEventSourceMapping",
       "http":{
@@ -797,7 +940,10 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"CodeStorageExceededException"},
         {"shape":"PreconditionFailedException"},
-        {"shape":"ResourceConflictException"}
+        {"shape":"ResourceConflictException"},
+        {"shape":"CodeVerificationFailedException"},
+        {"shape":"InvalidCodeSignatureException"},
+        {"shape":"CodeSigningConfigNotFoundException"}
       ]
     },
     "UpdateFunctionConfiguration":{
@@ -815,7 +961,10 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ResourceConflictException"},
-        {"shape":"PreconditionFailedException"}
+        {"shape":"PreconditionFailedException"},
+        {"shape":"CodeVerificationFailedException"},
+        {"shape":"InvalidCodeSignatureException"},
+        {"shape":"CodeSigningConfigNotFoundException"}
       ]
     },
     "UpdateFunctionEventInvokeConfig":{
@@ -967,6 +1116,13 @@
         "AdditionalVersionWeights":{"shape":"AdditionalVersionWeights"}
       }
     },
+    "AllowedPublishers":{
+      "type":"structure",
+      "required":["SigningProfileVersionArns"],
+      "members":{
+        "SigningProfileVersionArns":{"shape":"SigningProfileVersionArns"}
+      }
+    },
     "Arn":{
       "type":"string",
       "pattern":"arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:([a-z]{2}(-gov)?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)"
@@ -986,6 +1142,59 @@
       "streaming":true
     },
     "Boolean":{"type":"boolean"},
+    "CodeSigningConfig":{
+      "type":"structure",
+      "required":[
+        "CodeSigningConfigId",
+        "CodeSigningConfigArn",
+        "AllowedPublishers",
+        "CodeSigningPolicies",
+        "LastModified"
+      ],
+      "members":{
+        "CodeSigningConfigId":{"shape":"CodeSigningConfigId"},
+        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
+        "Description":{"shape":"Description"},
+        "AllowedPublishers":{"shape":"AllowedPublishers"},
+        "CodeSigningPolicies":{"shape":"CodeSigningPolicies"},
+        "LastModified":{"shape":"Timestamp"}
+      }
+    },
+    "CodeSigningConfigArn":{
+      "type":"string",
+      "max":200,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:code-signing-config:csc-[a-z0-9]{17}"
+    },
+    "CodeSigningConfigId":{
+      "type":"string",
+      "pattern":"csc-[a-zA-Z0-9-_\\.]{17}"
+    },
+    "CodeSigningConfigList":{
+      "type":"list",
+      "member":{"shape":"CodeSigningConfig"}
+    },
+    "CodeSigningConfigNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "CodeSigningPolicies":{
+      "type":"structure",
+      "members":{
+        "UntrustedArtifactOnDeployment":{"shape":"CodeSigningPolicy"}
+      }
+    },
+    "CodeSigningPolicy":{
+      "type":"string",
+      "enum":[
+        "Warn",
+        "Enforce"
+      ]
+    },
     "CodeStorageExceededException":{
       "type":"structure",
       "members":{
@@ -995,10 +1204,19 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "CodeVerificationFailedException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "CompatibleRuntimes":{
       "type":"list",
       "member":{"shape":"Runtime"},
-      "max":5
+      "max":15
     },
     "Concurrency":{
       "type":"structure",
@@ -1023,6 +1241,22 @@
         "FunctionVersion":{"shape":"Version"},
         "Description":{"shape":"Description"},
         "RoutingConfig":{"shape":"AliasRoutingConfiguration"}
+      }
+    },
+    "CreateCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["AllowedPublishers"],
+      "members":{
+        "Description":{"shape":"Description"},
+        "AllowedPublishers":{"shape":"AllowedPublishers"},
+        "CodeSigningPolicies":{"shape":"CodeSigningPolicies"}
+      }
+    },
+    "CreateCodeSigningConfigResponse":{
+      "type":"structure",
+      "required":["CodeSigningConfig"],
+      "members":{
+        "CodeSigningConfig":{"shape":"CodeSigningConfig"}
       }
     },
     "CreateEventSourceMappingRequest":{
@@ -1075,7 +1309,8 @@
         "TracingConfig":{"shape":"TracingConfig"},
         "Tags":{"shape":"Tags"},
         "Layers":{"shape":"LayerList"},
-        "FileSystemConfigs":{"shape":"FileSystemConfigList"}
+        "FileSystemConfigs":{"shape":"FileSystemConfigList"},
+        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -1104,6 +1339,22 @@
         }
       }
     },
+    "DeleteCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["CodeSigningConfigArn"],
+      "members":{
+        "CodeSigningConfigArn":{
+          "shape":"CodeSigningConfigArn",
+          "location":"uri",
+          "locationName":"CodeSigningConfigArn"
+        }
+      }
+    },
+    "DeleteCodeSigningConfigResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteEventSourceMappingRequest":{
       "type":"structure",
       "required":["UUID"],
@@ -1112,6 +1363,17 @@
           "shape":"String",
           "location":"uri",
           "locationName":"UUID"
+        }
+      }
+    },
+    "DeleteFunctionCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
         }
       }
     },
@@ -1390,6 +1652,10 @@
       "type":"string",
       "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
     },
+    "FunctionArnList":{
+      "type":"list",
+      "member":{"shape":"FunctionArn"}
+    },
     "FunctionCode":{
       "type":"structure",
       "members":{
@@ -1435,7 +1701,9 @@
         "LastUpdateStatus":{"shape":"LastUpdateStatus"},
         "LastUpdateStatusReason":{"shape":"LastUpdateStatusReason"},
         "LastUpdateStatusReasonCode":{"shape":"LastUpdateStatusReasonCode"},
-        "FileSystemConfigs":{"shape":"FileSystemConfigList"}
+        "FileSystemConfigs":{"shape":"FileSystemConfigList"},
+        "SigningProfileVersionArn":{"shape":"Arn"},
+        "SigningJobArn":{"shape":"Arn"}
       }
     },
     "FunctionEventInvokeConfig":{
@@ -1497,6 +1765,24 @@
         }
       }
     },
+    "GetCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["CodeSigningConfigArn"],
+      "members":{
+        "CodeSigningConfigArn":{
+          "shape":"CodeSigningConfigArn",
+          "location":"uri",
+          "locationName":"CodeSigningConfigArn"
+        }
+      }
+    },
+    "GetCodeSigningConfigResponse":{
+      "type":"structure",
+      "required":["CodeSigningConfig"],
+      "members":{
+        "CodeSigningConfig":{"shape":"CodeSigningConfig"}
+      }
+    },
     "GetEventSourceMappingRequest":{
       "type":"structure",
       "required":["UUID"],
@@ -1506,6 +1792,28 @@
           "location":"uri",
           "locationName":"UUID"
         }
+      }
+    },
+    "GetFunctionCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        }
+      }
+    },
+    "GetFunctionCodeSigningConfigResponse":{
+      "type":"structure",
+      "required":[
+        "CodeSigningConfigArn",
+        "FunctionName"
+      ],
+      "members":{
+        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
+        "FunctionName":{"shape":"FunctionName"}
       }
     },
     "GetFunctionConcurrencyRequest":{
@@ -1711,6 +2019,15 @@
     },
     "HttpStatus":{"type":"integer"},
     "Integer":{"type":"integer"},
+    "InvalidCodeSignatureException":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidParameterValueException":{
       "type":"structure",
       "members":{
@@ -1924,7 +2241,9 @@
       "type":"structure",
       "members":{
         "Arn":{"shape":"LayerVersionArn"},
-        "CodeSize":{"shape":"Long"}
+        "CodeSize":{"shape":"Long"},
+        "SigningProfileVersionArn":{"shape":"Arn"},
+        "SigningJobArn":{"shape":"Arn"}
       }
     },
     "LayerArn":{
@@ -1971,7 +2290,9 @@
       "members":{
         "Location":{"shape":"String"},
         "CodeSha256":{"shape":"String"},
-        "CodeSize":{"shape":"Long"}
+        "CodeSize":{"shape":"Long"},
+        "SigningProfileVersionArn":{"shape":"String"},
+        "SigningJobArn":{"shape":"String"}
       }
     },
     "LayerVersionNumber":{"type":"long"},
@@ -2043,6 +2364,28 @@
         "Aliases":{"shape":"AliasList"}
       }
     },
+    "ListCodeSigningConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"MaxListItems",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListCodeSigningConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"String"},
+        "CodeSigningConfigs":{"shape":"CodeSigningConfigList"}
+      }
+    },
     "ListEventSourceMappingsRequest":{
       "type":"structure",
       "members":{
@@ -2101,6 +2444,34 @@
       "members":{
         "FunctionEventInvokeConfigs":{"shape":"FunctionEventInvokeConfigList"},
         "NextMarker":{"shape":"String"}
+      }
+    },
+    "ListFunctionsByCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["CodeSigningConfigArn"],
+      "members":{
+        "CodeSigningConfigArn":{
+          "shape":"CodeSigningConfigArn",
+          "location":"uri",
+          "locationName":"CodeSigningConfigArn"
+        },
+        "Marker":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"MaxListItems",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListFunctionsByCodeSigningConfigResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"String"},
+        "FunctionArns":{"shape":"FunctionArnList"}
       }
     },
     "ListFunctionsRequest":{
@@ -2480,6 +2851,32 @@
         "RevisionId":{"shape":"String"}
       }
     },
+    "PutFunctionCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":[
+        "CodeSigningConfigArn",
+        "FunctionName"
+      ],
+      "members":{
+        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        }
+      }
+    },
+    "PutFunctionCodeSigningConfigResponse":{
+      "type":"structure",
+      "required":[
+        "CodeSigningConfigArn",
+        "FunctionName"
+      ],
+      "members":{
+        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
+        "FunctionName":{"shape":"FunctionName"}
+      }
+    },
     "PutFunctionConcurrencyRequest":{
       "type":"structure",
       "required":[
@@ -2743,6 +3140,12 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
+    "SigningProfileVersionArns":{
+      "type":"list",
+      "member":{"shape":"Arn"},
+      "max":20,
+      "min":1
+    },
     "SourceAccessConfiguration":{
       "type":"structure",
       "members":{
@@ -2951,6 +3354,27 @@
         "Description":{"shape":"Description"},
         "RoutingConfig":{"shape":"AliasRoutingConfiguration"},
         "RevisionId":{"shape":"String"}
+      }
+    },
+    "UpdateCodeSigningConfigRequest":{
+      "type":"structure",
+      "required":["CodeSigningConfigArn"],
+      "members":{
+        "CodeSigningConfigArn":{
+          "shape":"CodeSigningConfigArn",
+          "location":"uri",
+          "locationName":"CodeSigningConfigArn"
+        },
+        "Description":{"shape":"Description"},
+        "AllowedPublishers":{"shape":"AllowedPublishers"},
+        "CodeSigningPolicies":{"shape":"CodeSigningPolicies"}
+      }
+    },
+    "UpdateCodeSigningConfigResponse":{
+      "type":"structure",
+      "required":["CodeSigningConfig"],
+      "members":{
+        "CodeSigningConfig":{"shape":"CodeSigningConfig"}
       }
     },
     "UpdateEventSourceMappingRequest":{

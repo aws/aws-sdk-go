@@ -25,6 +25,7 @@
     "CreateJob": "<p>Creates a new job definition.</p>",
     "CreateMLTransform": "<p>Creates an AWS Glue machine learning transform. This operation creates the transform and all the necessary parameters to train it.</p> <p>Call this operation as the first step in the process of using a machine learning transform (such as the <code>FindMatches</code> transform) for deduplicating data. You can provide an optional <code>Description</code>, in addition to the parameters that you want to use for your algorithm.</p> <p>You must also specify certain parameters for the tasks that AWS Glue runs on your behalf as part of learning from your data and creating a high-quality machine learning transform. These parameters include <code>Role</code>, and optionally, <code>AllocatedCapacity</code>, <code>Timeout</code>, and <code>MaxRetries</code>. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html\">Jobs</a>.</p>",
     "CreatePartition": "<p>Creates a new partition.</p>",
+    "CreatePartitionIndex": "<p>Creates a specified partition index in an existing table.</p>",
     "CreateRegistry": "<p>Creates a new registry which may be used to hold a collection of schemas.</p>",
     "CreateSchema": "<p>Creates a new schema set and registers the schema definition. Returns an error if the schema set already exists without actually registering the version.</p> <p>When the schema set is created, a version checkpoint will be set to the first version. Compatibility mode \"DISABLED\" restricts any additional schema versions from being added after the first schema version. For all other compatibility modes, validation of compatibility settings will be applied only from the second version onwards when the <code>RegisterSchemaVersion</code> API is used.</p> <p>When this API is called without a <code>RegistryId</code>, this will create an entry for a \"default-registry\" in the registry database tables, if it is not already present.</p>",
     "CreateScript": "<p>Transforms a directed acyclic graph (DAG) into code.</p>",
@@ -43,6 +44,7 @@
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
     "DeleteMLTransform": "<p>Deletes an AWS Glue machine learning transform. Machine learning transforms are a special type of transform that use machine learning to learn the details of the transformation to be performed by learning from examples provided by humans. These transformations are then saved by AWS Glue. If you no longer need a transform, you can delete it by calling <code>DeleteMLTransforms</code>. However, any AWS Glue jobs that still reference the deleted transform will no longer succeed.</p>",
     "DeletePartition": "<p>Deletes a specified partition.</p>",
+    "DeletePartitionIndex": "<p>Deletes a specified partition index from an existing table.</p>",
     "DeleteRegistry": "<p>Delete the entire registry including schema and all of its versions. To get the status of the delete operation, you can call the <code>GetRegistry</code> API after the asynchronous call. Deleting a registry will disable all online operations for the registry such as the <code>UpdateRegistry</code>, <code>CreateSchema</code>, <code>UpdateSchema</code>, and <code>RegisterSchemaVersion</code> APIs. </p>",
     "DeleteResourcePolicy": "<p>Deletes a specified policy.</p>",
     "DeleteSchema": "<p>Deletes the entire schema set, including the schema set and all of its versions. To get the status of the delete operation, you can call <code>GetSchema</code> API after the asynchronous call. Deleting a registry will disable all online operations for the schema, such as the <code>GetSchemaByDefinition</code>, and <code>RegisterSchemaVersion</code> APIs.</p>",
@@ -193,6 +195,30 @@
       "base": null,
       "refs": {
         "JobRun$Attempt": "<p>The number of the attempt to run this job.</p>"
+      }
+    },
+    "BackfillError": {
+      "base": "<p>A list of errors that can occur when registering partition indexes for an existing table.</p> <p>These errors give the details about why an index registration failed and provide a limited number of partitions in the response, so that you can fix the partitions at fault and try registering the index again. The most common set of errors that can occur are categorized as follows:</p> <ul> <li> <p>EncryptedPartitionError: The partitions are encrypted.</p> </li> <li> <p>InvalidPartitionTypeDataError: The partition value doesn't match the data type for that partition column.</p> </li> <li> <p>MissingPartitionValueError: The partitions are encrypted.</p> </li> <li> <p>UnsupportedPartitionCharacterError: Characters inside the partition value are not supported. For example: U+0000 , U+0001, U+0002.</p> </li> <li> <p>InternalError: Any error which does not belong to other error codes.</p> </li> </ul>",
+      "refs": {
+        "BackfillErrors$member": null
+      }
+    },
+    "BackfillErrorCode": {
+      "base": null,
+      "refs": {
+        "BackfillError$Code": "<p>The error code for an error that occurred when registering partition indexes for an existing table.</p>"
+      }
+    },
+    "BackfillErroredPartitionsList": {
+      "base": null,
+      "refs": {
+        "BackfillError$Partitions": "<p>A list of a limited number of partitions in the response.</p>"
+      }
+    },
+    "BackfillErrors": {
+      "base": null,
+      "refs": {
+        "PartitionIndexDescriptor$BackfillErrors": "<p>A list of errors that can occur when registering partition indexes for an existing table.</p>"
       }
     },
     "BatchCreatePartitionRequest": {
@@ -501,6 +527,7 @@
         "BatchUpdatePartitionRequest$CatalogId": "<p>The ID of the catalog in which the partition is to be updated. Currently, this should be the AWS account ID.</p>",
         "CreateConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the connection. If none is provided, the AWS account ID is used by default.</p>",
         "CreateDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the database. If none is provided, the AWS account ID is used by default.</p>",
+        "CreatePartitionIndexRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
         "CreatePartitionRequest$CatalogId": "<p>The AWS account ID of the catalog in which the partition is to be created.</p>",
         "CreateTableRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the <code>Table</code>. If none is supplied, the AWS account ID is used by default.</p>",
         "CreateUserDefinedFunctionRequest$CatalogId": "<p>The ID of the Data Catalog in which to create the function. If none is provided, the AWS account ID is used by default.</p>",
@@ -510,6 +537,7 @@
         "DeleteColumnStatisticsForTableRequest$CatalogId": "<p>The ID of the Data Catalog where the partitions in question reside. If none is supplied, the AWS account ID is used by default.</p>",
         "DeleteConnectionRequest$CatalogId": "<p>The ID of the Data Catalog in which the connection resides. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteDatabaseRequest$CatalogId": "<p>The ID of the Data Catalog in which the database resides. If none is provided, the AWS account ID is used by default.</p>",
+        "DeletePartitionIndexRequest$CatalogId": "<p>The catalog ID where the table resides.</p>",
         "DeletePartitionRequest$CatalogId": "<p>The ID of the Data Catalog where the partition to be deleted resides. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteTableRequest$CatalogId": "<p>The ID of the Data Catalog where the table resides. If none is provided, the AWS account ID is used by default.</p>",
         "DeleteTableVersionRequest$CatalogId": "<p>The ID of the Data Catalog where the tables reside. If none is provided, the AWS account ID is used by default.</p>",
@@ -931,6 +959,12 @@
         "UpdateCrawlerRequest$Configuration": "<p>Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/crawler-configuration.html\">Configuring a Crawler</a>.</p>"
       }
     },
+    "CrawlerLineageSettings": {
+      "base": null,
+      "refs": {
+        "LineageConfiguration$CrawlerLineageSettings": "<p>Specifies whether data lineage is enabled for the crawler. Valid values are:</p> <ul> <li> <p>ENABLE: enables data lineage for the crawler</p> </li> <li> <p>DISABLE: disables data lineage for the crawler</p> </li> </ul>"
+      }
+    },
     "CrawlerList": {
       "base": null,
       "refs": {
@@ -1086,6 +1120,16 @@
       }
     },
     "CreateMLTransformResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePartitionIndexRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePartitionIndexResponse": {
       "base": null,
       "refs": {
       }
@@ -1450,6 +1494,16 @@
       }
     },
     "DeleteMLTransformResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePartitionIndexRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePartitionIndexResponse": {
       "base": null,
       "refs": {
       }
@@ -2893,6 +2947,14 @@
         "SchemaVersionNumber$LatestVersion": null
       }
     },
+    "LineageConfiguration": {
+      "base": "<p>Specifies data lineage configuration settings for the crawler.</p>",
+      "refs": {
+        "Crawler$LineageConfiguration": "<p>A configuration that specifies whether data lineage is enabled for the crawler.</p>",
+        "CreateCrawlerRequest$LineageConfiguration": "<p>Specifies data lineage configuration settings for the crawler.</p>",
+        "UpdateCrawlerRequest$LineageConfiguration": "<p>Specifies data lineage configuration settings for the crawler.</p>"
+      }
+    },
     "ListCrawlersRequest": {
       "base": null,
       "refs": {
@@ -3262,6 +3324,8 @@
         "CreateJobResponse$Name": "<p>The unique name that was provided for this job definition.</p>",
         "CreateJsonClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "CreateMLTransformRequest$Name": "<p>The unique name that you give the transform when you create it.</p>",
+        "CreatePartitionIndexRequest$DatabaseName": "<p>Specifies the name of a database in which you want to create a partition index.</p>",
+        "CreatePartitionIndexRequest$TableName": "<p>Specifies the name of a table in which you want to create a partition index.</p>",
         "CreatePartitionRequest$DatabaseName": "<p>The name of the metadata database in which the partition is to be created.</p>",
         "CreatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be created.</p>",
         "CreateSecurityConfigurationRequest$Name": "<p>The name for the new security configuration.</p>",
@@ -3292,6 +3356,9 @@
         "DeleteDatabaseRequest$Name": "<p>The name of the database to delete. For Hive compatibility, this must be all lowercase.</p>",
         "DeleteJobRequest$JobName": "<p>The name of the job definition to delete.</p>",
         "DeleteJobResponse$JobName": "<p>The name of the job definition that was deleted.</p>",
+        "DeletePartitionIndexRequest$DatabaseName": "<p>Specifies the name of a database from which you want to delete a partition index.</p>",
+        "DeletePartitionIndexRequest$TableName": "<p>Specifies the name of a table from which you want to delete a partition index.</p>",
+        "DeletePartitionIndexRequest$IndexName": "<p>The name of the partition index to be deleted.</p>",
         "DeletePartitionRequest$DatabaseName": "<p>The name of the catalog database in which the table in question resides.</p>",
         "DeletePartitionRequest$TableName": "<p>The name of the table that contains the partition to be deleted.</p>",
         "DeleteSecurityConfigurationRequest$Name": "<p>The name of the security configuration to delete.</p>",
@@ -3712,6 +3779,7 @@
     "PartitionIndex": {
       "base": "<p>A structure for a partition index.</p>",
       "refs": {
+        "CreatePartitionIndexRequest$PartitionIndex": "<p>Specifies a <code>PartitionIndex</code> structure to create a partition index in an existing table.</p>",
         "PartitionIndexList$member": null
       }
     },
@@ -3736,7 +3804,7 @@
     "PartitionIndexStatus": {
       "base": null,
       "refs": {
-        "PartitionIndexDescriptor$IndexStatus": "<p>The status of the partition index. </p>"
+        "PartitionIndexDescriptor$IndexStatus": "<p>The status of the partition index. </p> <p>The possible statuses are:</p> <ul> <li> <p>CREATING: The index is being created. When an index is in a CREATING state, the index or its table cannot be deleted.</p> </li> <li> <p>ACTIVE: The index creation succeeds.</p> </li> <li> <p>FAILED: The index creation fails. </p> </li> <li> <p>DELETING: The index is deleted from the list of indexes.</p> </li> </ul>"
       }
     },
     "PartitionInput": {
@@ -3764,6 +3832,7 @@
     "PartitionValueList": {
       "base": "<p>Contains a list of values defining partitions.</p>",
       "refs": {
+        "BackfillErroredPartitionsList$member": null,
         "BatchDeletePartitionValueList$member": null,
         "BatchGetPartitionValueList$member": null
       }

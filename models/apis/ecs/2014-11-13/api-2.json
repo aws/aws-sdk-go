@@ -672,6 +672,20 @@
         {"shape":"InvalidParameterException"}
       ]
     },
+    "UpdateCapacityProvider":{
+      "name":"UpdateCapacityProvider",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateCapacityProviderRequest"},
+      "output":{"shape":"UpdateCapacityProviderResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ClientException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "UpdateClusterSettings":{
       "name":"UpdateClusterSettings",
       "http":{
@@ -867,6 +881,13 @@
         "managedTerminationProtection":{"shape":"ManagedTerminationProtection"}
       }
     },
+    "AutoScalingGroupProviderUpdate":{
+      "type":"structure",
+      "members":{
+        "managedScaling":{"shape":"ManagedScaling"},
+        "managedTerminationProtection":{"shape":"ManagedTerminationProtection"}
+      }
+    },
     "AwsVpcConfiguration":{
       "type":"structure",
       "required":["subnets"],
@@ -946,7 +967,10 @@
       "enum":[
         "DELETE_IN_PROGRESS",
         "DELETE_COMPLETE",
-        "DELETE_FAILED"
+        "DELETE_FAILED",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_COMPLETE",
+        "UPDATE_FAILED"
       ]
     },
     "CapacityProviders":{
@@ -1421,17 +1445,32 @@
         "desiredCount":{"shape":"Integer"},
         "pendingCount":{"shape":"Integer"},
         "runningCount":{"shape":"Integer"},
+        "failedTasks":{"shape":"Integer"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
         "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "launchType":{"shape":"LaunchType"},
         "platformVersion":{"shape":"String"},
-        "networkConfiguration":{"shape":"NetworkConfiguration"}
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "rolloutState":{"shape":"DeploymentRolloutState"},
+        "rolloutStateReason":{"shape":"String"}
+      }
+    },
+    "DeploymentCircuitBreaker":{
+      "type":"structure",
+      "required":[
+        "enable",
+        "rollback"
+      ],
+      "members":{
+        "enable":{"shape":"Boolean"},
+        "rollback":{"shape":"Boolean"}
       }
     },
     "DeploymentConfiguration":{
       "type":"structure",
       "members":{
+        "deploymentCircuitBreaker":{"shape":"DeploymentCircuitBreaker"},
         "maximumPercent":{"shape":"BoxedInteger"},
         "minimumHealthyPercent":{"shape":"BoxedInteger"}
       }
@@ -1449,6 +1488,14 @@
         "ECS",
         "CODE_DEPLOY",
         "EXTERNAL"
+      ]
+    },
+    "DeploymentRolloutState":{
+      "type":"string",
+      "enum":[
+        "COMPLETED",
+        "FAILED",
+        "IN_PROGRESS"
       ]
     },
     "Deployments":{
@@ -2094,8 +2141,14 @@
         "status":{"shape":"ManagedScalingStatus"},
         "targetCapacity":{"shape":"ManagedScalingTargetCapacity"},
         "minimumScalingStepSize":{"shape":"ManagedScalingStepSize"},
-        "maximumScalingStepSize":{"shape":"ManagedScalingStepSize"}
+        "maximumScalingStepSize":{"shape":"ManagedScalingStepSize"},
+        "instanceWarmupPeriod":{"shape":"ManagedScalingInstanceWarmupPeriod"}
       }
+    },
+    "ManagedScalingInstanceWarmupPeriod":{
+      "type":"integer",
+      "max":10000,
+      "min":0
     },
     "ManagedScalingStatus":{
       "type":"string",
@@ -3104,6 +3157,23 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateCapacityProviderRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "autoScalingGroupProvider"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "autoScalingGroupProvider":{"shape":"AutoScalingGroupProviderUpdate"}
+      }
+    },
+    "UpdateCapacityProviderResponse":{
+      "type":"structure",
+      "members":{
+        "capacityProvider":{"shape":"CapacityProvider"}
       }
     },
     "UpdateClusterSettingsRequest":{

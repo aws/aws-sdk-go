@@ -493,6 +493,9 @@ func (c *CodeStarConnections) GetHostRequest(input *GetHostInput) (req *request.
 //   * ResourceNotFoundException
 //   Resource not found. Verify the connection resource ARN and try again.
 //
+//   * ResourceUnavailableException
+//   Resource not found. Verify the ARN for the host resource and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/GetHost
 func (c *CodeStarConnections) GetHost(input *GetHostInput) (*GetHostOutput, error) {
 	req, out := c.GetHostRequest(input)
@@ -1022,6 +1025,151 @@ func (c *CodeStarConnections) UntagResourceWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+const opUpdateHost = "UpdateHost"
+
+// UpdateHostRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateHost operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateHost for more information on using the UpdateHost
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateHostRequest method.
+//    req, resp := client.UpdateHostRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/UpdateHost
+func (c *CodeStarConnections) UpdateHostRequest(input *UpdateHostInput) (req *request.Request, output *UpdateHostOutput) {
+	op := &request.Operation{
+		Name:       opUpdateHost,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateHostInput{}
+	}
+
+	output = &UpdateHostOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateHost API operation for AWS CodeStar connections.
+//
+// Updates a specified host with the provided configurations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeStar connections's
+// API operation UpdateHost for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   Two conflicting operations have been made on the same resource.
+//
+//   * ResourceNotFoundException
+//   Resource not found. Verify the connection resource ARN and try again.
+//
+//   * ResourceUnavailableException
+//   Resource not found. Verify the ARN for the host resource and try again.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported. Check the connection status and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codestar-connections-2019-12-01/UpdateHost
+func (c *CodeStarConnections) UpdateHost(input *UpdateHostInput) (*UpdateHostOutput, error) {
+	req, out := c.UpdateHostRequest(input)
+	return out, req.Send()
+}
+
+// UpdateHostWithContext is the same as UpdateHost with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateHost for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeStarConnections) UpdateHostWithContext(ctx aws.Context, input *UpdateHostInput, opts ...request.Option) (*UpdateHostOutput, error) {
+	req, out := c.UpdateHostRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// Two conflicting operations have been made on the same resource.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A resource that is used to connect third-party source providers with services
 // like AWS CodePipeline.
 //
@@ -1053,7 +1201,7 @@ type Connection struct {
 	OwnerAccountId *string `min:"12" type:"string"`
 
 	// The name of the external provider where your third-party code repository
-	// is configured. The valid provider type is Bitbucket.
+	// is configured.
 	ProviderType *string `type:"string" enum:"ProviderType"`
 }
 
@@ -1117,7 +1265,7 @@ type CreateConnectionInput struct {
 	HostArn *string `type:"string"`
 
 	// The name of the external provider where your third-party code repository
-	// is configured. The valid provider type is Bitbucket.
+	// is configured.
 	ProviderType *string `type:"string" enum:"ProviderType"`
 
 	// The key-value pair to use when tagging the resource.
@@ -2242,6 +2390,62 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The operation is not supported. Check the connection status and try again.
+type UnsupportedOperationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
+	return &UnsupportedOperationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedOperationException) Code() string {
+	return "UnsupportedOperationException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedOperationException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedOperationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedOperationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2311,6 +2515,86 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateHostInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the host to be updated.
+	//
+	// HostArn is a required field
+	HostArn *string `type:"string" required:"true"`
+
+	// The URL or endpoint of the host to be updated.
+	ProviderEndpoint *string `min:"1" type:"string"`
+
+	// The VPC configuration of the host to be updated. A VPC must be configured
+	// and the infrastructure to be represented by the host must already be connected
+	// to the VPC.
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateHostInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHostInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateHostInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateHostInput"}
+	if s.HostArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostArn"))
+	}
+	if s.ProviderEndpoint != nil && len(*s.ProviderEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProviderEndpoint", 1))
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostArn sets the HostArn field's value.
+func (s *UpdateHostInput) SetHostArn(v string) *UpdateHostInput {
+	s.HostArn = &v
+	return s
+}
+
+// SetProviderEndpoint sets the ProviderEndpoint field's value.
+func (s *UpdateHostInput) SetProviderEndpoint(v string) *UpdateHostInput {
+	s.ProviderEndpoint = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *UpdateHostInput) SetVpcConfiguration(v *VpcConfiguration) *UpdateHostInput {
+	s.VpcConfiguration = v
+	return s
+}
+
+type UpdateHostOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateHostOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHostOutput) GoString() string {
+	return s.String()
+}
+
 // The VPC configuration provisioned for the host.
 type VpcConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -2335,7 +2619,7 @@ type VpcConfiguration struct {
 	// type is installed.
 	//
 	// VpcId is a required field
-	VpcId *string `type:"string" required:"true"`
+	VpcId *string `min:"12" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2368,6 +2652,9 @@ func (s *VpcConfiguration) Validate() error {
 	}
 	if s.VpcId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.VpcId != nil && len(*s.VpcId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcId", 12))
 	}
 
 	if invalidParams.Len() > 0 {

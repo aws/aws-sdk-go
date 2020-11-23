@@ -2671,6 +2671,9 @@ func (s *LicenseConfiguration) SetStatus(v string) *LicenseConfiguration {
 type LicenseConfigurationAssociation struct {
 	_ struct{} `type:"structure"`
 
+	// Scope of AMI associations.
+	AmiAssociationScope *string `type:"string"`
+
 	// Time when the license configuration was associated with the resource.
 	AssociationTime *time.Time `type:"timestamp"`
 
@@ -2692,6 +2695,12 @@ func (s LicenseConfigurationAssociation) String() string {
 // GoString returns the string representation
 func (s LicenseConfigurationAssociation) GoString() string {
 	return s.String()
+}
+
+// SetAmiAssociationScope sets the AmiAssociationScope field's value.
+func (s *LicenseConfigurationAssociation) SetAmiAssociationScope(v string) *LicenseConfigurationAssociation {
+	s.AmiAssociationScope = &v
+	return s
 }
 
 // SetAssociationTime sets the AssociationTime field's value.
@@ -2878,6 +2887,9 @@ func (s *LicenseOperationFailure) SetResourceType(v string) *LicenseOperationFai
 type LicenseSpecification struct {
 	_ struct{} `type:"structure"`
 
+	// Scope of AMI associations.
+	AmiAssociationScope *string `type:"string"`
+
 	// Amazon Resource Name (ARN) of the license configuration.
 	//
 	// LicenseConfigurationArn is a required field
@@ -2905,6 +2917,12 @@ func (s *LicenseSpecification) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAmiAssociationScope sets the AmiAssociationScope field's value.
+func (s *LicenseSpecification) SetAmiAssociationScope(v string) *LicenseSpecification {
+	s.AmiAssociationScope = &v
+	return s
 }
 
 // SetLicenseConfigurationArn sets the LicenseConfigurationArn field's value.

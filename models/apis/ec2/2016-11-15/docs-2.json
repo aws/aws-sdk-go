@@ -10857,6 +10857,18 @@
         "AllowedPrincipal$PrincipalType": "<p>The type of principal.</p>"
       }
     },
+    "PrivateDnsDetails": {
+      "base": "<p>Information about the Private DNS name for interface endpoints.</p>",
+      "refs": {
+        "PrivateDnsDetailsSet$member": null
+      }
+    },
+    "PrivateDnsDetailsSet": {
+      "base": null,
+      "refs": {
+        "ServiceDetail$PrivateDnsNames": "<p>The private DNS names assigned to the VPC endpoint service. </p>"
+      }
+    },
     "PrivateDnsNameConfiguration": {
       "base": "<p>Information about the private DNS name for the service endpoint. For more information about these parameters, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/ndpoint-services-dns-validation.html\">VPC Endpoint Service Private DNS Name Verification</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
       "refs": {
@@ -13673,6 +13685,7 @@
         "PrefixListId$PrefixListId": "<p>The ID of the prefix.</p>",
         "PrefixListIdSet$member": null,
         "PrincipalIdFormat$Arn": "<p>PrincipalIdFormatARN description</p>",
+        "PrivateDnsDetails$PrivateDnsName": "<p>The private DNS name assigned to the VPC endpoint service.</p>",
         "PrivateDnsNameConfiguration$Type": "<p>The endpoint service verification type, for example TXT.</p>",
         "PrivateDnsNameConfiguration$Value": "<p>The value the service provider adds to the private DNS name domain record before verification.</p>",
         "PrivateDnsNameConfiguration$Name": "<p>The name of the record subdomain the service provider needs to create. The service provider adds the <code>value</code> text to the <code>name</code>.</p>",

@@ -158,14 +158,22 @@ func (c *AutoScaling) AttachLoadBalancerTargetGroupsRequest(input *AttachLoadBal
 //
 // Attaches one or more target groups to the specified Auto Scaling group.
 //
+// This operation is used with the following load balancer types:
+//
+//    * Application Load Balancer - Operates at the application layer (layer
+//    7) and supports HTTP and HTTPS.
+//
+//    * Network Load Balancer - Operates at the transport layer (layer 4) and
+//    supports TCP, TLS, and UDP.
+//
+//    * Gateway Load Balancer - Operates at the network layer (layer 3).
+//
 // To describe the target groups for an Auto Scaling group, call the DescribeLoadBalancerTargetGroups
 // API. To detach the target group from the Auto Scaling group, call the DetachLoadBalancerTargetGroups
 // API.
 //
-// With Application Load Balancers and Network Load Balancers, instances are
-// registered as targets with a target group. With Classic Load Balancers, instances
-// are registered with the load balancer. For more information, see Attaching
-// a load balancer to your Auto Scaling group (https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html)
+// For more information, see Elastic Load Balancing and Amazon EC2 Auto Scaling
+// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -251,8 +259,8 @@ func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput
 // AttachLoadBalancers API operation for Auto Scaling.
 //
 //
-// To attach an Application Load Balancer or a Network Load Balancer, use the
-// AttachLoadBalancerTargetGroups API operation instead.
+// To attach an Application Load Balancer, Network Load Balancer, or Gateway
+// Load Balancer, use the AttachLoadBalancerTargetGroups API operation instead.
 //
 // Attaches one or more Classic Load Balancers to the specified Auto Scaling
 // group. Amazon EC2 Auto Scaling registers the running instances with these
@@ -262,8 +270,8 @@ func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput
 // API. To detach the load balancer from the Auto Scaling group, call the DetachLoadBalancers
 // API.
 //
-// For more information, see Attaching a load balancer to your Auto Scaling
-// group (https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html)
+// For more information, see Elastic Load Balancing and Amazon EC2 Auto Scaling
+// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2672,8 +2680,8 @@ func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersI
 // Describes the load balancers for the specified Auto Scaling group.
 //
 // This operation describes only Classic Load Balancers. If you have Application
-// Load Balancers or Network Load Balancers, use the DescribeLoadBalancerTargetGroups
-// API instead.
+// Load Balancers, Network Load Balancers, or Gateway Load Balancers, use the
+// DescribeLoadBalancerTargetGroups API instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3905,8 +3913,8 @@ func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput
 // group.
 //
 // This operation detaches only Classic Load Balancers. If you have Application
-// Load Balancers or Network Load Balancers, use the DetachLoadBalancerTargetGroups
-// API instead.
+// Load Balancers, Network Load Balancers, or Gateway Load Balancers, use the
+// DetachLoadBalancerTargetGroups API instead.
 //
 // When you detach a load balancer, it enters the Removing state while deregistering
 // the instances in the group. When all instances are deregistered, then you
@@ -5921,7 +5929,9 @@ type AttachLoadBalancerTargetGroupsInput struct {
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Names (ARN) of the target groups. You can specify up
-	// to 10 target groups.
+	// to 10 target groups. To get the ARN of a target group, use the Elastic Load
+	// Balancing DescribeTargetGroups (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html)
+	// API operation.
 	//
 	// TargetGroupARNs is a required field
 	TargetGroupARNs []*string `type:"list" required:"true"`
@@ -6580,8 +6590,8 @@ type CreateAutoScalingGroupInput struct {
 	LifecycleHookSpecificationList []*LifecycleHookSpecification `type:"list"`
 
 	// A list of Classic Load Balancers associated with this Auto Scaling group.
-	// For Application Load Balancers and Network Load Balancers, specify TargetGroupARNs
-	// instead.
+	// For Application Load Balancers, Network Load Balancers, and Gateway Load
+	// Balancers, specify the TargetGroupARNs property instead.
 	LoadBalancerNames []*string `type:"list"`
 
 	// The maximum amount of time, in seconds, that an instance can be in service.
@@ -6620,10 +6630,6 @@ type CreateAutoScalingGroupInput struct {
 	// individual instance types. For more information, see Auto Scaling groups
 	// with multiple instance types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
-	//
-	// Conditional: You must specify either a launch template (LaunchTemplate or
-	// MixedInstancesPolicy) or a launch configuration (LaunchConfigurationName
-	// or InstanceId).
 	MixedInstancesPolicy *MixedInstancesPolicy `type:"structure"`
 
 	// Indicates whether newly launched instances are protected from termination
@@ -7054,7 +7060,7 @@ type CreateLaunchConfigurationInput struct {
 	// VPCZoneIdentifier when you create your group.
 	//
 	// For more information, see Configuring instance tenancy with Amazon EC2 Auto
-	// Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling/ec2/userguide/auto-scaling-dedicated-instances.html)
+	// Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-dedicated-instances.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// Valid Values: default | dedicated
@@ -11104,26 +11110,25 @@ type InstancesDistribution struct {
 	OnDemandPercentageAboveBaseCapacity *int64 `type:"integer"`
 
 	// Indicates how to allocate instances across Spot Instance pools. If the allocation
-	// strategy is lowest-price, the Auto Scaling group launches instances using
-	// the Spot pools with the lowest price, and evenly allocates your instances
-	// across the number of Spot pools that you specify. If the allocation strategy
-	// is capacity-optimized, the Auto Scaling group launches instances using Spot
-	// pools that are optimally chosen based on the available Spot capacity. Defaults
-	// to lowest-price if not specified.
+	// strategy is capacity-optimized (recommended), the Auto Scaling group launches
+	// instances using Spot pools that are optimally chosen based on the available
+	// Spot capacity. If the allocation strategy is lowest-price, the Auto Scaling
+	// group launches instances using the Spot pools with the lowest price, and
+	// evenly allocates your instances across the number of Spot pools that you
+	// specify. Defaults to lowest-price if not specified.
 	SpotAllocationStrategy *string `type:"string"`
 
 	// The number of Spot Instance pools across which to allocate your Spot Instances.
 	// The Spot pools are determined from the different instance types in the overrides.
-	// Defaults to 2 if not specified. Valid only when the Spot allocation strategy
-	// is lowest-price.
-	//
-	// Valid Range: Minimum value of 1. Maximum value of 20.
+	// Valid only when the Spot allocation strategy is lowest-price. Value must
+	// be in the range of 1 to 20. Defaults to 2 if not specified.
 	SpotInstancePools *int64 `type:"integer"`
 
 	// The maximum price per unit hour that you are willing to pay for a Spot Instance.
-	// If you leave the value of this parameter blank (which is the default), the
-	// maximum Spot price is set at the On-Demand price. To remove a value that
-	// you previously set, include the parameter but leave the value blank.
+	// If you leave the value at its default (empty), Amazon EC2 Auto Scaling uses
+	// the On-Demand price as the maximum Spot price. To remove a value that you
+	// previously set, include the property but specify an empty string ("") for
+	// the value.
 	SpotMaxPrice *string `type:"string"`
 }
 
@@ -11526,9 +11531,8 @@ type LaunchTemplateOverrides struct {
 	// of 5 units, the instance is provisioned, and the desired capacity is exceeded
 	// by 3 units. For more information, see Instance weighting for Amazon EC2 Auto
 	// Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-weighting.html)
-	// in the Amazon EC2 Auto Scaling User Guide.
-	//
-	// Valid Range: Minimum value of 1. Maximum value of 999.
+	// in the Amazon EC2 Auto Scaling User Guide. Value must be in the range of
+	// 1 to 999.
 	WeightedCapacity *string `min:"1" type:"string"`
 }
 
@@ -11595,14 +11599,18 @@ type LaunchTemplateSpecification struct {
 	// DescribeLaunchTemplates (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html)
 	// API operation. New launch templates can be created using the Amazon EC2 CreateLaunchTemplate
 	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateLaunchTemplate.html)
-	// API. You must specify either a LaunchTemplateId or a LaunchTemplateName.
+	// API.
+	//
+	// Conditional: You must specify either a LaunchTemplateId or a LaunchTemplateName.
 	LaunchTemplateId *string `min:"1" type:"string"`
 
 	// The name of the launch template. To get the template name, use the Amazon
 	// EC2 DescribeLaunchTemplates (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeLaunchTemplates.html)
 	// API operation. New launch templates can be created using the Amazon EC2 CreateLaunchTemplate
 	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateLaunchTemplate.html)
-	// API. You must specify either a LaunchTemplateId or a LaunchTemplateName.
+	// API.
+	//
+	// Conditional: You must specify either a LaunchTemplateId or a LaunchTemplateName.
 	LaunchTemplateName *string `min:"3" type:"string"`
 
 	// The version number, $Latest, or $Default. To get the version number, use

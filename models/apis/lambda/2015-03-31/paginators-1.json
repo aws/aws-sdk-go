@@ -6,6 +6,12 @@
       "output_token": "NextMarker",
       "result_key": "Aliases"
     },
+    "ListCodeSigningConfigs": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "NextMarker",
+      "result_key": "CodeSigningConfigs"
+    },
     "ListEventSourceMappings": {
       "input_token": "Marker",
       "limit_key": "MaxItems",
@@ -23,6 +29,12 @@
       "limit_key": "MaxItems",
       "output_token": "NextMarker",
       "result_key": "Functions"
+    },
+    "ListFunctionsByCodeSigningConfig": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "NextMarker",
+      "result_key": "FunctionArns"
     },
     "ListLayerVersions": {
       "input_token": "Marker",

@@ -332,6 +332,90 @@ func (c *Lambda) CreateAliasWithContext(ctx aws.Context, input *CreateAliasInput
 	return out, req.Send()
 }
 
+const opCreateCodeSigningConfig = "CreateCodeSigningConfig"
+
+// CreateCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCodeSigningConfig for more information on using the CreateCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCodeSigningConfigRequest method.
+//    req, resp := client.CreateCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateCodeSigningConfig
+func (c *Lambda) CreateCodeSigningConfigRequest(input *CreateCodeSigningConfigInput) (req *request.Request, output *CreateCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateCodeSigningConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-04-22/code-signing-configs/",
+	}
+
+	if input == nil {
+		input = &CreateCodeSigningConfigInput{}
+	}
+
+	output = &CreateCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCodeSigningConfig API operation for AWS Lambda.
+//
+// Creates a code signing configuration. A code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-trustedcode.html)
+// defines a list of allowed signing profiles and defines the code-signing validation
+// policy (action to be taken if deployment validation checks fail).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation CreateCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateCodeSigningConfig
+func (c *Lambda) CreateCodeSigningConfig(input *CreateCodeSigningConfigInput) (*CreateCodeSigningConfigOutput, error) {
+	req, out := c.CreateCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateCodeSigningConfigWithContext is the same as CreateCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) CreateCodeSigningConfigWithContext(ctx aws.Context, input *CreateCodeSigningConfigInput, opts ...request.Option) (*CreateCodeSigningConfigOutput, error) {
+	req, out := c.CreateCodeSigningConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateEventSourceMapping = "CreateEventSourceMapping"
 
 // CreateEventSourceMappingRequest generates a "aws/request.Request" representing the
@@ -527,6 +611,12 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // of the function, and include tags (TagResource) and per-function concurrency
 // limits (PutFunctionConcurrency).
 //
+// To enable code signing for this function, specify the ARN of a code-signing
+// configuration. When a user attempts to deploy a code package with UpdateFunctionCode,
+// Lambda checks that the code package has a valid signature from a trusted
+// publisher. The code-signing configuration includes set set of signing profiles,
+// which define the trusted publishers for this function.
+//
 // If another account or an AWS service invokes your function, use AddPermission
 // to grant permission by creating a resource-based IAM policy. You can grant
 // permissions at the function level, on a version, or on an alias.
@@ -561,6 +651,18 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 //
 //   * CodeStorageExceededException
 //   You have exceeded your maximum total code size per account. Learn more (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
+//
+//   * CodeVerificationFailedException
+//   The code signature failed one or more of the validation checks for signature
+//   mismatch or expiry, and the code signing policy is set to ENFORCE. Lambda
+//   blocks the deployment.
+//
+//   * InvalidCodeSignatureException
+//   The code signature failed the integrity check. Lambda always blocks deployment
+//   if the integrity check fails, even if code signing policy is set to WARN.
+//
+//   * CodeSigningConfigNotFoundException
+//   The specified code signing configuration does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateFunction
 func (c *Lambda) CreateFunction(input *CreateFunctionInput) (*FunctionConfiguration, error) {
@@ -668,6 +770,96 @@ func (c *Lambda) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error
 // for more information on using Contexts.
 func (c *Lambda) DeleteAliasWithContext(ctx aws.Context, input *DeleteAliasInput, opts ...request.Option) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCodeSigningConfig = "DeleteCodeSigningConfig"
+
+// DeleteCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCodeSigningConfig for more information on using the DeleteCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCodeSigningConfigRequest method.
+//    req, resp := client.DeleteCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteCodeSigningConfig
+func (c *Lambda) DeleteCodeSigningConfigRequest(input *DeleteCodeSigningConfigInput) (req *request.Request, output *DeleteCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCodeSigningConfig,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}",
+	}
+
+	if input == nil {
+		input = &DeleteCodeSigningConfigInput{}
+	}
+
+	output = &DeleteCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCodeSigningConfig API operation for AWS Lambda.
+//
+// Deletes the code signing configuration. You can delete the code signing configuration
+// only if no function is using it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation DeleteCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteCodeSigningConfig
+func (c *Lambda) DeleteCodeSigningConfig(input *DeleteCodeSigningConfigInput) (*DeleteCodeSigningConfigOutput, error) {
+	req, out := c.DeleteCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCodeSigningConfigWithContext is the same as DeleteCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) DeleteCodeSigningConfigWithContext(ctx aws.Context, input *DeleteCodeSigningConfigInput, opts ...request.Option) (*DeleteCodeSigningConfigOutput, error) {
+	req, out := c.DeleteCodeSigningConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -862,6 +1054,101 @@ func (c *Lambda) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutp
 // for more information on using Contexts.
 func (c *Lambda) DeleteFunctionWithContext(ctx aws.Context, input *DeleteFunctionInput, opts ...request.Option) (*DeleteFunctionOutput, error) {
 	req, out := c.DeleteFunctionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFunctionCodeSigningConfig = "DeleteFunctionCodeSigningConfig"
+
+// DeleteFunctionCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFunctionCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFunctionCodeSigningConfig for more information on using the DeleteFunctionCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFunctionCodeSigningConfigRequest method.
+//    req, resp := client.DeleteFunctionCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionCodeSigningConfig
+func (c *Lambda) DeleteFunctionCodeSigningConfigRequest(input *DeleteFunctionCodeSigningConfigInput) (req *request.Request, output *DeleteFunctionCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFunctionCodeSigningConfig,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-06-30/functions/{FunctionName}/code-signing-config",
+	}
+
+	if input == nil {
+		input = &DeleteFunctionCodeSigningConfigInput{}
+	}
+
+	output = &DeleteFunctionCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFunctionCodeSigningConfig API operation for AWS Lambda.
+//
+// Removes the code signing configuration from the function.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation DeleteFunctionCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * CodeSigningConfigNotFoundException
+//   The specified code signing configuration does not exist.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionCodeSigningConfig
+func (c *Lambda) DeleteFunctionCodeSigningConfig(input *DeleteFunctionCodeSigningConfigInput) (*DeleteFunctionCodeSigningConfigOutput, error) {
+	req, out := c.DeleteFunctionCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFunctionCodeSigningConfigWithContext is the same as DeleteFunctionCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFunctionCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) DeleteFunctionCodeSigningConfigWithContext(ctx aws.Context, input *DeleteFunctionCodeSigningConfigInput, opts ...request.Option) (*DeleteFunctionCodeSigningConfigOutput, error) {
+	req, out := c.DeleteFunctionCodeSigningConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1400,6 +1687,91 @@ func (c *Lambda) GetAliasWithContext(ctx aws.Context, input *GetAliasInput, opts
 	return out, req.Send()
 }
 
+const opGetCodeSigningConfig = "GetCodeSigningConfig"
+
+// GetCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCodeSigningConfig for more information on using the GetCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCodeSigningConfigRequest method.
+//    req, resp := client.GetCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetCodeSigningConfig
+func (c *Lambda) GetCodeSigningConfigRequest(input *GetCodeSigningConfigInput) (req *request.Request, output *GetCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetCodeSigningConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}",
+	}
+
+	if input == nil {
+		input = &GetCodeSigningConfigInput{}
+	}
+
+	output = &GetCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCodeSigningConfig API operation for AWS Lambda.
+//
+// Returns information about the specified code signing configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation GetCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetCodeSigningConfig
+func (c *Lambda) GetCodeSigningConfig(input *GetCodeSigningConfigInput) (*GetCodeSigningConfigOutput, error) {
+	req, out := c.GetCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetCodeSigningConfigWithContext is the same as GetCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) GetCodeSigningConfigWithContext(ctx aws.Context, input *GetCodeSigningConfigInput, opts ...request.Option) (*GetCodeSigningConfigOutput, error) {
+	req, out := c.GetCodeSigningConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEventSourceMapping = "GetEventSourceMapping"
 
 // GetEventSourceMappingRequest generates a "aws/request.Request" representing the
@@ -1574,6 +1946,94 @@ func (c *Lambda) GetFunction(input *GetFunctionInput) (*GetFunctionOutput, error
 // for more information on using Contexts.
 func (c *Lambda) GetFunctionWithContext(ctx aws.Context, input *GetFunctionInput, opts ...request.Option) (*GetFunctionOutput, error) {
 	req, out := c.GetFunctionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFunctionCodeSigningConfig = "GetFunctionCodeSigningConfig"
+
+// GetFunctionCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetFunctionCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFunctionCodeSigningConfig for more information on using the GetFunctionCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFunctionCodeSigningConfigRequest method.
+//    req, resp := client.GetFunctionCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionCodeSigningConfig
+func (c *Lambda) GetFunctionCodeSigningConfigRequest(input *GetFunctionCodeSigningConfigInput) (req *request.Request, output *GetFunctionCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetFunctionCodeSigningConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-06-30/functions/{FunctionName}/code-signing-config",
+	}
+
+	if input == nil {
+		input = &GetFunctionCodeSigningConfigInput{}
+	}
+
+	output = &GetFunctionCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFunctionCodeSigningConfig API operation for AWS Lambda.
+//
+// Returns the code signing configuration for the specified function.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation GetFunctionCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionCodeSigningConfig
+func (c *Lambda) GetFunctionCodeSigningConfig(input *GetFunctionCodeSigningConfigInput) (*GetFunctionCodeSigningConfigOutput, error) {
+	req, out := c.GetFunctionCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetFunctionCodeSigningConfigWithContext is the same as GetFunctionCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFunctionCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) GetFunctionCodeSigningConfigWithContext(ctx aws.Context, input *GetFunctionCodeSigningConfigInput, opts ...request.Option) (*GetFunctionCodeSigningConfigOutput, error) {
+	req, out := c.GetFunctionCodeSigningConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2755,6 +3215,149 @@ func (c *Lambda) ListAliasesPagesWithContext(ctx aws.Context, input *ListAliases
 	return p.Err()
 }
 
+const opListCodeSigningConfigs = "ListCodeSigningConfigs"
+
+// ListCodeSigningConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCodeSigningConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCodeSigningConfigs for more information on using the ListCodeSigningConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCodeSigningConfigsRequest method.
+//    req, resp := client.ListCodeSigningConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListCodeSigningConfigs
+func (c *Lambda) ListCodeSigningConfigsRequest(input *ListCodeSigningConfigsInput) (req *request.Request, output *ListCodeSigningConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListCodeSigningConfigs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-04-22/code-signing-configs/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCodeSigningConfigsInput{}
+	}
+
+	output = &ListCodeSigningConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCodeSigningConfigs API operation for AWS Lambda.
+//
+// Returns a list of code signing configurations (https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html)
+// for the specified function. A request returns up to 10,000 configurations
+// per call. You can use the MaxItems parameter to return fewer configurations
+// per call.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation ListCodeSigningConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListCodeSigningConfigs
+func (c *Lambda) ListCodeSigningConfigs(input *ListCodeSigningConfigsInput) (*ListCodeSigningConfigsOutput, error) {
+	req, out := c.ListCodeSigningConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListCodeSigningConfigsWithContext is the same as ListCodeSigningConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCodeSigningConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) ListCodeSigningConfigsWithContext(ctx aws.Context, input *ListCodeSigningConfigsInput, opts ...request.Option) (*ListCodeSigningConfigsOutput, error) {
+	req, out := c.ListCodeSigningConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCodeSigningConfigsPages iterates over the pages of a ListCodeSigningConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCodeSigningConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCodeSigningConfigs operation.
+//    pageNum := 0
+//    err := client.ListCodeSigningConfigsPages(params,
+//        func(page *lambda.ListCodeSigningConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Lambda) ListCodeSigningConfigsPages(input *ListCodeSigningConfigsInput, fn func(*ListCodeSigningConfigsOutput, bool) bool) error {
+	return c.ListCodeSigningConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCodeSigningConfigsPagesWithContext same as ListCodeSigningConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) ListCodeSigningConfigsPagesWithContext(ctx aws.Context, input *ListCodeSigningConfigsInput, fn func(*ListCodeSigningConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCodeSigningConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCodeSigningConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCodeSigningConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListEventSourceMappings = "ListEventSourceMappings"
 
 // ListEventSourceMappingsRequest generates a "aws/request.Request" representing the
@@ -3191,6 +3794,151 @@ func (c *Lambda) ListFunctionsPagesWithContext(ctx aws.Context, input *ListFunct
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFunctionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFunctionsByCodeSigningConfig = "ListFunctionsByCodeSigningConfig"
+
+// ListFunctionsByCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the ListFunctionsByCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFunctionsByCodeSigningConfig for more information on using the ListFunctionsByCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFunctionsByCodeSigningConfigRequest method.
+//    req, resp := client.ListFunctionsByCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionsByCodeSigningConfig
+func (c *Lambda) ListFunctionsByCodeSigningConfigRequest(input *ListFunctionsByCodeSigningConfigInput) (req *request.Request, output *ListFunctionsByCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opListFunctionsByCodeSigningConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}/functions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFunctionsByCodeSigningConfigInput{}
+	}
+
+	output = &ListFunctionsByCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFunctionsByCodeSigningConfig API operation for AWS Lambda.
+//
+// List the functions that use the specified code signing configuration. You
+// can use this method prior to deleting a code signing configuration, to verify
+// that no functions are using it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation ListFunctionsByCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionsByCodeSigningConfig
+func (c *Lambda) ListFunctionsByCodeSigningConfig(input *ListFunctionsByCodeSigningConfigInput) (*ListFunctionsByCodeSigningConfigOutput, error) {
+	req, out := c.ListFunctionsByCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// ListFunctionsByCodeSigningConfigWithContext is the same as ListFunctionsByCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFunctionsByCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) ListFunctionsByCodeSigningConfigWithContext(ctx aws.Context, input *ListFunctionsByCodeSigningConfigInput, opts ...request.Option) (*ListFunctionsByCodeSigningConfigOutput, error) {
+	req, out := c.ListFunctionsByCodeSigningConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFunctionsByCodeSigningConfigPages iterates over the pages of a ListFunctionsByCodeSigningConfig operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFunctionsByCodeSigningConfig method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFunctionsByCodeSigningConfig operation.
+//    pageNum := 0
+//    err := client.ListFunctionsByCodeSigningConfigPages(params,
+//        func(page *lambda.ListFunctionsByCodeSigningConfigOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Lambda) ListFunctionsByCodeSigningConfigPages(input *ListFunctionsByCodeSigningConfigInput, fn func(*ListFunctionsByCodeSigningConfigOutput, bool) bool) error {
+	return c.ListFunctionsByCodeSigningConfigPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFunctionsByCodeSigningConfigPagesWithContext same as ListFunctionsByCodeSigningConfigPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) ListFunctionsByCodeSigningConfigPagesWithContext(ctx aws.Context, input *ListFunctionsByCodeSigningConfigInput, fn func(*ListFunctionsByCodeSigningConfigOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFunctionsByCodeSigningConfigInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFunctionsByCodeSigningConfigRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFunctionsByCodeSigningConfigOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4079,6 +4827,102 @@ func (c *Lambda) PublishVersionWithContext(ctx aws.Context, input *PublishVersio
 	return out, req.Send()
 }
 
+const opPutFunctionCodeSigningConfig = "PutFunctionCodeSigningConfig"
+
+// PutFunctionCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the PutFunctionCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutFunctionCodeSigningConfig for more information on using the PutFunctionCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutFunctionCodeSigningConfigRequest method.
+//    req, resp := client.PutFunctionCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutFunctionCodeSigningConfig
+func (c *Lambda) PutFunctionCodeSigningConfigRequest(input *PutFunctionCodeSigningConfigInput) (req *request.Request, output *PutFunctionCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opPutFunctionCodeSigningConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-06-30/functions/{FunctionName}/code-signing-config",
+	}
+
+	if input == nil {
+		input = &PutFunctionCodeSigningConfigInput{}
+	}
+
+	output = &PutFunctionCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutFunctionCodeSigningConfig API operation for AWS Lambda.
+//
+// Update the code signing configuration for the function. Changes to the code
+// signing configuration take effect the next time a user tries to deploy a
+// code package to the function.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation PutFunctionCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
+//   * CodeSigningConfigNotFoundException
+//   The specified code signing configuration does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutFunctionCodeSigningConfig
+func (c *Lambda) PutFunctionCodeSigningConfig(input *PutFunctionCodeSigningConfigInput) (*PutFunctionCodeSigningConfigOutput, error) {
+	req, out := c.PutFunctionCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// PutFunctionCodeSigningConfigWithContext is the same as PutFunctionCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutFunctionCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) PutFunctionCodeSigningConfigWithContext(ctx aws.Context, input *PutFunctionCodeSigningConfigInput, opts ...request.Option) (*PutFunctionCodeSigningConfigOutput, error) {
+	req, out := c.PutFunctionCodeSigningConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutFunctionConcurrency = "PutFunctionConcurrency"
 
 // PutFunctionConcurrencyRequest generates a "aws/request.Request" representing the
@@ -4851,6 +5695,92 @@ func (c *Lambda) UpdateAliasWithContext(ctx aws.Context, input *UpdateAliasInput
 	return out, req.Send()
 }
 
+const opUpdateCodeSigningConfig = "UpdateCodeSigningConfig"
+
+// UpdateCodeSigningConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCodeSigningConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCodeSigningConfig for more information on using the UpdateCodeSigningConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCodeSigningConfigRequest method.
+//    req, resp := client.UpdateCodeSigningConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateCodeSigningConfig
+func (c *Lambda) UpdateCodeSigningConfigRequest(input *UpdateCodeSigningConfigInput) (req *request.Request, output *UpdateCodeSigningConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCodeSigningConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-04-22/code-signing-configs/{CodeSigningConfigArn}",
+	}
+
+	if input == nil {
+		input = &UpdateCodeSigningConfigInput{}
+	}
+
+	output = &UpdateCodeSigningConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCodeSigningConfig API operation for AWS Lambda.
+//
+// Update the code signing configuration. Changes to the code signing configuration
+// take effect the next time a user tries to deploy a code package to the function.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation UpdateCodeSigningConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   The AWS Lambda service encountered an internal error.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateCodeSigningConfig
+func (c *Lambda) UpdateCodeSigningConfig(input *UpdateCodeSigningConfigInput) (*UpdateCodeSigningConfigOutput, error) {
+	req, out := c.UpdateCodeSigningConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCodeSigningConfigWithContext is the same as UpdateCodeSigningConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCodeSigningConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) UpdateCodeSigningConfigWithContext(ctx aws.Context, input *UpdateCodeSigningConfigInput, opts ...request.Option) (*UpdateCodeSigningConfigOutput, error) {
+	req, out := c.UpdateCodeSigningConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateEventSourceMapping = "UpdateEventSourceMapping"
 
 // UpdateEventSourceMappingRequest generates a "aws/request.Request" representing the
@@ -5011,7 +5941,9 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 
 // UpdateFunctionCode API operation for AWS Lambda.
 //
-// Updates a Lambda function's code.
+// Updates a Lambda function's code. If code signing is enabled for the function,
+// the code package must be signed by a trusted publisher. For more information,
+// see Configuring code signing (https://docs.aws.amazon.com/lambda/latest/dg/configuration-trustedcode.html).
 //
 // The function's code is locked when you publish a version. You can't modify
 // the code of a published version, only the unpublished version.
@@ -5046,6 +5978,18 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 //
 //   * ResourceConflictException
 //   The resource already exists, or another operation is in progress.
+//
+//   * CodeVerificationFailedException
+//   The code signature failed one or more of the validation checks for signature
+//   mismatch or expiry, and the code signing policy is set to ENFORCE. Lambda
+//   blocks the deployment.
+//
+//   * InvalidCodeSignatureException
+//   The code signature failed the integrity check. Lambda always blocks deployment
+//   if the integrity check fails, even if code signing policy is set to WARN.
+//
+//   * CodeSigningConfigNotFoundException
+//   The specified code signing configuration does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionCode
 func (c *Lambda) UpdateFunctionCode(input *UpdateFunctionCodeInput) (*FunctionConfiguration, error) {
@@ -5157,6 +6101,18 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 //   The RevisionId provided does not match the latest RevisionId for the Lambda
 //   function or alias. Call the GetFunction or the GetAlias API to retrieve the
 //   latest RevisionId for your resource.
+//
+//   * CodeVerificationFailedException
+//   The code signature failed one or more of the validation checks for signature
+//   mismatch or expiry, and the code signing policy is set to ENFORCE. Lambda
+//   blocks the deployment.
+//
+//   * InvalidCodeSignatureException
+//   The code signature failed the integrity check. Lambda always blocks deployment
+//   if the integrity check fails, even if code signing policy is set to WARN.
+//
+//   * CodeSigningConfigNotFoundException
+//   The specified code signing configuration does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionConfiguration
 func (c *Lambda) UpdateFunctionConfiguration(input *UpdateFunctionConfigurationInput) (*FunctionConfiguration, error) {
@@ -5798,6 +6754,218 @@ func (s *AliasRoutingConfiguration) SetAdditionalVersionWeights(v map[string]*fl
 	return s
 }
 
+// List of signing profiles that can sign a code package.
+type AllowedPublishers struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for each of the signing profiles. A signing
+	// profile defines a trusted user who can sign a code package.
+	//
+	// SigningProfileVersionArns is a required field
+	SigningProfileVersionArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AllowedPublishers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AllowedPublishers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowedPublishers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowedPublishers"}
+	if s.SigningProfileVersionArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("SigningProfileVersionArns"))
+	}
+	if s.SigningProfileVersionArns != nil && len(s.SigningProfileVersionArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SigningProfileVersionArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSigningProfileVersionArns sets the SigningProfileVersionArns field's value.
+func (s *AllowedPublishers) SetSigningProfileVersionArns(v []*string) *AllowedPublishers {
+	s.SigningProfileVersionArns = v
+	return s
+}
+
+// Details about a Code signing configuration.
+type CodeSigningConfig struct {
+	_ struct{} `type:"structure"`
+
+	// List of allowed publishers.
+	//
+	// AllowedPublishers is a required field
+	AllowedPublishers *AllowedPublishers `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `type:"string" required:"true"`
+
+	// Unique identifer for the Code signing configuration.
+	//
+	// CodeSigningConfigId is a required field
+	CodeSigningConfigId *string `type:"string" required:"true"`
+
+	// The code signing policy controls the validation failure action for signature
+	// mismatch or expiry.
+	//
+	// CodeSigningPolicies is a required field
+	CodeSigningPolicies *CodeSigningPolicies `type:"structure" required:"true"`
+
+	// Code signing configuration description.
+	Description *string `type:"string"`
+
+	// The date and time that the Code signing configuration was last modified,
+	// in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+	//
+	// LastModified is a required field
+	LastModified *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CodeSigningConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeSigningConfig) GoString() string {
+	return s.String()
+}
+
+// SetAllowedPublishers sets the AllowedPublishers field's value.
+func (s *CodeSigningConfig) SetAllowedPublishers(v *AllowedPublishers) *CodeSigningConfig {
+	s.AllowedPublishers = v
+	return s
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *CodeSigningConfig) SetCodeSigningConfigArn(v string) *CodeSigningConfig {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+// SetCodeSigningConfigId sets the CodeSigningConfigId field's value.
+func (s *CodeSigningConfig) SetCodeSigningConfigId(v string) *CodeSigningConfig {
+	s.CodeSigningConfigId = &v
+	return s
+}
+
+// SetCodeSigningPolicies sets the CodeSigningPolicies field's value.
+func (s *CodeSigningConfig) SetCodeSigningPolicies(v *CodeSigningPolicies) *CodeSigningConfig {
+	s.CodeSigningPolicies = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CodeSigningConfig) SetDescription(v string) *CodeSigningConfig {
+	s.Description = &v
+	return s
+}
+
+// SetLastModified sets the LastModified field's value.
+func (s *CodeSigningConfig) SetLastModified(v string) *CodeSigningConfig {
+	s.LastModified = &v
+	return s
+}
+
+// The specified code signing configuration does not exist.
+type CodeSigningConfigNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CodeSigningConfigNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeSigningConfigNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorCodeSigningConfigNotFoundException(v protocol.ResponseMetadata) error {
+	return &CodeSigningConfigNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CodeSigningConfigNotFoundException) Code() string {
+	return "CodeSigningConfigNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *CodeSigningConfigNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CodeSigningConfigNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *CodeSigningConfigNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CodeSigningConfigNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CodeSigningConfigNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Code signing configuration policies specifies the validation failure action
+// for signature mismatch or expiry.
+type CodeSigningPolicies struct {
+	_ struct{} `type:"structure"`
+
+	// Code signing configuration policy for deployment validation failure. If you
+	// set the policy to Enforce, Lambda blocks the deployment request if code-signing
+	// validation checks fail. If you set the policy to Warn, Lambda allows the
+	// deployment and creates a CloudWatch log.
+	//
+	// Default value: Warn
+	UntrustedArtifactOnDeployment *string `type:"string" enum:"CodeSigningPolicy"`
+}
+
+// String returns the string representation
+func (s CodeSigningPolicies) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeSigningPolicies) GoString() string {
+	return s.String()
+}
+
+// SetUntrustedArtifactOnDeployment sets the UntrustedArtifactOnDeployment field's value.
+func (s *CodeSigningPolicies) SetUntrustedArtifactOnDeployment(v string) *CodeSigningPolicies {
+	s.UntrustedArtifactOnDeployment = &v
+	return s
+}
+
 // You have exceeded your maximum total code size per account. Learn more (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
 type CodeStorageExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -5854,6 +7022,66 @@ func (s *CodeStorageExceededException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *CodeStorageExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The code signature failed one or more of the validation checks for signature
+// mismatch or expiry, and the code signing policy is set to ENFORCE. Lambda
+// blocks the deployment.
+type CodeVerificationFailedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CodeVerificationFailedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeVerificationFailedException) GoString() string {
+	return s.String()
+}
+
+func newErrorCodeVerificationFailedException(v protocol.ResponseMetadata) error {
+	return &CodeVerificationFailedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CodeVerificationFailedException) Code() string {
+	return "CodeVerificationFailedException"
+}
+
+// Message returns the exception's message.
+func (s *CodeVerificationFailedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CodeVerificationFailedException) OrigErr() error {
+	return nil
+}
+
+func (s *CodeVerificationFailedException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CodeVerificationFailedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CodeVerificationFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5959,6 +7187,93 @@ func (s *CreateAliasInput) SetName(v string) *CreateAliasInput {
 // SetRoutingConfig sets the RoutingConfig field's value.
 func (s *CreateAliasInput) SetRoutingConfig(v *AliasRoutingConfiguration) *CreateAliasInput {
 	s.RoutingConfig = v
+	return s
+}
+
+type CreateCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Signing profiles for this code signing configuration.
+	//
+	// AllowedPublishers is a required field
+	AllowedPublishers *AllowedPublishers `type:"structure" required:"true"`
+
+	// The code signing policies define the actions to take if the validation checks
+	// fail.
+	CodeSigningPolicies *CodeSigningPolicies `type:"structure"`
+
+	// Descriptive name for this code signing configuration.
+	Description *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCodeSigningConfigInput"}
+	if s.AllowedPublishers == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllowedPublishers"))
+	}
+	if s.AllowedPublishers != nil {
+		if err := s.AllowedPublishers.Validate(); err != nil {
+			invalidParams.AddNested("AllowedPublishers", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedPublishers sets the AllowedPublishers field's value.
+func (s *CreateCodeSigningConfigInput) SetAllowedPublishers(v *AllowedPublishers) *CreateCodeSigningConfigInput {
+	s.AllowedPublishers = v
+	return s
+}
+
+// SetCodeSigningPolicies sets the CodeSigningPolicies field's value.
+func (s *CreateCodeSigningConfigInput) SetCodeSigningPolicies(v *CodeSigningPolicies) *CreateCodeSigningConfigInput {
+	s.CodeSigningPolicies = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCodeSigningConfigInput) SetDescription(v string) *CreateCodeSigningConfigInput {
+	s.Description = &v
+	return s
+}
+
+type CreateCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The code signing configuration.
+	//
+	// CodeSigningConfig is a required field
+	CodeSigningConfig *CodeSigningConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeSigningConfig sets the CodeSigningConfig field's value.
+func (s *CreateCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfig) *CreateCodeSigningConfigOutput {
+	s.CodeSigningConfig = v
 	return s
 }
 
@@ -6209,6 +7524,11 @@ type CreateFunctionInput struct {
 	// Code is a required field
 	Code *FunctionCode `type:"structure" required:"true"`
 
+	// To enable code signing for this function, specify the ARN of a code-signing
+	// configuration. A code-signing configuration includes set set of signing profiles,
+	// which define the trusted publishers for this function.
+	CodeSigningConfigArn *string `type:"string"`
+
 	// A dead letter queue configuration that specifies the queue or topic where
 	// Lambda sends asynchronous events when they fail processing. For more information,
 	// see Dead Letter Queues (https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#dlq).
@@ -6356,6 +7676,12 @@ func (s *CreateFunctionInput) Validate() error {
 // SetCode sets the Code field's value.
 func (s *CreateFunctionInput) SetCode(v *FunctionCode) *CreateFunctionInput {
 	s.Code = v
+	return s
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *CreateFunctionInput) SetCodeSigningConfigArn(v string) *CreateFunctionInput {
+	s.CodeSigningConfigArn = &v
 	return s
 }
 
@@ -6563,6 +7889,61 @@ func (s DeleteAliasOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `location:"uri" locationName:"CodeSigningConfigArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCodeSigningConfigInput"}
+	if s.CodeSigningConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeSigningConfigArn"))
+	}
+	if s.CodeSigningConfigArn != nil && len(*s.CodeSigningConfigArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeSigningConfigArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *DeleteCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *DeleteCodeSigningConfigInput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+type DeleteCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6602,6 +7983,72 @@ func (s *DeleteEventSourceMappingInput) Validate() error {
 func (s *DeleteEventSourceMappingInput) SetUUID(v string) *DeleteEventSourceMappingInput {
 	s.UUID = &v
 	return s
+}
+
+type DeleteFunctionCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name - MyFunction.
+	//
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//
+	//    * Partial ARN - 123456789012:function:MyFunction.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFunctionCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFunctionCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFunctionCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFunctionCodeSigningConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *DeleteFunctionCodeSigningConfigInput) SetFunctionName(v string) *DeleteFunctionCodeSigningConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+type DeleteFunctionCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFunctionCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFunctionCodeSigningConfigOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteFunctionConcurrencyInput struct {
@@ -8017,6 +9464,12 @@ type FunctionConfiguration struct {
 	// The runtime environment for the Lambda function.
 	Runtime *string `type:"string" enum:"Runtime"`
 
+	// The ARN of the signing job.
+	SigningJobArn *string `type:"string"`
+
+	// The ARN of the signing profile version.
+	SigningProfileVersionArn *string `type:"string"`
+
 	// The current state of the function. When the state is Inactive, you can reactivate
 	// the function by invoking it.
 	State *string `type:"string" enum:"State"`
@@ -8169,6 +9622,18 @@ func (s *FunctionConfiguration) SetRole(v string) *FunctionConfiguration {
 // SetRuntime sets the Runtime field's value.
 func (s *FunctionConfiguration) SetRuntime(v string) *FunctionConfiguration {
 	s.Runtime = &v
+	return s
+}
+
+// SetSigningJobArn sets the SigningJobArn field's value.
+func (s *FunctionConfiguration) SetSigningJobArn(v string) *FunctionConfiguration {
+	s.SigningJobArn = &v
+	return s
+}
+
+// SetSigningProfileVersionArn sets the SigningProfileVersionArn field's value.
+func (s *FunctionConfiguration) SetSigningProfileVersionArn(v string) *FunctionConfiguration {
+	s.SigningProfileVersionArn = &v
 	return s
 }
 
@@ -8398,6 +9863,72 @@ func (s *GetAliasInput) SetName(v string) *GetAliasInput {
 	return s
 }
 
+type GetCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `location:"uri" locationName:"CodeSigningConfigArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCodeSigningConfigInput"}
+	if s.CodeSigningConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeSigningConfigArn"))
+	}
+	if s.CodeSigningConfigArn != nil && len(*s.CodeSigningConfigArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeSigningConfigArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *GetCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *GetCodeSigningConfigInput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+type GetCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The code signing configuration
+	//
+	// CodeSigningConfig is a required field
+	CodeSigningConfig *CodeSigningConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeSigningConfig sets the CodeSigningConfig field's value.
+func (s *GetCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfig) *GetCodeSigningConfigOutput {
+	s.CodeSigningConfig = v
+	return s
+}
+
 type GetEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8436,6 +9967,105 @@ func (s *GetEventSourceMappingInput) Validate() error {
 // SetUUID sets the UUID field's value.
 func (s *GetEventSourceMappingInput) SetUUID(v string) *GetEventSourceMappingInput {
 	s.UUID = &v
+	return s
+}
+
+type GetFunctionCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name - MyFunction.
+	//
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//
+	//    * Partial ARN - 123456789012:function:MyFunction.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFunctionCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFunctionCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFunctionCodeSigningConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *GetFunctionCodeSigningConfigInput) SetFunctionName(v string) *GetFunctionCodeSigningConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+type GetFunctionCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `type:"string" required:"true"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name - MyFunction.
+	//
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//
+	//    * Partial ARN - 123456789012:function:MyFunction.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFunctionCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *GetFunctionCodeSigningConfigOutput) SetCodeSigningConfigArn(v string) *GetFunctionCodeSigningConfigOutput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *GetFunctionCodeSigningConfigOutput) SetFunctionName(v string) *GetFunctionCodeSigningConfigOutput {
+	s.FunctionName = &v
 	return s
 }
 
@@ -9423,6 +11053,65 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetPr
 	return s
 }
 
+// The code signature failed the integrity check. Lambda always blocks deployment
+// if the integrity check fails, even if code signing policy is set to WARN.
+type InvalidCodeSignatureException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidCodeSignatureException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidCodeSignatureException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidCodeSignatureException(v protocol.ResponseMetadata) error {
+	return &InvalidCodeSignatureException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidCodeSignatureException) Code() string {
+	return "InvalidCodeSignatureException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidCodeSignatureException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidCodeSignatureException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidCodeSignatureException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidCodeSignatureException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidCodeSignatureException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // One of the parameters in the request is invalid.
 type InvalidParameterValueException struct {
 	_            struct{}                  `type:"structure"`
@@ -10292,6 +11981,12 @@ type Layer struct {
 
 	// The size of the layer archive in bytes.
 	CodeSize *int64 `type:"long"`
+
+	// The Amazon Resource Name (ARN) of a signing job.
+	SigningJobArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for a signing profile version.
+	SigningProfileVersionArn *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10313,6 +12008,18 @@ func (s *Layer) SetArn(v string) *Layer {
 // SetCodeSize sets the CodeSize field's value.
 func (s *Layer) SetCodeSize(v int64) *Layer {
 	s.CodeSize = &v
+	return s
+}
+
+// SetSigningJobArn sets the SigningJobArn field's value.
+func (s *Layer) SetSigningJobArn(v string) *Layer {
+	s.SigningJobArn = &v
+	return s
+}
+
+// SetSigningProfileVersionArn sets the SigningProfileVersionArn field's value.
+func (s *Layer) SetSigningProfileVersionArn(v string) *Layer {
+	s.SigningProfileVersionArn = &v
 	return s
 }
 
@@ -10402,6 +12109,12 @@ type LayerVersionContentOutput struct {
 
 	// A link to the layer archive in Amazon S3 that is valid for 10 minutes.
 	Location *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of a signing job.
+	SigningJobArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for a signing profile version.
+	SigningProfileVersionArn *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10429,6 +12142,18 @@ func (s *LayerVersionContentOutput) SetCodeSize(v int64) *LayerVersionContentOut
 // SetLocation sets the Location field's value.
 func (s *LayerVersionContentOutput) SetLocation(v string) *LayerVersionContentOutput {
 	s.Location = &v
+	return s
+}
+
+// SetSigningJobArn sets the SigningJobArn field's value.
+func (s *LayerVersionContentOutput) SetSigningJobArn(v string) *LayerVersionContentOutput {
+	s.SigningJobArn = &v
+	return s
+}
+
+// SetSigningProfileVersionArn sets the SigningProfileVersionArn field's value.
+func (s *LayerVersionContentOutput) SetSigningProfileVersionArn(v string) *LayerVersionContentOutput {
+	s.SigningProfileVersionArn = &v
 	return s
 }
 
@@ -10661,6 +12386,84 @@ func (s *ListAliasesOutput) SetNextMarker(v string) *ListAliasesOutput {
 	return s
 }
 
+type ListCodeSigningConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the pagination token that's returned by a previous request to retrieve
+	// the next page of results.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// Maximum number of items to return.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListCodeSigningConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCodeSigningConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCodeSigningConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCodeSigningConfigsInput"}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListCodeSigningConfigsInput) SetMarker(v string) *ListCodeSigningConfigsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListCodeSigningConfigsInput) SetMaxItems(v int64) *ListCodeSigningConfigsInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListCodeSigningConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The code signing configurations
+	CodeSigningConfigs []*CodeSigningConfig `type:"list"`
+
+	// The pagination token that's included if more results are available.
+	NextMarker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCodeSigningConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCodeSigningConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeSigningConfigs sets the CodeSigningConfigs field's value.
+func (s *ListCodeSigningConfigsOutput) SetCodeSigningConfigs(v []*CodeSigningConfig) *ListCodeSigningConfigsOutput {
+	s.CodeSigningConfigs = v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListCodeSigningConfigsOutput) SetNextMarker(v string) *ListCodeSigningConfigsOutput {
+	s.NextMarker = &v
+	return s
+}
+
 type ListEventSourceMappingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10883,6 +12686,101 @@ func (s *ListFunctionEventInvokeConfigsOutput) SetFunctionEventInvokeConfigs(v [
 
 // SetNextMarker sets the NextMarker field's value.
 func (s *ListFunctionEventInvokeConfigsOutput) SetNextMarker(v string) *ListFunctionEventInvokeConfigsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+type ListFunctionsByCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `location:"uri" locationName:"CodeSigningConfigArn" type:"string" required:"true"`
+
+	// Specify the pagination token that's returned by a previous request to retrieve
+	// the next page of results.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// Maximum number of items to return.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListFunctionsByCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFunctionsByCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFunctionsByCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFunctionsByCodeSigningConfigInput"}
+	if s.CodeSigningConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeSigningConfigArn"))
+	}
+	if s.CodeSigningConfigArn != nil && len(*s.CodeSigningConfigArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeSigningConfigArn", 1))
+	}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *ListFunctionsByCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *ListFunctionsByCodeSigningConfigInput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListFunctionsByCodeSigningConfigInput) SetMarker(v string) *ListFunctionsByCodeSigningConfigInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListFunctionsByCodeSigningConfigInput) SetMaxItems(v int64) *ListFunctionsByCodeSigningConfigInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListFunctionsByCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The function ARNs.
+	FunctionArns []*string `type:"list"`
+
+	// The pagination token that's included if more results are available.
+	NextMarker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFunctionsByCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFunctionsByCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetFunctionArns sets the FunctionArns field's value.
+func (s *ListFunctionsByCodeSigningConfigOutput) SetFunctionArns(v []*string) *ListFunctionsByCodeSigningConfigOutput {
+	s.FunctionArns = v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListFunctionsByCodeSigningConfigOutput) SetNextMarker(v string) *ListFunctionsByCodeSigningConfigOutput {
 	s.NextMarker = &v
 	return s
 }
@@ -12023,6 +13921,119 @@ func (s *PublishVersionInput) SetFunctionName(v string) *PublishVersionInput {
 // SetRevisionId sets the RevisionId field's value.
 func (s *PublishVersionInput) SetRevisionId(v string) *PublishVersionInput {
 	s.RevisionId = &v
+	return s
+}
+
+type PutFunctionCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `type:"string" required:"true"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name - MyFunction.
+	//
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//
+	//    * Partial ARN - 123456789012:function:MyFunction.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutFunctionCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutFunctionCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutFunctionCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutFunctionCodeSigningConfigInput"}
+	if s.CodeSigningConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeSigningConfigArn"))
+	}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *PutFunctionCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *PutFunctionCodeSigningConfigInput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *PutFunctionCodeSigningConfigInput) SetFunctionName(v string) *PutFunctionCodeSigningConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+type PutFunctionCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `type:"string" required:"true"`
+
+	// The name of the Lambda function.
+	//
+	// Name formats
+	//
+	//    * Function name - MyFunction.
+	//
+	//    * Function ARN - arn:aws:lambda:us-west-2:123456789012:function:MyFunction.
+	//
+	//    * Partial ARN - 123456789012:function:MyFunction.
+	//
+	// The length constraint applies only to the full ARN. If you specify only the
+	// function name, it is limited to 64 characters in length.
+	//
+	// FunctionName is a required field
+	FunctionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutFunctionCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutFunctionCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *PutFunctionCodeSigningConfigOutput) SetCodeSigningConfigArn(v string) *PutFunctionCodeSigningConfigOutput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *PutFunctionCodeSigningConfigOutput) SetFunctionName(v string) *PutFunctionCodeSigningConfigOutput {
+	s.FunctionName = &v
 	return s
 }
 
@@ -13529,6 +15540,104 @@ func (s *UpdateAliasInput) SetRoutingConfig(v *AliasRoutingConfiguration) *Updat
 	return s
 }
 
+type UpdateCodeSigningConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Signing profiles for this code signing configuration.
+	AllowedPublishers *AllowedPublishers `type:"structure"`
+
+	// The The Amazon Resource Name (ARN) of the code signing configuration.
+	//
+	// CodeSigningConfigArn is a required field
+	CodeSigningConfigArn *string `location:"uri" locationName:"CodeSigningConfigArn" type:"string" required:"true"`
+
+	// The code signing policy.
+	CodeSigningPolicies *CodeSigningPolicies `type:"structure"`
+
+	// Descriptive name for this code signing configuration.
+	Description *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateCodeSigningConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCodeSigningConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCodeSigningConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCodeSigningConfigInput"}
+	if s.CodeSigningConfigArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CodeSigningConfigArn"))
+	}
+	if s.CodeSigningConfigArn != nil && len(*s.CodeSigningConfigArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CodeSigningConfigArn", 1))
+	}
+	if s.AllowedPublishers != nil {
+		if err := s.AllowedPublishers.Validate(); err != nil {
+			invalidParams.AddNested("AllowedPublishers", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedPublishers sets the AllowedPublishers field's value.
+func (s *UpdateCodeSigningConfigInput) SetAllowedPublishers(v *AllowedPublishers) *UpdateCodeSigningConfigInput {
+	s.AllowedPublishers = v
+	return s
+}
+
+// SetCodeSigningConfigArn sets the CodeSigningConfigArn field's value.
+func (s *UpdateCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *UpdateCodeSigningConfigInput {
+	s.CodeSigningConfigArn = &v
+	return s
+}
+
+// SetCodeSigningPolicies sets the CodeSigningPolicies field's value.
+func (s *UpdateCodeSigningConfigInput) SetCodeSigningPolicies(v *CodeSigningPolicies) *UpdateCodeSigningConfigInput {
+	s.CodeSigningPolicies = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateCodeSigningConfigInput) SetDescription(v string) *UpdateCodeSigningConfigInput {
+	s.Description = &v
+	return s
+}
+
+type UpdateCodeSigningConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The code signing configuration
+	//
+	// CodeSigningConfig is a required field
+	CodeSigningConfig *CodeSigningConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateCodeSigningConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCodeSigningConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetCodeSigningConfig sets the CodeSigningConfig field's value.
+func (s *UpdateCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfig) *UpdateCodeSigningConfigOutput {
+	s.CodeSigningConfig = v
+	return s
+}
+
 type UpdateEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14306,6 +16415,22 @@ func (s *VpcConfigResponse) SetSubnetIds(v []*string) *VpcConfigResponse {
 func (s *VpcConfigResponse) SetVpcId(v string) *VpcConfigResponse {
 	s.VpcId = &v
 	return s
+}
+
+const (
+	// CodeSigningPolicyWarn is a CodeSigningPolicy enum value
+	CodeSigningPolicyWarn = "Warn"
+
+	// CodeSigningPolicyEnforce is a CodeSigningPolicy enum value
+	CodeSigningPolicyEnforce = "Enforce"
+)
+
+// CodeSigningPolicy_Values returns all elements of the CodeSigningPolicy enum
+func CodeSigningPolicy_Values() []string {
+	return []string{
+		CodeSigningPolicyWarn,
+		CodeSigningPolicyEnforce,
+	}
 }
 
 const (

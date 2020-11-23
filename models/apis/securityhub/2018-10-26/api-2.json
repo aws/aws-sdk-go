@@ -245,6 +245,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeOrganizationConfiguration":{
+      "name":"DescribeOrganizationConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/organization/configuration"
+      },
+      "input":{"shape":"DescribeOrganizationConfigurationRequest"},
+      "output":{"shape":"DescribeOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "DescribeProducts":{
       "name":"DescribeProducts",
       "http":{
@@ -301,6 +316,21 @@
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "DisableOrganizationAdminAccount":{
+      "name":"DisableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/admin/disable"
+      },
+      "input":{"shape":"DisableOrganizationAdminAccountRequest"},
+      "output":{"shape":"DisableOrganizationAdminAccountResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
       ]
@@ -365,6 +395,21 @@
         {"shape":"InvalidInputException"},
         {"shape":"InvalidAccessException"},
         {"shape":"ResourceConflictException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "EnableOrganizationAdminAccount":{
+      "name":"EnableOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/admin/enable"
+      },
+      "input":{"shape":"EnableOrganizationAdminAccountRequest"},
+      "output":{"shape":"EnableOrganizationAdminAccountResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"}
       ]
     },
@@ -553,6 +598,21 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "ListOrganizationAdminAccounts":{
+      "name":"ListOrganizationAdminAccounts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/organization/admin"
+      },
+      "input":{"shape":"ListOrganizationAdminAccountsRequest"},
+      "output":{"shape":"ListOrganizationAdminAccountsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -643,6 +703,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateOrganizationConfiguration":{
+      "name":"UpdateOrganizationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/configuration"
+      },
+      "input":{"shape":"UpdateOrganizationConfigurationRequest"},
+      "output":{"shape":"UpdateOrganizationConfigurationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "UpdateSecurityHubConfiguration":{
       "name":"UpdateSecurityHubConfiguration",
       "http":{
@@ -703,6 +778,7 @@
     },
     "AccountDetails":{
       "type":"structure",
+      "required":["AccountId"],
       "members":{
         "AccountId":{"shape":"AccountId"},
         "Email":{"shape":"NonEmptyString"}
@@ -733,6 +809,29 @@
     "ActionTargetList":{
       "type":"list",
       "member":{"shape":"ActionTarget"}
+    },
+    "AdminAccount":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"NonEmptyString"},
+        "Status":{"shape":"AdminStatus"}
+      }
+    },
+    "AdminAccounts":{
+      "type":"list",
+      "member":{"shape":"AdminAccount"}
+    },
+    "AdminStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLE_IN_PROGRESS"
+      ]
+    },
+    "AdminsMaxResults":{
+      "type":"integer",
+      "max":10,
+      "min":1
     },
     "ArnList":{
       "type":"list",
@@ -2967,6 +3066,7 @@
     },
     "CreateMembersRequest":{
       "type":"structure",
+      "required":["AccountDetails"],
       "members":{
         "AccountDetails":{"shape":"AccountDetailsList"}
       }
@@ -2976,6 +3076,11 @@
       "members":{
         "UnprocessedAccounts":{"shape":"ResultList"}
       }
+    },
+    "CrossAccountMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
     },
     "Cvss":{
       "type":"structure",
@@ -3076,6 +3181,7 @@
     },
     "DeleteMembersRequest":{
       "type":"structure",
+      "required":["AccountIds"],
       "members":{
         "AccountIds":{"shape":"AccountIdList"}
       }
@@ -3118,6 +3224,18 @@
         "HubArn":{"shape":"NonEmptyString"},
         "SubscribedAt":{"shape":"NonEmptyString"},
         "AutoEnableControls":{"shape":"Boolean"}
+      }
+    },
+    "DescribeOrganizationConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeOrganizationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "AutoEnable":{"shape":"Boolean"},
+        "MemberAccountLimitReached":{"shape":"Boolean"}
       }
     },
     "DescribeProductsRequest":{
@@ -3209,6 +3327,18 @@
       "members":{
       }
     },
+    "DisableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccountId"],
+      "members":{
+        "AdminAccountId":{"shape":"NonEmptyString"}
+      }
+    },
+    "DisableOrganizationAdminAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisableSecurityHubRequest":{
       "type":"structure",
       "members":{
@@ -3231,6 +3361,7 @@
     },
     "DisassociateMembersRequest":{
       "type":"structure",
+      "required":["AccountIds"],
       "members":{
         "AccountIds":{"shape":"AccountIdList"}
       }
@@ -3252,6 +3383,18 @@
       "type":"structure",
       "members":{
         "ProductSubscriptionArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "EnableOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["AdminAccountId"],
+      "members":{
+        "AdminAccountId":{"shape":"NonEmptyString"}
+      }
+    },
+    "EnableOrganizationAdminAccountResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "EnableSecurityHubRequest":{
@@ -3491,6 +3634,7 @@
     },
     "InviteMembersRequest":{
       "type":"structure",
+      "required":["AccountIds"],
       "members":{
         "AccountIds":{"shape":"AccountIdList"}
       }
@@ -3568,7 +3712,7 @@
       "type":"structure",
       "members":{
         "MaxResults":{
-          "shape":"MaxResults",
+          "shape":"CrossAccountMaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
         },
@@ -3595,7 +3739,7 @@
           "locationName":"OnlyAssociated"
         },
         "MaxResults":{
-          "shape":"MaxResults",
+          "shape":"CrossAccountMaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
         },
@@ -3611,6 +3755,28 @@
       "members":{
         "Members":{"shape":"MemberList"},
         "NextToken":{"shape":"NonEmptyString"}
+      }
+    },
+    "ListOrganizationAdminAccountsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"AdminsMaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListOrganizationAdminAccountsResponse":{
+      "type":"structure",
+      "members":{
+        "AdminAccounts":{"shape":"AdminAccounts"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -4387,6 +4553,18 @@
       }
     },
     "UpdateInsightResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateOrganizationConfigurationRequest":{
+      "type":"structure",
+      "required":["AutoEnable"],
+      "members":{
+        "AutoEnable":{"shape":"Boolean"}
+      }
+    },
+    "UpdateOrganizationConfigurationResponse":{
       "type":"structure",
       "members":{
       }

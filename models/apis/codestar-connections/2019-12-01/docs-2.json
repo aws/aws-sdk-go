@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS CodeStar Connections</fullname> <important> <p>The CodeStar Connections feature is in preview release and is subject to change.</p> </important> <p>This AWS CodeStar Connections API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Connections API. You can use the connections API to work with connections and installations.</p> <p> <i>Connections</i> are configurations that you use to connect AWS resources to external code repositories. Each connection is a resource that can be given to services such as CodePipeline to connect to a third-party repository such as Bitbucket. For example, you can add the connection in CodePipeline so that it triggers your pipeline when a code change is made to your third-party code repository. Each connection is named and associated with a unique ARN that is used to reference the connection.</p> <p>When you create a connection, the console initiates a third-party connection handshake. <i>Installations</i> are the apps that are used to conduct this handshake. For example, the installation for the Bitbucket provider type is the Bitbucket Cloud app. When you create a connection, you can choose an existing installation or create one.</p> <p>When you want to create a connection to an installed provider type such as GitHub Enterprise Server, you create a <i>host</i> for your connections.</p> <p>You can work with connections by calling:</p> <ul> <li> <p> <a>CreateConnection</a>, which creates a uniquely named connection that can be referenced by services such as CodePipeline.</p> </li> <li> <p> <a>DeleteConnection</a>, which deletes the specified connection.</p> </li> <li> <p> <a>GetConnection</a>, which returns information about the connection, including the connection status.</p> </li> <li> <p> <a>ListConnections</a>, which lists the connections associated with your account.</p> </li> </ul> <p>You can work with hosts by calling:</p> <ul> <li> <p> <a>CreateHost</a>, which creates a host that represents the infrastructure where your provider is installed.</p> </li> <li> <p> <a>DeleteHost</a>, which deletes the specified host.</p> </li> <li> <p> <a>GetHost</a>, which returns information about the host, including the setup status.</p> </li> <li> <p> <a>ListHosts</a>, which lists the hosts associated with your account.</p> </li> </ul> <p>You can work with tags in AWS CodeStar Connections by calling the following:</p> <ul> <li> <p> <a>ListTagsForResource</a>, which gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeStar Connections.</p> </li> <li> <p> <a>TagResource</a>, which adds or updates tags for a resource in AWS CodeStar Connections.</p> </li> <li> <p> <a>UntagResource</a>, which removes tags for a resource in AWS CodeStar Connections.</p> </li> </ul> <p>For information about how to use AWS CodeStar Connections, see the <a href=\"https://docs.aws.amazon.com/dtconsole/latest/userguide/welcome-connections.html\">Developer Tools User Guide</a>.</p>",
+  "service": "<fullname>AWS CodeStar Connections</fullname> <p>This AWS CodeStar Connections API Reference provides descriptions and usage examples of the operations and data types for the AWS CodeStar Connections API. You can use the connections API to work with connections and installations.</p> <p> <i>Connections</i> are configurations that you use to connect AWS resources to external code repositories. Each connection is a resource that can be given to services such as CodePipeline to connect to a third-party repository such as Bitbucket. For example, you can add the connection in CodePipeline so that it triggers your pipeline when a code change is made to your third-party code repository. Each connection is named and associated with a unique ARN that is used to reference the connection.</p> <p>When you create a connection, the console initiates a third-party connection handshake. <i>Installations</i> are the apps that are used to conduct this handshake. For example, the installation for the Bitbucket provider type is the Bitbucket app. When you create a connection, you can choose an existing installation or create one.</p> <p>When you want to create a connection to an installed provider type such as GitHub Enterprise Server, you create a <i>host</i> for your connections.</p> <p>You can work with connections by calling:</p> <ul> <li> <p> <a>CreateConnection</a>, which creates a uniquely named connection that can be referenced by services such as CodePipeline.</p> </li> <li> <p> <a>DeleteConnection</a>, which deletes the specified connection.</p> </li> <li> <p> <a>GetConnection</a>, which returns information about the connection, including the connection status.</p> </li> <li> <p> <a>ListConnections</a>, which lists the connections associated with your account.</p> </li> </ul> <p>You can work with hosts by calling:</p> <ul> <li> <p> <a>CreateHost</a>, which creates a host that represents the infrastructure where your provider is installed.</p> </li> <li> <p> <a>DeleteHost</a>, which deletes the specified host.</p> </li> <li> <p> <a>GetHost</a>, which returns information about the host, including the setup status.</p> </li> <li> <p> <a>ListHosts</a>, which lists the hosts associated with your account.</p> </li> </ul> <p>You can work with tags in AWS CodeStar Connections by calling the following:</p> <ul> <li> <p> <a>ListTagsForResource</a>, which gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeStar Connections.</p> </li> <li> <p> <a>TagResource</a>, which adds or updates tags for a resource in AWS CodeStar Connections.</p> </li> <li> <p> <a>UntagResource</a>, which removes tags for a resource in AWS CodeStar Connections.</p> </li> </ul> <p>For information about how to use AWS CodeStar Connections, see the <a href=\"https://docs.aws.amazon.com/dtconsole/latest/userguide/welcome-connections.html\">Developer Tools User Guide</a>.</p>",
   "operations": {
     "CreateConnection": "<p>Creates a connection that can then be given to other AWS services like CodePipeline so that it can access third-party code repositories. The connection is in pending status until the third-party connection handshake is completed from the console.</p>",
     "CreateHost": "<p>Creates a resource that represents the infrastructure where a third-party provider is installed. The host is used when you create connections to an installed third-party provider type, such as GitHub Enterprise Server. You create one host for all connections to that provider.</p> <note> <p>A host created through the CLI or the SDK is in `PENDING` status by default. You can make its status `AVAILABLE` by setting up the host in the console.</p> </note>",
@@ -12,7 +12,8 @@
     "ListHosts": "<p>Lists the hosts associated with your account.</p>",
     "ListTagsForResource": "<p>Gets the set of key-value pairs (metadata) that are used to manage the resource.</p>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
-    "UntagResource": "<p>Removes tags from an AWS resource.</p>"
+    "UntagResource": "<p>Removes tags from an AWS resource.</p>",
+    "UpdateHost": "<p>Updates a specified host with the provided configurations.</p>"
   },
   "shapes": {
     "AccountId": {
@@ -27,6 +28,11 @@
         "ListTagsForResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which you want to get information about tags, if any.</p>",
         "TagResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which you want to add or update tags.</p>",
         "UntagResourceInput$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource to remove tags from.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Two conflicting operations have been made on the same resource.</p>",
+      "refs": {
       }
     },
     "Connection": {
@@ -107,9 +113,11 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
+        "ConflictException$Message": null,
         "LimitExceededException$Message": null,
         "ResourceNotFoundException$Message": null,
-        "ResourceUnavailableException$Message": null
+        "ResourceUnavailableException$Message": null,
+        "UnsupportedOperationException$Message": null
       }
     },
     "GetConnectionInput": {
@@ -147,7 +155,8 @@
         "DeleteHostInput$HostArn": "<p>The Amazon Resource Name (ARN) of the host to be deleted.</p>",
         "GetHostInput$HostArn": "<p>The Amazon Resource Name (ARN) of the requested host.</p>",
         "Host$HostArn": "<p>The Amazon Resource Name (ARN) of the host.</p>",
-        "ListConnectionsInput$HostArnFilter": "<p>Filters the list of connections to those associated with a specified host.</p>"
+        "ListConnectionsInput$HostArnFilter": "<p>Filters the list of connections to those associated with a specified host.</p>",
+        "UpdateHostInput$HostArn": "<p>The Amazon Resource Name (ARN) of the host to be updated.</p>"
       }
     },
     "HostList": {
@@ -231,8 +240,8 @@
     "ProviderType": {
       "base": null,
       "refs": {
-        "Connection$ProviderType": "<p>The name of the external provider where your third-party code repository is configured. The valid provider type is Bitbucket.</p>",
-        "CreateConnectionInput$ProviderType": "<p>The name of the external provider where your third-party code repository is configured. The valid provider type is Bitbucket.</p>",
+        "Connection$ProviderType": "<p>The name of the external provider where your third-party code repository is configured.</p>",
+        "CreateConnectionInput$ProviderType": "<p>The name of the external provider where your third-party code repository is configured.</p>",
         "CreateHostInput$ProviderType": "<p>The name of the installed provider to be associated with your connection. The host resource represents the infrastructure where your provider type is installed. The valid provider type is GitHub Enterprise Server.</p>",
         "GetHostOutput$ProviderType": "<p>The provider type of the requested host, such as GitHub Enterprise Server.</p>",
         "Host$ProviderType": "<p>The name of the installed provider to be associated with your connection. The host resource represents the infrastructure where your provider type is installed. The valid provider type is GitHub Enterprise Server.</p>",
@@ -323,6 +332,11 @@
         "VpcConfiguration$TlsCertificate": "<p>The value of the Transport Layer Security (TLS) certificate associated with the infrastructure where your provider type is installed.</p>"
       }
     },
+    "UnsupportedOperationException": {
+      "base": "<p>The operation is not supported. Check the connection status and try again.</p>",
+      "refs": {
+      }
+    },
     "UntagResourceInput": {
       "base": null,
       "refs": {
@@ -333,12 +347,23 @@
       "refs": {
       }
     },
+    "UpdateHostInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateHostOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Url": {
       "base": null,
       "refs": {
         "CreateHostInput$ProviderEndpoint": "<p>The endpoint of the infrastructure to be represented by the host after it is created.</p>",
         "GetHostOutput$ProviderEndpoint": "<p>The endpoint of the infrastructure represented by the requested host.</p>",
-        "Host$ProviderEndpoint": "<p>The endpoint of the infrastructure where your provider type is installed.</p>"
+        "Host$ProviderEndpoint": "<p>The endpoint of the infrastructure where your provider type is installed.</p>",
+        "UpdateHostInput$ProviderEndpoint": "<p>The URL or endpoint of the host to be updated.</p>"
       }
     },
     "VpcConfiguration": {
@@ -346,7 +371,8 @@
       "refs": {
         "CreateHostInput$VpcConfiguration": "<p>The VPC configuration to be provisioned for the host. A VPC must be configured and the infrastructure to be represented by the host must already be connected to the VPC.</p>",
         "GetHostOutput$VpcConfiguration": "<p>The VPC configuration of the requested host.</p>",
-        "Host$VpcConfiguration": "<p>The VPC configuration provisioned for the host.</p>"
+        "Host$VpcConfiguration": "<p>The VPC configuration provisioned for the host.</p>",
+        "UpdateHostInput$VpcConfiguration": "<p>The VPC configuration of the host to be updated. A VPC must be configured and the infrastructure to be represented by the host must already be connected to the VPC.</p>"
       }
     },
     "VpcId": {

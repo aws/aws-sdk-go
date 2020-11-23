@@ -72,6 +72,10 @@ type LambdaAPI interface {
 	CreateAliasWithContext(aws.Context, *lambda.CreateAliasInput, ...request.Option) (*lambda.AliasConfiguration, error)
 	CreateAliasRequest(*lambda.CreateAliasInput) (*request.Request, *lambda.AliasConfiguration)
 
+	CreateCodeSigningConfig(*lambda.CreateCodeSigningConfigInput) (*lambda.CreateCodeSigningConfigOutput, error)
+	CreateCodeSigningConfigWithContext(aws.Context, *lambda.CreateCodeSigningConfigInput, ...request.Option) (*lambda.CreateCodeSigningConfigOutput, error)
+	CreateCodeSigningConfigRequest(*lambda.CreateCodeSigningConfigInput) (*request.Request, *lambda.CreateCodeSigningConfigOutput)
+
 	CreateEventSourceMapping(*lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 	CreateEventSourceMappingWithContext(aws.Context, *lambda.CreateEventSourceMappingInput, ...request.Option) (*lambda.EventSourceMappingConfiguration, error)
 	CreateEventSourceMappingRequest(*lambda.CreateEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
@@ -84,6 +88,10 @@ type LambdaAPI interface {
 	DeleteAliasWithContext(aws.Context, *lambda.DeleteAliasInput, ...request.Option) (*lambda.DeleteAliasOutput, error)
 	DeleteAliasRequest(*lambda.DeleteAliasInput) (*request.Request, *lambda.DeleteAliasOutput)
 
+	DeleteCodeSigningConfig(*lambda.DeleteCodeSigningConfigInput) (*lambda.DeleteCodeSigningConfigOutput, error)
+	DeleteCodeSigningConfigWithContext(aws.Context, *lambda.DeleteCodeSigningConfigInput, ...request.Option) (*lambda.DeleteCodeSigningConfigOutput, error)
+	DeleteCodeSigningConfigRequest(*lambda.DeleteCodeSigningConfigInput) (*request.Request, *lambda.DeleteCodeSigningConfigOutput)
+
 	DeleteEventSourceMapping(*lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 	DeleteEventSourceMappingWithContext(aws.Context, *lambda.DeleteEventSourceMappingInput, ...request.Option) (*lambda.EventSourceMappingConfiguration, error)
 	DeleteEventSourceMappingRequest(*lambda.DeleteEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
@@ -91,6 +99,10 @@ type LambdaAPI interface {
 	DeleteFunction(*lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, error)
 	DeleteFunctionWithContext(aws.Context, *lambda.DeleteFunctionInput, ...request.Option) (*lambda.DeleteFunctionOutput, error)
 	DeleteFunctionRequest(*lambda.DeleteFunctionInput) (*request.Request, *lambda.DeleteFunctionOutput)
+
+	DeleteFunctionCodeSigningConfig(*lambda.DeleteFunctionCodeSigningConfigInput) (*lambda.DeleteFunctionCodeSigningConfigOutput, error)
+	DeleteFunctionCodeSigningConfigWithContext(aws.Context, *lambda.DeleteFunctionCodeSigningConfigInput, ...request.Option) (*lambda.DeleteFunctionCodeSigningConfigOutput, error)
+	DeleteFunctionCodeSigningConfigRequest(*lambda.DeleteFunctionCodeSigningConfigInput) (*request.Request, *lambda.DeleteFunctionCodeSigningConfigOutput)
 
 	DeleteFunctionConcurrency(*lambda.DeleteFunctionConcurrencyInput) (*lambda.DeleteFunctionConcurrencyOutput, error)
 	DeleteFunctionConcurrencyWithContext(aws.Context, *lambda.DeleteFunctionConcurrencyInput, ...request.Option) (*lambda.DeleteFunctionConcurrencyOutput, error)
@@ -116,6 +128,10 @@ type LambdaAPI interface {
 	GetAliasWithContext(aws.Context, *lambda.GetAliasInput, ...request.Option) (*lambda.AliasConfiguration, error)
 	GetAliasRequest(*lambda.GetAliasInput) (*request.Request, *lambda.AliasConfiguration)
 
+	GetCodeSigningConfig(*lambda.GetCodeSigningConfigInput) (*lambda.GetCodeSigningConfigOutput, error)
+	GetCodeSigningConfigWithContext(aws.Context, *lambda.GetCodeSigningConfigInput, ...request.Option) (*lambda.GetCodeSigningConfigOutput, error)
+	GetCodeSigningConfigRequest(*lambda.GetCodeSigningConfigInput) (*request.Request, *lambda.GetCodeSigningConfigOutput)
+
 	GetEventSourceMapping(*lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 	GetEventSourceMappingWithContext(aws.Context, *lambda.GetEventSourceMappingInput, ...request.Option) (*lambda.EventSourceMappingConfiguration, error)
 	GetEventSourceMappingRequest(*lambda.GetEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
@@ -123,6 +139,10 @@ type LambdaAPI interface {
 	GetFunction(*lambda.GetFunctionInput) (*lambda.GetFunctionOutput, error)
 	GetFunctionWithContext(aws.Context, *lambda.GetFunctionInput, ...request.Option) (*lambda.GetFunctionOutput, error)
 	GetFunctionRequest(*lambda.GetFunctionInput) (*request.Request, *lambda.GetFunctionOutput)
+
+	GetFunctionCodeSigningConfig(*lambda.GetFunctionCodeSigningConfigInput) (*lambda.GetFunctionCodeSigningConfigOutput, error)
+	GetFunctionCodeSigningConfigWithContext(aws.Context, *lambda.GetFunctionCodeSigningConfigInput, ...request.Option) (*lambda.GetFunctionCodeSigningConfigOutput, error)
+	GetFunctionCodeSigningConfigRequest(*lambda.GetFunctionCodeSigningConfigInput) (*request.Request, *lambda.GetFunctionCodeSigningConfigOutput)
 
 	GetFunctionConcurrency(*lambda.GetFunctionConcurrencyInput) (*lambda.GetFunctionConcurrencyOutput, error)
 	GetFunctionConcurrencyWithContext(aws.Context, *lambda.GetFunctionConcurrencyInput, ...request.Option) (*lambda.GetFunctionConcurrencyOutput, error)
@@ -171,6 +191,13 @@ type LambdaAPI interface {
 	ListAliasesPages(*lambda.ListAliasesInput, func(*lambda.ListAliasesOutput, bool) bool) error
 	ListAliasesPagesWithContext(aws.Context, *lambda.ListAliasesInput, func(*lambda.ListAliasesOutput, bool) bool, ...request.Option) error
 
+	ListCodeSigningConfigs(*lambda.ListCodeSigningConfigsInput) (*lambda.ListCodeSigningConfigsOutput, error)
+	ListCodeSigningConfigsWithContext(aws.Context, *lambda.ListCodeSigningConfigsInput, ...request.Option) (*lambda.ListCodeSigningConfigsOutput, error)
+	ListCodeSigningConfigsRequest(*lambda.ListCodeSigningConfigsInput) (*request.Request, *lambda.ListCodeSigningConfigsOutput)
+
+	ListCodeSigningConfigsPages(*lambda.ListCodeSigningConfigsInput, func(*lambda.ListCodeSigningConfigsOutput, bool) bool) error
+	ListCodeSigningConfigsPagesWithContext(aws.Context, *lambda.ListCodeSigningConfigsInput, func(*lambda.ListCodeSigningConfigsOutput, bool) bool, ...request.Option) error
+
 	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error)
 	ListEventSourceMappingsWithContext(aws.Context, *lambda.ListEventSourceMappingsInput, ...request.Option) (*lambda.ListEventSourceMappingsOutput, error)
 	ListEventSourceMappingsRequest(*lambda.ListEventSourceMappingsInput) (*request.Request, *lambda.ListEventSourceMappingsOutput)
@@ -191,6 +218,13 @@ type LambdaAPI interface {
 
 	ListFunctionsPages(*lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool) error
 	ListFunctionsPagesWithContext(aws.Context, *lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool, ...request.Option) error
+
+	ListFunctionsByCodeSigningConfig(*lambda.ListFunctionsByCodeSigningConfigInput) (*lambda.ListFunctionsByCodeSigningConfigOutput, error)
+	ListFunctionsByCodeSigningConfigWithContext(aws.Context, *lambda.ListFunctionsByCodeSigningConfigInput, ...request.Option) (*lambda.ListFunctionsByCodeSigningConfigOutput, error)
+	ListFunctionsByCodeSigningConfigRequest(*lambda.ListFunctionsByCodeSigningConfigInput) (*request.Request, *lambda.ListFunctionsByCodeSigningConfigOutput)
+
+	ListFunctionsByCodeSigningConfigPages(*lambda.ListFunctionsByCodeSigningConfigInput, func(*lambda.ListFunctionsByCodeSigningConfigOutput, bool) bool) error
+	ListFunctionsByCodeSigningConfigPagesWithContext(aws.Context, *lambda.ListFunctionsByCodeSigningConfigInput, func(*lambda.ListFunctionsByCodeSigningConfigOutput, bool) bool, ...request.Option) error
 
 	ListLayerVersions(*lambda.ListLayerVersionsInput) (*lambda.ListLayerVersionsOutput, error)
 	ListLayerVersionsWithContext(aws.Context, *lambda.ListLayerVersionsInput, ...request.Option) (*lambda.ListLayerVersionsOutput, error)
@@ -232,6 +266,10 @@ type LambdaAPI interface {
 	PublishVersionWithContext(aws.Context, *lambda.PublishVersionInput, ...request.Option) (*lambda.FunctionConfiguration, error)
 	PublishVersionRequest(*lambda.PublishVersionInput) (*request.Request, *lambda.FunctionConfiguration)
 
+	PutFunctionCodeSigningConfig(*lambda.PutFunctionCodeSigningConfigInput) (*lambda.PutFunctionCodeSigningConfigOutput, error)
+	PutFunctionCodeSigningConfigWithContext(aws.Context, *lambda.PutFunctionCodeSigningConfigInput, ...request.Option) (*lambda.PutFunctionCodeSigningConfigOutput, error)
+	PutFunctionCodeSigningConfigRequest(*lambda.PutFunctionCodeSigningConfigInput) (*request.Request, *lambda.PutFunctionCodeSigningConfigOutput)
+
 	PutFunctionConcurrency(*lambda.PutFunctionConcurrencyInput) (*lambda.PutFunctionConcurrencyOutput, error)
 	PutFunctionConcurrencyWithContext(aws.Context, *lambda.PutFunctionConcurrencyInput, ...request.Option) (*lambda.PutFunctionConcurrencyOutput, error)
 	PutFunctionConcurrencyRequest(*lambda.PutFunctionConcurrencyInput) (*request.Request, *lambda.PutFunctionConcurrencyOutput)
@@ -263,6 +301,10 @@ type LambdaAPI interface {
 	UpdateAlias(*lambda.UpdateAliasInput) (*lambda.AliasConfiguration, error)
 	UpdateAliasWithContext(aws.Context, *lambda.UpdateAliasInput, ...request.Option) (*lambda.AliasConfiguration, error)
 	UpdateAliasRequest(*lambda.UpdateAliasInput) (*request.Request, *lambda.AliasConfiguration)
+
+	UpdateCodeSigningConfig(*lambda.UpdateCodeSigningConfigInput) (*lambda.UpdateCodeSigningConfigOutput, error)
+	UpdateCodeSigningConfigWithContext(aws.Context, *lambda.UpdateCodeSigningConfigInput, ...request.Option) (*lambda.UpdateCodeSigningConfigOutput, error)
+	UpdateCodeSigningConfigRequest(*lambda.UpdateCodeSigningConfigInput) (*request.Request, *lambda.UpdateCodeSigningConfigOutput)
 
 	UpdateEventSourceMapping(*lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 	UpdateEventSourceMappingWithContext(aws.Context, *lambda.UpdateEventSourceMappingInput, ...request.Option) (*lambda.EventSourceMappingConfiguration, error)

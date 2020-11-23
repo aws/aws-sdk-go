@@ -13,6 +13,105 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAddProfilePermission = "AddProfilePermission"
+
+// AddProfilePermissionRequest generates a "aws/request.Request" representing the
+// client's request for the AddProfilePermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddProfilePermission for more information on using the AddProfilePermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddProfilePermissionRequest method.
+//    req, resp := client.AddProfilePermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/AddProfilePermission
+func (c *Signer) AddProfilePermissionRequest(input *AddProfilePermissionInput) (req *request.Request, output *AddProfilePermissionOutput) {
+	op := &request.Operation{
+		Name:       opAddProfilePermission,
+		HTTPMethod: "POST",
+		HTTPPath:   "/signing-profiles/{profileName}/permissions",
+	}
+
+	if input == nil {
+		input = &AddProfilePermissionInput{}
+	}
+
+	output = &AddProfilePermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddProfilePermission API operation for AWS Signer.
+//
+// Adds cross-account permissions to a signing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation AddProfilePermission for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   You signing certificate could not be validated.
+//
+//   * ResourceNotFoundException
+//   A specified resource could not be found.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ServiceLimitExceededException
+//   The client is making a request that exceeds service limits.
+//
+//   * ConflictException
+//   The resource encountered a conflicting state.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
+//   * InternalServiceErrorException
+//   An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/AddProfilePermission
+func (c *Signer) AddProfilePermission(input *AddProfilePermissionInput) (*AddProfilePermissionOutput, error) {
+	req, out := c.AddProfilePermissionRequest(input)
+	return out, req.Send()
+}
+
+// AddProfilePermissionWithContext is the same as AddProfilePermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddProfilePermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) AddProfilePermissionWithContext(ctx aws.Context, input *AddProfilePermissionInput, opts ...request.Option) (*AddProfilePermissionOutput, error) {
+	req, out := c.AddProfilePermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelSigningProfile = "CancelSigningProfile"
 
 // CancelSigningProfileRequest generates a "aws/request.Request" representing the
@@ -76,8 +175,10 @@ func (c *Signer) CancelSigningProfileRequest(input *CancelSigningProfileInput) (
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The signing job has been throttled.
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -165,6 +266,11 @@ func (c *Signer) DescribeSigningJobRequest(input *DescribeSigningJobInput) (req 
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
 //   * InternalServiceErrorException
 //   An internal error occurred.
 //
@@ -249,6 +355,11 @@ func (c *Signer) GetSigningPlatformRequest(input *GetSigningPlatformInput) (req 
 //
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -335,8 +446,10 @@ func (c *Signer) GetSigningProfileRequest(input *GetSigningProfileInput) (req *r
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The signing job has been throttled.
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -358,6 +471,99 @@ func (c *Signer) GetSigningProfile(input *GetSigningProfileInput) (*GetSigningPr
 // for more information on using Contexts.
 func (c *Signer) GetSigningProfileWithContext(ctx aws.Context, input *GetSigningProfileInput, opts ...request.Option) (*GetSigningProfileOutput, error) {
 	req, out := c.GetSigningProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListProfilePermissions = "ListProfilePermissions"
+
+// ListProfilePermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListProfilePermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListProfilePermissions for more information on using the ListProfilePermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListProfilePermissionsRequest method.
+//    req, resp := client.ListProfilePermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListProfilePermissions
+func (c *Signer) ListProfilePermissionsRequest(input *ListProfilePermissionsInput) (req *request.Request, output *ListProfilePermissionsOutput) {
+	op := &request.Operation{
+		Name:       opListProfilePermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/signing-profiles/{profileName}/permissions",
+	}
+
+	if input == nil {
+		input = &ListProfilePermissionsInput{}
+	}
+
+	output = &ListProfilePermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListProfilePermissions API operation for AWS Signer.
+//
+// Lists the cross-account permissions associated with a signing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation ListProfilePermissions for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   You signing certificate could not be validated.
+//
+//   * ResourceNotFoundException
+//   A specified resource could not be found.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
+//   * InternalServiceErrorException
+//   An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListProfilePermissions
+func (c *Signer) ListProfilePermissions(input *ListProfilePermissionsInput) (*ListProfilePermissionsOutput, error) {
+	req, out := c.ListProfilePermissionsRequest(input)
+	return out, req.Send()
+}
+
+// ListProfilePermissionsWithContext is the same as ListProfilePermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListProfilePermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) ListProfilePermissionsWithContext(ctx aws.Context, input *ListProfilePermissionsInput, opts ...request.Option) (*ListProfilePermissionsOutput, error) {
+	req, out := c.ListProfilePermissionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -435,8 +641,10 @@ func (c *Signer) ListSigningJobsRequest(input *ListSigningJobsInput) (req *reque
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The signing job has been throttled.
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -586,8 +794,10 @@ func (c *Signer) ListSigningPlatformsRequest(input *ListSigningPlatformsInput) (
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The signing job has been throttled.
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -735,8 +945,10 @@ func (c *Signer) ListSigningProfilesRequest(input *ListSigningProfilesInput) (re
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
-//   * ThrottlingException
-//   The signing job has been throttled.
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -879,6 +1091,11 @@ func (c *Signer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 //   * NotFoundException
 //   The signing profile was not found.
 //
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/ListTagsForResource
 func (c *Signer) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
@@ -967,8 +1184,10 @@ func (c *Signer) PutSigningProfileRequest(input *PutSigningProfileInput) (req *r
 //   * ValidationException
 //   You signing certificate could not be validated.
 //
-//   * ThrottlingException
-//   The signing job has been throttled.
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -990,6 +1209,293 @@ func (c *Signer) PutSigningProfile(input *PutSigningProfileInput) (*PutSigningPr
 // for more information on using Contexts.
 func (c *Signer) PutSigningProfileWithContext(ctx aws.Context, input *PutSigningProfileInput, opts ...request.Option) (*PutSigningProfileOutput, error) {
 	req, out := c.PutSigningProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemoveProfilePermission = "RemoveProfilePermission"
+
+// RemoveProfilePermissionRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveProfilePermission operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveProfilePermission for more information on using the RemoveProfilePermission
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveProfilePermissionRequest method.
+//    req, resp := client.RemoveProfilePermissionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RemoveProfilePermission
+func (c *Signer) RemoveProfilePermissionRequest(input *RemoveProfilePermissionInput) (req *request.Request, output *RemoveProfilePermissionOutput) {
+	op := &request.Operation{
+		Name:       opRemoveProfilePermission,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/signing-profiles/{profileName}/permissions/{statementId}",
+	}
+
+	if input == nil {
+		input = &RemoveProfilePermissionInput{}
+	}
+
+	output = &RemoveProfilePermissionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveProfilePermission API operation for AWS Signer.
+//
+// Removes cross-account permissions from a signing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation RemoveProfilePermission for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   You signing certificate could not be validated.
+//
+//   * ResourceNotFoundException
+//   A specified resource could not be found.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ConflictException
+//   The resource encountered a conflicting state.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
+//   * InternalServiceErrorException
+//   An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RemoveProfilePermission
+func (c *Signer) RemoveProfilePermission(input *RemoveProfilePermissionInput) (*RemoveProfilePermissionOutput, error) {
+	req, out := c.RemoveProfilePermissionRequest(input)
+	return out, req.Send()
+}
+
+// RemoveProfilePermissionWithContext is the same as RemoveProfilePermission with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveProfilePermission for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) RemoveProfilePermissionWithContext(ctx aws.Context, input *RemoveProfilePermissionInput, opts ...request.Option) (*RemoveProfilePermissionOutput, error) {
+	req, out := c.RemoveProfilePermissionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRevokeSignature = "RevokeSignature"
+
+// RevokeSignatureRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeSignature operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeSignature for more information on using the RevokeSignature
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RevokeSignatureRequest method.
+//    req, resp := client.RevokeSignatureRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSignature
+func (c *Signer) RevokeSignatureRequest(input *RevokeSignatureInput) (req *request.Request, output *RevokeSignatureOutput) {
+	op := &request.Operation{
+		Name:       opRevokeSignature,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/signing-jobs/{jobId}/revoke",
+	}
+
+	if input == nil {
+		input = &RevokeSignatureInput{}
+	}
+
+	output = &RevokeSignatureOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RevokeSignature API operation for AWS Signer.
+//
+// Changes the state of a signing job to REVOKED. This indicates that the signature
+// is no longer valid.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation RevokeSignature for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   You signing certificate could not be validated.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   A specified resource could not be found.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
+//   * InternalServiceErrorException
+//   An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSignature
+func (c *Signer) RevokeSignature(input *RevokeSignatureInput) (*RevokeSignatureOutput, error) {
+	req, out := c.RevokeSignatureRequest(input)
+	return out, req.Send()
+}
+
+// RevokeSignatureWithContext is the same as RevokeSignature with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeSignature for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) RevokeSignatureWithContext(ctx aws.Context, input *RevokeSignatureInput, opts ...request.Option) (*RevokeSignatureOutput, error) {
+	req, out := c.RevokeSignatureRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRevokeSigningProfile = "RevokeSigningProfile"
+
+// RevokeSigningProfileRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeSigningProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeSigningProfile for more information on using the RevokeSigningProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RevokeSigningProfileRequest method.
+//    req, resp := client.RevokeSigningProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSigningProfile
+func (c *Signer) RevokeSigningProfileRequest(input *RevokeSigningProfileInput) (req *request.Request, output *RevokeSigningProfileOutput) {
+	op := &request.Operation{
+		Name:       opRevokeSigningProfile,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/signing-profiles/{profileName}/revoke",
+	}
+
+	if input == nil {
+		input = &RevokeSigningProfileInput{}
+	}
+
+	output = &RevokeSigningProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RevokeSigningProfile API operation for AWS Signer.
+//
+// Changes the state of a signing profile to REVOKED. This indicates that signatures
+// generated using the signing profile after an effective start date are no
+// longer valid.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Signer's
+// API operation RevokeSigningProfile for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   You signing certificate could not be validated.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   A specified resource could not be found.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
+//   * InternalServiceErrorException
+//   An internal error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/RevokeSigningProfile
+func (c *Signer) RevokeSigningProfile(input *RevokeSigningProfileInput) (*RevokeSigningProfileOutput, error) {
+	req, out := c.RevokeSigningProfileRequest(input)
+	return out, req.Send()
+}
+
+// RevokeSigningProfileWithContext is the same as RevokeSigningProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeSigningProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Signer) RevokeSigningProfileWithContext(ctx aws.Context, input *RevokeSigningProfileInput, opts ...request.Option) (*RevokeSigningProfileOutput, error) {
+	req, out := c.RevokeSigningProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1082,7 +1588,14 @@ func (c *Signer) StartSigningJobRequest(input *StartSigningJobInput) (req *reque
 //   You do not have sufficient access to perform this action.
 //
 //   * ThrottlingException
-//   The signing job has been throttled.
+//   The request was denied due to request throttling.
+//
+//   Instead of this error, TooManyRequestsException should be used.
+//
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
 //
 //   * InternalServiceErrorException
 //   An internal error occurred.
@@ -1177,6 +1690,11 @@ func (c *Signer) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 //   * NotFoundException
 //   The signing profile was not found.
 //
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/TagResource
 func (c *Signer) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
@@ -1265,6 +1783,11 @@ func (c *Signer) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 //   * NotFoundException
 //   The signing profile was not found.
 //
+//   * TooManyRequestsException
+//   The allowed number of job-signing requests has been exceeded.
+//
+//   This error supersedes the error ThrottlingException.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/signer-2017-08-25/UntagResource
 func (c *Signer) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
@@ -1291,6 +1814,8 @@ func (c *Signer) UntagResourceWithContext(ctx aws.Context, input *UntagResourceI
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1330,7 +1855,7 @@ func (s *AccessDeniedException) OrigErr() error {
 }
 
 func (s *AccessDeniedException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -1343,11 +1868,141 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AddProfilePermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Signer action permitted as part of cross-account permissions.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true"`
+
+	// The AWS principal receiving cross-account permissions. This may be an IAM
+	// role or another AWS account ID.
+	//
+	// Principal is a required field
+	Principal *string `locationName:"principal" type:"string" required:"true"`
+
+	// The human-readable name of the signing profile.
+	//
+	// ProfileName is a required field
+	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// The version of the signing profile.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
+	// A unique identifier for the current profile revision.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+
+	// A unique identifier for the cross-account permission statement.
+	//
+	// StatementId is a required field
+	StatementId *string `locationName:"statementId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddProfilePermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddProfilePermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddProfilePermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddProfilePermissionInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
+	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+	if s.ProfileVersion != nil && len(*s.ProfileVersion) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileVersion", 10))
+	}
+	if s.StatementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *AddProfilePermissionInput) SetAction(v string) *AddProfilePermissionInput {
+	s.Action = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *AddProfilePermissionInput) SetPrincipal(v string) *AddProfilePermissionInput {
+	s.Principal = &v
+	return s
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *AddProfilePermissionInput) SetProfileName(v string) *AddProfilePermissionInput {
+	s.ProfileName = &v
+	return s
+}
+
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *AddProfilePermissionInput) SetProfileVersion(v string) *AddProfilePermissionInput {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *AddProfilePermissionInput) SetRevisionId(v string) *AddProfilePermissionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *AddProfilePermissionInput) SetStatementId(v string) *AddProfilePermissionInput {
+	s.StatementId = &v
+	return s
+}
+
+type AddProfilePermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the current profile revision.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+}
+
+// String returns the string representation
+func (s AddProfilePermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddProfilePermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *AddProfilePermissionOutput) SetRevisionId(v string) *AddProfilePermissionOutput {
+	s.RevisionId = &v
+	return s
+}
+
 // The request contains invalid parameters for the ARN or tags. This exception
 // also occurs when you call a tagging API on a cancelled signing profile.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -1387,7 +2042,7 @@ func (s *BadRequestException) OrigErr() error {
 }
 
 func (s *BadRequestException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -1455,6 +2110,64 @@ func (s CancelSigningProfileOutput) GoString() string {
 	return s.String()
 }
 
+// The resource encountered a conflicting state.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type DescribeSigningJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1508,8 +2221,18 @@ type DescribeSigningJobOutput struct {
 	// The ID of the signing job on output.
 	JobId *string `locationName:"jobId" type:"string"`
 
+	// The IAM entity that initiated the signing job.
+	JobInvoker *string `locationName:"jobInvoker" min:"12" type:"string"`
+
+	// The AWS account ID of the job owner.
+	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
+
 	// A list of any overrides that were applied to the signing operation.
 	Overrides *SigningPlatformOverrides `locationName:"overrides" type:"structure"`
+
+	// A human-readable name for the signing platform associated with the signing
+	// job.
+	PlatformDisplayName *string `locationName:"platformDisplayName" type:"string"`
 
 	// The microcontroller platform to which your signed code image will be distributed.
 	PlatformId *string `locationName:"platformId" type:"string"`
@@ -1517,8 +2240,19 @@ type DescribeSigningJobOutput struct {
 	// The name of the profile that initiated the signing operation.
 	ProfileName *string `locationName:"profileName" min:"2" type:"string"`
 
+	// The version of the signing profile used to initiate the signing job.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
 	// The IAM principal that requested the signing job.
 	RequestedBy *string `locationName:"requestedBy" type:"string"`
+
+	// A revocation record if the signature generated by the signing job has been
+	// revoked. Contains a timestamp and the ID of the IAM entity that revoked the
+	// signature.
+	RevocationRecord *SigningJobRevocationRecord `locationName:"revocationRecord" type:"structure"`
+
+	// Thr expiration timestamp for the signature generated by the signing job.
+	SignatureExpiresAt *time.Time `locationName:"signatureExpiresAt" type:"timestamp"`
 
 	// Name of the S3 bucket where the signed code image is saved by code signing.
 	SignedObject *SignedObject `locationName:"signedObject" type:"structure"`
@@ -1568,9 +2302,27 @@ func (s *DescribeSigningJobOutput) SetJobId(v string) *DescribeSigningJobOutput 
 	return s
 }
 
+// SetJobInvoker sets the JobInvoker field's value.
+func (s *DescribeSigningJobOutput) SetJobInvoker(v string) *DescribeSigningJobOutput {
+	s.JobInvoker = &v
+	return s
+}
+
+// SetJobOwner sets the JobOwner field's value.
+func (s *DescribeSigningJobOutput) SetJobOwner(v string) *DescribeSigningJobOutput {
+	s.JobOwner = &v
+	return s
+}
+
 // SetOverrides sets the Overrides field's value.
 func (s *DescribeSigningJobOutput) SetOverrides(v *SigningPlatformOverrides) *DescribeSigningJobOutput {
 	s.Overrides = v
+	return s
+}
+
+// SetPlatformDisplayName sets the PlatformDisplayName field's value.
+func (s *DescribeSigningJobOutput) SetPlatformDisplayName(v string) *DescribeSigningJobOutput {
+	s.PlatformDisplayName = &v
 	return s
 }
 
@@ -1586,9 +2338,27 @@ func (s *DescribeSigningJobOutput) SetProfileName(v string) *DescribeSigningJobO
 	return s
 }
 
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *DescribeSigningJobOutput) SetProfileVersion(v string) *DescribeSigningJobOutput {
+	s.ProfileVersion = &v
+	return s
+}
+
 // SetRequestedBy sets the RequestedBy field's value.
 func (s *DescribeSigningJobOutput) SetRequestedBy(v string) *DescribeSigningJobOutput {
 	s.RequestedBy = &v
+	return s
+}
+
+// SetRevocationRecord sets the RevocationRecord field's value.
+func (s *DescribeSigningJobOutput) SetRevocationRecord(v *SigningJobRevocationRecord) *DescribeSigningJobOutput {
+	s.RevocationRecord = v
+	return s
+}
+
+// SetSignatureExpiresAt sets the SignatureExpiresAt field's value.
+func (s *DescribeSigningJobOutput) SetSignatureExpiresAt(v time.Time) *DescribeSigningJobOutput {
+	s.SignatureExpiresAt = &v
 	return s
 }
 
@@ -1751,6 +2521,10 @@ type GetSigningPlatformOutput struct {
 	// The ID of the target signing platform.
 	PlatformId *string `locationName:"platformId" type:"string"`
 
+	// A flag indicating whether signatures generated for the signing platform can
+	// be revoked.
+	RevocationSupported *bool `locationName:"revocationSupported" type:"boolean"`
+
 	// A list of configurations applied to the target platform at signing.
 	SigningConfiguration *SigningConfiguration `locationName:"signingConfiguration" type:"structure"`
 
@@ -1801,6 +2575,12 @@ func (s *GetSigningPlatformOutput) SetPlatformId(v string) *GetSigningPlatformOu
 	return s
 }
 
+// SetRevocationSupported sets the RevocationSupported field's value.
+func (s *GetSigningPlatformOutput) SetRevocationSupported(v bool) *GetSigningPlatformOutput {
+	s.RevocationSupported = &v
+	return s
+}
+
 // SetSigningConfiguration sets the SigningConfiguration field's value.
 func (s *GetSigningPlatformOutput) SetSigningConfiguration(v *SigningConfiguration) *GetSigningPlatformOutput {
 	s.SigningConfiguration = v
@@ -1826,6 +2606,9 @@ type GetSigningProfileInput struct {
 	//
 	// ProfileName is a required field
 	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// The AWS account ID of the profile owner.
+	ProfileOwner *string `location:"querystring" locationName:"profileOwner" min:"12" type:"string"`
 }
 
 // String returns the string representation
@@ -1847,6 +2630,9 @@ func (s *GetSigningProfileInput) Validate() error {
 	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
 	}
+	if s.ProfileOwner != nil && len(*s.ProfileOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileOwner", 12))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1860,6 +2646,12 @@ func (s *GetSigningProfileInput) SetProfileName(v string) *GetSigningProfileInpu
 	return s
 }
 
+// SetProfileOwner sets the ProfileOwner field's value.
+func (s *GetSigningProfileInput) SetProfileOwner(v string) *GetSigningProfileInput {
+	s.ProfileOwner = &v
+	return s
+}
+
 type GetSigningProfileOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1869,11 +2661,27 @@ type GetSigningProfileOutput struct {
 	// A list of overrides applied by the target signing profile for signing operations.
 	Overrides *SigningPlatformOverrides `locationName:"overrides" type:"structure"`
 
+	// A human-readable name for the signing platform associated with the signing
+	// profile.
+	PlatformDisplayName *string `locationName:"platformDisplayName" type:"string"`
+
 	// The ID of the platform that is used by the target signing profile.
 	PlatformId *string `locationName:"platformId" type:"string"`
 
 	// The name of the target signing profile.
 	ProfileName *string `locationName:"profileName" min:"2" type:"string"`
+
+	// The current version of the signing profile.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
+	// The signing profile ARN, including the profile version.
+	ProfileVersionArn *string `locationName:"profileVersionArn" min:"20" type:"string"`
+
+	// Revocation information for a signing profile.
+	RevocationRecord *SigningProfileRevocationRecord `locationName:"revocationRecord" type:"structure"`
+
+	// The validity period for a signing job.
+	SignatureValidityPeriod *SignatureValidityPeriod `locationName:"signatureValidityPeriod" type:"structure"`
 
 	// The ARN of the certificate that the target profile uses for signing operations.
 	SigningMaterial *SigningMaterial `locationName:"signingMaterial" type:"structure"`
@@ -1884,6 +2692,9 @@ type GetSigningProfileOutput struct {
 
 	// The status of the target signing profile.
 	Status *string `locationName:"status" type:"string" enum:"SigningProfileStatus"`
+
+	// Reason for the status of the target signing profile.
+	StatusReason *string `locationName:"statusReason" type:"string"`
 
 	// A list of tags associated with the signing profile.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
@@ -1911,6 +2722,12 @@ func (s *GetSigningProfileOutput) SetOverrides(v *SigningPlatformOverrides) *Get
 	return s
 }
 
+// SetPlatformDisplayName sets the PlatformDisplayName field's value.
+func (s *GetSigningProfileOutput) SetPlatformDisplayName(v string) *GetSigningProfileOutput {
+	s.PlatformDisplayName = &v
+	return s
+}
+
 // SetPlatformId sets the PlatformId field's value.
 func (s *GetSigningProfileOutput) SetPlatformId(v string) *GetSigningProfileOutput {
 	s.PlatformId = &v
@@ -1920,6 +2737,30 @@ func (s *GetSigningProfileOutput) SetPlatformId(v string) *GetSigningProfileOutp
 // SetProfileName sets the ProfileName field's value.
 func (s *GetSigningProfileOutput) SetProfileName(v string) *GetSigningProfileOutput {
 	s.ProfileName = &v
+	return s
+}
+
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *GetSigningProfileOutput) SetProfileVersion(v string) *GetSigningProfileOutput {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetProfileVersionArn sets the ProfileVersionArn field's value.
+func (s *GetSigningProfileOutput) SetProfileVersionArn(v string) *GetSigningProfileOutput {
+	s.ProfileVersionArn = &v
+	return s
+}
+
+// SetRevocationRecord sets the RevocationRecord field's value.
+func (s *GetSigningProfileOutput) SetRevocationRecord(v *SigningProfileRevocationRecord) *GetSigningProfileOutput {
+	s.RevocationRecord = v
+	return s
+}
+
+// SetSignatureValidityPeriod sets the SignatureValidityPeriod field's value.
+func (s *GetSigningProfileOutput) SetSignatureValidityPeriod(v *SignatureValidityPeriod) *GetSigningProfileOutput {
+	s.SignatureValidityPeriod = v
 	return s
 }
 
@@ -1938,6 +2779,12 @@ func (s *GetSigningProfileOutput) SetSigningParameters(v map[string]*string) *Ge
 // SetStatus sets the Status field's value.
 func (s *GetSigningProfileOutput) SetStatus(v string) *GetSigningProfileOutput {
 	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *GetSigningProfileOutput) SetStatusReason(v string) *GetSigningProfileOutput {
+	s.StatusReason = &v
 	return s
 }
 
@@ -1989,6 +2836,8 @@ type InternalServiceErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	Code_ *string `locationName:"code" type:"string"`
+
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -2027,7 +2876,7 @@ func (s *InternalServiceErrorException) OrigErr() error {
 }
 
 func (s *InternalServiceErrorException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -2040,8 +2889,115 @@ func (s *InternalServiceErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListProfilePermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// String for specifying the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Name of the signing profile containing the cross-account permissions.
+	//
+	// ProfileName is a required field
+	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListProfilePermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListProfilePermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProfilePermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProfilePermissionsInput"}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
+	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProfilePermissionsInput) SetNextToken(v string) *ListProfilePermissionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *ListProfilePermissionsInput) SetProfileName(v string) *ListProfilePermissionsInput {
+	s.ProfileName = &v
+	return s
+}
+
+type ListProfilePermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// String for specifying the next set of paginated results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of permissions associated with the Signing Profile.
+	Permissions []*Permission `locationName:"permissions" type:"list"`
+
+	// Total size of the policy associated with the Signing Profile in bytes.
+	PolicySizeBytes *int64 `locationName:"policySizeBytes" type:"integer"`
+
+	// The identifier for the current revision of profile permissions.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+}
+
+// String returns the string representation
+func (s ListProfilePermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListProfilePermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProfilePermissionsOutput) SetNextToken(v string) *ListProfilePermissionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *ListProfilePermissionsOutput) SetPermissions(v []*Permission) *ListProfilePermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetPolicySizeBytes sets the PolicySizeBytes field's value.
+func (s *ListProfilePermissionsOutput) SetPolicySizeBytes(v int64) *ListProfilePermissionsOutput {
+	s.PolicySizeBytes = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ListProfilePermissionsOutput) SetRevisionId(v string) *ListProfilePermissionsOutput {
+	s.RevisionId = &v
+	return s
+}
+
 type ListSigningJobsInput struct {
 	_ struct{} `type:"structure"`
+
+	// Filters results to return only signing jobs with revoked signatures.
+	IsRevoked *bool `location:"querystring" locationName:"isRevoked" type:"boolean"`
+
+	// Filters results to return only signing jobs initiated by a specified IAM
+	// entity.
+	JobInvoker *string `location:"querystring" locationName:"jobInvoker" min:"12" type:"string"`
 
 	// Specifies the maximum number of items to return in the response. Use this
 	// parameter when paginating results. If additional items exist beyond the number
@@ -2062,6 +3018,14 @@ type ListSigningJobsInput struct {
 	// The IAM principal that requested the signing job.
 	RequestedBy *string `location:"querystring" locationName:"requestedBy" type:"string"`
 
+	// Filters results to return only signing jobs with signatures expiring after
+	// a specified timestamp.
+	SignatureExpiresAfter *time.Time `location:"querystring" locationName:"signatureExpiresAfter" type:"timestamp"`
+
+	// Filters results to return only signing jobs with signatures expiring before
+	// a specified timestamp.
+	SignatureExpiresBefore *time.Time `location:"querystring" locationName:"signatureExpiresBefore" type:"timestamp"`
+
 	// A status value with which to filter your results.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"SigningStatus"`
 }
@@ -2079,6 +3043,9 @@ func (s ListSigningJobsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListSigningJobsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListSigningJobsInput"}
+	if s.JobInvoker != nil && len(*s.JobInvoker) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("JobInvoker", 12))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -2087,6 +3054,18 @@ func (s *ListSigningJobsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIsRevoked sets the IsRevoked field's value.
+func (s *ListSigningJobsInput) SetIsRevoked(v bool) *ListSigningJobsInput {
+	s.IsRevoked = &v
+	return s
+}
+
+// SetJobInvoker sets the JobInvoker field's value.
+func (s *ListSigningJobsInput) SetJobInvoker(v string) *ListSigningJobsInput {
+	s.JobInvoker = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -2110,6 +3089,18 @@ func (s *ListSigningJobsInput) SetPlatformId(v string) *ListSigningJobsInput {
 // SetRequestedBy sets the RequestedBy field's value.
 func (s *ListSigningJobsInput) SetRequestedBy(v string) *ListSigningJobsInput {
 	s.RequestedBy = &v
+	return s
+}
+
+// SetSignatureExpiresAfter sets the SignatureExpiresAfter field's value.
+func (s *ListSigningJobsInput) SetSignatureExpiresAfter(v time.Time) *ListSigningJobsInput {
+	s.SignatureExpiresAfter = &v
+	return s
+}
+
+// SetSignatureExpiresBefore sets the SignatureExpiresBefore field's value.
+func (s *ListSigningJobsInput) SetSignatureExpiresBefore(v time.Time) *ListSigningJobsInput {
+	s.SignatureExpiresBefore = &v
 	return s
 }
 
@@ -2272,6 +3263,14 @@ type ListSigningProfilesInput struct {
 	// request. Set it to the value of nextToken from the response that you just
 	// received.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Filters results to return only signing jobs initiated for a specified signing
+	// platform.
+	PlatformId *string `location:"querystring" locationName:"platformId" type:"string"`
+
+	// Filters results to return only signing jobs with statuses in the specified
+	// list.
+	Statuses []*string `location:"querystring" locationName:"statuses" type:"list"`
 }
 
 // String returns the string representation
@@ -2312,6 +3311,18 @@ func (s *ListSigningProfilesInput) SetMaxResults(v int64) *ListSigningProfilesIn
 // SetNextToken sets the NextToken field's value.
 func (s *ListSigningProfilesInput) SetNextToken(v string) *ListSigningProfilesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetPlatformId sets the PlatformId field's value.
+func (s *ListSigningProfilesInput) SetPlatformId(v string) *ListSigningProfilesInput {
+	s.PlatformId = &v
+	return s
+}
+
+// SetStatuses sets the Statuses field's value.
+func (s *ListSigningProfilesInput) SetStatuses(v []*string) *ListSigningProfilesInput {
+	s.Statuses = v
 	return s
 }
 
@@ -2417,6 +3428,8 @@ type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	Code_ *string `locationName:"code" type:"string"`
+
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -2455,7 +3468,7 @@ func (s *NotFoundException) OrigErr() error {
 }
 
 func (s *NotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -2466,6 +3479,57 @@ func (s *NotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A cross-account permission for a signing profile.
+type Permission struct {
+	_ struct{} `type:"structure"`
+
+	// An AWS Signer action permitted as part of cross-account permissions.
+	Action *string `locationName:"action" type:"string"`
+
+	// The AWS principal that has been granted a cross-account permission.
+	Principal *string `locationName:"principal" type:"string"`
+
+	// The signing profile version that a permission applies to.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
+	// A unique identifier for a cross-account permission statement.
+	StatementId *string `locationName:"statementId" type:"string"`
+}
+
+// String returns the string representation
+func (s Permission) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Permission) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *Permission) SetAction(v string) *Permission {
+	s.Action = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *Permission) SetPrincipal(v string) *Permission {
+	s.Principal = &v
+	return s
+}
+
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *Permission) SetProfileVersion(v string) *Permission {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *Permission) SetStatementId(v string) *Permission {
+	s.StatementId = &v
+	return s
 }
 
 type PutSigningProfileInput struct {
@@ -2486,11 +3550,13 @@ type PutSigningProfileInput struct {
 	// ProfileName is a required field
 	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
 
+	// The default validity period override for any signature generated using this
+	// signing profile. If unspecified, the default is 135 months.
+	SignatureValidityPeriod *SignatureValidityPeriod `locationName:"signatureValidityPeriod" type:"structure"`
+
 	// The AWS Certificate Manager certificate that will be used to sign code with
 	// the new signing profile.
-	//
-	// SigningMaterial is a required field
-	SigningMaterial *SigningMaterial `locationName:"signingMaterial" type:"structure" required:"true"`
+	SigningMaterial *SigningMaterial `locationName:"signingMaterial" type:"structure"`
 
 	// Map of key-value pairs for signing. These can include any information that
 	// you want to use during signing.
@@ -2521,9 +3587,6 @@ func (s *PutSigningProfileInput) Validate() error {
 	}
 	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
-	}
-	if s.SigningMaterial == nil {
-		invalidParams.Add(request.NewErrParamRequired("SigningMaterial"))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
@@ -2558,6 +3621,12 @@ func (s *PutSigningProfileInput) SetProfileName(v string) *PutSigningProfileInpu
 	return s
 }
 
+// SetSignatureValidityPeriod sets the SignatureValidityPeriod field's value.
+func (s *PutSigningProfileInput) SetSignatureValidityPeriod(v *SignatureValidityPeriod) *PutSigningProfileInput {
+	s.SignatureValidityPeriod = v
+	return s
+}
+
 // SetSigningMaterial sets the SigningMaterial field's value.
 func (s *PutSigningProfileInput) SetSigningMaterial(v *SigningMaterial) *PutSigningProfileInput {
 	s.SigningMaterial = v
@@ -2581,6 +3650,12 @@ type PutSigningProfileOutput struct {
 
 	// The Amazon Resource Name (ARN) of the signing profile created.
 	Arn *string `locationName:"arn" type:"string"`
+
+	// The version of the signing profile being created.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
+	// The signing profile ARN, including the profile version.
+	ProfileVersionArn *string `locationName:"profileVersionArn" min:"20" type:"string"`
 }
 
 // String returns the string representation
@@ -2599,10 +3674,119 @@ func (s *PutSigningProfileOutput) SetArn(v string) *PutSigningProfileOutput {
 	return s
 }
 
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *PutSigningProfileOutput) SetProfileVersion(v string) *PutSigningProfileOutput {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetProfileVersionArn sets the ProfileVersionArn field's value.
+func (s *PutSigningProfileOutput) SetProfileVersionArn(v string) *PutSigningProfileOutput {
+	s.ProfileVersionArn = &v
+	return s
+}
+
+type RemoveProfilePermissionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A human-readable name for the signing profile with permissions to be removed.
+	//
+	// ProfileName is a required field
+	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// An identifier for the current revision of the signing profile permissions.
+	//
+	// RevisionId is a required field
+	RevisionId *string `location:"querystring" locationName:"revisionId" type:"string" required:"true"`
+
+	// A unique identifier for the cross-account permissions statement.
+	//
+	// StatementId is a required field
+	StatementId *string `location:"uri" locationName:"statementId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveProfilePermissionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveProfilePermissionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveProfilePermissionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveProfilePermissionInput"}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
+	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.StatementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementId"))
+	}
+	if s.StatementId != nil && len(*s.StatementId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *RemoveProfilePermissionInput) SetProfileName(v string) *RemoveProfilePermissionInput {
+	s.ProfileName = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RemoveProfilePermissionInput) SetRevisionId(v string) *RemoveProfilePermissionInput {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *RemoveProfilePermissionInput) SetStatementId(v string) *RemoveProfilePermissionInput {
+	s.StatementId = &v
+	return s
+}
+
+type RemoveProfilePermissionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier for the current revision of the profile permissions.
+	RevisionId *string `locationName:"revisionId" type:"string"`
+}
+
+// String returns the string representation
+func (s RemoveProfilePermissionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveProfilePermissionOutput) GoString() string {
+	return s.String()
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *RemoveProfilePermissionOutput) SetRevisionId(v string) *RemoveProfilePermissionOutput {
+	s.RevisionId = &v
+	return s
+}
+
 // A specified resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -2642,7 +3826,7 @@ func (s *ResourceNotFoundException) OrigErr() error {
 }
 
 func (s *ResourceNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -2653,6 +3837,195 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type RevokeSignatureInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the signing job to be revoked.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
+
+	// AWS account ID of the job owner.
+	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
+
+	// The reason for revoking the signing job.
+	//
+	// Reason is a required field
+	Reason *string `locationName:"reason" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RevokeSignatureInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSignatureInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevokeSignatureInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevokeSignatureInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.JobOwner != nil && len(*s.JobOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("JobOwner", 12))
+	}
+	if s.Reason == nil {
+		invalidParams.Add(request.NewErrParamRequired("Reason"))
+	}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *RevokeSignatureInput) SetJobId(v string) *RevokeSignatureInput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobOwner sets the JobOwner field's value.
+func (s *RevokeSignatureInput) SetJobOwner(v string) *RevokeSignatureInput {
+	s.JobOwner = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *RevokeSignatureInput) SetReason(v string) *RevokeSignatureInput {
+	s.Reason = &v
+	return s
+}
+
+type RevokeSignatureOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeSignatureOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSignatureOutput) GoString() string {
+	return s.String()
+}
+
+type RevokeSigningProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp for when revocation of a Signing Profile should become effective.
+	// Signatures generated using the signing profile after this timestamp are not
+	// trusted.
+	//
+	// EffectiveTime is a required field
+	EffectiveTime *time.Time `locationName:"effectiveTime" type:"timestamp" required:"true"`
+
+	// The name of the signing profile to be revoked.
+	//
+	// ProfileName is a required field
+	ProfileName *string `location:"uri" locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// The version of the signing profile to be revoked.
+	//
+	// ProfileVersion is a required field
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string" required:"true"`
+
+	// The reason for revoking a signing profile.
+	//
+	// Reason is a required field
+	Reason *string `locationName:"reason" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RevokeSigningProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSigningProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevokeSigningProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevokeSigningProfileInput"}
+	if s.EffectiveTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EffectiveTime"))
+	}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
+	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+	if s.ProfileVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileVersion"))
+	}
+	if s.ProfileVersion != nil && len(*s.ProfileVersion) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileVersion", 10))
+	}
+	if s.Reason == nil {
+		invalidParams.Add(request.NewErrParamRequired("Reason"))
+	}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEffectiveTime sets the EffectiveTime field's value.
+func (s *RevokeSigningProfileInput) SetEffectiveTime(v time.Time) *RevokeSigningProfileInput {
+	s.EffectiveTime = &v
+	return s
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *RevokeSigningProfileInput) SetProfileName(v string) *RevokeSigningProfileInput {
+	s.ProfileName = &v
+	return s
+}
+
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *RevokeSigningProfileInput) SetProfileVersion(v string) *RevokeSigningProfileInput {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *RevokeSigningProfileInput) SetReason(v string) *RevokeSigningProfileInput {
+	s.Reason = &v
+	return s
+}
+
+type RevokeSigningProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeSigningProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSigningProfileOutput) GoString() string {
+	return s.String()
 }
 
 // The name and prefix of the S3 bucket where code signing saves your signed
@@ -2787,6 +4160,97 @@ func (s *S3Source) SetKey(v string) *S3Source {
 // SetVersion sets the Version field's value.
 func (s *S3Source) SetVersion(v string) *S3Source {
 	s.Version = &v
+	return s
+}
+
+// The client is making a request that exceeds service limits.
+type ServiceLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceLimitExceededException) Code() string {
+	return "ServiceLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The validity period for a signing job.
+type SignatureValidityPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// The time unit for signature validity.
+	Type *string `locationName:"type" type:"string" enum:"ValidityType"`
+
+	// The numerical value of the time unit for signature validity.
+	Value *int64 `locationName:"value" type:"integer"`
+}
+
+// String returns the string representation
+func (s SignatureValidityPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SignatureValidityPeriod) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *SignatureValidityPeriod) SetType(v string) *SignatureValidityPeriod {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SignatureValidityPeriod) SetValue(v int64) *SignatureValidityPeriod {
+	s.Value = &v
 	return s
 }
 
@@ -2932,8 +4396,32 @@ type SigningJob struct {
 	// The date and time that the signing job was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
+	// Indicates whether the signing job is revoked.
+	IsRevoked *bool `locationName:"isRevoked" type:"boolean"`
+
 	// The ID of the signing job.
 	JobId *string `locationName:"jobId" type:"string"`
+
+	// The AWS account ID of the job invoker.
+	JobInvoker *string `locationName:"jobInvoker" min:"12" type:"string"`
+
+	// The AWS account ID of the job owner.
+	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
+
+	// The name of a signing platform.
+	PlatformDisplayName *string `locationName:"platformDisplayName" type:"string"`
+
+	// The unique identifier for a signing platform.
+	PlatformId *string `locationName:"platformId" type:"string"`
+
+	// The name of the signing profile that created a signing job.
+	ProfileName *string `locationName:"profileName" min:"2" type:"string"`
+
+	// The version of the signing profile that created a signing job.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
+	// The time when the signature of a signing job expires.
+	SignatureExpiresAt *time.Time `locationName:"signatureExpiresAt" type:"timestamp"`
 
 	// A SignedObject structure that contains information about a signing job's
 	// signed code image.
@@ -2966,9 +4454,57 @@ func (s *SigningJob) SetCreatedAt(v time.Time) *SigningJob {
 	return s
 }
 
+// SetIsRevoked sets the IsRevoked field's value.
+func (s *SigningJob) SetIsRevoked(v bool) *SigningJob {
+	s.IsRevoked = &v
+	return s
+}
+
 // SetJobId sets the JobId field's value.
 func (s *SigningJob) SetJobId(v string) *SigningJob {
 	s.JobId = &v
+	return s
+}
+
+// SetJobInvoker sets the JobInvoker field's value.
+func (s *SigningJob) SetJobInvoker(v string) *SigningJob {
+	s.JobInvoker = &v
+	return s
+}
+
+// SetJobOwner sets the JobOwner field's value.
+func (s *SigningJob) SetJobOwner(v string) *SigningJob {
+	s.JobOwner = &v
+	return s
+}
+
+// SetPlatformDisplayName sets the PlatformDisplayName field's value.
+func (s *SigningJob) SetPlatformDisplayName(v string) *SigningJob {
+	s.PlatformDisplayName = &v
+	return s
+}
+
+// SetPlatformId sets the PlatformId field's value.
+func (s *SigningJob) SetPlatformId(v string) *SigningJob {
+	s.PlatformId = &v
+	return s
+}
+
+// SetProfileName sets the ProfileName field's value.
+func (s *SigningJob) SetProfileName(v string) *SigningJob {
+	s.ProfileName = &v
+	return s
+}
+
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *SigningJob) SetProfileVersion(v string) *SigningJob {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetSignatureExpiresAt sets the SignatureExpiresAt field's value.
+func (s *SigningJob) SetSignatureExpiresAt(v time.Time) *SigningJob {
+	s.SignatureExpiresAt = &v
 	return s
 }
 
@@ -2993,6 +4529,48 @@ func (s *SigningJob) SetSource(v *Source) *SigningJob {
 // SetStatus sets the Status field's value.
 func (s *SigningJob) SetStatus(v string) *SigningJob {
 	s.Status = &v
+	return s
+}
+
+// Revocation information for a signing job.
+type SigningJobRevocationRecord struct {
+	_ struct{} `type:"structure"`
+
+	// A caller-supplied reason for revocation.
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The time of revocation.
+	RevokedAt *time.Time `locationName:"revokedAt" type:"timestamp"`
+
+	// The identity of the revoker.
+	RevokedBy *string `locationName:"revokedBy" type:"string"`
+}
+
+// String returns the string representation
+func (s SigningJobRevocationRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SigningJobRevocationRecord) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *SigningJobRevocationRecord) SetReason(v string) *SigningJobRevocationRecord {
+	s.Reason = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *SigningJobRevocationRecord) SetRevokedAt(v time.Time) *SigningJobRevocationRecord {
+	s.RevokedAt = &v
+	return s
+}
+
+// SetRevokedBy sets the RevokedBy field's value.
+func (s *SigningJobRevocationRecord) SetRevokedBy(v string) *SigningJobRevocationRecord {
+	s.RevokedBy = &v
 	return s
 }
 
@@ -3056,6 +4634,9 @@ type SigningPlatform struct {
 	// The ID of a code signing; platform.
 	PlatformId *string `locationName:"platformId" type:"string"`
 
+	// Indicates whether revocation is supported for the platform.
+	RevocationSupported *bool `locationName:"revocationSupported" type:"boolean"`
+
 	// The configuration of a code signing platform. This includes the designated
 	// hash algorithm and encryption algorithm of a signing platform.
 	SigningConfiguration *SigningConfiguration `locationName:"signingConfiguration" type:"structure"`
@@ -3104,6 +4685,12 @@ func (s *SigningPlatform) SetPartner(v string) *SigningPlatform {
 // SetPlatformId sets the PlatformId field's value.
 func (s *SigningPlatform) SetPlatformId(v string) *SigningPlatform {
 	s.PlatformId = &v
+	return s
+}
+
+// SetRevocationSupported sets the RevocationSupported field's value.
+func (s *SigningPlatform) SetRevocationSupported(v bool) *SigningPlatform {
+	s.RevocationSupported = &v
 	return s
 }
 
@@ -3172,11 +4759,23 @@ type SigningProfile struct {
 	// The Amazon Resource Name (ARN) for the signing profile.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The name of the signing platform.
+	PlatformDisplayName *string `locationName:"platformDisplayName" type:"string"`
+
 	// The ID of a platform that is available for use by a signing profile.
 	PlatformId *string `locationName:"platformId" type:"string"`
 
 	// The name of the signing profile.
 	ProfileName *string `locationName:"profileName" min:"2" type:"string"`
+
+	// The version of a signing profile.
+	ProfileVersion *string `locationName:"profileVersion" min:"10" type:"string"`
+
+	// The ARN of a signing profile, including the profile version.
+	ProfileVersionArn *string `locationName:"profileVersionArn" min:"20" type:"string"`
+
+	// The validity period for a signing job created using this signing profile.
+	SignatureValidityPeriod *SignatureValidityPeriod `locationName:"signatureValidityPeriod" type:"structure"`
 
 	// The ACM certificate that is available for use by a signing profile.
 	SigningMaterial *SigningMaterial `locationName:"signingMaterial" type:"structure"`
@@ -3207,6 +4806,12 @@ func (s *SigningProfile) SetArn(v string) *SigningProfile {
 	return s
 }
 
+// SetPlatformDisplayName sets the PlatformDisplayName field's value.
+func (s *SigningProfile) SetPlatformDisplayName(v string) *SigningProfile {
+	s.PlatformDisplayName = &v
+	return s
+}
+
 // SetPlatformId sets the PlatformId field's value.
 func (s *SigningProfile) SetPlatformId(v string) *SigningProfile {
 	s.PlatformId = &v
@@ -3216,6 +4821,24 @@ func (s *SigningProfile) SetPlatformId(v string) *SigningProfile {
 // SetProfileName sets the ProfileName field's value.
 func (s *SigningProfile) SetProfileName(v string) *SigningProfile {
 	s.ProfileName = &v
+	return s
+}
+
+// SetProfileVersion sets the ProfileVersion field's value.
+func (s *SigningProfile) SetProfileVersion(v string) *SigningProfile {
+	s.ProfileVersion = &v
+	return s
+}
+
+// SetProfileVersionArn sets the ProfileVersionArn field's value.
+func (s *SigningProfile) SetProfileVersionArn(v string) *SigningProfile {
+	s.ProfileVersionArn = &v
+	return s
+}
+
+// SetSignatureValidityPeriod sets the SignatureValidityPeriod field's value.
+func (s *SigningProfile) SetSignatureValidityPeriod(v *SignatureValidityPeriod) *SigningProfile {
+	s.SignatureValidityPeriod = v
 	return s
 }
 
@@ -3240,6 +4863,48 @@ func (s *SigningProfile) SetStatus(v string) *SigningProfile {
 // SetTags sets the Tags field's value.
 func (s *SigningProfile) SetTags(v map[string]*string) *SigningProfile {
 	s.Tags = v
+	return s
+}
+
+// Revocation information for a signing profile.
+type SigningProfileRevocationRecord struct {
+	_ struct{} `type:"structure"`
+
+	// The time when revocation becomes effective.
+	RevocationEffectiveFrom *time.Time `locationName:"revocationEffectiveFrom" type:"timestamp"`
+
+	// The time when the signing profile was revoked.
+	RevokedAt *time.Time `locationName:"revokedAt" type:"timestamp"`
+
+	// The identity of the revoker.
+	RevokedBy *string `locationName:"revokedBy" type:"string"`
+}
+
+// String returns the string representation
+func (s SigningProfileRevocationRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SigningProfileRevocationRecord) GoString() string {
+	return s.String()
+}
+
+// SetRevocationEffectiveFrom sets the RevocationEffectiveFrom field's value.
+func (s *SigningProfileRevocationRecord) SetRevocationEffectiveFrom(v time.Time) *SigningProfileRevocationRecord {
+	s.RevocationEffectiveFrom = &v
+	return s
+}
+
+// SetRevokedAt sets the RevokedAt field's value.
+func (s *SigningProfileRevocationRecord) SetRevokedAt(v time.Time) *SigningProfileRevocationRecord {
+	s.RevokedAt = &v
+	return s
+}
+
+// SetRevokedBy sets the RevokedBy field's value.
+func (s *SigningProfileRevocationRecord) SetRevokedBy(v string) *SigningProfileRevocationRecord {
+	s.RevokedBy = &v
 	return s
 }
 
@@ -3297,7 +4962,12 @@ type StartSigningJobInput struct {
 	Destination *Destination `locationName:"destination" type:"structure" required:"true"`
 
 	// The name of the signing profile.
-	ProfileName *string `locationName:"profileName" min:"2" type:"string"`
+	//
+	// ProfileName is a required field
+	ProfileName *string `locationName:"profileName" min:"2" type:"string" required:"true"`
+
+	// The AWS account ID of the signing profile owner.
+	ProfileOwner *string `locationName:"profileOwner" min:"12" type:"string"`
 
 	// The S3 bucket that contains the object to sign or a BLOB that contains your
 	// raw code.
@@ -3322,8 +4992,14 @@ func (s *StartSigningJobInput) Validate() error {
 	if s.Destination == nil {
 		invalidParams.Add(request.NewErrParamRequired("Destination"))
 	}
+	if s.ProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileName"))
+	}
 	if s.ProfileName != nil && len(*s.ProfileName) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ProfileName", 2))
+	}
+	if s.ProfileOwner != nil && len(*s.ProfileOwner) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileOwner", 12))
 	}
 	if s.Source == nil {
 		invalidParams.Add(request.NewErrParamRequired("Source"))
@@ -3358,6 +5034,12 @@ func (s *StartSigningJobInput) SetProfileName(v string) *StartSigningJobInput {
 	return s
 }
 
+// SetProfileOwner sets the ProfileOwner field's value.
+func (s *StartSigningJobInput) SetProfileOwner(v string) *StartSigningJobInput {
+	s.ProfileOwner = &v
+	return s
+}
+
 // SetSource sets the Source field's value.
 func (s *StartSigningJobInput) SetSource(v *Source) *StartSigningJobInput {
 	s.Source = v
@@ -3369,6 +5051,9 @@ type StartSigningJobOutput struct {
 
 	// The ID of your signing job.
 	JobId *string `locationName:"jobId" type:"string"`
+
+	// The AWS account ID of the signing job owner.
+	JobOwner *string `locationName:"jobOwner" min:"12" type:"string"`
 }
 
 // String returns the string representation
@@ -3384,6 +5069,12 @@ func (s StartSigningJobOutput) GoString() string {
 // SetJobId sets the JobId field's value.
 func (s *StartSigningJobOutput) SetJobId(v string) *StartSigningJobOutput {
 	s.JobId = &v
+	return s
+}
+
+// SetJobOwner sets the JobOwner field's value.
+func (s *StartSigningJobOutput) SetJobOwner(v string) *StartSigningJobOutput {
+	s.JobOwner = &v
 	return s
 }
 
@@ -3459,10 +5150,16 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The signing job has been throttled.
+// The request was denied due to request throttling.
+//
+// Instead of this error, TooManyRequestsException should be used.
+//
+// Deprecated: Instead of this error, TooManyRequestsException should be used.
 type ThrottlingException struct {
-	_            struct{}                  `type:"structure"`
+	_            struct{}                  `deprecated:"true" type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
 }
@@ -3502,7 +5199,7 @@ func (s *ThrottlingException) OrigErr() error {
 }
 
 func (s *ThrottlingException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -3512,6 +5209,66 @@ func (s *ThrottlingException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The allowed number of job-signing requests has been exceeded.
+//
+// This error supersedes the error ThrottlingException.
+type TooManyRequestsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyRequestsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyRequestsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyRequestsException(v protocol.ResponseMetadata) error {
+	return &TooManyRequestsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyRequestsException) Code() string {
+	return "TooManyRequestsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyRequestsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyRequestsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyRequestsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyRequestsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -3592,6 +5349,8 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	Code_ *string `locationName:"code" type:"string"`
+
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -3630,7 +5389,7 @@ func (s *ValidationException) OrigErr() error {
 }
 
 func (s *ValidationException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -3713,6 +5472,9 @@ const (
 
 	// SigningProfileStatusCanceled is a SigningProfileStatus enum value
 	SigningProfileStatusCanceled = "Canceled"
+
+	// SigningProfileStatusRevoked is a SigningProfileStatus enum value
+	SigningProfileStatusRevoked = "Revoked"
 )
 
 // SigningProfileStatus_Values returns all elements of the SigningProfileStatus enum
@@ -3720,6 +5482,7 @@ func SigningProfileStatus_Values() []string {
 	return []string{
 		SigningProfileStatusActive,
 		SigningProfileStatusCanceled,
+		SigningProfileStatusRevoked,
 	}
 }
 
@@ -3740,5 +5503,25 @@ func SigningStatus_Values() []string {
 		SigningStatusInProgress,
 		SigningStatusFailed,
 		SigningStatusSucceeded,
+	}
+}
+
+const (
+	// ValidityTypeDays is a ValidityType enum value
+	ValidityTypeDays = "DAYS"
+
+	// ValidityTypeMonths is a ValidityType enum value
+	ValidityTypeMonths = "MONTHS"
+
+	// ValidityTypeYears is a ValidityType enum value
+	ValidityTypeYears = "YEARS"
+)
+
+// ValidityType_Values returns all elements of the ValidityType enum
+func ValidityType_Values() []string {
+	return []string{
+		ValidityTypeDays,
+		ValidityTypeMonths,
+		ValidityTypeYears,
 	}
 }

@@ -13,6 +13,24 @@
     "uid":"signer-2017-08-25"
   },
   "operations":{
+    "AddProfilePermission":{
+      "name":"AddProfilePermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/signing-profiles/{profileName}/permissions"
+      },
+      "input":{"shape":"AddProfilePermissionRequest"},
+      "output":{"shape":"AddProfilePermissionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceLimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
     "CancelSigningProfile":{
       "name":"CancelSigningProfile",
       "http":{
@@ -23,7 +41,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -38,6 +56,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -52,6 +71,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -66,7 +86,23 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListProfilePermissions":{
+      "name":"ListProfilePermissions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/signing-profiles/{profileName}/permissions"
+      },
+      "input":{"shape":"ListProfilePermissionsRequest"},
+      "output":{"shape":"ListProfilePermissionsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -81,7 +117,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -96,7 +132,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -110,7 +146,7 @@
       "output":{"shape":"ListSigningProfilesResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -125,7 +161,8 @@
       "errors":[
         {"shape":"InternalServiceErrorException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "PutSigningProfile":{
@@ -140,7 +177,54 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
-        {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "RemoveProfilePermission":{
+      "name":"RemoveProfilePermission",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/signing-profiles/{profileName}/permissions/{statementId}"
+      },
+      "input":{"shape":"RemoveProfilePermissionRequest"},
+      "output":{"shape":"RemoveProfilePermissionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "RevokeSignature":{
+      "name":"RevokeSignature",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/signing-jobs/{jobId}/revoke"
+      },
+      "input":{"shape":"RevokeSignatureRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "RevokeSigningProfile":{
+      "name":"RevokeSigningProfile",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/signing-profiles/{profileName}/revoke"
+      },
+      "input":{"shape":"RevokeSigningProfileRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -157,6 +241,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServiceErrorException"}
       ]
     },
@@ -171,7 +256,8 @@
       "errors":[
         {"shape":"InternalServiceErrorException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UntagResource":{
@@ -185,24 +271,64 @@
       "errors":[
         {"shape":"InternalServiceErrorException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"}
       ]
     }
   },
   "shapes":{
-    "key":{"type":"string"},
     "AccessDeniedException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "AccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]{12}$"
+    },
+    "AddProfilePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "action",
+        "principal",
+        "statementId",
+        "profileName"
+      ],
+      "members":{
+        "profileName":{
+          "shape":"ProfileName",
+          "location":"uri",
+          "locationName":"profileName"
+        },
+        "profileVersion":{"shape":"ProfileVersion"},
+        "action":{"shape":"String"},
+        "principal":{"shape":"String"},
+        "revisionId":{"shape":"String"},
+        "statementId":{"shape":"String"}
+      }
+    },
+    "AddProfilePermissionResponse":{
+      "type":"structure",
+      "members":{
+        "revisionId":{"shape":"String"}
+      }
+    },
+    "Arn":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
@@ -225,8 +351,15 @@
     },
     "CertificateArn":{"type":"string"},
     "ClientRequestToken":{"type":"string"},
-    "CompletedAt":{"type":"timestamp"},
-    "CreatedAt":{"type":"timestamp"},
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "DescribeSigningJobRequest":{
       "type":"structure",
       "required":["jobId"],
@@ -245,15 +378,21 @@
         "source":{"shape":"Source"},
         "signingMaterial":{"shape":"SigningMaterial"},
         "platformId":{"shape":"PlatformId"},
+        "platformDisplayName":{"shape":"DisplayName"},
         "profileName":{"shape":"ProfileName"},
+        "profileVersion":{"shape":"ProfileVersion"},
         "overrides":{"shape":"SigningPlatformOverrides"},
         "signingParameters":{"shape":"SigningParameters"},
-        "createdAt":{"shape":"CreatedAt"},
-        "completedAt":{"shape":"CompletedAt"},
+        "createdAt":{"shape":"Timestamp"},
+        "completedAt":{"shape":"Timestamp"},
+        "signatureExpiresAt":{"shape":"Timestamp"},
         "requestedBy":{"shape":"RequestedBy"},
         "status":{"shape":"SigningStatus"},
         "statusReason":{"shape":"StatusReason"},
-        "signedObject":{"shape":"SignedObject"}
+        "revocationRecord":{"shape":"SigningJobRevocationRecord"},
+        "signedObject":{"shape":"SignedObject"},
+        "jobOwner":{"shape":"AccountId"},
+        "jobInvoker":{"shape":"AccountId"}
       }
     },
     "Destination":{
@@ -285,6 +424,7 @@
       "type":"list",
       "member":{"shape":"EncryptionAlgorithm"}
     },
+    "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
     "GetSigningPlatformRequest":{
       "type":"structure",
@@ -307,7 +447,8 @@
         "category":{"shape":"Category"},
         "signingConfiguration":{"shape":"SigningConfiguration"},
         "signingImageFormat":{"shape":"SigningImageFormat"},
-        "maxSizeInMB":{"shape":"MaxSizeInMB"}
+        "maxSizeInMB":{"shape":"MaxSizeInMB"},
+        "revocationSupported":{"shape":"bool"}
       }
     },
     "GetSigningProfileRequest":{
@@ -318,6 +459,11 @@
           "shape":"ProfileName",
           "location":"uri",
           "locationName":"profileName"
+        },
+        "profileOwner":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"profileOwner"
         }
       }
     },
@@ -325,11 +471,17 @@
       "type":"structure",
       "members":{
         "profileName":{"shape":"ProfileName"},
+        "profileVersion":{"shape":"ProfileVersion"},
+        "profileVersionArn":{"shape":"Arn"},
+        "revocationRecord":{"shape":"SigningProfileRevocationRecord"},
         "signingMaterial":{"shape":"SigningMaterial"},
         "platformId":{"shape":"PlatformId"},
+        "platformDisplayName":{"shape":"DisplayName"},
+        "signatureValidityPeriod":{"shape":"SignatureValidityPeriod"},
         "overrides":{"shape":"SigningPlatformOverrides"},
         "signingParameters":{"shape":"SigningParameters"},
         "status":{"shape":"SigningProfileStatus"},
+        "statusReason":{"shape":"String"},
         "arn":{"shape":"string"},
         "tags":{"shape":"TagMap"}
       }
@@ -368,16 +520,43 @@
       "type":"list",
       "member":{"shape":"ImageFormat"}
     },
+    "Integer":{"type":"integer"},
     "InternalServiceErrorException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":500},
       "exception":true
     },
     "JobId":{"type":"string"},
     "Key":{"type":"string"},
+    "ListProfilePermissionsRequest":{
+      "type":"structure",
+      "required":["profileName"],
+      "members":{
+        "profileName":{
+          "shape":"ProfileName",
+          "location":"uri",
+          "locationName":"profileName"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListProfilePermissionsResponse":{
+      "type":"structure",
+      "members":{
+        "revisionId":{"shape":"String"},
+        "policySizeBytes":{"shape":"PolicySizeBytes"},
+        "permissions":{"shape":"Permissions"},
+        "nextToken":{"shape":"String"}
+      }
+    },
     "ListSigningJobsRequest":{
       "type":"structure",
       "members":{
@@ -405,6 +584,26 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "isRevoked":{
+          "shape":"bool",
+          "location":"querystring",
+          "locationName":"isRevoked"
+        },
+        "signatureExpiresBefore":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"signatureExpiresBefore"
+        },
+        "signatureExpiresAfter":{
+          "shape":"Timestamp",
+          "location":"querystring",
+          "locationName":"signatureExpiresAfter"
+        },
+        "jobInvoker":{
+          "shape":"AccountId",
+          "location":"querystring",
+          "locationName":"jobInvoker"
         }
       }
     },
@@ -469,6 +668,16 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
+        },
+        "platformId":{
+          "shape":"PlatformId",
+          "location":"querystring",
+          "locationName":"platformId"
+        },
+        "statuses":{
+          "shape":"Statuses",
+          "location":"querystring",
+          "locationName":"statuses"
         }
       }
     },
@@ -507,12 +716,27 @@
     "NotFoundException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "Permission":{
+      "type":"structure",
+      "members":{
+        "action":{"shape":"String"},
+        "principal":{"shape":"String"},
+        "statementId":{"shape":"String"},
+        "profileVersion":{"shape":"ProfileVersion"}
+      }
+    },
+    "Permissions":{
+      "type":"list",
+      "member":{"shape":"Permission"}
+    },
     "PlatformId":{"type":"string"},
+    "PolicySizeBytes":{"type":"integer"},
     "Prefix":{"type":"string"},
     "ProfileName":{
       "type":"string",
@@ -520,11 +744,16 @@
       "min":2,
       "pattern":"^[a-zA-Z0-9_]{2,}"
     },
+    "ProfileVersion":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^[a-zA-Z0-9]{10}$"
+    },
     "PutSigningProfileRequest":{
       "type":"structure",
       "required":[
         "profileName",
-        "signingMaterial",
         "platformId"
       ],
       "members":{
@@ -534,6 +763,7 @@
           "locationName":"profileName"
         },
         "signingMaterial":{"shape":"SigningMaterial"},
+        "signatureValidityPeriod":{"shape":"SignatureValidityPeriod"},
         "platformId":{"shape":"PlatformId"},
         "overrides":{"shape":"SigningPlatformOverrides"},
         "signingParameters":{"shape":"SigningParameters"},
@@ -543,17 +773,91 @@
     "PutSigningProfileResponse":{
       "type":"structure",
       "members":{
-        "arn":{"shape":"string"}
+        "arn":{"shape":"string"},
+        "profileVersion":{"shape":"ProfileVersion"},
+        "profileVersionArn":{"shape":"Arn"}
+      }
+    },
+    "RemoveProfilePermissionRequest":{
+      "type":"structure",
+      "required":[
+        "revisionId",
+        "profileName",
+        "statementId"
+      ],
+      "members":{
+        "profileName":{
+          "shape":"ProfileName",
+          "location":"uri",
+          "locationName":"profileName"
+        },
+        "revisionId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"revisionId"
+        },
+        "statementId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"statementId"
+        }
+      }
+    },
+    "RemoveProfilePermissionResponse":{
+      "type":"structure",
+      "members":{
+        "revisionId":{"shape":"String"}
       }
     },
     "RequestedBy":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "RevocationReasonString":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
+    "RevokeSignatureRequest":{
+      "type":"structure",
+      "required":[
+        "reason",
+        "jobId"
+      ],
+      "members":{
+        "jobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"jobId"
+        },
+        "jobOwner":{"shape":"AccountId"},
+        "reason":{"shape":"RevocationReasonString"}
+      }
+    },
+    "RevokeSigningProfileRequest":{
+      "type":"structure",
+      "required":[
+        "profileVersion",
+        "reason",
+        "effectiveTime",
+        "profileName"
+      ],
+      "members":{
+        "profileName":{
+          "shape":"ProfileName",
+          "location":"uri",
+          "locationName":"profileName"
+        },
+        "profileVersion":{"shape":"ProfileVersion"},
+        "reason":{"shape":"RevocationReasonString"},
+        "effectiveTime":{"shape":"Timestamp"}
+      }
     },
     "S3Destination":{
       "type":"structure",
@@ -566,7 +870,7 @@
       "type":"structure",
       "members":{
         "bucketName":{"shape":"BucketName"},
-        "key":{"shape":"key"}
+        "key":{"shape":"Key"}
       }
     },
     "S3Source":{
@@ -580,6 +884,22 @@
         "bucketName":{"shape":"BucketName"},
         "key":{"shape":"Key"},
         "version":{"shape":"Version"}
+      }
+    },
+    "ServiceLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
+    },
+    "SignatureValidityPeriod":{
+      "type":"structure",
+      "members":{
+        "value":{"shape":"Integer"},
+        "type":{"shape":"ValidityType"}
       }
     },
     "SignedObject":{
@@ -624,8 +944,24 @@
         "source":{"shape":"Source"},
         "signedObject":{"shape":"SignedObject"},
         "signingMaterial":{"shape":"SigningMaterial"},
-        "createdAt":{"shape":"CreatedAt"},
-        "status":{"shape":"SigningStatus"}
+        "createdAt":{"shape":"Timestamp"},
+        "status":{"shape":"SigningStatus"},
+        "isRevoked":{"shape":"bool"},
+        "profileName":{"shape":"ProfileName"},
+        "profileVersion":{"shape":"ProfileVersion"},
+        "platformId":{"shape":"PlatformId"},
+        "platformDisplayName":{"shape":"DisplayName"},
+        "signatureExpiresAt":{"shape":"Timestamp"},
+        "jobOwner":{"shape":"AccountId"},
+        "jobInvoker":{"shape":"AccountId"}
+      }
+    },
+    "SigningJobRevocationRecord":{
+      "type":"structure",
+      "members":{
+        "reason":{"shape":"String"},
+        "revokedAt":{"shape":"Timestamp"},
+        "revokedBy":{"shape":"String"}
       }
     },
     "SigningJobs":{
@@ -656,7 +992,8 @@
         "category":{"shape":"Category"},
         "signingConfiguration":{"shape":"SigningConfiguration"},
         "signingImageFormat":{"shape":"SigningImageFormat"},
-        "maxSizeInMB":{"shape":"MaxSizeInMB"}
+        "maxSizeInMB":{"shape":"MaxSizeInMB"},
+        "revocationSupported":{"shape":"bool"}
       }
     },
     "SigningPlatformOverrides":{
@@ -674,19 +1011,32 @@
       "type":"structure",
       "members":{
         "profileName":{"shape":"ProfileName"},
+        "profileVersion":{"shape":"ProfileVersion"},
+        "profileVersionArn":{"shape":"Arn"},
         "signingMaterial":{"shape":"SigningMaterial"},
+        "signatureValidityPeriod":{"shape":"SignatureValidityPeriod"},
         "platformId":{"shape":"PlatformId"},
+        "platformDisplayName":{"shape":"DisplayName"},
         "signingParameters":{"shape":"SigningParameters"},
         "status":{"shape":"SigningProfileStatus"},
         "arn":{"shape":"string"},
         "tags":{"shape":"TagMap"}
       }
     },
+    "SigningProfileRevocationRecord":{
+      "type":"structure",
+      "members":{
+        "revocationEffectiveFrom":{"shape":"Timestamp"},
+        "revokedAt":{"shape":"Timestamp"},
+        "revokedBy":{"shape":"String"}
+      }
+    },
     "SigningProfileStatus":{
       "type":"string",
       "enum":[
         "Active",
-        "Canceled"
+        "Canceled",
+        "Revoked"
       ]
     },
     "SigningProfiles":{
@@ -712,6 +1062,7 @@
       "required":[
         "source",
         "destination",
+        "profileName",
         "clientRequestToken"
       ],
       "members":{
@@ -721,16 +1072,22 @@
         "clientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "profileOwner":{"shape":"AccountId"}
       }
     },
     "StartSigningJobResponse":{
       "type":"structure",
       "members":{
-        "jobId":{"shape":"JobId"}
+        "jobId":{"shape":"JobId"},
+        "jobOwner":{"shape":"AccountId"}
       }
     },
     "StatusReason":{"type":"string"},
+    "Statuses":{
+      "type":"list",
+      "member":{"shape":"SigningProfileStatus"}
+    },
     "String":{"type":"string"},
     "TagKey":{
       "type":"string",
@@ -778,7 +1135,20 @@
     "ThrottlingException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
+      },
+      "deprecated":true,
+      "deprecatedMessage":"Instead of this error, TooManyRequestsException should be used.",
+      "error":{"httpStatusCode":429},
+      "exception":true
+    },
+    "Timestamp":{"type":"timestamp"},
+    "TooManyRequestsException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":429},
       "exception":true
@@ -810,10 +1180,19 @@
     "ValidationException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"ErrorMessage"}
+        "message":{"shape":"ErrorMessage"},
+        "code":{"shape":"ErrorCode"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ValidityType":{
+      "type":"string",
+      "enum":[
+        "DAYS",
+        "MONTHS",
+        "YEARS"
+      ]
     },
     "Version":{"type":"string"},
     "bool":{"type":"boolean"},

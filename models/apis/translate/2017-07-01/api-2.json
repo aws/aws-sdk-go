@@ -13,6 +13,38 @@
     "uid":"translate-2017-07-01"
   },
   "operations":{
+    "CreateParallelData":{
+      "name":"CreateParallelData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateParallelDataRequest"},
+      "output":{"shape":"CreateParallelDataResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteParallelData":{
+      "name":"DeleteParallelData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteParallelDataRequest"},
+      "output":{"shape":"DeleteParallelDataResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteTerminology":{
       "name":"DeleteTerminology",
       "http":{
@@ -37,6 +69,21 @@
       "output":{"shape":"DescribeTextTranslationJobResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetParallelData":{
+      "name":"GetParallelData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetParallelDataRequest"},
+      "output":{"shape":"GetParallelDataResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
       ]
@@ -67,6 +114,20 @@
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"LimitExceededException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListParallelData":{
+      "name":"ListParallelData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListParallelDataRequest"},
+      "output":{"shape":"ListParallelDataResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
       ]
@@ -148,6 +209,25 @@
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"}
       ]
+    },
+    "UpdateParallelData":{
+      "name":"UpdateParallelData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateParallelDataRequest"},
+      "output":{"shape":"UpdateParallelDataResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -174,10 +254,63 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9-]+$"
     },
+    "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "ContentType":{
       "type":"string",
       "max":256,
       "pattern":"^[-\\w.]+\\/[-\\w.+]+$"
+    },
+    "CreateParallelDataRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ParallelDataConfig",
+        "ClientToken"
+      ],
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "Description":{"shape":"Description"},
+        "ParallelDataConfig":{"shape":"ParallelDataConfig"},
+        "EncryptionKey":{"shape":"EncryptionKey"},
+        "ClientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateParallelDataResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "Status":{"shape":"ParallelDataStatus"}
+      }
+    },
+    "DeleteParallelDataRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "DeleteParallelDataResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "Status":{"shape":"ParallelDataStatus"}
+      }
     },
     "DeleteTerminologyRequest":{
       "type":"structure",
@@ -232,6 +365,22 @@
     "EncryptionKeyType":{
       "type":"string",
       "enum":["KMS"]
+    },
+    "GetParallelDataRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ResourceName"}
+      }
+    },
+    "GetParallelDataResponse":{
+      "type":"structure",
+      "members":{
+        "ParallelDataProperties":{"shape":"ParallelDataProperties"},
+        "DataLocation":{"shape":"ParallelDataDataLocation"},
+        "AuxiliaryDataLocation":{"shape":"ParallelDataDataLocation"},
+        "LatestUpdateAttemptAuxiliaryDataLocation":{"shape":"ParallelDataDataLocation"}
+      }
     },
     "GetTerminologyRequest":{
       "type":"structure",
@@ -367,6 +516,20 @@
       },
       "exception":true
     },
+    "ListParallelDataRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListParallelDataResponse":{
+      "type":"structure",
+      "members":{
+        "ParallelDataPropertiesList":{"shape":"ParallelDataPropertiesList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTerminologiesRequest":{
       "type":"structure",
       "members":{
@@ -396,6 +559,7 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Long":{"type":"long"},
     "MaxResultsInteger":{
       "type":"integer",
       "max":500,
@@ -416,6 +580,77 @@
       "members":{
         "S3Uri":{"shape":"S3Uri"}
       }
+    },
+    "ParallelDataArn":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
+    "ParallelDataConfig":{
+      "type":"structure",
+      "required":[
+        "S3Uri",
+        "Format"
+      ],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "Format":{"shape":"ParallelDataFormat"}
+      }
+    },
+    "ParallelDataDataLocation":{
+      "type":"structure",
+      "required":[
+        "RepositoryType",
+        "Location"
+      ],
+      "members":{
+        "RepositoryType":{"shape":"String"},
+        "Location":{"shape":"String"}
+      }
+    },
+    "ParallelDataFormat":{
+      "type":"string",
+      "enum":[
+        "TSV",
+        "CSV",
+        "TMX"
+      ]
+    },
+    "ParallelDataProperties":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "Arn":{"shape":"ParallelDataArn"},
+        "Description":{"shape":"Description"},
+        "Status":{"shape":"ParallelDataStatus"},
+        "SourceLanguageCode":{"shape":"LanguageCodeString"},
+        "TargetLanguageCodes":{"shape":"LanguageCodeStringList"},
+        "ParallelDataConfig":{"shape":"ParallelDataConfig"},
+        "Message":{"shape":"UnboundedLengthString"},
+        "ImportedDataSize":{"shape":"Long"},
+        "ImportedRecordCount":{"shape":"Long"},
+        "FailedRecordCount":{"shape":"Long"},
+        "SkippedRecordCount":{"shape":"Long"},
+        "EncryptionKey":{"shape":"EncryptionKey"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "LastUpdatedAt":{"shape":"Timestamp"},
+        "LatestUpdateAttemptStatus":{"shape":"ParallelDataStatus"},
+        "LatestUpdateAttemptAt":{"shape":"Timestamp"}
+      }
+    },
+    "ParallelDataPropertiesList":{
+      "type":"list",
+      "member":{"shape":"ParallelDataProperties"}
+    },
+    "ParallelDataStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "UPDATING",
+        "ACTIVE",
+        "DELETING",
+        "FAILED"
+      ]
     },
     "ResourceName":{
       "type":"string",
@@ -465,6 +700,7 @@
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
         "TargetLanguageCodes":{"shape":"TargetLanguageCodeStringList"},
         "TerminologyNames":{"shape":"ResourceNameList"},
+        "ParallelDataNames":{"shape":"ResourceNameList"},
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
@@ -598,6 +834,7 @@
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
         "TargetLanguageCodes":{"shape":"TargetLanguageCodeStringList"},
         "TerminologyNames":{"shape":"ResourceNameList"},
+        "ParallelDataNames":{"shape":"ResourceNameList"},
         "Message":{"shape":"UnboundedLengthString"},
         "SubmittedTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
@@ -655,6 +892,32 @@
         "TargetLanguageCode":{"shape":"LanguageCodeString"}
       },
       "exception":true
+    },
+    "UpdateParallelDataRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ParallelDataConfig",
+        "ClientToken"
+      ],
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "Description":{"shape":"Description"},
+        "ParallelDataConfig":{"shape":"ParallelDataConfig"},
+        "ClientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "UpdateParallelDataResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ResourceName"},
+        "Status":{"shape":"ParallelDataStatus"},
+        "LatestUpdateAttemptStatus":{"shape":"ParallelDataStatus"},
+        "LatestUpdateAttemptAt":{"shape":"Timestamp"}
+      }
     }
   }
 }

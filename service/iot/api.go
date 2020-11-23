@@ -44593,6 +44593,10 @@ type OTAUpdateFile struct {
 	// The name of the file.
 	FileName *string `locationName:"fileName" type:"string"`
 
+	// An integer value you can include in the job document to allow your devices
+	// to identify the type of file received from the cloud.
+	FileType *int64 `locationName:"fileType" type:"integer"`
+
 	// The file version.
 	FileVersion *string `locationName:"fileVersion" type:"string"`
 }
@@ -44648,6 +44652,12 @@ func (s *OTAUpdateFile) SetFileLocation(v *FileLocation) *OTAUpdateFile {
 // SetFileName sets the FileName field's value.
 func (s *OTAUpdateFile) SetFileName(v string) *OTAUpdateFile {
 	s.FileName = &v
+	return s
+}
+
+// SetFileType sets the FileType field's value.
+func (s *OTAUpdateFile) SetFileType(v int64) *OTAUpdateFile {
+	s.FileType = &v
 	return s
 }
 

@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Translate.
 //    func myFunc(svc translateiface.TranslateAPI) bool {
-//        // Make svc.DeleteTerminology request
+//        // Make svc.CreateParallelData request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockTranslateClient struct {
 //        translateiface.TranslateAPI
 //    }
-//    func (m *mockTranslateClient) DeleteTerminology(input *translate.DeleteTerminologyInput) (*translate.DeleteTerminologyOutput, error) {
+//    func (m *mockTranslateClient) CreateParallelData(input *translate.CreateParallelDataInput) (*translate.CreateParallelDataOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type TranslateAPI interface {
+	CreateParallelData(*translate.CreateParallelDataInput) (*translate.CreateParallelDataOutput, error)
+	CreateParallelDataWithContext(aws.Context, *translate.CreateParallelDataInput, ...request.Option) (*translate.CreateParallelDataOutput, error)
+	CreateParallelDataRequest(*translate.CreateParallelDataInput) (*request.Request, *translate.CreateParallelDataOutput)
+
+	DeleteParallelData(*translate.DeleteParallelDataInput) (*translate.DeleteParallelDataOutput, error)
+	DeleteParallelDataWithContext(aws.Context, *translate.DeleteParallelDataInput, ...request.Option) (*translate.DeleteParallelDataOutput, error)
+	DeleteParallelDataRequest(*translate.DeleteParallelDataInput) (*request.Request, *translate.DeleteParallelDataOutput)
+
 	DeleteTerminology(*translate.DeleteTerminologyInput) (*translate.DeleteTerminologyOutput, error)
 	DeleteTerminologyWithContext(aws.Context, *translate.DeleteTerminologyInput, ...request.Option) (*translate.DeleteTerminologyOutput, error)
 	DeleteTerminologyRequest(*translate.DeleteTerminologyInput) (*request.Request, *translate.DeleteTerminologyOutput)
@@ -68,6 +76,10 @@ type TranslateAPI interface {
 	DescribeTextTranslationJobWithContext(aws.Context, *translate.DescribeTextTranslationJobInput, ...request.Option) (*translate.DescribeTextTranslationJobOutput, error)
 	DescribeTextTranslationJobRequest(*translate.DescribeTextTranslationJobInput) (*request.Request, *translate.DescribeTextTranslationJobOutput)
 
+	GetParallelData(*translate.GetParallelDataInput) (*translate.GetParallelDataOutput, error)
+	GetParallelDataWithContext(aws.Context, *translate.GetParallelDataInput, ...request.Option) (*translate.GetParallelDataOutput, error)
+	GetParallelDataRequest(*translate.GetParallelDataInput) (*request.Request, *translate.GetParallelDataOutput)
+
 	GetTerminology(*translate.GetTerminologyInput) (*translate.GetTerminologyOutput, error)
 	GetTerminologyWithContext(aws.Context, *translate.GetTerminologyInput, ...request.Option) (*translate.GetTerminologyOutput, error)
 	GetTerminologyRequest(*translate.GetTerminologyInput) (*request.Request, *translate.GetTerminologyOutput)
@@ -75,6 +87,13 @@ type TranslateAPI interface {
 	ImportTerminology(*translate.ImportTerminologyInput) (*translate.ImportTerminologyOutput, error)
 	ImportTerminologyWithContext(aws.Context, *translate.ImportTerminologyInput, ...request.Option) (*translate.ImportTerminologyOutput, error)
 	ImportTerminologyRequest(*translate.ImportTerminologyInput) (*request.Request, *translate.ImportTerminologyOutput)
+
+	ListParallelData(*translate.ListParallelDataInput) (*translate.ListParallelDataOutput, error)
+	ListParallelDataWithContext(aws.Context, *translate.ListParallelDataInput, ...request.Option) (*translate.ListParallelDataOutput, error)
+	ListParallelDataRequest(*translate.ListParallelDataInput) (*request.Request, *translate.ListParallelDataOutput)
+
+	ListParallelDataPages(*translate.ListParallelDataInput, func(*translate.ListParallelDataOutput, bool) bool) error
+	ListParallelDataPagesWithContext(aws.Context, *translate.ListParallelDataInput, func(*translate.ListParallelDataOutput, bool) bool, ...request.Option) error
 
 	ListTerminologies(*translate.ListTerminologiesInput) (*translate.ListTerminologiesOutput, error)
 	ListTerminologiesWithContext(aws.Context, *translate.ListTerminologiesInput, ...request.Option) (*translate.ListTerminologiesOutput, error)
@@ -101,6 +120,10 @@ type TranslateAPI interface {
 	Text(*translate.TextInput) (*translate.TextOutput, error)
 	TextWithContext(aws.Context, *translate.TextInput, ...request.Option) (*translate.TextOutput, error)
 	TextRequest(*translate.TextInput) (*request.Request, *translate.TextOutput)
+
+	UpdateParallelData(*translate.UpdateParallelDataInput) (*translate.UpdateParallelDataOutput, error)
+	UpdateParallelDataWithContext(aws.Context, *translate.UpdateParallelDataInput, ...request.Option) (*translate.UpdateParallelDataOutput, error)
+	UpdateParallelDataRequest(*translate.UpdateParallelDataInput) (*request.Request, *translate.UpdateParallelDataOutput)
 }
 
 var _ TranslateAPI = (*translate.Translate)(nil)

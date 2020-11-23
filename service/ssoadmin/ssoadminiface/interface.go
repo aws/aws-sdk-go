@@ -68,6 +68,10 @@ type SSOAdminAPI interface {
 	CreateAccountAssignmentWithContext(aws.Context, *ssoadmin.CreateAccountAssignmentInput, ...request.Option) (*ssoadmin.CreateAccountAssignmentOutput, error)
 	CreateAccountAssignmentRequest(*ssoadmin.CreateAccountAssignmentInput) (*request.Request, *ssoadmin.CreateAccountAssignmentOutput)
 
+	CreateInstanceAccessControlAttributeConfiguration(*ssoadmin.CreateInstanceAccessControlAttributeConfigurationInput) (*ssoadmin.CreateInstanceAccessControlAttributeConfigurationOutput, error)
+	CreateInstanceAccessControlAttributeConfigurationWithContext(aws.Context, *ssoadmin.CreateInstanceAccessControlAttributeConfigurationInput, ...request.Option) (*ssoadmin.CreateInstanceAccessControlAttributeConfigurationOutput, error)
+	CreateInstanceAccessControlAttributeConfigurationRequest(*ssoadmin.CreateInstanceAccessControlAttributeConfigurationInput) (*request.Request, *ssoadmin.CreateInstanceAccessControlAttributeConfigurationOutput)
+
 	CreatePermissionSet(*ssoadmin.CreatePermissionSetInput) (*ssoadmin.CreatePermissionSetOutput, error)
 	CreatePermissionSetWithContext(aws.Context, *ssoadmin.CreatePermissionSetInput, ...request.Option) (*ssoadmin.CreatePermissionSetOutput, error)
 	CreatePermissionSetRequest(*ssoadmin.CreatePermissionSetInput) (*request.Request, *ssoadmin.CreatePermissionSetOutput)
@@ -80,6 +84,10 @@ type SSOAdminAPI interface {
 	DeleteInlinePolicyFromPermissionSetWithContext(aws.Context, *ssoadmin.DeleteInlinePolicyFromPermissionSetInput, ...request.Option) (*ssoadmin.DeleteInlinePolicyFromPermissionSetOutput, error)
 	DeleteInlinePolicyFromPermissionSetRequest(*ssoadmin.DeleteInlinePolicyFromPermissionSetInput) (*request.Request, *ssoadmin.DeleteInlinePolicyFromPermissionSetOutput)
 
+	DeleteInstanceAccessControlAttributeConfiguration(*ssoadmin.DeleteInstanceAccessControlAttributeConfigurationInput) (*ssoadmin.DeleteInstanceAccessControlAttributeConfigurationOutput, error)
+	DeleteInstanceAccessControlAttributeConfigurationWithContext(aws.Context, *ssoadmin.DeleteInstanceAccessControlAttributeConfigurationInput, ...request.Option) (*ssoadmin.DeleteInstanceAccessControlAttributeConfigurationOutput, error)
+	DeleteInstanceAccessControlAttributeConfigurationRequest(*ssoadmin.DeleteInstanceAccessControlAttributeConfigurationInput) (*request.Request, *ssoadmin.DeleteInstanceAccessControlAttributeConfigurationOutput)
+
 	DeletePermissionSet(*ssoadmin.DeletePermissionSetInput) (*ssoadmin.DeletePermissionSetOutput, error)
 	DeletePermissionSetWithContext(aws.Context, *ssoadmin.DeletePermissionSetInput, ...request.Option) (*ssoadmin.DeletePermissionSetOutput, error)
 	DeletePermissionSetRequest(*ssoadmin.DeletePermissionSetInput) (*request.Request, *ssoadmin.DeletePermissionSetOutput)
@@ -91,6 +99,10 @@ type SSOAdminAPI interface {
 	DescribeAccountAssignmentDeletionStatus(*ssoadmin.DescribeAccountAssignmentDeletionStatusInput) (*ssoadmin.DescribeAccountAssignmentDeletionStatusOutput, error)
 	DescribeAccountAssignmentDeletionStatusWithContext(aws.Context, *ssoadmin.DescribeAccountAssignmentDeletionStatusInput, ...request.Option) (*ssoadmin.DescribeAccountAssignmentDeletionStatusOutput, error)
 	DescribeAccountAssignmentDeletionStatusRequest(*ssoadmin.DescribeAccountAssignmentDeletionStatusInput) (*request.Request, *ssoadmin.DescribeAccountAssignmentDeletionStatusOutput)
+
+	DescribeInstanceAccessControlAttributeConfiguration(*ssoadmin.DescribeInstanceAccessControlAttributeConfigurationInput) (*ssoadmin.DescribeInstanceAccessControlAttributeConfigurationOutput, error)
+	DescribeInstanceAccessControlAttributeConfigurationWithContext(aws.Context, *ssoadmin.DescribeInstanceAccessControlAttributeConfigurationInput, ...request.Option) (*ssoadmin.DescribeInstanceAccessControlAttributeConfigurationOutput, error)
+	DescribeInstanceAccessControlAttributeConfigurationRequest(*ssoadmin.DescribeInstanceAccessControlAttributeConfigurationInput) (*request.Request, *ssoadmin.DescribeInstanceAccessControlAttributeConfigurationOutput)
 
 	DescribePermissionSet(*ssoadmin.DescribePermissionSetInput) (*ssoadmin.DescribePermissionSetOutput, error)
 	DescribePermissionSetWithContext(aws.Context, *ssoadmin.DescribePermissionSetInput, ...request.Option) (*ssoadmin.DescribePermissionSetOutput, error)
@@ -193,6 +205,10 @@ type SSOAdminAPI interface {
 	UntagResource(*ssoadmin.UntagResourceInput) (*ssoadmin.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *ssoadmin.UntagResourceInput, ...request.Option) (*ssoadmin.UntagResourceOutput, error)
 	UntagResourceRequest(*ssoadmin.UntagResourceInput) (*request.Request, *ssoadmin.UntagResourceOutput)
+
+	UpdateInstanceAccessControlAttributeConfiguration(*ssoadmin.UpdateInstanceAccessControlAttributeConfigurationInput) (*ssoadmin.UpdateInstanceAccessControlAttributeConfigurationOutput, error)
+	UpdateInstanceAccessControlAttributeConfigurationWithContext(aws.Context, *ssoadmin.UpdateInstanceAccessControlAttributeConfigurationInput, ...request.Option) (*ssoadmin.UpdateInstanceAccessControlAttributeConfigurationOutput, error)
+	UpdateInstanceAccessControlAttributeConfigurationRequest(*ssoadmin.UpdateInstanceAccessControlAttributeConfigurationInput) (*request.Request, *ssoadmin.UpdateInstanceAccessControlAttributeConfigurationOutput)
 
 	UpdatePermissionSet(*ssoadmin.UpdatePermissionSetInput) (*ssoadmin.UpdatePermissionSetOutput, error)
 	UpdatePermissionSetWithContext(aws.Context, *ssoadmin.UpdatePermissionSetInput, ...request.Option) (*ssoadmin.UpdatePermissionSetOutput, error)

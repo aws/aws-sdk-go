@@ -13,6 +13,19 @@
     "uid":"dynamodb-2012-08-10"
   },
   "operations":{
+    "BatchExecuteStatement":{
+      "name":"BatchExecuteStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchExecuteStatementInput"},
+      "output":{"shape":"BatchExecuteStatementOutput"},
+      "errors":[
+        {"shape":"RequestLimitExceeded"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "BatchGetItem":{
       "name":"BatchGetItem",
       "http":{
@@ -251,6 +264,21 @@
       "endpointdiscovery":{
       }
     },
+    "DescribeKinesisStreamingDestination":{
+      "name":"DescribeKinesisStreamingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeKinesisStreamingDestinationInput"},
+      "output":{"shape":"DescribeKinesisStreamingDestinationOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
+      ],
+      "endpointdiscovery":{
+      }
+    },
     "DescribeLimits":{
       "name":"DescribeLimits",
       "http":{
@@ -307,6 +335,77 @@
       ],
       "endpointdiscovery":{
       }
+    },
+    "DisableKinesisStreamingDestination":{
+      "name":"DisableKinesisStreamingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"KinesisStreamingDestinationInput"},
+      "output":{"shape":"KinesisStreamingDestinationOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "endpointdiscovery":{
+      }
+    },
+    "EnableKinesisStreamingDestination":{
+      "name":"EnableKinesisStreamingDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"KinesisStreamingDestinationInput"},
+      "output":{"shape":"KinesisStreamingDestinationOutput"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "endpointdiscovery":{
+      }
+    },
+    "ExecuteStatement":{
+      "name":"ExecuteStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExecuteStatementInput"},
+      "output":{"shape":"ExecuteStatementOutput"},
+      "errors":[
+        {"shape":"ConditionalCheckFailedException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ItemCollectionSizeLimitExceededException"},
+        {"shape":"TransactionConflictException"},
+        {"shape":"RequestLimitExceeded"},
+        {"shape":"InternalServerError"},
+        {"shape":"DuplicateItemException"}
+      ]
+    },
+    "ExecuteTransaction":{
+      "name":"ExecuteTransaction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExecuteTransactionInput"},
+      "output":{"shape":"ExecuteTransactionOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TransactionCanceledException"},
+        {"shape":"TransactionInProgressException"},
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"RequestLimitExceeded"},
+        {"shape":"InternalServerError"}
+      ]
     },
     "ExportTableToPointInTime":{
       "name":"ExportTableToPointInTime",
@@ -980,6 +1079,19 @@
       "max":100,
       "min":1
     },
+    "BatchExecuteStatementInput":{
+      "type":"structure",
+      "required":["Statements"],
+      "members":{
+        "Statements":{"shape":"PartiQLBatchRequest"}
+      }
+    },
+    "BatchExecuteStatementOutput":{
+      "type":"structure",
+      "members":{
+        "Responses":{"shape":"PartiQLBatchResponse"}
+      }
+    },
     "BatchGetItemInput":{
       "type":"structure",
       "required":["RequestItems"],
@@ -1007,6 +1119,46 @@
       "type":"map",
       "key":{"shape":"TableName"},
       "value":{"shape":"ItemList"}
+    },
+    "BatchStatementError":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"BatchStatementErrorCodeEnum"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "BatchStatementErrorCodeEnum":{
+      "type":"string",
+      "enum":[
+        "ConditionalCheckFailed",
+        "ItemCollectionSizeLimitExceeded",
+        "RequestLimitExceeded",
+        "ValidationError",
+        "ProvisionedThroughputExceeded",
+        "TransactionConflict",
+        "ThrottlingError",
+        "InternalServerError",
+        "ResourceNotFound",
+        "AccessDenied",
+        "DuplicateItem"
+      ]
+    },
+    "BatchStatementRequest":{
+      "type":"structure",
+      "required":["Statement"],
+      "members":{
+        "Statement":{"shape":"PartiQLStatement"},
+        "Parameters":{"shape":"PreparedStatementParameters"},
+        "ConsistentRead":{"shape":"ConsistentRead"}
+      }
+    },
+    "BatchStatementResponse":{
+      "type":"structure",
+      "members":{
+        "Error":{"shape":"BatchStatementError"},
+        "TableName":{"shape":"TableName"},
+        "Item":{"shape":"AttributeMap"}
+      }
     },
     "BatchWriteItemInput":{
       "type":"structure",
@@ -1505,6 +1657,20 @@
         "ReplicaSettings":{"shape":"ReplicaSettingsDescriptionList"}
       }
     },
+    "DescribeKinesisStreamingDestinationInput":{
+      "type":"structure",
+      "required":["TableName"],
+      "members":{
+        "TableName":{"shape":"TableName"}
+      }
+    },
+    "DescribeKinesisStreamingDestinationOutput":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "KinesisDataStreamDestinations":{"shape":"KinesisDataStreamDestinations"}
+      }
+    },
     "DescribeLimitsInput":{
       "type":"structure",
       "members":{
@@ -1558,7 +1724,24 @@
         "TimeToLiveDescription":{"shape":"TimeToLiveDescription"}
       }
     },
+    "DestinationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLING",
+        "ACTIVE",
+        "DISABLING",
+        "DISABLED",
+        "ENABLE_FAILED"
+      ]
+    },
     "Double":{"type":"double"},
+    "DuplicateItemException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "Endpoint":{
       "type":"structure",
       "required":[
@@ -1577,6 +1760,40 @@
     "ErrorMessage":{"type":"string"},
     "ExceptionDescription":{"type":"string"},
     "ExceptionName":{"type":"string"},
+    "ExecuteStatementInput":{
+      "type":"structure",
+      "required":["Statement"],
+      "members":{
+        "Statement":{"shape":"PartiQLStatement"},
+        "Parameters":{"shape":"PreparedStatementParameters"},
+        "ConsistentRead":{"shape":"ConsistentRead"},
+        "NextToken":{"shape":"PartiQLNextToken"}
+      }
+    },
+    "ExecuteStatementOutput":{
+      "type":"structure",
+      "members":{
+        "Items":{"shape":"ItemList"},
+        "NextToken":{"shape":"PartiQLNextToken"}
+      }
+    },
+    "ExecuteTransactionInput":{
+      "type":"structure",
+      "required":["TransactStatements"],
+      "members":{
+        "TransactStatements":{"shape":"ParameterizedStatements"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "ExecuteTransactionOutput":{
+      "type":"structure",
+      "members":{
+        "Responses":{"shape":"ItemResponseList"}
+      }
+    },
     "ExpectedAttributeMap":{
       "type":"map",
       "key":{"shape":"AttributeName"},
@@ -2052,6 +2269,37 @@
         "ExpressionAttributeNames":{"shape":"ExpressionAttributeNameMap"}
       }
     },
+    "KinesisDataStreamDestination":{
+      "type":"structure",
+      "members":{
+        "StreamArn":{"shape":"StreamArn"},
+        "DestinationStatus":{"shape":"DestinationStatus"},
+        "DestinationStatusDescription":{"shape":"String"}
+      }
+    },
+    "KinesisDataStreamDestinations":{
+      "type":"list",
+      "member":{"shape":"KinesisDataStreamDestination"}
+    },
+    "KinesisStreamingDestinationInput":{
+      "type":"structure",
+      "required":[
+        "TableName",
+        "StreamArn"
+      ],
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "StreamArn":{"shape":"StreamArn"}
+      }
+    },
+    "KinesisStreamingDestinationOutput":{
+      "type":"structure",
+      "members":{
+        "TableName":{"shape":"TableName"},
+        "StreamArn":{"shape":"StreamArn"},
+        "DestinationStatus":{"shape":"DestinationStatus"}
+      }
+    },
     "LastUpdateDateTime":{"type":"timestamp"},
     "LimitExceededException":{
       "type":"structure",
@@ -2242,6 +2490,40 @@
       "type":"list",
       "member":{"shape":"NumberAttributeValue"}
     },
+    "ParameterizedStatement":{
+      "type":"structure",
+      "required":["Statement"],
+      "members":{
+        "Statement":{"shape":"PartiQLStatement"},
+        "Parameters":{"shape":"PreparedStatementParameters"}
+      }
+    },
+    "ParameterizedStatements":{
+      "type":"list",
+      "member":{"shape":"ParameterizedStatement"},
+      "max":25,
+      "min":1
+    },
+    "PartiQLBatchRequest":{
+      "type":"list",
+      "member":{"shape":"BatchStatementRequest"},
+      "max":25,
+      "min":1
+    },
+    "PartiQLBatchResponse":{
+      "type":"list",
+      "member":{"shape":"BatchStatementResponse"}
+    },
+    "PartiQLNextToken":{
+      "type":"string",
+      "max":32768,
+      "min":1
+    },
+    "PartiQLStatement":{
+      "type":"string",
+      "max":8192,
+      "min":1
+    },
     "PointInTimeRecoveryDescription":{
       "type":"structure",
       "members":{
@@ -2277,6 +2559,11 @@
     },
     "PositiveLongObject":{
       "type":"long",
+      "min":1
+    },
+    "PreparedStatementParameters":{
+      "type":"list",
+      "member":{"shape":"AttributeValue"},
       "min":1
     },
     "Projection":{

@@ -2120,6 +2120,104 @@ func (c *Glue) CreatePartitionWithContext(ctx aws.Context, input *CreatePartitio
 	return out, req.Send()
 }
 
+const opCreatePartitionIndex = "CreatePartitionIndex"
+
+// CreatePartitionIndexRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePartitionIndex operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePartitionIndex for more information on using the CreatePartitionIndex
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePartitionIndexRequest method.
+//    req, resp := client.CreatePartitionIndexRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreatePartitionIndex
+func (c *Glue) CreatePartitionIndexRequest(input *CreatePartitionIndexInput) (req *request.Request, output *CreatePartitionIndexOutput) {
+	op := &request.Operation{
+		Name:       opCreatePartitionIndex,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreatePartitionIndexInput{}
+	}
+
+	output = &CreatePartitionIndexOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreatePartitionIndex API operation for AWS Glue.
+//
+// Creates a specified partition index in an existing table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CreatePartitionIndex for usage and error information.
+//
+// Returned Error Types:
+//   * AlreadyExistsException
+//   A resource to be created or added already exists.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EncryptionException
+//   An encryption operation failed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreatePartitionIndex
+func (c *Glue) CreatePartitionIndex(input *CreatePartitionIndexInput) (*CreatePartitionIndexOutput, error) {
+	req, out := c.CreatePartitionIndexRequest(input)
+	return out, req.Send()
+}
+
+// CreatePartitionIndexWithContext is the same as CreatePartitionIndex with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePartitionIndex for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CreatePartitionIndexWithContext(ctx aws.Context, input *CreatePartitionIndexInput, opts ...request.Option) (*CreatePartitionIndexOutput, error) {
+	req, out := c.CreatePartitionIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateRegistry = "CreateRegistry"
 
 // CreateRegistryRequest generates a "aws/request.Request" representing the
@@ -3785,6 +3883,101 @@ func (c *Glue) DeletePartition(input *DeletePartitionInput) (*DeletePartitionOut
 // for more information on using Contexts.
 func (c *Glue) DeletePartitionWithContext(ctx aws.Context, input *DeletePartitionInput, opts ...request.Option) (*DeletePartitionOutput, error) {
 	req, out := c.DeletePartitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePartitionIndex = "DeletePartitionIndex"
+
+// DeletePartitionIndexRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePartitionIndex operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePartitionIndex for more information on using the DeletePartitionIndex
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePartitionIndexRequest method.
+//    req, resp := client.DeletePartitionIndexRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeletePartitionIndex
+func (c *Glue) DeletePartitionIndexRequest(input *DeletePartitionIndexInput) (req *request.Request, output *DeletePartitionIndexOutput) {
+	op := &request.Operation{
+		Name:       opDeletePartitionIndex,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeletePartitionIndexInput{}
+	}
+
+	output = &DeletePartitionIndexOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePartitionIndex API operation for AWS Glue.
+//
+// Deletes a specified partition index from an existing table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation DeletePartitionIndex for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * ConflictException
+//   The CreatePartitions API was called on a table that has indexes enabled.
+//
+//   * EncryptionException
+//   An encryption operation failed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeletePartitionIndex
+func (c *Glue) DeletePartitionIndex(input *DeletePartitionIndexInput) (*DeletePartitionIndexOutput, error) {
+	req, out := c.DeletePartitionIndexRequest(input)
+	return out, req.Send()
+}
+
+// DeletePartitionIndexWithContext is the same as DeletePartitionIndex with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePartitionIndex for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) DeletePartitionIndexWithContext(ctx aws.Context, input *DeletePartitionIndexInput, opts ...request.Option) (*DeletePartitionIndexOutput, error) {
+	req, out := c.DeletePartitionIndexRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -16064,6 +16257,58 @@ func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A list of errors that can occur when registering partition indexes for an
+// existing table.
+//
+// These errors give the details about why an index registration failed and
+// provide a limited number of partitions in the response, so that you can fix
+// the partitions at fault and try registering the index again. The most common
+// set of errors that can occur are categorized as follows:
+//
+//    * EncryptedPartitionError: The partitions are encrypted.
+//
+//    * InvalidPartitionTypeDataError: The partition value doesn't match the
+//    data type for that partition column.
+//
+//    * MissingPartitionValueError: The partitions are encrypted.
+//
+//    * UnsupportedPartitionCharacterError: Characters inside the partition
+//    value are not supported. For example: U+0000 , U+0001, U+0002.
+//
+//    * InternalError: Any error which does not belong to other error codes.
+type BackfillError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for an error that occurred when registering partition indexes
+	// for an existing table.
+	Code *string `type:"string" enum:"BackfillErrorCode"`
+
+	// A list of a limited number of partitions in the response.
+	Partitions []*PartitionValueList `type:"list"`
+}
+
+// String returns the string representation
+func (s BackfillError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BackfillError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *BackfillError) SetCode(v string) *BackfillError {
+	s.Code = &v
+	return s
+}
+
+// SetPartitions sets the Partitions field's value.
+func (s *BackfillError) SetPartitions(v []*PartitionValueList) *BackfillError {
+	s.Partitions = v
+	return s
+}
+
 type BatchCreatePartitionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19468,6 +19713,9 @@ type Crawler struct {
 	// The time that the crawler was last updated.
 	LastUpdated *time.Time `type:"timestamp"`
 
+	// A configuration that specifies whether data lineage is enabled for the crawler.
+	LineageConfiguration *LineageConfiguration `type:"structure"`
+
 	// The name of the crawler.
 	Name *string `min:"1" type:"string"`
 
@@ -19559,6 +19807,12 @@ func (s *Crawler) SetLastCrawl(v *LastCrawlInfo) *Crawler {
 // SetLastUpdated sets the LastUpdated field's value.
 func (s *Crawler) SetLastUpdated(v time.Time) *Crawler {
 	s.LastUpdated = &v
+	return s
+}
+
+// SetLineageConfiguration sets the LineageConfiguration field's value.
+func (s *Crawler) SetLineageConfiguration(v *LineageConfiguration) *Crawler {
+	s.LineageConfiguration = v
 	return s
 }
 
@@ -20165,6 +20419,9 @@ type CreateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
+	// Specifies data lineage configuration settings for the crawler.
+	LineageConfiguration *LineageConfiguration `type:"structure"`
+
 	// Name of the new crawler.
 	//
 	// Name is a required field
@@ -20268,6 +20525,12 @@ func (s *CreateCrawlerInput) SetDatabaseName(v string) *CreateCrawlerInput {
 // SetDescription sets the Description field's value.
 func (s *CreateCrawlerInput) SetDescription(v string) *CreateCrawlerInput {
 	s.Description = &v
+	return s
+}
+
+// SetLineageConfiguration sets the LineageConfiguration field's value.
+func (s *CreateCrawlerInput) SetLineageConfiguration(v *LineageConfiguration) *CreateCrawlerInput {
+	s.LineageConfiguration = v
 	return s
 }
 
@@ -21676,6 +21939,111 @@ func (s CreateMLTransformOutput) GoString() string {
 func (s *CreateMLTransformOutput) SetTransformId(v string) *CreateMLTransformOutput {
 	s.TransformId = &v
 	return s
+}
+
+type CreatePartitionIndexInput struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog ID where the table resides.
+	CatalogId *string `min:"1" type:"string"`
+
+	// Specifies the name of a database in which you want to create a partition
+	// index.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies a PartitionIndex structure to create a partition index in an existing
+	// table.
+	//
+	// PartitionIndex is a required field
+	PartitionIndex *PartitionIndex `type:"structure" required:"true"`
+
+	// Specifies the name of a table in which you want to create a partition index.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreatePartitionIndexInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePartitionIndexInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePartitionIndexInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePartitionIndexInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.PartitionIndex == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartitionIndex"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.PartitionIndex != nil {
+		if err := s.PartitionIndex.Validate(); err != nil {
+			invalidParams.AddNested("PartitionIndex", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *CreatePartitionIndexInput) SetCatalogId(v string) *CreatePartitionIndexInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *CreatePartitionIndexInput) SetDatabaseName(v string) *CreatePartitionIndexInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartitionIndex sets the PartitionIndex field's value.
+func (s *CreatePartitionIndexInput) SetPartitionIndex(v *PartitionIndex) *CreatePartitionIndexInput {
+	s.PartitionIndex = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *CreatePartitionIndexInput) SetTableName(v string) *CreatePartitionIndexInput {
+	s.TableName = &v
+	return s
+}
+
+type CreatePartitionIndexOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePartitionIndexOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePartitionIndexOutput) GoString() string {
+	return s.String()
 }
 
 type CreatePartitionInput struct {
@@ -24222,6 +24590,108 @@ func (s DeleteMLTransformOutput) GoString() string {
 func (s *DeleteMLTransformOutput) SetTransformId(v string) *DeleteMLTransformOutput {
 	s.TransformId = &v
 	return s
+}
+
+type DeletePartitionIndexInput struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog ID where the table resides.
+	CatalogId *string `min:"1" type:"string"`
+
+	// Specifies the name of a database from which you want to delete a partition
+	// index.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the partition index to be deleted.
+	//
+	// IndexName is a required field
+	IndexName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the name of a table from which you want to delete a partition index.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeletePartitionIndexInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePartitionIndexInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePartitionIndexInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePartitionIndexInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DeletePartitionIndexInput) SetCatalogId(v string) *DeletePartitionIndexInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DeletePartitionIndexInput) SetDatabaseName(v string) *DeletePartitionIndexInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *DeletePartitionIndexInput) SetIndexName(v string) *DeletePartitionIndexInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DeletePartitionIndexInput) SetTableName(v string) *DeletePartitionIndexInput {
+	s.TableName = &v
+	return s
+}
+
+type DeletePartitionIndexOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePartitionIndexOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePartitionIndexOutput) GoString() string {
+	return s.String()
 }
 
 type DeletePartitionInput struct {
@@ -33193,6 +33663,34 @@ func (s *LastCrawlInfo) SetStatus(v string) *LastCrawlInfo {
 	return s
 }
 
+// Specifies data lineage configuration settings for the crawler.
+type LineageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether data lineage is enabled for the crawler. Valid values are:
+	//
+	//    * ENABLE: enables data lineage for the crawler
+	//
+	//    * DISABLE: disables data lineage for the crawler
+	CrawlerLineageSettings *string `type:"string" enum:"CrawlerLineageSettings"`
+}
+
+// String returns the string representation
+func (s LineageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LineageConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetCrawlerLineageSettings sets the CrawlerLineageSettings field's value.
+func (s *LineageConfiguration) SetCrawlerLineageSettings(v string) *LineageConfiguration {
+	s.CrawlerLineageSettings = &v
+	return s
+}
+
 type ListCrawlersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -35228,12 +35726,27 @@ func (s *PartitionIndex) SetKeys(v []*string) *PartitionIndex {
 type PartitionIndexDescriptor struct {
 	_ struct{} `type:"structure"`
 
+	// A list of errors that can occur when registering partition indexes for an
+	// existing table.
+	BackfillErrors []*BackfillError `type:"list"`
+
 	// The name of the partition index.
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
 	// The status of the partition index.
+	//
+	// The possible statuses are:
+	//
+	//    * CREATING: The index is being created. When an index is in a CREATING
+	//    state, the index or its table cannot be deleted.
+	//
+	//    * ACTIVE: The index creation succeeds.
+	//
+	//    * FAILED: The index creation fails.
+	//
+	//    * DELETING: The index is deleted from the list of indexes.
 	//
 	// IndexStatus is a required field
 	IndexStatus *string `type:"string" required:"true" enum:"PartitionIndexStatus"`
@@ -35253,6 +35766,12 @@ func (s PartitionIndexDescriptor) String() string {
 // GoString returns the string representation
 func (s PartitionIndexDescriptor) GoString() string {
 	return s.String()
+}
+
+// SetBackfillErrors sets the BackfillErrors field's value.
+func (s *PartitionIndexDescriptor) SetBackfillErrors(v []*BackfillError) *PartitionIndexDescriptor {
+	s.BackfillErrors = v
+	return s
 }
 
 // SetIndexName sets the IndexName field's value.
@@ -41301,6 +41820,9 @@ type UpdateCrawlerInput struct {
 	// A description of the new crawler.
 	Description *string `type:"string"`
 
+	// Specifies data lineage configuration settings for the crawler.
+	LineageConfiguration *LineageConfiguration `type:"structure"`
+
 	// Name of the new crawler.
 	//
 	// Name is a required field
@@ -41388,6 +41910,12 @@ func (s *UpdateCrawlerInput) SetDatabaseName(v string) *UpdateCrawlerInput {
 // SetDescription sets the Description field's value.
 func (s *UpdateCrawlerInput) SetDescription(v string) *UpdateCrawlerInput {
 	s.Description = &v
+	return s
+}
+
+// SetLineageConfiguration sets the LineageConfiguration field's value.
+func (s *UpdateCrawlerInput) SetLineageConfiguration(v *LineageConfiguration) *UpdateCrawlerInput {
+	s.LineageConfiguration = v
 	return s
 }
 
@@ -43694,6 +44222,34 @@ func (s *XMLClassifier) SetVersion(v int64) *XMLClassifier {
 }
 
 const (
+	// BackfillErrorCodeEncryptedPartitionError is a BackfillErrorCode enum value
+	BackfillErrorCodeEncryptedPartitionError = "ENCRYPTED_PARTITION_ERROR"
+
+	// BackfillErrorCodeInternalError is a BackfillErrorCode enum value
+	BackfillErrorCodeInternalError = "INTERNAL_ERROR"
+
+	// BackfillErrorCodeInvalidPartitionTypeDataError is a BackfillErrorCode enum value
+	BackfillErrorCodeInvalidPartitionTypeDataError = "INVALID_PARTITION_TYPE_DATA_ERROR"
+
+	// BackfillErrorCodeMissingPartitionValueError is a BackfillErrorCode enum value
+	BackfillErrorCodeMissingPartitionValueError = "MISSING_PARTITION_VALUE_ERROR"
+
+	// BackfillErrorCodeUnsupportedPartitionCharacterError is a BackfillErrorCode enum value
+	BackfillErrorCodeUnsupportedPartitionCharacterError = "UNSUPPORTED_PARTITION_CHARACTER_ERROR"
+)
+
+// BackfillErrorCode_Values returns all elements of the BackfillErrorCode enum
+func BackfillErrorCode_Values() []string {
+	return []string{
+		BackfillErrorCodeEncryptedPartitionError,
+		BackfillErrorCodeInternalError,
+		BackfillErrorCodeInvalidPartitionTypeDataError,
+		BackfillErrorCodeMissingPartitionValueError,
+		BackfillErrorCodeUnsupportedPartitionCharacterError,
+	}
+}
+
+const (
 	// CatalogEncryptionModeDisabled is a CatalogEncryptionMode enum value
 	CatalogEncryptionModeDisabled = "DISABLED"
 
@@ -43978,6 +44534,22 @@ func CrawlState_Values() []string {
 }
 
 const (
+	// CrawlerLineageSettingsEnable is a CrawlerLineageSettings enum value
+	CrawlerLineageSettingsEnable = "ENABLE"
+
+	// CrawlerLineageSettingsDisable is a CrawlerLineageSettings enum value
+	CrawlerLineageSettingsDisable = "DISABLE"
+)
+
+// CrawlerLineageSettings_Values returns all elements of the CrawlerLineageSettings enum
+func CrawlerLineageSettings_Values() []string {
+	return []string{
+		CrawlerLineageSettingsEnable,
+		CrawlerLineageSettingsDisable,
+	}
+}
+
+const (
 	// CrawlerStateReady is a CrawlerState enum value
 	CrawlerStateReady = "READY"
 
@@ -44238,14 +44810,26 @@ func NodeType_Values() []string {
 }
 
 const (
+	// PartitionIndexStatusCreating is a PartitionIndexStatus enum value
+	PartitionIndexStatusCreating = "CREATING"
+
 	// PartitionIndexStatusActive is a PartitionIndexStatus enum value
 	PartitionIndexStatusActive = "ACTIVE"
+
+	// PartitionIndexStatusDeleting is a PartitionIndexStatus enum value
+	PartitionIndexStatusDeleting = "DELETING"
+
+	// PartitionIndexStatusFailed is a PartitionIndexStatus enum value
+	PartitionIndexStatusFailed = "FAILED"
 )
 
 // PartitionIndexStatus_Values returns all elements of the PartitionIndexStatus enum
 func PartitionIndexStatus_Values() []string {
 	return []string{
+		PartitionIndexStatusCreating,
 		PartitionIndexStatusActive,
+		PartitionIndexStatusDeleting,
+		PartitionIndexStatusFailed,
 	}
 }
 

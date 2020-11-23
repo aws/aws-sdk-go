@@ -1117,6 +1117,9 @@ type QueryOutput struct {
 	// QueryId is a required field
 	QueryId *string `min:"1" type:"string" required:"true"`
 
+	// Information about the status of the query, including progress and bytes scannned.
+	QueryStatus *QueryStatus `type:"structure"`
+
 	// The result set rows returned by the query.
 	//
 	// Rows is a required field
@@ -1151,9 +1154,62 @@ func (s *QueryOutput) SetQueryId(v string) *QueryOutput {
 	return s
 }
 
+// SetQueryStatus sets the QueryStatus field's value.
+func (s *QueryOutput) SetQueryStatus(v *QueryStatus) *QueryOutput {
+	s.QueryStatus = v
+	return s
+}
+
 // SetRows sets the Rows field's value.
 func (s *QueryOutput) SetRows(v []*Row) *QueryOutput {
 	s.Rows = v
+	return s
+}
+
+// Information about the status of the query, including progress and bytes scannned.
+type QueryStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of data scanned by the query in bytes that you will be charged
+	// for. This is a cumulative sum and represents the total amount of data that
+	// you will be charged for since the query was started. The charge is applied
+	// only once and is either applied when the query completes execution or when
+	// the query is cancelled.
+	CumulativeBytesMetered *int64 `type:"long"`
+
+	// The amount of data scanned by the query in bytes. This is a cumulative sum
+	// and represents the total amount of bytes scanned since the query was started.
+	CumulativeBytesScanned *int64 `type:"long"`
+
+	// The progress of the query, expressed as a percentage.
+	ProgressPercentage *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s QueryStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QueryStatus) GoString() string {
+	return s.String()
+}
+
+// SetCumulativeBytesMetered sets the CumulativeBytesMetered field's value.
+func (s *QueryStatus) SetCumulativeBytesMetered(v int64) *QueryStatus {
+	s.CumulativeBytesMetered = &v
+	return s
+}
+
+// SetCumulativeBytesScanned sets the CumulativeBytesScanned field's value.
+func (s *QueryStatus) SetCumulativeBytesScanned(v int64) *QueryStatus {
+	s.CumulativeBytesScanned = &v
+	return s
+}
+
+// SetProgressPercentage sets the ProgressPercentage field's value.
+func (s *QueryStatus) SetProgressPercentage(v float64) *QueryStatus {
+	s.ProgressPercentage = &v
 	return s
 }
 

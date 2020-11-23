@@ -6736,6 +6736,16 @@
           "cn-northwest-1" : { }
         }
       },
+      "docdb" : {
+        "endpoints" : {
+          "cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "rds.cn-northwest-1.amazonaws.com.cn"
+          }
+        }
+      },
       "ds" : {
         "endpoints" : {
           "cn-north-1" : { },

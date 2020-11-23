@@ -8,6 +8,19 @@ import (
 
 const (
 
+	// ErrCodeConcurrentModificationException for service response error code
+	// "ConcurrentModificationException".
+	//
+	// Another modification is being made. That modification must complete before
+	// you can make your change.
+	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
+
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// There was a conflict processing the request. Try your request again.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeDetectedLanguageLowConfidenceException for service response error code
 	// "DetectedLanguageLowConfidenceException".
 	//
@@ -89,6 +102,8 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"ConcurrentModificationException":        newErrorConcurrentModificationException,
+	"ConflictException":                      newErrorConflictException,
 	"DetectedLanguageLowConfidenceException": newErrorDetectedLanguageLowConfidenceException,
 	"InternalServerException":                newErrorInternalServerException,
 	"InvalidFilterException":                 newErrorInvalidFilterException,
