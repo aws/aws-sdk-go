@@ -5387,8 +5387,10 @@ type CmafGroupSettings struct {
 	// than the manifest file.
 	BaseUrl *string `locationName:"baseUrl" type:"string"`
 
-	// When set to ENABLED, sets #EXT-X-ALLOW-CACHE:no tag, which prevents client
-	// from saving media segments for later replay.
+	// Disable this setting only when your workflow requires the #EXT-X-ALLOW-CACHE:no
+	// tag. Otherwise, keep the default value Enabled (ENABLED) and control caching
+	// in your video distribution set up. For example, use the Cache-Control http
+	// header.
 	ClientCache *string `locationName:"clientCache" type:"string" enum:"CmafClientCache"`
 
 	// Specification to use (RFC-6381 or the default RFC-4281) during m3u8 playlist
@@ -5642,6 +5644,21 @@ func (s *CmafGroupSettings) SetWriteSegmentTimelineInRepresentation(v string) *C
 type CmfcSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Specify this setting only when your output will be consumed by a downstream
+	// repackaging workflow that is sensitive to very small duration differences
+	// between video and audio. For this situation, choose Match video duration
+	// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+	// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+	// MediaConvert pads the output audio streams with silence or trims them to
+	// ensure that the total duration of each audio stream is at least as long as
+	// the total duration of the video stream. After padding or trimming, the audio
+	// stream duration is no more than one frame longer than the video stream. MediaConvert
+	// applies audio padding or trimming only to the end of the last segment of
+	// the output. For unsegmented outputs, MediaConvert adds padding only to the
+	// end of the file. When you keep the default value, any minor discrepancies
+	// between audio and video duration will depend on your output audio codec.
+	AudioDuration *string `locationName:"audioDuration" type:"string" enum:"CmfcAudioDuration"`
+
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 	// INSERT to put SCTE-35 markers in this output at the insertion points that
 	// you specify in an ESAM XML document. Provide the document in the setting
@@ -5663,6 +5680,12 @@ func (s CmfcSettings) String() string {
 // GoString returns the string representation
 func (s CmfcSettings) GoString() string {
 	return s.String()
+}
+
+// SetAudioDuration sets the AudioDuration field's value.
+func (s *CmfcSettings) SetAudioDuration(v string) *CmfcSettings {
+	s.AudioDuration = &v
+	return s
 }
 
 // SetScte35Esam sets the Scte35Esam field's value.
@@ -6035,11 +6058,15 @@ type CreateJobInput struct {
 	StatusUpdateInterval *string `locationName:"statusUpdateInterval" type:"string" enum:"StatusUpdateInterval"`
 
 	// Optional. The tags that you want to add to the resource. You can tag resources
-	// with a key-value pair or with only a key.
+	// with a key-value pair or with only a key. Use standard AWS tags on your job
+	// for automatic integration with AWS services and for custom integrations and
+	// workflows.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Optional. User-defined metadata that you want to associate with an MediaConvert
-	// job. You specify metadata in key/value pairs.
+	// job. You specify metadata in key/value pairs. Use only for existing integrations
+	// or workflows that rely on job metadata tags. Otherwise, we recommend that
+	// you use standard AWS tags.
 	UserMetadata map[string]*string `locationName:"userMetadata" type:"map"`
 }
 
@@ -6765,6 +6792,19 @@ type DashIsoGroupSettings struct {
 	// playout.
 	MinBufferTime *int64 `locationName:"minBufferTime" type:"integer"`
 
+	// Keep this setting at the default value of 0, unless you are troubleshooting
+	// a problem with how devices play back the end of your video asset. If you
+	// know that player devices are hanging on the final segment of your video because
+	// the length of your final segment is too short, use this setting to specify
+	// a minimum final segment length, in seconds. Choose a value that is greater
+	// than or equal to 1 and less than your segment length. When you specify a
+	// value for this setting, the encoder will combine any final segment that is
+	// shorter than the length that you specify with the previous segment. For example,
+	// your segment length is 3 seconds and your final segment is .5 seconds without
+	// a minimum final segment length; when you set the minimum final segment length
+	// to 1, your final segment is 3.5 seconds.
+	MinFinalSegmentLength *float64 `locationName:"minFinalSegmentLength" type:"double"`
+
 	// Specify whether your DASH profile is on-demand or main. When you choose Main
 	// profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
 	// in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE),
@@ -6876,6 +6916,12 @@ func (s *DashIsoGroupSettings) SetHbbtvCompliance(v string) *DashIsoGroupSetting
 // SetMinBufferTime sets the MinBufferTime field's value.
 func (s *DashIsoGroupSettings) SetMinBufferTime(v int64) *DashIsoGroupSettings {
 	s.MinBufferTime = &v
+	return s
+}
+
+// SetMinFinalSegmentLength sets the MinFinalSegmentLength field's value.
+func (s *DashIsoGroupSettings) SetMinFinalSegmentLength(v float64) *DashIsoGroupSettings {
+	s.MinFinalSegmentLength = &v
 	return s
 }
 
@@ -10854,8 +10900,10 @@ type HlsGroupSettings struct {
 	// line from the manifest.
 	CaptionLanguageSetting *string `locationName:"captionLanguageSetting" type:"string" enum:"HlsCaptionLanguageSetting"`
 
-	// When set to ENABLED, sets #EXT-X-ALLOW-CACHE:no tag, which prevents client
-	// from saving media segments for later replay.
+	// Disable this setting only when your workflow requires the #EXT-X-ALLOW-CACHE:no
+	// tag. Otherwise, keep the default value Enabled (ENABLED) and control caching
+	// in your video distribution set up. For example, use the Cache-Control http
+	// header.
 	ClientCache *string `locationName:"clientCache" type:"string" enum:"HlsClientCache"`
 
 	// Specification to use (RFC-6381 or the default RFC-4281) during m3u8 playlist
@@ -13767,6 +13815,21 @@ type M2tsSettings struct {
 	// Selects between the DVB and ATSC buffer models for Dolby Digital audio.
 	AudioBufferModel *string `locationName:"audioBufferModel" type:"string" enum:"M2tsAudioBufferModel"`
 
+	// Specify this setting only when your output will be consumed by a downstream
+	// repackaging workflow that is sensitive to very small duration differences
+	// between video and audio. For this situation, choose Match video duration
+	// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+	// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+	// MediaConvert pads the output audio streams with silence or trims them to
+	// ensure that the total duration of each audio stream is at least as long as
+	// the total duration of the video stream. After padding or trimming, the audio
+	// stream duration is no more than one frame longer than the video stream. MediaConvert
+	// applies audio padding or trimming only to the end of the last segment of
+	// the output. For unsegmented outputs, MediaConvert adds padding only to the
+	// end of the file. When you keep the default value, any minor discrepancies
+	// between audio and video duration will depend on your output audio codec.
+	AudioDuration *string `locationName:"audioDuration" type:"string" enum:"M2tsAudioDuration"`
+
 	// The number of audio frames to insert for each PES packet.
 	AudioFramesPerPes *int64 `locationName:"audioFramesPerPes" type:"integer"`
 
@@ -14011,6 +14074,12 @@ func (s *M2tsSettings) SetAudioBufferModel(v string) *M2tsSettings {
 	return s
 }
 
+// SetAudioDuration sets the AudioDuration field's value.
+func (s *M2tsSettings) SetAudioDuration(v string) *M2tsSettings {
+	s.AudioDuration = &v
+	return s
+}
+
 // SetAudioFramesPerPes sets the AudioFramesPerPes field's value.
 func (s *M2tsSettings) SetAudioFramesPerPes(v int64) *M2tsSettings {
 	s.AudioFramesPerPes = &v
@@ -14225,6 +14294,21 @@ func (s *M2tsSettings) SetVideoPid(v int64) *M2tsSettings {
 type M3u8Settings struct {
 	_ struct{} `type:"structure"`
 
+	// Specify this setting only when your output will be consumed by a downstream
+	// repackaging workflow that is sensitive to very small duration differences
+	// between video and audio. For this situation, choose Match video duration
+	// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+	// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+	// MediaConvert pads the output audio streams with silence or trims them to
+	// ensure that the total duration of each audio stream is at least as long as
+	// the total duration of the video stream. After padding or trimming, the audio
+	// stream duration is no more than one frame longer than the video stream. MediaConvert
+	// applies audio padding or trimming only to the end of the last segment of
+	// the output. For unsegmented outputs, MediaConvert adds padding only to the
+	// end of the file. When you keep the default value, any minor discrepancies
+	// between audio and video duration will depend on your output audio codec.
+	AudioDuration *string `locationName:"audioDuration" type:"string" enum:"M3u8AudioDuration"`
+
 	// The number of audio frames to insert for each PES packet.
 	AudioFramesPerPes *int64 `locationName:"audioFramesPerPes" type:"integer"`
 
@@ -14328,6 +14412,12 @@ func (s *M3u8Settings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAudioDuration sets the AudioDuration field's value.
+func (s *M3u8Settings) SetAudioDuration(v string) *M3u8Settings {
+	s.AudioDuration = &v
+	return s
 }
 
 // SetAudioFramesPerPes sets the AudioFramesPerPes field's value.
@@ -14859,6 +14949,21 @@ func (s *Mp3Settings) SetVbrQuality(v int64) *Mp3Settings {
 type Mp4Settings struct {
 	_ struct{} `type:"structure"`
 
+	// Specify this setting only when your output will be consumed by a downstream
+	// repackaging workflow that is sensitive to very small duration differences
+	// between video and audio. For this situation, choose Match video duration
+	// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+	// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+	// MediaConvert pads the output audio streams with silence or trims them to
+	// ensure that the total duration of each audio stream is at least as long as
+	// the total duration of the video stream. After padding or trimming, the audio
+	// stream duration is no more than one frame longer than the video stream. MediaConvert
+	// applies audio padding or trimming only to the end of the last segment of
+	// the output. For unsegmented outputs, MediaConvert adds padding only to the
+	// end of the file. When you keep the default value, any minor discrepancies
+	// between audio and video duration will depend on your output audio codec.
+	AudioDuration *string `locationName:"audioDuration" type:"string" enum:"CmfcAudioDuration"`
+
 	// When enabled, file composition times will start at zero, composition times
 	// in the 'ctts' (composition time to sample) box for B-frames will be negative,
 	// and a 'cslg' (composition shift least greatest) box will be included per
@@ -14896,6 +15001,12 @@ func (s Mp4Settings) GoString() string {
 	return s.String()
 }
 
+// SetAudioDuration sets the AudioDuration field's value.
+func (s *Mp4Settings) SetAudioDuration(v string) *Mp4Settings {
+	s.AudioDuration = &v
+	return s
+}
+
 // SetCslgAtom sets the CslgAtom field's value.
 func (s *Mp4Settings) SetCslgAtom(v string) *Mp4Settings {
 	s.CslgAtom = &v
@@ -14930,6 +15041,29 @@ func (s *Mp4Settings) SetMp4MajorBrand(v string) *Mp4Settings {
 type MpdSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Optional. Choose Include (INCLUDE) to have MediaConvert mark up your DASH
+	// manifest with elements for embedded 608 captions. This markup isn't generally
+	// required, but some video players require it to discover and play embedded
+	// 608 captions. Keep the default value, Exclude (EXCLUDE), to leave these elements
+	// out. When you enable this setting, this is the markup that MediaConvert includes
+	// in your manifest:
+	AccessibilityCaptionHints *string `locationName:"accessibilityCaptionHints" type:"string" enum:"MpdAccessibilityCaptionHints"`
+
+	// Specify this setting only when your output will be consumed by a downstream
+	// repackaging workflow that is sensitive to very small duration differences
+	// between video and audio. For this situation, choose Match video duration
+	// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+	// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+	// MediaConvert pads the output audio streams with silence or trims them to
+	// ensure that the total duration of each audio stream is at least as long as
+	// the total duration of the video stream. After padding or trimming, the audio
+	// stream duration is no more than one frame longer than the video stream. MediaConvert
+	// applies audio padding or trimming only to the end of the last segment of
+	// the output. For unsegmented outputs, MediaConvert adds padding only to the
+	// end of the file. When you keep the default value, any minor discrepancies
+	// between audio and video duration will depend on your output audio codec.
+	AudioDuration *string `locationName:"audioDuration" type:"string" enum:"MpdAudioDuration"`
+
 	// Use this setting only in DASH output groups that include sidecar TTML or
 	// IMSC captions. You specify sidecar captions in a separate output from your
 	// audio and video. Choose Raw (RAW) for captions in a single XML file in a
@@ -14959,6 +15093,18 @@ func (s MpdSettings) String() string {
 // GoString returns the string representation
 func (s MpdSettings) GoString() string {
 	return s.String()
+}
+
+// SetAccessibilityCaptionHints sets the AccessibilityCaptionHints field's value.
+func (s *MpdSettings) SetAccessibilityCaptionHints(v string) *MpdSettings {
+	s.AccessibilityCaptionHints = &v
+	return s
+}
+
+// SetAudioDuration sets the AudioDuration field's value.
+func (s *MpdSettings) SetAudioDuration(v string) *MpdSettings {
+	s.AudioDuration = &v
+	return s
 }
 
 // SetCaptionContainerType sets the CaptionContainerType field's value.
@@ -21814,8 +21960,10 @@ func CaptionSourceType_Values() []string {
 	}
 }
 
-// When set to ENABLED, sets #EXT-X-ALLOW-CACHE:no tag, which prevents client
-// from saving media segments for later replay.
+// Disable this setting only when your workflow requires the #EXT-X-ALLOW-CACHE:no
+// tag. Otherwise, keep the default value Enabled (ENABLED) and control caching
+// in your video distribution set up. For example, use the Cache-Control http
+// header.
 const (
 	// CmafClientCacheDisabled is a CmafClientCache enum value
 	CmafClientCacheDisabled = "DISABLED"
@@ -22051,6 +22199,35 @@ func CmafWriteSegmentTimelineInRepresentation_Values() []string {
 	return []string{
 		CmafWriteSegmentTimelineInRepresentationEnabled,
 		CmafWriteSegmentTimelineInRepresentationDisabled,
+	}
+}
+
+// Specify this setting only when your output will be consumed by a downstream
+// repackaging workflow that is sensitive to very small duration differences
+// between video and audio. For this situation, choose Match video duration
+// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+// MediaConvert pads the output audio streams with silence or trims them to
+// ensure that the total duration of each audio stream is at least as long as
+// the total duration of the video stream. After padding or trimming, the audio
+// stream duration is no more than one frame longer than the video stream. MediaConvert
+// applies audio padding or trimming only to the end of the last segment of
+// the output. For unsegmented outputs, MediaConvert adds padding only to the
+// end of the file. When you keep the default value, any minor discrepancies
+// between audio and video duration will depend on your output audio codec.
+const (
+	// CmfcAudioDurationDefaultCodecDuration is a CmfcAudioDuration enum value
+	CmfcAudioDurationDefaultCodecDuration = "DEFAULT_CODEC_DURATION"
+
+	// CmfcAudioDurationMatchVideoDuration is a CmfcAudioDuration enum value
+	CmfcAudioDurationMatchVideoDuration = "MATCH_VIDEO_DURATION"
+)
+
+// CmfcAudioDuration_Values returns all elements of the CmfcAudioDuration enum
+func CmfcAudioDuration_Values() []string {
+	return []string{
+		CmfcAudioDurationDefaultCodecDuration,
+		CmfcAudioDurationMatchVideoDuration,
 	}
 }
 
@@ -24761,8 +24938,10 @@ func HlsCaptionLanguageSetting_Values() []string {
 	}
 }
 
-// When set to ENABLED, sets #EXT-X-ALLOW-CACHE:no tag, which prevents client
-// from saving media segments for later replay.
+// Disable this setting only when your workflow requires the #EXT-X-ALLOW-CACHE:no
+// tag. Otherwise, keep the default value Enabled (ENABLED) and control caching
+// in your video distribution set up. For example, use the Cache-Control http
+// header.
 const (
 	// HlsClientCacheDisabled is a HlsClientCache enum value
 	HlsClientCacheDisabled = "DISABLED"
@@ -26093,6 +26272,35 @@ func M2tsAudioBufferModel_Values() []string {
 	}
 }
 
+// Specify this setting only when your output will be consumed by a downstream
+// repackaging workflow that is sensitive to very small duration differences
+// between video and audio. For this situation, choose Match video duration
+// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+// MediaConvert pads the output audio streams with silence or trims them to
+// ensure that the total duration of each audio stream is at least as long as
+// the total duration of the video stream. After padding or trimming, the audio
+// stream duration is no more than one frame longer than the video stream. MediaConvert
+// applies audio padding or trimming only to the end of the last segment of
+// the output. For unsegmented outputs, MediaConvert adds padding only to the
+// end of the file. When you keep the default value, any minor discrepancies
+// between audio and video duration will depend on your output audio codec.
+const (
+	// M2tsAudioDurationDefaultCodecDuration is a M2tsAudioDuration enum value
+	M2tsAudioDurationDefaultCodecDuration = "DEFAULT_CODEC_DURATION"
+
+	// M2tsAudioDurationMatchVideoDuration is a M2tsAudioDuration enum value
+	M2tsAudioDurationMatchVideoDuration = "MATCH_VIDEO_DURATION"
+)
+
+// M2tsAudioDuration_Values returns all elements of the M2tsAudioDuration enum
+func M2tsAudioDuration_Values() []string {
+	return []string{
+		M2tsAudioDurationDefaultCodecDuration,
+		M2tsAudioDurationMatchVideoDuration,
+	}
+}
+
 // Controls what buffer model to use for accurate interleaving. If set to MULTIPLEX,
 // use multiplex buffer model. If set to NONE, this can lead to lower latency,
 // but low-memory devices may not be able to play back the stream without interruptions.
@@ -26331,6 +26539,35 @@ func M2tsSegmentationStyle_Values() []string {
 	return []string{
 		M2tsSegmentationStyleMaintainCadence,
 		M2tsSegmentationStyleResetCadence,
+	}
+}
+
+// Specify this setting only when your output will be consumed by a downstream
+// repackaging workflow that is sensitive to very small duration differences
+// between video and audio. For this situation, choose Match video duration
+// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+// MediaConvert pads the output audio streams with silence or trims them to
+// ensure that the total duration of each audio stream is at least as long as
+// the total duration of the video stream. After padding or trimming, the audio
+// stream duration is no more than one frame longer than the video stream. MediaConvert
+// applies audio padding or trimming only to the end of the last segment of
+// the output. For unsegmented outputs, MediaConvert adds padding only to the
+// end of the file. When you keep the default value, any minor discrepancies
+// between audio and video duration will depend on your output audio codec.
+const (
+	// M3u8AudioDurationDefaultCodecDuration is a M3u8AudioDuration enum value
+	M3u8AudioDurationDefaultCodecDuration = "DEFAULT_CODEC_DURATION"
+
+	// M3u8AudioDurationMatchVideoDuration is a M3u8AudioDuration enum value
+	M3u8AudioDurationMatchVideoDuration = "MATCH_VIDEO_DURATION"
+)
+
+// M3u8AudioDuration_Values returns all elements of the M3u8AudioDuration enum
+func M3u8AudioDuration_Values() []string {
+	return []string{
+		M3u8AudioDurationDefaultCodecDuration,
+		M3u8AudioDurationMatchVideoDuration,
 	}
 }
 
@@ -26597,6 +26834,57 @@ func Mp4MoovPlacement_Values() []string {
 	return []string{
 		Mp4MoovPlacementProgressiveDownload,
 		Mp4MoovPlacementNormal,
+	}
+}
+
+// Optional. Choose Include (INCLUDE) to have MediaConvert mark up your DASH
+// manifest with elements for embedded 608 captions. This markup isn't generally
+// required, but some video players require it to discover and play embedded
+// 608 captions. Keep the default value, Exclude (EXCLUDE), to leave these elements
+// out. When you enable this setting, this is the markup that MediaConvert includes
+// in your manifest:
+const (
+	// MpdAccessibilityCaptionHintsInclude is a MpdAccessibilityCaptionHints enum value
+	MpdAccessibilityCaptionHintsInclude = "INCLUDE"
+
+	// MpdAccessibilityCaptionHintsExclude is a MpdAccessibilityCaptionHints enum value
+	MpdAccessibilityCaptionHintsExclude = "EXCLUDE"
+)
+
+// MpdAccessibilityCaptionHints_Values returns all elements of the MpdAccessibilityCaptionHints enum
+func MpdAccessibilityCaptionHints_Values() []string {
+	return []string{
+		MpdAccessibilityCaptionHintsInclude,
+		MpdAccessibilityCaptionHintsExclude,
+	}
+}
+
+// Specify this setting only when your output will be consumed by a downstream
+// repackaging workflow that is sensitive to very small duration differences
+// between video and audio. For this situation, choose Match video duration
+// (MATCH_VIDEO_DURATION). In all other cases, keep the default value, Default
+// codec duration (DEFAULT_CODEC_DURATION). When you choose Match video duration,
+// MediaConvert pads the output audio streams with silence or trims them to
+// ensure that the total duration of each audio stream is at least as long as
+// the total duration of the video stream. After padding or trimming, the audio
+// stream duration is no more than one frame longer than the video stream. MediaConvert
+// applies audio padding or trimming only to the end of the last segment of
+// the output. For unsegmented outputs, MediaConvert adds padding only to the
+// end of the file. When you keep the default value, any minor discrepancies
+// between audio and video duration will depend on your output audio codec.
+const (
+	// MpdAudioDurationDefaultCodecDuration is a MpdAudioDuration enum value
+	MpdAudioDurationDefaultCodecDuration = "DEFAULT_CODEC_DURATION"
+
+	// MpdAudioDurationMatchVideoDuration is a MpdAudioDuration enum value
+	MpdAudioDurationMatchVideoDuration = "MATCH_VIDEO_DURATION"
+)
+
+// MpdAudioDuration_Values returns all elements of the MpdAudioDuration enum
+func MpdAudioDuration_Values() []string {
+	return []string{
+		MpdAudioDurationDefaultCodecDuration,
+		MpdAudioDurationMatchVideoDuration,
 	}
 }
 

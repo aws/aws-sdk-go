@@ -11,9 +11,10 @@ const (
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
-	// One or more arguments to the StartStreamTranscription operation was invalid.
-	// For example, MediaEncoding was not set to pcm or LanguageCode was not set
-	// to a valid code. Check the parameters and try your request again.
+	// One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
+	// operation was invalid. For example, MediaEncoding was not set to a valid
+	// encoding, or LanguageCode was not set to a valid code. Check the parameters
+	// and try your request again.
 	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeConflictException for service response error code
@@ -26,8 +27,8 @@ const (
 	// ErrCodeInternalFailureException for service response error code
 	// "InternalFailureException".
 	//
-	// A problem occurred while processing the audio. Amazon Transcribe terminated
-	// processing. Try your request again.
+	// A problem occurred while processing the audio. Amazon Transcribe or Amazon
+	// Transcribe Medical terminated processing. Try your request again.
 	ErrCodeInternalFailureException = "InternalFailureException"
 
 	// ErrCodeLimitExceededException for service response error code

@@ -20,6 +20,7 @@
     "DescribeEndpoint": "<p>Gets the properties associated with a specific endpoint. Use this operation to get the status of an endpoint.</p>",
     "DescribeEntitiesDetectionJob": "<p>Gets the properties associated with an entities detection job. Use this operation to get the status of a detection job.</p>",
     "DescribeEntityRecognizer": "<p>Provides details about an entity recognizer including status, S3 buckets containing training data, recognizer metadata, metrics, and so on.</p>",
+    "DescribeEventsDetectionJob": "<p>Gets the status and details of an events detection job.</p>",
     "DescribeKeyPhrasesDetectionJob": "<p>Gets the properties associated with a key phrases detection job. Use this operation to get the status of a detection job.</p>",
     "DescribePiiEntitiesDetectionJob": "<p>Gets the properties associated with a PII entities detection job. For example, you can use this operation to get the job status.</p>",
     "DescribeSentimentDetectionJob": "<p>Gets the properties associated with a sentiment detection job. Use this operation to get the status of a detection job.</p>",
@@ -36,6 +37,7 @@
     "ListEndpoints": "<p>Gets a list of all existing endpoints that you've created.</p>",
     "ListEntitiesDetectionJobs": "<p>Gets a list of the entity detection jobs that you have submitted.</p>",
     "ListEntityRecognizers": "<p>Gets a list of the properties of all entity recognizers that you created, including recognizers currently in training. Allows you to filter the list of recognizers based on criteria such as status and submission time. This call returns up to 500 entity recognizers in the list, with a default number of 100 recognizers in the list.</p> <p>The results of this list are not in any particular order. Please get the list and sort locally if needed.</p>",
+    "ListEventsDetectionJobs": "<p>Gets a list of the events detection jobs that you have submitted.</p>",
     "ListKeyPhrasesDetectionJobs": "<p>Get a list of key phrase detection jobs that you have submitted.</p>",
     "ListPiiEntitiesDetectionJobs": "<p>Gets a list of the PII entity detection jobs that you have submitted.</p>",
     "ListSentimentDetectionJobs": "<p>Gets a list of sentiment detection jobs that you have submitted.</p>",
@@ -44,12 +46,14 @@
     "StartDocumentClassificationJob": "<p>Starts an asynchronous document classification job. Use the operation to track the progress of the job.</p>",
     "StartDominantLanguageDetectionJob": "<p>Starts an asynchronous dominant language detection job for a collection of documents. Use the operation to track the status of a job.</p>",
     "StartEntitiesDetectionJob": "<p>Starts an asynchronous entity detection job for a collection of documents. Use the operation to track the status of a job.</p> <p>This API can be used for either standard entity detection or custom entity recognition. In order to be used for custom entity recognition, the optional <code>EntityRecognizerArn</code> must be used in order to provide access to the recognizer being used to detect the custom entity.</p>",
+    "StartEventsDetectionJob": "<p>Starts an asynchronous event detection job for a collection of documents.</p>",
     "StartKeyPhrasesDetectionJob": "<p>Starts an asynchronous key phrase detection job for a collection of documents. Use the operation to track the status of a job.</p>",
     "StartPiiEntitiesDetectionJob": "<p>Starts an asynchronous PII entity detection job for a collection of documents.</p>",
     "StartSentimentDetectionJob": "<p>Starts an asynchronous sentiment detection job for a collection of documents. use the operation to track the status of a job.</p>",
     "StartTopicsDetectionJob": "<p>Starts an asynchronous topic detection job. Use the <code>DescribeTopicDetectionJob</code> operation to track the status of a job.</p>",
     "StopDominantLanguageDetectionJob": "<p>Stops a dominant language detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
     "StopEntitiesDetectionJob": "<p>Stops an entities detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
+    "StopEventsDetectionJob": "<p>Stops an events detection job in progress.</p>",
     "StopKeyPhrasesDetectionJob": "<p>Stops a key phrases detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
     "StopPiiEntitiesDetectionJob": "<p>Stops a PII entities detection job in progress.</p>",
     "StopSentimentDetectionJob": "<p>Stops a sentiment detection job in progress.</p> <p>If the job state is <code>IN_PROGRESS</code> the job is marked for termination and put into the <code>STOP_REQUESTED</code> state. If the job completes before it can be stopped, it is put into the <code>COMPLETED</code> state; otherwise the job is be stopped and put into the <code>STOPPED</code> state.</p> <p>If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state when you call the <code>StopDominantLanguageDetectionJob</code> operation, the operation returns a 400 Internal Request Exception. </p> <p>When a job is stopped, any documents already processed are written to the output location.</p>",
@@ -70,6 +74,7 @@
         "EntitiesDetectionJobProperties$Message": "<p>A description of the status of a job.</p>",
         "EntityRecognizerMetadataEntityTypesListItem$Type": "<p>Type of entity from the list of entity types in the metadata of an entity recognizer. </p>",
         "EntityRecognizerProperties$Message": "<p> A description of the status of the recognizer.</p>",
+        "EventsDetectionJobProperties$Message": "<p>A description of the status of the events detection job.</p>",
         "KeyPhrasesDetectionJobProperties$Message": "<p>A description of the status of a job.</p>",
         "PiiEntitiesDetectionJobProperties$Message": "<p>A description of the status of a job.</p>",
         "SentimentDetectionJobProperties$Message": "<p>A description of the status of a job.</p>",
@@ -227,6 +232,7 @@
         "StartDocumentClassificationJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one.</p>",
         "StartDominantLanguageDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one.</p>",
         "StartEntitiesDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.</p>",
+        "StartEventsDetectionJobRequest$ClientRequestToken": "<p>An unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.</p>",
         "StartKeyPhrasesDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.</p>",
         "StartPiiEntitiesDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.</p>",
         "StartSentimentDetectionJobRequest$ClientRequestToken": "<p>A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.</p>",
@@ -416,6 +422,16 @@
       }
     },
     "DescribeEntityRecognizerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEventsDetectionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEventsDetectionJobResponse": {
       "base": null,
       "refs": {
       }
@@ -662,11 +678,11 @@
         "EntityRecognizerEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>",
         "EntityTypesEvaluationMetrics$Precision": "<p>A measure of the usefulness of the recognizer results for a specific entity type in the test data. High precision means that the recognizer returned substantially more relevant results than irrelevant ones. </p>",
         "EntityTypesEvaluationMetrics$Recall": "<p>A measure of how complete the recognizer results are for a specific entity type in the test data. High recall means that the recognizer returned most of the relevant results.</p>",
-        "EntityTypesEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for for a specific entity type in the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>"
+        "EntityTypesEvaluationMetrics$F1Score": "<p>A measure of how accurate the recognizer results are for a specific entity type in the test data. It is derived from the <code>Precision</code> and <code>Recall</code> values. The <code>F1Score</code> is the harmonic average of the two scores. The highest score is 1, and the worst score is 0. </p>"
       }
     },
     "EndpointFilter": {
-      "base": "<p>The filter used to determine which endpoints are are returned. You can filter jobs on their name, model, status, or the date and time that they were created. You can only set one filter at a time. </p>",
+      "base": "<p>The filter used to determine which endpoints are returned. You can filter jobs on their name, model, status, or the date and time that they were created. You can only set one filter at a time. </p>",
       "refs": {
         "ListEndpointsRequest$Filter": "<p>Filters the endpoints that are returned. You can filter endpoints on their name, model, status, or the date and time that they were created. You can only set one filter at a time. </p>"
       }
@@ -844,6 +860,31 @@
         "EntityTypesList$member": null
       }
     },
+    "EventTypeString": {
+      "base": null,
+      "refs": {
+        "TargetEventTypes$member": null
+      }
+    },
+    "EventsDetectionJobFilter": {
+      "base": "<p>Provides information for filtering a list of event detection jobs.</p>",
+      "refs": {
+        "ListEventsDetectionJobsRequest$Filter": "<p>Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.</p>"
+      }
+    },
+    "EventsDetectionJobProperties": {
+      "base": "<p>Provides information about an events detection job.</p>",
+      "refs": {
+        "DescribeEventsDetectionJobResponse$EventsDetectionJobProperties": "<p>An object that contains the properties associated with an event detection job.</p>",
+        "EventsDetectionJobPropertiesList$member": null
+      }
+    },
+    "EventsDetectionJobPropertiesList": {
+      "base": null,
+      "refs": {
+        "ListEventsDetectionJobsResponse$EventsDetectionJobPropertiesList": "<p>A list containing the properties of each job that is returned.</p>"
+      }
+    },
     "Float": {
       "base": null,
       "refs": {
@@ -870,12 +911,14 @@
         "DominantLanguageDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "EntitiesDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "EntityRecognizerProperties$DataAccessRoleArn": "<p> The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
+        "EventsDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identify and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "KeyPhrasesDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "PiiEntitiesDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "SentimentDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "StartDocumentClassificationJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "StartDominantLanguageDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
         "StartEntitiesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
+        "StartEventsDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "StartKeyPhrasesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
         "StartPiiEntitiesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "StartSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
@@ -898,12 +941,14 @@
         "DocumentClassificationJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the document classification job.</p>",
         "DominantLanguageDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the dominant language detection job.</p>",
         "EntitiesDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the entities detection job.</p>",
+        "EventsDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the events detection job.</p>",
         "KeyPhrasesDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the key phrases detection job.</p>",
         "PiiEntitiesDetectionJobProperties$InputDataConfig": "<p>The input properties for a PII entities detection job.</p>",
         "SentimentDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the sentiment detection job.</p>",
         "StartDocumentClassificationJobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
         "StartDominantLanguageDetectionJobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
         "StartEntitiesDetectionJobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
+        "StartEventsDetectionJobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
         "StartKeyPhrasesDetectionJobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
         "StartPiiEntitiesDetectionJobRequest$InputDataConfig": "<p>The input properties for a PII entities detection job.</p>",
         "StartSentimentDetectionJobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",
@@ -965,6 +1010,7 @@
         "DescribeDocumentClassificationJobRequest$JobId": "<p>The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.</p>",
         "DescribeDominantLanguageDetectionJobRequest$JobId": "<p>The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.</p>",
         "DescribeEntitiesDetectionJobRequest$JobId": "<p>The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.</p>",
+        "DescribeEventsDetectionJobRequest$JobId": "<p>The identifier of the events detection job.</p>",
         "DescribeKeyPhrasesDetectionJobRequest$JobId": "<p>The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.</p>",
         "DescribePiiEntitiesDetectionJobRequest$JobId": "<p>The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.</p>",
         "DescribeSentimentDetectionJobRequest$JobId": "<p>The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.</p>",
@@ -972,12 +1018,14 @@
         "DocumentClassificationJobProperties$JobId": "<p>The identifier assigned to the document classification job.</p>",
         "DominantLanguageDetectionJobProperties$JobId": "<p>The identifier assigned to the dominant language detection job.</p>",
         "EntitiesDetectionJobProperties$JobId": "<p>The identifier assigned to the entities detection job.</p>",
+        "EventsDetectionJobProperties$JobId": "<p>The identifier assigned to the events detection job.</p>",
         "KeyPhrasesDetectionJobProperties$JobId": "<p>The identifier assigned to the key phrases detection job.</p>",
         "PiiEntitiesDetectionJobProperties$JobId": "<p>The identifier assigned to the PII entities detection job.</p>",
         "SentimentDetectionJobProperties$JobId": "<p>The identifier assigned to the sentiment detection job.</p>",
         "StartDocumentClassificationJobResponse$JobId": "<p>The identifier generated for the job. To get the status of the job, use this identifier with the operation.</p>",
         "StartDominantLanguageDetectionJobResponse$JobId": "<p>The identifier generated for the job. To get the status of a job, use this identifier with the operation.</p>",
         "StartEntitiesDetectionJobResponse$JobId": "<p>The identifier generated for the job. To get the status of job, use this identifier with the operation.</p>",
+        "StartEventsDetectionJobResponse$JobId": "<p>An unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.</p>",
         "StartKeyPhrasesDetectionJobResponse$JobId": "<p>The identifier generated for the job. To get the status of a job, use this identifier with the operation.</p>",
         "StartPiiEntitiesDetectionJobResponse$JobId": "<p>The identifier generated for the job.</p>",
         "StartSentimentDetectionJobResponse$JobId": "<p>The identifier generated for the job. To get the status of a job, use this identifier with the operation.</p>",
@@ -986,6 +1034,8 @@
         "StopDominantLanguageDetectionJobResponse$JobId": "<p>The identifier of the dominant language detection job to stop.</p>",
         "StopEntitiesDetectionJobRequest$JobId": "<p>The identifier of the entities detection job to stop.</p>",
         "StopEntitiesDetectionJobResponse$JobId": "<p>The identifier of the entities detection job to stop.</p>",
+        "StopEventsDetectionJobRequest$JobId": "<p>The identifier of the events detection job to stop.</p>",
+        "StopEventsDetectionJobResponse$JobId": "<p>The identifier of the events detection job to stop.</p>",
         "StopKeyPhrasesDetectionJobRequest$JobId": "<p>The identifier of the key phrases detection job to stop.</p>",
         "StopKeyPhrasesDetectionJobResponse$JobId": "<p>The identifier of the key phrases detection job to stop.</p>",
         "StopPiiEntitiesDetectionJobRequest$JobId": "<p>The identifier of the PII entities detection job to stop.</p>",
@@ -1004,6 +1054,8 @@
         "DominantLanguageDetectionJobProperties$JobName": "<p>The name that you assigned to the dominant language detection job.</p>",
         "EntitiesDetectionJobFilter$JobName": "<p>Filters on the name of the job.</p>",
         "EntitiesDetectionJobProperties$JobName": "<p>The name that you assigned the entities detection job.</p>",
+        "EventsDetectionJobFilter$JobName": "<p>Filters on the name of the events detection job.</p>",
+        "EventsDetectionJobProperties$JobName": "<p>The name you assigned the events detection job.</p>",
         "KeyPhrasesDetectionJobFilter$JobName": "<p>Filters on the name of the job.</p>",
         "KeyPhrasesDetectionJobProperties$JobName": "<p>The name that you assigned the key phrases detection job.</p>",
         "PiiEntitiesDetectionJobFilter$JobName": "<p>Filters on the name of the job.</p>",
@@ -1013,6 +1065,7 @@
         "StartDocumentClassificationJobRequest$JobName": "<p>The identifier of the job.</p>",
         "StartDominantLanguageDetectionJobRequest$JobName": "<p>An identifier for the job.</p>",
         "StartEntitiesDetectionJobRequest$JobName": "<p>The identifier of the job.</p>",
+        "StartEventsDetectionJobRequest$JobName": "<p>The identifier of the events detection job.</p>",
         "StartKeyPhrasesDetectionJobRequest$JobName": "<p>The identifier of the job.</p>",
         "StartPiiEntitiesDetectionJobRequest$JobName": "<p>The identifier of the job.</p>",
         "StartSentimentDetectionJobRequest$JobName": "<p>The identifier of the job.</p>",
@@ -1035,6 +1088,8 @@
         "DominantLanguageDetectionJobProperties$JobStatus": "<p>The current status of the dominant language detection job. If the status is <code>FAILED</code>, the <code>Message</code> field shows the reason for the failure.</p>",
         "EntitiesDetectionJobFilter$JobStatus": "<p>Filters the list of jobs based on job status. Returns only jobs with the specified status.</p>",
         "EntitiesDetectionJobProperties$JobStatus": "<p>The current status of the entities detection job. If the status is <code>FAILED</code>, the <code>Message</code> field shows the reason for the failure.</p>",
+        "EventsDetectionJobFilter$JobStatus": "<p>Filters the list of jobs based on job status. Returns only jobs with the specified status.</p>",
+        "EventsDetectionJobProperties$JobStatus": "<p>The current status of the events detection job.</p>",
         "KeyPhrasesDetectionJobFilter$JobStatus": "<p>Filters the list of jobs based on job status. Returns only jobs with the specified status.</p>",
         "KeyPhrasesDetectionJobProperties$JobStatus": "<p>The current status of the key phrases detection job. If the status is <code>FAILED</code>, the <code>Message</code> field shows the reason for the failure.</p>",
         "PiiEntitiesDetectionJobFilter$JobStatus": "<p>Filters the list of jobs based on job status. Returns only jobs with the specified status.</p>",
@@ -1044,12 +1099,14 @@
         "StartDocumentClassificationJobResponse$JobStatus": "<p>The status of the job:</p> <ul> <li> <p>SUBMITTED - The job has been received and queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. For details, use the operation.</p> </li> <li> <p>STOP_REQUESTED - Amazon Comprehend has received a stop request for the job and is processing the request.</p> </li> <li> <p>STOPPED - The job was successfully stopped without completing.</p> </li> </ul>",
         "StartDominantLanguageDetectionJobResponse$JobStatus": "<p>The status of the job. </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the operation.</p> </li> </ul>",
         "StartEntitiesDetectionJobResponse$JobStatus": "<p>The status of the job. </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the operation.</p> </li> <li> <p>STOP_REQUESTED - Amazon Comprehend has received a stop request for the job and is processing the request.</p> </li> <li> <p>STOPPED - The job was successfully stopped without completing.</p> </li> </ul>",
+        "StartEventsDetectionJobResponse$JobStatus": "<p>The status of the events detection job.</p>",
         "StartKeyPhrasesDetectionJobResponse$JobStatus": "<p>The status of the job. </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the operation.</p> </li> </ul>",
         "StartPiiEntitiesDetectionJobResponse$JobStatus": "<p>The status of the job.</p>",
         "StartSentimentDetectionJobResponse$JobStatus": "<p>The status of the job. </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the operation.</p> </li> </ul>",
         "StartTopicsDetectionJobResponse$JobStatus": "<p>The status of the job: </p> <ul> <li> <p>SUBMITTED - The job has been received and is queued for processing.</p> </li> <li> <p>IN_PROGRESS - Amazon Comprehend is processing the job.</p> </li> <li> <p>COMPLETED - The job was successfully completed and the output is available.</p> </li> <li> <p>FAILED - The job did not complete. To get details, use the <code>DescribeTopicDetectionJob</code> operation.</p> </li> </ul>",
         "StopDominantLanguageDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopDominantLanguageDetectionJob</code> operation.</p>",
         "StopEntitiesDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopEntitiesDetectionJob</code> operation.</p>",
+        "StopEventsDetectionJobResponse$JobStatus": "<p>The status of the events detection job.</p>",
         "StopKeyPhrasesDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopKeyPhrasesDetectionJob</code> operation.</p>",
         "StopPiiEntitiesDetectionJobResponse$JobStatus": "<p>The status of the PII entities detection job.</p>",
         "StopSentimentDetectionJobResponse$JobStatus": "<p>Either <code>STOP_REQUESTED</code> if the job is currently running, or <code>STOPPED</code> if the job was previously stopped with the <code>StopSentimentDetectionJob</code> operation.</p>",
@@ -1132,10 +1189,12 @@
         "DocumentClassifierProperties$LanguageCode": "<p>The language code for the language of the documents that the classifier was trained on.</p>",
         "EntitiesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "EntityRecognizerProperties$LanguageCode": "<p> The language of the input documents. All documents must be in the same language. Only English (\"en\") is currently supported.</p>",
+        "EventsDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "KeyPhrasesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "PiiEntitiesDetectionJobProperties$LanguageCode": "<p>The language code of the input documents</p>",
         "SentimentDetectionJobProperties$LanguageCode": "<p>The language code of the input documents.</p>",
         "StartEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. All documents must be in the same language. You can specify any of the languages supported by Amazon Comprehend. If custom entities recognition is used, this parameter is ignored and the language used for training the model is used instead.</p>",
+        "StartEventsDetectionJobRequest$LanguageCode": "<p>The language code of the input documents.</p>",
         "StartKeyPhrasesDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>",
         "StartPiiEntitiesDetectionJobRequest$LanguageCode": "<p>The language of the input documents.</p>",
         "StartSentimentDetectionJobRequest$LanguageCode": "<p>The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.</p>"
@@ -1197,6 +1256,16 @@
       }
     },
     "ListEntityRecognizersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventsDetectionJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEventsDetectionJobsResponse": {
       "base": null,
       "refs": {
       }
@@ -1271,7 +1340,7 @@
     "ListOfLabels": {
       "base": null,
       "refs": {
-        "ClassifyDocumentResponse$Labels": "<p>The labels used the document being analyzed. These are used for multi-label trained models. Individual labels represent different categories that are related in some manner and are not multually exclusive. For example, a movie can be just an action movie, or it can be an action movie, a science fiction movie, and a comedy, all at the same time. </p>"
+        "ClassifyDocumentResponse$Labels": "<p>The labels used the document being analyzed. These are used for multi-label trained models. Individual labels represent different categories that are related in some manner and are not mutually exclusive. For example, a movie can be just an action movie, or it can be an action movie, a science fiction movie, and a comedy, all at the same time. </p>"
       }
     },
     "ListOfPiiEntities": {
@@ -1348,6 +1417,7 @@
         "ListEndpointsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
         "ListEntitiesDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
         "ListEntityRecognizersRequest$MaxResults": "<p> The maximum number of results to return on each page. The default is 100.</p>",
+        "ListEventsDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page.</p>",
         "ListKeyPhrasesDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
         "ListPiiEntitiesDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page.</p>",
         "ListSentimentDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
@@ -1375,11 +1445,13 @@
         "DocumentClassificationJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the document classification job.</p>",
         "DominantLanguageDetectionJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the dominant language detection job.</p>",
         "EntitiesDetectionJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the entities detection job. </p>",
+        "EventsDetectionJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the events detection job.</p>",
         "KeyPhrasesDetectionJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the key phrases detection job.</p>",
         "SentimentDetectionJobProperties$OutputDataConfig": "<p>The output data configuration that you supplied when you created the sentiment detection job.</p>",
         "StartDocumentClassificationJobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>",
         "StartDominantLanguageDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>",
         "StartEntitiesDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>",
+        "StartEventsDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>",
         "StartKeyPhrasesDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files.</p>",
         "StartPiiEntitiesDetectionJobRequest$OutputDataConfig": "<p>Provides conﬁguration parameters for the output of PII entity detection jobs.</p>",
         "StartSentimentDetectionJobRequest$OutputDataConfig": "<p>Specifies where to send the output files. </p>",
@@ -1566,6 +1638,16 @@
       "refs": {
       }
     },
+    "StartEventsDetectionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartEventsDetectionJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartKeyPhrasesDetectionJobRequest": {
       "base": null,
       "refs": {
@@ -1622,6 +1704,16 @@
       }
     },
     "StopEntitiesDetectionJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopEventsDetectionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopEventsDetectionJobResponse": {
       "base": null,
       "refs": {
       }
@@ -1706,6 +1798,8 @@
         "ListEntitiesDetectionJobsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListEntityRecognizersRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListEntityRecognizersResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListEventsDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListEventsDetectionJobsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListKeyPhrasesDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListKeyPhrasesDetectionJobsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListPiiEntitiesDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
@@ -1796,6 +1890,13 @@
         "Tag$Value": "<p> The second part of a key-value pair that forms a tag associated with a given resource. For instance, if you want to show which resources are used by which departments, you might use “Department” as the initial (key) portion of the pair, with a value of “sales” to indicate the sales department. </p>"
       }
     },
+    "TargetEventTypes": {
+      "base": null,
+      "refs": {
+        "EventsDetectionJobProperties$TargetEventTypes": "<p>The types of events that are detected by the job.</p>",
+        "StartEventsDetectionJobRequest$TargetEventTypes": "<p>The types of events to detect in the input documents.</p>"
+      }
+    },
     "TextSizeLimitExceededException": {
       "base": "<p>The size of the input text exceeds the limit. Use a smaller document.</p>",
       "refs": {
@@ -1832,6 +1933,10 @@
         "EntityRecognizerProperties$EndTime": "<p>The time that the recognizer creation completed.</p>",
         "EntityRecognizerProperties$TrainingStartTime": "<p>The time that training of the entity recognizer started.</p>",
         "EntityRecognizerProperties$TrainingEndTime": "<p>The time that training of the entity recognizer was completed.</p>",
+        "EventsDetectionJobFilter$SubmitTimeBefore": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted before the specified time. Jobs are returned in ascending order, oldest to newest.</p>",
+        "EventsDetectionJobFilter$SubmitTimeAfter": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted after the specified time. Jobs are returned in descending order, newest to oldest.</p>",
+        "EventsDetectionJobProperties$SubmitTime": "<p>The time that the events detection job was submitted for processing.</p>",
+        "EventsDetectionJobProperties$EndTime": "<p>The time that the events detection job completed.</p>",
         "KeyPhrasesDetectionJobFilter$SubmitTimeBefore": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted before the specified time. Jobs are returned in ascending order, oldest to newest.</p>",
         "KeyPhrasesDetectionJobFilter$SubmitTimeAfter": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted after the specified time. Jobs are returned in descending order, newest to oldest.</p>",
         "KeyPhrasesDetectionJobProperties$SubmitTime": "<p>The time that the key phrases detection job was submitted for processing.</p>",
@@ -1910,7 +2015,7 @@
       }
     },
     "VpcConfig": {
-      "base": "<p> Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for the job. For For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
+      "base": "<p> Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for the job. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
       "refs": {
         "CreateDocumentClassifierRequest$VpcConfig": "<p>Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",
         "CreateEntityRecognizerRequest$VpcConfig": "<p>Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom entity recognizer. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html\">Amazon VPC</a>. </p>",

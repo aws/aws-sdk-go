@@ -83,7 +83,7 @@
     "RespondToAuthChallenge": "<p>Responds to the authentication challenge.</p>",
     "SetRiskConfiguration": "<p>Configures actions on detected risks. To delete the risk configuration for <code>UserPoolId</code> or <code>ClientId</code>, pass null values for all four configuration types.</p> <p>To enable Amazon Cognito advanced security features, update the user pool to include the <code>UserPoolAddOns</code> key<code>AdvancedSecurityMode</code>.</p>",
     "SetUICustomization": "<p>Sets the UI customization information for a user pool's built-in app UI.</p> <p>You can specify app UI customization settings for a single client (with a specific <code>clientId</code>) or for all clients (by setting the <code>clientId</code> to <code>ALL</code>). If you specify <code>ALL</code>, the default configuration will be used for every client that has no UI customization set previously. If you specify UI customization settings for a particular client, it will no longer fall back to the <code>ALL</code> configuration. </p> <note> <p>To use this API, your user pool must have a domain associated with it. Otherwise, there is no place to host the app's pages, and the service will throw an error.</p> </note>",
-    "SetUserMFAPreference": "<p>Set the user's multi-factor authentication (MFA) method preference, including which MFA factors are enabled and if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a user if multiple factors are enabled. If multiple options are enabled and no preference is set, a challenge to choose an MFA option will be returned during sign in.</p>",
+    "SetUserMFAPreference": "<p>Set the user's multi-factor authentication (MFA) method preference, including which MFA factors are enabled and if any are preferred. Only one factor can be set as preferred. The preferred MFA factor will be used to authenticate a user if multiple factors are enabled. If multiple options are enabled and no preference is set, a challenge to choose an MFA option will be returned during sign in. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted. If you would like MFA to be applied selectively based on the assessed risk level of sign in attempts, disable MFA for users and turn on Adaptive Authentication for the user pool.</p>",
     "SetUserPoolMfaConfig": "<p>Set the user pool multi-factor authentication (MFA) configuration.</p>",
     "SetUserSettings": "<p> <i>This action is no longer supported.</i> You can use it to configure only SMS MFA. You can't use it to configure TOTP software token MFA. To configure either type of MFA, use <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html\">SetUserMFAPreference</a> instead.</p>",
     "SignUp": "<p>Registers the user in the specified user pool and creates a user name, password, and user attributes.</p>",
@@ -477,6 +477,8 @@
         "CreateGroupRequest$RoleArn": "<p>The role ARN for the group.</p>",
         "CreateUserImportJobRequest$CloudWatchLogsRoleArn": "<p>The role ARN for the Amazon CloudWatch Logging role for the user import job.</p>",
         "CustomDomainConfigType$CertificateArn": "<p>The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL certificate. You use this certificate for the subdomain of your custom domain.</p>",
+        "CustomEmailLambdaVersionConfigType$LambdaArn": "<p>The Lambda Amazon Resource Name of the Lambda function that Amazon Cognito triggers to send email notifications to users.</p>",
+        "CustomSMSLambdaVersionConfigType$LambdaArn": "<p>The Lambda Amazon Resource Name of the Lambda function that Amazon Cognito triggers to send SMS notifications to users.</p>",
         "EmailConfigurationType$SourceArn": "<p>The Amazon Resource Name (ARN) of a verified email address in Amazon SES. This email address is used in one of the following ways, depending on the value that you specify for the <code>EmailSendingAccount</code> parameter:</p> <ul> <li> <p>If you specify <code>COGNITO_DEFAULT</code>, Amazon Cognito uses this address as the custom FROM address when it emails your users by using its built-in email account.</p> </li> <li> <p>If you specify <code>DEVELOPER</code>, Amazon Cognito emails your users with this address by calling Amazon SES on your behalf.</p> </li> </ul>",
         "GroupType$RoleArn": "<p>The role ARN for the group.</p>",
         "LambdaConfigType$PreSignUp": "<p>A pre-registration AWS Lambda trigger.</p>",
@@ -489,9 +491,10 @@
         "LambdaConfigType$VerifyAuthChallengeResponse": "<p>Verifies the authentication challenge response.</p>",
         "LambdaConfigType$PreTokenGeneration": "<p>A Lambda trigger that is invoked before token generation.</p>",
         "LambdaConfigType$UserMigration": "<p>The user migration Lambda config type.</p>",
+        "LambdaConfigType$KMSKeyID": "<p>The Amazon Resource Name of Key Management Service <a href=\"/kms/latest/developerguide/concepts.html#master_keys\">Customer master keys</a> . Amazon Cognito uses the key to encrypt codes and temporary passwords sent to <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the user pool that the tags are assigned to.</p>",
         "NotifyConfigurationType$SourceArn": "<p>The Amazon Resource Name (ARN) of the identity that is associated with the sending authorization policy. It permits Amazon Cognito to send for the email address specified in the <code>From</code> parameter.</p>",
-        "SmsConfigurationType$SnsCallerArn": "<p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) caller. This is the ARN of the IAM role in your AWS account which Cognito will use to send SMS messages.</p>",
+        "SmsConfigurationType$SnsCallerArn": "<p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) caller. This is the ARN of the IAM role in your AWS account which Cognito will use to send SMS messages. SMS messages are subject to a <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html\">spending limit</a>. </p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the user pool to assign the tags to.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the user pool that the tags are assigned to.</p>",
         "UpdateGroupRequest$RoleArn": "<p>The new role ARN for the group. This is used for setting the <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims in the token.</p>",
@@ -631,14 +634,14 @@
         "PasswordPolicyType$RequireLowercase": "<p>In the password policy that you have set, refers to whether you have required users to use at least one lowercase letter in their password.</p>",
         "PasswordPolicyType$RequireNumbers": "<p>In the password policy that you have set, refers to whether you have required users to use at least one number in their password.</p>",
         "PasswordPolicyType$RequireSymbols": "<p>In the password policy that you have set, refers to whether you have required users to use at least one symbol in their password.</p>",
-        "SMSMfaSettingsType$Enabled": "<p>Specifies whether SMS text message MFA is enabled.</p>",
+        "SMSMfaSettingsType$Enabled": "<p>Specifies whether SMS text message MFA is enabled. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted.</p>",
         "SMSMfaSettingsType$PreferredMfa": "<p>Specifies whether SMS is the preferred MFA method.</p>",
         "SchemaAttributeType$DeveloperOnlyAttribute": "<note> <p>We recommend that you use <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes\">WriteAttributes</a> in the user pool client to control how attributes can be mutated for new use cases instead of using <code>DeveloperOnlyAttribute</code>.</p> </note> <p>Specifies whether the attribute type is developer only. This attribute can only be modified by an administrator. Users will not be able to modify this attribute using their access token. For example, <code>DeveloperOnlyAttribute</code> can be modified using AdminUpdateUserAttributes but cannot be updated using UpdateUserAttributes.</p>",
         "SchemaAttributeType$Mutable": "<p>Specifies whether the value of the attribute can be changed.</p> <p>For any user pool attribute that's mapped to an identity provider attribute, you must set this parameter to <code>true</code>. Amazon Cognito updates mapped attributes when users sign in to your application through an identity provider. If an attribute is immutable, Amazon Cognito throws an error when it attempts to update the attribute. For more information, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html\">Specifying Identity Provider Attribute Mappings for Your User Pool</a>.</p>",
         "SchemaAttributeType$Required": "<p>Specifies whether a user pool attribute is required. If the attribute is required and the user does not provide a value, registration or sign-in will fail.</p>",
         "SignUpResponse$UserConfirmed": "<p>A response from the server indicating that a user registration has been confirmed.</p>",
         "SoftwareTokenMfaConfigType$Enabled": "<p>Specifies whether software token MFA is enabled.</p>",
-        "SoftwareTokenMfaSettingsType$Enabled": "<p>Specifies whether software token MFA is enabled.</p>",
+        "SoftwareTokenMfaSettingsType$Enabled": "<p>Specifies whether software token MFA is enabled. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted.</p>",
         "SoftwareTokenMfaSettingsType$PreferredMfa": "<p>Specifies whether software token MFA is the preferred MFA method.</p>",
         "UpdateUserPoolClientRequest$AllowedOAuthFlowsUserPoolClient": "<p>Set to true if the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.</p>",
         "UserPoolClientType$AllowedOAuthFlowsUserPoolClient": "<p>Set to true if the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.</p>",
@@ -995,6 +998,30 @@
         "UpdateUserPoolDomainRequest$CustomDomainConfig": "<p>The configuration for a custom domain that hosts the sign-up and sign-in pages for your application. Use this object to specify an SSL certificate that is managed by ACM.</p>"
       }
     },
+    "CustomEmailLambdaVersionConfigType": {
+      "base": "<p>A custom email sender Lambda configuration type.</p>",
+      "refs": {
+        "LambdaConfigType$CustomEmailSender": "<p>A custom email sender AWS Lambda trigger.</p>"
+      }
+    },
+    "CustomEmailSenderLambdaVersionType": {
+      "base": null,
+      "refs": {
+        "CustomEmailLambdaVersionConfigType$LambdaVersion": "<p>The Lambda version represents the signature of the \"request\" attribute in the \"event\" information Amazon Cognito passes to your custom email Lambda function. The only supported value is <code>V1_0</code>.</p>"
+      }
+    },
+    "CustomSMSLambdaVersionConfigType": {
+      "base": "<p>A custom SMS sender Lambda configuration type.</p>",
+      "refs": {
+        "LambdaConfigType$CustomSMSSender": "<p>A custom SMS sender AWS Lambda trigger.</p>"
+      }
+    },
+    "CustomSMSSenderLambdaVersionType": {
+      "base": null,
+      "refs": {
+        "CustomSMSLambdaVersionConfigType$LambdaVersion": "<p>The Lambda version represents the signature of the \"request\" attribute in the \"event\" information Amazon Cognito passes to your custom SMS Lambda function. The only supported value is <code>V1_0</code>.</p>"
+      }
+    },
     "DateType": {
       "base": null,
       "refs": {
@@ -1275,7 +1302,7 @@
       }
     },
     "EmailConfigurationType": {
-      "base": "<p>The email configuration type.</p>",
+      "base": "<p>The email configuration type. </p> <note> <p>Amazon Cognito has specific regions for use with Amazon SES. For more information on the supported regions, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html\">Email Settings for Amazon Cognito User Pools</a>.</p> </note>",
       "refs": {
         "CreateUserPoolRequest$EmailConfiguration": "<p>The email configuration.</p>",
         "UpdateUserPoolRequest$EmailConfiguration": "<p>Email configuration.</p>",
@@ -1298,39 +1325,39 @@
     "EmailSendingAccountType": {
       "base": null,
       "refs": {
-        "EmailConfigurationType$EmailSendingAccount": "<p>Specifies whether Amazon Cognito emails your users by using its built-in email functionality or your Amazon SES email configuration. Specify one of the following values:</p> <dl> <dt>COGNITO_DEFAULT</dt> <dd> <p>When Amazon Cognito emails your users, it uses its built-in email functionality. When you use the default option, Amazon Cognito allows only a limited number of emails each day for your user pool. For typical production environments, the default email limit is below the required delivery volume. To achieve a higher delivery volume, specify DEVELOPER to use your Amazon SES email configuration.</p> <p>To look up the email delivery limit for the default option, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/limits.html\">Limits in Amazon Cognito</a> in the <i>Amazon Cognito Developer Guide</i>.</p> <p>The default FROM address is no-reply@verificationemail.com. To customize the FROM address, provide the ARN of an Amazon SES verified email address for the <code>SourceArn</code> parameter.</p> </dd> <dt>DEVELOPER</dt> <dd> <p>When Amazon Cognito emails your users, it uses your Amazon SES configuration. Amazon Cognito calls Amazon SES on your behalf to send email from your verified email address. When you use this option, the email delivery limits are the same limits that apply to your Amazon SES verified email address in your AWS account.</p> <p>If you use this option, you must provide the ARN of an Amazon SES verified email address for the <code>SourceArn</code> parameter.</p> <p>Before Amazon Cognito can email your users, it requires additional permissions to call Amazon SES on your behalf. When you update your user pool with this option, Amazon Cognito creates a <i>service-linked role</i>, which is a type of IAM role, in your AWS account. This role contains the permissions that allow Amazon Cognito to access Amazon SES and send email messages with your address. For more information about the service-linked role that Amazon Cognito creates, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/using-service-linked-roles.html\">Using Service-Linked Roles for Amazon Cognito</a> in the <i>Amazon Cognito Developer Guide</i>.</p> </dd> </dl>"
+        "EmailConfigurationType$EmailSendingAccount": "<p>Specifies whether Amazon Cognito emails your users by using its built-in email functionality or your Amazon SES email configuration. Specify one of the following values:</p> <dl> <dt>COGNITO_DEFAULT</dt> <dd> <p>When Amazon Cognito emails your users, it uses its built-in email functionality. When you use the default option, Amazon Cognito allows only a limited number of emails each day for your user pool. For typical production environments, the default email limit is below the required delivery volume. To achieve a higher delivery volume, specify DEVELOPER to use your Amazon SES email configuration.</p> <p>To look up the email delivery limit for the default option, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/limits.html\">Limits in Amazon Cognito</a> in the <i>Amazon Cognito Developer Guide</i>.</p> <p>The default FROM address is no-reply@verificationemail.com. To customize the FROM address, provide the ARN of an Amazon SES verified email address for the <code>SourceArn</code> parameter.</p> <p> If EmailSendingAccount is COGNITO_DEFAULT, the following parameters aren't allowed:</p> <ul> <li> <p>EmailVerificationMessage</p> </li> <li> <p>EmailVerificationSubject</p> </li> <li> <p>InviteMessageTemplate.EmailMessage</p> </li> <li> <p>InviteMessageTemplate.EmailSubject</p> </li> <li> <p>VerificationMessageTemplate.EmailMessage</p> </li> <li> <p>VerificationMessageTemplate.EmailMessageByLink</p> </li> <li> <p>VerificationMessageTemplate.EmailSubject,</p> </li> <li> <p>VerificationMessageTemplate.EmailSubjectByLink</p> </li> </ul> <note> <p>DEVELOPER EmailSendingAccount is required.</p> </note> </dd> <dt>DEVELOPER</dt> <dd> <p>When Amazon Cognito emails your users, it uses your Amazon SES configuration. Amazon Cognito calls Amazon SES on your behalf to send email from your verified email address. When you use this option, the email delivery limits are the same limits that apply to your Amazon SES verified email address in your AWS account.</p> <p>If you use this option, you must provide the ARN of an Amazon SES verified email address for the <code>SourceArn</code> parameter.</p> <p>Before Amazon Cognito can email your users, it requires additional permissions to call Amazon SES on your behalf. When you update your user pool with this option, Amazon Cognito creates a <i>service-linked role</i>, which is a type of IAM role, in your AWS account. This role contains the permissions that allow Amazon Cognito to access Amazon SES and send email messages with your address. For more information about the service-linked role that Amazon Cognito creates, see <a href=\"https://docs.aws.amazon.com/cognito/latest/developerguide/using-service-linked-roles.html\">Using Service-Linked Roles for Amazon Cognito</a> in the <i>Amazon Cognito Developer Guide</i>.</p> </dd> </dl>"
       }
     },
     "EmailVerificationMessageByLinkType": {
       "base": null,
       "refs": {
-        "VerificationMessageTemplateType$EmailMessageByLink": "<p>The email message template for sending a confirmation link to the user.</p>"
+        "VerificationMessageTemplateType$EmailMessageByLink": "<p>The email message template for sending a confirmation link to the user. EmailMessageByLink is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\"> EmailSendingAccount</a> is DEVELOPER.</p>"
       }
     },
     "EmailVerificationMessageType": {
       "base": null,
       "refs": {
-        "CreateUserPoolRequest$EmailVerificationMessage": "<p>A string representing the email verification message.</p>",
-        "MessageTemplateType$EmailMessage": "<p>The message template for email messages.</p>",
+        "CreateUserPoolRequest$EmailVerificationMessage": "<p>A string representing the email verification message. EmailVerificationMessage is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
+        "MessageTemplateType$EmailMessage": "<p>The message template for email messages. EmailMessage is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
         "UpdateUserPoolRequest$EmailVerificationMessage": "<p>The contents of the email verification message.</p>",
         "UserPoolType$EmailVerificationMessage": "<p>The contents of the email verification message.</p>",
-        "VerificationMessageTemplateType$EmailMessage": "<p>The email message template.</p>"
+        "VerificationMessageTemplateType$EmailMessage": "<p>The email message template. EmailMessage is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\"> EmailSendingAccount</a> is DEVELOPER. </p>"
       }
     },
     "EmailVerificationSubjectByLinkType": {
       "base": null,
       "refs": {
-        "VerificationMessageTemplateType$EmailSubjectByLink": "<p>The subject line for the email message template for sending a confirmation link to the user.</p>"
+        "VerificationMessageTemplateType$EmailSubjectByLink": "<p>The subject line for the email message template for sending a confirmation link to the user. EmailSubjectByLink is allowed only <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\"> EmailSendingAccount</a> is DEVELOPER.</p>"
       }
     },
     "EmailVerificationSubjectType": {
       "base": null,
       "refs": {
-        "CreateUserPoolRequest$EmailVerificationSubject": "<p>A string representing the email verification subject.</p>",
-        "MessageTemplateType$EmailSubject": "<p>The subject line for email messages.</p>",
+        "CreateUserPoolRequest$EmailVerificationSubject": "<p>A string representing the email verification subject. EmailVerificationSubject is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
+        "MessageTemplateType$EmailSubject": "<p>The subject line for email messages. EmailSubject is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>",
         "UpdateUserPoolRequest$EmailVerificationSubject": "<p>The subject of the email verification message.</p>",
         "UserPoolType$EmailVerificationSubject": "<p>The subject of the email verification message.</p>",
-        "VerificationMessageTemplateType$EmailSubject": "<p>The subject line for the email message template.</p>"
+        "VerificationMessageTemplateType$EmailSubject": "<p>The subject line for the email message template. EmailSubject is allowed only if <a href=\"https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount\">EmailSendingAccount</a> is DEVELOPER. </p>"
       }
     },
     "EnableSoftwareTokenMFAException": {
@@ -2295,7 +2322,7 @@
       }
     },
     "SMSMfaSettingsType": {
-      "base": "<p>The type used for enabling SMS MFA at the user level.</p>",
+      "base": "<p>The type used for enabling SMS MFA at the user level. Phone numbers don't need to be verified to be used for SMS MFA. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted. If you would like MFA to be applied selectively based on the assessed risk level of sign in attempts, disable MFA for users and turn on Adaptive Authentication for the user pool.</p>",
       "refs": {
         "AdminSetUserMFAPreferenceRequest$SMSMfaSettings": "<p>The SMS text message MFA settings.</p>",
         "SetUserMFAPreferenceRequest$SMSMfaSettings": "<p>The SMS text message multi-factor authentication (MFA) settings.</p>"
@@ -2499,7 +2526,7 @@
       }
     },
     "SoftwareTokenMfaSettingsType": {
-      "base": "<p>The type used for enabling software token MFA at the user level.</p>",
+      "base": "<p>The type used for enabling software token MFA at the user level. If an MFA type is enabled for a user, the user will be prompted for MFA during all sign in attempts, unless device tracking is turned on and the device has been trusted. If you would like MFA to be applied selectively based on the assessed risk level of sign in attempts, disable MFA for users and turn on Adaptive Authentication for the user pool.</p>",
       "refs": {
         "AdminSetUserMFAPreferenceRequest$SoftwareTokenMfaSettings": "<p>The time-based one-time password software token MFA settings.</p>",
         "SetUserMFAPreferenceRequest$SoftwareTokenMfaSettings": "<p>The time-based one-time password software token MFA settings.</p>"

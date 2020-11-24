@@ -1914,6 +1914,101 @@ func (c *SFN) StartExecutionWithContext(ctx aws.Context, input *StartExecutionIn
 	return out, req.Send()
 }
 
+const opStartSyncExecution = "StartSyncExecution"
+
+// StartSyncExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the StartSyncExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartSyncExecution for more information on using the StartSyncExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartSyncExecutionRequest method.
+//    req, resp := client.StartSyncExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartSyncExecution
+func (c *SFN) StartSyncExecutionRequest(input *StartSyncExecutionInput) (req *request.Request, output *StartSyncExecutionOutput) {
+	op := &request.Operation{
+		Name:       opStartSyncExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartSyncExecutionInput{}
+	}
+
+	output = &StartSyncExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("sync-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// StartSyncExecution API operation for AWS Step Functions.
+//
+// Starts a Synchronous Express state machine execution.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Step Functions's
+// API operation StartSyncExecution for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArn
+//   The provided Amazon Resource Name (ARN) is invalid.
+//
+//   * InvalidExecutionInput
+//   The provided JSON input data is invalid.
+//
+//   * InvalidName
+//   The provided name is invalid.
+//
+//   * StateMachineDoesNotExist
+//   The specified state machine does not exist.
+//
+//   * StateMachineDeleting
+//   The specified state machine is being deleted.
+//
+//   * StateMachineTypeNotSupported
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/states-2016-11-23/StartSyncExecution
+func (c *SFN) StartSyncExecution(input *StartSyncExecutionInput) (*StartSyncExecutionOutput, error) {
+	req, out := c.StartSyncExecutionRequest(input)
+	return out, req.Send()
+}
+
+// StartSyncExecutionWithContext is the same as StartSyncExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartSyncExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SFN) StartSyncExecutionWithContext(ctx aws.Context, input *StartSyncExecutionInput, opts ...request.Option) (*StartSyncExecutionOutput, error) {
+	req, out := c.StartSyncExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStopExecution = "StopExecution"
 
 // StopExecutionRequest generates a "aws/request.Request" representing the
@@ -2740,6 +2835,39 @@ func (s *ActivityWorkerLimitExceeded) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that describes workflow billing details.
+type BillingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Billed duration of your workflow, in milliseconds.
+	BilledDurationInMilliseconds *int64 `locationName:"billedDurationInMilliseconds" type:"long"`
+
+	// Billed memory consumption of your workflow, in MB.
+	BilledMemoryUsedInMB *int64 `locationName:"billedMemoryUsedInMB" type:"long"`
+}
+
+// String returns the string representation
+func (s BillingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BillingDetails) GoString() string {
+	return s.String()
+}
+
+// SetBilledDurationInMilliseconds sets the BilledDurationInMilliseconds field's value.
+func (s *BillingDetails) SetBilledDurationInMilliseconds(v int64) *BillingDetails {
+	s.BilledDurationInMilliseconds = &v
+	return s
+}
+
+// SetBilledMemoryUsedInMB sets the BilledMemoryUsedInMB field's value.
+func (s *BillingDetails) SetBilledMemoryUsedInMB(v int64) *BillingDetails {
+	s.BilledMemoryUsedInMB = &v
+	return s
+}
+
 // Provides details about execution input or output.
 type CloudWatchEventsExecutionDataDetails struct {
 	_ struct{} `type:"structure"`
@@ -3373,7 +3501,7 @@ func (s *DescribeExecutionInput) SetExecutionArn(v string) *DescribeExecutionInp
 type DescribeExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that id entifies the execution.
+	// The Amazon Resource Name (ARN) that identifies the execution.
 	//
 	// ExecutionArn is a required field
 	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
@@ -3431,7 +3559,7 @@ type DescribeExecutionOutput struct {
 	// If the execution has already ended, the date the execution stopped.
 	StopDate *time.Time `locationName:"stopDate" type:"timestamp"`
 
-	// The AWS X-Ray trace header which was passed to the execution.
+	// The AWS X-Ray trace header that was passed to the execution.
 	TraceHeader *string `locationName:"traceHeader" type:"string"`
 }
 
@@ -4050,7 +4178,7 @@ func (s *ExecutionLimitExceeded) RequestID() string {
 type ExecutionListItem struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that id entifies the execution.
+	// The Amazon Resource Name (ARN) that identifies the execution.
 	//
 	// ExecutionArn is a required field
 	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
@@ -6462,7 +6590,7 @@ func (s *StartExecutionInput) SetTraceHeader(v string) *StartExecutionInput {
 type StartExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that id entifies the execution.
+	// The Amazon Resource Name (ARN) that identifies the execution.
 	//
 	// ExecutionArn is a required field
 	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
@@ -6492,6 +6620,240 @@ func (s *StartExecutionOutput) SetExecutionArn(v string) *StartExecutionOutput {
 // SetStartDate sets the StartDate field's value.
 func (s *StartExecutionOutput) SetStartDate(v time.Time) *StartExecutionOutput {
 	s.StartDate = &v
+	return s
+}
+
+type StartSyncExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The string that contains the JSON input data for the execution, for example:
+	//
+	// "input": "{\"first_name\" : \"test\"}"
+	//
+	// If you don't include any JSON input data, you still must include the two
+	// braces, for example: "input": "{}"
+	//
+	// Length constraints apply to the payload size, and are expressed as bytes
+	// in UTF-8 encoding.
+	Input *string `locationName:"input" type:"string" sensitive:"true"`
+
+	// The name of the execution.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the state machine to execute.
+	//
+	// StateMachineArn is a required field
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string" required:"true"`
+
+	// Passes the AWS X-Ray trace header. The trace header can also be passed in
+	// the request payload.
+	TraceHeader *string `locationName:"traceHeader" type:"string"`
+}
+
+// String returns the string representation
+func (s StartSyncExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSyncExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartSyncExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartSyncExecutionInput"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.StateMachineArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateMachineArn"))
+	}
+	if s.StateMachineArn != nil && len(*s.StateMachineArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateMachineArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInput sets the Input field's value.
+func (s *StartSyncExecutionInput) SetInput(v string) *StartSyncExecutionInput {
+	s.Input = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartSyncExecutionInput) SetName(v string) *StartSyncExecutionInput {
+	s.Name = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *StartSyncExecutionInput) SetStateMachineArn(v string) *StartSyncExecutionInput {
+	s.StateMachineArn = &v
+	return s
+}
+
+// SetTraceHeader sets the TraceHeader field's value.
+func (s *StartSyncExecutionInput) SetTraceHeader(v string) *StartSyncExecutionInput {
+	s.TraceHeader = &v
+	return s
+}
+
+type StartSyncExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes workflow billing details, including billed duration
+	// and memory use.
+	BillingDetails *BillingDetails `locationName:"billingDetails" type:"structure"`
+
+	// A more detailed explanation of the cause of the failure.
+	Cause *string `locationName:"cause" type:"string" sensitive:"true"`
+
+	// The error code of the failure.
+	Error *string `locationName:"error" type:"string" sensitive:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies the execution.
+	//
+	// ExecutionArn is a required field
+	ExecutionArn *string `locationName:"executionArn" min:"1" type:"string" required:"true"`
+
+	// The string that contains the JSON input data of the execution. Length constraints
+	// apply to the payload size, and are expressed as bytes in UTF-8 encoding.
+	Input *string `locationName:"input" type:"string" sensitive:"true"`
+
+	// Provides details about execution input or output.
+	InputDetails *CloudWatchEventsExecutionDataDetails `locationName:"inputDetails" type:"structure"`
+
+	// The name of the execution.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The JSON output data of the execution. Length constraints apply to the payload
+	// size, and are expressed as bytes in UTF-8 encoding.
+	//
+	// This field is set only if the execution succeeds. If the execution fails,
+	// this field is null.
+	Output *string `locationName:"output" type:"string" sensitive:"true"`
+
+	// Provides details about execution input or output.
+	OutputDetails *CloudWatchEventsExecutionDataDetails `locationName:"outputDetails" type:"structure"`
+
+	// The date the execution is started.
+	//
+	// StartDate is a required field
+	StartDate *time.Time `locationName:"startDate" type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) that identifies the state machine.
+	StateMachineArn *string `locationName:"stateMachineArn" min:"1" type:"string"`
+
+	// The current status of the execution.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"SyncExecutionStatus"`
+
+	// If the execution has already ended, the date the execution stopped.
+	//
+	// StopDate is a required field
+	StopDate *time.Time `locationName:"stopDate" type:"timestamp" required:"true"`
+
+	// The AWS X-Ray trace header that was passed to the execution.
+	TraceHeader *string `locationName:"traceHeader" type:"string"`
+}
+
+// String returns the string representation
+func (s StartSyncExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartSyncExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetBillingDetails sets the BillingDetails field's value.
+func (s *StartSyncExecutionOutput) SetBillingDetails(v *BillingDetails) *StartSyncExecutionOutput {
+	s.BillingDetails = v
+	return s
+}
+
+// SetCause sets the Cause field's value.
+func (s *StartSyncExecutionOutput) SetCause(v string) *StartSyncExecutionOutput {
+	s.Cause = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *StartSyncExecutionOutput) SetError(v string) *StartSyncExecutionOutput {
+	s.Error = &v
+	return s
+}
+
+// SetExecutionArn sets the ExecutionArn field's value.
+func (s *StartSyncExecutionOutput) SetExecutionArn(v string) *StartSyncExecutionOutput {
+	s.ExecutionArn = &v
+	return s
+}
+
+// SetInput sets the Input field's value.
+func (s *StartSyncExecutionOutput) SetInput(v string) *StartSyncExecutionOutput {
+	s.Input = &v
+	return s
+}
+
+// SetInputDetails sets the InputDetails field's value.
+func (s *StartSyncExecutionOutput) SetInputDetails(v *CloudWatchEventsExecutionDataDetails) *StartSyncExecutionOutput {
+	s.InputDetails = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartSyncExecutionOutput) SetName(v string) *StartSyncExecutionOutput {
+	s.Name = &v
+	return s
+}
+
+// SetOutput sets the Output field's value.
+func (s *StartSyncExecutionOutput) SetOutput(v string) *StartSyncExecutionOutput {
+	s.Output = &v
+	return s
+}
+
+// SetOutputDetails sets the OutputDetails field's value.
+func (s *StartSyncExecutionOutput) SetOutputDetails(v *CloudWatchEventsExecutionDataDetails) *StartSyncExecutionOutput {
+	s.OutputDetails = v
+	return s
+}
+
+// SetStartDate sets the StartDate field's value.
+func (s *StartSyncExecutionOutput) SetStartDate(v time.Time) *StartSyncExecutionOutput {
+	s.StartDate = &v
+	return s
+}
+
+// SetStateMachineArn sets the StateMachineArn field's value.
+func (s *StartSyncExecutionOutput) SetStateMachineArn(v string) *StartSyncExecutionOutput {
+	s.StateMachineArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *StartSyncExecutionOutput) SetStatus(v string) *StartSyncExecutionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStopDate sets the StopDate field's value.
+func (s *StartSyncExecutionOutput) SetStopDate(v time.Time) *StartSyncExecutionOutput {
+	s.StopDate = &v
+	return s
+}
+
+// SetTraceHeader sets the TraceHeader field's value.
+func (s *StartSyncExecutionOutput) SetTraceHeader(v string) *StartSyncExecutionOutput {
+	s.TraceHeader = &v
 	return s
 }
 
@@ -8309,5 +8671,25 @@ func StateMachineType_Values() []string {
 	return []string{
 		StateMachineTypeStandard,
 		StateMachineTypeExpress,
+	}
+}
+
+const (
+	// SyncExecutionStatusSucceeded is a SyncExecutionStatus enum value
+	SyncExecutionStatusSucceeded = "SUCCEEDED"
+
+	// SyncExecutionStatusFailed is a SyncExecutionStatus enum value
+	SyncExecutionStatusFailed = "FAILED"
+
+	// SyncExecutionStatusTimedOut is a SyncExecutionStatus enum value
+	SyncExecutionStatusTimedOut = "TIMED_OUT"
+)
+
+// SyncExecutionStatus_Values returns all elements of the SyncExecutionStatus enum
+func SyncExecutionStatus_Values() []string {
+	return []string{
+		SyncExecutionStatusSucceeded,
+		SyncExecutionStatusFailed,
+		SyncExecutionStatusTimedOut,
 	}
 }

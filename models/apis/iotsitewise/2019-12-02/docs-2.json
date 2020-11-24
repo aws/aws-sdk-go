@@ -12,7 +12,7 @@
     "CreateDashboard": "<p>Creates a dashboard in an AWS IoT SiteWise Monitor project.</p>",
     "CreateGateway": "<p>Creates a gateway, which is a virtual or edge device that delivers industrial data streams from local servers to AWS IoT SiteWise. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html\">Ingesting data using a gateway</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
     "CreatePortal": "<p>Creates a portal, which can contain projects and dashboards. AWS IoT SiteWise Monitor uses AWS SSO or IAM to authenticate portal users and manage user permissions.</p> <note> <p>Before you can sign in to a new portal, you must add at least one identity to that portal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins\">Adding or removing portal administrators</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> </note>",
-    "CreatePresignedPortalUrl": "<p>Creates a pre-signed URL to a portal. Use this operation to create URLs to portals that use AWS Identity and Access Management (IAM) to authenticate users. An IAM user with access to a portal can call this API to get a URL to that portal. The URL contains a session token that lets the IAM user access the portal.</p>",
+    "CreatePresignedPortalUrl": "<p>Creates a pre-signed URL to a portal. Use this operation to create URLs to portals that use AWS Identity and Access Management (IAM) to authenticate users. An IAM user with access to a portal can call this API to get a URL to that portal. The URL contains an authentication token that lets the IAM user access the portal.</p>",
     "CreateProject": "<p>Creates a project in the specified portal.</p>",
     "DeleteAccessPolicy": "<p>Deletes an access policy that grants the specified identity access to the specified AWS IoT SiteWise Monitor resource. You can use this operation to revoke access to an AWS IoT SiteWise Monitor resource.</p>",
     "DeleteAsset": "<p>Deletes an asset. This action can't be undone. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html\">Deleting assets and models</a> in the <i>AWS IoT SiteWise User Guide</i>. </p> <note> <p>You can't delete an asset that's associated to another asset. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DisassociateAssets.html\">DisassociateAssets</a>.</p> </note>",
@@ -26,6 +26,7 @@
     "DescribeAssetModel": "<p>Retrieves information about an asset model.</p>",
     "DescribeAssetProperty": "<p>Retrieves information about an asset property.</p> <note> <p>When you call this operation for an attribute property, this response includes the default attribute value that you define in the asset model. If you update the default value in the model, this operation's response includes the new default value.</p> </note> <p>This operation doesn't return the value of the asset property. To get the value of an asset property, use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_GetAssetPropertyValue.html\">GetAssetPropertyValue</a>.</p>",
     "DescribeDashboard": "<p>Retrieves information about a dashboard.</p>",
+    "DescribeDefaultEncryptionConfiguration": "<p>Retrieves information about the default encryption configuration for the AWS account in the default or specified region. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html\">Key management</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
     "DescribeGateway": "<p>Retrieves information about a gateway.</p>",
     "DescribeGatewayCapabilityConfiguration": "<p>Retrieves information about a gateway capability configuration. Each gateway capability defines data sources for a gateway. A capability configuration can contain multiple data source configurations. If you define OPC-UA sources for a gateway in the AWS IoT SiteWise console, all of your OPC-UA sources are stored in one capability configuration. To list all capability configurations for a gateway, use <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html\">DescribeGateway</a>.</p>",
     "DescribeLoggingOptions": "<p>Retrieves the current AWS IoT SiteWise logging options.</p>",
@@ -45,6 +46,7 @@
     "ListProjectAssets": "<p>Retrieves a paginated list of assets associated with an AWS IoT SiteWise Monitor project.</p>",
     "ListProjects": "<p>Retrieves a paginated list of projects for an AWS IoT SiteWise Monitor portal.</p>",
     "ListTagsForResource": "<p>Retrieves the list of tags for an AWS IoT SiteWise resource.</p>",
+    "PutDefaultEncryptionConfiguration": "<p>Sets the default encryption configuration for the AWS account. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html\">Key management</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
     "PutLoggingOptions": "<p>Sets logging options for AWS IoT SiteWise.</p>",
     "TagResource": "<p>Adds tags to an AWS IoT SiteWise resource. If a tag already exists for the resource, this operation updates the tag's value.</p>",
     "UntagResource": "<p>Removes a tag from an AWS IoT SiteWise resource.</p>",
@@ -77,6 +79,7 @@
         "DescribeAssetModelResponse$assetModelArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the asset model, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</code> </p>",
         "DescribeAssetResponse$assetArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the asset, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</code> </p>",
         "DescribeDashboardResponse$dashboardArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the dashboard, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:dashboard/${DashboardId}</code> </p>",
+        "DescribeDefaultEncryptionConfigurationResponse$kmsKeyArn": "<p>The key ARN of the customer managed customer master key (CMK) used for AWS KMS encryption if you use <code>KMS_BASED_ENCRYPTION</code>.</p>",
         "DescribeGatewayResponse$gatewayArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the gateway, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:gateway/${GatewayId}</code> </p>",
         "DescribePortalResponse$portalArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the portal, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:portal/${PortalId}</code> </p>",
         "DescribePortalResponse$roleArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the service role that allows the portal's users to access your AWS IoT SiteWise resources on your behalf. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html\">Using service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
@@ -85,6 +88,7 @@
         "IAMUserIdentity$arn": "<p>The ARN of the IAM user. IAM users must have the <code>iotsitewise:CreatePresignedPortalUrl</code> permission to sign in to the portal. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM ARNs</a> in the <i>IAM User Guide</i>.</p> <note> <p>If you delete the IAM user, access policies that contain this identity include an empty <code>arn</code>. You can delete the access policy for the IAM user that no longer exists.</p> </note>",
         "ListAccessPoliciesRequest$iamArn": "<p>The ARN of the IAM user. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html\">IAM ARNs</a> in the <i>IAM User Guide</i>. This parameter is required if you specify <code>IAM</code> for <code>identityType</code>.</p>",
         "PortalSummary$roleArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the service role that allows the portal's users to access your AWS IoT SiteWise resources on your behalf. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html\">Using service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
+        "PutDefaultEncryptionConfigurationResponse$kmsKeyArn": "<p>The Key ARN of the AWS KMS CMK used for AWS KMS encryption if you use <code>KMS_BASED_ENCRYPTION</code>.</p>",
         "UpdatePortalRequest$roleArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of a service role that allows the portal's users to access your AWS IoT SiteWise resources on your behalf. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html\">Using service roles for AWS IoT SiteWise Monitor</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>"
       }
     },
@@ -492,6 +496,25 @@
         "UpdateProjectRequest$clientToken": "<p>A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.</p>"
       }
     },
+    "ConfigurationErrorDetails": {
+      "base": "<p/>",
+      "refs": {
+        "ConfigurationStatus$error": "<p/>"
+      }
+    },
+    "ConfigurationState": {
+      "base": null,
+      "refs": {
+        "ConfigurationStatus$state": "<p/>"
+      }
+    },
+    "ConfigurationStatus": {
+      "base": "<p/>",
+      "refs": {
+        "DescribeDefaultEncryptionConfigurationResponse$configurationStatus": "<p>The status of the account configuration. This contains the <code>ConfigurationState</code>. If there's an error, it also contains the <code>ErrorDetails</code>.</p>",
+        "PutDefaultEncryptionConfigurationResponse$configurationStatus": "<p>The status of the account configuration. This contains the <code>ConfigurationState</code>. If there is an error, it also contains the <code>ErrorDetails</code>.</p>"
+      }
+    },
     "ConflictingOperationException": {
       "base": "<p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>",
       "refs": {
@@ -718,6 +741,16 @@
       "refs": {
       }
     },
+    "DescribeDefaultEncryptionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDefaultEncryptionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeGatewayCapabilityConfigurationRequest": {
       "base": null,
       "refs": {
@@ -802,6 +835,14 @@
         "UpdatePortalRequest$portalContactEmail": "<p>The AWS administrator's contact email address.</p>"
       }
     },
+    "EncryptionType": {
+      "base": null,
+      "refs": {
+        "DescribeDefaultEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption used for the encryption configuration.</p>",
+        "PutDefaultEncryptionConfigurationRequest$encryptionType": "<p>The type of encryption used for the encryption configuration.</p>",
+        "PutDefaultEncryptionConfigurationResponse$encryptionType": "<p>The type of encryption used for the encryption configuration.</p>"
+      }
+    },
     "EntryId": {
       "base": null,
       "refs": {
@@ -812,6 +853,7 @@
     "ErrorCode": {
       "base": null,
       "refs": {
+        "ConfigurationErrorDetails$code": "<p/>",
         "ErrorDetails$code": "<p>The error code.</p>"
       }
     },
@@ -826,6 +868,7 @@
       "base": null,
       "refs": {
         "BatchPutAssetPropertyError$errorMessage": "<p>The associated error message.</p>",
+        "ConfigurationErrorDetails$message": "<p/>",
         "ConflictingOperationException$message": null,
         "ErrorDetails$message": "<p>The error message.</p>",
         "InternalFailureException$message": null,
@@ -1121,6 +1164,12 @@
     "InvalidRequestException": {
       "base": "<p>The request isn't valid. This can occur if your request contains malformed JSON or unsupported characters. Check your request and try again.</p>",
       "refs": {
+      }
+    },
+    "KmsKeyId": {
+      "base": null,
+      "refs": {
+        "PutDefaultEncryptionConfigurationRequest$kmsKeyId": "<p>The Key ID of the customer managed customer master key (CMK) used for AWS KMS encryption. This is required if you use <code>KMS_BASED_ENCRYPTION</code>.</p>"
       }
     },
     "LimitExceededException": {
@@ -1540,6 +1589,16 @@
         "PutAssetPropertyValueEntries$member": null
       }
     },
+    "PutDefaultEncryptionConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutDefaultEncryptionConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutLoggingOptionsRequest": {
       "base": null,
       "refs": {
@@ -1624,7 +1683,7 @@
     "SessionDurationSeconds": {
       "base": null,
       "refs": {
-        "CreatePresignedPortalUrlRequest$sessionDurationSeconds": "<p>The duration (in seconds) for which the session at the URL is valid.</p> <p>Default: 900 seconds (15 minutes)</p>"
+        "CreatePresignedPortalUrlRequest$sessionDurationSeconds": "<p>The duration (in seconds) for which the session at the URL is valid.</p> <p>Default: 43,200 seconds (12 hours)</p>"
       }
     },
     "TagKey": {
@@ -1858,7 +1917,7 @@
       "base": null,
       "refs": {
         "CreatePortalResponse$portalStartUrl": "<p>The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to access portals that use AWS SSO for authentication. For portals that use IAM for authentication, you must use the <a href=\"https://docs.aws.amazon.com/AWS IoT SiteWise API ReferenceAPI_CreatePresignedPortalUrl.html\">CreatePresignedPortalUrl</a> operation to create a URL that you can use to access the portal.</p>",
-        "CreatePresignedPortalUrlResponse$presignedPortalUrl": "<p>The pre-signed URL to the portal. The URL contains the portal ID and a session token that lets you access the portal. The URL has the following format.</p> <p> <code>https://&lt;portal-id&gt;.app.iotsitewise.aws/auth?token=&lt;encrypted-token&gt;</code> </p>",
+        "CreatePresignedPortalUrlResponse$presignedPortalUrl": "<p>The pre-signed URL to the portal. The URL contains the portal ID and an authentication token that lets you access the portal. The URL has the following format.</p> <p> <code>https://&lt;portal-id&gt;.app.iotsitewise.aws/iam?token=&lt;encrypted-token&gt;</code> </p>",
         "DescribePortalResponse$portalStartUrl": "<p>The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to access portals that use AWS SSO for authentication. For portals that use IAM for authentication, you must use the <a href=\"https://docs.aws.amazon.com/AWS IoT SiteWise API ReferenceAPI_CreatePresignedPortalUrl.html\">CreatePresignedPortalUrl</a> operation to create a URL that you can use to access the portal.</p>",
         "ImageLocation$url": "<p>The URL where the image is available. The URL is valid for 15 minutes so that you can view and download the image</p>",
         "PortalSummary$startUrl": "<p>The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to access portals that use AWS SSO for authentication. For portals that use IAM for authentication, you must use the <a href=\"https://docs.aws.amazon.com/AWS IoT SiteWise API ReferenceAPI_CreatePresignedPortalUrl.html\">CreatePresignedPortalUrl</a> operation to create a URL that you can use to access the portal.</p>"

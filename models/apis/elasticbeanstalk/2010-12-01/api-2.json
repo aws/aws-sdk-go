@@ -1296,7 +1296,7 @@
         "EnvironmentId":{"shape":"EnvironmentId"},
         "EnvironmentName":{"shape":"EnvironmentName"},
         "NextToken":{"shape":"String"},
-        "MaxItems":{"shape":"Integer"}
+        "MaxItems":{"shape":"ManagedActionHistoryMaxItems"}
       }
     },
     "DescribeEnvironmentManagedActionHistoryResult":{
@@ -1854,6 +1854,11 @@
     "ManagedActionHistoryItems":{
       "type":"list",
       "member":{"shape":"ManagedActionHistoryItem"},
+      "max":100,
+      "min":1
+    },
+    "ManagedActionHistoryMaxItems":{
+      "type":"integer",
       "max":100,
       "min":1
     },

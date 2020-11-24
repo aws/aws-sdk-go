@@ -20,6 +20,7 @@
     "SendTaskHeartbeat": "<p>Used by activity workers and task states using the <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token\">callback</a> pattern to report to Step Functions that the task represented by the specified <code>taskToken</code> is still making progress. This action resets the <code>Heartbeat</code> clock. The <code>Heartbeat</code> threshold is specified in the state machine's Amazon States Language definition (<code>HeartbeatSeconds</code>). This action does not in itself create an event in the execution history. However, if the task times out, the execution history contains an <code>ActivityTimedOut</code> entry for activities, or a <code>TaskTimedOut</code> entry for for tasks using the <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-sync\">job run</a> or <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token\">callback</a> pattern.</p> <note> <p>The <code>Timeout</code> of a task, defined in the state machine's Amazon States Language definition, is its maximum allowed duration, regardless of the number of <a>SendTaskHeartbeat</a> requests received. Use <code>HeartbeatSeconds</code> to configure the timeout interval for heartbeats.</p> </note>",
     "SendTaskSuccess": "<p>Used by activity workers and task states using the <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token\">callback</a> pattern to report that the task identified by the <code>taskToken</code> completed successfully.</p>",
     "StartExecution": "<p>Starts a state machine execution.</p> <note> <p> <code>StartExecution</code> is idempotent. If <code>StartExecution</code> is called with the same name and input as a running execution, the call will succeed and return the same response as the original request. If the execution is closed or if the input is different, it will return a 400 <code>ExecutionAlreadyExists</code> error. Names can be reused after 90 days. </p> </note>",
+    "StartSyncExecution": "<p>Starts a Synchronous Express state machine execution.</p>",
     "StopExecution": "<p>Stops an execution.</p> <p>This API action is not supported by <code>EXPRESS</code> state machines.</p>",
     "TagResource": "<p>Add a tag to a Step Functions resource.</p> <p>An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>, and <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_iam-tags.html\">Controlling Access Using IAM Tags</a>.</p> <p>Tags may only contain Unicode letters, digits, white space, or these symbols: <code>_ . : / = + - @</code>.</p>",
     "UntagResource": "<p>Remove a tag from a Step Functions resource</p>",
@@ -103,7 +104,7 @@
         "DescribeActivityInput$activityArn": "<p>The Amazon Resource Name (ARN) of the activity to describe.</p>",
         "DescribeActivityOutput$activityArn": "<p>The Amazon Resource Name (ARN) that identifies the activity.</p>",
         "DescribeExecutionInput$executionArn": "<p>The Amazon Resource Name (ARN) of the execution to describe.</p>",
-        "DescribeExecutionOutput$executionArn": "<p>The Amazon Resource Name (ARN) that id entifies the execution.</p>",
+        "DescribeExecutionOutput$executionArn": "<p>The Amazon Resource Name (ARN) that identifies the execution.</p>",
         "DescribeExecutionOutput$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the executed stated machine.</p>",
         "DescribeStateMachineForExecutionInput$executionArn": "<p>The Amazon Resource Name (ARN) of the execution you want state machine information for.</p>",
         "DescribeStateMachineForExecutionOutput$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the state machine associated with the execution.</p>",
@@ -111,7 +112,7 @@
         "DescribeStateMachineInput$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the state machine to describe.</p>",
         "DescribeStateMachineOutput$stateMachineArn": "<p>The Amazon Resource Name (ARN) that identifies the state machine.</p>",
         "DescribeStateMachineOutput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used when creating this state machine. (The IAM role maintains security by granting Step Functions access to AWS resources.)</p>",
-        "ExecutionListItem$executionArn": "<p>The Amazon Resource Name (ARN) that id entifies the execution.</p>",
+        "ExecutionListItem$executionArn": "<p>The Amazon Resource Name (ARN) that identifies the execution.</p>",
         "ExecutionListItem$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the executed state machine.</p>",
         "ExecutionStartedEventDetails$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used for executing AWS Lambda tasks.</p>",
         "GetActivityTaskInput$activityArn": "<p>The Amazon Resource Name (ARN) of the activity to retrieve tasks from (assigned when you create the task using <a>CreateActivity</a>.)</p>",
@@ -121,7 +122,10 @@
         "ListTagsForResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) for the Step Functions state machine or activity.</p>",
         "ResourceNotFound$resourceName": null,
         "StartExecutionInput$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the state machine to execute.</p>",
-        "StartExecutionOutput$executionArn": "<p>The Amazon Resource Name (ARN) that id entifies the execution.</p>",
+        "StartExecutionOutput$executionArn": "<p>The Amazon Resource Name (ARN) that identifies the execution.</p>",
+        "StartSyncExecutionInput$stateMachineArn": "<p>The Amazon Resource Name (ARN) of the state machine to execute.</p>",
+        "StartSyncExecutionOutput$executionArn": "<p>The Amazon Resource Name (ARN) that identifies the execution.</p>",
+        "StartSyncExecutionOutput$stateMachineArn": "<p>The Amazon Resource Name (ARN) that identifies the state machine.</p>",
         "StateMachineListItem$stateMachineArn": "<p>The Amazon Resource Name (ARN) that identifies the state machine.</p>",
         "StopExecutionInput$executionArn": "<p>The Amazon Resource Name (ARN) of the execution to stop.</p>",
         "TagResourceInput$resourceArn": "<p>The Amazon Resource Name (ARN) for the Step Functions state machine or activity.</p>",
@@ -131,11 +135,31 @@
         "UpdateStateMachineInput$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role of the state machine.</p>"
       }
     },
+    "BilledDuration": {
+      "base": null,
+      "refs": {
+        "BillingDetails$billedDurationInMilliseconds": "<p>Billed duration of your workflow, in milliseconds.</p>"
+      }
+    },
+    "BilledMemoryUsed": {
+      "base": null,
+      "refs": {
+        "BillingDetails$billedMemoryUsedInMB": "<p>Billed memory consumption of your workflow, in MB.</p>"
+      }
+    },
+    "BillingDetails": {
+      "base": "<p>An object that describes workflow billing details.</p>",
+      "refs": {
+        "StartSyncExecutionOutput$billingDetails": "<p>An object that describes workflow billing details, including billed duration and memory use.</p>"
+      }
+    },
     "CloudWatchEventsExecutionDataDetails": {
       "base": "<p>Provides details about execution input or output.</p>",
       "refs": {
         "DescribeExecutionOutput$inputDetails": null,
-        "DescribeExecutionOutput$outputDetails": null
+        "DescribeExecutionOutput$outputDetails": null,
+        "StartSyncExecutionOutput$inputDetails": null,
+        "StartSyncExecutionOutput$outputDetails": null
       }
     },
     "CloudWatchLogsLogGroup": {
@@ -601,6 +625,8 @@
         "GetActivityTaskInput$workerName": "<p>You can provide an arbitrary name in order to identify the worker that the task is assigned to. This name is used when it is logged in the execution history.</p>",
         "MapIterationEventDetails$name": "<p>The name of the iteration’s parent Map state.</p>",
         "StartExecutionInput$name": "<p>The name of the execution. This name must be unique for your AWS account, region, and state machine for 90 days. For more information, see <a href=\"https://docs.aws.amazon.com/step-functions/latest/dg/limits.html#service-limits-state-machine-executions\"> Limits Related to State Machine Executions</a> in the <i>AWS Step Functions Developer Guide</i>.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul> <p>To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.</p>",
+        "StartSyncExecutionInput$name": "<p>The name of the execution.</p>",
+        "StartSyncExecutionOutput$name": "<p>The name of the execution.</p>",
         "StateEnteredEventDetails$name": "<p>The name of the state.</p>",
         "StateExitedEventDetails$name": "<p>The name of the state.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul> <p>To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.</p>",
         "StateMachineListItem$name": "<p>The name of the state machine.</p> <p>A name must <i>not</i> contain:</p> <ul> <li> <p>white space</p> </li> <li> <p>brackets <code>&lt; &gt; { } [ ]</code> </p> </li> <li> <p>wildcard characters <code>? *</code> </p> </li> <li> <p>special characters <code>\" # % \\ ^ | ~ ` $ &amp; , ; : /</code> </p> </li> <li> <p>control characters (<code>U+0000-001F</code>, <code>U+007F-009F</code>)</p> </li> </ul> <p>To enable logging with CloudWatch Logs, the name should only contain 0-9, A-Z, a-z, - and _.</p>",
@@ -698,6 +724,7 @@
         "LambdaFunctionStartFailedEventDetails$cause": "<p>A more detailed explanation of the cause of the failure.</p>",
         "LambdaFunctionTimedOutEventDetails$cause": "<p>A more detailed explanation of the cause of the timeout.</p>",
         "SendTaskFailureInput$cause": "<p>A more detailed explanation of the cause of the failure.</p>",
+        "StartSyncExecutionOutput$cause": "<p>A more detailed explanation of the cause of the failure.</p>",
         "StopExecutionInput$cause": "<p>A more detailed explanation of the cause of the failure.</p>",
         "TaskFailedEventDetails$cause": "<p>A more detailed explanation of the cause of the failure.</p>",
         "TaskStartFailedEventDetails$cause": "<p>A more detailed explanation of the cause of the failure.</p>",
@@ -718,6 +745,9 @@
         "LambdaFunctionSucceededEventDetails$output": "<p>The JSON data output by the lambda function. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
         "SendTaskSuccessInput$output": "<p>The JSON output of the task. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
         "StartExecutionInput$input": "<p>The string that contains the JSON input data for the execution, for example:</p> <p> <code>\"input\": \"{\\\"first_name\\\" : \\\"test\\\"}\"</code> </p> <note> <p>If you don't include any JSON input data, you still must include the two braces, for example: <code>\"input\": \"{}\"</code> </p> </note> <p>Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "StartSyncExecutionInput$input": "<p>The string that contains the JSON input data for the execution, for example:</p> <p> <code>\"input\": \"{\\\"first_name\\\" : \\\"test\\\"}\"</code> </p> <note> <p>If you don't include any JSON input data, you still must include the two braces, for example: <code>\"input\": \"{}\"</code> </p> </note> <p>Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "StartSyncExecutionOutput$input": "<p>The string that contains the JSON input data of the execution. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
+        "StartSyncExecutionOutput$output": "<p>The JSON output data of the execution. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p> <note> <p>This field is set only if the execution succeeds. If the execution fails, this field is null.</p> </note>",
         "StateEnteredEventDetails$input": "<p>The string that contains the JSON input data for the state. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
         "StateExitedEventDetails$output": "<p>The JSON output data of the state. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
         "TaskSubmittedEventDetails$output": "<p>The response from a resource when a task has started. Length constraints apply to the payload size, and are expressed as bytes in UTF-8 encoding.</p>",
@@ -744,6 +774,7 @@
         "LambdaFunctionStartFailedEventDetails$error": "<p>The error code of the failure.</p>",
         "LambdaFunctionTimedOutEventDetails$error": "<p>The error code of the failure.</p>",
         "SendTaskFailureInput$error": "<p>The error code of the failure.</p>",
+        "StartSyncExecutionOutput$error": "<p>The error code of the failure.</p>",
         "StopExecutionInput$error": "<p>The error code of the failure.</p>",
         "TaskFailedEventDetails$error": "<p>The error code of the failure.</p>",
         "TaskStartFailedEventDetails$error": "<p>The error code of the failure.</p>",
@@ -757,6 +788,16 @@
       }
     },
     "StartExecutionOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSyncExecutionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSyncExecutionOutput": {
       "base": null,
       "refs": {
       }
@@ -832,6 +873,12 @@
     "StopExecutionOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "SyncExecutionStatus": {
+      "base": null,
+      "refs": {
+        "StartSyncExecutionOutput$status": "<p>The current status of the execution.</p>"
       }
     },
     "Tag": {
@@ -970,6 +1017,8 @@
         "ExecutionListItem$stopDate": "<p>If the execution already ended, the date the execution stopped.</p>",
         "HistoryEvent$timestamp": "<p>The date and time the event occurred.</p>",
         "StartExecutionOutput$startDate": "<p>The date the execution is started.</p>",
+        "StartSyncExecutionOutput$startDate": "<p>The date the execution is started.</p>",
+        "StartSyncExecutionOutput$stopDate": "<p>If the execution has already ended, the date the execution stopped.</p>",
         "StateMachineListItem$creationDate": "<p>The date the state machine is created.</p>",
         "StopExecutionOutput$stopDate": "<p>The date the execution is stopped.</p>",
         "UpdateStateMachineOutput$updateDate": "<p>The date and time the state machine was updated.</p>"
@@ -983,8 +1032,10 @@
     "TraceHeader": {
       "base": null,
       "refs": {
-        "DescribeExecutionOutput$traceHeader": "<p>The AWS X-Ray trace header which was passed to the execution.</p>",
-        "StartExecutionInput$traceHeader": "<p>Passes the AWS X-Ray trace header. The trace header can also be passed in the request payload.</p>"
+        "DescribeExecutionOutput$traceHeader": "<p>The AWS X-Ray trace header that was passed to the execution.</p>",
+        "StartExecutionInput$traceHeader": "<p>Passes the AWS X-Ray trace header. The trace header can also be passed in the request payload.</p>",
+        "StartSyncExecutionInput$traceHeader": "<p>Passes the AWS X-Ray trace header. The trace header can also be passed in the request payload.</p>",
+        "StartSyncExecutionOutput$traceHeader": "<p>The AWS X-Ray trace header that was passed to the execution.</p>"
       }
     },
     "TracingConfiguration": {
@@ -1023,7 +1074,7 @@
       "refs": {
       }
     },
-    "included": {
+    "includedDetails": {
       "base": null,
       "refs": {
         "CloudWatchEventsExecutionDataDetails$included": "<p>Indicates whether input or output was included in the response. Always <code>true</code> for API calls. </p>"

@@ -138,6 +138,10 @@ type CodeBuildAPI interface {
 	DescribeTestCasesPages(*codebuild.DescribeTestCasesInput, func(*codebuild.DescribeTestCasesOutput, bool) bool) error
 	DescribeTestCasesPagesWithContext(aws.Context, *codebuild.DescribeTestCasesInput, func(*codebuild.DescribeTestCasesOutput, bool) bool, ...request.Option) error
 
+	GetReportGroupTrend(*codebuild.GetReportGroupTrendInput) (*codebuild.GetReportGroupTrendOutput, error)
+	GetReportGroupTrendWithContext(aws.Context, *codebuild.GetReportGroupTrendInput, ...request.Option) (*codebuild.GetReportGroupTrendOutput, error)
+	GetReportGroupTrendRequest(*codebuild.GetReportGroupTrendInput) (*request.Request, *codebuild.GetReportGroupTrendOutput)
+
 	GetResourcePolicy(*codebuild.GetResourcePolicyInput) (*codebuild.GetResourcePolicyOutput, error)
 	GetResourcePolicyWithContext(aws.Context, *codebuild.GetResourcePolicyInput, ...request.Option) (*codebuild.GetResourcePolicyOutput, error)
 	GetResourcePolicyRequest(*codebuild.GetResourcePolicyInput) (*request.Request, *codebuild.GetResourcePolicyOutput)

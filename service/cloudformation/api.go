@@ -7805,9 +7805,9 @@ func (s DeleteStackSetOutput) GoString() string {
 }
 
 // [Service-managed permissions] The AWS Organizations accounts to which StackSets
-// deploys. StackSets does not deploy stack instances to the organization master
-// account, even if the master account is in your organization or in an OU in
-// your organization.
+// deploys. StackSets does not deploy stack instances to the organization management
+// account, even if the organization management account is in your organization
+// or in an OU in your organization.
 //
 // For update operations, you can specify either Accounts or OrganizationalUnitIds.
 // For create and delete operations, specify OrganizationalUnitIds.
@@ -11637,6 +11637,9 @@ type ListTypesInput struct {
 	//    handlers, and therefore cannot actually be provisioned.
 	ProvisioningType *string `type:"string" enum:"ProvisioningType"`
 
+	// The type of extension.
+	Type *string `type:"string" enum:"RegistryType"`
+
 	// The scope at which the type is visible and usable in CloudFormation operations.
 	//
 	// Valid values include:
@@ -11699,6 +11702,12 @@ func (s *ListTypesInput) SetNextToken(v string) *ListTypesInput {
 // SetProvisioningType sets the ProvisioningType field's value.
 func (s *ListTypesInput) SetProvisioningType(v string) *ListTypesInput {
 	s.ProvisioningType = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListTypesInput) SetType(v string) *ListTypesInput {
+	s.Type = &v
 	return s
 }
 
@@ -11802,6 +11811,62 @@ func (s *LoggingConfig) SetLogGroupName(v string) *LoggingConfig {
 // SetLogRoleArn sets the LogRoleArn field's value.
 func (s *LoggingConfig) SetLogRoleArn(v string) *LoggingConfig {
 	s.LogRoleArn = &v
+	return s
+}
+
+// Contains information about the module from which the resource was created,
+// if the resource was created from a module included in the stack template.
+//
+// For more information on modules, see Using modules to encapsulate and reuse
+// resource configurations (AWSCloudFormation/latest/UserGuide/modules.html)
+// in the CloudFormation User Guide.
+type ModuleInfo struct {
+	_ struct{} `type:"structure"`
+
+	// A concantenated list of the logical IDs of the module or modules containing
+	// the resource. Modules are listed starting with the inner-most nested module,
+	// and separated by /.
+	//
+	// In the following example, the resource was created from a module, moduleA,
+	// that is nested inside a parent module, moduleB.
+	//
+	// moduleA/moduleB
+	//
+	// For more information, see Referencing resources in a module (AWSCloudFormation/latest/UserGuide/modules.html#module-ref-resources)
+	// in the CloudFormation User Guide.
+	LogicalIdHierarchy *string `type:"string"`
+
+	// A concantenated list of the the module type or types containing the resource.
+	// Module types are listed starting with the inner-most nested module, and separated
+	// by /.
+	//
+	// In the following example, the resource was created from a module of type
+	// AWS::First::Example::MODULE, that is nested inside a parent module of type
+	// AWS::Second::Example::MODULE.
+	//
+	// AWS::First::Example::MODULE/AWS::Second::Example::MODULE
+	TypeHierarchy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModuleInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModuleInfo) GoString() string {
+	return s.String()
+}
+
+// SetLogicalIdHierarchy sets the LogicalIdHierarchy field's value.
+func (s *ModuleInfo) SetLogicalIdHierarchy(v string) *ModuleInfo {
+	s.LogicalIdHierarchy = &v
+	return s
+}
+
+// SetTypeHierarchy sets the TypeHierarchy field's value.
+func (s *ModuleInfo) SetTypeHierarchy(v string) *ModuleInfo {
+	s.TypeHierarchy = &v
 	return s
 }
 
@@ -12438,6 +12503,10 @@ type ResourceChange struct {
 	// The resource's logical ID, which is defined in the stack's template.
 	LogicalResourceId *string `type:"string"`
 
+	// Contains information about the module from which the resource was created,
+	// if the resource was created from a module included in the stack template.
+	ModuleInfo *ModuleInfo `type:"structure"`
+
 	// The resource's physical ID (resource name). Resources that you are adding
 	// don't have physical IDs because they haven't been created.
 	PhysicalResourceId *string `type:"string"`
@@ -12495,6 +12564,12 @@ func (s *ResourceChange) SetDetails(v []*ResourceChangeDetail) *ResourceChange {
 // SetLogicalResourceId sets the LogicalResourceId field's value.
 func (s *ResourceChange) SetLogicalResourceId(v string) *ResourceChange {
 	s.LogicalResourceId = &v
+	return s
+}
+
+// SetModuleInfo sets the ModuleInfo field's value.
+func (s *ResourceChange) SetModuleInfo(v *ModuleInfo) *ResourceChange {
+	s.ModuleInfo = v
 	return s
 }
 
@@ -14114,6 +14189,10 @@ type StackResource struct {
 	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
+	// Contains information about the module from which the resource was created,
+	// if the resource was created from a module included in the stack template.
+	ModuleInfo *ModuleInfo `type:"structure"`
+
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of a resource supported by AWS CloudFormation.
 	PhysicalResourceId *string `type:"string"`
@@ -14170,6 +14249,12 @@ func (s *StackResource) SetDriftInformation(v *StackResourceDriftInformation) *S
 // SetLogicalResourceId sets the LogicalResourceId field's value.
 func (s *StackResource) SetLogicalResourceId(v string) *StackResource {
 	s.LogicalResourceId = &v
+	return s
+}
+
+// SetModuleInfo sets the ModuleInfo field's value.
+func (s *StackResource) SetModuleInfo(v *ModuleInfo) *StackResource {
+	s.ModuleInfo = v
 	return s
 }
 
@@ -14243,6 +14328,10 @@ type StackResourceDetail struct {
 	// in the AWS CloudFormation User Guide.
 	Metadata *string `type:"string"`
 
+	// Contains information about the module from which the resource was created,
+	// if the resource was created from a module included in the stack template.
+	ModuleInfo *ModuleInfo `type:"structure"`
+
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of a resource supported by AWS CloudFormation.
 	PhysicalResourceId *string `type:"string"`
@@ -14306,6 +14395,12 @@ func (s *StackResourceDetail) SetLogicalResourceId(v string) *StackResourceDetai
 // SetMetadata sets the Metadata field's value.
 func (s *StackResourceDetail) SetMetadata(v string) *StackResourceDetail {
 	s.Metadata = &v
+	return s
+}
+
+// SetModuleInfo sets the ModuleInfo field's value.
+func (s *StackResourceDetail) SetModuleInfo(v *ModuleInfo) *StackResourceDetail {
+	s.ModuleInfo = v
 	return s
 }
 
@@ -14378,6 +14473,10 @@ type StackResourceDrift struct {
 	//
 	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
+
+	// Contains information about the module from which the resource was created,
+	// if the resource was created from a module included in the stack template.
+	ModuleInfo *ModuleInfo `type:"structure"`
 
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of a resource supported by AWS CloudFormation.
@@ -14453,6 +14552,12 @@ func (s *StackResourceDrift) SetExpectedProperties(v string) *StackResourceDrift
 // SetLogicalResourceId sets the LogicalResourceId field's value.
 func (s *StackResourceDrift) SetLogicalResourceId(v string) *StackResourceDrift {
 	s.LogicalResourceId = &v
+	return s
+}
+
+// SetModuleInfo sets the ModuleInfo field's value.
+func (s *StackResourceDrift) SetModuleInfo(v *ModuleInfo) *StackResourceDrift {
+	s.ModuleInfo = v
 	return s
 }
 
@@ -14621,6 +14726,10 @@ type StackResourceSummary struct {
 	// LogicalResourceId is a required field
 	LogicalResourceId *string `type:"string" required:"true"`
 
+	// Contains information about the module from which the resource was created,
+	// if the resource was created from a module included in the stack template.
+	ModuleInfo *ModuleInfo `type:"structure"`
+
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of the resource.
 	PhysicalResourceId *string `type:"string"`
@@ -14666,6 +14775,12 @@ func (s *StackResourceSummary) SetLastUpdatedTimestamp(v time.Time) *StackResour
 // SetLogicalResourceId sets the LogicalResourceId field's value.
 func (s *StackResourceSummary) SetLogicalResourceId(v string) *StackResourceSummary {
 	s.LogicalResourceId = &v
+	return s
+}
+
+// SetModuleInfo sets the ModuleInfo field's value.
+func (s *StackResourceSummary) SetModuleInfo(v *ModuleInfo) *StackResourceSummary {
+	s.ModuleInfo = v
 	return s
 }
 
@@ -17652,12 +17767,16 @@ func RegistrationStatus_Values() []string {
 const (
 	// RegistryTypeResource is a RegistryType enum value
 	RegistryTypeResource = "RESOURCE"
+
+	// RegistryTypeModule is a RegistryType enum value
+	RegistryTypeModule = "MODULE"
 )
 
 // RegistryType_Values returns all elements of the RegistryType enum
 func RegistryType_Values() []string {
 	return []string{
 		RegistryTypeResource,
+		RegistryTypeModule,
 	}
 }
 

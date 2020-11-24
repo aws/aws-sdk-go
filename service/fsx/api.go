@@ -269,7 +269,7 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 // For more information about backing up Amazon FSx for Lustre file systems,
 // see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
 //
-// For more information about backing up Amazon FSx for Lustre file systems,
+// For more information about backing up Amazon FSx for Windows file systems,
 // see Working with FSx for Windows backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html).
 //
 // If a backup with the specified client request token exists, and the parameters
@@ -400,9 +400,9 @@ func (c *FSx) CreateDataRepositoryTaskRequest(input *CreateDataRepositoryTaskInp
 // and symbolic links (symlinks) from your FSx file system to its linked data
 // repository. A CreateDataRepositoryTask operation will fail if a data repository
 // is not linked to the FSx file system. To learn more about data repository
-// tasks, see Using Data Repository Tasks (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html).
-// To learn more about linking a data repository to your file system, see Setting
-// the Export Prefix (https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-data-repository.html#export-prefix).
+// tasks, see Data Repository Tasks (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html).
+// To learn more about linking a data repository to your file system, see Linking
+// your file system to an S3 bucket (https://docs.aws.amazon.com/fsx/latest/LustreGuide/create-fs-linked-data-repo.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2060,6 +2060,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * DailyAutomaticBackupStartTime
 //
+//    * StorageCapacity
+//
 //    * WeeklyMaintenanceStartTime
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2216,8 +2218,8 @@ func (s *ActiveDirectoryError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a specific Amazon FSx Administrative Action for the current Windows
-// file system.
+// Describes a specific Amazon FSx administrative action for the current Windows
+// or Lustre file system.
 type AdministrativeAction struct {
 	_ struct{} `type:"structure"`
 
@@ -2229,11 +2231,16 @@ type AdministrativeAction struct {
 	//
 	//    * STORAGE_OPTIMIZATION - Once the FILE_SYSTEM_UPDATE task to increase
 	//    a file system's storage capacity completes successfully, a STORAGE_OPTIMIZATION
-	//    task starts. Storage optimization is the process of migrating the file
-	//    system data to the new, larger disks. You can track the storage migration
-	//    progress using the ProgressPercent property. When STORAGE_OPTIMIZATION
-	//    completes successfully, the parent FILE_SYSTEM_UPDATE action status changes
-	//    to COMPLETED. For more information, see Managing Storage Capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html).
+	//    task starts. For Windows, storage optimization is the process of migrating
+	//    the file system data to the new, larger disks. For Lustre, storage optimization
+	//    consists of rebalancing the data across the existing and newly added file
+	//    servers. You can track the storage optimization progress using the ProgressPercent
+	//    property. When STORAGE_OPTIMIZATION completes successfully, the parent
+	//    FILE_SYSTEM_UPDATE action status changes to COMPLETED. For more information,
+	//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for Windows File Server User Guide and Managing storage
+	//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for Lustre User Guide.
 	//
 	//    * FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
 	//    new DNS alias with the file system. For more information, see .
@@ -2265,7 +2272,10 @@ type AdministrativeAction struct {
 	//    * UPDATED_OPTIMIZING - For a storage capacity increase update, Amazon
 	//    FSx has updated the file system with the new storage capacity, and is
 	//    now performing the storage optimization process. For more information,
-	//    see Managing Storage Capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html).
+	//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for Windows File Server User Guide and Managing storage
+	//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	//    in the Amazon FSx for Lustre User Guide.
 	Status *string `type:"string" enum:"Status"`
 
 	// Describes the target value for the administration action, provided in the
@@ -2523,7 +2533,11 @@ func (s *AssociateFileSystemAliasesOutput) SetAliases(v []*Alias) *AssociateFile
 	return s
 }
 
-// A backup of an Amazon FSx for file system.
+// A backup of an Amazon FSx file system. For more information see:
+//
+//    * Working with backups for Windows file systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html)
+//
+//    * Working with backups for Lustre file systems (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html)
 type Backup struct {
 	_ struct{} `type:"structure"`
 
@@ -2558,12 +2572,15 @@ type Backup struct {
 	//
 	//    * AVAILABLE - The backup is fully available.
 	//
-	//    * CREATING - FSx is creating the backup.
+	//    * PENDING - For user-initiated backups on Lustre file systems only; Amazon
+	//    FSx has not started creating the backup.
 	//
-	//    * TRANSFERRING - For Lustre file systems only; FSx is transferring the
-	//    backup to S3.
+	//    * CREATING - Amazon FSx is creating the backup.
 	//
-	//    * DELETED - The backup was deleted is no longer available.
+	//    * TRANSFERRING - For user-initiated backups on Lustre file systems only;
+	//    Amazon FSx is transferring the backup to S3.
+	//
+	//    * DELETED - Amazon FSx deleted the backup and it is no longer available.
 	//
 	//    * FAILED - Amazon FSx could not complete the backup.
 	//
@@ -5853,7 +5870,7 @@ type FileSystem struct {
 	// The Amazon Resource Name (ARN) for the file system resource.
 	ResourceARN *string `min:"8" type:"string"`
 
-	// The storage capacity of the file system in gigabytes (GB).
+	// The storage capacity of the file system in gibibytes (GiB).
 	StorageCapacity *int64 `type:"integer"`
 
 	// The storage type of the file system. Valid values are SSD and HDD. If set
@@ -7612,14 +7629,33 @@ type UpdateFileSystemInput struct {
 	// UpdateFileSystem operation.
 	LustreConfiguration *UpdateFileSystemLustreConfiguration `type:"structure"`
 
-	// Use this parameter to increase the storage capacity of an Amazon FSx for
-	// Windows File Server file system. Specifies the storage capacity target value,
-	// GiB, for the file system you're updating. The storage capacity target value
-	// must be at least 10 percent (%) greater than the current storage capacity
-	// value. In order to increase storage capacity, the file system needs to have
-	// at least 16 MB/s of throughput capacity. You cannot make a storage capacity
-	// increase request if there is an existing storage capacity increase request
-	// in progress. For more information, see Managing Storage Capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html).
+	// Use this parameter to increase the storage capacity of an Amazon FSx file
+	// system. Specifies the storage capacity target value, GiB, to increase the
+	// storage capacity for the file system that you're updating. You cannot make
+	// a storage capacity increase request if there is an existing storage capacity
+	// increase request in progress.
+	//
+	// For Windows file systems, the storage capacity target value must be at least
+	// 10 percent (%) greater than the current storage capacity value. In order
+	// to increase storage capacity, the file system must have at least 16 MB/s
+	// of throughput capacity.
+	//
+	// For Lustre file systems, the storage capacity target value can be the following:
+	//
+	//    * For SCRATCH_2 and PERSISTENT_1 SSD deployment types, valid values are
+	//    in multiples of 2400 GiB. The value must be greater than the current storage
+	//    capacity.
+	//
+	//    * For PERSISTENT HDD file systems, valid values are multiples of 6000
+	//    GiB for 12 MB/s/TiB file systems and multiples of 1800 GiB for 40 MB/s/TiB
+	//    file systems. The values must be greater than the current storage capacity.
+	//
+	//    * For SCRATCH_1 file systems, you cannot increase the storage capacity.
+	//
+	// For more information, see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for Windows File Server User Guide and Managing storage
+	// and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+	// in the Amazon FSx for Lustre User Guide.
 	StorageCapacity *int64 `type:"integer"`
 
 	// The configuration updates for an Amazon FSx for Windows File Server file
@@ -8138,11 +8174,16 @@ func ActiveDirectoryErrorType_Values() []string {
 //
 //    * STORAGE_OPTIMIZATION - Once the FILE_SYSTEM_UPDATE task to increase
 //    a file system's storage capacity completes successfully, a STORAGE_OPTIMIZATION
-//    task starts. Storage optimization is the process of migrating the file
-//    system data to the new, larger disks. You can track the storage migration
-//    progress using the ProgressPercent property. When STORAGE_OPTIMIZATION
-//    completes successfully, the parent FILE_SYSTEM_UPDATE action status changes
-//    to COMPLETED. For more information, see Managing Storage Capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html).
+//    task starts. For Windows, storage optimization is the process of migrating
+//    the file system data to the new, larger disks. For Lustre, storage optimization
+//    consists of rebalancing the data across the existing and newly added file
+//    servers. You can track the storage optimization progress using the ProgressPercent
+//    property. When STORAGE_OPTIMIZATION completes successfully, the parent
+//    FILE_SYSTEM_UPDATE action status changes to COMPLETED. For more information,
+//    see Managing storage capacity (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html)
+//    in the Amazon FSx for Windows File Server User Guide and Managing storage
+//    and throughput capacity (https://docs.aws.amazon.com/fsx/latest/LustreGuide/managing-storage-capacity.html)
+//    in the Amazon FSx for Lustre User Guide.
 //
 //    * FILE_SYSTEM_ALIAS_ASSOCIATION - A file system update to associate a
 //    new DNS alias with the file system. For more information, see .
@@ -8225,12 +8266,15 @@ func AutoImportPolicyType_Values() []string {
 //
 //    * AVAILABLE - The backup is fully available.
 //
-//    * CREATING - FSx is creating the new user-intiated backup
+//    * PENDING - For user-initiated backups on Lustre file systems only; Amazon
+//    FSx has not started creating the backup.
+//
+//    * CREATING - Amazon FSx is creating the new user-intiated backup
 //
 //    * TRANSFERRING - For user-initiated backups on Lustre file systems only;
-//    FSx is backing up the file system.
+//    Amazon FSx is backing up the file system.
 //
-//    * DELETED - The backup was deleted is no longer available.
+//    * DELETED - Amazon FSx deleted the backup and it is no longer available.
 //
 //    * FAILED - Amazon FSx could not complete the backup.
 const (
@@ -8248,6 +8292,9 @@ const (
 
 	// BackupLifecycleFailed is a BackupLifecycle enum value
 	BackupLifecycleFailed = "FAILED"
+
+	// BackupLifecyclePending is a BackupLifecycle enum value
+	BackupLifecyclePending = "PENDING"
 )
 
 // BackupLifecycle_Values returns all elements of the BackupLifecycle enum
@@ -8258,6 +8305,7 @@ func BackupLifecycle_Values() []string {
 		BackupLifecycleTransferring,
 		BackupLifecycleDeleted,
 		BackupLifecycleFailed,
+		BackupLifecyclePending,
 	}
 }
 

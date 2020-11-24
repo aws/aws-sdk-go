@@ -1727,7 +1727,6 @@
       "type":"structure",
       "required":[
         "Name",
-        "GameSessionQueueArns",
         "RequestTimeoutSeconds",
         "AcceptanceRequired",
         "RuleSetName"
@@ -1746,6 +1745,7 @@
         "GameProperties":{"shape":"GamePropertyList"},
         "GameSessionData":{"shape":"GameSessionData"},
         "BackfillMode":{"shape":"BackfillMode"},
+        "FlexMatchMode":{"shape":"FlexMatchMode"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -2432,6 +2432,14 @@
         "c5.12xlarge",
         "c5.18xlarge",
         "c5.24xlarge",
+        "c5a.large",
+        "c5a.xlarge",
+        "c5a.2xlarge",
+        "c5a.4xlarge",
+        "c5a.8xlarge",
+        "c5a.12xlarge",
+        "c5a.16xlarge",
+        "c5a.24xlarge",
         "r3.large",
         "r3.xlarge",
         "r3.2xlarge",
@@ -2451,6 +2459,14 @@
         "r5.12xlarge",
         "r5.16xlarge",
         "r5.24xlarge",
+        "r5a.large",
+        "r5a.xlarge",
+        "r5a.2xlarge",
+        "r5a.4xlarge",
+        "r5a.8xlarge",
+        "r5a.12xlarge",
+        "r5a.16xlarge",
+        "r5a.24xlarge",
         "m3.medium",
         "m3.large",
         "m3.xlarge",
@@ -2467,7 +2483,15 @@
         "m5.8xlarge",
         "m5.12xlarge",
         "m5.16xlarge",
-        "m5.24xlarge"
+        "m5.24xlarge",
+        "m5a.large",
+        "m5a.xlarge",
+        "m5a.2xlarge",
+        "m5a.4xlarge",
+        "m5a.8xlarge",
+        "m5a.12xlarge",
+        "m5a.16xlarge",
+        "m5a.24xlarge"
       ]
     },
     "Event":{
@@ -2640,6 +2664,13 @@
     "FleetUtilizationList":{
       "type":"list",
       "member":{"shape":"FleetUtilization"}
+    },
+    "FlexMatchMode":{
+      "type":"string",
+      "enum":[
+        "STANDALONE",
+        "WITH_QUEUE"
+      ]
     },
     "Float":{"type":"float"},
     "FreeText":{"type":"string"},
@@ -3390,7 +3421,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "GameProperties":{"shape":"GamePropertyList"},
         "GameSessionData":{"shape":"GameSessionData"},
-        "BackfillMode":{"shape":"BackfillMode"}
+        "BackfillMode":{"shape":"BackfillMode"},
+        "FlexMatchMode":{"shape":"FlexMatchMode"}
       }
     },
     "MatchmakingConfigurationArn":{
@@ -4006,7 +4038,6 @@
       "type":"structure",
       "required":[
         "ConfigurationName",
-        "GameSessionArn",
         "Players"
       ],
       "members":{
@@ -4382,7 +4413,8 @@
         "CustomEventData":{"shape":"CustomEventData"},
         "GameProperties":{"shape":"GamePropertyList"},
         "GameSessionData":{"shape":"GameSessionData"},
-        "BackfillMode":{"shape":"BackfillMode"}
+        "BackfillMode":{"shape":"BackfillMode"},
+        "FlexMatchMode":{"shape":"FlexMatchMode"}
       }
     },
     "UpdateMatchmakingConfigurationOutput":{

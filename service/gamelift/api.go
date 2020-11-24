@@ -83,9 +83,9 @@ func (c *GameLift) AcceptMatchRequest(input *AcceptMatchInput) (req *request.Req
 //
 // Learn more
 //
-//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-client.html)
+//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html)
 //
-//  FlexMatch Events Reference (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-events.html)
+//  FlexMatch Events Reference (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-events.html)
 //
 // Related operations
 //
@@ -1234,30 +1234,35 @@ func (c *GameLift) CreateMatchmakingConfigurationRequest(input *CreateMatchmakin
 
 // CreateMatchmakingConfiguration API operation for Amazon GameLift.
 //
-// Defines a new matchmaking configuration for use with FlexMatch. A matchmaking
-// configuration sets out guidelines for matching players and getting the matches
-// into games. You can set up multiple matchmaking configurations to handle
-// the scenarios needed for your game. Each matchmaking ticket (StartMatchmaking
-// or StartMatchBackfill) specifies a configuration for the match and provides
-// player attributes to support the configuration being used.
+// Defines a new matchmaking configuration for use with FlexMatch. Whether your
+// are using FlexMatch with GameLift hosting or as a standalone matchmaking
+// service, the matchmaking configuration sets out rules for matching players
+// and forming teams. If you're also using GameLift hosting, it defines how
+// to start game sessions for each match. Your matchmaking system can use multiple
+// configurations to handle different game scenarios. All matchmaking requests
+// (StartMatchmaking or StartMatchBackfill) identify the matchmaking configuration
+// to use and provide player attributes consistent with that configuration.
 //
-// To create a matchmaking configuration, at a minimum you must specify the
-// following: configuration name; a rule set that governs how to evaluate players
-// and find acceptable matches; a game session queue to use when placing a new
-// game session for the match; and the maximum time allowed for a matchmaking
-// attempt.
+// To create a matchmaking configuration, you must provide the following: configuration
+// name and FlexMatch mode (with or without GameLift hosting); a rule set that
+// specifies how to evaluate players and find acceptable matches; whether player
+// acceptance is required; and the maximum time allowed for a matchmaking attempt.
+// When using FlexMatch with GameLift hosting, you also need to identify the
+// game session queue to use when starting a game session for the match.
 //
-// To track the progress of matchmaking tickets, set up an Amazon Simple Notification
-// Service (SNS) to receive notifications, and provide the topic ARN in the
-// matchmaking configuration. An alternative method, continuously poling ticket
-// status with DescribeMatchmaking, should only be used for games in development
-// with low matchmaking usage.
+// In addition, you must set up an Amazon Simple Notification Service (SNS)
+// to receive matchmaking notifications, and provide the topic ARN in the matchmaking
+// configuration. An alternative method, continuously polling ticket status
+// with DescribeMatchmaking, is only suitable for games in development with
+// low matchmaking usage.
 //
 // Learn more
 //
-//  Design a FlexMatch Matchmaker (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-configuration.html)
+//  FlexMatch Developer Guide (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html)
 //
-//  Set Up FlexMatch Event Notification (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-notification.html)
+//  Design a FlexMatch Matchmaker (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-configuration.html)
+//
+//  Set Up FlexMatch Event Notification (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html)
 //
 // Related operations
 //
@@ -1391,11 +1396,11 @@ func (c *GameLift) CreateMatchmakingRuleSetRequest(input *CreateMatchmakingRuleS
 //
 // Learn more
 //
-//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-rulesets.html)
+//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html)
 //
-//    * Design a Matchmaker (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-configuration.html)
+//    * Design a Matchmaker (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-configuration.html)
 //
-//    * Matchmaking with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-intro.html)
+//    * Matchmaking with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-intro.html)
 //
 // Related operations
 //
@@ -2900,7 +2905,7 @@ func (c *GameLift) DeleteMatchmakingRuleSetRequest(input *DeleteMatchmakingRuleS
 //
 // Learn more
 //
-//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-rulesets.html)
+//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html)
 //
 // Related operations
 //
@@ -6021,9 +6026,9 @@ func (c *GameLift) DescribeMatchmakingRequest(input *DescribeMatchmakingInput) (
 //
 // Learn more
 //
-//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-client.html)
+//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html)
 //
-//  Set Up FlexMatch Event Notification (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-notification.html)
+//  Set Up FlexMatch Event Notification (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html)
 //
 // Related operations
 //
@@ -6143,7 +6148,7 @@ func (c *GameLift) DescribeMatchmakingConfigurationsRequest(input *DescribeMatch
 //
 // Learn more
 //
-//  Setting Up FlexMatch Matchmakers (https://docs.aws.amazon.com/gamelift/latest/developerguide/matchmaker-build.html)
+//  Setting Up FlexMatch Matchmakers (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/matchmaker-build.html)
 //
 // Related operations
 //
@@ -6315,7 +6320,7 @@ func (c *GameLift) DescribeMatchmakingRuleSetsRequest(input *DescribeMatchmaking
 //
 // Learn more
 //
-//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-rulesets.html)
+//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html)
 //
 // Related operations
 //
@@ -9803,13 +9808,13 @@ func (c *GameLift) StartMatchBackfillRequest(input *StartMatchBackfillInput) (re
 // game session's connection information, and the GameSession object is updated
 // to include matchmaker data on the new players. For more detail on how match
 // backfill requests are processed, see How Amazon GameLift FlexMatch Works
-// (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-match.html).
+// (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html).
 //
 // Learn more
 //
-//  Backfill Existing Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-backfill.html)
+//  Backfill Existing Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html)
 //
-//  How GameLift FlexMatch Works (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-match.html)
+//  How GameLift FlexMatch Works (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html)
 //
 // Related operations
 //
@@ -9914,61 +9919,35 @@ func (c *GameLift) StartMatchmakingRequest(input *StartMatchmakingInput) (req *r
 // StartMatchmaking API operation for Amazon GameLift.
 //
 // Uses FlexMatch to create a game match for a group of players based on custom
-// matchmaking rules, and starts a new game for the matched players. Each matchmaking
-// request specifies the type of match to build (team configuration, rules for
-// an acceptable match, etc.). The request also specifies the players to find
-// a match for and where to host the new game session for optimal performance.
-// A matchmaking request might start with a single player or a group of players
-// who want to play together. FlexMatch finds additional players as needed to
-// fill the match. Match type, rules, and the queue used to place a new game
-// session are defined in a MatchmakingConfiguration.
+// matchmaking rules. If you're also using GameLift hosting, a new game session
+// is started for the matched players. Each matchmaking request identifies one
+// or more players to find a match for, and specifies the type of match to build,
+// including the team configuration and the rules for an acceptable match. When
+// a matchmaking request identifies a group of players who want to play together,
+// FlexMatch finds additional players to fill the match. Match type, rules,
+// and other features are defined in a MatchmakingConfiguration.
 //
 // To start matchmaking, provide a unique ticket ID, specify a matchmaking configuration,
-// and include the players to be matched. You must also include a set of player
-// attributes relevant for the matchmaking configuration. If successful, a matchmaking
-// ticket is returned with status set to QUEUED.
+// and include the players to be matched. For each player, you must also include
+// the player attribute values that are required by the matchmaking configuration
+// (in the rule set). If successful, a matchmaking ticket is returned with status
+// set to QUEUED.
 //
-// Track the status of the ticket to respond as needed and acquire game session
-// connection information for successfully completed matches. Ticket status
-// updates are tracked using event notification through Amazon Simple Notification
-// Service (SNS), which is defined in the matchmaking configuration.
-//
-// Processing a matchmaking request -- FlexMatch handles a matchmaking request
-// as follows:
-//
-// Your client code submits a StartMatchmaking request for one or more players
-// and tracks the status of the request ticket.
-//
-// FlexMatch uses this ticket and others in process to build an acceptable match.
-// When a potential match is identified, all tickets in the proposed match are
-// advanced to the next status.
-//
-// If the match requires player acceptance (set in the matchmaking configuration),
-// the tickets move into status REQUIRES_ACCEPTANCE. This status triggers your
-// client code to solicit acceptance from all players in every ticket involved
-// in the match, and then call AcceptMatch for each player. If any player rejects
-// or fails to accept the match before a specified timeout, the proposed match
-// is dropped (see AcceptMatch for more details).
-//
-// Once a match is proposed and accepted, the matchmaking tickets move into
-// status PLACING. FlexMatch locates resources for a new game session using
-// the game session queue (set in the matchmaking configuration) and creates
-// the game session based on the match data.
-//
-// When the match is successfully placed, the matchmaking tickets move into
-// COMPLETED status. Connection information (including game session endpoint
-// and player session) is added to the matchmaking tickets. Matched players
-// can use the connection information to join the game.
+// Track the status of the ticket to respond as needed. If you're also using
+// GameLift hosting, a successfully completed ticket contains game session connection
+// information. Ticket status updates are tracked using event notification through
+// Amazon Simple Notification Service (SNS), which is defined in the matchmaking
+// configuration.
 //
 // Learn more
 //
-//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-client.html)
+//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html)
 //
-//  Set Up FlexMatch Event Notification (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-notification.html)
+//  Set Up FlexMatch Event Notification (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html)
 //
-//  FlexMatch Integration Roadmap (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-tasks.html)
+//  FlexMatch Integration Roadmap (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-tasks.html)
 //
-//  How GameLift FlexMatch Works (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-match.html)
+//  How GameLift FlexMatch Works (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/gamelift-match.html)
 //
 // Related operations
 //
@@ -10315,7 +10294,7 @@ func (c *GameLift) StopMatchmakingRequest(input *StopMatchmakingInput) (req *req
 //
 // Learn more
 //
-//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-client.html)
+//  Add FlexMatch to a Game Client (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-client.html)
 //
 // Related operations
 //
@@ -11930,7 +11909,7 @@ func (c *GameLift) UpdateMatchmakingConfigurationRequest(input *UpdateMatchmakin
 //
 // Learn more
 //
-//  Design a FlexMatch Matchmaker (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-configuration.html)
+//  Design a FlexMatch Matchmaker (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-configuration.html)
 //
 // Related operations
 //
@@ -12297,7 +12276,7 @@ func (c *GameLift) ValidateMatchmakingRuleSetRequest(input *ValidateMatchmakingR
 //
 // Learn more
 //
-//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-rulesets.html)
+//    * Build a Rule Set (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html)
 //
 // Related operations
 //
@@ -13106,12 +13085,14 @@ type CreateBuildInput struct {
 	// cannot be changed later.
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
 
-	// Information indicating where your game build files are stored. Use this parameter
-	// only when creating a build with files stored in an S3 bucket that you own.
-	// The storage location must specify an S3 bucket name and key. The location
-	// must also specify a role ARN that you set up to allow Amazon GameLift to
-	// access your S3 bucket. The S3 bucket and your new build must be in the same
-	// Region.
+	// The location where your game build files are stored. Use this parameter only
+	// when creating a build using files that are stored in an S3 bucket that you
+	// own. Identify an S3 bucket name and key, which must in the same Region where
+	// you're creating a build. This parameter must also specify the ARN for an
+	// IAM role that you've set up to give Amazon GameLift access your S3 bucket.
+	// To call this operation with a storage location, you must have IAM PassRole
+	// permission. For more details on IAM roles and PassRole permissions, see Set
+	// up a role for GameLift access (https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html).
 	StorageLocation *S3Location `type:"structure"`
 
 	// A list of labels to assign to the new build resource. Tags are developer-defined
@@ -13302,12 +13283,11 @@ type CreateFleetInput struct {
 	FleetType *string `type:"string" enum:"FleetType"`
 
 	// A unique identifier for an AWS IAM role that manages access to your AWS services.
-	// With an instance role ARN set, any application that runs on an instance in
-	// this fleet can assume the role, including install scripts, server processes,
-	// and daemons (background processes). Create a role or look up a role's ARN
-	// from the IAM dashboard (https://console.aws.amazon.com/iam/) in the AWS Management
-	// Console. Learn more about using on-box credentials for your game servers
-	// at Access external resources from a game server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// Fleets with an instance role ARN allow applications that are running on the
+	// fleet's instances to assume the role. Learn more about using on-box credentials
+	// for your game servers at Access external resources from a game server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
+	// To call this operation with instance role ARN, you must have IAM PassRole
+	// permissions. See IAM policy examples for GameLift (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-iam-policy-examples.html).
 	InstanceRoleArn *string `min:"1" type:"string"`
 
 	// This parameter is no longer used. Instead, to specify where Amazon GameLift
@@ -13728,7 +13708,7 @@ type CreateGameServerGroupInput struct {
 	// up. This property cannot be updated after the game server group is created,
 	// and the corresponding Auto Scaling group will always use the property value
 	// that is set with this request, even if the Auto Scaling group is updated
-	// directly
+	// directly.
 	VpcSubnets []*string `min:"1" type:"list"`
 }
 
@@ -14239,19 +14219,23 @@ type CreateMatchmakingConfigurationInput struct {
 
 	// A flag that determines whether a match that was created with this configuration
 	// must be accepted by the matched players. To require acceptance, set to TRUE.
+	// With this option enabled, matchmaking tickets use the status REQUIRES_ACCEPTANCE
+	// to indicate when a completed potential match is waiting for player acceptance.
 	//
 	// AcceptanceRequired is a required field
 	AcceptanceRequired *bool `type:"boolean" required:"true"`
 
 	// The length of time (in seconds) to wait for players to accept a proposed
-	// match. If any player rejects the match or fails to accept before the timeout,
-	// the ticket continues to look for an acceptable match.
+	// match, if acceptance is required. If any player rejects the match or fails
+	// to accept before the timeout, the tickets are returned to the ticket pool
+	// and continue to be evaluated for an acceptable match.
 	AcceptanceTimeoutSeconds *int64 `min:"1" type:"integer"`
 
 	// The number of player slots in a match to keep open for future players. For
 	// example, assume that the configuration's rule set specifies a match for a
 	// single 12-person team. If the additional player count is set to 2, only 10
-	// players are initially selected for the match.
+	// players are initially selected for the match. This parameter is not used
+	// if FlexMatchMode is set to STANDALONE.
 	AdditionalPlayerCount *int64 `type:"integer"`
 
 	// The method used to backfill game sessions that are created with this matchmaking
@@ -14259,7 +14243,8 @@ type CreateMatchmakingConfigurationInput struct {
 	// or does not use the match backfill feature. Specify AUTOMATIC to have GameLift
 	// create a StartMatchBackfill request whenever a game session has one or more
 	// open slots. Learn more about manual and automatic backfill in Backfill Existing
-	// Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-backfill.html).
+	// Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html).
+	// Automatic backfill is not available when FlexMatchMode is set to STANDALONE.
 	BackfillMode *string `type:"string" enum:"BackfillMode"`
 
 	// Information to be added to all events related to this matchmaking configuration.
@@ -14268,28 +14253,40 @@ type CreateMatchmakingConfigurationInput struct {
 	// A human-readable description of the matchmaking configuration.
 	Description *string `min:"1" type:"string"`
 
+	// Indicates whether this matchmaking configuration is being used with GameLift
+	// hosting or as a standalone matchmaking solution.
+	//
+	//    * STANDALONE - FlexMatch forms matches and returns match information,
+	//    including players and team assignments, in a MatchmakingSucceeded (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-events.html#match-events-matchmakingsucceeded)
+	//    event.
+	//
+	//    * WITH_QUEUE - FlexMatch forms matches and uses the specified GameLift
+	//    queue to start a game session for the match.
+	FlexMatchMode *string `type:"string" enum:"FlexMatchMode"`
+
 	// A set of custom properties for a game session, formatted as key-value pairs.
 	// These properties are passed to a game server process in the GameSession object
 	// with a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	// This information is added to the new GameSession object that is created for
-	// a successful match.
+	// a successful match. This parameter is not used if FlexMatchMode is set to
+	// STANDALONE.
 	GameProperties []*GameProperty `type:"list"`
 
 	// A set of custom game session properties, formatted as a single string value.
 	// This data is passed to a game server process in the GameSession object with
 	// a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	// This information is added to the new GameSession object that is created for
-	// a successful match.
+	// a successful match. This parameter is not used if FlexMatchMode is set to
+	// STANDALONE.
 	GameSessionData *string `min:"1" type:"string"`
 
 	// Amazon Resource Name (ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html))
 	// that is assigned to a GameLift game session queue resource and uniquely identifies
-	// it. ARNs are unique across all Regions. These queues are used when placing
-	// game sessions for matches that are created with this matchmaking configuration.
-	// Queues can be located in any Region.
-	//
-	// GameSessionQueueArns is a required field
-	GameSessionQueueArns []*string `type:"list" required:"true"`
+	// it. ARNs are unique across all Regions. Queues can be located in any Region.
+	// Queues are used to start new GameLift-hosted game sessions for matches that
+	// are created with this matchmaking configuration. If FlexMatchMode is set
+	// to STANDALONE, do not set this parameter.
+	GameSessionQueueArns []*string `type:"list"`
 
 	// A unique identifier for a matchmaking configuration. This name is used to
 	// identify the configuration associated with a matchmaking request or ticket.
@@ -14349,9 +14346,6 @@ func (s *CreateMatchmakingConfigurationInput) Validate() error {
 	}
 	if s.GameSessionData != nil && len(*s.GameSessionData) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GameSessionData", 1))
-	}
-	if s.GameSessionQueueArns == nil {
-		invalidParams.Add(request.NewErrParamRequired("GameSessionQueueArns"))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -14428,6 +14422,12 @@ func (s *CreateMatchmakingConfigurationInput) SetCustomEventData(v string) *Crea
 // SetDescription sets the Description field's value.
 func (s *CreateMatchmakingConfigurationInput) SetDescription(v string) *CreateMatchmakingConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetFlexMatchMode sets the FlexMatchMode field's value.
+func (s *CreateMatchmakingConfigurationInput) SetFlexMatchMode(v string) *CreateMatchmakingConfigurationInput {
+	s.FlexMatchMode = &v
 	return s
 }
 
@@ -14812,14 +14812,15 @@ type CreateScriptInput struct {
 	// need to be unique. You can use UpdateScript to change this value later.
 	Name *string `min:"1" type:"string"`
 
-	// The location of the Amazon S3 bucket where a zipped file containing your
-	// Realtime scripts is stored. The storage location must specify the Amazon
-	// S3 bucket name, the zip file name (the "key"), and a role ARN that allows
-	// Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must
-	// be in the same Region where you want to create a new script. By default,
-	// Amazon GameLift uploads the latest version of the zip file; if you have S3
-	// object versioning turned on, you can use the ObjectVersion parameter to specify
-	// an earlier version.
+	// The Amazon S3 location of your Realtime scripts. The storage location must
+	// specify the S3 bucket name, the zip file name (the "key"), and an IAM role
+	// ARN that allows Amazon GameLift to access the S3 storage location. The S3
+	// bucket must be in the same Region where you are creating a new script. By
+	// default, Amazon GameLift uploads the latest version of the zip file; if you
+	// have S3 object versioning turned on, you can use the ObjectVersion parameter
+	// to specify an earlier version. To call this operation with a storage location,
+	// you must have IAM PassRole permission. For more details on IAM roles and
+	// PassRole permissions, see Set up a role for GameLift access (https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html).
 	StorageLocation *S3Location `type:"structure"`
 
 	// A list of labels to assign to the new script resource. Tags are developer-defined
@@ -15297,8 +15298,8 @@ type DeleteGameServerGroupInput struct {
 
 	// The type of delete to perform. Options include the following:
 	//
-	//    * SAFE_DELETE – Terminates the game server group and EC2 Auto Scaling
-	//    group only when it has no game servers that are in UTILIZED status.
+	//    * SAFE_DELETE – (default) Terminates the game server group and EC2 Auto
+	//    Scaling group only when it has no game servers that are in UTILIZED status.
 	//
 	//    * FORCE_DELETE – Terminates the game server group, including all active
 	//    game servers regardless of their utilization status, and the EC2 Auto
@@ -18576,12 +18577,6 @@ type FleetAttributes struct {
 	FleetType *string `type:"string" enum:"FleetType"`
 
 	// A unique identifier for an AWS IAM role that manages access to your AWS services.
-	// With an instance role ARN set, any application that runs on an instance in
-	// this fleet can assume the role, including install scripts, server processes,
-	// and daemons (background processes). Create a role or look up a role's ARN
-	// from the IAM dashboard (https://console.aws.amazon.com/iam/) in the AWS Management
-	// Console. Learn more about using on-box credentials for your game servers
-	// at Access external resources from a game server (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-resources.html).
 	InstanceRoleArn *string `min:"1" type:"string"`
 
 	// EC2 instance type indicating the computing resources of each instance in
@@ -19683,7 +19678,7 @@ type GameSession struct {
 	// session. It is in JSON syntax, formatted as a string. In addition the matchmaking
 	// configuration used, it contains data on all players assigned to the match,
 	// including player attributes and team assignments. For more details on matchmaker
-	// data, see Match Data (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-server.html#match-server-data).
+	// data, see Match Data (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-server.html#match-server-data).
 	// Matchmaker data is useful when requesting match backfills, and is updated
 	// whenever new players are added during a successful backfill (see StartMatchBackfill).
 	MatchmakerData *string `min:"1" type:"string"`
@@ -19835,12 +19830,12 @@ func (s *GameSession) SetTerminationTime(v time.Time) *GameSession {
 	return s
 }
 
-// Connection information for the new game session that is created with matchmaking.
-// (with StartMatchmaking). Once a match is set, the FlexMatch engine places
-// the match and creates a new game session for it. This information, including
-// the game session endpoint and player sessions for each player in the original
-// matchmaking request, is added to the MatchmakingTicket, which can be retrieved
-// by calling DescribeMatchmaking.
+// Connection information for a new game session that is created in response
+// to a StartMatchmaking request. Once a match is made, the FlexMatch engine
+// creates a new game session for it. This information, including the game session
+// endpoint and player sessions for each player in the original matchmaking
+// request, is added to the MatchmakingTicket, which can be retrieved by calling
+// DescribeMatchmaking.
 type GameSessionConnectionInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -20083,7 +20078,7 @@ type GameSessionPlacement struct {
 	// formatted as a string. It identifies the matchmaking configuration used to
 	// create the match, and contains data on all players assigned to the match,
 	// including player attributes and team assignments. For more details on matchmaker
-	// data, see Match Data (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-server.html#match-server-data).
+	// data, see Match Data (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-server.html#match-server-data).
 	MatchmakerData *string `min:"1" type:"string"`
 
 	// The maximum number of players that can be connected simultaneously to the
@@ -22068,24 +22063,29 @@ type MatchmakingConfiguration struct {
 
 	// A flag that indicates whether a match that was created with this configuration
 	// must be accepted by the matched players. To require acceptance, set to TRUE.
+	// When this option is enabled, matchmaking tickets use the status REQUIRES_ACCEPTANCE
+	// to indicate when a completed potential match is waiting for player acceptance.
 	AcceptanceRequired *bool `type:"boolean"`
 
 	// The length of time (in seconds) to wait for players to accept a proposed
-	// match. If any player rejects the match or fails to accept before the timeout,
-	// the ticket continues to look for an acceptable match.
+	// match, if acceptance is required. If any player rejects the match or fails
+	// to accept before the timeout, the tickets are returned to the ticket pool
+	// and continue to be evaluated for an acceptable match.
 	AcceptanceTimeoutSeconds *int64 `min:"1" type:"integer"`
 
 	// The number of player slots in a match to keep open for future players. For
 	// example, assume that the configuration's rule set specifies a match for a
 	// single 12-person team. If the additional player count is set to 2, only 10
-	// players are initially selected for the match.
+	// players are initially selected for the match. This parameter is not used
+	// when FlexMatchMode is set to STANDALONE.
 	AdditionalPlayerCount *int64 `type:"integer"`
 
 	// The method used to backfill game sessions created with this matchmaking configuration.
 	// MANUAL indicates that the game makes backfill requests or does not use the
 	// match backfill feature. AUTOMATIC indicates that GameLift creates StartMatchBackfill
 	// requests whenever a game session has one or more open slots. Learn more about
-	// manual and automatic backfill in Backfill Existing Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-backfill.html).
+	// manual and automatic backfill in Backfill Existing Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html).
+	// Automatic backfill is not available when FlexMatchMode is set to STANDALONE.
 	BackfillMode *string `type:"string" enum:"BackfillMode"`
 
 	// Amazon Resource Name (ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html))
@@ -22104,25 +22104,39 @@ type MatchmakingConfiguration struct {
 	// A descriptive label that is associated with matchmaking configuration.
 	Description *string `min:"1" type:"string"`
 
+	// Indicates whether this matchmaking configuration is being used with GameLift
+	// hosting or as a standalone matchmaking solution.
+	//
+	//    * STANDALONE - FlexMatch forms matches and returns match information,
+	//    including players and team assignments, in a MatchmakingSucceeded (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-events.html#match-events-matchmakingsucceeded)
+	//    event.
+	//
+	//    * WITH_QUEUE - FlexMatch forms matches and uses the specified GameLift
+	//    queue to start a game session for the match.
+	FlexMatchMode *string `type:"string" enum:"FlexMatchMode"`
+
 	// A set of custom properties for a game session, formatted as key-value pairs.
 	// These properties are passed to a game server process in the GameSession object
 	// with a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	// This information is added to the new GameSession object that is created for
-	// a successful match.
+	// a successful match. This parameter is not used when FlexMatchMode is set
+	// to STANDALONE.
 	GameProperties []*GameProperty `type:"list"`
 
 	// A set of custom game session properties, formatted as a single string value.
 	// This data is passed to a game server process in the GameSession object with
 	// a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	// This information is added to the new GameSession object that is created for
-	// a successful match.
+	// a successful match. This parameter is not used when FlexMatchMode is set
+	// to STANDALONE.
 	GameSessionData *string `min:"1" type:"string"`
 
 	// Amazon Resource Name (ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html))
 	// that is assigned to a GameLift game session queue resource and uniquely identifies
-	// it. ARNs are unique across all Regions. GameLift uses the listed queues when
-	// placing game sessions for matches that are created with this matchmaking
-	// configuration. Queues can be located in any Region.
+	// it. ARNs are unique across all Regions. Queues can be located in any Region.
+	// Queues are used to start new GameLift-hosted game sessions for matches that
+	// are created with this matchmaking configuration. Thais property is not set
+	// when FlexMatchMode is set to STANDALONE.
 	GameSessionQueueArns []*string `type:"list"`
 
 	// A unique identifier for a matchmaking configuration. This name is used to
@@ -22206,6 +22220,12 @@ func (s *MatchmakingConfiguration) SetDescription(v string) *MatchmakingConfigur
 	return s
 }
 
+// SetFlexMatchMode sets the FlexMatchMode field's value.
+func (s *MatchmakingConfiguration) SetFlexMatchMode(v string) *MatchmakingConfiguration {
+	s.FlexMatchMode = &v
+	return s
+}
+
 // SetGameProperties sets the GameProperties field's value.
 func (s *MatchmakingConfiguration) SetGameProperties(v []*GameProperty) *MatchmakingConfiguration {
 	s.GameProperties = v
@@ -22261,7 +22281,7 @@ func (s *MatchmakingConfiguration) SetRuleSetName(v string) *MatchmakingConfigur
 //
 // A rule set may define the following elements for a match. For detailed information
 // and examples showing how to construct a rule set, see Build a FlexMatch Rule
-// Set (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-rulesets.html).
+// Set (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-rulesets.html).
 //
 //    * Teams -- Required. A rule set must define one or multiple teams for
 //    the match and set minimum and maximum team sizes. For example, a rule
@@ -22372,7 +22392,8 @@ type MatchmakingTicket struct {
 
 	// Identifier and connection information of the game session created for the
 	// match. This information is added to the ticket only after the matchmaking
-	// request has been successfully completed.
+	// request has been successfully completed. This parameter is not set when FlexMatch
+	// is being used without GameLift hosting.
 	GameSessionConnectionInfo *GameSessionConnectionInfo `type:"structure"`
 
 	// A set of Player objects, each representing a player to find matches for.
@@ -24758,9 +24779,7 @@ type StartMatchBackfillInput struct {
 	// Amazon Resource Name (ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html))
 	// that is assigned to a game session and uniquely identifies it. This is the
 	// same as the game session ID.
-	//
-	// GameSessionArn is a required field
-	GameSessionArn *string `min:"1" type:"string" required:"true"`
+	GameSessionArn *string `min:"1" type:"string"`
 
 	// Match information on all players that are currently assigned to the game
 	// session. This information is used by the matchmaker to find new players and
@@ -24769,7 +24788,7 @@ type StartMatchBackfillInput struct {
 	//    * PlayerID, PlayerAttributes, Team -\\- This information is maintained
 	//    in the GameSession object, MatchmakerData property, for all players who
 	//    are currently assigned to the game session. The matchmaker data is in
-	//    JSON syntax, formatted as a string. For more details, see Match Data (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-server.html#match-server-data).
+	//    JSON syntax, formatted as a string. For more details, see Match Data (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-server.html#match-server-data).
 	//
 	//    * LatencyInMs -\\- If the matchmaker uses player latency, include a latency
 	//    value, in milliseconds, for the Region that the game session is currently
@@ -24802,9 +24821,6 @@ func (s *StartMatchBackfillInput) Validate() error {
 	}
 	if s.ConfigurationName != nil && len(*s.ConfigurationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConfigurationName", 1))
-	}
-	if s.GameSessionArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("GameSessionArn"))
 	}
 	if s.GameSessionArn != nil && len(*s.GameSessionArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GameSessionArn", 1))
@@ -26845,17 +26861,21 @@ type UpdateMatchmakingConfigurationInput struct {
 
 	// A flag that indicates whether a match that was created with this configuration
 	// must be accepted by the matched players. To require acceptance, set to TRUE.
+	// With this option enabled, matchmaking tickets use the status REQUIRES_ACCEPTANCE
+	// to indicate when a completed potential match is waiting for player acceptance.
 	AcceptanceRequired *bool `type:"boolean"`
 
 	// The length of time (in seconds) to wait for players to accept a proposed
-	// match. If any player rejects the match or fails to accept before the timeout,
-	// the ticket continues to look for an acceptable match.
+	// match, if acceptance is required. If any player rejects the match or fails
+	// to accept before the timeout, the tickets are returned to the ticket pool
+	// and continue to be evaluated for an acceptable match.
 	AcceptanceTimeoutSeconds *int64 `min:"1" type:"integer"`
 
 	// The number of player slots in a match to keep open for future players. For
 	// example, assume that the configuration's rule set specifies a match for a
 	// single 12-person team. If the additional player count is set to 2, only 10
-	// players are initially selected for the match.
+	// players are initially selected for the match. This parameter is not used
+	// if FlexMatchMode is set to STANDALONE.
 	AdditionalPlayerCount *int64 `type:"integer"`
 
 	// The method that is used to backfill game sessions created with this matchmaking
@@ -26863,7 +26883,8 @@ type UpdateMatchmakingConfigurationInput struct {
 	// or does not use the match backfill feature. Specify AUTOMATIC to have GameLift
 	// create a StartMatchBackfill request whenever a game session has one or more
 	// open slots. Learn more about manual and automatic backfill in Backfill Existing
-	// Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-backfill.html).
+	// Games with FlexMatch (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-backfill.html).
+	// Automatic backfill is not available when FlexMatchMode is set to STANDALONE.
 	BackfillMode *string `type:"string" enum:"BackfillMode"`
 
 	// Information to add to all events related to the matchmaking configuration.
@@ -26872,25 +26893,39 @@ type UpdateMatchmakingConfigurationInput struct {
 	// A descriptive label that is associated with matchmaking configuration.
 	Description *string `min:"1" type:"string"`
 
+	// Indicates whether this matchmaking configuration is being used with GameLift
+	// hosting or as a standalone matchmaking solution.
+	//
+	//    * STANDALONE - FlexMatch forms matches and returns match information,
+	//    including players and team assignments, in a MatchmakingSucceeded (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-events.html#match-events-matchmakingsucceeded)
+	//    event.
+	//
+	//    * WITH_QUEUE - FlexMatch forms matches and uses the specified GameLift
+	//    queue to start a game session for the match.
+	FlexMatchMode *string `type:"string" enum:"FlexMatchMode"`
+
 	// A set of custom properties for a game session, formatted as key-value pairs.
 	// These properties are passed to a game server process in the GameSession object
 	// with a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	// This information is added to the new GameSession object that is created for
-	// a successful match.
+	// a successful match. This parameter is not used if FlexMatchMode is set to
+	// STANDALONE.
 	GameProperties []*GameProperty `type:"list"`
 
 	// A set of custom game session properties, formatted as a single string value.
 	// This data is passed to a game server process in the GameSession object with
 	// a request to start a new game session (see Start a Game Session (https://docs.aws.amazon.com/gamelift/latest/developerguide/gamelift-sdk-server-api.html#gamelift-sdk-server-startsession)).
 	// This information is added to the new GameSession object that is created for
-	// a successful match.
+	// a successful match. This parameter is not used if FlexMatchMode is set to
+	// STANDALONE.
 	GameSessionData *string `min:"1" type:"string"`
 
 	// Amazon Resource Name (ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html))
 	// that is assigned to a GameLift game session queue resource and uniquely identifies
-	// it. ARNs are unique across all Regions. These queues are used when placing
-	// game sessions for matches that are created with this matchmaking configuration.
-	// Queues can be located in any Region.
+	// it. ARNs are unique across all Regions. Queues can be located in any Region.
+	// Queues are used to start new GameLift-hosted game sessions for matches that
+	// are created with this matchmaking configuration. If FlexMatchMode is set
+	// to STANDALONE, do not set this parameter.
 	GameSessionQueueArns []*string `type:"list"`
 
 	// A unique identifier for a matchmaking configuration to update. You can use
@@ -26900,7 +26935,7 @@ type UpdateMatchmakingConfigurationInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// An SNS topic ARN that is set up to receive matchmaking notifications. See
-	// Setting up Notifications for Matchmaking (https://docs.aws.amazon.com/gamelift/latest/developerguide/match-notification.html)
+	// Setting up Notifications for Matchmaking (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html)
 	// for more information.
 	NotificationTarget *string `type:"string"`
 
@@ -26999,6 +27034,12 @@ func (s *UpdateMatchmakingConfigurationInput) SetCustomEventData(v string) *Upda
 // SetDescription sets the Description field's value.
 func (s *UpdateMatchmakingConfigurationInput) SetDescription(v string) *UpdateMatchmakingConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetFlexMatchMode sets the FlexMatchMode field's value.
+func (s *UpdateMatchmakingConfigurationInput) SetFlexMatchMode(v string) *UpdateMatchmakingConfigurationInput {
+	s.FlexMatchMode = &v
 	return s
 }
 
@@ -27171,14 +27212,15 @@ type UpdateScriptInput struct {
 	// ScriptId is a required field
 	ScriptId *string `type:"string" required:"true"`
 
-	// The location of the Amazon S3 bucket where a zipped file containing your
-	// Realtime scripts is stored. The storage location must specify the Amazon
-	// S3 bucket name, the zip file name (the "key"), and a role ARN that allows
-	// Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must
-	// be in the same Region where you want to create a new script. By default,
+	// The Amazon S3 location of your Realtime scripts. The storage location must
+	// specify the S3 bucket name, the zip file name (the "key"), and an IAM role
+	// ARN that allows Amazon GameLift to access the S3 storage location. The S3
+	// bucket must be in the same Region as the script you're updating. By default,
 	// Amazon GameLift uploads the latest version of the zip file; if you have S3
 	// object versioning turned on, you can use the ObjectVersion parameter to specify
-	// an earlier version.
+	// an earlier version. To call this operation with a storage location, you must
+	// have IAM PassRole permission. For more details on IAM roles and PassRole
+	// permissions, see Set up a role for GameLift access (https://docs.aws.amazon.com/gamelift/latest/developerguide/setting-up-role.html).
 	StorageLocation *S3Location `type:"structure"`
 
 	// The version that is associated with a build or script. Version strings do
@@ -27757,6 +27799,30 @@ const (
 	// EC2InstanceTypeC524xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeC524xlarge = "c5.24xlarge"
 
+	// EC2InstanceTypeC5aLarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5aLarge = "c5a.large"
+
+	// EC2InstanceTypeC5aXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5aXlarge = "c5a.xlarge"
+
+	// EC2InstanceTypeC5a2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5a2xlarge = "c5a.2xlarge"
+
+	// EC2InstanceTypeC5a4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5a4xlarge = "c5a.4xlarge"
+
+	// EC2InstanceTypeC5a8xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5a8xlarge = "c5a.8xlarge"
+
+	// EC2InstanceTypeC5a12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5a12xlarge = "c5a.12xlarge"
+
+	// EC2InstanceTypeC5a16xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5a16xlarge = "c5a.16xlarge"
+
+	// EC2InstanceTypeC5a24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeC5a24xlarge = "c5a.24xlarge"
+
 	// EC2InstanceTypeR3Large is a EC2InstanceType enum value
 	EC2InstanceTypeR3Large = "r3.large"
 
@@ -27814,6 +27880,30 @@ const (
 	// EC2InstanceTypeR524xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeR524xlarge = "r5.24xlarge"
 
+	// EC2InstanceTypeR5aLarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5aLarge = "r5a.large"
+
+	// EC2InstanceTypeR5aXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5aXlarge = "r5a.xlarge"
+
+	// EC2InstanceTypeR5a2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5a2xlarge = "r5a.2xlarge"
+
+	// EC2InstanceTypeR5a4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5a4xlarge = "r5a.4xlarge"
+
+	// EC2InstanceTypeR5a8xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5a8xlarge = "r5a.8xlarge"
+
+	// EC2InstanceTypeR5a12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5a12xlarge = "r5a.12xlarge"
+
+	// EC2InstanceTypeR5a16xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5a16xlarge = "r5a.16xlarge"
+
+	// EC2InstanceTypeR5a24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeR5a24xlarge = "r5a.24xlarge"
+
 	// EC2InstanceTypeM3Medium is a EC2InstanceType enum value
 	EC2InstanceTypeM3Medium = "m3.medium"
 
@@ -27864,6 +27954,30 @@ const (
 
 	// EC2InstanceTypeM524xlarge is a EC2InstanceType enum value
 	EC2InstanceTypeM524xlarge = "m5.24xlarge"
+
+	// EC2InstanceTypeM5aLarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5aLarge = "m5a.large"
+
+	// EC2InstanceTypeM5aXlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5aXlarge = "m5a.xlarge"
+
+	// EC2InstanceTypeM5a2xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5a2xlarge = "m5a.2xlarge"
+
+	// EC2InstanceTypeM5a4xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5a4xlarge = "m5a.4xlarge"
+
+	// EC2InstanceTypeM5a8xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5a8xlarge = "m5a.8xlarge"
+
+	// EC2InstanceTypeM5a12xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5a12xlarge = "m5a.12xlarge"
+
+	// EC2InstanceTypeM5a16xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5a16xlarge = "m5a.16xlarge"
+
+	// EC2InstanceTypeM5a24xlarge is a EC2InstanceType enum value
+	EC2InstanceTypeM5a24xlarge = "m5a.24xlarge"
 )
 
 // EC2InstanceType_Values returns all elements of the EC2InstanceType enum
@@ -27891,6 +28005,14 @@ func EC2InstanceType_Values() []string {
 		EC2InstanceTypeC512xlarge,
 		EC2InstanceTypeC518xlarge,
 		EC2InstanceTypeC524xlarge,
+		EC2InstanceTypeC5aLarge,
+		EC2InstanceTypeC5aXlarge,
+		EC2InstanceTypeC5a2xlarge,
+		EC2InstanceTypeC5a4xlarge,
+		EC2InstanceTypeC5a8xlarge,
+		EC2InstanceTypeC5a12xlarge,
+		EC2InstanceTypeC5a16xlarge,
+		EC2InstanceTypeC5a24xlarge,
 		EC2InstanceTypeR3Large,
 		EC2InstanceTypeR3Xlarge,
 		EC2InstanceTypeR32xlarge,
@@ -27910,6 +28032,14 @@ func EC2InstanceType_Values() []string {
 		EC2InstanceTypeR512xlarge,
 		EC2InstanceTypeR516xlarge,
 		EC2InstanceTypeR524xlarge,
+		EC2InstanceTypeR5aLarge,
+		EC2InstanceTypeR5aXlarge,
+		EC2InstanceTypeR5a2xlarge,
+		EC2InstanceTypeR5a4xlarge,
+		EC2InstanceTypeR5a8xlarge,
+		EC2InstanceTypeR5a12xlarge,
+		EC2InstanceTypeR5a16xlarge,
+		EC2InstanceTypeR5a24xlarge,
 		EC2InstanceTypeM3Medium,
 		EC2InstanceTypeM3Large,
 		EC2InstanceTypeM3Xlarge,
@@ -27927,6 +28057,14 @@ func EC2InstanceType_Values() []string {
 		EC2InstanceTypeM512xlarge,
 		EC2InstanceTypeM516xlarge,
 		EC2InstanceTypeM524xlarge,
+		EC2InstanceTypeM5aLarge,
+		EC2InstanceTypeM5aXlarge,
+		EC2InstanceTypeM5a2xlarge,
+		EC2InstanceTypeM5a4xlarge,
+		EC2InstanceTypeM5a8xlarge,
+		EC2InstanceTypeM5a12xlarge,
+		EC2InstanceTypeM5a16xlarge,
+		EC2InstanceTypeM5a24xlarge,
 	}
 }
 
@@ -28139,6 +28277,22 @@ func FleetType_Values() []string {
 	return []string{
 		FleetTypeOnDemand,
 		FleetTypeSpot,
+	}
+}
+
+const (
+	// FlexMatchModeStandalone is a FlexMatchMode enum value
+	FlexMatchModeStandalone = "STANDALONE"
+
+	// FlexMatchModeWithQueue is a FlexMatchMode enum value
+	FlexMatchModeWithQueue = "WITH_QUEUE"
+)
+
+// FlexMatchMode_Values returns all elements of the FlexMatchMode enum
+func FlexMatchMode_Values() []string {
+	return []string{
+		FlexMatchModeStandalone,
+		FlexMatchModeWithQueue,
 	}
 }
 

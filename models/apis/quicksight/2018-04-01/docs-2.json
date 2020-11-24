@@ -148,6 +148,12 @@
         "DashboardPublishOptions$AdHocFilteringOption": "<p>Ad hoc (one-time) filtering option.</p>"
       }
     },
+    "AdditionalDashboardIdList": {
+      "base": null,
+      "refs": {
+        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard ids that you want to add to a session that includes anonymous authorizations. <code>IdentityType</code> must be set to ANONYMOUS for this to work, because other other identity types authenticate as QuickSight users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards. </p>"
+      }
+    },
     "AliasName": {
       "base": null,
       "refs": {
@@ -509,7 +515,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>Indicates if the dataset has column level permission configured. </p>",
+        "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>Indicates if the dataset has column level permission configured.</p>",
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
         "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the the subscriber reopens the same dashboard URL. The state is stored in QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
@@ -1568,6 +1574,12 @@
         "AccountSettings$Edition": "<p>The edition of QuickSight that you're currently subscribed to: Enterprise edition or Standard edition.</p>"
       }
     },
+    "EmbeddingIdentityType": {
+      "base": null,
+      "refs": {
+        "GetDashboardEmbedUrlRequest$IdentityType": "<p>The authentication method that the user uses to sign in.</p>"
+      }
+    },
     "EmbeddingUrl": {
       "base": null,
       "refs": {
@@ -1647,12 +1659,12 @@
       }
     },
     "GetDashboardEmbedUrlRequest": {
-      "base": null,
+      "base": "<p>Parameter input for the <code>GetDashboardEmbedUrl</code> operation.</p>",
       "refs": {
       }
     },
     "GetDashboardEmbedUrlResponse": {
-      "base": null,
+      "base": "<p>Output returned from the <code>GetDashboardEmbedUrl</code> operation.</p>",
       "refs": {
       }
     },
@@ -1836,7 +1848,6 @@
     "IdentityType": {
       "base": null,
       "refs": {
-        "GetDashboardEmbedUrlRequest$IdentityType": "<p>The authentication method that the user uses to sign in.</p>",
         "RegisterUserRequest$IdentityType": "<p>Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts two values:</p> <ul> <li> <p> <code>IAM</code>: A user whose identity maps to an existing IAM user or role. </p> </li> <li> <p> <code>QUICKSIGHT</code>: A user whose identity is owned and managed internally by Amazon QuickSight. </p> </li> </ul>",
         "User$IdentityType": "<p>The type of identity authentication used by the user.</p>"
       }
@@ -2297,6 +2308,7 @@
         "DescribeIAMPolicyAssignmentRequest$Namespace": "<p>The namespace that contains the assignment.</p>",
         "DescribeNamespaceRequest$Namespace": "<p>The namespace that you want to describe.</p>",
         "DescribeUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
+        "GetDashboardEmbedUrlRequest$Namespace": "<p>The QuickSight namespace that contains the dashboard IDs in this request. If you're not using a custom namespace, set this to \"<code>default</code>\".</p>",
         "ListGroupMembershipsRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "ListGroupsRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "ListIAMPolicyAssignmentsForUserRequest$Namespace": "<p>The namespace of the assignment.</p>",
@@ -2687,6 +2699,7 @@
     "RestrictiveResourceId": {
       "base": null,
       "refs": {
+        "AdditionalDashboardIdList$member": null,
         "Analysis$AnalysisId": "<p>The ID of the analysis.</p>",
         "AnalysisSummary$AnalysisId": "<p>The ID of the analysis. This ID displays in the URL.</p>",
         "CreateAnalysisRequest$AnalysisId": "<p>The ID for the analysis that you're creating. This ID displays in the URL of the analysis.</p>",
@@ -3207,6 +3220,8 @@
         "TagResourceResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "ThrottlingException$Message": null,
         "ThrottlingException$RequestId": "<p>The AWS request ID for this request.</p>",
+        "UnsupportedPricingPlanException$Message": null,
+        "UnsupportedPricingPlanException$RequestId": "<p>The AWS request ID for this request.</p>",
         "UnsupportedUserEditionException$Message": null,
         "UnsupportedUserEditionException$RequestId": "<p>The AWS request ID for this request.</p>",
         "UntagResourceResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
@@ -3601,6 +3616,11 @@
       "base": "<p>The theme colors that apply to UI and to charts, excluding data colors. The colors description is a hexadecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p>",
       "refs": {
         "ThemeConfiguration$UIColorPalette": "<p>Color properties that apply to the UI and to charts, excluding the colors that apply to data. </p>"
+      }
+    },
+    "UnsupportedPricingPlanException": {
+      "base": "<p>This error indicates that you are calling an embedding operation in Amazon QuickSight without the required pricing plan on your AWS account. Before you can use anonymous embedding, a QuickSight administrator needs to add capacity pricing to QuickSight. You can do this on the <b>Manage QuickSight</b> page. </p> <p>After capacity pricing is added, you can enable anonymous embedding by using the <code> <a>GetDashboardEmbedUrl</a> </code> API operation with the <code>--identity-type ANONYMOUS</code> option.</p>",
+      "refs": {
       }
     },
     "UnsupportedUserEditionException": {

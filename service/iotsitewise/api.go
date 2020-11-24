@@ -1169,8 +1169,8 @@ func (c *IoTSiteWise) CreatePresignedPortalUrlRequest(input *CreatePresignedPort
 // Creates a pre-signed URL to a portal. Use this operation to create URLs to
 // portals that use AWS Identity and Access Management (IAM) to authenticate
 // users. An IAM user with access to a portal can call this API to get a URL
-// to that portal. The URL contains a session token that lets the IAM user access
-// the portal.
+// to that portal. The URL contains an authentication token that lets the IAM
+// user access the portal.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2506,6 +2506,100 @@ func (c *IoTSiteWise) DescribeDashboard(input *DescribeDashboardInput) (*Describ
 // for more information on using Contexts.
 func (c *IoTSiteWise) DescribeDashboardWithContext(ctx aws.Context, input *DescribeDashboardInput, opts ...request.Option) (*DescribeDashboardOutput, error) {
 	req, out := c.DescribeDashboardRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDefaultEncryptionConfiguration = "DescribeDefaultEncryptionConfiguration"
+
+// DescribeDefaultEncryptionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDefaultEncryptionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDefaultEncryptionConfiguration for more information on using the DescribeDefaultEncryptionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDefaultEncryptionConfigurationRequest method.
+//    req, resp := client.DescribeDefaultEncryptionConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeDefaultEncryptionConfiguration
+func (c *IoTSiteWise) DescribeDefaultEncryptionConfigurationRequest(input *DescribeDefaultEncryptionConfigurationInput) (req *request.Request, output *DescribeDefaultEncryptionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDefaultEncryptionConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/configuration/account/encryption",
+	}
+
+	if input == nil {
+		input = &DescribeDefaultEncryptionConfigurationInput{}
+	}
+
+	output = &DescribeDefaultEncryptionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDefaultEncryptionConfiguration API operation for AWS IoT SiteWise.
+//
+// Retrieves information about the default encryption configuration for the
+// AWS account in the default or specified region. For more information, see
+// Key management (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html)
+// in the AWS IoT SiteWise User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation DescribeDefaultEncryptionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   AWS IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of AWS IoT SiteWise assets that can be created per second, the
+//   allowed number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the AWS IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeDefaultEncryptionConfiguration
+func (c *IoTSiteWise) DescribeDefaultEncryptionConfiguration(input *DescribeDefaultEncryptionConfigurationInput) (*DescribeDefaultEncryptionConfigurationOutput, error) {
+	req, out := c.DescribeDefaultEncryptionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDefaultEncryptionConfigurationWithContext is the same as DescribeDefaultEncryptionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDefaultEncryptionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) DescribeDefaultEncryptionConfigurationWithContext(ctx aws.Context, input *DescribeDefaultEncryptionConfigurationInput, opts ...request.Option) (*DescribeDefaultEncryptionConfigurationOutput, error) {
+	req, out := c.DescribeDefaultEncryptionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5014,6 +5108,111 @@ func (c *IoTSiteWise) ListTagsForResource(input *ListTagsForResourceInput) (*Lis
 // for more information on using Contexts.
 func (c *IoTSiteWise) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutDefaultEncryptionConfiguration = "PutDefaultEncryptionConfiguration"
+
+// PutDefaultEncryptionConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutDefaultEncryptionConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutDefaultEncryptionConfiguration for more information on using the PutDefaultEncryptionConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutDefaultEncryptionConfigurationRequest method.
+//    req, resp := client.PutDefaultEncryptionConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/PutDefaultEncryptionConfiguration
+func (c *IoTSiteWise) PutDefaultEncryptionConfigurationRequest(input *PutDefaultEncryptionConfigurationInput) (req *request.Request, output *PutDefaultEncryptionConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutDefaultEncryptionConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configuration/account/encryption",
+	}
+
+	if input == nil {
+		input = &PutDefaultEncryptionConfigurationInput{}
+	}
+
+	output = &PutDefaultEncryptionConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutDefaultEncryptionConfiguration API operation for AWS IoT SiteWise.
+//
+// Sets the default encryption configuration for the AWS account. For more information,
+// see Key management (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html)
+// in the AWS IoT SiteWise User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation PutDefaultEncryptionConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   AWS IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of AWS IoT SiteWise assets that can be created per second, the
+//   allowed number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the AWS IoT SiteWise User Guide.
+//
+//   * LimitExceededException
+//   You've reached the limit for a resource. For example, this can occur if you're
+//   trying to associate more than the allowed number of child assets or attempting
+//   to create more than the allowed number of properties for an asset model.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the AWS IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/PutDefaultEncryptionConfiguration
+func (c *IoTSiteWise) PutDefaultEncryptionConfiguration(input *PutDefaultEncryptionConfigurationInput) (*PutDefaultEncryptionConfigurationOutput, error) {
+	req, out := c.PutDefaultEncryptionConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutDefaultEncryptionConfigurationWithContext is the same as PutDefaultEncryptionConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutDefaultEncryptionConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) PutDefaultEncryptionConfigurationWithContext(ctx aws.Context, input *PutDefaultEncryptionConfigurationInput, opts ...request.Option) (*PutDefaultEncryptionConfigurationOutput, error) {
+	req, out := c.PutDefaultEncryptionConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7902,6 +8101,69 @@ func (s *BatchPutAssetPropertyValueOutput) SetErrorEntries(v []*BatchPutAssetPro
 	return s
 }
 
+type ConfigurationErrorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true" enum:"ErrorCode"`
+
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ConfigurationErrorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationErrorDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ConfigurationErrorDetails) SetCode(v string) *ConfigurationErrorDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ConfigurationErrorDetails) SetMessage(v string) *ConfigurationErrorDetails {
+	s.Message = &v
+	return s
+}
+
+type ConfigurationStatus struct {
+	_ struct{} `type:"structure"`
+
+	Error *ConfigurationErrorDetails `locationName:"error" type:"structure"`
+
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"ConfigurationState"`
+}
+
+// String returns the string representation
+func (s ConfigurationStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationStatus) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *ConfigurationStatus) SetError(v *ConfigurationErrorDetails) *ConfigurationStatus {
+	s.Error = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ConfigurationStatus) SetState(v string) *ConfigurationStatus {
+	s.State = &v
+	return s
+}
+
 // Your request has conflicting operations. This can occur if you're trying
 // to perform more than one operation on the same resource at the same time.
 type ConflictingOperationException struct {
@@ -8951,7 +9213,7 @@ type CreatePresignedPortalUrlInput struct {
 
 	// The duration (in seconds) for which the session at the URL is valid.
 	//
-	// Default: 900 seconds (15 minutes)
+	// Default: 43,200 seconds (12 hours)
 	SessionDurationSeconds *int64 `location:"querystring" locationName:"sessionDurationSeconds" min:"900" type:"integer"`
 }
 
@@ -8999,10 +9261,10 @@ func (s *CreatePresignedPortalUrlInput) SetSessionDurationSeconds(v int64) *Crea
 type CreatePresignedPortalUrlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pre-signed URL to the portal. The URL contains the portal ID and a session
+	// The pre-signed URL to the portal. The URL contains the portal ID and an authentication
 	// token that lets you access the portal. The URL has the following format.
 	//
-	// https://<portal-id>.app.iotsitewise.aws/auth?token=<encrypted-token>
+	// https://<portal-id>.app.iotsitewise.aws/iam?token=<encrypted-token>
 	//
 	// PresignedPortalUrl is a required field
 	PresignedPortalUrl *string `locationName:"presignedPortalUrl" min:"1" type:"string" required:"true"`
@@ -10445,6 +10707,67 @@ func (s *DescribeDashboardOutput) SetDashboardName(v string) *DescribeDashboardO
 // SetProjectId sets the ProjectId field's value.
 func (s *DescribeDashboardOutput) SetProjectId(v string) *DescribeDashboardOutput {
 	s.ProjectId = &v
+	return s
+}
+
+type DescribeDefaultEncryptionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDefaultEncryptionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDefaultEncryptionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type DescribeDefaultEncryptionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the account configuration. This contains the ConfigurationState.
+	// If there's an error, it also contains the ErrorDetails.
+	//
+	// ConfigurationStatus is a required field
+	ConfigurationStatus *ConfigurationStatus `locationName:"configurationStatus" type:"structure" required:"true"`
+
+	// The type of encryption used for the encryption configuration.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
+
+	// The key ARN of the customer managed customer master key (CMK) used for AWS
+	// KMS encryption if you use KMS_BASED_ENCRYPTION.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDefaultEncryptionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDefaultEncryptionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationStatus sets the ConfigurationStatus field's value.
+func (s *DescribeDefaultEncryptionConfigurationOutput) SetConfigurationStatus(v *ConfigurationStatus) *DescribeDefaultEncryptionConfigurationOutput {
+	s.ConfigurationStatus = v
+	return s
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *DescribeDefaultEncryptionConfigurationOutput) SetEncryptionType(v string) *DescribeDefaultEncryptionConfigurationOutput {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *DescribeDefaultEncryptionConfigurationOutput) SetKmsKeyArn(v string) *DescribeDefaultEncryptionConfigurationOutput {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -14328,6 +14651,103 @@ func (s *PutAssetPropertyValueEntry) SetPropertyValues(v []*AssetPropertyValue) 
 	return s
 }
 
+type PutDefaultEncryptionConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of encryption used for the encryption configuration.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
+
+	// The Key ID of the customer managed customer master key (CMK) used for AWS
+	// KMS encryption. This is required if you use KMS_BASED_ENCRYPTION.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutDefaultEncryptionConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDefaultEncryptionConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutDefaultEncryptionConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutDefaultEncryptionConfigurationInput"}
+	if s.EncryptionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncryptionType"))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *PutDefaultEncryptionConfigurationInput) SetEncryptionType(v string) *PutDefaultEncryptionConfigurationInput {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *PutDefaultEncryptionConfigurationInput) SetKmsKeyId(v string) *PutDefaultEncryptionConfigurationInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+type PutDefaultEncryptionConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the account configuration. This contains the ConfigurationState.
+	// If there is an error, it also contains the ErrorDetails.
+	//
+	// ConfigurationStatus is a required field
+	ConfigurationStatus *ConfigurationStatus `locationName:"configurationStatus" type:"structure" required:"true"`
+
+	// The type of encryption used for the encryption configuration.
+	//
+	// EncryptionType is a required field
+	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
+
+	// The Key ARN of the AWS KMS CMK used for AWS KMS encryption if you use KMS_BASED_ENCRYPTION.
+	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutDefaultEncryptionConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDefaultEncryptionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationStatus sets the ConfigurationStatus field's value.
+func (s *PutDefaultEncryptionConfigurationOutput) SetConfigurationStatus(v *ConfigurationStatus) *PutDefaultEncryptionConfigurationOutput {
+	s.ConfigurationStatus = v
+	return s
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *PutDefaultEncryptionConfigurationOutput) SetEncryptionType(v string) *PutDefaultEncryptionConfigurationOutput {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *PutDefaultEncryptionConfigurationOutput) SetKmsKeyArn(v string) *PutDefaultEncryptionConfigurationOutput {
+	s.KmsKeyArn = &v
+	return s
+}
+
 type PutLoggingOptionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16494,6 +16914,42 @@ func CapabilitySyncStatus_Values() []string {
 		CapabilitySyncStatusInSync,
 		CapabilitySyncStatusOutOfSync,
 		CapabilitySyncStatusSyncFailed,
+	}
+}
+
+const (
+	// ConfigurationStateActive is a ConfigurationState enum value
+	ConfigurationStateActive = "ACTIVE"
+
+	// ConfigurationStateUpdateInProgress is a ConfigurationState enum value
+	ConfigurationStateUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// ConfigurationStateUpdateFailed is a ConfigurationState enum value
+	ConfigurationStateUpdateFailed = "UPDATE_FAILED"
+)
+
+// ConfigurationState_Values returns all elements of the ConfigurationState enum
+func ConfigurationState_Values() []string {
+	return []string{
+		ConfigurationStateActive,
+		ConfigurationStateUpdateInProgress,
+		ConfigurationStateUpdateFailed,
+	}
+}
+
+const (
+	// EncryptionTypeSitewiseDefaultEncryption is a EncryptionType enum value
+	EncryptionTypeSitewiseDefaultEncryption = "SITEWISE_DEFAULT_ENCRYPTION"
+
+	// EncryptionTypeKmsBasedEncryption is a EncryptionType enum value
+	EncryptionTypeKmsBasedEncryption = "KMS_BASED_ENCRYPTION"
+)
+
+// EncryptionType_Values returns all elements of the EncryptionType enum
+func EncryptionType_Values() []string {
+	return []string{
+		EncryptionTypeSitewiseDefaultEncryption,
+		EncryptionTypeKmsBasedEncryption,
 	}
 }
 
