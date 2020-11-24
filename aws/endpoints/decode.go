@@ -87,6 +87,7 @@ func decodeV3Endpoints(modelDef modelDefinition, opts DecodeModelOptions) (Resol
 		custRmIotDataService(p)
 		custFixAppAutoscalingChina(p)
 		custFixAppAutoscalingUsGov(p)
+		custFixEc2China(p)
 	}
 
 	return ps, nil
@@ -171,6 +172,27 @@ func custFixAppAutoscalingChina(p *partition) {
 	const expectHostname = `autoscaling.{region}.amazonaws.com`
 	if e, a := s.Defaults.Hostname, expectHostname; e != a {
 		fmt.Printf("custFixAppAutoscalingChina: ignoring customization, expected %s, got %s\n", e, a)
+		return
+	}
+
+	s.Defaults.Hostname = expectHostname + ".cn"
+	p.Services[serviceName] = s
+}
+
+func custFixEc2China(p *partition) {
+	if p.ID != "aws-cn" {
+		return
+	}
+
+	const serviceName = "ec2"
+	s, ok := p.Services[serviceName]
+	if !ok {
+		return
+	}
+
+	const expectHostname = `ec2.{region}.amazonaws.com`
+	if e, a := s.Defaults.Hostname, expectHostname; e != a {
+		fmt.Printf("custFixAppEc2China: ignoring customization, expected %s, got %s\n", e, a)
 		return
 	}
 
