@@ -334,6 +334,12 @@ func (a *API) renameExportable() {
 		}
 
 		newName := a.ExportableName(k)
+		if s.Type == "structure" && newName == a.StructName() {
+			// If struct collides client's struct type name the shape needs to
+			// be renamed with a trailing `_` to prevent collision.
+			newName += "_"
+		}
+
 		if newName != s.ShapeName {
 			s.Rename(newName)
 		}
