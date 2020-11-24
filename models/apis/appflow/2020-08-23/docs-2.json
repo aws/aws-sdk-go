@@ -56,7 +56,8 @@
     "AggregationConfig": {
       "base": "<p> The aggregation settings that you can use to customize the output format of your flow data. </p>",
       "refs": {
-        "S3OutputFormatConfig$aggregationConfig": null
+        "S3OutputFormatConfig$aggregationConfig": null,
+        "UpsolverS3OutputFormatConfig$aggregationConfig": null
       }
     },
     "AggregationType": {
@@ -170,7 +171,8 @@
         "S3DestinationProperties$bucketPrefix": "<p> The object key for the destination bucket in which Amazon AppFlow places the files. </p>",
         "S3SourceProperties$bucketPrefix": "<p> The object key for the Amazon S3 bucket in which the source files are stored. </p>",
         "SnowflakeConnectorProfileProperties$bucketPrefix": "<p> The bucket path that refers to the Amazon S3 bucket associated with Snowflake. </p>",
-        "SnowflakeDestinationProperties$bucketPrefix": "<p> The object key for the destination bucket in which Amazon AppFlow places the files. </p>"
+        "SnowflakeDestinationProperties$bucketPrefix": "<p> The object key for the destination bucket in which Amazon AppFlow places the files. </p>",
+        "UpsolverDestinationProperties$bucketPrefix": "<p> The object key for the destination Upsolver Amazon S3 bucket in which Amazon AppFlow places the files. </p>"
       }
     },
     "ClientCredentialsArn": {
@@ -696,7 +698,8 @@
     "FileType": {
       "base": null,
       "refs": {
-        "S3OutputFormatConfig$fileType": "<p> Indicates the file type that Amazon AppFlow places in the Amazon S3 bucket. </p>"
+        "S3OutputFormatConfig$fileType": "<p> Indicates the file type that Amazon AppFlow places in the Amazon S3 bucket. </p>",
+        "UpsolverS3OutputFormatConfig$fileType": "<p> Indicates the file type that Amazon AppFlow places in the Upsolver Amazon S3 bucket. </p>"
       }
     },
     "FilterOperatorList": {
@@ -1063,7 +1066,8 @@
     "PrefixConfig": {
       "base": "<p> Determines the prefix that Amazon AppFlow applies to the destination folder name. You can name your destination folders according to the flow frequency and date. </p>",
       "refs": {
-        "S3OutputFormatConfig$prefixConfig": "<p> Determines the prefix that Amazon AppFlow applies to the folder name in the Amazon S3 bucket. You can name folders according to the flow frequency and date. </p>"
+        "S3OutputFormatConfig$prefixConfig": "<p> Determines the prefix that Amazon AppFlow applies to the folder name in the Amazon S3 bucket. You can name folders according to the flow frequency and date. </p>",
+        "UpsolverS3OutputFormatConfig$prefixConfig": null
       }
     },
     "PrefixFormat": {
@@ -1220,7 +1224,7 @@
     "ScheduleExpression": {
       "base": null,
       "refs": {
-        "ScheduledTriggerProperties$scheduleExpression": "<p> The scheduling expression that determines when and how often the rule runs. </p>"
+        "ScheduledTriggerProperties$scheduleExpression": "<p> The scheduling expression that determines the rate at which the schedule will run, for example <code>rate(5minutes)</code>. </p>"
       }
     },
     "ScheduleFrequencyType": {
@@ -1611,6 +1615,30 @@
       "refs": {
         "DescribeFlowResponse$lastUpdatedBy": "<p> Specifies the user name of the account that performed the most recent update. </p>",
         "FlowDefinition$lastUpdatedBy": "<p> Specifies the account user name that most recently updated the flow. </p>"
+      }
+    },
+    "UpsolverBucketName": {
+      "base": null,
+      "refs": {
+        "UpsolverDestinationProperties$bucketName": "<p> The Upsolver Amazon S3 bucket name in which Amazon AppFlow places the transferred data. </p>"
+      }
+    },
+    "UpsolverDestinationProperties": {
+      "base": "<p> The properties that are applied when Upsolver is used as a destination. </p>",
+      "refs": {
+        "DestinationConnectorProperties$Upsolver": "<p> The properties required to query Upsolver. </p>"
+      }
+    },
+    "UpsolverMetadata": {
+      "base": "<p> The connector metadata specific to Upsolver. </p>",
+      "refs": {
+        "ConnectorMetadata$Upsolver": "<p> The connector metadata specific to Upsolver. </p>"
+      }
+    },
+    "UpsolverS3OutputFormatConfig": {
+      "base": "<p> The configuration that determines how Amazon AppFlow formats the flow output data when Upsolver is used as the destination. </p>",
+      "refs": {
+        "UpsolverDestinationProperties$s3OutputFormatConfig": "<p> The configuration that determines how data is formatted when Upsolver is used as the flow destination. </p>"
       }
     },
     "Username": {

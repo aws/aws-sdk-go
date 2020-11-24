@@ -497,7 +497,8 @@
         "Trendmicro":{"shape":"TrendmicroMetadata"},
         "Veeva":{"shape":"VeevaMetadata"},
         "Zendesk":{"shape":"ZendeskMetadata"},
-        "EventBridge":{"shape":"EventBridgeMetadata"}
+        "EventBridge":{"shape":"EventBridgeMetadata"},
+        "Upsolver":{"shape":"UpsolverMetadata"}
       }
     },
     "ConnectorOAuthRequest":{
@@ -637,7 +638,8 @@
         "Infornexus",
         "Amplitude",
         "Veeva",
-        "EventBridge"
+        "EventBridge",
+        "Upsolver"
       ]
     },
     "ConnectorTypeList":{
@@ -896,7 +898,8 @@
         "S3":{"shape":"S3DestinationProperties"},
         "Salesforce":{"shape":"SalesforceDestinationProperties"},
         "Snowflake":{"shape":"SnowflakeDestinationProperties"},
-        "EventBridge":{"shape":"EventBridgeDestinationProperties"}
+        "EventBridge":{"shape":"EventBridgeDestinationProperties"},
+        "Upsolver":{"shape":"UpsolverDestinationProperties"}
       }
     },
     "DestinationField":{
@@ -2278,6 +2281,38 @@
       "type":"string",
       "max":256,
       "pattern":"\\S+"
+    },
+    "UpsolverBucketName":{
+      "type":"string",
+      "max":63,
+      "min":16,
+      "pattern":"^(upsolver-appflow)\\S*"
+    },
+    "UpsolverDestinationProperties":{
+      "type":"structure",
+      "required":[
+        "bucketName",
+        "s3OutputFormatConfig"
+      ],
+      "members":{
+        "bucketName":{"shape":"UpsolverBucketName"},
+        "bucketPrefix":{"shape":"BucketPrefix"},
+        "s3OutputFormatConfig":{"shape":"UpsolverS3OutputFormatConfig"}
+      }
+    },
+    "UpsolverMetadata":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpsolverS3OutputFormatConfig":{
+      "type":"structure",
+      "required":["prefixConfig"],
+      "members":{
+        "fileType":{"shape":"FileType"},
+        "prefixConfig":{"shape":"PrefixConfig"},
+        "aggregationConfig":{"shape":"AggregationConfig"}
+      }
     },
     "Username":{
       "type":"string",

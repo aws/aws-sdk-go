@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Transcribe Streaming Service.
 //    func myFunc(svc transcribestreamingserviceiface.TranscribeStreamingServiceAPI) bool {
-//        // Make svc.StartStreamTranscription request
+//        // Make svc.StartMedicalStreamTranscription request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockTranscribeStreamingServiceClient struct {
 //        transcribestreamingserviceiface.TranscribeStreamingServiceAPI
 //    }
-//    func (m *mockTranscribeStreamingServiceClient) StartStreamTranscription(input *transcribestreamingservice.StartStreamTranscriptionInput) (*transcribestreamingservice.StartStreamTranscriptionOutput, error) {
+//    func (m *mockTranscribeStreamingServiceClient) StartMedicalStreamTranscription(input *transcribestreamingservice.StartMedicalStreamTranscriptionInput) (*transcribestreamingservice.StartMedicalStreamTranscriptionOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type TranscribeStreamingServiceAPI interface {
+	StartMedicalStreamTranscription(*transcribestreamingservice.StartMedicalStreamTranscriptionInput) (*transcribestreamingservice.StartMedicalStreamTranscriptionOutput, error)
+	StartMedicalStreamTranscriptionWithContext(aws.Context, *transcribestreamingservice.StartMedicalStreamTranscriptionInput, ...request.Option) (*transcribestreamingservice.StartMedicalStreamTranscriptionOutput, error)
+	StartMedicalStreamTranscriptionRequest(*transcribestreamingservice.StartMedicalStreamTranscriptionInput) (*request.Request, *transcribestreamingservice.StartMedicalStreamTranscriptionOutput)
+
 	StartStreamTranscription(*transcribestreamingservice.StartStreamTranscriptionInput) (*transcribestreamingservice.StartStreamTranscriptionOutput, error)
 	StartStreamTranscriptionWithContext(aws.Context, *transcribestreamingservice.StartStreamTranscriptionInput, ...request.Option) (*transcribestreamingservice.StartStreamTranscriptionOutput, error)
 	StartStreamTranscriptionRequest(*transcribestreamingservice.StartStreamTranscriptionInput) (*request.Request, *transcribestreamingservice.StartStreamTranscriptionOutput)

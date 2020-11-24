@@ -20,6 +20,7 @@
     "DeleteWebhook": "<p>For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, stops AWS CodeBuild from rebuilding the source code every time a code change is pushed to the repository.</p>",
     "DescribeCodeCoverages": "<p>Retrieves one or more code coverage reports.</p>",
     "DescribeTestCases": "<p> Returns a list of details about test cases for a report. </p>",
+    "GetReportGroupTrend": null,
     "GetResourcePolicy": "<p> Gets a resource policy that is identified by its resource ARN. </p>",
     "ImportSourceCredentials": "<p> Imports the source repository credentials for an AWS CodeBuild project that has its source code stored in a GitHub, GitHub Enterprise, or Bitbucket repository. </p>",
     "InvalidateProjectCache": "<p>Resets the cache for a project.</p>",
@@ -594,6 +595,16 @@
         "Webhook$filterGroups": "<p>An array of arrays of <code>WebhookFilter</code> objects used to determine which webhooks are triggered. At least one <code>WebhookFilter</code> in the array must specify <code>EVENT</code> as its <code>type</code>. </p> <p>For a build to be triggered, at least one filter group in the <code>filterGroups</code> array must pass. For a filter group to pass, each of its filters must pass. </p>"
       }
     },
+    "GetReportGroupTrendInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReportGroupTrendOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetResourcePolicyInput": {
       "base": null,
       "refs": {
@@ -864,6 +875,7 @@
         "DescribeCodeCoveragesInput$reportArn": "<p> The ARN of the report for which test cases are returned. </p>",
         "EnvironmentVariable$name": "<p>The name or key of the environment variable.</p>",
         "ExportedEnvironmentVariable$name": "<p> The name of this exported environment variable. </p>",
+        "GetReportGroupTrendInput$reportGroupArn": null,
         "GetResourcePolicyInput$resourceArn": "<p> The ARN of the resource that is associated with the resource policy. </p>",
         "GetResourcePolicyOutput$policy": "<p> The resource policy for the resource identified by the input ARN parameter. </p>",
         "Identifiers$member": null,
@@ -891,6 +903,7 @@
         "ReportArns$member": null,
         "ReportGroup$arn": "<p> The ARN of a <code>ReportGroup</code>. </p>",
         "ReportGroupArns$member": null,
+        "ReportWithRawData$reportArn": null,
         "RetryBuildBatchInput$id": "<p>Specifies the identifier of the batch build to restart.</p>",
         "RetryBuildInput$id": "<p>Specifies the identifier of the build to restart.</p>",
         "S3ReportExportConfig$bucket": "<p> The name of the S3 bucket where the raw data of a report are exported. </p>",
@@ -942,6 +955,7 @@
       "refs": {
         "DescribeCodeCoveragesInput$maxResults": "<p>The maximum number of results to return.</p>",
         "DescribeTestCasesInput$maxResults": "<p> The maximum number of paginated test cases returned per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>TestCase</code> objects. The default value is 100. </p>",
+        "GetReportGroupTrendInput$numOfReports": null,
         "ListBuildBatchesForProjectInput$maxResults": "<p>The maximum number of results to return.</p>",
         "ListBuildBatchesInput$maxResults": "<p>The maximum number of results to return.</p>",
         "ListReportGroupsInput$maxResults": "<p> The maximum number of paginated report groups returned per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>ReportGroup</code> objects. The default value is 100. </p>",
@@ -1252,6 +1266,24 @@
         "ReportGroup$status": null
       }
     },
+    "ReportGroupTrendFieldType": {
+      "base": null,
+      "refs": {
+        "GetReportGroupTrendInput$trendField": null
+      }
+    },
+    "ReportGroupTrendRawDataList": {
+      "base": null,
+      "refs": {
+        "GetReportGroupTrendOutput$rawData": null
+      }
+    },
+    "ReportGroupTrendStats": {
+      "base": null,
+      "refs": {
+        "GetReportGroupTrendOutput$stats": null
+      }
+    },
     "ReportGroups": {
       "base": null,
       "refs": {
@@ -1283,6 +1315,12 @@
         "CreateReportGroupInput$type": "<p> The type of report group. </p>",
         "Report$type": "<p>The type of the report that was run.</p> <dl> <dt>CODE_COVERAGE</dt> <dd> <p>A code coverage report.</p> </dd> <dt>TEST</dt> <dd> <p>A test report.</p> </dd> </dl>",
         "ReportGroup$type": "<p> The type of the <code>ReportGroup</code>. The one valid value is <code>TEST</code>. </p>"
+      }
+    },
+    "ReportWithRawData": {
+      "base": null,
+      "refs": {
+        "ReportGroupTrendRawDataList$member": null
       }
     },
     "Reports": {
@@ -1560,7 +1598,11 @@
         "ProjectSourceVersion$sourceVersion": "<p>The source version for the corresponding source identifier. If specified, must be one of:</p> <ul> <li> <p>For AWS CodeCommit: the commit ID, branch, or Git tag to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example, <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID is used. If not specified, the default branch's HEAD commit ID is used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID is used. If not specified, the default branch's HEAD commit ID is used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object that represents the build input ZIP file to use.</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html\">Source Version Sample with CodeBuild</a> in the <i>AWS CodeBuild User Guide</i>. </p>",
         "Report$name": "<p> The name of the report that was run. </p>",
         "Report$executionId": "<p> The ARN of the build run that generated this report. </p>",
+        "ReportGroupTrendStats$average": null,
+        "ReportGroupTrendStats$max": null,
+        "ReportGroupTrendStats$min": null,
         "ReportStatusCounts$key": null,
+        "ReportWithRawData$data": null,
         "ResolvedArtifact$location": "<p>The location of the artifact.</p>",
         "ResolvedArtifact$identifier": "<p>The identifier of the artifact.</p>",
         "RetryBuildBatchInput$idempotencyToken": "<p>A unique, case sensitive identifier you provide to ensure the idempotency of the <code>RetryBuildBatch</code> request. The token is included in the <code>RetryBuildBatch</code> request and is valid for five minutes. If you repeat the <code>RetryBuildBatch</code> request with the same token, but change a parameter, AWS CodeBuild returns a parameter mismatch error.</p>",

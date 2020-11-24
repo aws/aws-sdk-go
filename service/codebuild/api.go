@@ -1606,6 +1606,86 @@ func (c *CodeBuild) DescribeTestCasesPagesWithContext(ctx aws.Context, input *De
 	return p.Err()
 }
 
+const opGetReportGroupTrend = "GetReportGroupTrend"
+
+// GetReportGroupTrendRequest generates a "aws/request.Request" representing the
+// client's request for the GetReportGroupTrend operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetReportGroupTrend for more information on using the GetReportGroupTrend
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetReportGroupTrendRequest method.
+//    req, resp := client.GetReportGroupTrendRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/GetReportGroupTrend
+func (c *CodeBuild) GetReportGroupTrendRequest(input *GetReportGroupTrendInput) (req *request.Request, output *GetReportGroupTrendOutput) {
+	op := &request.Operation{
+		Name:       opGetReportGroupTrend,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetReportGroupTrendInput{}
+	}
+
+	output = &GetReportGroupTrendOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetReportGroupTrend API operation for AWS CodeBuild.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS CodeBuild's
+// API operation GetReportGroupTrend for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input value that was provided is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified AWS resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/GetReportGroupTrend
+func (c *CodeBuild) GetReportGroupTrend(input *GetReportGroupTrendInput) (*GetReportGroupTrendOutput, error) {
+	req, out := c.GetReportGroupTrendRequest(input)
+	return out, req.Send()
+}
+
+// GetReportGroupTrendWithContext is the same as GetReportGroupTrend with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetReportGroupTrend for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CodeBuild) GetReportGroupTrendWithContext(ctx aws.Context, input *GetReportGroupTrendInput, opts ...request.Option) (*GetReportGroupTrendOutput, error) {
+	req, out := c.GetReportGroupTrendRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResourcePolicy = "GetResourcePolicy"
 
 // GetResourcePolicyRequest generates a "aws/request.Request" representing the
@@ -7875,6 +7955,98 @@ func (s *ExportedEnvironmentVariable) SetValue(v string) *ExportedEnvironmentVar
 	return s
 }
 
+type GetReportGroupTrendInput struct {
+	_ struct{} `type:"structure"`
+
+	NumOfReports *int64 `locationName:"numOfReports" min:"1" type:"integer"`
+
+	// ReportGroupArn is a required field
+	ReportGroupArn *string `locationName:"reportGroupArn" min:"1" type:"string" required:"true"`
+
+	// TrendField is a required field
+	TrendField *string `locationName:"trendField" type:"string" required:"true" enum:"ReportGroupTrendFieldType"`
+}
+
+// String returns the string representation
+func (s GetReportGroupTrendInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetReportGroupTrendInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetReportGroupTrendInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetReportGroupTrendInput"}
+	if s.NumOfReports != nil && *s.NumOfReports < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("NumOfReports", 1))
+	}
+	if s.ReportGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportGroupArn"))
+	}
+	if s.ReportGroupArn != nil && len(*s.ReportGroupArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportGroupArn", 1))
+	}
+	if s.TrendField == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrendField"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNumOfReports sets the NumOfReports field's value.
+func (s *GetReportGroupTrendInput) SetNumOfReports(v int64) *GetReportGroupTrendInput {
+	s.NumOfReports = &v
+	return s
+}
+
+// SetReportGroupArn sets the ReportGroupArn field's value.
+func (s *GetReportGroupTrendInput) SetReportGroupArn(v string) *GetReportGroupTrendInput {
+	s.ReportGroupArn = &v
+	return s
+}
+
+// SetTrendField sets the TrendField field's value.
+func (s *GetReportGroupTrendInput) SetTrendField(v string) *GetReportGroupTrendInput {
+	s.TrendField = &v
+	return s
+}
+
+type GetReportGroupTrendOutput struct {
+	_ struct{} `type:"structure"`
+
+	RawData []*ReportWithRawData `locationName:"rawData" type:"list"`
+
+	Stats *ReportGroupTrendStats `locationName:"stats" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetReportGroupTrendOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetReportGroupTrendOutput) GoString() string {
+	return s.String()
+}
+
+// SetRawData sets the RawData field's value.
+func (s *GetReportGroupTrendOutput) SetRawData(v []*ReportWithRawData) *GetReportGroupTrendOutput {
+	s.RawData = v
+	return s
+}
+
+// SetStats sets the Stats field's value.
+func (s *GetReportGroupTrendOutput) SetStats(v *ReportGroupTrendStats) *GetReportGroupTrendOutput {
+	s.Stats = v
+	return s
+}
+
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11397,6 +11569,74 @@ func (s *ReportGroup) SetType(v string) *ReportGroup {
 	return s
 }
 
+type ReportGroupTrendStats struct {
+	_ struct{} `type:"structure"`
+
+	Average *string `locationName:"average" type:"string"`
+
+	Max *string `locationName:"max" type:"string"`
+
+	Min *string `locationName:"min" type:"string"`
+}
+
+// String returns the string representation
+func (s ReportGroupTrendStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportGroupTrendStats) GoString() string {
+	return s.String()
+}
+
+// SetAverage sets the Average field's value.
+func (s *ReportGroupTrendStats) SetAverage(v string) *ReportGroupTrendStats {
+	s.Average = &v
+	return s
+}
+
+// SetMax sets the Max field's value.
+func (s *ReportGroupTrendStats) SetMax(v string) *ReportGroupTrendStats {
+	s.Max = &v
+	return s
+}
+
+// SetMin sets the Min field's value.
+func (s *ReportGroupTrendStats) SetMin(v string) *ReportGroupTrendStats {
+	s.Min = &v
+	return s
+}
+
+type ReportWithRawData struct {
+	_ struct{} `type:"structure"`
+
+	Data *string `locationName:"data" type:"string"`
+
+	ReportArn *string `locationName:"reportArn" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ReportWithRawData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportWithRawData) GoString() string {
+	return s.String()
+}
+
+// SetData sets the Data field's value.
+func (s *ReportWithRawData) SetData(v string) *ReportWithRawData {
+	s.Data = &v
+	return s
+}
+
+// SetReportArn sets the ReportArn field's value.
+func (s *ReportWithRawData) SetReportArn(v string) *ReportWithRawData {
+	s.ReportArn = &v
+	return s
+}
+
 // Represents a resolved build artifact. A resolve artifact is an artifact that
 // is built and deployed to the destination, such as Amazon Simple Storage Service
 // (Amazon S3).
@@ -14669,6 +14909,50 @@ func ReportGroupStatusType_Values() []string {
 	return []string{
 		ReportGroupStatusTypeActive,
 		ReportGroupStatusTypeDeleting,
+	}
+}
+
+const (
+	// ReportGroupTrendFieldTypePassRate is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypePassRate = "PASS_RATE"
+
+	// ReportGroupTrendFieldTypeDuration is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeDuration = "DURATION"
+
+	// ReportGroupTrendFieldTypeTotal is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeTotal = "TOTAL"
+
+	// ReportGroupTrendFieldTypeLineCoverage is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeLineCoverage = "LINE_COVERAGE"
+
+	// ReportGroupTrendFieldTypeLinesCovered is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeLinesCovered = "LINES_COVERED"
+
+	// ReportGroupTrendFieldTypeLinesMissed is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeLinesMissed = "LINES_MISSED"
+
+	// ReportGroupTrendFieldTypeBranchCoverage is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeBranchCoverage = "BRANCH_COVERAGE"
+
+	// ReportGroupTrendFieldTypeBranchesCovered is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeBranchesCovered = "BRANCHES_COVERED"
+
+	// ReportGroupTrendFieldTypeBranchesMissed is a ReportGroupTrendFieldType enum value
+	ReportGroupTrendFieldTypeBranchesMissed = "BRANCHES_MISSED"
+)
+
+// ReportGroupTrendFieldType_Values returns all elements of the ReportGroupTrendFieldType enum
+func ReportGroupTrendFieldType_Values() []string {
+	return []string{
+		ReportGroupTrendFieldTypePassRate,
+		ReportGroupTrendFieldTypeDuration,
+		ReportGroupTrendFieldTypeTotal,
+		ReportGroupTrendFieldTypeLineCoverage,
+		ReportGroupTrendFieldTypeLinesCovered,
+		ReportGroupTrendFieldTypeLinesMissed,
+		ReportGroupTrendFieldTypeBranchCoverage,
+		ReportGroupTrendFieldTypeBranchesCovered,
+		ReportGroupTrendFieldTypeBranchesMissed,
 	}
 }
 

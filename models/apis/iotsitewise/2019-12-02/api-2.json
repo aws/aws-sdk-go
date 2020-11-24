@@ -431,6 +431,20 @@
       ],
       "endpoint":{"hostPrefix":"monitor."}
     },
+    "DescribeDefaultEncryptionConfiguration":{
+      "name":"DescribeDefaultEncryptionConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/configuration/account/encryption"
+      },
+      "input":{"shape":"DescribeDefaultEncryptionConfigurationRequest"},
+      "output":{"shape":"DescribeDefaultEncryptionConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeGateway":{
       "name":"DescribeGateway",
       "http":{
@@ -735,6 +749,22 @@
         {"shape":"InternalFailureException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "PutDefaultEncryptionConfiguration":{
+      "name":"PutDefaultEncryptionConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/configuration/account/encryption"
+      },
+      "input":{"shape":"PutDefaultEncryptionConfigurationRequest"},
+      "output":{"shape":"PutDefaultEncryptionConfigurationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictingOperationException"}
       ]
     },
     "PutLoggingOptions":{
@@ -1463,6 +1493,33 @@
       "min":36,
       "pattern":"\\S{36,64}"
     },
+    "ConfigurationErrorDetails":{
+      "type":"structure",
+      "required":[
+        "code",
+        "message"
+      ],
+      "members":{
+        "code":{"shape":"ErrorCode"},
+        "message":{"shape":"ErrorMessage"}
+      }
+    },
+    "ConfigurationState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "UPDATE_IN_PROGRESS",
+        "UPDATE_FAILED"
+      ]
+    },
+    "ConfigurationStatus":{
+      "type":"structure",
+      "required":["state"],
+      "members":{
+        "state":{"shape":"ConfigurationState"},
+        "error":{"shape":"ConfigurationErrorDetails"}
+      }
+    },
     "ConflictingOperationException":{
       "type":"structure",
       "required":[
@@ -2056,6 +2113,23 @@
         "dashboardLastUpdateDate":{"shape":"Timestamp"}
       }
     },
+    "DescribeDefaultEncryptionConfigurationRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeDefaultEncryptionConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "encryptionType",
+        "configurationStatus"
+      ],
+      "members":{
+        "encryptionType":{"shape":"EncryptionType"},
+        "kmsKeyArn":{"shape":"ARN"},
+        "configurationStatus":{"shape":"ConfigurationStatus"}
+      }
+    },
     "DescribeGatewayCapabilityConfigurationRequest":{
       "type":"structure",
       "required":[
@@ -2236,6 +2310,13 @@
       "max":255,
       "min":1,
       "pattern":"[^@]+@[^@]+"
+    },
+    "EncryptionType":{
+      "type":"string",
+      "enum":[
+        "SITEWISE_DEFAULT_ENCRYPTION",
+        "KMS_BASED_ENCRYPTION"
+      ]
     },
     "EntryId":{
       "type":"string",
@@ -2600,6 +2681,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "KmsKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "LimitExceededException":{
       "type":"structure",
@@ -3168,6 +3254,26 @@
         "propertyId":{"shape":"ID"},
         "propertyAlias":{"shape":"AssetPropertyAlias"},
         "propertyValues":{"shape":"AssetPropertyValues"}
+      }
+    },
+    "PutDefaultEncryptionConfigurationRequest":{
+      "type":"structure",
+      "required":["encryptionType"],
+      "members":{
+        "encryptionType":{"shape":"EncryptionType"},
+        "kmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "PutDefaultEncryptionConfigurationResponse":{
+      "type":"structure",
+      "required":[
+        "encryptionType",
+        "configurationStatus"
+      ],
+      "members":{
+        "encryptionType":{"shape":"EncryptionType"},
+        "kmsKeyArn":{"shape":"ARN"},
+        "configurationStatus":{"shape":"ConfigurationStatus"}
       }
     },
     "PutLoggingOptionsRequest":{

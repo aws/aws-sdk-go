@@ -439,7 +439,11 @@
         "maxvCpus":{"shape":"Integer"},
         "desiredvCpus":{"shape":"Integer"},
         "instanceTypes":{"shape":"StringList"},
-        "imageId":{"shape":"String"},
+        "imageId":{
+          "shape":"String",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use ec2Configuration[].imageIdOverride instead."
+        },
         "subnets":{"shape":"StringList"},
         "securityGroupIds":{"shape":"StringList"},
         "ec2KeyPair":{"shape":"String"},
@@ -448,7 +452,8 @@
         "placementGroup":{"shape":"String"},
         "bidPercentage":{"shape":"Integer"},
         "spotIamFleetRole":{"shape":"String"},
-        "launchTemplate":{"shape":"LaunchTemplateSpecification"}
+        "launchTemplate":{"shape":"LaunchTemplateSpecification"},
+        "ec2Configuration":{"shape":"Ec2ConfigurationList"}
       }
     },
     "ComputeResourceUpdate":{
@@ -699,6 +704,18 @@
       "type":"list",
       "member":{"shape":"Device"}
     },
+    "Ec2Configuration":{
+      "type":"structure",
+      "required":["imageType"],
+      "members":{
+        "imageType":{"shape":"ImageType"},
+        "imageIdOverride":{"shape":"ImageIdOverride"}
+      }
+    },
+    "Ec2ConfigurationList":{
+      "type":"list",
+      "member":{"shape":"Ec2Configuration"}
+    },
     "EnvironmentVariables":{
       "type":"list",
       "member":{"shape":"KeyValuePair"}
@@ -722,6 +739,16 @@
       "members":{
         "sourcePath":{"shape":"String"}
       }
+    },
+    "ImageIdOverride":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "ImageType":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "Integer":{"type":"integer"},
     "JQState":{

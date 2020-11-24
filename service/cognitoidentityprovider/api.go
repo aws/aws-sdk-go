@@ -9217,7 +9217,11 @@ func (c *CognitoIdentityProvider) SetUserMFAPreferenceRequest(input *SetUserMFAP
 // be set as preferred. The preferred MFA factor will be used to authenticate
 // a user if multiple factors are enabled. If multiple options are enabled and
 // no preference is set, a challenge to choose an MFA option will be returned
-// during sign in.
+// during sign in. If an MFA type is enabled for a user, the user will be prompted
+// for MFA during all sign in attempts, unless device tracking is turned on
+// and the device has been trusted. If you would like MFA to be applied selectively
+// based on the assessed risk level of sign in attempts, disable MFA for users
+// and turn on Adaptive Authentication for the user pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17208,10 +17212,14 @@ type CreateUserPoolInput struct {
 	// The email configuration.
 	EmailConfiguration *EmailConfigurationType `type:"structure"`
 
-	// A string representing the email verification message.
+	// A string representing the email verification message. EmailVerificationMessage
+	// is allowed only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailVerificationMessage *string `min:"6" type:"string"`
 
-	// A string representing the email verification subject.
+	// A string representing the email verification subject. EmailVerificationSubject
+	// is allowed only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailVerificationSubject *string `min:"1" type:"string"`
 
 	// The Lambda trigger configuration information for the new user pool.
@@ -17563,6 +17571,124 @@ func (s *CustomDomainConfigType) Validate() error {
 // SetCertificateArn sets the CertificateArn field's value.
 func (s *CustomDomainConfigType) SetCertificateArn(v string) *CustomDomainConfigType {
 	s.CertificateArn = &v
+	return s
+}
+
+// A custom email sender Lambda configuration type.
+type CustomEmailLambdaVersionConfigType struct {
+	_ struct{} `type:"structure"`
+
+	// The Lambda Amazon Resource Name of the Lambda function that Amazon Cognito
+	// triggers to send email notifications to users.
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `min:"20" type:"string" required:"true"`
+
+	// The Lambda version represents the signature of the "request" attribute in
+	// the "event" information Amazon Cognito passes to your custom email Lambda
+	// function. The only supported value is V1_0.
+	//
+	// LambdaVersion is a required field
+	LambdaVersion *string `type:"string" required:"true" enum:"CustomEmailSenderLambdaVersionType"`
+}
+
+// String returns the string representation
+func (s CustomEmailLambdaVersionConfigType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomEmailLambdaVersionConfigType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomEmailLambdaVersionConfigType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomEmailLambdaVersionConfigType"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+	if s.LambdaArn != nil && len(*s.LambdaArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaArn", 20))
+	}
+	if s.LambdaVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *CustomEmailLambdaVersionConfigType) SetLambdaArn(v string) *CustomEmailLambdaVersionConfigType {
+	s.LambdaArn = &v
+	return s
+}
+
+// SetLambdaVersion sets the LambdaVersion field's value.
+func (s *CustomEmailLambdaVersionConfigType) SetLambdaVersion(v string) *CustomEmailLambdaVersionConfigType {
+	s.LambdaVersion = &v
+	return s
+}
+
+// A custom SMS sender Lambda configuration type.
+type CustomSMSLambdaVersionConfigType struct {
+	_ struct{} `type:"structure"`
+
+	// The Lambda Amazon Resource Name of the Lambda function that Amazon Cognito
+	// triggers to send SMS notifications to users.
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `min:"20" type:"string" required:"true"`
+
+	// The Lambda version represents the signature of the "request" attribute in
+	// the "event" information Amazon Cognito passes to your custom SMS Lambda function.
+	// The only supported value is V1_0.
+	//
+	// LambdaVersion is a required field
+	LambdaVersion *string `type:"string" required:"true" enum:"CustomSMSSenderLambdaVersionType"`
+}
+
+// String returns the string representation
+func (s CustomSMSLambdaVersionConfigType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomSMSLambdaVersionConfigType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomSMSLambdaVersionConfigType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomSMSLambdaVersionConfigType"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+	if s.LambdaArn != nil && len(*s.LambdaArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaArn", 20))
+	}
+	if s.LambdaVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *CustomSMSLambdaVersionConfigType) SetLambdaArn(v string) *CustomSMSLambdaVersionConfigType {
+	s.LambdaArn = &v
+	return s
+}
+
+// SetLambdaVersion sets the LambdaVersion field's value.
+func (s *CustomSMSLambdaVersionConfigType) SetLambdaVersion(v string) *CustomSMSLambdaVersionConfigType {
+	s.LambdaVersion = &v
 	return s
 }
 
@@ -18922,6 +19048,10 @@ func (s *DuplicateProviderException) RequestID() string {
 }
 
 // The email configuration type.
+//
+// Amazon Cognito has specific regions for use with Amazon SES. For more information
+// on the supported regions, see Email Settings for Amazon Cognito User Pools
+// (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html).
 type EmailConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -18961,6 +19091,27 @@ type EmailConfigurationType struct {
 	// The default FROM address is no-reply@verificationemail.com. To customize
 	// the FROM address, provide the ARN of an Amazon SES verified email address
 	// for the SourceArn parameter.
+	//
+	// If EmailSendingAccount is COGNITO_DEFAULT, the following parameters aren't
+	// allowed:
+	//
+	//    * EmailVerificationMessage
+	//
+	//    * EmailVerificationSubject
+	//
+	//    * InviteMessageTemplate.EmailMessage
+	//
+	//    * InviteMessageTemplate.EmailSubject
+	//
+	//    * VerificationMessageTemplate.EmailMessage
+	//
+	//    * VerificationMessageTemplate.EmailMessageByLink
+	//
+	//    * VerificationMessageTemplate.EmailSubject,
+	//
+	//    * VerificationMessageTemplate.EmailSubjectByLink
+	//
+	// DEVELOPER EmailSendingAccount is required.
 	//
 	// DEVELOPER
 	//
@@ -21479,11 +21630,22 @@ type LambdaConfigType struct {
 	// Creates an authentication challenge.
 	CreateAuthChallenge *string `min:"20" type:"string"`
 
+	// A custom email sender AWS Lambda trigger.
+	CustomEmailSender *CustomEmailLambdaVersionConfigType `type:"structure"`
+
 	// A custom Message AWS Lambda trigger.
 	CustomMessage *string `min:"20" type:"string"`
 
+	// A custom SMS sender AWS Lambda trigger.
+	CustomSMSSender *CustomSMSLambdaVersionConfigType `type:"structure"`
+
 	// Defines the authentication challenge.
 	DefineAuthChallenge *string `min:"20" type:"string"`
+
+	// The Amazon Resource Name of Key Management Service Customer master keys (/kms/latest/developerguide/concepts.html#master_keys)
+	// . Amazon Cognito uses the key to encrypt codes and temporary passwords sent
+	// to CustomEmailSender and CustomSMSSender.
+	KMSKeyID *string `min:"20" type:"string"`
 
 	// A post-authentication AWS Lambda trigger.
 	PostAuthentication *string `min:"20" type:"string"`
@@ -21529,6 +21691,9 @@ func (s *LambdaConfigType) Validate() error {
 	if s.DefineAuthChallenge != nil && len(*s.DefineAuthChallenge) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("DefineAuthChallenge", 20))
 	}
+	if s.KMSKeyID != nil && len(*s.KMSKeyID) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyID", 20))
+	}
 	if s.PostAuthentication != nil && len(*s.PostAuthentication) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("PostAuthentication", 20))
 	}
@@ -21550,6 +21715,16 @@ func (s *LambdaConfigType) Validate() error {
 	if s.VerifyAuthChallengeResponse != nil && len(*s.VerifyAuthChallengeResponse) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("VerifyAuthChallengeResponse", 20))
 	}
+	if s.CustomEmailSender != nil {
+		if err := s.CustomEmailSender.Validate(); err != nil {
+			invalidParams.AddNested("CustomEmailSender", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomSMSSender != nil {
+		if err := s.CustomSMSSender.Validate(); err != nil {
+			invalidParams.AddNested("CustomSMSSender", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -21563,15 +21738,33 @@ func (s *LambdaConfigType) SetCreateAuthChallenge(v string) *LambdaConfigType {
 	return s
 }
 
+// SetCustomEmailSender sets the CustomEmailSender field's value.
+func (s *LambdaConfigType) SetCustomEmailSender(v *CustomEmailLambdaVersionConfigType) *LambdaConfigType {
+	s.CustomEmailSender = v
+	return s
+}
+
 // SetCustomMessage sets the CustomMessage field's value.
 func (s *LambdaConfigType) SetCustomMessage(v string) *LambdaConfigType {
 	s.CustomMessage = &v
 	return s
 }
 
+// SetCustomSMSSender sets the CustomSMSSender field's value.
+func (s *LambdaConfigType) SetCustomSMSSender(v *CustomSMSLambdaVersionConfigType) *LambdaConfigType {
+	s.CustomSMSSender = v
+	return s
+}
+
 // SetDefineAuthChallenge sets the DefineAuthChallenge field's value.
 func (s *LambdaConfigType) SetDefineAuthChallenge(v string) *LambdaConfigType {
 	s.DefineAuthChallenge = &v
+	return s
+}
+
+// SetKMSKeyID sets the KMSKeyID field's value.
+func (s *LambdaConfigType) SetKMSKeyID(v string) *LambdaConfigType {
+	s.KMSKeyID = &v
 	return s
 }
 
@@ -22805,10 +22998,14 @@ func (s *MFAOptionType) SetDeliveryMedium(v string) *MFAOptionType {
 type MessageTemplateType struct {
 	_ struct{} `type:"structure"`
 
-	// The message template for email messages.
+	// The message template for email messages. EmailMessage is allowed only if
+	// EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailMessage *string `min:"6" type:"string"`
 
-	// The subject line for email messages.
+	// The subject line for email messages. EmailSubject is allowed only if EmailSendingAccount
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailSubject *string `min:"1" type:"string"`
 
 	// The message template for SMS messages.
@@ -24179,11 +24376,19 @@ func (s *RiskExceptionConfigurationType) SetSkippedIPRangeList(v []*string) *Ris
 	return s
 }
 
-// The type used for enabling SMS MFA at the user level.
+// The type used for enabling SMS MFA at the user level. Phone numbers don't
+// need to be verified to be used for SMS MFA. If an MFA type is enabled for
+// a user, the user will be prompted for MFA during all sign in attempts, unless
+// device tracking is turned on and the device has been trusted. If you would
+// like MFA to be applied selectively based on the assessed risk level of sign
+// in attempts, disable MFA for users and turn on Adaptive Authentication for
+// the user pool.
 type SMSMfaSettingsType struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether SMS text message MFA is enabled.
+	// Specifies whether SMS text message MFA is enabled. If an MFA type is enabled
+	// for a user, the user will be prompted for MFA during all sign in attempts,
+	// unless device tracking is turned on and the device has been trusted.
 	Enabled *bool `type:"boolean"`
 
 	// Specifies whether SMS is the preferred MFA method.
@@ -25125,7 +25330,8 @@ type SmsConfigurationType struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) caller. This is the ARN of the IAM role in your AWS account which Cognito
-	// will use to send SMS messages.
+	// will use to send SMS messages. SMS messages are subject to a spending limit
+	// (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html).
 	//
 	// SnsCallerArn is a required field
 	SnsCallerArn *string `min:"20" type:"string" required:"true"`
@@ -25304,11 +25510,18 @@ func (s *SoftwareTokenMfaConfigType) SetEnabled(v bool) *SoftwareTokenMfaConfigT
 	return s
 }
 
-// The type used for enabling software token MFA at the user level.
+// The type used for enabling software token MFA at the user level. If an MFA
+// type is enabled for a user, the user will be prompted for MFA during all
+// sign in attempts, unless device tracking is turned on and the device has
+// been trusted. If you would like MFA to be applied selectively based on the
+// assessed risk level of sign in attempts, disable MFA for users and turn on
+// Adaptive Authentication for the user pool.
 type SoftwareTokenMfaSettingsType struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether software token MFA is enabled.
+	// Specifies whether software token MFA is enabled. If an MFA type is enabled
+	// for a user, the user will be prompted for MFA during all sign in attempts,
+	// unless device tracking is turned on and the device has been trusted.
 	Enabled *bool `type:"boolean"`
 
 	// Specifies whether software token MFA is the preferred MFA method.
@@ -29043,17 +29256,25 @@ type VerificationMessageTemplateType struct {
 	// The default email option.
 	DefaultEmailOption *string `type:"string" enum:"DefaultEmailOptionType"`
 
-	// The email message template.
+	// The email message template. EmailMessage is allowed only if EmailSendingAccount
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailMessage *string `min:"6" type:"string"`
 
-	// The email message template for sending a confirmation link to the user.
+	// The email message template for sending a confirmation link to the user. EmailMessageByLink
+	// is allowed only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailMessageByLink *string `min:"6" type:"string"`
 
-	// The subject line for the email message template.
+	// The subject line for the email message template. EmailSubject is allowed
+	// only if EmailSendingAccount (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailSubject *string `min:"1" type:"string"`
 
 	// The subject line for the email message template for sending a confirmation
-	// link to the user.
+	// link to the user. EmailSubjectByLink is allowed only EmailSendingAccount
+	// (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount)
+	// is DEVELOPER.
 	EmailSubjectByLink *string `min:"1" type:"string"`
 
 	// The SMS message template.
@@ -29543,6 +29764,30 @@ func CompromisedCredentialsEventActionType_Values() []string {
 	return []string{
 		CompromisedCredentialsEventActionTypeBlock,
 		CompromisedCredentialsEventActionTypeNoAction,
+	}
+}
+
+const (
+	// CustomEmailSenderLambdaVersionTypeV10 is a CustomEmailSenderLambdaVersionType enum value
+	CustomEmailSenderLambdaVersionTypeV10 = "V1_0"
+)
+
+// CustomEmailSenderLambdaVersionType_Values returns all elements of the CustomEmailSenderLambdaVersionType enum
+func CustomEmailSenderLambdaVersionType_Values() []string {
+	return []string{
+		CustomEmailSenderLambdaVersionTypeV10,
+	}
+}
+
+const (
+	// CustomSMSSenderLambdaVersionTypeV10 is a CustomSMSSenderLambdaVersionType enum value
+	CustomSMSSenderLambdaVersionTypeV10 = "V1_0"
+)
+
+// CustomSMSSenderLambdaVersionType_Values returns all elements of the CustomSMSSenderLambdaVersionType enum
+func CustomSMSSenderLambdaVersionType_Values() []string {
+	return []string{
+		CustomSMSSenderLambdaVersionTypeV10,
 	}
 }
 

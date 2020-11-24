@@ -156,6 +156,10 @@ type IoTSiteWiseAPI interface {
 	DescribeDashboardWithContext(aws.Context, *iotsitewise.DescribeDashboardInput, ...request.Option) (*iotsitewise.DescribeDashboardOutput, error)
 	DescribeDashboardRequest(*iotsitewise.DescribeDashboardInput) (*request.Request, *iotsitewise.DescribeDashboardOutput)
 
+	DescribeDefaultEncryptionConfiguration(*iotsitewise.DescribeDefaultEncryptionConfigurationInput) (*iotsitewise.DescribeDefaultEncryptionConfigurationOutput, error)
+	DescribeDefaultEncryptionConfigurationWithContext(aws.Context, *iotsitewise.DescribeDefaultEncryptionConfigurationInput, ...request.Option) (*iotsitewise.DescribeDefaultEncryptionConfigurationOutput, error)
+	DescribeDefaultEncryptionConfigurationRequest(*iotsitewise.DescribeDefaultEncryptionConfigurationInput) (*request.Request, *iotsitewise.DescribeDefaultEncryptionConfigurationOutput)
+
 	DescribeGateway(*iotsitewise.DescribeGatewayInput) (*iotsitewise.DescribeGatewayOutput, error)
 	DescribeGatewayWithContext(aws.Context, *iotsitewise.DescribeGatewayInput, ...request.Option) (*iotsitewise.DescribeGatewayOutput, error)
 	DescribeGatewayRequest(*iotsitewise.DescribeGatewayInput) (*request.Request, *iotsitewise.DescribeGatewayOutput)
@@ -264,6 +268,10 @@ type IoTSiteWiseAPI interface {
 	ListTagsForResource(*iotsitewise.ListTagsForResourceInput) (*iotsitewise.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *iotsitewise.ListTagsForResourceInput, ...request.Option) (*iotsitewise.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*iotsitewise.ListTagsForResourceInput) (*request.Request, *iotsitewise.ListTagsForResourceOutput)
+
+	PutDefaultEncryptionConfiguration(*iotsitewise.PutDefaultEncryptionConfigurationInput) (*iotsitewise.PutDefaultEncryptionConfigurationOutput, error)
+	PutDefaultEncryptionConfigurationWithContext(aws.Context, *iotsitewise.PutDefaultEncryptionConfigurationInput, ...request.Option) (*iotsitewise.PutDefaultEncryptionConfigurationOutput, error)
+	PutDefaultEncryptionConfigurationRequest(*iotsitewise.PutDefaultEncryptionConfigurationInput) (*request.Request, *iotsitewise.PutDefaultEncryptionConfigurationOutput)
 
 	PutLoggingOptions(*iotsitewise.PutLoggingOptionsInput) (*iotsitewise.PutLoggingOptionsOutput, error)
 	PutLoggingOptionsWithContext(aws.Context, *iotsitewise.PutLoggingOptionsInput, ...request.Option) (*iotsitewise.PutLoggingOptionsOutput, error)

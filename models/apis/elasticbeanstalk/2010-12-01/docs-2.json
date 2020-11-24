@@ -1061,7 +1061,6 @@
     "Integer": {
       "base": null,
       "refs": {
-        "DescribeEnvironmentManagedActionHistoryRequest$MaxItems": "<p>The maximum number of items to return for a single request.</p>",
         "Listener$Port": "<p>The port that is used by the Listener.</p>"
       }
     },
@@ -1200,6 +1199,12 @@
       "base": null,
       "refs": {
         "DescribeEnvironmentManagedActionHistoryResult$ManagedActionHistoryItems": "<p>A list of completed and failed managed actions.</p>"
+      }
+    },
+    "ManagedActionHistoryMaxItems": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentManagedActionHistoryRequest$MaxItems": "<p>The maximum number of items to return for a single request.</p>"
       }
     },
     "ManagedActionInvalidStateException": {

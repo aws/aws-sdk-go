@@ -496,7 +496,8 @@
         "CREATING",
         "TRANSFERRING",
         "DELETED",
-        "FAILED"
+        "FAILED",
+        "PENDING"
       ]
     },
     "BackupNotFound":{

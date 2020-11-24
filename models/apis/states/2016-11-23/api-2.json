@@ -268,6 +268,24 @@
       ],
       "idempotent":true
     },
+    "StartSyncExecution":{
+      "name":"StartSyncExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartSyncExecutionInput"},
+      "output":{"shape":"StartSyncExecutionOutput"},
+      "errors":[
+        {"shape":"InvalidArn"},
+        {"shape":"InvalidExecutionInput"},
+        {"shape":"InvalidName"},
+        {"shape":"StateMachineDoesNotExist"},
+        {"shape":"StateMachineDeleting"},
+        {"shape":"StateMachineTypeNotSupported"}
+      ],
+      "endpoint":{"hostPrefix":"sync-"}
+    },
     "StopExecution":{
       "name":"StopExecution",
       "http":{
@@ -423,10 +441,25 @@
       "max":256,
       "min":1
     },
+    "BilledDuration":{
+      "type":"long",
+      "min":0
+    },
+    "BilledMemoryUsed":{
+      "type":"long",
+      "min":0
+    },
+    "BillingDetails":{
+      "type":"structure",
+      "members":{
+        "billedMemoryUsedInMB":{"shape":"BilledMemoryUsed"},
+        "billedDurationInMilliseconds":{"shape":"BilledDuration"}
+      }
+    },
     "CloudWatchEventsExecutionDataDetails":{
       "type":"structure",
       "members":{
-        "included":{"shape":"included"}
+        "included":{"shape":"includedDetails"}
       }
     },
     "CloudWatchLogsLogGroup":{
@@ -1199,6 +1232,41 @@
         "startDate":{"shape":"Timestamp"}
       }
     },
+    "StartSyncExecutionInput":{
+      "type":"structure",
+      "required":["stateMachineArn"],
+      "members":{
+        "stateMachineArn":{"shape":"Arn"},
+        "name":{"shape":"Name"},
+        "input":{"shape":"SensitiveData"},
+        "traceHeader":{"shape":"TraceHeader"}
+      }
+    },
+    "StartSyncExecutionOutput":{
+      "type":"structure",
+      "required":[
+        "executionArn",
+        "startDate",
+        "stopDate",
+        "status"
+      ],
+      "members":{
+        "executionArn":{"shape":"Arn"},
+        "stateMachineArn":{"shape":"Arn"},
+        "name":{"shape":"Name"},
+        "startDate":{"shape":"Timestamp"},
+        "stopDate":{"shape":"Timestamp"},
+        "status":{"shape":"SyncExecutionStatus"},
+        "error":{"shape":"SensitiveError"},
+        "cause":{"shape":"SensitiveCause"},
+        "input":{"shape":"SensitiveData"},
+        "inputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"},
+        "output":{"shape":"SensitiveData"},
+        "outputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"},
+        "traceHeader":{"shape":"TraceHeader"},
+        "billingDetails":{"shape":"BillingDetails"}
+      }
+    },
     "StateEnteredEventDetails":{
       "type":"structure",
       "required":["name"],
@@ -1300,6 +1368,14 @@
       "members":{
         "stopDate":{"shape":"Timestamp"}
       }
+    },
+    "SyncExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT"
+      ]
     },
     "Tag":{
       "type":"structure",
@@ -1533,7 +1609,7 @@
         "updateDate":{"shape":"Timestamp"}
       }
     },
-    "included":{"type":"boolean"},
+    "includedDetails":{"type":"boolean"},
     "truncated":{"type":"boolean"}
   }
 }

@@ -25,6 +25,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListEventsDetectionJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListKeyPhrasesDetectionJobs": {
       "input_token": "NextToken",
       "output_token": "NextToken",

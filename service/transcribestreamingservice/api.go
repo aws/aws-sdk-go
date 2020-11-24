@@ -22,6 +22,368 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opStartMedicalStreamTranscription = "StartMedicalStreamTranscription"
+
+// StartMedicalStreamTranscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the StartMedicalStreamTranscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMedicalStreamTranscription for more information on using the StartMedicalStreamTranscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartMedicalStreamTranscriptionRequest method.
+//    req, resp := client.StartMedicalStreamTranscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-streaming-2017-10-26/StartMedicalStreamTranscription
+func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionRequest(input *StartMedicalStreamTranscriptionInput) (req *request.Request, output *StartMedicalStreamTranscriptionOutput) {
+	op := &request.Operation{
+		Name:       opStartMedicalStreamTranscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/medical-stream-transcription",
+	}
+
+	if input == nil {
+		input = &StartMedicalStreamTranscriptionInput{}
+	}
+
+	output = &StartMedicalStreamTranscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.UnmarshalMeta.PushBack(
+		protocol.RequireHTTPMinProtocol{Major: 2}.Handler,
+	)
+
+	es := NewStartMedicalStreamTranscriptionEventStream()
+	output.eventStream = es
+
+	req.Handlers.Sign.PushFront(es.setupInputPipe)
+	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
+		"Content-Type":         "application/vnd.amazon.eventstream",
+		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
+	}))
+	req.Handlers.Build.Swap(restjson.BuildHandler.Name, rest.BuildHandler)
+	req.Handlers.Send.Swap(client.LogHTTPRequestHandler.Name, client.LogHTTPRequestHeaderHandler)
+	req.Handlers.Unmarshal.PushBack(es.runInputStream)
+
+	req.Handlers.Send.Swap(client.LogHTTPResponseHandler.Name, client.LogHTTPResponseHeaderHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, rest.UnmarshalHandler)
+	req.Handlers.Unmarshal.PushBack(es.runOutputStream)
+	req.Handlers.Unmarshal.PushBack(es.runOnStreamPartClose)
+	return
+}
+
+// StartMedicalStreamTranscription API operation for Amazon Transcribe Streaming Service.
+//
+// Starts a bidirectional HTTP/2 stream where audio is streamed to Amazon Transcribe
+// Medical and the transcription results are streamed to your application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Streaming Service's
+// API operation StartMedicalStreamTranscription for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
+//   operation was invalid. For example, MediaEncoding was not set to a valid
+//   encoding, or LanguageCode was not set to a valid code. Check the parameters
+//   and try your request again.
+//
+//   * LimitExceededException
+//   You have exceeded the maximum number of concurrent transcription streams,
+//   are starting transcription streams too quickly, or the maximum audio length
+//   of 4 hours. Wait until a stream has finished processing, or break your audio
+//   stream into smaller chunks and try your request again.
+//
+//   * InternalFailureException
+//   A problem occurred while processing the audio. Amazon Transcribe or Amazon
+//   Transcribe Medical terminated processing. Try your request again.
+//
+//   * ConflictException
+//   A new stream started with the same session ID. The current stream has been
+//   terminated.
+//
+//   * ServiceUnavailableException
+//   Service is currently unavailable. Try your request later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-streaming-2017-10-26/StartMedicalStreamTranscription
+func (c *TranscribeStreamingService) StartMedicalStreamTranscription(input *StartMedicalStreamTranscriptionInput) (*StartMedicalStreamTranscriptionOutput, error) {
+	req, out := c.StartMedicalStreamTranscriptionRequest(input)
+	return out, req.Send()
+}
+
+// StartMedicalStreamTranscriptionWithContext is the same as StartMedicalStreamTranscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMedicalStreamTranscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionWithContext(ctx aws.Context, input *StartMedicalStreamTranscriptionInput, opts ...request.Option) (*StartMedicalStreamTranscriptionOutput, error) {
+	req, out := c.StartMedicalStreamTranscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+var _ awserr.Error
+
+// StartMedicalStreamTranscriptionEventStream provides the event stream handling for the StartMedicalStreamTranscription.
+//
+// For testing and mocking the event stream this type should be initialized via
+// the NewStartMedicalStreamTranscriptionEventStream constructor function. Using the functional options
+// to pass in nested mock behavior.
+type StartMedicalStreamTranscriptionEventStream struct {
+
+	// Writer is the EventStream writer for the AudioStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Writer.
+	//
+	// Must not be nil.
+	Writer AudioStreamWriter
+
+	inputWriter io.WriteCloser
+
+	// Reader is the EventStream reader for the MedicalTranscriptResultStream
+	// events. This value is automatically set by the SDK when the API call is made
+	// Use this member when unit testing your code with the SDK to mock out the
+	// EventStream Reader.
+	//
+	// Must not be nil.
+	Reader MedicalTranscriptResultStreamReader
+
+	outputReader io.ReadCloser
+
+	done      chan struct{}
+	closeOnce sync.Once
+	err       *eventstreamapi.OnceError
+}
+
+// NewStartMedicalStreamTranscriptionEventStream initializes an StartMedicalStreamTranscriptionEventStream.
+// This function should only be used for testing and mocking the StartMedicalStreamTranscriptionEventStream
+// stream within your application.
+//
+// The Writer member must be set before writing events to the stream.
+//
+// The Reader member must be set before reading events from the stream.
+//
+//   es := NewStartMedicalStreamTranscriptionEventStream(func(o *StartMedicalStreamTranscriptionEventStream{
+//       es.Writer = myMockStreamWriter
+//       es.Reader = myMockStreamReader
+//   })
+func NewStartMedicalStreamTranscriptionEventStream(opts ...func(*StartMedicalStreamTranscriptionEventStream)) *StartMedicalStreamTranscriptionEventStream {
+	es := &StartMedicalStreamTranscriptionEventStream{
+		done: make(chan struct{}),
+		err:  eventstreamapi.NewOnceError(),
+	}
+
+	for _, fn := range opts {
+		fn(es)
+	}
+
+	return es
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) runOnStreamPartClose(r *request.Request) {
+	if es.done == nil {
+		return
+	}
+	go es.waitStreamPartClose()
+
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) waitStreamPartClose() {
+	var inputErrCh <-chan struct{}
+	if v, ok := es.Writer.(interface{ ErrorSet() <-chan struct{} }); ok {
+		inputErrCh = v.ErrorSet()
+	}
+	var outputErrCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ ErrorSet() <-chan struct{} }); ok {
+		outputErrCh = v.ErrorSet()
+	}
+	var outputClosedCh <-chan struct{}
+	if v, ok := es.Reader.(interface{ Closed() <-chan struct{} }); ok {
+		outputClosedCh = v.Closed()
+	}
+
+	select {
+	case <-es.done:
+	case <-inputErrCh:
+		es.err.SetError(es.Writer.Err())
+		es.Close()
+	case <-outputErrCh:
+		es.err.SetError(es.Reader.Err())
+		es.Close()
+	case <-outputClosedCh:
+		if err := es.Reader.Err(); err != nil {
+			es.err.SetError(es.Reader.Err())
+		}
+		es.Close()
+	}
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) setupInputPipe(r *request.Request) {
+	inputReader, inputWriter := io.Pipe()
+	r.SetStreamingBody(inputReader)
+	es.inputWriter = inputWriter
+}
+
+// Send writes the event to the stream blocking until the event is written.
+// Returns an error if the event was not written.
+//
+// These events are:
+//
+//     * AudioEvent
+func (es *StartMedicalStreamTranscriptionEventStream) Send(ctx aws.Context, event AudioStreamEvent) error {
+	return es.Writer.Send(ctx, event)
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) runInputStream(r *request.Request) {
+	var opts []func(*eventstream.Encoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
+	}
+	var encoder eventstreamapi.Encoder = eventstream.NewEncoder(es.inputWriter, opts...)
+
+	var closer aws.MultiCloser
+	sigSeed, err := v4.GetSignedRequestSignature(r.HTTPRequest)
+	if err != nil {
+		r.Error = awserr.New(request.ErrCodeSerialization,
+			"unable to get initial request's signature", err)
+		return
+	}
+	signer := eventstreamapi.NewSignEncoder(
+		v4.NewStreamSigner(r.ClientInfo.SigningRegion, r.ClientInfo.SigningName,
+			sigSeed, r.Config.Credentials),
+		encoder,
+	)
+	encoder = signer
+	closer = append(closer, signer)
+	closer = append(closer, es.inputWriter)
+
+	eventWriter := eventstreamapi.NewEventWriter(encoder,
+		protocol.HandlerPayloadMarshal{
+			Marshalers: r.Handlers.BuildStream,
+		},
+		eventTypeForAudioStreamEvent,
+	)
+
+	es.Writer = &writeAudioStream{
+		StreamWriter: eventstreamapi.NewStreamWriter(eventWriter, closer),
+	}
+}
+
+// Events returns a channel to read events from.
+//
+// These events are:
+//
+//     * MedicalTranscriptEvent
+//     * MedicalTranscriptResultStreamUnknownEvent
+func (es *StartMedicalStreamTranscriptionEventStream) Events() <-chan MedicalTranscriptResultStreamEvent {
+	return es.Reader.Events()
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) runOutputStream(r *request.Request) {
+	var opts []func(*eventstream.Decoder)
+	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	}
+
+	unmarshalerForEvent := unmarshalerForMedicalTranscriptResultStreamEvent{
+		metadata: protocol.ResponseMetadata{
+			StatusCode: r.HTTPResponse.StatusCode,
+			RequestID:  r.RequestID,
+		},
+	}.UnmarshalerForEventName
+
+	decoder := eventstream.NewDecoder(r.HTTPResponse.Body, opts...)
+	eventReader := eventstreamapi.NewEventReader(decoder,
+		protocol.HandlerPayloadUnmarshal{
+			Unmarshalers: r.Handlers.UnmarshalStream,
+		},
+		unmarshalerForEvent,
+	)
+
+	es.outputReader = r.HTTPResponse.Body
+	es.Reader = newReadMedicalTranscriptResultStream(eventReader)
+}
+
+// Close closes the stream. This will also cause the stream to be closed.
+// Close must be called when done using the stream API. Not calling Close
+// may result in resource leaks.
+//
+// Will close the underlying EventStream writer, and no more events can be
+// sent.
+//
+// You can use the closing of the Reader's Events channel to terminate your
+// application's read from the API's stream.
+//
+func (es *StartMedicalStreamTranscriptionEventStream) Close() (err error) {
+	es.closeOnce.Do(es.safeClose)
+	return es.Err()
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) safeClose() {
+	if es.done != nil {
+		close(es.done)
+	}
+
+	t := time.NewTicker(time.Second)
+	defer t.Stop()
+	writeCloseDone := make(chan error)
+	go func() {
+		if err := es.Writer.Close(); err != nil {
+			es.err.SetError(err)
+		}
+		close(writeCloseDone)
+	}()
+	select {
+	case <-t.C:
+	case <-writeCloseDone:
+	}
+	if es.inputWriter != nil {
+		es.inputWriter.Close()
+	}
+
+	es.Reader.Close()
+	if es.outputReader != nil {
+		es.outputReader.Close()
+	}
+}
+
+// Err returns any error that occurred while reading or writing EventStream
+// Events from the service API's response. Returns nil if there were no errors.
+func (es *StartMedicalStreamTranscriptionEventStream) Err() error {
+	if err := es.err.Err(); err != nil {
+		return err
+	}
+	if err := es.Writer.Err(); err != nil {
+		return err
+	}
+	if err := es.Reader.Err(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 const opStartStreamTranscription = "StartStreamTranscription"
 
 // StartStreamTranscriptionRequest generates a "aws/request.Request" representing the
@@ -108,9 +470,10 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 //
 // Returned Error Types:
 //   * BadRequestException
-//   One or more arguments to the StartStreamTranscription operation was invalid.
-//   For example, MediaEncoding was not set to pcm or LanguageCode was not set
-//   to a valid code. Check the parameters and try your request again.
+//   One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
+//   operation was invalid. For example, MediaEncoding was not set to a valid
+//   encoding, or LanguageCode was not set to a valid code. Check the parameters
+//   and try your request again.
 //
 //   * LimitExceededException
 //   You have exceeded the maximum number of concurrent transcription streams,
@@ -119,8 +482,8 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 //   stream into smaller chunks and try your request again.
 //
 //   * InternalFailureException
-//   A problem occurred while processing the audio. Amazon Transcribe terminated
-//   processing. Try your request again.
+//   A problem occurred while processing the audio. Amazon Transcribe or Amazon
+//   Transcribe Medical terminated processing. Try your request again.
 //
 //   * ConflictException
 //   A new stream started with the same session ID. The current stream has been
@@ -528,9 +891,10 @@ func eventTypeForAudioStreamEvent(event eventstreamapi.Marshaler) (string, error
 	}
 }
 
-// One or more arguments to the StartStreamTranscription operation was invalid.
-// For example, MediaEncoding was not set to pcm or LanguageCode was not set
-// to a valid code. Check the parameters and try your request again.
+// One or more arguments to the StartStreamTranscription or StartMedicalStreamTranscription
+// operation was invalid. For example, MediaEncoding was not set to a valid
+// encoding, or LanguageCode was not set to a valid code. Check the parameters
+// and try your request again.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -547,6 +911,9 @@ func (s BadRequestException) String() string {
 func (s BadRequestException) GoString() string {
 	return s.String()
 }
+
+// The BadRequestException is and event in the MedicalTranscriptResultStream group of events.
+func (s *BadRequestException) eventMedicalTranscriptResultStream() {}
 
 // The BadRequestException is and event in the TranscriptResultStream group of events.
 func (s *BadRequestException) eventTranscriptResultStream() {}
@@ -634,6 +1001,9 @@ func (s ConflictException) GoString() string {
 	return s.String()
 }
 
+// The ConflictException is and event in the MedicalTranscriptResultStream group of events.
+func (s *ConflictException) eventMedicalTranscriptResultStream() {}
+
 // The ConflictException is and event in the TranscriptResultStream group of events.
 func (s *ConflictException) eventTranscriptResultStream() {}
 
@@ -701,8 +1071,8 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A problem occurred while processing the audio. Amazon Transcribe terminated
-// processing. Try your request again.
+// A problem occurred while processing the audio. Amazon Transcribe or Amazon
+// Transcribe Medical terminated processing. Try your request again.
 type InternalFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -719,6 +1089,9 @@ func (s InternalFailureException) String() string {
 func (s InternalFailureException) GoString() string {
 	return s.String()
 }
+
+// The InternalFailureException is and event in the MedicalTranscriptResultStream group of events.
+func (s *InternalFailureException) eventMedicalTranscriptResultStream() {}
 
 // The InternalFailureException is and event in the TranscriptResultStream group of events.
 func (s *InternalFailureException) eventTranscriptResultStream() {}
@@ -884,6 +1257,9 @@ func (s LimitExceededException) GoString() string {
 	return s.String()
 }
 
+// The LimitExceededException is and event in the MedicalTranscriptResultStream group of events.
+func (s *LimitExceededException) eventMedicalTranscriptResultStream() {}
+
 // The LimitExceededException is and event in the TranscriptResultStream group of events.
 func (s *LimitExceededException) eventTranscriptResultStream() {}
 
@@ -949,6 +1325,444 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A list of possible transcriptions for the audio.
+type MedicalAlternative struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects that contains words and punctuation marks that represents
+	// one or more interpretations of the input audio.
+	Items []*MedicalItem `type:"list"`
+
+	// The text that was transcribed from the audio.
+	Transcript *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MedicalAlternative) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MedicalAlternative) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *MedicalAlternative) SetItems(v []*MedicalItem) *MedicalAlternative {
+	s.Items = v
+	return s
+}
+
+// SetTranscript sets the Transcript field's value.
+func (s *MedicalAlternative) SetTranscript(v string) *MedicalAlternative {
+	s.Transcript = &v
+	return s
+}
+
+// A word or punctuation that is transcribed from the input audio.
+type MedicalItem struct {
+	_ struct{} `type:"structure"`
+
+	// A value between 0 and 1 for an item that is a confidence score that Amazon
+	// Transcribe Medical assigns to each word that it transcribes.
+	Confidence *float64 `type:"double"`
+
+	// The word or punctuation mark that was recognized in the input audio.
+	Content *string `type:"string"`
+
+	// The number of seconds into an audio stream that indicates the creation time
+	// of an item.
+	EndTime *float64 `type:"double"`
+
+	// If speaker identification is enabled, shows the integer values that correspond
+	// to the different speakers identified in the stream. For example, if the value
+	// of Speaker in the stream is either a 0 or a 1, that indicates that Amazon
+	// Transcribe Medical has identified two speakers in the stream. The value of
+	// 0 corresponds to one speaker and the value of 1 corresponds to the other
+	// speaker.
+	Speaker *string `type:"string"`
+
+	// The number of seconds into an audio stream that indicates the creation time
+	// of an item.
+	StartTime *float64 `type:"double"`
+
+	// The type of the item. PRONUNCIATION indicates that the item is a word that
+	// was recognized in the input audio. PUNCTUATION indicates that the item was
+	// interpreted as a pause in the input audio, such as a period to indicate the
+	// end of a sentence.
+	Type *string `type:"string" enum:"ItemType"`
+}
+
+// String returns the string representation
+func (s MedicalItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MedicalItem) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *MedicalItem) SetConfidence(v float64) *MedicalItem {
+	s.Confidence = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *MedicalItem) SetContent(v string) *MedicalItem {
+	s.Content = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *MedicalItem) SetEndTime(v float64) *MedicalItem {
+	s.EndTime = &v
+	return s
+}
+
+// SetSpeaker sets the Speaker field's value.
+func (s *MedicalItem) SetSpeaker(v string) *MedicalItem {
+	s.Speaker = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *MedicalItem) SetStartTime(v float64) *MedicalItem {
+	s.StartTime = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MedicalItem) SetType(v string) *MedicalItem {
+	s.Type = &v
+	return s
+}
+
+// The results of transcribing a portion of the input audio stream.
+type MedicalResult struct {
+	_ struct{} `type:"structure"`
+
+	// A list of possible transcriptions of the audio. Each alternative typically
+	// contains one Item that contains the result of the transcription.
+	Alternatives []*MedicalAlternative `type:"list"`
+
+	// When channel identification is enabled, Amazon Transcribe Medical transcribes
+	// the speech from each audio channel separately.
+	//
+	// You can use ChannelId to retrieve the transcription results for a single
+	// channel in your audio stream.
+	ChannelId *string `type:"string"`
+
+	// The time, in seconds, from the beginning of the audio stream to the end of
+	// the result.
+	EndTime *float64 `type:"double"`
+
+	// Amazon Transcribe Medical divides the incoming audio stream into segments
+	// at natural points in the audio. Transcription results are returned based
+	// on these segments.
+	//
+	// The IsPartial field is true to indicate that Amazon Transcribe Medical has
+	// additional transcription data to send. The IsPartial field is false to indicate
+	// that this is the last transcription result for the segment.
+	IsPartial *bool `type:"boolean"`
+
+	// A unique identifier for the result.
+	ResultId *string `type:"string"`
+
+	// The time, in seconds, from the beginning of the audio stream to the beginning
+	// of the result.
+	StartTime *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s MedicalResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MedicalResult) GoString() string {
+	return s.String()
+}
+
+// SetAlternatives sets the Alternatives field's value.
+func (s *MedicalResult) SetAlternatives(v []*MedicalAlternative) *MedicalResult {
+	s.Alternatives = v
+	return s
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *MedicalResult) SetChannelId(v string) *MedicalResult {
+	s.ChannelId = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *MedicalResult) SetEndTime(v float64) *MedicalResult {
+	s.EndTime = &v
+	return s
+}
+
+// SetIsPartial sets the IsPartial field's value.
+func (s *MedicalResult) SetIsPartial(v bool) *MedicalResult {
+	s.IsPartial = &v
+	return s
+}
+
+// SetResultId sets the ResultId field's value.
+func (s *MedicalResult) SetResultId(v string) *MedicalResult {
+	s.ResultId = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *MedicalResult) SetStartTime(v float64) *MedicalResult {
+	s.StartTime = &v
+	return s
+}
+
+// The medical transcript in a MedicalTranscriptEvent.
+type MedicalTranscript struct {
+	_ struct{} `type:"structure"`
+
+	// MedicalResult objects that contain the results of transcribing a portion
+	// of the input audio stream. The array can be empty.
+	Results []*MedicalResult `type:"list"`
+}
+
+// String returns the string representation
+func (s MedicalTranscript) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MedicalTranscript) GoString() string {
+	return s.String()
+}
+
+// SetResults sets the Results field's value.
+func (s *MedicalTranscript) SetResults(v []*MedicalResult) *MedicalTranscript {
+	s.Results = v
+	return s
+}
+
+// Represents a set of transcription results from the server to the client.
+// It contains one or more segments of the transcription.
+type MedicalTranscriptEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The transcription of the audio stream. The transcription is composed of all
+	// of the items in the results list.
+	Transcript *MedicalTranscript `type:"structure"`
+}
+
+// String returns the string representation
+func (s MedicalTranscriptEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MedicalTranscriptEvent) GoString() string {
+	return s.String()
+}
+
+// SetTranscript sets the Transcript field's value.
+func (s *MedicalTranscriptEvent) SetTranscript(v *MedicalTranscript) *MedicalTranscriptEvent {
+	s.Transcript = v
+	return s
+}
+
+// The MedicalTranscriptEvent is and event in the MedicalTranscriptResultStream group of events.
+func (s *MedicalTranscriptEvent) eventMedicalTranscriptResultStream() {}
+
+// UnmarshalEvent unmarshals the EventStream Message into the MedicalTranscriptEvent value.
+// This method is only used internally within the SDK's EventStream handling.
+func (s *MedicalTranscriptEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	if err := payloadUnmarshaler.UnmarshalPayload(
+		bytes.NewReader(msg.Payload), s,
+	); err != nil {
+		return err
+	}
+	return nil
+}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (s *MedicalTranscriptEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventstream.Message, err error) {
+	msg.Headers.Set(eventstreamapi.MessageTypeHeader, eventstream.StringValue(eventstreamapi.EventMessageType))
+	var buf bytes.Buffer
+	if err = pm.MarshalPayload(&buf, s); err != nil {
+		return eventstream.Message{}, err
+	}
+	msg.Payload = buf.Bytes()
+	return msg, err
+}
+
+// MedicalTranscriptResultStreamEvent groups together all EventStream
+// events writes for MedicalTranscriptResultStream.
+//
+// These events are:
+//
+//     * MedicalTranscriptEvent
+type MedicalTranscriptResultStreamEvent interface {
+	eventMedicalTranscriptResultStream()
+	eventstreamapi.Marshaler
+	eventstreamapi.Unmarshaler
+}
+
+// MedicalTranscriptResultStreamReader provides the interface for reading to the stream. The
+// default implementation for this interface will be MedicalTranscriptResultStream.
+//
+// The reader's Close method must allow multiple concurrent calls.
+//
+// These events are:
+//
+//     * MedicalTranscriptEvent
+//     * MedicalTranscriptResultStreamUnknownEvent
+type MedicalTranscriptResultStreamReader interface {
+	// Returns a channel of events as they are read from the event stream.
+	Events() <-chan MedicalTranscriptResultStreamEvent
+
+	// Close will stop the reader reading events from the stream.
+	Close() error
+
+	// Returns any error that has occurred while reading from the event stream.
+	Err() error
+}
+
+type readMedicalTranscriptResultStream struct {
+	eventReader *eventstreamapi.EventReader
+	stream      chan MedicalTranscriptResultStreamEvent
+	err         *eventstreamapi.OnceError
+
+	done      chan struct{}
+	closeOnce sync.Once
+}
+
+func newReadMedicalTranscriptResultStream(eventReader *eventstreamapi.EventReader) *readMedicalTranscriptResultStream {
+	r := &readMedicalTranscriptResultStream{
+		eventReader: eventReader,
+		stream:      make(chan MedicalTranscriptResultStreamEvent),
+		done:        make(chan struct{}),
+		err:         eventstreamapi.NewOnceError(),
+	}
+	go r.readEventStream()
+
+	return r
+}
+
+// Close will close the underlying event stream reader.
+func (r *readMedicalTranscriptResultStream) Close() error {
+	r.closeOnce.Do(r.safeClose)
+	return r.Err()
+}
+
+func (r *readMedicalTranscriptResultStream) ErrorSet() <-chan struct{} {
+	return r.err.ErrorSet()
+}
+
+func (r *readMedicalTranscriptResultStream) Closed() <-chan struct{} {
+	return r.done
+}
+
+func (r *readMedicalTranscriptResultStream) safeClose() {
+	close(r.done)
+}
+
+func (r *readMedicalTranscriptResultStream) Err() error {
+	return r.err.Err()
+}
+
+func (r *readMedicalTranscriptResultStream) Events() <-chan MedicalTranscriptResultStreamEvent {
+	return r.stream
+}
+
+func (r *readMedicalTranscriptResultStream) readEventStream() {
+	defer r.Close()
+	defer close(r.stream)
+
+	for {
+		event, err := r.eventReader.ReadEvent()
+		if err != nil {
+			if err == io.EOF {
+				return
+			}
+			select {
+			case <-r.done:
+				// If closed already ignore the error
+				return
+			default:
+			}
+			if _, ok := err.(*eventstreamapi.UnknownMessageTypeError); ok {
+				continue
+			}
+			r.err.SetError(err)
+			return
+		}
+
+		select {
+		case r.stream <- event.(MedicalTranscriptResultStreamEvent):
+		case <-r.done:
+			return
+		}
+	}
+}
+
+type unmarshalerForMedicalTranscriptResultStreamEvent struct {
+	metadata protocol.ResponseMetadata
+}
+
+func (u unmarshalerForMedicalTranscriptResultStreamEvent) UnmarshalerForEventName(eventType string) (eventstreamapi.Unmarshaler, error) {
+	switch eventType {
+	case "TranscriptEvent":
+		return &MedicalTranscriptEvent{}, nil
+	case "BadRequestException":
+		return newErrorBadRequestException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "ConflictException":
+		return newErrorConflictException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "InternalFailureException":
+		return newErrorInternalFailureException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "LimitExceededException":
+		return newErrorLimitExceededException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	case "ServiceUnavailableException":
+		return newErrorServiceUnavailableException(u.metadata).(eventstreamapi.Unmarshaler), nil
+	default:
+		return &MedicalTranscriptResultStreamUnknownEvent{Type: eventType}, nil
+	}
+}
+
+// MedicalTranscriptResultStreamUnknownEvent provides a failsafe event for the
+// MedicalTranscriptResultStream group of events when an unknown event is received.
+type MedicalTranscriptResultStreamUnknownEvent struct {
+	Type    string
+	Message eventstream.Message
+}
+
+// The MedicalTranscriptResultStreamUnknownEvent is and event in the MedicalTranscriptResultStream
+// group of events.
+func (s *MedicalTranscriptResultStreamUnknownEvent) eventMedicalTranscriptResultStream() {}
+
+// MarshalEvent marshals the type into an stream event value. This method
+// should only used internally within the SDK's EventStream handling.
+func (e *MedicalTranscriptResultStreamUnknownEvent) MarshalEvent(pm protocol.PayloadMarshaler) (
+	msg eventstream.Message, err error,
+) {
+	return e.Message.Clone(), nil
+}
+
+// UnmarshalEvent unmarshals the EventStream Message into the MedicalTranscriptResultStream value.
+// This method is only used internally within the SDK's EventStream handling.
+func (e *MedicalTranscriptResultStreamUnknownEvent) UnmarshalEvent(
+	payloadUnmarshaler protocol.PayloadUnmarshaler,
+	msg eventstream.Message,
+) error {
+	e.Message = msg.Clone()
+	return nil
 }
 
 // The result of transcribing a portion of the input audio stream.
@@ -1050,6 +1864,9 @@ func (s ServiceUnavailableException) GoString() string {
 	return s.String()
 }
 
+// The ServiceUnavailableException is and event in the MedicalTranscriptResultStream group of events.
+func (s *ServiceUnavailableException) eventMedicalTranscriptResultStream() {}
+
 // The ServiceUnavailableException is and event in the TranscriptResultStream group of events.
 func (s *ServiceUnavailableException) eventTranscriptResultStream() {}
 
@@ -1117,6 +1934,295 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type StartMedicalStreamTranscriptionInput struct {
+	_ struct{} `type:"structure" payload:"AudioStream"`
+
+	// When true, instructs Amazon Transcribe Medical to process each audio channel
+	// separately and then merge the transcription output of each channel into a
+	// single transcription.
+	//
+	// Amazon Transcribe Medical also produces a transcription of each item. An
+	// item includes the start time, end time, and any alternative transcriptions.
+	//
+	// You can't set both ShowSpeakerLabel and EnableChannelIdentification in the
+	// same request. If you set both, your request returns a BadRequestException.
+	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
+
+	// Indicates the source language used in the input audio stream. For Amazon
+	// Transcribe Medical, this is US English (en-US).
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" required:"true" enum:"LanguageCode"`
+
+	// The encoding used for the input audio.
+	//
+	// MediaEncoding is a required field
+	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
+
+	// The sample rate of the input audio in Hertz. Sample rates of 16000 Hz or
+	// higher are accepted.
+	//
+	// MediaSampleRateHertz is a required field
+	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer" required:"true"`
+
+	// The number of channels that are in your audio stream.
+	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
+
+	// Optional. An identifier for the transcription session. If you don't provide
+	// a session ID, Amazon Transcribe generates one for you and returns it in the
+	// response.
+	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
+
+	// When true, enables speaker identification in your real-time stream.
+	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
+
+	// The medical specialty of the clinician or provider.
+	//
+	// Specialty is a required field
+	Specialty *string `location:"header" locationName:"x-amzn-transcribe-specialty" type:"string" required:"true" enum:"Specialty"`
+
+	// The type of input audio. Choose DICTATION for a provider dictating patient
+	// notes. Choose CONVERSATION for a dialogue between a patient and one or more
+	// medical professionanls.
+	//
+	// Type is a required field
+	Type *string `location:"header" locationName:"x-amzn-transcribe-type" type:"string" required:"true" enum:"Type"`
+
+	// The name of the medical custom vocabulary to use when processing the real-time
+	// stream.
+	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartMedicalStreamTranscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMedicalStreamTranscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMedicalStreamTranscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMedicalStreamTranscriptionInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.MediaEncoding == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaEncoding"))
+	}
+	if s.MediaSampleRateHertz == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaSampleRateHertz"))
+	}
+	if s.MediaSampleRateHertz != nil && *s.MediaSampleRateHertz < 8000 {
+		invalidParams.Add(request.NewErrParamMinValue("MediaSampleRateHertz", 8000))
+	}
+	if s.NumberOfChannels != nil && *s.NumberOfChannels < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberOfChannels", 2))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 36))
+	}
+	if s.Specialty == nil {
+		invalidParams.Add(request.NewErrParamRequired("Specialty"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetEnableChannelIdentification(v bool) *StartMedicalStreamTranscriptionInput {
+	s.EnableChannelIdentification = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetLanguageCode(v string) *StartMedicalStreamTranscriptionInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMediaEncoding sets the MediaEncoding field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetMediaEncoding(v string) *StartMedicalStreamTranscriptionInput {
+	s.MediaEncoding = &v
+	return s
+}
+
+// SetMediaSampleRateHertz sets the MediaSampleRateHertz field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetMediaSampleRateHertz(v int64) *StartMedicalStreamTranscriptionInput {
+	s.MediaSampleRateHertz = &v
+	return s
+}
+
+// SetNumberOfChannels sets the NumberOfChannels field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetNumberOfChannels(v int64) *StartMedicalStreamTranscriptionInput {
+	s.NumberOfChannels = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetSessionId(v string) *StartMedicalStreamTranscriptionInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetShowSpeakerLabel sets the ShowSpeakerLabel field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetShowSpeakerLabel(v bool) *StartMedicalStreamTranscriptionInput {
+	s.ShowSpeakerLabel = &v
+	return s
+}
+
+// SetSpecialty sets the Specialty field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetSpecialty(v string) *StartMedicalStreamTranscriptionInput {
+	s.Specialty = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetType(v string) *StartMedicalStreamTranscriptionInput {
+	s.Type = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetVocabularyName(v string) *StartMedicalStreamTranscriptionInput {
+	s.VocabularyName = &v
+	return s
+}
+
+type StartMedicalStreamTranscriptionOutput struct {
+	_ struct{} `type:"structure" payload:"TranscriptResultStream"`
+
+	eventStream *StartMedicalStreamTranscriptionEventStream
+
+	// Shows whether channel identification has been enabled in the stream.
+	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
+
+	// The language code for the response transcript. For Amazon Transcribe Medical,
+	// this is US English (en-US).
+	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
+
+	// The encoding used for the input audio stream.
+	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" enum:"MediaEncoding"`
+
+	// The sample rate of the input audio in Hertz. Valid value: 16000 Hz.
+	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer"`
+
+	// The number of channels identified in the stream.
+	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
+
+	// An identifier for the streaming transcription.
+	RequestId *string `location:"header" locationName:"x-amzn-request-id" type:"string"`
+
+	// Optional. An identifier for the transcription session. If you don't provide
+	// a session ID, Amazon Transcribe generates one for you and returns it in the
+	// response.
+	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
+
+	// Shows whether speaker identification was enabled in the stream.
+	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
+
+	// The specialty in the medical domain.
+	Specialty *string `location:"header" locationName:"x-amzn-transcribe-specialty" type:"string" enum:"Specialty"`
+
+	// The type of audio that was transcribed.
+	Type *string `location:"header" locationName:"x-amzn-transcribe-type" type:"string" enum:"Type"`
+
+	// The name of the vocabulary used when processing the stream.
+	VocabularyName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-name" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartMedicalStreamTranscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMedicalStreamTranscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetEnableChannelIdentification(v bool) *StartMedicalStreamTranscriptionOutput {
+	s.EnableChannelIdentification = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetLanguageCode(v string) *StartMedicalStreamTranscriptionOutput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMediaEncoding sets the MediaEncoding field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetMediaEncoding(v string) *StartMedicalStreamTranscriptionOutput {
+	s.MediaEncoding = &v
+	return s
+}
+
+// SetMediaSampleRateHertz sets the MediaSampleRateHertz field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetMediaSampleRateHertz(v int64) *StartMedicalStreamTranscriptionOutput {
+	s.MediaSampleRateHertz = &v
+	return s
+}
+
+// SetNumberOfChannels sets the NumberOfChannels field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetNumberOfChannels(v int64) *StartMedicalStreamTranscriptionOutput {
+	s.NumberOfChannels = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetRequestId(v string) *StartMedicalStreamTranscriptionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetSessionId(v string) *StartMedicalStreamTranscriptionOutput {
+	s.SessionId = &v
+	return s
+}
+
+// SetShowSpeakerLabel sets the ShowSpeakerLabel field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetShowSpeakerLabel(v bool) *StartMedicalStreamTranscriptionOutput {
+	s.ShowSpeakerLabel = &v
+	return s
+}
+
+// SetSpecialty sets the Specialty field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetSpecialty(v string) *StartMedicalStreamTranscriptionOutput {
+	s.Specialty = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetType(v string) *StartMedicalStreamTranscriptionOutput {
+	s.Type = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetVocabularyName(v string) *StartMedicalStreamTranscriptionOutput {
+	s.VocabularyName = &v
+	return s
+}
+
+// GetStream returns the type to interact with the event stream.
+func (s *StartMedicalStreamTranscriptionOutput) GetStream() *StartMedicalStreamTranscriptionEventStream {
+	return s.eventStream
+}
+
 type StartStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
@@ -1135,7 +2241,7 @@ type StartStreamTranscriptionInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" required:"true" enum:"LanguageCode"`
 
-	// The encoding used for the input audio. pcm is the only valid value.
+	// The encoding used for the input audio.
 	//
 	// MediaEncoding is a required field
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
@@ -1679,6 +2785,15 @@ const (
 
 	// LanguageCodeDeDe is a LanguageCode enum value
 	LanguageCodeDeDe = "de-DE"
+
+	// LanguageCodePtBr is a LanguageCode enum value
+	LanguageCodePtBr = "pt-BR"
+
+	// LanguageCodeJaJp is a LanguageCode enum value
+	LanguageCodeJaJp = "ja-JP"
+
+	// LanguageCodeKoKr is a LanguageCode enum value
+	LanguageCodeKoKr = "ko-KR"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -1692,18 +2807,77 @@ func LanguageCode_Values() []string {
 		LanguageCodeEnAu,
 		LanguageCodeItIt,
 		LanguageCodeDeDe,
+		LanguageCodePtBr,
+		LanguageCodeJaJp,
+		LanguageCodeKoKr,
 	}
 }
 
 const (
 	// MediaEncodingPcm is a MediaEncoding enum value
 	MediaEncodingPcm = "pcm"
+
+	// MediaEncodingOggOpus is a MediaEncoding enum value
+	MediaEncodingOggOpus = "ogg-opus"
+
+	// MediaEncodingFlac is a MediaEncoding enum value
+	MediaEncodingFlac = "flac"
 )
 
 // MediaEncoding_Values returns all elements of the MediaEncoding enum
 func MediaEncoding_Values() []string {
 	return []string{
 		MediaEncodingPcm,
+		MediaEncodingOggOpus,
+		MediaEncodingFlac,
+	}
+}
+
+const (
+	// SpecialtyPrimarycare is a Specialty enum value
+	SpecialtyPrimarycare = "PRIMARYCARE"
+
+	// SpecialtyCardiology is a Specialty enum value
+	SpecialtyCardiology = "CARDIOLOGY"
+
+	// SpecialtyNeurology is a Specialty enum value
+	SpecialtyNeurology = "NEUROLOGY"
+
+	// SpecialtyOncology is a Specialty enum value
+	SpecialtyOncology = "ONCOLOGY"
+
+	// SpecialtyRadiology is a Specialty enum value
+	SpecialtyRadiology = "RADIOLOGY"
+
+	// SpecialtyUrology is a Specialty enum value
+	SpecialtyUrology = "UROLOGY"
+)
+
+// Specialty_Values returns all elements of the Specialty enum
+func Specialty_Values() []string {
+	return []string{
+		SpecialtyPrimarycare,
+		SpecialtyCardiology,
+		SpecialtyNeurology,
+		SpecialtyOncology,
+		SpecialtyRadiology,
+		SpecialtyUrology,
+	}
+}
+
+const (
+	// TypeConversation is a Type enum value
+	TypeConversation = "CONVERSATION"
+
+	// TypeDictation is a Type enum value
+	TypeDictation = "DICTATION"
+)
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeConversation,
+		TypeDictation,
 	}
 }
 

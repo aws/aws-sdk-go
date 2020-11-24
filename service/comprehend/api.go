@@ -1756,6 +1756,94 @@ func (c *Comprehend) DescribeEntityRecognizerWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDescribeEventsDetectionJob = "DescribeEventsDetectionJob"
+
+// DescribeEventsDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEventsDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEventsDetectionJob for more information on using the DescribeEventsDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEventsDetectionJobRequest method.
+//    req, resp := client.DescribeEventsDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeEventsDetectionJob
+func (c *Comprehend) DescribeEventsDetectionJobRequest(input *DescribeEventsDetectionJobInput) (req *request.Request, output *DescribeEventsDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEventsDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEventsDetectionJobInput{}
+	}
+
+	output = &DescribeEventsDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEventsDetectionJob API operation for Amazon Comprehend.
+//
+// Gets the status and details of an events detection job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribeEventsDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * JobNotFoundException
+//   The specified job was not found. Check the job ID and try again.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribeEventsDetectionJob
+func (c *Comprehend) DescribeEventsDetectionJob(input *DescribeEventsDetectionJobInput) (*DescribeEventsDetectionJobOutput, error) {
+	req, out := c.DescribeEventsDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEventsDetectionJobWithContext is the same as DescribeEventsDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEventsDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribeEventsDetectionJobWithContext(ctx aws.Context, input *DescribeEventsDetectionJobInput, opts ...request.Option) (*DescribeEventsDetectionJobOutput, error) {
+	req, out := c.DescribeEventsDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeKeyPhrasesDetectionJob = "DescribeKeyPhrasesDetectionJob"
 
 // DescribeKeyPhrasesDetectionJobRequest generates a "aws/request.Request" representing the
@@ -3489,6 +3577,152 @@ func (c *Comprehend) ListEntityRecognizersPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opListEventsDetectionJobs = "ListEventsDetectionJobs"
+
+// ListEventsDetectionJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventsDetectionJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEventsDetectionJobs for more information on using the ListEventsDetectionJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEventsDetectionJobsRequest method.
+//    req, resp := client.ListEventsDetectionJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEventsDetectionJobs
+func (c *Comprehend) ListEventsDetectionJobsRequest(input *ListEventsDetectionJobsInput) (req *request.Request, output *ListEventsDetectionJobsOutput) {
+	op := &request.Operation{
+		Name:       opListEventsDetectionJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEventsDetectionJobsInput{}
+	}
+
+	output = &ListEventsDetectionJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEventsDetectionJobs API operation for Amazon Comprehend.
+//
+// Gets a list of the events detection jobs that you have submitted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListEventsDetectionJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InvalidFilterException
+//   The filter specified for the operation is invalid. Specify a different filter.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEventsDetectionJobs
+func (c *Comprehend) ListEventsDetectionJobs(input *ListEventsDetectionJobsInput) (*ListEventsDetectionJobsOutput, error) {
+	req, out := c.ListEventsDetectionJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListEventsDetectionJobsWithContext is the same as ListEventsDetectionJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEventsDetectionJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEventsDetectionJobsWithContext(ctx aws.Context, input *ListEventsDetectionJobsInput, opts ...request.Option) (*ListEventsDetectionJobsOutput, error) {
+	req, out := c.ListEventsDetectionJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEventsDetectionJobsPages iterates over the pages of a ListEventsDetectionJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEventsDetectionJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEventsDetectionJobs operation.
+//    pageNum := 0
+//    err := client.ListEventsDetectionJobsPages(params,
+//        func(page *comprehend.ListEventsDetectionJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Comprehend) ListEventsDetectionJobsPages(input *ListEventsDetectionJobsInput, fn func(*ListEventsDetectionJobsOutput, bool) bool) error {
+	return c.ListEventsDetectionJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEventsDetectionJobsPagesWithContext same as ListEventsDetectionJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEventsDetectionJobsPagesWithContext(ctx aws.Context, input *ListEventsDetectionJobsInput, fn func(*ListEventsDetectionJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEventsDetectionJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEventsDetectionJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEventsDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListKeyPhrasesDetectionJobs = "ListKeyPhrasesDetectionJobs"
 
 // ListKeyPhrasesDetectionJobsRequest generates a "aws/request.Request" representing the
@@ -4392,6 +4626,95 @@ func (c *Comprehend) StartEntitiesDetectionJobWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opStartEventsDetectionJob = "StartEventsDetectionJob"
+
+// StartEventsDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartEventsDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartEventsDetectionJob for more information on using the StartEventsDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartEventsDetectionJobRequest method.
+//    req, resp := client.StartEventsDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartEventsDetectionJob
+func (c *Comprehend) StartEventsDetectionJobRequest(input *StartEventsDetectionJobInput) (req *request.Request, output *StartEventsDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opStartEventsDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartEventsDetectionJobInput{}
+	}
+
+	output = &StartEventsDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartEventsDetectionJob API operation for Amazon Comprehend.
+//
+// Starts an asynchronous event detection job for a collection of documents.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StartEventsDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * KmsKeyValidationException
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartEventsDetectionJob
+func (c *Comprehend) StartEventsDetectionJob(input *StartEventsDetectionJobInput) (*StartEventsDetectionJobOutput, error) {
+	req, out := c.StartEventsDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// StartEventsDetectionJobWithContext is the same as StartEventsDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartEventsDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StartEventsDetectionJobWithContext(ctx aws.Context, input *StartEventsDetectionJobInput, opts ...request.Option) (*StartEventsDetectionJobOutput, error) {
+	req, out := c.StartEventsDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartKeyPhrasesDetectionJob = "StartKeyPhrasesDetectionJob"
 
 // StartKeyPhrasesDetectionJobRequest generates a "aws/request.Request" representing the
@@ -4938,6 +5261,91 @@ func (c *Comprehend) StopEntitiesDetectionJob(input *StopEntitiesDetectionJobInp
 // for more information on using Contexts.
 func (c *Comprehend) StopEntitiesDetectionJobWithContext(ctx aws.Context, input *StopEntitiesDetectionJobInput, opts ...request.Option) (*StopEntitiesDetectionJobOutput, error) {
 	req, out := c.StopEntitiesDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopEventsDetectionJob = "StopEventsDetectionJob"
+
+// StopEventsDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopEventsDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopEventsDetectionJob for more information on using the StopEventsDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopEventsDetectionJobRequest method.
+//    req, resp := client.StopEventsDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopEventsDetectionJob
+func (c *Comprehend) StopEventsDetectionJobRequest(input *StopEventsDetectionJobInput) (req *request.Request, output *StopEventsDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opStopEventsDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopEventsDetectionJobInput{}
+	}
+
+	output = &StopEventsDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopEventsDetectionJob API operation for Amazon Comprehend.
+//
+// Stops an events detection job in progress.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StopEventsDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * JobNotFoundException
+//   The specified job was not found. Check the job ID and try again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopEventsDetectionJob
+func (c *Comprehend) StopEventsDetectionJob(input *StopEventsDetectionJobInput) (*StopEventsDetectionJobOutput, error) {
+	req, out := c.StopEventsDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// StopEventsDetectionJobWithContext is the same as StopEventsDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopEventsDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StopEventsDetectionJobWithContext(ctx aws.Context, input *StopEventsDetectionJobInput, opts ...request.Option) (*StopEventsDetectionJobOutput, error) {
+	req, out := c.StopEventsDetectionJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6757,7 +7165,7 @@ type ClassifyDocumentOutput struct {
 
 	// The labels used the document being analyzed. These are used for multi-label
 	// trained models. Individual labels represent different categories that are
-	// related in some manner and are not multually exclusive. For example, a movie
+	// related in some manner and are not mutually exclusive. For example, a movie
 	// can be just an action movie, or it can be an action movie, a science fiction
 	// movie, and a comedy, all at the same time.
 	Labels []*DocumentLabel `type:"list"`
@@ -7898,6 +8306,71 @@ func (s DescribeEntityRecognizerOutput) GoString() string {
 // SetEntityRecognizerProperties sets the EntityRecognizerProperties field's value.
 func (s *DescribeEntityRecognizerOutput) SetEntityRecognizerProperties(v *EntityRecognizerProperties) *DescribeEntityRecognizerOutput {
 	s.EntityRecognizerProperties = v
+	return s
+}
+
+type DescribeEventsDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the events detection job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeEventsDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventsDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEventsDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEventsDetectionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeEventsDetectionJobInput) SetJobId(v string) *DescribeEventsDetectionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DescribeEventsDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the properties associated with an event detection
+	// job.
+	EventsDetectionJobProperties *EventsDetectionJobProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEventsDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventsDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventsDetectionJobProperties sets the EventsDetectionJobProperties field's value.
+func (s *DescribeEventsDetectionJobOutput) SetEventsDetectionJobProperties(v *EventsDetectionJobProperties) *DescribeEventsDetectionJobOutput {
+	s.EventsDetectionJobProperties = v
 	return s
 }
 
@@ -9555,7 +10028,7 @@ func (s *DominantLanguageDetectionJobProperties) SetVpcConfig(v *VpcConfig) *Dom
 	return s
 }
 
-// The filter used to determine which endpoints are are returned. You can filter
+// The filter used to determine which endpoints are returned. You can filter
 // jobs on their name, model, status, or the date and time that they were created.
 // You can only set one filter at a time.
 type EndpointFilter struct {
@@ -10599,7 +11072,7 @@ func (s *EntityRecognizerProperties) SetVpcConfig(v *VpcConfig) *EntityRecognize
 type EntityTypesEvaluationMetrics struct {
 	_ struct{} `type:"structure"`
 
-	// A measure of how accurate the recognizer results are for for a specific entity
+	// A measure of how accurate the recognizer results are for a specific entity
 	// type in the test data. It is derived from the Precision and Recall values.
 	// The F1Score is the harmonic average of the two scores. The highest score
 	// is 1, and the worst score is 0.
@@ -10686,6 +11159,192 @@ func (s *EntityTypesListItem) Validate() error {
 // SetType sets the Type field's value.
 func (s *EntityTypesListItem) SetType(v string) *EntityTypesListItem {
 	s.Type = &v
+	return s
+}
+
+// Provides information for filtering a list of event detection jobs.
+type EventsDetectionJobFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filters on the name of the events detection job.
+	JobName *string `min:"1" type:"string"`
+
+	// Filters the list of jobs based on job status. Returns only jobs with the
+	// specified status.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// Filters the list of jobs based on the time that the job was submitted for
+	// processing. Returns only jobs submitted after the specified time. Jobs are
+	// returned in descending order, newest to oldest.
+	SubmitTimeAfter *time.Time `type:"timestamp"`
+
+	// Filters the list of jobs based on the time that the job was submitted for
+	// processing. Returns only jobs submitted before the specified time. Jobs are
+	// returned in ascending order, oldest to newest.
+	SubmitTimeBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s EventsDetectionJobFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventsDetectionJobFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventsDetectionJobFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventsDetectionJobFilter"}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *EventsDetectionJobFilter) SetJobName(v string) *EventsDetectionJobFilter {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *EventsDetectionJobFilter) SetJobStatus(v string) *EventsDetectionJobFilter {
+	s.JobStatus = &v
+	return s
+}
+
+// SetSubmitTimeAfter sets the SubmitTimeAfter field's value.
+func (s *EventsDetectionJobFilter) SetSubmitTimeAfter(v time.Time) *EventsDetectionJobFilter {
+	s.SubmitTimeAfter = &v
+	return s
+}
+
+// SetSubmitTimeBefore sets the SubmitTimeBefore field's value.
+func (s *EventsDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *EventsDetectionJobFilter {
+	s.SubmitTimeBefore = &v
+	return s
+}
+
+// Provides information about an events detection job.
+type EventsDetectionJobProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identify and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// The time that the events detection job completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The input data configuration that you supplied when you created the events
+	// detection job.
+	InputDataConfig *InputDataConfig `type:"structure"`
+
+	// The identifier assigned to the events detection job.
+	JobId *string `min:"1" type:"string"`
+
+	// The name you assigned the events detection job.
+	JobName *string `min:"1" type:"string"`
+
+	// The current status of the events detection job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The language code of the input documents.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// A description of the status of the events detection job.
+	Message *string `type:"string"`
+
+	// The output data configuration that you supplied when you created the events
+	// detection job.
+	OutputDataConfig *OutputDataConfig `type:"structure"`
+
+	// The time that the events detection job was submitted for processing.
+	SubmitTime *time.Time `type:"timestamp"`
+
+	// The types of events that are detected by the job.
+	TargetEventTypes []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s EventsDetectionJobProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventsDetectionJobProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *EventsDetectionJobProperties) SetDataAccessRoleArn(v string) *EventsDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *EventsDetectionJobProperties) SetEndTime(v time.Time) *EventsDetectionJobProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *EventsDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *EventsDetectionJobProperties {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *EventsDetectionJobProperties) SetJobId(v string) *EventsDetectionJobProperties {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *EventsDetectionJobProperties) SetJobName(v string) *EventsDetectionJobProperties {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *EventsDetectionJobProperties) SetJobStatus(v string) *EventsDetectionJobProperties {
+	s.JobStatus = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *EventsDetectionJobProperties) SetLanguageCode(v string) *EventsDetectionJobProperties {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *EventsDetectionJobProperties) SetMessage(v string) *EventsDetectionJobProperties {
+	s.Message = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *EventsDetectionJobProperties) SetOutputDataConfig(v *OutputDataConfig) *EventsDetectionJobProperties {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetSubmitTime sets the SubmitTime field's value.
+func (s *EventsDetectionJobProperties) SetSubmitTime(v time.Time) *EventsDetectionJobProperties {
+	s.SubmitTime = &v
+	return s
+}
+
+// SetTargetEventTypes sets the TargetEventTypes field's value.
+func (s *EventsDetectionJobProperties) SetTargetEventTypes(v []*string) *EventsDetectionJobProperties {
+	s.TargetEventTypes = v
 	return s
 }
 
@@ -11854,6 +12513,102 @@ func (s *ListEntityRecognizersOutput) SetEntityRecognizerPropertiesList(v []*Ent
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEntityRecognizersOutput) SetNextToken(v string) *ListEntityRecognizersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventsDetectionJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the jobs that are returned. You can filter jobs on their name, status,
+	// or the date and time that they were submitted. You can only set one filter
+	// at a time.
+	Filter *EventsDetectionJobFilter `type:"structure"`
+
+	// The maximum number of results to return in each page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEventsDetectionJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEventsDetectionJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventsDetectionJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventsDetectionJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListEventsDetectionJobsInput) SetFilter(v *EventsDetectionJobFilter) *ListEventsDetectionJobsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEventsDetectionJobsInput) SetMaxResults(v int64) *ListEventsDetectionJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventsDetectionJobsInput) SetNextToken(v string) *ListEventsDetectionJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventsDetectionJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing the properties of each job that is returned.
+	EventsDetectionJobPropertiesList []*EventsDetectionJobProperties `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEventsDetectionJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEventsDetectionJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventsDetectionJobPropertiesList sets the EventsDetectionJobPropertiesList field's value.
+func (s *ListEventsDetectionJobsOutput) SetEventsDetectionJobPropertiesList(v []*EventsDetectionJobProperties) *ListEventsDetectionJobsOutput {
+	s.EventsDetectionJobPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventsDetectionJobsOutput) SetNextToken(v string) *ListEventsDetectionJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -13856,6 +14611,175 @@ func (s *StartEntitiesDetectionJobOutput) SetJobStatus(v string) *StartEntitiesD
 	return s
 }
 
+type StartEventsDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// An unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// Specifies the format and location of the input data for the job.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
+
+	// The identifier of the events detection job.
+	JobName *string `min:"1" type:"string"`
+
+	// The language code of the input documents.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// Specifies where to send the output files.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// The types of events to detect in the input documents.
+	//
+	// TargetEventTypes is a required field
+	TargetEventTypes []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s StartEventsDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartEventsDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartEventsDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartEventsDetectionJobInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.TargetEventTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetEventTypes"))
+	}
+	if s.TargetEventTypes != nil && len(s.TargetEventTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetEventTypes", 1))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartEventsDetectionJobInput) SetClientRequestToken(v string) *StartEventsDetectionJobInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *StartEventsDetectionJobInput) SetDataAccessRoleArn(v string) *StartEventsDetectionJobInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *StartEventsDetectionJobInput) SetInputDataConfig(v *InputDataConfig) *StartEventsDetectionJobInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartEventsDetectionJobInput) SetJobName(v string) *StartEventsDetectionJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartEventsDetectionJobInput) SetLanguageCode(v string) *StartEventsDetectionJobInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *StartEventsDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartEventsDetectionJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetTargetEventTypes sets the TargetEventTypes field's value.
+func (s *StartEventsDetectionJobInput) SetTargetEventTypes(v []*string) *StartEventsDetectionJobInput {
+	s.TargetEventTypes = v
+	return s
+}
+
+type StartEventsDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the events detection job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s StartEventsDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartEventsDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartEventsDetectionJobOutput) SetJobId(v string) *StartEventsDetectionJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StartEventsDetectionJobOutput) SetJobStatus(v string) *StartEventsDetectionJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
 type StartKeyPhrasesDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14770,6 +15694,79 @@ func (s *StopEntitiesDetectionJobOutput) SetJobId(v string) *StopEntitiesDetecti
 
 // SetJobStatus sets the JobStatus field's value.
 func (s *StopEntitiesDetectionJobOutput) SetJobStatus(v string) *StopEntitiesDetectionJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+type StopEventsDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the events detection job to stop.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopEventsDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopEventsDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopEventsDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopEventsDetectionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopEventsDetectionJobInput) SetJobId(v string) *StopEventsDetectionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type StopEventsDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the events detection job to stop.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the events detection job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s StopEventsDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopEventsDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopEventsDetectionJobOutput) SetJobId(v string) *StopEventsDetectionJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StopEventsDetectionJobOutput) SetJobStatus(v string) *StopEventsDetectionJobOutput {
 	s.JobStatus = &v
 	return s
 }
@@ -15939,7 +16936,7 @@ func (s UpdateEndpointOutput) GoString() string {
 }
 
 // Configuration parameters for an optional private Virtual Private Cloud (VPC)
-// containing the resources you are using for the job. For For more information,
+// containing the resources you are using for the job. For more information,
 // see Amazon VPC (https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html).
 type VpcConfig struct {
 	_ struct{} `type:"structure"`

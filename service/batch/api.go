@@ -2507,13 +2507,20 @@ type ComputeResource struct {
 	// The desired number of Amazon EC2 vCPUS in the compute environment.
 	DesiredvCpus *int64 `locationName:"desiredvCpus" type:"integer"`
 
+	// Provides additional details used to selecting the AMI to use for instances
+	// in a compute environment.
+	Ec2Configuration []*Ec2Configuration `locationName:"ec2Configuration" type:"list"`
+
 	// The Amazon EC2 key pair that is used for instances launched in the compute
 	// environment.
 	Ec2KeyPair *string `locationName:"ec2KeyPair" type:"string"`
 
 	// The Amazon Machine Image (AMI) ID used for instances launched in the compute
-	// environment.
-	ImageId *string `locationName:"imageId" type:"string"`
+	// environment. This parameter is overridden by the imageIdOverride member of
+	// the Ec2Configuration structure.
+	//
+	// Deprecated: This field is deprecated, use ec2Configuration[].imageIdOverride instead.
+	ImageId *string `locationName:"imageId" deprecated:"true" type:"string"`
 
 	// The Amazon ECS instance profile applied to Amazon EC2 instances in a compute
 	// environment. You can specify the short name or full Amazon Resource Name
@@ -2629,6 +2636,16 @@ func (s *ComputeResource) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.Ec2Configuration != nil {
+		for i, v := range s.Ec2Configuration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Ec2Configuration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2651,6 +2668,12 @@ func (s *ComputeResource) SetBidPercentage(v int64) *ComputeResource {
 // SetDesiredvCpus sets the DesiredvCpus field's value.
 func (s *ComputeResource) SetDesiredvCpus(v int64) *ComputeResource {
 	s.DesiredvCpus = &v
+	return s
+}
+
+// SetEc2Configuration sets the Ec2Configuration field's value.
+func (s *ComputeResource) SetEc2Configuration(v []*Ec2Configuration) *ComputeResource {
+	s.Ec2Configuration = v
 	return s
 }
 
@@ -4384,6 +4407,85 @@ func (s *Device) SetHostPath(v string) *Device {
 // SetPermissions sets the Permissions field's value.
 func (s *Device) SetPermissions(v []*string) *Device {
 	s.Permissions = v
+	return s
+}
+
+// Provides information used to select Amazon Machine Images (AMIs) for instances
+// in the compute environment. If the Ec2Configuration is not specified, the
+// default is ECS_AL1.
+type Ec2Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The AMI ID used for instances launched in the compute environment that match
+	// the image type. This setting overrides the imageId set in the computeResource
+	// object.
+	ImageIdOverride *string `locationName:"imageIdOverride" min:"1" type:"string"`
+
+	// The image type to match with the instance type to pick an AMI. If the imageIdOverride
+	// parameter is not specified, then a recent Amazon ECS-optimized AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
+	// will be used.
+	//
+	// ECS_AL2
+	//
+	// Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)−
+	// Default for all AWS Graviton-based instance families (for example, C6g, M6g,
+	// R6g, and T4g) and can be used for all non-GPU instance types.
+	//
+	// ECS_AL2_NVIDIA
+	//
+	// Amazon Linux 2 (GPU) (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#gpuami)−Default
+	// for all GPU instance families (for example P4 and G4) and can be used for
+	// all non-AWS Graviton-based instance types.
+	//
+	// ECS_AL1
+	//
+	// Amazon Linux (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami)−Default
+	// for all non-GPU, non-AWS-Graviton instance families. Amazon Linux is reaching
+	// the end-of-life of standard support. For more information, see Amazon Linux
+	// AMI (https://aws.amazon.com/amazon-linux-ami/).
+	//
+	// ImageType is a required field
+	ImageType *string `locationName:"imageType" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Ec2Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Ec2Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Ec2Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Ec2Configuration"}
+	if s.ImageIdOverride != nil && len(*s.ImageIdOverride) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageIdOverride", 1))
+	}
+	if s.ImageType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageType"))
+	}
+	if s.ImageType != nil && len(*s.ImageType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageIdOverride sets the ImageIdOverride field's value.
+func (s *Ec2Configuration) SetImageIdOverride(v string) *Ec2Configuration {
+	s.ImageIdOverride = &v
+	return s
+}
+
+// SetImageType sets the ImageType field's value.
+func (s *Ec2Configuration) SetImageType(v string) *Ec2Configuration {
+	s.ImageType = &v
 	return s
 }
 

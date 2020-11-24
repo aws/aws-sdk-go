@@ -2425,6 +2425,9 @@ type ConnectorMetadata struct {
 	// The connector metadata specific to Trend Micro.
 	Trendmicro *TrendmicroMetadata `type:"structure"`
 
+	// The connector metadata specific to Upsolver.
+	Upsolver *UpsolverMetadata `type:"structure"`
+
 	// The connector metadata specific to Veeva.
 	Veeva *VeevaMetadata `type:"structure"`
 
@@ -2529,6 +2532,12 @@ func (s *ConnectorMetadata) SetSnowflake(v *SnowflakeMetadata) *ConnectorMetadat
 // SetTrendmicro sets the Trendmicro field's value.
 func (s *ConnectorMetadata) SetTrendmicro(v *TrendmicroMetadata) *ConnectorMetadata {
 	s.Trendmicro = v
+	return s
+}
+
+// SetUpsolver sets the Upsolver field's value.
+func (s *ConnectorMetadata) SetUpsolver(v *UpsolverMetadata) *ConnectorMetadata {
+	s.Upsolver = v
 	return s
 }
 
@@ -4535,6 +4544,9 @@ type DestinationConnectorProperties struct {
 
 	// The properties required to query Snowflake.
 	Snowflake *SnowflakeDestinationProperties `type:"structure"`
+
+	// The properties required to query Upsolver.
+	Upsolver *UpsolverDestinationProperties `type:"structure"`
 }
 
 // String returns the string representation
@@ -4575,6 +4587,11 @@ func (s *DestinationConnectorProperties) Validate() error {
 			invalidParams.AddNested("Snowflake", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Upsolver != nil {
+		if err := s.Upsolver.Validate(); err != nil {
+			invalidParams.AddNested("Upsolver", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4609,6 +4626,12 @@ func (s *DestinationConnectorProperties) SetSalesforce(v *SalesforceDestinationP
 // SetSnowflake sets the Snowflake field's value.
 func (s *DestinationConnectorProperties) SetSnowflake(v *SnowflakeDestinationProperties) *DestinationConnectorProperties {
 	s.Snowflake = v
+	return s
+}
+
+// SetUpsolver sets the Upsolver field's value.
+func (s *DestinationConnectorProperties) SetUpsolver(v *UpsolverDestinationProperties) *DestinationConnectorProperties {
+	s.Upsolver = v
 	return s
 }
 
@@ -6959,7 +6982,8 @@ type ScheduledTriggerProperties struct {
 	// Specifies the scheduled end time for a schedule-triggered flow.
 	ScheduleEndTime *time.Time `locationName:"scheduleEndTime" type:"timestamp"`
 
-	// The scheduling expression that determines when and how often the rule runs.
+	// The scheduling expression that determines the rate at which the schedule
+	// will run, for example rate(5minutes).
 	//
 	// ScheduleExpression is a required field
 	ScheduleExpression *string `locationName:"scheduleExpression" type:"string" required:"true"`
@@ -9028,6 +9052,156 @@ func (s *UpdateFlowOutput) SetFlowStatus(v string) *UpdateFlowOutput {
 	return s
 }
 
+// The properties that are applied when Upsolver is used as a destination.
+type UpsolverDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Upsolver Amazon S3 bucket name in which Amazon AppFlow places the transferred
+	// data.
+	//
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"16" type:"string" required:"true"`
+
+	// The object key for the destination Upsolver Amazon S3 bucket in which Amazon
+	// AppFlow places the files.
+	BucketPrefix *string `locationName:"bucketPrefix" type:"string"`
+
+	// The configuration that determines how data is formatted when Upsolver is
+	// used as the flow destination.
+	//
+	// S3OutputFormatConfig is a required field
+	S3OutputFormatConfig *UpsolverS3OutputFormatConfig `locationName:"s3OutputFormatConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpsolverDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpsolverDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpsolverDestinationProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpsolverDestinationProperties"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 16 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 16))
+	}
+	if s.S3OutputFormatConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputFormatConfig"))
+	}
+	if s.S3OutputFormatConfig != nil {
+		if err := s.S3OutputFormatConfig.Validate(); err != nil {
+			invalidParams.AddNested("S3OutputFormatConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *UpsolverDestinationProperties) SetBucketName(v string) *UpsolverDestinationProperties {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketPrefix sets the BucketPrefix field's value.
+func (s *UpsolverDestinationProperties) SetBucketPrefix(v string) *UpsolverDestinationProperties {
+	s.BucketPrefix = &v
+	return s
+}
+
+// SetS3OutputFormatConfig sets the S3OutputFormatConfig field's value.
+func (s *UpsolverDestinationProperties) SetS3OutputFormatConfig(v *UpsolverS3OutputFormatConfig) *UpsolverDestinationProperties {
+	s.S3OutputFormatConfig = v
+	return s
+}
+
+// The connector metadata specific to Upsolver.
+type UpsolverMetadata struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpsolverMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpsolverMetadata) GoString() string {
+	return s.String()
+}
+
+// The configuration that determines how Amazon AppFlow formats the flow output
+// data when Upsolver is used as the destination.
+type UpsolverS3OutputFormatConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation settings that you can use to customize the output format
+	// of your flow data.
+	AggregationConfig *AggregationConfig `locationName:"aggregationConfig" type:"structure"`
+
+	// Indicates the file type that Amazon AppFlow places in the Upsolver Amazon
+	// S3 bucket.
+	FileType *string `locationName:"fileType" type:"string" enum:"FileType"`
+
+	// Determines the prefix that Amazon AppFlow applies to the destination folder
+	// name. You can name your destination folders according to the flow frequency
+	// and date.
+	//
+	// PrefixConfig is a required field
+	PrefixConfig *PrefixConfig `locationName:"prefixConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpsolverS3OutputFormatConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpsolverS3OutputFormatConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpsolverS3OutputFormatConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpsolverS3OutputFormatConfig"}
+	if s.PrefixConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrefixConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregationConfig sets the AggregationConfig field's value.
+func (s *UpsolverS3OutputFormatConfig) SetAggregationConfig(v *AggregationConfig) *UpsolverS3OutputFormatConfig {
+	s.AggregationConfig = v
+	return s
+}
+
+// SetFileType sets the FileType field's value.
+func (s *UpsolverS3OutputFormatConfig) SetFileType(v string) *UpsolverS3OutputFormatConfig {
+	s.FileType = &v
+	return s
+}
+
+// SetPrefixConfig sets the PrefixConfig field's value.
+func (s *UpsolverS3OutputFormatConfig) SetPrefixConfig(v *PrefixConfig) *UpsolverS3OutputFormatConfig {
+	s.PrefixConfig = v
+	return s
+}
+
 // The request has invalid or missing parameters.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -9500,6 +9674,9 @@ const (
 
 	// ConnectorTypeEventBridge is a ConnectorType enum value
 	ConnectorTypeEventBridge = "EventBridge"
+
+	// ConnectorTypeUpsolver is a ConnectorType enum value
+	ConnectorTypeUpsolver = "Upsolver"
 )
 
 // ConnectorType_Values returns all elements of the ConnectorType enum
@@ -9522,6 +9699,7 @@ func ConnectorType_Values() []string {
 		ConnectorTypeAmplitude,
 		ConnectorTypeVeeva,
 		ConnectorTypeEventBridge,
+		ConnectorTypeUpsolver,
 	}
 }
 

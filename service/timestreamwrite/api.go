@@ -352,6 +352,9 @@ func (c *TimestreamWrite) DeleteDatabaseRequest(input *DeleteDatabaseInput) (req
 // All tables in the database must be deleted first, or a ValidationException
 // error will be thrown.
 //
+// Due to the nature of distributed retries, the operation can return either
+// success or a ResourceNotFoundException. Clients should consider them equivalent.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -474,6 +477,9 @@ func (c *TimestreamWrite) DeleteTableRequest(input *DeleteTableInput) (req *requ
 // Deletes a given Timestream table. This is an irreversible operation. After
 // a Timestream database table is deleted, the time series data stored in the
 // table cannot be recovered.
+//
+// Due to the nature of distributed retries, the operation can return either
+// success or a ResourceNotFoundException. Clients should consider them equivalent.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1381,6 +1387,10 @@ func (c *TimestreamWrite) ListTagsForResourceRequest(input *ListTagsForResourceI
 //   The operation tried to access a nonexistent resource. The resource might
 //   not be specified correctly, or its status might not be ACTIVE.
 //
+//   * ThrottlingException
+//   Too many requests were made by a user exceeding service quotas. The request
+//   was throttled.
+//
 //   * ValidationException
 //   Invalid or malformed request.
 //
@@ -1496,6 +1506,10 @@ func (c *TimestreamWrite) TagResourceRequest(input *TagResourceInput) (req *requ
 //   * ServiceQuotaExceededException
 //   Instance quota of resource exceeded for this account.
 //
+//   * ThrottlingException
+//   Too many requests were made by a user exceeding service quotas. The request
+//   was throttled.
+//
 //   * ValidationException
 //   Invalid or malformed request.
 //
@@ -1607,6 +1621,10 @@ func (c *TimestreamWrite) UntagResourceRequest(input *UntagResourceInput) (req *
 //
 //   * ServiceQuotaExceededException
 //   Instance quota of resource exceeded for this account.
+//
+//   * ThrottlingException
+//   Too many requests were made by a user exceeding service quotas. The request
+//   was throttled.
 //
 //   * ResourceNotFoundException
 //   The operation tried to access a nonexistent resource. The resource might
@@ -2759,8 +2777,9 @@ type Dimension struct {
 
 	// Dimension represents the meta data attributes of the time series. For example,
 	// the name and availability zone of an EC2 instance or the name of the manufacturer
-	// of a wind turbine are dimensions. Dimension names can only contain alphanumeric
-	// characters and underscores. Dimension names cannot end with an underscore.
+	// of a wind turbine are dimensions.
+	//
+	// For constraints on Dimension names, see Naming Constraints (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.naming).
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -3238,11 +3257,20 @@ type Record struct {
 	MeasureValueType *string `type:"string" enum:"MeasureValueType"`
 
 	// Contains the time at which the measure value for the data point was collected.
+	// The time value plus the unit provides the time elapsed since the epoch. For
+	// example, if the time value is 12345 and the unit is ms, then 12345 ms have
+	// elapsed since the epoch.
 	Time *string `min:"1" type:"string"`
 
 	// The granularity of the timestamp unit. It indicates if the time value is
 	// in seconds, milliseconds, nanoseconds or other supported values.
 	TimeUnit *string `type:"string" enum:"TimeUnit"`
+
+	// 64-bit attribute used for record updates. Write requests for duplicate data
+	// with a higher version number will update the existing measure value and version.
+	// In cases where the measure value is the same, Version will still be updated
+	// . Default value is to 1.
+	Version *int64 `type:"long"`
 }
 
 // String returns the string representation
@@ -3320,11 +3348,22 @@ func (s *Record) SetTimeUnit(v string) *Record {
 	return s
 }
 
+// SetVersion sets the Version field's value.
+func (s *Record) SetVersion(v int64) *Record {
+	s.Version = &v
+	return s
+}
+
 // Records that were not successfully inserted into Timestream due to data validation
 // issues that must be resolved prior to reinserting time series data into the
 // system.
 type RejectedRecord struct {
 	_ struct{} `type:"structure"`
+
+	// The existing version of the record. This value is populated in scenarios
+	// where an identical record exists with a higher version than the version in
+	// the write request.
+	ExistingVersion *int64 `type:"long"`
 
 	// The reason why a record was not successfully inserted into Timestream. Possible
 	// causes of failure include:
@@ -3333,7 +3372,12 @@ type RejectedRecord struct {
 	//    same dimensions, timestamps, and measure names but different measure values.
 	//
 	//    * Records with timestamps that lie outside the retention duration of the
-	//    memory store
+	//    memory store When the retention window is updated, you will receive a
+	//    RejectedRecords exception if you immediately try to ingest data within
+	//    the new window. To avoid a RejectedRecords exception, wait until the duration
+	//    of the new window to ingest new data. For further information, see Best
+	//    Practices for Configuring Timestream (https://docs.aws.amazon.com/timestream/latest/developerguide/best-practices.html#configuration)
+	//    and the explanation of how storage works in Timestream (https://docs.aws.amazon.com/timestream/latest/developerguide/storage.html).
 	//
 	//    * Records with dimensions or measures that exceed the Timestream defined
 	//    limits.
@@ -3355,6 +3399,12 @@ func (s RejectedRecord) String() string {
 // GoString returns the string representation
 func (s RejectedRecord) GoString() string {
 	return s.String()
+}
+
+// SetExistingVersion sets the ExistingVersion field's value.
+func (s *RejectedRecord) SetExistingVersion(v int64) *RejectedRecord {
+	s.ExistingVersion = &v
+	return s
 }
 
 // SetReason sets the Reason field's value.

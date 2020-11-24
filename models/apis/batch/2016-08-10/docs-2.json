@@ -312,6 +312,18 @@
         "LinuxParameters$devices": "<p>Any host devices to expose to the container. This parameter maps to <code>Devices</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--device</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>"
       }
     },
+    "Ec2Configuration": {
+      "base": "<p>Provides information used to select Amazon Machine Images (AMIs) for instances in the compute environment. If the <code>Ec2Configuration</code> is not specified, the default is <code>ECS_AL1</code>.</p>",
+      "refs": {
+        "Ec2ConfigurationList$member": null
+      }
+    },
+    "Ec2ConfigurationList": {
+      "base": null,
+      "refs": {
+        "ComputeResource$ec2Configuration": "<p>Provides additional details used to selecting the AMI to use for instances in a compute environment.</p>"
+      }
+    },
     "EnvironmentVariables": {
       "base": null,
       "refs": {
@@ -336,6 +348,18 @@
       "base": "<p>Determine whether your data volume persists on the host container instance and where it is stored. If this parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running.</p>",
       "refs": {
         "Volume$host": "<p>The contents of the <code>host</code> parameter determine whether your data volume persists on the host container instance and where it is stored. If the host parameter is empty, then the Docker daemon assigns a host path for your data volume. However, the data is not guaranteed to persist after the containers associated with it stop running.</p>"
+      }
+    },
+    "ImageIdOverride": {
+      "base": null,
+      "refs": {
+        "Ec2Configuration$imageIdOverride": "<p>The AMI ID used for instances launched in the compute environment that match the image type. This setting overrides the <code>imageId</code> set in the <code>computeResource</code> object.</p>"
+      }
+    },
+    "ImageType": {
+      "base": null,
+      "refs": {
+        "Ec2Configuration$imageType": "<p>The image type to match with the instance type to pick an AMI. If the <code>imageIdOverride</code> parameter is not specified, then a recent <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html\">Amazon ECS-optimized AMI</a> will be used.</p> <dl> <dt>ECS_AL2</dt> <dd> <p> <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami\">Amazon Linux 2</a>− Default for all AWS Graviton-based instance families (for example, <code>C6g</code>, <code>M6g</code>, <code>R6g</code>, and <code>T4g</code>) and can be used for all non-GPU instance types.</p> </dd> <dt>ECS_AL2_NVIDIA</dt> <dd> <p> <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#gpuami\">Amazon Linux 2 (GPU)</a>−Default for all GPU instance families (for example <code>P4</code> and <code>G4</code>) and can be used for all non-AWS Graviton-based instance types.</p> </dd> <dt>ECS_AL1</dt> <dd> <p> <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami\">Amazon Linux</a>−Default for all non-GPU, non-AWS-Graviton instance families. Amazon Linux is reaching the end-of-life of standard support. For more information, see <a href=\"https://aws.amazon.com/amazon-linux-ami/\">Amazon Linux AMI</a>.</p> </dd> </dl>"
       }
     },
     "Integer": {
@@ -725,7 +749,7 @@
         "ComputeEnvironmentDetail$statusReason": "<p>A short, human-readable string to provide additional details about the current status of the compute environment.</p>",
         "ComputeEnvironmentDetail$serviceRole": "<p>The service role associated with the compute environment that allows AWS Batch to make calls to AWS API operations on your behalf.</p>",
         "ComputeEnvironmentOrder$computeEnvironment": "<p>The Amazon Resource Name (ARN) of the compute environment.</p>",
-        "ComputeResource$imageId": "<p>The Amazon Machine Image (AMI) ID used for instances launched in the compute environment.</p>",
+        "ComputeResource$imageId": "<p>The Amazon Machine Image (AMI) ID used for instances launched in the compute environment. This parameter is overridden by the <code>imageIdOverride</code> member of the <code>Ec2Configuration</code> structure.</p>",
         "ComputeResource$ec2KeyPair": "<p>The Amazon EC2 key pair that is used for instances launched in the compute environment.</p>",
         "ComputeResource$instanceRole": "<p>The Amazon ECS instance profile applied to Amazon EC2 instances in a compute environment. You can specify the short name or full Amazon Resource Name (ARN) of an instance profile. For example, <code> <i>ecsInstanceRole</i> </code> or <code>arn:aws:iam::<i>&lt;aws_account_id&gt;</i>:instance-profile/<i>ecsInstanceRole</i> </code>. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/instance_IAM_role.html\">Amazon ECS Instance Role</a> in the <i>AWS Batch User Guide</i>.</p>",
         "ComputeResource$placementGroup": "<p>The Amazon EC2 placement group to associate with your compute resources. If you intend to submit multi-node parallel jobs to your compute environment, you should consider creating a cluster placement group and associate it with your compute resources. This keeps your multi-node parallel job on a logical grouping of instances within a single Availability Zone with high network flow potential. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",

@@ -239,6 +239,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "GetReportGroupTrend":{
+      "name":"GetReportGroupTrend",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetReportGroupTrendInput"},
+      "output":{"shape":"GetReportGroupTrendOutput"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetResourcePolicy":{
       "name":"GetResourcePolicy",
       "http":{
@@ -1280,6 +1293,25 @@
       "type":"list",
       "member":{"shape":"FilterGroup"}
     },
+    "GetReportGroupTrendInput":{
+      "type":"structure",
+      "required":[
+        "reportGroupArn",
+        "trendField"
+      ],
+      "members":{
+        "reportGroupArn":{"shape":"NonEmptyString"},
+        "numOfReports":{"shape":"PageSize"},
+        "trendField":{"shape":"ReportGroupTrendFieldType"}
+      }
+    },
+    "GetReportGroupTrendOutput":{
+      "type":"structure",
+      "members":{
+        "stats":{"shape":"ReportGroupTrendStats"},
+        "rawData":{"shape":"ReportGroupTrendRawDataList"}
+      }
+    },
     "GetResourcePolicyInput":{
       "type":"structure",
       "required":["resourceArn"],
@@ -1941,6 +1973,32 @@
         "DELETING"
       ]
     },
+    "ReportGroupTrendFieldType":{
+      "type":"string",
+      "enum":[
+        "PASS_RATE",
+        "DURATION",
+        "TOTAL",
+        "LINE_COVERAGE",
+        "LINES_COVERED",
+        "LINES_MISSED",
+        "BRANCH_COVERAGE",
+        "BRANCHES_COVERED",
+        "BRANCHES_MISSED"
+      ]
+    },
+    "ReportGroupTrendRawDataList":{
+      "type":"list",
+      "member":{"shape":"ReportWithRawData"}
+    },
+    "ReportGroupTrendStats":{
+      "type":"structure",
+      "members":{
+        "average":{"shape":"String"},
+        "max":{"shape":"String"},
+        "min":{"shape":"String"}
+      }
+    },
     "ReportGroups":{
       "type":"list",
       "member":{"shape":"ReportGroup"},
@@ -1975,6 +2033,13 @@
         "TEST",
         "CODE_COVERAGE"
       ]
+    },
+    "ReportWithRawData":{
+      "type":"structure",
+      "members":{
+        "reportArn":{"shape":"NonEmptyString"},
+        "data":{"shape":"String"}
+      }
     },
     "Reports":{
       "type":"list",

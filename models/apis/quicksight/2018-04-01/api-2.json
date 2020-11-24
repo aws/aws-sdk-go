@@ -926,6 +926,7 @@
         {"shape":"IdentityTypeNotSupportedException"},
         {"shape":"SessionLifetimeInMinutesInvalidException"},
         {"shape":"UnsupportedUserEditionException"},
+        {"shape":"UnsupportedPricingPlanException"},
         {"shape":"InternalFailureException"}
       ]
     },
@@ -1799,6 +1800,12 @@
       "members":{
         "AvailabilityStatus":{"shape":"DashboardBehavior"}
       }
+    },
+    "AdditionalDashboardIdList":{
+      "type":"list",
+      "member":{"shape":"RestrictiveResourceId"},
+      "max":20,
+      "min":1
     },
     "AliasName":{
       "type":"string",
@@ -4431,6 +4438,14 @@
         "ENTERPRISE"
       ]
     },
+    "EmbeddingIdentityType":{
+      "type":"string",
+      "enum":[
+        "IAM",
+        "QUICKSIGHT",
+        "ANONYMOUS"
+      ]
+    },
     "EmbeddingUrl":{
       "type":"string",
       "sensitive":true
@@ -4542,7 +4557,7 @@
           "locationName":"DashboardId"
         },
         "IdentityType":{
-          "shape":"IdentityType",
+          "shape":"EmbeddingIdentityType",
           "location":"querystring",
           "locationName":"creds-type"
         },
@@ -4570,6 +4585,16 @@
           "shape":"Arn",
           "location":"querystring",
           "locationName":"user-arn"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"querystring",
+          "locationName":"namespace"
+        },
+        "AdditionalDashboardIds":{
+          "shape":"AdditionalDashboardIdList",
+          "location":"querystring",
+          "locationName":"additional-dashboard-ids"
         }
       }
     },
@@ -6921,6 +6946,15 @@
         "Measure":{"shape":"HexColor"},
         "MeasureForeground":{"shape":"HexColor"}
       }
+    },
+    "UnsupportedPricingPlanException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "RequestId":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "UnsupportedUserEditionException":{
       "type":"structure",

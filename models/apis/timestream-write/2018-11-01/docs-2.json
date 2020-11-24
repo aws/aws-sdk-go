@@ -4,8 +4,8 @@
   "operations": {
     "CreateDatabase": "<p>Creates a new Timestream database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account. Refer to <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk\">AWS managed KMS keys</a> for more info. Service quotas apply. For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Access Management</a> in the Timestream Developer Guide. </p>",
     "CreateTable": "<p>The CreateTable operation adds a new table to an existing database in your account. In an AWS account, table names must be at least unique within each Region if they are in the same database. You may have identical table names in the same Region if the tables are in seperate databases. While creating the table, you must specify the table name, database name, and the retention properties. Service quotas apply. For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Access Management</a> in the Timestream Developer Guide. </p>",
-    "DeleteDatabase": "<p>Deletes a given Timestream database. <i>This is an irreversible operation. After a database is deleted, the time series data from its tables cannot be recovered.</i> </p> <p>All tables in the database must be deleted first, or a ValidationException error will be thrown. </p>",
-    "DeleteTable": "<p>Deletes a given Timestream table. This is an irreversible operation. After a Timestream database table is deleted, the time series data stored in the table cannot be recovered. </p>",
+    "DeleteDatabase": "<p>Deletes a given Timestream database. <i>This is an irreversible operation. After a database is deleted, the time series data from its tables cannot be recovered.</i> </p> <p>All tables in the database must be deleted first, or a ValidationException error will be thrown. </p> <p>Due to the nature of distributed retries, the operation can return either success or a ResourceNotFoundException. Clients should consider them equivalent.</p>",
+    "DeleteTable": "<p>Deletes a given Timestream table. This is an irreversible operation. After a Timestream database table is deleted, the time series data stored in the table cannot be recovered. </p> <p>Due to the nature of distributed retries, the operation can return either success or a ResourceNotFoundException. Clients should consider them equivalent.</p>",
     "DescribeDatabase": "<p>Returns information about the database, including the database name, time that the database was created, and the total number of tables found within the database. Service quotas apply. For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Access Management</a> in the Timestream Developer Guide.</p>",
     "DescribeEndpoints": "<p>DescribeEndpoints returns a list of available endpoints to make Timestream API calls against. This API is available through both Write and Query.</p> <p>Because Timestream’s SDKs are designed to transparently work with the service’s architecture, including the management and mapping of the service endpoints, <i>it is not recommended that you use this API unless</i>:</p> <ul> <li> <p>Your application uses a programming language that does not yet have SDK support</p> </li> <li> <p>You require better control over the client-side implementation</p> </li> </ul> <p>For detailed information on how to use DescribeEndpoints, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/Using-API.endpoint-discovery.html\">The Endpoint Discovery Pattern and REST APIs</a>.</p>",
     "DescribeTable": "<p>Returns information about the table, including the table name, database name, retention duration of the memory store and the magnetic store. Service quotas apply. For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Access Management</a> in the Timestream Developer Guide. </p>",
@@ -158,7 +158,7 @@
         "ConflictException$Message": null,
         "InternalServerException$Message": null,
         "InvalidEndpointException$Message": null,
-        "RejectedRecord$Reason": "<p> The reason why a record was not successfully inserted into Timestream. Possible causes of failure include: </p> <ul> <li> <p> Records with duplicate data where there are multiple records with the same dimensions, timestamps, and measure names but different measure values. </p> </li> <li> <p> Records with timestamps that lie outside the retention duration of the memory store </p> </li> <li> <p> Records with dimensions or measures that exceed the Timestream defined limits. </p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Access Management</a> in the Timestream Developer Guide. </p>",
+        "RejectedRecord$Reason": "<p> The reason why a record was not successfully inserted into Timestream. Possible causes of failure include: </p> <ul> <li> <p> Records with duplicate data where there are multiple records with the same dimensions, timestamps, and measure names but different measure values. </p> </li> <li> <p> Records with timestamps that lie outside the retention duration of the memory store </p> <note> <p>When the retention window is updated, you will receive a <code>RejectedRecords</code> exception if you immediately try to ingest data within the new window. To avoid a <code>RejectedRecords</code> exception, wait until the duration of the new window to ingest new data. For further information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/best-practices.html#configuration\"> Best Practices for Configuring Timestream</a> and <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/storage.html\">the explanation of how storage works in Timestream</a>.</p> </note> </li> <li> <p> Records with dimensions or measures that exceed the Timestream defined limits. </p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html\">Access Management</a> in the Timestream Developer Guide. </p>",
         "RejectedRecordsException$Message": null,
         "ResourceNotFoundException$Message": null,
         "ServiceQuotaExceededException$Message": null,
@@ -251,6 +251,13 @@
         "RejectedRecord$RecordIndex": "<p> The index of the record in the input request for WriteRecords. Indexes begin with 0. </p>"
       }
     },
+    "RecordVersion": {
+      "base": null,
+      "refs": {
+        "Record$Version": "<p>64-bit attribute used for record updates. Write requests for duplicate data with a higher version number will update the existing measure value and version. In cases where the measure value is the same, <code>Version</code> will still be updated . Default value is to 1.</p>",
+        "RejectedRecord$ExistingVersion": "<p>The existing version of the record. This value is populated in scenarios where an identical record exists with a higher version than the version in the write request.</p>"
+      }
+    },
     "Records": {
       "base": null,
       "refs": {
@@ -340,9 +347,9 @@
     "StringValue256": {
       "base": null,
       "refs": {
-        "Dimension$Name": "<p> Dimension represents the meta data attributes of the time series. For example, the name and availability zone of an EC2 instance or the name of the manufacturer of a wind turbine are dimensions. <i>Dimension names can only contain alphanumeric characters and underscores. Dimension names cannot end with an underscore.</i> </p>",
+        "Dimension$Name": "<p> Dimension represents the meta data attributes of the time series. For example, the name and availability zone of an EC2 instance or the name of the manufacturer of a wind turbine are dimensions. </p> <p>For constraints on Dimension names, see <a href=\"https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.naming\">Naming Constraints</a>.</p>",
         "Record$MeasureName": "<p>Measure represents the data attribute of the time series. For example, the CPU utilization of an EC2 instance or the RPM of a wind turbine are measures. </p>",
-        "Record$Time": "<p> Contains the time at which the measure value for the data point was collected. </p>"
+        "Record$Time": "<p> Contains the time at which the measure value for the data point was collected. The time value plus the unit provides the time elapsed since the epoch. For example, if the time value is <code>12345</code> and the unit is <code>ms</code>, then <code>12345 ms</code> have elapsed since the epoch. </p>"
       }
     },
     "Table": {

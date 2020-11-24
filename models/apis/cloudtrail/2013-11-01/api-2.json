@@ -393,6 +393,39 @@
       "members":{
       }
     },
+    "AdvancedEventSelector":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "FieldSelectors"
+      ],
+      "members":{
+        "Name":{"shape":"SelectorName"},
+        "FieldSelectors":{"shape":"AdvancedFieldSelectors"}
+      }
+    },
+    "AdvancedEventSelectors":{
+      "type":"list",
+      "member":{"shape":"AdvancedEventSelector"}
+    },
+    "AdvancedFieldSelector":{
+      "type":"structure",
+      "required":["Field"],
+      "members":{
+        "Field":{"shape":"SelectorField"},
+        "Equals":{"shape":"Operator"},
+        "StartsWith":{"shape":"Operator"},
+        "EndsWith":{"shape":"Operator"},
+        "NotEquals":{"shape":"Operator"},
+        "NotStartsWith":{"shape":"Operator"},
+        "NotEndsWith":{"shape":"Operator"}
+      }
+    },
+    "AdvancedFieldSelectors":{
+      "type":"list",
+      "member":{"shape":"AdvancedFieldSelector"},
+      "min":1
+    },
     "Boolean":{"type":"boolean"},
     "ByteBuffer":{"type":"blob"},
     "CloudTrailARNInvalidException":{
@@ -546,7 +579,8 @@
       "type":"structure",
       "members":{
         "TrailARN":{"shape":"String"},
-        "EventSelectors":{"shape":"EventSelectors"}
+        "EventSelectors":{"shape":"EventSelectors"},
+        "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
       }
     },
     "GetInsightSelectorsRequest":{
@@ -889,6 +923,17 @@
       },
       "exception":true
     },
+    "Operator":{
+      "type":"list",
+      "member":{"shape":"OperatorValue"},
+      "min":1
+    },
+    "OperatorValue":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":".+"
+    },
     "OrganizationNotInAllFeaturesModeException":{
       "type":"structure",
       "members":{
@@ -916,20 +961,19 @@
     },
     "PutEventSelectorsRequest":{
       "type":"structure",
-      "required":[
-        "TrailName",
-        "EventSelectors"
-      ],
+      "required":["TrailName"],
       "members":{
         "TrailName":{"shape":"String"},
-        "EventSelectors":{"shape":"EventSelectors"}
+        "EventSelectors":{"shape":"EventSelectors"},
+        "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
       }
     },
     "PutEventSelectorsResponse":{
       "type":"structure",
       "members":{
         "TrailARN":{"shape":"String"},
-        "EventSelectors":{"shape":"EventSelectors"}
+        "EventSelectors":{"shape":"EventSelectors"},
+        "AdvancedEventSelectors":{"shape":"AdvancedEventSelectors"}
       }
     },
     "PutInsightSelectorsRequest":{
@@ -1014,6 +1058,18 @@
       "members":{
       },
       "exception":true
+    },
+    "SelectorField":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"[\\w|\\d|\\.|_]+"
+    },
+    "SelectorName":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":".+"
     },
     "StartLoggingRequest":{
       "type":"structure",

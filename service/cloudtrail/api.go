@@ -255,8 +255,9 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.R
 //   valid.
 //
 //   * KmsKeyNotFoundException
-//   This exception is thrown when the KMS key does not exist, or when the S3
-//   bucket and the KMS key are not in the same region.
+//   This exception is thrown when the KMS key does not exist, when the S3 bucket
+//   and the KMS key are not in the same region, or when the KMS key associated
+//   with the SNS topic either does not exist or is not in the same region.
 //
 //   * KmsKeyDisabledException
 //   This exception is no longer in use.
@@ -1535,8 +1536,8 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *request
 // with a maximum of 50 possible. The response includes a token that you can
 // use to get the next page of results.
 //
-// The rate of lookup requests is limited to two per second per account. If
-// this limit is exceeded, a throttling error occurs.
+// The rate of lookup requests is limited to two per second, per account, per
+// region. If this limit is exceeded, a throttling error occurs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2443,8 +2444,9 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.R
 //   other than the region in which the trail was created.
 //
 //   * KmsKeyNotFoundException
-//   This exception is thrown when the KMS key does not exist, or when the S3
-//   bucket and the KMS key are not in the same region.
+//   This exception is thrown when the KMS key does not exist, when the S3 bucket
+//   and the KMS key are not in the same region, or when the KMS key associated
+//   with the SNS topic either does not exist or is not in the same region.
 //
 //   * KmsKeyDisabledException
 //   This exception is no longer in use.
@@ -2712,6 +2714,175 @@ func (s AddTagsOutput) String() string {
 // GoString returns the string representation
 func (s AddTagsOutput) GoString() string {
 	return s.String()
+}
+
+type AdvancedEventSelector struct {
+	_ struct{} `type:"structure"`
+
+	// FieldSelectors is a required field
+	FieldSelectors []*AdvancedFieldSelector `min:"1" type:"list" required:"true"`
+
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AdvancedEventSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdvancedEventSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdvancedEventSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdvancedEventSelector"}
+	if s.FieldSelectors == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldSelectors"))
+	}
+	if s.FieldSelectors != nil && len(s.FieldSelectors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldSelectors", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.FieldSelectors != nil {
+		for i, v := range s.FieldSelectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldSelectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldSelectors sets the FieldSelectors field's value.
+func (s *AdvancedEventSelector) SetFieldSelectors(v []*AdvancedFieldSelector) *AdvancedEventSelector {
+	s.FieldSelectors = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AdvancedEventSelector) SetName(v string) *AdvancedEventSelector {
+	s.Name = &v
+	return s
+}
+
+type AdvancedFieldSelector struct {
+	_ struct{} `type:"structure"`
+
+	EndsWith []*string `min:"1" type:"list"`
+
+	Equals []*string `min:"1" type:"list"`
+
+	// Field is a required field
+	Field *string `min:"1" type:"string" required:"true"`
+
+	NotEndsWith []*string `min:"1" type:"list"`
+
+	NotEquals []*string `min:"1" type:"list"`
+
+	NotStartsWith []*string `min:"1" type:"list"`
+
+	StartsWith []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s AdvancedFieldSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdvancedFieldSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdvancedFieldSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdvancedFieldSelector"}
+	if s.EndsWith != nil && len(s.EndsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndsWith", 1))
+	}
+	if s.Equals != nil && len(s.Equals) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Equals", 1))
+	}
+	if s.Field == nil {
+		invalidParams.Add(request.NewErrParamRequired("Field"))
+	}
+	if s.Field != nil && len(*s.Field) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Field", 1))
+	}
+	if s.NotEndsWith != nil && len(s.NotEndsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotEndsWith", 1))
+	}
+	if s.NotEquals != nil && len(s.NotEquals) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotEquals", 1))
+	}
+	if s.NotStartsWith != nil && len(s.NotStartsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotStartsWith", 1))
+	}
+	if s.StartsWith != nil && len(s.StartsWith) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartsWith", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndsWith sets the EndsWith field's value.
+func (s *AdvancedFieldSelector) SetEndsWith(v []*string) *AdvancedFieldSelector {
+	s.EndsWith = v
+	return s
+}
+
+// SetEquals sets the Equals field's value.
+func (s *AdvancedFieldSelector) SetEquals(v []*string) *AdvancedFieldSelector {
+	s.Equals = v
+	return s
+}
+
+// SetField sets the Field field's value.
+func (s *AdvancedFieldSelector) SetField(v string) *AdvancedFieldSelector {
+	s.Field = &v
+	return s
+}
+
+// SetNotEndsWith sets the NotEndsWith field's value.
+func (s *AdvancedFieldSelector) SetNotEndsWith(v []*string) *AdvancedFieldSelector {
+	s.NotEndsWith = v
+	return s
+}
+
+// SetNotEquals sets the NotEquals field's value.
+func (s *AdvancedFieldSelector) SetNotEquals(v []*string) *AdvancedFieldSelector {
+	s.NotEquals = v
+	return s
+}
+
+// SetNotStartsWith sets the NotStartsWith field's value.
+func (s *AdvancedFieldSelector) SetNotStartsWith(v []*string) *AdvancedFieldSelector {
+	s.NotStartsWith = v
+	return s
+}
+
+// SetStartsWith sets the StartsWith field's value.
+func (s *AdvancedFieldSelector) SetStartsWith(v []*string) *AdvancedFieldSelector {
+	s.StartsWith = v
+	return s
 }
 
 // Cannot set a CloudWatch Logs delivery for this region.
@@ -3504,6 +3675,11 @@ type EventSelector struct {
 	// in the AWS CloudTrail User Guide.
 	//
 	// By default, the value is true.
+	//
+	// The first copy of management events is free. You are charged for additional
+	// copies of management events that you are logging on any subsequent trail
+	// in the same region. For more information about CloudTrail pricing, see AWS
+	// CloudTrail Pricing (http://aws.amazon.com/cloudtrail/pricing/).
 	IncludeManagementEvents *bool `type:"boolean"`
 
 	// Specify if you want your trail to log read-only events, write-only events,
@@ -3606,6 +3782,8 @@ func (s *GetEventSelectorsInput) SetTrailName(v string) *GetEventSelectorsInput 
 type GetEventSelectorsOutput struct {
 	_ struct{} `type:"structure"`
 
+	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
+
 	// The event selectors that are configured for the trail.
 	EventSelectors []*EventSelector `type:"list"`
 
@@ -3621,6 +3799,12 @@ func (s GetEventSelectorsOutput) String() string {
 // GoString returns the string representation
 func (s GetEventSelectorsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
+func (s *GetEventSelectorsOutput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *GetEventSelectorsOutput {
+	s.AdvancedEventSelectors = v
+	return s
 }
 
 // SetEventSelectors sets the EventSelectors field's value.
@@ -5496,8 +5680,9 @@ func (s *KmsKeyDisabledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception is thrown when the KMS key does not exist, or when the S3
-// bucket and the KMS key are not in the same region.
+// This exception is thrown when the KMS key does not exist, when the S3 bucket
+// and the KMS key are not in the same region, or when the KMS key associated
+// with the SNS topic either does not exist or is not in the same region.
 type KmsKeyNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6323,11 +6508,11 @@ func (s *PublicKey) SetValue(v []byte) *PublicKey {
 type PutEventSelectorsInput struct {
 	_ struct{} `type:"structure"`
 
+	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
+
 	// Specifies the settings for your event selectors. You can configure up to
 	// five event selectors for a trail.
-	//
-	// EventSelectors is a required field
-	EventSelectors []*EventSelector `type:"list" required:"true"`
+	EventSelectors []*EventSelector `type:"list"`
 
 	// Specifies the name of the trail or trail ARN. If you specify a trail name,
 	// the string must meet the following requirements:
@@ -6365,17 +6550,30 @@ func (s PutEventSelectorsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutEventSelectorsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutEventSelectorsInput"}
-	if s.EventSelectors == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventSelectors"))
-	}
 	if s.TrailName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TrailName"))
+	}
+	if s.AdvancedEventSelectors != nil {
+		for i, v := range s.AdvancedEventSelectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdvancedEventSelectors", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
+func (s *PutEventSelectorsInput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *PutEventSelectorsInput {
+	s.AdvancedEventSelectors = v
+	return s
 }
 
 // SetEventSelectors sets the EventSelectors field's value.
@@ -6392,6 +6590,8 @@ func (s *PutEventSelectorsInput) SetTrailName(v string) *PutEventSelectorsInput 
 
 type PutEventSelectorsOutput struct {
 	_ struct{} `type:"structure"`
+
+	AdvancedEventSelectors []*AdvancedEventSelector `type:"list"`
 
 	// Specifies the event selectors configured for your trail.
 	EventSelectors []*EventSelector `type:"list"`
@@ -6411,6 +6611,12 @@ func (s PutEventSelectorsOutput) String() string {
 // GoString returns the string representation
 func (s PutEventSelectorsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdvancedEventSelectors sets the AdvancedEventSelectors field's value.
+func (s *PutEventSelectorsOutput) SetAdvancedEventSelectors(v []*AdvancedEventSelector) *PutEventSelectorsOutput {
+	s.AdvancedEventSelectors = v
+	return s
 }
 
 // SetEventSelectors sets the EventSelectors field's value.

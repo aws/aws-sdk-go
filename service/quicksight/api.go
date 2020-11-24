@@ -5357,6 +5357,17 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
 //   Not every operation and capability is available in every edition.
 //
+//   * UnsupportedPricingPlanException
+//   This error indicates that you are calling an embedding operation in Amazon
+//   QuickSight without the required pricing plan on your AWS account. Before
+//   you can use anonymous embedding, a QuickSight administrator needs to add
+//   capacity pricing to QuickSight. You can do this on the Manage QuickSight
+//   page.
+//
+//   After capacity pricing is added, you can enable anonymous embedding by using
+//   the GetDashboardEmbedUrl API operation with the --identity-type ANONYMOUS
+//   option.
+//
 //   * InternalFailureException
 //   An internal failure occurred.
 //
@@ -21295,8 +21306,16 @@ func (s *GeoSpatialColumnGroup) SetName(v string) *GeoSpatialColumnGroup {
 	return s
 }
 
+// Parameter input for the GetDashboardEmbedUrl operation.
 type GetDashboardEmbedUrlInput struct {
 	_ struct{} `type:"structure"`
+
+	// A list of one or more dashboard ids that you want to add to a session that
+	// includes anonymous authorizations. IdentityType must be set to ANONYMOUS
+	// for this to work, because other other identity types authenticate as QuickSight
+	// users. For example, if you set "--dashboard-id dash_id1 --dashboard-id dash_id2
+	// dash_id3 identity-type ANONYMOUS", the session can access all three dashboards.
+	AdditionalDashboardIds []*string `location:"querystring" locationName:"additional-dashboard-ids" min:"1" type:"list"`
 
 	// The ID for the AWS account that contains the dashboard that you're embedding.
 	//
@@ -21311,7 +21330,11 @@ type GetDashboardEmbedUrlInput struct {
 	// The authentication method that the user uses to sign in.
 	//
 	// IdentityType is a required field
-	IdentityType *string `location:"querystring" locationName:"creds-type" type:"string" required:"true" enum:"IdentityType"`
+	IdentityType *string `location:"querystring" locationName:"creds-type" type:"string" required:"true" enum:"EmbeddingIdentityType"`
+
+	// The QuickSight namespace that contains the dashboard IDs in this request.
+	// If you're not using a custom namespace, set this to "default".
+	Namespace *string `location:"querystring" locationName:"namespace" type:"string"`
 
 	// Remove the reset button on the embedded dashboard. The default is FALSE,
 	// which enables the reset button.
@@ -21363,6 +21386,9 @@ func (s GetDashboardEmbedUrlInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetDashboardEmbedUrlInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetDashboardEmbedUrlInput"}
+	if s.AdditionalDashboardIds != nil && len(s.AdditionalDashboardIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalDashboardIds", 1))
+	}
 	if s.AwsAccountId == nil {
 		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
 	}
@@ -21388,6 +21414,12 @@ func (s *GetDashboardEmbedUrlInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalDashboardIds sets the AdditionalDashboardIds field's value.
+func (s *GetDashboardEmbedUrlInput) SetAdditionalDashboardIds(v []*string) *GetDashboardEmbedUrlInput {
+	s.AdditionalDashboardIds = v
+	return s
+}
+
 // SetAwsAccountId sets the AwsAccountId field's value.
 func (s *GetDashboardEmbedUrlInput) SetAwsAccountId(v string) *GetDashboardEmbedUrlInput {
 	s.AwsAccountId = &v
@@ -21403,6 +21435,12 @@ func (s *GetDashboardEmbedUrlInput) SetDashboardId(v string) *GetDashboardEmbedU
 // SetIdentityType sets the IdentityType field's value.
 func (s *GetDashboardEmbedUrlInput) SetIdentityType(v string) *GetDashboardEmbedUrlInput {
 	s.IdentityType = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *GetDashboardEmbedUrlInput) SetNamespace(v string) *GetDashboardEmbedUrlInput {
+	s.Namespace = &v
 	return s
 }
 
@@ -21436,6 +21474,7 @@ func (s *GetDashboardEmbedUrlInput) SetUserArn(v string) *GetDashboardEmbedUrlIn
 	return s
 }
 
+// Output returned from the GetDashboardEmbedUrl operation.
 type GetDashboardEmbedUrlOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -29633,6 +29672,73 @@ func (s *UIColorPalette) SetWarningForeground(v string) *UIColorPalette {
 	return s
 }
 
+// This error indicates that you are calling an embedding operation in Amazon
+// QuickSight without the required pricing plan on your AWS account. Before
+// you can use anonymous embedding, a QuickSight administrator needs to add
+// capacity pricing to QuickSight. You can do this on the Manage QuickSight
+// page.
+//
+// After capacity pricing is added, you can enable anonymous embedding by using
+// the GetDashboardEmbedUrl API operation with the --identity-type ANONYMOUS
+// option.
+type UnsupportedPricingPlanException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The AWS request ID for this request.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedPricingPlanException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedPricingPlanException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedPricingPlanException(v protocol.ResponseMetadata) error {
+	return &UnsupportedPricingPlanException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedPricingPlanException) Code() string {
+	return "UnsupportedPricingPlanException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedPricingPlanException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedPricingPlanException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedPricingPlanException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedPricingPlanException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedPricingPlanException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // This error indicates that you are calling an operation on an Amazon QuickSight
 // subscription where the edition doesn't include support for that operation.
 // Amazon QuickSight currently has Standard Edition and Enterprise Edition.
@@ -33763,6 +33869,26 @@ func Edition_Values() []string {
 	return []string{
 		EditionStandard,
 		EditionEnterprise,
+	}
+}
+
+const (
+	// EmbeddingIdentityTypeIam is a EmbeddingIdentityType enum value
+	EmbeddingIdentityTypeIam = "IAM"
+
+	// EmbeddingIdentityTypeQuicksight is a EmbeddingIdentityType enum value
+	EmbeddingIdentityTypeQuicksight = "QUICKSIGHT"
+
+	// EmbeddingIdentityTypeAnonymous is a EmbeddingIdentityType enum value
+	EmbeddingIdentityTypeAnonymous = "ANONYMOUS"
+)
+
+// EmbeddingIdentityType_Values returns all elements of the EmbeddingIdentityType enum
+func EmbeddingIdentityType_Values() []string {
+	return []string{
+		EmbeddingIdentityTypeIam,
+		EmbeddingIdentityTypeQuicksight,
+		EmbeddingIdentityTypeAnonymous,
 	}
 }
 

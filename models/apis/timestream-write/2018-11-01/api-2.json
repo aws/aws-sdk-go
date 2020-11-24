@@ -183,6 +183,7 @@
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"InvalidEndpointException"}
       ],
@@ -199,6 +200,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"InvalidEndpointException"}
       ],
@@ -215,6 +217,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidEndpointException"}
       ],
@@ -537,10 +540,15 @@
         "MeasureValue":{"shape":"StringValue2048"},
         "MeasureValueType":{"shape":"MeasureValueType"},
         "Time":{"shape":"StringValue256"},
-        "TimeUnit":{"shape":"TimeUnit"}
+        "TimeUnit":{"shape":"TimeUnit"},
+        "Version":{
+          "shape":"RecordVersion",
+          "box":true
+        }
       }
     },
     "RecordIndex":{"type":"integer"},
+    "RecordVersion":{"type":"long"},
     "Records":{
       "type":"list",
       "member":{"shape":"Record"},
@@ -551,7 +559,11 @@
       "type":"structure",
       "members":{
         "RecordIndex":{"shape":"RecordIndex"},
-        "Reason":{"shape":"ErrorMessage"}
+        "Reason":{"shape":"ErrorMessage"},
+        "ExistingVersion":{
+          "shape":"RecordVersion",
+          "box":true
+        }
       }
     },
     "RejectedRecords":{

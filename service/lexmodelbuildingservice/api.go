@@ -13083,6 +13083,9 @@ const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "en-US"
 
+	// LocaleEs419 is a Locale enum value
+	LocaleEs419 = "es-419"
+
 	// LocaleEsEs is a Locale enum value
 	LocaleEsEs = "es-ES"
 
@@ -13106,6 +13109,7 @@ func Locale_Values() []string {
 		LocaleEnAu,
 		LocaleEnGb,
 		LocaleEnUs,
+		LocaleEs419,
 		LocaleEsEs,
 		LocaleEsUs,
 		LocaleFrFr,

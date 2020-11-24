@@ -1,3 +1,35 @@
+Release v1.35.35 (2020-11-24)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/batch`: Updates service API and documentation
+  * Add Ec2Configuration in ComputeEnvironment.ComputeResources. Use in CreateComputeEnvironment API to enable AmazonLinux2 support.
+* `service/cloudformation`: Updates service API and documentation
+  * Adds support for the new Modules feature for CloudFormation. A module encapsulates one or more resources and their respective configurations for reuse across your organization.
+* `service/cloudtrail`: Updates service API and documentation
+  * CloudTrail now includes advanced event selectors, which give you finer-grained control over the events that are logged to your trail.
+* `service/codebuild`: Updates service API and documentation
+  * Adding GetReportGroupTrend API for Test Reports.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/elasticbeanstalk`: Updates service API and documentation
+  * Updates the Integer constraint of DescribeEnvironmentManagedActionHistory's MaxItems parameter to [1, 100].
+* `service/fsx`: Updates service API and documentation
+* `service/gamelift`: Updates service API and documentation
+  * GameLift FlexMatch is now available as a standalone matchmaking solution. FlexMatch now provides customizable matchmaking for games hosted peer-to-peer, on-premises, or on cloud compute primitives.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/lex-models`: Updates service API
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for Vorbis and Opus audio in OGG/OGA containers.
+* `service/mwaa`: Adds new service
+* `service/quicksight`: Updates service API and documentation
+  * Support for embedding without user registration. New enum EmbeddingIdentityType. A potential breaking change. Affects code that refers IdentityType enum type directly instead of literal string value.
+* `service/states`: Updates service API and documentation
+  * This release of the AWS Step Functions SDK introduces support for Synchronous Express Workflows
+* `service/timestream-write`: Updates service API and documentation
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.35.34 (2020-11-23)
 ===
 

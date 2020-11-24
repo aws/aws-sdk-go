@@ -144,6 +144,10 @@ type SFNAPI interface {
 	StartExecutionWithContext(aws.Context, *sfn.StartExecutionInput, ...request.Option) (*sfn.StartExecutionOutput, error)
 	StartExecutionRequest(*sfn.StartExecutionInput) (*request.Request, *sfn.StartExecutionOutput)
 
+	StartSyncExecution(*sfn.StartSyncExecutionInput) (*sfn.StartSyncExecutionOutput, error)
+	StartSyncExecutionWithContext(aws.Context, *sfn.StartSyncExecutionInput, ...request.Option) (*sfn.StartSyncExecutionOutput, error)
+	StartSyncExecutionRequest(*sfn.StartSyncExecutionInput) (*request.Request, *sfn.StartSyncExecutionOutput)
+
 	StopExecution(*sfn.StopExecutionInput) (*sfn.StopExecutionOutput, error)
 	StopExecutionWithContext(aws.Context, *sfn.StopExecutionInput, ...request.Option) (*sfn.StopExecutionOutput, error)
 	StopExecutionRequest(*sfn.StopExecutionInput) (*request.Request, *sfn.StopExecutionOutput)

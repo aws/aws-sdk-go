@@ -445,7 +445,7 @@
       }
     },
     "DeploymentTargets": {
-      "base": "<p>[<code>Service-managed</code> permissions] The AWS Organizations accounts to which StackSets deploys. StackSets does not deploy stack instances to the organization master account, even if the master account is in your organization or in an OU in your organization.</p> <p>For update operations, you can specify either <code>Accounts</code> or <code>OrganizationalUnitIds</code>. For create and delete operations, specify <code>OrganizationalUnitIds</code>.</p>",
+      "base": "<p>[<code>Service-managed</code> permissions] The AWS Organizations accounts to which StackSets deploys. StackSets does not deploy stack instances to the organization management account, even if the organization management account is in your organization or in an OU in your organization.</p> <p>For update operations, you can specify either <code>Accounts</code> or <code>OrganizationalUnitIds</code>. For create and delete operations, specify <code>OrganizationalUnitIds</code>.</p>",
       "refs": {
         "CreateStackInstancesInput$DeploymentTargets": "<p>[<code>Service-managed</code> permissions] The AWS Organizations accounts for which to create stack instances in the specified Regions.</p> <p>You can specify <code>Accounts</code> or <code>DeploymentTargets</code>, but not both.</p>",
         "DeleteStackInstancesInput$DeploymentTargets": "<p>[<code>Service-managed</code> permissions] The AWS Organizations accounts from which to delete stack instances.</p> <p>You can specify <code>Accounts</code> or <code>DeploymentTargets</code>, but not both.</p>",
@@ -1033,6 +1033,12 @@
         "RegisterTypeInput$LoggingConfig": "<p>Specifies logging configuration information for a type.</p>"
       }
     },
+    "LogicalIdHierarchy": {
+      "base": null,
+      "refs": {
+        "ModuleInfo$LogicalIdHierarchy": "<p>A concantenated list of the logical IDs of the module or modules containing the resource. Modules are listed starting with the inner-most nested module, and separated by <code>/</code>.</p> <p>In the following example, the resource was created from a module, <code>moduleA</code>, that is nested inside a parent module, <code>moduleB</code>.</p> <p> <code>moduleA/moduleB</code> </p> <p>For more information, see <a href=\"AWSCloudFormation/latest/UserGuide/modules.html#module-ref-resources\">Referencing resources in a module</a> in the <i>CloudFormation User Guide</i>.</p>"
+      }
+    },
     "LogicalResourceId": {
       "base": null,
       "refs": {
@@ -1087,6 +1093,16 @@
       "refs": {
         "GetTemplateSummaryOutput$Metadata": "<p>The value that is defined for the <code>Metadata</code> property of the template.</p>",
         "StackResourceDetail$Metadata": "<p>The content of the <code>Metadata</code> attribute declared for the resource. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-metadata.html\">Metadata Attribute</a> in the AWS CloudFormation User Guide.</p>"
+      }
+    },
+    "ModuleInfo": {
+      "base": "<p>Contains information about the module from which the resource was created, if the resource was created from a module included in the stack template.</p> <p>For more information on modules, see <a href=\"AWSCloudFormation/latest/UserGuide/modules.html\">Using modules to encapsulate and reuse resource configurations</a> in the <i>CloudFormation User Guide</i>.</p>",
+      "refs": {
+        "ResourceChange$ModuleInfo": "<p>Contains information about the module from which the resource was created, if the resource was created from a module included in the stack template.</p>",
+        "StackResource$ModuleInfo": "<p>Contains information about the module from which the resource was created, if the resource was created from a module included in the stack template.</p>",
+        "StackResourceDetail$ModuleInfo": "<p>Contains information about the module from which the resource was created, if the resource was created from a module included in the stack template.</p>",
+        "StackResourceDrift$ModuleInfo": "<p>Contains information about the module from which the resource was created, if the resource was created from a module included in the stack template.</p>",
+        "StackResourceSummary$ModuleInfo": "<p>Contains information about the module from which the resource was created, if the resource was created from a module included in the stack template.</p>"
       }
     },
     "MonitoringTimeInMinutes": {
@@ -1470,6 +1486,7 @@
         "DescribeTypeOutput$Type": "<p>The kind of type. </p> <p>Currently the only valid value is <code>RESOURCE</code>.</p>",
         "ListTypeRegistrationsInput$Type": "<p>The kind of type.</p> <p>Currently the only valid value is <code>RESOURCE</code>.</p> <p>Conditional: You must specify either <code>TypeName</code> and <code>Type</code>, or <code>Arn</code>.</p>",
         "ListTypeVersionsInput$Type": "<p>The kind of the type.</p> <p>Currently the only valid value is <code>RESOURCE</code>.</p> <p>Conditional: You must specify either <code>TypeName</code> and <code>Type</code>, or <code>Arn</code>.</p>",
+        "ListTypesInput$Type": "<p>The type of extension.</p>",
         "RegisterTypeInput$Type": "<p>The kind of type.</p> <p>Currently, the only valid value is <code>RESOURCE</code>.</p>",
         "SetTypeDefaultVersionInput$Type": "<p>The kind of type.</p> <p>Conditional: You must specify either <code>TypeName</code> and <code>Type</code>, or <code>Arn</code>.</p>",
         "TypeSummary$Type": "<p>The kind of type.</p>",
@@ -2431,6 +2448,12 @@
         "ListTypeRegistrationsInput$TypeArn": "<p>The Amazon Resource Name (ARN) of the type.</p> <p>Conditional: You must specify either <code>TypeName</code> and <code>Type</code>, or <code>Arn</code>.</p>",
         "TypeSummary$TypeArn": "<p>The Amazon Resource Name (ARN) of the type.</p>",
         "TypeVersionSummary$Arn": "<p>The Amazon Resource Name (ARN) of the type version.</p>"
+      }
+    },
+    "TypeHierarchy": {
+      "base": null,
+      "refs": {
+        "ModuleInfo$TypeHierarchy": "<p>A concantenated list of the the module type or types containing the resource. Module types are listed starting with the inner-most nested module, and separated by <code>/</code>.</p> <p>In the following example, the resource was created from a module of type <code>AWS::First::Example::MODULE</code>, that is nested inside a parent module of type <code>AWS::Second::Example::MODULE</code>.</p> <p> <code>AWS::First::Example::MODULE/AWS::Second::Example::MODULE</code> </p>"
       }
     },
     "TypeName": {
