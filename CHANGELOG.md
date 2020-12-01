@@ -1,3 +1,10 @@
+Release v1.35.36 (2020-12-01)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release introduces Amazon EC2 Mac1 instances, a new Amazon EC2 instance family built on Apple Mac mini computers, powered by AWS Nitro System, and support running macOS workloads on Amazon EC2
+
 Release v1.35.35 (2020-11-24)
 ===
 
