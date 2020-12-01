@@ -525,6 +525,23 @@
         {"shape":"UnsupportedOperationException"}
       ]
     },
+    "DisableClientAuthentication":{
+      "name":"DisableClientAuthentication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableClientAuthenticationRequest"},
+      "output":{"shape":"DisableClientAuthenticationResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidClientAuthStatusException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DisableLDAPS":{
       "name":"DisableLDAPS",
       "http":{
@@ -569,6 +586,24 @@
         {"shape":"EntityDoesNotExistException"},
         {"shape":"InsufficientPermissionsException"},
         {"shape":"AuthenticationFailedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
+    "EnableClientAuthentication":{
+      "name":"EnableClientAuthentication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableClientAuthenticationRequest"},
+      "output":{"shape":"EnableClientAuthenticationResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidClientAuthStatusException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoAvailableCertificateException"},
         {"shape":"ClientException"},
         {"shape":"ServiceException"}
       ]
@@ -1141,7 +1176,9 @@
         "StateReason":{"shape":"CertificateStateReason"},
         "CommonName":{"shape":"CertificateCN"},
         "RegisteredDateTime":{"shape":"CertificateRegisteredDateTime"},
-        "ExpiryDateTime":{"shape":"CertificateExpiryDateTime"}
+        "ExpiryDateTime":{"shape":"CertificateExpiryDateTime"},
+        "Type":{"shape":"CertificateType"},
+        "ClientCertAuthSettings":{"shape":"ClientCertAuthSettings"}
       }
     },
     "CertificateAlreadyExistsException":{
@@ -1185,7 +1222,8 @@
         "CertificateId":{"shape":"CertificateId"},
         "CommonName":{"shape":"CertificateCN"},
         "State":{"shape":"CertificateState"},
-        "ExpiryDateTime":{"shape":"CertificateExpiryDateTime"}
+        "ExpiryDateTime":{"shape":"CertificateExpiryDateTime"},
+        "Type":{"shape":"CertificateType"}
       }
     },
     "CertificateLimitExceededException":{
@@ -1209,6 +1247,13 @@
       ]
     },
     "CertificateStateReason":{"type":"string"},
+    "CertificateType":{
+      "type":"string",
+      "enum":[
+        "ClientCertAuth",
+        "ClientLDAPS"
+      ]
+    },
     "CertificatesInfo":{
       "type":"list",
       "member":{"shape":"CertificateInfo"}
@@ -1220,6 +1265,16 @@
     "CidrIps":{
       "type":"list",
       "member":{"shape":"CidrIp"}
+    },
+    "ClientAuthenticationType":{
+      "type":"string",
+      "enum":["SmartCard"]
+    },
+    "ClientCertAuthSettings":{
+      "type":"structure",
+      "members":{
+        "OCSPUrl":{"shape":"OCSPUrl"}
+      }
     },
     "ClientException":{
       "type":"structure",
@@ -1928,6 +1983,22 @@
         "AvailabilityZones":{"shape":"AvailabilityZones"}
       }
     },
+    "DisableClientAuthenticationRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "Type"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Type":{"shape":"ClientAuthenticationType"}
+      }
+    },
+    "DisableClientAuthenticationResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisableLDAPSRequest":{
       "type":"structure",
       "required":[
@@ -2021,6 +2092,22 @@
     "DomainControllers":{
       "type":"list",
       "member":{"shape":"DomainController"}
+    },
+    "EnableClientAuthenticationRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "Type"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Type":{"shape":"ClientAuthenticationType"}
+      }
+    },
+    "EnableClientAuthenticationResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "EnableLDAPSRequest":{
       "type":"structure",
@@ -2133,6 +2220,14 @@
       "exception":true
     },
     "InvalidCertificateException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
+    },
+    "InvalidClientAuthStatusException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ExceptionMessage"},
@@ -2383,6 +2478,12 @@
       "max":1024,
       "sensitive":true
     },
+    "OCSPUrl":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^(https?|ftp|file|ldaps?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;()]*[-a-zA-Z0-9+&@#/%=~_|()]"
+    },
     "OrganizationalUnitDN":{
       "type":"string",
       "max":2000,
@@ -2526,7 +2627,9 @@
       ],
       "members":{
         "DirectoryId":{"shape":"DirectoryId"},
-        "CertificateData":{"shape":"CertificateData"}
+        "CertificateData":{"shape":"CertificateData"},
+        "Type":{"shape":"CertificateType"},
+        "ClientCertAuthSettings":{"shape":"ClientCertAuthSettings"}
       }
     },
     "RegisterCertificateResult":{

@@ -46,6 +46,12 @@
       "output_token": "NextToken",
       "result_key": "InstanceSummaryList"
     },
+    "ListIntegrationAssociations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IntegrationAssociationSummaryList"
+    },
     "ListLambdaFunctions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -99,6 +105,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "SecurityProfileSummaryList"
+    },
+    "ListUseCases": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "UseCaseSummaryList"
     },
     "ListUserHierarchyGroups": {
       "input_token": "NextToken",

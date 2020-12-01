@@ -1,0 +1,647 @@
+{
+  "version" : "2.0",
+  "service" : "<p>AWS Amplify Admin API</p>",
+  "operations" : {
+    "CloneBackend" : "<p>This operation clones an existing backend.</p>",
+    "CreateBackend" : "<p>This operation creates a backend for an Amplify app. Backends are automatically created at the time of app creation.</p>",
+    "CreateBackendAPI" : "<p>Creates a new backend API resource.</p>",
+    "CreateBackendAuth" : "<p>Creates a new backend authentication resource.</p>",
+    "CreateBackendConfig" : "<p>Creates a config object for a backend.</p>",
+    "CreateToken" : "<p>Generates a one time challenge code to authenticate a user into your Amplify Admin UI.</p>",
+    "DeleteBackend" : "<p>Removes an existing environment from your Ampify project.</p>",
+    "DeleteBackendAPI" : "<p>Deletes an existing backend API resource.</p>",
+    "DeleteBackendAuth" : "<p>Deletes an existing backend authentication resource.</p>",
+    "DeleteToken" : "<p>Deletes the challenge token based on the given appId and sessionId.</p>",
+    "GenerateBackendAPIModels" : "<p>Generates a model schema for an existing backend API resource.</p>",
+    "GetBackend" : "<p>Provides project level details for your Amplify UI project.</p>",
+    "GetBackendAPI" : "<p>Gets the details for a backend api.</p>",
+    "GetBackendAPIModels" : "<p>Generates a model schema for existing backend API resource.</p>",
+    "GetBackendAuth" : "<p>Gets a backend auth details.</p>",
+    "GetBackendJob" : "<p>Returns information about a specific job.</p>",
+    "GetToken" : "<p>Gets the challenge token based on the given appId and sessionId.</p>",
+    "ListBackendJobs" : "<p>Lists the jobs for the backend of an Amplify app.</p>",
+    "RemoveAllBackends" : "<p>Removes all backend environments from your Amplify project.</p>",
+    "RemoveBackendConfig" : "<p>Removes the AWS resources required to access the Amplify Admin UI.</p>",
+    "UpdateBackendAPI" : "<p>Updates an existing backend API resource.</p>",
+    "UpdateBackendAuth" : "<p>Updates an existing backend authentication resource.</p>",
+    "UpdateBackendConfig" : "<p>Updates the AWS resources required to access the Amplify Admin UI.</p>",
+    "UpdateBackendJob" : "<p>Updates a specific job.</p>"
+  },
+  "shapes" : {
+    "AuthResources" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthResourceConfig$AuthResources" : "<p>Defines whether you want to configure only authentication or both authentication and authorization settings.</p>",
+        "UpdateBackendAuthResourceConfig$AuthResources" : "<p>Defines the service name to use when configuring an authentication resource in your Amplify project.</p>"
+      }
+    },
+    "BackendAPIAppSyncAuthSettings" : {
+      "base" : "<p>The authentication settings for accessing provisioned data models in your Amplify project.</p>",
+      "refs" : {
+        "BackendAPIAuthType$Settings" : "<p>Describes settings for the authentication mode.</p>"
+      }
+    },
+    "BackendAPIAuthType" : {
+      "base" : "<p>Describes the auth types for your configured data models.</p>",
+      "refs" : {
+        "BackendAPIResourceConfig$DefaultAuthType" : "<p>The default authentication type for interacting with the configured data models in your amplify project.</p>",
+        "ListOfBackendAPIAuthType$member" : null
+      }
+    },
+    "BackendAPICodegenReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "BackendAPICodegenRespObj" : {
+      "base" : "<p>The response object sent when a backend is created.</p>",
+      "refs" : { }
+    },
+    "BackendAPIConflictResolution" : {
+      "base" : "<p>Describes the conflict resolution configuration for your data model configured in your Amplify project.</p>",
+      "refs" : {
+        "BackendAPIResourceConfig$ConflictResolution" : "<p>The conflict resoultion strategy for your data stored in the data models.</p>"
+      }
+    },
+    "BackendAPIReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "BackendAPIResourceConfig" : {
+      "base" : "<p>The resource config for the data model,configured as a part of the Amplify project.</p>",
+      "refs" : {
+        "BackendAPIReqObj$ResourceConfig" : "<p>Defines the resource configuration for the data model in your Amplify project.</p>",
+        "CreateBackendAPIReqObj$ResourceConfig" : "<p>The resource configuration for this request.</p>",
+        "GetBackendAPIRespObj$ResourceConfig" : "<p>The resource configuration for this response object.</p>"
+      }
+    },
+    "BackendAPIRespObj" : {
+      "base" : "<p>The response object sent when a backend is created.</p>",
+      "refs" : { }
+    },
+    "BackendAuthRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "BackendAuthSocialProviderConfig" : {
+      "base" : "<p>Describes third party social federation configurations for allowing your app users to sign in using OAuth.</p>",
+      "refs" : {
+        "SocialProviderSettings$Facebook" : null,
+        "SocialProviderSettings$Google" : null,
+        "SocialProviderSettings$LoginWithAmazon" : null
+      }
+    },
+    "BackendConfigRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "BackendJobReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "BackendJobRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : {
+        "ListOfBackendJobRespObj$member" : null
+      }
+    },
+    "BadRequestException" : {
+      "base" : "<p>An error returned if a request is not formed properly.</p>",
+      "refs" : { }
+    },
+    "CloneBackendReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "CloneBackendRespObj" : {
+      "base" : "<p>The response object sent when a backend is created.</p>",
+      "refs" : { }
+    },
+    "CreateBackendAPIReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "CreateBackendAuthForgotPasswordConfig" : {
+      "base" : "<p>Describes the forgot password policy for authenticating into the Amlify app.</p>",
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$ForgotPassword" : "<p>Describes the forgotten password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "CreateBackendAuthIdentityPoolConfig" : {
+      "base" : "<p>Describes authorization configurations for the auth resources, configures as a part of your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthResourceConfig$IdentityPoolConfigs" : "<p>Describes the authorization configuration for the Amazon Cognito identity pool, provisioned as a part of your auth resource in the Amplify project.</p>"
+      }
+    },
+    "CreateBackendAuthMFAConfig" : {
+      "base" : "<p>Describes whether multi-factor authentication policies should be applied for your Amazon Cognito user pool configured as a part of your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$Mfa" : "<p>Describes whether multi-factor authentication policies should be applied for your Amazon Cognito user pool configured as a part of your Amplify project.</p>"
+      }
+    },
+    "CreateBackendAuthOAuthConfig" : {
+      "base" : "<p>Creates the OAuth configuration for your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$OAuth" : "<p>Describes the OAuth policy and rules for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "CreateBackendAuthPasswordPolicyConfig" : {
+      "base" : "<p>The password policy configuration for the backend to your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$PasswordPolicy" : "<p>Describes the password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "CreateBackendAuthReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "CreateBackendAuthResourceConfig" : {
+      "base" : "<p>Defines the resource configuration when creating an auth resource in your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthReqObj$ResourceConfig" : "<p>The resource configuration for this request object.</p>",
+        "GetBackendAuthRespObj$ResourceConfig" : "<p>The resource configuration for authorization requests to the backend of your Amplify project.</p>"
+      }
+    },
+    "CreateBackendAuthUserPoolConfig" : {
+      "base" : "<p>Describes the Amazon Cognito user pool configuration for the auth resource to be configured for your Amplify project.</p>",
+      "refs" : {
+        "CreateBackendAuthResourceConfig$UserPoolConfigs" : "<p>Describes authentication configuration for the Amazon Cognito user pool, provisioned as a part of your auth resource in the Amplify project.</p>"
+      }
+    },
+    "CreateBackendConfigReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "CreateBackendConfigRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "CreateBackendReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "CreateBackendRespObj" : {
+      "base" : "<p>The response object sent when a backend is created.</p>",
+      "refs" : { }
+    },
+    "CreateTokenRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "DeleteBackendRespObj" : {
+      "base" : "<p>The returned object for a request to delete a backend.</p>",
+      "refs" : { }
+    },
+    "DeleteTokenRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "DeliveryMethod" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password.</p>",
+        "UpdateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password.</p>"
+      }
+    },
+    "EmailSettings" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthForgotPasswordConfig$EmailSettings" : "<p>The configuration for the email sent when an app user forgets their password.</p>",
+        "UpdateBackendAuthForgotPasswordConfig$EmailSettings" : "<p>The configuration for the email sent when an app user forgets their password.</p>"
+      }
+    },
+    "GatewayTimeoutException" : {
+      "base" : "<p>An error returned if there's a temporary issue with the service.</p>",
+      "refs" : { }
+    },
+    "GetBackendAPICodegenRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetBackendAPIRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetBackendAuthReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetBackendAuthRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetBackendReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetBackendRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetTokenRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "InternalServiceException" : {
+      "base" : "<p>An error returned if there's a temporary issue with the service.</p>",
+      "refs" : { }
+    },
+    "LimitExceededException" : {
+      "base" : "<p>An error that is returned when a limit of a specific type has been exceeded.</p>",
+      "refs" : { }
+    },
+    "ListBackendJobReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "ListBackendJobRespObj" : {
+      "base" : "<p>The returned list of backend jobs.</p>",
+      "refs" : { }
+    },
+    "LoginAuthConfigReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : {
+        "BackendConfigRespObj$LoginAuthConfig" : "<p>Describes the Amazon Cognito configurations for the Admin UI auth resource to login with.</p>",
+        "UpdateBackendConfigReqObj$LoginAuthConfig" : "<p>Describes the Amazon Cognito configuration for Admin UI access.</p>"
+      }
+    },
+    "MFAMode" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthMFAConfig$MFAMode" : "<p>Describes whether MFA should be [ON, OFF, OPTIONAL] for authentication in your Amplify project.</p>",
+        "UpdateBackendAuthMFAConfig$MFAMode" : "<p>The MFA mode for the backend of your Amplify project.</p>"
+      }
+    },
+    "Mode" : {
+      "base" : null,
+      "refs" : {
+        "BackendAPIAuthType$Mode" : "<p>Describes the authentication mode.</p>"
+      }
+    },
+    "NotFoundException" : {
+      "base" : "<p>An error returned when a specific resource type is not found.</p>",
+      "refs" : { }
+    },
+    "OAuthGrantType" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthOAuthConfig$OAuthGrantType" : "<p>The OAuth grant type which you use to allow app users to authenticate from your Amplify app.</p>",
+        "UpdateBackendAuthOAuthConfig$OAuthGrantType" : "<p>The OAuth grant type to allow app users to authenticate from your Amplify app.</p>"
+      }
+    },
+    "RemoveAllBackendsReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "RemoveAllBackendsRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "RemoveBackendAuthReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "RemoveBackendConfigRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
+    "ResolutionStrategy" : {
+      "base" : null,
+      "refs" : {
+        "BackendAPIConflictResolution$ResolutionStrategy" : "<p>The strategy for conflict resolution.</p>"
+      }
+    },
+    "ResourceConfig" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendReqObj$ResourceConfig" : "<p>The resource configuration for the create backend request.</p>"
+      }
+    },
+    "Service" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthResourceConfig$Service" : "<p>Defines the service name to use when configuring an authentication resource in your Amplify project.</p>",
+        "UpdateBackendAuthResourceConfig$Service" : "<p>Defines the service name to use when configuring an authentication resource in your Amplify project.</p>"
+      }
+    },
+    "Settings" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthMFAConfig$Settings" : "<p>Describes the configuration settings and methods for your Amplify app users to use MFA.</p>",
+        "UpdateBackendAuthMFAConfig$Settings" : "<p>The settings of your MFA configuration for the backend of your Amplify project.</p>"
+      }
+    },
+    "SignInMethod" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$SignInMethod" : "<p>Describes the sign-in methods that your Amplify app users to login using the Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "SmsSettings" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthForgotPasswordConfig$SmsSettings" : "<p>The configuration for the SMS message sent when an app user forgets their password.</p>",
+        "UpdateBackendAuthForgotPasswordConfig$SmsSettings" : "<p>The configuration for the SMS message sent when an Amplify app user forgets their password.</p>"
+      }
+    },
+    "SocialProviderSettings" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthOAuthConfig$SocialProviderSettings" : "<p>The settings for using the social providers for access to your Amplify app.</p>",
+        "UpdateBackendAuthOAuthConfig$SocialProviderSettings" : "<p>Describes third party social federation configurations for allowing your users to sign in with OAuth.</p>"
+      }
+    },
+    "Status" : {
+      "base" : null,
+      "refs" : {
+        "GetBackendAPICodegenRespObj$Status" : "<p>The current status of the request.</p>"
+      }
+    },
+    "TooManyRequestsException" : {
+      "base" : "<p>An error that is returned when a limit of a specific type has been exceeded.</p>",
+      "refs" : { }
+    },
+    "UpdateBackendAuthForgotPasswordConfig" : {
+      "base" : "<p>Describes the forgot password policy for authenticating into the Amlify app.</p>",
+      "refs" : {
+        "UpdateBackendAuthUserPoolConfig$ForgotPassword" : "<p>Describes the forgot password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "UpdateBackendAuthIdentityPoolConfig" : {
+      "base" : "<p>Describes the authorization configuration for the Amazon Cognito identity pool, provisioned as a part of your auth resource in the Amplify project.</p>",
+      "refs" : {
+        "UpdateBackendAuthResourceConfig$IdentityPoolConfigs" : "<p>Describes the authorization configuration for the Amazon Cognito identity pool, provisioned as a part of your auth resource in the Amplify project.</p>"
+      }
+    },
+    "UpdateBackendAuthMFAConfig" : {
+      "base" : "<p>Updates the multi-factor authentication (MFA) configuration for the backend of your Amplify project.</p>",
+      "refs" : {
+        "UpdateBackendAuthUserPoolConfig$Mfa" : "<p>Describes whether multi-factor authentication policies should be applied for your Amazon Cognito user pool configured as a part of your Amplify project.</p>"
+      }
+    },
+    "UpdateBackendAuthOAuthConfig" : {
+      "base" : "<p>The OAuth configurations for authenticating users into your Amplify app.</p>",
+      "refs" : {
+        "UpdateBackendAuthUserPoolConfig$OAuth" : "<p>Describes the OAuth policy and rules for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "UpdateBackendAuthPasswordPolicyConfig" : {
+      "base" : "<p>Describes the password policy for your Amazon Cognito user pool configured as a part of your Amplify project.</p>",
+      "refs" : {
+        "UpdateBackendAuthUserPoolConfig$PasswordPolicy" : "<p>Describes the password policy for your Amazon Cognito user pool, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "UpdateBackendAuthReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "UpdateBackendAuthResourceConfig" : {
+      "base" : "<p>Defines the resource configuration when updating an authentication resource in your Amplify project.</p>",
+      "refs" : {
+        "UpdateBackendAuthReqObj$ResourceConfig" : "<p>The resource configuration for this request object.</p>"
+      }
+    },
+    "UpdateBackendAuthUserPoolConfig" : {
+      "base" : "<p>Describes the Amazon Cognito user pool configuration for the authorization resource to be configured for your Amplify project on an update.</p>",
+      "refs" : {
+        "UpdateBackendAuthResourceConfig$UserPoolConfigs" : "<p>Describes the authentication configuration for the Amazon Cognito userpool, provisioned as a part of your auth resource in the Amplify project.</p>"
+      }
+    },
+    "UpdateBackendConfigReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "AdditionalConstraintsElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOfAdditionalConstraintsElement$member" : null
+      }
+    },
+    "MfaTypesElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOfMfaTypesElement$member" : null
+      }
+    },
+    "OAuthScopesElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOfOAuthScopesElement$member" : null
+      }
+    },
+    "RequiredSignUpAttributesElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOfRequiredSignUpAttributesElement$member" : null
+      }
+    },
+    "__boolean" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>Set to true or false based on whether you want to enable guest authorization to your Amplify app.</p>",
+        "DeleteTokenRespObj$IsSuccess" : "<p>Indicates whether the request succeeded or failed.</p>",
+        "RemoveAllBackendsReqObj$CleanAmplifyApp" : "<p>Cleans up the Amplify Console app if this value is set to true.</p>",
+        "UpdateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>A boolean value which can be set to allow or disallow guest level authorization into your Amplify app.</p>"
+      }
+    },
+    "__double" : {
+      "base" : null,
+      "refs" : {
+        "BackendAPIAppSyncAuthSettings$ExpirationTime" : "<p>The api key expiration time for API_KEY, if it was used as an authentication mechanism to access your data models.</p>",
+        "CreateBackendAuthPasswordPolicyConfig$MinimumLength" : "<p>The minimum length of password used to access the backend of your Amplify project.</p>",
+        "UpdateBackendAuthPasswordPolicyConfig$MinimumLength" : "<p>Describes the minimum length of password required to sign in into the auth resource, configured as a part of your Ampify project.</p>"
+      }
+    },
+    "__integerMin1Max25" : {
+      "base" : null,
+      "refs" : {
+        "ListBackendJobReqObj$MaxResults" : "<p>The maximum number of results you want in the response.</p>"
+      }
+    },
+    "ListOfBackendAPIAuthType" : {
+      "base" : null,
+      "refs" : {
+        "BackendAPIResourceConfig$AdditionalAuthTypes" : "<p>Addition authentication methods used to interact with your data models.</p>"
+      }
+    },
+    "ListOfBackendJobRespObj" : {
+      "base" : null,
+      "refs" : {
+        "ListBackendJobRespObj$Jobs" : "<p>An array of jobs and their properties.</p>"
+      }
+    },
+    "ListOfAdditionalConstraintsElement" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthPasswordPolicyConfig$AdditionalConstraints" : "<p>Additional constraints for the pasword used to access the backend of your Amplify project.</p>",
+        "UpdateBackendAuthPasswordPolicyConfig$AdditionalConstraints" : "<p>Describes additional constrains on password requirements to sign in into the auth resource, configured as a part of your Ampify project.</p>"
+      }
+    },
+    "ListOfMfaTypesElement" : {
+      "base" : null,
+      "refs" : {
+        "Settings$MfaTypes" : null
+      }
+    },
+    "ListOfOAuthScopesElement" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthOAuthConfig$OAuthScopes" : "<p>List of OAuth related flows which use to allow your app users to authenticate from your Amplify app.</p>",
+        "UpdateBackendAuthOAuthConfig$OAuthScopes" : "<p>The list of OAuth related flows which can allow users to authenticate from your Amplify app.</p>"
+      }
+    },
+    "ListOfRequiredSignUpAttributesElement" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthUserPoolConfig$RequiredSignUpAttributes" : "<p>The required attributes to sign up new users in the user pool.</p>"
+      }
+    },
+    "ListOf__string" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendAuthOAuthConfig$RedirectSignInURIs" : "<p>The redirected URI for sigining into your Amplify app.</p>",
+        "CreateBackendAuthOAuthConfig$RedirectSignOutURIs" : "<p>Redirect URLs used by OAuth when a user signs out of an Amplify app.</p>",
+        "GetBackendRespObj$BackendEnvironmentList" : "<p>A list of backend environments in an array.</p>",
+        "UpdateBackendAuthOAuthConfig$RedirectSignInURIs" : "<p>Redirect URLs used by OAuth when a user signs in to an Amplify app.</p>",
+        "UpdateBackendAuthOAuthConfig$RedirectSignOutURIs" : "<p>Redirect URLs used by OAuth when a user signs out of an Amplify app.</p>"
+      }
+    },
+    "__string" : {
+      "base" : null,
+      "refs" : {
+        "BackendAPIAppSyncAuthSettings$CognitoUserPoolId" : "<p>The Amazon Cognito user pool id, if Amazon Cognito was used as an authentication setting to access your data models.</p>",
+        "BackendAPIAppSyncAuthSettings$Description" : "<p>The api key description for API_KEY, if it was used as an authentication mechanism to access your data models.</p>",
+        "BackendAPIAppSyncAuthSettings$OpenIDAuthTTL" : "<p>The expiry time for the OpenID authentication mechanism.</p>",
+        "BackendAPIAppSyncAuthSettings$OpenIDClientId" : "<p>The clientID for openID, if openID was used as an authentication setting to access your data models.</p>",
+        "BackendAPIAppSyncAuthSettings$OpenIDIatTTL" : "<p>The expiry time for the OpenID authentication mechanism.</p>",
+        "BackendAPIAppSyncAuthSettings$OpenIDIssueURL" : "<p>The openID issuer URL, if openID was used as an authentication setting to access your data models.</p>",
+        "BackendAPIAppSyncAuthSettings$OpenIDProviderName" : "<p>The open id provider name, if openID was used as an authentication mechanism to access your data models.</p>",
+        "BackendAPICodegenReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "BackendAPICodegenRespObj$AppId" : "<p>The app ID.</p>",
+        "BackendAPICodegenRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "BackendAPICodegenRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "BackendAPICodegenRespObj$JobId" : "<p>The ID for the job.</p>",
+        "BackendAPICodegenRespObj$Operation" : "<p>The name of the operation.</p>",
+        "BackendAPICodegenRespObj$Status" : "<p>The current status of the request.</p>",
+        "BackendAPIReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "BackendAPIResourceConfig$ApiName" : "<p>The API name used to interact with the data model, configured as a part of the amplify project.</p>",
+        "BackendAPIResourceConfig$Service" : "<p>The service used to provision and interact with the data model.</p>",
+        "BackendAPIResourceConfig$TransformSchema" : "<p>The definition of the data model in the annotated transform of the graphql schema.</p>",
+        "BackendAPIRespObj$AppId" : "<p>The app ID.</p>",
+        "BackendAPIRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "BackendAPIRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "BackendAPIRespObj$JobId" : "<p>The ID for the job.</p>",
+        "BackendAPIRespObj$Operation" : "<p>The name of the operation.</p>",
+        "BackendAPIRespObj$Status" : "<p>The current status of the request.</p>",
+        "BackendAuthRespObj$AppId" : "<p>The app ID.</p>",
+        "BackendAuthRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "BackendAuthRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "BackendAuthRespObj$JobId" : "<p>The ID for the job.</p>",
+        "BackendAuthRespObj$Operation" : "<p>The name of the operation.</p>",
+        "BackendAuthRespObj$Status" : "<p>The current status of the request.</p>",
+        "BackendAuthSocialProviderConfig$ClientId" : "<p>Describes the client_id which can be obtained from the third party social federation provider.</p>",
+        "BackendAuthSocialProviderConfig$ClientSecret" : "<p>Describes the client_secret which can be obtained from third party social federation providers.</p>",
+        "BackendConfigRespObj$AppId" : "<p>The app ID.</p>",
+        "BackendConfigRespObj$BackendManagerAppId" : "<p>The app ID for the backend manager.</p>",
+        "BackendConfigRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "BackendJobReqObj$Operation" : "<p>Filters the list of response objects to only include those with the specified operation name.</p>",
+        "BackendJobReqObj$Status" : "<p>Filters the list of response objects to only include those with the specified status.</p>",
+        "BackendJobRespObj$AppId" : "<p>The app ID.</p>",
+        "BackendJobRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "BackendJobRespObj$CreateTime" : "<p>The time when the job was created.</p>",
+        "BackendJobRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "BackendJobRespObj$JobId" : "<p>The ID for the job.</p>",
+        "BackendJobRespObj$Operation" : "<p>The name of the operation.</p>",
+        "BackendJobRespObj$Status" : "<p>The current status of the request.</p>",
+        "BackendJobRespObj$UpdateTime" : "<p>The time when the job was last updated.</p>",
+        "BadRequestException$Message" : "<p>An error message to inform that the request has failed.</p>",
+        "CloneBackendReqObj$TargetEnvironmentName" : "<p>The name of the destination backend environment to be created.</p>",
+        "CloneBackendRespObj$AppId" : "<p>The app ID.</p>",
+        "CloneBackendRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CloneBackendRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "CloneBackendRespObj$JobId" : "<p>The ID for the job.</p>",
+        "CloneBackendRespObj$Operation" : "<p>The name of the operation.</p>",
+        "CloneBackendRespObj$Status" : "<p>The current status of the request.</p>",
+        "CreateBackendAPIReqObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CreateBackendAPIReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "CreateBackendAuthIdentityPoolConfig$IdentityPoolName" : "<p>Name of the identity pool used for authorization.</p>",
+        "CreateBackendAuthOAuthConfig$DomainPrefix" : "<p>The domain prefix for your Amplify app.</p>",
+        "CreateBackendAuthReqObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CreateBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "CreateBackendAuthUserPoolConfig$UserPoolName" : "<p>The Amazon Cognito user pool name.</p>",
+        "CreateBackendConfigReqObj$BackendManagerAppId" : "<p>The app ID for the backend manager.</p>",
+        "CreateBackendConfigRespObj$AppId" : "<p>The app ID.</p>",
+        "CreateBackendConfigRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CreateBackendConfigRespObj$JobId" : "<p>The ID for the job.</p>",
+        "CreateBackendConfigRespObj$Status" : "<p>The current status of the request.</p>",
+        "CreateBackendReqObj$AppId" : "<p>The app ID.</p>",
+        "CreateBackendReqObj$AppName" : "<p>The name of the app.</p>",
+        "CreateBackendReqObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CreateBackendReqObj$ResourceName" : "<p>The name of the resource.</p>",
+        "CreateBackendRespObj$AppId" : "<p>The app ID.</p>",
+        "CreateBackendRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CreateBackendRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "CreateBackendRespObj$JobId" : "<p>The ID for the job.</p>",
+        "CreateBackendRespObj$Operation" : "<p>The name of the operation.</p>",
+        "CreateBackendRespObj$Status" : "<p>The current status of the request.</p>",
+        "CreateTokenRespObj$AppId" : "<p>The app ID.</p>",
+        "CreateTokenRespObj$ChallengeCode" : "<p>One time challenge code for authenticating into Amplify Admin UI.</p>",
+        "CreateTokenRespObj$SessionId" : "<p>A unique identifier provided when creating a new challenge token.</p>",
+        "CreateTokenRespObj$Ttl" : "<p>The expiry time for the one time generated token code.</p>",
+        "DeleteBackendRespObj$AppId" : "<p>The app ID.</p>",
+        "DeleteBackendRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "DeleteBackendRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "DeleteBackendRespObj$JobId" : "<p>The ID for the job.</p>",
+        "DeleteBackendRespObj$Operation" : "<p>The name of the operation.</p>",
+        "DeleteBackendRespObj$Status" : "<p>The current status of the request.</p>",
+        "EmailSettings$EmailMessage" : "<p>The body of the email.</p>",
+        "EmailSettings$EmailSubject" : "<p>The subject of the email.</p>",
+        "GetBackendAPICodegenRespObj$Models" : "<p>Stringified JSON of the datastore model.</p>",
+        "GetBackendAPIRespObj$AppId" : "<p>The app ID.</p>",
+        "GetBackendAPIRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "GetBackendAPIRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "GetBackendAPIRespObj$ResourceName" : "<p>The name of this resource.</p>",
+        "GetBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "GetBackendAuthRespObj$AppId" : "<p>The app ID.</p>",
+        "GetBackendAuthRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "GetBackendAuthRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "GetBackendAuthRespObj$ResourceName" : "<p>The name of this resource.</p>",
+        "GetBackendReqObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "GetBackendRespObj$AmplifyMetaConfig" : "<p>A stringified version of the current configs for your Amplify project.</p>",
+        "GetBackendRespObj$AppId" : "<p>The app ID.</p>",
+        "GetBackendRespObj$AppName" : "<p>The name of the app.</p>",
+        "GetBackendRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "GetBackendRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "GetTokenRespObj$AppId" : "<p>The app ID.</p>",
+        "GetTokenRespObj$ChallengeCode" : "<p>The one time challenge code for authenticating into Amplify Admin UI.</p>",
+        "GetTokenRespObj$SessionId" : "<p>A unique identifier provided when creating a new challenge token.</p>",
+        "GetTokenRespObj$Ttl" : "<p>The expiry time for the one time generated token code.</p>",
+        "InternalServiceException$Message" : "<p>An error message to inform that the request has failed.</p>",
+        "LimitExceededException$LimitType" : "<p>The type of limit that was exceeded.</p>",
+        "LimitExceededException$Message" : "<p>An error message to inform that the request has failed.</p>",
+        "ListBackendJobReqObj$JobId" : "<p>The ID for the job.</p>",
+        "ListBackendJobReqObj$NextToken" : "<p>The token for the next set of results.</p>",
+        "ListBackendJobReqObj$Operation" : "<p>Filters the list of response objects to only include those with the specified operation name.</p>",
+        "ListBackendJobReqObj$Status" : "<p>Filters the list of response objects to only include those with the specified status.</p>",
+        "ListBackendJobRespObj$NextToken" : "<p>The token for the next set of results.</p>",
+        "LoginAuthConfigReqObj$AwsCognitoIdentityPoolId" : "<p>Amazon Cognito identitypool id used for the Amplify Admin UI login authorization.</p>",
+        "LoginAuthConfigReqObj$AwsCognitoRegion" : "<p>The AWS Region for the the Amplify Admin login.</p>",
+        "LoginAuthConfigReqObj$AwsUserPoolsId" : "<p>The Amazon Cognito userpool id used for Amplify Admin UI login authentication.</p>",
+        "LoginAuthConfigReqObj$AwsUserPoolsWebClientId" : "<p>The web client ID for the Amazon Cognito userpools.</p>",
+        "NotFoundException$Message" : "<p>An error message to inform that the request has failed.</p>",
+        "NotFoundException$ResourceType" : "<p>The type of resource that wasn't found.</p>",
+        "RemoveAllBackendsRespObj$AppId" : "<p>The app ID.</p>",
+        "RemoveAllBackendsRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "RemoveAllBackendsRespObj$JobId" : "<p>The ID for the job.</p>",
+        "RemoveAllBackendsRespObj$Operation" : "<p>The name of the operation.</p>",
+        "RemoveAllBackendsRespObj$Status" : "<p>The current status of the request.</p>",
+        "RemoveBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "RemoveBackendConfigRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "Settings$SmsMessage" : "<p>The body of the SMS message.</p>",
+        "SmsSettings$SmsMessage" : "<p>The body of the SMS message.</p>",
+        "UpdateBackendAuthOAuthConfig$DomainPrefix" : "<p>The Amazon Cognito domain prefix used to create a hosted UI for authentication.</p>",
+        "UpdateBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "ListOf__string$member" : null
+      }
+    }
+  }
+}

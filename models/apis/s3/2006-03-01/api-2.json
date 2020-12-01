@@ -1172,6 +1172,7 @@
         "authenticated-read"
       ]
     },
+    "BucketKeyEnabled":{"type":"boolean"},
     "BucketLifecycleConfiguration":{
       "type":"structure",
       "required":["Rules"],
@@ -1367,6 +1368,11 @@
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
         },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -1508,6 +1514,11 @@
           "shape":"SSEKMSEncryptionContext",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-context"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
@@ -1669,6 +1680,11 @@
           "shape":"SSEKMSEncryptionContext",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-context"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
         },
         "CopySourceSSECustomerAlgorithm":{
           "shape":"CopySourceSSECustomerAlgorithm",
@@ -1864,6 +1880,11 @@
           "location":"header",
           "locationName":"x-amz-server-side-encryption-context"
         },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -1987,6 +2008,11 @@
           "shape":"SSEKMSEncryptionContext",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-context"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
         },
         "RequestPayer":{
           "shape":"RequestPayer",
@@ -3400,6 +3426,11 @@
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
         },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
+        },
         "StorageClass":{
           "shape":"StorageClass",
           "location":"header",
@@ -3874,6 +3905,11 @@
           "shape":"SSEKMSKeyId",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
         },
         "StorageClass":{
           "shape":"StorageClass",
@@ -6154,6 +6190,11 @@
           "location":"header",
           "locationName":"x-amz-server-side-encryption-context"
         },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -6291,6 +6332,11 @@
           "shape":"SSEKMSEncryptionContext",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-context"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
         },
         "RequestPayer":{
           "shape":"RequestPayer",
@@ -6549,6 +6595,20 @@
     "ReplaceKeyPrefixWith":{"type":"string"},
     "ReplaceKeyWith":{"type":"string"},
     "ReplicaKmsKeyID":{"type":"string"},
+    "ReplicaModifications":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ReplicaModificationsStatus"}
+      }
+    },
+    "ReplicaModificationsStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ReplicationConfiguration":{
       "type":"structure",
       "required":[
@@ -6957,7 +7017,8 @@
     "ServerSideEncryptionRule":{
       "type":"structure",
       "members":{
-        "ApplyServerSideEncryptionByDefault":{"shape":"ServerSideEncryptionByDefault"}
+        "ApplyServerSideEncryptionByDefault":{"shape":"ServerSideEncryptionByDefault"},
+        "BucketKeyEnabled":{"shape":"BucketKeyEnabled"}
       }
     },
     "ServerSideEncryptionRules":{
@@ -6970,7 +7031,8 @@
     "SourceSelectionCriteria":{
       "type":"structure",
       "members":{
-        "SseKmsEncryptedObjects":{"shape":"SseKmsEncryptedObjects"}
+        "SseKmsEncryptedObjects":{"shape":"SseKmsEncryptedObjects"},
+        "ReplicaModifications":{"shape":"ReplicaModifications"}
       }
     },
     "SseKmsEncryptedObjects":{
@@ -7219,6 +7281,11 @@
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
         },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -7361,6 +7428,11 @@
           "shape":"SSEKMSKeyId",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-server-side-encryption-bucket-key-enabled"
         },
         "RequestCharged":{
           "shape":"RequestCharged",

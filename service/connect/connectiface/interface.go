@@ -92,9 +92,17 @@ type ConnectAPI interface {
 	CreateInstanceWithContext(aws.Context, *connect.CreateInstanceInput, ...request.Option) (*connect.CreateInstanceOutput, error)
 	CreateInstanceRequest(*connect.CreateInstanceInput) (*request.Request, *connect.CreateInstanceOutput)
 
+	CreateIntegrationAssociation(*connect.CreateIntegrationAssociationInput) (*connect.CreateIntegrationAssociationOutput, error)
+	CreateIntegrationAssociationWithContext(aws.Context, *connect.CreateIntegrationAssociationInput, ...request.Option) (*connect.CreateIntegrationAssociationOutput, error)
+	CreateIntegrationAssociationRequest(*connect.CreateIntegrationAssociationInput) (*request.Request, *connect.CreateIntegrationAssociationOutput)
+
 	CreateRoutingProfile(*connect.CreateRoutingProfileInput) (*connect.CreateRoutingProfileOutput, error)
 	CreateRoutingProfileWithContext(aws.Context, *connect.CreateRoutingProfileInput, ...request.Option) (*connect.CreateRoutingProfileOutput, error)
 	CreateRoutingProfileRequest(*connect.CreateRoutingProfileInput) (*request.Request, *connect.CreateRoutingProfileOutput)
+
+	CreateUseCase(*connect.CreateUseCaseInput) (*connect.CreateUseCaseOutput, error)
+	CreateUseCaseWithContext(aws.Context, *connect.CreateUseCaseInput, ...request.Option) (*connect.CreateUseCaseOutput, error)
+	CreateUseCaseRequest(*connect.CreateUseCaseInput) (*request.Request, *connect.CreateUseCaseOutput)
 
 	CreateUser(*connect.CreateUserInput) (*connect.CreateUserOutput, error)
 	CreateUserWithContext(aws.Context, *connect.CreateUserInput, ...request.Option) (*connect.CreateUserOutput, error)
@@ -107,6 +115,14 @@ type ConnectAPI interface {
 	DeleteInstance(*connect.DeleteInstanceInput) (*connect.DeleteInstanceOutput, error)
 	DeleteInstanceWithContext(aws.Context, *connect.DeleteInstanceInput, ...request.Option) (*connect.DeleteInstanceOutput, error)
 	DeleteInstanceRequest(*connect.DeleteInstanceInput) (*request.Request, *connect.DeleteInstanceOutput)
+
+	DeleteIntegrationAssociation(*connect.DeleteIntegrationAssociationInput) (*connect.DeleteIntegrationAssociationOutput, error)
+	DeleteIntegrationAssociationWithContext(aws.Context, *connect.DeleteIntegrationAssociationInput, ...request.Option) (*connect.DeleteIntegrationAssociationOutput, error)
+	DeleteIntegrationAssociationRequest(*connect.DeleteIntegrationAssociationInput) (*request.Request, *connect.DeleteIntegrationAssociationOutput)
+
+	DeleteUseCase(*connect.DeleteUseCaseInput) (*connect.DeleteUseCaseOutput, error)
+	DeleteUseCaseWithContext(aws.Context, *connect.DeleteUseCaseInput, ...request.Option) (*connect.DeleteUseCaseOutput, error)
+	DeleteUseCaseRequest(*connect.DeleteUseCaseInput) (*request.Request, *connect.DeleteUseCaseOutput)
 
 	DeleteUser(*connect.DeleteUserInput) (*connect.DeleteUserOutput, error)
 	DeleteUserWithContext(aws.Context, *connect.DeleteUserInput, ...request.Option) (*connect.DeleteUserOutput, error)
@@ -236,6 +252,13 @@ type ConnectAPI interface {
 	ListInstancesPages(*connect.ListInstancesInput, func(*connect.ListInstancesOutput, bool) bool) error
 	ListInstancesPagesWithContext(aws.Context, *connect.ListInstancesInput, func(*connect.ListInstancesOutput, bool) bool, ...request.Option) error
 
+	ListIntegrationAssociations(*connect.ListIntegrationAssociationsInput) (*connect.ListIntegrationAssociationsOutput, error)
+	ListIntegrationAssociationsWithContext(aws.Context, *connect.ListIntegrationAssociationsInput, ...request.Option) (*connect.ListIntegrationAssociationsOutput, error)
+	ListIntegrationAssociationsRequest(*connect.ListIntegrationAssociationsInput) (*request.Request, *connect.ListIntegrationAssociationsOutput)
+
+	ListIntegrationAssociationsPages(*connect.ListIntegrationAssociationsInput, func(*connect.ListIntegrationAssociationsOutput, bool) bool) error
+	ListIntegrationAssociationsPagesWithContext(aws.Context, *connect.ListIntegrationAssociationsInput, func(*connect.ListIntegrationAssociationsOutput, bool) bool, ...request.Option) error
+
 	ListLambdaFunctions(*connect.ListLambdaFunctionsInput) (*connect.ListLambdaFunctionsOutput, error)
 	ListLambdaFunctionsWithContext(aws.Context, *connect.ListLambdaFunctionsInput, ...request.Option) (*connect.ListLambdaFunctionsOutput, error)
 	ListLambdaFunctionsRequest(*connect.ListLambdaFunctionsInput) (*request.Request, *connect.ListLambdaFunctionsOutput)
@@ -303,6 +326,13 @@ type ConnectAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *connect.ListTagsForResourceInput, ...request.Option) (*connect.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*connect.ListTagsForResourceInput) (*request.Request, *connect.ListTagsForResourceOutput)
 
+	ListUseCases(*connect.ListUseCasesInput) (*connect.ListUseCasesOutput, error)
+	ListUseCasesWithContext(aws.Context, *connect.ListUseCasesInput, ...request.Option) (*connect.ListUseCasesOutput, error)
+	ListUseCasesRequest(*connect.ListUseCasesInput) (*request.Request, *connect.ListUseCasesOutput)
+
+	ListUseCasesPages(*connect.ListUseCasesInput, func(*connect.ListUseCasesOutput, bool) bool) error
+	ListUseCasesPagesWithContext(aws.Context, *connect.ListUseCasesInput, func(*connect.ListUseCasesOutput, bool) bool, ...request.Option) error
+
 	ListUserHierarchyGroups(*connect.ListUserHierarchyGroupsInput) (*connect.ListUserHierarchyGroupsOutput, error)
 	ListUserHierarchyGroupsWithContext(aws.Context, *connect.ListUserHierarchyGroupsInput, ...request.Option) (*connect.ListUserHierarchyGroupsOutput, error)
 	ListUserHierarchyGroupsRequest(*connect.ListUserHierarchyGroupsInput) (*request.Request, *connect.ListUserHierarchyGroupsOutput)
@@ -332,6 +362,10 @@ type ConnectAPI interface {
 	StartOutboundVoiceContact(*connect.StartOutboundVoiceContactInput) (*connect.StartOutboundVoiceContactOutput, error)
 	StartOutboundVoiceContactWithContext(aws.Context, *connect.StartOutboundVoiceContactInput, ...request.Option) (*connect.StartOutboundVoiceContactOutput, error)
 	StartOutboundVoiceContactRequest(*connect.StartOutboundVoiceContactInput) (*request.Request, *connect.StartOutboundVoiceContactOutput)
+
+	StartTaskContact(*connect.StartTaskContactInput) (*connect.StartTaskContactOutput, error)
+	StartTaskContactWithContext(aws.Context, *connect.StartTaskContactInput, ...request.Option) (*connect.StartTaskContactOutput, error)
+	StartTaskContactRequest(*connect.StartTaskContactInput) (*request.Request, *connect.StartTaskContactOutput)
 
 	StopContact(*connect.StopContactInput) (*connect.StopContactOutput, error)
 	StopContactWithContext(aws.Context, *connect.StopContactInput, ...request.Option) (*connect.StopContactOutput, error)

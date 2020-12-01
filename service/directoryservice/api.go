@@ -288,7 +288,7 @@ func (c *DirectoryService) AddRegionRequest(input *AddRegionInput) (req *request
 //   The specified directory does not exist in the system.
 //
 //   * RegionLimitExceededException
-//   You have reached the limit for maximum number of simultaneous region replications
+//   You have reached the limit for maximum number of simultaneous Region replications
 //   per directory.
 //
 //   * AccessDeniedException
@@ -3051,6 +3051,101 @@ func (c *DirectoryService) DescribeTrustsWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+const opDisableClientAuthentication = "DisableClientAuthentication"
+
+// DisableClientAuthenticationRequest generates a "aws/request.Request" representing the
+// client's request for the DisableClientAuthentication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisableClientAuthentication for more information on using the DisableClientAuthentication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisableClientAuthenticationRequest method.
+//    req, resp := client.DisableClientAuthenticationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableClientAuthentication
+func (c *DirectoryService) DisableClientAuthenticationRequest(input *DisableClientAuthenticationInput) (req *request.Request, output *DisableClientAuthenticationOutput) {
+	op := &request.Operation{
+		Name:       opDisableClientAuthentication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisableClientAuthenticationInput{}
+	}
+
+	output = &DisableClientAuthenticationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisableClientAuthentication API operation for AWS Directory Service.
+//
+// Disable client authentication for smart cards.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation DisableClientAuthentication for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * InvalidClientAuthStatusException
+//   The client authorization was invalid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in AWS Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableClientAuthentication
+func (c *DirectoryService) DisableClientAuthentication(input *DisableClientAuthenticationInput) (*DisableClientAuthenticationOutput, error) {
+	req, out := c.DisableClientAuthenticationRequest(input)
+	return out, req.Send()
+}
+
+// DisableClientAuthenticationWithContext is the same as DisableClientAuthentication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisableClientAuthentication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) DisableClientAuthenticationWithContext(ctx aws.Context, input *DisableClientAuthenticationInput, opts ...request.Option) (*DisableClientAuthenticationOutput, error) {
+	req, out := c.DisableClientAuthenticationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisableLDAPS = "DisableLDAPS"
 
 // DisableLDAPSRequest generates a "aws/request.Request" representing the
@@ -3325,6 +3420,105 @@ func (c *DirectoryService) DisableSso(input *DisableSsoInput) (*DisableSsoOutput
 // for more information on using Contexts.
 func (c *DirectoryService) DisableSsoWithContext(ctx aws.Context, input *DisableSsoInput, opts ...request.Option) (*DisableSsoOutput, error) {
 	req, out := c.DisableSsoRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opEnableClientAuthentication = "EnableClientAuthentication"
+
+// EnableClientAuthenticationRequest generates a "aws/request.Request" representing the
+// client's request for the EnableClientAuthentication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See EnableClientAuthentication for more information on using the EnableClientAuthentication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the EnableClientAuthenticationRequest method.
+//    req, resp := client.EnableClientAuthenticationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableClientAuthentication
+func (c *DirectoryService) EnableClientAuthenticationRequest(input *EnableClientAuthenticationInput) (req *request.Request, output *EnableClientAuthenticationOutput) {
+	op := &request.Operation{
+		Name:       opEnableClientAuthentication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &EnableClientAuthenticationInput{}
+	}
+
+	output = &EnableClientAuthenticationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// EnableClientAuthentication API operation for AWS Directory Service.
+//
+// Enable client authentication for smardtcards.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation EnableClientAuthentication for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * InvalidClientAuthStatusException
+//   The client authorization was invalid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * NoAvailableCertificateException
+//   The LDAP activities could not be performed because at least one valid certificate
+//   must be registered with the system.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in AWS Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableClientAuthentication
+func (c *DirectoryService) EnableClientAuthentication(input *EnableClientAuthenticationInput) (*EnableClientAuthenticationOutput, error) {
+	req, out := c.EnableClientAuthenticationRequest(input)
+	return out, req.Send()
+}
+
+// EnableClientAuthenticationWithContext is the same as EnableClientAuthentication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See EnableClientAuthentication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) EnableClientAuthenticationWithContext(ctx aws.Context, input *EnableClientAuthenticationInput, opts ...request.Option) (*EnableClientAuthenticationOutput, error) {
+	req, out := c.EnableClientAuthenticationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6395,6 +6589,10 @@ type Certificate struct {
 	// The identifier of the certificate.
 	CertificateId *string `type:"string"`
 
+	// Provides information about the client certificate authentication settings.
+	// The default value is ClientLDAPS.
+	ClientCertAuthSettings *ClientCertAuthSettings `type:"structure"`
+
 	// The common name for the certificate.
 	CommonName *string `type:"string"`
 
@@ -6409,6 +6607,9 @@ type Certificate struct {
 
 	// Describes a state change for the certificate.
 	StateReason *string `type:"string"`
+
+	// Select ClientCertAuth for smart card integration.
+	Type *string `type:"string" enum:"CertificateType"`
 }
 
 // String returns the string representation
@@ -6424,6 +6625,12 @@ func (s Certificate) GoString() string {
 // SetCertificateId sets the CertificateId field's value.
 func (s *Certificate) SetCertificateId(v string) *Certificate {
 	s.CertificateId = &v
+	return s
+}
+
+// SetClientCertAuthSettings sets the ClientCertAuthSettings field's value.
+func (s *Certificate) SetClientCertAuthSettings(v *ClientCertAuthSettings) *Certificate {
+	s.ClientCertAuthSettings = v
 	return s
 }
 
@@ -6454,6 +6661,12 @@ func (s *Certificate) SetState(v string) *Certificate {
 // SetStateReason sets the StateReason field's value.
 func (s *Certificate) SetStateReason(v string) *Certificate {
 	s.StateReason = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Certificate) SetType(v string) *Certificate {
+	s.Type = &v
 	return s
 }
 
@@ -6653,6 +6866,9 @@ type CertificateInfo struct {
 
 	// The state of the certificate.
 	State *string `type:"string" enum:"CertificateState"`
+
+	// Displays the type of certificate.
+	Type *string `type:"string" enum:"CertificateType"`
 }
 
 // String returns the string representation
@@ -6686,6 +6902,12 @@ func (s *CertificateInfo) SetExpiryDateTime(v time.Time) *CertificateInfo {
 // SetState sets the State field's value.
 func (s *CertificateInfo) SetState(v string) *CertificateInfo {
 	s.State = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CertificateInfo) SetType(v string) *CertificateInfo {
+	s.Type = &v
 	return s
 }
 
@@ -6748,6 +6970,45 @@ func (s *CertificateLimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *CertificateLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains information about the client certificate authentication settings,
+// such as ClientLDAPS or ClientCertAuth.
+type ClientCertAuthSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the URL of the default OCSP server used to check for revocation
+	// status.
+	OCSPUrl *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ClientCertAuthSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClientCertAuthSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClientCertAuthSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClientCertAuthSettings"}
+	if s.OCSPUrl != nil && len(*s.OCSPUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OCSPUrl", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOCSPUrl sets the OCSPUrl field's value.
+func (s *ClientCertAuthSettings) SetOCSPUrl(v string) *ClientCertAuthSettings {
+	s.OCSPUrl = &v
+	return s
 }
 
 // A client exception has occurred.
@@ -8997,7 +9258,7 @@ type DescribeRegionsOutput struct {
 	// of items.
 	NextToken *string `type:"string"`
 
-	// List of regional information related to the directory per replicated Region.
+	// List of Region information related to the directory for each replicated Region.
 	RegionsDescription []*RegionDescription `type:"list"`
 }
 
@@ -10301,6 +10562,72 @@ func (s *DirectoryVpcSettingsDescription) SetVpcId(v string) *DirectoryVpcSettin
 	return s
 }
 
+type DisableClientAuthenticationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Disable client authentication in a specified directory for smart cards.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// Disable the type of client authentication request.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ClientAuthenticationType"`
+}
+
+// String returns the string representation
+func (s DisableClientAuthenticationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisableClientAuthenticationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisableClientAuthenticationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisableClientAuthenticationInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *DisableClientAuthenticationInput) SetDirectoryId(v string) *DisableClientAuthenticationInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DisableClientAuthenticationInput) SetType(v string) *DisableClientAuthenticationInput {
+	s.Type = &v
+	return s
+}
+
+type DisableClientAuthenticationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableClientAuthenticationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisableClientAuthenticationOutput) GoString() string {
+	return s.String()
+}
+
 type DisableLDAPSInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10673,6 +11000,72 @@ func (s *DomainControllerLimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DomainControllerLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type EnableClientAuthenticationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enable client authentication in a specified directory for smart cards.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// Enable the type of client authentication request.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ClientAuthenticationType"`
+}
+
+// String returns the string representation
+func (s EnableClientAuthenticationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnableClientAuthenticationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnableClientAuthenticationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnableClientAuthenticationInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *EnableClientAuthenticationInput) SetDirectoryId(v string) *EnableClientAuthenticationInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EnableClientAuthenticationInput) SetType(v string) *EnableClientAuthenticationInput {
+	s.Type = &v
+	return s
+}
+
+type EnableClientAuthenticationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableClientAuthenticationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnableClientAuthenticationOutput) GoString() string {
+	return s.String()
 }
 
 type EnableLDAPSInput struct {
@@ -11304,6 +11697,66 @@ func (s *InvalidCertificateException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidCertificateException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The client authorization was invalid.
+type InvalidClientAuthStatusException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The descriptive message for the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The AWS request identifier.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidClientAuthStatusException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidClientAuthStatusException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidClientAuthStatusException(v protocol.ResponseMetadata) error {
+	return &InvalidClientAuthStatusException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidClientAuthStatusException) Code() string {
+	return "InvalidClientAuthStatusException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidClientAuthStatusException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidClientAuthStatusException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidClientAuthStatusException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidClientAuthStatusException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidClientAuthStatusException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -12612,7 +13065,7 @@ func (s *RadiusSettings) SetUseSameUsername(v bool) *RadiusSettings {
 	return s
 }
 
-// The replicated regional information for a directory.
+// The replicated Region information for a directory.
 type RegionDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -12632,7 +13085,7 @@ type RegionDescription struct {
 	// The name of the Region. For example, us-east-1.
 	RegionName *string `min:"8" type:"string"`
 
-	// Specifies if the Region is the primary Region or an additional Region.
+	// Specifies whether the Region is the primary Region or an additional Region.
 	RegionType *string `type:"string" enum:"RegionType"`
 
 	// The status of the replication process for the specified Region.
@@ -12709,7 +13162,7 @@ func (s *RegionDescription) SetVpcSettings(v *DirectoryVpcSettings) *RegionDescr
 	return s
 }
 
-// You have reached the limit for maximum number of simultaneous region replications
+// You have reached the limit for maximum number of simultaneous Region replications
 // per directory.
 type RegionLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -12779,8 +13232,7 @@ type RegionsInfo struct {
 	// primary Region.
 	AdditionalRegions []*string `type:"list"`
 
-	// The Region from where the AWS Managed Microsoft AD directory was originally
-	// created.
+	// The Region where the AWS Managed Microsoft AD directory was originally created.
 	PrimaryRegion *string `min:"8" type:"string"`
 }
 
@@ -12814,10 +13266,17 @@ type RegisterCertificateInput struct {
 	// CertificateData is a required field
 	CertificateData *string `min:"1" type:"string" required:"true"`
 
+	// Contains information about the client certificate authentication settings,
+	// such as ClientLDAPS or ClientCertAuth.
+	ClientCertAuthSettings *ClientCertAuthSettings `type:"structure"`
+
 	// The identifier of the directory.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
+
+	// The certificate type to register for the request.
+	Type *string `type:"string" enum:"CertificateType"`
 }
 
 // String returns the string representation
@@ -12842,6 +13301,11 @@ func (s *RegisterCertificateInput) Validate() error {
 	if s.DirectoryId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
 	}
+	if s.ClientCertAuthSettings != nil {
+		if err := s.ClientCertAuthSettings.Validate(); err != nil {
+			invalidParams.AddNested("ClientCertAuthSettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12855,9 +13319,21 @@ func (s *RegisterCertificateInput) SetCertificateData(v string) *RegisterCertifi
 	return s
 }
 
+// SetClientCertAuthSettings sets the ClientCertAuthSettings field's value.
+func (s *RegisterCertificateInput) SetClientCertAuthSettings(v *ClientCertAuthSettings) *RegisterCertificateInput {
+	s.ClientCertAuthSettings = v
+	return s
+}
+
 // SetDirectoryId sets the DirectoryId field's value.
 func (s *RegisterCertificateInput) SetDirectoryId(v string) *RegisterCertificateInput {
 	s.DirectoryId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RegisterCertificateInput) SetType(v string) *RegisterCertificateInput {
+	s.Type = &v
 	return s
 }
 
@@ -14992,6 +15468,34 @@ func CertificateState_Values() []string {
 		CertificateStateDeregistering,
 		CertificateStateDeregistered,
 		CertificateStateDeregisterFailed,
+	}
+}
+
+const (
+	// CertificateTypeClientCertAuth is a CertificateType enum value
+	CertificateTypeClientCertAuth = "ClientCertAuth"
+
+	// CertificateTypeClientLdaps is a CertificateType enum value
+	CertificateTypeClientLdaps = "ClientLDAPS"
+)
+
+// CertificateType_Values returns all elements of the CertificateType enum
+func CertificateType_Values() []string {
+	return []string{
+		CertificateTypeClientCertAuth,
+		CertificateTypeClientLdaps,
+	}
+}
+
+const (
+	// ClientAuthenticationTypeSmartCard is a ClientAuthenticationType enum value
+	ClientAuthenticationTypeSmartCard = "SmartCard"
+)
+
+// ClientAuthenticationType_Values returns all elements of the ClientAuthenticationType enum
+func ClientAuthenticationType_Values() []string {
+	return []string{
+		ClientAuthenticationTypeSmartCard,
 	}
 }
 

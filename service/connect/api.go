@@ -746,6 +746,8 @@ func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *reques
 
 // CreateInstance API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Initiates an Amazon Connect instance with all the supported channels enabled.
 // It does not attach any storage (such as Amazon S3, or Kinesis) or allow for
 // any configurations on features such as Contact Lens for Amazon Connect.
@@ -790,6 +792,99 @@ func (c *Connect) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOut
 // for more information on using Contexts.
 func (c *Connect) CreateInstanceWithContext(ctx aws.Context, input *CreateInstanceInput, opts ...request.Option) (*CreateInstanceOutput, error) {
 	req, out := c.CreateInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateIntegrationAssociation = "CreateIntegrationAssociation"
+
+// CreateIntegrationAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateIntegrationAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateIntegrationAssociation for more information on using the CreateIntegrationAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateIntegrationAssociationRequest method.
+//    req, resp := client.CreateIntegrationAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateIntegrationAssociation
+func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAssociationInput) (req *request.Request, output *CreateIntegrationAssociationOutput) {
+	op := &request.Operation{
+		Name:       opCreateIntegrationAssociation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/integration-associations",
+	}
+
+	if input == nil {
+		input = &CreateIntegrationAssociationInput{}
+	}
+
+	output = &CreateIntegrationAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateIntegrationAssociation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Create an AppIntegration association with anAmazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateIntegrationAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateIntegrationAssociation
+func (c *Connect) CreateIntegrationAssociation(input *CreateIntegrationAssociationInput) (*CreateIntegrationAssociationOutput, error) {
+	req, out := c.CreateIntegrationAssociationRequest(input)
+	return out, req.Send()
+}
+
+// CreateIntegrationAssociationWithContext is the same as CreateIntegrationAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateIntegrationAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateIntegrationAssociationWithContext(ctx aws.Context, input *CreateIntegrationAssociationInput, opts ...request.Option) (*CreateIntegrationAssociationOutput, error) {
+	req, out := c.CreateIntegrationAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -887,6 +982,99 @@ func (c *Connect) CreateRoutingProfile(input *CreateRoutingProfileInput) (*Creat
 // for more information on using Contexts.
 func (c *Connect) CreateRoutingProfileWithContext(ctx aws.Context, input *CreateRoutingProfileInput, opts ...request.Option) (*CreateRoutingProfileOutput, error) {
 	req, out := c.CreateRoutingProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUseCase = "CreateUseCase"
+
+// CreateUseCaseRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUseCase operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUseCase for more information on using the CreateUseCase
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUseCaseRequest method.
+//    req, resp := client.CreateUseCaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUseCase
+func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.Request, output *CreateUseCaseOutput) {
+	op := &request.Operation{
+		Name:       opCreateUseCase,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases",
+	}
+
+	if input == nil {
+		input = &CreateUseCaseInput{}
+	}
+
+	output = &CreateUseCaseOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUseCase API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates a use case for an AppIntegration association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateUseCase for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUseCase
+func (c *Connect) CreateUseCase(input *CreateUseCaseInput) (*CreateUseCaseOutput, error) {
+	req, out := c.CreateUseCaseRequest(input)
+	return out, req.Send()
+}
+
+// CreateUseCaseWithContext is the same as CreateUseCase with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUseCase for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateUseCaseWithContext(ctx aws.Context, input *CreateUseCaseInput, opts ...request.Option) (*CreateUseCaseOutput, error) {
+	req, out := c.CreateUseCaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1135,6 +1323,8 @@ func (c *Connect) DeleteInstanceRequest(input *DeleteInstanceInput) (req *reques
 
 // DeleteInstance API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Deletes the Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1171,6 +1361,189 @@ func (c *Connect) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOut
 // for more information on using Contexts.
 func (c *Connect) DeleteInstanceWithContext(ctx aws.Context, input *DeleteInstanceInput, opts ...request.Option) (*DeleteInstanceOutput, error) {
 	req, out := c.DeleteInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteIntegrationAssociation = "DeleteIntegrationAssociation"
+
+// DeleteIntegrationAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteIntegrationAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteIntegrationAssociation for more information on using the DeleteIntegrationAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteIntegrationAssociationRequest method.
+//    req, resp := client.DeleteIntegrationAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteIntegrationAssociation
+func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAssociationInput) (req *request.Request, output *DeleteIntegrationAssociationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteIntegrationAssociation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}",
+	}
+
+	if input == nil {
+		input = &DeleteIntegrationAssociationInput{}
+	}
+
+	output = &DeleteIntegrationAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteIntegrationAssociation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Deletes an AppIntegration association from an Amazon Connect instance. The
+// association must not have any use cases associated with it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteIntegrationAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteIntegrationAssociation
+func (c *Connect) DeleteIntegrationAssociation(input *DeleteIntegrationAssociationInput) (*DeleteIntegrationAssociationOutput, error) {
+	req, out := c.DeleteIntegrationAssociationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteIntegrationAssociationWithContext is the same as DeleteIntegrationAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteIntegrationAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteIntegrationAssociationWithContext(ctx aws.Context, input *DeleteIntegrationAssociationInput, opts ...request.Option) (*DeleteIntegrationAssociationOutput, error) {
+	req, out := c.DeleteIntegrationAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUseCase = "DeleteUseCase"
+
+// DeleteUseCaseRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUseCase operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUseCase for more information on using the DeleteUseCase
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUseCaseRequest method.
+//    req, resp := client.DeleteUseCaseRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUseCase
+func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.Request, output *DeleteUseCaseOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUseCase,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases/{UseCaseId}",
+	}
+
+	if input == nil {
+		input = &DeleteUseCaseInput{}
+	}
+
+	output = &DeleteUseCaseOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteUseCase API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Deletes a use case from an AppIntegration association.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteUseCase for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUseCase
+func (c *Connect) DeleteUseCase(input *DeleteUseCaseInput) (*DeleteUseCaseOutput, error) {
+	req, out := c.DeleteUseCaseRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUseCaseWithContext is the same as DeleteUseCase with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUseCase for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteUseCaseWithContext(ctx aws.Context, input *DeleteUseCaseInput, opts ...request.Option) (*DeleteUseCaseOutput, error) {
+	req, out := c.DeleteUseCaseRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3652,6 +4025,8 @@ func (c *Connect) ListInstanceAttributesRequest(input *ListInstanceAttributesInp
 
 // ListInstanceAttributes API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Returns a paginated list of all attribute types for the given instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3800,6 +4175,8 @@ func (c *Connect) ListInstanceStorageConfigsRequest(input *ListInstanceStorageCo
 }
 
 // ListInstanceStorageConfigs API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Returns a paginated list of storage configs for the identified instance and
 // resource type.
@@ -3951,6 +4328,8 @@ func (c *Connect) ListInstancesRequest(input *ListInstancesInput) (req *request.
 
 // ListInstances API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Return a list of instances which are in active state, creation-in-progress
 // state, and failed state. Instances that aren't successfully created (they
 // are in a failed state) are returned only for 24 hours after the CreateInstance
@@ -4037,6 +4416,155 @@ func (c *Connect) ListInstancesPagesWithContext(ctx aws.Context, input *ListInst
 
 	for p.Next() {
 		if !fn(p.Page().(*ListInstancesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListIntegrationAssociations = "ListIntegrationAssociations"
+
+// ListIntegrationAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListIntegrationAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListIntegrationAssociations for more information on using the ListIntegrationAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListIntegrationAssociationsRequest method.
+//    req, resp := client.ListIntegrationAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListIntegrationAssociations
+func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssociationsInput) (req *request.Request, output *ListIntegrationAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListIntegrationAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/integration-associations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListIntegrationAssociationsInput{}
+	}
+
+	output = &ListIntegrationAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListIntegrationAssociations API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Provides summary information about the AppIntegration associations for the
+// specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListIntegrationAssociations for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListIntegrationAssociations
+func (c *Connect) ListIntegrationAssociations(input *ListIntegrationAssociationsInput) (*ListIntegrationAssociationsOutput, error) {
+	req, out := c.ListIntegrationAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListIntegrationAssociationsWithContext is the same as ListIntegrationAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListIntegrationAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListIntegrationAssociationsWithContext(ctx aws.Context, input *ListIntegrationAssociationsInput, opts ...request.Option) (*ListIntegrationAssociationsOutput, error) {
+	req, out := c.ListIntegrationAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListIntegrationAssociationsPages iterates over the pages of a ListIntegrationAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListIntegrationAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListIntegrationAssociations operation.
+//    pageNum := 0
+//    err := client.ListIntegrationAssociationsPages(params,
+//        func(page *connect.ListIntegrationAssociationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListIntegrationAssociationsPages(input *ListIntegrationAssociationsInput, fn func(*ListIntegrationAssociationsOutput, bool) bool) error {
+	return c.ListIntegrationAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListIntegrationAssociationsPagesWithContext same as ListIntegrationAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListIntegrationAssociationsPagesWithContext(ctx aws.Context, input *ListIntegrationAssociationsInput, fn func(*ListIntegrationAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListIntegrationAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListIntegrationAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListIntegrationAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5499,6 +6027,154 @@ func (c *Connect) ListTagsForResourceWithContext(ctx aws.Context, input *ListTag
 	return out, req.Send()
 }
 
+const opListUseCases = "ListUseCases"
+
+// ListUseCasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListUseCases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListUseCases for more information on using the ListUseCases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListUseCasesRequest method.
+//    req, resp := client.ListUseCasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUseCases
+func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Request, output *ListUseCasesOutput) {
+	op := &request.Operation{
+		Name:       opListUseCases,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListUseCasesInput{}
+	}
+
+	output = &ListUseCasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListUseCases API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// List the use cases.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListUseCases for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUseCases
+func (c *Connect) ListUseCases(input *ListUseCasesInput) (*ListUseCasesOutput, error) {
+	req, out := c.ListUseCasesRequest(input)
+	return out, req.Send()
+}
+
+// ListUseCasesWithContext is the same as ListUseCases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListUseCases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListUseCasesWithContext(ctx aws.Context, input *ListUseCasesInput, opts ...request.Option) (*ListUseCasesOutput, error) {
+	req, out := c.ListUseCasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListUseCasesPages iterates over the pages of a ListUseCases operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListUseCases method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListUseCases operation.
+//    pageNum := 0
+//    err := client.ListUseCasesPages(params,
+//        func(page *connect.ListUseCasesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListUseCasesPages(input *ListUseCasesInput, fn func(*ListUseCasesOutput, bool) bool) error {
+	return c.ListUseCasesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListUseCasesPagesWithContext same as ListUseCasesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListUseCasesPagesWithContext(ctx aws.Context, input *ListUseCasesInput, fn func(*ListUseCasesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListUseCasesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListUseCasesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListUseCasesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListUserHierarchyGroups = "ListUserHierarchyGroups"
 
 // ListUserHierarchyGroupsRequest generates a "aws/request.Request" representing the
@@ -6208,6 +6884,100 @@ func (c *Connect) StartOutboundVoiceContact(input *StartOutboundVoiceContactInpu
 // for more information on using Contexts.
 func (c *Connect) StartOutboundVoiceContactWithContext(ctx aws.Context, input *StartOutboundVoiceContactInput, opts ...request.Option) (*StartOutboundVoiceContactOutput, error) {
 	req, out := c.StartOutboundVoiceContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartTaskContact = "StartTaskContact"
+
+// StartTaskContactRequest generates a "aws/request.Request" representing the
+// client's request for the StartTaskContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartTaskContact for more information on using the StartTaskContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartTaskContactRequest method.
+//    req, resp := client.StartTaskContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartTaskContact
+func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *request.Request, output *StartTaskContactOutput) {
+	op := &request.Operation{
+		Name:       opStartTaskContact,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact/task",
+	}
+
+	if input == nil {
+		input = &StartTaskContactInput{}
+	}
+
+	output = &StartTaskContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartTaskContact API operation for Amazon Connect Service.
+//
+// Initiates a contact flow to start a new task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartTaskContact for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartTaskContact
+func (c *Connect) StartTaskContact(input *StartTaskContactInput) (*StartTaskContactOutput, error) {
+	req, out := c.StartTaskContactRequest(input)
+	return out, req.Send()
+}
+
+// StartTaskContactWithContext is the same as StartTaskContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartTaskContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartTaskContactWithContext(ctx aws.Context, input *StartTaskContactInput, opts ...request.Option) (*StartTaskContactOutput, error) {
+	req, out := c.StartTaskContactRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7032,6 +7802,8 @@ func (c *Connect) UpdateInstanceAttributeRequest(input *UpdateInstanceAttributeI
 
 // UpdateInstanceAttribute API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Updates the value for the specified attribute type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7123,6 +7895,8 @@ func (c *Connect) UpdateInstanceStorageConfigRequest(input *UpdateInstanceStorag
 }
 
 // UpdateInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Updates an existing configuration for a resource type. This API is idempotent.
 //
@@ -9304,6 +10078,155 @@ func (s *CreateInstanceOutput) SetId(v string) *CreateInstanceOutput {
 	return s
 }
 
+type CreateIntegrationAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the integration.
+	//
+	// IntegrationArn is a required field
+	IntegrationArn *string `type:"string" required:"true"`
+
+	// The type of information to be ingested.
+	//
+	// IntegrationType is a required field
+	IntegrationType *string `type:"string" required:"true" enum:"IntegrationType"`
+
+	// The name of the external application.
+	//
+	// SourceApplicationName is a required field
+	SourceApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// The URL for the external application.
+	//
+	// SourceApplicationUrl is a required field
+	SourceApplicationUrl *string `min:"1" type:"string" required:"true"`
+
+	// The type of the data source.
+	//
+	// SourceType is a required field
+	SourceType *string `type:"string" required:"true" enum:"SourceType"`
+}
+
+// String returns the string representation
+func (s CreateIntegrationAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateIntegrationAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateIntegrationAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateIntegrationAssociationInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.IntegrationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegrationArn"))
+	}
+	if s.IntegrationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegrationType"))
+	}
+	if s.SourceApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceApplicationName"))
+	}
+	if s.SourceApplicationName != nil && len(*s.SourceApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceApplicationName", 1))
+	}
+	if s.SourceApplicationUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceApplicationUrl"))
+	}
+	if s.SourceApplicationUrl != nil && len(*s.SourceApplicationUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceApplicationUrl", 1))
+	}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateIntegrationAssociationInput) SetInstanceId(v string) *CreateIntegrationAssociationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationArn sets the IntegrationArn field's value.
+func (s *CreateIntegrationAssociationInput) SetIntegrationArn(v string) *CreateIntegrationAssociationInput {
+	s.IntegrationArn = &v
+	return s
+}
+
+// SetIntegrationType sets the IntegrationType field's value.
+func (s *CreateIntegrationAssociationInput) SetIntegrationType(v string) *CreateIntegrationAssociationInput {
+	s.IntegrationType = &v
+	return s
+}
+
+// SetSourceApplicationName sets the SourceApplicationName field's value.
+func (s *CreateIntegrationAssociationInput) SetSourceApplicationName(v string) *CreateIntegrationAssociationInput {
+	s.SourceApplicationName = &v
+	return s
+}
+
+// SetSourceApplicationUrl sets the SourceApplicationUrl field's value.
+func (s *CreateIntegrationAssociationInput) SetSourceApplicationUrl(v string) *CreateIntegrationAssociationInput {
+	s.SourceApplicationUrl = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *CreateIntegrationAssociationInput) SetSourceType(v string) *CreateIntegrationAssociationInput {
+	s.SourceType = &v
+	return s
+}
+
+type CreateIntegrationAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the association.
+	IntegrationAssociationArn *string `type:"string"`
+
+	// The identifier for the association.
+	IntegrationAssociationId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateIntegrationAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateIntegrationAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetIntegrationAssociationArn sets the IntegrationAssociationArn field's value.
+func (s *CreateIntegrationAssociationOutput) SetIntegrationAssociationArn(v string) *CreateIntegrationAssociationOutput {
+	s.IntegrationAssociationArn = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *CreateIntegrationAssociationOutput) SetIntegrationAssociationId(v string) *CreateIntegrationAssociationOutput {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
 type CreateRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9482,6 +10405,111 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileArn(v string) *CreateRouti
 // SetRoutingProfileId sets the RoutingProfileId field's value.
 func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutingProfileOutput {
 	s.RoutingProfileId = &v
+	return s
+}
+
+type CreateUseCaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the AppIntegration association.
+	//
+	// IntegrationAssociationId is a required field
+	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
+
+	// The type of use case to associate to the AppIntegration association. Each
+	// AppIntegration association can have only one of each use case type.
+	//
+	// UseCaseType is a required field
+	UseCaseType *string `type:"string" required:"true" enum:"UseCaseType"`
+}
+
+// String returns the string representation
+func (s CreateUseCaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUseCaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUseCaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUseCaseInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.IntegrationAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegrationAssociationId"))
+	}
+	if s.IntegrationAssociationId != nil && len(*s.IntegrationAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntegrationAssociationId", 1))
+	}
+	if s.UseCaseType == nil {
+		invalidParams.Add(request.NewErrParamRequired("UseCaseType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateUseCaseInput) SetInstanceId(v string) *CreateUseCaseInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *CreateUseCaseInput) SetIntegrationAssociationId(v string) *CreateUseCaseInput {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
+// SetUseCaseType sets the UseCaseType field's value.
+func (s *CreateUseCaseInput) SetUseCaseType(v string) *CreateUseCaseInput {
+	s.UseCaseType = &v
+	return s
+}
+
+type CreateUseCaseOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the use case.
+	UseCaseArn *string `type:"string"`
+
+	// The identifier of the use case.
+	UseCaseId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateUseCaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUseCaseOutput) GoString() string {
+	return s.String()
+}
+
+// SetUseCaseArn sets the UseCaseArn field's value.
+func (s *CreateUseCaseOutput) SetUseCaseArn(v string) *CreateUseCaseOutput {
+	s.UseCaseArn = &v
+	return s
+}
+
+// SetUseCaseId sets the UseCaseId field's value.
+func (s *CreateUseCaseOutput) SetUseCaseId(v string) *CreateUseCaseOutput {
+	s.UseCaseId = &v
 	return s
 }
 
@@ -9994,6 +11022,167 @@ func (s DeleteInstanceOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteInstanceOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteIntegrationAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the AppIntegration association.
+	//
+	// IntegrationAssociationId is a required field
+	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteIntegrationAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIntegrationAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteIntegrationAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteIntegrationAssociationInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.IntegrationAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegrationAssociationId"))
+	}
+	if s.IntegrationAssociationId != nil && len(*s.IntegrationAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntegrationAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteIntegrationAssociationInput) SetInstanceId(v string) *DeleteIntegrationAssociationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *DeleteIntegrationAssociationInput) SetIntegrationAssociationId(v string) *DeleteIntegrationAssociationInput {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
+type DeleteIntegrationAssociationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIntegrationAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIntegrationAssociationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteUseCaseInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the AppIntegration association.
+	//
+	// IntegrationAssociationId is a required field
+	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the use case.
+	//
+	// UseCaseId is a required field
+	UseCaseId *string `location:"uri" locationName:"UseCaseId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteUseCaseInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUseCaseInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUseCaseInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUseCaseInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.IntegrationAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegrationAssociationId"))
+	}
+	if s.IntegrationAssociationId != nil && len(*s.IntegrationAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntegrationAssociationId", 1))
+	}
+	if s.UseCaseId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UseCaseId"))
+	}
+	if s.UseCaseId != nil && len(*s.UseCaseId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UseCaseId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteUseCaseInput) SetInstanceId(v string) *DeleteUseCaseInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *DeleteUseCaseInput) SetIntegrationAssociationId(v string) *DeleteUseCaseInput {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
+// SetUseCaseId sets the UseCaseId field's value.
+func (s *DeleteUseCaseInput) SetUseCaseId(v string) *DeleteUseCaseInput {
+	s.UseCaseId = &v
+	return s
+}
+
+type DeleteUseCaseOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUseCaseOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUseCaseOutput) GoString() string {
 	return s.String()
 }
 
@@ -11680,7 +12869,7 @@ type GetCurrentMetricDataInput struct {
 	// The queues, up to 100, or channels, to use to filter the metrics returned.
 	// Metric data is retrieved only for the resources associated with the queues
 	// or channels included in the filter. You can include both queue IDs and queue
-	// ARNs in the same request. Both VOICE and CHAT channels are supported.
+	// ARNs in the same request. VOICE, CHAT, and TASK channels are supported.
 	//
 	// Filters is a required field
 	Filters *Filters `type:"structure" required:"true"`
@@ -11688,7 +12877,7 @@ type GetCurrentMetricDataInput struct {
 	// The grouping applied to the metrics returned. For example, when grouped by
 	// QUEUE, the metrics returned apply to each queue rather than aggregated for
 	// all queues. If you group by CHANNEL, you should include a Channels filter.
-	// Both VOICE and CHAT channels are supported.
+	// VOICE, CHAT, and TASK channels are supported.
 	//
 	// If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list"`
@@ -11911,7 +13100,7 @@ type GetMetricDataInput struct {
 	// The queues, up to 100, or channels, to use to filter the metrics returned.
 	// Metric data is retrieved only for the resources associated with the queues
 	// or channels included in the filter. You can include both queue IDs and queue
-	// ARNs in the same request. Both VOICE and CHAT channels are supported.
+	// ARNs in the same request. VOICE, CHAT, and TASK channels are supported.
 	//
 	// Filters is a required field
 	Filters *Filters `type:"structure" required:"true"`
@@ -13134,6 +14323,93 @@ func (s *InstanceSummary) SetServiceRole(v string) *InstanceSummary {
 	return s
 }
 
+// Contains summary information about the associated AppIntegrations.
+type IntegrationAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	InstanceId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for the AppIntegration.
+	IntegrationArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the AppIntegration association.
+	IntegrationAssociationArn *string `type:"string"`
+
+	// The identifier for the AppIntegration association.
+	IntegrationAssociationId *string `min:"1" type:"string"`
+
+	// The integration type.
+	IntegrationType *string `type:"string" enum:"IntegrationType"`
+
+	// The user-provided, friendly name for the external application.
+	SourceApplicationName *string `min:"1" type:"string"`
+
+	// The URL for the external application.
+	SourceApplicationUrl *string `min:"1" type:"string"`
+
+	// The name of the source.
+	SourceType *string `type:"string" enum:"SourceType"`
+}
+
+// String returns the string representation
+func (s IntegrationAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IntegrationAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *IntegrationAssociationSummary) SetInstanceId(v string) *IntegrationAssociationSummary {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationArn sets the IntegrationArn field's value.
+func (s *IntegrationAssociationSummary) SetIntegrationArn(v string) *IntegrationAssociationSummary {
+	s.IntegrationArn = &v
+	return s
+}
+
+// SetIntegrationAssociationArn sets the IntegrationAssociationArn field's value.
+func (s *IntegrationAssociationSummary) SetIntegrationAssociationArn(v string) *IntegrationAssociationSummary {
+	s.IntegrationAssociationArn = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *IntegrationAssociationSummary) SetIntegrationAssociationId(v string) *IntegrationAssociationSummary {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
+// SetIntegrationType sets the IntegrationType field's value.
+func (s *IntegrationAssociationSummary) SetIntegrationType(v string) *IntegrationAssociationSummary {
+	s.IntegrationType = &v
+	return s
+}
+
+// SetSourceApplicationName sets the SourceApplicationName field's value.
+func (s *IntegrationAssociationSummary) SetSourceApplicationName(v string) *IntegrationAssociationSummary {
+	s.SourceApplicationName = &v
+	return s
+}
+
+// SetSourceApplicationUrl sets the SourceApplicationUrl field's value.
+func (s *IntegrationAssociationSummary) SetSourceApplicationUrl(v string) *IntegrationAssociationSummary {
+	s.SourceApplicationUrl = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *IntegrationAssociationSummary) SetSourceType(v string) *IntegrationAssociationSummary {
+	s.SourceType = &v
+	return s
+}
+
 // Request processing failed due to an error or failure with the service.
 type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
@@ -14186,6 +15462,101 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 	return s
 }
 
+type ListIntegrationAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListIntegrationAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListIntegrationAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListIntegrationAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListIntegrationAssociationsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListIntegrationAssociationsInput) SetInstanceId(v string) *ListIntegrationAssociationsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListIntegrationAssociationsInput) SetMaxResults(v int64) *ListIntegrationAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIntegrationAssociationsInput) SetNextToken(v string) *ListIntegrationAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListIntegrationAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AppIntegration associations.
+	IntegrationAssociationSummaryList []*IntegrationAssociationSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListIntegrationAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListIntegrationAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetIntegrationAssociationSummaryList sets the IntegrationAssociationSummaryList field's value.
+func (s *ListIntegrationAssociationsOutput) SetIntegrationAssociationSummaryList(v []*IntegrationAssociationSummary) *ListIntegrationAssociationsOutput {
+	s.IntegrationAssociationSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListIntegrationAssociationsOutput) SetNextToken(v string) *ListIntegrationAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListLambdaFunctionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15150,6 +16521,120 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Provides summary information about the use cases for the specified Amazon
+// Connect AppIntegration association.
+type ListUseCasesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the integration association.
+	//
+	// IntegrationAssociationId is a required field
+	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListUseCasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListUseCasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListUseCasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListUseCasesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.IntegrationAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntegrationAssociationId"))
+	}
+	if s.IntegrationAssociationId != nil && len(*s.IntegrationAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IntegrationAssociationId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListUseCasesInput) SetInstanceId(v string) *ListUseCasesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
+func (s *ListUseCasesInput) SetIntegrationAssociationId(v string) *ListUseCasesInput {
+	s.IntegrationAssociationId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListUseCasesInput) SetMaxResults(v int64) *ListUseCasesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUseCasesInput) SetNextToken(v string) *ListUseCasesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListUseCasesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// The use cases.
+	UseCaseSummaryList []*UseCase `type:"list"`
+}
+
+// String returns the string representation
+func (s ListUseCasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListUseCasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListUseCasesOutput) SetNextToken(v string) *ListUseCasesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetUseCaseSummaryList sets the UseCaseSummaryList field's value.
+func (s *ListUseCasesOutput) SetUseCaseSummaryList(v []*UseCase) *ListUseCasesOutput {
+	s.UseCaseSummaryList = v
+	return s
+}
+
 type ListUserHierarchyGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15703,6 +17188,61 @@ func (s *QueueSummary) SetName(v string) *QueueSummary {
 // SetQueueType sets the QueueType field's value.
 func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 	s.QueueType = &v
+	return s
+}
+
+// A link that an agent selects to complete a given task. You can have up to
+// 4,096 UTF-8 bytes across all references for a contact.
+type Reference struct {
+	_ struct{} `type:"structure"`
+
+	// A valid URL.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ReferenceType"`
+
+	// A formatted URL that will be shown to an agent in the Contact Control Panel
+	// (CCP)
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Reference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Reference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Reference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Reference"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *Reference) SetType(v string) *Reference {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Reference) SetValue(v string) *Reference {
+	s.Value = &v
 	return s
 }
 
@@ -16946,6 +18486,170 @@ func (s *StartOutboundVoiceContactOutput) SetContactId(v string) *StartOutboundV
 	return s
 }
 
+type StartTaskContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// A custom key-value pair using an attribute map. The attributes are standard
+	// Amazon Connect attributes, and can be accessed in contact flows just like
+	// any other contact attributes.
+	//
+	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
+	// Attribute keys can include only alphanumeric, dash, and underscore characters.
+	Attributes map[string]*string `type:"map"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact flow for initiating the tasks. To see the ContactFlowId
+	// in the Amazon Connect console user interface, on the navigation menu go to
+	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
+	// under the name of the contact flow, choose Show additional flow information.
+	// The ContactFlowId is the last part of the ARN, shown here in bold:
+	//
+	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// A description of the task that is shown to an agent in the Contact Control
+	// Panel (CCP).
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The name of a task that is shown to an agent in the Contact Control Panel
+	// (CCP).
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The identifier of the previous chat, voice, or task contact.
+	PreviousContactId *string `min:"1" type:"string"`
+
+	// A formatted URL that is shown to an agent in the Contact Control Panel (CCP).
+	References map[string]*Reference `type:"map"`
+}
+
+// String returns the string representation
+func (s StartTaskContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartTaskContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartTaskContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartTaskContactInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.PreviousContactId != nil && len(*s.PreviousContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PreviousContactId", 1))
+	}
+	if s.References != nil {
+		for i, v := range s.References {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "References", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *StartTaskContactInput) SetAttributes(v map[string]*string) *StartTaskContactInput {
+	s.Attributes = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartTaskContactInput) SetClientToken(v string) *StartTaskContactInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *StartTaskContactInput) SetContactFlowId(v string) *StartTaskContactInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartTaskContactInput) SetDescription(v string) *StartTaskContactInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartTaskContactInput) SetInstanceId(v string) *StartTaskContactInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StartTaskContactInput) SetName(v string) *StartTaskContactInput {
+	s.Name = &v
+	return s
+}
+
+// SetPreviousContactId sets the PreviousContactId field's value.
+func (s *StartTaskContactInput) SetPreviousContactId(v string) *StartTaskContactInput {
+	s.PreviousContactId = &v
+	return s
+}
+
+// SetReferences sets the References field's value.
+func (s *StartTaskContactInput) SetReferences(v map[string]*Reference) *StartTaskContactInput {
+	s.References = v
+	return s
+}
+
+type StartTaskContactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of this contact within the Amazon Connect instance.
+	ContactId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartTaskContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartTaskContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StartTaskContactOutput) SetContactId(v string) *StartTaskContactOutput {
+	s.ContactId = &v
+	return s
+}
+
 type StopContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18185,7 +19889,8 @@ type UpdateRoutingProfileQueuesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The queues to be updated for this routing profile.
+	// The queues to be updated for this routing profile. Queues must first be associated
+	// to the routing profile. You can do this using AssociateRoutingProfileQueues.
 	//
 	// QueueConfigs is a required field
 	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list" required:"true"`
@@ -18874,6 +20579,49 @@ func (s UpdateUserSecurityProfilesOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the use case.
+type UseCase struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the use case.
+	UseCaseArn *string `type:"string"`
+
+	// The identifier for the use case.
+	UseCaseId *string `min:"1" type:"string"`
+
+	// The type of use case to associate to the AppIntegration association. Each
+	// AppIntegration association can have only one of each use case type.
+	UseCaseType *string `type:"string" enum:"UseCaseType"`
+}
+
+// String returns the string representation
+func (s UseCase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UseCase) GoString() string {
+	return s.String()
+}
+
+// SetUseCaseArn sets the UseCaseArn field's value.
+func (s *UseCase) SetUseCaseArn(v string) *UseCase {
+	s.UseCaseArn = &v
+	return s
+}
+
+// SetUseCaseId sets the UseCaseId field's value.
+func (s *UseCase) SetUseCaseId(v string) *UseCase {
+	s.UseCaseId = &v
+	return s
+}
+
+// SetUseCaseType sets the UseCaseType field's value.
+func (s *UseCase) SetUseCaseType(v string) *UseCase {
+	s.UseCaseType = &v
+	return s
+}
+
 // Contains information about a user account for a Amazon Connect instance.
 type User struct {
 	_ struct{} `type:"structure"`
@@ -19234,6 +20982,9 @@ const (
 
 	// ChannelChat is a Channel enum value
 	ChannelChat = "CHAT"
+
+	// ChannelTask is a Channel enum value
+	ChannelTask = "TASK"
 )
 
 // Channel_Values returns all elements of the Channel enum
@@ -19241,6 +20992,7 @@ func Channel_Values() []string {
 	return []string{
 		ChannelVoice,
 		ChannelChat,
+		ChannelTask,
 	}
 }
 
@@ -19603,6 +21355,18 @@ func InstanceStorageResourceType_Values() []string {
 		InstanceStorageResourceTypeMediaStreams,
 		InstanceStorageResourceTypeContactTraceRecords,
 		InstanceStorageResourceTypeAgentEvents,
+	}
+}
+
+const (
+	// IntegrationTypeEvent is a IntegrationType enum value
+	IntegrationTypeEvent = "EVENT"
+)
+
+// IntegrationType_Values returns all elements of the IntegrationType enum
+func IntegrationType_Values() []string {
+	return []string{
+		IntegrationTypeEvent,
 	}
 }
 
@@ -20611,6 +22375,18 @@ func QueueType_Values() []string {
 }
 
 const (
+	// ReferenceTypeUrl is a ReferenceType enum value
+	ReferenceTypeUrl = "URL"
+)
+
+// ReferenceType_Values returns all elements of the ReferenceType enum
+func ReferenceType_Values() []string {
+	return []string{
+		ReferenceTypeUrl,
+	}
+}
+
+const (
 	// ResourceTypeContact is a ResourceType enum value
 	ResourceTypeContact = "CONTACT"
 
@@ -20643,6 +22419,22 @@ func ResourceType_Values() []string {
 		ResourceTypeHierarchyLevel,
 		ResourceTypeHierarchyGroup,
 		ResourceTypeUser,
+	}
+}
+
+const (
+	// SourceTypeSalesforce is a SourceType enum value
+	SourceTypeSalesforce = "SALESFORCE"
+
+	// SourceTypeZendesk is a SourceType enum value
+	SourceTypeZendesk = "ZENDESK"
+)
+
+// SourceType_Values returns all elements of the SourceType enum
+func SourceType_Values() []string {
+	return []string{
+		SourceTypeSalesforce,
+		SourceTypeZendesk,
 	}
 }
 
@@ -20707,6 +22499,18 @@ func Unit_Values() []string {
 		UnitSeconds,
 		UnitCount,
 		UnitPercent,
+	}
+}
+
+const (
+	// UseCaseTypeRulesEvaluation is a UseCaseType enum value
+	UseCaseTypeRulesEvaluation = "RULES_EVALUATION"
+)
+
+// UseCaseType_Values returns all elements of the UseCaseType enum
+func UseCaseType_Values() []string {
+	return []string{
+		UseCaseTypeRulesEvaluation,
 	}
 }
 

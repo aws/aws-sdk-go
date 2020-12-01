@@ -122,6 +122,12 @@ const (
 	// The certificate PEM that was provided has incorrect encoding.
 	ErrCodeInvalidCertificateException = "InvalidCertificateException"
 
+	// ErrCodeInvalidClientAuthStatusException for service response error code
+	// "InvalidClientAuthStatusException".
+	//
+	// The client authorization was invalid.
+	ErrCodeInvalidClientAuthStatusException = "InvalidClientAuthStatusException"
+
 	// ErrCodeInvalidLDAPSStatusException for service response error code
 	// "InvalidLDAPSStatusException".
 	//
@@ -177,7 +183,7 @@ const (
 	// ErrCodeRegionLimitExceededException for service response error code
 	// "RegionLimitExceededException".
 	//
-	// You have reached the limit for maximum number of simultaneous region replications
+	// You have reached the limit for maximum number of simultaneous Region replications
 	// per directory.
 	ErrCodeRegionLimitExceededException = "RegionLimitExceededException"
 
@@ -240,6 +246,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"EntityDoesNotExistException":            newErrorEntityDoesNotExistException,
 	"InsufficientPermissionsException":       newErrorInsufficientPermissionsException,
 	"InvalidCertificateException":            newErrorInvalidCertificateException,
+	"InvalidClientAuthStatusException":       newErrorInvalidClientAuthStatusException,
 	"InvalidLDAPSStatusException":            newErrorInvalidLDAPSStatusException,
 	"InvalidNextTokenException":              newErrorInvalidNextTokenException,
 	"InvalidParameterException":              newErrorInvalidParameterException,

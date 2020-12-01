@@ -8303,7 +8303,8 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "MultiAttachEnabled":{"shape":"Boolean"}
+        "MultiAttachEnabled":{"shape":"Boolean"},
+        "Throughput":{"shape":"Integer"}
       }
     },
     "CreateVpcEndpointConnectionNotificationRequest":{
@@ -14199,6 +14200,10 @@
           "locationName":"volumeType"
         },
         "KmsKeyId":{"shape":"String"},
+        "Throughput":{
+          "shape":"Integer",
+          "locationName":"throughput"
+        },
         "Encrypted":{
           "shape":"Boolean",
           "locationName":"encrypted"
@@ -18873,6 +18878,15 @@
         "r5a.12xlarge",
         "r5a.16xlarge",
         "r5a.24xlarge",
+        "r5b.large",
+        "r5b.xlarge",
+        "r5b.2xlarge",
+        "r5b.4xlarge",
+        "r5b.8xlarge",
+        "r5b.12xlarge",
+        "r5b.16xlarge",
+        "r5b.24xlarge",
+        "r5b.metal",
         "r5d.large",
         "r5d.xlarge",
         "r5d.2xlarge",
@@ -19035,6 +19049,16 @@
         "d2.2xlarge",
         "d2.4xlarge",
         "d2.8xlarge",
+        "d3.xlarge",
+        "d3.2xlarge",
+        "d3.4xlarge",
+        "d3.8xlarge",
+        "d3en.xlarge",
+        "d3en.2xlarge",
+        "d3en.4xlarge",
+        "d3en.6xlarge",
+        "d3en.8xlarge",
+        "d3en.12xlarge",
         "f1.2xlarge",
         "f1.4xlarge",
         "f1.16xlarge",
@@ -19072,6 +19096,13 @@
         "m5ad.12xlarge",
         "m5ad.16xlarge",
         "m5ad.24xlarge",
+        "m5zn.large",
+        "m5zn.xlarge",
+        "m5zn.2xlarge",
+        "m5zn.3xlarge",
+        "m5zn.6xlarge",
+        "m5zn.12xlarge",
+        "m5zn.metal",
         "h1.2xlarge",
         "h1.4xlarge",
         "h1.8xlarge",
@@ -19918,6 +19949,10 @@
         "VolumeType":{
           "shape":"VolumeType",
           "locationName":"volumeType"
+        },
+        "Throughput":{
+          "shape":"Integer",
+          "locationName":"throughput"
         }
       }
     },
@@ -19930,7 +19965,8 @@
         "KmsKeyId":{"shape":"KmsKeyId"},
         "SnapshotId":{"shape":"SnapshotId"},
         "VolumeSize":{"shape":"Integer"},
-        "VolumeType":{"shape":"VolumeType"}
+        "VolumeType":{"shape":"VolumeType"},
+        "Throughput":{"shape":"Integer"}
       }
     },
     "LaunchTemplateElasticInferenceAccelerator":{
@@ -21856,7 +21892,8 @@
         "VolumeId":{"shape":"VolumeId"},
         "Size":{"shape":"Integer"},
         "VolumeType":{"shape":"VolumeType"},
-        "Iops":{"shape":"Integer"}
+        "Iops":{"shape":"Integer"},
+        "Throughput":{"shape":"Integer"}
       }
     },
     "ModifyVolumeResult":{
@@ -30283,6 +30320,10 @@
         "MultiAttachEnabled":{
           "shape":"Boolean",
           "locationName":"multiAttachEnabled"
+        },
+        "Throughput":{
+          "shape":"Integer",
+          "locationName":"throughput"
         }
       }
     },
@@ -30391,6 +30432,10 @@
           "shape":"VolumeType",
           "locationName":"targetVolumeType"
         },
+        "TargetThroughput":{
+          "shape":"Integer",
+          "locationName":"targetThroughput"
+        },
         "OriginalSize":{
           "shape":"Integer",
           "locationName":"originalSize"
@@ -30402,6 +30447,10 @@
         "OriginalVolumeType":{
           "shape":"VolumeType",
           "locationName":"originalVolumeType"
+        },
+        "OriginalThroughput":{
+          "shape":"Integer",
+          "locationName":"originalThroughput"
         },
         "Progress":{
           "shape":"Long",
@@ -30624,7 +30673,8 @@
         "io2",
         "gp2",
         "sc1",
-        "st1"
+        "st1",
+        "gp3"
       ]
     },
     "Vpc":{
