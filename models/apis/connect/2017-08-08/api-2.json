@@ -149,6 +149,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateIntegrationAssociation":{
+      "name":"CreateIntegrationAssociation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/integration-associations"
+      },
+      "input":{"shape":"CreateIntegrationAssociationRequest"},
+      "output":{"shape":"CreateIntegrationAssociationResponse"},
+      "errors":[
+        {"shape":"DuplicateResourceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateRoutingProfile":{
       "name":"CreateRoutingProfile",
       "http":{
@@ -165,6 +181,22 @@
         {"shape":"LimitExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "CreateUseCase":{
+      "name":"CreateUseCase",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases"
+      },
+      "input":{"shape":"CreateUseCaseRequest"},
+      "output":{"shape":"CreateUseCaseResponse"},
+      "errors":[
+        {"shape":"DuplicateResourceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "CreateUser":{
@@ -214,6 +246,34 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"}
+      ]
+    },
+    "DeleteIntegrationAssociation":{
+      "name":"DeleteIntegrationAssociation",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}"
+      },
+      "input":{"shape":"DeleteIntegrationAssociationRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteUseCase":{
+      "name":"DeleteUseCase",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases/{UseCaseId}"
+      },
+      "input":{"shape":"DeleteUseCaseRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteUser":{
@@ -620,6 +680,21 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListIntegrationAssociations":{
+      "name":"ListIntegrationAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/integration-associations"
+      },
+      "input":{"shape":"ListIntegrationAssociationsRequest"},
+      "output":{"shape":"ListIntegrationAssociationsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListLambdaFunctions":{
       "name":"ListLambdaFunctions",
       "http":{
@@ -780,6 +855,21 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListUseCases":{
+      "name":"ListUseCases",
+      "http":{
+        "method":"GET",
+        "requestUri":"/instance/{InstanceId}/integration-associations/{IntegrationAssociationId}/use-cases"
+      },
+      "input":{"shape":"ListUseCasesRequest"},
+      "output":{"shape":"ListUseCasesResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListUserHierarchyGroups":{
       "name":"ListUserHierarchyGroups",
       "http":{
@@ -873,6 +963,23 @@
         {"shape":"LimitExceededException"},
         {"shape":"DestinationNotAllowedException"},
         {"shape":"OutboundContactNotPermittedException"}
+      ]
+    },
+    "StartTaskContact":{
+      "name":"StartTaskContact",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/contact/task"
+      },
+      "input":{"shape":"StartTaskContactRequest"},
+      "output":{"shape":"StartTaskContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "StopContact":{
@@ -1371,13 +1478,14 @@
       "type":"string",
       "enum":[
         "VOICE",
-        "CHAT"
+        "CHAT",
+        "TASK"
       ]
     },
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
-      "max":1
+      "max":3
     },
     "ChatContent":{
       "type":"string",
@@ -1488,6 +1596,11 @@
       "error":{"httpStatusCode":410},
       "exception":true
     },
+    "ContactReferences":{
+      "type":"map",
+      "key":{"shape":"ReferenceKey"},
+      "value":{"shape":"Reference"}
+    },
     "CreateContactFlowRequest":{
       "type":"structure",
       "required":[
@@ -1539,6 +1652,36 @@
         "Arn":{"shape":"ARN"}
       }
     },
+    "CreateIntegrationAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "IntegrationType",
+        "IntegrationArn",
+        "SourceApplicationUrl",
+        "SourceApplicationName",
+        "SourceType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "IntegrationType":{"shape":"IntegrationType"},
+        "IntegrationArn":{"shape":"ARN"},
+        "SourceApplicationUrl":{"shape":"URI"},
+        "SourceApplicationName":{"shape":"SourceApplicationName"},
+        "SourceType":{"shape":"SourceType"}
+      }
+    },
+    "CreateIntegrationAssociationResponse":{
+      "type":"structure",
+      "members":{
+        "IntegrationAssociationId":{"shape":"IntegrationAssociationId"},
+        "IntegrationAssociationArn":{"shape":"ARN"}
+      }
+    },
     "CreateRoutingProfileRequest":{
       "type":"structure",
       "required":[
@@ -1567,6 +1710,34 @@
       "members":{
         "RoutingProfileArn":{"shape":"ARN"},
         "RoutingProfileId":{"shape":"RoutingProfileId"}
+      }
+    },
+    "CreateUseCaseRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "IntegrationAssociationId",
+        "UseCaseType"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "IntegrationAssociationId":{
+          "shape":"IntegrationAssociationId",
+          "location":"uri",
+          "locationName":"IntegrationAssociationId"
+        },
+        "UseCaseType":{"shape":"UseCaseType"}
+      }
+    },
+    "CreateUseCaseResponse":{
+      "type":"structure",
+      "members":{
+        "UseCaseId":{"shape":"UseCaseId"},
+        "UseCaseArn":{"shape":"ARN"}
       }
     },
     "CreateUserHierarchyGroupRequest":{
@@ -1701,6 +1872,50 @@
           "shape":"InstanceId",
           "location":"uri",
           "locationName":"InstanceId"
+        }
+      }
+    },
+    "DeleteIntegrationAssociationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "IntegrationAssociationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "IntegrationAssociationId":{
+          "shape":"IntegrationAssociationId",
+          "location":"uri",
+          "locationName":"IntegrationAssociationId"
+        }
+      }
+    },
+    "DeleteUseCaseRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "IntegrationAssociationId",
+        "UseCaseId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "IntegrationAssociationId":{
+          "shape":"IntegrationAssociationId",
+          "location":"uri",
+          "locationName":"IntegrationAssociationId"
+        },
+        "UseCaseId":{
+          "shape":"UseCaseId",
+          "location":"uri",
+          "locationName":"UseCaseId"
         }
       }
     },
@@ -1931,6 +2146,11 @@
       "members":{
         "User":{"shape":"User"}
       }
+    },
+    "Description":{
+      "type":"string",
+      "max":4096,
+      "min":0
     },
     "DestinationNotAllowedException":{
       "type":"structure",
@@ -2519,6 +2739,32 @@
       "type":"list",
       "member":{"shape":"InstanceSummary"}
     },
+    "IntegrationAssociationId":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "IntegrationAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "IntegrationAssociationId":{"shape":"IntegrationAssociationId"},
+        "IntegrationAssociationArn":{"shape":"ARN"},
+        "InstanceId":{"shape":"InstanceId"},
+        "IntegrationType":{"shape":"IntegrationType"},
+        "IntegrationArn":{"shape":"ARN"},
+        "SourceApplicationUrl":{"shape":"URI"},
+        "SourceApplicationName":{"shape":"SourceApplicationName"},
+        "SourceType":{"shape":"SourceType"}
+      }
+    },
+    "IntegrationAssociationSummaryList":{
+      "type":"list",
+      "member":{"shape":"IntegrationAssociationSummary"}
+    },
+    "IntegrationType":{
+      "type":"string",
+      "enum":["EVENT"]
+    },
     "InternalServiceException":{
       "type":"structure",
       "members":{
@@ -2782,6 +3028,35 @@
       "type":"structure",
       "members":{
         "InstanceSummaryList":{"shape":"InstanceSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListIntegrationAssociationsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListIntegrationAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "IntegrationAssociationSummaryList":{"shape":"IntegrationAssociationSummaryList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -3084,6 +3359,43 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "ListUseCasesRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "IntegrationAssociationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "IntegrationAssociationId":{
+          "shape":"IntegrationAssociationId",
+          "location":"uri",
+          "locationName":"IntegrationAssociationId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListUseCasesResponse":{
+      "type":"structure",
+      "members":{
+        "UseCaseSummaryList":{"shape":"UseCaseSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListUserHierarchyGroupsRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -3188,6 +3500,11 @@
       }
     },
     "Message":{"type":"string"},
+    "Name":{
+      "type":"string",
+      "max":512,
+      "min":0
+    },
     "NextToken":{"type":"string"},
     "Origin":{
       "type":"string",
@@ -3607,6 +3924,31 @@
       "max":100,
       "min":1
     },
+    "Reference":{
+      "type":"structure",
+      "required":[
+        "Value",
+        "Type"
+      ],
+      "members":{
+        "Value":{"shape":"ReferenceValue"},
+        "Type":{"shape":"ReferenceType"}
+      }
+    },
+    "ReferenceKey":{
+      "type":"string",
+      "max":4096,
+      "min":1
+    },
+    "ReferenceType":{
+      "type":"string",
+      "enum":["URL"]
+    },
+    "ReferenceValue":{
+      "type":"string",
+      "max":4096,
+      "min":0
+    },
     "ResourceConflictException":{
       "type":"structure",
       "members":{
@@ -3818,6 +4160,19 @@
       "error":{"httpStatusCode":402},
       "exception":true
     },
+    "SourceApplicationName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_ -]+$"
+    },
+    "SourceType":{
+      "type":"string",
+      "enum":[
+        "SALESFORCE",
+        "ZENDESK"
+      ]
+    },
     "StartChatContactRequest":{
       "type":"structure",
       "required":[
@@ -3886,6 +4241,33 @@
       }
     },
     "StartOutboundVoiceContactResponse":{
+      "type":"structure",
+      "members":{
+        "ContactId":{"shape":"ContactId"}
+      }
+    },
+    "StartTaskContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactFlowId",
+        "Name"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "PreviousContactId":{"shape":"ContactId"},
+        "ContactFlowId":{"shape":"ContactFlowId"},
+        "Attributes":{"shape":"Attributes"},
+        "Name":{"shape":"Name"},
+        "References":{"shape":"ContactReferences"},
+        "Description":{"shape":"Description"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartTaskContactResponse":{
       "type":"structure",
       "members":{
         "ContactId":{"shape":"ContactId"}
@@ -4019,6 +4401,11 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "URI":{
+      "type":"string",
+      "max":2000,
+      "min":1
+    },
     "Unit":{
       "type":"string",
       "enum":[
@@ -4377,6 +4764,27 @@
           "locationName":"InstanceId"
         }
       }
+    },
+    "UseCase":{
+      "type":"structure",
+      "members":{
+        "UseCaseId":{"shape":"UseCaseId"},
+        "UseCaseArn":{"shape":"ARN"},
+        "UseCaseType":{"shape":"UseCaseType"}
+      }
+    },
+    "UseCaseId":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "UseCaseSummaryList":{
+      "type":"list",
+      "member":{"shape":"UseCase"}
+    },
+    "UseCaseType":{
+      "type":"string",
+      "enum":["RULES_EVALUATION"]
     },
     "User":{
       "type":"structure",

@@ -33,9 +33,11 @@
     "DescribeSharedDirectories": "<p>Returns the shared directories in your account. </p>",
     "DescribeSnapshots": "<p>Obtains information about the directory snapshots that belong to this account.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> request and response parameters. If more results are available, the <i>DescribeSnapshots.NextToken</i> member contains a token that you pass in the next call to <a>DescribeSnapshots</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <i>Limit</i> parameter.</p>",
     "DescribeTrusts": "<p>Obtains information about the trust relationships for this account.</p> <p>If no input parameters are provided, such as DirectoryId or TrustIds, this request describes all the trust relationships belonging to the account.</p>",
+    "DisableClientAuthentication": "<p>Disable client authentication for smart cards.</p>",
     "DisableLDAPS": "<p>Deactivates LDAP secure calls for the specified directory.</p>",
     "DisableRadius": "<p>Disables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector or Microsoft AD directory.</p>",
     "DisableSso": "<p>Disables single-sign on for a directory.</p>",
+    "EnableClientAuthentication": "<p>Enable client authentication for smardtcards.</p>",
     "EnableLDAPS": "<p>Activates the switch for the specific directory to always use LDAP secure calls.</p>",
     "EnableRadius": "<p>Enables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector or Microsoft AD directory.</p>",
     "EnableSso": "<p>Enables single sign-on for a directory. Single sign-on allows users in your directory to access certain AWS services from a computer joined to the directory without having to enter their credentials separately.</p>",
@@ -270,6 +272,14 @@
         "Certificate$StateReason": "<p>Describes a state change for the certificate.</p>"
       }
     },
+    "CertificateType": {
+      "base": null,
+      "refs": {
+        "Certificate$Type": "<p>Select <code>ClientCertAuth</code> for smart card integration.</p>",
+        "CertificateInfo$Type": "<p>Displays the type of certificate.</p>",
+        "RegisterCertificateRequest$Type": "<p>The certificate type to register for the request.</p>"
+      }
+    },
     "CertificatesInfo": {
       "base": null,
       "refs": {
@@ -288,6 +298,20 @@
       "base": null,
       "refs": {
         "RemoveIpRoutesRequest$CidrIps": "<p>IP address blocks that you want to remove.</p>"
+      }
+    },
+    "ClientAuthenticationType": {
+      "base": null,
+      "refs": {
+        "DisableClientAuthenticationRequest$Type": "<p>Disable the type of client authentication request. </p>",
+        "EnableClientAuthenticationRequest$Type": "<p>Enable the type of client authentication request. </p>"
+      }
+    },
+    "ClientCertAuthSettings": {
+      "base": "<p>Contains information about the client certificate authentication settings, such as <code>ClientLDAPS</code> or <code>ClientCertAuth</code>.</p>",
+      "refs": {
+        "Certificate$ClientCertAuthSettings": "<p>Provides information about the client certificate authentication settings. The default value is <code>ClientLDAPS</code>.</p>",
+        "RegisterCertificateRequest$ClientCertAuthSettings": null
       }
     },
     "ClientException": {
@@ -742,10 +766,12 @@
         "DescribeTrustsRequest$DirectoryId": "<p>The Directory ID of the AWS directory that is a part of the requested trust relationship.</p>",
         "DirectoryDescription$DirectoryId": "<p>The directory identifier.</p>",
         "DirectoryIds$member": null,
+        "DisableClientAuthenticationRequest$DirectoryId": "<p>Disable client authentication in a specified directory for smart cards. </p>",
         "DisableLDAPSRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "DisableRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to disable MFA.</p>",
         "DisableSsoRequest$DirectoryId": "<p>The identifier of the directory for which to disable single-sign on.</p>",
         "DomainController$DirectoryId": "<p>Identifier of the directory where the domain controller resides.</p>",
+        "EnableClientAuthenticationRequest$DirectoryId": "<p>Enable client authentication in a specified directory for smart cards. </p>",
         "EnableLDAPSRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "EnableRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to enable MFA.</p>",
         "EnableSsoRequest$DirectoryId": "<p>The identifier of the directory for which to enable single-sign on.</p>",
@@ -864,6 +890,16 @@
         "OwnerDirectoryDescription$VpcSettings": "<p>Information about the VPC settings for the directory.</p>"
       }
     },
+    "DisableClientAuthenticationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableClientAuthenticationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisableLDAPSRequest": {
       "base": null,
       "refs": {
@@ -948,6 +984,16 @@
         "DescribeDomainControllersResult$DomainControllers": "<p>List of the <a>DomainController</a> objects that were retrieved.</p>"
       }
     },
+    "EnableClientAuthenticationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableClientAuthenticationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EnableLDAPSRequest": {
       "base": null,
       "refs": {
@@ -1027,6 +1073,7 @@
         "EntityDoesNotExistException$Message": null,
         "InsufficientPermissionsException$Message": null,
         "InvalidCertificateException$Message": null,
+        "InvalidClientAuthStatusException$Message": null,
         "InvalidLDAPSStatusException$Message": null,
         "InvalidNextTokenException$Message": null,
         "InvalidParameterException$Message": null,
@@ -1071,6 +1118,11 @@
     },
     "InvalidCertificateException": {
       "base": "<p>The certificate PEM that was provided has incorrect encoding.</p>",
+      "refs": {
+      }
+    },
+    "InvalidClientAuthStatusException": {
+      "base": "<p>The client authorization was invalid.</p>",
       "refs": {
       }
     },
@@ -1317,8 +1369,8 @@
         "DescribeDomainControllersResult$NextToken": "<p>If not null, more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeDomainControllers</a> retrieve the next set of items.</p>",
         "DescribeLDAPSSettingsRequest$NextToken": "<p>The type of next token used for pagination.</p>",
         "DescribeLDAPSSettingsResult$NextToken": "<p>The next token used to retrieve the LDAPS settings if the number of setting types exceeds page limit and there is another page.</p>",
-        "DescribeRegionsRequest$NextToken": "<p>The <i>DescribeRegionsResult.NextToken</i> value from a previous call to <a>DescribeRegions</a>. Pass null if this is the first call.</p>",
-        "DescribeRegionsResult$NextToken": "<p>If not null, more results are available. Pass this value for the <i>NextToken</i> parameter in a subsequent call to <a>DescribeRegions</a> to retrieve the next set of items.</p>",
+        "DescribeRegionsRequest$NextToken": "<p>The <code>DescribeRegionsResult.NextToken</code> value from a previous call to <a>DescribeRegions</a>. Pass null if this is the first call.</p>",
+        "DescribeRegionsResult$NextToken": "<p>If not null, more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeRegions</a> to retrieve the next set of items.</p>",
         "DescribeSharedDirectoriesRequest$NextToken": "<p>The <code>DescribeSharedDirectoriesResult.NextToken</code> value from a previous call to <a>DescribeSharedDirectories</a>. Pass null if this is the first call. </p>",
         "DescribeSharedDirectoriesResult$NextToken": "<p>If not null, token that indicates that more results are available. Pass this value for the <code>NextToken</code> parameter in a subsequent call to <a>DescribeSharedDirectories</a> to retrieve the next set of items.</p>",
         "DescribeSnapshotsRequest$NextToken": "<p>The <i>DescribeSnapshotsResult.NextToken</i> value from a previous call to <a>DescribeSnapshots</a>. Pass null if this is the first call.</p>",
@@ -1348,6 +1400,12 @@
         "DirectoryDescription$ShareNotes": "<p>A directory share request that is sent by the directory owner to the directory consumer. The request includes a typed message to help the directory consumer administrator determine whether to approve or reject the share invitation.</p>",
         "ShareDirectoryRequest$ShareNotes": "<p>A directory share request that is sent by the directory owner to the directory consumer. The request includes a typed message to help the directory consumer administrator determine whether to approve or reject the share invitation.</p>",
         "SharedDirectory$ShareNotes": "<p>A directory share request that is sent by the directory owner to the directory consumer. The request includes a typed message to help the directory consumer administrator determine whether to approve or reject the share invitation.</p>"
+      }
+    },
+    "OCSPUrl": {
+      "base": null,
+      "refs": {
+        "ClientCertAuthSettings$OCSPUrl": "<p>Specifies the URL of the default OCSP server used to check for revocation status.</p>"
       }
     },
     "OrganizationalUnitDN": {
@@ -1434,13 +1492,13 @@
       }
     },
     "RegionDescription": {
-      "base": "<p>The replicated regional information for a directory.</p>",
+      "base": "<p>The replicated Region information for a directory.</p>",
       "refs": {
         "RegionsDescription$member": null
       }
     },
     "RegionLimitExceededException": {
-      "base": "<p>You have reached the limit for maximum number of simultaneous region replications per directory.</p>",
+      "base": "<p>You have reached the limit for maximum number of simultaneous Region replications per directory.</p>",
       "refs": {
       }
     },
@@ -1451,19 +1509,19 @@
         "AdditionalRegions$member": null,
         "DescribeRegionsRequest$RegionName": "<p>The name of the Region. For example, <code>us-east-1</code>.</p>",
         "RegionDescription$RegionName": "<p>The name of the Region. For example, <code>us-east-1</code>.</p>",
-        "RegionsInfo$PrimaryRegion": "<p>The Region from where the AWS Managed Microsoft AD directory was originally created.</p>"
+        "RegionsInfo$PrimaryRegion": "<p>The Region where the AWS Managed Microsoft AD directory was originally created.</p>"
       }
     },
     "RegionType": {
       "base": null,
       "refs": {
-        "RegionDescription$RegionType": "<p>Specifies if the Region is the primary Region or an additional Region.</p>"
+        "RegionDescription$RegionType": "<p>Specifies whether the Region is the primary Region or an additional Region.</p>"
       }
     },
     "RegionsDescription": {
       "base": null,
       "refs": {
-        "DescribeRegionsResult$RegionsDescription": "<p>List of regional information related to the directory per replicated Region.</p>"
+        "DescribeRegionsResult$RegionsDescription": "<p>List of Region information related to the directory for each replicated Region.</p>"
       }
     },
     "RegionsInfo": {
@@ -1577,6 +1635,7 @@
         "EntityDoesNotExistException$RequestId": null,
         "InsufficientPermissionsException$RequestId": null,
         "InvalidCertificateException$RequestId": null,
+        "InvalidClientAuthStatusException$RequestId": null,
         "InvalidLDAPSStatusException$RequestId": null,
         "InvalidNextTokenException$RequestId": null,
         "InvalidParameterException$RequestId": null,

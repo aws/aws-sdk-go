@@ -1,0 +1,907 @@
+{
+  "version" : "2.0",
+  "service" : null,
+  "operations" : {
+    "AddNotificationChannel" : null,
+    "DescribeAccountHealth" : null,
+    "DescribeAccountOverview" : null,
+    "DescribeAnomaly" : null,
+    "DescribeInsight" : null,
+    "DescribeResourceCollectionHealth" : null,
+    "DescribeServiceIntegration" : null,
+    "GetResourceCollection" : null,
+    "ListAnomaliesForInsight" : null,
+    "ListEvents" : null,
+    "ListInsights" : null,
+    "ListNotificationChannels" : null,
+    "ListRecommendations" : null,
+    "PutFeedback" : null,
+    "RemoveNotificationChannel" : null,
+    "SearchInsights" : null,
+    "UpdateResourceCollection" : null,
+    "UpdateServiceIntegration" : null
+  },
+  "shapes" : {
+    "AccessDeniedException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "AddNotificationChannelRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "AddNotificationChannelResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "AnomalySeverity" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveAnomaly$Severity" : null,
+        "ProactiveAnomalySummary$Severity" : null,
+        "ReactiveAnomaly$Severity" : null,
+        "ReactiveAnomalySummary$Severity" : null
+      }
+    },
+    "AnomalySourceDetails" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveAnomaly$SourceDetails" : null,
+        "ProactiveAnomalySummary$SourceDetails" : null,
+        "ReactiveAnomaly$SourceDetails" : null,
+        "ReactiveAnomalySummary$SourceDetails" : null
+      }
+    },
+    "AnomalyStatus" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveAnomaly$Status" : null,
+        "ProactiveAnomalySummary$Status" : null,
+        "ReactiveAnomaly$Status" : null,
+        "ReactiveAnomalySummary$Status" : null
+      }
+    },
+    "AnomalyTimeRange" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveAnomaly$AnomalyTimeRange" : null,
+        "ProactiveAnomalySummary$AnomalyTimeRange" : null,
+        "ReactiveAnomaly$AnomalyTimeRange" : null,
+        "ReactiveAnomalySummary$AnomalyTimeRange" : null
+      }
+    },
+    "CloudFormationCollection" : {
+      "base" : null,
+      "refs" : {
+        "ResourceCollection$CloudFormation" : null
+      }
+    },
+    "CloudFormationCollectionFilter" : {
+      "base" : null,
+      "refs" : {
+        "ResourceCollectionFilter$CloudFormation" : null
+      }
+    },
+    "CloudFormationHealth" : {
+      "base" : null,
+      "refs" : {
+        "__listOfCloudFormationHealth$member" : null
+      }
+    },
+    "CloudWatchMetricsDetail" : {
+      "base" : null,
+      "refs" : {
+        "__listOfCloudWatchMetricsDetail$member" : null
+      }
+    },
+    "CloudWatchMetricsDimension" : {
+      "base" : null,
+      "refs" : {
+        "__listOfCloudWatchMetricsDimension$member" : null
+      }
+    },
+    "CloudWatchMetricsStat" : {
+      "base" : null,
+      "refs" : {
+        "CloudWatchMetricsDetail$Stat" : null
+      }
+    },
+    "ConflictException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeAccountHealthResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeAccountOverviewRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeAccountOverviewResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeAnomalyResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeInsightResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeResourceCollectionHealthResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "DescribeServiceIntegrationResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "EndTimeRange" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsClosedStatusFilter$EndTimeRange" : null
+      }
+    },
+    "Event" : {
+      "base" : null,
+      "refs" : {
+        "__listOfEvent$member" : null
+      }
+    },
+    "EventClass" : {
+      "base" : null,
+      "refs" : {
+        "Event$EventClass" : null,
+        "ListEventsFilters$EventClass" : null
+      }
+    },
+    "EventDataSource" : {
+      "base" : null,
+      "refs" : {
+        "Event$DataSource" : null,
+        "ListEventsFilters$DataSource" : null
+      }
+    },
+    "EventResource" : {
+      "base" : null,
+      "refs" : {
+        "__listOfEventResource$member" : null
+      }
+    },
+    "EventTimeRange" : {
+      "base" : null,
+      "refs" : {
+        "ListEventsFilters$EventTimeRange" : null
+      }
+    },
+    "GetResourceCollectionResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "InsightFeedback" : {
+      "base" : null,
+      "refs" : {
+        "PutFeedbackRequest$InsightFeedback" : null
+      }
+    },
+    "InsightFeedbackOption" : {
+      "base" : null,
+      "refs" : {
+        "InsightFeedback$Feedback" : null
+      }
+    },
+    "InsightHealth" : {
+      "base" : null,
+      "refs" : {
+        "CloudFormationHealth$Insight" : null
+      }
+    },
+    "InsightSeverity" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveInsight$Severity" : null,
+        "ProactiveInsightSummary$Severity" : null,
+        "ReactiveInsight$Severity" : null,
+        "ReactiveInsightSummary$Severity" : null,
+        "__listOfInsightSeverity$member" : null
+      }
+    },
+    "InsightStatus" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveInsight$Status" : null,
+        "ProactiveInsightSummary$Status" : null,
+        "ReactiveInsight$Status" : null,
+        "ReactiveInsightSummary$Status" : null,
+        "__listOfInsightStatus$member" : null
+      }
+    },
+    "InsightTimeRange" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveInsight$InsightTimeRange" : null,
+        "ProactiveInsightSummary$InsightTimeRange" : null,
+        "ReactiveInsight$InsightTimeRange" : null,
+        "ReactiveInsightSummary$InsightTimeRange" : null
+      }
+    },
+    "InsightType" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsAnyStatusFilter$Type" : null,
+        "ListInsightsClosedStatusFilter$Type" : null,
+        "ListInsightsOngoingStatusFilter$Type" : null,
+        "SearchInsightsRequest$Type" : null
+      }
+    },
+    "InternalServerException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListAnomaliesForInsightRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListAnomaliesForInsightResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListEventsFilters" : {
+      "base" : null,
+      "refs" : {
+        "ListEventsRequest$Filters" : null
+      }
+    },
+    "ListEventsRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListEventsResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListInsightsAnyStatusFilter" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsStatusFilter$Any" : null
+      }
+    },
+    "ListInsightsClosedStatusFilter" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsStatusFilter$Closed" : null
+      }
+    },
+    "ListInsightsOngoingStatusFilter" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsStatusFilter$Ongoing" : null
+      }
+    },
+    "ListInsightsRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListInsightsResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListInsightsStatusFilter" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsRequest$StatusFilter" : null
+      }
+    },
+    "ListNotificationChannelsRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListNotificationChannelsResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListRecommendationsRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ListRecommendationsResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "NotificationChannel" : {
+      "base" : null,
+      "refs" : {
+        "__listOfNotificationChannel$member" : null
+      }
+    },
+    "NotificationChannelConfig" : {
+      "base" : null,
+      "refs" : {
+        "AddNotificationChannelRequest$Config" : null,
+        "NotificationChannel$Config" : null
+      }
+    },
+    "OpsCenterIntegration" : {
+      "base" : null,
+      "refs" : {
+        "ServiceIntegrationConfig$OpsCenter" : null
+      }
+    },
+    "OpsCenterIntegrationConfig" : {
+      "base" : null,
+      "refs" : {
+        "UpdateServiceIntegrationConfig$OpsCenter" : null
+      }
+    },
+    "OptInStatus" : {
+      "base" : null,
+      "refs" : {
+        "OpsCenterIntegration$OptInStatus" : null,
+        "OpsCenterIntegrationConfig$OptInStatus" : null
+      }
+    },
+    "PredictionTimeRange" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveAnomaly$PredictionTimeRange" : null,
+        "ProactiveAnomalySummary$PredictionTimeRange" : null,
+        "ProactiveInsight$PredictionTimeRange" : null,
+        "ProactiveInsightSummary$PredictionTimeRange" : null
+      }
+    },
+    "ProactiveAnomaly" : {
+      "base" : null,
+      "refs" : {
+        "DescribeAnomalyResponse$ProactiveAnomaly" : null
+      }
+    },
+    "ProactiveAnomalySummary" : {
+      "base" : null,
+      "refs" : {
+        "__listOfProactiveAnomalySummary$member" : null
+      }
+    },
+    "ProactiveInsight" : {
+      "base" : null,
+      "refs" : {
+        "DescribeInsightResponse$ProactiveInsight" : null
+      }
+    },
+    "ProactiveInsightSummary" : {
+      "base" : null,
+      "refs" : {
+        "__listOfProactiveInsightSummary$member" : null
+      }
+    },
+    "PutFeedbackRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "PutFeedbackResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ReactiveAnomaly" : {
+      "base" : null,
+      "refs" : {
+        "DescribeAnomalyResponse$ReactiveAnomaly" : null
+      }
+    },
+    "ReactiveAnomalySummary" : {
+      "base" : null,
+      "refs" : {
+        "__listOfReactiveAnomalySummary$member" : null
+      }
+    },
+    "ReactiveInsight" : {
+      "base" : null,
+      "refs" : {
+        "DescribeInsightResponse$ReactiveInsight" : null
+      }
+    },
+    "ReactiveInsightSummary" : {
+      "base" : null,
+      "refs" : {
+        "__listOfReactiveInsightSummary$member" : null
+      }
+    },
+    "Recommendation" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendation$member" : null
+      }
+    },
+    "RecommendationRelatedAnomaly" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendationRelatedAnomaly$member" : null
+      }
+    },
+    "RecommendationRelatedAnomalyResource" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendationRelatedAnomalyResource$member" : null
+      }
+    },
+    "RecommendationRelatedAnomalySourceDetail" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendationRelatedAnomalySourceDetail$member" : null
+      }
+    },
+    "RecommendationRelatedCloudWatchMetricsSourceDetail" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendationRelatedCloudWatchMetricsSourceDetail$member" : null
+      }
+    },
+    "RecommendationRelatedEvent" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendationRelatedEvent$member" : null
+      }
+    },
+    "RecommendationRelatedEventResource" : {
+      "base" : null,
+      "refs" : {
+        "__listOfRecommendationRelatedEventResource$member" : null
+      }
+    },
+    "RemoveNotificationChannelResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ResourceCollection" : {
+      "base" : null,
+      "refs" : {
+        "Event$ResourceCollection" : null,
+        "ListEventsFilters$ResourceCollection" : null,
+        "ProactiveAnomaly$ResourceCollection" : null,
+        "ProactiveAnomalySummary$ResourceCollection" : null,
+        "ProactiveInsight$ResourceCollection" : null,
+        "ProactiveInsightSummary$ResourceCollection" : null,
+        "ReactiveAnomaly$ResourceCollection" : null,
+        "ReactiveAnomalySummary$ResourceCollection" : null,
+        "ReactiveInsight$ResourceCollection" : null,
+        "ReactiveInsightSummary$ResourceCollection" : null,
+        "SearchInsightsFilters$ResourceCollection" : null
+      }
+    },
+    "ResourceCollectionFilter" : {
+      "base" : null,
+      "refs" : {
+        "GetResourceCollectionResponse$ResourceCollection" : null
+      }
+    },
+    "ResourceNotFoundException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "SearchInsightsFilters" : {
+      "base" : null,
+      "refs" : {
+        "SearchInsightsRequest$Filters" : null
+      }
+    },
+    "SearchInsightsRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "SearchInsightsResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ServiceIntegrationConfig" : {
+      "base" : null,
+      "refs" : {
+        "DescribeServiceIntegrationResponse$ServiceIntegration" : null
+      }
+    },
+    "ServiceQuotaExceededException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "SnsChannelConfig" : {
+      "base" : null,
+      "refs" : {
+        "NotificationChannelConfig$Sns" : null
+      }
+    },
+    "StartTimeRange" : {
+      "base" : null,
+      "refs" : {
+        "ListAnomaliesForInsightRequest$StartTimeRange" : null,
+        "ListInsightsAnyStatusFilter$StartTimeRange" : null,
+        "SearchInsightsRequest$StartTimeRange" : null
+      }
+    },
+    "ThrottlingException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "UpdateCloudFormationCollectionFilter" : {
+      "base" : null,
+      "refs" : {
+        "UpdateResourceCollectionFilter$CloudFormation" : null
+      }
+    },
+    "UpdateResourceCollectionAction" : {
+      "base" : null,
+      "refs" : {
+        "UpdateResourceCollectionRequest$Action" : null
+      }
+    },
+    "UpdateResourceCollectionFilter" : {
+      "base" : null,
+      "refs" : {
+        "UpdateResourceCollectionRequest$ResourceCollection" : null
+      }
+    },
+    "UpdateResourceCollectionRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "UpdateResourceCollectionResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "UpdateServiceIntegrationConfig" : {
+      "base" : null,
+      "refs" : {
+        "UpdateServiceIntegrationRequest$ServiceIntegration" : null
+      }
+    },
+    "UpdateServiceIntegrationRequest" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "UpdateServiceIntegrationResponse" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ValidationException" : {
+      "base" : null,
+      "refs" : { }
+    },
+    "ValidationExceptionField" : {
+      "base" : null,
+      "refs" : {
+        "__listOfValidationExceptionField$member" : null
+      }
+    },
+    "ValidationExceptionReason" : {
+      "base" : null,
+      "refs" : {
+        "ValidationException$Reason" : null
+      }
+    },
+    "__double" : {
+      "base" : null,
+      "refs" : {
+        "AnomalyTimeRange$EndTime" : null,
+        "AnomalyTimeRange$StartTime" : null,
+        "DescribeAccountOverviewRequest$FromTime" : null,
+        "DescribeAccountOverviewRequest$ToTime" : null,
+        "EndTimeRange$FromTime" : null,
+        "EndTimeRange$ToTime" : null,
+        "Event$Time" : null,
+        "EventTimeRange$FromTime" : null,
+        "EventTimeRange$ToTime" : null,
+        "InsightTimeRange$EndTime" : null,
+        "InsightTimeRange$StartTime" : null,
+        "PredictionTimeRange$EndTime" : null,
+        "PredictionTimeRange$StartTime" : null,
+        "ProactiveAnomaly$Limit" : null,
+        "ProactiveAnomaly$UpdateTime" : null,
+        "ProactiveAnomalySummary$Limit" : null,
+        "ProactiveAnomalySummary$UpdateTime" : null,
+        "StartTimeRange$FromTime" : null,
+        "StartTimeRange$ToTime" : null
+      }
+    },
+    "__integer" : {
+      "base" : null,
+      "refs" : {
+        "CloudWatchMetricsDetail$Period" : null,
+        "DescribeAccountHealthResponse$MetricsAnalyzed" : null,
+        "DescribeAccountHealthResponse$OpenProactiveInsights" : null,
+        "DescribeAccountHealthResponse$OpenReactiveInsights" : null,
+        "DescribeAccountOverviewResponse$ProactiveInsights" : null,
+        "DescribeAccountOverviewResponse$ReactiveInsights" : null,
+        "InsightHealth$OpenProactiveInsights" : null,
+        "InsightHealth$OpenReactiveInsights" : null
+      }
+    },
+    "__integerMin1Max100" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsRequest$MaxResults" : null,
+        "SearchInsightsRequest$MaxResults" : null
+      }
+    },
+    "__integerMin1Max200" : {
+      "base" : null,
+      "refs" : {
+        "ListEventsRequest$MaxResults" : null
+      }
+    },
+    "__integerMin1Max500" : {
+      "base" : null,
+      "refs" : {
+        "ListAnomaliesForInsightRequest$MaxResults" : null
+      }
+    },
+    "__listOfCloudFormationHealth" : {
+      "base" : null,
+      "refs" : {
+        "DescribeResourceCollectionHealthResponse$CloudFormation" : null
+      }
+    },
+    "__listOfCloudWatchMetricsDetail" : {
+      "base" : null,
+      "refs" : {
+        "AnomalySourceDetails$CloudWatchMetrics" : null
+      }
+    },
+    "__listOfCloudWatchMetricsDimension" : {
+      "base" : null,
+      "refs" : {
+        "CloudWatchMetricsDetail$Dimensions" : null
+      }
+    },
+    "__listOfEvent" : {
+      "base" : null,
+      "refs" : {
+        "ListEventsResponse$Events" : null
+      }
+    },
+    "__listOfEventResource" : {
+      "base" : null,
+      "refs" : {
+        "Event$Resources" : null
+      }
+    },
+    "__listOfInsightSeverity" : {
+      "base" : null,
+      "refs" : {
+        "SearchInsightsFilters$Severities" : null
+      }
+    },
+    "__listOfInsightStatus" : {
+      "base" : null,
+      "refs" : {
+        "SearchInsightsFilters$Statuses" : null
+      }
+    },
+    "__listOfNotificationChannel" : {
+      "base" : null,
+      "refs" : {
+        "ListNotificationChannelsResponse$Channels" : null
+      }
+    },
+    "__listOfProactiveAnomalySummary" : {
+      "base" : null,
+      "refs" : {
+        "ListAnomaliesForInsightResponse$ProactiveAnomalies" : null
+      }
+    },
+    "__listOfProactiveInsightSummary" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsResponse$ProactiveInsights" : null,
+        "SearchInsightsResponse$ProactiveInsights" : null
+      }
+    },
+    "__listOfReactiveAnomalySummary" : {
+      "base" : null,
+      "refs" : {
+        "ListAnomaliesForInsightResponse$ReactiveAnomalies" : null
+      }
+    },
+    "__listOfReactiveInsightSummary" : {
+      "base" : null,
+      "refs" : {
+        "ListInsightsResponse$ReactiveInsights" : null,
+        "SearchInsightsResponse$ReactiveInsights" : null
+      }
+    },
+    "__listOfRecommendation" : {
+      "base" : null,
+      "refs" : {
+        "ListRecommendationsResponse$Recommendations" : null
+      }
+    },
+    "__listOfRecommendationRelatedAnomaly" : {
+      "base" : null,
+      "refs" : {
+        "Recommendation$RelatedAnomalies" : null
+      }
+    },
+    "__listOfRecommendationRelatedAnomalyResource" : {
+      "base" : null,
+      "refs" : {
+        "RecommendationRelatedAnomaly$Resources" : null
+      }
+    },
+    "__listOfRecommendationRelatedAnomalySourceDetail" : {
+      "base" : null,
+      "refs" : {
+        "RecommendationRelatedAnomaly$SourceDetails" : null
+      }
+    },
+    "__listOfRecommendationRelatedCloudWatchMetricsSourceDetail" : {
+      "base" : null,
+      "refs" : {
+        "RecommendationRelatedAnomalySourceDetail$CloudWatchMetrics" : null
+      }
+    },
+    "__listOfRecommendationRelatedEvent" : {
+      "base" : null,
+      "refs" : {
+        "Recommendation$RelatedEvents" : null
+      }
+    },
+    "__listOfRecommendationRelatedEventResource" : {
+      "base" : null,
+      "refs" : {
+        "RecommendationRelatedEvent$Resources" : null
+      }
+    },
+    "__listOfValidationExceptionField" : {
+      "base" : null,
+      "refs" : {
+        "ValidationException$Fields" : null
+      }
+    },
+    "__listOf__stringMin1Max128PatternAZAZAZAZ09" : {
+      "base" : null,
+      "refs" : {
+        "CloudFormationCollection$StackNames" : null,
+        "CloudFormationCollectionFilter$StackNames" : null,
+        "UpdateCloudFormationCollectionFilter$StackNames" : null
+      }
+    },
+    "__long" : {
+      "base" : null,
+      "refs" : {
+        "DescribeAccountOverviewResponse$MeanTimeToRecoverInMilliseconds" : null,
+        "InsightHealth$MeanTimeToRecoverInMilliseconds" : null
+      }
+    },
+    "__string" : {
+      "base" : null,
+      "refs" : {
+        "AccessDeniedException$Message" : null,
+        "CloudWatchMetricsDetail$MetricName" : null,
+        "CloudWatchMetricsDetail$Namespace" : null,
+        "CloudWatchMetricsDetail$Unit" : null,
+        "CloudWatchMetricsDimension$Name" : null,
+        "CloudWatchMetricsDimension$Value" : null,
+        "ConflictException$Message" : null,
+        "ConflictException$ResourceId" : null,
+        "ConflictException$ResourceType" : null,
+        "Event$Id" : null,
+        "InternalServerException$Message" : null,
+        "Recommendation$Description" : null,
+        "Recommendation$Link" : null,
+        "Recommendation$Name" : null,
+        "Recommendation$Reason" : null,
+        "RecommendationRelatedAnomalyResource$Name" : null,
+        "RecommendationRelatedAnomalyResource$Type" : null,
+        "RecommendationRelatedCloudWatchMetricsSourceDetail$MetricName" : null,
+        "RecommendationRelatedCloudWatchMetricsSourceDetail$Namespace" : null,
+        "RecommendationRelatedEvent$Name" : null,
+        "RecommendationRelatedEventResource$Name" : null,
+        "RecommendationRelatedEventResource$Type" : null,
+        "ResourceNotFoundException$Message" : null,
+        "ResourceNotFoundException$ResourceId" : null,
+        "ResourceNotFoundException$ResourceType" : null,
+        "ServiceQuotaExceededException$Message" : null,
+        "ThrottlingException$Message" : null,
+        "ThrottlingException$QuotaCode" : null,
+        "ThrottlingException$ServiceCode" : null,
+        "ValidationException$Message" : null,
+        "ValidationExceptionField$Message" : null,
+        "ValidationExceptionField$Name" : null
+      }
+    },
+    "__stringMin0Max2048Pattern" : {
+      "base" : null,
+      "refs" : {
+        "EventResource$Name" : null,
+        "EventResource$Type" : null
+      }
+    },
+    "__stringMin0Max50" : {
+      "base" : null,
+      "refs" : {
+        "Event$Name" : null
+      }
+    },
+    "__stringMin10Max50PatternAZAZ09AmazonawsComAwsEvents" : {
+      "base" : null,
+      "refs" : {
+        "Event$EventSource" : null,
+        "ListEventsFilters$EventSource" : null
+      }
+    },
+    "__stringMin1Max100Pattern" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveInsight$SsmOpsItemId" : null,
+        "ReactiveInsight$SsmOpsItemId" : null
+      }
+    },
+    "__stringMin1Max100PatternW" : {
+      "base" : null,
+      "refs" : {
+        "InsightFeedback$Id" : null,
+        "ListEventsFilters$InsightId" : null,
+        "ListRecommendationsRequest$InsightId" : null,
+        "ProactiveAnomaly$AssociatedInsightId" : null,
+        "ProactiveAnomaly$Id" : null,
+        "ProactiveAnomalySummary$AssociatedInsightId" : null,
+        "ProactiveAnomalySummary$Id" : null,
+        "ProactiveInsight$Id" : null,
+        "ProactiveInsightSummary$Id" : null,
+        "ReactiveAnomaly$AssociatedInsightId" : null,
+        "ReactiveAnomaly$Id" : null,
+        "ReactiveAnomalySummary$AssociatedInsightId" : null,
+        "ReactiveAnomalySummary$Id" : null,
+        "ReactiveInsight$Id" : null,
+        "ReactiveInsightSummary$Id" : null
+      }
+    },
+    "__stringMin1Max128PatternAZAZAZAZ09" : {
+      "base" : null,
+      "refs" : {
+        "CloudFormationHealth$StackName" : null,
+        "__listOf__stringMin1Max128PatternAZAZAZAZ09$member" : null
+      }
+    },
+    "__stringMin1Max530PatternSS" : {
+      "base" : null,
+      "refs" : {
+        "ProactiveInsight$Name" : null,
+        "ProactiveInsightSummary$Name" : null,
+        "ReactiveInsight$Name" : null,
+        "ReactiveInsightSummary$Name" : null
+      }
+    },
+    "__stringMin36Max1024PatternArnAwsAZ09SnsAZ09D12" : {
+      "base" : null,
+      "refs" : {
+        "SnsChannelConfig$TopicArn" : null
+      }
+    },
+    "__stringMin36Max2048PatternArnAwsAZAZ09AZ09D12" : {
+      "base" : null,
+      "refs" : {
+        "EventResource$Arn" : null
+      }
+    },
+    "__stringMin36Max36PatternAF098AF094AF094AF094AF0912" : {
+      "base" : null,
+      "refs" : {
+        "AddNotificationChannelResponse$Id" : null,
+        "DescribeResourceCollectionHealthResponse$NextToken" : null,
+        "GetResourceCollectionResponse$NextToken" : null,
+        "ListAnomaliesForInsightRequest$NextToken" : null,
+        "ListAnomaliesForInsightResponse$NextToken" : null,
+        "ListEventsRequest$NextToken" : null,
+        "ListEventsResponse$NextToken" : null,
+        "ListInsightsRequest$NextToken" : null,
+        "ListInsightsResponse$NextToken" : null,
+        "ListNotificationChannelsRequest$NextToken" : null,
+        "ListNotificationChannelsResponse$NextToken" : null,
+        "ListRecommendationsRequest$NextToken" : null,
+        "ListRecommendationsResponse$NextToken" : null,
+        "NotificationChannel$Id" : null,
+        "SearchInsightsRequest$NextToken" : null,
+        "SearchInsightsResponse$NextToken" : null
+      }
+    }
+  }
+}

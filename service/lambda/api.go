@@ -584,11 +584,12 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // CreateFunction API operation for AWS Lambda.
 //
 // Creates a Lambda function. To create a function, you need a deployment package
-// (https://docs.aws.amazon.com/lambda/latest/dg/deployment-package-v2.html)
+// (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html)
 // and an execution role (https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role).
-// The deployment package contains your function code. The execution role grants
-// the function permission to use AWS services, such as Amazon CloudWatch Logs
-// for log streaming and AWS X-Ray for request tracing.
+// The deployment package is a ZIP archive or image container that contains
+// your function code. The execution role grants the function permission to
+// use AWS services, such as Amazon CloudWatch Logs for log streaming and AWS
+// X-Ray for request tracing.
 //
 // When you create a function, Lambda provisions an instance of the function
 // and its supporting resources. If your function connects to a VPC, this process
@@ -611,7 +612,8 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // of the function, and include tags (TagResource) and per-function concurrency
 // limits (PutFunctionConcurrency).
 //
-// To enable code signing for this function, specify the ARN of a code-signing
+// You can use code signing if your deployment package is a ZIP archive. To
+// enable code signing for this function, specify the ARN of a code-signing
 // configuration. When a user attempts to deploy a code package with UpdateFunctionCode,
 // Lambda checks that the code package has a valid signature from a trusted
 // publisher. The code-signing configuration includes set set of signing profiles,
@@ -3265,10 +3267,9 @@ func (c *Lambda) ListCodeSigningConfigsRequest(input *ListCodeSigningConfigsInpu
 
 // ListCodeSigningConfigs API operation for AWS Lambda.
 //
-// Returns a list of code signing configurations (https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html)
-// for the specified function. A request returns up to 10,000 configurations
-// per call. You can use the MaxItems parameter to return fewer configurations
-// per call.
+// Returns a list of code signing configurations (https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html).
+// A request returns up to 10,000 configurations per call. You can use the MaxItems
+// parameter to return fewer configurations per call.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6942,7 +6943,7 @@ type CodeSigningPolicies struct {
 	_ struct{} `type:"structure"`
 
 	// Code signing configuration policy for deployment validation failure. If you
-	// set the policy to Enforce, Lambda blocks the deployment request if code-signing
+	// set the policy to Enforce, Lambda blocks the deployment request if signature
 	// validation checks fail. If you set the policy to Warn, Lambda allows the
 	// deployment and creates a CloudWatch log.
 	//
@@ -7525,7 +7526,7 @@ type CreateFunctionInput struct {
 	Code *FunctionCode `type:"structure" required:"true"`
 
 	// To enable code signing for this function, specify the ARN of a code-signing
-	// configuration. A code-signing configuration includes set set of signing profiles,
+	// configuration. A code-signing configuration includes a set of signing profiles,
 	// which define the trusted publishers for this function.
 	CodeSigningConfigArn *string `type:"string"`
 
@@ -7563,9 +7564,10 @@ type CreateFunctionInput struct {
 	// function. The format includes the file name. It can also include namespaces
 	// and other qualifiers, depending on the runtime. For more information, see
 	// Programming Model (https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html).
-	//
-	// Handler is a required field
-	Handler *string `type:"string" required:"true"`
+	Handler *string `type:"string"`
+
+	// Configuration values that override the container image Dockerfile.
+	ImageConfig *ImageConfig `type:"structure"`
 
 	// The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt
 	// your function's environment variables. If it's not provided, AWS Lambda uses
@@ -7582,6 +7584,10 @@ type CreateFunctionInput struct {
 	// value must be a multiple of 64 MB.
 	MemorySize *int64 `min:"128" type:"integer"`
 
+	// The type of deployment package. Set to Image for container image and set
+	// Zip for ZIP archive.
+	PackageType *string `type:"string" enum:"PackageType"`
+
 	// Set to true to publish the first version of the function during creation.
 	Publish *bool `type:"boolean"`
 
@@ -7591,9 +7597,7 @@ type CreateFunctionInput struct {
 	Role *string `type:"string" required:"true"`
 
 	// The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
-	//
-	// Runtime is a required field
-	Runtime *string `type:"string" required:"true" enum:"Runtime"`
+	Runtime *string `type:"string" enum:"Runtime"`
 
 	// A list of tags (https://docs.aws.amazon.com/lambda/latest/dg/tagging.html)
 	// to apply to the function.
@@ -7636,17 +7640,11 @@ func (s *CreateFunctionInput) Validate() error {
 	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
 	}
-	if s.Handler == nil {
-		invalidParams.Add(request.NewErrParamRequired("Handler"))
-	}
 	if s.MemorySize != nil && *s.MemorySize < 128 {
 		invalidParams.Add(request.NewErrParamMinValue("MemorySize", 128))
 	}
 	if s.Role == nil {
 		invalidParams.Add(request.NewErrParamRequired("Role"))
-	}
-	if s.Runtime == nil {
-		invalidParams.Add(request.NewErrParamRequired("Runtime"))
 	}
 	if s.Timeout != nil && *s.Timeout < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
@@ -7721,6 +7719,12 @@ func (s *CreateFunctionInput) SetHandler(v string) *CreateFunctionInput {
 	return s
 }
 
+// SetImageConfig sets the ImageConfig field's value.
+func (s *CreateFunctionInput) SetImageConfig(v *ImageConfig) *CreateFunctionInput {
+	s.ImageConfig = v
+	return s
+}
+
 // SetKMSKeyArn sets the KMSKeyArn field's value.
 func (s *CreateFunctionInput) SetKMSKeyArn(v string) *CreateFunctionInput {
 	s.KMSKeyArn = &v
@@ -7736,6 +7740,12 @@ func (s *CreateFunctionInput) SetLayers(v []*string) *CreateFunctionInput {
 // SetMemorySize sets the MemorySize field's value.
 func (s *CreateFunctionInput) SetMemorySize(v int64) *CreateFunctionInput {
 	s.MemorySize = &v
+	return s
+}
+
+// SetPackageType sets the PackageType field's value.
+func (s *CreateFunctionInput) SetPackageType(v string) *CreateFunctionInput {
+	s.PackageType = &v
 	return s
 }
 
@@ -9290,9 +9300,13 @@ func (s *FileSystemConfig) SetLocalMountPath(v string) *FileSystemConfig {
 }
 
 // The code for the Lambda function. You can specify either an object in Amazon
-// S3, or upload a deployment package directly.
+// S3, upload a ZIP archive deployment package directly, or specify the URI
+// of a container image.
 type FunctionCode struct {
 	_ struct{} `type:"structure"`
+
+	// URI of a container image in the Amazon ECR registry.
+	ImageUri *string `type:"string"`
 
 	// An Amazon S3 bucket in the same AWS Region as your function. The bucket can
 	// be in a different AWS account.
@@ -9340,6 +9354,12 @@ func (s *FunctionCode) Validate() error {
 	return nil
 }
 
+// SetImageUri sets the ImageUri field's value.
+func (s *FunctionCode) SetImageUri(v string) *FunctionCode {
+	s.ImageUri = &v
+	return s
+}
+
 // SetS3Bucket sets the S3Bucket field's value.
 func (s *FunctionCode) SetS3Bucket(v string) *FunctionCode {
 	s.S3Bucket = &v
@@ -9368,11 +9388,17 @@ func (s *FunctionCode) SetZipFile(v []byte) *FunctionCode {
 type FunctionCodeLocation struct {
 	_ struct{} `type:"structure"`
 
+	// URI of a container image in the Amazon ECR registry.
+	ImageUri *string `type:"string"`
+
 	// A presigned URL that you can use to download the deployment package.
 	Location *string `type:"string"`
 
 	// The service that's hosting the file.
 	RepositoryType *string `type:"string"`
+
+	// The resolved URI for the image.
+	ResolvedImageUri *string `type:"string"`
 }
 
 // String returns the string representation
@@ -9385,6 +9411,12 @@ func (s FunctionCodeLocation) GoString() string {
 	return s.String()
 }
 
+// SetImageUri sets the ImageUri field's value.
+func (s *FunctionCodeLocation) SetImageUri(v string) *FunctionCodeLocation {
+	s.ImageUri = &v
+	return s
+}
+
 // SetLocation sets the Location field's value.
 func (s *FunctionCodeLocation) SetLocation(v string) *FunctionCodeLocation {
 	s.Location = &v
@@ -9394,6 +9426,12 @@ func (s *FunctionCodeLocation) SetLocation(v string) *FunctionCodeLocation {
 // SetRepositoryType sets the RepositoryType field's value.
 func (s *FunctionCodeLocation) SetRepositoryType(v string) *FunctionCodeLocation {
 	s.RepositoryType = &v
+	return s
+}
+
+// SetResolvedImageUri sets the ResolvedImageUri field's value.
+func (s *FunctionCodeLocation) SetResolvedImageUri(v string) *FunctionCodeLocation {
+	s.ResolvedImageUri = &v
 	return s
 }
 
@@ -9428,6 +9466,9 @@ type FunctionConfiguration struct {
 	// The function that Lambda calls to begin executing your function.
 	Handler *string `type:"string"`
 
+	// The function's image configuration values.
+	ImageConfigResponse *ImageConfigResponse `type:"structure"`
+
 	// The KMS key that's used to encrypt the function's environment variables.
 	// This key is only returned if you've configured a customer managed CMK.
 	KMSKeyArn *string `type:"string"`
@@ -9454,6 +9495,10 @@ type FunctionConfiguration struct {
 
 	// The memory that's allocated to the function.
 	MemorySize *int64 `min:"128" type:"integer"`
+
+	// The type of deployment package. Set to Image for container image and set
+	// Zip for ZIP archive.
+	PackageType *string `type:"string" enum:"PackageType"`
 
 	// The latest updated revision of the function or alias.
 	RevisionId *string `type:"string"`
@@ -9559,6 +9604,12 @@ func (s *FunctionConfiguration) SetHandler(v string) *FunctionConfiguration {
 	return s
 }
 
+// SetImageConfigResponse sets the ImageConfigResponse field's value.
+func (s *FunctionConfiguration) SetImageConfigResponse(v *ImageConfigResponse) *FunctionConfiguration {
+	s.ImageConfigResponse = v
+	return s
+}
+
 // SetKMSKeyArn sets the KMSKeyArn field's value.
 func (s *FunctionConfiguration) SetKMSKeyArn(v string) *FunctionConfiguration {
 	s.KMSKeyArn = &v
@@ -9604,6 +9655,12 @@ func (s *FunctionConfiguration) SetMasterArn(v string) *FunctionConfiguration {
 // SetMemorySize sets the MemorySize field's value.
 func (s *FunctionConfiguration) SetMemorySize(v int64) *FunctionConfiguration {
 	s.MemorySize = &v
+	return s
+}
+
+// SetPackageType sets the PackageType field's value.
+func (s *FunctionConfiguration) SetPackageType(v string) *FunctionConfiguration {
+	s.PackageType = &v
 	return s
 }
 
@@ -11050,6 +11107,116 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatus(v string) *GetProvisio
 // SetStatusReason sets the StatusReason field's value.
 func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetProvisionedConcurrencyConfigOutput {
 	s.StatusReason = &v
+	return s
+}
+
+// Configuration values that override the container image Dockerfile. See Override
+// Container settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images-settings.html).
+type ImageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies parameters that you want to pass in with ENTRYPOINT.
+	Command []*string `type:"list"`
+
+	// Specifies the entry point to their application, which is typically the location
+	// of the runtime executable.
+	EntryPoint []*string `type:"list"`
+
+	// Specifies the working directory.
+	WorkingDirectory *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ImageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageConfig) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *ImageConfig) SetCommand(v []*string) *ImageConfig {
+	s.Command = v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *ImageConfig) SetEntryPoint(v []*string) *ImageConfig {
+	s.EntryPoint = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *ImageConfig) SetWorkingDirectory(v string) *ImageConfig {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// Error response to GetFunctionConfiguration.
+type ImageConfigError struct {
+	_ struct{} `type:"structure"`
+
+	// Error code.
+	ErrorCode *string `type:"string"`
+
+	// Error message.
+	Message *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s ImageConfigError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageConfigError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *ImageConfigError) SetErrorCode(v string) *ImageConfigError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ImageConfigError) SetMessage(v string) *ImageConfigError {
+	s.Message = &v
+	return s
+}
+
+// Response to GetFunctionConfiguration request.
+type ImageConfigResponse struct {
+	_ struct{} `type:"structure"`
+
+	// Error response to GetFunctionConfiguration.
+	Error *ImageConfigError `type:"structure"`
+
+	// Configuration values that override the container image Dockerfile.
+	ImageConfig *ImageConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImageConfigResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageConfigResponse) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *ImageConfigResponse) SetError(v *ImageConfigError) *ImageConfigResponse {
+	s.Error = v
+	return s
+}
+
+// SetImageConfig sets the ImageConfig field's value.
+func (s *ImageConfigResponse) SetImageConfig(v *ImageConfig) *ImageConfigResponse {
+	s.ImageConfig = v
 	return s
 }
 
@@ -15846,6 +16013,9 @@ type UpdateFunctionCodeInput struct {
 	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
+	// URI of a container image in the Amazon ECR registry.
+	ImageUri *string `type:"string"`
+
 	// Set to true to publish a new version of the function after updating the code.
 	// This has the same effect as calling PublishVersion separately.
 	Publish *bool `type:"boolean"`
@@ -15916,6 +16086,12 @@ func (s *UpdateFunctionCodeInput) SetDryRun(v bool) *UpdateFunctionCodeInput {
 // SetFunctionName sets the FunctionName field's value.
 func (s *UpdateFunctionCodeInput) SetFunctionName(v string) *UpdateFunctionCodeInput {
 	s.FunctionName = &v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *UpdateFunctionCodeInput) SetImageUri(v string) *UpdateFunctionCodeInput {
+	s.ImageUri = &v
 	return s
 }
 
@@ -15993,6 +16169,9 @@ type UpdateFunctionConfigurationInput struct {
 	// and other qualifiers, depending on the runtime. For more information, see
 	// Programming Model (https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html).
 	Handler *string `type:"string"`
+
+	// Configuration values that override the container image Dockerfile.
+	ImageConfig *ImageConfig `type:"structure"`
 
 	// The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt
 	// your function's environment variables. If it's not provided, AWS Lambda uses
@@ -16110,6 +16289,12 @@ func (s *UpdateFunctionConfigurationInput) SetFunctionName(v string) *UpdateFunc
 // SetHandler sets the Handler field's value.
 func (s *UpdateFunctionConfigurationInput) SetHandler(v string) *UpdateFunctionConfigurationInput {
 	s.Handler = &v
+	return s
+}
+
+// SetImageConfig sets the ImageConfig field's value.
+func (s *UpdateFunctionConfigurationInput) SetImageConfig(v *ImageConfig) *UpdateFunctionConfigurationInput {
+	s.ImageConfig = v
 	return s
 }
 
@@ -16526,6 +16711,12 @@ const (
 
 	// LastUpdateStatusReasonCodeInvalidSecurityGroup is a LastUpdateStatusReasonCode enum value
 	LastUpdateStatusReasonCodeInvalidSecurityGroup = "InvalidSecurityGroup"
+
+	// LastUpdateStatusReasonCodeImageDeleted is a LastUpdateStatusReasonCode enum value
+	LastUpdateStatusReasonCodeImageDeleted = "ImageDeleted"
+
+	// LastUpdateStatusReasonCodeImageAccessDenied is a LastUpdateStatusReasonCode enum value
+	LastUpdateStatusReasonCodeImageAccessDenied = "ImageAccessDenied"
 )
 
 // LastUpdateStatusReasonCode_Values returns all elements of the LastUpdateStatusReasonCode enum
@@ -16538,6 +16729,8 @@ func LastUpdateStatusReasonCode_Values() []string {
 		LastUpdateStatusReasonCodeSubnetOutOfIpaddresses,
 		LastUpdateStatusReasonCodeInvalidSubnet,
 		LastUpdateStatusReasonCodeInvalidSecurityGroup,
+		LastUpdateStatusReasonCodeImageDeleted,
+		LastUpdateStatusReasonCodeImageAccessDenied,
 	}
 }
 
@@ -16554,6 +16747,22 @@ func LogType_Values() []string {
 	return []string{
 		LogTypeNone,
 		LogTypeTail,
+	}
+}
+
+const (
+	// PackageTypeZip is a PackageType enum value
+	PackageTypeZip = "Zip"
+
+	// PackageTypeImage is a PackageType enum value
+	PackageTypeImage = "Image"
+)
+
+// PackageType_Values returns all elements of the PackageType enum
+func PackageType_Values() []string {
+	return []string{
+		PackageTypeZip,
+		PackageTypeImage,
 	}
 }
 
@@ -16743,6 +16952,12 @@ const (
 
 	// StateReasonCodeInvalidSecurityGroup is a StateReasonCode enum value
 	StateReasonCodeInvalidSecurityGroup = "InvalidSecurityGroup"
+
+	// StateReasonCodeImageDeleted is a StateReasonCode enum value
+	StateReasonCodeImageDeleted = "ImageDeleted"
+
+	// StateReasonCodeImageAccessDenied is a StateReasonCode enum value
+	StateReasonCodeImageAccessDenied = "ImageAccessDenied"
 )
 
 // StateReasonCode_Values returns all elements of the StateReasonCode enum
@@ -16758,6 +16973,8 @@ func StateReasonCode_Values() []string {
 		StateReasonCodeSubnetOutOfIpaddresses,
 		StateReasonCodeInvalidSubnet,
 		StateReasonCodeInvalidSecurityGroup,
+		StateReasonCodeImageDeleted,
+		StateReasonCodeImageAccessDenied,
 	}
 }
 

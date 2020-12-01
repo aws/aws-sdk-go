@@ -187,6 +187,10 @@ type DirectoryServiceAPI interface {
 	DescribeTrustsWithContext(aws.Context, *directoryservice.DescribeTrustsInput, ...request.Option) (*directoryservice.DescribeTrustsOutput, error)
 	DescribeTrustsRequest(*directoryservice.DescribeTrustsInput) (*request.Request, *directoryservice.DescribeTrustsOutput)
 
+	DisableClientAuthentication(*directoryservice.DisableClientAuthenticationInput) (*directoryservice.DisableClientAuthenticationOutput, error)
+	DisableClientAuthenticationWithContext(aws.Context, *directoryservice.DisableClientAuthenticationInput, ...request.Option) (*directoryservice.DisableClientAuthenticationOutput, error)
+	DisableClientAuthenticationRequest(*directoryservice.DisableClientAuthenticationInput) (*request.Request, *directoryservice.DisableClientAuthenticationOutput)
+
 	DisableLDAPS(*directoryservice.DisableLDAPSInput) (*directoryservice.DisableLDAPSOutput, error)
 	DisableLDAPSWithContext(aws.Context, *directoryservice.DisableLDAPSInput, ...request.Option) (*directoryservice.DisableLDAPSOutput, error)
 	DisableLDAPSRequest(*directoryservice.DisableLDAPSInput) (*request.Request, *directoryservice.DisableLDAPSOutput)
@@ -198,6 +202,10 @@ type DirectoryServiceAPI interface {
 	DisableSso(*directoryservice.DisableSsoInput) (*directoryservice.DisableSsoOutput, error)
 	DisableSsoWithContext(aws.Context, *directoryservice.DisableSsoInput, ...request.Option) (*directoryservice.DisableSsoOutput, error)
 	DisableSsoRequest(*directoryservice.DisableSsoInput) (*request.Request, *directoryservice.DisableSsoOutput)
+
+	EnableClientAuthentication(*directoryservice.EnableClientAuthenticationInput) (*directoryservice.EnableClientAuthenticationOutput, error)
+	EnableClientAuthenticationWithContext(aws.Context, *directoryservice.EnableClientAuthenticationInput, ...request.Option) (*directoryservice.EnableClientAuthenticationOutput, error)
+	EnableClientAuthenticationRequest(*directoryservice.EnableClientAuthenticationInput) (*request.Request, *directoryservice.EnableClientAuthenticationOutput)
 
 	EnableLDAPS(*directoryservice.EnableLDAPSInput) (*directoryservice.EnableLDAPSOutput, error)
 	EnableLDAPSWithContext(aws.Context, *directoryservice.EnableLDAPSInput, ...request.Option) (*directoryservice.EnableLDAPSOutput, error)

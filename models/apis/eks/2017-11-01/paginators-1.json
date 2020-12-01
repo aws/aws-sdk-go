@@ -1,5 +1,17 @@
 {
   "pagination": {
+    "DescribeAddonVersions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "addons"
+    },
+    "ListAddons": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "addons"
+    },
     "ListClusters": {
       "input_token": "nextToken",
       "limit_key": "maxResults",

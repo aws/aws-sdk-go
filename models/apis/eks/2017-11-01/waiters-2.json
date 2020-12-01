@@ -86,6 +86,43 @@
           "state": "success"
         }
       ]
+    },
+    "AddonActive": {
+      "delay": 10,
+      "operation": "DescribeAddon",
+      "maxAttempts": 60,
+      "acceptors": [
+        {
+          "expected": "CREATE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "addon.status"
+        },
+        {
+          "expected": "ACTIVE",
+          "matcher": "path",
+          "state": "success",
+          "argument": "addon.status"
+        }
+      ]
+    },
+    "AddonDeleted": {
+      "delay": 10,
+      "operation": "DescribeAddon",
+      "maxAttempts": 60,
+      "acceptors": [
+        {
+          "expected": "DELETE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "addon.status"
+        },
+        {
+          "expected": "ResourceNotFoundException",
+          "matcher": "error",
+          "state": "success"
+        }
+      ]
     }
   }
 }

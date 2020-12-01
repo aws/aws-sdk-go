@@ -12,7 +12,7 @@ const (
 	// "AccessDeniedException".
 	//
 	// You do not have sufficient access to perform this action. Check that the
-	// workbook is owned by you and your IAM policy allows access to the screen/automation
+	// workbook is owned by you and your IAM policy allows access to the resource
 	// in the request.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
@@ -43,9 +43,15 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// A Workbook, App, Screen or Screen Automation was not found with the given
-	// ID.
+	// A Workbook, Table, App, Screen or Screen Automation was not found with the
+	// given ID.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// The request caused service quota to be breached.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeServiceUnavailableException for service response error code
 	// "ServiceUnavailableException".
@@ -74,6 +80,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InternalServerException":             newErrorInternalServerException,
 	"RequestTimeoutException":             newErrorRequestTimeoutException,
 	"ResourceNotFoundException":           newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException":       newErrorServiceQuotaExceededException,
 	"ServiceUnavailableException":         newErrorServiceUnavailableException,
 	"ThrottlingException":                 newErrorThrottlingException,
 	"ValidationException":                 newErrorValidationException,

@@ -1,0 +1,1951 @@
+{
+  "metadata" : {
+    "apiVersion" : "2020-12-01",
+    "endpointPrefix" : "devops-guru",
+    "signingName" : "devops-guru",
+    "serviceFullName" : "Amazon DevOps Guru",
+    "serviceId" : "DevOps Guru",
+    "protocol" : "rest-json",
+    "jsonVersion" : "1.1",
+    "uid" : "devops-guru-2020-12-01",
+    "signatureVersion" : "v4"
+  },
+  "operations" : {
+    "AddNotificationChannel" : {
+      "name" : "AddNotificationChannel",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/channels",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "AddNotificationChannelRequest"
+      },
+      "output" : {
+        "shape" : "AddNotificationChannelResponse"
+      },
+      "errors" : [ {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "ServiceQuotaExceededException"
+      }, {
+        "shape" : "AccessDeniedException"
+      }, {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ConflictException"
+      } ]
+    },
+    "DescribeAccountHealth" : {
+      "name" : "DescribeAccountHealth",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/accounts/health",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeAccountHealthRequest"
+      },
+      "output" : {
+        "shape" : "DescribeAccountHealthResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "DescribeAccountOverview" : {
+      "name" : "DescribeAccountOverview",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/accounts/overview",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeAccountOverviewRequest"
+      },
+      "output" : {
+        "shape" : "DescribeAccountOverviewResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "DescribeAnomaly" : {
+      "name" : "DescribeAnomaly",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/anomalies/{Id}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeAnomalyRequest"
+      },
+      "output" : {
+        "shape" : "DescribeAnomalyResponse"
+      },
+      "errors" : [ {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "DescribeInsight" : {
+      "name" : "DescribeInsight",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/insights/{Id}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeInsightRequest"
+      },
+      "output" : {
+        "shape" : "DescribeInsightResponse"
+      },
+      "errors" : [ {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "DescribeResourceCollectionHealth" : {
+      "name" : "DescribeResourceCollectionHealth",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/accounts/health/resource-collection/{ResourceCollectionType}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeResourceCollectionHealthRequest"
+      },
+      "output" : {
+        "shape" : "DescribeResourceCollectionHealthResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "DescribeServiceIntegration" : {
+      "name" : "DescribeServiceIntegration",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/service-integrations",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DescribeServiceIntegrationRequest"
+      },
+      "output" : {
+        "shape" : "DescribeServiceIntegrationResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "GetResourceCollection" : {
+      "name" : "GetResourceCollection",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/resource-collections/{ResourceCollectionType}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetResourceCollectionRequest"
+      },
+      "output" : {
+        "shape" : "GetResourceCollectionResponse"
+      },
+      "errors" : [ {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "ListAnomaliesForInsight" : {
+      "name" : "ListAnomaliesForInsight",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/anomalies/insight/{InsightId}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListAnomaliesForInsightRequest"
+      },
+      "output" : {
+        "shape" : "ListAnomaliesForInsightResponse"
+      },
+      "errors" : [ {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "ListEvents" : {
+      "name" : "ListEvents",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/events",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListEventsRequest"
+      },
+      "output" : {
+        "shape" : "ListEventsResponse"
+      },
+      "errors" : [ {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "ListInsights" : {
+      "name" : "ListInsights",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/insights",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListInsightsRequest"
+      },
+      "output" : {
+        "shape" : "ListInsightsResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "ListNotificationChannels" : {
+      "name" : "ListNotificationChannels",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/channels",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListNotificationChannelsRequest"
+      },
+      "output" : {
+        "shape" : "ListNotificationChannelsResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "ListRecommendations" : {
+      "name" : "ListRecommendations",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/recommendations",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListRecommendationsRequest"
+      },
+      "output" : {
+        "shape" : "ListRecommendationsResponse"
+      },
+      "errors" : [ {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "PutFeedback" : {
+      "name" : "PutFeedback",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/feedback",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "PutFeedbackRequest"
+      },
+      "output" : {
+        "shape" : "PutFeedbackResponse"
+      },
+      "errors" : [ {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      }, {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ConflictException"
+      } ]
+    },
+    "RemoveNotificationChannel" : {
+      "name" : "RemoveNotificationChannel",
+      "http" : {
+        "method" : "DELETE",
+        "requestUri" : "/channels/{Id}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "RemoveNotificationChannelRequest"
+      },
+      "output" : {
+        "shape" : "RemoveNotificationChannelResponse"
+      },
+      "errors" : [ {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      }, {
+        "shape" : "ResourceNotFoundException"
+      }, {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ConflictException"
+      } ]
+    },
+    "SearchInsights" : {
+      "name" : "SearchInsights",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/insights/search",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "SearchInsightsRequest"
+      },
+      "output" : {
+        "shape" : "SearchInsightsResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "UpdateResourceCollection" : {
+      "name" : "UpdateResourceCollection",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/resource-collections",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateResourceCollectionRequest"
+      },
+      "output" : {
+        "shape" : "UpdateResourceCollectionResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "ConflictException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    },
+    "UpdateServiceIntegration" : {
+      "name" : "UpdateServiceIntegration",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/service-integrations",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateServiceIntegrationRequest"
+      },
+      "output" : {
+        "shape" : "UpdateServiceIntegrationResponse"
+      },
+      "errors" : [ {
+        "shape" : "ThrottlingException"
+      }, {
+        "shape" : "ValidationException"
+      }, {
+        "shape" : "InternalServerException"
+      }, {
+        "shape" : "ConflictException"
+      }, {
+        "shape" : "AccessDeniedException"
+      } ]
+    }
+  },
+  "shapes" : {
+    "AccessDeniedException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "Message" ],
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 403
+      }
+    },
+    "AddNotificationChannelRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Config" : {
+          "shape" : "NotificationChannelConfig"
+        }
+      },
+      "required" : [ "Config" ]
+    },
+    "AddNotificationChannelResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      }
+    },
+    "AnomalySeverity" : {
+      "type" : "string",
+      "enum" : [ "LOW", "MEDIUM", "HIGH" ]
+    },
+    "AnomalySourceDetails" : {
+      "type" : "structure",
+      "members" : {
+        "CloudWatchMetrics" : {
+          "shape" : "__listOfCloudWatchMetricsDetail"
+        }
+      }
+    },
+    "AnomalyStatus" : {
+      "type" : "string",
+      "enum" : [ "ONGOING", "CLOSED" ]
+    },
+    "AnomalyTimeRange" : {
+      "type" : "structure",
+      "members" : {
+        "EndTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "StartTime" : {
+          "shape" : "__timestampUnix"
+        }
+      },
+      "required" : [ "StartTime" ]
+    },
+    "CloudFormationCollection" : {
+      "type" : "structure",
+      "members" : {
+        "StackNames" : {
+          "shape" : "__listOf__stringMin1Max128PatternAZAZAZAZ09"
+        }
+      }
+    },
+    "CloudFormationCollectionFilter" : {
+      "type" : "structure",
+      "members" : {
+        "StackNames" : {
+          "shape" : "__listOf__stringMin1Max128PatternAZAZAZAZ09"
+        }
+      }
+    },
+    "CloudFormationHealth" : {
+      "type" : "structure",
+      "members" : {
+        "Insight" : {
+          "shape" : "InsightHealth"
+        },
+        "StackName" : {
+          "shape" : "__stringMin1Max128PatternAZAZAZAZ09"
+        }
+      }
+    },
+    "CloudWatchMetricsDetail" : {
+      "type" : "structure",
+      "members" : {
+        "Dimensions" : {
+          "shape" : "__listOfCloudWatchMetricsDimension"
+        },
+        "MetricName" : {
+          "shape" : "__string"
+        },
+        "Namespace" : {
+          "shape" : "__string"
+        },
+        "Period" : {
+          "shape" : "__integer"
+        },
+        "Stat" : {
+          "shape" : "CloudWatchMetricsStat"
+        },
+        "Unit" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "CloudWatchMetricsDimension" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "__string"
+        },
+        "Value" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "CloudWatchMetricsStat" : {
+      "type" : "string",
+      "enum" : [ "Sum", "Average", "SampleCount", "Minimum", "Maximum", "p99", "p90", "p50" ]
+    },
+    "ConflictException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "ResourceId" : {
+          "shape" : "__string"
+        },
+        "ResourceType" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "Message", "ResourceId", "ResourceType" ],
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 409
+      }
+    },
+    "DescribeAccountHealthRequest" : {
+      "type" : "structure",
+      "members" : { }
+    },
+    "DescribeAccountHealthResponse" : {
+      "type" : "structure",
+      "members" : {
+        "MetricsAnalyzed" : {
+          "shape" : "__integer"
+        },
+        "OpenProactiveInsights" : {
+          "shape" : "__integer"
+        },
+        "OpenReactiveInsights" : {
+          "shape" : "__integer"
+        }
+      }
+    },
+    "DescribeAccountOverviewRequest" : {
+      "type" : "structure",
+      "members" : {
+        "FromTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "ToTime" : {
+          "shape" : "__timestampUnix"
+        }
+      },
+      "required" : [ "FromTime" ]
+    },
+    "DescribeAccountOverviewResponse" : {
+      "type" : "structure",
+      "members" : {
+        "MeanTimeToRecoverInMilliseconds" : {
+          "shape" : "__long"
+        },
+        "ProactiveInsights" : {
+          "shape" : "__integer"
+        },
+        "ReactiveInsights" : {
+          "shape" : "__integer"
+        }
+      }
+    },
+    "DescribeAnomalyRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "Id"
+        }
+      },
+      "required" : [ "Id" ]
+    },
+    "DescribeAnomalyResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ProactiveAnomaly" : {
+          "shape" : "ProactiveAnomaly"
+        },
+        "ReactiveAnomaly" : {
+          "shape" : "ReactiveAnomaly"
+        }
+      }
+    },
+    "DescribeInsightRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "Id"
+        }
+      },
+      "required" : [ "Id" ]
+    },
+    "DescribeInsightResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ProactiveInsight" : {
+          "shape" : "ProactiveInsight"
+        },
+        "ReactiveInsight" : {
+          "shape" : "ReactiveInsight"
+        }
+      }
+    },
+    "DescribeResourceCollectionHealthRequest" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        },
+        "ResourceCollectionType" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ResourceCollectionType"
+        }
+      },
+      "required" : [ "ResourceCollectionType" ]
+    },
+    "DescribeResourceCollectionHealthResponse" : {
+      "type" : "structure",
+      "members" : {
+        "CloudFormation" : {
+          "shape" : "__listOfCloudFormationHealth"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      }
+    },
+    "DescribeServiceIntegrationRequest" : {
+      "type" : "structure",
+      "members" : { }
+    },
+    "DescribeServiceIntegrationResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ServiceIntegration" : {
+          "shape" : "ServiceIntegrationConfig"
+        }
+      }
+    },
+    "EndTimeRange" : {
+      "type" : "structure",
+      "members" : {
+        "FromTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "ToTime" : {
+          "shape" : "__timestampUnix"
+        }
+      }
+    },
+    "Event" : {
+      "type" : "structure",
+      "members" : {
+        "DataSource" : {
+          "shape" : "EventDataSource"
+        },
+        "EventClass" : {
+          "shape" : "EventClass"
+        },
+        "EventSource" : {
+          "shape" : "__stringMin10Max50PatternAZAZ09AmazonawsComAwsEvents"
+        },
+        "Id" : {
+          "shape" : "__string"
+        },
+        "Name" : {
+          "shape" : "__stringMin0Max50"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Resources" : {
+          "shape" : "__listOfEventResource"
+        },
+        "Time" : {
+          "shape" : "__timestampUnix"
+        }
+      }
+    },
+    "EventClass" : {
+      "type" : "string",
+      "enum" : [ "INFRASTRUCTURE", "DEPLOYMENT", "SECURITY_CHANGE", "CONFIG_CHANGE", "SCHEMA_CHANGE" ]
+    },
+    "EventDataSource" : {
+      "type" : "string",
+      "enum" : [ "AWS_CLOUD_TRAIL", "AWS_CODE_DEPLOY" ]
+    },
+    "EventResource" : {
+      "type" : "structure",
+      "members" : {
+        "Arn" : {
+          "shape" : "__stringMin36Max2048PatternArnAwsAZAZ09AZ09D12"
+        },
+        "Name" : {
+          "shape" : "__stringMin0Max2048Pattern"
+        },
+        "Type" : {
+          "shape" : "__stringMin0Max2048Pattern"
+        }
+      }
+    },
+    "EventTimeRange" : {
+      "type" : "structure",
+      "members" : {
+        "FromTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "ToTime" : {
+          "shape" : "__timestampUnix"
+        }
+      },
+      "required" : [ "ToTime", "FromTime" ]
+    },
+    "GetResourceCollectionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "NextToken"
+        },
+        "ResourceCollectionType" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ResourceCollectionType"
+        }
+      },
+      "required" : [ "ResourceCollectionType" ]
+    },
+    "GetResourceCollectionResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollectionFilter"
+        }
+      }
+    },
+    "InsightFeedback" : {
+      "type" : "structure",
+      "members" : {
+        "Feedback" : {
+          "shape" : "InsightFeedbackOption"
+        },
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        }
+      }
+    },
+    "InsightFeedbackOption" : {
+      "type" : "string",
+      "enum" : [ "VALID_COLLECTION", "RECOMMENDATION_USEFUL", "ALERT_TOO_SENSITIVE", "DATA_NOISY_ANOMALY", "DATA_INCORRECT" ]
+    },
+    "InsightHealth" : {
+      "type" : "structure",
+      "members" : {
+        "MeanTimeToRecoverInMilliseconds" : {
+          "shape" : "__long"
+        },
+        "OpenProactiveInsights" : {
+          "shape" : "__integer"
+        },
+        "OpenReactiveInsights" : {
+          "shape" : "__integer"
+        }
+      }
+    },
+    "InsightSeverity" : {
+      "type" : "string",
+      "enum" : [ "LOW", "MEDIUM", "HIGH" ]
+    },
+    "InsightStatus" : {
+      "type" : "string",
+      "enum" : [ "ONGOING", "CLOSED" ]
+    },
+    "InsightTimeRange" : {
+      "type" : "structure",
+      "members" : {
+        "EndTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "StartTime" : {
+          "shape" : "__timestampUnix"
+        }
+      },
+      "required" : [ "StartTime" ]
+    },
+    "InsightType" : {
+      "type" : "string",
+      "enum" : [ "REACTIVE", "PROACTIVE" ]
+    },
+    "InternalServerException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "Message" ],
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 500
+      }
+    },
+    "ListAnomaliesForInsightRequest" : {
+      "type" : "structure",
+      "members" : {
+        "InsightId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "InsightId"
+        },
+        "MaxResults" : {
+          "shape" : "__integerMin1Max500"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "StartTimeRange" : {
+          "shape" : "StartTimeRange"
+        }
+      },
+      "required" : [ "InsightId" ]
+    },
+    "ListAnomaliesForInsightResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "ProactiveAnomalies" : {
+          "shape" : "__listOfProactiveAnomalySummary"
+        },
+        "ReactiveAnomalies" : {
+          "shape" : "__listOfReactiveAnomalySummary"
+        }
+      }
+    },
+    "ListEventsFilters" : {
+      "type" : "structure",
+      "members" : {
+        "DataSource" : {
+          "shape" : "EventDataSource"
+        },
+        "EventClass" : {
+          "shape" : "EventClass"
+        },
+        "EventSource" : {
+          "shape" : "__stringMin10Max50PatternAZAZ09AmazonawsComAwsEvents"
+        },
+        "EventTimeRange" : {
+          "shape" : "EventTimeRange"
+        },
+        "InsightId" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        }
+      }
+    },
+    "ListEventsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Filters" : {
+          "shape" : "ListEventsFilters"
+        },
+        "MaxResults" : {
+          "shape" : "__integerMin1Max200"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      },
+      "required" : [ "Filters" ]
+    },
+    "ListEventsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Events" : {
+          "shape" : "__listOfEvent"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      }
+    },
+    "ListInsightsAnyStatusFilter" : {
+      "type" : "structure",
+      "members" : {
+        "StartTimeRange" : {
+          "shape" : "StartTimeRange"
+        },
+        "Type" : {
+          "shape" : "InsightType"
+        }
+      },
+      "required" : [ "Type", "StartTimeRange" ]
+    },
+    "ListInsightsClosedStatusFilter" : {
+      "type" : "structure",
+      "members" : {
+        "EndTimeRange" : {
+          "shape" : "EndTimeRange"
+        },
+        "Type" : {
+          "shape" : "InsightType"
+        }
+      },
+      "required" : [ "Type", "EndTimeRange" ]
+    },
+    "ListInsightsOngoingStatusFilter" : {
+      "type" : "structure",
+      "members" : {
+        "Type" : {
+          "shape" : "InsightType"
+        }
+      },
+      "required" : [ "Type" ]
+    },
+    "ListInsightsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "MaxResults" : {
+          "shape" : "__integerMin1Max100"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "StatusFilter" : {
+          "shape" : "ListInsightsStatusFilter"
+        }
+      },
+      "required" : [ "StatusFilter" ]
+    },
+    "ListInsightsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "ProactiveInsights" : {
+          "shape" : "__listOfProactiveInsightSummary"
+        },
+        "ReactiveInsights" : {
+          "shape" : "__listOfReactiveInsightSummary"
+        }
+      }
+    },
+    "ListInsightsStatusFilter" : {
+      "type" : "structure",
+      "members" : {
+        "Any" : {
+          "shape" : "ListInsightsAnyStatusFilter"
+        },
+        "Closed" : {
+          "shape" : "ListInsightsClosedStatusFilter"
+        },
+        "Ongoing" : {
+          "shape" : "ListInsightsOngoingStatusFilter"
+        }
+      }
+    },
+    "ListNotificationChannelsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      }
+    },
+    "ListNotificationChannelsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Channels" : {
+          "shape" : "__listOfNotificationChannel"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      }
+    },
+    "ListRecommendationsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "InsightId" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      },
+      "required" : [ "InsightId" ]
+    },
+    "ListRecommendationsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "Recommendations" : {
+          "shape" : "__listOfRecommendation"
+        }
+      }
+    },
+    "MaxResults" : {
+      "type" : "integer",
+      "min" : 1,
+      "max" : 25
+    },
+    "NotificationChannel" : {
+      "type" : "structure",
+      "members" : {
+        "Config" : {
+          "shape" : "NotificationChannelConfig"
+        },
+        "Id" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        }
+      }
+    },
+    "NotificationChannelConfig" : {
+      "type" : "structure",
+      "members" : {
+        "Sns" : {
+          "shape" : "SnsChannelConfig"
+        }
+      },
+      "required" : [ "Sns" ]
+    },
+    "OpsCenterIntegration" : {
+      "type" : "structure",
+      "members" : {
+        "OptInStatus" : {
+          "shape" : "OptInStatus"
+        }
+      }
+    },
+    "OpsCenterIntegrationConfig" : {
+      "type" : "structure",
+      "members" : {
+        "OptInStatus" : {
+          "shape" : "OptInStatus"
+        }
+      }
+    },
+    "OptInStatus" : {
+      "type" : "string",
+      "enum" : [ "ENABLED", "DISABLED" ]
+    },
+    "PredictionTimeRange" : {
+      "type" : "structure",
+      "members" : {
+        "EndTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "StartTime" : {
+          "shape" : "__timestampUnix"
+        }
+      },
+      "required" : [ "StartTime" ]
+    },
+    "ProactiveAnomaly" : {
+      "type" : "structure",
+      "members" : {
+        "AnomalyTimeRange" : {
+          "shape" : "AnomalyTimeRange"
+        },
+        "AssociatedInsightId" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "Limit" : {
+          "shape" : "__double"
+        },
+        "PredictionTimeRange" : {
+          "shape" : "PredictionTimeRange"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "AnomalySeverity"
+        },
+        "SourceDetails" : {
+          "shape" : "AnomalySourceDetails"
+        },
+        "Status" : {
+          "shape" : "AnomalyStatus"
+        },
+        "UpdateTime" : {
+          "shape" : "__timestampUnix"
+        }
+      }
+    },
+    "ProactiveAnomalySummary" : {
+      "type" : "structure",
+      "members" : {
+        "AnomalyTimeRange" : {
+          "shape" : "AnomalyTimeRange"
+        },
+        "AssociatedInsightId" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "Limit" : {
+          "shape" : "__double"
+        },
+        "PredictionTimeRange" : {
+          "shape" : "PredictionTimeRange"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "AnomalySeverity"
+        },
+        "SourceDetails" : {
+          "shape" : "AnomalySourceDetails"
+        },
+        "Status" : {
+          "shape" : "AnomalyStatus"
+        },
+        "UpdateTime" : {
+          "shape" : "__timestampUnix"
+        }
+      }
+    },
+    "ProactiveInsight" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "InsightTimeRange" : {
+          "shape" : "InsightTimeRange"
+        },
+        "Name" : {
+          "shape" : "__stringMin1Max530PatternSS"
+        },
+        "PredictionTimeRange" : {
+          "shape" : "PredictionTimeRange"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "InsightSeverity"
+        },
+        "SsmOpsItemId" : {
+          "shape" : "__stringMin1Max100Pattern"
+        },
+        "Status" : {
+          "shape" : "InsightStatus"
+        }
+      }
+    },
+    "ProactiveInsightSummary" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "InsightTimeRange" : {
+          "shape" : "InsightTimeRange"
+        },
+        "Name" : {
+          "shape" : "__stringMin1Max530PatternSS"
+        },
+        "PredictionTimeRange" : {
+          "shape" : "PredictionTimeRange"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "InsightSeverity"
+        },
+        "Status" : {
+          "shape" : "InsightStatus"
+        }
+      }
+    },
+    "PutFeedbackRequest" : {
+      "type" : "structure",
+      "members" : {
+        "InsightFeedback" : {
+          "shape" : "InsightFeedback"
+        }
+      }
+    },
+    "PutFeedbackResponse" : {
+      "type" : "structure",
+      "members" : { }
+    },
+    "ReactiveAnomaly" : {
+      "type" : "structure",
+      "members" : {
+        "AnomalyTimeRange" : {
+          "shape" : "AnomalyTimeRange"
+        },
+        "AssociatedInsightId" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "AnomalySeverity"
+        },
+        "SourceDetails" : {
+          "shape" : "AnomalySourceDetails"
+        },
+        "Status" : {
+          "shape" : "AnomalyStatus"
+        }
+      }
+    },
+    "ReactiveAnomalySummary" : {
+      "type" : "structure",
+      "members" : {
+        "AnomalyTimeRange" : {
+          "shape" : "AnomalyTimeRange"
+        },
+        "AssociatedInsightId" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "AnomalySeverity"
+        },
+        "SourceDetails" : {
+          "shape" : "AnomalySourceDetails"
+        },
+        "Status" : {
+          "shape" : "AnomalyStatus"
+        }
+      }
+    },
+    "ReactiveInsight" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "InsightTimeRange" : {
+          "shape" : "InsightTimeRange"
+        },
+        "Name" : {
+          "shape" : "__stringMin1Max530PatternSS"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "InsightSeverity"
+        },
+        "SsmOpsItemId" : {
+          "shape" : "__stringMin1Max100Pattern"
+        },
+        "Status" : {
+          "shape" : "InsightStatus"
+        }
+      }
+    },
+    "ReactiveInsightSummary" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__stringMin1Max100PatternW"
+        },
+        "InsightTimeRange" : {
+          "shape" : "InsightTimeRange"
+        },
+        "Name" : {
+          "shape" : "__stringMin1Max530PatternSS"
+        },
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severity" : {
+          "shape" : "InsightSeverity"
+        },
+        "Status" : {
+          "shape" : "InsightStatus"
+        }
+      }
+    },
+    "Recommendation" : {
+      "type" : "structure",
+      "members" : {
+        "Description" : {
+          "shape" : "__string"
+        },
+        "Link" : {
+          "shape" : "__string"
+        },
+        "Name" : {
+          "shape" : "__string"
+        },
+        "Reason" : {
+          "shape" : "__string"
+        },
+        "RelatedAnomalies" : {
+          "shape" : "__listOfRecommendationRelatedAnomaly"
+        },
+        "RelatedEvents" : {
+          "shape" : "__listOfRecommendationRelatedEvent"
+        }
+      }
+    },
+    "RecommendationRelatedAnomaly" : {
+      "type" : "structure",
+      "members" : {
+        "Resources" : {
+          "shape" : "__listOfRecommendationRelatedAnomalyResource"
+        },
+        "SourceDetails" : {
+          "shape" : "__listOfRecommendationRelatedAnomalySourceDetail"
+        }
+      }
+    },
+    "RecommendationRelatedAnomalyResource" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "__string"
+        },
+        "Type" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "RecommendationRelatedAnomalySourceDetail" : {
+      "type" : "structure",
+      "members" : {
+        "CloudWatchMetrics" : {
+          "shape" : "__listOfRecommendationRelatedCloudWatchMetricsSourceDetail"
+        }
+      }
+    },
+    "RecommendationRelatedCloudWatchMetricsSourceDetail" : {
+      "type" : "structure",
+      "members" : {
+        "MetricName" : {
+          "shape" : "__string"
+        },
+        "Namespace" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "RecommendationRelatedEvent" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "__string"
+        },
+        "Resources" : {
+          "shape" : "__listOfRecommendationRelatedEventResource"
+        }
+      }
+    },
+    "RecommendationRelatedEventResource" : {
+      "type" : "structure",
+      "members" : {
+        "Name" : {
+          "shape" : "__string"
+        },
+        "Type" : {
+          "shape" : "__string"
+        }
+      }
+    },
+    "RemoveNotificationChannelRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Id" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "Id"
+        }
+      },
+      "required" : [ "Id" ]
+    },
+    "RemoveNotificationChannelResponse" : {
+      "type" : "structure",
+      "members" : { }
+    },
+    "ResourceCollection" : {
+      "type" : "structure",
+      "members" : {
+        "CloudFormation" : {
+          "shape" : "CloudFormationCollection"
+        }
+      }
+    },
+    "ResourceCollectionFilter" : {
+      "type" : "structure",
+      "members" : {
+        "CloudFormation" : {
+          "shape" : "CloudFormationCollectionFilter"
+        }
+      }
+    },
+    "ResourceNotFoundException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "ResourceId" : {
+          "shape" : "__string"
+        },
+        "ResourceType" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "Message", "ResourceId", "ResourceType" ],
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 404
+      }
+    },
+    "SearchInsightsFilters" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceCollection" : {
+          "shape" : "ResourceCollection"
+        },
+        "Severities" : {
+          "shape" : "__listOfInsightSeverity"
+        },
+        "Statuses" : {
+          "shape" : "__listOfInsightStatus"
+        }
+      }
+    },
+    "SearchInsightsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Filters" : {
+          "shape" : "SearchInsightsFilters"
+        },
+        "MaxResults" : {
+          "shape" : "__integerMin1Max100"
+        },
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "StartTimeRange" : {
+          "shape" : "StartTimeRange"
+        },
+        "Type" : {
+          "shape" : "InsightType"
+        }
+      },
+      "required" : [ "Type", "StartTimeRange" ]
+    },
+    "SearchInsightsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__stringMin36Max36PatternAF098AF094AF094AF094AF0912"
+        },
+        "ProactiveInsights" : {
+          "shape" : "__listOfProactiveInsightSummary"
+        },
+        "ReactiveInsights" : {
+          "shape" : "__listOfReactiveInsightSummary"
+        }
+      }
+    },
+    "ServiceIntegrationConfig" : {
+      "type" : "structure",
+      "members" : {
+        "OpsCenter" : {
+          "shape" : "OpsCenterIntegration"
+        }
+      }
+    },
+    "ServiceQuotaExceededException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        }
+      },
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 402
+      }
+    },
+    "SnsChannelConfig" : {
+      "type" : "structure",
+      "members" : {
+        "TopicArn" : {
+          "shape" : "__stringMin36Max1024PatternArnAwsAZ09SnsAZ09D12"
+        }
+      }
+    },
+    "StartTimeRange" : {
+      "type" : "structure",
+      "members" : {
+        "FromTime" : {
+          "shape" : "__timestampUnix"
+        },
+        "ToTime" : {
+          "shape" : "__timestampUnix"
+        }
+      }
+    },
+    "ThrottlingException" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "QuotaCode" : {
+          "shape" : "__string"
+        },
+        "ServiceCode" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "Message" ],
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 429
+      }
+    },
+    "UpdateCloudFormationCollectionFilter" : {
+      "type" : "structure",
+      "members" : {
+        "StackNames" : {
+          "shape" : "__listOf__stringMin1Max128PatternAZAZAZAZ09"
+        }
+      }
+    },
+    "UpdateResourceCollectionAction" : {
+      "type" : "string",
+      "enum" : [ "ADD", "REMOVE" ]
+    },
+    "UpdateResourceCollectionFilter" : {
+      "type" : "structure",
+      "members" : {
+        "CloudFormation" : {
+          "shape" : "UpdateCloudFormationCollectionFilter"
+        }
+      }
+    },
+    "UpdateResourceCollectionRequest" : {
+      "type" : "structure",
+      "members" : {
+        "Action" : {
+          "shape" : "UpdateResourceCollectionAction"
+        },
+        "ResourceCollection" : {
+          "shape" : "UpdateResourceCollectionFilter"
+        }
+      },
+      "required" : [ "Action", "ResourceCollection" ]
+    },
+    "UpdateResourceCollectionResponse" : {
+      "type" : "structure",
+      "members" : { }
+    },
+    "UpdateServiceIntegrationConfig" : {
+      "type" : "structure",
+      "members" : {
+        "OpsCenter" : {
+          "shape" : "OpsCenterIntegrationConfig"
+        }
+      }
+    },
+    "UpdateServiceIntegrationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ServiceIntegration" : {
+          "shape" : "UpdateServiceIntegrationConfig"
+        }
+      },
+      "required" : [ "ServiceIntegration" ]
+    },
+    "UpdateServiceIntegrationResponse" : {
+      "type" : "structure",
+      "members" : { }
+    },
+    "ValidationException" : {
+      "type" : "structure",
+      "members" : {
+        "Fields" : {
+          "shape" : "__listOfValidationExceptionField"
+        },
+        "Message" : {
+          "shape" : "__string"
+        },
+        "Reason" : {
+          "shape" : "ValidationExceptionReason"
+        }
+      },
+      "required" : [ "Message" ],
+      "exception" : true,
+      "error" : {
+        "httpStatusCode" : 400
+      }
+    },
+    "ValidationExceptionField" : {
+      "type" : "structure",
+      "members" : {
+        "Message" : {
+          "shape" : "__string"
+        },
+        "Name" : {
+          "shape" : "__string"
+        }
+      },
+      "required" : [ "Message", "Name" ]
+    },
+    "ValidationExceptionReason" : {
+      "type" : "string",
+      "enum" : [ "UNKNOWN_OPERATION", "CANNOT_PARSE", "FIELD_VALIDATION_FAILED", "OTHER" ]
+    },
+    "__boolean" : {
+      "type" : "boolean"
+    },
+    "__double" : {
+      "type" : "double"
+    },
+    "__integer" : {
+      "type" : "integer"
+    },
+    "__integerMin1Max100" : {
+      "type" : "integer",
+      "min" : 1,
+      "max" : 100
+    },
+    "__integerMin1Max200" : {
+      "type" : "integer",
+      "min" : 1,
+      "max" : 200
+    },
+    "__integerMin1Max500" : {
+      "type" : "integer",
+      "min" : 1,
+      "max" : 500
+    },
+    "__listOfCloudFormationHealth" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "CloudFormationHealth"
+      }
+    },
+    "__listOfCloudWatchMetricsDetail" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "CloudWatchMetricsDetail"
+      }
+    },
+    "__listOfCloudWatchMetricsDimension" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "CloudWatchMetricsDimension"
+      }
+    },
+    "__listOfEvent" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "Event"
+      }
+    },
+    "__listOfEventResource" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "EventResource"
+      }
+    },
+    "__listOfInsightSeverity" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "InsightSeverity"
+      }
+    },
+    "__listOfInsightStatus" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "InsightStatus"
+      }
+    },
+    "__listOfNotificationChannel" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "NotificationChannel"
+      }
+    },
+    "__listOfProactiveAnomalySummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ProactiveAnomalySummary"
+      }
+    },
+    "__listOfProactiveInsightSummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ProactiveInsightSummary"
+      }
+    },
+    "__listOfReactiveAnomalySummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ReactiveAnomalySummary"
+      }
+    },
+    "__listOfReactiveInsightSummary" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ReactiveInsightSummary"
+      }
+    },
+    "__listOfRecommendation" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "Recommendation"
+      }
+    },
+    "__listOfRecommendationRelatedAnomaly" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "RecommendationRelatedAnomaly"
+      }
+    },
+    "__listOfRecommendationRelatedAnomalyResource" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "RecommendationRelatedAnomalyResource"
+      }
+    },
+    "__listOfRecommendationRelatedAnomalySourceDetail" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "RecommendationRelatedAnomalySourceDetail"
+      }
+    },
+    "__listOfRecommendationRelatedCloudWatchMetricsSourceDetail" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "RecommendationRelatedCloudWatchMetricsSourceDetail"
+      }
+    },
+    "__listOfRecommendationRelatedEvent" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "RecommendationRelatedEvent"
+      }
+    },
+    "__listOfRecommendationRelatedEventResource" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "RecommendationRelatedEventResource"
+      }
+    },
+    "__listOfValidationExceptionField" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "ValidationExceptionField"
+      }
+    },
+    "__listOf__stringMin1Max128PatternAZAZAZAZ09" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "__stringMin1Max128PatternAZAZAZAZ09"
+      }
+    },
+    "__long" : {
+      "type" : "long"
+    },
+    "__string" : {
+      "type" : "string"
+    },
+    "__stringMin0Max2048Pattern" : {
+      "type" : "string",
+      "min" : 0,
+      "max" : 2048,
+      "pattern" : "^.*$"
+    },
+    "__stringMin0Max50" : {
+      "type" : "string",
+      "min" : 0,
+      "max" : 50
+    },
+    "__stringMin10Max50PatternAZAZ09AmazonawsComAwsEvents" : {
+      "type" : "string",
+      "min" : 10,
+      "max" : 50,
+      "pattern" : "^[a-z]+[a-z0-9]*\\.amazonaws\\.com|aws\\.events$"
+    },
+    "__stringMin1Max100Pattern" : {
+      "type" : "string",
+      "min" : 1,
+      "max" : 100,
+      "pattern" : "^.*$"
+    },
+    "__stringMin1Max100PatternW" : {
+      "type" : "string",
+      "min" : 1,
+      "max" : 100,
+      "pattern" : "^[\\w-]*$"
+    },
+    "__stringMin1Max128PatternAZAZAZAZ09" : {
+      "type" : "string",
+      "min" : 1,
+      "max" : 128,
+      "pattern" : "^[a-zA-Z*]+[a-zA-Z0-9-]*$"
+    },
+    "__stringMin1Max530PatternSS" : {
+      "type" : "string",
+      "min" : 1,
+      "max" : 530,
+      "pattern" : "^[\\s\\S]*$"
+    },
+    "__stringMin36Max1024PatternArnAwsAZ09SnsAZ09D12" : {
+      "type" : "string",
+      "min" : 36,
+      "max" : 1024,
+      "pattern" : "^arn:aws[a-z0-9-]*:sns:[a-z0-9-]+:\\d{12}:[^:]+$"
+    },
+    "__stringMin36Max2048PatternArnAwsAZAZ09AZ09D12" : {
+      "type" : "string",
+      "min" : 36,
+      "max" : 2048,
+      "pattern" : "^arn:aws[-a-z]*:[a-z0-9-]*:[a-z0-9-]*:\\d{12}:.*$"
+    },
+    "__stringMin36Max36PatternAF098AF094AF094AF094AF0912" : {
+      "type" : "string",
+      "min" : 36,
+      "max" : 36,
+      "pattern" : "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "__timestampIso8601" : {
+      "type" : "timestamp",
+      "timestampFormat" : "iso8601"
+    },
+    "__timestampUnix" : {
+      "type" : "timestamp",
+      "timestampFormat" : "unixTimestamp"
+    }
+  }
+}

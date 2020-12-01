@@ -1287,9 +1287,7 @@
       "type":"structure",
       "required":[
         "FunctionName",
-        "Runtime",
         "Role",
-        "Handler",
         "Code"
       ],
       "members":{
@@ -1303,6 +1301,7 @@
         "MemorySize":{"shape":"MemorySize"},
         "Publish":{"shape":"Boolean"},
         "VpcConfig":{"shape":"VpcConfig"},
+        "PackageType":{"shape":"PackageType"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "Environment":{"shape":"Environment"},
         "KMSKeyArn":{"shape":"KMSKeyArn"},
@@ -1310,6 +1309,7 @@
         "Tags":{"shape":"Tags"},
         "Layers":{"shape":"LayerList"},
         "FileSystemConfigs":{"shape":"FileSystemConfigList"},
+        "ImageConfig":{"shape":"ImageConfig"},
         "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"}
       }
     },
@@ -1662,14 +1662,17 @@
         "ZipFile":{"shape":"Blob"},
         "S3Bucket":{"shape":"S3Bucket"},
         "S3Key":{"shape":"S3Key"},
-        "S3ObjectVersion":{"shape":"S3ObjectVersion"}
+        "S3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "ImageUri":{"shape":"String"}
       }
     },
     "FunctionCodeLocation":{
       "type":"structure",
       "members":{
         "RepositoryType":{"shape":"String"},
-        "Location":{"shape":"String"}
+        "Location":{"shape":"String"},
+        "ImageUri":{"shape":"String"},
+        "ResolvedImageUri":{"shape":"String"}
       }
     },
     "FunctionConfiguration":{
@@ -1702,6 +1705,8 @@
         "LastUpdateStatusReason":{"shape":"LastUpdateStatusReason"},
         "LastUpdateStatusReasonCode":{"shape":"LastUpdateStatusReasonCode"},
         "FileSystemConfigs":{"shape":"FileSystemConfigList"},
+        "PackageType":{"shape":"PackageType"},
+        "ImageConfigResponse":{"shape":"ImageConfigResponse"},
         "SigningProfileVersionArn":{"shape":"Arn"},
         "SigningJobArn":{"shape":"Arn"}
       }
@@ -2018,6 +2023,28 @@
       "pattern":"[^\\s]+"
     },
     "HttpStatus":{"type":"integer"},
+    "ImageConfig":{
+      "type":"structure",
+      "members":{
+        "EntryPoint":{"shape":"StringList"},
+        "Command":{"shape":"StringList"},
+        "WorkingDirectory":{"shape":"WorkingDirectory"}
+      }
+    },
+    "ImageConfigError":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"String"},
+        "Message":{"shape":"SensitiveString"}
+      }
+    },
+    "ImageConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ImageConfig":{"shape":"ImageConfig"},
+        "Error":{"shape":"ImageConfigError"}
+      }
+    },
     "Integer":{"type":"integer"},
     "InvalidCodeSignatureException":{
       "type":"structure",
@@ -2234,7 +2261,9 @@
         "InternalError",
         "SubnetOutOfIPAddresses",
         "InvalidSubnet",
-        "InvalidSecurityGroup"
+        "InvalidSecurityGroup",
+        "ImageDeleted",
+        "ImageAccessDenied"
       ]
     },
     "Layer":{
@@ -2703,7 +2732,7 @@
     },
     "MemorySize":{
       "type":"integer",
-      "max":3008,
+      "max":10240,
       "min":128
     },
     "NameSpacedFunctionArn":{
@@ -2741,6 +2770,13 @@
     "OrganizationId":{
       "type":"string",
       "pattern":"o-[a-z0-9]{10,32}"
+    },
+    "PackageType":{
+      "type":"string",
+      "enum":[
+        "Zip",
+        "Image"
+      ]
     },
     "ParallelizationFactor":{
       "type":"integer",
@@ -3189,7 +3225,9 @@
         "InternalError",
         "SubnetOutOfIPAddresses",
         "InvalidSubnet",
-        "InvalidSecurityGroup"
+        "InvalidSecurityGroup",
+        "ImageDeleted",
+        "ImageAccessDenied"
       ]
     },
     "StatementId":{
@@ -3199,6 +3237,11 @@
       "pattern":"([a-zA-Z0-9-_]+)"
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":1500
+    },
     "SubnetIPAddressLimitReachedException":{
       "type":"structure",
       "members":{
@@ -3411,6 +3454,7 @@
         "S3Bucket":{"shape":"S3Bucket"},
         "S3Key":{"shape":"S3Key"},
         "S3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "ImageUri":{"shape":"String"},
         "Publish":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"},
         "RevisionId":{"shape":"String"}
@@ -3438,7 +3482,8 @@
         "TracingConfig":{"shape":"TracingConfig"},
         "RevisionId":{"shape":"String"},
         "Layers":{"shape":"LayerList"},
-        "FileSystemConfigs":{"shape":"FileSystemConfigList"}
+        "FileSystemConfigs":{"shape":"FileSystemConfigList"},
+        "ImageConfig":{"shape":"ImageConfig"}
       }
     },
     "UpdateFunctionEventInvokeConfigRequest":{
@@ -3486,6 +3531,10 @@
       "type":"double",
       "max":1.0,
       "min":0.0
+    },
+    "WorkingDirectory":{
+      "type":"string",
+      "max":1000
     }
   }
 }
