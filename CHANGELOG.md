@@ -1,3 +1,13 @@
+Release v1.36.0 (2020-12-02)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Adds new service
+
+### SDK Features
+* `service/profile`: Remove incorrectly named client package, profile.
+  * Removes an incorrectly named service client package `profile` that was included in release, v1.35.37.
+
 Release v1.35.37 (2020-12-01)
 ===
 
