@@ -21,6 +21,18 @@ const (
 	// the IAM policy associated with this account.
 	ErrCodeAuthorizationException = "AuthorizationException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// There was a conflict processing the request. Try your request again.
+	ErrCodeConflictException = "ConflictException"
+
+	// ErrCodeEntitlementNotAllowedException for service response error code
+	// "EntitlementNotAllowedException".
+	//
+	// The entitlement is not allowed.
+	ErrCodeEntitlementNotAllowedException = "EntitlementNotAllowedException"
+
 	// ErrCodeFailedDependencyException for service response error code
 	// "FailedDependencyException".
 	//
@@ -54,11 +66,24 @@ const (
 	// You do not have enough licenses available to support a new resource launch.
 	ErrCodeLicenseUsageException = "LicenseUsageException"
 
+	// ErrCodeNoEntitlementsAllowedException for service response error code
+	// "NoEntitlementsAllowedException".
+	//
+	// There are no entitlements found for this license, or the entitlement maximum
+	// count is reached.
+	ErrCodeNoEntitlementsAllowedException = "NoEntitlementsAllowedException"
+
 	// ErrCodeRateLimitExceededException for service response error code
 	// "RateLimitExceededException".
 	//
 	// Too many requests have been submitted. Try again after a brief wait.
 	ErrCodeRateLimitExceededException = "RateLimitExceededException"
+
+	// ErrCodeRedirectException for service response error code
+	// "RedirectException".
+	//
+	// This is not the correct Region for the resource. Try again.
+	ErrCodeRedirectException = "RedirectException"
 
 	// ErrCodeResourceLimitExceededException for service response error code
 	// "ResourceLimitExceededException".
@@ -66,22 +91,47 @@ const (
 	// Your resource limits have been exceeded.
 	ErrCodeResourceLimitExceededException = "ResourceLimitExceededException"
 
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The resource cannot be found.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
 	// ErrCodeServerInternalException for service response error code
 	// "ServerInternalException".
 	//
 	// The server experienced an internal error. Try again.
 	ErrCodeServerInternalException = "ServerInternalException"
+
+	// ErrCodeUnsupportedDigitalSignatureMethodException for service response error code
+	// "UnsupportedDigitalSignatureMethodException".
+	//
+	// The digital signature method is unsupported. Try your request again.
+	ErrCodeUnsupportedDigitalSignatureMethodException = "UnsupportedDigitalSignatureMethodException"
+
+	// ErrCodeValidationException for service response error code
+	// "ValidationException".
+	//
+	// The provided input is not valid. Try your request again.
+	ErrCodeValidationException = "ValidationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":          newErrorAccessDeniedException,
-	"AuthorizationException":         newErrorAuthorizationException,
-	"FailedDependencyException":      newErrorFailedDependencyException,
-	"FilterLimitExceededException":   newErrorFilterLimitExceededException,
-	"InvalidParameterValueException": newErrorInvalidParameterValueException,
-	"InvalidResourceStateException":  newErrorInvalidResourceStateException,
-	"LicenseUsageException":          newErrorLicenseUsageException,
-	"RateLimitExceededException":     newErrorRateLimitExceededException,
-	"ResourceLimitExceededException": newErrorResourceLimitExceededException,
-	"ServerInternalException":        newErrorServerInternalException,
+	"AccessDeniedException":                      newErrorAccessDeniedException,
+	"AuthorizationException":                     newErrorAuthorizationException,
+	"ConflictException":                          newErrorConflictException,
+	"EntitlementNotAllowedException":             newErrorEntitlementNotAllowedException,
+	"FailedDependencyException":                  newErrorFailedDependencyException,
+	"FilterLimitExceededException":               newErrorFilterLimitExceededException,
+	"InvalidParameterValueException":             newErrorInvalidParameterValueException,
+	"InvalidResourceStateException":              newErrorInvalidResourceStateException,
+	"LicenseUsageException":                      newErrorLicenseUsageException,
+	"NoEntitlementsAllowedException":             newErrorNoEntitlementsAllowedException,
+	"RateLimitExceededException":                 newErrorRateLimitExceededException,
+	"RedirectException":                          newErrorRedirectException,
+	"ResourceLimitExceededException":             newErrorResourceLimitExceededException,
+	"ResourceNotFoundException":                  newErrorResourceNotFoundException,
+	"ServerInternalException":                    newErrorServerInternalException,
+	"UnsupportedDigitalSignatureMethodException": newErrorUnsupportedDigitalSignatureMethodException,
+	"ValidationException":                        newErrorValidationException,
 }
