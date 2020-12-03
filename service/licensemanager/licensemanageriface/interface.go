@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS License Manager.
 //    func myFunc(svc licensemanageriface.LicenseManagerAPI) bool {
-//        // Make svc.CreateLicenseConfiguration request
+//        // Make svc.AcceptGrant request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockLicenseManagerClient struct {
 //        licensemanageriface.LicenseManagerAPI
 //    }
-//    func (m *mockLicenseManagerClient) CreateLicenseConfiguration(input *licensemanager.CreateLicenseConfigurationInput) (*licensemanager.CreateLicenseConfigurationOutput, error) {
+//    func (m *mockLicenseManagerClient) AcceptGrant(input *licensemanager.AcceptGrantInput) (*licensemanager.AcceptGrantOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,17 +60,85 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type LicenseManagerAPI interface {
+	AcceptGrant(*licensemanager.AcceptGrantInput) (*licensemanager.AcceptGrantOutput, error)
+	AcceptGrantWithContext(aws.Context, *licensemanager.AcceptGrantInput, ...request.Option) (*licensemanager.AcceptGrantOutput, error)
+	AcceptGrantRequest(*licensemanager.AcceptGrantInput) (*request.Request, *licensemanager.AcceptGrantOutput)
+
+	CheckInLicense(*licensemanager.CheckInLicenseInput) (*licensemanager.CheckInLicenseOutput, error)
+	CheckInLicenseWithContext(aws.Context, *licensemanager.CheckInLicenseInput, ...request.Option) (*licensemanager.CheckInLicenseOutput, error)
+	CheckInLicenseRequest(*licensemanager.CheckInLicenseInput) (*request.Request, *licensemanager.CheckInLicenseOutput)
+
+	CheckoutBorrowLicense(*licensemanager.CheckoutBorrowLicenseInput) (*licensemanager.CheckoutBorrowLicenseOutput, error)
+	CheckoutBorrowLicenseWithContext(aws.Context, *licensemanager.CheckoutBorrowLicenseInput, ...request.Option) (*licensemanager.CheckoutBorrowLicenseOutput, error)
+	CheckoutBorrowLicenseRequest(*licensemanager.CheckoutBorrowLicenseInput) (*request.Request, *licensemanager.CheckoutBorrowLicenseOutput)
+
+	CheckoutLicense(*licensemanager.CheckoutLicenseInput) (*licensemanager.CheckoutLicenseOutput, error)
+	CheckoutLicenseWithContext(aws.Context, *licensemanager.CheckoutLicenseInput, ...request.Option) (*licensemanager.CheckoutLicenseOutput, error)
+	CheckoutLicenseRequest(*licensemanager.CheckoutLicenseInput) (*request.Request, *licensemanager.CheckoutLicenseOutput)
+
+	CreateGrant(*licensemanager.CreateGrantInput) (*licensemanager.CreateGrantOutput, error)
+	CreateGrantWithContext(aws.Context, *licensemanager.CreateGrantInput, ...request.Option) (*licensemanager.CreateGrantOutput, error)
+	CreateGrantRequest(*licensemanager.CreateGrantInput) (*request.Request, *licensemanager.CreateGrantOutput)
+
+	CreateGrantVersion(*licensemanager.CreateGrantVersionInput) (*licensemanager.CreateGrantVersionOutput, error)
+	CreateGrantVersionWithContext(aws.Context, *licensemanager.CreateGrantVersionInput, ...request.Option) (*licensemanager.CreateGrantVersionOutput, error)
+	CreateGrantVersionRequest(*licensemanager.CreateGrantVersionInput) (*request.Request, *licensemanager.CreateGrantVersionOutput)
+
+	CreateLicense(*licensemanager.CreateLicenseInput) (*licensemanager.CreateLicenseOutput, error)
+	CreateLicenseWithContext(aws.Context, *licensemanager.CreateLicenseInput, ...request.Option) (*licensemanager.CreateLicenseOutput, error)
+	CreateLicenseRequest(*licensemanager.CreateLicenseInput) (*request.Request, *licensemanager.CreateLicenseOutput)
+
 	CreateLicenseConfiguration(*licensemanager.CreateLicenseConfigurationInput) (*licensemanager.CreateLicenseConfigurationOutput, error)
 	CreateLicenseConfigurationWithContext(aws.Context, *licensemanager.CreateLicenseConfigurationInput, ...request.Option) (*licensemanager.CreateLicenseConfigurationOutput, error)
 	CreateLicenseConfigurationRequest(*licensemanager.CreateLicenseConfigurationInput) (*request.Request, *licensemanager.CreateLicenseConfigurationOutput)
+
+	CreateLicenseVersion(*licensemanager.CreateLicenseVersionInput) (*licensemanager.CreateLicenseVersionOutput, error)
+	CreateLicenseVersionWithContext(aws.Context, *licensemanager.CreateLicenseVersionInput, ...request.Option) (*licensemanager.CreateLicenseVersionOutput, error)
+	CreateLicenseVersionRequest(*licensemanager.CreateLicenseVersionInput) (*request.Request, *licensemanager.CreateLicenseVersionOutput)
+
+	CreateToken(*licensemanager.CreateTokenInput) (*licensemanager.CreateTokenOutput, error)
+	CreateTokenWithContext(aws.Context, *licensemanager.CreateTokenInput, ...request.Option) (*licensemanager.CreateTokenOutput, error)
+	CreateTokenRequest(*licensemanager.CreateTokenInput) (*request.Request, *licensemanager.CreateTokenOutput)
+
+	DeleteGrant(*licensemanager.DeleteGrantInput) (*licensemanager.DeleteGrantOutput, error)
+	DeleteGrantWithContext(aws.Context, *licensemanager.DeleteGrantInput, ...request.Option) (*licensemanager.DeleteGrantOutput, error)
+	DeleteGrantRequest(*licensemanager.DeleteGrantInput) (*request.Request, *licensemanager.DeleteGrantOutput)
+
+	DeleteLicense(*licensemanager.DeleteLicenseInput) (*licensemanager.DeleteLicenseOutput, error)
+	DeleteLicenseWithContext(aws.Context, *licensemanager.DeleteLicenseInput, ...request.Option) (*licensemanager.DeleteLicenseOutput, error)
+	DeleteLicenseRequest(*licensemanager.DeleteLicenseInput) (*request.Request, *licensemanager.DeleteLicenseOutput)
 
 	DeleteLicenseConfiguration(*licensemanager.DeleteLicenseConfigurationInput) (*licensemanager.DeleteLicenseConfigurationOutput, error)
 	DeleteLicenseConfigurationWithContext(aws.Context, *licensemanager.DeleteLicenseConfigurationInput, ...request.Option) (*licensemanager.DeleteLicenseConfigurationOutput, error)
 	DeleteLicenseConfigurationRequest(*licensemanager.DeleteLicenseConfigurationInput) (*request.Request, *licensemanager.DeleteLicenseConfigurationOutput)
 
+	DeleteToken(*licensemanager.DeleteTokenInput) (*licensemanager.DeleteTokenOutput, error)
+	DeleteTokenWithContext(aws.Context, *licensemanager.DeleteTokenInput, ...request.Option) (*licensemanager.DeleteTokenOutput, error)
+	DeleteTokenRequest(*licensemanager.DeleteTokenInput) (*request.Request, *licensemanager.DeleteTokenOutput)
+
+	ExtendLicenseConsumption(*licensemanager.ExtendLicenseConsumptionInput) (*licensemanager.ExtendLicenseConsumptionOutput, error)
+	ExtendLicenseConsumptionWithContext(aws.Context, *licensemanager.ExtendLicenseConsumptionInput, ...request.Option) (*licensemanager.ExtendLicenseConsumptionOutput, error)
+	ExtendLicenseConsumptionRequest(*licensemanager.ExtendLicenseConsumptionInput) (*request.Request, *licensemanager.ExtendLicenseConsumptionOutput)
+
+	GetAccessToken(*licensemanager.GetAccessTokenInput) (*licensemanager.GetAccessTokenOutput, error)
+	GetAccessTokenWithContext(aws.Context, *licensemanager.GetAccessTokenInput, ...request.Option) (*licensemanager.GetAccessTokenOutput, error)
+	GetAccessTokenRequest(*licensemanager.GetAccessTokenInput) (*request.Request, *licensemanager.GetAccessTokenOutput)
+
+	GetGrant(*licensemanager.GetGrantInput) (*licensemanager.GetGrantOutput, error)
+	GetGrantWithContext(aws.Context, *licensemanager.GetGrantInput, ...request.Option) (*licensemanager.GetGrantOutput, error)
+	GetGrantRequest(*licensemanager.GetGrantInput) (*request.Request, *licensemanager.GetGrantOutput)
+
+	GetLicense(*licensemanager.GetLicenseInput) (*licensemanager.GetLicenseOutput, error)
+	GetLicenseWithContext(aws.Context, *licensemanager.GetLicenseInput, ...request.Option) (*licensemanager.GetLicenseOutput, error)
+	GetLicenseRequest(*licensemanager.GetLicenseInput) (*request.Request, *licensemanager.GetLicenseOutput)
+
 	GetLicenseConfiguration(*licensemanager.GetLicenseConfigurationInput) (*licensemanager.GetLicenseConfigurationOutput, error)
 	GetLicenseConfigurationWithContext(aws.Context, *licensemanager.GetLicenseConfigurationInput, ...request.Option) (*licensemanager.GetLicenseConfigurationOutput, error)
 	GetLicenseConfigurationRequest(*licensemanager.GetLicenseConfigurationInput) (*request.Request, *licensemanager.GetLicenseConfigurationOutput)
+
+	GetLicenseUsage(*licensemanager.GetLicenseUsageInput) (*licensemanager.GetLicenseUsageOutput, error)
+	GetLicenseUsageWithContext(aws.Context, *licensemanager.GetLicenseUsageInput, ...request.Option) (*licensemanager.GetLicenseUsageOutput, error)
+	GetLicenseUsageRequest(*licensemanager.GetLicenseUsageInput) (*request.Request, *licensemanager.GetLicenseUsageOutput)
 
 	GetServiceSettings(*licensemanager.GetServiceSettingsInput) (*licensemanager.GetServiceSettingsOutput, error)
 	GetServiceSettingsWithContext(aws.Context, *licensemanager.GetServiceSettingsInput, ...request.Option) (*licensemanager.GetServiceSettingsOutput, error)
@@ -79,6 +147,10 @@ type LicenseManagerAPI interface {
 	ListAssociationsForLicenseConfiguration(*licensemanager.ListAssociationsForLicenseConfigurationInput) (*licensemanager.ListAssociationsForLicenseConfigurationOutput, error)
 	ListAssociationsForLicenseConfigurationWithContext(aws.Context, *licensemanager.ListAssociationsForLicenseConfigurationInput, ...request.Option) (*licensemanager.ListAssociationsForLicenseConfigurationOutput, error)
 	ListAssociationsForLicenseConfigurationRequest(*licensemanager.ListAssociationsForLicenseConfigurationInput) (*request.Request, *licensemanager.ListAssociationsForLicenseConfigurationOutput)
+
+	ListDistributedGrants(*licensemanager.ListDistributedGrantsInput) (*licensemanager.ListDistributedGrantsOutput, error)
+	ListDistributedGrantsWithContext(aws.Context, *licensemanager.ListDistributedGrantsInput, ...request.Option) (*licensemanager.ListDistributedGrantsOutput, error)
+	ListDistributedGrantsRequest(*licensemanager.ListDistributedGrantsInput) (*request.Request, *licensemanager.ListDistributedGrantsOutput)
 
 	ListFailuresForLicenseConfigurationOperations(*licensemanager.ListFailuresForLicenseConfigurationOperationsInput) (*licensemanager.ListFailuresForLicenseConfigurationOperationsOutput, error)
 	ListFailuresForLicenseConfigurationOperationsWithContext(aws.Context, *licensemanager.ListFailuresForLicenseConfigurationOperationsInput, ...request.Option) (*licensemanager.ListFailuresForLicenseConfigurationOperationsOutput, error)
@@ -92,6 +164,22 @@ type LicenseManagerAPI interface {
 	ListLicenseSpecificationsForResourceWithContext(aws.Context, *licensemanager.ListLicenseSpecificationsForResourceInput, ...request.Option) (*licensemanager.ListLicenseSpecificationsForResourceOutput, error)
 	ListLicenseSpecificationsForResourceRequest(*licensemanager.ListLicenseSpecificationsForResourceInput) (*request.Request, *licensemanager.ListLicenseSpecificationsForResourceOutput)
 
+	ListLicenseVersions(*licensemanager.ListLicenseVersionsInput) (*licensemanager.ListLicenseVersionsOutput, error)
+	ListLicenseVersionsWithContext(aws.Context, *licensemanager.ListLicenseVersionsInput, ...request.Option) (*licensemanager.ListLicenseVersionsOutput, error)
+	ListLicenseVersionsRequest(*licensemanager.ListLicenseVersionsInput) (*request.Request, *licensemanager.ListLicenseVersionsOutput)
+
+	ListLicenses(*licensemanager.ListLicensesInput) (*licensemanager.ListLicensesOutput, error)
+	ListLicensesWithContext(aws.Context, *licensemanager.ListLicensesInput, ...request.Option) (*licensemanager.ListLicensesOutput, error)
+	ListLicensesRequest(*licensemanager.ListLicensesInput) (*request.Request, *licensemanager.ListLicensesOutput)
+
+	ListReceivedGrants(*licensemanager.ListReceivedGrantsInput) (*licensemanager.ListReceivedGrantsOutput, error)
+	ListReceivedGrantsWithContext(aws.Context, *licensemanager.ListReceivedGrantsInput, ...request.Option) (*licensemanager.ListReceivedGrantsOutput, error)
+	ListReceivedGrantsRequest(*licensemanager.ListReceivedGrantsInput) (*request.Request, *licensemanager.ListReceivedGrantsOutput)
+
+	ListReceivedLicenses(*licensemanager.ListReceivedLicensesInput) (*licensemanager.ListReceivedLicensesOutput, error)
+	ListReceivedLicensesWithContext(aws.Context, *licensemanager.ListReceivedLicensesInput, ...request.Option) (*licensemanager.ListReceivedLicensesOutput, error)
+	ListReceivedLicensesRequest(*licensemanager.ListReceivedLicensesInput) (*request.Request, *licensemanager.ListReceivedLicensesOutput)
+
 	ListResourceInventory(*licensemanager.ListResourceInventoryInput) (*licensemanager.ListResourceInventoryOutput, error)
 	ListResourceInventoryWithContext(aws.Context, *licensemanager.ListResourceInventoryInput, ...request.Option) (*licensemanager.ListResourceInventoryOutput, error)
 	ListResourceInventoryRequest(*licensemanager.ListResourceInventoryInput) (*request.Request, *licensemanager.ListResourceInventoryOutput)
@@ -100,9 +188,17 @@ type LicenseManagerAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *licensemanager.ListTagsForResourceInput, ...request.Option) (*licensemanager.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*licensemanager.ListTagsForResourceInput) (*request.Request, *licensemanager.ListTagsForResourceOutput)
 
+	ListTokens(*licensemanager.ListTokensInput) (*licensemanager.ListTokensOutput, error)
+	ListTokensWithContext(aws.Context, *licensemanager.ListTokensInput, ...request.Option) (*licensemanager.ListTokensOutput, error)
+	ListTokensRequest(*licensemanager.ListTokensInput) (*request.Request, *licensemanager.ListTokensOutput)
+
 	ListUsageForLicenseConfiguration(*licensemanager.ListUsageForLicenseConfigurationInput) (*licensemanager.ListUsageForLicenseConfigurationOutput, error)
 	ListUsageForLicenseConfigurationWithContext(aws.Context, *licensemanager.ListUsageForLicenseConfigurationInput, ...request.Option) (*licensemanager.ListUsageForLicenseConfigurationOutput, error)
 	ListUsageForLicenseConfigurationRequest(*licensemanager.ListUsageForLicenseConfigurationInput) (*request.Request, *licensemanager.ListUsageForLicenseConfigurationOutput)
+
+	RejectGrant(*licensemanager.RejectGrantInput) (*licensemanager.RejectGrantOutput, error)
+	RejectGrantWithContext(aws.Context, *licensemanager.RejectGrantInput, ...request.Option) (*licensemanager.RejectGrantOutput, error)
+	RejectGrantRequest(*licensemanager.RejectGrantInput) (*request.Request, *licensemanager.RejectGrantOutput)
 
 	TagResource(*licensemanager.TagResourceInput) (*licensemanager.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *licensemanager.TagResourceInput, ...request.Option) (*licensemanager.TagResourceOutput, error)

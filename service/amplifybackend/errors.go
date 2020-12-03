@@ -29,7 +29,7 @@ const (
 	// ErrCodeTooManyRequestsException for service response error code
 	// "TooManyRequestsException".
 	//
-	// An error that is returned when a limit of a specific type has been exceeded.
+	// An error that is returned when a limit of a specific type is exceeded.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
 )
 

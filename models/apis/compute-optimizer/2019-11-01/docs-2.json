@@ -1,16 +1,17 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Compute Optimizer is a service that analyzes the configuration and utilization metrics of your AWS resources, such as EC2 instances and Auto Scaling groups. It reports whether your resources are optimal, and generates optimization recommendations to reduce the cost and improve the performance of your workloads. Compute Optimizer also provides recent utilization metric data, as well as projected utilization metric data for the recommendations, which you can use to evaluate which recommendation provides the best price-performance trade-off. The analysis of your usage patterns can help you decide when to move or resize your running resources, and still meet your performance and capacity requirements. For more information about Compute Optimizer, including the required permissions to use the service, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/\">AWS Compute Optimizer User Guide</a>.</p>",
+  "service": "<p>AWS Compute Optimizer is a service that analyzes the configuration and utilization metrics of your AWS compute resources, such as EC2 instances, Auto Scaling groups, and Amazon EBS volumes. It reports whether your resources are optimal, and generates optimization recommendations to reduce the cost and improve the performance of your workloads. Compute Optimizer also provides recent utilization metric data, as well as projected utilization metric data for the recommendations, which you can use to evaluate which recommendation provides the best price-performance trade-off. The analysis of your usage patterns can help you decide when to move or resize your running resources, and still meet your performance and capacity requirements. For more information about Compute Optimizer, including the required permissions to use the service, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/\">AWS Compute Optimizer User Guide</a>.</p>",
   "operations": {
     "DescribeRecommendationExportJobs": "<p>Describes recommendation export jobs created in the last seven days.</p> <p>Use the <code>ExportAutoScalingGroupRecommendations</code> or <code>ExportEC2InstanceRecommendations</code> actions to request an export of your recommendations. Then use the <code>DescribeRecommendationExportJobs</code> action to view your export jobs.</p>",
     "ExportAutoScalingGroupRecommendations": "<p>Exports optimization recommendations for Auto Scaling groups.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Auto Scaling group export job in progress per AWS Region.</p>",
     "ExportEC2InstanceRecommendations": "<p>Exports optimization recommendations for Amazon EC2 instances.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Amazon EC2 instance export job in progress per AWS Region.</p>",
     "GetAutoScalingGroupRecommendations": "<p>Returns Auto Scaling group recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
+    "GetEBSVolumeRecommendations": "<p>Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon EBS volumes that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetEC2RecommendationProjectedMetrics": "<p>Returns the projected utilization metrics of Amazon EC2 instance recommendations.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run this action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
-    "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is the master account of an organization, this action also confirms the enrollment status of member accounts within the organization.</p>",
+    "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is the management account of an organization, this action also confirms the enrollment status of member accounts within the organization.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>For example, it returns the number of Amazon EC2 instances in an account that are under-provisioned, over-provisioned, or optimized. It also returns the number of Auto Scaling groups in an account that are not optimized, or optimized.</p>",
-    "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a master account of an organization, this action can also be used to enroll member accounts within the organization.</p>"
+    "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a management account of an organization, this action can also be used to enroll member accounts within the organization.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -24,17 +25,19 @@
         "AccountIds$member": null,
         "AutoScalingGroupRecommendation$accountId": "<p>The AWS account ID of the Auto Scaling group.</p>",
         "InstanceRecommendation$accountId": "<p>The AWS account ID of the instance.</p>",
-        "RecommendationSummary$accountId": "<p>The AWS account ID of the recommendation summary.</p>"
+        "RecommendationSummary$accountId": "<p>The AWS account ID of the recommendation summary.</p>",
+        "VolumeRecommendation$accountId": "<p>The AWS account ID of the volume.</p>"
       }
     },
     "AccountIds": {
       "base": null,
       "refs": {
-        "ExportAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export Auto Scaling group recommendations.</p> <p>If your account is the master account of an organization, use this parameter to specify the member accounts for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
-        "ExportEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export instance recommendations.</p> <p>If your account is the master account of an organization, use this parameter to specify the member accounts for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
-        "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return Auto Scaling group recommendations.</p> <p>If your account is the master account of an organization, use this parameter to specify the member accounts for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
-        "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return instance recommendations.</p> <p>If your account is the master account of an organization, use this parameter to specify the member accounts for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
-        "GetRecommendationSummariesRequest$accountIds": "<p>The IDs of the AWS accounts for which to return recommendation summaries.</p> <p>If your account is the master account of an organization, use this parameter to specify the member accounts for which you want to return recommendation summaries.</p> <p>Only one account ID can be specified per request.</p>"
+        "ExportAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
+        "ExportEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
+        "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
+        "GetEBSVolumeRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return volume recommendations.</p> <p>Only one account ID can be specified per request.</p>",
+        "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
+        "GetRecommendationSummariesRequest$accountIds": "<p>The IDs of the AWS accounts for which to return recommendation summaries.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return recommendation summaries.</p> <p>Only one account ID can be specified per request.</p>"
       }
     },
     "AutoScalingGroupArn": {
@@ -140,6 +143,48 @@
         "S3DestinationConfig$keyPrefix": "<p>The Amazon S3 bucket prefix for an export job.</p>"
       }
     },
+    "EBSFilter": {
+      "base": "<p>Describes a filter that returns a more specific list of Amazon Elastic Block Store (Amazon EBS) volume recommendations.</p> <p>This filter is used with the <code>GetEBSVolumeRecommendations</code> action.</p>",
+      "refs": {
+        "EBSFilters$member": null
+      }
+    },
+    "EBSFilterName": {
+      "base": null,
+      "refs": {
+        "EBSFilter$name": "<p>The name of the filter.</p> <p>Specify <code>Finding</code> to return recommendations with a specific finding classification (e.g., <code>Optimized</code>).</p>"
+      }
+    },
+    "EBSFilters": {
+      "base": null,
+      "refs": {
+        "GetEBSVolumeRecommendationsRequest$filters": "<p>An array of objects that describe a filter that returns a more specific list of volume recommendations.</p>"
+      }
+    },
+    "EBSFinding": {
+      "base": null,
+      "refs": {
+        "VolumeRecommendation$finding": "<p>The finding classification for the volume.</p> <p>Findings for volumes include:</p> <ul> <li> <p> <b> <code>NotOptimized</code> </b>—A volume is considered not optimized when AWS Compute Optimizer identifies a recommendation that can provide better performance for your workload.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An volume is considered optimized when Compute Optimizer determines that the volume is correctly provisioned to run your workload based on the chosen volume type. For optimized resources, Compute Optimizer might recommend a new generation volume type.</p> </li> </ul>"
+      }
+    },
+    "EBSMetricName": {
+      "base": null,
+      "refs": {
+        "EBSUtilizationMetric$name": "<p>The name of the utilization metric.</p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>VolumeReadOpsPerSecond</code> - The completed read operations per second from the volume in a specified period of time.</p> <p>Unit: Count</p> </li> <li> <p> <code>VolumeWriteOpsPerSecond</code> - The completed write operations per second to the volume in a specified period of time.</p> <p>Unit: Count</p> </li> <li> <p> <code>VolumeReadBytesPerSecond</code> - The bytes read per second from the volume in a specified period of time.</p> <p>Unit: Bytes</p> </li> <li> <p> <code>VolumeWriteBytesPerSecond</code> - The bytes written to the volume in a specified period of time.</p> <p>Unit: Bytes</p> </li> </ul>"
+      }
+    },
+    "EBSUtilizationMetric": {
+      "base": "<p>Describes a utilization metric of an Amazon Elastic Block Store (Amazon EBS) volume.</p> <p>Compare the utilization metric data of your resource against its projected utilization metric data to determine the performance difference between your current resource and the recommended option.</p>",
+      "refs": {
+        "EBSUtilizationMetrics$member": null
+      }
+    },
+    "EBSUtilizationMetrics": {
+      "base": null,
+      "refs": {
+        "VolumeRecommendation$utilizationMetrics": "<p>An array of objects that describe the utilization metrics of the volume.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -218,7 +263,7 @@
       }
     },
     "Filter": {
-      "base": "<p>Describes a filter that returns a more specific list of recommendations.</p>",
+      "base": "<p>Describes a filter that returns a more specific list of recommendations.</p> <p>This filter is used with the <code>GetAutoScalingGroupRecommendations</code> and <code>GetEC2InstanceRecommendations</code> actions.</p>",
       "refs": {
         "Filters$member": null
       }
@@ -226,7 +271,7 @@
     "FilterName": {
       "base": null,
       "refs": {
-        "Filter$name": "<p>The name of the filter.</p> <p>Specify <code>Finding</code> to return recommendations with a specific findings classification (e.g., <code>Overprovisioned</code>).</p> <p>Specify <code>RecommendationSourceType</code> to return recommendations of a specific resource type (e.g., <code>AutoScalingGroup</code>).</p>"
+        "Filter$name": "<p>The name of the filter.</p> <p>Specify <code>Finding</code> to return recommendations with a specific finding classification (e.g., <code>Overprovisioned</code>).</p> <p>Specify <code>RecommendationSourceType</code> to return recommendations of a specific resource type (e.g., <code>AutoScalingGroup</code>).</p>"
       }
     },
     "FilterValue": {
@@ -238,8 +283,9 @@
     "FilterValues": {
       "base": null,
       "refs": {
-        "Filter$values": "<p>The value of the filter.</p> <p>If you specify the <code>name</code> parameter as <code>Finding</code>, and you request recommendations for an <i>instance</i>, then the valid values are <code>Underprovisioned</code>, <code>Overprovisioned</code>, <code>NotOptimized</code>, or <code>Optimized</code>.</p> <p>If you specify the <code>name</code> parameter as <code>Finding</code>, and you request recommendations for an <i>Auto Scaling group</i>, then the valid values are <code>Optimized</code>, or <code>NotOptimized</code>.</p> <p>If you specify the <code>name</code> parameter as <code>RecommendationSourceType</code>, then the valid values are <code>Ec2Instance</code>, or <code>AutoScalingGroup</code>.</p>",
-        "JobFilter$values": "<p>The value of the filter.</p> <p>If you specify the <code>name</code> parameter as <code>ResourceType</code>, the valid values are <code>Ec2Instance</code> or <code>AutoScalingGroup</code>.</p> <p>If you specify the <code>name</code> parameter as <code>JobStatus</code>, the valid values are <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code>.</p>"
+        "EBSFilter$values": "<p>The value of the filter.</p> <p>The valid values are <code>Optimized</code>, or <code>NotOptimized</code>.</p>",
+        "Filter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter and the resource type that you wish to filter results for:</p> <ul> <li> <p>Specify <code>Optimized</code> or <code>NotOptimized</code> if you specified the <code>name</code> parameter as <code>Finding</code> and you want to filter results for Auto Scaling groups.</p> </li> <li> <p>Specify <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code> if you specified the <code>name</code> parameter as <code>Finding</code> and you want to filter results for EC2 instances.</p> </li> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specified the <code>name</code> parameter as <code>RecommendationSourceType</code>.</p> </li> </ul>",
+        "JobFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specified the <code>name</code> parameter as <code>ResourceType</code>. There is no filter for EBS volumes because volume recommendations cannot be exported at this time.</p> </li> <li> <p>Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code> if you specified the <code>name</code> parameter as <code>JobStatus</code>.</p> </li> </ul>"
       }
     },
     "Filters": {
@@ -254,8 +300,8 @@
     "Finding": {
       "base": null,
       "refs": {
-        "AutoScalingGroupRecommendation$finding": "<p>The finding classification for the Auto Scaling group.</p> <p>Findings for Auto Scaling groups include:</p> <ul> <li> <p> <b> <code>NotOptimized</code> </b>—An Auto Scaling group is considered not optimized when AWS Compute Optimizer identifies a recommendation that can provide better performance for your workload.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An Auto Scaling group is considered optimized when Compute Optimizer determines that the group is correctly provisioned to run your workload based on the chosen instance type. For optimized resources, Compute Optimizer might recommend a new generation instance type.</p> </li> </ul> <note> <p>The values that are returned might be <code>NOT_OPTIMIZED</code> or <code>OPTIMIZED</code>.</p> </note>",
-        "InstanceRecommendation$finding": "<p>The finding classification for the instance.</p> <p>Findings for instances include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b>—An instance is considered under-provisioned when at least one specification of your instance, such as CPU, memory, or network, does not meet the performance requirements of your workload. Under-provisioned instances may lead to poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b>—An instance is considered over-provisioned when at least one specification of your instance, such as CPU, memory, or network, can be sized down while still meeting the performance requirements of your workload, and no specification is under-provisioned. Over-provisioned instances may lead to unnecessary infrastructure cost.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload and is not over provisioned. An optimized instance runs your workloads with optimal performance and infrastructure cost. For optimized resources, AWS Compute Optimizer might recommend a new generation instance type.</p> </li> </ul> <note> <p>The values that are returned might be <code>UNDER_PROVISIONED</code>, <code>OVER_PROVISIONED</code>, or <code>OPTIMIZED</code>.</p> </note>",
+        "AutoScalingGroupRecommendation$finding": "<p>The finding classification for the Auto Scaling group.</p> <p>Findings for Auto Scaling groups include:</p> <ul> <li> <p> <b> <code>NotOptimized</code> </b>—An Auto Scaling group is considered not optimized when AWS Compute Optimizer identifies a recommendation that can provide better performance for your workload.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An Auto Scaling group is considered optimized when Compute Optimizer determines that the group is correctly provisioned to run your workload based on the chosen instance type. For optimized resources, Compute Optimizer might recommend a new generation instance type.</p> </li> </ul>",
+        "InstanceRecommendation$finding": "<p>The finding classification for the instance.</p> <p>Findings for instances include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b>—An instance is considered under-provisioned when at least one specification of your instance, such as CPU, memory, or network, does not meet the performance requirements of your workload. Under-provisioned instances may lead to poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b>—An instance is considered over-provisioned when at least one specification of your instance, such as CPU, memory, or network, can be sized down while still meeting the performance requirements of your workload, and no specification is under-provisioned. Over-provisioned instances may lead to unnecessary infrastructure cost.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload and is not over provisioned. An optimized instance runs your workloads with optimal performance and infrastructure cost. For optimized resources, AWS Compute Optimizer might recommend a new generation instance type.</p> </li> </ul>",
         "Summary$name": "<p>The finding classification of the recommendation.</p>"
       }
     },
@@ -265,6 +311,16 @@
       }
     },
     "GetAutoScalingGroupRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEBSVolumeRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEBSVolumeRecommendationsResponse": {
       "base": null,
       "refs": {
       }
@@ -309,6 +365,7 @@
       "base": null,
       "refs": {
         "GetAutoScalingGroupRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an unsupported Auto Scaling group.</p>",
+        "GetEBSVolumeRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an unsupported volume.</p>",
         "GetEC2InstanceRecommendationsResponse$errors": "<p>An array of objects that describe errors of the request.</p> <p>For example, an error is returned if you request recommendations for an instance of an unsupported instance family.</p>"
       }
     },
@@ -331,9 +388,9 @@
     "IncludeMemberAccounts": {
       "base": null,
       "refs": {
-        "ExportAutoScalingGroupRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the master account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
-        "ExportEC2InstanceRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the master account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
-        "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the your account is the master account of an organization.</p>"
+        "ExportAutoScalingGroupRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "ExportEC2InstanceRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the your account is the management account of an organization.</p>"
       }
     },
     "InstanceArn": {
@@ -434,7 +491,8 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the Auto Scaling group recommendation was last refreshed.</p>",
-        "InstanceRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the instance recommendation was last refreshed.</p>"
+        "InstanceRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the instance recommendation was last refreshed.</p>",
+        "VolumeRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the volume recommendation was last refreshed.</p>"
       }
     },
     "LastUpdatedTimestamp": {
@@ -452,7 +510,8 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the Auto Scaling group.</p>",
-        "InstanceRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the instance.</p>"
+        "InstanceRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the instance.</p>",
+        "VolumeRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the volume.</p>"
       }
     },
     "MaxResults": {
@@ -460,6 +519,7 @@
       "refs": {
         "DescribeRecommendationExportJobsRequest$maxResults": "<p>The maximum number of export jobs to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
         "GetAutoScalingGroupRecommendationsRequest$maxResults": "<p>The maximum number of Auto Scaling group recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
+        "GetEBSVolumeRecommendationsRequest$maxResults": "<p>The maximum number of volume recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
         "GetEC2InstanceRecommendationsRequest$maxResults": "<p>The maximum number of instance recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
         "GetRecommendationSummariesRequest$maxResults": "<p>The maximum number of recommendation summaries to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>"
       }
@@ -473,7 +533,7 @@
     "MemberAccountsEnrolled": {
       "base": null,
       "refs": {
-        "GetEnrollmentStatusResponse$memberAccountsEnrolled": "<p>Confirms the enrollment status of member accounts within the organization, if the account is a master account of an organization.</p>"
+        "GetEnrollmentStatusResponse$memberAccountsEnrolled": "<p>Confirms the enrollment status of member accounts within the organization, if the account is a management account of an organization.</p>"
       }
     },
     "Message": {
@@ -491,20 +551,22 @@
     "MetricName": {
       "base": null,
       "refs": {
-        "ProjectedMetric$name": "<p>The name of the projected utilization metric.</p>",
-        "UtilizationMetric$name": "<p>The name of the utilization metric.</p> <note> <p>The <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>"
+        "ProjectedMetric$name": "<p>The name of the projected utilization metric.</p> <p>The following projected utilization metrics are returned:</p> <ul> <li> <p> <code>Cpu</code> - The projected percentage of allocated EC2 compute units that would be in use on the recommendation option had you used that resource during the analyzed period. This metric identifies the processing power required to run an application on the recommendation option.</p> <p>Depending on the instance type, tools in your operating system can show a lower percentage than CloudWatch when the instance is not allocated a full processor core.</p> <p>Units: Percent</p> </li> <li> <p> <code>Memory</code> - The percentage of memory that would be in use on the recommendation option had you used that resource during the analyzed period. This metric identifies the amount of memory required to run an application on the recommendation option.</p> <p>Units: Percent</p> <note> <p>The <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note> </li> </ul>",
+        "UtilizationMetric$name": "<p>The name of the utilization metric.</p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>Cpu</code> - The percentage of allocated EC2 compute units that are currently in use on the instance. This metric identifies the processing power required to run an application on the instance.</p> <p>Depending on the instance type, tools in your operating system can show a lower percentage than CloudWatch when the instance is not allocated a full processor core.</p> <p>Units: Percent</p> </li> <li> <p> <code>Memory</code> - The percentage of memory that is currently in use on the instance. This metric identifies the amount of memory required to run an application on the instance.</p> <p>Units: Percent</p> <note> <p>The <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note> </li> <li> <p> <code>EBS_READ_OPS_PER_SECOND</code> - The completed read operations from all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Count</p> </li> <li> <p> <code>EBS_WRITE_OPS_PER_SECOND</code> - The completed write operations to all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Count</p> </li> <li> <p> <code>EBS_READ_BYTES_PER_SECOND</code> - The bytes read from all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Bytes</p> </li> <li> <p> <code>EBS_WRITE_BYTES_PER_SECOND</code> - The bytes written to all EBS volumes attached to the instance in a specified period of time.</p> <p>Unit: Bytes</p> </li> </ul>"
       }
     },
     "MetricStatistic": {
       "base": null,
       "refs": {
+        "EBSUtilizationMetric$statistic": "<p>The statistic of the utilization metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Average</code> - This is the value of Sum / SampleCount during the specified period, or the average value observed during the specified period.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> </ul>",
         "GetEC2RecommendationProjectedMetricsRequest$stat": "<p>The statistic of the projected metrics.</p>",
-        "UtilizationMetric$statistic": "<p>The statistic of the utilization metric.</p>"
+        "UtilizationMetric$statistic": "<p>The statistic of the utilization metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Average</code> - This is the value of Sum / SampleCount during the specified period, or the average value observed during the specified period.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> </ul>"
       }
     },
     "MetricValue": {
       "base": null,
       "refs": {
+        "EBSUtilizationMetric$value": "<p>The value of the utilization metric.</p>",
         "MetricValues$member": null,
         "UtilizationMetric$value": "<p>The value of the utilization metric.</p>"
       }
@@ -533,6 +595,8 @@
         "DescribeRecommendationExportJobsResponse$nextToken": "<p>The token to use to advance to the next page of export jobs.</p> <p>This value is null when there are no more pages of export jobs to return.</p>",
         "GetAutoScalingGroupRecommendationsRequest$nextToken": "<p>The token to advance to the next page of Auto Scaling group recommendations.</p>",
         "GetAutoScalingGroupRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of Auto Scaling group recommendations.</p> <p>This value is null when there are no more pages of Auto Scaling group recommendations to return.</p>",
+        "GetEBSVolumeRecommendationsRequest$nextToken": "<p>The token to advance to the next page of volume recommendations.</p>",
+        "GetEBSVolumeRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of volume recommendations.</p> <p>This value is null when there are no more pages of volume recommendations to return.</p>",
         "GetEC2InstanceRecommendationsRequest$nextToken": "<p>The token to advance to the next page of instance recommendations.</p>",
         "GetEC2InstanceRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of instance recommendations.</p> <p>This value is null when there are no more pages of instance recommendations to return.</p>",
         "GetRecommendationSummariesRequest$nextToken": "<p>The token to advance to the next page of recommendation summaries.</p>",
@@ -548,7 +612,8 @@
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendationOption$performanceRisk": "<p>The performance risk of the Auto Scaling group configuration recommendation.</p> <p>Performance risk is the likelihood of the recommended instance type not meeting the performance requirement of your workload.</p> <p>The lowest performance risk is categorized as <code>0</code>, and the highest as <code>5</code>.</p>",
-        "InstanceRecommendationOption$performanceRisk": "<p>The performance risk of the instance recommendation option.</p> <p>Performance risk is the likelihood of the recommended instance type not meeting the performance requirement of your workload.</p> <p>The lowest performance risk is categorized as <code>0</code>, and the highest as <code>5</code>.</p>"
+        "InstanceRecommendationOption$performanceRisk": "<p>The performance risk of the instance recommendation option.</p> <p>Performance risk is the likelihood of the recommended instance type not meeting the performance requirement of your workload.</p> <p>The lowest performance risk is categorized as <code>0</code>, and the highest as <code>5</code>.</p>",
+        "VolumeRecommendationOption$performanceRisk": "<p>The performance risk of the volume recommendation option.</p> <p>Performance risk is the likelihood of the recommended volume type not meeting the performance requirement of your workload.</p> <p>The lowest performance risk is categorized as <code>0</code>, and the highest as <code>5</code>.</p>"
       }
     },
     "Period": {
@@ -558,7 +623,7 @@
       }
     },
     "ProjectedMetric": {
-      "base": "<p>Describes a projected utilization metric of a recommendation option, such as an Amazon EC2 instance.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run the <code>GetEC2RecommendationProjectedMetrics</code> action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
+      "base": "<p>Describes a projected utilization metric of a recommendation option, such as an Amazon EC2 instance. This represents the projected utilization of a recommendation option had you used that resource during the analyzed period.</p> <p>Compare the utilization metric data of your resource against its projected utilization metric data to determine the performance difference between your current resource and the recommended option.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run the <code>GetEC2RecommendationProjectedMetrics</code> action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
       "refs": {
         "ProjectedMetrics$member": null
       }
@@ -581,7 +646,8 @@
       "refs": {
         "AutoScalingGroupRecommendationOption$rank": "<p>The rank of the Auto Scaling group recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "InstanceRecommendationOption$rank": "<p>The rank of the instance recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
-        "RecommendedOptionProjectedMetric$rank": "<p>The rank of the recommendation option projected metric.</p> <p>The top recommendation option is ranked as <code>1</code>.</p> <p>The projected metric rank correlates to the recommendation option rank. For example, the projected metric ranked as <code>1</code> is related to the recommendation option that is also ranked as <code>1</code> in the same response.</p>"
+        "RecommendedOptionProjectedMetric$rank": "<p>The rank of the recommendation option projected metric.</p> <p>The top recommendation option is ranked as <code>1</code>.</p> <p>The projected metric rank correlates to the recommendation option rank. For example, the projected metric ranked as <code>1</code> is related to the recommendation option that is also ranked as <code>1</code> in the same response.</p>",
+        "VolumeRecommendationOption$rank": "<p>The rank of the volume recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>"
       }
     },
     "RecommendationExportJob": {
@@ -751,7 +817,7 @@
       }
     },
     "UtilizationMetric": {
-      "base": "<p>Describes a utilization metric of a resource, such as an Amazon EC2 instance.</p>",
+      "base": "<p>Describes a utilization metric of a resource, such as an Amazon EC2 instance.</p> <p>Compare the utilization metric data of your resource against its projected utilization metric data to determine the performance difference between your current resource and the recommended option.</p>",
       "refs": {
         "ProjectedUtilizationMetrics$member": null,
         "UtilizationMetrics$member": null
@@ -762,6 +828,86 @@
       "refs": {
         "AutoScalingGroupRecommendation$utilizationMetrics": "<p>An array of objects that describe the utilization metrics of the Auto Scaling group.</p>",
         "InstanceRecommendation$utilizationMetrics": "<p>An array of objects that describe the utilization metrics of the instance.</p>"
+      }
+    },
+    "VolumeArn": {
+      "base": null,
+      "refs": {
+        "VolumeArns$member": null,
+        "VolumeRecommendation$volumeArn": "<p>The Amazon Resource Name (ARN) of the current volume.</p>"
+      }
+    },
+    "VolumeArns": {
+      "base": null,
+      "refs": {
+        "GetEBSVolumeRecommendationsRequest$volumeArns": "<p>The Amazon Resource Name (ARN) of the volumes for which to return recommendations.</p>"
+      }
+    },
+    "VolumeBaselineIOPS": {
+      "base": null,
+      "refs": {
+        "VolumeConfiguration$volumeBaselineIOPS": "<p>The baseline IOPS of the volume.</p>"
+      }
+    },
+    "VolumeBaselineThroughput": {
+      "base": null,
+      "refs": {
+        "VolumeConfiguration$volumeBaselineThroughput": "<p>The baseline throughput of the volume.</p>"
+      }
+    },
+    "VolumeBurstIOPS": {
+      "base": null,
+      "refs": {
+        "VolumeConfiguration$volumeBurstIOPS": "<p>The burst IOPS of the volume.</p>"
+      }
+    },
+    "VolumeBurstThroughput": {
+      "base": null,
+      "refs": {
+        "VolumeConfiguration$volumeBurstThroughput": "<p>The burst throughput of the volume.</p>"
+      }
+    },
+    "VolumeConfiguration": {
+      "base": "<p>Describes the configuration of an Amazon Elastic Block Store (Amazon EBS) volume.</p>",
+      "refs": {
+        "VolumeRecommendation$currentConfiguration": "<p>An array of objects that describe the current configuration of the volume.</p>",
+        "VolumeRecommendationOption$configuration": "<p>An array of objects that describe a volume configuration.</p>"
+      }
+    },
+    "VolumeRecommendation": {
+      "base": "<p>Describes an Amazon Elastic Block Store (Amazon EBS) volume recommendation.</p>",
+      "refs": {
+        "VolumeRecommendations$member": null
+      }
+    },
+    "VolumeRecommendationOption": {
+      "base": "<p>Describes a recommendation option for an Amazon Elastic Block Store (Amazon EBS) instance.</p>",
+      "refs": {
+        "VolumeRecommendationOptions$member": null
+      }
+    },
+    "VolumeRecommendationOptions": {
+      "base": null,
+      "refs": {
+        "VolumeRecommendation$volumeRecommendationOptions": "<p>An array of objects that describe the recommendation options for the volume.</p>"
+      }
+    },
+    "VolumeRecommendations": {
+      "base": null,
+      "refs": {
+        "GetEBSVolumeRecommendationsResponse$volumeRecommendations": "<p>An array of objects that describe volume recommendations.</p>"
+      }
+    },
+    "VolumeSize": {
+      "base": null,
+      "refs": {
+        "VolumeConfiguration$volumeSize": "<p>The size of the volume, in GiB.</p>"
+      }
+    },
+    "VolumeType": {
+      "base": null,
+      "refs": {
+        "VolumeConfiguration$volumeType": "<p>The volume type.</p> <p>This can be <code>gp2</code> for General Purpose SSD, <code>io1</code> or <code>io2</code> for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code> for Cold HDD, or <code>standard</code> for Magnetic volumes.</p>"
       }
     }
   }

@@ -72,7 +72,7 @@ func (c *AmplifyBackend) CloneBackendRequest(input *CloneBackendInput) (req *req
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -161,7 +161,7 @@ func (c *AmplifyBackend) CreateBackendRequest(input *CreateBackendInput) (req *r
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -249,7 +249,7 @@ func (c *AmplifyBackend) CreateBackendAPIRequest(input *CreateBackendAPIInput) (
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -337,7 +337,7 @@ func (c *AmplifyBackend) CreateBackendAuthRequest(input *CreateBackendAuthInput)
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -425,7 +425,7 @@ func (c *AmplifyBackend) CreateBackendConfigRequest(input *CreateBackendConfigIn
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -496,7 +496,7 @@ func (c *AmplifyBackend) CreateTokenRequest(input *CreateTokenInput) (req *reque
 
 // CreateToken API operation for AmplifyBackend.
 //
-// Generates a one time challenge code to authenticate a user into your Amplify
+// Generates a one-time challenge code to authenticate a user into your Amplify
 // Admin UI.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -514,7 +514,7 @@ func (c *AmplifyBackend) CreateTokenRequest(input *CreateTokenInput) (req *reque
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -585,7 +585,7 @@ func (c *AmplifyBackend) DeleteBackendRequest(input *DeleteBackendInput) (req *r
 
 // DeleteBackend API operation for AmplifyBackend.
 //
-// Removes an existing environment from your Ampify project.
+// Removes an existing environment from your Amplify project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -602,7 +602,7 @@ func (c *AmplifyBackend) DeleteBackendRequest(input *DeleteBackendInput) (req *r
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -690,7 +690,7 @@ func (c *AmplifyBackend) DeleteBackendAPIRequest(input *DeleteBackendAPIInput) (
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -778,7 +778,7 @@ func (c *AmplifyBackend) DeleteBackendAuthRequest(input *DeleteBackendAuthInput)
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -866,7 +866,7 @@ func (c *AmplifyBackend) DeleteTokenRequest(input *DeleteTokenInput) (req *reque
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -954,7 +954,7 @@ func (c *AmplifyBackend) GenerateBackendAPIModelsRequest(input *GenerateBackendA
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1025,7 +1025,7 @@ func (c *AmplifyBackend) GetBackendRequest(input *GetBackendInput) (req *request
 
 // GetBackend API operation for AmplifyBackend.
 //
-// Provides project level details for your Amplify UI project.
+// Provides project-level details for your Amplify UI project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1042,7 +1042,7 @@ func (c *AmplifyBackend) GetBackendRequest(input *GetBackendInput) (req *request
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1113,7 +1113,7 @@ func (c *AmplifyBackend) GetBackendAPIRequest(input *GetBackendAPIInput) (req *r
 
 // GetBackendAPI API operation for AmplifyBackend.
 //
-// Gets the details for a backend api.
+// Gets the details for a backend API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1130,7 +1130,7 @@ func (c *AmplifyBackend) GetBackendAPIRequest(input *GetBackendAPIInput) (req *r
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1218,7 +1218,7 @@ func (c *AmplifyBackend) GetBackendAPIModelsRequest(input *GetBackendAPIModelsIn
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1289,7 +1289,7 @@ func (c *AmplifyBackend) GetBackendAuthRequest(input *GetBackendAuthInput) (req 
 
 // GetBackendAuth API operation for AmplifyBackend.
 //
-// Gets a backend auth details.
+// Gets backend auth details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1306,7 +1306,7 @@ func (c *AmplifyBackend) GetBackendAuthRequest(input *GetBackendAuthInput) (req 
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1394,7 +1394,7 @@ func (c *AmplifyBackend) GetBackendJobRequest(input *GetBackendJobInput) (req *r
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1482,7 +1482,7 @@ func (c *AmplifyBackend) GetTokenRequest(input *GetTokenInput) (req *request.Req
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1576,7 +1576,7 @@ func (c *AmplifyBackend) ListBackendJobsRequest(input *ListBackendJobsInput) (re
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1716,7 +1716,7 @@ func (c *AmplifyBackend) RemoveAllBackendsRequest(input *RemoveAllBackendsInput)
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1787,7 +1787,7 @@ func (c *AmplifyBackend) RemoveBackendConfigRequest(input *RemoveBackendConfigIn
 
 // RemoveBackendConfig API operation for AmplifyBackend.
 //
-// Removes the AWS resources required to access the Amplify Admin UI.
+// Removes the AWS resources that are required to access the Amplify Admin UI.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1804,7 +1804,7 @@ func (c *AmplifyBackend) RemoveBackendConfigRequest(input *RemoveBackendConfigIn
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1892,7 +1892,7 @@ func (c *AmplifyBackend) UpdateBackendAPIRequest(input *UpdateBackendAPIInput) (
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -1980,7 +1980,7 @@ func (c *AmplifyBackend) UpdateBackendAuthRequest(input *UpdateBackendAuthInput)
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -2051,7 +2051,7 @@ func (c *AmplifyBackend) UpdateBackendConfigRequest(input *UpdateBackendConfigIn
 
 // UpdateBackendConfig API operation for AmplifyBackend.
 //
-// Updates the AWS resources required to access the Amplify Admin UI.
+// Updates the AWS resources that are required to access the Amplify Admin UI.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2068,7 +2068,7 @@ func (c *AmplifyBackend) UpdateBackendConfigRequest(input *UpdateBackendConfigIn
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -2156,7 +2156,7 @@ func (c *AmplifyBackend) UpdateBackendJobRequest(input *UpdateBackendJobInput) (
 //   An error returned if there's a temporary issue with the service.
 //
 //   * TooManyRequestsException
-//   An error that is returned when a limit of a specific type has been exceeded.
+//   An error that is returned when a limit of a specific type is exceeded.
 //
 //   * BadRequestException
 //   An error returned if a request is not formed properly.
@@ -2188,33 +2188,33 @@ func (c *AmplifyBackend) UpdateBackendJobWithContext(ctx aws.Context, input *Upd
 type BackendAPIAppSyncAuthSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Cognito user pool id, if Amazon Cognito was used as an authentication
+	// The Amazon Cognito user pool ID, if Amazon Cognito is used as an authentication
 	// setting to access your data models.
 	CognitoUserPoolId *string `locationName:"cognitoUserPoolId" type:"string"`
 
-	// The api key description for API_KEY, if it was used as an authentication
-	// mechanism to access your data models.
+	// The API key description for API_KEY, if it is used as an authentication mechanism
+	// to access your data models.
 	Description *string `locationName:"description" type:"string"`
 
-	// The api key expiration time for API_KEY, if it was used as an authentication
+	// The API key expiration time for API_KEY, if it is used as an authentication
 	// mechanism to access your data models.
 	ExpirationTime *float64 `locationName:"expirationTime" type:"double"`
 
 	// The expiry time for the OpenID authentication mechanism.
 	OpenIDAuthTTL *string `locationName:"openIDAuthTTL" type:"string"`
 
-	// The clientID for openID, if openID was used as an authentication setting
-	// to access your data models.
+	// The clientID for openID, if openID is used as an authentication setting to
+	// access your data models.
 	OpenIDClientId *string `locationName:"openIDClientId" type:"string"`
 
 	// The expiry time for the OpenID authentication mechanism.
 	OpenIDIatTTL *string `locationName:"openIDIatTTL" type:"string"`
 
-	// The openID issuer URL, if openID was used as an authentication setting to
+	// The openID issuer URL, if openID is used as an authentication setting to
 	// access your data models.
 	OpenIDIssueURL *string `locationName:"openIDIssueURL" type:"string"`
 
-	// The open id provider name, if openID was used as an authentication mechanism
+	// The openID provider name, if openID is used as an authentication mechanism
 	// to access your data models.
 	OpenIDProviderName *string `locationName:"openIDProviderName" type:"string"`
 }
@@ -2310,7 +2310,7 @@ func (s *BackendAPIAuthType) SetSettings(v *BackendAPIAppSyncAuthSettings) *Back
 	return s
 }
 
-// Describes the conflict resolution configuration for your data model configured
+// Describes the conflict resolution configuration for the data model configured
 // in your Amplify project.
 type BackendAPIConflictResolution struct {
 	_ struct{} `type:"structure"`
@@ -2335,29 +2335,29 @@ func (s *BackendAPIConflictResolution) SetResolutionStrategy(v string) *BackendA
 	return s
 }
 
-// The resource config for the data model,configured as a part of the Amplify
-// project.
+// The resource configuration for the data model, configured as a part of the
+// Amplify project.
 type BackendAPIResourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Addition authentication methods used to interact with your data models.
+	// Additional authentication methods used to interact with your data models.
 	AdditionalAuthTypes []*BackendAPIAuthType `locationName:"additionalAuthTypes" type:"list"`
 
 	// The API name used to interact with the data model, configured as a part of
-	// the amplify project.
+	// the Amplify project.
 	ApiName *string `locationName:"apiName" type:"string"`
 
-	// The conflict resoultion strategy for your data stored in the data models.
+	// The conflict resolution strategy for your data stored in the data models.
 	ConflictResolution *BackendAPIConflictResolution `locationName:"conflictResolution" type:"structure"`
 
 	// The default authentication type for interacting with the configured data
-	// models in your amplify project.
+	// models in your Amplify project.
 	DefaultAuthType *BackendAPIAuthType `locationName:"defaultAuthType" type:"structure"`
 
 	// The service used to provision and interact with the data model.
 	Service *string `locationName:"service" type:"string"`
 
-	// The definition of the data model in the annotated transform of the graphql
+	// The definition of the data model in the annotated transform of the GraphQL
 	// schema.
 	TransformSchema *string `locationName:"transformSchema" type:"string"`
 }
@@ -2408,16 +2408,16 @@ func (s *BackendAPIResourceConfig) SetTransformSchema(v string) *BackendAPIResou
 	return s
 }
 
-// Describes third party social federation configurations for allowing your
+// Describes third-party social federation configurations for allowing your
 // app users to sign in using OAuth.
 type BackendAuthSocialProviderConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the client_id which can be obtained from the third party social
+	// Describes the client_id that can be obtained from the third-party social
 	// federation provider.
 	ClientId *string `locationName:"client_id" type:"string"`
 
-	// Describes the client_secret which can be obtained from third party social
+	// Describes the client_secret that can be obtained from third-party social
 	// federation providers.
 	ClientSecret *string `locationName:"client_secret" type:"string"`
 }
@@ -2540,7 +2540,7 @@ type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// An error message to inform that the request has failed.
+	// An error message to inform that the request failed.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -2729,8 +2729,8 @@ type CreateBackendAPIInput struct {
 	// BackendEnvironmentName is a required field
 	BackendEnvironmentName *string `locationName:"backendEnvironmentName" type:"string" required:"true"`
 
-	// The resource config for the data model,configured as a part of the Amplify
-	// project.
+	// The resource configuration for the data model, configured as a part of the
+	// Amplify project.
 	//
 	// ResourceConfig is a required field
 	ResourceConfig *BackendAPIResourceConfig `locationName:"resourceConfig" type:"structure" required:"true"`
@@ -2860,11 +2860,12 @@ func (s *CreateBackendAPIOutput) SetStatus(v string) *CreateBackendAPIOutput {
 	return s
 }
 
-// Describes the forgot password policy for authenticating into the Amlify app.
+// Describes the forgot password policy for authenticating into the Amplify
+// app.
 type CreateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes which mode to use (either SMS or email) to deliver messages to
+	// Describes which method to use (either SMS or email) to deliver messages to
 	// app users that want to recover their password.
 	//
 	// DeliveryMethod is a required field
@@ -2919,7 +2920,7 @@ func (s *CreateBackendAuthForgotPasswordConfig) SetSmsSettings(v *SmsSettings) *
 	return s
 }
 
-// Describes authorization configurations for the auth resources, configures
+// Describes authorization configurations for the auth resources, configured
 // as a part of your Amplify project.
 type CreateBackendAuthIdentityPoolConfig struct {
 	_ struct{} `type:"structure"`
@@ -3057,13 +3058,14 @@ func (s *CreateBackendAuthInput) SetResourceName(v string) *CreateBackendAuthInp
 	return s
 }
 
-// Describes whether multi-factor authentication policies should be applied
-// for your Amazon Cognito user pool configured as a part of your Amplify project.
+// Describes whether to apply multi-factor authentication (MFA) policies for
+// your Amazon Cognito user pool that's configured as a part of your Amplify
+// project.
 type CreateBackendAuthMFAConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes whether MFA should be [ON, OFF, OPTIONAL] for authentication in
-	// your Amplify project.
+	// Describes whether MFA should be [ON, OFF, or OPTIONAL] for authentication
+	// in your Amplify project.
 	//
 	// MFAMode is a required field
 	MFAMode *string `type:"string" required:"true" enum:"MFAMode"`
@@ -3115,29 +3117,30 @@ type CreateBackendAuthOAuthConfig struct {
 	// The domain prefix for your Amplify app.
 	DomainPrefix *string `locationName:"domainPrefix" type:"string"`
 
-	// The OAuth grant type which you use to allow app users to authenticate from
+	// The OAuth grant type that you use to allow app users to authenticate from
 	// your Amplify app.
 	//
 	// OAuthGrantType is a required field
 	OAuthGrantType *string `locationName:"oAuthGrantType" type:"string" required:"true" enum:"OAuthGrantType"`
 
-	// List of OAuth related flows which use to allow your app users to authenticate
-	// from your Amplify app.
+	// List of OAuth-related flows that allow your app users to authenticate from
+	// your Amplify app.
 	//
 	// OAuthScopes is a required field
 	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" required:"true"`
 
-	// The redirected URI for sigining into your Amplify app.
+	// The redirected URI for signing in to your Amplify app.
 	//
 	// RedirectSignInURIs is a required field
 	RedirectSignInURIs []*string `locationName:"redirectSignInURIs" type:"list" required:"true"`
 
-	// Redirect URLs used by OAuth when a user signs out of an Amplify app.
+	// Redirect URLs that OAuth uses when a user signs out of an Amplify app.
 	//
 	// RedirectSignOutURIs is a required field
 	RedirectSignOutURIs []*string `locationName:"redirectSignOutURIs" type:"list" required:"true"`
 
-	// The settings for using the social providers for access to your Amplify app.
+	// The settings for using social identity providers for access to your Amplify
+	// app.
 	SocialProviderSettings *SocialProviderSettings `locationName:"socialProviderSettings" type:"structure"`
 }
 
@@ -3271,15 +3274,15 @@ func (s *CreateBackendAuthOutput) SetStatus(v string) *CreateBackendAuthOutput {
 	return s
 }
 
-// The password policy configuration for the backend to your Amplify project.
+// The password policy configuration for the backend of your Amplify project.
 type CreateBackendAuthPasswordPolicyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Additional constraints for the pasword used to access the backend of your
+	// Additional constraints for the password used to access the backend of your
 	// Amplify project.
 	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list"`
 
-	// The minimum length of password used to access the backend of your Amplify
+	// The minimum length of the password used to access the backend of your Amplify
 	// project.
 	//
 	// MinimumLength is a required field
@@ -3333,7 +3336,7 @@ type CreateBackendAuthResourceConfig struct {
 	AuthResources *string `locationName:"authResources" type:"string" required:"true" enum:"AuthResources"`
 
 	// Describes the authorization configuration for the Amazon Cognito identity
-	// pool, provisioned as a part of your auth resource in the Amplify project.
+	// pool, provisioned as a part of the auth resource in your Amplify project.
 	IdentityPoolConfigs *CreateBackendAuthIdentityPoolConfig `locationName:"identityPoolConfigs" type:"structure"`
 
 	// Defines the service name to use when configuring an authentication resource
@@ -3342,8 +3345,8 @@ type CreateBackendAuthResourceConfig struct {
 	// Service is a required field
 	Service *string `locationName:"service" type:"string" required:"true" enum:"Service"`
 
-	// Describes authentication configuration for the Amazon Cognito user pool,
-	// provisioned as a part of your auth resource in the Amplify project.
+	// Describes the authentication configuration for the Amazon Cognito user pool,
+	// provisioned as a part of the auth resource in your Amplify project.
 	//
 	// UserPoolConfigs is a required field
 	UserPoolConfigs *CreateBackendAuthUserPoolConfig `locationName:"userPoolConfigs" type:"structure" required:"true"`
@@ -3421,8 +3424,9 @@ type CreateBackendAuthUserPoolConfig struct {
 	// configured as a part of your Amplify project.
 	ForgotPassword *CreateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
-	// Describes whether multi-factor authentication policies should be applied
-	// for your Amazon Cognito user pool configured as a part of your Amplify project.
+	// Describes whether to apply multi-factor authentication (MFA) policies for
+	// your Amazon Cognito user pool that's configured as a part of your Amplify
+	// project.
 	Mfa *CreateBackendAuthMFAConfig `locationName:"mfa" type:"structure"`
 
 	// Describes the OAuth policy and rules for your Amazon Cognito user pool, configured
@@ -3433,13 +3437,14 @@ type CreateBackendAuthUserPoolConfig struct {
 	// as a part of your Amplify project.
 	PasswordPolicy *CreateBackendAuthPasswordPolicyConfig `locationName:"passwordPolicy" type:"structure"`
 
-	// The required attributes to sign up new users in the user pool.
+	// The required attributes to sign up new users in the Amazon Cognito user pool.
 	//
 	// RequiredSignUpAttributes is a required field
 	RequiredSignUpAttributes []*string `locationName:"requiredSignUpAttributes" type:"list" required:"true"`
 
-	// Describes the sign-in methods that your Amplify app users to login using
-	// the Amazon Cognito user pool, configured as a part of your Amplify project.
+	// Describes the sign-in methods that your Amplify app users to log in using
+	// the Amazon Cognito user pool that's configured as a part of your Amplify
+	// project.
 	//
 	// SignInMethod is a required field
 	SignInMethod *string `locationName:"signInMethod" type:"string" required:"true" enum:"SignInMethod"`
@@ -3866,8 +3871,8 @@ type DeleteBackendAPIInput struct {
 	// BackendEnvironmentName is a required field
 	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
 
-	// The resource config for the data model,configured as a part of the Amplify
-	// project.
+	// The resource configuration for the data model, configured as a part of the
+	// Amplify project.
 	ResourceConfig *BackendAPIResourceConfig `locationName:"resourceConfig" type:"structure"`
 
 	// ResourceName is a required field
@@ -4540,8 +4545,8 @@ type GetBackendAPIInput struct {
 	// BackendEnvironmentName is a required field
 	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
 
-	// The resource config for the data model,configured as a part of the Amplify
-	// project.
+	// The resource configuration for the data model, configured as a part of the
+	// Amplify project.
 	ResourceConfig *BackendAPIResourceConfig `locationName:"resourceConfig" type:"structure"`
 
 	// ResourceName is a required field
@@ -4712,8 +4717,8 @@ type GetBackendAPIOutput struct {
 
 	Error *string `locationName:"error" type:"string"`
 
-	// The resource config for the data model,configured as a part of the Amplify
-	// project.
+	// The resource configuration for the data model, configured as a part of the
+	// Amplify project.
 	ResourceConfig *BackendAPIResourceConfig `locationName:"resourceConfig" type:"structure"`
 
 	ResourceName *string `locationName:"resourceName" type:"string"`
@@ -5368,16 +5373,16 @@ func (s *ListBackendJobsOutput) SetNextToken(v string) *ListBackendJobsOutput {
 type LoginAuthConfigReqObj struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Cognito identitypool id used for the Amplify Admin UI login authorization.
+	// The Amazon Cognito identity pool ID used for Amplify Admin UI login authorization.
 	AwsCognitoIdentityPoolId *string `locationName:"aws_cognito_identity_pool_id" type:"string"`
 
-	// The AWS Region for the the Amplify Admin login.
+	// The AWS Region for the Amplify Admin UI login.
 	AwsCognitoRegion *string `locationName:"aws_cognito_region" type:"string"`
 
-	// The Amazon Cognito userpool id used for Amplify Admin UI login authentication.
+	// The Amazon Cognito user pool ID used for Amplify Admin UI login authentication.
 	AwsUserPoolsId *string `locationName:"aws_user_pools_id" type:"string"`
 
-	// The web client ID for the Amazon Cognito userpools.
+	// The web client ID for the Amazon Cognito user pools.
 	AwsUserPoolsWebClientId *string `locationName:"aws_user_pools_web_client_id" type:"string"`
 }
 
@@ -5420,7 +5425,7 @@ type NotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// An error message to inform that the request has failed.
+	// An error message to inform that the request failed.
 	Message_ *string `locationName:"message" type:"string"`
 
 	// The type of resource that wasn't found.
@@ -5708,15 +5713,15 @@ func (s *SmsSettings) SetSmsMessage(v string) *SmsSettings {
 type SocialProviderSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Describes third party social federation configurations for allowing your
+	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
 	Facebook *BackendAuthSocialProviderConfig `type:"structure"`
 
-	// Describes third party social federation configurations for allowing your
+	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
 	Google *BackendAuthSocialProviderConfig `type:"structure"`
 
-	// Describes third party social federation configurations for allowing your
+	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
 	LoginWithAmazon *BackendAuthSocialProviderConfig `type:"structure"`
 }
@@ -5749,7 +5754,7 @@ func (s *SocialProviderSettings) SetLoginWithAmazon(v *BackendAuthSocialProvider
 	return s
 }
 
-// An error that is returned when a limit of a specific type has been exceeded.
+// An error that is returned when a limit of a specific type is exceeded.
 type TooManyRequestsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5816,8 +5821,8 @@ type UpdateBackendAPIInput struct {
 	// BackendEnvironmentName is a required field
 	BackendEnvironmentName *string `location:"uri" locationName:"backendEnvironmentName" type:"string" required:"true"`
 
-	// The resource config for the data model,configured as a part of the Amplify
-	// project.
+	// The resource configuration for the data model, configured as a part of the
+	// Amplify project.
 	ResourceConfig *BackendAPIResourceConfig `locationName:"resourceConfig" type:"structure"`
 
 	// ResourceName is a required field
@@ -5945,11 +5950,12 @@ func (s *UpdateBackendAPIOutput) SetStatus(v string) *UpdateBackendAPIOutput {
 	return s
 }
 
-// Describes the forgot password policy for authenticating into the Amlify app.
+// Describes the forgot password policy for authenticating into the Amplify
+// app.
 type UpdateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes which mode to use (either SMS or email) to deliver messages to
+	// Describes which method to use (either SMS or email) to deliver messages to
 	// app users that want to recover their password.
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" enum:"DeliveryMethod"`
 
@@ -5994,7 +6000,7 @@ func (s *UpdateBackendAuthForgotPasswordConfig) SetSmsSettings(v *SmsSettings) *
 type UpdateBackendAuthIdentityPoolConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A boolean value which can be set to allow or disallow guest level authorization
+	// A Boolean value that you can set to allow or disallow guest-level authorization
 	// into your Amplify app.
 	UnauthenticatedLogin *bool `locationName:"unauthenticatedLogin" type:"boolean"`
 }
@@ -6146,17 +6152,17 @@ type UpdateBackendAuthOAuthConfig struct {
 	// app.
 	OAuthGrantType *string `locationName:"oAuthGrantType" type:"string" enum:"OAuthGrantType"`
 
-	// The list of OAuth related flows which can allow users to authenticate from
+	// The list of OAuth-related flows that can allow users to authenticate from
 	// your Amplify app.
 	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
 
-	// Redirect URLs used by OAuth when a user signs in to an Amplify app.
+	// Redirect URLs that OAuth uses when a user signs in to an Amplify app.
 	RedirectSignInURIs []*string `locationName:"redirectSignInURIs" type:"list"`
 
-	// Redirect URLs used by OAuth when a user signs out of an Amplify app.
+	// Redirect URLs that OAuth uses when a user signs out of an Amplify app.
 	RedirectSignOutURIs []*string `locationName:"redirectSignOutURIs" type:"list"`
 
-	// Describes third party social federation configurations for allowing your
+	// Describes third-party social federation configurations for allowing your
 	// users to sign in with OAuth.
 	SocialProviderSettings *SocialProviderSettings `locationName:"socialProviderSettings" type:"structure"`
 }
@@ -6269,17 +6275,17 @@ func (s *UpdateBackendAuthOutput) SetStatus(v string) *UpdateBackendAuthOutput {
 	return s
 }
 
-// Describes the password policy for your Amazon Cognito user pool configured
+// Describes the password policy for your Amazon Cognito user pool that's configured
 // as a part of your Amplify project.
 type UpdateBackendAuthPasswordPolicyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes additional constrains on password requirements to sign in into
-	// the auth resource, configured as a part of your Ampify project.
+	// Describes additional constrains on the password requirements to sign in to
+	// the auth resource, configured as a part of your Amplify project.
 	AdditionalConstraints []*string `locationName:"additionalConstraints" type:"list"`
 
-	// Describes the minimum length of password required to sign in into the auth
-	// resource, configured as a part of your Ampify project.
+	// Describes the minimum length of the password required to sign in to the auth
+	// resource, configured as a part of your Amplify project.
 	MinimumLength *float64 `locationName:"minimumLength" type:"double"`
 }
 
@@ -6317,7 +6323,7 @@ type UpdateBackendAuthResourceConfig struct {
 	AuthResources *string `locationName:"authResources" type:"string" required:"true" enum:"AuthResources"`
 
 	// Describes the authorization configuration for the Amazon Cognito identity
-	// pool, provisioned as a part of your auth resource in the Amplify project.
+	// pool, provisioned as a part of the auth resource in your Amplify project.
 	IdentityPoolConfigs *UpdateBackendAuthIdentityPoolConfig `locationName:"identityPoolConfigs" type:"structure"`
 
 	// Defines the service name to use when configuring an authentication resource
@@ -6326,8 +6332,8 @@ type UpdateBackendAuthResourceConfig struct {
 	// Service is a required field
 	Service *string `locationName:"service" type:"string" required:"true" enum:"Service"`
 
-	// Describes the authentication configuration for the Amazon Cognito userpool,
-	// provisioned as a part of your auth resource in the Amplify project.
+	// Describes the authentication configuration for the Amazon Cognito user pool,
+	// provisioned as a part of the auth resource in your Amplify project.
 	//
 	// UserPoolConfigs is a required field
 	UserPoolConfigs *UpdateBackendAuthUserPoolConfig `locationName:"userPoolConfigs" type:"structure" required:"true"`
@@ -6386,8 +6392,8 @@ func (s *UpdateBackendAuthResourceConfig) SetUserPoolConfigs(v *UpdateBackendAut
 	return s
 }
 
-// Describes the Amazon Cognito user pool configuration for the authorization
-// resource to be configured for your Amplify project on an update.
+// Describes the Amazon Cognito user pool configuration to configure the authorization
+// resource for your Amplify project on an update.
 type UpdateBackendAuthUserPoolConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -6395,8 +6401,9 @@ type UpdateBackendAuthUserPoolConfig struct {
 	// as a part of your Amplify project.
 	ForgotPassword *UpdateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
-	// Describes whether multi-factor authentication policies should be applied
-	// for your Amazon Cognito user pool configured as a part of your Amplify project.
+	// Describes whether to apply multi-factor authentication (MFA) policies for
+	// your Amazon Cognito user pool that's configured as a part of your Amplify
+	// project.
 	Mfa *UpdateBackendAuthMFAConfig `locationName:"mfa" type:"structure"`
 
 	// Describes the OAuth policy and rules for your Amazon Cognito user pool, configured

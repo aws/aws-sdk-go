@@ -1,3 +1,13 @@
+Release v1.36.1 (2020-12-03)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service documentation
+* `service/batch`: Updates service API and documentation
+  * This release adds support for customer to run Batch Jobs on ECS Fargate, the serverless compute engine built for containers on AWS. Customer can also propagate Job and Job Definition Tags to ECS Task.
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/license-manager`: Updates service API and documentation
+
 Release v1.36.0 (2020-12-02)
 ===
 

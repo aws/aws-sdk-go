@@ -89,6 +89,25 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetEBSVolumeRecommendations":{
+      "name":"GetEBSVolumeRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEBSVolumeRecommendationsRequest"},
+      "output":{"shape":"GetEBSVolumeRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetEC2InstanceRecommendations":{
       "name":"GetEC2InstanceRecommendations",
       "http":{
@@ -263,6 +282,49 @@
     "DestinationBucket":{"type":"string"},
     "DestinationKey":{"type":"string"},
     "DestinationKeyPrefix":{"type":"string"},
+    "EBSFilter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"EBSFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "EBSFilterName":{
+      "type":"string",
+      "enum":["Finding"]
+    },
+    "EBSFilters":{
+      "type":"list",
+      "member":{"shape":"EBSFilter"}
+    },
+    "EBSFinding":{
+      "type":"string",
+      "enum":[
+        "Optimized",
+        "NotOptimized"
+      ]
+    },
+    "EBSMetricName":{
+      "type":"string",
+      "enum":[
+        "VolumeReadOpsPerSecond",
+        "VolumeWriteOpsPerSecond",
+        "VolumeReadBytesPerSecond",
+        "VolumeWriteBytesPerSecond"
+      ]
+    },
+    "EBSUtilizationMetric":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"EBSMetricName"},
+        "statistic":{"shape":"MetricStatistic"},
+        "value":{"shape":"MetricValue"}
+      }
+    },
+    "EBSUtilizationMetrics":{
+      "type":"list",
+      "member":{"shape":"EBSUtilizationMetric"}
+    },
     "ErrorMessage":{"type":"string"},
     "ExportAutoScalingGroupRecommendationsRequest":{
       "type":"structure",
@@ -448,6 +510,24 @@
       "members":{
         "nextToken":{"shape":"NextToken"},
         "autoScalingGroupRecommendations":{"shape":"AutoScalingGroupRecommendations"},
+        "errors":{"shape":"GetRecommendationErrors"}
+      }
+    },
+    "GetEBSVolumeRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "volumeArns":{"shape":"VolumeArns"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"},
+        "filters":{"shape":"EBSFilters"},
+        "accountIds":{"shape":"AccountIds"}
+      }
+    },
+    "GetEBSVolumeRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "volumeRecommendations":{"shape":"VolumeRecommendations"},
         "errors":{"shape":"GetRecommendationErrors"}
       }
     },
@@ -732,7 +812,8 @@
       "type":"string",
       "enum":[
         "Ec2Instance",
-        "AutoScalingGroup"
+        "AutoScalingGroup",
+        "EbsVolume"
       ]
     },
     "RecommendationSources":{
@@ -864,6 +945,57 @@
     "UtilizationMetrics":{
       "type":"list",
       "member":{"shape":"UtilizationMetric"}
-    }
+    },
+    "VolumeArn":{"type":"string"},
+    "VolumeArns":{
+      "type":"list",
+      "member":{"shape":"VolumeArn"}
+    },
+    "VolumeBaselineIOPS":{"type":"integer"},
+    "VolumeBaselineThroughput":{"type":"integer"},
+    "VolumeBurstIOPS":{"type":"integer"},
+    "VolumeBurstThroughput":{"type":"integer"},
+    "VolumeConfiguration":{
+      "type":"structure",
+      "members":{
+        "volumeType":{"shape":"VolumeType"},
+        "volumeSize":{"shape":"VolumeSize"},
+        "volumeBaselineIOPS":{"shape":"VolumeBaselineIOPS"},
+        "volumeBurstIOPS":{"shape":"VolumeBurstIOPS"},
+        "volumeBaselineThroughput":{"shape":"VolumeBaselineThroughput"},
+        "volumeBurstThroughput":{"shape":"VolumeBurstThroughput"}
+      }
+    },
+    "VolumeRecommendation":{
+      "type":"structure",
+      "members":{
+        "volumeArn":{"shape":"VolumeArn"},
+        "accountId":{"shape":"AccountId"},
+        "currentConfiguration":{"shape":"VolumeConfiguration"},
+        "finding":{"shape":"EBSFinding"},
+        "utilizationMetrics":{"shape":"EBSUtilizationMetrics"},
+        "lookBackPeriodInDays":{"shape":"LookBackPeriodInDays"},
+        "volumeRecommendationOptions":{"shape":"VolumeRecommendationOptions"},
+        "lastRefreshTimestamp":{"shape":"LastRefreshTimestamp"}
+      }
+    },
+    "VolumeRecommendationOption":{
+      "type":"structure",
+      "members":{
+        "configuration":{"shape":"VolumeConfiguration"},
+        "performanceRisk":{"shape":"PerformanceRisk"},
+        "rank":{"shape":"Rank"}
+      }
+    },
+    "VolumeRecommendationOptions":{
+      "type":"list",
+      "member":{"shape":"VolumeRecommendationOption"}
+    },
+    "VolumeRecommendations":{
+      "type":"list",
+      "member":{"shape":"VolumeRecommendation"}
+    },
+    "VolumeSize":{"type":"integer"},
+    "VolumeType":{"type":"string"}
   }
 }

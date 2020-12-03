@@ -294,6 +294,13 @@
         "index":{"shape":"Integer"}
       }
     },
+    "AssignPublicIp":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "AttemptContainerDetail":{
       "type":"structure",
       "members":{
@@ -356,7 +363,9 @@
       "type":"string",
       "enum":[
         "EC2",
-        "SPOT"
+        "SPOT",
+        "FARGATE",
+        "FARGATE_SPOT"
       ]
     },
     "CancelJobRequest":{
@@ -426,11 +435,8 @@
       "type":"structure",
       "required":[
         "type",
-        "minvCpus",
         "maxvCpus",
-        "instanceTypes",
-        "subnets",
-        "instanceRole"
+        "subnets"
       ],
       "members":{
         "type":{"shape":"CRType"},
@@ -461,7 +467,9 @@
       "members":{
         "minvCpus":{"shape":"Integer"},
         "maxvCpus":{"shape":"Integer"},
-        "desiredvCpus":{"shape":"Integer"}
+        "desiredvCpus":{"shape":"Integer"},
+        "subnets":{"shape":"StringList"},
+        "securityGroupIds":{"shape":"StringList"}
       }
     },
     "ContainerDetail":{
@@ -490,14 +498,24 @@
         "resourceRequirements":{"shape":"ResourceRequirements"},
         "linuxParameters":{"shape":"LinuxParameters"},
         "logConfiguration":{"shape":"LogConfiguration"},
-        "secrets":{"shape":"SecretList"}
+        "secrets":{"shape":"SecretList"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"}
       }
     },
     "ContainerOverrides":{
       "type":"structure",
       "members":{
-        "vcpus":{"shape":"Integer"},
-        "memory":{"shape":"Integer"},
+        "vcpus":{
+          "shape":"Integer",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use resourceRequirements instead."
+        },
+        "memory":{
+          "shape":"Integer",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use resourceRequirements instead."
+        },
         "command":{"shape":"StringList"},
         "instanceType":{"shape":"String"},
         "environment":{"shape":"EnvironmentVariables"},
@@ -508,8 +526,16 @@
       "type":"structure",
       "members":{
         "image":{"shape":"String"},
-        "vcpus":{"shape":"Integer"},
-        "memory":{"shape":"Integer"},
+        "vcpus":{
+          "shape":"Integer",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use resourceRequirements instead."
+        },
+        "memory":{
+          "shape":"Integer",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use resourceRequirements instead."
+        },
         "command":{"shape":"StringList"},
         "jobRoleArn":{"shape":"String"},
         "executionRoleArn":{"shape":"String"},
@@ -524,7 +550,9 @@
         "resourceRequirements":{"shape":"ResourceRequirements"},
         "linuxParameters":{"shape":"LinuxParameters"},
         "logConfiguration":{"shape":"LogConfiguration"},
-        "secrets":{"shape":"SecretList"}
+        "secrets":{"shape":"SecretList"},
+        "networkConfiguration":{"shape":"NetworkConfiguration"},
+        "fargatePlatformConfiguration":{"shape":"FargatePlatformConfiguration"}
       }
     },
     "ContainerSummary":{
@@ -734,6 +762,12 @@
       "type":"list",
       "member":{"shape":"EvaluateOnExit"}
     },
+    "FargatePlatformConfiguration":{
+      "type":"structure",
+      "members":{
+        "platformVersion":{"shape":"String"}
+      }
+    },
     "Host":{
       "type":"structure",
       "members":{
@@ -788,7 +822,9 @@
         "containerProperties":{"shape":"ContainerProperties"},
         "timeout":{"shape":"JobTimeout"},
         "nodeProperties":{"shape":"NodeProperties"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "propagateTags":{"shape":"Boolean"},
+        "platformCapabilities":{"shape":"PlatformCapabilityList"}
       }
     },
     "JobDefinitionList":{
@@ -843,7 +879,9 @@
         "nodeProperties":{"shape":"NodeProperties"},
         "arrayProperties":{"shape":"ArrayPropertiesDetail"},
         "timeout":{"shape":"JobTimeout"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "propagateTags":{"shape":"Boolean"},
+        "platformCapabilities":{"shape":"PlatformCapabilityList"}
       }
     },
     "JobDetailList":{
@@ -1017,6 +1055,12 @@
       "type":"list",
       "member":{"shape":"MountPoint"}
     },
+    "NetworkConfiguration":{
+      "type":"structure",
+      "members":{
+        "assignPublicIp":{"shape":"AssignPublicIp"}
+      }
+    },
     "NetworkInterface":{
       "type":"structure",
       "members":{
@@ -1093,6 +1137,17 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "PlatformCapability":{
+      "type":"string",
+      "enum":[
+        "EC2",
+        "FARGATE"
+      ]
+    },
+    "PlatformCapabilityList":{
+      "type":"list",
+      "member":{"shape":"PlatformCapability"}
+    },
     "RegisterJobDefinitionRequest":{
       "type":"structure",
       "required":[
@@ -1106,8 +1161,10 @@
         "containerProperties":{"shape":"ContainerProperties"},
         "nodeProperties":{"shape":"NodeProperties"},
         "retryStrategy":{"shape":"RetryStrategy"},
+        "propagateTags":{"shape":"Boolean"},
         "timeout":{"shape":"JobTimeout"},
-        "tags":{"shape":"TagrisTagsMap"}
+        "tags":{"shape":"TagrisTagsMap"},
+        "platformCapabilities":{"shape":"PlatformCapabilityList"}
       }
     },
     "RegisterJobDefinitionResponse":{
@@ -1140,7 +1197,11 @@
     },
     "ResourceType":{
       "type":"string",
-      "enum":["GPU"]
+      "enum":[
+        "GPU",
+        "VCPU",
+        "MEMORY"
+      ]
     },
     "RetryAction":{
       "type":"string",
@@ -1202,6 +1263,7 @@
         "containerOverrides":{"shape":"ContainerOverrides"},
         "nodeOverrides":{"shape":"NodeOverrides"},
         "retryStrategy":{"shape":"RetryStrategy"},
+        "propagateTags":{"shape":"Boolean"},
         "timeout":{"shape":"JobTimeout"},
         "tags":{"shape":"TagrisTagsMap"}
       }
