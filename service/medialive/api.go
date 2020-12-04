@@ -6728,6 +6728,60 @@ func (s *AudioSelectorSettings) SetAudioTrackSelection(v *AudioTrackSelection) *
 	return s
 }
 
+type AudioSilenceFailoverSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the audio selector in the input that MediaLive should monitor
+	// to detect silence. Select your most important rendition. If you didn't create
+	// an audio selector in this input, leave blank.
+	//
+	// AudioSelectorName is a required field
+	AudioSelectorName *string `locationName:"audioSelectorName" type:"string" required:"true"`
+
+	// The amount of time (in milliseconds) that the active input must be silent
+	// before automatic input failover occurs. Silence is defined as audio loss
+	// or audio quieter than -50 dBFS.
+	AudioSilenceThresholdMsec *int64 `locationName:"audioSilenceThresholdMsec" min:"1000" type:"integer"`
+}
+
+// String returns the string representation
+func (s AudioSilenceFailoverSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AudioSilenceFailoverSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioSilenceFailoverSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioSilenceFailoverSettings"}
+	if s.AudioSelectorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AudioSelectorName"))
+	}
+	if s.AudioSilenceThresholdMsec != nil && *s.AudioSilenceThresholdMsec < 1000 {
+		invalidParams.Add(request.NewErrParamMinValue("AudioSilenceThresholdMsec", 1000))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudioSelectorName sets the AudioSelectorName field's value.
+func (s *AudioSilenceFailoverSettings) SetAudioSelectorName(v string) *AudioSilenceFailoverSettings {
+	s.AudioSelectorName = &v
+	return s
+}
+
+// SetAudioSilenceThresholdMsec sets the AudioSilenceThresholdMsec field's value.
+func (s *AudioSilenceFailoverSettings) SetAudioSilenceThresholdMsec(v int64) *AudioSilenceFailoverSettings {
+	s.AudioSilenceThresholdMsec = &v
+	return s
+}
+
 // Audio Track
 type AudioTrack struct {
 	_ struct{} `type:"structure"`
@@ -10728,6 +10782,10 @@ type DescribeInputDeviceOutput struct {
 	// The type of the input device. For an AWS Elemental Link device that outputs
 	// resolutions up to 1080, choose "HD".
 	Type *string `locationName:"type" type:"string" enum:"InputDeviceType"`
+
+	// Settings that describe the active source from the input device, and the video
+	// characteristics of that source.
+	UhdDeviceSettings *InputDeviceUhdSettings `locationName:"uhdDeviceSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -10803,6 +10861,12 @@ func (s *DescribeInputDeviceOutput) SetSerialNumber(v string) *DescribeInputDevi
 // SetType sets the Type field's value.
 func (s *DescribeInputDeviceOutput) SetType(v string) *DescribeInputDeviceOutput {
 	s.Type = &v
+	return s
+}
+
+// SetUhdDeviceSettings sets the UhdDeviceSettings field's value.
+func (s *DescribeInputDeviceOutput) SetUhdDeviceSettings(v *InputDeviceUhdSettings) *DescribeInputDeviceOutput {
+	s.UhdDeviceSettings = v
 	return s
 }
 
@@ -12956,9 +13020,17 @@ func (s *FailoverCondition) SetFailoverConditionSettings(v *FailoverConditionSet
 type FailoverConditionSettings struct {
 	_ struct{} `type:"structure"`
 
+	// MediaLive will perform a failover if the specified audio selector is silent
+	// for the specified period.
+	AudioSilenceSettings *AudioSilenceFailoverSettings `locationName:"audioSilenceSettings" type:"structure"`
+
 	// MediaLive will perform a failover if content is not detected in this input
 	// for the specified period.
 	InputLossSettings *InputLossFailoverSettings `locationName:"inputLossSettings" type:"structure"`
+
+	// MediaLive will perform a failover if content is considered black for the
+	// specified period.
+	VideoBlackSettings *VideoBlackFailoverSettings `locationName:"videoBlackSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -12974,9 +13046,19 @@ func (s FailoverConditionSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FailoverConditionSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FailoverConditionSettings"}
+	if s.AudioSilenceSettings != nil {
+		if err := s.AudioSilenceSettings.Validate(); err != nil {
+			invalidParams.AddNested("AudioSilenceSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InputLossSettings != nil {
 		if err := s.InputLossSettings.Validate(); err != nil {
 			invalidParams.AddNested("InputLossSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VideoBlackSettings != nil {
+		if err := s.VideoBlackSettings.Validate(); err != nil {
+			invalidParams.AddNested("VideoBlackSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -12986,9 +13068,21 @@ func (s *FailoverConditionSettings) Validate() error {
 	return nil
 }
 
+// SetAudioSilenceSettings sets the AudioSilenceSettings field's value.
+func (s *FailoverConditionSettings) SetAudioSilenceSettings(v *AudioSilenceFailoverSettings) *FailoverConditionSettings {
+	s.AudioSilenceSettings = v
+	return s
+}
+
 // SetInputLossSettings sets the InputLossSettings field's value.
 func (s *FailoverConditionSettings) SetInputLossSettings(v *InputLossFailoverSettings) *FailoverConditionSettings {
 	s.InputLossSettings = v
+	return s
+}
+
+// SetVideoBlackSettings sets the VideoBlackSettings field's value.
+func (s *FailoverConditionSettings) SetVideoBlackSettings(v *VideoBlackFailoverSettings) *FailoverConditionSettings {
+	s.VideoBlackSettings = v
 	return s
 }
 
@@ -16462,6 +16556,9 @@ type InputDeviceSummary struct {
 
 	// The type of the input device.
 	Type *string `locationName:"type" type:"string" enum:"InputDeviceType"`
+
+	// Settings that describe an input device that is type UHD.
+	UhdDeviceSettings *InputDeviceUhdSettings `locationName:"uhdDeviceSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -16537,6 +16634,103 @@ func (s *InputDeviceSummary) SetSerialNumber(v string) *InputDeviceSummary {
 // SetType sets the Type field's value.
 func (s *InputDeviceSummary) SetType(v string) *InputDeviceSummary {
 	s.Type = &v
+	return s
+}
+
+// SetUhdDeviceSettings sets the UhdDeviceSettings field's value.
+func (s *InputDeviceSummary) SetUhdDeviceSettings(v *InputDeviceUhdSettings) *InputDeviceSummary {
+	s.UhdDeviceSettings = v
+	return s
+}
+
+// Settings that describe the active source from the input device, and the video
+// characteristics of that source.
+type InputDeviceUhdSettings struct {
+	_ struct{} `type:"structure"`
+
+	// If you specified Auto as the configured input, specifies which of the sources
+	// is currently active (SDI or HDMI).
+	ActiveInput *string `locationName:"activeInput" type:"string" enum:"InputDeviceActiveInput"`
+
+	// The source at the input device that is currently active. You can specify
+	// this source.
+	ConfiguredInput *string `locationName:"configuredInput" type:"string" enum:"InputDeviceConfiguredInput"`
+
+	// The state of the input device.
+	DeviceState *string `locationName:"deviceState" type:"string" enum:"InputDeviceState"`
+
+	// The frame rate of the video source.
+	Framerate *float64 `locationName:"framerate" type:"double"`
+
+	// The height of the video source, in pixels.
+	Height *int64 `locationName:"height" type:"integer"`
+
+	// The current maximum bitrate for ingesting this source, in bits per second.
+	// You can specify this maximum.
+	MaxBitrate *int64 `locationName:"maxBitrate" type:"integer"`
+
+	// The scan type of the video source.
+	ScanType *string `locationName:"scanType" type:"string" enum:"InputDeviceScanType"`
+
+	// The width of the video source, in pixels.
+	Width *int64 `locationName:"width" type:"integer"`
+}
+
+// String returns the string representation
+func (s InputDeviceUhdSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InputDeviceUhdSettings) GoString() string {
+	return s.String()
+}
+
+// SetActiveInput sets the ActiveInput field's value.
+func (s *InputDeviceUhdSettings) SetActiveInput(v string) *InputDeviceUhdSettings {
+	s.ActiveInput = &v
+	return s
+}
+
+// SetConfiguredInput sets the ConfiguredInput field's value.
+func (s *InputDeviceUhdSettings) SetConfiguredInput(v string) *InputDeviceUhdSettings {
+	s.ConfiguredInput = &v
+	return s
+}
+
+// SetDeviceState sets the DeviceState field's value.
+func (s *InputDeviceUhdSettings) SetDeviceState(v string) *InputDeviceUhdSettings {
+	s.DeviceState = &v
+	return s
+}
+
+// SetFramerate sets the Framerate field's value.
+func (s *InputDeviceUhdSettings) SetFramerate(v float64) *InputDeviceUhdSettings {
+	s.Framerate = &v
+	return s
+}
+
+// SetHeight sets the Height field's value.
+func (s *InputDeviceUhdSettings) SetHeight(v int64) *InputDeviceUhdSettings {
+	s.Height = &v
+	return s
+}
+
+// SetMaxBitrate sets the MaxBitrate field's value.
+func (s *InputDeviceUhdSettings) SetMaxBitrate(v int64) *InputDeviceUhdSettings {
+	s.MaxBitrate = &v
+	return s
+}
+
+// SetScanType sets the ScanType field's value.
+func (s *InputDeviceUhdSettings) SetScanType(v string) *InputDeviceUhdSettings {
+	s.ScanType = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *InputDeviceUhdSettings) SetWidth(v int64) *InputDeviceUhdSettings {
+	s.Width = &v
 	return s
 }
 
@@ -25200,6 +25394,9 @@ type UpdateInputDeviceInput struct {
 	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
 
 	Name *string `locationName:"name" type:"string"`
+
+	// Configurable settings for the input device.
+	UhdDeviceSettings *InputDeviceConfigurableSettings `locationName:"uhdDeviceSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -25246,6 +25443,12 @@ func (s *UpdateInputDeviceInput) SetName(v string) *UpdateInputDeviceInput {
 	return s
 }
 
+// SetUhdDeviceSettings sets the UhdDeviceSettings field's value.
+func (s *UpdateInputDeviceInput) SetUhdDeviceSettings(v *InputDeviceConfigurableSettings) *UpdateInputDeviceInput {
+	s.UhdDeviceSettings = v
+	return s
+}
+
 type UpdateInputDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -25282,6 +25485,10 @@ type UpdateInputDeviceOutput struct {
 	// The type of the input device. For an AWS Elemental Link device that outputs
 	// resolutions up to 1080, choose "HD".
 	Type *string `locationName:"type" type:"string" enum:"InputDeviceType"`
+
+	// Settings that describe the active source from the input device, and the video
+	// characteristics of that source.
+	UhdDeviceSettings *InputDeviceUhdSettings `locationName:"uhdDeviceSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -25357,6 +25564,12 @@ func (s *UpdateInputDeviceOutput) SetSerialNumber(v string) *UpdateInputDeviceOu
 // SetType sets the Type field's value.
 func (s *UpdateInputDeviceOutput) SetType(v string) *UpdateInputDeviceOutput {
 	s.Type = &v
+	return s
+}
+
+// SetUhdDeviceSettings sets the UhdDeviceSettings field's value.
+func (s *UpdateInputDeviceOutput) SetUhdDeviceSettings(v *InputDeviceUhdSettings) *UpdateInputDeviceOutput {
+	s.UhdDeviceSettings = v
 	return s
 }
 
@@ -25829,6 +26042,60 @@ func (s *ValidationError) SetElementPath(v string) *ValidationError {
 // SetErrorMessage sets the ErrorMessage field's value.
 func (s *ValidationError) SetErrorMessage(v string) *ValidationError {
 	s.ErrorMessage = &v
+	return s
+}
+
+type VideoBlackFailoverSettings struct {
+	_ struct{} `type:"structure"`
+
+	// A value used in calculating the threshold below which MediaLive considers
+	// a pixel to be 'black'. For the input to be considered black, every pixel
+	// in a frame must be below this threshold. The threshold is calculated as a
+	// percentage (expressed as a decimal) of white. Therefore .1 means 10% white
+	// (or 90% black). Note how the formula works for any color depth. For example,
+	// if you set this field to 0.1 in 10-bit color depth: (1023*0.1=102.3), which
+	// means a pixel value of 102 or less is 'black'. If you set this field to .1
+	// in an 8-bit color depth: (255*0.1=25.5), which means a pixel value of 25
+	// or less is 'black'. The range is 0.0 to 1.0, with any number of decimal places.
+	BlackDetectThreshold *float64 `locationName:"blackDetectThreshold" type:"double"`
+
+	// The amount of time (in milliseconds) that the active input must be black
+	// before automatic input failover occurs.
+	VideoBlackThresholdMsec *int64 `locationName:"videoBlackThresholdMsec" min:"1000" type:"integer"`
+}
+
+// String returns the string representation
+func (s VideoBlackFailoverSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VideoBlackFailoverSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoBlackFailoverSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoBlackFailoverSettings"}
+	if s.VideoBlackThresholdMsec != nil && *s.VideoBlackThresholdMsec < 1000 {
+		invalidParams.Add(request.NewErrParamMinValue("VideoBlackThresholdMsec", 1000))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlackDetectThreshold sets the BlackDetectThreshold field's value.
+func (s *VideoBlackFailoverSettings) SetBlackDetectThreshold(v float64) *VideoBlackFailoverSettings {
+	s.BlackDetectThreshold = &v
+	return s
+}
+
+// SetVideoBlackThresholdMsec sets the VideoBlackThresholdMsec field's value.
+func (s *VideoBlackFailoverSettings) SetVideoBlackThresholdMsec(v int64) *VideoBlackFailoverSettings {
+	s.VideoBlackThresholdMsec = &v
 	return s
 }
 

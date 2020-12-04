@@ -5073,6 +5073,9 @@ type CreateLicenseConfigurationInput struct {
 	// Description of the license configuration.
 	Description *string `type:"string"`
 
+	// When true, disassociates a resource when software is uninstalled.
+	DisassociateWhenNotFound *bool `type:"boolean"`
+
 	// Number of licenses managed by the license configuration.
 	LicenseCount *int64 `type:"long"`
 
@@ -5157,6 +5160,12 @@ func (s *CreateLicenseConfigurationInput) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *CreateLicenseConfigurationInput) SetDescription(v string) *CreateLicenseConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetDisassociateWhenNotFound sets the DisassociateWhenNotFound field's value.
+func (s *CreateLicenseConfigurationInput) SetDisassociateWhenNotFound(v bool) *CreateLicenseConfigurationInput {
+	s.DisassociateWhenNotFound = &v
 	return s
 }
 
@@ -6858,6 +6867,9 @@ type GetLicenseConfigurationOutput struct {
 	// Description of the license configuration.
 	Description *string `type:"string"`
 
+	// When true, disassociates a resource when software is uninstalled.
+	DisassociateWhenNotFound *bool `type:"boolean"`
+
 	// Amazon Resource Name (ARN) of the license configuration.
 	LicenseConfigurationArn *string `type:"string"`
 
@@ -6926,6 +6938,12 @@ func (s *GetLicenseConfigurationOutput) SetConsumedLicenses(v int64) *GetLicense
 // SetDescription sets the Description field's value.
 func (s *GetLicenseConfigurationOutput) SetDescription(v string) *GetLicenseConfigurationOutput {
 	s.Description = &v
+	return s
+}
+
+// SetDisassociateWhenNotFound sets the DisassociateWhenNotFound field's value.
+func (s *GetLicenseConfigurationOutput) SetDisassociateWhenNotFound(v bool) *GetLicenseConfigurationOutput {
+	s.DisassociateWhenNotFound = &v
 	return s
 }
 
@@ -7913,6 +7931,9 @@ type LicenseConfiguration struct {
 	// Description of the license configuration.
 	Description *string `type:"string"`
 
+	// When true, disassociates a resource when software is uninstalled.
+	DisassociateWhenNotFound *bool `type:"boolean"`
+
 	// Amazon Resource Name (ARN) of the license configuration.
 	LicenseConfigurationArn *string `type:"string"`
 
@@ -7978,6 +7999,12 @@ func (s *LicenseConfiguration) SetConsumedLicenses(v int64) *LicenseConfiguratio
 // SetDescription sets the Description field's value.
 func (s *LicenseConfiguration) SetDescription(v string) *LicenseConfiguration {
 	s.Description = &v
+	return s
+}
+
+// SetDisassociateWhenNotFound sets the DisassociateWhenNotFound field's value.
+func (s *LicenseConfiguration) SetDisassociateWhenNotFound(v bool) *LicenseConfiguration {
+	s.DisassociateWhenNotFound = &v
 	return s
 }
 
@@ -9268,6 +9295,10 @@ type ListResourceInventoryInput struct {
 	//
 	//    * resource_id - The ID of the resource. Logical operators are EQUALS |
 	//    NOT_EQUALS.
+	//
+	//    * tag:<key> - The key/value combination of a tag assigned to the resource.
+	//    Logical operators are EQUALS (single account) or EQUALS | NOT_EQUALS (cross
+	//    account).
 	Filters []*InventoryFilter `type:"list"`
 
 	// Maximum number of results to return in a single call.
@@ -10751,6 +10782,9 @@ type UpdateLicenseConfigurationInput struct {
 	// New description of the license configuration.
 	Description *string `type:"string"`
 
+	// When true, disassociates a resource when software is uninstalled.
+	DisassociateWhenNotFound *bool `type:"boolean"`
+
 	// Amazon Resource Name (ARN) of the license configuration.
 	//
 	// LicenseConfigurationArn is a required field
@@ -10812,6 +10846,12 @@ func (s *UpdateLicenseConfigurationInput) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *UpdateLicenseConfigurationInput) SetDescription(v string) *UpdateLicenseConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetDisassociateWhenNotFound sets the DisassociateWhenNotFound field's value.
+func (s *UpdateLicenseConfigurationInput) SetDisassociateWhenNotFound(v bool) *UpdateLicenseConfigurationInput {
+	s.DisassociateWhenNotFound = &v
 	return s
 }
 

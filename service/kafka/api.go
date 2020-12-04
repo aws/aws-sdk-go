@@ -3793,7 +3793,7 @@ type ClusterInfo struct {
 	OpenMonitoring *OpenMonitoring `locationName:"openMonitoring" type:"structure"`
 
 	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
-	// FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
+	// FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 
 	// Tags attached to the cluster.
@@ -4560,7 +4560,7 @@ type CreateClusterOutput struct {
 	ClusterName *string `locationName:"clusterName" type:"string"`
 
 	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
-	// FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
+	// FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 }
 
@@ -4781,7 +4781,7 @@ type DeleteClusterOutput struct {
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
-	// FAILED, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
+	// FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 }
 
@@ -8365,6 +8365,9 @@ const (
 	// ClusterStateFailed is a ClusterState enum value
 	ClusterStateFailed = "FAILED"
 
+	// ClusterStateHealing is a ClusterState enum value
+	ClusterStateHealing = "HEALING"
+
 	// ClusterStateMaintenance is a ClusterState enum value
 	ClusterStateMaintenance = "MAINTENANCE"
 
@@ -8382,6 +8385,7 @@ func ClusterState_Values() []string {
 		ClusterStateCreating,
 		ClusterStateDeleting,
 		ClusterStateFailed,
+		ClusterStateHealing,
 		ClusterStateMaintenance,
 		ClusterStateRebootingBroker,
 		ClusterStateUpdating,

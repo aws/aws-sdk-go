@@ -11,6 +11,7 @@
     "CreateDocument": "<p>Creates a Systems Manager (SSM) document. An SSM document defines the actions that Systems Manager performs on your managed instances. For more information about SSM documents, including information about supported schemas, features, and syntax, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-ssm-docs.html\">AWS Systems Manager Documents</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
     "CreateMaintenanceWindow": "<p>Creates a new maintenance window.</p> <note> <p>The value you specify for <code>Duration</code> determines the specific end time for the maintenance window based on the time it begins. No maintenance window tasks are permitted to start after the resulting endtime minus the number of hours you specify for <code>Cutoff</code>. For example, if the maintenance window starts at 3 PM, the duration is three hours, and the value you specify for <code>Cutoff</code> is one hour, no maintenance window tasks can start after 5 PM.</p> </note>",
     "CreateOpsItem": "<p>Creates a new OpsItem. You must have permission in AWS Identity and Access Management (IAM) to create a new OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
+    "CreateOpsMetadata": "<p>If you create a new application in AppManager, Systems Manager calls this API action to specify information about the new application, including the application type.</p>",
     "CreatePatchBaseline": "<p>Creates a patch baseline.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>",
     "CreateResourceDataSync": "<p>A resource data sync helps you view data from multiple sources in a single location. Systems Manager offers two types of resource data sync: <code>SyncToDestination</code> and <code>SyncFromSource</code>.</p> <p>You can configure Systems Manager Inventory to use the <code>SyncToDestination</code> type to synchronize Inventory data from multiple AWS Regions to a single S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync.html\">Configuring Resource Data Sync for Inventory</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>You can configure Systems Manager Explorer to use the <code>SyncFromSource</code> type to synchronize operational work items (OpsItems) and operational data (OpsData) from multiple AWS Regions to a single S3 bucket. This type can synchronize OpsItems and OpsData from multiple AWS accounts and Regions or <code>EntireOrganization</code> by using AWS Organizations. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resource-data-sync.html\">Setting up Systems Manager Explorer to display data from multiple accounts and Regions</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>A resource data sync is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data. To check the status of a sync, use the <a>ListResourceDataSync</a>.</p> <note> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. </p> </note>",
     "DeleteActivation": "<p>Deletes an activation. You are not required to delete an activation. If you delete an activation, you can no longer use it to register additional managed instances. Deleting an activation does not de-register managed instances. You must manually de-register managed instances.</p>",
@@ -18,6 +19,7 @@
     "DeleteDocument": "<p>Deletes the Systems Manager document and all instance associations to the document.</p> <p>Before you delete the document, we recommend that you use <a>DeleteAssociation</a> to disassociate all instances that are associated with the document.</p>",
     "DeleteInventory": "<p>Delete a custom inventory type or the data associated with a custom Inventory type. Deleting a custom inventory type is also referred to as deleting a custom inventory schema.</p>",
     "DeleteMaintenanceWindow": "<p>Deletes a maintenance window.</p>",
+    "DeleteOpsMetadata": "<p>Delete OpsMetadata related to an application.</p>",
     "DeleteParameter": "<p>Delete a parameter from the system.</p>",
     "DeleteParameters": "<p>Delete a list of parameters.</p>",
     "DeletePatchBaseline": "<p>Deletes a patch baseline.</p>",
@@ -56,7 +58,7 @@
     "DescribePatchBaselines": "<p>Lists the patch baselines in your AWS account.</p>",
     "DescribePatchGroupState": "<p>Returns high-level aggregated patch compliance state for a patch group.</p>",
     "DescribePatchGroups": "<p>Lists all patch groups that have been registered with patch baselines.</p>",
-    "DescribePatchProperties": "<p>Lists the properties of available patches organized by product, product family, classification, severity, and other properties of available patches. You can use the reported properties in the filters you specify in requests for actions such as <a>CreatePatchBaseline</a>, <a>UpdatePatchBaseline</a>, <a>DescribeAvailablePatches</a>, and <a>DescribePatchBaselines</a>.</p> <p>The following section lists the properties that can be used in filters for each major operating system type:</p> <dl> <dt>AMAZON_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>AMAZON_LINUX_2</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>CENTOS</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>DEBIAN</dt> <dd> <p>Valid properties: PRODUCT, PRIORITY</p> </dd> <dt>ORACLE_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>REDHAT_ENTERPRISE_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>SUSE</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>UBUNTU</dt> <dd> <p>Valid properties: PRODUCT, PRIORITY</p> </dd> <dt>WINDOWS</dt> <dd> <p>Valid properties: PRODUCT, PRODUCT_FAMILY, CLASSIFICATION, MSRC_SEVERITY</p> </dd> </dl>",
+    "DescribePatchProperties": "<p>Lists the properties of available patches organized by product, product family, classification, severity, and other properties of available patches. You can use the reported properties in the filters you specify in requests for actions such as <a>CreatePatchBaseline</a>, <a>UpdatePatchBaseline</a>, <a>DescribeAvailablePatches</a>, and <a>DescribePatchBaselines</a>.</p> <p>The following section lists the properties that can be used in filters for each major operating system type:</p> <dl> <dt>AMAZON_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>AMAZON_LINUX_2</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>CENTOS</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>DEBIAN</dt> <dd> <p>Valid properties: PRODUCT, PRIORITY</p> </dd> <dt>MACOS</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION</p> </dd> <dt>ORACLE_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>REDHAT_ENTERPRISE_LINUX</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>SUSE</dt> <dd> <p>Valid properties: PRODUCT, CLASSIFICATION, SEVERITY</p> </dd> <dt>UBUNTU</dt> <dd> <p>Valid properties: PRODUCT, PRIORITY</p> </dd> <dt>WINDOWS</dt> <dd> <p>Valid properties: PRODUCT, PRODUCT_FAMILY, CLASSIFICATION, MSRC_SEVERITY</p> </dd> </dl>",
     "DescribeSessions": "<p>Retrieves a list of all active sessions (both connected and disconnected) or terminated sessions from the past 30 days.</p>",
     "GetAutomationExecution": "<p>Get detailed information about a particular Automation execution.</p>",
     "GetCalendarState": "<p>Gets the state of the AWS Systems Manager Change Calendar at an optional, specified time. If you specify a time, <code>GetCalendarState</code> returns the state of the calendar at a specific time, and returns the next time that the Change Calendar state will transition. If you do not specify a time, <code>GetCalendarState</code> assumes the current time. Change Calendar entries have two possible states: <code>OPEN</code> or <code>CLOSED</code>.</p> <p>If you specify more than one calendar in a request, the command returns the status of <code>OPEN</code> only if all calendars in the request are open. If one or more calendars in the request are closed, the status returned is <code>CLOSED</code>.</p> <p>For more information about Systems Manager Change Calendar, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html\">AWS Systems Manager Change Calendar</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
@@ -73,6 +75,7 @@
     "GetMaintenanceWindowExecutionTaskInvocation": "<p>Retrieves information about a specific task running on a specific target.</p>",
     "GetMaintenanceWindowTask": "<p>Lists the tasks in a maintenance window.</p>",
     "GetOpsItem": "<p>Get information about an OpsItem by using the ID. You must have permission in AWS Identity and Access Management (IAM) to view information about an OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
+    "GetOpsMetadata": "<p>View operational metadata related to an application in AppManager.</p>",
     "GetOpsSummary": "<p>View a summary of OpsItems based on specified filters and aggregators.</p>",
     "GetParameter": "<p>Get information about a parameter by using the parameter name. Don't confuse this API action with the <a>GetParameters</a> API action.</p>",
     "GetParameterHistory": "<p>Retrieves the history of all changes to a parameter.</p>",
@@ -91,6 +94,7 @@
     "ListDocumentVersions": "<p>List all versions for a document.</p>",
     "ListDocuments": "<p>Returns all Systems Manager (SSM) documents in the current AWS account and Region. You can limit the results of this request by using a filter.</p>",
     "ListInventoryEntries": "<p>A list of inventory items returned by the request.</p>",
+    "ListOpsMetadata": "<p>Systems Manager calls this API action when displaying all AppManager OpsMetadata objects or blobs.</p>",
     "ListResourceComplianceSummaries": "<p>Returns a resource-level summary count. The summary includes information about compliant and non-compliant statuses and detailed compliance-item severity counts, according to the filter criteria you specify.</p>",
     "ListResourceDataSync": "<p>Lists your resource data sync configurations. Includes information about the last time a sync attempted to start, the last sync status, and the last time a sync successfully completed.</p> <p>The number of sync configurations might be too large to return using a single call to <code>ListResourceDataSync</code>. You can limit the number of sync configurations returned by using the <code>MaxResults</code> parameter. To determine whether there are more sync configurations to list, check the value of <code>NextToken</code> in the output. If there are more sync configurations to list, you can request them by specifying the <code>NextToken</code> returned in the call to the parameter of a subsequent call. </p>",
     "ListTagsForResource": "<p>Returns a list of the tags assigned to the specified resource.</p>",
@@ -121,6 +125,7 @@
     "UpdateMaintenanceWindowTask": "<p>Modifies a task assigned to a maintenance window. You can't change the task type, but you can change the following values:</p> <ul> <li> <p>TaskARN. For example, you can change a RUN_COMMAND task from AWS-RunPowerShellScript to AWS-RunShellScript.</p> </li> <li> <p>ServiceRoleArn</p> </li> <li> <p>TaskInvocationParameters</p> </li> <li> <p>Priority</p> </li> <li> <p>MaxConcurrency</p> </li> <li> <p>MaxErrors</p> </li> </ul> <p>If the value for a parameter in <code>UpdateMaintenanceWindowTask</code> is null, then the corresponding field is not modified. If you set <code>Replace</code> to true, then all fields required by the <a>RegisterTaskWithMaintenanceWindow</a> action are required for this request. Optional fields that aren't specified are set to null.</p> <important> <p>When you update a maintenance window task that has options specified in <code>TaskInvocationParameters</code>, you must provide again all the <code>TaskInvocationParameters</code> values that you want to retain. The values you do not specify again are removed. For example, suppose that when you registered a Run Command task, you specified <code>TaskInvocationParameters</code> values for <code>Comment</code>, <code>NotificationConfig</code>, and <code>OutputS3BucketName</code>. If you update the maintenance window task and specify only a different <code>OutputS3BucketName</code> value, the values for <code>Comment</code> and <code>NotificationConfig</code> are removed.</p> </important>",
     "UpdateManagedInstanceRole": "<p>Changes the Amazon Identity and Access Management (IAM) role that is assigned to the on-premises instance or virtual machines (VM). IAM roles are first assigned to these hybrid instances during the activation process. For more information, see <a>CreateActivation</a>.</p>",
     "UpdateOpsItem": "<p>Edit or change an OpsItem. You must have permission in AWS Identity and Access Management (IAM) to update an OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
+    "UpdateOpsMetadata": "<p>Systems Manager calls this API action when you edit OpsMetadata in AppManager.</p>",
     "UpdatePatchBaseline": "<p>Modifies an existing patch baseline. Fields not specified in the request are left unchanged.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>",
     "UpdateResourceDataSync": "<p>Update a resource data sync. After you create a resource data sync for a Region, you can't change the account options for that sync. For example, if you create a sync in the us-east-2 (Ohio) Region and you choose the Include only the current account option, you can't edit that sync later and choose the Include all accounts from my AWS Organizations configuration option. Instead, you must delete the first resource data sync, and create a new one.</p> <note> <p>This API action only supports a resource data sync that was created with a SyncFromSource <code>SyncType</code>.</p> </note>",
     "UpdateServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>GetServiceSetting</a> API action to view the current value. Or, use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p> <p>Update the service setting for the account. </p>"
@@ -237,11 +242,11 @@
     "ApplyOnlyAtCronInterval": {
       "base": null,
       "refs": {
-        "AssociationDescription$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
-        "AssociationVersionInfo$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
-        "CreateAssociationBatchRequestEntry$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
-        "CreateAssociationRequest$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it.</p>",
-        "UpdateAssociationRequest$ApplyOnlyAtCronInterval": "<p>By default, when you update an association, the system runs it immediately after it is updated and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you update it.</p> <p>Also, if you specified this option when you created the association, you can reset it. To do so, specify the <code>no-apply-only-at-cron-interval</code> parameter when you update the association from the command line. This parameter forces the association to run immediately after updating it and according to the interval specified.</p>"
+        "AssociationDescription$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it. This parameter is not supported for rate expressions.</p>",
+        "AssociationVersionInfo$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it. This parameter is not supported for rate expressions.</p>",
+        "CreateAssociationBatchRequestEntry$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it. This parameter is not supported for rate expressions.</p>",
+        "CreateAssociationRequest$ApplyOnlyAtCronInterval": "<p>By default, when you create a new associations, the system runs it immediately after it is created and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you create it. This parameter is not supported for rate expressions.</p>",
+        "UpdateAssociationRequest$ApplyOnlyAtCronInterval": "<p>By default, when you update an association, the system runs it immediately after it is updated and then according to the schedule you specified. Specify this option if you don't want an association to run immediately after you update it. This parameter is not supported for rate expressions.</p> <p>Also, if you specified this option when you created the association, you can reset it. To do so, specify the <code>no-apply-only-at-cron-interval</code> parameter when you update the association from the command line. This parameter forces the association to run immediately after updating it and according to the interval specified.</p>"
       }
     },
     "ApproveAfterDays": {
@@ -1373,6 +1378,16 @@
       "refs": {
       }
     },
+    "CreateOpsMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateOpsMetadataResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreatePatchBaselineRequest": {
       "base": null,
       "refs": {
@@ -1457,6 +1472,8 @@
         "OpsItem$LastModifiedTime": "<p>The date and time the OpsItem was last updated.</p>",
         "OpsItemSummary$CreatedTime": "<p>The date and time the OpsItem was created.</p>",
         "OpsItemSummary$LastModifiedTime": "<p>The date and time the OpsItem was last updated.</p>",
+        "OpsMetadata$LastModifiedDate": "<p>The date the OpsMetadata object was last updated.</p>",
+        "OpsMetadata$CreationDate": "<p>The date the OpsMetadata objects was created.</p>",
         "Parameter$LastModifiedDate": "<p>Date the parameter was last changed or updated and the parameter version was created.</p>",
         "ParameterHistory$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
         "ParameterMetadata$LastModifiedDate": "<p>Date the parameter was last changed or updated.</p>",
@@ -1531,6 +1548,16 @@
       }
     },
     "DeleteMaintenanceWindowResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOpsMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOpsMetadataResult": {
       "base": null,
       "refs": {
       }
@@ -2567,6 +2594,22 @@
       }
     },
     "GetOpsItemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOpsMetadataMaxResults": {
+      "base": null,
+      "refs": {
+        "GetOpsMetadataRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+      }
+    },
+    "GetOpsMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOpsMetadataResult": {
       "base": null,
       "refs": {
       }
@@ -3656,6 +3699,22 @@
       "refs": {
       }
     },
+    "ListOpsMetadataMaxResults": {
+      "base": null,
+      "refs": {
+        "ListOpsMetadataRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>"
+      }
+    },
+    "ListOpsMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOpsMetadataResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListResourceComplianceSummariesRequest": {
       "base": null,
       "refs": {
@@ -4347,6 +4406,39 @@
         "DescribeInstanceInformationRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results. </p>"
       }
     },
+    "MetadataKey": {
+      "base": null,
+      "refs": {
+        "MetadataKeysToDeleteList$member": null,
+        "MetadataMap$key": null
+      }
+    },
+    "MetadataKeysToDeleteList": {
+      "base": null,
+      "refs": {
+        "UpdateOpsMetadataRequest$KeysToDelete": "<p>The metadata keys to delete from the OpsMetadata object. </p>"
+      }
+    },
+    "MetadataMap": {
+      "base": null,
+      "refs": {
+        "CreateOpsMetadataRequest$Metadata": "<p>Metadata for a new AppManager application. </p>",
+        "GetOpsMetadataResult$Metadata": "<p>OpsMetadata for an AppManager application.</p>",
+        "UpdateOpsMetadataRequest$MetadataToUpdate": "<p>Metadata to add to an OpsMetadata object.</p>"
+      }
+    },
+    "MetadataValue": {
+      "base": "<p>Metadata to assign to an AppManager application.</p>",
+      "refs": {
+        "MetadataMap$value": null
+      }
+    },
+    "MetadataValueString": {
+      "base": null,
+      "refs": {
+        "MetadataValue$Value": "<p>Metadata value to assign to an AppManager application.</p>"
+      }
+    },
     "ModifyDocumentPermissionRequest": {
       "base": null,
       "refs": {
@@ -4418,6 +4510,8 @@
         "GetInventoryResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "GetInventorySchemaRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "GetInventorySchemaResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
+        "GetOpsMetadataRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results.</p>",
+        "GetOpsMetadataResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "GetOpsSummaryRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
         "GetOpsSummaryResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "GetParameterHistoryRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
@@ -4442,6 +4536,8 @@
         "ListDocumentsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "ListInventoryEntriesRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "ListInventoryEntriesResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
+        "ListOpsMetadataRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results.</p>",
+        "ListOpsMetadataResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "ListResourceComplianceSummariesRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
         "ListResourceComplianceSummariesResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "ListResourceDataSyncRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
@@ -4856,6 +4952,97 @@
         "OpsItem$Title": "<p>A short heading that describes the nature of the OpsItem and the impacted resource.</p>",
         "OpsItemSummary$Title": "<p>A short heading that describes the nature of the OpsItem and the impacted resource.</p>",
         "UpdateOpsItemRequest$Title": "<p>A short heading that describes the nature of the OpsItem and the impacted resource.</p>"
+      }
+    },
+    "OpsMetadata": {
+      "base": "<p>Operational metadata for an application in AppManager.</p>",
+      "refs": {
+        "OpsMetadataList$member": null
+      }
+    },
+    "OpsMetadataAlreadyExistsException": {
+      "base": "<p>An OpsMetadata object already exists for the selected resource.</p>",
+      "refs": {
+      }
+    },
+    "OpsMetadataArn": {
+      "base": null,
+      "refs": {
+        "CreateOpsMetadataResult$OpsMetadataArn": "<p>The Amazon Resource Name (ARN) of the OpsMetadata Object or blob created by the call.</p>",
+        "DeleteOpsMetadataRequest$OpsMetadataArn": "<p>The Amazon Resource Name (ARN) of an OpsMetadata Object to delete.</p>",
+        "GetOpsMetadataRequest$OpsMetadataArn": "<p>The Amazon Resource Name (ARN) of an OpsMetadata Object to view.</p>",
+        "OpsMetadata$OpsMetadataArn": "<p>The Amazon Resource Name (ARN) of the OpsMetadata Object or blob.</p>",
+        "UpdateOpsMetadataRequest$OpsMetadataArn": "<p>The Amazon Resoure Name (ARN) of the OpsMetadata Object to update.</p>",
+        "UpdateOpsMetadataResult$OpsMetadataArn": "<p>The Amazon Resource Name (ARN) of the OpsMetadata Object that was updated.</p>"
+      }
+    },
+    "OpsMetadataFilter": {
+      "base": "<p>A filter to limit the number of OpsMetadata objects displayed.</p>",
+      "refs": {
+        "OpsMetadataFilterList$member": null
+      }
+    },
+    "OpsMetadataFilterKey": {
+      "base": null,
+      "refs": {
+        "OpsMetadataFilter$Key": "<p>A filter key.</p>"
+      }
+    },
+    "OpsMetadataFilterList": {
+      "base": null,
+      "refs": {
+        "ListOpsMetadataRequest$Filters": "<p>One or more filters to limit the number of OpsMetadata objects returned by the call.</p>"
+      }
+    },
+    "OpsMetadataFilterValue": {
+      "base": null,
+      "refs": {
+        "OpsMetadataFilterValueList$member": null
+      }
+    },
+    "OpsMetadataFilterValueList": {
+      "base": null,
+      "refs": {
+        "OpsMetadataFilter$Values": "<p>A filter value.</p>"
+      }
+    },
+    "OpsMetadataInvalidArgumentException": {
+      "base": "<p>One of the arguments passed is invalid. </p>",
+      "refs": {
+      }
+    },
+    "OpsMetadataKeyLimitExceededException": {
+      "base": "<p>The OpsMetadata object exceeds the maximum number of OpsMetadata keys that you can assign to an application in AppManager.</p>",
+      "refs": {
+      }
+    },
+    "OpsMetadataLimitExceededException": {
+      "base": "<p>Your account reached the maximum number of OpsMetadata objects allowed by AppManager. The maximum is 200 OpsMetadata objects. Delete one or more OpsMetadata object and try again.</p>",
+      "refs": {
+      }
+    },
+    "OpsMetadataList": {
+      "base": null,
+      "refs": {
+        "ListOpsMetadataResult$OpsMetadataList": "<p>Returns a list of OpsMetadata objects.</p>"
+      }
+    },
+    "OpsMetadataNotFoundException": {
+      "base": "<p>The OpsMetadata object does not exist. </p>",
+      "refs": {
+      }
+    },
+    "OpsMetadataResourceId": {
+      "base": null,
+      "refs": {
+        "CreateOpsMetadataRequest$ResourceId": "<p>A resource ID for a new AppManager application.</p>",
+        "GetOpsMetadataResult$ResourceId": "<p>The resource ID of the AppManager application.</p>",
+        "OpsMetadata$ResourceId": "<p>The ID of the AppManager application.</p>"
+      }
+    },
+    "OpsMetadataTooManyUpdatesException": {
+      "base": "<p>The system is processing too many concurrent updates. Wait a few moments and try again.</p>",
+      "refs": {
       }
     },
     "OpsResultAttribute": {
@@ -5275,7 +5462,7 @@
     "PatchCVEIdList": {
       "base": null,
       "refs": {
-        "Patch$CVEIds": "<p>The Common Vulnerabilities and Exposures (CVE) ID of the patch. For example, <code>CVE-1999-0067</code>. Applies to Linux-based instances only.</p>"
+        "Patch$CVEIds": "<p>The Common Vulnerabilities and Exposures (CVE) ID of the patch. For example, <code>CVE-2011-3192</code>. Applies to Linux-based instances only.</p>"
       }
     },
     "PatchCVEIds": {
@@ -5631,7 +5818,7 @@
     "PatchSet": {
       "base": null,
       "refs": {
-        "DescribePatchPropertiesRequest$PatchSet": "<p>Indicates whether to list patches for the Windows operating system or for Microsoft applications. Not applicable for Linux operating systems.</p>"
+        "DescribePatchPropertiesRequest$PatchSet": "<p>Indicates whether to list patches for the Windows operating system or for Microsoft applications. Not applicable for the Linux or macOS operating systems.</p>"
       }
     },
     "PatchSeverity": {
@@ -6740,6 +6927,13 @@
         "OpsItemParameterNamesList$member": null,
         "OpsItemSummary$CreatedBy": "<p>The Amazon Resource Name (ARN) of the IAM entity that created the OpsItem.</p>",
         "OpsItemSummary$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the IAM entity that created the OpsItem.</p>",
+        "OpsMetadata$LastModifiedUser": "<p>The user name who last updated the OpsMetadata object.</p>",
+        "OpsMetadataAlreadyExistsException$message": null,
+        "OpsMetadataInvalidArgumentException$message": null,
+        "OpsMetadataKeyLimitExceededException$message": null,
+        "OpsMetadataLimitExceededException$message": null,
+        "OpsMetadataNotFoundException$message": null,
+        "OpsMetadataTooManyUpdatesException$message": null,
         "Parameter$SourceResult": "<p>Applies to parameters that reference information in other AWS services. SourceResult is the raw result or response from the source.</p>",
         "Parameter$ARN": "<p>The Amazon Resource Name (ARN) of the parameter.</p>",
         "ParameterAlreadyExists$message": null,
@@ -7148,6 +7342,16 @@
       }
     },
     "UpdateOpsItemResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOpsMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateOpsMetadataResult": {
       "base": null,
       "refs": {
       }

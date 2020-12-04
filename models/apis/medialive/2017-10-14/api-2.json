@@ -2601,6 +2601,22 @@
         }
       }
     },
+    "AudioSilenceFailoverSettings": {
+      "type": "structure",
+      "members": {
+        "AudioSelectorName": {
+          "shape": "__string",
+          "locationName": "audioSelectorName"
+        },
+        "AudioSilenceThresholdMsec": {
+          "shape": "__integerMin1000",
+          "locationName": "audioSilenceThresholdMsec"
+        }
+      },
+      "required": [
+        "AudioSelectorName"
+      ]
+    },
     "AudioTrack": {
       "type": "structure",
       "members": {
@@ -4527,6 +4543,10 @@
         "Type": {
           "shape": "InputDeviceType",
           "locationName": "type"
+        },
+        "UhdDeviceSettings": {
+          "shape": "InputDeviceUhdSettings",
+          "locationName": "uhdDeviceSettings"
         }
       }
     },
@@ -5545,9 +5565,17 @@
     "FailoverConditionSettings": {
       "type": "structure",
       "members": {
+        "AudioSilenceSettings": {
+          "shape": "AudioSilenceFailoverSettings",
+          "locationName": "audioSilenceSettings"
+        },
         "InputLossSettings": {
           "shape": "InputLossFailoverSettings",
           "locationName": "inputLossSettings"
+        },
+        "VideoBlackSettings": {
+          "shape": "VideoBlackFailoverSettings",
+          "locationName": "videoBlackSettings"
         }
       }
     },
@@ -7264,6 +7292,10 @@
         "Type": {
           "shape": "InputDeviceType",
           "locationName": "type"
+        },
+        "UhdDeviceSettings": {
+          "shape": "InputDeviceUhdSettings",
+          "locationName": "uhdDeviceSettings"
         }
       }
     },
@@ -7462,6 +7494,10 @@
         "Type": {
           "shape": "InputDeviceType",
           "locationName": "type"
+        },
+        "UhdDeviceSettings": {
+          "shape": "InputDeviceUhdSettings",
+          "locationName": "uhdDeviceSettings"
         }
       }
     },
@@ -7477,6 +7513,43 @@
       "enum": [
         "HD"
       ]
+    },
+    "InputDeviceUhdSettings": {
+      "type": "structure",
+      "members": {
+        "ActiveInput": {
+          "shape": "InputDeviceActiveInput",
+          "locationName": "activeInput"
+        },
+        "ConfiguredInput": {
+          "shape": "InputDeviceConfiguredInput",
+          "locationName": "configuredInput"
+        },
+        "DeviceState": {
+          "shape": "InputDeviceState",
+          "locationName": "deviceState"
+        },
+        "Framerate": {
+          "shape": "__double",
+          "locationName": "framerate"
+        },
+        "Height": {
+          "shape": "__integer",
+          "locationName": "height"
+        },
+        "MaxBitrate": {
+          "shape": "__integer",
+          "locationName": "maxBitrate"
+        },
+        "ScanType": {
+          "shape": "InputDeviceScanType",
+          "locationName": "scanType"
+        },
+        "Width": {
+          "shape": "__integer",
+          "locationName": "width"
+        }
+      }
     },
     "InputFilter": {
       "type": "string",
@@ -11633,6 +11706,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "UhdDeviceSettings": {
+          "shape": "InputDeviceConfigurableSettings",
+          "locationName": "uhdDeviceSettings"
         }
       }
     },
@@ -11651,6 +11728,10 @@
         "Name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "UhdDeviceSettings": {
+          "shape": "InputDeviceConfigurableSettings",
+          "locationName": "uhdDeviceSettings"
         }
       },
       "required": [
@@ -11703,6 +11784,10 @@
         "Type": {
           "shape": "InputDeviceType",
           "locationName": "type"
+        },
+        "UhdDeviceSettings": {
+          "shape": "InputDeviceUhdSettings",
+          "locationName": "uhdDeviceSettings"
         }
       }
     },
@@ -11963,6 +12048,19 @@
         }
       }
     },
+    "VideoBlackFailoverSettings": {
+      "type": "structure",
+      "members": {
+        "BlackDetectThreshold": {
+          "shape": "__doubleMin0Max1",
+          "locationName": "blackDetectThreshold"
+        },
+        "VideoBlackThresholdMsec": {
+          "shape": "__integerMin1000",
+          "locationName": "videoBlackThresholdMsec"
+        }
+      }
+    },
     "VideoCodecSettings": {
       "type": "structure",
       "members": {
@@ -12136,6 +12234,9 @@
       "type": "double"
     },
     "__doubleMin0": {
+      "type": "double"
+    },
+    "__doubleMin0Max1": {
       "type": "double"
     },
     "__doubleMin1": {

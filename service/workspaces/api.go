@@ -350,6 +350,11 @@ func (c *WorkSpaces) CopyWorkspaceImageRequest(input *CopyWorkspaceImageInput) (
 // For more information about copying images, see Copy a Custom WorkSpaces Image
 // (https://docs.aws.amazon.com/workspaces/latest/adminguide/copy-custom-image.html).
 //
+// In the China (Ningxia) Region, you can copy images only within the same Region.
+//
+// In the AWS GovCloud (US-West) Region, to copy images to and from other AWS
+// Regions, contact AWS Support.
+//
 // Before copying a shared image, be sure to verify that it has been shared
 // from the correct AWS account. To determine if an image has been shared and
 // to see the AWS account ID that owns an image, use the DescribeWorkSpaceImages
@@ -1194,6 +1199,18 @@ func (c *WorkSpaces) DeregisterWorkspaceDirectoryRequest(input *DeregisterWorksp
 // Deregisters the specified directory. This operation is asynchronous and returns
 // before the WorkSpace directory is deregistered. If any WorkSpaces are registered
 // to this directory, you must remove them before you can deregister the directory.
+//
+// Simple AD and AD Connector are made available to you free of charge to use
+// with WorkSpaces. If there are no WorkSpaces being used with your Simple AD
+// or AD Connector directory for 30 consecutive days, this directory will be
+// automatically deregistered for use with Amazon WorkSpaces, and you will be
+// charged for this directory as per the AWS Directory Services pricing terms
+// (http://aws.amazon.com/directoryservice/pricing/).
+//
+// To delete empty directories, see Delete the Directory for Your WorkSpaces
+// (https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html).
+// If you delete your Simple AD or AD Connector directory, you can always create
+// a new one when you want to start using WorkSpaces again.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4360,6 +4377,18 @@ func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput)
 // If the WorkSpace ID isn't returned, then the WorkSpace has been successfully
 // terminated.
 //
+// Simple AD and AD Connector are made available to you free of charge to use
+// with WorkSpaces. If there are no WorkSpaces being used with your Simple AD
+// or AD Connector directory for 30 consecutive days, this directory will be
+// automatically deregistered for use with Amazon WorkSpaces, and you will be
+// charged for this directory as per the AWS Directory Services pricing terms
+// (http://aws.amazon.com/directoryservice/pricing/).
+//
+// To delete empty directories, see Delete the Directory for Your WorkSpaces
+// (https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html).
+// If you delete your Simple AD or AD Connector directory, you can always create
+// a new one when you want to start using WorkSpaces again.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4639,11 +4668,21 @@ func (c *WorkSpaces) UpdateWorkspaceImagePermissionRequest(input *UpdateWorkspac
 
 // UpdateWorkspaceImagePermission API operation for Amazon WorkSpaces.
 //
-// Shares or unshares an image with one account by specifying whether that account
-// has permission to copy the image. If the copy image permission is granted,
-// the image is shared with that account. If the copy image permission is revoked,
-// the image is unshared with the account. For more information about sharing
-// images, see Share or Unshare a Custom WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
+// Shares or unshares an image with one account in the same AWS Region by specifying
+// whether that account has permission to copy the image. If the copy image
+// permission is granted, the image is shared with that account. If the copy
+// image permission is revoked, the image is unshared with the account.
+//
+// After an image has been shared, the recipient account can copy the image
+// to other AWS Regions as needed.
+//
+// In the China (Ningxia) Region, you can copy images only within the same Region.
+//
+// In the AWS GovCloud (US-West) Region, to copy images to and from other AWS
+// Regions, contact AWS Support.
+//
+// For more information about sharing images, see Share or Unshare a Custom
+// WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
 //
 //    * To delete an image that has been shared, you must unshare the image
 //    before you delete it.
@@ -7665,8 +7704,13 @@ type ImportWorkspaceImageInput struct {
 	// ImageName is a required field
 	ImageName *string `min:"1" type:"string" required:"true"`
 
-	// The ingestion process to be used when importing the image. For non-GPU-enabled
-	// bundles (bundles other than Graphics or GraphicsPro), specify BYOL_REGULAR.
+	// The ingestion process to be used when importing the image, depending on which
+	// protocol you want to use for your BYOL Workspace image, either PCoIP or WorkSpaces
+	// Streaming Protocol (WSP). To use WSP, specify a value that ends in _WSP.
+	// To use PCoIP, specify a value that does not end in _WSP.
+	//
+	// For non-GPU-enabled bundles (bundles other than Graphics or GraphicsPro),
+	// specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending on the protocol.
 	//
 	// IngestionProcess is a required field
 	IngestionProcess *string `type:"string" required:"true" enum:"WorkspaceImageIngestionProcess"`
@@ -11842,6 +11886,9 @@ const (
 
 	// WorkspaceImageIngestionProcessByolGraphicspro is a WorkspaceImageIngestionProcess enum value
 	WorkspaceImageIngestionProcessByolGraphicspro = "BYOL_GRAPHICSPRO"
+
+	// WorkspaceImageIngestionProcessByolRegularWsp is a WorkspaceImageIngestionProcess enum value
+	WorkspaceImageIngestionProcessByolRegularWsp = "BYOL_REGULAR_WSP"
 )
 
 // WorkspaceImageIngestionProcess_Values returns all elements of the WorkspaceImageIngestionProcess enum
@@ -11850,6 +11897,7 @@ func WorkspaceImageIngestionProcess_Values() []string {
 		WorkspaceImageIngestionProcessByolRegular,
 		WorkspaceImageIngestionProcessByolGraphics,
 		WorkspaceImageIngestionProcessByolGraphicspro,
+		WorkspaceImageIngestionProcessByolRegularWsp,
 	}
 }
 

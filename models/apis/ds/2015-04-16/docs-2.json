@@ -21,9 +21,9 @@
     "DeleteLogSubscription": "<p>Deletes the specified log subscription.</p>",
     "DeleteSnapshot": "<p>Deletes a directory snapshot.</p>",
     "DeleteTrust": "<p>Deletes an existing trust relationship between your AWS Managed Microsoft AD directory and an external domain.</p>",
-    "DeregisterCertificate": "<p>Deletes from the system the certificate that was registered for a secured LDAP connection.</p>",
+    "DeregisterCertificate": "<p>Deletes from the system the certificate that was registered for secure LDAP or client certificate authentication.</p>",
     "DeregisterEventTopic": "<p>Removes the specified directory as a publisher to the specified SNS topic.</p>",
-    "DescribeCertificate": "<p>Displays information about the certificate registered for a secured LDAP connection.</p>",
+    "DescribeCertificate": "<p>Displays information about the certificate registered for secure LDAP or client certificate authentication.</p>",
     "DescribeConditionalForwarders": "<p>Obtains information about the conditional forwarders for this account.</p> <p>If no input parameters are provided for RemoteDomainNames, this request describes all conditional forwarders for the specified directory ID.</p>",
     "DescribeDirectories": "<p>Obtains information about the directories that belong to this account.</p> <p>You can retrieve information about specific directories by passing the directory identifiers in the <code>DirectoryIds</code> parameter. Otherwise, all directories that belong to the current account are returned.</p> <p>This operation supports pagination with the use of the <code>NextToken</code> request and response parameters. If more results are available, the <code>DescribeDirectoriesResult.NextToken</code> member contains a token that you pass in the next call to <a>DescribeDirectories</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <code>Limit</code> parameter.</p>",
     "DescribeDomainControllers": "<p>Provides information about any domain controllers in your directory.</p>",
@@ -33,22 +33,22 @@
     "DescribeSharedDirectories": "<p>Returns the shared directories in your account. </p>",
     "DescribeSnapshots": "<p>Obtains information about the directory snapshots that belong to this account.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> request and response parameters. If more results are available, the <i>DescribeSnapshots.NextToken</i> member contains a token that you pass in the next call to <a>DescribeSnapshots</a> to retrieve the next set of items.</p> <p>You can also specify a maximum number of return results with the <i>Limit</i> parameter.</p>",
     "DescribeTrusts": "<p>Obtains information about the trust relationships for this account.</p> <p>If no input parameters are provided, such as DirectoryId or TrustIds, this request describes all the trust relationships belonging to the account.</p>",
-    "DisableClientAuthentication": "<p>Disable client authentication for smart cards.</p>",
+    "DisableClientAuthentication": "<p>Disables alternative client authentication methods for the specified directory. </p>",
     "DisableLDAPS": "<p>Deactivates LDAP secure calls for the specified directory.</p>",
     "DisableRadius": "<p>Disables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector or Microsoft AD directory.</p>",
     "DisableSso": "<p>Disables single-sign on for a directory.</p>",
-    "EnableClientAuthentication": "<p>Enable client authentication for smardtcards.</p>",
+    "EnableClientAuthentication": "<p>Enables alternative client authentication methods for the specified directory.</p>",
     "EnableLDAPS": "<p>Activates the switch for the specific directory to always use LDAP secure calls.</p>",
     "EnableRadius": "<p>Enables multi-factor authentication (MFA) with the Remote Authentication Dial In User Service (RADIUS) server for an AD Connector or Microsoft AD directory.</p>",
     "EnableSso": "<p>Enables single sign-on for a directory. Single sign-on allows users in your directory to access certain AWS services from a computer joined to the directory without having to enter their credentials separately.</p>",
     "GetDirectoryLimits": "<p>Obtains directory limit information for the current Region.</p>",
     "GetSnapshotLimits": "<p>Obtains the manual snapshot limits for a directory.</p>",
-    "ListCertificates": "<p>For the specified directory, lists all the certificates registered for a secured LDAP connection.</p>",
+    "ListCertificates": "<p>For the specified directory, lists all the certificates registered for a secure LDAP or client certificate authentication.</p>",
     "ListIpRoutes": "<p>Lists the address blocks that you have added to a directory.</p>",
     "ListLogSubscriptions": "<p>Lists the active log subscriptions for the AWS account.</p>",
     "ListSchemaExtensions": "<p>Lists all schema extensions applied to a Microsoft AD Directory.</p>",
     "ListTagsForResource": "<p>Lists all tags on a directory.</p>",
-    "RegisterCertificate": "<p>Registers a certificate for secured LDAP connection.</p>",
+    "RegisterCertificate": "<p>Registers a certificate for a secure LDAP or client certificate authentication.</p>",
     "RegisterEventTopic": "<p>Associates a directory with an SNS topic. This establishes the directory as a publisher to the specified SNS topic. You can then receive email or text (SMS) messages when the status of your directory changes. You get notified if your directory goes from an Active status to an Impaired or Inoperable status. You also receive a notification when the directory returns to an Active status.</p>",
     "RejectSharedDirectory": "<p>Rejects a directory sharing request that was sent from the directory owner account.</p>",
     "RemoveIpRoutes": "<p>Removes IP address blocks from a directory.</p>",
@@ -77,7 +77,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "base": "<p>Client authentication is not available in this region at this time.</p>",
       "refs": {
       }
     },
@@ -275,9 +275,9 @@
     "CertificateType": {
       "base": null,
       "refs": {
-        "Certificate$Type": "<p>Select <code>ClientCertAuth</code> for smart card integration.</p>",
-        "CertificateInfo$Type": "<p>Displays the type of certificate.</p>",
-        "RegisterCertificateRequest$Type": "<p>The certificate type to register for the request.</p>"
+        "Certificate$Type": "<p>The function that the registered certificate performs. Valid values include <code>ClientLDAPS</code> or <code>ClientCertAuth</code>. The default value is <code>ClientLDAPS</code>.</p>",
+        "CertificateInfo$Type": "<p>The function that the registered certificate performs. Valid values include <code>ClientLDAPS</code> or <code>ClientCertAuth</code>. The default value is <code>ClientLDAPS</code>.</p>",
+        "RegisterCertificateRequest$Type": "<p>The function that the registered certificate performs. Valid values include <code>ClientLDAPS</code> or <code>ClientCertAuth</code>. The default value is <code>ClientLDAPS</code>.</p>"
       }
     },
     "CertificatesInfo": {
@@ -303,15 +303,15 @@
     "ClientAuthenticationType": {
       "base": null,
       "refs": {
-        "DisableClientAuthenticationRequest$Type": "<p>Disable the type of client authentication request. </p>",
-        "EnableClientAuthenticationRequest$Type": "<p>Enable the type of client authentication request. </p>"
+        "DisableClientAuthenticationRequest$Type": "<p>The type of client authentication to disable. Currently, only the parameter, <code>SmartCard</code> is supported.</p>",
+        "EnableClientAuthenticationRequest$Type": "<p>The type of client authentication to enable. Currently only the value <code>SmartCard</code> is supported. Smart card authentication in AD Connector requires that you enable Kerberos Constrained Delegation for the Service User to the LDAP service in the on-premises AD. </p>"
       }
     },
     "ClientCertAuthSettings": {
-      "base": "<p>Contains information about the client certificate authentication settings, such as <code>ClientLDAPS</code> or <code>ClientCertAuth</code>.</p>",
+      "base": "<p>Contains information about the client certificate authentication settings for the <code>RegisterCertificate</code> and <code>DescribeCertificate</code> operations. </p>",
       "refs": {
-        "Certificate$ClientCertAuthSettings": "<p>Provides information about the client certificate authentication settings. The default value is <code>ClientLDAPS</code>.</p>",
-        "RegisterCertificateRequest$ClientCertAuthSettings": null
+        "Certificate$ClientCertAuthSettings": "<p>A <code>ClientCertAuthSettings</code> object that contains client certificate authentication settings.</p>",
+        "RegisterCertificateRequest$ClientCertAuthSettings": "<p>A <code>ClientCertAuthSettings</code> object that contains client certificate authentication settings.</p>"
       }
     },
     "ClientException": {
@@ -766,12 +766,12 @@
         "DescribeTrustsRequest$DirectoryId": "<p>The Directory ID of the AWS directory that is a part of the requested trust relationship.</p>",
         "DirectoryDescription$DirectoryId": "<p>The directory identifier.</p>",
         "DirectoryIds$member": null,
-        "DisableClientAuthenticationRequest$DirectoryId": "<p>Disable client authentication in a specified directory for smart cards. </p>",
+        "DisableClientAuthenticationRequest$DirectoryId": "<p>The identifier of the directory </p>",
         "DisableLDAPSRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "DisableRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to disable MFA.</p>",
         "DisableSsoRequest$DirectoryId": "<p>The identifier of the directory for which to disable single-sign on.</p>",
         "DomainController$DirectoryId": "<p>Identifier of the directory where the domain controller resides.</p>",
-        "EnableClientAuthenticationRequest$DirectoryId": "<p>Enable client authentication in a specified directory for smart cards. </p>",
+        "EnableClientAuthenticationRequest$DirectoryId": "<p>The identifier of the specified directory. </p>",
         "EnableLDAPSRequest$DirectoryId": "<p>The identifier of the directory.</p>",
         "EnableRadiusRequest$DirectoryId": "<p>The identifier of the directory for which to enable MFA.</p>",
         "EnableSsoRequest$DirectoryId": "<p>The identifier of the directory for which to enable single-sign on.</p>",
@@ -1122,7 +1122,7 @@
       }
     },
     "InvalidClientAuthStatusException": {
-      "base": "<p>The client authorization was invalid.</p>",
+      "base": "<p>Client authentication is already enabled.</p>",
       "refs": {
       }
     },
@@ -1390,7 +1390,7 @@
       }
     },
     "NoAvailableCertificateException": {
-      "base": "<p>The LDAP activities could not be performed because at least one valid certificate must be registered with the system.</p>",
+      "base": "<p>Client authentication setup could not be completed because at least one valid certificate must be registered in the system.</p>",
       "refs": {
       }
     },
@@ -1405,7 +1405,7 @@
     "OCSPUrl": {
       "base": null,
       "refs": {
-        "ClientCertAuthSettings$OCSPUrl": "<p>Specifies the URL of the default OCSP server used to check for revocation status.</p>"
+        "ClientCertAuthSettings$OCSPUrl": "<p>Specifies the URL of the default OCSP server used to check for revocation status. A secondary value to any OCSP address found in the AIA extension of the user certificate.</p>"
       }
     },
     "OrganizationalUnitDN": {

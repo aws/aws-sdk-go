@@ -149,12 +149,16 @@
       "refs": {
         "BorrowConfiguration$AllowEarlyCheckIn": "<p>Indicates whether early check-ins are allowed.</p>",
         "CreateLicenseConfigurationRequest$LicenseCountHardLimit": "<p>Indicates whether hard or soft license enforcement is used. Exceeding a hard limit blocks the launch of new instances.</p>",
+        "CreateLicenseConfigurationRequest$DisassociateWhenNotFound": "<p>When true, disassociates a resource when software is uninstalled.</p>",
         "Entitlement$Overage": "<p>Indicates whether overages are allowed.</p>",
         "Entitlement$AllowCheckIn": "<p>Indicates whether check-ins are allowed.</p>",
         "GetLicenseConfigurationResponse$LicenseCountHardLimit": "<p>Sets the number of available licenses as a hard limit.</p>",
+        "GetLicenseConfigurationResponse$DisassociateWhenNotFound": "<p>When true, disassociates a resource when software is uninstalled.</p>",
         "GetServiceSettingsResponse$EnableCrossAccountsDiscovery": "<p>Indicates whether cross-account discovery is enabled.</p>",
         "LicenseConfiguration$LicenseCountHardLimit": "<p>Number of available licenses as a hard limit.</p>",
+        "LicenseConfiguration$DisassociateWhenNotFound": "<p>When true, disassociates a resource when software is uninstalled.</p>",
         "UpdateLicenseConfigurationRequest$LicenseCountHardLimit": "<p>New hard limit of the number of available licenses.</p>",
+        "UpdateLicenseConfigurationRequest$DisassociateWhenNotFound": "<p>When true, disassociates a resource when software is uninstalled.</p>",
         "UpdateServiceSettingsRequest$EnableCrossAccountsDiscovery": "<p>Activates cross-account discovery.</p>"
       }
     },
@@ -653,7 +657,7 @@
     "InventoryFilterList": {
       "base": null,
       "refs": {
-        "ListResourceInventoryRequest$Filters": "<p>Filters to scope the results. The following filters and logical operators are supported:</p> <ul> <li> <p> <code>account_id</code> - The ID of the AWS account that owns the resource. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.</p> </li> <li> <p> <code>application_name</code> - The name of the application. Logical operators are <code>EQUALS</code> | <code>BEGINS_WITH</code>.</p> </li> <li> <p> <code>license_included</code> - The type of license included. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>. Possible values are <code>sql-server-enterprise</code> | <code>sql-server-standard</code> | <code>sql-server-web</code> | <code>windows-server-datacenter</code>.</p> </li> <li> <p> <code>platform</code> - The platform of the resource. Logical operators are <code>EQUALS</code> | <code>BEGINS_WITH</code>.</p> </li> <li> <p> <code>resource_id</code> - The ID of the resource. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.</p> </li> </ul>"
+        "ListResourceInventoryRequest$Filters": "<p>Filters to scope the results. The following filters and logical operators are supported:</p> <ul> <li> <p> <code>account_id</code> - The ID of the AWS account that owns the resource. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.</p> </li> <li> <p> <code>application_name</code> - The name of the application. Logical operators are <code>EQUALS</code> | <code>BEGINS_WITH</code>.</p> </li> <li> <p> <code>license_included</code> - The type of license included. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>. Possible values are <code>sql-server-enterprise</code> | <code>sql-server-standard</code> | <code>sql-server-web</code> | <code>windows-server-datacenter</code>.</p> </li> <li> <p> <code>platform</code> - The platform of the resource. Logical operators are <code>EQUALS</code> | <code>BEGINS_WITH</code>.</p> </li> <li> <p> <code>resource_id</code> - The ID of the resource. Logical operators are <code>EQUALS</code> | <code>NOT_EQUALS</code>.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Logical operators are <code>EQUALS</code> (single account) or <code>EQUALS</code> | <code>NOT_EQUALS</code> (cross account).</p> </li> </ul>"
       }
     },
     "Issuer": {

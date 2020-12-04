@@ -2199,6 +2199,25 @@
         {"shape":"KMSKeyNotAccessibleFault"}
       ]
     },
+    "StartDBInstanceAutomatedBackupsReplication":{
+      "name":"StartDBInstanceAutomatedBackupsReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartDBInstanceAutomatedBackupsReplicationMessage"},
+      "output":{
+        "shape":"StartDBInstanceAutomatedBackupsReplicationResult",
+        "resultWrapper":"StartDBInstanceAutomatedBackupsReplicationResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"},
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"DBInstanceAutomatedBackupQuotaExceededFault"},
+        {"shape":"StorageTypeNotSupportedFault"}
+      ]
+    },
     "StartExportTask":{
       "name":"StartExportTask",
       "http":{
@@ -2275,6 +2294,22 @@
         {"shape":"DBSnapshotAlreadyExistsFault"},
         {"shape":"SnapshotQuotaExceededFault"},
         {"shape":"InvalidDBClusterStateFault"}
+      ]
+    },
+    "StopDBInstanceAutomatedBackupsReplication":{
+      "name":"StopDBInstanceAutomatedBackupsReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopDBInstanceAutomatedBackupsReplicationMessage"},
+      "output":{
+        "shape":"StopDBInstanceAutomatedBackupsReplicationResult",
+        "resultWrapper":"StopDBInstanceAutomatedBackupsReplicationResult"
+      },
+      "errors":[
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
       ]
     }
   },
@@ -3684,7 +3719,8 @@
         "AssociatedRoles":{"shape":"DBInstanceRoles"},
         "ListenerEndpoint":{"shape":"Endpoint"},
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"}
       },
       "wrapper":true
     },
@@ -3724,7 +3760,10 @@
         "StorageType":{"shape":"String"},
         "KmsKeyId":{"shape":"String"},
         "Timezone":{"shape":"String"},
-        "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"}
+        "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
+        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "DBInstanceAutomatedBackupsArn":{"shape":"String"},
+        "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"}
       },
       "wrapper":true
     },
@@ -3763,6 +3802,19 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "DBInstanceAutomatedBackupsReplication":{
+      "type":"structure",
+      "members":{
+        "DBInstanceAutomatedBackupsArn":{"shape":"String"}
+      }
+    },
+    "DBInstanceAutomatedBackupsReplicationList":{
+      "type":"list",
+      "member":{
+        "shape":"DBInstanceAutomatedBackupsReplication",
+        "locationName":"DBInstanceAutomatedBackupsReplication"
+      }
     },
     "DBInstanceList":{
       "type":"list",
@@ -4422,9 +4474,9 @@
     },
     "DeleteDBInstanceAutomatedBackupMessage":{
       "type":"structure",
-      "required":["DbiResourceId"],
       "members":{
-        "DbiResourceId":{"shape":"String"}
+        "DbiResourceId":{"shape":"String"},
+        "DBInstanceAutomatedBackupsArn":{"shape":"String"}
       }
     },
     "DeleteDBInstanceAutomatedBackupResult":{
@@ -4673,7 +4725,8 @@
         "DBInstanceIdentifier":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
+        "Marker":{"shape":"String"},
+        "DBInstanceAutomatedBackupsArn":{"shape":"String"}
       }
     },
     "DescribeDBInstancesMessage":{
@@ -7198,7 +7251,8 @@
         "DBParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "SourceDbiResourceId":{"shape":"String"},
-        "MaxAllocatedStorage":{"shape":"IntegerOptional"}
+        "MaxAllocatedStorage":{"shape":"IntegerOptional"},
+        "SourceDBInstanceAutomatedBackupsArn":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{
@@ -7329,7 +7383,8 @@
       "members":{
         "RegionName":{"shape":"String"},
         "Endpoint":{"shape":"String"},
-        "Status":{"shape":"String"}
+        "Status":{"shape":"String"},
+        "SupportsDBInstanceAutomatedBackupsReplication":{"shape":"Boolean"}
       }
     },
     "SourceRegionList":{
@@ -7394,6 +7449,22 @@
         "DBCluster":{"shape":"DBCluster"}
       }
     },
+    "StartDBInstanceAutomatedBackupsReplicationMessage":{
+      "type":"structure",
+      "required":["SourceDBInstanceArn"],
+      "members":{
+        "SourceDBInstanceArn":{"shape":"String"},
+        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
+        "KmsKeyId":{"shape":"String"},
+        "PreSignedUrl":{"shape":"String"}
+      }
+    },
+    "StartDBInstanceAutomatedBackupsReplicationResult":{
+      "type":"structure",
+      "members":{
+        "DBInstanceAutomatedBackup":{"shape":"DBInstanceAutomatedBackup"}
+      }
+    },
     "StartDBInstanceMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
@@ -7453,6 +7524,19 @@
       "type":"structure",
       "members":{
         "DBCluster":{"shape":"DBCluster"}
+      }
+    },
+    "StopDBInstanceAutomatedBackupsReplicationMessage":{
+      "type":"structure",
+      "required":["SourceDBInstanceArn"],
+      "members":{
+        "SourceDBInstanceArn":{"shape":"String"}
+      }
+    },
+    "StopDBInstanceAutomatedBackupsReplicationResult":{
+      "type":"structure",
+      "members":{
+        "DBInstanceAutomatedBackup":{"shape":"DBInstanceAutomatedBackup"}
       }
     },
     "StopDBInstanceMessage":{

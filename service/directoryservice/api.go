@@ -292,7 +292,7 @@ func (c *DirectoryService) AddRegionRequest(input *AddRegionInput) (req *request
 //   per directory.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Client authentication is not available in this region at this time.
 //
 //   * ClientException
 //   A client exception has occurred.
@@ -1885,8 +1885,8 @@ func (c *DirectoryService) DeregisterCertificateRequest(input *DeregisterCertifi
 
 // DeregisterCertificate API operation for AWS Directory Service.
 //
-// Deletes from the system the certificate that was registered for a secured
-// LDAP connection.
+// Deletes from the system the certificate that was registered for secure LDAP
+// or client certificate authentication.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2076,8 +2076,8 @@ func (c *DirectoryService) DescribeCertificateRequest(input *DescribeCertificate
 
 // DescribeCertificate API operation for AWS Directory Service.
 //
-// Displays information about the certificate registered for a secured LDAP
-// connection.
+// Displays information about the certificate registered for secure LDAP or
+// client certificate authentication.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2732,7 +2732,7 @@ func (c *DirectoryService) DescribeRegionsRequest(input *DescribeRegionsInput) (
 //   The NextToken value is not valid.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Client authentication is not available in this region at this time.
 //
 //   * ClientException
 //   A client exception has occurred.
@@ -3096,7 +3096,7 @@ func (c *DirectoryService) DisableClientAuthenticationRequest(input *DisableClie
 
 // DisableClientAuthentication API operation for AWS Directory Service.
 //
-// Disable client authentication for smart cards.
+// Disables alternative client authentication methods for the specified directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3113,10 +3113,10 @@ func (c *DirectoryService) DisableClientAuthenticationRequest(input *DisableClie
 //   The operation is not supported.
 //
 //   * InvalidClientAuthStatusException
-//   The client authorization was invalid.
+//   Client authentication is already enabled.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Client authentication is not available in this region at this time.
 //
 //   * ClientException
 //   A client exception has occurred.
@@ -3470,7 +3470,7 @@ func (c *DirectoryService) EnableClientAuthenticationRequest(input *EnableClient
 
 // EnableClientAuthentication API operation for AWS Directory Service.
 //
-// Enable client authentication for smardtcards.
+// Enables alternative client authentication methods for the specified directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3487,14 +3487,14 @@ func (c *DirectoryService) EnableClientAuthenticationRequest(input *EnableClient
 //   The operation is not supported.
 //
 //   * InvalidClientAuthStatusException
-//   The client authorization was invalid.
+//   Client authentication is already enabled.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Client authentication is not available in this region at this time.
 //
 //   * NoAvailableCertificateException
-//   The LDAP activities could not be performed because at least one valid certificate
-//   must be registered with the system.
+//   Client authentication setup could not be completed because at least one valid
+//   certificate must be registered in the system.
 //
 //   * ClientException
 //   A client exception has occurred.
@@ -3587,8 +3587,8 @@ func (c *DirectoryService) EnableLDAPSRequest(input *EnableLDAPSInput) (req *req
 //   The specified directory does not exist in the system.
 //
 //   * NoAvailableCertificateException
-//   The LDAP activities could not be performed because at least one valid certificate
-//   must be registered with the system.
+//   Client authentication setup could not be completed because at least one valid
+//   certificate must be registered in the system.
 //
 //   * InvalidLDAPSStatusException
 //   The LDAP activities could not be performed because they are limited by the
@@ -4031,7 +4031,7 @@ func (c *DirectoryService) ListCertificatesRequest(input *ListCertificatesInput)
 // ListCertificates API operation for AWS Directory Service.
 //
 // For the specified directory, lists all the certificates registered for a
-// secured LDAP connection.
+// secure LDAP or client certificate authentication.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4483,7 +4483,7 @@ func (c *DirectoryService) RegisterCertificateRequest(input *RegisterCertificate
 
 // RegisterCertificate API operation for AWS Directory Service.
 //
-// Registers a certificate for secured LDAP connection.
+// Registers a certificate for a secure LDAP or client certificate authentication.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4888,7 +4888,7 @@ func (c *DirectoryService) RemoveRegionRequest(input *RemoveRegionInput) (req *r
 //   The operation is not supported.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Client authentication is not available in this region at this time.
 //
 //   * ClientException
 //   A client exception has occurred.
@@ -5312,7 +5312,7 @@ func (c *DirectoryService) ShareDirectoryRequest(input *ShareDirectoryInput) (re
 //   Exception encountered while trying to access your AWS organization.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Client authentication is not available in this region at this time.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -6064,7 +6064,7 @@ func (s *AcceptSharedDirectoryOutput) SetSharedDirectory(v *SharedDirectory) *Ac
 	return s
 }
 
-// You do not have sufficient access to perform this action.
+// Client authentication is not available in this region at this time.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6589,8 +6589,8 @@ type Certificate struct {
 	// The identifier of the certificate.
 	CertificateId *string `type:"string"`
 
-	// Provides information about the client certificate authentication settings.
-	// The default value is ClientLDAPS.
+	// A ClientCertAuthSettings object that contains client certificate authentication
+	// settings.
 	ClientCertAuthSettings *ClientCertAuthSettings `type:"structure"`
 
 	// The common name for the certificate.
@@ -6608,7 +6608,8 @@ type Certificate struct {
 	// Describes a state change for the certificate.
 	StateReason *string `type:"string"`
 
-	// Select ClientCertAuth for smart card integration.
+	// The function that the registered certificate performs. Valid values include
+	// ClientLDAPS or ClientCertAuth. The default value is ClientLDAPS.
 	Type *string `type:"string" enum:"CertificateType"`
 }
 
@@ -6867,7 +6868,8 @@ type CertificateInfo struct {
 	// The state of the certificate.
 	State *string `type:"string" enum:"CertificateState"`
 
-	// Displays the type of certificate.
+	// The function that the registered certificate performs. Valid values include
+	// ClientLDAPS or ClientCertAuth. The default value is ClientLDAPS.
 	Type *string `type:"string" enum:"CertificateType"`
 }
 
@@ -6972,13 +6974,14 @@ func (s *CertificateLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains information about the client certificate authentication settings,
-// such as ClientLDAPS or ClientCertAuth.
+// Contains information about the client certificate authentication settings
+// for the RegisterCertificate and DescribeCertificate operations.
 type ClientCertAuthSettings struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the URL of the default OCSP server used to check for revocation
-	// status.
+	// status. A secondary value to any OCSP address found in the AIA extension
+	// of the user certificate.
 	OCSPUrl *string `min:"1" type:"string"`
 }
 
@@ -10565,12 +10568,13 @@ func (s *DirectoryVpcSettingsDescription) SetVpcId(v string) *DirectoryVpcSettin
 type DisableClientAuthenticationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Disable client authentication in a specified directory for smart cards.
+	// The identifier of the directory
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
-	// Disable the type of client authentication request.
+	// The type of client authentication to disable. Currently, only the parameter,
+	// SmartCard is supported.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ClientAuthenticationType"`
@@ -11005,12 +11009,15 @@ func (s *DomainControllerLimitExceededException) RequestID() string {
 type EnableClientAuthenticationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Enable client authentication in a specified directory for smart cards.
+	// The identifier of the specified directory.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
-	// Enable the type of client authentication request.
+	// The type of client authentication to enable. Currently only the value SmartCard
+	// is supported. Smart card authentication in AD Connector requires that you
+	// enable Kerberos Constrained Delegation for the Service User to the LDAP service
+	// in the on-premises AD.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ClientAuthenticationType"`
@@ -11700,7 +11707,7 @@ func (s *InvalidCertificateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The client authorization was invalid.
+// Client authentication is already enabled.
 type InvalidClientAuthStatusException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12758,8 +12765,8 @@ func (s *LogSubscription) SetSubscriptionCreatedDateTime(v time.Time) *LogSubscr
 	return s
 }
 
-// The LDAP activities could not be performed because at least one valid certificate
-// must be registered with the system.
+// Client authentication setup could not be completed because at least one valid
+// certificate must be registered in the system.
 type NoAvailableCertificateException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13266,8 +13273,8 @@ type RegisterCertificateInput struct {
 	// CertificateData is a required field
 	CertificateData *string `min:"1" type:"string" required:"true"`
 
-	// Contains information about the client certificate authentication settings,
-	// such as ClientLDAPS or ClientCertAuth.
+	// A ClientCertAuthSettings object that contains client certificate authentication
+	// settings.
 	ClientCertAuthSettings *ClientCertAuthSettings `type:"structure"`
 
 	// The identifier of the directory.
@@ -13275,7 +13282,8 @@ type RegisterCertificateInput struct {
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
-	// The certificate type to register for the request.
+	// The function that the registered certificate performs. Valid values include
+	// ClientLDAPS or ClientCertAuth. The default value is ClientLDAPS.
 	Type *string `type:"string" enum:"CertificateType"`
 }
 
