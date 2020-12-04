@@ -2263,7 +2263,8 @@
         "InvalidSubnet",
         "InvalidSecurityGroup",
         "ImageDeleted",
-        "ImageAccessDenied"
+        "ImageAccessDenied",
+        "InvalidImage"
       ]
     },
     "Layer":{
@@ -3227,7 +3228,8 @@
         "InvalidSubnet",
         "InvalidSecurityGroup",
         "ImageDeleted",
-        "ImageAccessDenied"
+        "ImageAccessDenied",
+        "InvalidImage"
       ]
     },
     "StatementId":{

@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have sufficient access to perform this action.
+	// Client authentication is not available in this region at this time.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeAuthenticationFailedException for service response error code
@@ -125,7 +125,7 @@ const (
 	// ErrCodeInvalidClientAuthStatusException for service response error code
 	// "InvalidClientAuthStatusException".
 	//
-	// The client authorization was invalid.
+	// Client authentication is already enabled.
 	ErrCodeInvalidClientAuthStatusException = "InvalidClientAuthStatusException"
 
 	// ErrCodeInvalidLDAPSStatusException for service response error code
@@ -170,8 +170,8 @@ const (
 	// ErrCodeNoAvailableCertificateException for service response error code
 	// "NoAvailableCertificateException".
 	//
-	// The LDAP activities could not be performed because at least one valid certificate
-	// must be registered with the system.
+	// Client authentication setup could not be completed because at least one valid
+	// certificate must be registered in the system.
 	ErrCodeNoAvailableCertificateException = "NoAvailableCertificateException"
 
 	// ErrCodeOrganizationsException for service response error code

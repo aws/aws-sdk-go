@@ -1,3 +1,24 @@
+Release v1.36.2 (2020-12-04)
+===
+
+### Service Client Updates
+* `service/ds`: Updates service documentation
+  * Documentation updates for ds - updated descriptions
+* `service/ec2`: Updates service API and documentation
+  * This release introduces tag-on-create capability for the CreateImage API. A user can now specify tags that will be applied to the new resources (image, snapshots or both), during creation time.
+* `service/kafka`: Updates service API and documentation
+* `service/lambda`: Updates service API, documentation, and examples
+  * Added the additional enum InvalidImage to StateReasonCode and LastUpdateStatusReasonCode fields.
+* `service/license-manager`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports black video and audio silence as new conditions to trigger automatic input failover.
+* `service/rds`: Updates service API and documentation
+  * Adds support for Amazon RDS Cross-Region Automated Backups, the ability to setup automatic replication of snapshots and transaction logs from a primary AWS Region to a secondary AWS Region.
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager Patch Manager MAC OS Support and OpsMetadata Store APIs to store operational metadata for an Application.
+* `service/workspaces`: Updates service API and documentation
+  * Update the import-workspace-image API to have "BYOL_REGULAR_WSP" as a valid input string for ingestion-process.
+
 Release v1.36.1 (2020-12-03)
 ===
 

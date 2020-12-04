@@ -288,6 +288,12 @@
         "AudioSelector$SelectorSettings": "The audio selector settings."
       }
     },
+    "AudioSilenceFailoverSettings": {
+      "base": null,
+      "refs": {
+        "FailoverConditionSettings$AudioSilenceSettings": "MediaLive will perform a failover if the specified audio selector is silent for the specified period."
+      }
+    },
     "AudioTrack": {
       "base": "Audio Track",
       "refs": {
@@ -1563,13 +1569,15 @@
     "InputDeviceActiveInput": {
       "base": "The source at the input device that is currently active.",
       "refs": {
-        "InputDeviceHdSettings$ActiveInput": "If you specified Auto as the configured input, specifies which of the sources is currently active (SDI or HDMI)."
+        "InputDeviceHdSettings$ActiveInput": "If you specified Auto as the configured input, specifies which of the sources is currently active (SDI or HDMI).",
+        "InputDeviceUhdSettings$ActiveInput": "If you specified Auto as the configured input, specifies which of the sources is currently active (SDI or HDMI)."
       }
     },
     "InputDeviceConfigurableSettings": {
       "base": "Configurable settings for the input device.",
       "refs": {
-        "UpdateInputDevice$HdDeviceSettings": "The settings that you want to apply to the input device."
+        "UpdateInputDevice$HdDeviceSettings": "The settings that you want to apply to the HD input device.",
+        "UpdateInputDevice$UhdDeviceSettings": "The settings that you want to apply to the UHD input device."
       }
     },
     "InputDeviceConfigurationValidationError": {
@@ -1581,7 +1589,8 @@
       "base": "The source to activate (use) from the input device.",
       "refs": {
         "InputDeviceConfigurableSettings$ConfiguredInput": "The input source that you want to use. If the device has a source connected to only one of its input ports, or if you don't care which source the device sends, specify Auto. If the device has sources connected to both its input ports, and you want to use a specific source, specify the source.",
-        "InputDeviceHdSettings$ConfiguredInput": "The source at the input device that is currently active. You can specify this source."
+        "InputDeviceHdSettings$ConfiguredInput": "The source at the input device that is currently active. You can specify this source.",
+        "InputDeviceUhdSettings$ConfiguredInput": "The source at the input device that is currently active. You can specify this source."
       }
     },
     "InputDeviceConnectionState": {
@@ -1620,7 +1629,8 @@
     "InputDeviceScanType": {
       "base": "The scan type of the video source.",
       "refs": {
-        "InputDeviceHdSettings$ScanType": "The scan type of the video source."
+        "InputDeviceHdSettings$ScanType": "The scan type of the video source.",
+        "InputDeviceUhdSettings$ScanType": "The scan type of the video source."
       }
     },
     "InputDeviceSettings": {
@@ -1632,7 +1642,8 @@
     "InputDeviceState": {
       "base": "The state of the input device.",
       "refs": {
-        "InputDeviceHdSettings$DeviceState": "The state of the input device."
+        "InputDeviceHdSettings$DeviceState": "The state of the input device.",
+        "InputDeviceUhdSettings$DeviceState": "The state of the input device."
       }
     },
     "InputDeviceSummary": {
@@ -1652,6 +1663,13 @@
       "refs": {
         "InputDevice$Type": "The type of the input device.",
         "InputDeviceSummary$Type": "The type of the input device."
+      }
+    },
+    "InputDeviceUhdSettings": {
+      "base": "Settings that describe the active source from the input device, and the video characteristics of that source.",
+      "refs": {
+        "InputDevice$UhdDeviceSettings": "Settings that describe an input device that is type UHD.",
+        "InputDeviceSummary$UhdDeviceSettings": "Settings that describe an input device that is type UHD."
       }
     },
     "InputFilter": {
@@ -3065,6 +3083,12 @@
         "__listOfValidationError$member": null
       }
     },
+    "VideoBlackFailoverSettings": {
+      "base": null,
+      "refs": {
+        "FailoverConditionSettings$VideoBlackSettings": "MediaLive will perform a failover if content is considered black for the specified period."
+      }
+    },
     "VideoCodecSettings": {
       "base": "Video Codec Settings",
       "refs": {
@@ -3162,6 +3186,7 @@
         "H264Settings$GopSize": "GOP size (keyframe interval) in units of either frames or seconds per gopSizeUnits.\nIf gopSizeUnits is frames, gopSize must be an integer and must be greater than or equal to 1.\nIf gopSizeUnits is seconds, gopSize must be greater than 0, but need not be an integer.",
         "H265Settings$GopSize": "GOP size (keyframe interval) in units of either frames or seconds per gopSizeUnits.\nIf gopSizeUnits is frames, gopSize must be an integer and must be greater than or equal to 1.\nIf gopSizeUnits is seconds, gopSize must be greater than 0, but need not be an integer.",
         "InputDeviceHdSettings$Framerate": "The frame rate of the video source.",
+        "InputDeviceUhdSettings$Framerate": "The frame rate of the video source.",
         "Mp2Settings$Bitrate": "Average bitrate in bits/second.",
         "Mp2Settings$SampleRate": "Sample rate in Hz.",
         "Mpeg2Settings$GopSize": "Relates to the GOP structure. The GOP size (keyframe interval) in the units specified in gopSizeUnits. If you do not know what GOP is, use the default.\nIf gopSizeUnits is frames, then the gopSize must be an integer and must be greater than or equal to 1.\nIf gopSizeUnits is seconds, the gopSize must be greater than 0, but does not need to be an integer.",
@@ -3178,6 +3203,12 @@
       "refs": {
         "M2tsSettings$FragmentTime": "The length in seconds of each fragment. Only used with EBP markers.",
         "M2tsSettings$NullPacketBitrate": "Value in bits per second of extra null packets to insert into the transport stream. This can be used if a downstream encryption system requires periodic null packets."
+      }
+    },
+    "__doubleMin0Max1": {
+      "base": null,
+      "refs": {
+        "VideoBlackFailoverSettings$BlackDetectThreshold": "A value used in calculating the threshold below which MediaLive considers a pixel to be 'black'. For the input to be considered black, every pixel in a frame must be below this threshold. The threshold is calculated as a percentage (expressed as a decimal) of white. Therefore .1 means 10% white (or 90% black). Note how the formula works for any color depth. For example, if you set this field to 0.1 in 10-bit color depth: (1023*0.1=102.3), which means a pixel value of 102 or less is 'black'. If you set this field to .1 in an 8-bit color depth: (255*0.1=25.5), which means a pixel value of 25 or less is 'black'. The range is 0.0 to 1.0, with any number of decimal places."
       }
     },
     "__doubleMin1": {
@@ -3205,6 +3236,9 @@
         "InputDeviceHdSettings$Height": "The height of the video source, in pixels.",
         "InputDeviceHdSettings$MaxBitrate": "The current maximum bitrate for ingesting this source, in bits per second. You can specify this maximum.",
         "InputDeviceHdSettings$Width": "The width of the video source, in pixels.",
+        "InputDeviceUhdSettings$Height": "The height of the video source, in pixels.",
+        "InputDeviceUhdSettings$MaxBitrate": "The current maximum bitrate for ingesting this source, in bits per second. You can specify this maximum.",
+        "InputDeviceUhdSettings$Width": "The width of the video source, in pixels.",
         "Multiplex$PipelinesRunningCount": "The number of currently healthy pipelines.",
         "Multiplex$ProgramCount": "The number of programs in the multiplex.",
         "MultiplexProgramPacketIdentifiersMap$DvbTeletextPid": null,
@@ -3455,8 +3489,10 @@
     "__integerMin1000": {
       "base": null,
       "refs": {
+        "AudioSilenceFailoverSettings$AudioSilenceThresholdMsec": "The amount of time (in milliseconds) that the active input must be silent before automatic input failover occurs. Silence is defined as audio loss or audio quieter than -50 dBFS.",
         "H264Settings$Bitrate": "Average bitrate in bits/second. Required when the rate control mode is VBR or CBR. Not used for QVBR. In an MS Smooth output group, each output must have a unique value when its bitrate is rounded down to the nearest multiple of 1000.",
-        "H264Settings$MaxBitrate": "For QVBR: See the tooltip for Quality level\n\nFor VBR: Set the maximum bitrate in order to accommodate expected spikes in the complexity of the video."
+        "H264Settings$MaxBitrate": "For QVBR: See the tooltip for Quality level\n\nFor VBR: Set the maximum bitrate in order to accommodate expected spikes in the complexity of the video.",
+        "VideoBlackFailoverSettings$VideoBlackThresholdMsec": "The amount of time (in milliseconds) that the active input must be black before automatic input failover occurs."
       }
     },
     "__integerMin1000000Max100000000": {
@@ -4012,6 +4048,7 @@
         "AudioDescription$StreamName": "Used for MS Smooth and Apple HLS outputs. Indicates the name displayed by the player (eg. English, or Director Commentary).",
         "AudioLanguageSelection$LanguageCode": "Selects a specific three-letter language code from within an audio source.",
         "AudioOnlyHlsSettings$AudioGroupId": "Specifies the group to which the audio Rendition belongs.",
+        "AudioSilenceFailoverSettings$AudioSelectorName": "The name of the audio selector in the input that MediaLive should monitor to detect silence. Select your most important rendition. If you didn't create an audio selector in this input, leave blank.",
         "AutomaticInputFailoverSettings$SecondaryInputId": "The input ID of the secondary input in the automatic input failover pair.",
         "BadGatewayException$Message": null,
         "BatchFailedResultModel$Arn": "ARN of the resource",

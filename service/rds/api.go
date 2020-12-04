@@ -894,16 +894,17 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 //    be a valid request for the CopyDBClusterSnapshot API action that can be
 //    executed in the source AWS Region that contains the encrypted DB cluster
 //    snapshot to be copied. The pre-signed URL request must contain the following
-//    parameter values: KmsKeyId - The KMS key identifier for the key to use
-//    to encrypt the copy of the DB cluster snapshot in the destination AWS
-//    Region. This is the same identifier for both the CopyDBClusterSnapshot
-//    action that is called in the destination AWS Region, and the action contained
-//    in the pre-signed URL. DestinationRegion - The name of the AWS Region
-//    that the DB cluster snapshot is to be created in. SourceDBClusterSnapshotIdentifier
-//    - The DB cluster snapshot identifier for the encrypted DB cluster snapshot
-//    to be copied. This identifier must be in the Amazon Resource Name (ARN)
-//    format for the source AWS Region. For example, if you are copying an encrypted
-//    DB cluster snapshot from the us-west-2 AWS Region, then your SourceDBClusterSnapshotIdentifier
+//    parameter values: KmsKeyId - The AWS KMS key identifier for the customer
+//    master key (CMK) to use to encrypt the copy of the DB cluster snapshot
+//    in the destination AWS Region. This is the same identifier for both the
+//    CopyDBClusterSnapshot action that is called in the destination AWS Region,
+//    and the action contained in the pre-signed URL. DestinationRegion - The
+//    name of the AWS Region that the DB cluster snapshot is to be created in.
+//    SourceDBClusterSnapshotIdentifier - The DB cluster snapshot identifier
+//    for the encrypted DB cluster snapshot to be copied. This identifier must
+//    be in the Amazon Resource Name (ARN) format for the source AWS Region.
+//    For example, if you are copying an encrypted DB cluster snapshot from
+//    the us-west-2 AWS Region, then your SourceDBClusterSnapshotIdentifier
 //    looks like the following example: arn:aws:rds:us-west-2:123456789012:cluster-snapshot:aurora-cluster1-snapshot-20161115.
 //    To learn how to generate a Signature Version 4 signed request, see Authenticating
 //    Requests: Using Query Parameters (AWS Signature Version 4) (https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html)
@@ -2420,7 +2421,7 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *reques
 // CreateDBSnapshot API operation for Amazon Relational Database Service.
 //
 // Creates a snapshot of a DB instance. The source DB instance must be in the
-// available or storage-optimizationstate.
+// available or storage-optimization state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3477,8 +3478,8 @@ func (c *RDS) DeleteDBInstanceAutomatedBackupRequest(input *DeleteDBInstanceAuto
 
 // DeleteDBInstanceAutomatedBackup API operation for Amazon Relational Database Service.
 //
-// Deletes automated backups based on the source instance's DbiResourceId value
-// or the restorable instance's resource ID.
+// Deletes automated backups using the DbiResourceId value of the source DB
+// instance or the Amazon Resource Name (ARN) of the automated backups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13091,20 +13092,20 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 // RestoreDBInstanceFromDBSnapshot API operation for Amazon Relational Database Service.
 //
 // Creates a new DB instance from a DB snapshot. The target database is created
-// from the source database restore point with the most of original configuration
-// with the default security group and the default DB parameter group. By default,
-// the new DB instance is created as a single-AZ deployment except when the
-// instance is a SQL Server instance that has an option group that is associated
-// with mirroring; in this case, the instance becomes a mirrored AZ deployment
-// and not a single-AZ deployment.
+// from the source database restore point with most of the source's original
+// configuration, including the default security group and DB parameter group.
+// By default, the new DB instance is created as a Single-AZ deployment, except
+// when the instance is a SQL Server instance that has an option group associated
+// with mirroring. In this case, the instance becomes a Multi-AZ deployment,
+// not a Single-AZ deployment.
 //
-// If your intent is to replace your original DB instance with the new, restored
-// DB instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot
-// action. RDS doesn't allow two DB instances with the same name. Once you have
-// renamed your original DB instance with a different identifier, then you can
-// pass the original name of the DB instance as the DBInstanceIdentifier in
-// the call to the RestoreDBInstanceFromDBSnapshot action. The result is that
-// you will replace the original DB instance with the DB instance created from
+// If you want to replace your original DB instance with the new, restored DB
+// instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot
+// action. RDS doesn't allow two DB instances with the same name. After you
+// have renamed your original DB instance with a different identifier, then
+// you can pass the original name of the DB instance as the DBInstanceIdentifier
+// in the call to the RestoreDBInstanceFromDBSnapshot action. The result is
+// that you replace the original DB instance with the DB instance created from
 // the snapshot.
 //
 // If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
@@ -13923,6 +13924,103 @@ func (c *RDS) StartDBInstanceWithContext(ctx aws.Context, input *StartDBInstance
 	return out, req.Send()
 }
 
+const opStartDBInstanceAutomatedBackupsReplication = "StartDBInstanceAutomatedBackupsReplication"
+
+// StartDBInstanceAutomatedBackupsReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StartDBInstanceAutomatedBackupsReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDBInstanceAutomatedBackupsReplication for more information on using the StartDBInstanceAutomatedBackupsReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartDBInstanceAutomatedBackupsReplicationRequest method.
+//    req, resp := client.StartDBInstanceAutomatedBackupsReplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StartDBInstanceAutomatedBackupsReplication
+func (c *RDS) StartDBInstanceAutomatedBackupsReplicationRequest(input *StartDBInstanceAutomatedBackupsReplicationInput) (req *request.Request, output *StartDBInstanceAutomatedBackupsReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStartDBInstanceAutomatedBackupsReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartDBInstanceAutomatedBackupsReplicationInput{}
+	}
+
+	output = &StartDBInstanceAutomatedBackupsReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDBInstanceAutomatedBackupsReplication API operation for Amazon Relational Database Service.
+//
+// Enables replication of automated backups to a different AWS Region.
+//
+// For more information, see Replicating Automated Backups to Another AWS Region
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html)
+// in the Amazon RDS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation StartDBInstanceAutomatedBackupsReplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
+//   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
+//   An error occurred accessing an AWS KMS key.
+//
+//   * ErrCodeDBInstanceAutomatedBackupQuotaExceededFault "DBInstanceAutomatedBackupQuotaExceeded"
+//   The quota for retained automated backups was exceeded. This prevents you
+//   from retaining any additional automated backups. The retained automated backups
+//   quota is the same as your DB Instance quota.
+//
+//   * ErrCodeStorageTypeNotSupportedFault "StorageTypeNotSupported"
+//   Storage of the StorageType specified can't be associated with the DB instance.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StartDBInstanceAutomatedBackupsReplication
+func (c *RDS) StartDBInstanceAutomatedBackupsReplication(input *StartDBInstanceAutomatedBackupsReplicationInput) (*StartDBInstanceAutomatedBackupsReplicationOutput, error) {
+	req, out := c.StartDBInstanceAutomatedBackupsReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StartDBInstanceAutomatedBackupsReplicationWithContext is the same as StartDBInstanceAutomatedBackupsReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDBInstanceAutomatedBackupsReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) StartDBInstanceAutomatedBackupsReplicationWithContext(ctx aws.Context, input *StartDBInstanceAutomatedBackupsReplicationInput, opts ...request.Option) (*StartDBInstanceAutomatedBackupsReplicationOutput, error) {
+	req, out := c.StartDBInstanceAutomatedBackupsReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartExportTask = "StartExportTask"
 
 // StartExportTaskRequest generates a "aws/request.Request" representing the
@@ -14319,6 +14417,92 @@ func (c *RDS) StopDBInstanceWithContext(ctx aws.Context, input *StopDBInstanceIn
 	return out, req.Send()
 }
 
+const opStopDBInstanceAutomatedBackupsReplication = "StopDBInstanceAutomatedBackupsReplication"
+
+// StopDBInstanceAutomatedBackupsReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StopDBInstanceAutomatedBackupsReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopDBInstanceAutomatedBackupsReplication for more information on using the StopDBInstanceAutomatedBackupsReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopDBInstanceAutomatedBackupsReplicationRequest method.
+//    req, resp := client.StopDBInstanceAutomatedBackupsReplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StopDBInstanceAutomatedBackupsReplication
+func (c *RDS) StopDBInstanceAutomatedBackupsReplicationRequest(input *StopDBInstanceAutomatedBackupsReplicationInput) (req *request.Request, output *StopDBInstanceAutomatedBackupsReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStopDBInstanceAutomatedBackupsReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopDBInstanceAutomatedBackupsReplicationInput{}
+	}
+
+	output = &StopDBInstanceAutomatedBackupsReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopDBInstanceAutomatedBackupsReplication API operation for Amazon Relational Database Service.
+//
+// Stops automated backup replication for a DB instance.
+//
+// For more information, see Replicating Automated Backups to Another AWS Region
+// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html)
+// in the Amazon RDS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation StopDBInstanceAutomatedBackupsReplication for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier doesn't refer to an existing DB instance.
+//
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/StopDBInstanceAutomatedBackupsReplication
+func (c *RDS) StopDBInstanceAutomatedBackupsReplication(input *StopDBInstanceAutomatedBackupsReplicationInput) (*StopDBInstanceAutomatedBackupsReplicationOutput, error) {
+	req, out := c.StopDBInstanceAutomatedBackupsReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StopDBInstanceAutomatedBackupsReplicationWithContext is the same as StopDBInstanceAutomatedBackupsReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopDBInstanceAutomatedBackupsReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) StopDBInstanceAutomatedBackupsReplicationWithContext(ctx aws.Context, input *StopDBInstanceAutomatedBackupsReplicationInput, opts ...request.Option) (*StopDBInstanceAutomatedBackupsReplicationOutput, error) {
+	req, out := c.StopDBInstanceAutomatedBackupsReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Describes a quota for an AWS account.
 //
 // The following are account quotas:
@@ -14455,7 +14639,7 @@ type AddRoleToDBClusterInput struct {
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora
-	// DB cluster, for example arn:aws:iam::123456789012:role/AuroraAccessRole.
+	// DB cluster, for example, arn:aws:iam::123456789012:role/AuroraAccessRole.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -15303,11 +15487,11 @@ type CancelExportTaskOutput struct {
 	// a snapshot.
 	IamRoleArn *string `type:"string"`
 
-	// The ID of the AWS KMS key that is used to encrypt the snapshot when it's
-	// exported to Amazon S3. The KMS key ID is the Amazon Resource Name (ARN),
-	// the KMS key identifier, or the KMS key alias for the KMS encryption key.
-	// The IAM role used for the snapshot export must have encryption and decryption
-	// permissions to use this KMS key.
+	// The key identifier of the AWS KMS customer master key (CMK) that is used
+	// to encrypt the snapshot when it's exported to Amazon S3. The AWS KMS CMK
+	// identifier is its key ARN, key ID, alias ARN, or alias name. The IAM role
+	// used for the snapshot export must have encryption and decryption permissions
+	// to use this AWS KMS CMK.
 	KmsKeyId *string `type:"string"`
 
 	// The progress of the snapshot export task as a percentage.
@@ -15919,23 +16103,24 @@ type CopyDBClusterSnapshotInput struct {
 	// DestinationRegion is used for presigning the request to a given region.
 	DestinationRegion *string `type:"string"`
 
-	// The AWS KMS key ID for an encrypted DB cluster snapshot. The KMS key ID is
-	// the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias
-	// for the KMS encryption key.
+	// The AWS KMS key identifier for an encrypted DB cluster snapshot. The AWS
+	// KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the
+	// AWS KMS customer master key (CMK).
 	//
 	// If you copy an encrypted DB cluster snapshot from your AWS account, you can
-	// specify a value for KmsKeyId to encrypt the copy with a new KMS encryption
-	// key. If you don't specify a value for KmsKeyId, then the copy of the DB cluster
-	// snapshot is encrypted with the same KMS key as the source DB cluster snapshot.
+	// specify a value for KmsKeyId to encrypt the copy with a new AWS KMS CMK.
+	// If you don't specify a value for KmsKeyId, then the copy of the DB cluster
+	// snapshot is encrypted with the same AWS KMS key as the source DB cluster
+	// snapshot.
 	//
 	// If you copy an encrypted DB cluster snapshot that is shared from another
 	// AWS account, then you must specify a value for KmsKeyId.
 	//
 	// To copy an encrypted DB cluster snapshot to another AWS Region, you must
-	// set KmsKeyId to the KMS key ID you want to use to encrypt the copy of the
-	// DB cluster snapshot in the destination AWS Region. KMS encryption keys are
-	// specific to the AWS Region that they are created in, and you can't use encryption
-	// keys from one AWS Region in another AWS Region.
+	// set KmsKeyId to the AWS KMS key identifier you want to use to encrypt the
+	// copy of the DB cluster snapshot in the destination AWS Region. AWS KMS CMKs
+	// are specific to the AWS Region that they are created in, and you can't use
+	// CMKs from one AWS Region in another AWS Region.
 	//
 	// If you copy an unencrypted DB cluster snapshot and specify a value for the
 	// KmsKeyId parameter, an error is returned.
@@ -15952,11 +16137,11 @@ type CopyDBClusterSnapshotInput struct {
 	// encrypted DB cluster snapshot to be copied. The pre-signed URL request must
 	// contain the following parameter values:
 	//
-	//    * KmsKeyId - The AWS KMS key identifier for the key to use to encrypt
-	//    the copy of the DB cluster snapshot in the destination AWS Region. This
-	//    is the same identifier for both the CopyDBClusterSnapshot action that
-	//    is called in the destination AWS Region, and the action contained in the
-	//    pre-signed URL.
+	//    * KmsKeyId - The AWS KMS key identifier for the customer master key (CMK)
+	//    to use to encrypt the copy of the DB cluster snapshot in the destination
+	//    AWS Region. This is the same identifier for both the CopyDBClusterSnapshot
+	//    action that is called in the destination AWS Region, and the action contained
+	//    in the pre-signed URL.
 	//
 	//    * DestinationRegion - The name of the AWS Region that the DB cluster snapshot
 	//    is to be created in.
@@ -16259,14 +16444,14 @@ type CopyDBSnapshotInput struct {
 	// DestinationRegion is used for presigning the request to a given region.
 	DestinationRegion *string `type:"string"`
 
-	// The AWS KMS key ID for an encrypted DB snapshot. The KMS key ID is the Amazon
-	// Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS
-	// encryption key.
+	// The AWS KMS key identifier for an encrypted DB snapshot. The AWS KMS key
+	// identifier is the key ARN, key ID, alias ARN, or alias name for the AWS KMS
+	// customer master key (CMK).
 	//
 	// If you copy an encrypted DB snapshot from your AWS account, you can specify
-	// a value for this parameter to encrypt the copy with a new KMS encryption
-	// key. If you don't specify a value for this parameter, then the copy of the
-	// DB snapshot is encrypted with the same KMS key as the source DB snapshot.
+	// a value for this parameter to encrypt the copy with a new AWS KMS CMK. If
+	// you don't specify a value for this parameter, then the copy of the DB snapshot
+	// is encrypted with the same AWS KMS key as the source DB snapshot.
 	//
 	// If you copy an encrypted DB snapshot that is shared from another AWS account,
 	// then you must specify a value for this parameter.
@@ -16275,9 +16460,9 @@ type CopyDBSnapshotInput struct {
 	// copy is encrypted.
 	//
 	// If you copy an encrypted snapshot to a different AWS Region, then you must
-	// specify a KMS key for the destination AWS Region. KMS encryption keys are
-	// specific to the AWS Region that they are created in, and you can't use encryption
-	// keys from one AWS Region in another AWS Region.
+	// specify a AWS KMS key identifier for the destination AWS Region. AWS KMS
+	// CMKs are specific to the AWS Region that they are created in, and you can't
+	// use CMKs from one AWS Region in another AWS Region.
 	KmsKeyId *string `type:"string"`
 
 	// The name of an option group to associate with the copy of the snapshot.
@@ -16312,10 +16497,11 @@ type CopyDBSnapshotInput struct {
 	//    action in the us-west-2 AWS Region. For this example, the DestinationRegion
 	//    in the presigned URL must be set to the us-east-1 AWS Region.
 	//
-	//    * KmsKeyId - The AWS KMS key identifier for the key to use to encrypt
-	//    the copy of the DB snapshot in the destination AWS Region. This is the
-	//    same identifier for both the CopyDBSnapshot action that is called in the
-	//    destination AWS Region, and the action contained in the presigned URL.
+	//    * KmsKeyId - The AWS KMS key identifier for the customer master key (CMK)
+	//    to use to encrypt the copy of the DB snapshot in the destination AWS Region.
+	//    This is the same identifier for both the CopyDBSnapshot action that is
+	//    called in the destination AWS Region, and the action contained in the
+	//    presigned URL.
 	//
 	//    * SourceDBSnapshotIdentifier - The DB snapshot identifier for the encrypted
 	//    snapshot to be copied. This identifier must be in the Amazon Resource
@@ -17141,26 +17327,25 @@ type CreateDBClusterInput struct {
 
 	// The AWS KMS key identifier for an encrypted DB cluster.
 	//
-	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
-	// key. If you are creating a DB cluster with the same AWS account that owns
-	// the KMS encryption key used to encrypt the new DB cluster, then you can use
-	// the KMS key alias instead of the ARN for the KMS encryption key.
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK). To use a CMK in a different AWS
+	// account, specify the key ARN or alias ARN.
 	//
-	// If an encryption key isn't specified in KmsKeyId:
+	// When a CMK isn't specified in KmsKeyId:
 	//
 	//    * If ReplicationSourceIdentifier identifies an encrypted source, then
-	//    Amazon RDS will use the encryption key used to encrypt the source. Otherwise,
-	//    Amazon RDS will use your default encryption key.
+	//    Amazon RDS will use the CMK used to encrypt the source. Otherwise, Amazon
+	//    RDS will use your default CMK.
 	//
 	//    * If the StorageEncrypted parameter is enabled and ReplicationSourceIdentifier
-	//    isn't specified, then Amazon RDS will use your default encryption key.
+	//    isn't specified, then Amazon RDS will use your default CMK.
 	//
-	// AWS KMS creates the default encryption key for your AWS account. Your AWS
-	// account has a different default encryption key for each AWS Region.
+	// There is a default CMK for your AWS account. Your AWS account has a different
+	// default CMK for each AWS Region.
 	//
 	// If you create a read replica of an encrypted DB cluster in another AWS Region,
-	// you must set KmsKeyId to a KMS key ID that is valid in the destination AWS
-	// Region. This key is used to encrypt the read replica in that AWS Region.
+	// you must set KmsKeyId to a AWS KMS key identifier that is valid in the destination
+	// AWS Region. This CMK is used to encrypt the read replica in that AWS Region.
 	KmsKeyId *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
@@ -17205,8 +17390,8 @@ type CreateDBClusterInput struct {
 	//
 	//    * KmsKeyId - The AWS KMS key identifier for the key to use to encrypt
 	//    the copy of the DB cluster in the destination AWS Region. This should
-	//    refer to the same KMS key for both the CreateDBCluster action that is
-	//    called in the destination AWS Region, and the action contained in the
+	//    refer to the same AWS KMS CMK for both the CreateDBCluster action that
+	//    is called in the destination AWS Region, and the action contained in the
 	//    pre-signed URL.
 	//
 	//    * DestinationRegion - The name of the AWS Region that Aurora read replica
@@ -18190,20 +18375,19 @@ type CreateDBInstanceInput struct {
 
 	// The AWS KMS key identifier for an encrypted DB instance.
 	//
-	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
-	// key. If you are creating a DB instance with the same AWS account that owns
-	// the KMS encryption key used to encrypt the new DB instance, then you can
-	// use the KMS key alias instead of the ARN for the KM encryption key.
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK). To use a CMK in a different AWS
+	// account, specify the key ARN or alias ARN.
 	//
 	// Amazon Aurora
 	//
-	// Not applicable. The KMS key identifier is managed by the DB cluster. For
-	// more information, see CreateDBCluster.
+	// Not applicable. The AWS KMS key identifier is managed by the DB cluster.
+	// For more information, see CreateDBCluster.
 	//
 	// If StorageEncrypted is enabled, and you do not specify a value for the KmsKeyId
-	// parameter, then Amazon RDS will use your default encryption key. AWS KMS
-	// creates the default encryption key for your AWS account. Your AWS account
-	// has a different default encryption key for each AWS Region.
+	// parameter, then Amazon RDS uses your default CMK. There is a default CMK
+	// for your AWS account. Your AWS account has a different default CMK for each
+	// AWS Region.
 	KmsKeyId *string `type:"string"`
 
 	// License model information for this DB instance.
@@ -18344,14 +18528,14 @@ type CreateDBInstanceInput struct {
 	// from a DB instance once it is associated with a DB instance
 	OptionGroupName *string `type:"string"`
 
-	// The AWS KMS key identifier for encryption of Performance Insights data. The
-	// KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the
-	// KMS key alias for the KMS encryption key.
+	// The AWS KMS key identifier for encryption of Performance Insights data.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default encryption key. AWS KMS creates the default encryption
-	// key for your AWS account. Your AWS account has a different default encryption
-	// key for each AWS Region.
+	// RDS uses your default CMK. There is a default CMK for your AWS account. Your
+	// AWS account has a different default CMK for each AWS Region.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -18996,18 +19180,20 @@ type CreateDBInstanceReadReplicaInput struct {
 	// initially allocated for the DB instance.
 	Iops *int64 `type:"integer"`
 
-	// The AWS KMS key ID for an encrypted read replica. The KMS key ID is the Amazon
-	// Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS
-	// encryption key.
+	// The AWS KMS key identifier for an encrypted read replica.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS CMK.
 	//
 	// If you create an encrypted read replica in the same AWS Region as the source
 	// DB instance, then you do not have to specify a value for this parameter.
-	// The read replica is encrypted with the same KMS key as the source DB instance.
+	// The read replica is encrypted with the same AWS KMS CMK as the source DB
+	// instance.
 	//
 	// If you create an encrypted read replica in a different AWS Region, then you
-	// must specify a KMS key for the destination AWS Region. KMS encryption keys
-	// are specific to the AWS Region that they are created in, and you can't use
-	// encryption keys from one AWS Region in another AWS Region.
+	// must specify a AWS KMS key identifier for the destination AWS Region. AWS
+	// KMS CMKs are specific to the AWS Region that they are created in, and you
+	// can't use CMKs from one AWS Region in another AWS Region.
 	//
 	// You can't create an encrypted read replica from an unencrypted DB instance.
 	KmsKeyId *string `type:"string"`
@@ -19051,14 +19237,14 @@ type CreateDBInstanceReadReplicaInput struct {
 	// instance.
 	OptionGroupName *string `type:"string"`
 
-	// The AWS KMS key identifier for encryption of Performance Insights data. The
-	// KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the
-	// KMS key alias for the KMS encryption key.
+	// The AWS KMS key identifier for encryption of Performance Insights data.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default encryption key. AWS KMS creates the default encryption
-	// key for your AWS account. Your AWS account has a different default encryption
-	// key for each AWS Region.
+	// RDS uses your default CMK. There is a default CMK for your AWS account. Your
+	// AWS account has a different default CMK for each AWS Region.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -20542,6 +20728,9 @@ type DBCluster struct {
 
 	// The AWS KMS key identifier used for encrypting messages in the database activity
 	// stream.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	ActivityStreamKmsKeyId *string `type:"string"`
 
 	// The mode of the database activity stream. Database events such as a change
@@ -20634,7 +20823,7 @@ type DBCluster struct {
 	DatabaseName *string `type:"string"`
 
 	// The AWS Region-unique, immutable identifier for the DB cluster. This identifier
-	// is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB
+	// is found in AWS CloudTrail log entries whenever the AWS KMS CMK for the DB
 	// cluster is accessed.
 	DbClusterResourceId *string `type:"string"`
 
@@ -20706,6 +20895,9 @@ type DBCluster struct {
 
 	// If StorageEncrypted is enabled, the AWS KMS key identifier for the encrypted
 	// DB cluster.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
@@ -21513,6 +21705,9 @@ type DBClusterSnapshot struct {
 
 	// If StorageEncrypted is true, the AWS KMS key identifier for the encrypted
 	// DB cluster snapshot.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	KmsKeyId *string `type:"string"`
 
 	// Provides the license model information for this DB cluster snapshot.
@@ -22011,6 +22206,9 @@ type DBInstance struct {
 	// The Amazon Resource Name (ARN) for the DB instance.
 	DBInstanceArn *string `type:"string"`
 
+	// The list of replicated automated backups associated with the DB instance.
+	DBInstanceAutomatedBackupsReplications []*DBInstanceAutomatedBackupsReplication `locationNameList:"DBInstanceAutomatedBackupsReplication" type:"list"`
+
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
@@ -22057,8 +22255,8 @@ type DBInstance struct {
 	DbInstancePort *int64 `type:"integer"`
 
 	// The AWS Region-unique, immutable identifier for the DB instance. This identifier
-	// is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB
-	// instance is accessed.
+	// is found in AWS CloudTrail log entries whenever the AWS KMS customer master
+	// key (CMK) for the DB instance is accessed.
 	DbiResourceId *string `type:"string"`
 
 	// Indicates if the DB instance has deletion protection enabled. The database
@@ -22111,6 +22309,9 @@ type DBInstance struct {
 
 	// If StorageEncrypted is true, the AWS KMS key identifier for the encrypted
 	// DB instance.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
@@ -22157,9 +22358,10 @@ type DBInstance struct {
 	// false.
 	PerformanceInsightsEnabled *bool `type:"boolean"`
 
-	// The AWS KMS key identifier for encryption of Performance Insights data. The
-	// KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the
-	// KMS key alias for the KMS encryption key.
+	// The AWS KMS key identifier for encryption of Performance Insights data.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -22322,6 +22524,12 @@ func (s *DBInstance) SetDBClusterIdentifier(v string) *DBInstance {
 // SetDBInstanceArn sets the DBInstanceArn field's value.
 func (s *DBInstance) SetDBInstanceArn(v string) *DBInstance {
 	s.DBInstanceArn = &v
+	return s
+}
+
+// SetDBInstanceAutomatedBackupsReplications sets the DBInstanceAutomatedBackupsReplications field's value.
+func (s *DBInstance) SetDBInstanceAutomatedBackupsReplications(v []*DBInstanceAutomatedBackupsReplication) *DBInstance {
+	s.DBInstanceAutomatedBackupsReplications = v
 	return s
 }
 
@@ -22631,7 +22839,7 @@ func (s *DBInstance) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBIn
 	return s
 }
 
-// An automated backup of a DB instance. It it consists of system backups, transaction
+// An automated backup of a DB instance. It consists of system backups, transaction
 // logs, and the database instance properties that existed at the time you deleted
 // the source instance.
 type DBInstanceAutomatedBackup struct {
@@ -22645,8 +22853,18 @@ type DBInstanceAutomatedBackup struct {
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
 	AvailabilityZone *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) for the automated backup.
+	// The retention period for the automated backups.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) for the automated backups.
 	DBInstanceArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the replicated automated backups.
+	DBInstanceAutomatedBackupsArn *string `type:"string"`
+
+	// The list of replications to different AWS Regions associated with the automated
+	// backup.
+	DBInstanceAutomatedBackupsReplications []*DBInstanceAutomatedBackupsReplication `locationNameList:"DBInstanceAutomatedBackupsReplication" type:"list"`
 
 	// The customer id of the instance that is/was associated with the automated
 	// backup.
@@ -22675,9 +22893,10 @@ type DBInstanceAutomatedBackup struct {
 	// The IOPS (I/O operations per second) value for the automated backup.
 	Iops *int64 `type:"integer"`
 
-	// The AWS KMS key ID for an automated backup. The KMS key ID is the Amazon
-	// Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS
-	// encryption key.
+	// The AWS KMS key ID for an automated backup.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	KmsKeyId *string `type:"string"`
 
 	// License model information for the automated backup.
@@ -22751,9 +22970,27 @@ func (s *DBInstanceAutomatedBackup) SetAvailabilityZone(v string) *DBInstanceAut
 	return s
 }
 
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *DBInstanceAutomatedBackup) SetBackupRetentionPeriod(v int64) *DBInstanceAutomatedBackup {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
 // SetDBInstanceArn sets the DBInstanceArn field's value.
 func (s *DBInstanceAutomatedBackup) SetDBInstanceArn(v string) *DBInstanceAutomatedBackup {
 	s.DBInstanceArn = &v
+	return s
+}
+
+// SetDBInstanceAutomatedBackupsArn sets the DBInstanceAutomatedBackupsArn field's value.
+func (s *DBInstanceAutomatedBackup) SetDBInstanceAutomatedBackupsArn(v string) *DBInstanceAutomatedBackup {
+	s.DBInstanceAutomatedBackupsArn = &v
+	return s
+}
+
+// SetDBInstanceAutomatedBackupsReplications sets the DBInstanceAutomatedBackupsReplications field's value.
+func (s *DBInstanceAutomatedBackup) SetDBInstanceAutomatedBackupsReplications(v []*DBInstanceAutomatedBackupsReplication) *DBInstanceAutomatedBackup {
+	s.DBInstanceAutomatedBackupsReplications = v
 	return s
 }
 
@@ -22874,6 +23111,31 @@ func (s *DBInstanceAutomatedBackup) SetTimezone(v string) *DBInstanceAutomatedBa
 // SetVpcId sets the VpcId field's value.
 func (s *DBInstanceAutomatedBackup) SetVpcId(v string) *DBInstanceAutomatedBackup {
 	s.VpcId = &v
+	return s
+}
+
+// Automated backups of a DB instance replicated to another AWS Region. They
+// consist of system backups, transaction logs, and database instance properties.
+type DBInstanceAutomatedBackupsReplication struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the replicated automated backups.
+	DBInstanceAutomatedBackupsArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DBInstanceAutomatedBackupsReplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBInstanceAutomatedBackupsReplication) GoString() string {
+	return s.String()
+}
+
+// SetDBInstanceAutomatedBackupsArn sets the DBInstanceAutomatedBackupsArn field's value.
+func (s *DBInstanceAutomatedBackupsReplication) SetDBInstanceAutomatedBackupsArn(v string) *DBInstanceAutomatedBackupsReplication {
+	s.DBInstanceAutomatedBackupsArn = &v
 	return s
 }
 
@@ -23634,6 +23896,9 @@ type DBSnapshot struct {
 	Iops *int64 `type:"integer"`
 
 	// If Encrypted is true, the AWS KMS key identifier for the encrypted DB snapshot.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	KmsKeyId *string `type:"string"`
 
 	// License model information for the restored DB instance.
@@ -24498,11 +24763,13 @@ func (s *DeleteDBClusterSnapshotOutput) SetDBClusterSnapshot(v *DBClusterSnapsho
 type DeleteDBInstanceAutomatedBackupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the automated backups to delete, for example,
+	// arn:aws:rds:us-east-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.
+	DBInstanceAutomatedBackupsArn *string `type:"string"`
+
 	// The identifier for the source DB instance, which can't be changed and which
 	// is unique to an AWS Region.
-	//
-	// DbiResourceId is a required field
-	DbiResourceId *string `type:"string" required:"true"`
+	DbiResourceId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -24515,17 +24782,10 @@ func (s DeleteDBInstanceAutomatedBackupInput) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *DeleteDBInstanceAutomatedBackupInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "DeleteDBInstanceAutomatedBackupInput"}
-	if s.DbiResourceId == nil {
-		invalidParams.Add(request.NewErrParamRequired("DbiResourceId"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
+// SetDBInstanceAutomatedBackupsArn sets the DBInstanceAutomatedBackupsArn field's value.
+func (s *DeleteDBInstanceAutomatedBackupInput) SetDBInstanceAutomatedBackupsArn(v string) *DeleteDBInstanceAutomatedBackupInput {
+	s.DBInstanceAutomatedBackupsArn = &v
+	return s
 }
 
 // SetDbiResourceId sets the DbiResourceId field's value.
@@ -24537,7 +24797,7 @@ func (s *DeleteDBInstanceAutomatedBackupInput) SetDbiResourceId(v string) *Delet
 type DeleteDBInstanceAutomatedBackupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An automated backup of a DB instance. It it consists of system backups, transaction
+	// An automated backup of a DB instance. It consists of system backups, transaction
 	// logs, and the database instance properties that existed at the time you deleted
 	// the source instance.
 	DBInstanceAutomatedBackup *DBInstanceAutomatedBackup `type:"structure"`
@@ -26782,6 +27042,10 @@ func (s *DescribeDBEngineVersionsOutput) SetMarker(v string) *DescribeDBEngineVe
 type DescribeDBInstanceAutomatedBackupsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the replicated automated backups, for example,
+	// arn:aws:rds:us-east-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.
+	DBInstanceAutomatedBackupsArn *string `type:"string"`
+
 	// (Optional) The user-supplied instance identifier. If this parameter is specified,
 	// it must match the identifier of an existing DB instance. It returns information
 	// from the specific DB instance' automated backup. This parameter isn't case-sensitive.
@@ -26850,6 +27114,12 @@ func (s *DescribeDBInstanceAutomatedBackupsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDBInstanceAutomatedBackupsArn sets the DBInstanceAutomatedBackupsArn field's value.
+func (s *DescribeDBInstanceAutomatedBackupsInput) SetDBInstanceAutomatedBackupsArn(v string) *DescribeDBInstanceAutomatedBackupsInput {
+	s.DBInstanceAutomatedBackupsArn = &v
+	return s
 }
 
 // SetDBInstanceIdentifier sets the DBInstanceIdentifier field's value.
@@ -31116,11 +31386,11 @@ type ExportTask struct {
 	// a snapshot.
 	IamRoleArn *string `type:"string"`
 
-	// The ID of the AWS KMS key that is used to encrypt the snapshot when it's
-	// exported to Amazon S3. The KMS key ID is the Amazon Resource Name (ARN),
-	// the KMS key identifier, or the KMS key alias for the KMS encryption key.
-	// The IAM role used for the snapshot export must have encryption and decryption
-	// permissions to use this KMS key.
+	// The key identifier of the AWS KMS customer master key (CMK) that is used
+	// to encrypt the snapshot when it's exported to Amazon S3. The AWS KMS CMK
+	// identifier is its key ARN, key ID, alias ARN, or alias name. The IAM role
+	// used for the snapshot export must have encryption and decryption permissions
+	// to use this AWS KMS CMK.
 	KmsKeyId *string `type:"string"`
 
 	// The progress of the snapshot export task as a percentage.
@@ -31434,7 +31704,7 @@ type GlobalCluster struct {
 
 	// The AWS Region-unique, immutable identifier for the global database cluster.
 	// This identifier is found in AWS CloudTrail log entries whenever the AWS KMS
-	// key for the DB cluster is accessed.
+	// customer master key (CMK) for the DB cluster is accessed.
 	GlobalClusterResourceId *string `type:"string"`
 
 	// Specifies the current state of this global database cluster.
@@ -33455,14 +33725,14 @@ type ModifyDBInstanceInput struct {
 	// from a DB instance once it is associated with a DB instance
 	OptionGroupName *string `type:"string"`
 
-	// The AWS KMS key identifier for encryption of Performance Insights data. The
-	// KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the
-	// KMS key alias for the KMS encryption key.
+	// The AWS KMS key identifier for encryption of Performance Insights data.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default encryption key. AWS KMS creates the default encryption
-	// key for your AWS account. Your AWS account has a different default encryption
-	// key for each AWS Region.
+	// RDS uses your default CMK. There is a default CMK for your AWS account. Your
+	// AWS account has a different default CMK for each AWS Region.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -36968,7 +37238,7 @@ type RemoveRoleFromDBInstanceInput struct {
 	FeatureName *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB
-	// instance, for example arn:aws:iam::123456789012:role/AccessRole.
+	// instance, for example, arn:aws:iam::123456789012:role/AccessRole.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -37769,15 +38039,14 @@ type RestoreDBClusterFromS3Input struct {
 
 	// The AWS KMS key identifier for an encrypted DB cluster.
 	//
-	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
-	// key. If you are creating a DB cluster with the same AWS account that owns
-	// the KMS encryption key used to encrypt the new DB cluster, then you can use
-	// the KMS key alias instead of the ARN for the KM encryption key.
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK). To use a CMK in a different AWS
+	// account, specify the key ARN or alias ARN.
 	//
 	// If the StorageEncrypted parameter is enabled, and you do not specify a value
-	// for the KmsKeyId parameter, then Amazon RDS will use your default encryption
-	// key. AWS KMS creates the default encryption key for your AWS account. Your
-	// AWS account has a different default encryption key for each AWS Region.
+	// for the KmsKeyId parameter, then Amazon RDS will use your default CMK. There
+	// is a default CMK for your AWS account. Your AWS account has a different default
+	// CMK for each AWS Region.
 	KmsKeyId *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
@@ -38296,17 +38565,16 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// The AWS KMS key identifier to use when restoring an encrypted DB cluster
 	// from a DB snapshot or DB cluster snapshot.
 	//
-	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
-	// key. If you are restoring a DB cluster with the same AWS account that owns
-	// the KMS encryption key used to encrypt the new DB cluster, then you can use
-	// the KMS key alias instead of the ARN for the KMS encryption key.
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK). To use a CMK in a different AWS
+	// account, specify the key ARN or alias ARN.
 	//
-	// If you don't specify a value for the KmsKeyId parameter, then the following
+	// When you don't specify a value for the KmsKeyId parameter, then the following
 	// occurs:
 	//
 	//    * If the DB snapshot or DB cluster snapshot in SnapshotIdentifier is encrypted,
-	//    then the restored DB cluster is encrypted using the KMS key that was used
-	//    to encrypt the DB snapshot or DB cluster snapshot.
+	//    then the restored DB cluster is encrypted using the AWS KMS CMK that was
+	//    used to encrypt the DB snapshot or DB cluster snapshot.
 	//
 	//    * If the DB snapshot or DB cluster snapshot in SnapshotIdentifier isn't
 	//    encrypted, then the restored DB cluster isn't encrypted.
@@ -38623,21 +38891,20 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// The AWS KMS key identifier to use when restoring an encrypted DB cluster
 	// from an encrypted DB cluster.
 	//
-	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
-	// key. If you are restoring a DB cluster with the same AWS account that owns
-	// the KMS encryption key used to encrypt the new DB cluster, then you can use
-	// the KMS key alias instead of the ARN for the KMS encryption key.
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK). To use a CMK in a different AWS
+	// account, specify the key ARN or alias ARN.
 	//
 	// You can restore to a new DB cluster and encrypt the new DB cluster with a
-	// KMS key that is different than the KMS key used to encrypt the source DB
-	// cluster. The new DB cluster is encrypted with the KMS key identified by the
-	// KmsKeyId parameter.
+	// AWS KMS CMK that is different than the AWS KMS key used to encrypt the source
+	// DB cluster. The new DB cluster is encrypted with the AWS KMS CMK identified
+	// by the KmsKeyId parameter.
 	//
 	// If you don't specify a value for the KmsKeyId parameter, then the following
 	// occurs:
 	//
 	//    * If the DB cluster is encrypted, then the restored DB cluster is encrypted
-	//    using the KMS key that was used to encrypt the source DB cluster.
+	//    using the AWS KMS CMK that was used to encrypt the source DB cluster.
 	//
 	//    * If the DB cluster isn't encrypted, then the restored DB cluster isn't
 	//    encrypted.
@@ -39471,15 +39738,14 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// The AWS KMS key identifier for an encrypted DB instance.
 	//
-	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
-	// key. If you are creating a DB instance with the same AWS account that owns
-	// the KMS encryption key used to encrypt the new DB instance, then you can
-	// use the KMS key alias instead of the ARN for the KM encryption key.
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK). To use a CMK in a different AWS
+	// account, specify the key ARN or alias ARN.
 	//
 	// If the StorageEncrypted parameter is enabled, and you do not specify a value
-	// for the KmsKeyId parameter, then Amazon RDS will use your default encryption
-	// key. AWS KMS creates the default encryption key for your AWS account. Your
-	// AWS account has a different default encryption key for each AWS Region.
+	// for the KmsKeyId parameter, then Amazon RDS will use your default CMK. There
+	// is a default CMK for your AWS account. Your AWS account has a different default
+	// CMK for each AWS Region.
 	KmsKeyId *string `type:"string"`
 
 	// The license model for this DB instance. Use general-public-license.
@@ -39538,14 +39804,14 @@ type RestoreDBInstanceFromS3Input struct {
 	// used.
 	OptionGroupName *string `type:"string"`
 
-	// The AWS KMS key identifier for encryption of Performance Insights data. The
-	// KMS key ID is the Amazon Resource Name (ARN), the KMS key identifier, or
-	// the KMS key alias for the KMS encryption key.
+	// The AWS KMS key identifier for encryption of Performance Insights data.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default encryption key. AWS KMS creates the default encryption
-	// key for your AWS account. Your AWS account has a different default encryption
-	// key for each AWS Region.
+	// RDS uses your default CMK. There is a default CMK for your AWS account. Your
+	// AWS account has a different default CMK for each AWS Region.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -40193,6 +40459,10 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Example: 2009-09-07T23:45:00Z
 	RestoreTime *time.Time `type:"timestamp"`
 
+	// The Amazon Resource Name (ARN) of the replicated automated backups from which
+	// to restore, for example, arn:aws:rds:useast-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.
+	SourceDBInstanceAutomatedBackupsArn *string `type:"string"`
+
 	// The identifier of the source DB instance from which to restore.
 	//
 	// Constraints:
@@ -40405,6 +40675,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetPubliclyAccessible(v bool) *Res
 // SetRestoreTime sets the RestoreTime field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetRestoreTime(v time.Time) *RestoreDBInstanceToPointInTimeInput {
 	s.RestoreTime = &v
+	return s
+}
+
+// SetSourceDBInstanceAutomatedBackupsArn sets the SourceDBInstanceAutomatedBackupsArn field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetSourceDBInstanceAutomatedBackupsArn(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.SourceDBInstanceAutomatedBackupsArn = &v
 	return s
 }
 
@@ -40818,6 +41094,10 @@ type SourceRegion struct {
 
 	// The status of the source AWS Region.
 	Status *string `type:"string"`
+
+	// Whether the source AWS Region supports replicating automated backups to the
+	// current AWS Region.
+	SupportsDBInstanceAutomatedBackupsReplication *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -40848,6 +41128,12 @@ func (s *SourceRegion) SetStatus(v string) *SourceRegion {
 	return s
 }
 
+// SetSupportsDBInstanceAutomatedBackupsReplication sets the SupportsDBInstanceAutomatedBackupsReplication field's value.
+func (s *SourceRegion) SetSupportsDBInstanceAutomatedBackupsReplication(v bool) *SourceRegion {
+	s.SupportsDBInstanceAutomatedBackupsReplication = &v
+	return s
+}
+
 type StartActivityStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -40856,7 +41142,8 @@ type StartActivityStreamInput struct {
 	ApplyImmediately *bool `type:"boolean"`
 
 	// The AWS KMS key identifier for encrypting messages in the database activity
-	// stream. The key identifier can be either a key ID, a key ARN, or a key alias.
+	// stream. The AWS KMS key identifier is the key ARN, key ID, alias ARN, or
+	// alias name for the AWS KMS customer master key (CMK).
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `type:"string" required:"true"`
@@ -40868,7 +41155,7 @@ type StartActivityStreamInput struct {
 	// Mode is a required field
 	Mode *string `type:"string" required:"true" enum:"ActivityStreamMode"`
 
-	// The Amazon Resource Name (ARN) of the DB cluster, for example arn:aws:rds:us-east-1:12345667890:cluster:das-cluster.
+	// The Amazon Resource Name (ARN) of the DB cluster, for example, arn:aws:rds:us-east-1:12345667890:cluster:das-cluster.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
@@ -41054,6 +41341,123 @@ func (s *StartDBClusterOutput) SetDBCluster(v *DBCluster) *StartDBClusterOutput 
 	return s
 }
 
+type StartDBInstanceAutomatedBackupsReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The retention period for the replicated automated backups.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// DestinationRegion is used for presigning the request to a given region.
+	DestinationRegion *string `type:"string"`
+
+	// The AWS KMS key identifier for encryption of the replicated automated backups.
+	// The KMS key ID is the Amazon Resource Name (ARN) for the KMS encryption key
+	// in the destination AWS Region, for example, arn:aws:kms:us-east-1:123456789012:key/AKIAIOSFODNN7EXAMPLE.
+	KmsKeyId *string `type:"string"`
+
+	// A URL that contains a Signature Version 4 signed request for the StartDBInstanceAutomatedBackupsReplication
+	// action to be called in the AWS Region of the source DB instance. The presigned
+	// URL must be a valid request for the StartDBInstanceAutomatedBackupsReplication
+	// API action that can be executed in the AWS Region that contains the source
+	// DB instance.
+	PreSignedUrl *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source DB instance for the replicated
+	// automated backups, for example, arn:aws:rds:us-west-2:123456789012:db:mydatabase.
+	//
+	// SourceDBInstanceArn is a required field
+	SourceDBInstanceArn *string `type:"string" required:"true"`
+
+	// SourceRegion is the source region where the resource exists. This is not
+	// sent over the wire and is only used for presigning. This value should always
+	// have the same region as the source ARN.
+	SourceRegion *string `type:"string" ignore:"true"`
+}
+
+// String returns the string representation
+func (s StartDBInstanceAutomatedBackupsReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartDBInstanceAutomatedBackupsReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDBInstanceAutomatedBackupsReplicationInput"}
+	if s.SourceDBInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceDBInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) SetBackupRetentionPeriod(v int64) *StartDBInstanceAutomatedBackupsReplicationInput {
+	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) SetDestinationRegion(v string) *StartDBInstanceAutomatedBackupsReplicationInput {
+	s.DestinationRegion = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) SetKmsKeyId(v string) *StartDBInstanceAutomatedBackupsReplicationInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetPreSignedUrl sets the PreSignedUrl field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) SetPreSignedUrl(v string) *StartDBInstanceAutomatedBackupsReplicationInput {
+	s.PreSignedUrl = &v
+	return s
+}
+
+// SetSourceDBInstanceArn sets the SourceDBInstanceArn field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) SetSourceDBInstanceArn(v string) *StartDBInstanceAutomatedBackupsReplicationInput {
+	s.SourceDBInstanceArn = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationInput) SetSourceRegion(v string) *StartDBInstanceAutomatedBackupsReplicationInput {
+	s.SourceRegion = &v
+	return s
+}
+
+type StartDBInstanceAutomatedBackupsReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An automated backup of a DB instance. It consists of system backups, transaction
+	// logs, and the database instance properties that existed at the time you deleted
+	// the source instance.
+	DBInstanceAutomatedBackup *DBInstanceAutomatedBackup `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartDBInstanceAutomatedBackupsReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartDBInstanceAutomatedBackupsReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBInstanceAutomatedBackup sets the DBInstanceAutomatedBackup field's value.
+func (s *StartDBInstanceAutomatedBackupsReplicationOutput) SetDBInstanceAutomatedBackup(v *DBInstanceAutomatedBackup) *StartDBInstanceAutomatedBackupsReplicationOutput {
+	s.DBInstanceAutomatedBackup = v
+	return s
+}
+
 type StartDBInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41147,11 +41551,11 @@ type StartExportTaskInput struct {
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// The ID of the AWS KMS key to use to encrypt the snapshot exported to Amazon
-	// S3. The KMS key ID is the Amazon Resource Name (ARN), the KMS key identifier,
-	// or the KMS key alias for the KMS encryption key. The caller of this operation
-	// must be authorized to execute the following operations. These can be set
-	// in the KMS key policy:
+	// The ID of the AWS KMS customer master key (CMK) to use to encrypt the snapshot
+	// exported to Amazon S3. The AWS KMS key identifier is the key ARN, key ID,
+	// alias ARN, or alias name for the AWS KMS customer master key (CMK). The caller
+	// of this operation must be authorized to execute the following operations.
+	// These can be set in the AWS KMS key policy:
 	//
 	//    * GrantOperation.Encrypt
 	//
@@ -41297,11 +41701,11 @@ type StartExportTaskOutput struct {
 	// a snapshot.
 	IamRoleArn *string `type:"string"`
 
-	// The ID of the AWS KMS key that is used to encrypt the snapshot when it's
-	// exported to Amazon S3. The KMS key ID is the Amazon Resource Name (ARN),
-	// the KMS key identifier, or the KMS key alias for the KMS encryption key.
-	// The IAM role used for the snapshot export must have encryption and decryption
-	// permissions to use this KMS key.
+	// The key identifier of the AWS KMS customer master key (CMK) that is used
+	// to encrypt the snapshot when it's exported to Amazon S3. The AWS KMS CMK
+	// identifier is its key ARN, key ID, alias ARN, or alias name. The IAM role
+	// used for the snapshot export must have encryption and decryption permissions
+	// to use this AWS KMS CMK.
 	KmsKeyId *string `type:"string"`
 
 	// The progress of the snapshot export task as a percentage.
@@ -41494,6 +41898,9 @@ type StopActivityStreamOutput struct {
 
 	// The AWS KMS key identifier used for encrypting messages in the database activity
 	// stream.
+	//
+	// The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name
+	// for the AWS KMS customer master key (CMK).
 	KmsKeyId *string `type:"string"`
 
 	// The status of the database activity stream.
@@ -41590,6 +41997,70 @@ func (s StopDBClusterOutput) GoString() string {
 // SetDBCluster sets the DBCluster field's value.
 func (s *StopDBClusterOutput) SetDBCluster(v *DBCluster) *StopDBClusterOutput {
 	s.DBCluster = v
+	return s
+}
+
+type StopDBInstanceAutomatedBackupsReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the source DB instance for which to stop
+	// replicating automated backups, for example, arn:aws:rds:us-west-2:123456789012:db:mydatabase.
+	//
+	// SourceDBInstanceArn is a required field
+	SourceDBInstanceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopDBInstanceAutomatedBackupsReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopDBInstanceAutomatedBackupsReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopDBInstanceAutomatedBackupsReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopDBInstanceAutomatedBackupsReplicationInput"}
+	if s.SourceDBInstanceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceDBInstanceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceDBInstanceArn sets the SourceDBInstanceArn field's value.
+func (s *StopDBInstanceAutomatedBackupsReplicationInput) SetSourceDBInstanceArn(v string) *StopDBInstanceAutomatedBackupsReplicationInput {
+	s.SourceDBInstanceArn = &v
+	return s
+}
+
+type StopDBInstanceAutomatedBackupsReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An automated backup of a DB instance. It consists of system backups, transaction
+	// logs, and the database instance properties that existed at the time you deleted
+	// the source instance.
+	DBInstanceAutomatedBackup *DBInstanceAutomatedBackup `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopDBInstanceAutomatedBackupsReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopDBInstanceAutomatedBackupsReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBInstanceAutomatedBackup sets the DBInstanceAutomatedBackup field's value.
+func (s *StopDBInstanceAutomatedBackupsReplicationOutput) SetDBInstanceAutomatedBackup(v *DBInstanceAutomatedBackup) *StopDBInstanceAutomatedBackupsReplicationOutput {
+	s.DBInstanceAutomatedBackup = v
 	return s
 }
 

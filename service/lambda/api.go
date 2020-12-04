@@ -586,7 +586,7 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // Creates a Lambda function. To create a function, you need a deployment package
 // (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html)
 // and an execution role (https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role).
-// The deployment package is a ZIP archive or image container that contains
+// The deployment package is a .zip file archive or container image that contains
 // your function code. The execution role grants the function permission to
 // use AWS services, such as Amazon CloudWatch Logs for log streaming and AWS
 // X-Ray for request tracing.
@@ -612,8 +612,8 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // of the function, and include tags (TagResource) and per-function concurrency
 // limits (PutFunctionConcurrency).
 //
-// You can use code signing if your deployment package is a ZIP archive. To
-// enable code signing for this function, specify the ARN of a code-signing
+// You can use code signing if your deployment package is a .zip file archive.
+// To enable code signing for this function, specify the ARN of a code-signing
 // configuration. When a user attempts to deploy a code package with UpdateFunctionCode,
 // Lambda checks that the code package has a valid signature from a trusted
 // publisher. The code-signing configuration includes set set of signing profiles,
@@ -5949,6 +5949,10 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 // The function's code is locked when you publish a version. You can't modify
 // the code of a published version, only the unpublished version.
 //
+// For a function defined as a container image, Lambda resolves the image tag
+// to an image digest. In Amazon ECR, if you update the image tag to a new image,
+// Lambda does not automatically update the function.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7579,9 +7583,9 @@ type CreateFunctionInput struct {
 	// ARN, including the version.
 	Layers []*string `type:"list"`
 
-	// The amount of memory that your function has access to. Increasing the function's
-	// memory also increases its CPU allocation. The default value is 128 MB. The
-	// value must be a multiple of 64 MB.
+	// The amount of memory available to the function at runtime. Increasing the
+	// function's memory also increases its CPU allocation. The default value is
+	// 128 MB. The value can be any multiple of 1 MB.
 	MemorySize *int64 `min:"128" type:"integer"`
 
 	// The type of deployment package. Set to Image for container image and set
@@ -9300,8 +9304,8 @@ func (s *FileSystemConfig) SetLocalMountPath(v string) *FileSystemConfig {
 }
 
 // The code for the Lambda function. You can specify either an object in Amazon
-// S3, upload a ZIP archive deployment package directly, or specify the URI
-// of a container image.
+// S3, upload a .zip file archive deployment package directly, or specify the
+// URI of a container image.
 type FunctionCode struct {
 	_ struct{} `type:"structure"`
 
@@ -9493,11 +9497,11 @@ type FunctionConfiguration struct {
 	// For Lambda@Edge functions, the ARN of the master function.
 	MasterArn *string `type:"string"`
 
-	// The memory that's allocated to the function.
+	// The amount of memory available to the function at runtime.
 	MemorySize *int64 `min:"128" type:"integer"`
 
 	// The type of deployment package. Set to Image for container image and set
-	// Zip for ZIP archive.
+	// Zip for .zip file archive.
 	PackageType *string `type:"string" enum:"PackageType"`
 
 	// The latest updated revision of the function or alias.
@@ -16183,9 +16187,9 @@ type UpdateFunctionConfigurationInput struct {
 	// ARN, including the version.
 	Layers []*string `type:"list"`
 
-	// The amount of memory that your function has access to. Increasing the function's
-	// memory also increases its CPU allocation. The default value is 128 MB. The
-	// value must be a multiple of 64 MB.
+	// The amount of memory available to the function at runtime. Increasing the
+	// function's memory also increases its CPU allocation. The default value is
+	// 128 MB. The value can be any multiple of 1 MB.
 	MemorySize *int64 `min:"128" type:"integer"`
 
 	// Only update the function if the revision ID matches the ID that's specified.
@@ -16717,6 +16721,9 @@ const (
 
 	// LastUpdateStatusReasonCodeImageAccessDenied is a LastUpdateStatusReasonCode enum value
 	LastUpdateStatusReasonCodeImageAccessDenied = "ImageAccessDenied"
+
+	// LastUpdateStatusReasonCodeInvalidImage is a LastUpdateStatusReasonCode enum value
+	LastUpdateStatusReasonCodeInvalidImage = "InvalidImage"
 )
 
 // LastUpdateStatusReasonCode_Values returns all elements of the LastUpdateStatusReasonCode enum
@@ -16731,6 +16738,7 @@ func LastUpdateStatusReasonCode_Values() []string {
 		LastUpdateStatusReasonCodeInvalidSecurityGroup,
 		LastUpdateStatusReasonCodeImageDeleted,
 		LastUpdateStatusReasonCodeImageAccessDenied,
+		LastUpdateStatusReasonCodeInvalidImage,
 	}
 }
 
@@ -16958,6 +16966,9 @@ const (
 
 	// StateReasonCodeImageAccessDenied is a StateReasonCode enum value
 	StateReasonCodeImageAccessDenied = "ImageAccessDenied"
+
+	// StateReasonCodeInvalidImage is a StateReasonCode enum value
+	StateReasonCodeInvalidImage = "InvalidImage"
 )
 
 // StateReasonCode_Values returns all elements of the StateReasonCode enum
@@ -16975,6 +16986,7 @@ func StateReasonCode_Values() []string {
 		StateReasonCodeInvalidSecurityGroup,
 		StateReasonCodeImageDeleted,
 		StateReasonCodeImageAccessDenied,
+		StateReasonCodeInvalidImage,
 	}
 }
 
