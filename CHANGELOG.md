@@ -1,3 +1,11 @@
+Release v1.36.3 (2020-12-07)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added PreserveTransaction setting to preserve order of CDC for S3 as target. Added CsvNoSupValue setting to replace empty value for columns not included in the supplemental log for S3 as target.
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
 Release v1.36.2 (2020-12-04)
 ===
 
