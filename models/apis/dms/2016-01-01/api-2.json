@@ -2563,7 +2563,11 @@
         "CdcInsertsAndUpdates":{"shape":"BooleanOptional"},
         "DatePartitionEnabled":{"shape":"BooleanOptional"},
         "DatePartitionSequence":{"shape":"DatePartitionSequenceValue"},
-        "DatePartitionDelimiter":{"shape":"DatePartitionDelimiterValue"}
+        "DatePartitionDelimiter":{"shape":"DatePartitionDelimiterValue"},
+        "UseCsvNoSupValue":{"shape":"BooleanOptional"},
+        "CsvNoSupValue":{"shape":"String"},
+        "PreserveTransactions":{"shape":"BooleanOptional"},
+        "CdcPath":{"shape":"String"}
       }
     },
     "SNSInvalidTopicFault":{

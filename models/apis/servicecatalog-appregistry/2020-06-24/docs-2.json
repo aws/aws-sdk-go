@@ -16,6 +16,9 @@
     "ListAssociatedAttributeGroups": "<p>Lists all attribute groups that are associated with specified application. Results are paginated.</p>",
     "ListAssociatedResources": "<p>Lists all resources that are associated with specified application. Results are paginated.</p>",
     "ListAttributeGroups": "<p>Lists all attribute groups which you have access to. Results are paginated.</p>",
+    "ListTagsForResource": "<p>Lists all of the tags on the resource.</p>",
+    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified resource.</p> <p>Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.</p>",
+    "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateApplication": "<p>Updates an existing application with new attributes.</p>",
     "UpdateAttributeGroup": "<p>Updates an existing attribute group with new details. </p>"
   },
@@ -78,7 +81,10 @@
       "base": null,
       "refs": {
         "AssociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
-        "DisassociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>"
+        "DisassociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>"
       }
     },
     "AssociateAttributeGroupRequest": {
@@ -322,6 +328,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -415,7 +431,24 @@
     "TagKey": {
       "base": null,
       "refs": {
+        "TagKeys$member": null,
         "Tags$key": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>A list of the tag keys to remove from the specified resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValue": {
@@ -432,7 +465,9 @@
         "CreateApplicationRequest$tags": "<p>Key-value pairs you can use to associate with the application.</p>",
         "CreateAttributeGroupRequest$tags": "<p>Key-value pairs you can use to associate with the attribute group.</p>",
         "GetApplicationResponse$tags": "<p>Key-value pairs associated with the application.</p>",
-        "GetAttributeGroupResponse$tags": "<p>Key-value pairs associated with the attribute group.</p>"
+        "GetAttributeGroupResponse$tags": "<p>Key-value pairs associated with the attribute group.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The tags on the resource.</p>",
+        "TagResourceRequest$tags": "<p>The new or modified tags for the resource.</p>"
       }
     },
     "Timestamp": {
@@ -450,6 +485,16 @@
         "GetApplicationResponse$lastUpdateTime": "<p>The ISO-8601 formatted timestamp of the moment when the application was last updated.</p>",
         "GetAttributeGroupResponse$creationTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was created.</p>",
         "GetAttributeGroupResponse$lastUpdateTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was last updated. This time is the same as the creationTime for a newly created attribute group.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateApplicationRequest": {

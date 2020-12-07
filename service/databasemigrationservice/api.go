@@ -16843,6 +16843,28 @@ type S3Settings struct {
 	// for the same endpoint, but not both.
 	CdcInsertsOnly *bool `type:"boolean"`
 
+	// Specifies the folder path of CDC files. For an S3 source, this setting is
+	// required if a task captures change data; otherwise, it's optional. If CdcPath
+	// is set, AWS DMS reads CDC files from this path and replicates the data changes
+	// to the target endpoint. For an S3 target, if CdcPathis set, it is the folder
+	// path where data changes are replicated. If you set PreserveTransactions (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-PreserveTransactions)
+	// to true, AWS DMS verifies that you have set this parameter to a folder path
+	// on your S3 target where AWS DMS can save the transaction order for the CDC
+	// load. AWS DMS creates this CDC folder path in either your S3 target working
+	// directory or the S3 target location specified by BucketFolder (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketFolder)
+	// and BucketName (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketName).
+	//
+	// For example, if you specify CdcPath as MyChangedData, and you specify BucketName
+	// as MyTargetBucket but do not specify BucketFolder, AWS DMS creates the CDC
+	// folder path following: MyTargetBucket/MyChangedData.
+	//
+	// If you specify the same CdcPath, and you specify BucketName as MyTargetBucket
+	// and BucketFolder as MyTargetData, AWS DMS creates the CDC folder path following:
+	// MyTargetBucket/MyTargetData/MyChangedData.
+	//
+	// This setting is supported in AWS DMS versions 3.4.2 and later.
+	CdcPath *string `type:"string"`
+
 	// An optional parameter to use GZIP to compress the target files. Set to GZIP
 	// to compress the target files. Either set this parameter to NONE (the default)
 	// or don't use it to leave the files uncompressed. This parameter applies to
@@ -16852,6 +16874,16 @@ type S3Settings struct {
 	// The delimiter used to separate columns in the .csv file for both source and
 	// target. The default is a comma.
 	CsvDelimiter *string `type:"string"`
+
+	// This setting only applies if your Amazon S3 output files during a change
+	// data capture (CDC) load are written in .csv format. If UseCsvNoSupValue (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-UseCsvNoSupValue)
+	// is set to true, specify a string value that you want AWS DMS to use for all
+	// columns not included in the supplemental log. If you do not specify a string
+	// value, AWS DMS uses the null value for these columns regardless of the UseCsvNoSupValue
+	// setting.
+	//
+	// This setting is supported in AWS DMS versions 3.4.1 and later.
+	CsvNoSupValue *string `type:"string"`
 
 	// The delimiter used to separate rows in the .csv file for both source and
 	// target. The default is a carriage return (\n).
@@ -16995,6 +17027,12 @@ type S3Settings struct {
 	// (the default) or parquet_2_0.
 	ParquetVersion *string `type:"string" enum:"ParquetVersionValue"`
 
+	// If set to true, AWS DMS saves the transaction order for a change data capture
+	// (CDC) load on the Amazon S3 target specified by CdcPath (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CdcPath).
+	//
+	// This setting is supported in AWS DMS versions 3.4.2 and later.
+	PreserveTransactions *bool `type:"boolean"`
+
 	// The number of rows in a row group. A smaller row group size provides faster
 	// reads. But as the number of row groups grows, the slower writes become. This
 	// parameter defaults to 10,000 rows. This number is used for .parquet file
@@ -17040,6 +17078,15 @@ type S3Settings struct {
 	// When the AddColumnName parameter is set to true, DMS also includes a name
 	// for the timestamp column that you set with TimestampColumnName.
 	TimestampColumnName *string `type:"string"`
+
+	// This setting applies if the S3 output files during a change data capture
+	// (CDC) load are written in .csv format. If set to true for columns not included
+	// in the supplemental log, AWS DMS uses the value specified by CsvNoSupValue
+	// (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CsvNoSupValue).
+	// If not set or set to false, AWS DMS uses the null value for these columns.
+	//
+	// This setting is supported in AWS DMS versions 3.4.1 and later.
+	UseCsvNoSupValue *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -17076,6 +17123,12 @@ func (s *S3Settings) SetCdcInsertsOnly(v bool) *S3Settings {
 	return s
 }
 
+// SetCdcPath sets the CdcPath field's value.
+func (s *S3Settings) SetCdcPath(v string) *S3Settings {
+	s.CdcPath = &v
+	return s
+}
+
 // SetCompressionType sets the CompressionType field's value.
 func (s *S3Settings) SetCompressionType(v string) *S3Settings {
 	s.CompressionType = &v
@@ -17085,6 +17138,12 @@ func (s *S3Settings) SetCompressionType(v string) *S3Settings {
 // SetCsvDelimiter sets the CsvDelimiter field's value.
 func (s *S3Settings) SetCsvDelimiter(v string) *S3Settings {
 	s.CsvDelimiter = &v
+	return s
+}
+
+// SetCsvNoSupValue sets the CsvNoSupValue field's value.
+func (s *S3Settings) SetCsvNoSupValue(v string) *S3Settings {
+	s.CsvNoSupValue = &v
 	return s
 }
 
@@ -17172,6 +17231,12 @@ func (s *S3Settings) SetParquetVersion(v string) *S3Settings {
 	return s
 }
 
+// SetPreserveTransactions sets the PreserveTransactions field's value.
+func (s *S3Settings) SetPreserveTransactions(v bool) *S3Settings {
+	s.PreserveTransactions = &v
+	return s
+}
+
 // SetRowGroupLength sets the RowGroupLength field's value.
 func (s *S3Settings) SetRowGroupLength(v int64) *S3Settings {
 	s.RowGroupLength = &v
@@ -17193,6 +17258,12 @@ func (s *S3Settings) SetServiceAccessRoleArn(v string) *S3Settings {
 // SetTimestampColumnName sets the TimestampColumnName field's value.
 func (s *S3Settings) SetTimestampColumnName(v string) *S3Settings {
 	s.TimestampColumnName = &v
+	return s
+}
+
+// SetUseCsvNoSupValue sets the UseCsvNoSupValue field's value.
+func (s *S3Settings) SetUseCsvNoSupValue(v bool) *S3Settings {
+	s.UseCsvNoSupValue = &v
 	return s
 }
 

@@ -128,6 +128,18 @@ type AppRegistryAPI interface {
 	ListAttributeGroupsPages(*appregistry.ListAttributeGroupsInput, func(*appregistry.ListAttributeGroupsOutput, bool) bool) error
 	ListAttributeGroupsPagesWithContext(aws.Context, *appregistry.ListAttributeGroupsInput, func(*appregistry.ListAttributeGroupsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*appregistry.ListTagsForResourceInput) (*appregistry.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *appregistry.ListTagsForResourceInput, ...request.Option) (*appregistry.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*appregistry.ListTagsForResourceInput) (*request.Request, *appregistry.ListTagsForResourceOutput)
+
+	TagResource(*appregistry.TagResourceInput) (*appregistry.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *appregistry.TagResourceInput, ...request.Option) (*appregistry.TagResourceOutput, error)
+	TagResourceRequest(*appregistry.TagResourceInput) (*request.Request, *appregistry.TagResourceOutput)
+
+	UntagResource(*appregistry.UntagResourceInput) (*appregistry.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *appregistry.UntagResourceInput, ...request.Option) (*appregistry.UntagResourceOutput, error)
+	UntagResourceRequest(*appregistry.UntagResourceInput) (*request.Request, *appregistry.UntagResourceOutput)
+
 	UpdateApplication(*appregistry.UpdateApplicationInput) (*appregistry.UpdateApplicationOutput, error)
 	UpdateApplicationWithContext(aws.Context, *appregistry.UpdateApplicationInput, ...request.Option) (*appregistry.UpdateApplicationOutput, error)
 	UpdateApplicationRequest(*appregistry.UpdateApplicationInput) (*request.Request, *appregistry.UpdateApplicationOutput)
