@@ -35,7 +35,7 @@ func TestNewSession_WithClientTLSCert(t *testing.T) {
 				os.Setenv(useClientTLSKey[0], "some-key-file-not-exists")
 				return Options{}, func() {}, nil
 			},
-			ExpectErr: "no such file or directory",
+			ExpectErr: "LoadClientTLSCertError",
 		},
 		"env cert file only": {
 			setup: func(certFilename, keyFilename string) (Options, func(), error) {
