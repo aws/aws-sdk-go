@@ -107,7 +107,7 @@ func TestLoadEnvConfig(t *testing.T) {
 		UseSharedConfigCall bool
 		Config              envConfig
 	}{
-		{
+		0: {
 			Env: map[string]string{
 				"AWS_REGION":  "region",
 				"AWS_PROFILE": "profile",
@@ -118,7 +118,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		1: {
 			Env: map[string]string{
 				"AWS_REGION":          "region",
 				"AWS_DEFAULT_REGION":  "default_region",
@@ -131,7 +131,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		2: {
 			Env: map[string]string{
 				"AWS_REGION":          "region",
 				"AWS_DEFAULT_REGION":  "default_region",
@@ -146,7 +146,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		3: {
 			Env: map[string]string{
 				"AWS_DEFAULT_REGION":  "default_region",
 				"AWS_DEFAULT_PROFILE": "default_profile",
@@ -156,7 +156,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		4: {
 			Env: map[string]string{
 				"AWS_DEFAULT_REGION":  "default_region",
 				"AWS_DEFAULT_PROFILE": "default_profile",
@@ -169,7 +169,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		5: {
 			Env: map[string]string{
 				"AWS_REGION":  "region",
 				"AWS_PROFILE": "profile",
@@ -182,7 +182,7 @@ func TestLoadEnvConfig(t *testing.T) {
 			},
 			UseSharedConfigCall: true,
 		},
-		{
+		6: {
 			Env: map[string]string{
 				"AWS_REGION":          "region",
 				"AWS_DEFAULT_REGION":  "default_region",
@@ -197,7 +197,7 @@ func TestLoadEnvConfig(t *testing.T) {
 			},
 			UseSharedConfigCall: true,
 		},
-		{
+		7: {
 			Env: map[string]string{
 				"AWS_REGION":          "region",
 				"AWS_DEFAULT_REGION":  "default_region",
@@ -213,7 +213,7 @@ func TestLoadEnvConfig(t *testing.T) {
 			},
 			UseSharedConfigCall: true,
 		},
-		{
+		8: {
 			Env: map[string]string{
 				"AWS_DEFAULT_REGION":  "default_region",
 				"AWS_DEFAULT_PROFILE": "default_profile",
@@ -226,7 +226,7 @@ func TestLoadEnvConfig(t *testing.T) {
 			},
 			UseSharedConfigCall: true,
 		},
-		{
+		9: {
 			Env: map[string]string{
 				"AWS_DEFAULT_REGION":  "default_region",
 				"AWS_DEFAULT_PROFILE": "default_profile",
@@ -240,7 +240,7 @@ func TestLoadEnvConfig(t *testing.T) {
 			},
 			UseSharedConfigCall: true,
 		},
-		{
+		10: {
 			Env: map[string]string{
 				"AWS_CA_BUNDLE": "custom_ca_bundle",
 			},
@@ -250,7 +250,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		11: {
 			Env: map[string]string{
 				"AWS_CA_BUNDLE": "custom_ca_bundle",
 			},
@@ -262,7 +262,51 @@ func TestLoadEnvConfig(t *testing.T) {
 			},
 			UseSharedConfigCall: true,
 		},
-		{
+		12: {
+			Env: map[string]string{
+				"AWS_SDK_GO_CLIENT_TLS_CERT": "client_tls_cert",
+			},
+			Config: envConfig{
+				ClientTLSCert:         "client_tls_cert",
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		13: {
+			Env: map[string]string{
+				"AWS_SDK_GO_CLIENT_TLS_CERT": "client_tls_cert",
+			},
+			Config: envConfig{
+				ClientTLSCert:         "client_tls_cert",
+				EnableSharedConfig:    true,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+			UseSharedConfigCall: true,
+		},
+		14: {
+			Env: map[string]string{
+				"AWS_SDK_GO_CLIENT_TLS_KEY": "client_tls_key",
+			},
+			Config: envConfig{
+				ClientTLSKey:          "client_tls_key",
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		15: {
+			Env: map[string]string{
+				"AWS_SDK_GO_CLIENT_TLS_KEY": "client_tls_key",
+			},
+			Config: envConfig{
+				ClientTLSKey:          "client_tls_key",
+				EnableSharedConfig:    true,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+			UseSharedConfigCall: true,
+		},
+		16: {
 			Env: map[string]string{
 				"AWS_SHARED_CREDENTIALS_FILE": "/path/to/credentials/file",
 				"AWS_CONFIG_FILE":             "/path/to/config/file",
@@ -272,7 +316,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      "/path/to/config/file",
 			},
 		},
-		{
+		17: {
 			Env: map[string]string{
 				"AWS_STS_REGIONAL_ENDPOINTS": "regional",
 			},
@@ -282,7 +326,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		18: {
 			Env: map[string]string{
 				"AWS_S3_US_EAST_1_REGIONAL_ENDPOINT": "regional",
 			},
@@ -292,7 +336,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:          shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		19: {
 			Env: map[string]string{
 				"AWS_S3_USE_ARN_REGION": "true",
 			},
@@ -302,7 +346,7 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
-		{
+		20: {
 			Env: map[string]string{
 				"AWS_EC2_METADATA_SERVICE_ENDPOINT": "http://example.aws",
 			},
