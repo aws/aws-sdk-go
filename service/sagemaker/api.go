@@ -1046,6 +1046,174 @@ func (c *SageMaker) CreateContextWithContext(ctx aws.Context, input *CreateConte
 	return out, req.Send()
 }
 
+const opCreateDataQualityJobDefinition = "CreateDataQualityJobDefinition"
+
+// CreateDataQualityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataQualityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataQualityJobDefinition for more information on using the CreateDataQualityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDataQualityJobDefinitionRequest method.
+//    req, resp := client.CreateDataQualityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDataQualityJobDefinition
+func (c *SageMaker) CreateDataQualityJobDefinitionRequest(input *CreateDataQualityJobDefinitionInput) (req *request.Request, output *CreateDataQualityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataQualityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDataQualityJobDefinitionInput{}
+	}
+
+	output = &CreateDataQualityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataQualityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Creates a definition for a job that monitors data quality and drift. For
+// information about model monitor, see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateDataQualityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDataQualityJobDefinition
+func (c *SageMaker) CreateDataQualityJobDefinition(input *CreateDataQualityJobDefinitionInput) (*CreateDataQualityJobDefinitionOutput, error) {
+	req, out := c.CreateDataQualityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataQualityJobDefinitionWithContext is the same as CreateDataQualityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataQualityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateDataQualityJobDefinitionWithContext(ctx aws.Context, input *CreateDataQualityJobDefinitionInput, opts ...request.Option) (*CreateDataQualityJobDefinitionOutput, error) {
+	req, out := c.CreateDataQualityJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDeviceFleet = "CreateDeviceFleet"
+
+// CreateDeviceFleetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDeviceFleet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDeviceFleet for more information on using the CreateDeviceFleet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDeviceFleetRequest method.
+//    req, resp := client.CreateDeviceFleetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDeviceFleet
+func (c *SageMaker) CreateDeviceFleetRequest(input *CreateDeviceFleetInput) (req *request.Request, output *CreateDeviceFleetOutput) {
+	op := &request.Operation{
+		Name:       opCreateDeviceFleet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDeviceFleetInput{}
+	}
+
+	output = &CreateDeviceFleetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateDeviceFleet API operation for Amazon SageMaker Service.
+//
+// Creates a device fleet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateDeviceFleet for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateDeviceFleet
+func (c *SageMaker) CreateDeviceFleet(input *CreateDeviceFleetInput) (*CreateDeviceFleetOutput, error) {
+	req, out := c.CreateDeviceFleetRequest(input)
+	return out, req.Send()
+}
+
+// CreateDeviceFleetWithContext is the same as CreateDeviceFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDeviceFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateDeviceFleetWithContext(ctx aws.Context, input *CreateDeviceFleetInput, opts ...request.Option) (*CreateDeviceFleetOutput, error) {
+	req, out := c.CreateDeviceFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDomain = "CreateDomain"
 
 // CreateDomainRequest generates a "aws/request.Request" representing the
@@ -1161,6 +1329,90 @@ func (c *SageMaker) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput,
 // for more information on using Contexts.
 func (c *SageMaker) CreateDomainWithContext(ctx aws.Context, input *CreateDomainInput, opts ...request.Option) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEdgePackagingJob = "CreateEdgePackagingJob"
+
+// CreateEdgePackagingJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEdgePackagingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEdgePackagingJob for more information on using the CreateEdgePackagingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEdgePackagingJobRequest method.
+//    req, resp := client.CreateEdgePackagingJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgePackagingJob
+func (c *SageMaker) CreateEdgePackagingJobRequest(input *CreateEdgePackagingJobInput) (req *request.Request, output *CreateEdgePackagingJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateEdgePackagingJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEdgePackagingJobInput{}
+	}
+
+	output = &CreateEdgePackagingJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateEdgePackagingJob API operation for Amazon SageMaker Service.
+//
+// Starts a SageMaker Edge Manager model packaging job. Edge Manager will use
+// the model artifacts from the Amazon Simple Storage Service bucket that you
+// specify. After the model has been packaged, Amazon SageMaker saves the resulting
+// artifacts to an S3 bucket that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateEdgePackagingJob for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateEdgePackagingJob
+func (c *SageMaker) CreateEdgePackagingJob(input *CreateEdgePackagingJobInput) (*CreateEdgePackagingJobOutput, error) {
+	req, out := c.CreateEdgePackagingJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateEdgePackagingJobWithContext is the same as CreateEdgePackagingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEdgePackagingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateEdgePackagingJobWithContext(ctx aws.Context, input *CreateEdgePackagingJobInput, opts ...request.Option) (*CreateEdgePackagingJobOutput, error) {
+	req, out := c.CreateEdgePackagingJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2261,6 +2513,172 @@ func (c *SageMaker) CreateModelWithContext(ctx aws.Context, input *CreateModelIn
 	return out, req.Send()
 }
 
+const opCreateModelBiasJobDefinition = "CreateModelBiasJobDefinition"
+
+// CreateModelBiasJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateModelBiasJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateModelBiasJobDefinition for more information on using the CreateModelBiasJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateModelBiasJobDefinitionRequest method.
+//    req, resp := client.CreateModelBiasJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelBiasJobDefinition
+func (c *SageMaker) CreateModelBiasJobDefinitionRequest(input *CreateModelBiasJobDefinitionInput) (req *request.Request, output *CreateModelBiasJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateModelBiasJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateModelBiasJobDefinitionInput{}
+	}
+
+	output = &CreateModelBiasJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateModelBiasJobDefinition API operation for Amazon SageMaker Service.
+//
+// Creates the definition for a model bias job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateModelBiasJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelBiasJobDefinition
+func (c *SageMaker) CreateModelBiasJobDefinition(input *CreateModelBiasJobDefinitionInput) (*CreateModelBiasJobDefinitionOutput, error) {
+	req, out := c.CreateModelBiasJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateModelBiasJobDefinitionWithContext is the same as CreateModelBiasJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateModelBiasJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateModelBiasJobDefinitionWithContext(ctx aws.Context, input *CreateModelBiasJobDefinitionInput, opts ...request.Option) (*CreateModelBiasJobDefinitionOutput, error) {
+	req, out := c.CreateModelBiasJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateModelExplainabilityJobDefinition = "CreateModelExplainabilityJobDefinition"
+
+// CreateModelExplainabilityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateModelExplainabilityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateModelExplainabilityJobDefinition for more information on using the CreateModelExplainabilityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateModelExplainabilityJobDefinitionRequest method.
+//    req, resp := client.CreateModelExplainabilityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelExplainabilityJobDefinition
+func (c *SageMaker) CreateModelExplainabilityJobDefinitionRequest(input *CreateModelExplainabilityJobDefinitionInput) (req *request.Request, output *CreateModelExplainabilityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateModelExplainabilityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateModelExplainabilityJobDefinitionInput{}
+	}
+
+	output = &CreateModelExplainabilityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateModelExplainabilityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Creates the definition for a model explainability job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateModelExplainabilityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelExplainabilityJobDefinition
+func (c *SageMaker) CreateModelExplainabilityJobDefinition(input *CreateModelExplainabilityJobDefinitionInput) (*CreateModelExplainabilityJobDefinitionOutput, error) {
+	req, out := c.CreateModelExplainabilityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateModelExplainabilityJobDefinitionWithContext is the same as CreateModelExplainabilityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateModelExplainabilityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateModelExplainabilityJobDefinitionWithContext(ctx aws.Context, input *CreateModelExplainabilityJobDefinitionInput, opts ...request.Option) (*CreateModelExplainabilityJobDefinitionOutput, error) {
+	req, out := c.CreateModelExplainabilityJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateModelPackage = "CreateModelPackage"
 
 // CreateModelPackageRequest generates a "aws/request.Request" representing the
@@ -2435,6 +2853,90 @@ func (c *SageMaker) CreateModelPackageGroup(input *CreateModelPackageGroupInput)
 // for more information on using Contexts.
 func (c *SageMaker) CreateModelPackageGroupWithContext(ctx aws.Context, input *CreateModelPackageGroupInput, opts ...request.Option) (*CreateModelPackageGroupOutput, error) {
 	req, out := c.CreateModelPackageGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateModelQualityJobDefinition = "CreateModelQualityJobDefinition"
+
+// CreateModelQualityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateModelQualityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateModelQualityJobDefinition for more information on using the CreateModelQualityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateModelQualityJobDefinitionRequest method.
+//    req, resp := client.CreateModelQualityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelQualityJobDefinition
+func (c *SageMaker) CreateModelQualityJobDefinitionRequest(input *CreateModelQualityJobDefinitionInput) (req *request.Request, output *CreateModelQualityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateModelQualityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateModelQualityJobDefinitionInput{}
+	}
+
+	output = &CreateModelQualityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateModelQualityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Creates a definition for a job that monitors model quality and drift. For
+// information about model monitor, see Amazon SageMaker Model Monitor (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateModelQualityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelQualityJobDefinition
+func (c *SageMaker) CreateModelQualityJobDefinition(input *CreateModelQualityJobDefinitionInput) (*CreateModelQualityJobDefinitionOutput, error) {
+	req, out := c.CreateModelQualityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateModelQualityJobDefinitionWithContext is the same as CreateModelQualityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateModelQualityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateModelQualityJobDefinitionWithContext(ctx aws.Context, input *CreateModelQualityJobDefinitionInput, opts ...request.Option) (*CreateModelQualityJobDefinitionOutput, error) {
+	req, out := c.CreateModelQualityJobDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4498,6 +5000,166 @@ func (c *SageMaker) DeleteContextWithContext(ctx aws.Context, input *DeleteConte
 	return out, req.Send()
 }
 
+const opDeleteDataQualityJobDefinition = "DeleteDataQualityJobDefinition"
+
+// DeleteDataQualityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataQualityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataQualityJobDefinition for more information on using the DeleteDataQualityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDataQualityJobDefinitionRequest method.
+//    req, resp := client.DeleteDataQualityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDataQualityJobDefinition
+func (c *SageMaker) DeleteDataQualityJobDefinitionRequest(input *DeleteDataQualityJobDefinitionInput) (req *request.Request, output *DeleteDataQualityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataQualityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDataQualityJobDefinitionInput{}
+	}
+
+	output = &DeleteDataQualityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataQualityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Deletes a data quality monitoring job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteDataQualityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDataQualityJobDefinition
+func (c *SageMaker) DeleteDataQualityJobDefinition(input *DeleteDataQualityJobDefinitionInput) (*DeleteDataQualityJobDefinitionOutput, error) {
+	req, out := c.DeleteDataQualityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataQualityJobDefinitionWithContext is the same as DeleteDataQualityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataQualityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteDataQualityJobDefinitionWithContext(ctx aws.Context, input *DeleteDataQualityJobDefinitionInput, opts ...request.Option) (*DeleteDataQualityJobDefinitionOutput, error) {
+	req, out := c.DeleteDataQualityJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDeviceFleet = "DeleteDeviceFleet"
+
+// DeleteDeviceFleetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDeviceFleet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDeviceFleet for more information on using the DeleteDeviceFleet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDeviceFleetRequest method.
+//    req, resp := client.DeleteDeviceFleetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDeviceFleet
+func (c *SageMaker) DeleteDeviceFleetRequest(input *DeleteDeviceFleetInput) (req *request.Request, output *DeleteDeviceFleetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDeviceFleet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDeviceFleetInput{}
+	}
+
+	output = &DeleteDeviceFleetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDeviceFleet API operation for Amazon SageMaker Service.
+//
+// Deletes a fleet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteDeviceFleet for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteDeviceFleet
+func (c *SageMaker) DeleteDeviceFleet(input *DeleteDeviceFleetInput) (*DeleteDeviceFleetOutput, error) {
+	req, out := c.DeleteDeviceFleetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDeviceFleetWithContext is the same as DeleteDeviceFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDeviceFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteDeviceFleetWithContext(ctx aws.Context, input *DeleteDeviceFleetInput, opts ...request.Option) (*DeleteDeviceFleetOutput, error) {
+	req, out := c.DeleteDeviceFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDomain = "DeleteDomain"
 
 // DeleteDomainRequest generates a "aws/request.Request" representing the
@@ -5327,6 +5989,166 @@ func (c *SageMaker) DeleteModelWithContext(ctx aws.Context, input *DeleteModelIn
 	return out, req.Send()
 }
 
+const opDeleteModelBiasJobDefinition = "DeleteModelBiasJobDefinition"
+
+// DeleteModelBiasJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteModelBiasJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteModelBiasJobDefinition for more information on using the DeleteModelBiasJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteModelBiasJobDefinitionRequest method.
+//    req, resp := client.DeleteModelBiasJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelBiasJobDefinition
+func (c *SageMaker) DeleteModelBiasJobDefinitionRequest(input *DeleteModelBiasJobDefinitionInput) (req *request.Request, output *DeleteModelBiasJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteModelBiasJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteModelBiasJobDefinitionInput{}
+	}
+
+	output = &DeleteModelBiasJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteModelBiasJobDefinition API operation for Amazon SageMaker Service.
+//
+// Deletes an Amazon SageMaker model bias job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteModelBiasJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelBiasJobDefinition
+func (c *SageMaker) DeleteModelBiasJobDefinition(input *DeleteModelBiasJobDefinitionInput) (*DeleteModelBiasJobDefinitionOutput, error) {
+	req, out := c.DeleteModelBiasJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteModelBiasJobDefinitionWithContext is the same as DeleteModelBiasJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteModelBiasJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteModelBiasJobDefinitionWithContext(ctx aws.Context, input *DeleteModelBiasJobDefinitionInput, opts ...request.Option) (*DeleteModelBiasJobDefinitionOutput, error) {
+	req, out := c.DeleteModelBiasJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteModelExplainabilityJobDefinition = "DeleteModelExplainabilityJobDefinition"
+
+// DeleteModelExplainabilityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteModelExplainabilityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteModelExplainabilityJobDefinition for more information on using the DeleteModelExplainabilityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteModelExplainabilityJobDefinitionRequest method.
+//    req, resp := client.DeleteModelExplainabilityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelExplainabilityJobDefinition
+func (c *SageMaker) DeleteModelExplainabilityJobDefinitionRequest(input *DeleteModelExplainabilityJobDefinitionInput) (req *request.Request, output *DeleteModelExplainabilityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteModelExplainabilityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteModelExplainabilityJobDefinitionInput{}
+	}
+
+	output = &DeleteModelExplainabilityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteModelExplainabilityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Deletes an Amazon SageMaker model explainability job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteModelExplainabilityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelExplainabilityJobDefinition
+func (c *SageMaker) DeleteModelExplainabilityJobDefinition(input *DeleteModelExplainabilityJobDefinitionInput) (*DeleteModelExplainabilityJobDefinitionOutput, error) {
+	req, out := c.DeleteModelExplainabilityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteModelExplainabilityJobDefinitionWithContext is the same as DeleteModelExplainabilityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteModelExplainabilityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteModelExplainabilityJobDefinitionWithContext(ctx aws.Context, input *DeleteModelExplainabilityJobDefinitionInput, opts ...request.Option) (*DeleteModelExplainabilityJobDefinitionOutput, error) {
+	req, out := c.DeleteModelExplainabilityJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteModelPackage = "DeleteModelPackage"
 
 // DeleteModelPackageRequest generates a "aws/request.Request" representing the
@@ -5557,6 +6379,86 @@ func (c *SageMaker) DeleteModelPackageGroupPolicy(input *DeleteModelPackageGroup
 // for more information on using Contexts.
 func (c *SageMaker) DeleteModelPackageGroupPolicyWithContext(ctx aws.Context, input *DeleteModelPackageGroupPolicyInput, opts ...request.Option) (*DeleteModelPackageGroupPolicyOutput, error) {
 	req, out := c.DeleteModelPackageGroupPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteModelQualityJobDefinition = "DeleteModelQualityJobDefinition"
+
+// DeleteModelQualityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteModelQualityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteModelQualityJobDefinition for more information on using the DeleteModelQualityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteModelQualityJobDefinitionRequest method.
+//    req, resp := client.DeleteModelQualityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelQualityJobDefinition
+func (c *SageMaker) DeleteModelQualityJobDefinitionRequest(input *DeleteModelQualityJobDefinitionInput) (req *request.Request, output *DeleteModelQualityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteModelQualityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteModelQualityJobDefinitionInput{}
+	}
+
+	output = &DeleteModelQualityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteModelQualityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Deletes the secified model quality monitoring job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteModelQualityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelQualityJobDefinition
+func (c *SageMaker) DeleteModelQualityJobDefinition(input *DeleteModelQualityJobDefinitionInput) (*DeleteModelQualityJobDefinitionOutput, error) {
+	req, out := c.DeleteModelQualityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteModelQualityJobDefinitionWithContext is the same as DeleteModelQualityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteModelQualityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteModelQualityJobDefinitionWithContext(ctx aws.Context, input *DeleteModelQualityJobDefinitionInput, opts ...request.Option) (*DeleteModelQualityJobDefinitionOutput, error) {
+	req, out := c.DeleteModelQualityJobDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5843,7 +6745,7 @@ func (c *SageMaker) DeletePipelineRequest(input *DeletePipelineInput) (req *requ
 
 // DeletePipeline API operation for Amazon SageMaker Service.
 //
-// Deletes a pipeline.
+// Deletes a pipeline if there are no in-progress executions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6439,6 +7341,82 @@ func (c *SageMaker) DeleteWorkteam(input *DeleteWorkteamInput) (*DeleteWorkteamO
 // for more information on using Contexts.
 func (c *SageMaker) DeleteWorkteamWithContext(ctx aws.Context, input *DeleteWorkteamInput, opts ...request.Option) (*DeleteWorkteamOutput, error) {
 	req, out := c.DeleteWorkteamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeregisterDevices = "DeregisterDevices"
+
+// DeregisterDevicesRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterDevices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterDevices for more information on using the DeregisterDevices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeregisterDevicesRequest method.
+//    req, resp := client.DeregisterDevicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeregisterDevices
+func (c *SageMaker) DeregisterDevicesRequest(input *DeregisterDevicesInput) (req *request.Request, output *DeregisterDevicesOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterDevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeregisterDevicesInput{}
+	}
+
+	output = &DeregisterDevicesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeregisterDevices API operation for Amazon SageMaker Service.
+//
+// Deregisters the specified devices. After you deregister a device, you will
+// need to re-register the devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeregisterDevices for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeregisterDevices
+func (c *SageMaker) DeregisterDevices(input *DeregisterDevicesInput) (*DeregisterDevicesOutput, error) {
+	req, out := c.DeregisterDevicesRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterDevicesWithContext is the same as DeregisterDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeregisterDevicesWithContext(ctx aws.Context, input *DeregisterDevicesInput, opts ...request.Option) (*DeregisterDevicesOutput, error) {
+	req, out := c.DeregisterDevicesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7148,6 +8126,243 @@ func (c *SageMaker) DescribeContextWithContext(ctx aws.Context, input *DescribeC
 	return out, req.Send()
 }
 
+const opDescribeDataQualityJobDefinition = "DescribeDataQualityJobDefinition"
+
+// DescribeDataQualityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataQualityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataQualityJobDefinition for more information on using the DescribeDataQualityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDataQualityJobDefinitionRequest method.
+//    req, resp := client.DescribeDataQualityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDataQualityJobDefinition
+func (c *SageMaker) DescribeDataQualityJobDefinitionRequest(input *DescribeDataQualityJobDefinitionInput) (req *request.Request, output *DescribeDataQualityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataQualityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDataQualityJobDefinitionInput{}
+	}
+
+	output = &DescribeDataQualityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataQualityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Gets the details of a data quality monitoring job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeDataQualityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDataQualityJobDefinition
+func (c *SageMaker) DescribeDataQualityJobDefinition(input *DescribeDataQualityJobDefinitionInput) (*DescribeDataQualityJobDefinitionOutput, error) {
+	req, out := c.DescribeDataQualityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataQualityJobDefinitionWithContext is the same as DescribeDataQualityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataQualityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeDataQualityJobDefinitionWithContext(ctx aws.Context, input *DescribeDataQualityJobDefinitionInput, opts ...request.Option) (*DescribeDataQualityJobDefinitionOutput, error) {
+	req, out := c.DescribeDataQualityJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDevice = "DescribeDevice"
+
+// DescribeDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDevice for more information on using the DescribeDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDeviceRequest method.
+//    req, resp := client.DescribeDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDevice
+func (c *SageMaker) DescribeDeviceRequest(input *DescribeDeviceInput) (req *request.Request, output *DescribeDeviceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDeviceInput{}
+	}
+
+	output = &DescribeDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDevice API operation for Amazon SageMaker Service.
+//
+// Describes the device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeDevice for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDevice
+func (c *SageMaker) DescribeDevice(input *DescribeDeviceInput) (*DescribeDeviceOutput, error) {
+	req, out := c.DescribeDeviceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDeviceWithContext is the same as DescribeDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeDeviceWithContext(ctx aws.Context, input *DescribeDeviceInput, opts ...request.Option) (*DescribeDeviceOutput, error) {
+	req, out := c.DescribeDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDeviceFleet = "DescribeDeviceFleet"
+
+// DescribeDeviceFleetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDeviceFleet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDeviceFleet for more information on using the DescribeDeviceFleet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDeviceFleetRequest method.
+//    req, resp := client.DescribeDeviceFleetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDeviceFleet
+func (c *SageMaker) DescribeDeviceFleetRequest(input *DescribeDeviceFleetInput) (req *request.Request, output *DescribeDeviceFleetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDeviceFleet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDeviceFleetInput{}
+	}
+
+	output = &DescribeDeviceFleetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDeviceFleet API operation for Amazon SageMaker Service.
+//
+// A description of the fleet the device belongs to.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeDeviceFleet for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeDeviceFleet
+func (c *SageMaker) DescribeDeviceFleet(input *DescribeDeviceFleetInput) (*DescribeDeviceFleetOutput, error) {
+	req, out := c.DescribeDeviceFleetRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDeviceFleetWithContext is the same as DescribeDeviceFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDeviceFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeDeviceFleetWithContext(ctx aws.Context, input *DescribeDeviceFleetInput, opts ...request.Option) (*DescribeDeviceFleetOutput, error) {
+	req, out := c.DescribeDeviceFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDomain = "DescribeDomain"
 
 // DescribeDomainRequest generates a "aws/request.Request" representing the
@@ -7222,6 +8437,85 @@ func (c *SageMaker) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainO
 // for more information on using Contexts.
 func (c *SageMaker) DescribeDomainWithContext(ctx aws.Context, input *DescribeDomainInput, opts ...request.Option) (*DescribeDomainOutput, error) {
 	req, out := c.DescribeDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEdgePackagingJob = "DescribeEdgePackagingJob"
+
+// DescribeEdgePackagingJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEdgePackagingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEdgePackagingJob for more information on using the DescribeEdgePackagingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEdgePackagingJobRequest method.
+//    req, resp := client.DescribeEdgePackagingJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgePackagingJob
+func (c *SageMaker) DescribeEdgePackagingJobRequest(input *DescribeEdgePackagingJobInput) (req *request.Request, output *DescribeEdgePackagingJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEdgePackagingJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEdgePackagingJobInput{}
+	}
+
+	output = &DescribeEdgePackagingJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEdgePackagingJob API operation for Amazon SageMaker Service.
+//
+// A description of edge packaging jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeEdgePackagingJob for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeEdgePackagingJob
+func (c *SageMaker) DescribeEdgePackagingJob(input *DescribeEdgePackagingJobInput) (*DescribeEdgePackagingJobOutput, error) {
+	req, out := c.DescribeEdgePackagingJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEdgePackagingJobWithContext is the same as DescribeEdgePackagingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEdgePackagingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeEdgePackagingJobWithContext(ctx aws.Context, input *DescribeEdgePackagingJobInput, opts ...request.Option) (*DescribeEdgePackagingJobOutput, error) {
+	req, out := c.DescribeEdgePackagingJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8085,6 +9379,164 @@ func (c *SageMaker) DescribeModelWithContext(ctx aws.Context, input *DescribeMod
 	return out, req.Send()
 }
 
+const opDescribeModelBiasJobDefinition = "DescribeModelBiasJobDefinition"
+
+// DescribeModelBiasJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeModelBiasJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeModelBiasJobDefinition for more information on using the DescribeModelBiasJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeModelBiasJobDefinitionRequest method.
+//    req, resp := client.DescribeModelBiasJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelBiasJobDefinition
+func (c *SageMaker) DescribeModelBiasJobDefinitionRequest(input *DescribeModelBiasJobDefinitionInput) (req *request.Request, output *DescribeModelBiasJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeModelBiasJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeModelBiasJobDefinitionInput{}
+	}
+
+	output = &DescribeModelBiasJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeModelBiasJobDefinition API operation for Amazon SageMaker Service.
+//
+// Returns a description of a model bias job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeModelBiasJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelBiasJobDefinition
+func (c *SageMaker) DescribeModelBiasJobDefinition(input *DescribeModelBiasJobDefinitionInput) (*DescribeModelBiasJobDefinitionOutput, error) {
+	req, out := c.DescribeModelBiasJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeModelBiasJobDefinitionWithContext is the same as DescribeModelBiasJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeModelBiasJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeModelBiasJobDefinitionWithContext(ctx aws.Context, input *DescribeModelBiasJobDefinitionInput, opts ...request.Option) (*DescribeModelBiasJobDefinitionOutput, error) {
+	req, out := c.DescribeModelBiasJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeModelExplainabilityJobDefinition = "DescribeModelExplainabilityJobDefinition"
+
+// DescribeModelExplainabilityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeModelExplainabilityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeModelExplainabilityJobDefinition for more information on using the DescribeModelExplainabilityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeModelExplainabilityJobDefinitionRequest method.
+//    req, resp := client.DescribeModelExplainabilityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelExplainabilityJobDefinition
+func (c *SageMaker) DescribeModelExplainabilityJobDefinitionRequest(input *DescribeModelExplainabilityJobDefinitionInput) (req *request.Request, output *DescribeModelExplainabilityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeModelExplainabilityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeModelExplainabilityJobDefinitionInput{}
+	}
+
+	output = &DescribeModelExplainabilityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeModelExplainabilityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Returns a description of a model explainability job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeModelExplainabilityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelExplainabilityJobDefinition
+func (c *SageMaker) DescribeModelExplainabilityJobDefinition(input *DescribeModelExplainabilityJobDefinitionInput) (*DescribeModelExplainabilityJobDefinitionOutput, error) {
+	req, out := c.DescribeModelExplainabilityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeModelExplainabilityJobDefinitionWithContext is the same as DescribeModelExplainabilityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeModelExplainabilityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeModelExplainabilityJobDefinitionWithContext(ctx aws.Context, input *DescribeModelExplainabilityJobDefinitionInput, opts ...request.Option) (*DescribeModelExplainabilityJobDefinitionOutput, error) {
+	req, out := c.DescribeModelExplainabilityJobDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeModelPackage = "DescribeModelPackage"
 
 // DescribeModelPackageRequest generates a "aws/request.Request" representing the
@@ -8232,6 +9684,85 @@ func (c *SageMaker) DescribeModelPackageGroup(input *DescribeModelPackageGroupIn
 // for more information on using Contexts.
 func (c *SageMaker) DescribeModelPackageGroupWithContext(ctx aws.Context, input *DescribeModelPackageGroupInput, opts ...request.Option) (*DescribeModelPackageGroupOutput, error) {
 	req, out := c.DescribeModelPackageGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeModelQualityJobDefinition = "DescribeModelQualityJobDefinition"
+
+// DescribeModelQualityJobDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeModelQualityJobDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeModelQualityJobDefinition for more information on using the DescribeModelQualityJobDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeModelQualityJobDefinitionRequest method.
+//    req, resp := client.DescribeModelQualityJobDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelQualityJobDefinition
+func (c *SageMaker) DescribeModelQualityJobDefinitionRequest(input *DescribeModelQualityJobDefinitionInput) (req *request.Request, output *DescribeModelQualityJobDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeModelQualityJobDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeModelQualityJobDefinitionInput{}
+	}
+
+	output = &DescribeModelQualityJobDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeModelQualityJobDefinition API operation for Amazon SageMaker Service.
+//
+// Returns a description of a model quality job definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeModelQualityJobDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeModelQualityJobDefinition
+func (c *SageMaker) DescribeModelQualityJobDefinition(input *DescribeModelQualityJobDefinitionInput) (*DescribeModelQualityJobDefinitionOutput, error) {
+	req, out := c.DescribeModelQualityJobDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeModelQualityJobDefinitionWithContext is the same as DescribeModelQualityJobDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeModelQualityJobDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeModelQualityJobDefinitionWithContext(ctx aws.Context, input *DescribeModelQualityJobDefinitionInput, opts ...request.Option) (*DescribeModelQualityJobDefinitionOutput, error) {
+	req, out := c.DescribeModelQualityJobDefinitionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9716,6 +11247,80 @@ func (c *SageMaker) EnableSagemakerServicecatalogPortfolio(input *EnableSagemake
 // for more information on using Contexts.
 func (c *SageMaker) EnableSagemakerServicecatalogPortfolioWithContext(ctx aws.Context, input *EnableSagemakerServicecatalogPortfolioInput, opts ...request.Option) (*EnableSagemakerServicecatalogPortfolioOutput, error) {
 	req, out := c.EnableSagemakerServicecatalogPortfolioRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDeviceFleetReport = "GetDeviceFleetReport"
+
+// GetDeviceFleetReportRequest generates a "aws/request.Request" representing the
+// client's request for the GetDeviceFleetReport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDeviceFleetReport for more information on using the GetDeviceFleetReport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDeviceFleetReportRequest method.
+//    req, resp := client.GetDeviceFleetReportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetDeviceFleetReport
+func (c *SageMaker) GetDeviceFleetReportRequest(input *GetDeviceFleetReportInput) (req *request.Request, output *GetDeviceFleetReportOutput) {
+	op := &request.Operation{
+		Name:       opGetDeviceFleetReport,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDeviceFleetReportInput{}
+	}
+
+	output = &GetDeviceFleetReportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDeviceFleetReport API operation for Amazon SageMaker Service.
+//
+// Describes a fleet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation GetDeviceFleetReport for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetDeviceFleetReport
+func (c *SageMaker) GetDeviceFleetReport(input *GetDeviceFleetReportInput) (*GetDeviceFleetReportOutput, error) {
+	req, out := c.GetDeviceFleetReportRequest(input)
+	return out, req.Send()
+}
+
+// GetDeviceFleetReportWithContext is the same as GetDeviceFleetReport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDeviceFleetReport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) GetDeviceFleetReportWithContext(ctx aws.Context, input *GetDeviceFleetReportInput, opts ...request.Option) (*GetDeviceFleetReportOutput, error) {
+	req, out := c.GetDeviceFleetReportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11432,6 +13037,402 @@ func (c *SageMaker) ListContextsPagesWithContext(ctx aws.Context, input *ListCon
 	return p.Err()
 }
 
+const opListDataQualityJobDefinitions = "ListDataQualityJobDefinitions"
+
+// ListDataQualityJobDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataQualityJobDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataQualityJobDefinitions for more information on using the ListDataQualityJobDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDataQualityJobDefinitionsRequest method.
+//    req, resp := client.ListDataQualityJobDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDataQualityJobDefinitions
+func (c *SageMaker) ListDataQualityJobDefinitionsRequest(input *ListDataQualityJobDefinitionsInput) (req *request.Request, output *ListDataQualityJobDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListDataQualityJobDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataQualityJobDefinitionsInput{}
+	}
+
+	output = &ListDataQualityJobDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataQualityJobDefinitions API operation for Amazon SageMaker Service.
+//
+// Lists the data quality job definitions in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListDataQualityJobDefinitions for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDataQualityJobDefinitions
+func (c *SageMaker) ListDataQualityJobDefinitions(input *ListDataQualityJobDefinitionsInput) (*ListDataQualityJobDefinitionsOutput, error) {
+	req, out := c.ListDataQualityJobDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataQualityJobDefinitionsWithContext is the same as ListDataQualityJobDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataQualityJobDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListDataQualityJobDefinitionsWithContext(ctx aws.Context, input *ListDataQualityJobDefinitionsInput, opts ...request.Option) (*ListDataQualityJobDefinitionsOutput, error) {
+	req, out := c.ListDataQualityJobDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataQualityJobDefinitionsPages iterates over the pages of a ListDataQualityJobDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataQualityJobDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDataQualityJobDefinitions operation.
+//    pageNum := 0
+//    err := client.ListDataQualityJobDefinitionsPages(params,
+//        func(page *sagemaker.ListDataQualityJobDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListDataQualityJobDefinitionsPages(input *ListDataQualityJobDefinitionsInput, fn func(*ListDataQualityJobDefinitionsOutput, bool) bool) error {
+	return c.ListDataQualityJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataQualityJobDefinitionsPagesWithContext same as ListDataQualityJobDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListDataQualityJobDefinitionsPagesWithContext(ctx aws.Context, input *ListDataQualityJobDefinitionsInput, fn func(*ListDataQualityJobDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataQualityJobDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataQualityJobDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataQualityJobDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDeviceFleets = "ListDeviceFleets"
+
+// ListDeviceFleetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDeviceFleets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDeviceFleets for more information on using the ListDeviceFleets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDeviceFleetsRequest method.
+//    req, resp := client.ListDeviceFleetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDeviceFleets
+func (c *SageMaker) ListDeviceFleetsRequest(input *ListDeviceFleetsInput) (req *request.Request, output *ListDeviceFleetsOutput) {
+	op := &request.Operation{
+		Name:       opListDeviceFleets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDeviceFleetsInput{}
+	}
+
+	output = &ListDeviceFleetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDeviceFleets API operation for Amazon SageMaker Service.
+//
+// Returns a list of devices in the fleet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListDeviceFleets for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDeviceFleets
+func (c *SageMaker) ListDeviceFleets(input *ListDeviceFleetsInput) (*ListDeviceFleetsOutput, error) {
+	req, out := c.ListDeviceFleetsRequest(input)
+	return out, req.Send()
+}
+
+// ListDeviceFleetsWithContext is the same as ListDeviceFleets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDeviceFleets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListDeviceFleetsWithContext(ctx aws.Context, input *ListDeviceFleetsInput, opts ...request.Option) (*ListDeviceFleetsOutput, error) {
+	req, out := c.ListDeviceFleetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDeviceFleetsPages iterates over the pages of a ListDeviceFleets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDeviceFleets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDeviceFleets operation.
+//    pageNum := 0
+//    err := client.ListDeviceFleetsPages(params,
+//        func(page *sagemaker.ListDeviceFleetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListDeviceFleetsPages(input *ListDeviceFleetsInput, fn func(*ListDeviceFleetsOutput, bool) bool) error {
+	return c.ListDeviceFleetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDeviceFleetsPagesWithContext same as ListDeviceFleetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListDeviceFleetsPagesWithContext(ctx aws.Context, input *ListDeviceFleetsInput, fn func(*ListDeviceFleetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDeviceFleetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDeviceFleetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDeviceFleetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDevices = "ListDevices"
+
+// ListDevicesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDevices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDevices for more information on using the ListDevices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDevicesRequest method.
+//    req, resp := client.ListDevicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDevices
+func (c *SageMaker) ListDevicesRequest(input *ListDevicesInput) (req *request.Request, output *ListDevicesOutput) {
+	op := &request.Operation{
+		Name:       opListDevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDevicesInput{}
+	}
+
+	output = &ListDevicesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDevices API operation for Amazon SageMaker Service.
+//
+// A list of devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListDevices for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListDevices
+func (c *SageMaker) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, error) {
+	req, out := c.ListDevicesRequest(input)
+	return out, req.Send()
+}
+
+// ListDevicesWithContext is the same as ListDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListDevicesWithContext(ctx aws.Context, input *ListDevicesInput, opts ...request.Option) (*ListDevicesOutput, error) {
+	req, out := c.ListDevicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDevicesPages iterates over the pages of a ListDevices operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDevices method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDevices operation.
+//    pageNum := 0
+//    err := client.ListDevicesPages(params,
+//        func(page *sagemaker.ListDevicesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListDevicesPages(input *ListDevicesInput, fn func(*ListDevicesOutput, bool) bool) error {
+	return c.ListDevicesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDevicesPagesWithContext same as ListDevicesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListDevicesPagesWithContext(ctx aws.Context, input *ListDevicesInput, fn func(*ListDevicesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDevicesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDevicesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDevicesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDomains = "ListDomains"
 
 // ListDomainsRequest generates a "aws/request.Request" representing the
@@ -11557,6 +13558,138 @@ func (c *SageMaker) ListDomainsPagesWithContext(ctx aws.Context, input *ListDoma
 
 	for p.Next() {
 		if !fn(p.Page().(*ListDomainsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEdgePackagingJobs = "ListEdgePackagingJobs"
+
+// ListEdgePackagingJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEdgePackagingJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEdgePackagingJobs for more information on using the ListEdgePackagingJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEdgePackagingJobsRequest method.
+//    req, resp := client.ListEdgePackagingJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEdgePackagingJobs
+func (c *SageMaker) ListEdgePackagingJobsRequest(input *ListEdgePackagingJobsInput) (req *request.Request, output *ListEdgePackagingJobsOutput) {
+	op := &request.Operation{
+		Name:       opListEdgePackagingJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEdgePackagingJobsInput{}
+	}
+
+	output = &ListEdgePackagingJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEdgePackagingJobs API operation for Amazon SageMaker Service.
+//
+// Returns a list of edge packaging jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListEdgePackagingJobs for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListEdgePackagingJobs
+func (c *SageMaker) ListEdgePackagingJobs(input *ListEdgePackagingJobsInput) (*ListEdgePackagingJobsOutput, error) {
+	req, out := c.ListEdgePackagingJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListEdgePackagingJobsWithContext is the same as ListEdgePackagingJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEdgePackagingJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListEdgePackagingJobsWithContext(ctx aws.Context, input *ListEdgePackagingJobsInput, opts ...request.Option) (*ListEdgePackagingJobsOutput, error) {
+	req, out := c.ListEdgePackagingJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEdgePackagingJobsPages iterates over the pages of a ListEdgePackagingJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEdgePackagingJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEdgePackagingJobs operation.
+//    pageNum := 0
+//    err := client.ListEdgePackagingJobsPages(params,
+//        func(page *sagemaker.ListEdgePackagingJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListEdgePackagingJobsPages(input *ListEdgePackagingJobsInput, fn func(*ListEdgePackagingJobsOutput, bool) bool) error {
+	return c.ListEdgePackagingJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEdgePackagingJobsPagesWithContext same as ListEdgePackagingJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListEdgePackagingJobsPagesWithContext(ctx aws.Context, input *ListEdgePackagingJobsInput, fn func(*ListEdgePackagingJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEdgePackagingJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEdgePackagingJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEdgePackagingJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -13032,6 +15165,270 @@ func (c *SageMaker) ListLabelingJobsForWorkteamPagesWithContext(ctx aws.Context,
 	return p.Err()
 }
 
+const opListModelBiasJobDefinitions = "ListModelBiasJobDefinitions"
+
+// ListModelBiasJobDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListModelBiasJobDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListModelBiasJobDefinitions for more information on using the ListModelBiasJobDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListModelBiasJobDefinitionsRequest method.
+//    req, resp := client.ListModelBiasJobDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelBiasJobDefinitions
+func (c *SageMaker) ListModelBiasJobDefinitionsRequest(input *ListModelBiasJobDefinitionsInput) (req *request.Request, output *ListModelBiasJobDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListModelBiasJobDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListModelBiasJobDefinitionsInput{}
+	}
+
+	output = &ListModelBiasJobDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListModelBiasJobDefinitions API operation for Amazon SageMaker Service.
+//
+// Lists model bias jobs definitions that satisfy various filters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListModelBiasJobDefinitions for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelBiasJobDefinitions
+func (c *SageMaker) ListModelBiasJobDefinitions(input *ListModelBiasJobDefinitionsInput) (*ListModelBiasJobDefinitionsOutput, error) {
+	req, out := c.ListModelBiasJobDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListModelBiasJobDefinitionsWithContext is the same as ListModelBiasJobDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListModelBiasJobDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelBiasJobDefinitionsWithContext(ctx aws.Context, input *ListModelBiasJobDefinitionsInput, opts ...request.Option) (*ListModelBiasJobDefinitionsOutput, error) {
+	req, out := c.ListModelBiasJobDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListModelBiasJobDefinitionsPages iterates over the pages of a ListModelBiasJobDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListModelBiasJobDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListModelBiasJobDefinitions operation.
+//    pageNum := 0
+//    err := client.ListModelBiasJobDefinitionsPages(params,
+//        func(page *sagemaker.ListModelBiasJobDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListModelBiasJobDefinitionsPages(input *ListModelBiasJobDefinitionsInput, fn func(*ListModelBiasJobDefinitionsOutput, bool) bool) error {
+	return c.ListModelBiasJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListModelBiasJobDefinitionsPagesWithContext same as ListModelBiasJobDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelBiasJobDefinitionsPagesWithContext(ctx aws.Context, input *ListModelBiasJobDefinitionsInput, fn func(*ListModelBiasJobDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListModelBiasJobDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListModelBiasJobDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListModelBiasJobDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListModelExplainabilityJobDefinitions = "ListModelExplainabilityJobDefinitions"
+
+// ListModelExplainabilityJobDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListModelExplainabilityJobDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListModelExplainabilityJobDefinitions for more information on using the ListModelExplainabilityJobDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListModelExplainabilityJobDefinitionsRequest method.
+//    req, resp := client.ListModelExplainabilityJobDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelExplainabilityJobDefinitions
+func (c *SageMaker) ListModelExplainabilityJobDefinitionsRequest(input *ListModelExplainabilityJobDefinitionsInput) (req *request.Request, output *ListModelExplainabilityJobDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListModelExplainabilityJobDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListModelExplainabilityJobDefinitionsInput{}
+	}
+
+	output = &ListModelExplainabilityJobDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListModelExplainabilityJobDefinitions API operation for Amazon SageMaker Service.
+//
+// Lists model explainability job definitions that satisfy various filters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListModelExplainabilityJobDefinitions for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelExplainabilityJobDefinitions
+func (c *SageMaker) ListModelExplainabilityJobDefinitions(input *ListModelExplainabilityJobDefinitionsInput) (*ListModelExplainabilityJobDefinitionsOutput, error) {
+	req, out := c.ListModelExplainabilityJobDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListModelExplainabilityJobDefinitionsWithContext is the same as ListModelExplainabilityJobDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListModelExplainabilityJobDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelExplainabilityJobDefinitionsWithContext(ctx aws.Context, input *ListModelExplainabilityJobDefinitionsInput, opts ...request.Option) (*ListModelExplainabilityJobDefinitionsOutput, error) {
+	req, out := c.ListModelExplainabilityJobDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListModelExplainabilityJobDefinitionsPages iterates over the pages of a ListModelExplainabilityJobDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListModelExplainabilityJobDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListModelExplainabilityJobDefinitions operation.
+//    pageNum := 0
+//    err := client.ListModelExplainabilityJobDefinitionsPages(params,
+//        func(page *sagemaker.ListModelExplainabilityJobDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListModelExplainabilityJobDefinitionsPages(input *ListModelExplainabilityJobDefinitionsInput, fn func(*ListModelExplainabilityJobDefinitionsOutput, bool) bool) error {
+	return c.ListModelExplainabilityJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListModelExplainabilityJobDefinitionsPagesWithContext same as ListModelExplainabilityJobDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelExplainabilityJobDefinitionsPagesWithContext(ctx aws.Context, input *ListModelExplainabilityJobDefinitionsInput, fn func(*ListModelExplainabilityJobDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListModelExplainabilityJobDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListModelExplainabilityJobDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListModelExplainabilityJobDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListModelPackageGroups = "ListModelPackageGroups"
 
 // ListModelPackageGroupsRequest generates a "aws/request.Request" representing the
@@ -13289,6 +15686,138 @@ func (c *SageMaker) ListModelPackagesPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListModelPackagesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListModelQualityJobDefinitions = "ListModelQualityJobDefinitions"
+
+// ListModelQualityJobDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListModelQualityJobDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListModelQualityJobDefinitions for more information on using the ListModelQualityJobDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListModelQualityJobDefinitionsRequest method.
+//    req, resp := client.ListModelQualityJobDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelQualityJobDefinitions
+func (c *SageMaker) ListModelQualityJobDefinitionsRequest(input *ListModelQualityJobDefinitionsInput) (req *request.Request, output *ListModelQualityJobDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListModelQualityJobDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListModelQualityJobDefinitionsInput{}
+	}
+
+	output = &ListModelQualityJobDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListModelQualityJobDefinitions API operation for Amazon SageMaker Service.
+//
+// Gets a list of model quality monitoring job definitions in your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListModelQualityJobDefinitions for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelQualityJobDefinitions
+func (c *SageMaker) ListModelQualityJobDefinitions(input *ListModelQualityJobDefinitionsInput) (*ListModelQualityJobDefinitionsOutput, error) {
+	req, out := c.ListModelQualityJobDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListModelQualityJobDefinitionsWithContext is the same as ListModelQualityJobDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListModelQualityJobDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelQualityJobDefinitionsWithContext(ctx aws.Context, input *ListModelQualityJobDefinitionsInput, opts ...request.Option) (*ListModelQualityJobDefinitionsOutput, error) {
+	req, out := c.ListModelQualityJobDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListModelQualityJobDefinitionsPages iterates over the pages of a ListModelQualityJobDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListModelQualityJobDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListModelQualityJobDefinitions operation.
+//    pageNum := 0
+//    err := client.ListModelQualityJobDefinitionsPages(params,
+//        func(page *sagemaker.ListModelQualityJobDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListModelQualityJobDefinitionsPages(input *ListModelQualityJobDefinitionsInput, fn func(*ListModelQualityJobDefinitionsOutput, bool) bool) error {
+	return c.ListModelQualityJobDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListModelQualityJobDefinitionsPagesWithContext same as ListModelQualityJobDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelQualityJobDefinitionsPagesWithContext(ctx aws.Context, input *ListModelQualityJobDefinitionsInput, fn func(*ListModelQualityJobDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListModelQualityJobDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListModelQualityJobDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListModelQualityJobDefinitionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -16196,6 +18725,87 @@ func (c *SageMaker) PutModelPackageGroupPolicyWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opRegisterDevices = "RegisterDevices"
+
+// RegisterDevicesRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterDevices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterDevices for more information on using the RegisterDevices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RegisterDevicesRequest method.
+//    req, resp := client.RegisterDevicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RegisterDevices
+func (c *SageMaker) RegisterDevicesRequest(input *RegisterDevicesInput) (req *request.Request, output *RegisterDevicesOutput) {
+	op := &request.Operation{
+		Name:       opRegisterDevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RegisterDevicesInput{}
+	}
+
+	output = &RegisterDevicesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RegisterDevices API operation for Amazon SageMaker Service.
+//
+// Register devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation RegisterDevices for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RegisterDevices
+func (c *SageMaker) RegisterDevices(input *RegisterDevicesInput) (*RegisterDevicesOutput, error) {
+	req, out := c.RegisterDevicesRequest(input)
+	return out, req.Send()
+}
+
+// RegisterDevicesWithContext is the same as RegisterDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) RegisterDevicesWithContext(ctx aws.Context, input *RegisterDevicesInput, opts ...request.Option) (*RegisterDevicesOutput, error) {
+	req, out := c.RegisterDevicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRenderUiTemplate = "RenderUiTemplate"
 
 // RenderUiTemplateRequest generates a "aws/request.Request" representing the
@@ -16460,7 +19070,8 @@ func (c *SageMaker) StartMonitoringScheduleRequest(input *StartMonitoringSchedul
 //
 // Starts a previously stopped monitoring schedule.
 //
-// New monitoring schedules are immediately started after creation.
+// By default, when you successfully create a new schedule, the status of a
+// monitoring schedule is scheduled.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16827,6 +19438,81 @@ func (c *SageMaker) StopCompilationJob(input *StopCompilationJobInput) (*StopCom
 // for more information on using Contexts.
 func (c *SageMaker) StopCompilationJobWithContext(ctx aws.Context, input *StopCompilationJobInput, opts ...request.Option) (*StopCompilationJobOutput, error) {
 	req, out := c.StopCompilationJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopEdgePackagingJob = "StopEdgePackagingJob"
+
+// StopEdgePackagingJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopEdgePackagingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopEdgePackagingJob for more information on using the StopEdgePackagingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopEdgePackagingJobRequest method.
+//    req, resp := client.StopEdgePackagingJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopEdgePackagingJob
+func (c *SageMaker) StopEdgePackagingJobRequest(input *StopEdgePackagingJobInput) (req *request.Request, output *StopEdgePackagingJobOutput) {
+	op := &request.Operation{
+		Name:       opStopEdgePackagingJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopEdgePackagingJobInput{}
+	}
+
+	output = &StopEdgePackagingJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopEdgePackagingJob API operation for Amazon SageMaker Service.
+//
+// Request to stop an edge packaging job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation StopEdgePackagingJob for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopEdgePackagingJob
+func (c *SageMaker) StopEdgePackagingJob(input *StopEdgePackagingJobInput) (*StopEdgePackagingJobOutput, error) {
+	req, out := c.StopEdgePackagingJobRequest(input)
+	return out, req.Send()
+}
+
+// StopEdgePackagingJobWithContext is the same as StopEdgePackagingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopEdgePackagingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) StopEdgePackagingJobWithContext(ctx aws.Context, input *StopEdgePackagingJobInput, opts ...request.Option) (*StopEdgePackagingJobOutput, error) {
+	req, out := c.StopEdgePackagingJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -17896,6 +20582,161 @@ func (c *SageMaker) UpdateContextWithContext(ctx aws.Context, input *UpdateConte
 	return out, req.Send()
 }
 
+const opUpdateDeviceFleet = "UpdateDeviceFleet"
+
+// UpdateDeviceFleetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDeviceFleet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDeviceFleet for more information on using the UpdateDeviceFleet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDeviceFleetRequest method.
+//    req, resp := client.UpdateDeviceFleetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDeviceFleet
+func (c *SageMaker) UpdateDeviceFleetRequest(input *UpdateDeviceFleetInput) (req *request.Request, output *UpdateDeviceFleetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDeviceFleet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDeviceFleetInput{}
+	}
+
+	output = &UpdateDeviceFleetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateDeviceFleet API operation for Amazon SageMaker Service.
+//
+// Updates a fleet of devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateDeviceFleet for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDeviceFleet
+func (c *SageMaker) UpdateDeviceFleet(input *UpdateDeviceFleetInput) (*UpdateDeviceFleetOutput, error) {
+	req, out := c.UpdateDeviceFleetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDeviceFleetWithContext is the same as UpdateDeviceFleet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDeviceFleet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateDeviceFleetWithContext(ctx aws.Context, input *UpdateDeviceFleetInput, opts ...request.Option) (*UpdateDeviceFleetOutput, error) {
+	req, out := c.UpdateDeviceFleetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateDevices = "UpdateDevices"
+
+// UpdateDevicesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDevices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDevices for more information on using the UpdateDevices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDevicesRequest method.
+//    req, resp := client.UpdateDevicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDevices
+func (c *SageMaker) UpdateDevicesRequest(input *UpdateDevicesInput) (req *request.Request, output *UpdateDevicesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDevices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDevicesInput{}
+	}
+
+	output = &UpdateDevicesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateDevices API operation for Amazon SageMaker Service.
+//
+// Updates one or more devices in a fleet.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateDevices for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateDevices
+func (c *SageMaker) UpdateDevices(input *UpdateDevicesInput) (*UpdateDevicesOutput, error) {
+	req, out := c.UpdateDevicesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDevicesWithContext is the same as UpdateDevices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDevices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateDevicesWithContext(ctx aws.Context, input *UpdateDevicesInput, opts ...request.Option) (*UpdateDevicesOutput, error) {
+	req, out := c.UpdateDevicesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDomain = "UpdateDomain"
 
 // UpdateDomainRequest generates a "aws/request.Request" representing the
@@ -18807,6 +21648,85 @@ func (c *SageMaker) UpdatePipelineExecutionWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+const opUpdateTrainingJob = "UpdateTrainingJob"
+
+// UpdateTrainingJobRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTrainingJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTrainingJob for more information on using the UpdateTrainingJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTrainingJobRequest method.
+//    req, resp := client.UpdateTrainingJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrainingJob
+func (c *SageMaker) UpdateTrainingJobRequest(input *UpdateTrainingJobInput) (req *request.Request, output *UpdateTrainingJobOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTrainingJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTrainingJobInput{}
+	}
+
+	output = &UpdateTrainingJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTrainingJob API operation for Amazon SageMaker Service.
+//
+// Update a model training job to request a new Debugger profiling configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateTrainingJob for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateTrainingJob
+func (c *SageMaker) UpdateTrainingJob(input *UpdateTrainingJobInput) (*UpdateTrainingJobOutput, error) {
+	req, out := c.UpdateTrainingJobRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTrainingJobWithContext is the same as UpdateTrainingJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTrainingJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateTrainingJobWithContext(ctx aws.Context, input *UpdateTrainingJobInput, opts ...request.Option) (*UpdateTrainingJobOutput, error) {
+	req, out := c.UpdateTrainingJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTrial = "UpdateTrial"
 
 // UpdateTrialRequest generates a "aws/request.Request" representing the
@@ -19564,6 +22484,43 @@ func (s AddTagsOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *AddTagsOutput) SetTags(v []*Tag) *AddTagsOutput {
 	s.Tags = v
+	return s
+}
+
+// Edge Manager agent version.
+type AgentVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The number of Edge Manager agents.
+	//
+	// AgentCount is a required field
+	AgentCount *int64 `type:"long" required:"true"`
+
+	// Version of the agent.
+	//
+	// Version is a required field
+	Version *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AgentVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AgentVersion) GoString() string {
+	return s.String()
+}
+
+// SetAgentCount sets the AgentCount field's value.
+func (s *AgentVersion) SetAgentCount(v int64) *AgentVersion {
+	s.AgentCount = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AgentVersion) SetVersion(v string) *AgentVersion {
+	s.Version = &v
 	return s
 }
 
@@ -22922,7 +25879,7 @@ func (s *CognitoMemberDefinition) SetUserPool(v string) *CognitoMemberDefinition
 	return s
 }
 
-// Configuration information for tensor collections.
+// Configuration information for the Debugger output tensor collections.
 type CollectionConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -24918,6 +27875,348 @@ func (s *CreateContextOutput) SetContextArn(v string) *CreateContextOutput {
 	return s
 }
 
+type CreateDataQualityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the container that runs the monitoring job.
+	//
+	// DataQualityAppSpecification is a required field
+	DataQualityAppSpecification *DataQualityAppSpecification `type:"structure" required:"true"`
+
+	// Configures the constraints and baselines for the monitoring job.
+	DataQualityBaselineConfig *DataQualityBaselineConfig `type:"structure"`
+
+	// A list of inputs for the monitoring job. Currently endpoints are supported
+	// as monitoring inputs.
+	//
+	// DataQualityJobInput is a required field
+	DataQualityJobInput *DataQualityJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// DataQualityJobOutputConfig is a required field
+	DataQualityJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// The name for the monitoring job definition.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// Specifies networking configuration for the monitoring job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+
+	// (Optional) An array of key-value pairs. For more information, see Using Cost
+	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
+	// in the AWS Billing and Cost Management User Guide.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateDataQualityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataQualityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataQualityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataQualityJobDefinitionInput"}
+	if s.DataQualityAppSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataQualityAppSpecification"))
+	}
+	if s.DataQualityJobInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataQualityJobInput"))
+	}
+	if s.DataQualityJobOutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataQualityJobOutputConfig"))
+	}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+	if s.JobResources == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobResources"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.DataQualityAppSpecification != nil {
+		if err := s.DataQualityAppSpecification.Validate(); err != nil {
+			invalidParams.AddNested("DataQualityAppSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataQualityBaselineConfig != nil {
+		if err := s.DataQualityBaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("DataQualityBaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataQualityJobInput != nil {
+		if err := s.DataQualityJobInput.Validate(); err != nil {
+			invalidParams.AddNested("DataQualityJobInput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataQualityJobOutputConfig != nil {
+		if err := s.DataQualityJobOutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("DataQualityJobOutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JobResources != nil {
+		if err := s.JobResources.Validate(); err != nil {
+			invalidParams.AddNested("JobResources", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkConfig != nil {
+		if err := s.NetworkConfig.Validate(); err != nil {
+			invalidParams.AddNested("NetworkConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StoppingCondition != nil {
+		if err := s.StoppingCondition.Validate(); err != nil {
+			invalidParams.AddNested("StoppingCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataQualityAppSpecification sets the DataQualityAppSpecification field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetDataQualityAppSpecification(v *DataQualityAppSpecification) *CreateDataQualityJobDefinitionInput {
+	s.DataQualityAppSpecification = v
+	return s
+}
+
+// SetDataQualityBaselineConfig sets the DataQualityBaselineConfig field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetDataQualityBaselineConfig(v *DataQualityBaselineConfig) *CreateDataQualityJobDefinitionInput {
+	s.DataQualityBaselineConfig = v
+	return s
+}
+
+// SetDataQualityJobInput sets the DataQualityJobInput field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetDataQualityJobInput(v *DataQualityJobInput) *CreateDataQualityJobDefinitionInput {
+	s.DataQualityJobInput = v
+	return s
+}
+
+// SetDataQualityJobOutputConfig sets the DataQualityJobOutputConfig field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetDataQualityJobOutputConfig(v *MonitoringOutputConfig) *CreateDataQualityJobDefinitionInput {
+	s.DataQualityJobOutputConfig = v
+	return s
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetJobDefinitionName(v string) *CreateDataQualityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetJobResources(v *MonitoringResources) *CreateDataQualityJobDefinitionInput {
+	s.JobResources = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetNetworkConfig(v *MonitoringNetworkConfig) *CreateDataQualityJobDefinitionInput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetRoleArn(v string) *CreateDataQualityJobDefinitionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetStoppingCondition(v *MonitoringStoppingCondition) *CreateDataQualityJobDefinitionInput {
+	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataQualityJobDefinitionInput) SetTags(v []*Tag) *CreateDataQualityJobDefinitionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDataQualityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the job definition.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateDataQualityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataQualityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *CreateDataQualityJobDefinitionOutput) SetJobDefinitionArn(v string) *CreateDataQualityJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
+type CreateDeviceFleetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the fleet.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the fleet that the device belongs to.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The output configuration for storing sample data collected by the fleet.
+	//
+	// OutputConfig is a required field
+	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) that has access to AWS Internet of Things
+	// (IoT).
+	RoleArn *string `min:"20" type:"string"`
+
+	// Creates tags for the specified fleet.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateDeviceFleetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDeviceFleetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDeviceFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDeviceFleetInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.OutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDeviceFleetInput) SetDescription(v string) *CreateDeviceFleetInput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *CreateDeviceFleetInput) SetDeviceFleetName(v string) *CreateDeviceFleetInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *CreateDeviceFleetInput) SetOutputConfig(v *EdgeOutputConfig) *CreateDeviceFleetInput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateDeviceFleetInput) SetRoleArn(v string) *CreateDeviceFleetInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDeviceFleetInput) SetTags(v []*Tag) *CreateDeviceFleetInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDeviceFleetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDeviceFleetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDeviceFleetOutput) GoString() string {
+	return s.String()
+}
+
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25107,6 +28406,179 @@ func (s *CreateDomainOutput) SetDomainArn(v string) *CreateDomainOutput {
 func (s *CreateDomainOutput) SetUrl(v string) *CreateDomainOutput {
 	s.Url = &v
 	return s
+}
+
+type CreateEdgePackagingJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the SageMaker Neo compilation job that will be used to locate
+	// model artifacts for packaging.
+	//
+	// CompilationJobName is a required field
+	CompilationJobName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the edge packaging job.
+	//
+	// EdgePackagingJobName is a required field
+	EdgePackagingJobName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the model.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the model.
+	//
+	// ModelVersion is a required field
+	ModelVersion *string `min:"1" type:"string" required:"true"`
+
+	// Provides information about the output location for the packaged model.
+	//
+	// OutputConfig is a required field
+	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
+
+	// The CMK to use when encrypting the EBS volume the edge packaging job runs
+	// on.
+	ResourceKey *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
+	// to download and upload the model, and to contact SageMaker Neo.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// Creates tags for the packaging job.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateEdgePackagingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEdgePackagingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEdgePackagingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEdgePackagingJobInput"}
+	if s.CompilationJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CompilationJobName"))
+	}
+	if s.CompilationJobName != nil && len(*s.CompilationJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CompilationJobName", 1))
+	}
+	if s.EdgePackagingJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgePackagingJobName"))
+	}
+	if s.EdgePackagingJobName != nil && len(*s.EdgePackagingJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgePackagingJobName", 1))
+	}
+	if s.ModelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelName"))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+	if s.ModelVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVersion"))
+	}
+	if s.ModelVersion != nil && len(*s.ModelVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersion", 1))
+	}
+	if s.OutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompilationJobName sets the CompilationJobName field's value.
+func (s *CreateEdgePackagingJobInput) SetCompilationJobName(v string) *CreateEdgePackagingJobInput {
+	s.CompilationJobName = &v
+	return s
+}
+
+// SetEdgePackagingJobName sets the EdgePackagingJobName field's value.
+func (s *CreateEdgePackagingJobInput) SetEdgePackagingJobName(v string) *CreateEdgePackagingJobInput {
+	s.EdgePackagingJobName = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *CreateEdgePackagingJobInput) SetModelName(v string) *CreateEdgePackagingJobInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *CreateEdgePackagingJobInput) SetModelVersion(v string) *CreateEdgePackagingJobInput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *CreateEdgePackagingJobInput) SetOutputConfig(v *EdgeOutputConfig) *CreateEdgePackagingJobInput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetResourceKey sets the ResourceKey field's value.
+func (s *CreateEdgePackagingJobInput) SetResourceKey(v string) *CreateEdgePackagingJobInput {
+	s.ResourceKey = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateEdgePackagingJobInput) SetRoleArn(v string) *CreateEdgePackagingJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEdgePackagingJobInput) SetTags(v []*Tag) *CreateEdgePackagingJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateEdgePackagingJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateEdgePackagingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEdgePackagingJobOutput) GoString() string {
+	return s.String()
 }
 
 type CreateEndpointConfigInput struct {
@@ -26684,6 +30156,455 @@ func (s *CreateLabelingJobOutput) SetLabelingJobArn(v string) *CreateLabelingJob
 	return s
 }
 
+type CreateModelBiasJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the bias job definition. The name must be unique within an AWS
+	// Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// Configures the model bias job to run a specified Docker container image.
+	//
+	// ModelBiasAppSpecification is a required field
+	ModelBiasAppSpecification *ModelBiasAppSpecification `type:"structure" required:"true"`
+
+	// The baseline configuration for a model bias job.
+	ModelBiasBaselineConfig *ModelBiasBaselineConfig `type:"structure"`
+
+	// Inputs for the model bias job.
+	//
+	// ModelBiasJobInput is a required field
+	ModelBiasJobInput *ModelBiasJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// ModelBiasJobOutputConfig is a required field
+	ModelBiasJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// Networking options for a model bias job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+
+	// (Optional) An array of key-value pairs. For more information, see Using Cost
+	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
+	// in the AWS Billing and Cost Management User Guide.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateModelBiasJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelBiasJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateModelBiasJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateModelBiasJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+	if s.JobResources == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobResources"))
+	}
+	if s.ModelBiasAppSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelBiasAppSpecification"))
+	}
+	if s.ModelBiasJobInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelBiasJobInput"))
+	}
+	if s.ModelBiasJobOutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelBiasJobOutputConfig"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.JobResources != nil {
+		if err := s.JobResources.Validate(); err != nil {
+			invalidParams.AddNested("JobResources", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelBiasAppSpecification != nil {
+		if err := s.ModelBiasAppSpecification.Validate(); err != nil {
+			invalidParams.AddNested("ModelBiasAppSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelBiasBaselineConfig != nil {
+		if err := s.ModelBiasBaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("ModelBiasBaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelBiasJobInput != nil {
+		if err := s.ModelBiasJobInput.Validate(); err != nil {
+			invalidParams.AddNested("ModelBiasJobInput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelBiasJobOutputConfig != nil {
+		if err := s.ModelBiasJobOutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("ModelBiasJobOutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkConfig != nil {
+		if err := s.NetworkConfig.Validate(); err != nil {
+			invalidParams.AddNested("NetworkConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StoppingCondition != nil {
+		if err := s.StoppingCondition.Validate(); err != nil {
+			invalidParams.AddNested("StoppingCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetJobDefinitionName(v string) *CreateModelBiasJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetJobResources(v *MonitoringResources) *CreateModelBiasJobDefinitionInput {
+	s.JobResources = v
+	return s
+}
+
+// SetModelBiasAppSpecification sets the ModelBiasAppSpecification field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetModelBiasAppSpecification(v *ModelBiasAppSpecification) *CreateModelBiasJobDefinitionInput {
+	s.ModelBiasAppSpecification = v
+	return s
+}
+
+// SetModelBiasBaselineConfig sets the ModelBiasBaselineConfig field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetModelBiasBaselineConfig(v *ModelBiasBaselineConfig) *CreateModelBiasJobDefinitionInput {
+	s.ModelBiasBaselineConfig = v
+	return s
+}
+
+// SetModelBiasJobInput sets the ModelBiasJobInput field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetModelBiasJobInput(v *ModelBiasJobInput) *CreateModelBiasJobDefinitionInput {
+	s.ModelBiasJobInput = v
+	return s
+}
+
+// SetModelBiasJobOutputConfig sets the ModelBiasJobOutputConfig field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetModelBiasJobOutputConfig(v *MonitoringOutputConfig) *CreateModelBiasJobDefinitionInput {
+	s.ModelBiasJobOutputConfig = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetNetworkConfig(v *MonitoringNetworkConfig) *CreateModelBiasJobDefinitionInput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetRoleArn(v string) *CreateModelBiasJobDefinitionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetStoppingCondition(v *MonitoringStoppingCondition) *CreateModelBiasJobDefinitionInput {
+	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateModelBiasJobDefinitionInput) SetTags(v []*Tag) *CreateModelBiasJobDefinitionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateModelBiasJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model bias job.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateModelBiasJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelBiasJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *CreateModelBiasJobDefinitionOutput) SetJobDefinitionArn(v string) *CreateModelBiasJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
+type CreateModelExplainabilityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model explainability job definition. The name must be unique
+	// within an AWS Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// Configures the model explainability job to run a specified Docker container
+	// image.
+	//
+	// ModelExplainabilityAppSpecification is a required field
+	ModelExplainabilityAppSpecification *ModelExplainabilityAppSpecification `type:"structure" required:"true"`
+
+	// The baseline configuration for a model explainability job.
+	ModelExplainabilityBaselineConfig *ModelExplainabilityBaselineConfig `type:"structure"`
+
+	// Inputs for the model explainability job.
+	//
+	// ModelExplainabilityJobInput is a required field
+	ModelExplainabilityJobInput *ModelExplainabilityJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// ModelExplainabilityJobOutputConfig is a required field
+	ModelExplainabilityJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// Networking options for a model explainability job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+
+	// (Optional) An array of key-value pairs. For more information, see Using Cost
+	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
+	// in the AWS Billing and Cost Management User Guide.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateModelExplainabilityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelExplainabilityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateModelExplainabilityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateModelExplainabilityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+	if s.JobResources == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobResources"))
+	}
+	if s.ModelExplainabilityAppSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelExplainabilityAppSpecification"))
+	}
+	if s.ModelExplainabilityJobInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelExplainabilityJobInput"))
+	}
+	if s.ModelExplainabilityJobOutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelExplainabilityJobOutputConfig"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.JobResources != nil {
+		if err := s.JobResources.Validate(); err != nil {
+			invalidParams.AddNested("JobResources", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelExplainabilityAppSpecification != nil {
+		if err := s.ModelExplainabilityAppSpecification.Validate(); err != nil {
+			invalidParams.AddNested("ModelExplainabilityAppSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelExplainabilityBaselineConfig != nil {
+		if err := s.ModelExplainabilityBaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("ModelExplainabilityBaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelExplainabilityJobInput != nil {
+		if err := s.ModelExplainabilityJobInput.Validate(); err != nil {
+			invalidParams.AddNested("ModelExplainabilityJobInput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelExplainabilityJobOutputConfig != nil {
+		if err := s.ModelExplainabilityJobOutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("ModelExplainabilityJobOutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkConfig != nil {
+		if err := s.NetworkConfig.Validate(); err != nil {
+			invalidParams.AddNested("NetworkConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StoppingCondition != nil {
+		if err := s.StoppingCondition.Validate(); err != nil {
+			invalidParams.AddNested("StoppingCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetJobDefinitionName(v string) *CreateModelExplainabilityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetJobResources(v *MonitoringResources) *CreateModelExplainabilityJobDefinitionInput {
+	s.JobResources = v
+	return s
+}
+
+// SetModelExplainabilityAppSpecification sets the ModelExplainabilityAppSpecification field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetModelExplainabilityAppSpecification(v *ModelExplainabilityAppSpecification) *CreateModelExplainabilityJobDefinitionInput {
+	s.ModelExplainabilityAppSpecification = v
+	return s
+}
+
+// SetModelExplainabilityBaselineConfig sets the ModelExplainabilityBaselineConfig field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetModelExplainabilityBaselineConfig(v *ModelExplainabilityBaselineConfig) *CreateModelExplainabilityJobDefinitionInput {
+	s.ModelExplainabilityBaselineConfig = v
+	return s
+}
+
+// SetModelExplainabilityJobInput sets the ModelExplainabilityJobInput field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetModelExplainabilityJobInput(v *ModelExplainabilityJobInput) *CreateModelExplainabilityJobDefinitionInput {
+	s.ModelExplainabilityJobInput = v
+	return s
+}
+
+// SetModelExplainabilityJobOutputConfig sets the ModelExplainabilityJobOutputConfig field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetModelExplainabilityJobOutputConfig(v *MonitoringOutputConfig) *CreateModelExplainabilityJobDefinitionInput {
+	s.ModelExplainabilityJobOutputConfig = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetNetworkConfig(v *MonitoringNetworkConfig) *CreateModelExplainabilityJobDefinitionInput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetRoleArn(v string) *CreateModelExplainabilityJobDefinitionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetStoppingCondition(v *MonitoringStoppingCondition) *CreateModelExplainabilityJobDefinitionInput {
+	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateModelExplainabilityJobDefinitionInput) SetTags(v []*Tag) *CreateModelExplainabilityJobDefinitionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateModelExplainabilityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model explainability job.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateModelExplainabilityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelExplainabilityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *CreateModelExplainabilityJobDefinitionOutput) SetJobDefinitionArn(v string) *CreateModelExplainabilityJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
 type CreateModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27174,6 +31095,229 @@ func (s CreateModelPackageOutput) GoString() string {
 // SetModelPackageArn sets the ModelPackageArn field's value.
 func (s *CreateModelPackageOutput) SetModelPackageArn(v string) *CreateModelPackageOutput {
 	s.ModelPackageArn = &v
+	return s
+}
+
+type CreateModelQualityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the monitoring job definition.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// The container that runs the monitoring job.
+	//
+	// ModelQualityAppSpecification is a required field
+	ModelQualityAppSpecification *ModelQualityAppSpecification `type:"structure" required:"true"`
+
+	// Specifies the constraints and baselines for the monitoring job.
+	ModelQualityBaselineConfig *ModelQualityBaselineConfig `type:"structure"`
+
+	// A list of the inputs that are monitored. Currently endpoints are supported.
+	//
+	// ModelQualityJobInput is a required field
+	ModelQualityJobInput *ModelQualityJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// ModelQualityJobOutputConfig is a required field
+	ModelQualityJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// Specifies the network configuration for the monitoring job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+
+	// (Optional) An array of key-value pairs. For more information, see Using Cost
+	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
+	// in the AWS Billing and Cost Management User Guide.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateModelQualityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelQualityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateModelQualityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateModelQualityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+	if s.JobResources == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobResources"))
+	}
+	if s.ModelQualityAppSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelQualityAppSpecification"))
+	}
+	if s.ModelQualityJobInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelQualityJobInput"))
+	}
+	if s.ModelQualityJobOutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelQualityJobOutputConfig"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.JobResources != nil {
+		if err := s.JobResources.Validate(); err != nil {
+			invalidParams.AddNested("JobResources", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelQualityAppSpecification != nil {
+		if err := s.ModelQualityAppSpecification.Validate(); err != nil {
+			invalidParams.AddNested("ModelQualityAppSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelQualityBaselineConfig != nil {
+		if err := s.ModelQualityBaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("ModelQualityBaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelQualityJobInput != nil {
+		if err := s.ModelQualityJobInput.Validate(); err != nil {
+			invalidParams.AddNested("ModelQualityJobInput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelQualityJobOutputConfig != nil {
+		if err := s.ModelQualityJobOutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("ModelQualityJobOutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NetworkConfig != nil {
+		if err := s.NetworkConfig.Validate(); err != nil {
+			invalidParams.AddNested("NetworkConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StoppingCondition != nil {
+		if err := s.StoppingCondition.Validate(); err != nil {
+			invalidParams.AddNested("StoppingCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetJobDefinitionName(v string) *CreateModelQualityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetJobResources(v *MonitoringResources) *CreateModelQualityJobDefinitionInput {
+	s.JobResources = v
+	return s
+}
+
+// SetModelQualityAppSpecification sets the ModelQualityAppSpecification field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetModelQualityAppSpecification(v *ModelQualityAppSpecification) *CreateModelQualityJobDefinitionInput {
+	s.ModelQualityAppSpecification = v
+	return s
+}
+
+// SetModelQualityBaselineConfig sets the ModelQualityBaselineConfig field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetModelQualityBaselineConfig(v *ModelQualityBaselineConfig) *CreateModelQualityJobDefinitionInput {
+	s.ModelQualityBaselineConfig = v
+	return s
+}
+
+// SetModelQualityJobInput sets the ModelQualityJobInput field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetModelQualityJobInput(v *ModelQualityJobInput) *CreateModelQualityJobDefinitionInput {
+	s.ModelQualityJobInput = v
+	return s
+}
+
+// SetModelQualityJobOutputConfig sets the ModelQualityJobOutputConfig field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetModelQualityJobOutputConfig(v *MonitoringOutputConfig) *CreateModelQualityJobDefinitionInput {
+	s.ModelQualityJobOutputConfig = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetNetworkConfig(v *MonitoringNetworkConfig) *CreateModelQualityJobDefinitionInput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetRoleArn(v string) *CreateModelQualityJobDefinitionInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetStoppingCondition(v *MonitoringStoppingCondition) *CreateModelQualityJobDefinitionInput {
+	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateModelQualityJobDefinitionInput) SetTags(v []*Tag) *CreateModelQualityJobDefinitionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateModelQualityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model quality monitoring job.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateModelQualityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateModelQualityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *CreateModelQualityJobDefinitionOutput) SetJobDefinitionArn(v string) *CreateModelQualityJobDefinitionOutput {
+	s.JobDefinitionArn = &v
 	return s
 }
 
@@ -28334,11 +32478,13 @@ type CreateTrainingJobInput struct {
 	// checkpoint data.
 	CheckpointConfig *CheckpointConfig `type:"structure"`
 
-	// Configuration information for the debug hook parameters, collection configuration,
-	// and storage paths.
+	// Configuration information for the Debugger hook parameters, metric and tensor
+	// collections, and storage paths. To learn more about how to configure the
+	// DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration
+	// API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
 	DebugHookConfig *DebugHookConfig `type:"structure"`
 
-	// Configuration information for debugging rules.
+	// Configuration information for Debugger rules for debugging output tensors.
 	DebugRuleConfigurations []*DebugRuleConfiguration `type:"list"`
 
 	// To encrypt all communications between ML compute instances in distributed
@@ -28413,6 +32559,14 @@ type CreateTrainingJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
+	// Configuration information for Debugger system monitoring, framework profiling,
+	// and storage paths.
+	ProfilerConfig *ProfilerConfig `type:"structure"`
+
+	// Configuration information for Debugger rules for profiling system and framework
+	// metrics.
+	ProfilerRuleConfigurations []*ProfilerRuleConfiguration `type:"list"`
+
 	// The resources, including the ML compute instances and ML storage volumes,
 	// to use for model training.
 	//
@@ -28457,7 +32611,7 @@ type CreateTrainingJobInput struct {
 	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
-	// Configuration of storage locations for TensorBoard output.
+	// Configuration of storage locations for the Debugger TensorBoard output data.
 	TensorBoardOutputConfig *TensorBoardOutputConfig `type:"structure"`
 
 	// The name of the training job. The name must be unique within an AWS Region
@@ -28556,6 +32710,21 @@ func (s *CreateTrainingJobInput) Validate() error {
 	if s.OutputDataConfig != nil {
 		if err := s.OutputDataConfig.Validate(); err != nil {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProfilerConfig != nil {
+		if err := s.ProfilerConfig.Validate(); err != nil {
+			invalidParams.AddNested("ProfilerConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProfilerRuleConfigurations != nil {
+		for i, v := range s.ProfilerRuleConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ProfilerRuleConfigurations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.ResourceConfig != nil {
@@ -28658,6 +32827,18 @@ func (s *CreateTrainingJobInput) SetInputDataConfig(v []*Channel) *CreateTrainin
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *CreateTrainingJobInput) SetOutputDataConfig(v *OutputDataConfig) *CreateTrainingJobInput {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetProfilerConfig sets the ProfilerConfig field's value.
+func (s *CreateTrainingJobInput) SetProfilerConfig(v *ProfilerConfig) *CreateTrainingJobInput {
+	s.ProfilerConfig = v
+	return s
+}
+
+// SetProfilerRuleConfigurations sets the ProfilerRuleConfigurations field's value.
+func (s *CreateTrainingJobInput) SetProfilerRuleConfigurations(v []*ProfilerRuleConfiguration) *CreateTrainingJobInput {
+	s.ProfilerRuleConfigurations = v
 	return s
 }
 
@@ -30140,6 +34321,203 @@ func (s *DataProcessing) SetOutputFilter(v string) *DataProcessing {
 	return s
 }
 
+// Information about the container that a data quality monitoring job runs.
+type DataQualityAppSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The arguments to send to the container that the monitoring job runs.
+	ContainerArguments []*string `min:"1" type:"list"`
+
+	// The entrypoint for a container used to run a monitoring job.
+	ContainerEntrypoint []*string `min:"1" type:"list"`
+
+	// Sets the environment variables in the container that the monitoring job runs.
+	Environment map[string]*string `type:"map"`
+
+	// The container image that the data quality monitoring job runs.
+	//
+	// ImageUri is a required field
+	ImageUri *string `type:"string" required:"true"`
+
+	// An Amazon S3 URI to a script that is called after analysis has been performed.
+	// Applicable only for the built-in (first party) containers.
+	PostAnalyticsProcessorSourceUri *string `type:"string"`
+
+	// An Amazon S3 URI to a script that is called per row prior to running analysis.
+	// It can base64 decode the payload and convert it into a flatted json so that
+	// the built-in container can use the converted data. Applicable only for the
+	// built-in (first party) containers.
+	RecordPreprocessorSourceUri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DataQualityAppSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataQualityAppSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityAppSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityAppSpecification"}
+	if s.ContainerArguments != nil && len(s.ContainerArguments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerArguments", 1))
+	}
+	if s.ContainerEntrypoint != nil && len(s.ContainerEntrypoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerEntrypoint", 1))
+	}
+	if s.ImageUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerArguments sets the ContainerArguments field's value.
+func (s *DataQualityAppSpecification) SetContainerArguments(v []*string) *DataQualityAppSpecification {
+	s.ContainerArguments = v
+	return s
+}
+
+// SetContainerEntrypoint sets the ContainerEntrypoint field's value.
+func (s *DataQualityAppSpecification) SetContainerEntrypoint(v []*string) *DataQualityAppSpecification {
+	s.ContainerEntrypoint = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DataQualityAppSpecification) SetEnvironment(v map[string]*string) *DataQualityAppSpecification {
+	s.Environment = v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *DataQualityAppSpecification) SetImageUri(v string) *DataQualityAppSpecification {
+	s.ImageUri = &v
+	return s
+}
+
+// SetPostAnalyticsProcessorSourceUri sets the PostAnalyticsProcessorSourceUri field's value.
+func (s *DataQualityAppSpecification) SetPostAnalyticsProcessorSourceUri(v string) *DataQualityAppSpecification {
+	s.PostAnalyticsProcessorSourceUri = &v
+	return s
+}
+
+// SetRecordPreprocessorSourceUri sets the RecordPreprocessorSourceUri field's value.
+func (s *DataQualityAppSpecification) SetRecordPreprocessorSourceUri(v string) *DataQualityAppSpecification {
+	s.RecordPreprocessorSourceUri = &v
+	return s
+}
+
+// Configuration for monitoring constraints and monitoring statistics. These
+// baseline resources are compared against the results of the current job from
+// the series of jobs scheduled to collect data periodically.
+type DataQualityBaselineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job that performs baselining for the data quality monitoring
+	// job.
+	BaseliningJobName *string `min:"1" type:"string"`
+
+	// The constraints resource for a monitoring job.
+	ConstraintsResource *MonitoringConstraintsResource `type:"structure"`
+
+	// The statistics resource for a monitoring job.
+	StatisticsResource *MonitoringStatisticsResource `type:"structure"`
+}
+
+// String returns the string representation
+func (s DataQualityBaselineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataQualityBaselineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityBaselineConfig"}
+	if s.BaseliningJobName != nil && len(*s.BaseliningJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseliningJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseliningJobName sets the BaseliningJobName field's value.
+func (s *DataQualityBaselineConfig) SetBaseliningJobName(v string) *DataQualityBaselineConfig {
+	s.BaseliningJobName = &v
+	return s
+}
+
+// SetConstraintsResource sets the ConstraintsResource field's value.
+func (s *DataQualityBaselineConfig) SetConstraintsResource(v *MonitoringConstraintsResource) *DataQualityBaselineConfig {
+	s.ConstraintsResource = v
+	return s
+}
+
+// SetStatisticsResource sets the StatisticsResource field's value.
+func (s *DataQualityBaselineConfig) SetStatisticsResource(v *MonitoringStatisticsResource) *DataQualityBaselineConfig {
+	s.StatisticsResource = v
+	return s
+}
+
+// The input for the data quality monitoring job. Currently endpoints are supported
+// for input.
+type DataQualityJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Input object for the endpoint
+	//
+	// EndpointInput is a required field
+	EndpointInput *EndpointInput `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DataQualityJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataQualityJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataQualityJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataQualityJobInput"}
+	if s.EndpointInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	}
+	if s.EndpointInput != nil {
+		if err := s.EndpointInput.Validate(); err != nil {
+			invalidParams.AddNested("EndpointInput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointInput sets the EndpointInput field's value.
+func (s *DataQualityJobInput) SetEndpointInput(v *EndpointInput) *DataQualityJobInput {
+	s.EndpointInput = v
+	return s
+}
+
 // Describes the location of the channel data.
 type DataSource struct {
 	_ struct{} `type:"structure"`
@@ -30282,21 +34660,26 @@ func (s *DatasetDefinition) SetRedshiftDatasetDefinition(v *RedshiftDatasetDefin
 	return s
 }
 
-// Configuration information for the debug hook parameters, collection configuration,
-// and storage paths.
+// Configuration information for the Debugger hook parameters, metric and tensor
+// collections, and storage paths. To learn more about how to configure the
+// DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration
+// API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
 type DebugHookConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration information for tensor collections.
+	// Configuration information for Debugger tensor collections. To learn more
+	// about how to configure the CollectionConfiguration parameter, see Use the
+	// SageMaker and Debugger Configuration API Operations to Create, Update, and
+	// Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
 	CollectionConfigurations []*CollectionConfiguration `type:"list"`
 
-	// Configuration information for the debug hook parameters.
+	// Configuration information for the Debugger hook parameters.
 	HookParameters map[string]*string `type:"map"`
 
-	// Path to local storage location for tensors. Defaults to /opt/ml/output/tensors/.
+	// Path to local storage location for metrics and tensors. Defaults to /opt/ml/output/tensors/.
 	LocalPath *string `type:"string"`
 
-	// Path to Amazon S3 storage location for tensors.
+	// Path to Amazon S3 storage location for metrics and tensors.
 	//
 	// S3OutputPath is a required field
 	S3OutputPath *string `type:"string" required:"true"`
@@ -30359,11 +34742,15 @@ func (s *DebugHookConfig) SetS3OutputPath(v string) *DebugHookConfig {
 	return s
 }
 
-// Configuration information for debugging rules.
+// Configuration information for SageMaker Debugger rules for debugging. To
+// learn more about how to configure the DebugRuleConfiguration parameter, see
+// Use the SageMaker and Debugger Configuration API Operations to Create, Update,
+// and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
 type DebugRuleConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The instance type to deploy for a training job.
+	// The instance type to deploy a Debugger custom rule for debugging a training
+	// job.
 	InstanceType *string `type:"string" enum:"ProcessingInstanceType"`
 
 	// Path to local storage location for output of rules. Defaults to /opt/ml/processing/output/rule/.
@@ -30468,7 +34855,7 @@ type DebugRuleEvaluationStatus struct {
 	// Timestamp when the rule evaluation status was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The name of the rule configuration
+	// The name of the rule configuration.
 	RuleConfigurationName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the rule evaluation job.
@@ -31059,6 +35446,116 @@ func (s *DeleteContextOutput) SetContextArn(v string) *DeleteContextOutput {
 	return s
 }
 
+type DeleteDataQualityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the data quality monitoring job definition to delete.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDataQualityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDataQualityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataQualityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataQualityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DeleteDataQualityJobDefinitionInput) SetJobDefinitionName(v string) *DeleteDataQualityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DeleteDataQualityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDataQualityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDataQualityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDeviceFleetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet to delete.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDeviceFleetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDeviceFleetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDeviceFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDeviceFleetInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DeleteDeviceFleetInput) SetDeviceFleetName(v string) *DeleteDeviceFleetInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+type DeleteDeviceFleetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDeviceFleetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDeviceFleetOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -31581,6 +36078,116 @@ func (s DeleteImageVersionOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteModelBiasJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model bias job definition to delete.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteModelBiasJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelBiasJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteModelBiasJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteModelBiasJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DeleteModelBiasJobDefinitionInput) SetJobDefinitionName(v string) *DeleteModelBiasJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DeleteModelBiasJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteModelBiasJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelBiasJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteModelExplainabilityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model explainability job definition to delete.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteModelExplainabilityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelExplainabilityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteModelExplainabilityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteModelExplainabilityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DeleteModelExplainabilityJobDefinitionInput) SetJobDefinitionName(v string) *DeleteModelExplainabilityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DeleteModelExplainabilityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteModelExplainabilityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelExplainabilityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -31796,6 +36403,61 @@ func (s DeleteModelPackageOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteModelPackageOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteModelQualityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model quality monitoring job definition to delete.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteModelQualityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelQualityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteModelQualityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteModelQualityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DeleteModelQualityJobDefinitionInput) SetJobDefinitionName(v string) *DeleteModelQualityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DeleteModelQualityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteModelQualityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelQualityJobDefinitionOutput) GoString() string {
 	return s.String()
 }
 
@@ -32581,6 +37243,75 @@ func (s *DeploymentConfig) SetAutoRollbackConfiguration(v *AutoRollbackConfig) *
 func (s *DeploymentConfig) SetBlueGreenUpdatePolicy(v *BlueGreenUpdatePolicy) *DeploymentConfig {
 	s.BlueGreenUpdatePolicy = v
 	return s
+}
+
+type DeregisterDevicesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet the devices belong to.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The unique IDs of the devices.
+	//
+	// DeviceNames is a required field
+	DeviceNames []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DeregisterDevicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterDevicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterDevicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterDevicesInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.DeviceNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceNames"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DeregisterDevicesInput) SetDeviceFleetName(v string) *DeregisterDevicesInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDeviceNames sets the DeviceNames field's value.
+func (s *DeregisterDevicesInput) SetDeviceNames(v []*string) *DeregisterDevicesInput {
+	s.DeviceNames = v
+	return s
+}
+
+type DeregisterDevicesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterDevicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterDevicesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeActionInput struct {
@@ -34067,6 +38798,494 @@ func (s *DescribeContextOutput) SetSource(v *ContextSource) *DescribeContextOutp
 	return s
 }
 
+type DescribeDataQualityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the data quality monitoring job definition to describe.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDataQualityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataQualityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDataQualityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDataQualityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeDataQualityJobDefinitionInput) SetJobDefinitionName(v string) *DescribeDataQualityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DescribeDataQualityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the data quality monitoring job definition was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// Information about the container that runs the data quality monitoring job.
+	//
+	// DataQualityAppSpecification is a required field
+	DataQualityAppSpecification *DataQualityAppSpecification `type:"structure" required:"true"`
+
+	// The constraints and baselines for the data quality monitoring job definition.
+	DataQualityBaselineConfig *DataQualityBaselineConfig `type:"structure"`
+
+	// The list of inputs for the data quality monitoring job. Currently endpoints
+	// are supported.
+	//
+	// DataQualityJobInput is a required field
+	DataQualityJobInput *DataQualityJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// DataQualityJobOutputConfig is a required field
+	DataQualityJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the data quality monitoring job definition.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+
+	// The name of the data quality monitoring job definition.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// The networking configuration for the data quality monitoring job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDataQualityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataQualityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetCreationTime(v time.Time) *DescribeDataQualityJobDefinitionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDataQualityAppSpecification sets the DataQualityAppSpecification field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetDataQualityAppSpecification(v *DataQualityAppSpecification) *DescribeDataQualityJobDefinitionOutput {
+	s.DataQualityAppSpecification = v
+	return s
+}
+
+// SetDataQualityBaselineConfig sets the DataQualityBaselineConfig field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetDataQualityBaselineConfig(v *DataQualityBaselineConfig) *DescribeDataQualityJobDefinitionOutput {
+	s.DataQualityBaselineConfig = v
+	return s
+}
+
+// SetDataQualityJobInput sets the DataQualityJobInput field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetDataQualityJobInput(v *DataQualityJobInput) *DescribeDataQualityJobDefinitionOutput {
+	s.DataQualityJobInput = v
+	return s
+}
+
+// SetDataQualityJobOutputConfig sets the DataQualityJobOutputConfig field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetDataQualityJobOutputConfig(v *MonitoringOutputConfig) *DescribeDataQualityJobDefinitionOutput {
+	s.DataQualityJobOutputConfig = v
+	return s
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetJobDefinitionArn(v string) *DescribeDataQualityJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetJobDefinitionName(v string) *DescribeDataQualityJobDefinitionOutput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetJobResources(v *MonitoringResources) *DescribeDataQualityJobDefinitionOutput {
+	s.JobResources = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetNetworkConfig(v *MonitoringNetworkConfig) *DescribeDataQualityJobDefinitionOutput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetRoleArn(v string) *DescribeDataQualityJobDefinitionOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *DescribeDataQualityJobDefinitionOutput) SetStoppingCondition(v *MonitoringStoppingCondition) *DescribeDataQualityJobDefinitionOutput {
+	s.StoppingCondition = v
+	return s
+}
+
+type DescribeDeviceFleetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDeviceFleetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeviceFleetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDeviceFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDeviceFleetInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DescribeDeviceFleetInput) SetDeviceFleetName(v string) *DescribeDeviceFleetInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+type DescribeDeviceFleetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Timestamp of when the device fleet was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// A description of the fleet.
+	Description *string `min:"1" type:"string"`
+
+	// The The Amazon Resource Name (ARN) of the fleet.
+	//
+	// DeviceFleetArn is a required field
+	DeviceFleetArn *string `type:"string" required:"true"`
+
+	// The name of the fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) alias created in AWS Internet of Things (IoT).
+	IotRoleAlias *string `type:"string"`
+
+	// Timestamp of when the device fleet was last updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The output configuration for storing sampled data.
+	//
+	// OutputConfig is a required field
+	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) that has access to AWS Internet of Things
+	// (IoT).
+	RoleArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDeviceFleetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeviceFleetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeDeviceFleetOutput) SetCreationTime(v time.Time) *DescribeDeviceFleetOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeDeviceFleetOutput) SetDescription(v string) *DescribeDeviceFleetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceFleetArn sets the DeviceFleetArn field's value.
+func (s *DescribeDeviceFleetOutput) SetDeviceFleetArn(v string) *DescribeDeviceFleetOutput {
+	s.DeviceFleetArn = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DescribeDeviceFleetOutput) SetDeviceFleetName(v string) *DescribeDeviceFleetOutput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetIotRoleAlias sets the IotRoleAlias field's value.
+func (s *DescribeDeviceFleetOutput) SetIotRoleAlias(v string) *DescribeDeviceFleetOutput {
+	s.IotRoleAlias = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeDeviceFleetOutput) SetLastModifiedTime(v time.Time) *DescribeDeviceFleetOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *DescribeDeviceFleetOutput) SetOutputConfig(v *EdgeOutputConfig) *DescribeDeviceFleetOutput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeDeviceFleetOutput) SetRoleArn(v string) *DescribeDeviceFleetOutput {
+	s.RoleArn = &v
+	return s
+}
+
+type DescribeDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet the devices belong to.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The unique ID of the device.
+	//
+	// DeviceName is a required field
+	DeviceName *string `min:"1" type:"string" required:"true"`
+
+	// Next token of device description.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDeviceInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.DeviceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceName"))
+	}
+	if s.DeviceName != nil && len(*s.DeviceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DescribeDeviceInput) SetDeviceFleetName(v string) *DescribeDeviceInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *DescribeDeviceInput) SetDeviceName(v string) *DescribeDeviceInput {
+	s.DeviceName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDeviceInput) SetNextToken(v string) *DescribeDeviceInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeDeviceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the device.
+	Description *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the device.
+	DeviceArn *string `min:"20" type:"string"`
+
+	// The name of the fleet the device belongs to.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the device.
+	//
+	// DeviceName is a required field
+	DeviceName *string `min:"1" type:"string" required:"true"`
+
+	// The AWS Internet of Things (IoT) object thing name associated with the device.
+	IotThingName *string `type:"string"`
+
+	// The last heartbeat received from the device.
+	LatestHeartbeat *time.Time `type:"timestamp"`
+
+	// The maximum number of models.
+	MaxModels *int64 `type:"integer"`
+
+	// Models on the device.
+	Models []*EdgeModel `type:"list"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+
+	// The timestamp of the last registration or de-reregistration.
+	//
+	// RegistrationTime is a required field
+	RegistrationTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeviceOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeDeviceOutput) SetDescription(v string) *DescribeDeviceOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceArn sets the DeviceArn field's value.
+func (s *DescribeDeviceOutput) SetDeviceArn(v string) *DescribeDeviceOutput {
+	s.DeviceArn = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DescribeDeviceOutput) SetDeviceFleetName(v string) *DescribeDeviceOutput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *DescribeDeviceOutput) SetDeviceName(v string) *DescribeDeviceOutput {
+	s.DeviceName = &v
+	return s
+}
+
+// SetIotThingName sets the IotThingName field's value.
+func (s *DescribeDeviceOutput) SetIotThingName(v string) *DescribeDeviceOutput {
+	s.IotThingName = &v
+	return s
+}
+
+// SetLatestHeartbeat sets the LatestHeartbeat field's value.
+func (s *DescribeDeviceOutput) SetLatestHeartbeat(v time.Time) *DescribeDeviceOutput {
+	s.LatestHeartbeat = &v
+	return s
+}
+
+// SetMaxModels sets the MaxModels field's value.
+func (s *DescribeDeviceOutput) SetMaxModels(v int64) *DescribeDeviceOutput {
+	s.MaxModels = &v
+	return s
+}
+
+// SetModels sets the Models field's value.
+func (s *DescribeDeviceOutput) SetModels(v []*EdgeModel) *DescribeDeviceOutput {
+	s.Models = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDeviceOutput) SetNextToken(v string) *DescribeDeviceOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegistrationTime sets the RegistrationTime field's value.
+func (s *DescribeDeviceOutput) SetRegistrationTime(v time.Time) *DescribeDeviceOutput {
+	s.RegistrationTime = &v
+	return s
+}
+
 type DescribeDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -34278,6 +39497,195 @@ func (s *DescribeDomainOutput) SetUrl(v string) *DescribeDomainOutput {
 // SetVpcId sets the VpcId field's value.
 func (s *DescribeDomainOutput) SetVpcId(v string) *DescribeDomainOutput {
 	s.VpcId = &v
+	return s
+}
+
+type DescribeEdgePackagingJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge packaging job.
+	//
+	// EdgePackagingJobName is a required field
+	EdgePackagingJobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeEdgePackagingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEdgePackagingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEdgePackagingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEdgePackagingJobInput"}
+	if s.EdgePackagingJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgePackagingJobName"))
+	}
+	if s.EdgePackagingJobName != nil && len(*s.EdgePackagingJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgePackagingJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgePackagingJobName sets the EdgePackagingJobName field's value.
+func (s *DescribeEdgePackagingJobInput) SetEdgePackagingJobName(v string) *DescribeEdgePackagingJobInput {
+	s.EdgePackagingJobName = &v
+	return s
+}
+
+type DescribeEdgePackagingJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the SageMaker Neo compilation job that is used to locate model
+	// artifacts that are being packaged.
+	CompilationJobName *string `min:"1" type:"string"`
+
+	// The timestamp of when the packaging job was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the edge packaging job.
+	//
+	// EdgePackagingJobArn is a required field
+	EdgePackagingJobArn *string `min:"20" type:"string" required:"true"`
+
+	// The name of the edge packaging job.
+	//
+	// EdgePackagingJobName is a required field
+	EdgePackagingJobName *string `min:"1" type:"string" required:"true"`
+
+	// The current status of the packaging job.
+	//
+	// EdgePackagingJobStatus is a required field
+	EdgePackagingJobStatus *string `type:"string" required:"true" enum:"EdgePackagingJobStatus"`
+
+	// Returns a message describing the job status and error messages.
+	EdgePackagingJobStatusMessage *string `type:"string"`
+
+	// The timestamp of when the job was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Simple Storage (S3) URI where model artifacts ares stored.
+	ModelArtifact *string `type:"string"`
+
+	// The name of the model.
+	ModelName *string `min:"1" type:"string"`
+
+	// The signature document of files in the model artifact.
+	ModelSignature *string `type:"string"`
+
+	// The version of the model.
+	ModelVersion *string `min:"1" type:"string"`
+
+	// The output configuration for the edge packaging job.
+	OutputConfig *EdgeOutputConfig `type:"structure"`
+
+	// The CMK to use when encrypting the EBS volume the job run on.
+	ResourceKey *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
+	// to download and upload the model, and to contact Neo.
+	RoleArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEdgePackagingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEdgePackagingJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompilationJobName sets the CompilationJobName field's value.
+func (s *DescribeEdgePackagingJobOutput) SetCompilationJobName(v string) *DescribeEdgePackagingJobOutput {
+	s.CompilationJobName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeEdgePackagingJobOutput) SetCreationTime(v time.Time) *DescribeEdgePackagingJobOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEdgePackagingJobArn sets the EdgePackagingJobArn field's value.
+func (s *DescribeEdgePackagingJobOutput) SetEdgePackagingJobArn(v string) *DescribeEdgePackagingJobOutput {
+	s.EdgePackagingJobArn = &v
+	return s
+}
+
+// SetEdgePackagingJobName sets the EdgePackagingJobName field's value.
+func (s *DescribeEdgePackagingJobOutput) SetEdgePackagingJobName(v string) *DescribeEdgePackagingJobOutput {
+	s.EdgePackagingJobName = &v
+	return s
+}
+
+// SetEdgePackagingJobStatus sets the EdgePackagingJobStatus field's value.
+func (s *DescribeEdgePackagingJobOutput) SetEdgePackagingJobStatus(v string) *DescribeEdgePackagingJobOutput {
+	s.EdgePackagingJobStatus = &v
+	return s
+}
+
+// SetEdgePackagingJobStatusMessage sets the EdgePackagingJobStatusMessage field's value.
+func (s *DescribeEdgePackagingJobOutput) SetEdgePackagingJobStatusMessage(v string) *DescribeEdgePackagingJobOutput {
+	s.EdgePackagingJobStatusMessage = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeEdgePackagingJobOutput) SetLastModifiedTime(v time.Time) *DescribeEdgePackagingJobOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetModelArtifact sets the ModelArtifact field's value.
+func (s *DescribeEdgePackagingJobOutput) SetModelArtifact(v string) *DescribeEdgePackagingJobOutput {
+	s.ModelArtifact = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *DescribeEdgePackagingJobOutput) SetModelName(v string) *DescribeEdgePackagingJobOutput {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelSignature sets the ModelSignature field's value.
+func (s *DescribeEdgePackagingJobOutput) SetModelSignature(v string) *DescribeEdgePackagingJobOutput {
+	s.ModelSignature = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *DescribeEdgePackagingJobOutput) SetModelVersion(v string) *DescribeEdgePackagingJobOutput {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *DescribeEdgePackagingJobOutput) SetOutputConfig(v *EdgeOutputConfig) *DescribeEdgePackagingJobOutput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetResourceKey sets the ResourceKey field's value.
+func (s *DescribeEdgePackagingJobOutput) SetResourceKey(v string) *DescribeEdgePackagingJobOutput {
+	s.ResourceKey = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeEdgePackagingJobOutput) SetRoleArn(v string) *DescribeEdgePackagingJobOutput {
+	s.RoleArn = &v
 	return s
 }
 
@@ -35992,6 +41400,355 @@ func (s *DescribeLabelingJobOutput) SetTags(v []*Tag) *DescribeLabelingJobOutput
 	return s
 }
 
+type DescribeModelBiasJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model bias job definition. The name must be unique within
+	// an AWS Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeModelBiasJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeModelBiasJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeModelBiasJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeModelBiasJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeModelBiasJobDefinitionInput) SetJobDefinitionName(v string) *DescribeModelBiasJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DescribeModelBiasJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the model bias job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the model bias job.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+
+	// The name of the bias job definition. The name must be unique within an AWS
+	// Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// Configures the model bias job to run a specified Docker container image.
+	//
+	// ModelBiasAppSpecification is a required field
+	ModelBiasAppSpecification *ModelBiasAppSpecification `type:"structure" required:"true"`
+
+	// The baseline configuration for a model bias job.
+	ModelBiasBaselineConfig *ModelBiasBaselineConfig `type:"structure"`
+
+	// Inputs for the model bias job.
+	//
+	// ModelBiasJobInput is a required field
+	ModelBiasJobInput *ModelBiasJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// ModelBiasJobOutputConfig is a required field
+	ModelBiasJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// Networking options for a model bias job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that has read permission to the input data location and write
+	// permission to the output data location in Amazon S3.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeModelBiasJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeModelBiasJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetCreationTime(v time.Time) *DescribeModelBiasJobDefinitionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetJobDefinitionArn(v string) *DescribeModelBiasJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetJobDefinitionName(v string) *DescribeModelBiasJobDefinitionOutput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetJobResources(v *MonitoringResources) *DescribeModelBiasJobDefinitionOutput {
+	s.JobResources = v
+	return s
+}
+
+// SetModelBiasAppSpecification sets the ModelBiasAppSpecification field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetModelBiasAppSpecification(v *ModelBiasAppSpecification) *DescribeModelBiasJobDefinitionOutput {
+	s.ModelBiasAppSpecification = v
+	return s
+}
+
+// SetModelBiasBaselineConfig sets the ModelBiasBaselineConfig field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetModelBiasBaselineConfig(v *ModelBiasBaselineConfig) *DescribeModelBiasJobDefinitionOutput {
+	s.ModelBiasBaselineConfig = v
+	return s
+}
+
+// SetModelBiasJobInput sets the ModelBiasJobInput field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetModelBiasJobInput(v *ModelBiasJobInput) *DescribeModelBiasJobDefinitionOutput {
+	s.ModelBiasJobInput = v
+	return s
+}
+
+// SetModelBiasJobOutputConfig sets the ModelBiasJobOutputConfig field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetModelBiasJobOutputConfig(v *MonitoringOutputConfig) *DescribeModelBiasJobDefinitionOutput {
+	s.ModelBiasJobOutputConfig = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetNetworkConfig(v *MonitoringNetworkConfig) *DescribeModelBiasJobDefinitionOutput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetRoleArn(v string) *DescribeModelBiasJobDefinitionOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *DescribeModelBiasJobDefinitionOutput) SetStoppingCondition(v *MonitoringStoppingCondition) *DescribeModelBiasJobDefinitionOutput {
+	s.StoppingCondition = v
+	return s
+}
+
+type DescribeModelExplainabilityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model explainability job definition. The name must be unique
+	// within an AWS Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeModelExplainabilityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeModelExplainabilityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeModelExplainabilityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeModelExplainabilityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeModelExplainabilityJobDefinitionInput) SetJobDefinitionName(v string) *DescribeModelExplainabilityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DescribeModelExplainabilityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the model explainability job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the model explainability job.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+
+	// The name of the explainability job definition. The name must be unique within
+	// an AWS Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// Configures the model explainability job to run a specified Docker container
+	// image.
+	//
+	// ModelExplainabilityAppSpecification is a required field
+	ModelExplainabilityAppSpecification *ModelExplainabilityAppSpecification `type:"structure" required:"true"`
+
+	// The baseline configuration for a model explainability job.
+	ModelExplainabilityBaselineConfig *ModelExplainabilityBaselineConfig `type:"structure"`
+
+	// Inputs for the model explainability job.
+	//
+	// ModelExplainabilityJobInput is a required field
+	ModelExplainabilityJobInput *ModelExplainabilityJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// ModelExplainabilityJobOutputConfig is a required field
+	ModelExplainabilityJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// Networking options for a model explainability job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that has read permission to the input data location and write
+	// permission to the output data location in Amazon S3.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeModelExplainabilityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeModelExplainabilityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetCreationTime(v time.Time) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetJobDefinitionArn(v string) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetJobDefinitionName(v string) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetJobResources(v *MonitoringResources) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.JobResources = v
+	return s
+}
+
+// SetModelExplainabilityAppSpecification sets the ModelExplainabilityAppSpecification field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetModelExplainabilityAppSpecification(v *ModelExplainabilityAppSpecification) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.ModelExplainabilityAppSpecification = v
+	return s
+}
+
+// SetModelExplainabilityBaselineConfig sets the ModelExplainabilityBaselineConfig field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetModelExplainabilityBaselineConfig(v *ModelExplainabilityBaselineConfig) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.ModelExplainabilityBaselineConfig = v
+	return s
+}
+
+// SetModelExplainabilityJobInput sets the ModelExplainabilityJobInput field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetModelExplainabilityJobInput(v *ModelExplainabilityJobInput) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.ModelExplainabilityJobInput = v
+	return s
+}
+
+// SetModelExplainabilityJobOutputConfig sets the ModelExplainabilityJobOutputConfig field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetModelExplainabilityJobOutputConfig(v *MonitoringOutputConfig) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.ModelExplainabilityJobOutputConfig = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetNetworkConfig(v *MonitoringNetworkConfig) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetRoleArn(v string) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *DescribeModelExplainabilityJobDefinitionOutput) SetStoppingCondition(v *MonitoringStoppingCondition) *DescribeModelExplainabilityJobDefinitionOutput {
+	s.StoppingCondition = v
+	return s
+}
+
 type DescribeModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36490,6 +42247,179 @@ func (s *DescribeModelPackageOutput) SetValidationSpecification(v *ModelPackageV
 	return s
 }
 
+type DescribeModelQualityJobDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model quality job. The name must be unique within an AWS
+	// Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeModelQualityJobDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeModelQualityJobDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeModelQualityJobDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeModelQualityJobDefinitionInput"}
+	if s.JobDefinitionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobDefinitionName"))
+	}
+	if s.JobDefinitionName != nil && len(*s.JobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobDefinitionName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeModelQualityJobDefinitionInput) SetJobDefinitionName(v string) *DescribeModelQualityJobDefinitionInput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+type DescribeModelQualityJobDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the model quality job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the model quality job.
+	//
+	// JobDefinitionArn is a required field
+	JobDefinitionArn *string `type:"string" required:"true"`
+
+	// The name of the quality job definition. The name must be unique within an
+	// AWS Region in the AWS account.
+	//
+	// JobDefinitionName is a required field
+	JobDefinitionName *string `min:"1" type:"string" required:"true"`
+
+	// Identifies the resources to deploy for a monitoring job.
+	//
+	// JobResources is a required field
+	JobResources *MonitoringResources `type:"structure" required:"true"`
+
+	// Configures the model quality job to run a specified Docker container image.
+	//
+	// ModelQualityAppSpecification is a required field
+	ModelQualityAppSpecification *ModelQualityAppSpecification `type:"structure" required:"true"`
+
+	// The baseline configuration for a model quality job.
+	ModelQualityBaselineConfig *ModelQualityBaselineConfig `type:"structure"`
+
+	// Inputs for the model quality job.
+	//
+	// ModelQualityJobInput is a required field
+	ModelQualityJobInput *ModelQualityJobInput `type:"structure" required:"true"`
+
+	// The output configuration for monitoring jobs.
+	//
+	// ModelQualityJobOutputConfig is a required field
+	ModelQualityJobOutputConfig *MonitoringOutputConfig `type:"structure" required:"true"`
+
+	// Networking options for a model quality job.
+	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A time limit for how long the monitoring job is allowed to run before stopping.
+	StoppingCondition *MonitoringStoppingCondition `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeModelQualityJobDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeModelQualityJobDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetCreationTime(v time.Time) *DescribeModelQualityJobDefinitionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetJobDefinitionArn sets the JobDefinitionArn field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetJobDefinitionArn(v string) *DescribeModelQualityJobDefinitionOutput {
+	s.JobDefinitionArn = &v
+	return s
+}
+
+// SetJobDefinitionName sets the JobDefinitionName field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetJobDefinitionName(v string) *DescribeModelQualityJobDefinitionOutput {
+	s.JobDefinitionName = &v
+	return s
+}
+
+// SetJobResources sets the JobResources field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetJobResources(v *MonitoringResources) *DescribeModelQualityJobDefinitionOutput {
+	s.JobResources = v
+	return s
+}
+
+// SetModelQualityAppSpecification sets the ModelQualityAppSpecification field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetModelQualityAppSpecification(v *ModelQualityAppSpecification) *DescribeModelQualityJobDefinitionOutput {
+	s.ModelQualityAppSpecification = v
+	return s
+}
+
+// SetModelQualityBaselineConfig sets the ModelQualityBaselineConfig field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetModelQualityBaselineConfig(v *ModelQualityBaselineConfig) *DescribeModelQualityJobDefinitionOutput {
+	s.ModelQualityBaselineConfig = v
+	return s
+}
+
+// SetModelQualityJobInput sets the ModelQualityJobInput field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetModelQualityJobInput(v *ModelQualityJobInput) *DescribeModelQualityJobDefinitionOutput {
+	s.ModelQualityJobInput = v
+	return s
+}
+
+// SetModelQualityJobOutputConfig sets the ModelQualityJobOutputConfig field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetModelQualityJobOutputConfig(v *MonitoringOutputConfig) *DescribeModelQualityJobDefinitionOutput {
+	s.ModelQualityJobOutputConfig = v
+	return s
+}
+
+// SetNetworkConfig sets the NetworkConfig field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetNetworkConfig(v *MonitoringNetworkConfig) *DescribeModelQualityJobDefinitionOutput {
+	s.NetworkConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetRoleArn(v string) *DescribeModelQualityJobDefinitionOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingCondition sets the StoppingCondition field's value.
+func (s *DescribeModelQualityJobDefinitionOutput) SetStoppingCondition(v *MonitoringStoppingCondition) *DescribeModelQualityJobDefinitionOutput {
+	s.StoppingCondition = v
+	return s
+}
+
 type DescribeMonitoringScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36574,6 +42504,19 @@ type DescribeMonitoringScheduleOutput struct {
 	//
 	// MonitoringScheduleStatus is a required field
 	MonitoringScheduleStatus *string `type:"string" required:"true" enum:"ScheduleStatus"`
+
+	// The type of the monitoring job that this schedule runs. This is one of the
+	// following values.
+	//
+	//    * DATA_QUALITY - The schedule is for a data quality monitoring job.
+	//
+	//    * MODEL_QUALITY - The schedule is for a model quality monitoring job.
+	//
+	//    * MODEL_BIAS - The schedule is for a bias monitoring job.
+	//
+	//    * MODEL_EXPLAINABILITY - The schedule is for an explainability monitoring
+	//    job.
+	MonitoringType *string `type:"string" enum:"MonitoringType"`
 }
 
 // String returns the string representation
@@ -36637,6 +42580,12 @@ func (s *DescribeMonitoringScheduleOutput) SetMonitoringScheduleName(v string) *
 // SetMonitoringScheduleStatus sets the MonitoringScheduleStatus field's value.
 func (s *DescribeMonitoringScheduleOutput) SetMonitoringScheduleStatus(v string) *DescribeMonitoringScheduleOutput {
 	s.MonitoringScheduleStatus = &v
+	return s
+}
+
+// SetMonitoringType sets the MonitoringType field's value.
+func (s *DescribeMonitoringScheduleOutput) SetMonitoringType(v string) *DescribeMonitoringScheduleOutput {
+	s.MonitoringType = &v
 	return s
 }
 
@@ -37928,14 +43877,16 @@ type DescribeTrainingJobOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// Configuration information for the debug hook parameters, collection configuration,
-	// and storage paths.
+	// Configuration information for the Debugger hook parameters, metric and tensor
+	// collections, and storage paths. To learn more about how to configure the
+	// DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration
+	// API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
 	DebugHookConfig *DebugHookConfig `type:"structure"`
 
-	// Configuration information for debugging rules.
+	// Configuration information for Debugger rules for debugging output tensors.
 	DebugRuleConfigurations []*DebugRuleConfiguration `type:"list"`
 
-	// Status about the debug rule evaluation.
+	// Evaluation status of Debugger rules for debugging on a training job.
 	DebugRuleEvaluationStatuses []*DebugRuleEvaluationStatus `type:"list"`
 
 	// To encrypt all communications between ML compute instances in distributed
@@ -37996,6 +43947,20 @@ type DescribeTrainingJobOutput struct {
 	// The S3 path where model artifacts that you configured when creating the job
 	// are stored. Amazon SageMaker creates subfolders for model artifacts.
 	OutputDataConfig *OutputDataConfig `type:"structure"`
+
+	// Configuration information for Debugger system monitoring, framework profiling,
+	// and storage paths.
+	ProfilerConfig *ProfilerConfig `type:"structure"`
+
+	// Configuration information for Debugger rules for profiling system and framework
+	// metrics.
+	ProfilerRuleConfigurations []*ProfilerRuleConfiguration `type:"list"`
+
+	// Evaluation status of Debugger rules for profiling on a training job.
+	ProfilerRuleEvaluationStatuses []*ProfilerRuleEvaluationStatus `type:"list"`
+
+	// Profiling status of a training job.
+	ProfilingStatus *string `type:"string" enum:"ProfilingStatus"`
 
 	// Resources, including ML compute instances and ML storage volumes, that are
 	// configured for model training.
@@ -38082,7 +44047,7 @@ type DescribeTrainingJobOutput struct {
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
 
-	// Configuration of storage locations for TensorBoard output.
+	// Configuration of storage locations for the Debugger TensorBoard output data.
 	TensorBoardOutputConfig *TensorBoardOutputConfig `type:"structure"`
 
 	// Indicates the time when the training job ends on training instances. You
@@ -38270,6 +44235,30 @@ func (s *DescribeTrainingJobOutput) SetModelArtifacts(v *ModelArtifacts) *Descri
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *DescribeTrainingJobOutput) SetOutputDataConfig(v *OutputDataConfig) *DescribeTrainingJobOutput {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetProfilerConfig sets the ProfilerConfig field's value.
+func (s *DescribeTrainingJobOutput) SetProfilerConfig(v *ProfilerConfig) *DescribeTrainingJobOutput {
+	s.ProfilerConfig = v
+	return s
+}
+
+// SetProfilerRuleConfigurations sets the ProfilerRuleConfigurations field's value.
+func (s *DescribeTrainingJobOutput) SetProfilerRuleConfigurations(v []*ProfilerRuleConfiguration) *DescribeTrainingJobOutput {
+	s.ProfilerRuleConfigurations = v
+	return s
+}
+
+// SetProfilerRuleEvaluationStatuses sets the ProfilerRuleEvaluationStatuses field's value.
+func (s *DescribeTrainingJobOutput) SetProfilerRuleEvaluationStatuses(v []*ProfilerRuleEvaluationStatus) *DescribeTrainingJobOutput {
+	s.ProfilerRuleEvaluationStatuses = v
+	return s
+}
+
+// SetProfilingStatus sets the ProfilingStatus field's value.
+func (s *DescribeTrainingJobOutput) SetProfilingStatus(v string) *DescribeTrainingJobOutput {
+	s.ProfilingStatus = &v
 	return s
 }
 
@@ -39352,6 +45341,252 @@ func (s *DesiredWeightAndCapacity) SetVariantName(v string) *DesiredWeightAndCap
 	return s
 }
 
+// Information of a particular device.
+type Device struct {
+	_ struct{} `type:"structure"`
+
+	// Description of the device.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the device.
+	//
+	// DeviceName is a required field
+	DeviceName *string `min:"1" type:"string" required:"true"`
+
+	// AWS Internet of Things (IoT) object name.
+	IotThingName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Device) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Device) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Device) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Device"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DeviceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceName"))
+	}
+	if s.DeviceName != nil && len(*s.DeviceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *Device) SetDescription(v string) *Device {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *Device) SetDeviceName(v string) *Device {
+	s.DeviceName = &v
+	return s
+}
+
+// SetIotThingName sets the IotThingName field's value.
+func (s *Device) SetIotThingName(v string) *Device {
+	s.IotThingName = &v
+	return s
+}
+
+// Summary of the device fleet.
+type DeviceFleetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Timestamp of when the device fleet was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// Amazon Resource Name (ARN) of the device fleet.
+	//
+	// DeviceFleetArn is a required field
+	DeviceFleetArn *string `type:"string" required:"true"`
+
+	// Name of the device fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// Timestamp of when the device fleet was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DeviceFleetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceFleetSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DeviceFleetSummary) SetCreationTime(v time.Time) *DeviceFleetSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeviceFleetArn sets the DeviceFleetArn field's value.
+func (s *DeviceFleetSummary) SetDeviceFleetArn(v string) *DeviceFleetSummary {
+	s.DeviceFleetArn = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DeviceFleetSummary) SetDeviceFleetName(v string) *DeviceFleetSummary {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DeviceFleetSummary) SetLastModifiedTime(v time.Time) *DeviceFleetSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// Status of devices.
+type DeviceStats struct {
+	_ struct{} `type:"structure"`
+
+	// The number of devices connected with a heartbeat.
+	//
+	// ConnectedDeviceCount is a required field
+	ConnectedDeviceCount *int64 `type:"long" required:"true"`
+
+	// The number of registered devices.
+	//
+	// RegisteredDeviceCount is a required field
+	RegisteredDeviceCount *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s DeviceStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceStats) GoString() string {
+	return s.String()
+}
+
+// SetConnectedDeviceCount sets the ConnectedDeviceCount field's value.
+func (s *DeviceStats) SetConnectedDeviceCount(v int64) *DeviceStats {
+	s.ConnectedDeviceCount = &v
+	return s
+}
+
+// SetRegisteredDeviceCount sets the RegisteredDeviceCount field's value.
+func (s *DeviceStats) SetRegisteredDeviceCount(v int64) *DeviceStats {
+	s.RegisteredDeviceCount = &v
+	return s
+}
+
+// Summary of the device.
+type DeviceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the device.
+	Description *string `min:"1" type:"string"`
+
+	// Amazon Resource Name (ARN) of the device.
+	//
+	// DeviceArn is a required field
+	DeviceArn *string `min:"20" type:"string" required:"true"`
+
+	// The name of the fleet the device belongs to.
+	DeviceFleetName *string `min:"1" type:"string"`
+
+	// The unique identifier of the device.
+	//
+	// DeviceName is a required field
+	DeviceName *string `min:"1" type:"string" required:"true"`
+
+	// The AWS Internet of Things (IoT) object thing name associated with the device..
+	IotThingName *string `type:"string"`
+
+	// The last heartbeat received from the device.
+	LatestHeartbeat *time.Time `type:"timestamp"`
+
+	// Models on the device.
+	Models []*EdgeModelSummary `type:"list"`
+
+	// The timestamp of the last registration or de-reregistration.
+	RegistrationTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DeviceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DeviceSummary) SetDescription(v string) *DeviceSummary {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceArn sets the DeviceArn field's value.
+func (s *DeviceSummary) SetDeviceArn(v string) *DeviceSummary {
+	s.DeviceArn = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *DeviceSummary) SetDeviceFleetName(v string) *DeviceSummary {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *DeviceSummary) SetDeviceName(v string) *DeviceSummary {
+	s.DeviceName = &v
+	return s
+}
+
+// SetIotThingName sets the IotThingName field's value.
+func (s *DeviceSummary) SetIotThingName(v string) *DeviceSummary {
+	s.IotThingName = &v
+	return s
+}
+
+// SetLatestHeartbeat sets the LatestHeartbeat field's value.
+func (s *DeviceSummary) SetLatestHeartbeat(v time.Time) *DeviceSummary {
+	s.LatestHeartbeat = &v
+	return s
+}
+
+// SetModels sets the Models field's value.
+func (s *DeviceSummary) SetModels(v []*EdgeModelSummary) *DeviceSummary {
+	s.Models = v
+	return s
+}
+
+// SetRegistrationTime sets the RegistrationTime field's value.
+func (s *DeviceSummary) SetRegistrationTime(v time.Time) *DeviceSummary {
+	s.RegistrationTime = &v
+	return s
+}
+
 type DisableSagemakerServicecatalogPortfolioInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -39545,6 +45780,325 @@ func (s *DomainDetails) SetStatus(v string) *DomainDetails {
 // SetUrl sets the Url field's value.
 func (s *DomainDetails) SetUrl(v string) *DomainDetails {
 	s.Url = &v
+	return s
+}
+
+// The model on the edge device.
+type EdgeModel struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of the last inference that was made.
+	LatestInference *time.Time `type:"timestamp"`
+
+	// The timestamp of the last data sample taken.
+	LatestSampleTime *time.Time `type:"timestamp"`
+
+	// The name of the model.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// The model version.
+	//
+	// ModelVersion is a required field
+	ModelVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EdgeModel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgeModel) GoString() string {
+	return s.String()
+}
+
+// SetLatestInference sets the LatestInference field's value.
+func (s *EdgeModel) SetLatestInference(v time.Time) *EdgeModel {
+	s.LatestInference = &v
+	return s
+}
+
+// SetLatestSampleTime sets the LatestSampleTime field's value.
+func (s *EdgeModel) SetLatestSampleTime(v time.Time) *EdgeModel {
+	s.LatestSampleTime = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *EdgeModel) SetModelName(v string) *EdgeModel {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *EdgeModel) SetModelVersion(v string) *EdgeModel {
+	s.ModelVersion = &v
+	return s
+}
+
+// Status of edge devices with this model.
+type EdgeModelStat struct {
+	_ struct{} `type:"structure"`
+
+	// The number of devices that have this model version, a heart beat, and are
+	// currently running.
+	//
+	// ActiveDeviceCount is a required field
+	ActiveDeviceCount *int64 `type:"long" required:"true"`
+
+	// The number of devices that have this model version and have a heart beat.
+	//
+	// ConnectedDeviceCount is a required field
+	ConnectedDeviceCount *int64 `type:"long" required:"true"`
+
+	// The name of the model.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// The model version.
+	//
+	// ModelVersion is a required field
+	ModelVersion *string `min:"1" type:"string" required:"true"`
+
+	// The number of devices that have this model version and do not have a heart
+	// beat.
+	//
+	// OfflineDeviceCount is a required field
+	OfflineDeviceCount *int64 `type:"long" required:"true"`
+
+	// The number of devices with this model version and are producing sample data.
+	//
+	// SamplingDeviceCount is a required field
+	SamplingDeviceCount *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s EdgeModelStat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgeModelStat) GoString() string {
+	return s.String()
+}
+
+// SetActiveDeviceCount sets the ActiveDeviceCount field's value.
+func (s *EdgeModelStat) SetActiveDeviceCount(v int64) *EdgeModelStat {
+	s.ActiveDeviceCount = &v
+	return s
+}
+
+// SetConnectedDeviceCount sets the ConnectedDeviceCount field's value.
+func (s *EdgeModelStat) SetConnectedDeviceCount(v int64) *EdgeModelStat {
+	s.ConnectedDeviceCount = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *EdgeModelStat) SetModelName(v string) *EdgeModelStat {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *EdgeModelStat) SetModelVersion(v string) *EdgeModelStat {
+	s.ModelVersion = &v
+	return s
+}
+
+// SetOfflineDeviceCount sets the OfflineDeviceCount field's value.
+func (s *EdgeModelStat) SetOfflineDeviceCount(v int64) *EdgeModelStat {
+	s.OfflineDeviceCount = &v
+	return s
+}
+
+// SetSamplingDeviceCount sets the SamplingDeviceCount field's value.
+func (s *EdgeModelStat) SetSamplingDeviceCount(v int64) *EdgeModelStat {
+	s.SamplingDeviceCount = &v
+	return s
+}
+
+// Summary of model on edge device.
+type EdgeModelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the model.
+	//
+	// ModelName is a required field
+	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// The version model.
+	//
+	// ModelVersion is a required field
+	ModelVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EdgeModelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgeModelSummary) GoString() string {
+	return s.String()
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *EdgeModelSummary) SetModelName(v string) *EdgeModelSummary {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *EdgeModelSummary) SetModelVersion(v string) *EdgeModelSummary {
+	s.ModelVersion = &v
+	return s
+}
+
+// The output configuration.
+type EdgeOutputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
+	// encrypt data on the storage volume after compilation job. If you don't provide
+	// a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for
+	// your role's account.
+	KmsKeyId *string `type:"string"`
+
+	// The Amazon Simple Storage (S3) bucker URI.
+	//
+	// S3OutputLocation is a required field
+	S3OutputLocation *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EdgeOutputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgeOutputConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EdgeOutputConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EdgeOutputConfig"}
+	if s.S3OutputLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputLocation"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *EdgeOutputConfig) SetKmsKeyId(v string) *EdgeOutputConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetS3OutputLocation sets the S3OutputLocation field's value.
+func (s *EdgeOutputConfig) SetS3OutputLocation(v string) *EdgeOutputConfig {
+	s.S3OutputLocation = &v
+	return s
+}
+
+// Summary of edge packaging job.
+type EdgePackagingJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the SageMaker Neo compilation job.
+	CompilationJobName *string `min:"1" type:"string"`
+
+	// The timestamp of when the job was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the edge packaging job.
+	//
+	// EdgePackagingJobArn is a required field
+	EdgePackagingJobArn *string `min:"20" type:"string" required:"true"`
+
+	// The name of the edge packaging job.
+	//
+	// EdgePackagingJobName is a required field
+	EdgePackagingJobName *string `min:"1" type:"string" required:"true"`
+
+	// The status of the edge packaging job.
+	//
+	// EdgePackagingJobStatus is a required field
+	EdgePackagingJobStatus *string `type:"string" required:"true" enum:"EdgePackagingJobStatus"`
+
+	// The timestamp of when the edge packaging job was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the model.
+	ModelName *string `min:"1" type:"string"`
+
+	// The version of the model.
+	ModelVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s EdgePackagingJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgePackagingJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCompilationJobName sets the CompilationJobName field's value.
+func (s *EdgePackagingJobSummary) SetCompilationJobName(v string) *EdgePackagingJobSummary {
+	s.CompilationJobName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *EdgePackagingJobSummary) SetCreationTime(v time.Time) *EdgePackagingJobSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEdgePackagingJobArn sets the EdgePackagingJobArn field's value.
+func (s *EdgePackagingJobSummary) SetEdgePackagingJobArn(v string) *EdgePackagingJobSummary {
+	s.EdgePackagingJobArn = &v
+	return s
+}
+
+// SetEdgePackagingJobName sets the EdgePackagingJobName field's value.
+func (s *EdgePackagingJobSummary) SetEdgePackagingJobName(v string) *EdgePackagingJobSummary {
+	s.EdgePackagingJobName = &v
+	return s
+}
+
+// SetEdgePackagingJobStatus sets the EdgePackagingJobStatus field's value.
+func (s *EdgePackagingJobSummary) SetEdgePackagingJobStatus(v string) *EdgePackagingJobSummary {
+	s.EdgePackagingJobStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *EdgePackagingJobSummary) SetLastModifiedTime(v time.Time) *EdgePackagingJobSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *EdgePackagingJobSummary) SetModelName(v string) *EdgePackagingJobSummary {
+	s.ModelName = &v
+	return s
+}
+
+// SetModelVersion sets the ModelVersion field's value.
+func (s *EdgePackagingJobSummary) SetModelVersion(v string) *EdgePackagingJobSummary {
+	s.ModelVersion = &v
 	return s
 }
 
@@ -39757,15 +46311,32 @@ func (s *EndpointConfigSummary) SetEndpointConfigName(v string) *EndpointConfigS
 type EndpointInput struct {
 	_ struct{} `type:"structure"`
 
+	// If specified, monitoring jobs substract this time from the end time. For
+	// information about using offsets for scheduling monitoring jobs, see Schedule
+	// Model Quality Monitoring Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html).
+	EndTimeOffset *string `min:"1" type:"string"`
+
 	// An endpoint in customer's account which has enabled DataCaptureConfig enabled.
 	//
 	// EndpointName is a required field
 	EndpointName *string `type:"string" required:"true"`
 
+	// The attributes of the input data that are the input features.
+	FeaturesAttribute *string `type:"string"`
+
+	// The attribute of the input data that represents the ground truth label.
+	InferenceAttribute *string `type:"string"`
+
 	// Path to the filesystem where the endpoint data is available to the container.
 	//
 	// LocalPath is a required field
 	LocalPath *string `type:"string" required:"true"`
+
+	// In a classification problem, the attribute that represents the class probability.
+	ProbabilityAttribute *string `type:"string"`
+
+	// The threshold for the class probability to be evaluated as a positive result.
+	ProbabilityThresholdAttribute *float64 `type:"double"`
 
 	// Whether input data distributed in Amazon S3 is fully replicated or sharded
 	// by an S3 key. Defauts to FullyReplicated
@@ -39775,6 +46346,11 @@ type EndpointInput struct {
 	// the monitoring job. Pipe mode is recommended for large datasets. File mode
 	// is useful for small files that fit in memory. Defaults to File.
 	S3InputMode *string `type:"string" enum:"ProcessingS3InputMode"`
+
+	// If specified, monitoring jobs substract this time from the start time. For
+	// information about using offsets for scheduling monitoring jobs, see Schedule
+	// Model Quality Monitoring Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html).
+	StartTimeOffset *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -39790,11 +46366,17 @@ func (s EndpointInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EndpointInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EndpointInput"}
+	if s.EndTimeOffset != nil && len(*s.EndTimeOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndTimeOffset", 1))
+	}
 	if s.EndpointName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
 	}
 	if s.LocalPath == nil {
 		invalidParams.Add(request.NewErrParamRequired("LocalPath"))
+	}
+	if s.StartTimeOffset != nil && len(*s.StartTimeOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTimeOffset", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -39803,15 +46385,45 @@ func (s *EndpointInput) Validate() error {
 	return nil
 }
 
+// SetEndTimeOffset sets the EndTimeOffset field's value.
+func (s *EndpointInput) SetEndTimeOffset(v string) *EndpointInput {
+	s.EndTimeOffset = &v
+	return s
+}
+
 // SetEndpointName sets the EndpointName field's value.
 func (s *EndpointInput) SetEndpointName(v string) *EndpointInput {
 	s.EndpointName = &v
 	return s
 }
 
+// SetFeaturesAttribute sets the FeaturesAttribute field's value.
+func (s *EndpointInput) SetFeaturesAttribute(v string) *EndpointInput {
+	s.FeaturesAttribute = &v
+	return s
+}
+
+// SetInferenceAttribute sets the InferenceAttribute field's value.
+func (s *EndpointInput) SetInferenceAttribute(v string) *EndpointInput {
+	s.InferenceAttribute = &v
+	return s
+}
+
 // SetLocalPath sets the LocalPath field's value.
 func (s *EndpointInput) SetLocalPath(v string) *EndpointInput {
 	s.LocalPath = &v
+	return s
+}
+
+// SetProbabilityAttribute sets the ProbabilityAttribute field's value.
+func (s *EndpointInput) SetProbabilityAttribute(v string) *EndpointInput {
+	s.ProbabilityAttribute = &v
+	return s
+}
+
+// SetProbabilityThresholdAttribute sets the ProbabilityThresholdAttribute field's value.
+func (s *EndpointInput) SetProbabilityThresholdAttribute(v float64) *EndpointInput {
+	s.ProbabilityThresholdAttribute = &v
 	return s
 }
 
@@ -39824,6 +46436,12 @@ func (s *EndpointInput) SetS3DataDistributionType(v string) *EndpointInput {
 // SetS3InputMode sets the S3InputMode field's value.
 func (s *EndpointInput) SetS3InputMode(v string) *EndpointInput {
 	s.S3InputMode = &v
+	return s
+}
+
+// SetStartTimeOffset sets the StartTimeOffset field's value.
+func (s *EndpointInput) SetStartTimeOffset(v string) *EndpointInput {
+	s.StartTimeOffset = &v
 	return s
 }
 
@@ -41061,6 +47679,137 @@ func (s *FlowDefinitionSummary) SetFlowDefinitionName(v string) *FlowDefinitionS
 // SetFlowDefinitionStatus sets the FlowDefinitionStatus field's value.
 func (s *FlowDefinitionSummary) SetFlowDefinitionStatus(v string) *FlowDefinitionSummary {
 	s.FlowDefinitionStatus = &v
+	return s
+}
+
+type GetDeviceFleetReportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetDeviceFleetReportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDeviceFleetReportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDeviceFleetReportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDeviceFleetReportInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *GetDeviceFleetReportInput) SetDeviceFleetName(v string) *GetDeviceFleetReportInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+type GetDeviceFleetReportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The versions of Edge Manager agent deployed on the fleet.
+	AgentVersions []*AgentVersion `type:"list"`
+
+	// Description of the fleet.
+	Description *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the device.
+	//
+	// DeviceFleetArn is a required field
+	DeviceFleetArn *string `type:"string" required:"true"`
+
+	// The name of the fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// Status of devices.
+	DeviceStats *DeviceStats `type:"structure"`
+
+	// Status of model on device.
+	ModelStats []*EdgeModelStat `type:"list"`
+
+	// The output configuration for storing sample data collected by the fleet.
+	OutputConfig *EdgeOutputConfig `type:"structure"`
+
+	// Timestamp of when the report was generated.
+	ReportGenerated *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s GetDeviceFleetReportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDeviceFleetReportOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentVersions sets the AgentVersions field's value.
+func (s *GetDeviceFleetReportOutput) SetAgentVersions(v []*AgentVersion) *GetDeviceFleetReportOutput {
+	s.AgentVersions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetDeviceFleetReportOutput) SetDescription(v string) *GetDeviceFleetReportOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceFleetArn sets the DeviceFleetArn field's value.
+func (s *GetDeviceFleetReportOutput) SetDeviceFleetArn(v string) *GetDeviceFleetReportOutput {
+	s.DeviceFleetArn = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *GetDeviceFleetReportOutput) SetDeviceFleetName(v string) *GetDeviceFleetReportOutput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDeviceStats sets the DeviceStats field's value.
+func (s *GetDeviceFleetReportOutput) SetDeviceStats(v *DeviceStats) *GetDeviceFleetReportOutput {
+	s.DeviceStats = v
+	return s
+}
+
+// SetModelStats sets the ModelStats field's value.
+func (s *GetDeviceFleetReportOutput) SetModelStats(v []*EdgeModelStat) *GetDeviceFleetReportOutput {
+	s.ModelStats = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *GetDeviceFleetReportOutput) SetOutputConfig(v *EdgeOutputConfig) *GetDeviceFleetReportOutput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetReportGenerated sets the ReportGenerated field's value.
+func (s *GetDeviceFleetReportOutput) SetReportGenerated(v time.Time) *GetDeviceFleetReportOutput {
+	s.ReportGenerated = &v
 	return s
 }
 
@@ -47022,6 +53771,391 @@ func (s *ListContextsOutput) SetNextToken(v string) *ListContextsOutput {
 	return s
 }
 
+type ListDataQualityJobDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only data quality monitoring job definitions created
+	// after the specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only data quality monitoring job definitions created
+	// before the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// A filter that lists the data quality job definitions associated with the
+	// specified endpoint.
+	EndpointName *string `type:"string"`
+
+	// The maximum number of data quality monitoring job definitions to return in
+	// the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string in the data quality monitoring job definition name. This filter
+	// returns only data quality monitoring job definitions whose name contains
+	// the specified string.
+	NameContains *string `type:"string"`
+
+	// If the result of the previous ListDataQualityJobDefinitions request was truncated,
+	// the response includes a NextToken. To retrieve the next set of transform
+	// jobs, use the token in the next request.>
+	NextToken *string `type:"string"`
+
+	// The field to sort results by. The default is CreationTime.
+	SortBy *string `type:"string" enum:"MonitoringJobDefinitionSortKey"`
+
+	// The sort order for results. The default is Descending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListDataQualityJobDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDataQualityJobDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataQualityJobDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataQualityJobDefinitionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetCreationTimeAfter(v time.Time) *ListDataQualityJobDefinitionsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetCreationTimeBefore(v time.Time) *ListDataQualityJobDefinitionsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetEndpointName(v string) *ListDataQualityJobDefinitionsInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetMaxResults(v int64) *ListDataQualityJobDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetNameContains(v string) *ListDataQualityJobDefinitionsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetNextToken(v string) *ListDataQualityJobDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetSortBy(v string) *ListDataQualityJobDefinitionsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListDataQualityJobDefinitionsInput) SetSortOrder(v string) *ListDataQualityJobDefinitionsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListDataQualityJobDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of data quality monitoring job definitions.
+	//
+	// JobDefinitionSummaries is a required field
+	JobDefinitionSummaries []*MonitoringJobDefinitionSummary `type:"list" required:"true"`
+
+	// If the result of the previous ListDataQualityJobDefinitions request was truncated,
+	// the response includes a NextToken. To retrieve the next set of data quality
+	// monitoring job definitions, use the token in the next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListDataQualityJobDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDataQualityJobDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionSummaries sets the JobDefinitionSummaries field's value.
+func (s *ListDataQualityJobDefinitionsOutput) SetJobDefinitionSummaries(v []*MonitoringJobDefinitionSummary) *ListDataQualityJobDefinitionsOutput {
+	s.JobDefinitionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataQualityJobDefinitionsOutput) SetNextToken(v string) *ListDataQualityJobDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDeviceFleetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filter fleets where packaging job was created after specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Filter fleets where the edge packaging job was created before specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Select fleets where the job was updated after X
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// Select fleets where the job was updated before X
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of results to select.
+	MaxResults *int64 `type:"integer"`
+
+	// Filter for fleets containing this name in their fleet device name.
+	NameContains *string `type:"string"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+
+	// The column to sort by.
+	SortBy *string `type:"string" enum:"ListDeviceFleetsSortBy"`
+
+	// What direction to sort in.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListDeviceFleetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDeviceFleetsInput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListDeviceFleetsInput) SetCreationTimeAfter(v time.Time) *ListDeviceFleetsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListDeviceFleetsInput) SetCreationTimeBefore(v time.Time) *ListDeviceFleetsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetLastModifiedTimeAfter sets the LastModifiedTimeAfter field's value.
+func (s *ListDeviceFleetsInput) SetLastModifiedTimeAfter(v time.Time) *ListDeviceFleetsInput {
+	s.LastModifiedTimeAfter = &v
+	return s
+}
+
+// SetLastModifiedTimeBefore sets the LastModifiedTimeBefore field's value.
+func (s *ListDeviceFleetsInput) SetLastModifiedTimeBefore(v time.Time) *ListDeviceFleetsInput {
+	s.LastModifiedTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDeviceFleetsInput) SetMaxResults(v int64) *ListDeviceFleetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListDeviceFleetsInput) SetNameContains(v string) *ListDeviceFleetsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDeviceFleetsInput) SetNextToken(v string) *ListDeviceFleetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListDeviceFleetsInput) SetSortBy(v string) *ListDeviceFleetsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListDeviceFleetsInput) SetSortOrder(v string) *ListDeviceFleetsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListDeviceFleetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary of the device fleet.
+	//
+	// DeviceFleetSummaries is a required field
+	DeviceFleetSummaries []*DeviceFleetSummary `type:"list" required:"true"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListDeviceFleetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDeviceFleetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceFleetSummaries sets the DeviceFleetSummaries field's value.
+func (s *ListDeviceFleetsOutput) SetDeviceFleetSummaries(v []*DeviceFleetSummary) *ListDeviceFleetsOutput {
+	s.DeviceFleetSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDeviceFleetsOutput) SetNextToken(v string) *ListDeviceFleetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDevicesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filter for fleets containing this name in their device fleet name.
+	DeviceFleetName *string `min:"1" type:"string"`
+
+	// Select fleets where the job was updated after X
+	LatestHeartbeatAfter *time.Time `type:"timestamp"`
+
+	// Maximum number of results to select.
+	MaxResults *int64 `type:"integer"`
+
+	// A filter that searches devices that contains this name in any of their models.
+	ModelName *string `min:"1" type:"string"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListDevicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDevicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDevicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDevicesInput"}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.ModelName != nil && len(*s.ModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *ListDevicesInput) SetDeviceFleetName(v string) *ListDevicesInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetLatestHeartbeatAfter sets the LatestHeartbeatAfter field's value.
+func (s *ListDevicesInput) SetLatestHeartbeatAfter(v time.Time) *ListDevicesInput {
+	s.LatestHeartbeatAfter = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDevicesInput) SetMaxResults(v int64) *ListDevicesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetModelName sets the ModelName field's value.
+func (s *ListDevicesInput) SetModelName(v string) *ListDevicesInput {
+	s.ModelName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicesInput) SetNextToken(v string) *ListDevicesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDevicesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary of devices.
+	//
+	// DeviceSummaries is a required field
+	DeviceSummaries []*DeviceSummary `type:"list" required:"true"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListDevicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDevicesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceSummaries sets the DeviceSummaries field's value.
+func (s *ListDevicesOutput) SetDeviceSummaries(v []*DeviceSummary) *ListDevicesOutput {
+	s.DeviceSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicesOutput) SetNextToken(v string) *ListDevicesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListDomainsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -47097,6 +54231,154 @@ func (s *ListDomainsOutput) SetDomains(v []*DomainDetails) *ListDomainsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDomainsOutput) SetNextToken(v string) *ListDomainsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEdgePackagingJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Select jobs where the job was created after specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// Select jobs where the job was created before specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Select jobs where the job was updated after specified time.
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// Select jobs where the job was updated before specified time.
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// Maximum number of results to select.
+	MaxResults *int64 `type:"integer"`
+
+	// Filter for jobs where the model name contains this string.
+	ModelNameContains *string `type:"string"`
+
+	// Filter for jobs containing this name in their packaging job name.
+	NameContains *string `type:"string"`
+
+	// The response from the last list when returning a list large enough to need
+	// tokening.
+	NextToken *string `type:"string"`
+
+	// Use to specify what column to sort by.
+	SortBy *string `type:"string" enum:"ListEdgePackagingJobsSortBy"`
+
+	// What direction to sort by.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+
+	// The job status to filter for.
+	StatusEquals *string `type:"string" enum:"EdgePackagingJobStatus"`
+}
+
+// String returns the string representation
+func (s ListEdgePackagingJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEdgePackagingJobsInput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListEdgePackagingJobsInput) SetCreationTimeAfter(v time.Time) *ListEdgePackagingJobsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListEdgePackagingJobsInput) SetCreationTimeBefore(v time.Time) *ListEdgePackagingJobsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetLastModifiedTimeAfter sets the LastModifiedTimeAfter field's value.
+func (s *ListEdgePackagingJobsInput) SetLastModifiedTimeAfter(v time.Time) *ListEdgePackagingJobsInput {
+	s.LastModifiedTimeAfter = &v
+	return s
+}
+
+// SetLastModifiedTimeBefore sets the LastModifiedTimeBefore field's value.
+func (s *ListEdgePackagingJobsInput) SetLastModifiedTimeBefore(v time.Time) *ListEdgePackagingJobsInput {
+	s.LastModifiedTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEdgePackagingJobsInput) SetMaxResults(v int64) *ListEdgePackagingJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetModelNameContains sets the ModelNameContains field's value.
+func (s *ListEdgePackagingJobsInput) SetModelNameContains(v string) *ListEdgePackagingJobsInput {
+	s.ModelNameContains = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListEdgePackagingJobsInput) SetNameContains(v string) *ListEdgePackagingJobsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgePackagingJobsInput) SetNextToken(v string) *ListEdgePackagingJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListEdgePackagingJobsInput) SetSortBy(v string) *ListEdgePackagingJobsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListEdgePackagingJobsInput) SetSortOrder(v string) *ListEdgePackagingJobsInput {
+	s.SortOrder = &v
+	return s
+}
+
+// SetStatusEquals sets the StatusEquals field's value.
+func (s *ListEdgePackagingJobsInput) SetStatusEquals(v string) *ListEdgePackagingJobsInput {
+	s.StatusEquals = &v
+	return s
+}
+
+type ListEdgePackagingJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summaries of edge packaging jobs.
+	//
+	// EdgePackagingJobSummaries is a required field
+	EdgePackagingJobSummaries []*EdgePackagingJobSummary `type:"list" required:"true"`
+
+	// Token to use when calling the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListEdgePackagingJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEdgePackagingJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEdgePackagingJobSummaries sets the EdgePackagingJobSummaries field's value.
+func (s *ListEdgePackagingJobsOutput) SetEdgePackagingJobSummaries(v []*EdgePackagingJobSummary) *ListEdgePackagingJobsOutput {
+	s.EdgePackagingJobSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEdgePackagingJobsOutput) SetNextToken(v string) *ListEdgePackagingJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -48635,6 +55917,285 @@ func (s *ListLabelingJobsOutput) SetNextToken(v string) *ListLabelingJobsOutput 
 	return s
 }
 
+type ListModelBiasJobDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only model bias jobs created after a specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only model bias jobs created before a specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Name of the endpoint to monitor for model bias.
+	EndpointName *string `type:"string"`
+
+	// The maximum number of model bias jobs to return in the response. The default
+	// value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Filter for model bias jobs whose name contains a specified string.
+	NameContains *string `type:"string"`
+
+	// The token returned if the response is truncated. To retrieve the next set
+	// of job executions, use it in the next request.
+	NextToken *string `type:"string"`
+
+	// Whether to sort results by the Name or CreationTime field. The default is
+	// CreationTime.
+	SortBy *string `type:"string" enum:"MonitoringJobDefinitionSortKey"`
+
+	// Whether to sort the results in Ascending or Descending order. The default
+	// is Descending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListModelBiasJobDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListModelBiasJobDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListModelBiasJobDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListModelBiasJobDefinitionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetCreationTimeAfter(v time.Time) *ListModelBiasJobDefinitionsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetCreationTimeBefore(v time.Time) *ListModelBiasJobDefinitionsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetEndpointName(v string) *ListModelBiasJobDefinitionsInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetMaxResults(v int64) *ListModelBiasJobDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetNameContains(v string) *ListModelBiasJobDefinitionsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetNextToken(v string) *ListModelBiasJobDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetSortBy(v string) *ListModelBiasJobDefinitionsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListModelBiasJobDefinitionsInput) SetSortOrder(v string) *ListModelBiasJobDefinitionsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListModelBiasJobDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A JSON array in which each element is a summary for a model bias jobs.
+	//
+	// JobDefinitionSummaries is a required field
+	JobDefinitionSummaries []*MonitoringJobDefinitionSummary `type:"list" required:"true"`
+
+	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
+	// the next set of jobs, use it in the subsequent request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListModelBiasJobDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListModelBiasJobDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionSummaries sets the JobDefinitionSummaries field's value.
+func (s *ListModelBiasJobDefinitionsOutput) SetJobDefinitionSummaries(v []*MonitoringJobDefinitionSummary) *ListModelBiasJobDefinitionsOutput {
+	s.JobDefinitionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelBiasJobDefinitionsOutput) SetNextToken(v string) *ListModelBiasJobDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListModelExplainabilityJobDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only model explainability jobs created after a specified
+	// time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only model explainability jobs created before a specified
+	// time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// Name of the endpoint to monitor for model explainability.
+	EndpointName *string `type:"string"`
+
+	// The maximum number of jobs to return in the response. The default value is
+	// 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Filter for model explainability jobs whose name contains a specified string.
+	NameContains *string `type:"string"`
+
+	// The token returned if the response is truncated. To retrieve the next set
+	// of job executions, use it in the next request.
+	NextToken *string `type:"string"`
+
+	// Whether to sort results by the Name or CreationTime field. The default is
+	// CreationTime.
+	SortBy *string `type:"string" enum:"MonitoringJobDefinitionSortKey"`
+
+	// Whether to sort the results in Ascending or Descending order. The default
+	// is Descending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListModelExplainabilityJobDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListModelExplainabilityJobDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListModelExplainabilityJobDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListModelExplainabilityJobDefinitionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetCreationTimeAfter(v time.Time) *ListModelExplainabilityJobDefinitionsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetCreationTimeBefore(v time.Time) *ListModelExplainabilityJobDefinitionsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetEndpointName(v string) *ListModelExplainabilityJobDefinitionsInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetMaxResults(v int64) *ListModelExplainabilityJobDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetNameContains(v string) *ListModelExplainabilityJobDefinitionsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetNextToken(v string) *ListModelExplainabilityJobDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetSortBy(v string) *ListModelExplainabilityJobDefinitionsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListModelExplainabilityJobDefinitionsInput) SetSortOrder(v string) *ListModelExplainabilityJobDefinitionsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListModelExplainabilityJobDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A JSON array in which each element is a summary for a explainability bias
+	// jobs.
+	//
+	// JobDefinitionSummaries is a required field
+	JobDefinitionSummaries []*MonitoringJobDefinitionSummary `type:"list" required:"true"`
+
+	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
+	// the next set of jobs, use it in the subsequent request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListModelExplainabilityJobDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListModelExplainabilityJobDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionSummaries sets the JobDefinitionSummaries field's value.
+func (s *ListModelExplainabilityJobDefinitionsOutput) SetJobDefinitionSummaries(v []*MonitoringJobDefinitionSummary) *ListModelExplainabilityJobDefinitionsOutput {
+	s.JobDefinitionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelExplainabilityJobDefinitionsOutput) SetNextToken(v string) *ListModelExplainabilityJobDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListModelPackageGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -48932,6 +56493,147 @@ func (s *ListModelPackagesOutput) SetNextToken(v string) *ListModelPackagesOutpu
 	return s
 }
 
+type ListModelQualityJobDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only model quality monitoring job definitions created
+	// after the specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only model quality monitoring job definitions created
+	// before the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// A filter that returns only model quality monitoring job definitions that
+	// are associated with the specified endpoint.
+	EndpointName *string `type:"string"`
+
+	// The maximum number of results to return in a call to ListModelQualityJobDefinitions.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string in the transform job name. This filter returns only model quality
+	// monitoring job definitions whose name contains the specified string.
+	NameContains *string `type:"string"`
+
+	// If the result of the previous ListModelQualityJobDefinitions request was
+	// truncated, the response includes a NextToken. To retrieve the next set of
+	// model quality monitoring job definitions, use the token in the next request.
+	NextToken *string `type:"string"`
+
+	// The field to sort results by. The default is CreationTime.
+	SortBy *string `type:"string" enum:"MonitoringJobDefinitionSortKey"`
+
+	// The sort order for results. The default is Descending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListModelQualityJobDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListModelQualityJobDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListModelQualityJobDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListModelQualityJobDefinitionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetCreationTimeAfter(v time.Time) *ListModelQualityJobDefinitionsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetCreationTimeBefore(v time.Time) *ListModelQualityJobDefinitionsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetEndpointName(v string) *ListModelQualityJobDefinitionsInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetMaxResults(v int64) *ListModelQualityJobDefinitionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetNameContains(v string) *ListModelQualityJobDefinitionsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetNextToken(v string) *ListModelQualityJobDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetSortBy(v string) *ListModelQualityJobDefinitionsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListModelQualityJobDefinitionsInput) SetSortOrder(v string) *ListModelQualityJobDefinitionsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListModelQualityJobDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of summaries of model quality monitoring job definitions.
+	//
+	// JobDefinitionSummaries is a required field
+	JobDefinitionSummaries []*MonitoringJobDefinitionSummary `type:"list" required:"true"`
+
+	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
+	// the next set of model quality monitoring job definitions, use it in the next
+	// request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListModelQualityJobDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListModelQualityJobDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobDefinitionSummaries sets the JobDefinitionSummaries field's value.
+func (s *ListModelQualityJobDefinitionsOutput) SetJobDefinitionSummaries(v []*MonitoringJobDefinitionSummary) *ListModelQualityJobDefinitionsOutput {
+	s.JobDefinitionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelQualityJobDefinitionsOutput) SetNextToken(v string) *ListModelQualityJobDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListModelsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -49083,8 +56785,15 @@ type ListMonitoringExecutionsInput struct {
 	// 10.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// Gets a list of the monitoring job runs of the specified monitoring job definitions.
+	MonitoringJobDefinitionName *string `min:"1" type:"string"`
+
 	// Name of a specific schedule to fetch jobs for.
 	MonitoringScheduleName *string `min:"1" type:"string"`
+
+	// A filter that returns only the monitoring job runs of the specified monitoring
+	// type.
+	MonitoringTypeEquals *string `type:"string" enum:"MonitoringType"`
 
 	// The token returned if the response is truncated. To retrieve the next set
 	// of job executions, use it in the next request.
@@ -49123,6 +56832,9 @@ func (s *ListMonitoringExecutionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListMonitoringExecutionsInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MonitoringJobDefinitionName != nil && len(*s.MonitoringJobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitoringJobDefinitionName", 1))
 	}
 	if s.MonitoringScheduleName != nil && len(*s.MonitoringScheduleName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MonitoringScheduleName", 1))
@@ -49170,9 +56882,21 @@ func (s *ListMonitoringExecutionsInput) SetMaxResults(v int64) *ListMonitoringEx
 	return s
 }
 
+// SetMonitoringJobDefinitionName sets the MonitoringJobDefinitionName field's value.
+func (s *ListMonitoringExecutionsInput) SetMonitoringJobDefinitionName(v string) *ListMonitoringExecutionsInput {
+	s.MonitoringJobDefinitionName = &v
+	return s
+}
+
 // SetMonitoringScheduleName sets the MonitoringScheduleName field's value.
 func (s *ListMonitoringExecutionsInput) SetMonitoringScheduleName(v string) *ListMonitoringExecutionsInput {
 	s.MonitoringScheduleName = &v
+	return s
+}
+
+// SetMonitoringTypeEquals sets the MonitoringTypeEquals field's value.
+func (s *ListMonitoringExecutionsInput) SetMonitoringTypeEquals(v string) *ListMonitoringExecutionsInput {
+	s.MonitoringTypeEquals = &v
 	return s
 }
 
@@ -49273,6 +56997,14 @@ type ListMonitoringSchedulesInput struct {
 	// 10.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// Gets a list of the monitoring schedules for the specified monitoring job
+	// definition.
+	MonitoringJobDefinitionName *string `min:"1" type:"string"`
+
+	// A filter that returns only the monitoring schedules for the specified monitoring
+	// type.
+	MonitoringTypeEquals *string `type:"string" enum:"MonitoringType"`
+
 	// Filter for monitoring schedules whose name contains a specified string.
 	NameContains *string `type:"string"`
 
@@ -49308,6 +57040,9 @@ func (s *ListMonitoringSchedulesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListMonitoringSchedulesInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.MonitoringJobDefinitionName != nil && len(*s.MonitoringJobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitoringJobDefinitionName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -49352,6 +57087,18 @@ func (s *ListMonitoringSchedulesInput) SetMaxResults(v int64) *ListMonitoringSch
 	return s
 }
 
+// SetMonitoringJobDefinitionName sets the MonitoringJobDefinitionName field's value.
+func (s *ListMonitoringSchedulesInput) SetMonitoringJobDefinitionName(v string) *ListMonitoringSchedulesInput {
+	s.MonitoringJobDefinitionName = &v
+	return s
+}
+
+// SetMonitoringTypeEquals sets the MonitoringTypeEquals field's value.
+func (s *ListMonitoringSchedulesInput) SetMonitoringTypeEquals(v string) *ListMonitoringSchedulesInput {
+	s.MonitoringTypeEquals = &v
+	return s
+}
+
 // SetNameContains sets the NameContains field's value.
 func (s *ListMonitoringSchedulesInput) SetNameContains(v string) *ListMonitoringSchedulesInput {
 	s.NameContains = &v
@@ -49391,7 +57138,7 @@ type ListMonitoringSchedulesOutput struct {
 	MonitoringScheduleSummaries []*MonitoringScheduleSummary `type:"list" required:"true"`
 
 	// If the response is truncated, Amazon SageMaker returns this token. To retrieve
-	// the next set of jobs, use it in the subsequent reques
+	// the next set of jobs, use it in the subsequent request.
 	NextToken *string `type:"string"`
 }
 
@@ -52089,6 +59836,173 @@ func (s *ModelArtifacts) SetS3ModelArtifacts(v string) *ModelArtifacts {
 	return s
 }
 
+// Docker container image configuration object for the model bias job.
+type ModelBiasAppSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// JSON formatted S3 file that defines bias parameters. For more information
+	// on this JSON configuration file, see Configure bias parameters (https://docs.aws.amazon.com/sagemaker/latest/json-bias-parameter-config.html).
+	//
+	// ConfigUri is a required field
+	ConfigUri *string `type:"string" required:"true"`
+
+	// Sets the environment variables in the Docker container.
+	Environment map[string]*string `type:"map"`
+
+	// The container image to be run by the model bias job.
+	//
+	// ImageUri is a required field
+	ImageUri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ModelBiasAppSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelBiasAppSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelBiasAppSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelBiasAppSpecification"}
+	if s.ConfigUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigUri"))
+	}
+	if s.ImageUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigUri sets the ConfigUri field's value.
+func (s *ModelBiasAppSpecification) SetConfigUri(v string) *ModelBiasAppSpecification {
+	s.ConfigUri = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ModelBiasAppSpecification) SetEnvironment(v map[string]*string) *ModelBiasAppSpecification {
+	s.Environment = v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ModelBiasAppSpecification) SetImageUri(v string) *ModelBiasAppSpecification {
+	s.ImageUri = &v
+	return s
+}
+
+// The configuration for a baseline model bias job.
+type ModelBiasBaselineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the baseline model bias job.
+	BaseliningJobName *string `min:"1" type:"string"`
+
+	// The constraints resource for a monitoring job.
+	ConstraintsResource *MonitoringConstraintsResource `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModelBiasBaselineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelBiasBaselineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelBiasBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelBiasBaselineConfig"}
+	if s.BaseliningJobName != nil && len(*s.BaseliningJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseliningJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseliningJobName sets the BaseliningJobName field's value.
+func (s *ModelBiasBaselineConfig) SetBaseliningJobName(v string) *ModelBiasBaselineConfig {
+	s.BaseliningJobName = &v
+	return s
+}
+
+// SetConstraintsResource sets the ConstraintsResource field's value.
+func (s *ModelBiasBaselineConfig) SetConstraintsResource(v *MonitoringConstraintsResource) *ModelBiasBaselineConfig {
+	s.ConstraintsResource = v
+	return s
+}
+
+// Inputs for the model bias job.
+type ModelBiasJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Input object for the endpoint
+	//
+	// EndpointInput is a required field
+	EndpointInput *EndpointInput `type:"structure" required:"true"`
+
+	// Location of ground truth labels to use in model bias job.
+	//
+	// GroundTruthS3Input is a required field
+	GroundTruthS3Input *MonitoringGroundTruthS3Input `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ModelBiasJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelBiasJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelBiasJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelBiasJobInput"}
+	if s.EndpointInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	}
+	if s.GroundTruthS3Input == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroundTruthS3Input"))
+	}
+	if s.EndpointInput != nil {
+		if err := s.EndpointInput.Validate(); err != nil {
+			invalidParams.AddNested("EndpointInput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointInput sets the EndpointInput field's value.
+func (s *ModelBiasJobInput) SetEndpointInput(v *EndpointInput) *ModelBiasJobInput {
+	s.EndpointInput = v
+	return s
+}
+
+// SetGroundTruthS3Input sets the GroundTruthS3Input field's value.
+func (s *ModelBiasJobInput) SetGroundTruthS3Input(v *MonitoringGroundTruthS3Input) *ModelBiasJobInput {
+	s.GroundTruthS3Input = v
+	return s
+}
+
 // Configures the timeout and maximum number of retries for processing a transform
 // job invocation.
 type ModelClientConfig struct {
@@ -52210,6 +60124,161 @@ func (s ModelDigests) GoString() string {
 // SetArtifactDigest sets the ArtifactDigest field's value.
 func (s *ModelDigests) SetArtifactDigest(v string) *ModelDigests {
 	s.ArtifactDigest = &v
+	return s
+}
+
+// Docker container image configuration object for the model explainability
+// job.
+type ModelExplainabilityAppSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// JSON formatted S3 file that defines explainability parameters. For more information
+	// on this JSON configuration file, see Configure model explainability parameters
+	// (https://docs.aws.amazon.com/sagemaker/latest/json-model-explainability-parameter-config.html).
+	//
+	// ConfigUri is a required field
+	ConfigUri *string `type:"string" required:"true"`
+
+	// Sets the environment variables in the Docker container.
+	Environment map[string]*string `type:"map"`
+
+	// The container image to be run by the model explainability job.
+	//
+	// ImageUri is a required field
+	ImageUri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ModelExplainabilityAppSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelExplainabilityAppSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelExplainabilityAppSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelExplainabilityAppSpecification"}
+	if s.ConfigUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigUri"))
+	}
+	if s.ImageUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigUri sets the ConfigUri field's value.
+func (s *ModelExplainabilityAppSpecification) SetConfigUri(v string) *ModelExplainabilityAppSpecification {
+	s.ConfigUri = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ModelExplainabilityAppSpecification) SetEnvironment(v map[string]*string) *ModelExplainabilityAppSpecification {
+	s.Environment = v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ModelExplainabilityAppSpecification) SetImageUri(v string) *ModelExplainabilityAppSpecification {
+	s.ImageUri = &v
+	return s
+}
+
+// The configuration for a baseline model explainability job.
+type ModelExplainabilityBaselineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the baseline model explainability job.
+	BaseliningJobName *string `min:"1" type:"string"`
+
+	// The constraints resource for a monitoring job.
+	ConstraintsResource *MonitoringConstraintsResource `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModelExplainabilityBaselineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelExplainabilityBaselineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelExplainabilityBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelExplainabilityBaselineConfig"}
+	if s.BaseliningJobName != nil && len(*s.BaseliningJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseliningJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseliningJobName sets the BaseliningJobName field's value.
+func (s *ModelExplainabilityBaselineConfig) SetBaseliningJobName(v string) *ModelExplainabilityBaselineConfig {
+	s.BaseliningJobName = &v
+	return s
+}
+
+// SetConstraintsResource sets the ConstraintsResource field's value.
+func (s *ModelExplainabilityBaselineConfig) SetConstraintsResource(v *MonitoringConstraintsResource) *ModelExplainabilityBaselineConfig {
+	s.ConstraintsResource = v
+	return s
+}
+
+// Inputs for the model explainability job.
+type ModelExplainabilityJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Input object for the endpoint
+	//
+	// EndpointInput is a required field
+	EndpointInput *EndpointInput `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ModelExplainabilityJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelExplainabilityJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelExplainabilityJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelExplainabilityJobInput"}
+	if s.EndpointInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	}
+	if s.EndpointInput != nil {
+		if err := s.EndpointInput.Validate(); err != nil {
+			invalidParams.AddNested("EndpointInput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointInput sets the EndpointInput field's value.
+func (s *ModelExplainabilityJobInput) SetEndpointInput(v *EndpointInput) *ModelExplainabilityJobInput {
+	s.EndpointInput = v
 	return s
 }
 
@@ -53134,6 +61203,216 @@ func (s *ModelQuality) SetStatistics(v *MetricsSource) *ModelQuality {
 	return s
 }
 
+// Container image configuration object for the monitoring job.
+type ModelQualityAppSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// An array of arguments for the container used to run the monitoring job.
+	ContainerArguments []*string `min:"1" type:"list"`
+
+	// Specifies the entrypoint for a container that the monitoring job runs.
+	ContainerEntrypoint []*string `min:"1" type:"list"`
+
+	// Sets the environment variables in the container that the monitoring job runs.
+	Environment map[string]*string `type:"map"`
+
+	// The address of the container image that the monitoring job runs.
+	//
+	// ImageUri is a required field
+	ImageUri *string `type:"string" required:"true"`
+
+	// An Amazon S3 URI to a script that is called after analysis has been performed.
+	// Applicable only for the built-in (first party) containers.
+	PostAnalyticsProcessorSourceUri *string `type:"string"`
+
+	// The machine learning problem type of the model that the monitoring job monitors.
+	ProblemType *string `type:"string" enum:"MonitoringProblemType"`
+
+	// An Amazon S3 URI to a script that is called per row prior to running analysis.
+	// It can base64 decode the payload and convert it into a flatted json so that
+	// the built-in container can use the converted data. Applicable only for the
+	// built-in (first party) containers.
+	RecordPreprocessorSourceUri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModelQualityAppSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelQualityAppSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelQualityAppSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelQualityAppSpecification"}
+	if s.ContainerArguments != nil && len(s.ContainerArguments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerArguments", 1))
+	}
+	if s.ContainerEntrypoint != nil && len(s.ContainerEntrypoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainerEntrypoint", 1))
+	}
+	if s.ImageUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerArguments sets the ContainerArguments field's value.
+func (s *ModelQualityAppSpecification) SetContainerArguments(v []*string) *ModelQualityAppSpecification {
+	s.ContainerArguments = v
+	return s
+}
+
+// SetContainerEntrypoint sets the ContainerEntrypoint field's value.
+func (s *ModelQualityAppSpecification) SetContainerEntrypoint(v []*string) *ModelQualityAppSpecification {
+	s.ContainerEntrypoint = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ModelQualityAppSpecification) SetEnvironment(v map[string]*string) *ModelQualityAppSpecification {
+	s.Environment = v
+	return s
+}
+
+// SetImageUri sets the ImageUri field's value.
+func (s *ModelQualityAppSpecification) SetImageUri(v string) *ModelQualityAppSpecification {
+	s.ImageUri = &v
+	return s
+}
+
+// SetPostAnalyticsProcessorSourceUri sets the PostAnalyticsProcessorSourceUri field's value.
+func (s *ModelQualityAppSpecification) SetPostAnalyticsProcessorSourceUri(v string) *ModelQualityAppSpecification {
+	s.PostAnalyticsProcessorSourceUri = &v
+	return s
+}
+
+// SetProblemType sets the ProblemType field's value.
+func (s *ModelQualityAppSpecification) SetProblemType(v string) *ModelQualityAppSpecification {
+	s.ProblemType = &v
+	return s
+}
+
+// SetRecordPreprocessorSourceUri sets the RecordPreprocessorSourceUri field's value.
+func (s *ModelQualityAppSpecification) SetRecordPreprocessorSourceUri(v string) *ModelQualityAppSpecification {
+	s.RecordPreprocessorSourceUri = &v
+	return s
+}
+
+// Configuration for monitoring constraints and monitoring statistics. These
+// baseline resources are compared against the results of the current job from
+// the series of jobs scheduled to collect data periodically.
+type ModelQualityBaselineConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job that performs baselining for the monitoring job.
+	BaseliningJobName *string `min:"1" type:"string"`
+
+	// The constraints resource for a monitoring job.
+	ConstraintsResource *MonitoringConstraintsResource `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModelQualityBaselineConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelQualityBaselineConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelQualityBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelQualityBaselineConfig"}
+	if s.BaseliningJobName != nil && len(*s.BaseliningJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseliningJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseliningJobName sets the BaseliningJobName field's value.
+func (s *ModelQualityBaselineConfig) SetBaseliningJobName(v string) *ModelQualityBaselineConfig {
+	s.BaseliningJobName = &v
+	return s
+}
+
+// SetConstraintsResource sets the ConstraintsResource field's value.
+func (s *ModelQualityBaselineConfig) SetConstraintsResource(v *MonitoringConstraintsResource) *ModelQualityBaselineConfig {
+	s.ConstraintsResource = v
+	return s
+}
+
+// The input for the model quality monitoring job. Currently endponts are supported
+// for input for model quality monitoring jobs.
+type ModelQualityJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Input object for the endpoint
+	//
+	// EndpointInput is a required field
+	EndpointInput *EndpointInput `type:"structure" required:"true"`
+
+	// The ground truth label provided for the model.
+	//
+	// GroundTruthS3Input is a required field
+	GroundTruthS3Input *MonitoringGroundTruthS3Input `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ModelQualityJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModelQualityJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelQualityJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelQualityJobInput"}
+	if s.EndpointInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointInput"))
+	}
+	if s.GroundTruthS3Input == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroundTruthS3Input"))
+	}
+	if s.EndpointInput != nil {
+		if err := s.EndpointInput.Validate(); err != nil {
+			invalidParams.AddNested("EndpointInput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointInput sets the EndpointInput field's value.
+func (s *ModelQualityJobInput) SetEndpointInput(v *EndpointInput) *ModelQualityJobInput {
+	s.EndpointInput = v
+	return s
+}
+
+// SetGroundTruthS3Input sets the GroundTruthS3Input field's value.
+func (s *ModelQualityJobInput) SetGroundTruthS3Input(v *MonitoringGroundTruthS3Input) *ModelQualityJobInput {
+	s.GroundTruthS3Input = v
+	return s
+}
+
 // Metadata for Model steps.
 type ModelStepMetadata struct {
 	_ struct{} `type:"structure"`
@@ -53297,6 +61576,9 @@ func (s *MonitoringAppSpecification) SetRecordPreprocessorSourceUri(v string) *M
 type MonitoringBaselineConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the job that performs baselining for the monitoring job.
+	BaseliningJobName *string `min:"1" type:"string"`
+
 	// The baseline constraint file in Amazon S3 that the current monitoring job
 	// should validated against.
 	ConstraintsResource *MonitoringConstraintsResource `type:"structure"`
@@ -53314,6 +61596,25 @@ func (s MonitoringBaselineConfig) String() string {
 // GoString returns the string representation
 func (s MonitoringBaselineConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MonitoringBaselineConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MonitoringBaselineConfig"}
+	if s.BaseliningJobName != nil && len(*s.BaseliningJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseliningJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseliningJobName sets the BaseliningJobName field's value.
+func (s *MonitoringBaselineConfig) SetBaseliningJobName(v string) *MonitoringBaselineConfig {
+	s.BaseliningJobName = &v
+	return s
 }
 
 // SetConstraintsResource sets the ConstraintsResource field's value.
@@ -53448,7 +61749,7 @@ type MonitoringExecutionSummary struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// The name of teh endpoint used to run the monitoring job.
+	// The name of the endpoint used to run the monitoring job.
 	EndpointName *string `type:"string"`
 
 	// Contains the reason a monitoring job failed, if it failed.
@@ -53464,10 +61765,16 @@ type MonitoringExecutionSummary struct {
 	// MonitoringExecutionStatus is a required field
 	MonitoringExecutionStatus *string `type:"string" required:"true" enum:"ExecutionStatus"`
 
+	// The name of the monitoring job.
+	MonitoringJobDefinitionName *string `min:"1" type:"string"`
+
 	// The name of the monitoring schedule.
 	//
 	// MonitoringScheduleName is a required field
 	MonitoringScheduleName *string `min:"1" type:"string" required:"true"`
+
+	// The type of the monitoring job.
+	MonitoringType *string `type:"string" enum:"MonitoringType"`
 
 	// The Amazon Resource Name (ARN) of the monitoring job.
 	ProcessingJobArn *string `type:"string"`
@@ -53518,9 +61825,21 @@ func (s *MonitoringExecutionSummary) SetMonitoringExecutionStatus(v string) *Mon
 	return s
 }
 
+// SetMonitoringJobDefinitionName sets the MonitoringJobDefinitionName field's value.
+func (s *MonitoringExecutionSummary) SetMonitoringJobDefinitionName(v string) *MonitoringExecutionSummary {
+	s.MonitoringJobDefinitionName = &v
+	return s
+}
+
 // SetMonitoringScheduleName sets the MonitoringScheduleName field's value.
 func (s *MonitoringExecutionSummary) SetMonitoringScheduleName(v string) *MonitoringExecutionSummary {
 	s.MonitoringScheduleName = &v
+	return s
+}
+
+// SetMonitoringType sets the MonitoringType field's value.
+func (s *MonitoringExecutionSummary) SetMonitoringType(v string) *MonitoringExecutionSummary {
+	s.MonitoringType = &v
 	return s
 }
 
@@ -53533,6 +61852,30 @@ func (s *MonitoringExecutionSummary) SetProcessingJobArn(v string) *MonitoringEx
 // SetScheduledTime sets the ScheduledTime field's value.
 func (s *MonitoringExecutionSummary) SetScheduledTime(v time.Time) *MonitoringExecutionSummary {
 	s.ScheduledTime = &v
+	return s
+}
+
+// The ground truth labels for the dataset used for the monitoring job.
+type MonitoringGroundTruthS3Input struct {
+	_ struct{} `type:"structure"`
+
+	// The address of the Amazon S3 location of the ground truth labels.
+	S3Uri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MonitoringGroundTruthS3Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MonitoringGroundTruthS3Input) GoString() string {
+	return s.String()
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *MonitoringGroundTruthS3Input) SetS3Uri(v string) *MonitoringGroundTruthS3Input {
+	s.S3Uri = &v
 	return s
 }
 
@@ -53662,6 +62005,11 @@ func (s *MonitoringJobDefinition) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
 	}
+	if s.BaselineConfig != nil {
+		if err := s.BaselineConfig.Validate(); err != nil {
+			invalidParams.AddNested("BaselineConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.MonitoringAppSpecification != nil {
 		if err := s.MonitoringAppSpecification.Validate(); err != nil {
 			invalidParams.AddNested("MonitoringAppSpecification", err.(request.ErrInvalidParams))
@@ -53755,6 +62103,129 @@ func (s *MonitoringJobDefinition) SetRoleArn(v string) *MonitoringJobDefinition 
 // SetStoppingCondition sets the StoppingCondition field's value.
 func (s *MonitoringJobDefinition) SetStoppingCondition(v *MonitoringStoppingCondition) *MonitoringJobDefinition {
 	s.StoppingCondition = v
+	return s
+}
+
+// Summary information about a monitoring job.
+type MonitoringJobDefinitionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the monitoring job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// The name of the endpoint that the job monitors.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the monitoring job.
+	//
+	// MonitoringJobDefinitionArn is a required field
+	MonitoringJobDefinitionArn *string `type:"string" required:"true"`
+
+	// The name of the monitoring job.
+	//
+	// MonitoringJobDefinitionName is a required field
+	MonitoringJobDefinitionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MonitoringJobDefinitionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MonitoringJobDefinitionSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *MonitoringJobDefinitionSummary) SetCreationTime(v time.Time) *MonitoringJobDefinitionSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *MonitoringJobDefinitionSummary) SetEndpointName(v string) *MonitoringJobDefinitionSummary {
+	s.EndpointName = &v
+	return s
+}
+
+// SetMonitoringJobDefinitionArn sets the MonitoringJobDefinitionArn field's value.
+func (s *MonitoringJobDefinitionSummary) SetMonitoringJobDefinitionArn(v string) *MonitoringJobDefinitionSummary {
+	s.MonitoringJobDefinitionArn = &v
+	return s
+}
+
+// SetMonitoringJobDefinitionName sets the MonitoringJobDefinitionName field's value.
+func (s *MonitoringJobDefinitionSummary) SetMonitoringJobDefinitionName(v string) *MonitoringJobDefinitionSummary {
+	s.MonitoringJobDefinitionName = &v
+	return s
+}
+
+// The networking configuration for the monitoring job.
+type MonitoringNetworkConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to encrypt all communications between the instances used for the
+	// monitoring jobs. Choose True to encrypt communications. Encryption provides
+	// greater security for distributed jobs, but the processing might take longer.
+	EnableInterContainerTrafficEncryption *bool `type:"boolean"`
+
+	// Whether to allow inbound and outbound network calls to and from the containers
+	// used for the monitoring job.
+	EnableNetworkIsolation *bool `type:"boolean"`
+
+	// Specifies a VPC that your training jobs and hosted models have access to.
+	// Control access to and from your training and model containers by configuring
+	// the VPC. For more information, see Protect Endpoints by Using an Amazon Virtual
+	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html)
+	// and Protect Training Jobs by Using an Amazon Virtual Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html).
+	VpcConfig *VpcConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s MonitoringNetworkConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MonitoringNetworkConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MonitoringNetworkConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MonitoringNetworkConfig"}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableInterContainerTrafficEncryption sets the EnableInterContainerTrafficEncryption field's value.
+func (s *MonitoringNetworkConfig) SetEnableInterContainerTrafficEncryption(v bool) *MonitoringNetworkConfig {
+	s.EnableInterContainerTrafficEncryption = &v
+	return s
+}
+
+// SetEnableNetworkIsolation sets the EnableNetworkIsolation field's value.
+func (s *MonitoringNetworkConfig) SetEnableNetworkIsolation(v bool) *MonitoringNetworkConfig {
+	s.EnableNetworkIsolation = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *MonitoringNetworkConfig) SetVpcConfig(v *VpcConfig) *MonitoringNetworkConfig {
+	s.VpcConfig = v
 	return s
 }
 
@@ -54017,6 +62488,9 @@ type MonitoringSchedule struct {
 	//    * STOPPED - The schedule was stopped.
 	MonitoringScheduleStatus *string `type:"string" enum:"ScheduleStatus"`
 
+	// The type of the monitoring job definition to schedule.
+	MonitoringType *string `type:"string" enum:"MonitoringType"`
+
 	// A list of the tags associated with the monitoring schedlue. For more information,
 	// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// in the AWS General Reference Guide.
@@ -54087,6 +62561,12 @@ func (s *MonitoringSchedule) SetMonitoringScheduleStatus(v string) *MonitoringSc
 	return s
 }
 
+// SetMonitoringType sets the MonitoringType field's value.
+func (s *MonitoringSchedule) SetMonitoringType(v string) *MonitoringSchedule {
+	s.MonitoringType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *MonitoringSchedule) SetTags(v []*Tag) *MonitoringSchedule {
 	s.Tags = v
@@ -54099,6 +62579,12 @@ type MonitoringScheduleConfig struct {
 
 	// Defines the monitoring job.
 	MonitoringJobDefinition *MonitoringJobDefinition `type:"structure"`
+
+	// The name of the monitoring job definition to schedule.
+	MonitoringJobDefinitionName *string `min:"1" type:"string"`
+
+	// The type of the monitoring job definition to schedule.
+	MonitoringType *string `type:"string" enum:"MonitoringType"`
 
 	// Configures the monitoring schedule.
 	ScheduleConfig *ScheduleConfig `type:"structure"`
@@ -54117,6 +62603,9 @@ func (s MonitoringScheduleConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MonitoringScheduleConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MonitoringScheduleConfig"}
+	if s.MonitoringJobDefinitionName != nil && len(*s.MonitoringJobDefinitionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MonitoringJobDefinitionName", 1))
+	}
 	if s.MonitoringJobDefinition != nil {
 		if err := s.MonitoringJobDefinition.Validate(); err != nil {
 			invalidParams.AddNested("MonitoringJobDefinition", err.(request.ErrInvalidParams))
@@ -54137,6 +62626,18 @@ func (s *MonitoringScheduleConfig) Validate() error {
 // SetMonitoringJobDefinition sets the MonitoringJobDefinition field's value.
 func (s *MonitoringScheduleConfig) SetMonitoringJobDefinition(v *MonitoringJobDefinition) *MonitoringScheduleConfig {
 	s.MonitoringJobDefinition = v
+	return s
+}
+
+// SetMonitoringJobDefinitionName sets the MonitoringJobDefinitionName field's value.
+func (s *MonitoringScheduleConfig) SetMonitoringJobDefinitionName(v string) *MonitoringScheduleConfig {
+	s.MonitoringJobDefinitionName = &v
+	return s
+}
+
+// SetMonitoringType sets the MonitoringType field's value.
+func (s *MonitoringScheduleConfig) SetMonitoringType(v string) *MonitoringScheduleConfig {
+	s.MonitoringType = &v
 	return s
 }
 
@@ -54163,6 +62664,9 @@ type MonitoringScheduleSummary struct {
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
+	// The name of the monitoring job definition that the schedule is for.
+	MonitoringJobDefinitionName *string `min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the monitoring schedule.
 	//
 	// MonitoringScheduleArn is a required field
@@ -54177,6 +62681,9 @@ type MonitoringScheduleSummary struct {
 	//
 	// MonitoringScheduleStatus is a required field
 	MonitoringScheduleStatus *string `type:"string" required:"true" enum:"ScheduleStatus"`
+
+	// The type of the monitoring job definition that the schedule is for.
+	MonitoringType *string `type:"string" enum:"MonitoringType"`
 }
 
 // String returns the string representation
@@ -54207,6 +62714,12 @@ func (s *MonitoringScheduleSummary) SetLastModifiedTime(v time.Time) *Monitoring
 	return s
 }
 
+// SetMonitoringJobDefinitionName sets the MonitoringJobDefinitionName field's value.
+func (s *MonitoringScheduleSummary) SetMonitoringJobDefinitionName(v string) *MonitoringScheduleSummary {
+	s.MonitoringJobDefinitionName = &v
+	return s
+}
+
 // SetMonitoringScheduleArn sets the MonitoringScheduleArn field's value.
 func (s *MonitoringScheduleSummary) SetMonitoringScheduleArn(v string) *MonitoringScheduleSummary {
 	s.MonitoringScheduleArn = &v
@@ -54222,6 +62735,12 @@ func (s *MonitoringScheduleSummary) SetMonitoringScheduleName(v string) *Monitor
 // SetMonitoringScheduleStatus sets the MonitoringScheduleStatus field's value.
 func (s *MonitoringScheduleSummary) SetMonitoringScheduleStatus(v string) *MonitoringScheduleSummary {
 	s.MonitoringScheduleStatus = &v
+	return s
+}
+
+// SetMonitoringType sets the MonitoringType field's value.
+func (s *MonitoringScheduleSummary) SetMonitoringType(v string) *MonitoringScheduleSummary {
+	s.MonitoringType = &v
 	return s
 }
 
@@ -57436,6 +65955,293 @@ func (s *ProductionVariantSummary) SetVariantName(v string) *ProductionVariantSu
 	return s
 }
 
+// Configuration information for Debugger system monitoring, framework profiling,
+// and storage paths.
+type ProfilerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A time interval for capturing system metrics in milliseconds. Available values
+	// are 100, 200, 500, 1000 (1 second), 5000 (5 seconds), and 60000 (1 minute)
+	// milliseconds. The default value is 500 milliseconds.
+	ProfilingIntervalInMilliseconds *int64 `type:"long"`
+
+	// Configuration information for capturing framework metrics. Available key
+	// strings for different profiling options are DetailedProfilingConfig, PythonProfilingConfig,
+	// and DataLoaderProfilingConfig. The following codes are configuration structures
+	// for the ProfilingParameters parameter. To learn more about how to configure
+	// the ProfilingParameters parameter, see Use the SageMaker and Debugger Configuration
+	// API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
+	ProfilingParameters map[string]*string `type:"map"`
+
+	// Path to Amazon S3 storage location for system and framework metrics.
+	//
+	// S3OutputPath is a required field
+	S3OutputPath *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ProfilerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProfilerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProfilerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProfilerConfig"}
+	if s.S3OutputPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputPath"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfilingIntervalInMilliseconds sets the ProfilingIntervalInMilliseconds field's value.
+func (s *ProfilerConfig) SetProfilingIntervalInMilliseconds(v int64) *ProfilerConfig {
+	s.ProfilingIntervalInMilliseconds = &v
+	return s
+}
+
+// SetProfilingParameters sets the ProfilingParameters field's value.
+func (s *ProfilerConfig) SetProfilingParameters(v map[string]*string) *ProfilerConfig {
+	s.ProfilingParameters = v
+	return s
+}
+
+// SetS3OutputPath sets the S3OutputPath field's value.
+func (s *ProfilerConfig) SetS3OutputPath(v string) *ProfilerConfig {
+	s.S3OutputPath = &v
+	return s
+}
+
+// Configuration information for updating the Debugger profile parameters, system
+// and framework metrics configurations, and storage paths.
+type ProfilerConfigForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// To disable Debugger monitoring and profiling, set to True.
+	DisableProfiler *bool `type:"boolean"`
+
+	// A time interval for capturing system metrics in milliseconds. Available values
+	// are 100, 200, 500, 1000 (1 second), 5000 (5 seconds), and 60000 (1 minute)
+	// milliseconds. The default value is 500 milliseconds.
+	ProfilingIntervalInMilliseconds *int64 `type:"long"`
+
+	// Configuration information for capturing framework metrics. Available key
+	// strings for different profiling options are DetailedProfilingConfig, PythonProfilingConfig,
+	// and DataLoaderProfilingConfig. The following codes are configuration structures
+	// for the ProfilingParameters parameter. To learn more about how to configure
+	// the ProfilingParameters parameter, see Use the SageMaker and Debugger Configuration
+	// API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
+	ProfilingParameters map[string]*string `type:"map"`
+
+	// Path to Amazon S3 storage location for system and framework metrics.
+	S3OutputPath *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ProfilerConfigForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProfilerConfigForUpdate) GoString() string {
+	return s.String()
+}
+
+// SetDisableProfiler sets the DisableProfiler field's value.
+func (s *ProfilerConfigForUpdate) SetDisableProfiler(v bool) *ProfilerConfigForUpdate {
+	s.DisableProfiler = &v
+	return s
+}
+
+// SetProfilingIntervalInMilliseconds sets the ProfilingIntervalInMilliseconds field's value.
+func (s *ProfilerConfigForUpdate) SetProfilingIntervalInMilliseconds(v int64) *ProfilerConfigForUpdate {
+	s.ProfilingIntervalInMilliseconds = &v
+	return s
+}
+
+// SetProfilingParameters sets the ProfilingParameters field's value.
+func (s *ProfilerConfigForUpdate) SetProfilingParameters(v map[string]*string) *ProfilerConfigForUpdate {
+	s.ProfilingParameters = v
+	return s
+}
+
+// SetS3OutputPath sets the S3OutputPath field's value.
+func (s *ProfilerConfigForUpdate) SetS3OutputPath(v string) *ProfilerConfigForUpdate {
+	s.S3OutputPath = &v
+	return s
+}
+
+// Configuration information for profiling rules.
+type ProfilerRuleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The instance type to deploy a Debugger custom rule for profiling a training
+	// job.
+	InstanceType *string `type:"string" enum:"ProcessingInstanceType"`
+
+	// Path to local storage location for output of rules. Defaults to /opt/ml/processing/output/rule/.
+	LocalPath *string `type:"string"`
+
+	// The name of the rule configuration. It must be unique relative to other rule
+	// configuration names.
+	//
+	// RuleConfigurationName is a required field
+	RuleConfigurationName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Elastic Container (ECR) Image for the managed rule evaluation.
+	//
+	// RuleEvaluatorImage is a required field
+	RuleEvaluatorImage *string `type:"string" required:"true"`
+
+	// Runtime configuration for rule container.
+	RuleParameters map[string]*string `type:"map"`
+
+	// Path to Amazon S3 storage location for rules.
+	S3OutputPath *string `type:"string"`
+
+	// The size, in GB, of the ML storage volume attached to the processing instance.
+	VolumeSizeInGB *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ProfilerRuleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProfilerRuleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProfilerRuleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProfilerRuleConfiguration"}
+	if s.RuleConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleConfigurationName"))
+	}
+	if s.RuleConfigurationName != nil && len(*s.RuleConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleConfigurationName", 1))
+	}
+	if s.RuleEvaluatorImage == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleEvaluatorImage"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *ProfilerRuleConfiguration) SetInstanceType(v string) *ProfilerRuleConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// SetLocalPath sets the LocalPath field's value.
+func (s *ProfilerRuleConfiguration) SetLocalPath(v string) *ProfilerRuleConfiguration {
+	s.LocalPath = &v
+	return s
+}
+
+// SetRuleConfigurationName sets the RuleConfigurationName field's value.
+func (s *ProfilerRuleConfiguration) SetRuleConfigurationName(v string) *ProfilerRuleConfiguration {
+	s.RuleConfigurationName = &v
+	return s
+}
+
+// SetRuleEvaluatorImage sets the RuleEvaluatorImage field's value.
+func (s *ProfilerRuleConfiguration) SetRuleEvaluatorImage(v string) *ProfilerRuleConfiguration {
+	s.RuleEvaluatorImage = &v
+	return s
+}
+
+// SetRuleParameters sets the RuleParameters field's value.
+func (s *ProfilerRuleConfiguration) SetRuleParameters(v map[string]*string) *ProfilerRuleConfiguration {
+	s.RuleParameters = v
+	return s
+}
+
+// SetS3OutputPath sets the S3OutputPath field's value.
+func (s *ProfilerRuleConfiguration) SetS3OutputPath(v string) *ProfilerRuleConfiguration {
+	s.S3OutputPath = &v
+	return s
+}
+
+// SetVolumeSizeInGB sets the VolumeSizeInGB field's value.
+func (s *ProfilerRuleConfiguration) SetVolumeSizeInGB(v int64) *ProfilerRuleConfiguration {
+	s.VolumeSizeInGB = &v
+	return s
+}
+
+// Information about the status of the rule evaluation.
+type ProfilerRuleEvaluationStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Timestamp when the rule evaluation status was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the rule configuration.
+	RuleConfigurationName *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the rule evaluation job.
+	RuleEvaluationJobArn *string `type:"string"`
+
+	// Status of the rule evaluation.
+	RuleEvaluationStatus *string `type:"string" enum:"RuleEvaluationStatus"`
+
+	// Details from the rule evaluation.
+	StatusDetails *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ProfilerRuleEvaluationStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProfilerRuleEvaluationStatus) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ProfilerRuleEvaluationStatus) SetLastModifiedTime(v time.Time) *ProfilerRuleEvaluationStatus {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetRuleConfigurationName sets the RuleConfigurationName field's value.
+func (s *ProfilerRuleEvaluationStatus) SetRuleConfigurationName(v string) *ProfilerRuleEvaluationStatus {
+	s.RuleConfigurationName = &v
+	return s
+}
+
+// SetRuleEvaluationJobArn sets the RuleEvaluationJobArn field's value.
+func (s *ProfilerRuleEvaluationStatus) SetRuleEvaluationJobArn(v string) *ProfilerRuleEvaluationStatus {
+	s.RuleEvaluationJobArn = &v
+	return s
+}
+
+// SetRuleEvaluationStatus sets the RuleEvaluationStatus field's value.
+func (s *ProfilerRuleEvaluationStatus) SetRuleEvaluationStatus(v string) *ProfilerRuleEvaluationStatus {
+	s.RuleEvaluationStatus = &v
+	return s
+}
+
+// SetStatusDetails sets the StatusDetails field's value.
+func (s *ProfilerRuleEvaluationStatus) SetStatusDetails(v string) *ProfilerRuleEvaluationStatus {
+	s.StatusDetails = &v
+	return s
+}
+
 // Information about a project.
 type ProjectSummary struct {
 	_ struct{} `type:"structure"`
@@ -58096,6 +66902,104 @@ func (s *RedshiftDatasetDefinition) SetOutputS3Uri(v string) *RedshiftDatasetDef
 func (s *RedshiftDatasetDefinition) SetQueryString(v string) *RedshiftDatasetDefinition {
 	s.QueryString = &v
 	return s
+}
+
+type RegisterDevicesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// A list of devices to register with SageMaker Edge Manager.
+	//
+	// Devices is a required field
+	Devices []*Device `type:"list" required:"true"`
+
+	// The tags associated with devices.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s RegisterDevicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDevicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterDevicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterDevicesInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.Devices == nil {
+		invalidParams.Add(request.NewErrParamRequired("Devices"))
+	}
+	if s.Devices != nil {
+		for i, v := range s.Devices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Devices", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *RegisterDevicesInput) SetDeviceFleetName(v string) *RegisterDevicesInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDevices sets the Devices field's value.
+func (s *RegisterDevicesInput) SetDevices(v []*Device) *RegisterDevicesInput {
+	s.Devices = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RegisterDevicesInput) SetTags(v []*Tag) *RegisterDevicesInput {
+	s.Tags = v
+	return s
+}
+
+type RegisterDevicesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterDevicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDevicesOutput) GoString() string {
+	return s.String()
 }
 
 // Metadata for a register model job step.
@@ -60288,6 +69192,61 @@ func (s StopCompilationJobOutput) GoString() string {
 	return s.String()
 }
 
+type StopEdgePackagingJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the edge packaging job.
+	//
+	// EdgePackagingJobName is a required field
+	EdgePackagingJobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopEdgePackagingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopEdgePackagingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopEdgePackagingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopEdgePackagingJobInput"}
+	if s.EdgePackagingJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EdgePackagingJobName"))
+	}
+	if s.EdgePackagingJobName != nil && len(*s.EdgePackagingJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EdgePackagingJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEdgePackagingJobName sets the EdgePackagingJobName field's value.
+func (s *StopEdgePackagingJobInput) SetEdgePackagingJobName(v string) *StopEdgePackagingJobInput {
+	s.EdgePackagingJobName = &v
+	return s
+}
+
+type StopEdgePackagingJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopEdgePackagingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopEdgePackagingJobOutput) GoString() string {
+	return s.String()
+}
+
 type StopHyperParameterTuningJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -61088,7 +70047,7 @@ func (s *TensorBoardAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *Tensor
 	return s
 }
 
-// Configuration of storage locations for TensorBoard output.
+// Configuration of storage locations for the Debugger TensorBoard output data.
 type TensorBoardOutputConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -61219,8 +70178,10 @@ type TrainingJob struct {
 	// A timestamp that indicates when the training job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// Configuration information for the debug hook parameters, collection configuration,
-	// and storage paths.
+	// Configuration information for the Debugger hook parameters, metric and tensor
+	// collections, and storage paths. To learn more about how to configure the
+	// DebugHookConfig parameter, see Use the SageMaker and Debugger Configuration
+	// API Operations to Create, Update, and Debug Your Training Job (https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html).
 	DebugHookConfig *DebugHookConfig `type:"structure"`
 
 	// Information about the debug rule configuration.
@@ -61360,7 +70321,7 @@ type TrainingJob struct {
 	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
-	// Configuration of storage locations for TensorBoard output.
+	// Configuration of storage locations for the Debugger TensorBoard output data.
 	TensorBoardOutputConfig *TensorBoardOutputConfig `type:"structure"`
 
 	// Indicates the time when the training job ends on training instances. You
@@ -64611,6 +73572,183 @@ func (s *UpdateContextOutput) SetContextArn(v string) *UpdateContextOutput {
 	return s
 }
 
+type UpdateDeviceFleetInput struct {
+	_ struct{} `type:"structure"`
+
+	// Description of the fleet.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the fleet.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// Output configuration for storing sample data collected by the fleet.
+	//
+	// OutputConfig is a required field
+	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the device.
+	RoleArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateDeviceFleetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDeviceFleetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDeviceFleetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDeviceFleetInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.OutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateDeviceFleetInput) SetDescription(v string) *UpdateDeviceFleetInput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *UpdateDeviceFleetInput) SetDeviceFleetName(v string) *UpdateDeviceFleetInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *UpdateDeviceFleetInput) SetOutputConfig(v *EdgeOutputConfig) *UpdateDeviceFleetInput {
+	s.OutputConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateDeviceFleetInput) SetRoleArn(v string) *UpdateDeviceFleetInput {
+	s.RoleArn = &v
+	return s
+}
+
+type UpdateDeviceFleetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDeviceFleetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDeviceFleetOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateDevicesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet the devices belong to.
+	//
+	// DeviceFleetName is a required field
+	DeviceFleetName *string `min:"1" type:"string" required:"true"`
+
+	// List of devices to register with Edge Manager agent.
+	//
+	// Devices is a required field
+	Devices []*Device `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateDevicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDevicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDevicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDevicesInput"}
+	if s.DeviceFleetName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceFleetName"))
+	}
+	if s.DeviceFleetName != nil && len(*s.DeviceFleetName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceFleetName", 1))
+	}
+	if s.Devices == nil {
+		invalidParams.Add(request.NewErrParamRequired("Devices"))
+	}
+	if s.Devices != nil {
+		for i, v := range s.Devices {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Devices", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceFleetName sets the DeviceFleetName field's value.
+func (s *UpdateDevicesInput) SetDeviceFleetName(v string) *UpdateDevicesInput {
+	s.DeviceFleetName = &v
+	return s
+}
+
+// SetDevices sets the Devices field's value.
+func (s *UpdateDevicesInput) SetDevices(v []*Device) *UpdateDevicesInput {
+	s.Devices = v
+	return s
+}
+
+type UpdateDevicesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDevicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDevicesOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -65772,6 +74910,102 @@ func (s UpdatePipelineOutput) GoString() string {
 // SetPipelineArn sets the PipelineArn field's value.
 func (s *UpdatePipelineOutput) SetPipelineArn(v string) *UpdatePipelineOutput {
 	s.PipelineArn = &v
+	return s
+}
+
+type UpdateTrainingJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information for Debugger system monitoring, framework profiling,
+	// and storage paths.
+	ProfilerConfig *ProfilerConfigForUpdate `type:"structure"`
+
+	// Configuration information for Debugger rules for profiling system and framework
+	// metrics.
+	ProfilerRuleConfigurations []*ProfilerRuleConfiguration `type:"list"`
+
+	// The name of a training job to update the Debugger profiling configuration.
+	//
+	// TrainingJobName is a required field
+	TrainingJobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrainingJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrainingJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTrainingJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTrainingJobInput"}
+	if s.TrainingJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrainingJobName"))
+	}
+	if s.TrainingJobName != nil && len(*s.TrainingJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrainingJobName", 1))
+	}
+	if s.ProfilerRuleConfigurations != nil {
+		for i, v := range s.ProfilerRuleConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ProfilerRuleConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProfilerConfig sets the ProfilerConfig field's value.
+func (s *UpdateTrainingJobInput) SetProfilerConfig(v *ProfilerConfigForUpdate) *UpdateTrainingJobInput {
+	s.ProfilerConfig = v
+	return s
+}
+
+// SetProfilerRuleConfigurations sets the ProfilerRuleConfigurations field's value.
+func (s *UpdateTrainingJobInput) SetProfilerRuleConfigurations(v []*ProfilerRuleConfiguration) *UpdateTrainingJobInput {
+	s.ProfilerRuleConfigurations = v
+	return s
+}
+
+// SetTrainingJobName sets the TrainingJobName field's value.
+func (s *UpdateTrainingJobInput) SetTrainingJobName(v string) *UpdateTrainingJobInput {
+	s.TrainingJobName = &v
+	return s
+}
+
+type UpdateTrainingJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the training job.
+	//
+	// TrainingJobArn is a required field
+	TrainingJobArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTrainingJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTrainingJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetTrainingJobArn sets the TrainingJobArn field's value.
+func (s *UpdateTrainingJobOutput) SetTrainingJobArn(v string) *UpdateTrainingJobOutput {
+	s.TrainingJobArn = &v
 	return s
 }
 
@@ -67905,6 +77139,38 @@ func DomainStatus_Values() []string {
 }
 
 const (
+	// EdgePackagingJobStatusStarting is a EdgePackagingJobStatus enum value
+	EdgePackagingJobStatusStarting = "STARTING"
+
+	// EdgePackagingJobStatusInprogress is a EdgePackagingJobStatus enum value
+	EdgePackagingJobStatusInprogress = "INPROGRESS"
+
+	// EdgePackagingJobStatusCompleted is a EdgePackagingJobStatus enum value
+	EdgePackagingJobStatusCompleted = "COMPLETED"
+
+	// EdgePackagingJobStatusFailed is a EdgePackagingJobStatus enum value
+	EdgePackagingJobStatusFailed = "FAILED"
+
+	// EdgePackagingJobStatusStopping is a EdgePackagingJobStatus enum value
+	EdgePackagingJobStatusStopping = "STOPPING"
+
+	// EdgePackagingJobStatusStopped is a EdgePackagingJobStatus enum value
+	EdgePackagingJobStatusStopped = "STOPPED"
+)
+
+// EdgePackagingJobStatus_Values returns all elements of the EdgePackagingJobStatus enum
+func EdgePackagingJobStatus_Values() []string {
+	return []string{
+		EdgePackagingJobStatusStarting,
+		EdgePackagingJobStatusInprogress,
+		EdgePackagingJobStatusCompleted,
+		EdgePackagingJobStatusFailed,
+		EdgePackagingJobStatusStopping,
+		EdgePackagingJobStatusStopped,
+	}
+}
+
+const (
 	// EndpointConfigSortKeyName is a EndpointConfigSortKey enum value
 	EndpointConfigSortKeyName = "Name"
 
@@ -68723,6 +77989,54 @@ func ListCompilationJobsSortBy_Values() []string {
 }
 
 const (
+	// ListDeviceFleetsSortByName is a ListDeviceFleetsSortBy enum value
+	ListDeviceFleetsSortByName = "NAME"
+
+	// ListDeviceFleetsSortByCreationTime is a ListDeviceFleetsSortBy enum value
+	ListDeviceFleetsSortByCreationTime = "CREATION_TIME"
+
+	// ListDeviceFleetsSortByLastModifiedTime is a ListDeviceFleetsSortBy enum value
+	ListDeviceFleetsSortByLastModifiedTime = "LAST_MODIFIED_TIME"
+)
+
+// ListDeviceFleetsSortBy_Values returns all elements of the ListDeviceFleetsSortBy enum
+func ListDeviceFleetsSortBy_Values() []string {
+	return []string{
+		ListDeviceFleetsSortByName,
+		ListDeviceFleetsSortByCreationTime,
+		ListDeviceFleetsSortByLastModifiedTime,
+	}
+}
+
+const (
+	// ListEdgePackagingJobsSortByName is a ListEdgePackagingJobsSortBy enum value
+	ListEdgePackagingJobsSortByName = "NAME"
+
+	// ListEdgePackagingJobsSortByModelName is a ListEdgePackagingJobsSortBy enum value
+	ListEdgePackagingJobsSortByModelName = "MODEL_NAME"
+
+	// ListEdgePackagingJobsSortByCreationTime is a ListEdgePackagingJobsSortBy enum value
+	ListEdgePackagingJobsSortByCreationTime = "CREATION_TIME"
+
+	// ListEdgePackagingJobsSortByLastModifiedTime is a ListEdgePackagingJobsSortBy enum value
+	ListEdgePackagingJobsSortByLastModifiedTime = "LAST_MODIFIED_TIME"
+
+	// ListEdgePackagingJobsSortByStatus is a ListEdgePackagingJobsSortBy enum value
+	ListEdgePackagingJobsSortByStatus = "STATUS"
+)
+
+// ListEdgePackagingJobsSortBy_Values returns all elements of the ListEdgePackagingJobsSortBy enum
+func ListEdgePackagingJobsSortBy_Values() []string {
+	return []string{
+		ListEdgePackagingJobsSortByName,
+		ListEdgePackagingJobsSortByModelName,
+		ListEdgePackagingJobsSortByCreationTime,
+		ListEdgePackagingJobsSortByLastModifiedTime,
+		ListEdgePackagingJobsSortByStatus,
+	}
+}
+
+const (
 	// ListLabelingJobsForWorkteamSortByOptionsCreationTime is a ListLabelingJobsForWorkteamSortByOptions enum value
 	ListLabelingJobsForWorkteamSortByOptionsCreationTime = "CreationTime"
 )
@@ -68935,6 +78249,42 @@ func MonitoringExecutionSortKey_Values() []string {
 }
 
 const (
+	// MonitoringJobDefinitionSortKeyName is a MonitoringJobDefinitionSortKey enum value
+	MonitoringJobDefinitionSortKeyName = "Name"
+
+	// MonitoringJobDefinitionSortKeyCreationTime is a MonitoringJobDefinitionSortKey enum value
+	MonitoringJobDefinitionSortKeyCreationTime = "CreationTime"
+)
+
+// MonitoringJobDefinitionSortKey_Values returns all elements of the MonitoringJobDefinitionSortKey enum
+func MonitoringJobDefinitionSortKey_Values() []string {
+	return []string{
+		MonitoringJobDefinitionSortKeyName,
+		MonitoringJobDefinitionSortKeyCreationTime,
+	}
+}
+
+const (
+	// MonitoringProblemTypeBinaryClassification is a MonitoringProblemType enum value
+	MonitoringProblemTypeBinaryClassification = "BinaryClassification"
+
+	// MonitoringProblemTypeMulticlassClassification is a MonitoringProblemType enum value
+	MonitoringProblemTypeMulticlassClassification = "MulticlassClassification"
+
+	// MonitoringProblemTypeRegression is a MonitoringProblemType enum value
+	MonitoringProblemTypeRegression = "Regression"
+)
+
+// MonitoringProblemType_Values returns all elements of the MonitoringProblemType enum
+func MonitoringProblemType_Values() []string {
+	return []string{
+		MonitoringProblemTypeBinaryClassification,
+		MonitoringProblemTypeMulticlassClassification,
+		MonitoringProblemTypeRegression,
+	}
+}
+
+const (
 	// MonitoringScheduleSortKeyName is a MonitoringScheduleSortKey enum value
 	MonitoringScheduleSortKeyName = "Name"
 
@@ -68951,6 +78301,30 @@ func MonitoringScheduleSortKey_Values() []string {
 		MonitoringScheduleSortKeyName,
 		MonitoringScheduleSortKeyCreationTime,
 		MonitoringScheduleSortKeyStatus,
+	}
+}
+
+const (
+	// MonitoringTypeDataQuality is a MonitoringType enum value
+	MonitoringTypeDataQuality = "DataQuality"
+
+	// MonitoringTypeModelQuality is a MonitoringType enum value
+	MonitoringTypeModelQuality = "ModelQuality"
+
+	// MonitoringTypeModelBias is a MonitoringType enum value
+	MonitoringTypeModelBias = "ModelBias"
+
+	// MonitoringTypeModelExplainability is a MonitoringType enum value
+	MonitoringTypeModelExplainability = "ModelExplainability"
+)
+
+// MonitoringType_Values returns all elements of the MonitoringType enum
+func MonitoringType_Values() []string {
+	return []string{
+		MonitoringTypeDataQuality,
+		MonitoringTypeModelQuality,
+		MonitoringTypeModelBias,
+		MonitoringTypeModelExplainability,
 	}
 }
 
@@ -69867,6 +79241,22 @@ func ProductionVariantInstanceType_Values() []string {
 		ProductionVariantInstanceTypeMlInf12xlarge,
 		ProductionVariantInstanceTypeMlInf16xlarge,
 		ProductionVariantInstanceTypeMlInf124xlarge,
+	}
+}
+
+const (
+	// ProfilingStatusEnabled is a ProfilingStatus enum value
+	ProfilingStatusEnabled = "Enabled"
+
+	// ProfilingStatusDisabled is a ProfilingStatus enum value
+	ProfilingStatusDisabled = "Disabled"
+)
+
+// ProfilingStatus_Values returns all elements of the ProfilingStatus enum
+func ProfilingStatus_Values() []string {
+	return []string{
+		ProfilingStatusEnabled,
+		ProfilingStatusDisabled,
 	}
 }
 

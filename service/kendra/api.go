@@ -2359,7 +2359,8 @@ func (c *Kendra) UpdateIndexWithContext(ctx aws.Context, input *UpdateIndexInput
 	return out, req.Send()
 }
 
-// Access Control List files for the documents in a data source.
+// Access Control List files for the documents in a data source. For the format
+// of the file, see Access control for S3 data sources (https://docs.aws.amazon.com/kendra/latest/dg/s3-acl.html).
 type AccessControlListConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4746,7 +4747,10 @@ type DataSourceConfiguration struct {
 	// Provides information necessary to create a data source connector for a database.
 	DatabaseConfiguration *DatabaseConfiguration `type:"structure"`
 
-	// Provided configuration for data sources that connect to Microsoft OneDrive.
+	// Provides configuration for data sources that connect to Google Drive.
+	GoogleDriveConfiguration *GoogleDriveConfiguration `type:"structure"`
+
+	// Provides configuration for data sources that connect to Microsoft OneDrive.
 	OneDriveConfiguration *OneDriveConfiguration `type:"structure"`
 
 	// Provides information to create a data source connector for a document repository
@@ -4786,6 +4790,11 @@ func (s *DataSourceConfiguration) Validate() error {
 	if s.DatabaseConfiguration != nil {
 		if err := s.DatabaseConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("DatabaseConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.GoogleDriveConfiguration != nil {
+		if err := s.GoogleDriveConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GoogleDriveConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.OneDriveConfiguration != nil {
@@ -4829,6 +4838,12 @@ func (s *DataSourceConfiguration) SetConfluenceConfiguration(v *ConfluenceConfig
 // SetDatabaseConfiguration sets the DatabaseConfiguration field's value.
 func (s *DataSourceConfiguration) SetDatabaseConfiguration(v *DatabaseConfiguration) *DataSourceConfiguration {
 	s.DatabaseConfiguration = v
+	return s
+}
+
+// SetGoogleDriveConfiguration sets the GoogleDriveConfiguration field's value.
+func (s *DataSourceConfiguration) SetGoogleDriveConfiguration(v *GoogleDriveConfiguration) *DataSourceConfiguration {
+	s.GoogleDriveConfiguration = v
 	return s
 }
 
@@ -6754,6 +6769,138 @@ func (s *FaqSummary) SetUpdatedAt(v time.Time) *FaqSummary {
 	return s
 }
 
+// Provides configuration information for data sources that connect to Google
+// Drive.
+type GoogleDriveConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of MIME types to exclude from the index. All documents matching the
+	// specified MIME type are excluded.
+	//
+	// For a list of MIME types, see Using a Google Workspace Drive data source
+	// (https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html).
+	ExcludeMimeTypes []*string `type:"list"`
+
+	// A list of identifiers or shared drives to exclude from the index. All files
+	// and folders stored on the shared drive are excluded.
+	ExcludeSharedDrives []*string `type:"list"`
+
+	// A list of email addresses of the users. Documents owned by these users are
+	// excluded from the index. Documents shared with excluded users are indexed
+	// unless they are excluded in another way.
+	ExcludeUserAccounts []*string `type:"list"`
+
+	// A list of regular expression patterns that apply to the path on Google Drive.
+	// Items that match the pattern are excluded from the index from both shared
+	// drives and users' My Drives. Items that don't match the pattern are included
+	// in the index. If an item matches both an exclusion pattern and an inclusion
+	// pattern, it is excluded from the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// Defines mapping between a field in the Google Drive and a Amazon Kendra index
+	// field.
+	//
+	// If you are using the console, you can define index fields when creating the
+	// mapping. If you are using the API, you must first create the field using
+	// the UpdateIndex operation.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns that apply to path on Google Drive.
+	// Items that match the pattern are included in the index from both shared drives
+	// and users' My Drives. Items that don't match the pattern are excluded from
+	// the index. If an item matches both an inclusion pattern and an exclusion
+	// pattern, it is excluded from the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of a AWS Secrets Manager secret that contains
+	// the credentials required to connect to Google Drive. For more information,
+	// see Using a Google Workspace Drive data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html).
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GoogleDriveConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GoogleDriveConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GoogleDriveConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GoogleDriveConfiguration"}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludeMimeTypes sets the ExcludeMimeTypes field's value.
+func (s *GoogleDriveConfiguration) SetExcludeMimeTypes(v []*string) *GoogleDriveConfiguration {
+	s.ExcludeMimeTypes = v
+	return s
+}
+
+// SetExcludeSharedDrives sets the ExcludeSharedDrives field's value.
+func (s *GoogleDriveConfiguration) SetExcludeSharedDrives(v []*string) *GoogleDriveConfiguration {
+	s.ExcludeSharedDrives = v
+	return s
+}
+
+// SetExcludeUserAccounts sets the ExcludeUserAccounts field's value.
+func (s *GoogleDriveConfiguration) SetExcludeUserAccounts(v []*string) *GoogleDriveConfiguration {
+	s.ExcludeUserAccounts = v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *GoogleDriveConfiguration) SetExclusionPatterns(v []*string) *GoogleDriveConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *GoogleDriveConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *GoogleDriveConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *GoogleDriveConfiguration) SetInclusionPatterns(v []*string) *GoogleDriveConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *GoogleDriveConfiguration) SetSecretArn(v string) *GoogleDriveConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
 // Provides information that you can use to highlight a search result so that
 // your users can quickly identify terms in the response.
 type Highlight struct {
@@ -7676,7 +7823,7 @@ type OneDriveConfiguration struct {
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
 
-	// Tha Azure Active Directory domain of the organization.
+	// The Azure Active Directory domain of the organization.
 	//
 	// TenantDomain is a required field
 	TenantDomain *string `min:"1" type:"string" required:"true"`
@@ -7958,6 +8105,11 @@ type QueryInput struct {
 
 	// The user context token.
 	UserContext *UserContext `type:"structure"`
+
+	// Provides an identifier for a specific user. The VisitorId should be a unique
+	// identifier, such as a GUID. Don't use personally identifiable information,
+	// such as the user's email address, as the VisitorId.
+	VisitorId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -7987,6 +8139,9 @@ func (s *QueryInput) Validate() error {
 	}
 	if s.RequestedDocumentAttributes != nil && len(s.RequestedDocumentAttributes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RequestedDocumentAttributes", 1))
+	}
+	if s.VisitorId != nil && len(*s.VisitorId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VisitorId", 1))
 	}
 	if s.AttributeFilter != nil {
 		if err := s.AttributeFilter.Validate(); err != nil {
@@ -8080,6 +8235,12 @@ func (s *QueryInput) SetUserContext(v *UserContext) *QueryInput {
 	return s
 }
 
+// SetVisitorId sets the VisitorId field's value.
+func (s *QueryInput) SetVisitorId(v string) *QueryInput {
+	s.VisitorId = &v
+	return s
+}
+
 type QueryOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -8165,6 +8326,11 @@ type QueryResultItem struct {
 	// The URI of the original location of the document.
 	DocumentURI *string `min:"1" type:"string"`
 
+	// A token that identifies a particular result from a particular query. Use
+	// this token to provide click-through feedback for the result. For more information,
+	// see Submitting feedback (https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html).
+	FeedbackToken *string `min:"1" type:"string"`
+
 	// The unique identifier for the query result.
 	Id *string `min:"1" type:"string"`
 
@@ -8224,6 +8390,12 @@ func (s *QueryResultItem) SetDocumentTitle(v *TextWithHighlights) *QueryResultIt
 // SetDocumentURI sets the DocumentURI field's value.
 func (s *QueryResultItem) SetDocumentURI(v string) *QueryResultItem {
 	s.DocumentURI = &v
+	return s
+}
+
+// SetFeedbackToken sets the FeedbackToken field's value.
+func (s *QueryResultItem) SetFeedbackToken(v string) *QueryResultItem {
+	s.FeedbackToken = &v
 	return s
 }
 
@@ -8639,7 +8811,8 @@ type S3DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Provides the path to the S3 bucket that contains the user context filtering
-	// files for the data source.
+	// files for the data source. For the format of the file, see Access control
+	// for S3 data sources (https://docs.aws.amazon.com/kendra/latest/dg/s3-acl.html).
 	AccessControlListConfiguration *AccessControlListConfiguration `type:"structure"`
 
 	// The name of the bucket that contains the documents.
@@ -11694,6 +11867,9 @@ const (
 
 	// DataSourceTypeConfluence is a DataSourceType enum value
 	DataSourceTypeConfluence = "CONFLUENCE"
+
+	// DataSourceTypeGoogledrive is a DataSourceType enum value
+	DataSourceTypeGoogledrive = "GOOGLEDRIVE"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -11707,6 +11883,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeServicenow,
 		DataSourceTypeCustom,
 		DataSourceTypeConfluence,
+		DataSourceTypeGoogledrive,
 	}
 }
 

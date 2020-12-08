@@ -1,3 +1,22 @@
+Release v1.36.4 (2020-12-08)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Adds new service
+* `service/ecr`: Updates service API and documentation
+  * This release adds support for configuring cross-region and cross-account replication of your Amazon ECR images.
+* `service/emr-containers`: Adds new service
+* `service/forecast`: Updates service API and documentation
+* `service/healthlake`: Adds new service
+* `service/kendra`: Updates service API and documentation
+  * 1. Amazon Kendra connector for Google Drive repositories 2. Amazon Kendra's relevance ranking models are regularly tuned for each customer by capturing end-user search patterns and feedback.
+* `service/quicksight`: Updates service API and documentation
+  * Added new parameters for join optimization.
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This feature helps you monitor model performance characteristics such as accuracy, identify undesired bias in your ML models, and explain model decisions better with explainability drift detection.
+* `service/sagemaker-edge`: Adds new service
+
 Release v1.36.3 (2020-12-07)
 ===
 

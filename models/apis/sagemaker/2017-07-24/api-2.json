@@ -154,6 +154,31 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "CreateDataQualityJobDefinition":{
+      "name":"CreateDataQualityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDataQualityJobDefinitionRequest"},
+      "output":{"shape":"CreateDataQualityJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ResourceInUse"}
+      ]
+    },
+    "CreateDeviceFleet":{
+      "name":"CreateDeviceFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDeviceFleetRequest"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
     "CreateDomain":{
       "name":"CreateDomain",
       "http":{
@@ -165,6 +190,17 @@
       "errors":[
         {"shape":"ResourceLimitExceeded"},
         {"shape":"ResourceInUse"}
+      ]
+    },
+    "CreateEdgePackagingJob":{
+      "name":"CreateEdgePackagingJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateEdgePackagingJobRequest"},
+      "errors":[
+        {"shape":"ResourceLimitExceeded"}
       ]
     },
     "CreateEndpoint":{
@@ -307,6 +343,32 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "CreateModelBiasJobDefinition":{
+      "name":"CreateModelBiasJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateModelBiasJobDefinitionRequest"},
+      "output":{"shape":"CreateModelBiasJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ResourceInUse"}
+      ]
+    },
+    "CreateModelExplainabilityJobDefinition":{
+      "name":"CreateModelExplainabilityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateModelExplainabilityJobDefinitionRequest"},
+      "output":{"shape":"CreateModelExplainabilityJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ResourceInUse"}
+      ]
+    },
     "CreateModelPackage":{
       "name":"CreateModelPackage",
       "http":{
@@ -330,6 +392,19 @@
       "output":{"shape":"CreateModelPackageGroupOutput"},
       "errors":[
         {"shape":"ResourceLimitExceeded"}
+      ]
+    },
+    "CreateModelQualityJobDefinition":{
+      "name":"CreateModelQualityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateModelQualityJobDefinitionRequest"},
+      "output":{"shape":"CreateModelQualityJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ResourceInUse"}
       ]
     },
     "CreateMonitoringSchedule":{
@@ -604,6 +679,28 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DeleteDataQualityJobDefinition":{
+      "name":"DeleteDataQualityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDataQualityJobDefinitionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DeleteDeviceFleet":{
+      "name":"DeleteDeviceFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDeviceFleetRequest"},
+      "errors":[
+        {"shape":"ResourceInUse"}
+      ]
+    },
     "DeleteDomain":{
       "name":"DeleteDomain",
       "http":{
@@ -714,6 +811,28 @@
       },
       "input":{"shape":"DeleteModelInput"}
     },
+    "DeleteModelBiasJobDefinition":{
+      "name":"DeleteModelBiasJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteModelBiasJobDefinitionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DeleteModelExplainabilityJobDefinition":{
+      "name":"DeleteModelExplainabilityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteModelExplainabilityJobDefinitionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DeleteModelPackage":{
       "name":"DeleteModelPackage",
       "http":{
@@ -740,6 +859,17 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteModelPackageGroupPolicyInput"}
+    },
+    "DeleteModelQualityJobDefinition":{
+      "name":"DeleteModelQualityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteModelQualityJobDefinitionRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "DeleteMonitoringSchedule":{
       "name":"DeleteMonitoringSchedule",
@@ -854,6 +984,14 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "DeregisterDevices":{
+      "name":"DeregisterDevices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterDevicesRequest"}
+    },
     "DescribeAction":{
       "name":"DescribeAction",
       "http":{
@@ -956,6 +1094,42 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DescribeDataQualityJobDefinition":{
+      "name":"DescribeDataQualityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDataQualityJobDefinitionRequest"},
+      "output":{"shape":"DescribeDataQualityJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DescribeDevice":{
+      "name":"DescribeDevice",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDeviceRequest"},
+      "output":{"shape":"DescribeDeviceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DescribeDeviceFleet":{
+      "name":"DescribeDeviceFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDeviceFleetRequest"},
+      "output":{"shape":"DescribeDeviceFleetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DescribeDomain":{
       "name":"DescribeDomain",
       "http":{
@@ -964,6 +1138,18 @@
       },
       "input":{"shape":"DescribeDomainRequest"},
       "output":{"shape":"DescribeDomainResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DescribeEdgePackagingJob":{
+      "name":"DescribeEdgePackagingJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEdgePackagingJobRequest"},
+      "output":{"shape":"DescribeEdgePackagingJobResponse"},
       "errors":[
         {"shape":"ResourceNotFound"}
       ]
@@ -1091,6 +1277,30 @@
       "input":{"shape":"DescribeModelInput"},
       "output":{"shape":"DescribeModelOutput"}
     },
+    "DescribeModelBiasJobDefinition":{
+      "name":"DescribeModelBiasJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeModelBiasJobDefinitionRequest"},
+      "output":{"shape":"DescribeModelBiasJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DescribeModelExplainabilityJobDefinition":{
+      "name":"DescribeModelExplainabilityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeModelExplainabilityJobDefinitionRequest"},
+      "output":{"shape":"DescribeModelExplainabilityJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DescribeModelPackage":{
       "name":"DescribeModelPackage",
       "http":{
@@ -1108,6 +1318,18 @@
       },
       "input":{"shape":"DescribeModelPackageGroupInput"},
       "output":{"shape":"DescribeModelPackageGroupOutput"}
+    },
+    "DescribeModelQualityJobDefinition":{
+      "name":"DescribeModelQualityJobDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeModelQualityJobDefinitionRequest"},
+      "output":{"shape":"DescribeModelQualityJobDefinitionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "DescribeMonitoringSchedule":{
       "name":"DescribeMonitoringSchedule",
@@ -1313,6 +1535,15 @@
       "input":{"shape":"EnableSagemakerServicecatalogPortfolioInput"},
       "output":{"shape":"EnableSagemakerServicecatalogPortfolioOutput"}
     },
+    "GetDeviceFleetReport":{
+      "name":"GetDeviceFleetReport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeviceFleetReportRequest"},
+      "output":{"shape":"GetDeviceFleetReportResponse"}
+    },
     "GetModelPackageGroupPolicy":{
       "name":"GetModelPackageGroupPolicy",
       "http":{
@@ -1454,6 +1685,33 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "ListDataQualityJobDefinitions":{
+      "name":"ListDataQualityJobDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDataQualityJobDefinitionsRequest"},
+      "output":{"shape":"ListDataQualityJobDefinitionsResponse"}
+    },
+    "ListDeviceFleets":{
+      "name":"ListDeviceFleets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDeviceFleetsRequest"},
+      "output":{"shape":"ListDeviceFleetsResponse"}
+    },
+    "ListDevices":{
+      "name":"ListDevices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDevicesRequest"},
+      "output":{"shape":"ListDevicesResponse"}
+    },
     "ListDomains":{
       "name":"ListDomains",
       "http":{
@@ -1462,6 +1720,15 @@
       },
       "input":{"shape":"ListDomainsRequest"},
       "output":{"shape":"ListDomainsResponse"}
+    },
+    "ListEdgePackagingJobs":{
+      "name":"ListEdgePackagingJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEdgePackagingJobsRequest"},
+      "output":{"shape":"ListEdgePackagingJobsResponse"}
     },
     "ListEndpointConfigs":{
       "name":"ListEndpointConfigs",
@@ -1568,6 +1835,24 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "ListModelBiasJobDefinitions":{
+      "name":"ListModelBiasJobDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListModelBiasJobDefinitionsRequest"},
+      "output":{"shape":"ListModelBiasJobDefinitionsResponse"}
+    },
+    "ListModelExplainabilityJobDefinitions":{
+      "name":"ListModelExplainabilityJobDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListModelExplainabilityJobDefinitionsRequest"},
+      "output":{"shape":"ListModelExplainabilityJobDefinitionsResponse"}
+    },
     "ListModelPackageGroups":{
       "name":"ListModelPackageGroups",
       "http":{
@@ -1585,6 +1870,15 @@
       },
       "input":{"shape":"ListModelPackagesInput"},
       "output":{"shape":"ListModelPackagesOutput"}
+    },
+    "ListModelQualityJobDefinitions":{
+      "name":"ListModelQualityJobDefinitions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListModelQualityJobDefinitionsRequest"},
+      "output":{"shape":"ListModelQualityJobDefinitionsResponse"}
     },
     "ListModels":{
       "name":"ListModels",
@@ -1802,6 +2096,17 @@
       "input":{"shape":"PutModelPackageGroupPolicyInput"},
       "output":{"shape":"PutModelPackageGroupPolicyOutput"}
     },
+    "RegisterDevices":{
+      "name":"RegisterDevices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterDevicesRequest"},
+      "errors":[
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
     "RenderUiTemplate":{
       "name":"RenderUiTemplate",
       "http":{
@@ -1879,6 +2184,14 @@
       "errors":[
         {"shape":"ResourceNotFound"}
       ]
+    },
+    "StopEdgePackagingJob":{
+      "name":"StopEdgePackagingJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopEdgePackagingJobRequest"}
     },
     "StopHyperParameterTuningJob":{
       "name":"StopHyperParameterTuningJob",
@@ -2026,6 +2339,25 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "UpdateDeviceFleet":{
+      "name":"UpdateDeviceFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDeviceFleetRequest"},
+      "errors":[
+        {"shape":"ResourceInUse"}
+      ]
+    },
+    "UpdateDevices":{
+      "name":"UpdateDevices",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDevicesRequest"}
+    },
     "UpdateDomain":{
       "name":"UpdateDomain",
       "http":{
@@ -2156,6 +2488,18 @@
       },
       "input":{"shape":"UpdatePipelineExecutionRequest"},
       "output":{"shape":"UpdatePipelineExecutionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "UpdateTrainingJob":{
+      "name":"UpdateTrainingJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTrainingJobRequest"},
+      "output":{"shape":"UpdateTrainingJobResponse"},
       "errors":[
         {"shape":"ResourceNotFound"}
       ]
@@ -2313,6 +2657,21 @@
       "type":"list",
       "member":{"shape":"CodeRepositoryNameOrUrl"},
       "max":3
+    },
+    "AgentVersion":{
+      "type":"structure",
+      "required":[
+        "Version",
+        "AgentCount"
+      ],
+      "members":{
+        "Version":{"shape":"EdgeVersion"},
+        "AgentCount":{"shape":"Long"}
+      }
+    },
+    "AgentVersions":{
+      "type":"list",
+      "member":{"shape":"AgentVersion"}
     },
     "Alarm":{
       "type":"structure",
@@ -3876,6 +4235,50 @@
         "ContextArn":{"shape":"ContextArn"}
       }
     },
+    "CreateDataQualityJobDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionName",
+        "DataQualityAppSpecification",
+        "DataQualityJobInput",
+        "DataQualityJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "DataQualityBaselineConfig":{"shape":"DataQualityBaselineConfig"},
+        "DataQualityAppSpecification":{"shape":"DataQualityAppSpecification"},
+        "DataQualityJobInput":{"shape":"DataQualityJobInput"},
+        "DataQualityJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateDataQualityJobDefinitionResponse":{
+      "type":"structure",
+      "required":["JobDefinitionArn"],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"}
+      }
+    },
+    "CreateDeviceFleetRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetName",
+        "OutputConfig"
+      ],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Description":{"shape":"DeviceFleetDescription"},
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "CreateDomainRequest":{
       "type":"structure",
       "required":[
@@ -3906,6 +4309,27 @@
       "members":{
         "DomainArn":{"shape":"DomainArn"},
         "Url":{"shape":"String1024"}
+      }
+    },
+    "CreateEdgePackagingJobRequest":{
+      "type":"structure",
+      "required":[
+        "EdgePackagingJobName",
+        "CompilationJobName",
+        "ModelName",
+        "ModelVersion",
+        "RoleArn",
+        "OutputConfig"
+      ],
+      "members":{
+        "EdgePackagingJobName":{"shape":"EntityName"},
+        "CompilationJobName":{"shape":"EntityName"},
+        "ModelName":{"shape":"EntityName"},
+        "ModelVersion":{"shape":"EdgeVersion"},
+        "RoleArn":{"shape":"RoleArn"},
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "ResourceKey":{"shape":"KmsKeyId"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateEndpointConfigInput":{
@@ -4129,6 +4553,66 @@
         "LabelingJobArn":{"shape":"LabelingJobArn"}
       }
     },
+    "CreateModelBiasJobDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionName",
+        "ModelBiasAppSpecification",
+        "ModelBiasJobInput",
+        "ModelBiasJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "ModelBiasBaselineConfig":{"shape":"ModelBiasBaselineConfig"},
+        "ModelBiasAppSpecification":{"shape":"ModelBiasAppSpecification"},
+        "ModelBiasJobInput":{"shape":"ModelBiasJobInput"},
+        "ModelBiasJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateModelBiasJobDefinitionResponse":{
+      "type":"structure",
+      "required":["JobDefinitionArn"],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"}
+      }
+    },
+    "CreateModelExplainabilityJobDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionName",
+        "ModelExplainabilityAppSpecification",
+        "ModelExplainabilityJobInput",
+        "ModelExplainabilityJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "ModelExplainabilityBaselineConfig":{"shape":"ModelExplainabilityBaselineConfig"},
+        "ModelExplainabilityAppSpecification":{"shape":"ModelExplainabilityAppSpecification"},
+        "ModelExplainabilityJobInput":{"shape":"ModelExplainabilityJobInput"},
+        "ModelExplainabilityJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateModelExplainabilityJobDefinitionResponse":{
+      "type":"structure",
+      "required":["JobDefinitionArn"],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"}
+      }
+    },
     "CreateModelInput":{
       "type":"structure",
       "required":[
@@ -4193,6 +4677,36 @@
       "required":["ModelPackageArn"],
       "members":{
         "ModelPackageArn":{"shape":"ModelPackageArn"}
+      }
+    },
+    "CreateModelQualityJobDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionName",
+        "ModelQualityAppSpecification",
+        "ModelQualityJobInput",
+        "ModelQualityJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "ModelQualityBaselineConfig":{"shape":"ModelQualityBaselineConfig"},
+        "ModelQualityAppSpecification":{"shape":"ModelQualityAppSpecification"},
+        "ModelQualityJobInput":{"shape":"ModelQualityJobInput"},
+        "ModelQualityJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateModelQualityJobDefinitionResponse":{
+      "type":"structure",
+      "required":["JobDefinitionArn"],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"}
       }
     },
     "CreateMonitoringScheduleRequest":{
@@ -4399,7 +4913,9 @@
         "DebugHookConfig":{"shape":"DebugHookConfig"},
         "DebugRuleConfigurations":{"shape":"DebugRuleConfigurations"},
         "TensorBoardOutputConfig":{"shape":"TensorBoardOutputConfig"},
-        "ExperimentConfig":{"shape":"ExperimentConfig"}
+        "ExperimentConfig":{"shape":"ExperimentConfig"},
+        "ProfilerConfig":{"shape":"ProfilerConfig"},
+        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -4648,6 +5164,33 @@
         "JoinSource":{"shape":"JoinSource"}
       }
     },
+    "DataQualityAppSpecification":{
+      "type":"structure",
+      "required":["ImageUri"],
+      "members":{
+        "ImageUri":{"shape":"ImageUri"},
+        "ContainerEntrypoint":{"shape":"ContainerEntrypoint"},
+        "ContainerArguments":{"shape":"MonitoringContainerArguments"},
+        "RecordPreprocessorSourceUri":{"shape":"S3Uri"},
+        "PostAnalyticsProcessorSourceUri":{"shape":"S3Uri"},
+        "Environment":{"shape":"MonitoringEnvironmentMap"}
+      }
+    },
+    "DataQualityBaselineConfig":{
+      "type":"structure",
+      "members":{
+        "BaseliningJobName":{"shape":"ProcessingJobName"},
+        "ConstraintsResource":{"shape":"MonitoringConstraintsResource"},
+        "StatisticsResource":{"shape":"MonitoringStatisticsResource"}
+      }
+    },
+    "DataQualityJobInput":{
+      "type":"structure",
+      "required":["EndpointInput"],
+      "members":{
+        "EndpointInput":{"shape":"EndpointInput"}
+      }
+    },
     "DataSource":{
       "type":"structure",
       "members":{
@@ -4822,6 +5365,20 @@
         "ContextArn":{"shape":"ContextArn"}
       }
     },
+    "DeleteDataQualityJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
+    "DeleteDeviceFleetRequest":{
+      "type":"structure",
+      "required":["DeviceFleetName"],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"}
+      }
+    },
     "DeleteDomainRequest":{
       "type":"structure",
       "required":["DomainId"],
@@ -4916,6 +5473,20 @@
       "members":{
       }
     },
+    "DeleteModelBiasJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
+    "DeleteModelExplainabilityJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
     "DeleteModelInput":{
       "type":"structure",
       "required":["ModelName"],
@@ -4942,6 +5513,13 @@
       "required":["ModelPackageName"],
       "members":{
         "ModelPackageName":{"shape":"VersionedArnOrName"}
+      }
+    },
+    "DeleteModelQualityJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
       }
     },
     "DeleteMonitoringScheduleRequest":{
@@ -5089,6 +5667,17 @@
       "members":{
         "BlueGreenUpdatePolicy":{"shape":"BlueGreenUpdatePolicy"},
         "AutoRollbackConfiguration":{"shape":"AutoRollbackConfig"}
+      }
+    },
+    "DeregisterDevicesRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetName",
+        "DeviceNames"
+      ],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"},
+        "DeviceNames":{"shape":"DeviceNames"}
       }
     },
     "DescribeActionRequest":{
@@ -5341,6 +5930,98 @@
         "LastModifiedBy":{"shape":"UserContext"}
       }
     },
+    "DescribeDataQualityJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
+    "DescribeDataQualityJobDefinitionResponse":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionArn",
+        "JobDefinitionName",
+        "CreationTime",
+        "DataQualityAppSpecification",
+        "DataQualityJobInput",
+        "DataQualityJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"},
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "DataQualityBaselineConfig":{"shape":"DataQualityBaselineConfig"},
+        "DataQualityAppSpecification":{"shape":"DataQualityAppSpecification"},
+        "DataQualityJobInput":{"shape":"DataQualityJobInput"},
+        "DataQualityJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"}
+      }
+    },
+    "DescribeDeviceFleetRequest":{
+      "type":"structure",
+      "required":["DeviceFleetName"],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"}
+      }
+    },
+    "DescribeDeviceFleetResponse":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetName",
+        "DeviceFleetArn",
+        "OutputConfig",
+        "CreationTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"},
+        "DeviceFleetArn":{"shape":"DeviceFleetArn"},
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "Description":{"shape":"DeviceFleetDescription"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "RoleArn":{"shape":"RoleArn"},
+        "IotRoleAlias":{"shape":"IotRoleAlias"}
+      }
+    },
+    "DescribeDeviceRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceName",
+        "DeviceFleetName"
+      ],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "DeviceName":{"shape":"EntityName"},
+        "DeviceFleetName":{"shape":"EntityName"}
+      }
+    },
+    "DescribeDeviceResponse":{
+      "type":"structure",
+      "required":[
+        "DeviceName",
+        "DeviceFleetName",
+        "RegistrationTime"
+      ],
+      "members":{
+        "DeviceArn":{"shape":"DeviceArn"},
+        "DeviceName":{"shape":"EntityName"},
+        "Description":{"shape":"DeviceDescription"},
+        "DeviceFleetName":{"shape":"EntityName"},
+        "IotThingName":{"shape":"ThingName"},
+        "RegistrationTime":{"shape":"Timestamp"},
+        "LatestHeartbeat":{"shape":"Timestamp"},
+        "Models":{"shape":"EdgeModels"},
+        "MaxModels":{"shape":"Integer"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeDomainRequest":{
       "type":"structure",
       "required":["DomainId"],
@@ -5372,6 +6053,37 @@
         "Url":{"shape":"String1024"},
         "VpcId":{"shape":"VpcId"},
         "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "DescribeEdgePackagingJobRequest":{
+      "type":"structure",
+      "required":["EdgePackagingJobName"],
+      "members":{
+        "EdgePackagingJobName":{"shape":"EntityName"}
+      }
+    },
+    "DescribeEdgePackagingJobResponse":{
+      "type":"structure",
+      "required":[
+        "EdgePackagingJobArn",
+        "EdgePackagingJobName",
+        "EdgePackagingJobStatus"
+      ],
+      "members":{
+        "EdgePackagingJobArn":{"shape":"EdgePackagingJobArn"},
+        "EdgePackagingJobName":{"shape":"EntityName"},
+        "CompilationJobName":{"shape":"EntityName"},
+        "ModelName":{"shape":"EntityName"},
+        "ModelVersion":{"shape":"EdgeVersion"},
+        "RoleArn":{"shape":"RoleArn"},
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "ResourceKey":{"shape":"KmsKeyId"},
+        "EdgePackagingJobStatus":{"shape":"EdgePackagingJobStatus"},
+        "EdgePackagingJobStatusMessage":{"shape":"String"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "ModelArtifact":{"shape":"S3Uri"},
+        "ModelSignature":{"shape":"String"}
       }
     },
     "DescribeEndpointConfigInput":{
@@ -5661,6 +6373,72 @@
         "LabelingJobOutput":{"shape":"LabelingJobOutput"}
       }
     },
+    "DescribeModelBiasJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
+    "DescribeModelBiasJobDefinitionResponse":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionArn",
+        "JobDefinitionName",
+        "CreationTime",
+        "ModelBiasAppSpecification",
+        "ModelBiasJobInput",
+        "ModelBiasJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"},
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "ModelBiasBaselineConfig":{"shape":"ModelBiasBaselineConfig"},
+        "ModelBiasAppSpecification":{"shape":"ModelBiasAppSpecification"},
+        "ModelBiasJobInput":{"shape":"ModelBiasJobInput"},
+        "ModelBiasJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"}
+      }
+    },
+    "DescribeModelExplainabilityJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
+    "DescribeModelExplainabilityJobDefinitionResponse":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionArn",
+        "JobDefinitionName",
+        "CreationTime",
+        "ModelExplainabilityAppSpecification",
+        "ModelExplainabilityJobInput",
+        "ModelExplainabilityJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"},
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "ModelExplainabilityBaselineConfig":{"shape":"ModelExplainabilityBaselineConfig"},
+        "ModelExplainabilityAppSpecification":{"shape":"ModelExplainabilityAppSpecification"},
+        "ModelExplainabilityJobInput":{"shape":"ModelExplainabilityJobInput"},
+        "ModelExplainabilityJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"}
+      }
+    },
     "DescribeModelInput":{
       "type":"structure",
       "required":["ModelName"],
@@ -5750,6 +6528,39 @@
         "ApprovalDescription":{"shape":"ApprovalDescription"}
       }
     },
+    "DescribeModelQualityJobDefinitionRequest":{
+      "type":"structure",
+      "required":["JobDefinitionName"],
+      "members":{
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"}
+      }
+    },
+    "DescribeModelQualityJobDefinitionResponse":{
+      "type":"structure",
+      "required":[
+        "JobDefinitionArn",
+        "JobDefinitionName",
+        "CreationTime",
+        "ModelQualityAppSpecification",
+        "ModelQualityJobInput",
+        "ModelQualityJobOutputConfig",
+        "JobResources",
+        "RoleArn"
+      ],
+      "members":{
+        "JobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"},
+        "JobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "ModelQualityBaselineConfig":{"shape":"ModelQualityBaselineConfig"},
+        "ModelQualityAppSpecification":{"shape":"ModelQualityAppSpecification"},
+        "ModelQualityJobInput":{"shape":"ModelQualityJobInput"},
+        "ModelQualityJobOutputConfig":{"shape":"MonitoringOutputConfig"},
+        "JobResources":{"shape":"MonitoringResources"},
+        "NetworkConfig":{"shape":"MonitoringNetworkConfig"},
+        "RoleArn":{"shape":"RoleArn"},
+        "StoppingCondition":{"shape":"MonitoringStoppingCondition"}
+      }
+    },
     "DescribeMonitoringScheduleRequest":{
       "type":"structure",
       "required":["MonitoringScheduleName"],
@@ -5771,6 +6582,7 @@
         "MonitoringScheduleArn":{"shape":"MonitoringScheduleArn"},
         "MonitoringScheduleName":{"shape":"MonitoringScheduleName"},
         "MonitoringScheduleStatus":{"shape":"ScheduleStatus"},
+        "MonitoringType":{"shape":"MonitoringType"},
         "FailureReason":{"shape":"FailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
@@ -6026,7 +6838,11 @@
         "ExperimentConfig":{"shape":"ExperimentConfig"},
         "DebugRuleConfigurations":{"shape":"DebugRuleConfigurations"},
         "TensorBoardOutputConfig":{"shape":"TensorBoardOutputConfig"},
-        "DebugRuleEvaluationStatuses":{"shape":"DebugRuleEvaluationStatuses"}
+        "DebugRuleEvaluationStatuses":{"shape":"DebugRuleEvaluationStatuses"},
+        "ProfilerConfig":{"shape":"ProfilerConfig"},
+        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
+        "ProfilerRuleEvaluationStatuses":{"shape":"ProfilerRuleEvaluationStatuses"},
+        "ProfilingStatus":{"shape":"ProfilingStatus"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -6216,6 +7032,100 @@
         "Failed"
       ]
     },
+    "Device":{
+      "type":"structure",
+      "required":["DeviceName"],
+      "members":{
+        "DeviceName":{"shape":"DeviceName"},
+        "Description":{"shape":"DeviceDescription"},
+        "IotThingName":{"shape":"ThingName"}
+      }
+    },
+    "DeviceArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z\\-]*:[a-z\\-]*:[a-z\\-]*:\\d{12}:[a-z\\-]*/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "DeviceDescription":{
+      "type":"string",
+      "max":40,
+      "min":1,
+      "pattern":"[\\S\\s]+"
+    },
+    "DeviceFleetArn":{
+      "type":"string",
+      "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:device-fleet/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "DeviceFleetDescription":{
+      "type":"string",
+      "max":800,
+      "min":1,
+      "pattern":"[\\S\\s]+"
+    },
+    "DeviceFleetSummaries":{
+      "type":"list",
+      "member":{"shape":"DeviceFleetSummary"}
+    },
+    "DeviceFleetSummary":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetArn",
+        "DeviceFleetName"
+      ],
+      "members":{
+        "DeviceFleetArn":{"shape":"DeviceFleetArn"},
+        "DeviceFleetName":{"shape":"EntityName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "DeviceName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$"
+    },
+    "DeviceNames":{
+      "type":"list",
+      "member":{"shape":"DeviceName"}
+    },
+    "DeviceStats":{
+      "type":"structure",
+      "required":[
+        "ConnectedDeviceCount",
+        "RegisteredDeviceCount"
+      ],
+      "members":{
+        "ConnectedDeviceCount":{"shape":"Long"},
+        "RegisteredDeviceCount":{"shape":"Long"}
+      }
+    },
+    "DeviceSummaries":{
+      "type":"list",
+      "member":{"shape":"DeviceSummary"}
+    },
+    "DeviceSummary":{
+      "type":"structure",
+      "required":[
+        "DeviceName",
+        "DeviceArn"
+      ],
+      "members":{
+        "DeviceName":{"shape":"EntityName"},
+        "DeviceArn":{"shape":"DeviceArn"},
+        "Description":{"shape":"DeviceDescription"},
+        "DeviceFleetName":{"shape":"EntityName"},
+        "IotThingName":{"shape":"ThingName"},
+        "RegistrationTime":{"shape":"Timestamp"},
+        "LatestHeartbeat":{"shape":"Timestamp"},
+        "Models":{"shape":"EdgeModelSummaries"}
+      }
+    },
+    "Devices":{
+      "type":"list",
+      "member":{"shape":"Device"}
+    },
     "DirectInternetAccess":{
       "type":"string",
       "enum":[
@@ -6228,6 +7138,7 @@
       "max":4096,
       "pattern":".*"
     },
+    "DisableProfiler":{"type":"boolean"},
     "DisableSagemakerServicecatalogPortfolioInput":{
       "type":"structure",
       "members":{
@@ -6308,6 +7219,114 @@
       ]
     },
     "DoubleParameterValue":{"type":"double"},
+    "EdgeModel":{
+      "type":"structure",
+      "required":[
+        "ModelName",
+        "ModelVersion"
+      ],
+      "members":{
+        "ModelName":{"shape":"EntityName"},
+        "ModelVersion":{"shape":"EdgeVersion"},
+        "LatestSampleTime":{"shape":"Timestamp"},
+        "LatestInference":{"shape":"Timestamp"}
+      }
+    },
+    "EdgeModelStat":{
+      "type":"structure",
+      "required":[
+        "ModelName",
+        "ModelVersion",
+        "OfflineDeviceCount",
+        "ConnectedDeviceCount",
+        "ActiveDeviceCount",
+        "SamplingDeviceCount"
+      ],
+      "members":{
+        "ModelName":{"shape":"EntityName"},
+        "ModelVersion":{"shape":"EdgeVersion"},
+        "OfflineDeviceCount":{"shape":"Long"},
+        "ConnectedDeviceCount":{"shape":"Long"},
+        "ActiveDeviceCount":{"shape":"Long"},
+        "SamplingDeviceCount":{"shape":"Long"}
+      }
+    },
+    "EdgeModelStats":{
+      "type":"list",
+      "member":{"shape":"EdgeModelStat"}
+    },
+    "EdgeModelSummaries":{
+      "type":"list",
+      "member":{"shape":"EdgeModelSummary"}
+    },
+    "EdgeModelSummary":{
+      "type":"structure",
+      "required":[
+        "ModelName",
+        "ModelVersion"
+      ],
+      "members":{
+        "ModelName":{"shape":"EntityName"},
+        "ModelVersion":{"shape":"EdgeVersion"}
+      }
+    },
+    "EdgeModels":{
+      "type":"list",
+      "member":{"shape":"EdgeModel"}
+    },
+    "EdgeOutputConfig":{
+      "type":"structure",
+      "required":["S3OutputLocation"],
+      "members":{
+        "S3OutputLocation":{"shape":"S3Uri"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "EdgePackagingJobArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z\\-]*:sagemaker:[a-z\\-]*:\\d{12}:edge-packaging-job/?[a-zA-Z_0-9+=,.@\\-_/]+$"
+    },
+    "EdgePackagingJobStatus":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "INPROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "STOPPING",
+        "STOPPED"
+      ]
+    },
+    "EdgePackagingJobSummaries":{
+      "type":"list",
+      "member":{"shape":"EdgePackagingJobSummary"}
+    },
+    "EdgePackagingJobSummary":{
+      "type":"structure",
+      "required":[
+        "EdgePackagingJobArn",
+        "EdgePackagingJobName",
+        "EdgePackagingJobStatus"
+      ],
+      "members":{
+        "EdgePackagingJobArn":{"shape":"EdgePackagingJobArn"},
+        "EdgePackagingJobName":{"shape":"EntityName"},
+        "EdgePackagingJobStatus":{"shape":"EdgePackagingJobStatus"},
+        "CompilationJobName":{"shape":"EntityName"},
+        "ModelName":{"shape":"EntityName"},
+        "ModelVersion":{"shape":"EdgeVersion"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "EdgeVersion":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\ \\_\\.]+"
+    },
     "EfsUid":{
       "type":"string",
       "max":10,
@@ -6404,7 +7423,13 @@
         "EndpointName":{"shape":"EndpointName"},
         "LocalPath":{"shape":"ProcessingLocalPath"},
         "S3InputMode":{"shape":"ProcessingS3InputMode"},
-        "S3DataDistributionType":{"shape":"ProcessingS3DataDistributionType"}
+        "S3DataDistributionType":{"shape":"ProcessingS3DataDistributionType"},
+        "FeaturesAttribute":{"shape":"String"},
+        "InferenceAttribute":{"shape":"String"},
+        "ProbabilityAttribute":{"shape":"String"},
+        "ProbabilityThresholdAttribute":{"shape":"ProbabilityThresholdAttribute"},
+        "StartTimeOffset":{"shape":"MonitoringTimeOffsetString"},
+        "EndTimeOffset":{"shape":"MonitoringTimeOffsetString"}
       }
     },
     "EndpointName":{
@@ -6894,6 +7919,30 @@
       ]
     },
     "GenerateCandidateDefinitionsOnly":{"type":"boolean"},
+    "GetDeviceFleetReportRequest":{
+      "type":"structure",
+      "required":["DeviceFleetName"],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"}
+      }
+    },
+    "GetDeviceFleetReportResponse":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetArn",
+        "DeviceFleetName"
+      ],
+      "members":{
+        "DeviceFleetArn":{"shape":"DeviceFleetArn"},
+        "DeviceFleetName":{"shape":"EntityName"},
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "Description":{"shape":"DeviceFleetDescription"},
+        "ReportGenerated":{"shape":"Timestamp"},
+        "DeviceStats":{"shape":"DeviceStats"},
+        "AgentVersions":{"shape":"AgentVersions"},
+        "ModelStats":{"shape":"EdgeModelStats"}
+      }
+    },
     "GetModelPackageGroupPolicyInput":{
       "type":"structure",
       "required":["ModelPackageGroupName"],
@@ -7596,6 +8645,7 @@
         "ml.p3.16xlarge"
       ]
     },
+    "Integer":{"type":"integer"},
     "IntegerParameterRange":{
       "type":"structure",
       "required":[
@@ -7636,6 +8686,10 @@
       "type":"integer",
       "max":3600,
       "min":1
+    },
+    "IotRoleAlias":{
+      "type":"string",
+      "pattern":"^arn:aws[a-z\\-]*:iam::\\d{12}:rolealias/?[a-zA-Z_0-9+=,.@\\-_/]+$"
     },
     "JobReferenceCode":{
       "type":"string",
@@ -8160,6 +9214,81 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListDataQualityJobDefinitionsRequest":{
+      "type":"structure",
+      "members":{
+        "EndpointName":{"shape":"EndpointName"},
+        "SortBy":{"shape":"MonitoringJobDefinitionSortKey"},
+        "SortOrder":{"shape":"SortOrder"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NameContains":{"shape":"NameContains"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "ListDataQualityJobDefinitionsResponse":{
+      "type":"structure",
+      "required":["JobDefinitionSummaries"],
+      "members":{
+        "JobDefinitionSummaries":{"shape":"MonitoringJobDefinitionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDeviceFleetsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"ListMaxResults",
+          "box":true
+        },
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "LastModifiedTimeAfter":{"shape":"Timestamp"},
+        "LastModifiedTimeBefore":{"shape":"Timestamp"},
+        "NameContains":{"shape":"NameContains"},
+        "SortBy":{"shape":"ListDeviceFleetsSortBy"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListDeviceFleetsResponse":{
+      "type":"structure",
+      "required":["DeviceFleetSummaries"],
+      "members":{
+        "DeviceFleetSummaries":{"shape":"DeviceFleetSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDeviceFleetsSortBy":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "CREATION_TIME",
+        "LAST_MODIFIED_TIME"
+      ]
+    },
+    "ListDevicesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"ListMaxResults",
+          "box":true
+        },
+        "LatestHeartbeatAfter":{"shape":"Timestamp"},
+        "ModelName":{"shape":"EntityName"},
+        "DeviceFleetName":{"shape":"EntityName"}
+      }
+    },
+    "ListDevicesResponse":{
+      "type":"structure",
+      "required":["DeviceSummaries"],
+      "members":{
+        "DeviceSummaries":{"shape":"DeviceSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListDomainsRequest":{
       "type":"structure",
       "members":{
@@ -8173,6 +9302,43 @@
         "Domains":{"shape":"DomainList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListEdgePackagingJobsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"ListMaxResults",
+          "box":true
+        },
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "LastModifiedTimeAfter":{"shape":"Timestamp"},
+        "LastModifiedTimeBefore":{"shape":"Timestamp"},
+        "NameContains":{"shape":"NameContains"},
+        "ModelNameContains":{"shape":"NameContains"},
+        "StatusEquals":{"shape":"EdgePackagingJobStatus"},
+        "SortBy":{"shape":"ListEdgePackagingJobsSortBy"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListEdgePackagingJobsResponse":{
+      "type":"structure",
+      "required":["EdgePackagingJobSummaries"],
+      "members":{
+        "EdgePackagingJobSummaries":{"shape":"EdgePackagingJobSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEdgePackagingJobsSortBy":{
+      "type":"string",
+      "enum":[
+        "NAME",
+        "MODEL_NAME",
+        "CREATION_TIME",
+        "LAST_MODIFIED_TIME",
+        "STATUS"
+      ]
     },
     "ListEndpointConfigsInput":{
       "type":"structure",
@@ -8423,6 +9589,52 @@
       "type":"list",
       "member":{"shape":"StringParameterValue"}
     },
+    "ListMaxResults":{
+      "type":"integer",
+      "max":100
+    },
+    "ListModelBiasJobDefinitionsRequest":{
+      "type":"structure",
+      "members":{
+        "EndpointName":{"shape":"EndpointName"},
+        "SortBy":{"shape":"MonitoringJobDefinitionSortKey"},
+        "SortOrder":{"shape":"SortOrder"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NameContains":{"shape":"NameContains"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "ListModelBiasJobDefinitionsResponse":{
+      "type":"structure",
+      "required":["JobDefinitionSummaries"],
+      "members":{
+        "JobDefinitionSummaries":{"shape":"MonitoringJobDefinitionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListModelExplainabilityJobDefinitionsRequest":{
+      "type":"structure",
+      "members":{
+        "EndpointName":{"shape":"EndpointName"},
+        "SortBy":{"shape":"MonitoringJobDefinitionSortKey"},
+        "SortOrder":{"shape":"SortOrder"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NameContains":{"shape":"NameContains"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "ListModelExplainabilityJobDefinitionsResponse":{
+      "type":"structure",
+      "required":["JobDefinitionSummaries"],
+      "members":{
+        "JobDefinitionSummaries":{"shape":"MonitoringJobDefinitionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListModelPackageGroupsInput":{
       "type":"structure",
       "members":{
@@ -8466,6 +9678,27 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListModelQualityJobDefinitionsRequest":{
+      "type":"structure",
+      "members":{
+        "EndpointName":{"shape":"EndpointName"},
+        "SortBy":{"shape":"MonitoringJobDefinitionSortKey"},
+        "SortOrder":{"shape":"SortOrder"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NameContains":{"shape":"NameContains"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "ListModelQualityJobDefinitionsResponse":{
+      "type":"structure",
+      "required":["JobDefinitionSummaries"],
+      "members":{
+        "JobDefinitionSummaries":{"shape":"MonitoringJobDefinitionSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListModelsInput":{
       "type":"structure",
       "members":{
@@ -8501,7 +9734,9 @@
         "CreationTimeAfter":{"shape":"Timestamp"},
         "LastModifiedTimeBefore":{"shape":"Timestamp"},
         "LastModifiedTimeAfter":{"shape":"Timestamp"},
-        "StatusEquals":{"shape":"ExecutionStatus"}
+        "StatusEquals":{"shape":"ExecutionStatus"},
+        "MonitoringJobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "MonitoringTypeEquals":{"shape":"MonitoringType"}
       }
     },
     "ListMonitoringExecutionsResponse":{
@@ -8525,7 +9760,9 @@
         "CreationTimeAfter":{"shape":"Timestamp"},
         "LastModifiedTimeBefore":{"shape":"Timestamp"},
         "LastModifiedTimeAfter":{"shape":"Timestamp"},
-        "StatusEquals":{"shape":"ScheduleStatus"}
+        "StatusEquals":{"shape":"ScheduleStatus"},
+        "MonitoringJobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "MonitoringTypeEquals":{"shape":"MonitoringType"}
       }
     },
     "ListMonitoringSchedulesResponse":{
@@ -8929,6 +10166,7 @@
         "CreateDate"
       ]
     },
+    "Long":{"type":"long"},
     "MaxAutoMLJobRuntimeInSeconds":{
       "type":"integer",
       "min":1
@@ -9092,6 +10330,36 @@
         "S3ModelArtifacts":{"shape":"S3Uri"}
       }
     },
+    "ModelBiasAppSpecification":{
+      "type":"structure",
+      "required":[
+        "ImageUri",
+        "ConfigUri"
+      ],
+      "members":{
+        "ImageUri":{"shape":"ImageUri"},
+        "ConfigUri":{"shape":"S3Uri"},
+        "Environment":{"shape":"MonitoringEnvironmentMap"}
+      }
+    },
+    "ModelBiasBaselineConfig":{
+      "type":"structure",
+      "members":{
+        "BaseliningJobName":{"shape":"ProcessingJobName"},
+        "ConstraintsResource":{"shape":"MonitoringConstraintsResource"}
+      }
+    },
+    "ModelBiasJobInput":{
+      "type":"structure",
+      "required":[
+        "EndpointInput",
+        "GroundTruthS3Input"
+      ],
+      "members":{
+        "EndpointInput":{"shape":"EndpointInput"},
+        "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
+      }
+    },
     "ModelClientConfig":{
       "type":"structure",
       "members":{
@@ -9110,6 +10378,32 @@
       "type":"structure",
       "members":{
         "ArtifactDigest":{"shape":"ArtifactDigest"}
+      }
+    },
+    "ModelExplainabilityAppSpecification":{
+      "type":"structure",
+      "required":[
+        "ImageUri",
+        "ConfigUri"
+      ],
+      "members":{
+        "ImageUri":{"shape":"ImageUri"},
+        "ConfigUri":{"shape":"S3Uri"},
+        "Environment":{"shape":"MonitoringEnvironmentMap"}
+      }
+    },
+    "ModelExplainabilityBaselineConfig":{
+      "type":"structure",
+      "members":{
+        "BaseliningJobName":{"shape":"ProcessingJobName"},
+        "ConstraintsResource":{"shape":"MonitoringConstraintsResource"}
+      }
+    },
+    "ModelExplainabilityJobInput":{
+      "type":"structure",
+      "required":["EndpointInput"],
+      "members":{
+        "EndpointInput":{"shape":"EndpointInput"}
       }
     },
     "ModelMetrics":{
@@ -9346,6 +10640,37 @@
         "Constraints":{"shape":"MetricsSource"}
       }
     },
+    "ModelQualityAppSpecification":{
+      "type":"structure",
+      "required":["ImageUri"],
+      "members":{
+        "ImageUri":{"shape":"ImageUri"},
+        "ContainerEntrypoint":{"shape":"ContainerEntrypoint"},
+        "ContainerArguments":{"shape":"MonitoringContainerArguments"},
+        "RecordPreprocessorSourceUri":{"shape":"S3Uri"},
+        "PostAnalyticsProcessorSourceUri":{"shape":"S3Uri"},
+        "ProblemType":{"shape":"MonitoringProblemType"},
+        "Environment":{"shape":"MonitoringEnvironmentMap"}
+      }
+    },
+    "ModelQualityBaselineConfig":{
+      "type":"structure",
+      "members":{
+        "BaseliningJobName":{"shape":"ProcessingJobName"},
+        "ConstraintsResource":{"shape":"MonitoringConstraintsResource"}
+      }
+    },
+    "ModelQualityJobInput":{
+      "type":"structure",
+      "required":[
+        "EndpointInput",
+        "GroundTruthS3Input"
+      ],
+      "members":{
+        "EndpointInput":{"shape":"EndpointInput"},
+        "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
+      }
+    },
     "ModelSortKey":{
       "type":"string",
       "enum":[
@@ -9390,6 +10715,7 @@
     "MonitoringBaselineConfig":{
       "type":"structure",
       "members":{
+        "BaseliningJobName":{"shape":"ProcessingJobName"},
         "ConstraintsResource":{"shape":"MonitoringConstraintsResource"},
         "StatisticsResource":{"shape":"MonitoringStatisticsResource"}
       }
@@ -9451,12 +10777,20 @@
         "MonitoringExecutionStatus":{"shape":"ExecutionStatus"},
         "ProcessingJobArn":{"shape":"ProcessingJobArn"},
         "EndpointName":{"shape":"EndpointName"},
-        "FailureReason":{"shape":"FailureReason"}
+        "FailureReason":{"shape":"FailureReason"},
+        "MonitoringJobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "MonitoringType":{"shape":"MonitoringType"}
       }
     },
     "MonitoringExecutionSummaryList":{
       "type":"list",
       "member":{"shape":"MonitoringExecutionSummary"}
+    },
+    "MonitoringGroundTruthS3Input":{
+      "type":"structure",
+      "members":{
+        "S3Uri":{"shape":"MonitoringS3Uri"}
+      }
     },
     "MonitoringInput":{
       "type":"structure",
@@ -9492,10 +10826,55 @@
         "RoleArn":{"shape":"RoleArn"}
       }
     },
+    "MonitoringJobDefinitionArn":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
+    "MonitoringJobDefinitionName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
+    "MonitoringJobDefinitionSortKey":{
+      "type":"string",
+      "enum":[
+        "Name",
+        "CreationTime"
+      ]
+    },
+    "MonitoringJobDefinitionSummary":{
+      "type":"structure",
+      "required":[
+        "MonitoringJobDefinitionName",
+        "MonitoringJobDefinitionArn",
+        "CreationTime",
+        "EndpointName"
+      ],
+      "members":{
+        "MonitoringJobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "MonitoringJobDefinitionArn":{"shape":"MonitoringJobDefinitionArn"},
+        "CreationTime":{"shape":"Timestamp"},
+        "EndpointName":{"shape":"EndpointName"}
+      }
+    },
+    "MonitoringJobDefinitionSummaryList":{
+      "type":"list",
+      "member":{"shape":"MonitoringJobDefinitionSummary"}
+    },
     "MonitoringMaxRuntimeInSeconds":{
       "type":"integer",
       "max":86400,
       "min":1
+    },
+    "MonitoringNetworkConfig":{
+      "type":"structure",
+      "members":{
+        "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
+        "EnableNetworkIsolation":{"shape":"Boolean"},
+        "VpcConfig":{"shape":"VpcConfig"}
+      }
     },
     "MonitoringOutput":{
       "type":"structure",
@@ -9517,6 +10896,14 @@
       "member":{"shape":"MonitoringOutput"},
       "max":1,
       "min":1
+    },
+    "MonitoringProblemType":{
+      "type":"string",
+      "enum":[
+        "BinaryClassification",
+        "MulticlassClassification",
+        "Regression"
+      ]
     },
     "MonitoringResources":{
       "type":"structure",
@@ -9548,6 +10935,7 @@
         "MonitoringScheduleArn":{"shape":"MonitoringScheduleArn"},
         "MonitoringScheduleName":{"shape":"MonitoringScheduleName"},
         "MonitoringScheduleStatus":{"shape":"ScheduleStatus"},
+        "MonitoringType":{"shape":"MonitoringType"},
         "FailureReason":{"shape":"FailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
@@ -9566,7 +10954,9 @@
       "type":"structure",
       "members":{
         "ScheduleConfig":{"shape":"ScheduleConfig"},
-        "MonitoringJobDefinition":{"shape":"MonitoringJobDefinition"}
+        "MonitoringJobDefinition":{"shape":"MonitoringJobDefinition"},
+        "MonitoringJobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "MonitoringType":{"shape":"MonitoringType"}
       }
     },
     "MonitoringScheduleList":{
@@ -9602,7 +10992,9 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "MonitoringScheduleStatus":{"shape":"ScheduleStatus"},
-        "EndpointName":{"shape":"EndpointName"}
+        "EndpointName":{"shape":"EndpointName"},
+        "MonitoringJobDefinitionName":{"shape":"MonitoringJobDefinitionName"},
+        "MonitoringType":{"shape":"MonitoringType"}
       }
     },
     "MonitoringScheduleSummaryList":{
@@ -9621,6 +11013,21 @@
       "members":{
         "MaxRuntimeInSeconds":{"shape":"MonitoringMaxRuntimeInSeconds"}
       }
+    },
+    "MonitoringTimeOffsetString":{
+      "type":"string",
+      "max":15,
+      "min":1,
+      "pattern":"^.?P.*"
+    },
+    "MonitoringType":{
+      "type":"string",
+      "enum":[
+        "DataQuality",
+        "ModelQuality",
+        "ModelBias",
+        "ModelExplainability"
+      ]
     },
     "MountPath":{
       "type":"string",
@@ -10239,6 +11646,7 @@
       "pattern":".*"
     },
     "PresignedDomainUrl":{"type":"string"},
+    "ProbabilityThresholdAttribute":{"type":"double"},
     "ProblemType":{
       "type":"string",
       "enum":[
@@ -10672,6 +12080,77 @@
       "member":{"shape":"ProductionVariantSummary"},
       "min":1
     },
+    "ProfilerConfig":{
+      "type":"structure",
+      "required":["S3OutputPath"],
+      "members":{
+        "S3OutputPath":{"shape":"S3Uri"},
+        "ProfilingIntervalInMilliseconds":{"shape":"ProfilingIntervalInMilliseconds"},
+        "ProfilingParameters":{"shape":"ProfilingParameters"}
+      }
+    },
+    "ProfilerConfigForUpdate":{
+      "type":"structure",
+      "members":{
+        "S3OutputPath":{"shape":"S3Uri"},
+        "ProfilingIntervalInMilliseconds":{"shape":"ProfilingIntervalInMilliseconds"},
+        "ProfilingParameters":{"shape":"ProfilingParameters"},
+        "DisableProfiler":{"shape":"DisableProfiler"}
+      }
+    },
+    "ProfilerRuleConfiguration":{
+      "type":"structure",
+      "required":[
+        "RuleConfigurationName",
+        "RuleEvaluatorImage"
+      ],
+      "members":{
+        "RuleConfigurationName":{"shape":"RuleConfigurationName"},
+        "LocalPath":{"shape":"DirectoryPath"},
+        "S3OutputPath":{"shape":"S3Uri"},
+        "RuleEvaluatorImage":{"shape":"AlgorithmImage"},
+        "InstanceType":{"shape":"ProcessingInstanceType"},
+        "VolumeSizeInGB":{"shape":"OptionalVolumeSizeInGB"},
+        "RuleParameters":{"shape":"RuleParameters"}
+      }
+    },
+    "ProfilerRuleConfigurations":{
+      "type":"list",
+      "member":{"shape":"ProfilerRuleConfiguration"},
+      "max":20,
+      "min":0
+    },
+    "ProfilerRuleEvaluationStatus":{
+      "type":"structure",
+      "members":{
+        "RuleConfigurationName":{"shape":"RuleConfigurationName"},
+        "RuleEvaluationJobArn":{"shape":"ProcessingJobArn"},
+        "RuleEvaluationStatus":{"shape":"RuleEvaluationStatus"},
+        "StatusDetails":{"shape":"StatusDetails"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "ProfilerRuleEvaluationStatuses":{
+      "type":"list",
+      "member":{"shape":"ProfilerRuleEvaluationStatus"},
+      "max":20,
+      "min":0
+    },
+    "ProfilingIntervalInMilliseconds":{"type":"long"},
+    "ProfilingParameters":{
+      "type":"map",
+      "key":{"shape":"ConfigKey"},
+      "value":{"shape":"ConfigValue"},
+      "max":20,
+      "min":0
+    },
+    "ProfilingStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ProjectArn":{
       "type":"string",
       "max":2048,
@@ -10885,6 +12364,18 @@
       "max":128,
       "min":1,
       "pattern":".*"
+    },
+    "RegisterDevicesRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetName",
+        "Devices"
+      ],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"},
+        "Devices":{"shape":"Devices"},
+        "Tags":{"shape":"TagList"}
+      }
     },
     "RegisterModelStepMetadata":{
       "type":"structure",
@@ -11539,6 +13030,13 @@
         "CompilationJobName":{"shape":"EntityName"}
       }
     },
+    "StopEdgePackagingJobRequest":{
+      "type":"structure",
+      "required":["EdgePackagingJobName"],
+      "members":{
+        "EdgePackagingJobName":{"shape":"EntityName"}
+      }
+    },
     "StopHyperParameterTuningJobRequest":{
       "type":"structure",
       "required":["HyperParameterTuningJobName"],
@@ -11875,6 +13373,11 @@
       "type":"integer",
       "max":3600,
       "min":0
+    },
+    "ThingName":{
+      "type":"string",
+      "max":128,
+      "pattern":"[a-zA-Z0-9:_-]+"
     },
     "Timestamp":{"type":"timestamp"},
     "TrafficRoutingConfig":{
@@ -12642,6 +14145,30 @@
         "ContextArn":{"shape":"ContextArn"}
       }
     },
+    "UpdateDeviceFleetRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetName",
+        "OutputConfig"
+      ],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Description":{"shape":"DeviceFleetDescription"},
+        "OutputConfig":{"shape":"EdgeOutputConfig"}
+      }
+    },
+    "UpdateDevicesRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceFleetName",
+        "Devices"
+      ],
+      "members":{
+        "DeviceFleetName":{"shape":"EntityName"},
+        "Devices":{"shape":"Devices"}
+      }
+    },
     "UpdateDomainRequest":{
       "type":"structure",
       "required":["DomainId"],
@@ -12832,6 +14359,22 @@
       "type":"structure",
       "members":{
         "PipelineArn":{"shape":"PipelineArn"}
+      }
+    },
+    "UpdateTrainingJobRequest":{
+      "type":"structure",
+      "required":["TrainingJobName"],
+      "members":{
+        "TrainingJobName":{"shape":"TrainingJobName"},
+        "ProfilerConfig":{"shape":"ProfilerConfigForUpdate"},
+        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"}
+      }
+    },
+    "UpdateTrainingJobResponse":{
+      "type":"structure",
+      "required":["TrainingJobArn"],
+      "members":{
+        "TrainingJobArn":{"shape":"TrainingJobArn"}
       }
     },
     "UpdateTrialComponentRequest":{

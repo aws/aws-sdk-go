@@ -4975,8 +4975,19 @@
       "members":{
         "LeftOperand":{"shape":"LogicalTableId"},
         "RightOperand":{"shape":"LogicalTableId"},
+        "LeftJoinKeyProperties":{"shape":"JoinKeyProperties"},
+        "RightJoinKeyProperties":{"shape":"JoinKeyProperties"},
         "Type":{"shape":"JoinType"},
         "OnClause":{"shape":"OnClause"}
+      }
+    },
+    "JoinKeyProperties":{
+      "type":"structure",
+      "members":{
+        "UniqueKey":{
+          "shape":"Boolean",
+          "box":true
+        }
       }
     },
     "JoinType":{
@@ -5813,7 +5824,7 @@
       "type":"map",
       "key":{"shape":"LogicalTableId"},
       "value":{"shape":"LogicalTable"},
-      "max":32,
+      "max":64,
       "min":1
     },
     "LogicalTableSource":{
@@ -5994,7 +6005,7 @@
       "type":"map",
       "key":{"shape":"PhysicalTableId"},
       "value":{"shape":"PhysicalTable"},
-      "max":16,
+      "max":32,
       "min":1
     },
     "Port":{

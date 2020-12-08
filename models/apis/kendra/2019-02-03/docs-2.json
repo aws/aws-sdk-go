@@ -29,9 +29,9 @@
   },
   "shapes": {
     "AccessControlListConfiguration": {
-      "base": "<p>Access Control List files for the documents in a data source.</p>",
+      "base": "<p>Access Control List files for the documents in a data source. For the format of the file, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/s3-acl.html\">Access control for S3 data sources</a>.</p>",
       "refs": {
-        "S3DataSourceConfiguration$AccessControlListConfiguration": "<p>Provides the path to the S3 bucket that contains the user context filtering files for the data source.</p>"
+        "S3DataSourceConfiguration$AccessControlListConfiguration": "<p>Provides the path to the S3 bucket that contains the user context filtering files for the data source. For the format of the file, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/s3-acl.html\">Access control for S3 data sources</a>.</p>"
       }
     },
     "AccessDeniedException": {
@@ -443,6 +443,8 @@
       "refs": {
         "ConfluenceConfiguration$InclusionPatterns": "<p>A list of regular expression patterns that apply to a URL on the Confluence server. An inclusion pattern can apply to a blog post, a page, a space, or an attachment. Items that match the patterns are included in the index. Items that don't match the pattern are excluded from the index. If an item matches both an inclusion pattern and an exclusion pattern, the item isn't included in the index.</p>",
         "ConfluenceConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns that apply to a URL on the Confluence server. An exclusion pattern can apply to a blog post, a page, a space, or an attachment. Items that match the pattern are excluded from the index. Items that don't match the pattern are included in the index. If a item matches both an exclusion pattern and an inclusion pattern, the item isn't included in the index.</p>",
+        "GoogleDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns that apply to path on Google Drive. Items that match the pattern are included in the index from both shared drives and users' My Drives. Items that don't match the pattern are excluded from the index. If an item matches both an inclusion pattern and an exclusion pattern, it is excluded from the index.</p>",
+        "GoogleDriveConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns that apply to the path on Google Drive. Items that match the pattern are excluded from the index from both shared drives and users' My Drives. Items that don't match the pattern are included in the index. If an item matches both an exclusion pattern and an inclusion pattern, it is excluded from the index.</p>",
         "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the pattern are included in the index. Documents that don't match the pattern are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index. </p> <p>The exclusion pattern is applied to the file name.</p>",
         "OneDriveConfiguration$ExclusionPatterns": "<p>List of regular expressions applied to documents. Items that match the exclusion pattern are not indexed. If you provide both an inclusion pattern and an exclusion pattern, any item that matches the exclusion pattern isn't indexed. </p> <p>The exclusion pattern is applied to the file name.</p>",
         "S3DataSourceConfiguration$InclusionPrefixes": "<p>A list of S3 prefixes for the documents that should be included in the index.</p>",
@@ -539,6 +541,7 @@
       "base": null,
       "refs": {
         "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <a>UpdateIndex</a> operation.</p>",
+        "GoogleDriveConfiguration$FieldMappings": "<p>Defines mapping between a field in the Google Drive and a Amazon Kendra index field.</p> <p>If you are using the console, you can define index fields when creating the mapping. If you are using the API, you must first create the field using the <a>UpdateIndex</a> operation.</p>",
         "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft OneDrive fields to custom fields in the Amazon Kendra index. You must first create the index fields before you map OneDrive fields.</p>",
         "SalesforceChatterFeedConfiguration$FieldMappings": "<p>Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$FieldMappings": "<p>One or more objects that map fields in the custom knowledge article to fields in the Amazon Kendra index.</p>",
@@ -822,6 +825,24 @@
         "ValidationException$Message": null
       }
     },
+    "ExcludeMimeTypesList": {
+      "base": null,
+      "refs": {
+        "GoogleDriveConfiguration$ExcludeMimeTypes": "<p>A list of MIME types to exclude from the index. All documents matching the specified MIME type are excluded. </p> <p>For a list of MIME types, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>"
+      }
+    },
+    "ExcludeSharedDrivesList": {
+      "base": null,
+      "refs": {
+        "GoogleDriveConfiguration$ExcludeSharedDrives": "<p>A list of identifiers or shared drives to exclude from the index. All files and folders stored on the shared drive are excluded.</p>"
+      }
+    },
+    "ExcludeUserAccountsList": {
+      "base": null,
+      "refs": {
+        "GoogleDriveConfiguration$ExcludeUserAccounts": "<p>A list of email addresses of the users. Documents owned by these users are excluded from the index. Documents shared with excluded users are indexed unless they are excluded in another way.</p>"
+      }
+    },
     "Facet": {
       "base": "<p>Information about a document attribute</p>",
       "refs": {
@@ -895,6 +916,18 @@
       "base": null,
       "refs": {
         "ListFaqsResponse$FaqSummaryItems": "<p>information about the FAQs associated with the specified index.</p>"
+      }
+    },
+    "FeedbackToken": {
+      "base": null,
+      "refs": {
+        "QueryResultItem$FeedbackToken": "<p>A token that identifies a particular result from a particular query. Use this token to provide click-through feedback for the result. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html\"> Submitting feedback </a>.</p>"
+      }
+    },
+    "GoogleDriveConfiguration": {
+      "base": "<p>Provides configuration information for data sources that connect to Google Drive.</p>",
+      "refs": {
+        "DataSourceConfiguration$GoogleDriveConfiguration": "<p>Provides configuration for data sources that connect to Google Drive. </p>"
       }
     },
     "GroupAttributeField": {
@@ -1157,6 +1190,12 @@
         "DataSourceSyncJobMetrics$DocumentsScanned": "<p>The current number of documents crawled by the current sync job in the data source.</p>"
       }
     },
+    "MimeType": {
+      "base": null,
+      "refs": {
+        "ExcludeMimeTypesList$member": null
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -1173,7 +1212,7 @@
     "OneDriveConfiguration": {
       "base": "<p>Provides configuration information for data sources that connect to OneDrive.</p>",
       "refs": {
-        "DataSourceConfiguration$OneDriveConfiguration": "<p>Provided configuration for data sources that connect to Microsoft OneDrive.</p>"
+        "DataSourceConfiguration$OneDriveConfiguration": "<p>Provides configuration for data sources that connect to Microsoft OneDrive.</p>"
       }
     },
     "OneDriveUser": {
@@ -1502,6 +1541,7 @@
       "refs": {
         "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i>AWS Secrets Manager</i> user guide.</p>",
+        "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a AWS Secrets Manager secret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
         "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the AWS Secret Manager secret that contains the user name and password required to connect to the ServiceNow instance.</p>",
@@ -1572,6 +1612,12 @@
       "base": null,
       "refs": {
         "SharePointConfiguration$SharePointVersion": "<p>The version of Microsoft SharePoint that you are using as a data source.</p>"
+      }
+    },
+    "SharedDriveId": {
+      "base": null,
+      "refs": {
+        "ExcludeSharedDrivesList$member": null
       }
     },
     "SortOrder": {
@@ -1697,7 +1743,7 @@
     "TenantDomain": {
       "base": null,
       "refs": {
-        "OneDriveConfiguration$TenantDomain": "<p>Tha Azure Active Directory domain of the organization. </p>"
+        "OneDriveConfiguration$TenantDomain": "<p>The Azure Active Directory domain of the organization. </p>"
       }
     },
     "TextDocumentStatistics": {
@@ -1790,6 +1836,12 @@
         "SharePointUrlList$member": null
       }
     },
+    "UserAccount": {
+      "base": null,
+      "refs": {
+        "ExcludeUserAccountsList$member": null
+      }
+    },
     "UserContext": {
       "base": "<p>Provides information about the user context for a Amazon Kendra index.</p>",
       "refs": {
@@ -1839,6 +1891,12 @@
       "base": null,
       "refs": {
         "ValueImportanceMap$key": null
+      }
+    },
+    "VisitorId": {
+      "base": null,
+      "refs": {
+        "QueryRequest$VisitorId": "<p>Provides an identifier for a specific user. The <code>VisitorId</code> should be a unique identifier, such as a GUID. Don't use personally identifiable information, such as the user's email address, as the <code>VisitorId</code>.</p>"
       }
     },
     "VpcSecurityGroupId": {

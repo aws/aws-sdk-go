@@ -21312,7 +21312,7 @@ type GetDashboardEmbedUrlInput struct {
 
 	// A list of one or more dashboard ids that you want to add to a session that
 	// includes anonymous authorizations. IdentityType must be set to ANONYMOUS
-	// for this to work, because other other identity types authenticate as QuickSight
+	// for this to work, because other identity types authenticate as QuickSight
 	// users. For example, if you set "--dashboard-id dash_id1 --dashboard-id dash_id2
 	// dash_id3 identity-type ANONYMOUS", the session can access all three dashboards.
 	AdditionalDashboardIds []*string `location:"querystring" locationName:"additional-dashboard-ids" min:"1" type:"list"`
@@ -22387,26 +22387,32 @@ func (s *JiraParameters) SetSiteBaseUrl(v string) *JiraParameters {
 	return s
 }
 
-// Join instruction.
+// The instructions associated with a join.
 type JoinInstruction struct {
 	_ struct{} `type:"structure"`
 
-	// Left operand.
+	// Join key properties of the left operand.
+	LeftJoinKeyProperties *JoinKeyProperties `type:"structure"`
+
+	// The operand on the left side of a join.
 	//
 	// LeftOperand is a required field
 	LeftOperand *string `min:"1" type:"string" required:"true"`
 
-	// On Clause.
+	// The join instructions provided in the ON clause of a join.
 	//
 	// OnClause is a required field
 	OnClause *string `min:"1" type:"string" required:"true"`
 
-	// Right operand.
+	// Join key properties of the right operand.
+	RightJoinKeyProperties *JoinKeyProperties `type:"structure"`
+
+	// The operand on the right side of a join.
 	//
 	// RightOperand is a required field
 	RightOperand *string `min:"1" type:"string" required:"true"`
 
-	// Type.
+	// The type of join that it is.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"JoinType"`
@@ -22453,6 +22459,12 @@ func (s *JoinInstruction) Validate() error {
 	return nil
 }
 
+// SetLeftJoinKeyProperties sets the LeftJoinKeyProperties field's value.
+func (s *JoinInstruction) SetLeftJoinKeyProperties(v *JoinKeyProperties) *JoinInstruction {
+	s.LeftJoinKeyProperties = v
+	return s
+}
+
 // SetLeftOperand sets the LeftOperand field's value.
 func (s *JoinInstruction) SetLeftOperand(v string) *JoinInstruction {
 	s.LeftOperand = &v
@@ -22465,6 +22477,12 @@ func (s *JoinInstruction) SetOnClause(v string) *JoinInstruction {
 	return s
 }
 
+// SetRightJoinKeyProperties sets the RightJoinKeyProperties field's value.
+func (s *JoinInstruction) SetRightJoinKeyProperties(v *JoinKeyProperties) *JoinInstruction {
+	s.RightJoinKeyProperties = v
+	return s
+}
+
 // SetRightOperand sets the RightOperand field's value.
 func (s *JoinInstruction) SetRightOperand(v string) *JoinInstruction {
 	s.RightOperand = &v
@@ -22474,6 +22492,31 @@ func (s *JoinInstruction) SetRightOperand(v string) *JoinInstruction {
 // SetType sets the Type field's value.
 func (s *JoinInstruction) SetType(v string) *JoinInstruction {
 	s.Type = &v
+	return s
+}
+
+// Properties associated with the columns participating in a join.
+type JoinKeyProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates that a row in a table is uniquely identified by the columns in
+	// a join key. This is used by QuickSight to optimize query performance.
+	UniqueKey *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s JoinKeyProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JoinKeyProperties) GoString() string {
+	return s.String()
+}
+
+// SetUniqueKey sets the UniqueKey field's value.
+func (s *JoinKeyProperties) SetUniqueKey(v bool) *JoinKeyProperties {
+	s.UniqueKey = &v
 	return s
 }
 

@@ -151,7 +151,7 @@
     "AdditionalDashboardIdList": {
       "base": null,
       "refs": {
-        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard ids that you want to add to a session that includes anonymous authorizations. <code>IdentityType</code> must be set to ANONYMOUS for this to work, because other other identity types authenticate as QuickSight users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards. </p>"
+        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard ids that you want to add to a session that includes anonymous authorizations. <code>IdentityType</code> must be set to ANONYMOUS for this to work, because other identity types authenticate as QuickSight users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards. </p>"
       }
     },
     "AliasName": {
@@ -519,6 +519,7 @@
         "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
         "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the the subscriber reopens the same dashboard URL. The state is stored in QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
+        "JoinKeyProperties$UniqueKey": "<p>Indicates that a row in a table is uniquely identified by the columns in a join key. This is used by QuickSight to optimize query performance.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
@@ -1972,15 +1973,22 @@
       }
     },
     "JoinInstruction": {
-      "base": "<p>Join instruction.</p>",
+      "base": "<p>The instructions associated with a join. </p>",
       "refs": {
         "LogicalTableSource$JoinInstruction": "<p>Specifies the result of a join of two logical tables.</p>"
+      }
+    },
+    "JoinKeyProperties": {
+      "base": "<p>Properties associated with the columns participating in a join.</p>",
+      "refs": {
+        "JoinInstruction$LeftJoinKeyProperties": "<p>Join key properties of the left operand.</p>",
+        "JoinInstruction$RightJoinKeyProperties": "<p>Join key properties of the right operand.</p>"
       }
     },
     "JoinType": {
       "base": null,
       "refs": {
-        "JoinInstruction$Type": "<p>Type.</p>"
+        "JoinInstruction$Type": "<p>The type of join that it is.</p>"
       }
     },
     "LimitExceededException": {
@@ -2203,8 +2211,8 @@
     "LogicalTableId": {
       "base": null,
       "refs": {
-        "JoinInstruction$LeftOperand": "<p>Left operand.</p>",
-        "JoinInstruction$RightOperand": "<p>Right operand.</p>",
+        "JoinInstruction$LeftOperand": "<p>The operand on the left side of a join.</p>",
+        "JoinInstruction$RightOperand": "<p>The operand on the right side of a join.</p>",
         "LogicalTableMap$key": null
       }
     },
@@ -2376,7 +2384,7 @@
     "OnClause": {
       "base": null,
       "refs": {
-        "JoinInstruction$OnClause": "<p>On Clause.</p>"
+        "JoinInstruction$OnClause": "<p>The join instructions provided in the <code>ON</code> clause of a join.</p>"
       }
     },
     "OptionalPort": {

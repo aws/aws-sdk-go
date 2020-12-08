@@ -917,7 +917,8 @@
         "SalesforceConfiguration":{"shape":"SalesforceConfiguration"},
         "OneDriveConfiguration":{"shape":"OneDriveConfiguration"},
         "ServiceNowConfiguration":{"shape":"ServiceNowConfiguration"},
-        "ConfluenceConfiguration":{"shape":"ConfluenceConfiguration"}
+        "ConfluenceConfiguration":{"shape":"ConfluenceConfiguration"},
+        "GoogleDriveConfiguration":{"shape":"GoogleDriveConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1064,7 +1065,8 @@
         "ONEDRIVE",
         "SERVICENOW",
         "CUSTOM",
-        "CONFLUENCE"
+        "CONFLUENCE",
+        "GOOGLEDRIVE"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -1381,6 +1383,24 @@
       "min":1,
       "pattern":"^\\P{C}*$"
     },
+    "ExcludeMimeTypesList":{
+      "type":"list",
+      "member":{"shape":"MimeType"},
+      "max":30,
+      "min":0
+    },
+    "ExcludeSharedDrivesList":{
+      "type":"list",
+      "member":{"shape":"SharedDriveId"},
+      "max":100,
+      "min":0
+    },
+    "ExcludeUserAccountsList":{
+      "type":"list",
+      "member":{"shape":"UserAccount"},
+      "max":100,
+      "min":0
+    },
     "Facet":{
       "type":"structure",
       "members":{
@@ -1454,6 +1474,25 @@
     "FaqSummaryItems":{
       "type":"list",
       "member":{"shape":"FaqSummary"}
+    },
+    "FeedbackToken":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^\\P{C}*.\\P{C}*$"
+    },
+    "GoogleDriveConfiguration":{
+      "type":"structure",
+      "required":["SecretArn"],
+      "members":{
+        "SecretArn":{"shape":"SecretArn"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "ExcludeMimeTypes":{"shape":"ExcludeMimeTypesList"},
+        "ExcludeUserAccounts":{"shape":"ExcludeUserAccountsList"},
+        "ExcludeSharedDrives":{"shape":"ExcludeSharedDrivesList"}
+      }
     },
     "GroupAttributeField":{
       "type":"string",
@@ -1719,6 +1758,12 @@
       "type":"string",
       "pattern":"(([1-9][0-9]*)|0)"
     },
+    "MimeType":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "NextToken":{
       "type":"string",
       "max":800,
@@ -1829,7 +1874,8 @@
         "PageNumber":{"shape":"Integer"},
         "PageSize":{"shape":"Integer"},
         "SortingConfiguration":{"shape":"SortingConfiguration"},
-        "UserContext":{"shape":"UserContext"}
+        "UserContext":{"shape":"UserContext"},
+        "VisitorId":{"shape":"VisitorId"}
       }
     },
     "QueryResult":{
@@ -1852,7 +1898,8 @@
         "DocumentExcerpt":{"shape":"TextWithHighlights"},
         "DocumentURI":{"shape":"Url"},
         "DocumentAttributes":{"shape":"DocumentAttributeList"},
-        "ScoreAttributes":{"shape":"ScoreAttributes"}
+        "ScoreAttributes":{"shape":"ScoreAttributes"},
+        "FeedbackToken":{"shape":"FeedbackToken"}
       }
     },
     "QueryResultItemList":{
@@ -2264,6 +2311,12 @@
       "type":"string",
       "enum":["SHAREPOINT_ONLINE"]
     },
+    "SharedDriveId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "SortOrder":{
       "type":"string",
       "enum":[
@@ -2503,6 +2556,12 @@
       "min":1,
       "pattern":"^(https?|ftp|file):\\/\\/([^\\s]*)"
     },
+    "UserAccount":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "UserContext":{
       "type":"structure",
       "members":{
@@ -2550,6 +2609,12 @@
       "type":"string",
       "max":50,
       "min":1
+    },
+    "VisitorId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
     },
     "VpcSecurityGroupId":{
       "type":"string",

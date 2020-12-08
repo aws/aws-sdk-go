@@ -1,0 +1,1886 @@
+{
+  "version": "2.0",
+  "service": "<p>Welcome to the AWS Audit Manager API reference. This guide is for developers who need detailed information about the AWS Audit Manager API operations, data types, and errors. </p> <p>AWS Audit Manager is a service that provides automated evidence collection so that you can continuously audit your AWS usage, and assess the effectiveness of your controls to better manage risk and simplify compliance.</p> <p>AWS Audit Manager provides pre-built frameworks that structure and automate assessments for a given compliance standard. Frameworks include a pre-built collection of controls with descriptions and testing procedures, which are grouped according to the requirements of the specified compliance standard or regulation. You can also customize frameworks and controls to support internal audits with unique requirements. </p> <p>Use the following links to get started with the AWS Audit Manager API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all AWS Audit Manager API operations.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Types.html\">Data types</a>: An alphabetical list of all AWS Audit Manager data types.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonParameters.html\">Common parameters</a>: Parameters that all Query operations can use.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.html\">Common errors</a>: Client and server errors that all operations can return.</p> </li> </ul> <p>If you're new to AWS Audit Manager, we recommend that you review the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html\"> AWS Audit Manager User Guide</a>.</p>",
+  "operations": {
+    "AssociateAssessmentReportEvidenceFolder": "<p> Associates an evidence folder to the specified assessment report in AWS Audit Manager. </p>",
+    "BatchAssociateAssessmentReportEvidence": "<p> Associates a list of evidence to an assessment report in an AWS Audit Manager assessment. </p>",
+    "BatchCreateDelegationByAssessment": "<p> Create a batch of delegations for a specified assessment in AWS Audit Manager. </p>",
+    "BatchDeleteDelegationByAssessment": "<p> Deletes the delegations in the specified AWS Audit Manager assessment. </p>",
+    "BatchDisassociateAssessmentReportEvidence": "<p> Disassociates a list of evidence from the specified assessment report in AWS Audit Manager. </p>",
+    "BatchImportEvidenceToAssessmentControl": "<p> Uploads one or more pieces of evidence to the specified control in the assessment in AWS Audit Manager. </p>",
+    "CreateAssessment": "<p> Creates an assessment in AWS Audit Manager. </p>",
+    "CreateAssessmentFramework": "<p> Creates a custom framework in AWS Audit Manager. </p>",
+    "CreateAssessmentReport": "<p> Creates an assessment report for the specified assessment. </p>",
+    "CreateControl": "<p> Creates a new custom control in AWS Audit Manager. </p>",
+    "DeleteAssessment": "<p> Deletes an assessment in AWS Audit Manager. </p>",
+    "DeleteAssessmentFramework": "<p> Deletes a custom framework in AWS Audit Manager. </p>",
+    "DeleteAssessmentReport": "<p> Deletes an assessment report from an assessment in AWS Audit Manager. </p>",
+    "DeleteControl": "<p> Deletes a custom control in AWS Audit Manager. </p>",
+    "DeregisterAccount": "<p> Deregisters an account in AWS Audit Manager. </p>",
+    "DeregisterOrganizationAdminAccount": "<p> Deregisters the delegated AWS administrator account from the AWS organization. </p>",
+    "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in AWS Audit Manager. </p>",
+    "GetAccountStatus": "<p> Returns the registration status of an account in AWS Audit Manager. </p>",
+    "GetAssessment": "<p> Returns an assessment from AWS Audit Manager. </p>",
+    "GetAssessmentFramework": "<p> Returns a framework from AWS Audit Manager. </p>",
+    "GetAssessmentReportUrl": "<p> Returns the URL of a specified assessment report in AWS Audit Manager. </p>",
+    "GetChangeLogs": "<p> Returns a list of changelogs from AWS Audit Manager. </p>",
+    "GetControl": "<p> Returns a control from AWS Audit Manager. </p>",
+    "GetDelegations": "<p> Returns a list of delegations from an audit owner to a delegate. </p>",
+    "GetEvidence": "<p> Returns evidence from AWS Audit Manager. </p>",
+    "GetEvidenceByEvidenceFolder": "<p> Returns all evidence from a specified evidence folder in AWS Audit Manager. </p>",
+    "GetEvidenceFolder": "<p> Returns an evidence folder from the specified assessment in AWS Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessment": "<p> Returns the evidence folders from a specified assessment in AWS Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders associated with a specified control of an assessment in AWS Audit Manager. </p>",
+    "GetOrganizationAdminAccount": "<p> Returns the name of the delegated AWS administrator account for the AWS organization. </p>",
+    "GetServicesInScope": "<p> Returns a list of the in-scope AWS services for the specified assessment. </p>",
+    "GetSettings": "<p> Returns the settings for the specified AWS account. </p>",
+    "ListAssessmentFrameworks": "<p> Returns a list of the frameworks available in the AWS Audit Manager framework library. </p>",
+    "ListAssessmentReports": "<p> Returns a list of assessment reports created in AWS Audit Manager. </p>",
+    "ListAssessments": "<p> Returns a list of current and past assessments from AWS Audit Manager. </p>",
+    "ListControls": "<p> Returns a list of controls from AWS Audit Manager. </p>",
+    "ListKeywordsForDataSource": "<p> Returns a list of keywords that pre-mapped to the specified control data source. </p>",
+    "ListNotifications": "<p> Returns a list of all AWS Audit Manager notifications. </p>",
+    "ListTagsForResource": "<p> Returns a list of tags for the specified resource in AWS Audit Manager. </p>",
+    "RegisterAccount": "<p> Enables AWS Audit Manager for the specified AWS account. </p>",
+    "RegisterOrganizationAdminAccount": "<p> Enables an AWS account within the organization as the delegated administrator for AWS Audit Manager. </p>",
+    "TagResource": "<p> Tags the specified resource in AWS Audit Manager. </p>",
+    "UntagResource": "<p> Removes a tag from a resource in AWS Audit Manager. </p>",
+    "UpdateAssessment": "<p> Edits an AWS Audit Manager assessment. </p>",
+    "UpdateAssessmentControl": "<p> Updates a control within an assessment in AWS Audit Manager. </p>",
+    "UpdateAssessmentControlSetStatus": "<p> Updates the status of a control set in an AWS Audit Manager assessment. </p>",
+    "UpdateAssessmentFramework": "<p> Updates a custom framework in AWS Audit Manager. </p>",
+    "UpdateAssessmentStatus": "<p> Updates the status of an assessment in AWS Audit Manager. </p>",
+    "UpdateControl": "<p> Updates a custom control in AWS Audit Manager. </p>",
+    "UpdateSettings": "<p> Updates AWS Audit Manager settings for the current user account. </p>",
+    "ValidateAssessmentReportIntegrity": "<p> Validates the integrity of an assessment report in AWS Audit Manager. </p>"
+  },
+  "shapes": {
+    "AWSAccount": {
+      "base": "<p> The wrapper of AWS account details, such as account ID, email address, and so on. </p>",
+      "refs": {
+        "AWSAccounts$member": null,
+        "Assessment$awsAccount": "<p> The AWS account associated with the assessment. </p>"
+      }
+    },
+    "AWSAccounts": {
+      "base": null,
+      "refs": {
+        "Scope$awsAccounts": "<p> The AWS accounts included in the scope of the assessment. </p>"
+      }
+    },
+    "AWSService": {
+      "base": "<p> An AWS service such as Amazon S3, AWS CloudTrail, and so on. </p>",
+      "refs": {
+        "AWSServices$member": null
+      }
+    },
+    "AWSServiceName": {
+      "base": null,
+      "refs": {
+        "AWSService$serviceName": "<p> The name of the AWS service. </p>",
+        "Evidence$eventSource": "<p> The AWS service from which the evidence is collected. </p>",
+        "ServiceMetadata$name": "<p> The name of the AWS service. </p>"
+      }
+    },
+    "AWSServices": {
+      "base": null,
+      "refs": {
+        "Scope$awsServices": "<p> The AWS services included in the scope of the assessment. </p>"
+      }
+    },
+    "AccessDeniedException": {
+      "base": "<p> You do not have sufficient access to perform this action. </p>",
+      "refs": {
+      }
+    },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "AWSAccount$id": "<p> The identifier for the specified AWS account. </p>",
+        "AssessmentReport$awsAccountId": "<p> The identifier for the specified AWS account. </p>",
+        "DeregisterOrganizationAdminAccountRequest$adminAccountId": "<p> The identifier for the specified administrator account. </p>",
+        "Evidence$evidenceAwsAccountId": "<p> The identifier for the specified AWS account. </p>",
+        "Evidence$awsAccountId": "<p> The identifier for the specified AWS account. </p>",
+        "GetOrganizationAdminAccountResponse$adminAccountId": "<p> The identifier for the specified administrator account. </p>",
+        "RegisterAccountRequest$delegatedAdminAccount": "<p> The delegated administrator account for AWS Audit Manager. </p>",
+        "RegisterOrganizationAdminAccountRequest$adminAccountId": "<p> The identifier for the specified delegated administrator account. </p>",
+        "RegisterOrganizationAdminAccountResponse$adminAccountId": "<p> The identifier for the specified delegated administrator account. </p>"
+      }
+    },
+    "AccountName": {
+      "base": null,
+      "refs": {
+        "AWSAccount$name": "<p> The name of the specified AWS account. </p>"
+      }
+    },
+    "AccountStatus": {
+      "base": null,
+      "refs": {
+        "DeregisterAccountResponse$status": "<p> The registration status of the account. </p>",
+        "GetAccountStatusResponse$status": "<p> The status of the specified AWS account. </p>",
+        "RegisterAccountResponse$status": "<p> The status of the account registration request. </p>"
+      }
+    },
+    "ActionEnum": {
+      "base": null,
+      "refs": {
+        "ChangeLog$action": "<p> The action performed. </p>"
+      }
+    },
+    "ActionPlanInstructions": {
+      "base": null,
+      "refs": {
+        "Control$actionPlanInstructions": "<p> The recommended actions to carry out if the control is not fulfilled. </p>",
+        "CreateControlRequest$actionPlanInstructions": "<p> The recommended actions to carry out if the control is not fulfilled. </p>",
+        "UpdateControlRequest$actionPlanInstructions": "<p> The recommended actions to carry out if the control is not fulfilled. </p>"
+      }
+    },
+    "ActionPlanTitle": {
+      "base": null,
+      "refs": {
+        "Control$actionPlanTitle": "<p> The title of the action plan for remediating the control. </p>",
+        "CreateControlRequest$actionPlanTitle": "<p> The title of the action plan for remediating the control. </p>",
+        "UpdateControlRequest$actionPlanTitle": "<p> The title of the action plan for remediating the control. </p>"
+      }
+    },
+    "Assessment": {
+      "base": "<p> An entity that defines the scope of audit evidence collected by AWS Audit Manager. An AWS Audit Manager assessment is an implementation of an AWS Audit Manager framework. </p>",
+      "refs": {
+        "CreateAssessmentResponse$assessment": null,
+        "GetAssessmentResponse$assessment": null,
+        "UpdateAssessmentResponse$assessment": "<p> The response object (name of the updated assessment) for the <code>UpdateAssessmentRequest</code> API. </p>",
+        "UpdateAssessmentStatusResponse$assessment": "<p> The name of the updated assessment returned by the <code>UpdateAssessmentStatus</code> API. </p>"
+      }
+    },
+    "AssessmentControl": {
+      "base": "<p> The control entity that represents a standard or custom control used in an AWS Audit Manager assessment. </p>",
+      "refs": {
+        "AssessmentControls$member": null,
+        "UpdateAssessmentControlResponse$control": "<p> The name of the updated control set returned by the <code>UpdateAssessmentControl</code> API. </p>"
+      }
+    },
+    "AssessmentControlSet": {
+      "base": "<p> Represents a set of controls in an AWS Audit Manager assessment. </p>",
+      "refs": {
+        "AssessmentControlSets$member": null,
+        "UpdateAssessmentControlSetStatusResponse$controlSet": "<p> The name of the updated control set returned by the <code>UpdateAssessmentControlSetStatus</code> API. </p>"
+      }
+    },
+    "AssessmentControlSets": {
+      "base": null,
+      "refs": {
+        "AssessmentFramework$controlSets": "<p> The control sets associated with the framework. </p>"
+      }
+    },
+    "AssessmentControls": {
+      "base": null,
+      "refs": {
+        "AssessmentControlSet$controls": "<p> The list of controls contained with the control set. </p>"
+      }
+    },
+    "AssessmentDescription": {
+      "base": null,
+      "refs": {
+        "AssessmentMetadata$description": "<p> The description of the assessment. </p>",
+        "CreateAssessmentRequest$description": "<p> The optional description of the assessment to be created. </p>",
+        "UpdateAssessmentRequest$assessmentDescription": "<p> The description of the specified assessment. </p>"
+      }
+    },
+    "AssessmentEvidenceFolder": {
+      "base": "<p> The folder in which AWS Audit Manager stores evidence for an assessment. </p>",
+      "refs": {
+        "AssessmentEvidenceFolders$member": null,
+        "GetEvidenceFolderResponse$evidenceFolder": "<p> The folder in which evidence is stored. </p>"
+      }
+    },
+    "AssessmentEvidenceFolderName": {
+      "base": null,
+      "refs": {
+        "AssessmentEvidenceFolder$name": "<p> The name of the specified evidence folder. </p>"
+      }
+    },
+    "AssessmentEvidenceFolders": {
+      "base": null,
+      "refs": {
+        "GetEvidenceFoldersByAssessmentControlResponse$evidenceFolders": "<p> The list of evidence folders returned by the <code>GetEvidenceFoldersByAssessmentControl</code> API. </p>",
+        "GetEvidenceFoldersByAssessmentResponse$evidenceFolders": "<p> The list of evidence folders returned by the <code>GetEvidenceFoldersByAssessment</code> API. </p>"
+      }
+    },
+    "AssessmentFramework": {
+      "base": "<p> The file used to structure and automate AWS Audit Manager assessments for a given compliance standard. </p>",
+      "refs": {
+        "Assessment$framework": "<p> The framework from which the assessment was created. </p>"
+      }
+    },
+    "AssessmentFrameworkDescription": {
+      "base": null,
+      "refs": {
+        "FrameworkMetadata$description": "<p> The description of the framework. </p>"
+      }
+    },
+    "AssessmentFrameworkMetadata": {
+      "base": "<p> The metadata associated with a standard or custom framework. </p>",
+      "refs": {
+        "FrameworkMetadataList$member": null
+      }
+    },
+    "AssessmentMetadata": {
+      "base": "<p> The metadata associated with the specified assessment. </p>",
+      "refs": {
+        "Assessment$metadata": "<p> The metadata for the specified assessment. </p>"
+      }
+    },
+    "AssessmentMetadataItem": {
+      "base": "<p> A metadata object associated with an assessment in AWS Audit Manager. </p>",
+      "refs": {
+        "ListAssessmentMetadata$member": null
+      }
+    },
+    "AssessmentName": {
+      "base": null,
+      "refs": {
+        "AssessmentMetadata$name": "<p> The name of the assessment. </p>",
+        "AssessmentMetadataItem$name": "<p> The name of the assessment. </p>",
+        "AssessmentReport$assessmentName": "<p> The name of the associated assessment. </p>",
+        "AssessmentReportMetadata$assessmentName": "<p>The name of the associated assessment. </p>",
+        "CreateAssessmentRequest$name": "<p> The name of the assessment to be created. </p>",
+        "Delegation$assessmentName": "<p> The name of the associated assessment. </p>",
+        "DelegationMetadata$assessmentName": "<p> The name of the associated assessment. </p>",
+        "FrameworkMetadata$name": "<p> The name of the framework. </p>",
+        "Notification$assessmentName": "<p> The name of the related assessment. </p>",
+        "UpdateAssessmentRequest$assessmentName": "<p> The name of the specified assessment to be updated. </p>"
+      }
+    },
+    "AssessmentReport": {
+      "base": "<p> A finalized document generated from an AWS Audit Manager assessment. These reports summarize the relevant evidence collected for your audit, and link to the relevant evidence folders which are named and organized according to the controls specified in your assessment. </p>",
+      "refs": {
+        "CreateAssessmentReportResponse$assessmentReport": "<p> The new assessment report returned by the <code>CreateAssessmentReport</code> API. </p>"
+      }
+    },
+    "AssessmentReportDescription": {
+      "base": null,
+      "refs": {
+        "AssessmentReport$description": "<p> The description of the specified assessment report. </p>",
+        "AssessmentReportMetadata$description": "<p> The description of the specified assessment report. </p>",
+        "CreateAssessmentReportRequest$description": "<p> The description of the assessment report. </p>"
+      }
+    },
+    "AssessmentReportDestinationType": {
+      "base": null,
+      "refs": {
+        "AssessmentReportsDestination$destinationType": "<p> The destination type, such as Amazon S3. </p>"
+      }
+    },
+    "AssessmentReportEvidenceError": {
+      "base": "<p> An error entity for the <code>AssessmentReportEvidence</code> API. This is used to provide more meaningful errors than a simple string message. </p>",
+      "refs": {
+        "AssessmentReportEvidenceErrors$member": null
+      }
+    },
+    "AssessmentReportEvidenceErrors": {
+      "base": null,
+      "refs": {
+        "BatchAssociateAssessmentReportEvidenceResponse$errors": "<p> A list of errors returned by the <code>BatchAssociateAssessmentReportEvidence</code> API. </p>",
+        "BatchDisassociateAssessmentReportEvidenceResponse$errors": "<p> A list of errors returned by the <code>BatchDisassociateAssessmentReportEvidence</code> API. </p>"
+      }
+    },
+    "AssessmentReportMetadata": {
+      "base": "<p> The metadata objects associated with the specified assessment report. </p>",
+      "refs": {
+        "AssessmentReportsMetadata$member": null
+      }
+    },
+    "AssessmentReportName": {
+      "base": null,
+      "refs": {
+        "AssessmentReport$name": "<p> The name given to the assessment report. </p>",
+        "AssessmentReportMetadata$name": "<p> The name of the assessment report. </p>",
+        "CreateAssessmentReportRequest$name": "<p> The name of the new assessment report. </p>"
+      }
+    },
+    "AssessmentReportStatus": {
+      "base": null,
+      "refs": {
+        "AssessmentReport$status": "<p> The current status of the specified assessment report. </p>",
+        "AssessmentReportMetadata$status": "<p> The current status of the assessment report. </p>"
+      }
+    },
+    "AssessmentReportsDestination": {
+      "base": "<p> The location in which AWS Audit Manager saves assessment reports for the given assessment. </p>",
+      "refs": {
+        "AssessmentMetadata$assessmentReportsDestination": "<p> The destination in which evidence reports are stored for the specified assessment. </p>",
+        "CreateAssessmentRequest$assessmentReportsDestination": "<p> The assessment report storage destination for the specified assessment that is being created. </p>",
+        "Settings$defaultAssessmentReportsDestination": "<p> The default storage destination for assessment reports. </p>",
+        "UpdateAssessmentRequest$assessmentReportsDestination": "<p> The assessment report storage destination for the specified assessment that is being updated. </p>",
+        "UpdateSettingsRequest$defaultAssessmentReportsDestination": "<p> The default storage destination for assessment reports. </p>"
+      }
+    },
+    "AssessmentReportsMetadata": {
+      "base": null,
+      "refs": {
+        "ListAssessmentReportsResponse$assessmentReports": "<p> The list of assessment reports returned by the <code>ListAssessmentReports</code> API. </p>"
+      }
+    },
+    "AssessmentStatus": {
+      "base": null,
+      "refs": {
+        "AssessmentMetadata$status": "<p> The overall status of the assessment. </p>",
+        "AssessmentMetadataItem$status": "<p> The current status of the assessment. </p>",
+        "UpdateAssessmentStatusRequest$status": "<p> The current status of the specified assessment. </p>"
+      }
+    },
+    "AssociateAssessmentReportEvidenceFolderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateAssessmentReportEvidenceFolderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AuditManagerArn": {
+      "base": null,
+      "refs": {
+        "Assessment$arn": "<p> The Amazon Resource Name (ARN) of the assessment. </p>",
+        "AssessmentFramework$arn": "<p> The Amazon Resource Name (ARN) of the specified framework. </p>",
+        "Control$arn": "<p> The Amazon Resource Name (ARN) of the specified control. </p>",
+        "ControlMetadata$arn": "<p> The Amazon Resource Name (ARN) of the specified control. </p>",
+        "Framework$arn": "<p> The Amazon Resource Name (ARN) of the specified framework. </p>",
+        "ListTagsForResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the specified resource. </p>",
+        "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the specified resource. </p>",
+        "UntagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the specified resource. </p>"
+      }
+    },
+    "BatchAssociateAssessmentReportEvidenceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchAssociateAssessmentReportEvidenceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchCreateDelegationByAssessmentError": {
+      "base": "<p> An error entity for the <code>BatchCreateDelegationByAssessment</code> API. This is used to provide more meaningful errors than a simple string message. </p>",
+      "refs": {
+        "BatchCreateDelegationByAssessmentErrors$member": null
+      }
+    },
+    "BatchCreateDelegationByAssessmentErrors": {
+      "base": null,
+      "refs": {
+        "BatchCreateDelegationByAssessmentResponse$errors": "<p> A list of errors returned by the <code>BatchCreateDelegationByAssessment</code> API. </p>"
+      }
+    },
+    "BatchCreateDelegationByAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchCreateDelegationByAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteDelegationByAssessmentError": {
+      "base": "<p> An error entity for the <code>BatchDeleteDelegationByAssessment</code> API. This is used to provide more meaningful errors than a simple string message. </p>",
+      "refs": {
+        "BatchDeleteDelegationByAssessmentErrors$member": null
+      }
+    },
+    "BatchDeleteDelegationByAssessmentErrors": {
+      "base": null,
+      "refs": {
+        "BatchDeleteDelegationByAssessmentResponse$errors": "<p> A list of errors returned by the <code>BatchDeleteDelegationByAssessment</code> API. </p>"
+      }
+    },
+    "BatchDeleteDelegationByAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteDelegationByAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateAssessmentReportEvidenceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateAssessmentReportEvidenceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchImportEvidenceToAssessmentControlError": {
+      "base": "<p> An error entity for the <code>BatchImportEvidenceToAssessmentControl</code> API. This is used to provide more meaningful errors than a simple string message. </p>",
+      "refs": {
+        "BatchImportEvidenceToAssessmentControlErrors$member": null
+      }
+    },
+    "BatchImportEvidenceToAssessmentControlErrors": {
+      "base": null,
+      "refs": {
+        "BatchImportEvidenceToAssessmentControlResponse$errors": "<p> A list of errors returned by the <code>BatchImportEvidenceToAssessmentControl</code> API. </p>"
+      }
+    },
+    "BatchImportEvidenceToAssessmentControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchImportEvidenceToAssessmentControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "Settings$isAwsOrgEnabled": "<p> Specifies whether AWS Organizations is enabled. </p>",
+        "ValidateAssessmentReportIntegrityResponse$signatureValid": "<p> Specifies whether the signature key is valid. </p>"
+      }
+    },
+    "ChangeLog": {
+      "base": "<p> The record of a change within AWS Audit Manager, such as a modified assessment, a delegated control set, and so on. </p>",
+      "refs": {
+        "ChangeLogs$member": null
+      }
+    },
+    "ChangeLogs": {
+      "base": null,
+      "refs": {
+        "GetChangeLogsResponse$changeLogs": "<p> The list of user activity for the control. </p>"
+      }
+    },
+    "ComplianceType": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>",
+        "AssessmentMetadata$complianceType": "<p> The name of a compliance standard related to the assessment, such as PCI-DSS. </p>",
+        "AssessmentMetadataItem$complianceType": "<p> The name of the compliance standard related to the assessment, such as PCI-DSS. </p>",
+        "CreateAssessmentFrameworkRequest$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>",
+        "Framework$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>",
+        "FrameworkMetadata$complianceType": "<p> The compliance standard associated with the framework, such as PCI-DSS or HIPAA. </p>",
+        "UpdateAssessmentFrameworkRequest$complianceType": "<p> The compliance type that the new custom framework supports, such as CIS or HIPAA. </p>"
+      }
+    },
+    "Control": {
+      "base": "<p> A control in AWS Audit Manager. </p>",
+      "refs": {
+        "Controls$member": null,
+        "CreateControlResponse$control": "<p> The new control returned by the <code>CreateControl</code> API. </p>",
+        "GetControlResponse$control": "<p> The name of the control returned by the <code>GetControl</code> API. </p>",
+        "UpdateControlResponse$control": "<p> The name of the updated control set returned by the <code>UpdateControl</code> API. </p>"
+      }
+    },
+    "ControlComment": {
+      "base": "<p> A comment posted by a user on a control. This includes the author's name, the comment text, and a timestamp. </p>",
+      "refs": {
+        "ControlComments$member": null
+      }
+    },
+    "ControlCommentBody": {
+      "base": null,
+      "refs": {
+        "ControlComment$commentBody": "<p> The body text of a control comment. </p>",
+        "UpdateAssessmentControlRequest$commentBody": "<p> The comment body text for the specified control. </p>"
+      }
+    },
+    "ControlComments": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$comments": "<p> The list of comments attached to the specified control. </p>"
+      }
+    },
+    "ControlDescription": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$description": "<p> The description of the specified control. </p>",
+        "Control$description": "<p> The description of the specified control. </p>",
+        "CreateControlRequest$description": "<p> The description of the control. </p>",
+        "UpdateControlRequest$description": "<p> The optional description of the control. </p>"
+      }
+    },
+    "ControlMappingSource": {
+      "base": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
+      "refs": {
+        "ControlMappingSources$member": null
+      }
+    },
+    "ControlMappingSources": {
+      "base": null,
+      "refs": {
+        "Control$controlMappingSources": "<p> The data mapping sources for the specified control. </p>",
+        "UpdateControlRequest$controlMappingSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>"
+      }
+    },
+    "ControlMetadata": {
+      "base": "<p> The metadata associated with the specified standard or custom control. </p>",
+      "refs": {
+        "ControlMetadataList$member": null
+      }
+    },
+    "ControlMetadataList": {
+      "base": null,
+      "refs": {
+        "ListControlsResponse$controlMetadataList": "<p> The list of control metadata objects returned by the <code>ListControls</code> API. </p>"
+      }
+    },
+    "ControlName": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$name": "<p> The name of the specified control. </p>",
+        "AssessmentEvidenceFolder$controlName": "<p> The name of the control. </p>",
+        "Control$name": "<p> The name of the specified control. </p>",
+        "ControlMetadata$name": "<p> The name of the specified control. </p>",
+        "CreateControlRequest$name": "<p> The name of the control. </p>",
+        "UpdateControlRequest$name": "<p> The name of the control to be updated. </p>"
+      }
+    },
+    "ControlResponse": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$response": "<p> The response of the specified control. </p>"
+      }
+    },
+    "ControlSet": {
+      "base": "<p> A set of controls in AWS Audit Manager. </p>",
+      "refs": {
+        "ControlSets$member": null
+      }
+    },
+    "ControlSetId": {
+      "base": null,
+      "refs": {
+        "AssessmentControlSet$id": "<p> The identifier of the control set in the assessment. This is the control set name in a plain string format. </p>",
+        "AssessmentEvidenceFolder$controlSetId": "<p> The identifier for the control set. </p>",
+        "BatchImportEvidenceToAssessmentControlRequest$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "CreateDelegationRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
+        "Delegation$controlSetId": "<p> The identifier for the associated control set. </p>",
+        "GetChangeLogsRequest$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "GetEvidenceByEvidenceFolderRequest$controlSetId": "<p> The identifier for the control set. </p>",
+        "GetEvidenceFolderRequest$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "GetEvidenceFoldersByAssessmentControlRequest$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "GetEvidenceRequest$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "Notification$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "UpdateAssessmentControlRequest$controlSetId": "<p> The identifier for the specified control set. </p>"
+      }
+    },
+    "ControlSetName": {
+      "base": null,
+      "refs": {
+        "ControlSet$name": "<p> The name of the control set. </p>",
+        "CreateAssessmentFrameworkControlSet$name": "<p> The name of the specified control set. </p>",
+        "UpdateAssessmentFrameworkControlSet$name": "<p> The name of the control set. </p>"
+      }
+    },
+    "ControlSetStatus": {
+      "base": null,
+      "refs": {
+        "AssessmentControlSet$status": "<p> Specifies the current status of the control set. </p>",
+        "UpdateAssessmentControlSetStatusRequest$status": "<p> The status of the control set that is being updated. </p>"
+      }
+    },
+    "ControlSets": {
+      "base": null,
+      "refs": {
+        "Framework$controlSets": "<p> The control sets associated with the framework. </p>"
+      }
+    },
+    "ControlSetsCount": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$controlSetsCount": "<p> The number of control sets associated with the specified framework. </p>"
+      }
+    },
+    "ControlSources": {
+      "base": null,
+      "refs": {
+        "Control$controlSources": "<p> The data mapping sources for the specified control. </p>",
+        "ControlMetadata$controlSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
+        "Framework$controlSources": "<p> The sources from which AWS Audit Manager collects evidence for the control. </p>"
+      }
+    },
+    "ControlStatus": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$status": "<p> The status of the specified control. </p>",
+        "UpdateAssessmentControlRequest$controlStatus": "<p> The status of the specified control. </p>"
+      }
+    },
+    "ControlType": {
+      "base": null,
+      "refs": {
+        "Control$type": "<p> The type of control, such as custom or standard. </p>",
+        "ListControlsRequest$controlType": "<p> The type of control, such as standard or custom. </p>"
+      }
+    },
+    "Controls": {
+      "base": null,
+      "refs": {
+        "ControlSet$controls": "<p> The list of controls within the control set. </p>"
+      }
+    },
+    "ControlsCount": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$controlsCount": "<p> The number of controls associated with the specified framework. </p>"
+      }
+    },
+    "CreateAssessmentFrameworkControl": {
+      "base": "<p> Control entity attributes that uniquely identify an existing control to be added to a framework in AWS Audit Manager. </p>",
+      "refs": {
+        "CreateAssessmentFrameworkControls$member": null
+      }
+    },
+    "CreateAssessmentFrameworkControlSet": {
+      "base": "<p> A <code>controlSet</code> entity that represents a collection of controls in AWS Audit Manager. This does not contain the control set ID. </p>",
+      "refs": {
+        "CreateAssessmentFrameworkControlSets$member": null
+      }
+    },
+    "CreateAssessmentFrameworkControlSets": {
+      "base": null,
+      "refs": {
+        "CreateAssessmentFrameworkRequest$controlSets": "<p> The control sets to be associated with the framework. </p>"
+      }
+    },
+    "CreateAssessmentFrameworkControls": {
+      "base": null,
+      "refs": {
+        "CreateAssessmentFrameworkControlSet$controls": "<p> The list of controls within the control set. This does not contain the control set ID. </p>",
+        "UpdateAssessmentFrameworkControlSet$controls": "<p> The list of controls contained within the control set. </p>"
+      }
+    },
+    "CreateAssessmentFrameworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAssessmentFrameworkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAssessmentReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAssessmentReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateControlMappingSource": {
+      "base": "<p> Control mapping fields that represent the source for evidence collection, along with related parameters and metadata. This does not contain <code>mappingID</code>. </p>",
+      "refs": {
+        "CreateControlMappingSources$member": null
+      }
+    },
+    "CreateControlMappingSources": {
+      "base": null,
+      "refs": {
+        "CreateControlRequest$controlMappingSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>"
+      }
+    },
+    "CreateControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDelegationRequest": {
+      "base": "<p> A collection of attributes used to create a delegation for an assessment in AWS Audit Manager. </p>",
+      "refs": {
+        "BatchCreateDelegationByAssessmentError$createDelegationRequest": "<p> The API request to batch create delegations in AWS Audit Manager. </p>",
+        "CreateDelegationRequests$member": null
+      }
+    },
+    "CreateDelegationRequests": {
+      "base": null,
+      "refs": {
+        "BatchCreateDelegationByAssessmentRequest$createDelegationRequests": "<p> The API request to batch create delegations in AWS Audit Manager. </p>"
+      }
+    },
+    "CreatedBy": {
+      "base": null,
+      "refs": {
+        "Control$createdBy": "<p> The IAM user or role that created the control. </p>",
+        "Delegation$createdBy": "<p> The IAM user or role that created the delegation. </p>",
+        "Framework$createdBy": "<p> The IAM user or role that created the framework. </p>"
+      }
+    },
+    "Delegation": {
+      "base": "<p> The assignment of a control set to a delegate for review. </p>",
+      "refs": {
+        "Delegations$member": null
+      }
+    },
+    "DelegationComment": {
+      "base": null,
+      "refs": {
+        "CreateDelegationRequest$comment": "<p> A comment related to the delegation request. </p>",
+        "Delegation$comment": "<p> The comment related to the delegation. </p>",
+        "UpdateAssessmentControlSetStatusRequest$comment": "<p> The comment related to the status update. </p>"
+      }
+    },
+    "DelegationIds": {
+      "base": null,
+      "refs": {
+        "BatchDeleteDelegationByAssessmentRequest$delegationIds": "<p> The identifiers for the specified delegations. </p>"
+      }
+    },
+    "DelegationMetadata": {
+      "base": "<p> The metadata associated with the specified delegation. </p>",
+      "refs": {
+        "DelegationMetadataList$member": null
+      }
+    },
+    "DelegationMetadataList": {
+      "base": null,
+      "refs": {
+        "GetDelegationsResponse$delegations": "<p> The list of delegations returned by the <code>GetDelegations</code> API. </p>"
+      }
+    },
+    "DelegationStatus": {
+      "base": null,
+      "refs": {
+        "Delegation$status": "<p> The status of the delegation. </p>",
+        "DelegationMetadata$status": "<p> The current status of the delgation. </p>"
+      }
+    },
+    "Delegations": {
+      "base": null,
+      "refs": {
+        "AssessmentControlSet$delegations": "<p> The delegations associated with the control set. </p>",
+        "AssessmentMetadata$delegations": "<p> The delegations associated with the assessment. </p>",
+        "AssessmentMetadataItem$delegations": "<p> The delegations associated with the assessment. </p>",
+        "BatchCreateDelegationByAssessmentResponse$delegations": "<p> The delegations associated with the assessment. </p>"
+      }
+    },
+    "DeleteAssessmentFrameworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAssessmentFrameworkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAssessmentReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAssessmentReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterOrganizationAdminAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterOrganizationAdminAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateAssessmentReportEvidenceFolderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateAssessmentReportEvidenceFolderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EmailAddress": {
+      "base": null,
+      "refs": {
+        "AWSAccount$emailAddress": "<p> The email address associated with the specified AWS account. </p>"
+      }
+    },
+    "ErrorCode": {
+      "base": null,
+      "refs": {
+        "AssessmentReportEvidenceError$errorCode": "<p> The error code returned by the <code>AssessmentReportEvidence</code> API. </p>",
+        "BatchCreateDelegationByAssessmentError$errorCode": "<p> The error code returned by the <code>BatchCreateDelegationByAssessment</code> API. </p>",
+        "BatchDeleteDelegationByAssessmentError$errorCode": "<p> The error code returned by the <code>BatchDeleteDelegationByAssessment</code> API. </p>",
+        "BatchImportEvidenceToAssessmentControlError$errorCode": "<p> The error code returned by the <code>BatchImportEvidenceToAssessmentControl</code> API. </p>"
+      }
+    },
+    "ErrorMessage": {
+      "base": null,
+      "refs": {
+        "AssessmentReportEvidenceError$errorMessage": "<p> The error message returned by the <code>AssessmentReportEvidence</code> API. </p>",
+        "BatchCreateDelegationByAssessmentError$errorMessage": "<p> The error message returned by the <code>BatchCreateDelegationByAssessment</code> API. </p>",
+        "BatchDeleteDelegationByAssessmentError$errorMessage": "<p> The error message returned by the <code>BatchDeleteDelegationByAssessment</code> API. </p>",
+        "BatchImportEvidenceToAssessmentControlError$errorMessage": "<p> The error message returned by the <code>BatchImportEvidenceToAssessmentControlError</code> API. </p>"
+      }
+    },
+    "EventName": {
+      "base": null,
+      "refs": {
+        "Evidence$eventName": "<p> The name of the specified evidence event. </p>"
+      }
+    },
+    "Evidence": {
+      "base": "<p> A record that contains the information needed to demonstrate compliance with the requirements specified by a control. Examples of evidence include change activity triggered by a user, or a system configuration snapshot. </p>",
+      "refs": {
+        "EvidenceList$member": null,
+        "GetEvidenceResponse$evidence": "<p> The evidence returned by the <code>GetEvidenceResponse</code> API. </p>"
+      }
+    },
+    "EvidenceAttributeKey": {
+      "base": null,
+      "refs": {
+        "EvidenceAttributes$key": null
+      }
+    },
+    "EvidenceAttributeValue": {
+      "base": null,
+      "refs": {
+        "EvidenceAttributes$value": null
+      }
+    },
+    "EvidenceAttributes": {
+      "base": null,
+      "refs": {
+        "Evidence$attributes": "<p> The names and values used by the evidence event, including an attribute name (such as <code>allowUsersToChangePassword</code>) and value (such as <code>true</code> or <code>false</code>). </p>"
+      }
+    },
+    "EvidenceIds": {
+      "base": null,
+      "refs": {
+        "BatchAssociateAssessmentReportEvidenceRequest$evidenceIds": "<p> The list of evidence identifiers. </p>",
+        "BatchAssociateAssessmentReportEvidenceResponse$evidenceIds": "<p> The identifier for the evidence. </p>",
+        "BatchDisassociateAssessmentReportEvidenceRequest$evidenceIds": "<p> The list of evidence identifiers. </p>",
+        "BatchDisassociateAssessmentReportEvidenceResponse$evidenceIds": "<p> The identifier for the evidence. </p>"
+      }
+    },
+    "EvidenceList": {
+      "base": null,
+      "refs": {
+        "GetEvidenceByEvidenceFolderResponse$evidence": "<p> The list of evidence returned by the <code>GetEvidenceByEvidenceFolder</code> API. </p>"
+      }
+    },
+    "EvidenceSources": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$evidenceSources": "<p> The list of data sources for the specified evidence. </p>"
+      }
+    },
+    "Filename": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$logo": "<p> The logo associated with the framework. </p>",
+        "Framework$logo": "<p> The logo associated with the framework. </p>",
+        "FrameworkMetadata$logo": "<p> The logo associated with the framework. </p>"
+      }
+    },
+    "Framework": {
+      "base": "<p> The file used to structure and automate AWS Audit Manager assessments for a given compliance standard. </p>",
+      "refs": {
+        "CreateAssessmentFrameworkResponse$framework": "<p> The name of the new framework returned by the <code>CreateAssessmentFramework</code> API. </p>",
+        "GetAssessmentFrameworkResponse$framework": "<p> The framework returned by the <code>GetAssessmentFramework</code> API. </p>",
+        "UpdateAssessmentFrameworkResponse$framework": "<p> The name of the specified framework. </p>"
+      }
+    },
+    "FrameworkDescription": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$description": "<p> The description of the specified framework. </p>",
+        "CreateAssessmentFrameworkRequest$description": "<p> An optional description for the new custom framework. </p>",
+        "Framework$description": "<p> The description of the specified framework. </p>",
+        "UpdateAssessmentFrameworkRequest$description": "<p> The description of the framework that is to be updated. </p>"
+      }
+    },
+    "FrameworkMetadata": {
+      "base": "<p> The metadata of a framework, such as the name, ID, description, and so on. </p>",
+      "refs": {
+        "AssessmentFramework$metadata": null
+      }
+    },
+    "FrameworkMetadataList": {
+      "base": null,
+      "refs": {
+        "ListAssessmentFrameworksResponse$frameworkMetadataList": "<p> The list of metadata objects for the specified framework. </p>"
+      }
+    },
+    "FrameworkName": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$name": "<p> The name of the specified framework. </p>",
+        "CreateAssessmentFrameworkRequest$name": "<p> The name of the new custom framework. </p>",
+        "Framework$name": "<p> The name of the specified framework. </p>",
+        "UpdateAssessmentFrameworkRequest$name": "<p> The name of the framework to be updated. </p>"
+      }
+    },
+    "FrameworkType": {
+      "base": null,
+      "refs": {
+        "AssessmentFrameworkMetadata$type": "<p> The framework type, such as standard or custom. </p>",
+        "Framework$type": "<p> The framework type, such as custom or standard. </p>",
+        "ListAssessmentFrameworksRequest$frameworkType": "<p> The type of framework, such as standard or custom. </p>"
+      }
+    },
+    "GenericArn": {
+      "base": null,
+      "refs": {
+        "Resource$arn": "<p> The Amazon Resource Name (ARN) for the specified resource. </p>"
+      }
+    },
+    "GetAccountStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAccountStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssessmentFrameworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssessmentFrameworkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssessmentReportUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssessmentReportUrlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetChangeLogsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetChangeLogsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDelegationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDelegationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceByEvidenceFolderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceByEvidenceFolderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFolderRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFolderResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFoldersByAssessmentControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFoldersByAssessmentControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFoldersByAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceFoldersByAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEvidenceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOrganizationAdminAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetOrganizationAdminAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServicesInScopeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetServicesInScopeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "HyperlinkName": {
+      "base": null,
+      "refs": {
+        "URL$hyperlinkName": "<p> The name or word used as a hyperlink to the URL. </p>"
+      }
+    },
+    "IamArn": {
+      "base": null,
+      "refs": {
+        "ChangeLog$createdBy": "<p> The IAM user or role that performed the action. </p>",
+        "CreateDelegationRequest$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
+        "Delegation$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
+        "DelegationMetadata$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
+        "Evidence$iamId": "<p> The unique identifier for the IAM user or role associated with the evidence. </p>",
+        "Role$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$evidenceCount": "<p> The amount of evidence generated for the control. </p>",
+        "AssessmentControl$assessmentReportEvidenceCount": "<p> The amount of evidence in the assessment report. </p>",
+        "AssessmentControlSet$systemEvidenceCount": "<p> The total number of evidence objects retrieved automatically for the control set. </p>",
+        "AssessmentControlSet$manualEvidenceCount": "<p> The total number of evidence objects uploaded manually to the control set. </p>",
+        "AssessmentEvidenceFolder$totalEvidence": "<p> The total amount of evidence in the evidence folder. </p>",
+        "AssessmentEvidenceFolder$assessmentReportSelectionCount": "<p> The total count of evidence included in the assessment report. </p>",
+        "AssessmentEvidenceFolder$evidenceResourcesIncludedCount": "<p> The amount of evidence included in the evidence folder. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeConfigurationDataCount": "<p> The number of evidence that falls under the configuration data category. This evidence is collected from configuration snapshots of other AWS services such as Amazon EC2, Amazon S3, or IAM. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeManualCount": "<p> The number of evidence that falls under the manual category. This evidence is imported manually. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeComplianceCheckCount": "<p> The number of evidence that falls under the compliance check category. This evidence is collected from AWS Config or AWS Security Hub. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeComplianceCheckIssuesCount": "<p> The total number of issues that were reported directly from AWS Security Hub, AWS Config, or both. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeUserActivityCount": "<p> The number of evidence that falls under the user activity category. This evidence is collected from AWS CloudTrail logs. </p>",
+        "AssessmentEvidenceFolder$evidenceAwsServiceSourceCount": "<p> The total number of AWS resources assessed to generate the evidence. </p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p> An internal service error occurred during the processing of your request. Try again later. </p>",
+      "refs": {
+      }
+    },
+    "KeywordInputType": {
+      "base": null,
+      "refs": {
+        "SourceKeyword$keywordInputType": "<p> The method of input for the specified keyword. </p>"
+      }
+    },
+    "KeywordValue": {
+      "base": null,
+      "refs": {
+        "Keywords$member": null,
+        "SourceKeyword$keywordValue": "<p> The value of the keyword used to search AWS CloudTrail logs when mapping a control data source. </p>"
+      }
+    },
+    "Keywords": {
+      "base": null,
+      "refs": {
+        "ListKeywordsForDataSourceResponse$keywords": "<p> The list of keywords for the specified event mapping source. </p>"
+      }
+    },
+    "KmsKey": {
+      "base": null,
+      "refs": {
+        "RegisterAccountRequest$kmsKey": "<p> The AWS KMS key details. </p>",
+        "Settings$kmsKey": "<p> The AWS KMS key details. </p>",
+        "UpdateSettingsRequest$kmsKey": "<p> The AWS KMS key details. </p>"
+      }
+    },
+    "LastUpdatedBy": {
+      "base": null,
+      "refs": {
+        "Control$lastUpdatedBy": "<p> The IAM user or role that most recently updated the control. </p>",
+        "Framework$lastUpdatedBy": "<p> The IAM user or role that most recently updated the framework. </p>"
+      }
+    },
+    "ListAssessmentFrameworksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssessmentFrameworksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssessmentMetadata": {
+      "base": null,
+      "refs": {
+        "ListAssessmentsResponse$assessmentMetadata": "<p> The metadata associated with the assessment. </p>"
+      }
+    },
+    "ListAssessmentReportsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssessmentReportsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssessmentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssessmentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKeywordsForDataSourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKeywordsForDataSourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNotificationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNotificationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ManualEvidence": {
+      "base": "<p> Evidence that is uploaded to AWS Audit Manager manually. </p>",
+      "refs": {
+        "BatchImportEvidenceToAssessmentControlError$manualEvidence": "<p> Manual evidence that cannot be collected automatically by AWS Audit Manager. </p>",
+        "ManualEvidenceList$member": null
+      }
+    },
+    "ManualEvidenceList": {
+      "base": null,
+      "refs": {
+        "BatchImportEvidenceToAssessmentControlRequest$manualEvidence": "<p> The list of manual evidence objects. </p>"
+      }
+    },
+    "MaxResults": {
+      "base": "Max results in the page.",
+      "refs": {
+        "GetChangeLogsRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "GetDelegationsRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "GetEvidenceByEvidenceFolderRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "GetEvidenceFoldersByAssessmentControlRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "GetEvidenceFoldersByAssessmentRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "ListAssessmentFrameworksRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "ListAssessmentReportsRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "ListAssessmentsRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "ListControlsRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "ListKeywordsForDataSourceRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>",
+        "ListNotificationsRequest$maxResults": "<p> Represents the maximum number of results per page, or per API request call. </p>"
+      }
+    },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "AssessmentControlSet$description": "<p> The description for the control set. </p>",
+        "ChangeLog$objectName": "<p> The name of the changelog object. </p>",
+        "DelegationMetadata$controlSetName": "<p> Specifies the name of the control set delegated for review. </p>",
+        "EvidenceSources$member": null,
+        "Notification$controlSetName": "<p> Specifies the name of the control set that the notification is about. </p>",
+        "Notification$description": "<p> The description of the notification. </p>",
+        "Notification$source": "<p> The sender of the notification. </p>",
+        "ServiceMetadata$displayName": "<p> The display name of the AWS service. </p>",
+        "ServiceMetadata$description": "<p> The description of the specified AWS service. </p>",
+        "ServiceMetadata$category": "<p> The category in which the AWS service belongs, such as compute, storage, database, and so on. </p>",
+        "ValidationErrors$member": null
+      }
+    },
+    "Notification": {
+      "base": "<p> The notification used to inform a user of an update in AWS Audit Manager. For example, this includes the notification that is sent when a control set is delegated for review. </p>",
+      "refs": {
+        "Notifications$member": null
+      }
+    },
+    "Notifications": {
+      "base": null,
+      "refs": {
+        "ListNotificationsResponse$notifications": "<p> The returned list of notifications. </p>"
+      }
+    },
+    "ObjectTypeEnum": {
+      "base": null,
+      "refs": {
+        "ChangeLog$objectType": "<p> The changelog object type, such as an assessment, control, or control set. </p>"
+      }
+    },
+    "RegisterAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterOrganizationAdminAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterOrganizationAdminAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Resource": {
+      "base": "<p> A system asset that is evaluated in an AWS Audit Manager assessment. </p>",
+      "refs": {
+        "Resources$member": null
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p> The resource specified in the request cannot be found. </p>",
+      "refs": {
+      }
+    },
+    "Resources": {
+      "base": null,
+      "refs": {
+        "Evidence$resourcesIncluded": "<p> The list of resources assessed to generate the evidence. </p>"
+      }
+    },
+    "Role": {
+      "base": "<p> The wrapper that contains AWS Audit Manager role information, such as the role type and IAM Amazon Resource Name (ARN). </p>",
+      "refs": {
+        "Roles$member": null
+      }
+    },
+    "RoleType": {
+      "base": null,
+      "refs": {
+        "CreateDelegationRequest$roleType": "<p> The type of customer persona. </p> <note> <p>In <code>CreateAssessment</code>, <code>roleType</code> can only be <code>PROCESS_OWNER</code>. </p> <p>In <code>UpdateSettings</code>, <code>roleType</code> can only be <code>PROCESS_OWNER</code>.</p> <p>In <code>BatchCreateDelegationByAssessment</code>, <code>roleType</code> can only be <code>RESOURCE_OWNER</code>.</p> </note>",
+        "Delegation$roleType": "<p> The type of customer persona. </p> <note> <p>In <code>CreateAssessment</code>, <code>roleType</code> can only be <code>PROCESS_OWNER</code>. </p> <p>In <code>UpdateSettings</code>, <code>roleType</code> can only be <code>PROCESS_OWNER</code>.</p> <p>In <code>BatchCreateDelegationByAssessment</code>, <code>roleType</code> can only be <code>RESOURCE_OWNER</code>.</p> </note>",
+        "Role$roleType": "<p> The type of customer persona. </p> <note> <p>In <code>CreateAssessment</code>, <code>roleType</code> can only be <code>PROCESS_OWNER</code>. </p> <p>In <code>UpdateSettings</code>, <code>roleType</code> can only be <code>PROCESS_OWNER</code>.</p> <p>In <code>BatchCreateDelegationByAssessment</code>, <code>roleType</code> can only be <code>RESOURCE_OWNER</code>.</p> </note>"
+      }
+    },
+    "Roles": {
+      "base": null,
+      "refs": {
+        "AssessmentControlSet$roles": "<p> The roles associated with the control set. </p>",
+        "AssessmentMetadata$roles": "<p> The roles associated with the assessment. </p>",
+        "AssessmentMetadataItem$roles": "<p> The roles associated with the assessment. </p>",
+        "CreateAssessmentRequest$roles": "<p> The list of roles for the specified assessment. </p>",
+        "Settings$defaultProcessOwners": "<p> The designated default audit owners. </p>",
+        "UpdateAssessmentRequest$roles": "<p> The list of roles for the specified assessment. </p>",
+        "UpdateSettingsRequest$defaultProcessOwners": "<p> A list of the default audit owners. </p>"
+      }
+    },
+    "S3Url": {
+      "base": null,
+      "refs": {
+        "AssessmentReportsDestination$destination": "<p> The destination of the assessment report. </p>",
+        "ManualEvidence$s3ResourcePath": "<p> The Amazon S3 URL that points to a manual evidence object. </p>",
+        "ValidateAssessmentReportIntegrityRequest$s3RelativePath": "<p> The relative path of the specified Amazon S3 bucket in which the assessment report is stored. </p>"
+      }
+    },
+    "SNSTopic": {
+      "base": null,
+      "refs": {
+        "Settings$snsTopic": "<p> The designated Amazon Simple Notification Service (Amazon SNS) topic. </p>"
+      }
+    },
+    "Scope": {
+      "base": "<p> The wrapper that contains the AWS accounts and AWS services in scope for the assessment. </p>",
+      "refs": {
+        "AssessmentMetadata$scope": "<p> The wrapper of AWS accounts and services in scope for the assessment. </p>",
+        "CreateAssessmentRequest$scope": null,
+        "UpdateAssessmentRequest$scope": "<p> The scope of the specified assessment. </p>"
+      }
+    },
+    "ServiceMetadata": {
+      "base": "<p> The metadata associated with the specified AWS service. </p>",
+      "refs": {
+        "ServiceMetadataList$member": null
+      }
+    },
+    "ServiceMetadataList": {
+      "base": null,
+      "refs": {
+        "GetServicesInScopeResponse$serviceMetadata": "<p> The metadata associated with the aAWS service. </p>"
+      }
+    },
+    "SettingAttribute": {
+      "base": null,
+      "refs": {
+        "GetSettingsRequest$attribute": "<p> The list of <code>SettingAttribute</code> enum values. </p>"
+      }
+    },
+    "Settings": {
+      "base": "<p> The settings object that holds all supported AWS Audit Manager settings. </p>",
+      "refs": {
+        "GetSettingsResponse$settings": "<p> The settings object that holds all supported AWS Audit Manager settings. </p>",
+        "UpdateSettingsResponse$settings": "<p> The current list of settings. </p>"
+      }
+    },
+    "SnsArn": {
+      "base": null,
+      "refs": {
+        "UpdateSettingsRequest$snsTopic": "<p> The Amazon Simple Notification Service (Amazon SNS) topic to which AWS Audit Manager sends notifications. </p>"
+      }
+    },
+    "SourceDescription": {
+      "base": null,
+      "refs": {
+        "ControlMappingSource$sourceDescription": "<p> The description of the specified source. </p>",
+        "CreateControlMappingSource$sourceDescription": "<p> The description of the data source that determines from where AWS Audit Manager collects evidence for the control. </p>"
+      }
+    },
+    "SourceFrequency": {
+      "base": null,
+      "refs": {
+        "ControlMappingSource$sourceFrequency": "<p> The frequency of evidence collection for the specified control mapping source. </p>",
+        "CreateControlMappingSource$sourceFrequency": "<p> The frequency of evidence collection for the specified control mapping source. </p>"
+      }
+    },
+    "SourceKeyword": {
+      "base": "<p> The keyword to search for in AWS CloudTrail logs. </p>",
+      "refs": {
+        "ControlMappingSource$sourceKeyword": null,
+        "CreateControlMappingSource$sourceKeyword": null
+      }
+    },
+    "SourceName": {
+      "base": null,
+      "refs": {
+        "ControlMappingSource$sourceName": "<p> The name of the specified source. </p>",
+        "CreateControlMappingSource$sourceName": "<p> The name of the control mapping data source. </p>"
+      }
+    },
+    "SourceSetUpOption": {
+      "base": null,
+      "refs": {
+        "ControlMappingSource$sourceSetUpOption": "<p> The setup option for the data source, which reflects if the evidence collection is automated or manual. </p>",
+        "CreateControlMappingSource$sourceSetUpOption": "<p> The setup option for the data source, which reflects if the evidence collection is automated or manual. </p>"
+      }
+    },
+    "SourceType": {
+      "base": null,
+      "refs": {
+        "ControlMappingSource$sourceType": "<p> Specifies one of the five types of data sources for evidence collection. </p>",
+        "CreateControlMappingSource$sourceType": "<p> Specifies one of the five types of data sources for evidence collection. </p>",
+        "ListKeywordsForDataSourceRequest$source": "<p> The control mapping data source to which the keywords apply. </p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": null,
+        "AssessmentEvidenceFolder$dataSource": "<p> The AWS service from which the evidence was collected. </p>",
+        "AssessmentEvidenceFolder$author": "<p> The name of the user who created the evidence folder. </p>",
+        "Evidence$dataSource": "<p> The data source from which the specified evidence was collected. </p>",
+        "Evidence$evidenceByType": "<p> The type of automated evidence. </p>",
+        "Evidence$complianceCheck": "<p> The evaluation status for evidence that falls under the compliance check category. For evidence collected from AWS Security Hub, a <i>Pass</i> or <i>Fail</i> result is shown. For evidence collected from AWS Config, a <i>Compliant</i> or <i>Noncompliant</i> result is shown. </p>",
+        "Evidence$awsOrganization": "<p> The AWS account from which the evidence is collected, and its AWS organization path. </p>",
+        "Evidence$assessmentReportSelection": "<p> Specifies whether the evidence is inclded in the assessment report. </p>",
+        "InternalServerException$message": null,
+        "Resource$value": "<p> The value of the specified resource. </p>",
+        "ResourceNotFoundException$message": null,
+        "ResourceNotFoundException$resourceId": "<p> The unique identifier for the specified resource. </p>",
+        "ResourceNotFoundException$resourceType": "<p> The type of resource affected by the error. </p>",
+        "UpdateAssessmentControlSetStatusRequest$controlSetId": "<p> The identifier for the specified control set. </p>",
+        "ValidateAssessmentReportIntegrityResponse$signatureAlgorithm": "<p> The signature algorithm used to code sign the assessment report file. </p>",
+        "ValidateAssessmentReportIntegrityResponse$signatureDateTime": "<p> The date and time signature that specifies when the assessment report was created. </p>",
+        "ValidateAssessmentReportIntegrityResponse$signatureKeyId": "<p> The unique identifier for the validation signature key. </p>",
+        "ValidationException$message": null,
+        "ValidationExceptionField$name": "<p> The name of the validation error. </p>",
+        "ValidationExceptionField$message": "<p> The body of the error message. </p>"
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p> The name or key of the tag. </p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "Assessment$tags": "<p> The tags associated with the assessment. </p>",
+        "Control$tags": "<p> The tags associated with the control. </p>",
+        "CreateAssessmentRequest$tags": "<p> The tags associated with the assessment. </p>",
+        "CreateControlRequest$tags": "<p> The tags associated with the control. </p>",
+        "ListTagsForResourceResponse$tags": "<p> The list of tags returned by the <code>ListTagsForResource</code> API. </p>",
+        "TagResourceRequest$tags": "<p> The tags to be associated with the resource. </p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
+    "TestingInformation": {
+      "base": null,
+      "refs": {
+        "Control$testingInformation": "<p> The steps to follow to determine if the control has been satisfied. </p>",
+        "CreateControlRequest$testingInformation": "<p> The steps to follow to determine if the control has been satisfied. </p>",
+        "UpdateControlRequest$testingInformation": "<p> The steps that to follow to determine if the control has been satisfied. </p>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "AssessmentEvidenceFolder$date": "<p> The date when the first evidence was added to the evidence folder. </p>",
+        "AssessmentFrameworkMetadata$createdAt": "<p> Specifies when the framework was created. </p>",
+        "AssessmentFrameworkMetadata$lastUpdatedAt": "<p> Specifies when the framework was most recently updated. </p>",
+        "AssessmentMetadata$creationTime": "<p> Specifies when the assessment was created. </p>",
+        "AssessmentMetadata$lastUpdated": "<p> The time of the most recent update. </p>",
+        "AssessmentMetadataItem$creationTime": "<p> Specifies when the assessment was created. </p>",
+        "AssessmentMetadataItem$lastUpdated": "<p> The time of the most recent update. </p>",
+        "AssessmentReport$creationTime": "<p> Specifies when the assessment report was created. </p>",
+        "AssessmentReportMetadata$creationTime": "<p> Specifies when the assessment report was created. </p>",
+        "ChangeLog$createdAt": "<p> The time of creation for the changelog object. </p>",
+        "Control$createdAt": "<p> Specifies when the control was created. </p>",
+        "Control$lastUpdatedAt": "<p> Specifies when the control was most recently updated. </p>",
+        "ControlComment$postedDate": "<p> The time when the comment was posted. </p>",
+        "ControlMetadata$createdAt": "<p> Specifies when the control was created. </p>",
+        "ControlMetadata$lastUpdatedAt": "<p> Specifies when the control was most recently updated. </p>",
+        "Delegation$creationTime": "<p> Specifies when the delegation was created. </p>",
+        "Delegation$lastUpdated": "<p> Specifies when the delegation was last updated. </p>",
+        "DelegationMetadata$creationTime": "<p> Specifies when the delegation was created. </p>",
+        "Evidence$time": "<p> The timestamp that represents when the evidence was collected. </p>",
+        "Framework$createdAt": "<p> Specifies when the framework was created. </p>",
+        "Framework$lastUpdatedAt": "<p> Specifies when the framework was most recently updated. </p>",
+        "Notification$eventTime": "<p> The time when the notification was sent. </p>"
+      }
+    },
+    "TimestampUUID": {
+      "base": null,
+      "refs": {
+        "Notification$id": "<p> The unique identifier for the notification. </p>"
+      }
+    },
+    "Token": {
+      "base": null,
+      "refs": {
+        "GetChangeLogsRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetChangeLogsResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetDelegationsRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetDelegationsResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetEvidenceByEvidenceFolderRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetEvidenceByEvidenceFolderResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetEvidenceFoldersByAssessmentControlRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetEvidenceFoldersByAssessmentControlResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetEvidenceFoldersByAssessmentRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "GetEvidenceFoldersByAssessmentResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListAssessmentFrameworksRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListAssessmentFrameworksResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListAssessmentReportsRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListAssessmentReportsResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListAssessmentsRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListAssessmentsResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListControlsRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListControlsResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListKeywordsForDataSourceRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListKeywordsForDataSourceResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListNotificationsRequest$nextToken": "<p> The pagination token used to fetch the next set of results. </p>",
+        "ListNotificationsResponse$nextToken": "<p> The pagination token used to fetch the next set of results. </p>"
+      }
+    },
+    "TroubleshootingText": {
+      "base": null,
+      "refs": {
+        "ControlMappingSource$troubleshootingText": "<p> The instructions for troubleshooting the specified control. </p>",
+        "CreateControlMappingSource$troubleshootingText": "<p> The instructions for troubleshooting the specified control. </p>"
+      }
+    },
+    "URL": {
+      "base": "<p> A uniform resource locator, used as a unique identifier to locate a resource on the internet. </p>",
+      "refs": {
+        "GetAssessmentReportUrlResponse$preSignedUrl": null
+      }
+    },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "AssessmentControl$id": "<p> The identifier for the specified control. </p>",
+        "AssessmentEvidenceFolder$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "AssessmentEvidenceFolder$controlId": "<p> The unique identifier for the specified control. </p>",
+        "AssessmentEvidenceFolder$id": "<p> The identifier for the folder in which evidence is stored. </p>",
+        "AssessmentFramework$id": "<p> The unique identifier for the framework. </p>",
+        "AssessmentFrameworkMetadata$id": "<p> The unique identified for the specified framework. </p>",
+        "AssessmentMetadata$id": "<p> The unique identifier for the assessment. </p>",
+        "AssessmentMetadataItem$id": "<p> The unique identifier for the assessment. </p>",
+        "AssessmentReport$id": "<p> The unique identifier for the specified assessment report. </p>",
+        "AssessmentReport$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "AssessmentReportEvidenceError$evidenceId": "<p> The identifier for the evidence. </p>",
+        "AssessmentReportMetadata$id": "<p> The unique identifier for the assessment report. </p>",
+        "AssessmentReportMetadata$assessmentId": "<p> The unique identifier for the associated assessment. </p>",
+        "AssociateAssessmentReportEvidenceFolderRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "AssociateAssessmentReportEvidenceFolderRequest$evidenceFolderId": "<p> The identifier for the folder in which evidence is stored. </p>",
+        "BatchAssociateAssessmentReportEvidenceRequest$assessmentId": "<p> The unique identifier for the specified assessment. </p>",
+        "BatchAssociateAssessmentReportEvidenceRequest$evidenceFolderId": "<p> The identifier for the folder in which the evidence is stored. </p>",
+        "BatchCreateDelegationByAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "BatchDeleteDelegationByAssessmentError$delegationId": "<p> The identifier for the specified delegation. </p>",
+        "BatchDeleteDelegationByAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "BatchDisassociateAssessmentReportEvidenceRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "BatchDisassociateAssessmentReportEvidenceRequest$evidenceFolderId": "<p> The identifier for the folder in which evidence is stored. </p>",
+        "BatchImportEvidenceToAssessmentControlRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "BatchImportEvidenceToAssessmentControlRequest$controlId": "<p> The identifier for the specified control. </p>",
+        "Control$id": "<p> The unique identifier for the control. </p>",
+        "ControlMappingSource$sourceId": "<p> The unique identifier for the specified source. </p>",
+        "ControlMetadata$id": "<p> The unique identifier for the specified control. </p>",
+        "ControlSet$id": "<p> The identifier of the control set in the assessment. This is the control set name in a plain string format. </p>",
+        "CreateAssessmentFrameworkControl$id": "<p> The unique identifier of the control. </p>",
+        "CreateAssessmentReportRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "CreateAssessmentRequest$frameworkId": "<p> The identifier for the specified framework. </p>",
+        "Delegation$id": "<p> The unique identifier for the delegation. </p>",
+        "Delegation$assessmentId": "<p> The identifier for the associated assessment. </p>",
+        "DelegationIds$member": null,
+        "DelegationMetadata$id": "<p> The unique identifier for the delegation. </p>",
+        "DelegationMetadata$assessmentId": "<p> The unique identifier for the specified assessment. </p>",
+        "DeleteAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the specified framework. </p>",
+        "DeleteAssessmentReportRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "DeleteAssessmentReportRequest$assessmentReportId": "<p> The unique identifier for the assessment report. </p>",
+        "DeleteAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "DeleteControlRequest$controlId": "<p> The identifier for the specified control. </p>",
+        "DisassociateAssessmentReportEvidenceFolderRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "DisassociateAssessmentReportEvidenceFolderRequest$evidenceFolderId": "<p> The identifier for the folder in which evidence is stored. </p>",
+        "Evidence$evidenceFolderId": "<p> The identifier for the folder in which the evidence is stored. </p>",
+        "Evidence$id": "<p> The identifier for the evidence. </p>",
+        "EvidenceIds$member": null,
+        "Framework$id": "<p> The unique identifier for the specified framework. </p>",
+        "GetAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the specified framework. </p>",
+        "GetAssessmentReportUrlRequest$assessmentReportId": "<p> The identifier for the assessment report. </p>",
+        "GetAssessmentReportUrlRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetChangeLogsRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetChangeLogsRequest$controlId": "<p> The identifier for the specified control. </p>",
+        "GetControlRequest$controlId": "<p> The identifier for the specified control. </p>",
+        "GetEvidenceByEvidenceFolderRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetEvidenceByEvidenceFolderRequest$evidenceFolderId": "<p> The unique identifier for the folder in which the evidence is stored. </p>",
+        "GetEvidenceFolderRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetEvidenceFolderRequest$evidenceFolderId": "<p> The identifier for the folder in which the evidence is stored. </p>",
+        "GetEvidenceFoldersByAssessmentControlRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetEvidenceFoldersByAssessmentControlRequest$controlId": "<p> The identifier for the specified control. </p>",
+        "GetEvidenceFoldersByAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetEvidenceRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "GetEvidenceRequest$evidenceFolderId": "<p> The identifier for the folder in which the evidence is stored. </p>",
+        "GetEvidenceRequest$evidenceId": "<p> The identifier for the evidence. </p>",
+        "Notification$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "UpdateAssessmentControlRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "UpdateAssessmentControlRequest$controlId": "<p> The identifier for the specified control. </p>",
+        "UpdateAssessmentControlSetStatusRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "UpdateAssessmentFrameworkControlSet$id": "<p> The unique identifier for the control set. </p>",
+        "UpdateAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the specified framework. </p>",
+        "UpdateAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "UpdateAssessmentStatusRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
+        "UpdateControlRequest$controlId": "<p> The identifier for the specified control. </p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentControlSetStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentControlSetStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentFrameworkControlSet": {
+      "base": "<p> A <code>controlSet</code> entity that represents a collection of controls in AWS Audit Manager. This does not contain the control set ID. </p>",
+      "refs": {
+        "UpdateAssessmentFrameworkControlSets$member": null
+      }
+    },
+    "UpdateAssessmentFrameworkControlSets": {
+      "base": null,
+      "refs": {
+        "UpdateAssessmentFrameworkRequest$controlSets": "<p> The control sets associated with the framework. </p>"
+      }
+    },
+    "UpdateAssessmentFrameworkRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentFrameworkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAssessmentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateControlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateControlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UrlLink": {
+      "base": null,
+      "refs": {
+        "URL$link": "<p> The unique identifier for the internet resource. </p>"
+      }
+    },
+    "Username": {
+      "base": null,
+      "refs": {
+        "AssessmentReport$author": "<p> The name of the user who created the assessment report. </p>",
+        "AssessmentReportMetadata$author": "<p> The name of the user who created the assessment report. </p>",
+        "ControlComment$authorName": "<p> The name of the user who authored the comment. </p>"
+      }
+    },
+    "ValidateAssessmentReportIntegrityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidateAssessmentReportIntegrityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationErrors": {
+      "base": null,
+      "refs": {
+        "ValidateAssessmentReportIntegrityResponse$validationErrors": "<p> Represents any errors that occurred when validating the assessment report. </p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p> The request has invalid or missing parameters. </p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p> Indicates that the request has invalid or missing parameters for the specified field. </p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": null,
+      "refs": {
+        "ValidationException$fields": "<p> The fields that caused the error, if applicable. </p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "ValidationException$reason": "<p> The reason the request failed validation. </p>"
+      }
+    },
+    "organizationId": {
+      "base": null,
+      "refs": {
+        "GetOrganizationAdminAccountResponse$organizationId": "<p> The identifier for the specified organization. </p>",
+        "RegisterOrganizationAdminAccountResponse$organizationId": "<p> The identifier for the specified AWS organization. </p>"
+      }
+    }
+  }
+}

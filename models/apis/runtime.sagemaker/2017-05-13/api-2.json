@@ -50,6 +50,12 @@
       "max":1024,
       "pattern":"\\p{ASCII}*"
     },
+    "InferenceId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"\\A\\S[\\p{Print}]*\\z"
+    },
     "InternalFailure":{
       "type":"structure",
       "members":{
@@ -97,6 +103,11 @@
           "shape":"TargetVariantHeader",
           "location":"header",
           "locationName":"X-Amzn-SageMaker-Target-Variant"
+        },
+        "InferenceId":{
+          "shape":"InferenceId",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Inference-Id"
         }
       },
       "payload":"Body"

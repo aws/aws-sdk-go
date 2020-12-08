@@ -66,11 +66,35 @@
       "limit_key": "MaxResults",
       "result_key": "ContextSummaries"
     },
+    "ListDataQualityJobDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "JobDefinitionSummaries"
+    },
+    "ListDeviceFleets": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "DeviceFleetSummaries"
+    },
+    "ListDevices": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "DeviceSummaries"
+    },
     "ListDomains": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "Domains"
+    },
+    "ListEdgePackagingJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "EdgePackagingJobSummaries"
     },
     "ListEndpointConfigs": {
       "input_token": "NextToken",
@@ -138,6 +162,18 @@
       "limit_key": "MaxResults",
       "result_key": "LabelingJobSummaryList"
     },
+    "ListModelBiasJobDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "JobDefinitionSummaries"
+    },
+    "ListModelExplainabilityJobDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "JobDefinitionSummaries"
+    },
     "ListModelPackageGroups": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -149,6 +185,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "ModelPackageSummaryList"
+    },
+    "ListModelQualityJobDefinitions": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "JobDefinitionSummaries"
     },
     "ListModels": {
       "input_token": "NextToken",

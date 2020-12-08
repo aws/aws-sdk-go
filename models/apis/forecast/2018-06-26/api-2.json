@@ -502,7 +502,8 @@
         "string",
         "integer",
         "float",
-        "timestamp"
+        "timestamp",
+        "geolocation"
       ]
     },
     "Boolean":{"type":"boolean"},
@@ -574,6 +575,9 @@
         "DatasetArn":{"shape":"Arn"},
         "DataSource":{"shape":"DataSource"},
         "TimestampFormat":{"shape":"TimestampFormat"},
+        "TimeZone":{"shape":"TimeZone"},
+        "UseGeolocationForTimeZone":{"shape":"UseGeolocationForTimeZone"},
+        "GeolocationFormat":{"shape":"GeolocationFormat"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -844,6 +848,9 @@
         "DatasetImportJobArn":{"shape":"Arn"},
         "DatasetArn":{"shape":"Arn"},
         "TimestampFormat":{"shape":"TimestampFormat"},
+        "TimeZone":{"shape":"TimeZone"},
+        "UseGeolocationForTimeZone":{"shape":"UseGeolocationForTimeZone"},
+        "GeolocationFormat":{"shape":"GeolocationFormat"},
         "DataSource":{"shape":"DataSource"},
         "FieldStatistics":{"shape":"FieldStatistics"},
         "DataSize":{"shape":"Double"},
@@ -1155,6 +1162,11 @@
     "Frequency":{
       "type":"string",
       "pattern":"^Y|M|W|D|H|30min|15min|10min|5min|1min$"
+    },
+    "GeolocationFormat":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[a-zA-Z0-9_]+$"
     },
     "GetAccuracyMetricsRequest":{
       "type":"structure",
@@ -1549,7 +1561,7 @@
     "SupplementaryFeatures":{
       "type":"list",
       "member":{"shape":"SupplementaryFeature"},
-      "max":1,
+      "max":2,
       "min":1
     },
     "Tag":{
@@ -1567,7 +1579,8 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "sensitive":true
     },
     "TagKeys":{
       "type":"list",
@@ -1595,7 +1608,8 @@
       "type":"string",
       "max":256,
       "min":0,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$",
+      "sensitive":true
     },
     "Tags":{
       "type":"list",
@@ -1619,6 +1633,11 @@
     "TestWindows":{
       "type":"list",
       "member":{"shape":"WindowSummary"}
+    },
+    "TimeZone":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[a-zA-Z0-9\\/\\+\\-\\_]+$"
     },
     "Timestamp":{"type":"timestamp"},
     "TimestampFormat":{
@@ -1665,6 +1684,7 @@
       "members":{
       }
     },
+    "UseGeolocationForTimeZone":{"type":"boolean"},
     "Value":{
       "type":"string",
       "max":256,
