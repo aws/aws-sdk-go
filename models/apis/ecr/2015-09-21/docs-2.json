@@ -8,15 +8,18 @@
     "CompleteLayerUpload": "<p>Informs Amazon ECR that the image layer upload has completed for a specified registry, repository name, and upload ID. You can optionally provide a <code>sha256</code> digest of the image layer for data validation purposes.</p> <p>When an image is pushed, the CompleteLayerUpload API is called once per each new image layer to verify that the upload has completed.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "CreateRepository": "<p>Creates a repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html\">Amazon ECR Repositories</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "DeleteLifecyclePolicy": "<p>Deletes the lifecycle policy associated with the specified repository.</p>",
+    "DeleteRegistryPolicy": "<p>Deletes the registry permissions policy.</p>",
     "DeleteRepository": "<p>Deletes a repository. If the repository contains images, you must either delete all images in the repository or use the <code>force</code> option to delete the repository.</p>",
     "DeleteRepositoryPolicy": "<p>Deletes the repository policy associated with the specified repository.</p>",
     "DescribeImageScanFindings": "<p>Returns the scan findings for the specified image.</p>",
     "DescribeImages": "<p>Returns metadata about the images in a repository.</p> <note> <p>Beginning with Docker version 1.9, the Docker client compresses image layers before pushing them to a V2 Docker registry. The output of the <code>docker images</code> command shows the uncompressed image size, so it may return a larger image size than the image sizes returned by <a>DescribeImages</a>.</p> </note>",
+    "DescribeRegistry": "<p>Describes the settings for a registry. The replication configuration for a repository can be created or updated with the <a>PutReplicationConfiguration</a> API action.</p>",
     "DescribeRepositories": "<p>Describes image repositories in a registry.</p>",
     "GetAuthorizationToken": "<p>Retrieves an authorization token. An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to. The authorization token is valid for 12 hours.</p> <p>The <code>authorizationToken</code> returned is a base64 encoded string that can be decoded and used in a <code>docker login</code> command to authenticate to a registry. The AWS CLI offers an <code>get-login-password</code> command that simplifies the login process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth\">Registry Authentication</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "GetDownloadUrlForLayer": "<p>Retrieves the pre-signed Amazon S3 download URL corresponding to an image layer. You can only get URLs for image layers that are referenced in an image.</p> <p>When an image is pulled, the GetDownloadUrlForLayer API is called once per image layer that is not already cached.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "GetLifecyclePolicy": "<p>Retrieves the lifecycle policy for the specified repository.</p>",
     "GetLifecyclePolicyPreview": "<p>Retrieves the results of the lifecycle policy preview request for the specified repository.</p>",
+    "GetRegistryPolicy": "<p>Retrieves the permissions policy for a registry.</p>",
     "GetRepositoryPolicy": "<p>Retrieves the repository policy for the specified repository.</p>",
     "InitiateLayerUpload": "<p>Notifies Amazon ECR that you intend to upload an image layer.</p> <p>When an image is pushed, the InitiateLayerUpload API is called once per image layer that has not already been uploaded. Whether or not an image layer has been uploaded is determined by the BatchCheckLayerAvailability API action.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "ListImages": "<p>Lists all the image IDs for the specified repository.</p> <p>You can filter images based on whether or not they are tagged by using the <code>tagStatus</code> filter and specifying either <code>TAGGED</code>, <code>UNTAGGED</code> or <code>ANY</code>. For example, you can filter your results to return only <code>UNTAGGED</code> images and then pipe that result to a <a>BatchDeleteImage</a> operation to delete them. Or, you can filter your results to return only <code>TAGGED</code> images to list all of the tags in your repository.</p>",
@@ -25,6 +28,8 @@
     "PutImageScanningConfiguration": "<p>Updates the image scanning configuration for the specified repository.</p>",
     "PutImageTagMutability": "<p>Updates the image tag mutability settings for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html\">Image Tag Mutability</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle Policy Template</a>.</p>",
+    "PutRegistryPolicy": "<p>Creates or updates the permissions policy for your registry.</p> <p>A registry policy is used to specify permissions for another AWS account and is used when configuring cross-account replication. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "PutReplicationConfiguration": "<p>Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the <a>DescribeRegistry</a> API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html\">Using Service-Linked Roles for Amazon ECR</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p> <note> <p>When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see <a>PutRegistryPolicy</a>.</p> </note>",
     "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartImageScan": "<p>Starts an image vulnerability scan. An image scan can only be started once per day on an individual image. This limit includes if an image was scanned on initial push. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html\">Image Scanning</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartLifecyclePolicyPreview": "<p>Starts a preview of a lifecycle policy for the specified repository. This allows you to see the results before associating the lifecycle policy with the repository.</p>",
@@ -163,6 +168,16 @@
       "refs": {
       }
     },
+    "DeleteRegistryPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRegistryPolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteRepositoryPolicyRequest": {
       "base": null,
       "refs": {
@@ -205,6 +220,16 @@
       }
     },
     "DescribeImagesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRegistryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRegistryResponse": {
       "base": null,
       "refs": {
       }
@@ -266,6 +291,7 @@
         "LifecyclePolicyPreviewNotFoundException$message": null,
         "LimitExceededException$message": "<p>The error message associated with the exception.</p>",
         "ReferencedImagesNotFoundException$message": null,
+        "RegistryPolicyNotFoundException$message": null,
         "RepositoryAlreadyExistsException$message": "<p>The error message associated with the exception.</p>",
         "RepositoryNotEmptyException$message": "<p>The error message associated with the exception.</p>",
         "RepositoryNotFoundException$message": "<p>The error message associated with the exception.</p>",
@@ -274,7 +300,8 @@
         "ServerException$message": "<p>The error message associated with the exception.</p>",
         "TooManyTagsException$message": null,
         "UnsupportedImageTypeException$message": null,
-        "UploadNotFoundException$message": "<p>The error message associated with the exception.</p>"
+        "UploadNotFoundException$message": "<p>The error message associated with the exception.</p>",
+        "ValidationException$message": null
       }
     },
     "ExpirationTimestamp": {
@@ -358,6 +385,16 @@
       }
     },
     "GetLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRegistryPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRegistryPolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -912,9 +949,35 @@
       "refs": {
       }
     },
+    "PutRegistryPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRegistryPolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutReplicationConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutReplicationConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ReferencedImagesNotFoundException": {
       "base": "<p>The manifest list is referencing an image that does not exist.</p>",
       "refs": {
+      }
+    },
+    "Region": {
+      "base": null,
+      "refs": {
+        "ReplicationDestination$region": "<p>A Region to replicate to.</p>"
       }
     },
     "RegistryId": {
@@ -927,12 +990,14 @@
         "CompleteLayerUploadResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "DeleteRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryPolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeImageScanFindingsRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to describe the image scan findings for. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeImageScanFindingsResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DescribeImagesRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribeRegistryResponse$registryId": "<p>The ID of the registry.</p>",
         "DescribeRepositoriesRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repositories to be described. If you do not specify a registry, the default registry is assumed.</p>",
         "GetAuthorizationTokenRegistryIdList$member": null,
         "GetDownloadUrlForLayerRequest$registryId": "<p>The AWS account ID associated with the registry that contains the image layer to download. If you do not specify a registry, the default registry is assumed.</p>",
@@ -940,6 +1005,7 @@
         "GetLifecyclePolicyPreviewResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "GetLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "GetRegistryPolicyResponse$registryId": "<p>The ID of the registry.</p>",
         "GetRepositoryPolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "Image$registryId": "<p>The AWS account ID associated with the registry containing the image.</p>",
@@ -954,6 +1020,8 @@
         "PutImageTagMutabilityResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "PutLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do&#x2028; not specify a registry, the default registry is assumed.</p>",
         "PutLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "PutRegistryPolicyResponse$registryId": "<p>The registry ID.</p>",
+        "ReplicationDestination$registryId": "<p>The account ID of the destination registry to replicate to.</p>",
         "Repository$registryId": "<p>The AWS account ID associated with the registry that contains the repository.</p>",
         "SetRepositoryPolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "SetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
@@ -963,6 +1031,52 @@
         "StartLifecyclePolicyPreviewResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "UploadLayerPartRequest$registryId": "<p>The AWS account ID associated with the registry to which you are uploading layer parts. If you do not specify a registry, the default registry is assumed.</p>",
         "UploadLayerPartResponse$registryId": "<p>The registry ID associated with the request.</p>"
+      }
+    },
+    "RegistryPolicyNotFoundException": {
+      "base": "<p>The registry doesn't have an associated registry policy.</p>",
+      "refs": {
+      }
+    },
+    "RegistryPolicyText": {
+      "base": null,
+      "refs": {
+        "DeleteRegistryPolicyResponse$policyText": "<p>The contents of the registry permissions policy that was deleted.</p>",
+        "GetRegistryPolicyResponse$policyText": "<p>The JSON text of the permissions policy for a registry.</p>",
+        "PutRegistryPolicyRequest$policyText": "<p>The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+        "PutRegistryPolicyResponse$policyText": "<p>The JSON policy text for your registry.</p>"
+      }
+    },
+    "ReplicationConfiguration": {
+      "base": "<p>The replication configuration for a registry.</p>",
+      "refs": {
+        "DescribeRegistryResponse$replicationConfiguration": "<p>The replication configuration for the registry.</p>",
+        "PutReplicationConfigurationRequest$replicationConfiguration": "<p>An object representing the replication configuration for a registry.</p>",
+        "PutReplicationConfigurationResponse$replicationConfiguration": "<p>The contents of the replication configuration for the registry.</p>"
+      }
+    },
+    "ReplicationDestination": {
+      "base": "<p>An array of objects representing the details of a replication destination.</p>",
+      "refs": {
+        "ReplicationDestinationList$member": null
+      }
+    },
+    "ReplicationDestinationList": {
+      "base": null,
+      "refs": {
+        "ReplicationRule$destinations": "<p>An array of objects representing the details of a replication destination.</p>"
+      }
+    },
+    "ReplicationRule": {
+      "base": "<p>An array of objects representing the replication destinations for a replication configuration. A replication configuration may contain only one replication rule but the rule may contain one or more replication destinations.</p>",
+      "refs": {
+        "ReplicationRuleList$member": null
+      }
+    },
+    "ReplicationRuleList": {
+      "base": null,
+      "refs": {
+        "ReplicationConfiguration$rules": "<p>An array of objects representing the replication rules for a replication configuration. A replication configuration may contain only one replication rule but the rule may contain one or more replication destinations.</p>"
       }
     },
     "Repository": {
@@ -1236,6 +1350,11 @@
         "GetDownloadUrlForLayerResponse$downloadUrl": "<p>The pre-signed Amazon S3 download URL for the requested layer.</p>",
         "ImageScanFinding$uri": "<p>A link containing additional details about the security vulnerability.</p>",
         "Repository$repositoryUri": "<p>The URI for the repository. You can use this URI for container image <code>push</code> and <code>pull</code> operations.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>There was an exception validating this request.</p>",
+      "refs": {
       }
     },
     "VulnerabilitySourceUpdateTimestamp": {

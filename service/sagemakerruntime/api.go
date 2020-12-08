@@ -67,13 +67,13 @@ func (c *SageMakerRuntime) InvokeEndpointRequest(input *InvokeEndpointInput) (re
 //
 // Calls to InvokeEndpoint are authenticated by using AWS Signature Version
 // 4. For information, see Authenticating Requests (AWS Signature Version 4)
-// (http://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
 // in the Amazon S3 API Reference.
 //
 // A customer's model containers must respond to requests within 60 seconds.
 // The model itself can have a maximum processing time of 60 seconds before
-// responding to the /invocations. If your model is going to take 50-60 seconds
-// of processing time, the SDK socket timeout should be set to be 70 seconds.
+// responding to invocations. If your model is going to take 50-60 seconds of
+// processing time, the SDK socket timeout should be set to be 70 seconds.
 //
 // Endpoints are scoped to an individual account, and are not public. The URL
 // does not contain the account ID, but Amazon SageMaker determines the account
@@ -203,8 +203,16 @@ type InvokeEndpointInput struct {
 	// metadata that a service endpoint was programmed to process. The value must
 	// consist of no more than 1024 visible US-ASCII characters as specified in
 	// Section 3.3.6. Field Value Components (https://tools.ietf.org/html/rfc7230#section-3.2.6)
-	// of the Hypertext Transfer Protocol (HTTP/1.1). This feature is currently
-	// supported in the AWS SDKs but not in the Amazon SageMaker Python SDK.
+	// of the Hypertext Transfer Protocol (HTTP/1.1).
+	//
+	// The code in your model is responsible for setting or updating any custom
+	// attributes in the response. If your code does not set this value in the response,
+	// an empty value is returned. For example, if a custom attribute represents
+	// the trace ID, your model can prepend the custom attribute with Trace ID:
+	// in your post-processing function.
+	//
+	// This feature is currently supported in the AWS SDKs but not in the Amazon
+	// SageMaker Python SDK.
 	CustomAttributes *string `location:"header" locationName:"X-Amzn-SageMaker-Custom-Attributes" type:"string" sensitive:"true"`
 
 	// The name of the endpoint that you specified when you created the endpoint
@@ -214,6 +222,11 @@ type InvokeEndpointInput struct {
 	// EndpointName is a required field
 	EndpointName *string `location:"uri" locationName:"EndpointName" type:"string" required:"true"`
 
+	// If you provide a value, it is added to the captured data when you enable
+	// data capture on the endpoint. For information about data capture, see Capture
+	// Data (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-capture.html).
+	InferenceId *string `location:"header" locationName:"X-Amzn-SageMaker-Inference-Id" min:"1" type:"string"`
+
 	// The model to request for inference when invoking a multi-model endpoint.
 	TargetModel *string `location:"header" locationName:"X-Amzn-SageMaker-Target-Model" min:"1" type:"string"`
 
@@ -221,6 +234,9 @@ type InvokeEndpointInput struct {
 	// an endpoint that is running two or more variants. Note that this parameter
 	// overrides the default behavior for the endpoint, which is to distribute the
 	// invocation traffic based on the variant weights.
+	//
+	// For information about how to use variant targeting to perform a/b testing,
+	// see Test models in production (https://docs.aws.amazon.com/sagemaker/latest/dg/model-ab-testing.html)
 	TargetVariant *string `location:"header" locationName:"X-Amzn-SageMaker-Target-Variant" type:"string"`
 }
 
@@ -245,6 +261,9 @@ func (s *InvokeEndpointInput) Validate() error {
 	}
 	if s.EndpointName != nil && len(*s.EndpointName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EndpointName", 1))
+	}
+	if s.InferenceId != nil && len(*s.InferenceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InferenceId", 1))
 	}
 	if s.TargetModel != nil && len(*s.TargetModel) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TargetModel", 1))
@@ -286,6 +305,12 @@ func (s *InvokeEndpointInput) SetEndpointName(v string) *InvokeEndpointInput {
 	return s
 }
 
+// SetInferenceId sets the InferenceId field's value.
+func (s *InvokeEndpointInput) SetInferenceId(v string) *InvokeEndpointInput {
+	s.InferenceId = &v
+	return s
+}
+
 // SetTargetModel sets the TargetModel field's value.
 func (s *InvokeEndpointInput) SetTargetModel(v string) *InvokeEndpointInput {
 	s.TargetModel = &v
@@ -322,6 +347,12 @@ type InvokeEndpointOutput struct {
 	// of the Hypertext Transfer Protocol (HTTP/1.1). If the customer wants the
 	// custom attribute returned, the model must set the custom attribute to be
 	// included on the way back.
+	//
+	// The code in your model is responsible for setting or updating any custom
+	// attributes in the response. If your code does not set this value in the response,
+	// an empty value is returned. For example, if a custom attribute represents
+	// the trace ID, your model can prepend the custom attribute with Trace ID:
+	// in your post-processing function.
 	//
 	// This feature is currently supported in the AWS SDKs but not in the Amazon
 	// SageMaker Python SDK.

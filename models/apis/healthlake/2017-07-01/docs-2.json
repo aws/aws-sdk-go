@@ -1,0 +1,285 @@
+{
+  "version": "2.0",
+  "service": "<p>Amazon HealthLake is a HIPAA eligibile service that allows customers to store, transform, query, and analyze their data in a consistent fashion in the cloud.</p>",
+  "operations": {
+    "CreateFHIRDatastore": "<p>Creates a datastore that can ingest and export FHIR data.</p>",
+    "DeleteFHIRDatastore": "<p>Deletes a datastore. </p>",
+    "DescribeFHIRDatastore": "<p>Gets the properties associated with the FHIR datastore, including the datastore ID, datastore ARN, datastore name, datastore status, created at, datastore type version, and datastore endpoint.</p>",
+    "DescribeFHIRImportJob": "<p>Displays the properties of a FHIR import job, including the ID, ARN, name, and the status of the datastore.</p>",
+    "ListFHIRDatastores": "<p>Lists all FHIR datastores that are in the user’s account, regardless of datastore status.</p>",
+    "StartFHIRImportJob": "<p>Begins a FHIR Import job.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>Access is denied. Your account is not authorized to perform this operation.</p>",
+      "refs": {
+      }
+    },
+    "BoundedLengthString": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreResponse$DatastoreEndpoint": "<p>The AWS endpoint for the created datastore. For preview, only US-east-1 endpoints are supported.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreEndpoint": "<p>The AWS endpoint for the datastore the user has requested to be deleted.</p>"
+      }
+    },
+    "ClientTokenString": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreRequest$ClientToken": "<p>Optional user provided token used for ensuring idempotency.</p>",
+        "StartFHIRImportJobRequest$ClientToken": "<p>Optional user provided token used for ensuring idempotency.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The datastore is in a transition state and the user requested action can not be performed.</p>",
+      "refs": {
+      }
+    },
+    "CreateFHIRDatastoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFHIRDatastoreResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DatastoreArn": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreResponse$DatastoreArn": "<p>The datastore ARN is generated during the creation of the datastore and can be found in the output from the initial datastore creation call.</p>",
+        "DatastoreProperties$DatastoreArn": "<p>The Amazon Resource Name used in the creation of the datastore.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreArn": "<p>The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.</p>"
+      }
+    },
+    "DatastoreFilter": {
+      "base": "<p>The filters applied to datastore query.</p>",
+      "refs": {
+        "ListFHIRDatastoresRequest$Filter": "<p>Lists all filters associated with a FHIR datastore request.</p>"
+      }
+    },
+    "DatastoreId": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreResponse$DatastoreId": "<p>The AWS-generated datastore id. This id is in the output from the initial datastore creation call.</p>",
+        "DatastoreProperties$DatastoreId": "<p>The AWS-generated ID number for the datastore.</p>",
+        "DeleteFHIRDatastoreRequest$DatastoreId": "<p> The AWS-generated ID for the datastore to be deleted.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreId": "<p>The AWS-generated ID for the datastore to be deleted.</p>",
+        "DescribeFHIRDatastoreRequest$DatastoreId": "<p>The AWS-generated datastore id. This is part of the ‘CreateFHIRDatastore’ output.</p>",
+        "DescribeFHIRImportJobRequest$DatastoreId": "<p>The AWS-generated ID of the datastore.</p>",
+        "ImportJobProperties$DatastoreId": "<p>The datastore id used when the Import job was created. </p>",
+        "StartFHIRImportJobRequest$DatastoreId": "<p>The AWS-generated datastore ID.</p>",
+        "StartFHIRImportJobResponse$DatastoreId": "<p>The AWS-generated datastore ID.</p>"
+      }
+    },
+    "DatastoreName": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreRequest$DatastoreName": "<p>The user generated name for the datastore.</p>",
+        "DatastoreFilter$DatastoreName": "<p>Allows the user to filter datastore results by name.</p>",
+        "DatastoreProperties$DatastoreName": "<p>The user-generated name for the datastore.</p>"
+      }
+    },
+    "DatastoreProperties": {
+      "base": "<p>Displays the properties of the datastore, including the ID, Arn, name, and the status of the datastore.</p>",
+      "refs": {
+        "DatastorePropertiesList$member": null,
+        "DescribeFHIRDatastoreResponse$DatastoreProperties": "<p>All properties associated with a datastore, including the datastore ID, datastore ARN, datastore name, datastore status, created at, datastore type version, and datastore endpoint.</p>"
+      }
+    },
+    "DatastorePropertiesList": {
+      "base": null,
+      "refs": {
+        "ListFHIRDatastoresResponse$DatastorePropertiesList": "<p>All properties associated with the listed datastores.</p>"
+      }
+    },
+    "DatastoreStatus": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreResponse$DatastoreStatus": "<p>The status of the FHIR datastore. Possible statuses are ‘CREATING’, ‘ACTIVE’, ‘DELETING’, ‘DELETED’.</p>",
+        "DatastoreFilter$DatastoreStatus": "<p>Allows the user to filter datastore results by status.</p>",
+        "DatastoreProperties$DatastoreStatus": "<p>The status of the datastore. Possible statuses are 'CREATING', 'ACTIVE', 'DELETING', or 'DELETED'.</p>",
+        "DeleteFHIRDatastoreResponse$DatastoreStatus": "<p>The status of the datastore that the user has requested to be deleted. </p>"
+      }
+    },
+    "DeleteFHIRDatastoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFHIRDatastoreResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFHIRDatastoreRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFHIRDatastoreResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFHIRImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFHIRImportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "FHIRVersion": {
+      "base": null,
+      "refs": {
+        "CreateFHIRDatastoreRequest$DatastoreTypeVersion": "<p>The FHIR version of the datastore. The only supported version is R4.</p>",
+        "DatastoreProperties$DatastoreTypeVersion": "<p>The FHIR version. Only R4 version data is supported.</p>"
+      }
+    },
+    "IamRoleArn": {
+      "base": null,
+      "refs": {
+        "ImportJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon HealthLake access to your input data.</p>",
+        "StartFHIRImportJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.</p>"
+      }
+    },
+    "ImportJobProperties": {
+      "base": "<p>Displays the properties of the import job, including the ID, Arn, Name, and the status of the datastore.</p>",
+      "refs": {
+        "DescribeFHIRImportJobResponse$ImportJobProperties": "<p>The properties of the Import job request, including the ID, ARN, name, and the status of the datastore.</p>"
+      }
+    },
+    "InputDataConfig": {
+      "base": "<p> The input properties for an import job.</p>",
+      "refs": {
+        "ImportJobProperties$InputDataConfig": "<p>The input data configuration that was supplied when the Import job was created.</p>",
+        "StartFHIRImportJobRequest$InputDataConfig": "<p>The input properties of the FHIR Import job in the StartFHIRImport job request.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Unknown error occurs in the service.</p>",
+      "refs": {
+      }
+    },
+    "JobId": {
+      "base": null,
+      "refs": {
+        "DescribeFHIRImportJobRequest$JobId": "<p>The AWS-generated job ID.</p>",
+        "ImportJobProperties$JobId": "<p>The AWS-generated id number for the Import job.</p>",
+        "StartFHIRImportJobResponse$JobId": "<p>The AWS-generated job ID.</p>"
+      }
+    },
+    "JobName": {
+      "base": null,
+      "refs": {
+        "ImportJobProperties$JobName": "<p>The user-generated name for an Import job.</p>",
+        "StartFHIRImportJobRequest$JobName": "<p>The name of the FHIR Import job in the StartFHIRImport job request.</p>"
+      }
+    },
+    "JobStatus": {
+      "base": null,
+      "refs": {
+        "ImportJobProperties$JobStatus": "<p>The job status for an Import job. Possible statuses are SUBMITTED, IN_PROGRESS, COMPLETED, FAILED.</p>",
+        "StartFHIRImportJobResponse$JobStatus": "<p>The status of an import job.</p>"
+      }
+    },
+    "ListFHIRDatastoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFHIRDatastoresResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListFHIRDatastoresRequest$MaxResults": "<p>The maximum number of datastores returned in a single page of a ListFHIRDatastoresRequest call.</p>"
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "ImportJobProperties$Message": "<p>An explanation of any errors that may have occurred during the FHIR import job. </p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListFHIRDatastoresRequest$NextToken": "<p>Fetches the next page of datastores when results are paginated.</p>",
+        "ListFHIRDatastoresResponse$NextToken": "<p>Pagination token that can be used to retrieve the next page of results.</p>"
+      }
+    },
+    "PreloadDataConfig": {
+      "base": "<p> The input properties for the preloaded datastore. Only data preloaded from Synthea is supported.</p>",
+      "refs": {
+        "CreateFHIRDatastoreRequest$PreloadDataConfig": "<p>Optional parameter to preload data upon creation of the datastore. Currently, the only supported preloaded data is synthetic data generated from Synthea.</p>",
+        "DatastoreProperties$PreloadDataConfig": "<p>The preloaded data configuration for the datastore. Only data preloaded from Synthea is supported.</p>"
+      }
+    },
+    "PreloadDataType": {
+      "base": null,
+      "refs": {
+        "PreloadDataConfig$PreloadDataType": "<p>The type of preloaded data. Only Synthea preloaded data is supported.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p> The requested datastore was not found.</p>",
+      "refs": {
+      }
+    },
+    "S3Uri": {
+      "base": null,
+      "refs": {
+        "InputDataConfig$S3Uri": "<p>The S3Uri is the user specified S3 location of the FHIR data to be imported into Amazon HealthLake. </p>"
+      }
+    },
+    "StartFHIRImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartFHIRImportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$Message": null,
+        "ConflictException$Message": null,
+        "DatastoreProperties$DatastoreEndpoint": "<p>The AWS endpoint for the datastore. Each datastore will have it's own endpoint with datastore ID in the endpoint URL.</p>",
+        "InternalServerException$Message": null,
+        "ResourceNotFoundException$Message": null,
+        "ThrottlingException$Message": null,
+        "ValidationException$Message": null
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The user has exceeded their maximum number of allowed calls to the given API. </p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "DatastoreFilter$CreatedBefore": "<p>A filter that allows the user to set cutoff dates for records. All datastores created before the specified date will be included in the results. </p>",
+        "DatastoreFilter$CreatedAfter": "<p>A filter that allows the user to set cutoff dates for records. All datastores created after the specified date will be included in the results.</p>",
+        "DatastoreProperties$CreatedAt": "<p>The time that a datastore was created. </p>",
+        "ImportJobProperties$SubmitTime": "<p>The time that the Import job was submitted for processing.</p>",
+        "ImportJobProperties$EndTime": "<p>The time that the Import job was completed.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The user input parameter was invalid.</p>",
+      "refs": {
+      }
+    }
+  }
+}

@@ -109,6 +109,20 @@
         {"shape":"LifecyclePolicyNotFoundException"}
       ]
     },
+    "DeleteRegistryPolicy":{
+      "name":"DeleteRegistryPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRegistryPolicyRequest"},
+      "output":{"shape":"DeleteRegistryPolicyResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RegistryPolicyNotFoundException"}
+      ]
+    },
     "DeleteRepository":{
       "name":"DeleteRepository",
       "http":{
@@ -169,6 +183,20 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"ImageNotFoundException"}
+      ]
+    },
+    "DescribeRegistry":{
+      "name":"DescribeRegistry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRegistryRequest"},
+      "output":{"shape":"DescribeRegistryResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeRepositories":{
@@ -242,6 +270,20 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"LifecyclePolicyPreviewNotFoundException"}
+      ]
+    },
+    "GetRegistryPolicy":{
+      "name":"GetRegistryPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRegistryPolicyRequest"},
+      "output":{"shape":"GetRegistryPolicyResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"RegistryPolicyNotFoundException"}
       ]
     },
     "GetRepositoryPolicy":{
@@ -363,6 +405,33 @@
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"}
+      ]
+    },
+    "PutRegistryPolicy":{
+      "name":"PutRegistryPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutRegistryPolicyRequest"},
+      "output":{"shape":"PutRegistryPolicyResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "PutReplicationConfiguration":{
+      "name":"PutReplicationConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutReplicationConfigurationRequest"},
+      "output":{"shape":"PutReplicationConfigurationResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"}
       ]
     },
     "SetRepositoryPolicy":{
@@ -632,6 +701,18 @@
         "lastEvaluatedAt":{"shape":"EvaluationTimestamp"}
       }
     },
+    "DeleteRegistryPolicyRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteRegistryPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "policyText":{"shape":"RegistryPolicyText"}
+      }
+    },
     "DeleteRepositoryPolicyRequest":{
       "type":"structure",
       "required":["repositoryName"],
@@ -713,6 +794,18 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeRegistryRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DescribeRegistryResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "replicationConfiguration":{"shape":"ReplicationConfiguration"}
+      }
+    },
     "DescribeRepositoriesRequest":{
       "type":"structure",
       "members":{
@@ -782,7 +875,11 @@
     "GetAuthorizationTokenRequest":{
       "type":"structure",
       "members":{
-        "registryIds":{"shape":"GetAuthorizationTokenRegistryIdList"}
+        "registryIds":{
+          "shape":"GetAuthorizationTokenRegistryIdList",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated. The returned authorization token can be used to access any Amazon ECR registry that the IAM principal has access to, specifying a registry ID doesn't change the permissions scope of the authorization token."
+        }
       }
     },
     "GetAuthorizationTokenResponse":{
@@ -849,6 +946,18 @@
         "repositoryName":{"shape":"RepositoryName"},
         "lifecyclePolicyText":{"shape":"LifecyclePolicyText"},
         "lastEvaluatedAt":{"shape":"EvaluationTimestamp"}
+      }
+    },
+    "GetRegistryPolicyRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetRegistryPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "policyText":{"shape":"RegistryPolicyText"}
       }
     },
     "GetRepositoryPolicyRequest":{
@@ -1406,6 +1515,33 @@
         "lifecyclePolicyText":{"shape":"LifecyclePolicyText"}
       }
     },
+    "PutRegistryPolicyRequest":{
+      "type":"structure",
+      "required":["policyText"],
+      "members":{
+        "policyText":{"shape":"RegistryPolicyText"}
+      }
+    },
+    "PutRegistryPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "registryId":{"shape":"RegistryId"},
+        "policyText":{"shape":"RegistryPolicyText"}
+      }
+    },
+    "PutReplicationConfigurationRequest":{
+      "type":"structure",
+      "required":["replicationConfiguration"],
+      "members":{
+        "replicationConfiguration":{"shape":"ReplicationConfiguration"}
+      }
+    },
+    "PutReplicationConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "replicationConfiguration":{"shape":"ReplicationConfiguration"}
+      }
+    },
     "ReferencedImagesNotFoundException":{
       "type":"structure",
       "members":{
@@ -1413,9 +1549,64 @@
       },
       "exception":true
     },
+    "Region":{
+      "type":"string",
+      "max":25,
+      "min":2,
+      "pattern":"[0-9a-z-]{2,25}"
+    },
     "RegistryId":{
       "type":"string",
       "pattern":"[0-9]{12}"
+    },
+    "RegistryPolicyNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
+    "RegistryPolicyText":{
+      "type":"string",
+      "max":10240,
+      "min":0
+    },
+    "ReplicationConfiguration":{
+      "type":"structure",
+      "required":["rules"],
+      "members":{
+        "rules":{"shape":"ReplicationRuleList"}
+      }
+    },
+    "ReplicationDestination":{
+      "type":"structure",
+      "required":[
+        "region",
+        "registryId"
+      ],
+      "members":{
+        "region":{"shape":"Region"},
+        "registryId":{"shape":"RegistryId"}
+      }
+    },
+    "ReplicationDestinationList":{
+      "type":"list",
+      "member":{"shape":"ReplicationDestination"},
+      "max":25,
+      "min":0
+    },
+    "ReplicationRule":{
+      "type":"structure",
+      "required":["destinations"],
+      "members":{
+        "destinations":{"shape":"ReplicationDestinationList"}
+      }
+    },
+    "ReplicationRuleList":{
+      "type":"list",
+      "member":{"shape":"ReplicationRule"},
+      "max":1,
+      "min":0
     },
     "Repository":{
       "type":"structure",
@@ -1679,6 +1870,13 @@
       "exception":true
     },
     "Url":{"type":"string"},
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "VulnerabilitySourceUpdateTimestamp":{"type":"timestamp"}
   }
 }

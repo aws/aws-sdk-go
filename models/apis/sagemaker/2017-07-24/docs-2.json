@@ -14,7 +14,10 @@
     "CreateCodeRepository": "<p>Creates a Git repository as a resource in your Amazon SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with.</p> <p>The repository can be hosted either in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository.</p>",
     "CreateCompilationJob": "<p>Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify. </p> <p>If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with AWS IoT Greengrass. In that case, deploy them as an ML resource.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p>A name for the compilation job</p> </li> <li> <p> Information about the input model artifacts </p> </li> <li> <p>The output location for the compiled model and the device (target) that the model runs on </p> </li> <li> <p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job. </p> </li> </ul> <p>You can also provide a <code>Tag</code> to track the model compilation job's resource use and costs. The response body contains the <code>CompilationJobArn</code> for the compiled job.</p> <p>To stop a model compilation job, use <a>StopCompilationJob</a>. To get information about a particular model compilation job, use <a>DescribeCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "CreateContext": "<p>Creates a <i>context</i>. A context is a lineage tracking entity that represents a logical grouping of other tracking or experiment entities. Some examples are an endpoint and a model package. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
+    "CreateDataQualityJobDefinition": "<p>Creates a definition for a job that monitors data quality and drift. For information about model monitor, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html\">Amazon SageMaker Model Monitor</a>.</p>",
+    "CreateDeviceFleet": "<p>Creates a device fleet.</p>",
     "CreateDomain": "<p>Creates a <code>Domain</code> used by Amazon SageMaker Studio. A domain consists of an associated Amazon Elastic File System (EFS) volume, a list of authorized users, and a variety of security, application, policy, and Amazon Virtual Private Cloud (VPC) configurations. An AWS account is limited to one domain per region. Users within a domain can share notebook files and other artifacts with each other.</p> <p> <b>EFS storage</b> </p> <p>When a domain is created, an EFS volume is created for use by all of the users within the domain. Each user receives a private home directory within the EFS volume for notebooks, Git repositories, and data files.</p> <p>SageMaker uses the AWS Key Management Service (AWS KMS) to encrypt the EFS volume attached to the domain with an AWS managed customer master key (CMK) by default. For more control, you can specify a customer managed CMK. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html\">Protect Data at Rest Using Encryption</a>.</p> <p> <b>VPC configuration</b> </p> <p>All SageMaker Studio traffic between the domain and the EFS volume is through the specified VPC and subnets. For other Studio traffic, you can specify the <code>AppNetworkAccessType</code> parameter. <code>AppNetworkAccessType</code> corresponds to the network access type that you choose when you onboard to Studio. The following options are available:</p> <ul> <li> <p> <code>PublicInternetOnly</code> - Non-EFS traffic goes through a VPC managed by Amazon SageMaker, which allows internet access. This is the default value.</p> </li> <li> <p> <code>VpcOnly</code> - All Studio traffic is through the specified VPC and subnets. Internet access is disabled by default. To allow internet access, you must specify a NAT gateway.</p> <p>When internet access is disabled, you won't be able to run a Studio notebook or to train or host models unless your VPC has an interface endpoint to the SageMaker API and runtime or a NAT gateway and your security groups allow outbound connections.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html\">Connect SageMaker Studio Notebooks to Resources in a VPC</a>.</p>",
+    "CreateEdgePackagingJob": "<p>Starts a SageMaker Edge Manager model packaging job. Edge Manager will use the model artifacts from the Amazon Simple Storage Service bucket that you specify. After the model has been packaged, Amazon SageMaker saves the resulting artifacts to an S3 bucket that you specify.</p>",
     "CreateEndpoint": "<p>Creates an endpoint using the endpoint configuration specified in the request. Amazon SageMaker uses the endpoint to provision resources and deploy models. You create the endpoint configuration with the <a>CreateEndpointConfig</a> API. </p> <p> Use this API to deploy models using Amazon SageMaker hosting services. </p> <p>For an example that calls this method when deploying a model to Amazon SageMaker hosting services, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto\">Deploy the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto 3)).</a> </p> <note> <p> You must not delete an <code>EndpointConfig</code> that is in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> </note> <p>The endpoint name must be unique within an AWS Region in your AWS account. </p> <p>When it receives the request, Amazon SageMaker creates the endpoint, launches the resources (ML compute instances), and deploys the model(s) on them. </p> <note> <p>When you call <a>CreateEndpoint</a>, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html\"> <code>Eventually Consistent Reads</code> </a>, the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call <a>DescribeEndpointConfig</a> before calling <a>CreateEndpoint</a> to minimize the potential impact of a DynamoDB eventually consistent read.</p> </note> <p>When Amazon SageMaker receives the request, it sets the endpoint status to <code>Creating</code>. After it creates the endpoint, it sets the status to <code>InService</code>. Amazon SageMaker can then process incoming requests for inferences. To check the status of an endpoint, use the <a>DescribeEndpoint</a> API.</p> <p>If any of the models hosted at this endpoint get model data from an Amazon S3 location, Amazon SageMaker uses AWS Security Token Service to download model artifacts from the S3 path you provided. AWS STS is activated in your IAM user account by default. If you previously deactivated AWS STS for a region, you need to reactivate AWS STS for that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p> <note> <p> To add the IAM role policies for using this API operation, go to the <a href=\"https://console.aws.amazon.com/iam/\">IAM console</a>, and choose Roles in the left navigation pane. Search the IAM role that you want to grant access to use the <a>CreateEndpoint</a> and <a>CreateEndpointConfig</a> API operations, add the following policies to the role. </p> <ul> <li> <p>Option 1: For a full Amazon SageMaker access, search and attach the <code>AmazonSageMakerFullAccess</code> policy.</p> </li> <li> <p>Option 2: For granting a limited access to an IAM role, paste the following Action elements manually into the JSON file of the IAM role: </p> <p> <code>\"Action\": [\"sagemaker:CreateEndpoint\", \"sagemaker:CreateEndpointConfig\"]</code> </p> <p> <code>\"Resource\": [</code> </p> <p> <code>\"arn:aws:sagemaker:region:account-id:endpoint/endpointName\"</code> </p> <p> <code>\"arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName\"</code> </p> <p> <code>]</code> </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/api-permissions-reference.html\">Amazon SageMaker API Permissions: Actions, Permissions, and Resources Reference</a>.</p> </li> </ul> </note>",
     "CreateEndpointConfig": "<p>Creates an endpoint configuration that Amazon SageMaker hosting services uses to deploy models. In the configuration, you identify one or more models, created using the <code>CreateModel</code> API, to deploy and the resources that you want Amazon SageMaker to provision. Then you call the <a>CreateEndpoint</a> API.</p> <note> <p> Use this API if you want to use Amazon SageMaker hosting services to deploy models into production. </p> </note> <p>In the request, you define a <code>ProductionVariant</code>, for each model that you want to deploy. Each <code>ProductionVariant</code> parameter also describes the resources that you want Amazon SageMaker to provision. This includes the number and type of ML compute instances to deploy. </p> <p>If you are hosting multiple models, you also assign a <code>VariantWeight</code> to specify how much traffic you want to allocate to each model. For example, suppose that you want to host two models, A and B, and you assign traffic weight 2 for model A and 1 for model B. Amazon SageMaker distributes two-thirds of the traffic to Model A, and one-third to model B. </p> <p>For an example that calls this method when deploying a model to Amazon SageMaker hosting services, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto\">Deploy the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto 3)).</a> </p> <note> <p>When you call <a>CreateEndpoint</a>, a load call is made to DynamoDB to verify that your endpoint configuration exists. When you read data from a DynamoDB table supporting <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html\"> <code>Eventually Consistent Reads</code> </a>, the response might not reflect the results of a recently completed write operation. The response might include some stale data. If the dependent entities are not yet in DynamoDB, this causes a validation error. If you repeat your read request after a short time, the response should return the latest data. So retry logic is recommended to handle these possible issues. We also recommend that customers call <a>DescribeEndpointConfig</a> before calling <a>CreateEndpoint</a> to minimize the potential impact of a DynamoDB eventually consistent read.</p> </note>",
     "CreateExperiment": "<p>Creates an SageMaker <i>experiment</i>. An experiment is a collection of <i>trials</i> that are observed, compared and evaluated as a group. A trial is a set of steps, called <i>trial components</i>, that produce a machine learning model.</p> <p>The goal of an experiment is to determine the components that produce the best model. Multiple trials are performed, each one isolating and measuring the impact of a change to one or more inputs, while keeping the remaining inputs constant.</p> <p>When you use Amazon SageMaker Studio or the Amazon SageMaker Python SDK, all experiments, trials, and trial components are automatically tracked, logged, and indexed. When you use the AWS SDK for Python (Boto), you must use the logging APIs provided by the SDK.</p> <p>You can add tags to experiments, trials, trial components and then use the <a>Search</a> API to search for the tags.</p> <p>To add a description to an experiment, specify the optional <code>Description</code> parameter. To add a description later, or to change the description, call the <a>UpdateExperiment</a> API.</p> <p>To get a list of all your experiments, call the <a>ListExperiments</a> API. To view an experiment's properties, call the <a>DescribeExperiment</a> API. To get a list of all the trials associated with an experiment, call the <a>ListTrials</a> API. To create a trial call the <a>CreateTrial</a> API.</p>",
@@ -26,8 +29,11 @@
     "CreateImageVersion": "<p>Creates a version of the SageMaker image specified by <code>ImageName</code>. The version represents the Amazon Container Registry (ECR) container image specified by <code>BaseImage</code>.</p>",
     "CreateLabelingJob": "<p>Creates a job that uses workers to label the data objects in your input dataset. You can use the labeled data to train machine learning models.</p> <p>You can select your workforce from one of three providers:</p> <ul> <li> <p>A private workforce that you create. It can include employees, contractors, and outside experts. Use a private workforce when want the data to stay within your organization or when a specific set of skills is required.</p> </li> <li> <p>One or more vendors that you select from the AWS Marketplace. Vendors provide expertise in specific areas. </p> </li> <li> <p>The Amazon Mechanical Turk workforce. This is the largest workforce, but it should only be used for public data or data that has been stripped of any personally identifiable information.</p> </li> </ul> <p>You can also use <i>automated data labeling</i> to reduce the number of data objects that need to be labeled by a human. Automated data labeling uses <i>active learning</i> to determine if a data object can be labeled by machine or if it needs to be sent to a human worker. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-automated-labeling.html\">Using Automated Data Labeling</a>.</p> <p>The data objects to be labeled are contained in an Amazon S3 bucket. You create a <i>manifest file</i> that describes the location of each object. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-data.html\">Using Input and Output Data</a>.</p> <p>The output can be used as the manifest file for another labeling job or as training data for your machine learning models.</p>",
     "CreateModel": "<p>Creates a model in Amazon SageMaker. In the request, you name the model and describe a primary container. For the primary container, you specify the Docker image that contains inference code, artifacts (from prior training), and a custom environment map that the inference code uses when you deploy the model for predictions.</p> <p>Use this API to create a model if you want to use Amazon SageMaker hosting services or run a batch transform job.</p> <p>To host your model, you create an endpoint configuration with the <code>CreateEndpointConfig</code> API, and then create an endpoint with the <code>CreateEndpoint</code> API. Amazon SageMaker then deploys all of the containers that you defined for the model in the hosting environment. </p> <p>For an example that calls this method when deploying a model to Amazon SageMaker hosting services, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto\">Deploy the Model to Amazon SageMaker Hosting Services (AWS SDK for Python (Boto 3)).</a> </p> <p>To run a batch transform using your model, you start a job with the <code>CreateTransformJob</code> API. Amazon SageMaker uses your model and your dataset to get inferences which are then saved to a specified S3 location.</p> <p>In the <code>CreateModel</code> request, you must define a container with the <code>PrimaryContainer</code> parameter.</p> <p>In the request, you also provide an IAM role that Amazon SageMaker can assume to access model artifacts and docker image for deployment on ML compute hosting instances or for batch transform jobs. In addition, you also use the IAM role to manage permissions the inference code needs. For example, if the inference code access any other AWS resources, you grant necessary permissions via this role.</p>",
+    "CreateModelBiasJobDefinition": "<p>Creates the definition for a model bias job.</p>",
+    "CreateModelExplainabilityJobDefinition": "<p>Creates the definition for a model explainability job.</p>",
     "CreateModelPackage": "<p>Creates a model package that you can use to create Amazon SageMaker models or list on AWS Marketplace, or a versioned model that is part of a model group. Buyers can subscribe to model packages listed on AWS Marketplace to create models in Amazon SageMaker.</p> <p>To create a model package by specifying a Docker container that contains your inference code and the Amazon S3 location of your model artifacts, provide values for <code>InferenceSpecification</code>. To create a model from an algorithm resource that you created or subscribed to in AWS Marketplace, provide a value for <code>SourceAlgorithmSpecification</code>.</p> <note> <p>There are two types of model packages:</p> <ul> <li> <p>Versioned - a model that is part of a model group in the model registry.</p> </li> <li> <p>Unversioned - a model package that is not part of a model group.</p> </li> </ul> </note>",
     "CreateModelPackageGroup": "<p>Creates a model group. A model group contains a group of model versions.</p>",
+    "CreateModelQualityJobDefinition": "<p>Creates a definition for a job that monitors model quality and drift. For information about model monitor, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html\">Amazon SageMaker Model Monitor</a>.</p>",
     "CreateMonitoringSchedule": "<p>Creates a schedule that regularly starts Amazon SageMaker Processing Jobs to monitor the data captured for an Amazon SageMaker Endoint.</p>",
     "CreateNotebookInstance": "<p>Creates an Amazon SageMaker notebook instance. A notebook instance is a machine learning (ML) compute instance running on a Jupyter notebook. </p> <p>In a <code>CreateNotebookInstance</code> request, specify the type of ML compute instance that you want to run. Amazon SageMaker launches the instance, installs common libraries that you can use to explore datasets for model training, and attaches an ML storage volume to the notebook instance. </p> <p>Amazon SageMaker also provides a set of example notebooks. Each notebook demonstrates how to use Amazon SageMaker with a specific algorithm or with a machine learning framework. </p> <p>After receiving the request, Amazon SageMaker does the following:</p> <ol> <li> <p>Creates a network interface in the Amazon SageMaker VPC.</p> </li> <li> <p>(Option) If you specified <code>SubnetId</code>, Amazon SageMaker creates a network interface in your own VPC, which is inferred from the subnet ID that you provide in the input. When creating this network interface, Amazon SageMaker attaches the security group that you specified in the request to the network interface that it creates in your VPC.</p> </li> <li> <p>Launches an EC2 instance of the type specified in the request in the Amazon SageMaker VPC. If you specified <code>SubnetId</code> of your VPC, Amazon SageMaker specifies both network interfaces when launching this instance. This enables inbound traffic from your own VPC to the notebook instance, assuming that the security groups allow it.</p> </li> </ol> <p>After creating the notebook instance, Amazon SageMaker returns its Amazon Resource Name (ARN). You can't change the name of a notebook instance after you create it.</p> <p>After Amazon SageMaker creates the notebook instance, you can connect to the Jupyter server and work in Jupyter notebooks. For example, you can write code to explore a dataset that you can use for model training, train a model, host models by creating Amazon SageMaker endpoints, and validate hosted models. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html\">How It Works</a>. </p>",
     "CreateNotebookInstanceLifecycleConfig": "<p>Creates a lifecycle configuration that you can associate with a notebook instance. A <i>lifecycle configuration</i> is a collection of shell scripts that run when you create or start a notebook instance.</p> <p>Each lifecycle configuration script has a limit of 16384 characters.</p> <p>The value of the <code>$PATH</code> environment variable that is available to both scripts is <code>/sbin:bin:/usr/sbin:/usr/bin</code>.</p> <p>View CloudWatch Logs for notebook instance lifecycle configurations in log group <code>/aws/sagemaker/NotebookInstances</code> in log stream <code>[notebook-instance-name]/[LifecycleConfigHook]</code>.</p> <p>Lifecycle configuration scripts cannot run for longer than 5 minutes. If a script runs for longer than 5 minutes, it fails and the notebook instance is not created or started.</p> <p>For information about notebook instance lifestyle configurations, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html\">Step 2.1: (Optional) Customize a Notebook Instance</a>.</p>",
@@ -51,6 +57,8 @@
     "DeleteAssociation": "<p>Deletes an association.</p>",
     "DeleteCodeRepository": "<p>Deletes the specified Git repository from your account.</p>",
     "DeleteContext": "<p>Deletes an context.</p>",
+    "DeleteDataQualityJobDefinition": "<p>Deletes a data quality monitoring job definition.</p>",
+    "DeleteDeviceFleet": "<p>Deletes a fleet.</p>",
     "DeleteDomain": "<p>Used to delete a domain. If you onboarded with IAM mode, you will need to delete your domain to onboard again using SSO. Use with caution. All of the members of the domain will lose access to their EFS volume, including data, notebooks, and other artifacts. </p>",
     "DeleteEndpoint": "<p>Deletes an endpoint. Amazon SageMaker frees up all of the resources that were deployed when the endpoint was created. </p> <p>Amazon SageMaker retires any custom KMS key grants associated with the endpoint, meaning you don't need to use the <a href=\"http://docs.aws.amazon.com/kms/latest/APIReference/API_RevokeGrant.html\">RevokeGrant</a> API call.</p>",
     "DeleteEndpointConfig": "<p>Deletes an endpoint configuration. The <code>DeleteEndpointConfig</code> API deletes only the specified configuration. It does not delete endpoints created using the configuration. </p> <p>You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. If you delete the <code>EndpointConfig</code> of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges.</p>",
@@ -61,13 +69,16 @@
     "DeleteImage": "<p>Deletes a SageMaker image and all versions of the image. The container images aren't deleted.</p>",
     "DeleteImageVersion": "<p>Deletes a version of a SageMaker image. The container image the version represents isn't deleted.</p>",
     "DeleteModel": "<p>Deletes a model. The <code>DeleteModel</code> API deletes only the model entry that was created in Amazon SageMaker when you called the <a>CreateModel</a> API. It does not delete model artifacts, inference code, or the IAM role that you specified when creating the model. </p>",
+    "DeleteModelBiasJobDefinition": "<p>Deletes an Amazon SageMaker model bias job definition.</p>",
+    "DeleteModelExplainabilityJobDefinition": "<p>Deletes an Amazon SageMaker model explainability job definition.</p>",
     "DeleteModelPackage": "<p>Deletes a model package.</p> <p>A model package is used to create Amazon SageMaker models or list on AWS Marketplace. Buyers can subscribe to model packages listed on AWS Marketplace to create models in Amazon SageMaker.</p>",
     "DeleteModelPackageGroup": "<p>Deletes the specified model group.</p>",
     "DeleteModelPackageGroupPolicy": "<p>Deletes a model group resource policy.</p>",
+    "DeleteModelQualityJobDefinition": "<p>Deletes the secified model quality monitoring job definition.</p>",
     "DeleteMonitoringSchedule": "<p>Deletes a monitoring schedule. Also stops the schedule had not already been stopped. This does not delete the job execution history of the monitoring schedule. </p>",
     "DeleteNotebookInstance": "<p> Deletes an Amazon SageMaker notebook instance. Before you can delete a notebook instance, you must call the <code>StopNotebookInstance</code> API. </p> <important> <p>When you delete a notebook instance, you lose all of your data. Amazon SageMaker removes the ML compute instance, and deletes the ML storage volume and the network interface associated with the notebook instance. </p> </important>",
     "DeleteNotebookInstanceLifecycleConfig": "<p>Deletes a notebook instance lifecycle configuration.</p>",
-    "DeletePipeline": "<p>Deletes a pipeline.</p>",
+    "DeletePipeline": "<p>Deletes a pipeline if there are no in-progress executions.</p>",
     "DeleteProject": "<p>Delete the specified project.</p>",
     "DeleteTags": "<p>Deletes the specified tags from an Amazon SageMaker resource.</p> <p>To list a resource's tags, use the <code>ListTags</code> API. </p> <note> <p>When you call this API to delete tags from a hyperparameter tuning job, the deleted tags are not removed from training jobs that the hyperparameter tuning job launched before you called this API.</p> </note>",
     "DeleteTrial": "<p>Deletes the specified trial. All trial components that make up the trial must be deleted first. Use the <a>DescribeTrialComponent</a> API to get the list of trial components.</p>",
@@ -75,6 +86,7 @@
     "DeleteUserProfile": "<p>Deletes a user profile. When a user profile is deleted, the user loses access to their EFS volume, including data, notebooks, and other artifacts.</p>",
     "DeleteWorkforce": "<p>Use this operation to delete a workforce.</p> <p>If you want to create a new workforce in an AWS Region where a workforce already exists, use this operation to delete the existing workforce and then use to create a new workforce.</p> <important> <p>If a private workforce contains one or more work teams, you must use the operation to delete all work teams before you delete the workforce. If you try to delete a workforce that contains one or more work teams, you will recieve a <code>ResourceInUse</code> error.</p> </important>",
     "DeleteWorkteam": "<p>Deletes an existing work team. This operation can't be undone.</p>",
+    "DeregisterDevices": "<p>Deregisters the specified devices. After you deregister a device, you will need to re-register the devices.</p>",
     "DescribeAction": "<p>Describes an action.</p>",
     "DescribeAlgorithm": "<p>Returns a description of the specified algorithm that is in your account.</p>",
     "DescribeApp": "<p>Describes the app.</p>",
@@ -84,7 +96,11 @@
     "DescribeCodeRepository": "<p>Gets details about the specified Git repository.</p>",
     "DescribeCompilationJob": "<p>Returns information about a model compilation job.</p> <p>To create a model compilation job, use <a>CreateCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "DescribeContext": "<p>Describes a context.</p>",
+    "DescribeDataQualityJobDefinition": "<p>Gets the details of a data quality monitoring job definition.</p>",
+    "DescribeDevice": "<p>Describes the device.</p>",
+    "DescribeDeviceFleet": "<p>A description of the fleet the device belongs to.</p>",
     "DescribeDomain": "<p>The description of the domain.</p>",
+    "DescribeEdgePackagingJob": "<p>A description of edge packaging jobs.</p>",
     "DescribeEndpoint": "<p>Returns the description of an endpoint.</p>",
     "DescribeEndpointConfig": "<p>Returns the description of an endpoint configuration created using the <code>CreateEndpointConfig</code> API.</p>",
     "DescribeExperiment": "<p>Provides a list of an experiment's properties.</p>",
@@ -96,8 +112,11 @@
     "DescribeImageVersion": "<p>Describes a version of a SageMaker image.</p>",
     "DescribeLabelingJob": "<p>Gets information about a labeling job.</p>",
     "DescribeModel": "<p>Describes a model that you created using the <code>CreateModel</code> API.</p>",
+    "DescribeModelBiasJobDefinition": "<p>Returns a description of a model bias job definition.</p>",
+    "DescribeModelExplainabilityJobDefinition": "<p>Returns a description of a model explainability job definition.</p>",
     "DescribeModelPackage": "<p>Returns a description of the specified model package, which is used to create Amazon SageMaker models or list them on AWS Marketplace.</p> <p>To create models in Amazon SageMaker, buyers can subscribe to model packages listed on AWS Marketplace.</p>",
     "DescribeModelPackageGroup": "<p>Gets a description for the specified model group.</p>",
+    "DescribeModelQualityJobDefinition": "<p>Returns a description of a model quality job definition.</p>",
     "DescribeMonitoringSchedule": "<p>Describes the schedule for a monitoring job.</p>",
     "DescribeNotebookInstance": "<p>Returns information about a notebook instance.</p>",
     "DescribeNotebookInstanceLifecycleConfig": "<p>Returns a description of a notebook instance lifecycle configuration.</p> <p>For information about notebook instance lifestyle configurations, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/notebook-lifecycle-config.html\">Step 2.1: (Optional) Customize a Notebook Instance</a>.</p>",
@@ -117,6 +136,7 @@
     "DisableSagemakerServicecatalogPortfolio": "<p>Disables using Service Catalog in SageMaker. Service Catalog is used to create SageMaker projects.</p>",
     "DisassociateTrialComponent": "<p>Disassociates a trial component from a trial. This doesn't effect other trials the component is associated with. Before you can delete a component, you must disassociate the component from all trials it is associated with. To associate a trial component with a trial, call the <a>AssociateTrialComponent</a> API.</p> <p>To get a list of the trials a component is associated with, use the <a>Search</a> API. Specify <code>ExperimentTrialComponent</code> for the <code>Resource</code> parameter. The list appears in the response under <code>Results.TrialComponent.Parents</code>.</p>",
     "EnableSagemakerServicecatalogPortfolio": "<p>Enables using Service Catalog in SageMaker. Service Catalog is used to create SageMaker projects.</p>",
+    "GetDeviceFleetReport": "<p>Describes a fleet.</p>",
     "GetModelPackageGroupPolicy": "<p>Gets a resource policy that manages access for a model group. For information about resource policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html\">Identity-based policies and resource-based policies</a> in the <i>AWS Identity and Access Management User Guide.</i>.</p>",
     "GetSagemakerServicecatalogPortfolioStatus": "<p>Gets the status of Service Catalog in SageMaker. Service Catalog is used to create SageMaker projects.</p>",
     "GetSearchSuggestions": "<p>An auto-complete API for the search functionality in the Amazon SageMaker console. It returns suggestions of possible matches for the property name to use in <code>Search</code> queries. Provides suggestions for <code>HyperParameters</code>, <code>Tags</code>, and <code>Metrics</code>.</p>",
@@ -131,7 +151,11 @@
     "ListCodeRepositories": "<p>Gets a list of the Git repositories in your account.</p>",
     "ListCompilationJobs": "<p>Lists model compilation jobs that satisfy various filters.</p> <p>To create a model compilation job, use <a>CreateCompilationJob</a>. To get information about a particular model compilation job you have created, use <a>DescribeCompilationJob</a>.</p>",
     "ListContexts": "<p>Lists the contexts in your account and their properties.</p>",
+    "ListDataQualityJobDefinitions": "<p>Lists the data quality job definitions in your account.</p>",
+    "ListDeviceFleets": "<p>Returns a list of devices in the fleet.</p>",
+    "ListDevices": "<p>A list of devices.</p>",
     "ListDomains": "<p>Lists the domains.</p>",
+    "ListEdgePackagingJobs": "<p>Returns a list of edge packaging jobs.</p>",
     "ListEndpointConfigs": "<p>Lists endpoint configurations.</p>",
     "ListEndpoints": "<p>Lists endpoints.</p>",
     "ListExperiments": "<p>Lists all the experiments in your account. The list can be filtered to show only experiments that were created in a specific time range. The list can be sorted by experiment name or creation time.</p>",
@@ -143,8 +167,11 @@
     "ListImages": "<p>Lists the images in your account and their properties. The list can be filtered by creation time or modified time, and whether the image name contains a specified string.</p>",
     "ListLabelingJobs": "<p>Gets a list of labeling jobs.</p>",
     "ListLabelingJobsForWorkteam": "<p>Gets a list of labeling jobs assigned to a specified work team.</p>",
+    "ListModelBiasJobDefinitions": "<p>Lists model bias jobs definitions that satisfy various filters.</p>",
+    "ListModelExplainabilityJobDefinitions": "<p>Lists model explainability job definitions that satisfy various filters.</p>",
     "ListModelPackageGroups": "<p>Gets a list of the model groups in your AWS account.</p>",
     "ListModelPackages": "<p>Lists the model packages that have been created.</p>",
+    "ListModelQualityJobDefinitions": "<p>Gets a list of model quality monitoring job definitions in your account.</p>",
     "ListModels": "<p>Lists models created with the <a>CreateModel</a> API.</p>",
     "ListMonitoringExecutions": "<p>Returns list of all monitoring job executions.</p>",
     "ListMonitoringSchedules": "<p>Returns list of all monitoring schedules.</p>",
@@ -167,13 +194,15 @@
     "ListWorkforces": "<p>Use this operation to list all private and vendor workforces in an AWS Region. Note that you can only have one private workforce per AWS Region.</p>",
     "ListWorkteams": "<p>Gets a list of private work teams that you have defined in a region. The list may be empty if no work team satisfies the filter specified in the <code>NameContains</code> parameter.</p>",
     "PutModelPackageGroupPolicy": "<p>Adds a resouce policy to control access to a model group. For information about resoure policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html\">Identity-based policies and resource-based policies</a> in the <i>AWS Identity and Access Management User Guide.</i>.</p>",
+    "RegisterDevices": "<p>Register devices.</p>",
     "RenderUiTemplate": "<p>Renders the UI template so that you can preview the worker's experience. </p>",
     "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
-    "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>New monitoring schedules are immediately started after creation.</p> </note>",
+    "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>By default, when you successfully create a new schedule, the status of a monitoring schedule is <code>scheduled</code>.</p> </note>",
     "StartNotebookInstance": "<p>Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, Amazon SageMaker sets the notebook instance status to <code>InService</code>. A notebook instance's status must be <code>InService</code> before you can connect to your Jupyter notebook. </p>",
     "StartPipelineExecution": "<p>Starts a pipeline execution.</p>",
     "StopAutoMLJob": "<p>A method for forcing the termination of a running job.</p>",
     "StopCompilationJob": "<p>Stops a model compilation job.</p> <p> To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal. This gracefully shuts the job down. If the job hasn't stopped, it sends the SIGKILL signal.</p> <p>When it receives a <code>StopCompilationJob</code> request, Amazon SageMaker changes the <a>CompilationJobSummary$CompilationJobStatus</a> of the job to <code>Stopping</code>. After Amazon SageMaker stops the job, it sets the <a>CompilationJobSummary$CompilationJobStatus</a> to <code>Stopped</code>. </p>",
+    "StopEdgePackagingJob": "<p>Request to stop an edge packaging job.</p>",
     "StopHyperParameterTuningJob": "<p>Stops a running hyperparameter tuning job and all running training jobs that the tuning job launched.</p> <p>All model artifacts output from the training jobs are stored in Amazon Simple Storage Service (Amazon S3). All data that the training jobs write to Amazon CloudWatch Logs are still available in CloudWatch. After the tuning job moves to the <code>Stopped</code> state, it releases all reserved resources for the tuning job.</p>",
     "StopLabelingJob": "<p>Stops a running labeling job. A job that is stopped cannot be restarted. Any results obtained before the job is stopped are placed in the Amazon S3 output bucket.</p>",
     "StopMonitoringSchedule": "<p>Stops a previously started monitoring schedule.</p>",
@@ -187,6 +216,8 @@
     "UpdateArtifact": "<p>Updates an artifact.</p>",
     "UpdateCodeRepository": "<p>Updates the specified Git repository with the specified values.</p>",
     "UpdateContext": "<p>Updates a context.</p>",
+    "UpdateDeviceFleet": "<p>Updates a fleet of devices.</p>",
+    "UpdateDevices": "<p>Updates one or more devices in a fleet.</p>",
     "UpdateDomain": "<p>Updates the default settings for new user profiles in the domain.</p>",
     "UpdateEndpoint": "<p>Deploys the new <code>EndpointConfig</code> specified in the request, switches to using newly created endpoint, and then deletes resources provisioned for the endpoint using the previous <code>EndpointConfig</code> (there is no availability loss). </p> <p>When Amazon SageMaker receives the request, it sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a>DescribeEndpoint</a> API. </p> <note> <p>You must not delete an <code>EndpointConfig</code> in use by an endpoint that is live or while the <code>UpdateEndpoint</code> or <code>CreateEndpoint</code> operations are being performed on the endpoint. To update an endpoint, you must create a new <code>EndpointConfig</code>.</p> <p>If you delete the <code>EndpointConfig</code> of an endpoint that is active or being created or updated you may lose visibility into the instance type the endpoint is using. The endpoint must be deleted in order to stop incurring charges.</p> </note>",
     "UpdateEndpointWeightsAndCapacities": "<p>Updates variant weight of one or more variants associated with an existing endpoint, or capacity of one variant associated with an existing endpoint. When it receives the request, Amazon SageMaker sets the endpoint status to <code>Updating</code>. After updating the endpoint, it sets the status to <code>InService</code>. To check the status of an endpoint, use the <a>DescribeEndpoint</a> API. </p>",
@@ -198,6 +229,7 @@
     "UpdateNotebookInstanceLifecycleConfig": "<p>Updates a notebook instance lifecycle configuration created with the <a>CreateNotebookInstanceLifecycleConfig</a> API.</p>",
     "UpdatePipeline": "<p>Updates a pipeline.</p>",
     "UpdatePipelineExecution": "<p>Updates a pipeline execution.</p>",
+    "UpdateTrainingJob": "<p>Update a model training job to request a new Debugger profiling configuration.</p>",
     "UpdateTrial": "<p>Updates the display name of a trial.</p>",
     "UpdateTrialComponent": "<p>Updates one or more properties of a trial component.</p>",
     "UpdateUserProfile": "<p>Updates a user profile.</p>",
@@ -285,6 +317,18 @@
         "UpdateNotebookInstanceInput$AdditionalCodeRepositories": "<p>An array of up to three Git repositories to associate with the notebook instance. These can be either the names of Git repositories stored as resources in your account, or the URL of Git repositories in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository. These repositories are cloned at the same level as the default repository of your notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html\">Associating Git Repositories with Amazon SageMaker Notebook Instances</a>.</p>"
       }
     },
+    "AgentVersion": {
+      "base": "<p>Edge Manager agent version.</p>",
+      "refs": {
+        "AgentVersions$member": null
+      }
+    },
+    "AgentVersions": {
+      "base": null,
+      "refs": {
+        "GetDeviceFleetReportResponse$AgentVersions": "<p>The versions of Edge Manager agent deployed on the fleet.</p>"
+      }
+    },
     "Alarm": {
       "base": "<p>This API is not supported.</p>",
       "refs": {
@@ -316,7 +360,8 @@
       "refs": {
         "AlgorithmSpecification$TrainingImage": "<p>The registry path of the Docker image that contains the training algorithm. For information about docker registry paths for built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Algorithms Provided by Amazon SageMaker: Common Parameters</a>. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>",
         "DebugRuleConfiguration$RuleEvaluatorImage": "<p>The Amazon Elastic Container (ECR) Image for the managed rule evaluation.</p>",
-        "HyperParameterAlgorithmSpecification$TrainingImage": "<p> The registry path of the Docker image that contains the training algorithm. For information about Docker registry paths for built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Algorithms Provided by Amazon SageMaker: Common Parameters</a>. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>"
+        "HyperParameterAlgorithmSpecification$TrainingImage": "<p> The registry path of the Docker image that contains the training algorithm. For information about Docker registry paths for built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Algorithms Provided by Amazon SageMaker: Common Parameters</a>. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>",
+        "ProfilerRuleConfiguration$RuleEvaluatorImage": "<p>The Amazon Elastic Container (ECR) Image for the managed rule evaluation.</p>"
       }
     },
     "AlgorithmSortBy": {
@@ -975,6 +1020,8 @@
         "HyperParameterTrainingJobDefinition$EnableNetworkIsolation": "<p>Isolates the training container. No inbound or outbound network calls can be made, except for calls between peers within a training cluster for distributed training. If network isolation is used for training jobs that are configured to use a VPC, Amazon SageMaker downloads and uploads customer data and model artifacts through the specified VPC, but the training container does not have network access.</p>",
         "HyperParameterTrainingJobDefinition$EnableInterContainerTrafficEncryption": "<p>To encrypt all communications between ML compute instances in distributed training, choose <code>True</code>. Encryption provides greater security for distributed training, but training might take longer. How long it takes depends on the amount of communication between compute instances, especially if you use a deep learning algorithm in distributed training.</p>",
         "HyperParameterTrainingJobDefinition$EnableManagedSpotTraining": "<p>A Boolean indicating whether managed spot training is enabled (<code>True</code>) or not (<code>False</code>).</p>",
+        "MonitoringNetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between the instances used for the monitoring jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed jobs, but the processing might take longer.</p>",
+        "MonitoringNetworkConfig$EnableNetworkIsolation": "<p>Whether to allow inbound and outbound network calls to and from the containers used for the monitoring job.</p>",
         "NetworkConfig$EnableInterContainerTrafficEncryption": "<p>Whether to encrypt all communications between distributed processing jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.</p>",
         "NetworkConfig$EnableNetworkIsolation": "<p>Whether to allow inbound and outbound network calls to and from the containers used for the processing job.</p>",
         "OfflineStoreConfig$DisableGlueTableCreation": "<p>Set to <code>True</code> to disable the automatic creation of an AWS Glue table when configuring an <code>OfflineStore</code>.</p>",
@@ -1293,7 +1340,7 @@
       }
     },
     "CollectionConfiguration": {
-      "base": "<p>Configuration information for tensor collections.</p>",
+      "base": "<p>Configuration information for the Debugger output tensor collections.</p>",
       "refs": {
         "CollectionConfigurations$member": null
       }
@@ -1301,7 +1348,7 @@
     "CollectionConfigurations": {
       "base": null,
       "refs": {
-        "DebugHookConfig$CollectionConfigurations": "<p>Configuration information for tensor collections.</p>"
+        "DebugHookConfig$CollectionConfigurations": "<p>Configuration information for Debugger tensor collections. To learn more about how to configure the <code>CollectionConfiguration</code> parameter, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html\">Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job</a>. </p>"
       }
     },
     "CollectionName": {
@@ -1382,6 +1429,7 @@
       "refs": {
         "CollectionParameters$key": null,
         "HookParameters$key": null,
+        "ProfilingParameters$key": null,
         "RuleParameters$key": null
       }
     },
@@ -1390,6 +1438,7 @@
       "refs": {
         "CollectionParameters$value": null,
         "HookParameters$value": null,
+        "ProfilingParameters$value": null,
         "RuleParameters$value": null
       }
     },
@@ -1430,6 +1479,8 @@
       "base": null,
       "refs": {
         "AppSpecification$ContainerEntrypoint": "<p>The entrypoint for a container used to run a processing job.</p>",
+        "DataQualityAppSpecification$ContainerEntrypoint": "<p>The entrypoint for a container used to run a monitoring job.</p>",
+        "ModelQualityAppSpecification$ContainerEntrypoint": "<p>Specifies the entrypoint for a container that the monitoring job runs.</p>",
         "MonitoringAppSpecification$ContainerEntrypoint": "<p>Specifies the entrypoint for a container used to run the monitoring job.</p>"
       }
     },
@@ -1635,12 +1686,32 @@
       "refs": {
       }
     },
+    "CreateDataQualityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDataQualityJobDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDeviceFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateDomainRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEdgePackagingJobRequest": {
       "base": null,
       "refs": {
       }
@@ -1745,6 +1816,26 @@
       "refs": {
       }
     },
+    "CreateModelBiasJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateModelBiasJobDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateModelExplainabilityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateModelExplainabilityJobDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateModelInput": {
       "base": null,
       "refs": {
@@ -1771,6 +1862,16 @@
       }
     },
     "CreateModelPackageOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateModelQualityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateModelQualityJobDefinitionResponse": {
       "base": null,
       "refs": {
       }
@@ -2040,6 +2141,27 @@
         "TransformJob$DataProcessing": null
       }
     },
+    "DataQualityAppSpecification": {
+      "base": "<p>Information about the container that a data quality monitoring job runs.</p>",
+      "refs": {
+        "CreateDataQualityJobDefinitionRequest$DataQualityAppSpecification": "<p>Specifies the container that runs the monitoring job.</p>",
+        "DescribeDataQualityJobDefinitionResponse$DataQualityAppSpecification": "<p>Information about the container that runs the data quality monitoring job.</p>"
+      }
+    },
+    "DataQualityBaselineConfig": {
+      "base": "<p>Configuration for monitoring constraints and monitoring statistics. These baseline resources are compared against the results of the current job from the series of jobs scheduled to collect data periodically.</p>",
+      "refs": {
+        "CreateDataQualityJobDefinitionRequest$DataQualityBaselineConfig": "<p>Configures the constraints and baselines for the monitoring job.</p>",
+        "DescribeDataQualityJobDefinitionResponse$DataQualityBaselineConfig": "<p>The constraints and baselines for the data quality monitoring job definition.</p>"
+      }
+    },
+    "DataQualityJobInput": {
+      "base": "<p>The input for the data quality monitoring job. Currently endpoints are supported for input.</p>",
+      "refs": {
+        "CreateDataQualityJobDefinitionRequest$DataQualityJobInput": "<p>A list of inputs for the monitoring job. Currently endpoints are supported as monitoring inputs.</p>",
+        "DescribeDataQualityJobDefinitionResponse$DataQualityJobInput": "<p>The list of inputs for the data quality monitoring job. Currently endpoints are supported.</p>"
+      }
+    },
     "DataSource": {
       "base": "<p>Describes the location of the channel data.</p>",
       "refs": {
@@ -2059,7 +2181,7 @@
       }
     },
     "DebugHookConfig": {
-      "base": "<p>Configuration information for the debug hook parameters, collection configuration, and storage paths.</p>",
+      "base": "<p>Configuration information for the Debugger hook parameters, metric and tensor collections, and storage paths. To learn more about how to configure the <code>DebugHookConfig</code> parameter, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html\">Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job</a>.</p>",
       "refs": {
         "CreateTrainingJobRequest$DebugHookConfig": null,
         "DescribeTrainingJobResponse$DebugHookConfig": null,
@@ -2067,7 +2189,7 @@
       }
     },
     "DebugRuleConfiguration": {
-      "base": "<p>Configuration information for debugging rules.</p>",
+      "base": "<p>Configuration information for SageMaker Debugger rules for debugging. To learn more about how to configure the <code>DebugRuleConfiguration</code> parameter, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html\">Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job</a>.</p>",
       "refs": {
         "DebugRuleConfigurations$member": null
       }
@@ -2075,8 +2197,8 @@
     "DebugRuleConfigurations": {
       "base": null,
       "refs": {
-        "CreateTrainingJobRequest$DebugRuleConfigurations": "<p>Configuration information for debugging rules.</p>",
-        "DescribeTrainingJobResponse$DebugRuleConfigurations": "<p>Configuration information for debugging rules.</p>",
+        "CreateTrainingJobRequest$DebugRuleConfigurations": "<p>Configuration information for Debugger rules for debugging output tensors.</p>",
+        "DescribeTrainingJobResponse$DebugRuleConfigurations": "<p>Configuration information for Debugger rules for debugging output tensors.</p>",
         "TrainingJob$DebugRuleConfigurations": "<p>Information about the debug rule configuration.</p>"
       }
     },
@@ -2089,7 +2211,7 @@
     "DebugRuleEvaluationStatuses": {
       "base": null,
       "refs": {
-        "DescribeTrainingJobResponse$DebugRuleEvaluationStatuses": "<p>Status about the debug rule evaluation.</p>",
+        "DescribeTrainingJobResponse$DebugRuleEvaluationStatuses": "<p>Evaluation status of Debugger rules for debugging on a training job.</p>",
         "TrainingJob$DebugRuleEvaluationStatuses": "<p>Information about the evaluation status of the rules for the training job.</p>"
       }
     },
@@ -2165,6 +2287,16 @@
       "refs": {
       }
     },
+    "DeleteDataQualityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDeviceFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteDomainRequest": {
       "base": null,
       "refs": {
@@ -2235,6 +2367,16 @@
       "refs": {
       }
     },
+    "DeleteModelBiasJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteModelExplainabilityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteModelInput": {
       "base": null,
       "refs": {
@@ -2251,6 +2393,11 @@
       }
     },
     "DeleteModelPackageInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteModelQualityJobDefinitionRequest": {
       "base": null,
       "refs": {
       }
@@ -2359,6 +2506,11 @@
         "UpdateEndpointInput$DeploymentConfig": "<p>The deployment configuration for the endpoint to be updated.</p>"
       }
     },
+    "DeregisterDevicesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeActionRequest": {
       "base": null,
       "refs": {
@@ -2449,12 +2601,52 @@
       "refs": {
       }
     },
+    "DescribeDataQualityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDataQualityJobDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDeviceFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDeviceFleetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDeviceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDeviceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDomainRequest": {
       "base": null,
       "refs": {
       }
     },
     "DescribeDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEdgePackagingJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEdgePackagingJobResponse": {
       "base": null,
       "refs": {
       }
@@ -2559,6 +2751,26 @@
       "refs": {
       }
     },
+    "DescribeModelBiasJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeModelBiasJobDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeModelExplainabilityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeModelExplainabilityJobDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeModelInput": {
       "base": null,
       "refs": {
@@ -2585,6 +2797,16 @@
       }
     },
     "DescribeModelPackageOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeModelQualityJobDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeModelQualityJobDefinitionResponse": {
       "base": null,
       "refs": {
       }
@@ -2788,6 +3010,94 @@
         "ModelPackageStatusItem$Status": "<p>The current status.</p>"
       }
     },
+    "Device": {
+      "base": "<p>Information of a particular device.</p>",
+      "refs": {
+        "Devices$member": null
+      }
+    },
+    "DeviceArn": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$DeviceArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
+        "DeviceSummary$DeviceArn": "<p>Amazon Resource Name (ARN) of the device.</p>"
+      }
+    },
+    "DeviceDescription": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$Description": "<p>A description of the device.</p>",
+        "Device$Description": "<p>Description of the device.</p>",
+        "DeviceSummary$Description": "<p>A description of the device.</p>"
+      }
+    },
+    "DeviceFleetArn": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceFleetResponse$DeviceFleetArn": "<p>The The Amazon Resource Name (ARN) of the fleet.</p>",
+        "DeviceFleetSummary$DeviceFleetArn": "<p>Amazon Resource Name (ARN) of the device fleet.</p>",
+        "GetDeviceFleetReportResponse$DeviceFleetArn": "<p>The Amazon Resource Name (ARN) of the device.</p>"
+      }
+    },
+    "DeviceFleetDescription": {
+      "base": null,
+      "refs": {
+        "CreateDeviceFleetRequest$Description": "<p>A description of the fleet.</p>",
+        "DescribeDeviceFleetResponse$Description": "<p>A description of the fleet.</p>",
+        "GetDeviceFleetReportResponse$Description": "<p>Description of the fleet.</p>",
+        "UpdateDeviceFleetRequest$Description": "<p>Description of the fleet.</p>"
+      }
+    },
+    "DeviceFleetSummaries": {
+      "base": null,
+      "refs": {
+        "ListDeviceFleetsResponse$DeviceFleetSummaries": "<p>Summary of the device fleet.</p>"
+      }
+    },
+    "DeviceFleetSummary": {
+      "base": "<p>Summary of the device fleet.</p>",
+      "refs": {
+        "DeviceFleetSummaries$member": null
+      }
+    },
+    "DeviceName": {
+      "base": null,
+      "refs": {
+        "Device$DeviceName": "<p>The name of the device.</p>",
+        "DeviceNames$member": null
+      }
+    },
+    "DeviceNames": {
+      "base": null,
+      "refs": {
+        "DeregisterDevicesRequest$DeviceNames": "<p>The unique IDs of the devices.</p>"
+      }
+    },
+    "DeviceStats": {
+      "base": "<p>Status of devices.</p>",
+      "refs": {
+        "GetDeviceFleetReportResponse$DeviceStats": "<p>Status of devices.</p>"
+      }
+    },
+    "DeviceSummaries": {
+      "base": null,
+      "refs": {
+        "ListDevicesResponse$DeviceSummaries": "<p>Summary of devices.</p>"
+      }
+    },
+    "DeviceSummary": {
+      "base": "<p>Summary of the device.</p>",
+      "refs": {
+        "DeviceSummaries$member": null
+      }
+    },
+    "Devices": {
+      "base": null,
+      "refs": {
+        "RegisterDevicesRequest$Devices": "<p>A list of devices to register with SageMaker Edge Manager.</p>",
+        "UpdateDevicesRequest$Devices": "<p>List of devices to register with Edge Manager agent.</p>"
+      }
+    },
     "DirectInternetAccess": {
       "base": null,
       "refs": {
@@ -2799,10 +3109,17 @@
       "base": null,
       "refs": {
         "CheckpointConfig$LocalPath": "<p>(Optional) The local directory where checkpoints are written. The default directory is <code>/opt/ml/checkpoints/</code>. </p>",
-        "DebugHookConfig$LocalPath": "<p>Path to local storage location for tensors. Defaults to <code>/opt/ml/output/tensors/</code>.</p>",
+        "DebugHookConfig$LocalPath": "<p>Path to local storage location for metrics and tensors. Defaults to <code>/opt/ml/output/tensors/</code>.</p>",
         "DebugRuleConfiguration$LocalPath": "<p>Path to local storage location for output of rules. Defaults to <code>/opt/ml/processing/output/rule/</code>.</p>",
         "FileSystemDataSource$DirectoryPath": "<p>The full path to the directory to associate with the channel.</p>",
+        "ProfilerRuleConfiguration$LocalPath": "<p>Path to local storage location for output of rules. Defaults to <code>/opt/ml/processing/output/rule/</code>. </p>",
         "TensorBoardOutputConfig$LocalPath": "<p>Path to local storage location for tensorBoard output. Defaults to <code>/opt/ml/output/tensorboard</code>.</p>"
+      }
+    },
+    "DisableProfiler": {
+      "base": null,
+      "refs": {
+        "ProfilerConfigForUpdate$DisableProfiler": "<p>To disable Debugger monitoring and profiling, set to <code>True</code>.</p>"
       }
     },
     "DisableSagemakerServicecatalogPortfolioInput": {
@@ -2921,6 +3238,92 @@
         "TrialComponentParameterValue$NumberValue": "<p>The numeric value of a numeric hyperparameter. If you specify a value for this parameter, you can't specify the <code>StringValue</code> parameter.</p>"
       }
     },
+    "EdgeModel": {
+      "base": "<p>The model on the edge device.</p>",
+      "refs": {
+        "EdgeModels$member": null
+      }
+    },
+    "EdgeModelStat": {
+      "base": "<p>Status of edge devices with this model.</p>",
+      "refs": {
+        "EdgeModelStats$member": null
+      }
+    },
+    "EdgeModelStats": {
+      "base": null,
+      "refs": {
+        "GetDeviceFleetReportResponse$ModelStats": "<p>Status of model on device.</p>"
+      }
+    },
+    "EdgeModelSummaries": {
+      "base": null,
+      "refs": {
+        "DeviceSummary$Models": "<p>Models on the device.</p>"
+      }
+    },
+    "EdgeModelSummary": {
+      "base": "<p>Summary of model on edge device.</p>",
+      "refs": {
+        "EdgeModelSummaries$member": null
+      }
+    },
+    "EdgeModels": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$Models": "<p>Models on the device.</p>"
+      }
+    },
+    "EdgeOutputConfig": {
+      "base": "<p>The output configuration.</p>",
+      "refs": {
+        "CreateDeviceFleetRequest$OutputConfig": "<p>The output configuration for storing sample data collected by the fleet.</p>",
+        "CreateEdgePackagingJobRequest$OutputConfig": "<p>Provides information about the output location for the packaged model.</p>",
+        "DescribeDeviceFleetResponse$OutputConfig": "<p>The output configuration for storing sampled data.</p>",
+        "DescribeEdgePackagingJobResponse$OutputConfig": "<p>The output configuration for the edge packaging job.</p>",
+        "GetDeviceFleetReportResponse$OutputConfig": "<p>The output configuration for storing sample data collected by the fleet.</p>",
+        "UpdateDeviceFleetRequest$OutputConfig": "<p>Output configuration for storing sample data collected by the fleet.</p>"
+      }
+    },
+    "EdgePackagingJobArn": {
+      "base": null,
+      "refs": {
+        "DescribeEdgePackagingJobResponse$EdgePackagingJobArn": "<p>The Amazon Resource Name (ARN) of the edge packaging job.</p>",
+        "EdgePackagingJobSummary$EdgePackagingJobArn": "<p>The Amazon Resource Name (ARN) of the edge packaging job.</p>"
+      }
+    },
+    "EdgePackagingJobStatus": {
+      "base": null,
+      "refs": {
+        "DescribeEdgePackagingJobResponse$EdgePackagingJobStatus": "<p>The current status of the packaging job.</p>",
+        "EdgePackagingJobSummary$EdgePackagingJobStatus": "<p>The status of the edge packaging job.</p>",
+        "ListEdgePackagingJobsRequest$StatusEquals": "<p>The job status to filter for.</p>"
+      }
+    },
+    "EdgePackagingJobSummaries": {
+      "base": null,
+      "refs": {
+        "ListEdgePackagingJobsResponse$EdgePackagingJobSummaries": "<p>Summaries of edge packaging jobs.</p>"
+      }
+    },
+    "EdgePackagingJobSummary": {
+      "base": "<p>Summary of edge packaging job.</p>",
+      "refs": {
+        "EdgePackagingJobSummaries$member": null
+      }
+    },
+    "EdgeVersion": {
+      "base": null,
+      "refs": {
+        "AgentVersion$Version": "<p>Version of the agent.</p>",
+        "CreateEdgePackagingJobRequest$ModelVersion": "<p>The version of the model.</p>",
+        "DescribeEdgePackagingJobResponse$ModelVersion": "<p>The version of the model.</p>",
+        "EdgeModel$ModelVersion": "<p>The model version.</p>",
+        "EdgeModelStat$ModelVersion": "<p>The model version.</p>",
+        "EdgeModelSummary$ModelVersion": "<p>The version model.</p>",
+        "EdgePackagingJobSummary$ModelVersion": "<p>The version of the model.</p>"
+      }
+    },
     "EfsUid": {
       "base": null,
       "refs": {
@@ -3010,6 +3413,10 @@
     "EndpointInput": {
       "base": "<p>Input object for the endpoint</p>",
       "refs": {
+        "DataQualityJobInput$EndpointInput": null,
+        "ModelBiasJobInput$EndpointInput": null,
+        "ModelExplainabilityJobInput$EndpointInput": null,
+        "ModelQualityJobInput$EndpointInput": null,
         "MonitoringInput$EndpointInput": "<p>The endpoint for a monitoring job.</p>"
       }
     },
@@ -3024,9 +3431,14 @@
         "Endpoint$EndpointName": "<p>The name of the endpoint.</p>",
         "EndpointInput$EndpointName": "<p>An endpoint in customer's account which has enabled <code>DataCaptureConfig</code> enabled.</p>",
         "EndpointSummary$EndpointName": "<p>The name of the endpoint.</p>",
+        "ListDataQualityJobDefinitionsRequest$EndpointName": "<p>A filter that lists the data quality job definitions associated with the specified endpoint.</p>",
+        "ListModelBiasJobDefinitionsRequest$EndpointName": "<p>Name of the endpoint to monitor for model bias.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$EndpointName": "<p>Name of the endpoint to monitor for model explainability.</p>",
+        "ListModelQualityJobDefinitionsRequest$EndpointName": "<p>A filter that returns only model quality monitoring job definitions that are associated with the specified endpoint.</p>",
         "ListMonitoringExecutionsRequest$EndpointName": "<p>Name of a specific endpoint to fetch jobs for.</p>",
         "ListMonitoringSchedulesRequest$EndpointName": "<p>Name of a specific endpoint to fetch schedules for.</p>",
-        "MonitoringExecutionSummary$EndpointName": "<p>The name of teh endpoint used to run the monitoring job.</p>",
+        "MonitoringExecutionSummary$EndpointName": "<p>The name of the endpoint used to run the monitoring job.</p>",
+        "MonitoringJobDefinitionSummary$EndpointName": "<p>The name of the endpoint that the job monitors.</p>",
         "MonitoringSchedule$EndpointName": "<p>The endpoint that hosts the model being monitored.</p>",
         "MonitoringScheduleSummary$EndpointName": "<p>The name of the endpoint using the monitoring schedule.</p>",
         "UpdateEndpointInput$EndpointName": "<p>The name of the endpoint whose configuration you want to update.</p>",
@@ -3098,21 +3510,50 @@
         "CreateAlgorithmInput$AlgorithmName": "<p>The name of the algorithm.</p>",
         "CreateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
         "CreateCompilationJobRequest$CompilationJobName": "<p>A name for the model compilation job. The name must be unique within the AWS Region and within your AWS account. </p>",
+        "CreateDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet that the device belongs to.</p>",
+        "CreateEdgePackagingJobRequest$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
+        "CreateEdgePackagingJobRequest$CompilationJobName": "<p>The name of the SageMaker Neo compilation job that will be used to locate model artifacts for packaging.</p>",
+        "CreateEdgePackagingJobRequest$ModelName": "<p>The name of the model.</p>",
         "CreateModelPackageGroupInput$ModelPackageGroupName": "<p>The name of the model group.</p>",
         "CreateModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p> <p>This parameter is required for unversioned models. It is not applicable to versioned models.</p>",
         "CreateModelPackageInput$ModelPackageGroupName": "<p>The name of the model group that this model version belongs to.</p> <p>This parameter is required for versioned models, and does not apply to unversioned models.</p>",
         "DeleteAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to delete.</p>",
         "DeleteCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to delete.</p>",
+        "DeleteDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet to delete.</p>",
         "DeleteModelPackageGroupPolicyInput$ModelPackageGroupName": "<p>The name of the model group for which to delete the policy.</p>",
+        "DeregisterDevicesRequest$DeviceFleetName": "<p>The name of the fleet the devices belong to.</p>",
         "DescribeAlgorithmOutput$AlgorithmName": "<p>The name of the algorithm being described.</p>",
         "DescribeCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to describe.</p>",
         "DescribeCodeRepositoryOutput$CodeRepositoryName": "<p>The name of the Git repository.</p>",
         "DescribeCompilationJobRequest$CompilationJobName": "<p>The name of the model compilation job that you want information about.</p>",
         "DescribeCompilationJobResponse$CompilationJobName": "<p>The name of the model compilation job.</p>",
+        "DescribeDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet.</p>",
+        "DescribeDeviceFleetResponse$DeviceFleetName": "<p>The name of the fleet.</p>",
+        "DescribeDeviceRequest$DeviceName": "<p>The unique ID of the device.</p>",
+        "DescribeDeviceRequest$DeviceFleetName": "<p>The name of the fleet the devices belong to.</p>",
+        "DescribeDeviceResponse$DeviceName": "<p>The unique identifier of the device.</p>",
+        "DescribeDeviceResponse$DeviceFleetName": "<p>The name of the fleet the device belongs to.</p>",
+        "DescribeEdgePackagingJobRequest$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
+        "DescribeEdgePackagingJobResponse$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
+        "DescribeEdgePackagingJobResponse$CompilationJobName": "<p>The name of the SageMaker Neo compilation job that is used to locate model artifacts that are being packaged.</p>",
+        "DescribeEdgePackagingJobResponse$ModelName": "<p>The name of the model.</p>",
         "DescribeModelPackageGroupOutput$ModelPackageGroupName": "<p>The name of the model group.</p>",
         "DescribeModelPackageOutput$ModelPackageName": "<p>The name of the model package being described.</p>",
         "DescribeModelPackageOutput$ModelPackageGroupName": "<p>If the model is a versioned model, the name of the model group that the versioned model belongs to.</p>",
+        "DeviceFleetSummary$DeviceFleetName": "<p>Name of the device fleet.</p>",
+        "DeviceSummary$DeviceName": "<p>The unique identifier of the device.</p>",
+        "DeviceSummary$DeviceFleetName": "<p>The name of the fleet the device belongs to.</p>",
+        "EdgeModel$ModelName": "<p>The name of the model.</p>",
+        "EdgeModelStat$ModelName": "<p>The name of the model.</p>",
+        "EdgeModelSummary$ModelName": "<p>The name of the model.</p>",
+        "EdgePackagingJobSummary$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
+        "EdgePackagingJobSummary$CompilationJobName": "<p>The name of the SageMaker Neo compilation job.</p>",
+        "EdgePackagingJobSummary$ModelName": "<p>The name of the model.</p>",
+        "GetDeviceFleetReportRequest$DeviceFleetName": "<p>The name of the fleet.</p>",
+        "GetDeviceFleetReportResponse$DeviceFleetName": "<p>The name of the fleet.</p>",
         "GetModelPackageGroupPolicyInput$ModelPackageGroupName": "<p>The name of the model group for which to get the resource policy.</p>",
+        "ListDevicesRequest$ModelName": "<p>A filter that searches devices that contains this name in any of their models.</p>",
+        "ListDevicesRequest$DeviceFleetName": "<p>Filter for fleets containing this name in their device fleet name.</p>",
         "ModelPackage$ModelPackageName": "<p>The name of the model.</p>",
         "ModelPackage$ModelPackageGroupName": "<p>The model group to which the model belongs.</p>",
         "ModelPackageGroup$ModelPackageGroupName": "<p>The name of the model group.</p>",
@@ -3122,8 +3563,12 @@
         "ModelPackageSummary$ModelPackageGroupName": "<p>If the model package is a versioned model, the model group that the versioned model belongs to.</p>",
         "ModelPackageValidationProfile$ProfileName": "<p>The name of the profile for the model package.</p>",
         "PutModelPackageGroupPolicyInput$ModelPackageGroupName": "<p>The name of the model group to add a resource policy to.</p>",
+        "RegisterDevicesRequest$DeviceFleetName": "<p>The name of the fleet.</p>",
         "StopCompilationJobRequest$CompilationJobName": "<p>The name of the model compilation job to stop.</p>",
-        "UpdateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to update.</p>"
+        "StopEdgePackagingJobRequest$EdgePackagingJobName": "<p>The name of the edge packaging job.</p>",
+        "UpdateCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to update.</p>",
+        "UpdateDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet.</p>",
+        "UpdateDevicesRequest$DeviceFleetName": "<p>The name of the fleet the devices belong to.</p>"
       }
     },
     "EnvironmentKey": {
@@ -3631,6 +4076,16 @@
         "DescribeAutoMLJobResponse$GenerateCandidateDefinitionsOnly": "<p>Returns the job's output from GenerateCandidateDefinitionsOnly.</p>"
       }
     },
+    "GetDeviceFleetReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDeviceFleetReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetModelPackageGroupPolicyInput": {
       "base": null,
       "refs": {
@@ -3696,7 +4151,7 @@
     "HookParameters": {
       "base": null,
       "refs": {
-        "DebugHookConfig$HookParameters": "<p>Configuration information for the debug hook parameters.</p>"
+        "DebugHookConfig$HookParameters": "<p>Configuration information for the Debugger hook parameters.</p>"
       }
     },
     "HumanLoopActivationConditions": {
@@ -4088,6 +4543,10 @@
       "base": null,
       "refs": {
         "AppSpecification$ImageUri": "<p>The container image to be run by the processing job.</p>",
+        "DataQualityAppSpecification$ImageUri": "<p>The container image that the data quality monitoring job runs.</p>",
+        "ModelBiasAppSpecification$ImageUri": "<p>The container image to be run by the model bias job.</p>",
+        "ModelExplainabilityAppSpecification$ImageUri": "<p>The container image to be run by the model explainability job.</p>",
+        "ModelQualityAppSpecification$ImageUri": "<p>The address of the container image that the monitoring job runs.</p>",
         "MonitoringAppSpecification$ImageUri": "<p>The container image to be run by the monitoring job.</p>"
       }
     },
@@ -4195,6 +4654,12 @@
         "UpdateNotebookInstanceInput$InstanceType": "<p>The Amazon ML compute instance type.</p>"
       }
     },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$MaxModels": "<p>The maximum number of models.</p>"
+      }
+    },
     "IntegerParameterRange": {
       "base": "<p>For a hyperparameter of the integer type, specifies the range that a hyperparameter tuning job searches.</p>",
       "refs": {
@@ -4223,6 +4688,12 @@
       "base": null,
       "refs": {
         "ModelClientConfig$InvocationsTimeoutInSeconds": "<p>The timeout value in seconds for an invocation request.</p>"
+      }
+    },
+    "IotRoleAlias": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceFleetResponse$IotRoleAlias": "<p>The Amazon Resource Name (ARN) alias created in AWS Internet of Things (IoT).</p>"
       }
     },
     "JobReferenceCode": {
@@ -4316,14 +4787,17 @@
         "AutoMLSecurityConfig$VolumeKmsKeyId": "<p>The key used to encrypt stored data.</p>",
         "CreateDomainRequest$HomeEfsFileSystemKmsKeyId": "<p>This member is deprecated and replaced with <code>KmsKeyId</code>.</p>",
         "CreateDomainRequest$KmsKeyId": "<p>SageMaker uses AWS KMS to encrypt the EFS volume attached to the domain with an AWS managed customer master key (CMK) by default. For more control, specify a customer managed CMK.</p>",
+        "CreateEdgePackagingJobRequest$ResourceKey": "<p>The CMK to use when encrypting the EBS volume the edge packaging job runs on.</p>",
         "CreateEndpointConfigInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance that hosts the endpoint.</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateEndpoint</code>, <code>UpdateEndpoint</code> requests. For more information, refer to the AWS Key Management Service section<a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\"> Using Key Policies in AWS KMS </a> </p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>KmsKeyId</code> when using an instance type with local storage. If any of the models that you specify in the <code>ProductionVariants</code> parameter use nitro-based instances with local storage, do not specify a value for the <code>KmsKeyId</code> parameter. If you specify a value for <code>KmsKeyId</code> when using any nitro-based instances with local storage, the call to <code>CreateEndpointConfig</code> fails.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note>",
         "CreateNotebookInstanceInput$KmsKeyId": "<p>The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon SageMaker uses to encrypt data on the storage volume attached to your notebook instance. The KMS key you provide must be enabled. For information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html\">Enabling and Disabling Keys</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
         "DataCaptureConfig$KmsKeyId": "<p/>",
         "DataCaptureConfigSummary$KmsKeyId": "<p/>",
         "DescribeDomainResponse$HomeEfsFileSystemKmsKeyId": "<p>This member is deprecated and replaced with <code>KmsKeyId</code>.</p>",
         "DescribeDomainResponse$KmsKeyId": "<p>The AWS KMS customer managed CMK used to encrypt the EFS volume attached to the domain.</p>",
+        "DescribeEdgePackagingJobResponse$ResourceKey": "<p>The CMK to use when encrypting the EBS volume the job run on.</p>",
         "DescribeEndpointConfigOutput$KmsKeyId": "<p>AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the ML storage volume attached to the instance.</p>",
         "DescribeNotebookInstanceOutput$KmsKeyId": "<p>The AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the ML storage volume attached to the instance. </p>",
+        "EdgeOutputConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account.</p>",
         "FlowDefinitionOutputConfig$KmsKeyId": "<p>The Amazon Key Management Service (KMS) key ID for server-side encryption.</p>",
         "LabelingJobOutputConfig$KmsKeyId": "<p>The AWS Key Management Service ID of the key used to encrypt the output data, if any.</p> <p>If you use a KMS key ID or an alias of your master key, the Amazon SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. Amazon SageMaker uses server-side encryption with KMS-managed keys for <code>LabelingJobOutputConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateLabelingJob</code> request. For more information, see <a href=\"http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
         "LabelingJobResourceConfig$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the training job. The <code>VolumeKmsKeyId</code> can be any of the following formats:</p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> </ul>",
@@ -4664,6 +5138,42 @@
       "refs": {
       }
     },
+    "ListDataQualityJobDefinitionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDataQualityJobDefinitionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDeviceFleetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDeviceFleetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDeviceFleetsSortBy": {
+      "base": null,
+      "refs": {
+        "ListDeviceFleetsRequest$SortBy": "<p>The column to sort by.</p>"
+      }
+    },
+    "ListDevicesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDevicesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDomainsRequest": {
       "base": null,
       "refs": {
@@ -4672,6 +5182,22 @@
     "ListDomainsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ListEdgePackagingJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEdgePackagingJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEdgePackagingJobsSortBy": {
+      "base": null,
+      "refs": {
+        "ListEdgePackagingJobsRequest$SortBy": "<p>Use to specify what column to sort by.</p>"
       }
     },
     "ListEndpointConfigsInput": {
@@ -4798,6 +5324,34 @@
         "UpdateContextRequest$PropertiesToRemove": "<p>A list of properties to remove.</p>"
       }
     },
+    "ListMaxResults": {
+      "base": null,
+      "refs": {
+        "ListDeviceFleetsRequest$MaxResults": "<p>The maximum number of results to select.</p>",
+        "ListDevicesRequest$MaxResults": "<p>Maximum number of results to select.</p>",
+        "ListEdgePackagingJobsRequest$MaxResults": "<p>Maximum number of results to select.</p>"
+      }
+    },
+    "ListModelBiasJobDefinitionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListModelBiasJobDefinitionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListModelExplainabilityJobDefinitionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListModelExplainabilityJobDefinitionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListModelPackageGroupsInput": {
       "base": null,
       "refs": {
@@ -4814,6 +5368,16 @@
       }
     },
     "ListModelPackagesOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListModelQualityJobDefinitionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListModelQualityJobDefinitionsResponse": {
       "base": null,
       "refs": {
       }
@@ -5054,6 +5618,18 @@
         "ListWorkteamsRequest$SortBy": "<p>The field to sort results by. The default is <code>CreationTime</code>.</p>"
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "AgentVersion$AgentCount": "<p>The number of Edge Manager agents.</p>",
+        "DeviceStats$ConnectedDeviceCount": "<p>The number of devices connected with a heartbeat.</p>",
+        "DeviceStats$RegisteredDeviceCount": "<p>The number of registered devices.</p>",
+        "EdgeModelStat$OfflineDeviceCount": "<p>The number of devices that have this model version and do not have a heart beat.</p>",
+        "EdgeModelStat$ConnectedDeviceCount": "<p>The number of devices that have this model version and have a heart beat. </p>",
+        "EdgeModelStat$ActiveDeviceCount": "<p>The number of devices that have this model version, a heart beat, and are currently running.</p>",
+        "EdgeModelStat$SamplingDeviceCount": "<p>The number of devices with this model version and are producing sample data.</p>"
+      }
+    },
     "MaxAutoMLJobRuntimeInSeconds": {
       "base": null,
       "refs": {
@@ -5126,6 +5702,7 @@
         "ListCodeRepositoriesInput$MaxResults": "<p>The maximum number of Git repositories to return in the response.</p>",
         "ListCompilationJobsRequest$MaxResults": "<p>The maximum number of model compilation jobs to return in the response.</p>",
         "ListContextsRequest$MaxResults": "<p>The maximum number of contexts to return in the response. The default value is 10.</p>",
+        "ListDataQualityJobDefinitionsRequest$MaxResults": "<p>The maximum number of data quality monitoring job definitions to return in the response.</p>",
         "ListDomainsRequest$MaxResults": "<p>Returns a list up to a specified limit.</p>",
         "ListEndpointConfigsInput$MaxResults": "<p>The maximum number of training jobs to return in the response.</p>",
         "ListEndpointsInput$MaxResults": "<p>The maximum number of endpoints to return in the response.</p>",
@@ -5137,8 +5714,11 @@
         "ListImagesRequest$MaxResults": "<p>The maximum number of images to return in the response. The default value is 10. </p>",
         "ListLabelingJobsForWorkteamRequest$MaxResults": "<p>The maximum number of labeling jobs to return in each page of the response.</p>",
         "ListLabelingJobsRequest$MaxResults": "<p>The maximum number of labeling jobs to return in each page of the response.</p>",
+        "ListModelBiasJobDefinitionsRequest$MaxResults": "<p>The maximum number of model bias jobs to return in the response. The default value is 10.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$MaxResults": "<p>The maximum number of jobs to return in the response. The default value is 10.</p>",
         "ListModelPackageGroupsInput$MaxResults": "<p>The maximum number of results to return in the response.</p>",
         "ListModelPackagesInput$MaxResults": "<p>The maximum number of model packages to return in the response.</p>",
+        "ListModelQualityJobDefinitionsRequest$MaxResults": "<p>The maximum number of results to return in a call to <code>ListModelQualityJobDefinitions</code>.</p>",
         "ListModelsInput$MaxResults": "<p>The maximum number of models to return in the response.</p>",
         "ListMonitoringExecutionsRequest$MaxResults": "<p>The maximum number of jobs to return in the response. The default value is 10.</p>",
         "ListMonitoringSchedulesRequest$MaxResults": "<p>The maximum number of jobs to return in the response. The default value is 10.</p>",
@@ -5316,6 +5896,27 @@
         "TrainingJob$ModelArtifacts": "<p>Information about the Amazon S3 location that is configured for storing model artifacts.</p>"
       }
     },
+    "ModelBiasAppSpecification": {
+      "base": "<p>Docker container image configuration object for the model bias job.</p>",
+      "refs": {
+        "CreateModelBiasJobDefinitionRequest$ModelBiasAppSpecification": "<p>Configures the model bias job to run a specified Docker container image.</p>",
+        "DescribeModelBiasJobDefinitionResponse$ModelBiasAppSpecification": "<p>Configures the model bias job to run a specified Docker container image.</p>"
+      }
+    },
+    "ModelBiasBaselineConfig": {
+      "base": "<p>The configuration for a baseline model bias job.</p>",
+      "refs": {
+        "CreateModelBiasJobDefinitionRequest$ModelBiasBaselineConfig": "<p>The baseline configuration for a model bias job.</p>",
+        "DescribeModelBiasJobDefinitionResponse$ModelBiasBaselineConfig": "<p>The baseline configuration for a model bias job.</p>"
+      }
+    },
+    "ModelBiasJobInput": {
+      "base": "<p>Inputs for the model bias job.</p>",
+      "refs": {
+        "CreateModelBiasJobDefinitionRequest$ModelBiasJobInput": "<p>Inputs for the model bias job.</p>",
+        "DescribeModelBiasJobDefinitionResponse$ModelBiasJobInput": "<p>Inputs for the model bias job.</p>"
+      }
+    },
     "ModelClientConfig": {
       "base": "<p>Configures the timeout and maximum number of retries for processing a transform job invocation.</p>",
       "refs": {
@@ -5334,6 +5935,27 @@
       "base": "<p>Provides information to verify the integrity of stored model artifacts. </p>",
       "refs": {
         "DescribeCompilationJobResponse$ModelDigests": "<p>Provides a BLAKE2 hash value that identifies the compiled model artifacts in Amazon S3.</p>"
+      }
+    },
+    "ModelExplainabilityAppSpecification": {
+      "base": "<p>Docker container image configuration object for the model explainability job.</p>",
+      "refs": {
+        "CreateModelExplainabilityJobDefinitionRequest$ModelExplainabilityAppSpecification": "<p>Configures the model explainability job to run a specified Docker container image.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$ModelExplainabilityAppSpecification": "<p>Configures the model explainability job to run a specified Docker container image.</p>"
+      }
+    },
+    "ModelExplainabilityBaselineConfig": {
+      "base": "<p>The configuration for a baseline model explainability job.</p>",
+      "refs": {
+        "CreateModelExplainabilityJobDefinitionRequest$ModelExplainabilityBaselineConfig": "<p>The baseline configuration for a model explainability job.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$ModelExplainabilityBaselineConfig": "<p>The baseline configuration for a model explainability job.</p>"
+      }
+    },
+    "ModelExplainabilityJobInput": {
+      "base": "<p>Inputs for the model explainability job.</p>",
+      "refs": {
+        "CreateModelExplainabilityJobDefinitionRequest$ModelExplainabilityJobInput": "<p>Inputs for the model explainability job.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$ModelExplainabilityJobInput": "<p>Inputs for the model explainability job.</p>"
       }
     },
     "ModelMetrics": {
@@ -5521,6 +6143,27 @@
         "ModelMetrics$ModelQuality": "<p>Metrics that measure the quality of a model.</p>"
       }
     },
+    "ModelQualityAppSpecification": {
+      "base": "<p>Container image configuration object for the monitoring job.</p>",
+      "refs": {
+        "CreateModelQualityJobDefinitionRequest$ModelQualityAppSpecification": "<p>The container that runs the monitoring job.</p>",
+        "DescribeModelQualityJobDefinitionResponse$ModelQualityAppSpecification": "<p>Configures the model quality job to run a specified Docker container image.</p>"
+      }
+    },
+    "ModelQualityBaselineConfig": {
+      "base": "<p>Configuration for monitoring constraints and monitoring statistics. These baseline resources are compared against the results of the current job from the series of jobs scheduled to collect data periodically.</p>",
+      "refs": {
+        "CreateModelQualityJobDefinitionRequest$ModelQualityBaselineConfig": "<p>Specifies the constraints and baselines for the monitoring job.</p>",
+        "DescribeModelQualityJobDefinitionResponse$ModelQualityBaselineConfig": "<p>The baseline configuration for a model quality job.</p>"
+      }
+    },
+    "ModelQualityJobInput": {
+      "base": "<p>The input for the model quality monitoring job. Currently endponts are supported for input for model quality monitoring jobs.</p>",
+      "refs": {
+        "CreateModelQualityJobDefinitionRequest$ModelQualityJobInput": "<p>A list of the inputs that are monitored. Currently endpoints are supported.</p>",
+        "DescribeModelQualityJobDefinitionResponse$ModelQualityJobInput": "<p>Inputs for the model quality job.</p>"
+      }
+    },
     "ModelSortKey": {
       "base": null,
       "refs": {
@@ -5566,18 +6209,28 @@
     "MonitoringConstraintsResource": {
       "base": "<p>The constraints resource for a monitoring job.</p>",
       "refs": {
+        "DataQualityBaselineConfig$ConstraintsResource": null,
+        "ModelBiasBaselineConfig$ConstraintsResource": null,
+        "ModelExplainabilityBaselineConfig$ConstraintsResource": null,
+        "ModelQualityBaselineConfig$ConstraintsResource": null,
         "MonitoringBaselineConfig$ConstraintsResource": "<p>The baseline constraint file in Amazon S3 that the current monitoring job should validated against.</p>"
       }
     },
     "MonitoringContainerArguments": {
       "base": null,
       "refs": {
+        "DataQualityAppSpecification$ContainerArguments": "<p>The arguments to send to the container that the monitoring job runs.</p>",
+        "ModelQualityAppSpecification$ContainerArguments": "<p>An array of arguments for the container used to run the monitoring job.</p>",
         "MonitoringAppSpecification$ContainerArguments": "<p>An array of arguments for the container used to run the monitoring job.</p>"
       }
     },
     "MonitoringEnvironmentMap": {
       "base": null,
       "refs": {
+        "DataQualityAppSpecification$Environment": "<p>Sets the environment variables in the container that the monitoring job runs.</p>",
+        "ModelBiasAppSpecification$Environment": "<p>Sets the environment variables in the Docker container.</p>",
+        "ModelExplainabilityAppSpecification$Environment": "<p>Sets the environment variables in the Docker container.</p>",
+        "ModelQualityAppSpecification$Environment": "<p>Sets the environment variables in the container that the monitoring job runs.</p>",
         "MonitoringJobDefinition$Environment": "<p>Sets the environment variables in the Docker container.</p>"
       }
     },
@@ -5601,6 +6254,13 @@
         "ListMonitoringExecutionsResponse$MonitoringExecutionSummaries": "<p>A JSON array in which each element is a summary for a monitoring execution.</p>"
       }
     },
+    "MonitoringGroundTruthS3Input": {
+      "base": "<p>The ground truth labels for the dataset used for the monitoring job.</p>",
+      "refs": {
+        "ModelBiasJobInput$GroundTruthS3Input": "<p>Location of ground truth labels to use in model bias job.</p>",
+        "ModelQualityJobInput$GroundTruthS3Input": "<p>The ground truth label provided for the model.</p>"
+      }
+    },
     "MonitoringInput": {
       "base": "<p>The inputs for a monitoring job.</p>",
       "refs": {
@@ -5619,10 +6279,88 @@
         "MonitoringScheduleConfig$MonitoringJobDefinition": "<p>Defines the monitoring job.</p>"
       }
     },
+    "MonitoringJobDefinitionArn": {
+      "base": null,
+      "refs": {
+        "CreateDataQualityJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the job definition.</p>",
+        "CreateModelBiasJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the model bias job.</p>",
+        "CreateModelExplainabilityJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the model explainability job.</p>",
+        "CreateModelQualityJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the model quality monitoring job.</p>",
+        "DescribeDataQualityJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the data quality monitoring job definition.</p>",
+        "DescribeModelBiasJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the model bias job.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the model explainability job.</p>",
+        "DescribeModelQualityJobDefinitionResponse$JobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the model quality job.</p>",
+        "MonitoringJobDefinitionSummary$MonitoringJobDefinitionArn": "<p>The Amazon Resource Name (ARN) of the monitoring job.</p>"
+      }
+    },
+    "MonitoringJobDefinitionName": {
+      "base": null,
+      "refs": {
+        "CreateDataQualityJobDefinitionRequest$JobDefinitionName": "<p>The name for the monitoring job definition.</p>",
+        "CreateModelBiasJobDefinitionRequest$JobDefinitionName": "<p>The name of the bias job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "CreateModelExplainabilityJobDefinitionRequest$JobDefinitionName": "<p> The name of the model explainability job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "CreateModelQualityJobDefinitionRequest$JobDefinitionName": "<p>The name of the monitoring job definition.</p>",
+        "DeleteDataQualityJobDefinitionRequest$JobDefinitionName": "<p>The name of the data quality monitoring job definition to delete.</p>",
+        "DeleteModelBiasJobDefinitionRequest$JobDefinitionName": "<p>The name of the model bias job definition to delete.</p>",
+        "DeleteModelExplainabilityJobDefinitionRequest$JobDefinitionName": "<p>The name of the model explainability job definition to delete.</p>",
+        "DeleteModelQualityJobDefinitionRequest$JobDefinitionName": "<p>The name of the model quality monitoring job definition to delete.</p>",
+        "DescribeDataQualityJobDefinitionRequest$JobDefinitionName": "<p>The name of the data quality monitoring job definition to describe.</p>",
+        "DescribeDataQualityJobDefinitionResponse$JobDefinitionName": "<p>The name of the data quality monitoring job definition.</p>",
+        "DescribeModelBiasJobDefinitionRequest$JobDefinitionName": "<p>The name of the model bias job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "DescribeModelBiasJobDefinitionResponse$JobDefinitionName": "<p>The name of the bias job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "DescribeModelExplainabilityJobDefinitionRequest$JobDefinitionName": "<p>The name of the model explainability job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$JobDefinitionName": "<p>The name of the explainability job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "DescribeModelQualityJobDefinitionRequest$JobDefinitionName": "<p>The name of the model quality job. The name must be unique within an AWS Region in the AWS account.</p>",
+        "DescribeModelQualityJobDefinitionResponse$JobDefinitionName": "<p>The name of the quality job definition. The name must be unique within an AWS Region in the AWS account.</p>",
+        "ListMonitoringExecutionsRequest$MonitoringJobDefinitionName": "<p>Gets a list of the monitoring job runs of the specified monitoring job definitions.</p>",
+        "ListMonitoringSchedulesRequest$MonitoringJobDefinitionName": "<p>Gets a list of the monitoring schedules for the specified monitoring job definition.</p>",
+        "MonitoringExecutionSummary$MonitoringJobDefinitionName": "<p>The name of the monitoring job.</p>",
+        "MonitoringJobDefinitionSummary$MonitoringJobDefinitionName": "<p>The name of the monitoring job.</p>",
+        "MonitoringScheduleConfig$MonitoringJobDefinitionName": "<p>The name of the monitoring job definition to schedule.</p>",
+        "MonitoringScheduleSummary$MonitoringJobDefinitionName": "<p>The name of the monitoring job definition that the schedule is for.</p>"
+      }
+    },
+    "MonitoringJobDefinitionSortKey": {
+      "base": null,
+      "refs": {
+        "ListDataQualityJobDefinitionsRequest$SortBy": "<p>The field to sort results by. The default is <code>CreationTime</code>.</p>",
+        "ListModelBiasJobDefinitionsRequest$SortBy": "<p>Whether to sort results by the <code>Name</code> or <code>CreationTime</code> field. The default is <code>CreationTime</code>.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$SortBy": "<p>Whether to sort results by the <code>Name</code> or <code>CreationTime</code> field. The default is <code>CreationTime</code>.</p>",
+        "ListModelQualityJobDefinitionsRequest$SortBy": "<p>The field to sort results by. The default is <code>CreationTime</code>.</p>"
+      }
+    },
+    "MonitoringJobDefinitionSummary": {
+      "base": "<p>Summary information about a monitoring job.</p>",
+      "refs": {
+        "MonitoringJobDefinitionSummaryList$member": null
+      }
+    },
+    "MonitoringJobDefinitionSummaryList": {
+      "base": null,
+      "refs": {
+        "ListDataQualityJobDefinitionsResponse$JobDefinitionSummaries": "<p>A list of data quality monitoring job definitions.</p>",
+        "ListModelBiasJobDefinitionsResponse$JobDefinitionSummaries": "<p>A JSON array in which each element is a summary for a model bias jobs.</p>",
+        "ListModelExplainabilityJobDefinitionsResponse$JobDefinitionSummaries": "<p>A JSON array in which each element is a summary for a explainability bias jobs.</p>",
+        "ListModelQualityJobDefinitionsResponse$JobDefinitionSummaries": "<p>A list of summaries of model quality monitoring job definitions.</p>"
+      }
+    },
     "MonitoringMaxRuntimeInSeconds": {
       "base": null,
       "refs": {
         "MonitoringStoppingCondition$MaxRuntimeInSeconds": "<p>The maximum runtime allowed in seconds.</p>"
+      }
+    },
+    "MonitoringNetworkConfig": {
+      "base": "<p>The networking configuration for the monitoring job.</p>",
+      "refs": {
+        "CreateDataQualityJobDefinitionRequest$NetworkConfig": "<p>Specifies networking configuration for the monitoring job.</p>",
+        "CreateModelBiasJobDefinitionRequest$NetworkConfig": "<p>Networking options for a model bias job.</p>",
+        "CreateModelExplainabilityJobDefinitionRequest$NetworkConfig": "<p>Networking options for a model explainability job.</p>",
+        "CreateModelQualityJobDefinitionRequest$NetworkConfig": "<p>Specifies the network configuration for the monitoring job.</p>",
+        "DescribeDataQualityJobDefinitionResponse$NetworkConfig": "<p>The networking configuration for the data quality monitoring job.</p>",
+        "DescribeModelBiasJobDefinitionResponse$NetworkConfig": "<p>Networking options for a model bias job.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$NetworkConfig": "<p>Networking options for a model explainability job.</p>",
+        "DescribeModelQualityJobDefinitionResponse$NetworkConfig": "<p>Networking options for a model quality job.</p>"
       }
     },
     "MonitoringOutput": {
@@ -5634,6 +6372,14 @@
     "MonitoringOutputConfig": {
       "base": "<p>The output configuration for monitoring jobs.</p>",
       "refs": {
+        "CreateDataQualityJobDefinitionRequest$DataQualityJobOutputConfig": null,
+        "CreateModelBiasJobDefinitionRequest$ModelBiasJobOutputConfig": null,
+        "CreateModelExplainabilityJobDefinitionRequest$ModelExplainabilityJobOutputConfig": null,
+        "CreateModelQualityJobDefinitionRequest$ModelQualityJobOutputConfig": null,
+        "DescribeDataQualityJobDefinitionResponse$DataQualityJobOutputConfig": null,
+        "DescribeModelBiasJobDefinitionResponse$ModelBiasJobOutputConfig": null,
+        "DescribeModelExplainabilityJobDefinitionResponse$ModelExplainabilityJobOutputConfig": null,
+        "DescribeModelQualityJobDefinitionResponse$ModelQualityJobOutputConfig": null,
         "MonitoringJobDefinition$MonitoringOutputConfig": "<p>The array of outputs from the monitoring job to be uploaded to Amazon Simple Storage Service (Amazon S3).</p>"
       }
     },
@@ -5643,9 +6389,23 @@
         "MonitoringOutputConfig$MonitoringOutputs": "<p>Monitoring outputs for monitoring jobs. This is where the output of the periodic monitoring jobs is uploaded.</p>"
       }
     },
+    "MonitoringProblemType": {
+      "base": null,
+      "refs": {
+        "ModelQualityAppSpecification$ProblemType": "<p>The machine learning problem type of the model that the monitoring job monitors.</p>"
+      }
+    },
     "MonitoringResources": {
       "base": "<p>Identifies the resources to deploy for a monitoring job.</p>",
       "refs": {
+        "CreateDataQualityJobDefinitionRequest$JobResources": null,
+        "CreateModelBiasJobDefinitionRequest$JobResources": null,
+        "CreateModelExplainabilityJobDefinitionRequest$JobResources": null,
+        "CreateModelQualityJobDefinitionRequest$JobResources": null,
+        "DescribeDataQualityJobDefinitionResponse$JobResources": null,
+        "DescribeModelBiasJobDefinitionResponse$JobResources": null,
+        "DescribeModelExplainabilityJobDefinitionResponse$JobResources": null,
+        "DescribeModelQualityJobDefinitionResponse$JobResources": null,
         "MonitoringJobDefinition$MonitoringResources": "<p>Identifies the resources, ML compute instances, and ML storage volumes to deploy for a monitoring job. In distributed processing, you specify more than one instance.</p>"
       }
     },
@@ -5658,6 +6418,7 @@
     "MonitoringS3Uri": {
       "base": null,
       "refs": {
+        "MonitoringGroundTruthS3Input$S3Uri": "<p>The address of the Amazon S3 location of the ground truth labels.</p>",
         "MonitoringS3Output$S3Uri": "<p>A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.</p>"
       }
     },
@@ -5731,13 +6492,41 @@
     "MonitoringStatisticsResource": {
       "base": "<p>The statistics resource for a monitoring job.</p>",
       "refs": {
+        "DataQualityBaselineConfig$StatisticsResource": null,
         "MonitoringBaselineConfig$StatisticsResource": "<p>The baseline statistics file in Amazon S3 that the current monitoring job should be validated against.</p>"
       }
     },
     "MonitoringStoppingCondition": {
       "base": "<p>A time limit for how long the monitoring job is allowed to run before stopping.</p>",
       "refs": {
+        "CreateDataQualityJobDefinitionRequest$StoppingCondition": null,
+        "CreateModelBiasJobDefinitionRequest$StoppingCondition": null,
+        "CreateModelExplainabilityJobDefinitionRequest$StoppingCondition": null,
+        "CreateModelQualityJobDefinitionRequest$StoppingCondition": null,
+        "DescribeDataQualityJobDefinitionResponse$StoppingCondition": null,
+        "DescribeModelBiasJobDefinitionResponse$StoppingCondition": null,
+        "DescribeModelExplainabilityJobDefinitionResponse$StoppingCondition": null,
+        "DescribeModelQualityJobDefinitionResponse$StoppingCondition": null,
         "MonitoringJobDefinition$StoppingCondition": "<p>Specifies a time limit for how long the monitoring job is allowed to run.</p>"
+      }
+    },
+    "MonitoringTimeOffsetString": {
+      "base": null,
+      "refs": {
+        "EndpointInput$StartTimeOffset": "<p>If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>",
+        "EndpointInput$EndTimeOffset": "<p>If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html\">Schedule Model Quality Monitoring Jobs</a>.</p>"
+      }
+    },
+    "MonitoringType": {
+      "base": null,
+      "refs": {
+        "DescribeMonitoringScheduleResponse$MonitoringType": "<p>The type of the monitoring job that this schedule runs. This is one of the following values.</p> <ul> <li> <p> <code>DATA_QUALITY</code> - The schedule is for a data quality monitoring job.</p> </li> <li> <p> <code>MODEL_QUALITY</code> - The schedule is for a model quality monitoring job.</p> </li> <li> <p> <code>MODEL_BIAS</code> - The schedule is for a bias monitoring job.</p> </li> <li> <p> <code>MODEL_EXPLAINABILITY</code> - The schedule is for an explainability monitoring job.</p> </li> </ul>",
+        "ListMonitoringExecutionsRequest$MonitoringTypeEquals": "<p>A filter that returns only the monitoring job runs of the specified monitoring type.</p>",
+        "ListMonitoringSchedulesRequest$MonitoringTypeEquals": "<p>A filter that returns only the monitoring schedules for the specified monitoring type.</p>",
+        "MonitoringExecutionSummary$MonitoringType": "<p>The type of the monitoring job.</p>",
+        "MonitoringSchedule$MonitoringType": "<p>The type of the monitoring job definition to schedule.</p>",
+        "MonitoringScheduleConfig$MonitoringType": "<p>The type of the monitoring job definition to schedule.</p>",
+        "MonitoringScheduleSummary$MonitoringType": "<p>The type of the monitoring job definition that the schedule is for.</p>"
       }
     },
     "MountPath": {
@@ -5751,10 +6540,17 @@
       "refs": {
         "ListAlgorithmsInput$NameContains": "<p>A string in the algorithm name. This filter returns only algorithms whose name contains the specified string.</p>",
         "ListCompilationJobsRequest$NameContains": "<p>A filter that returns the model compilation jobs whose name contains a specified string.</p>",
+        "ListDataQualityJobDefinitionsRequest$NameContains": "<p>A string in the data quality monitoring job definition name. This filter returns only data quality monitoring job definitions whose name contains the specified string.</p>",
+        "ListDeviceFleetsRequest$NameContains": "<p>Filter for fleets containing this name in their fleet device name.</p>",
+        "ListEdgePackagingJobsRequest$NameContains": "<p>Filter for jobs containing this name in their packaging job name.</p>",
+        "ListEdgePackagingJobsRequest$ModelNameContains": "<p>Filter for jobs where the model name contains this string.</p>",
         "ListHyperParameterTuningJobsRequest$NameContains": "<p>A string in the tuning job name. This filter returns only tuning jobs whose name contains the specified string.</p>",
         "ListLabelingJobsRequest$NameContains": "<p>A string in the labeling job name. This filter returns only labeling jobs whose name contains the specified string.</p>",
+        "ListModelBiasJobDefinitionsRequest$NameContains": "<p>Filter for model bias jobs whose name contains a specified string.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$NameContains": "<p>Filter for model explainability jobs whose name contains a specified string.</p>",
         "ListModelPackageGroupsInput$NameContains": "<p>A string in the model group name. This filter returns only model groups whose name contains the specified string.</p>",
         "ListModelPackagesInput$NameContains": "<p>A string in the model package name. This filter returns only model packages whose name contains the specified string.</p>",
+        "ListModelQualityJobDefinitionsRequest$NameContains": "<p>A string in the transform job name. This filter returns only model quality monitoring job definitions whose name contains the specified string.</p>",
         "ListMonitoringSchedulesRequest$NameContains": "<p>Filter for monitoring schedules whose name contains a specified string.</p>",
         "ListTrainingJobsRequest$NameContains": "<p>A string in the training job name. This filter returns only training jobs whose name contains the specified string.</p>",
         "ListTransformJobsRequest$NameContains": "<p>A string in the transform job name. This filter returns only transform jobs whose name contains the specified string.</p>"
@@ -5790,6 +6586,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "DescribeDeviceRequest$NextToken": "<p>Next token of device description.</p>",
+        "DescribeDeviceResponse$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
         "DescribeFeatureGroupRequest$NextToken": "<p>A token to resume pagination of the list of <code>Features</code> (<code>FeatureDefinitions</code>). 2,500 <code>Features</code> are returned by default.</p>",
         "DescribeFeatureGroupResponse$NextToken": "<p>A token to resume pagination of the list of <code>Features</code> (<code>FeatureDefinitions</code>).</p>",
         "ListActionsRequest$NextToken": "<p>If the previous call to <code>ListActions</code> didn't return the full set of actions, the call returns a token for getting the next set of actions.</p>",
@@ -5814,8 +6612,16 @@
         "ListCompilationJobsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this <code>NextToken</code>. To retrieve the next set of model compilation jobs, use this token in the next request.</p>",
         "ListContextsRequest$NextToken": "<p>If the previous call to <code>ListContexts</code> didn't return the full set of contexts, the call returns a token for getting the next set of contexts.</p>",
         "ListContextsResponse$NextToken": "<p>A token for getting the next set of contexts, if there are any.</p>",
+        "ListDataQualityJobDefinitionsRequest$NextToken": "<p>If the result of the previous <code>ListDataQualityJobDefinitions</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of transform jobs, use the token in the next request.&gt;</p>",
+        "ListDataQualityJobDefinitionsResponse$NextToken": "<p>If the result of the previous <code>ListDataQualityJobDefinitions</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of data quality monitoring job definitions, use the token in the next request.</p>",
+        "ListDeviceFleetsRequest$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
+        "ListDeviceFleetsResponse$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
+        "ListDevicesRequest$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
+        "ListDevicesResponse$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
         "ListDomainsRequest$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
         "ListDomainsResponse$NextToken": "<p>If the previous response was truncated, you will receive this token. Use it in your next request to receive the next set of results.</p>",
+        "ListEdgePackagingJobsRequest$NextToken": "<p>The response from the last list when returning a list large enough to need tokening.</p>",
+        "ListEdgePackagingJobsResponse$NextToken": "<p>Token to use when calling the next page of results.</p>",
         "ListExperimentsRequest$NextToken": "<p>If the previous call to <code>ListExperiments</code> didn't return the full set of experiments, the call returns a token for getting the next set of experiments.</p>",
         "ListExperimentsResponse$NextToken": "<p>A token for getting the next set of experiments, if there are any.</p>",
         "ListFeatureGroupsRequest$NextToken": "<p>A token to resume pagination of <code>ListFeatureGroups</code> results.</p>",
@@ -5834,14 +6640,20 @@
         "ListLabelingJobsForWorkteamResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of labeling jobs, use it in the subsequent request.</p>",
         "ListLabelingJobsRequest$NextToken": "<p>If the result of the previous <code>ListLabelingJobs</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of labeling jobs, use the token in the next request.</p>",
         "ListLabelingJobsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of labeling jobs, use it in the subsequent request.</p>",
+        "ListModelBiasJobDefinitionsRequest$NextToken": "<p>The token returned if the response is truncated. To retrieve the next set of job executions, use it in the next request.</p>",
+        "ListModelBiasJobDefinitionsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of jobs, use it in the subsequent request.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$NextToken": "<p>The token returned if the response is truncated. To retrieve the next set of job executions, use it in the next request.</p>",
+        "ListModelExplainabilityJobDefinitionsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of jobs, use it in the subsequent request.</p>",
         "ListModelPackageGroupsInput$NextToken": "<p>If the result of the previous <code>ListModelPackageGroups</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model groups, use the token in the next request.</p>",
         "ListModelPackageGroupsOutput$NextToken": "<p>If the response is truncated, SageMaker returns this token. To retrieve the next set of model groups, use it in the subsequent request.</p>",
         "ListModelPackagesInput$NextToken": "<p>If the response to a previous <code>ListModelPackages</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model packages, use the token in the next request.</p>",
         "ListModelPackagesOutput$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of model packages, use it in the subsequent request.</p>",
+        "ListModelQualityJobDefinitionsRequest$NextToken": "<p>If the result of the previous <code>ListModelQualityJobDefinitions</code> request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of model quality monitoring job definitions, use the token in the next request.</p>",
+        "ListModelQualityJobDefinitionsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of model quality monitoring job definitions, use it in the next request.</p>",
         "ListMonitoringExecutionsRequest$NextToken": "<p>The token returned if the response is truncated. To retrieve the next set of job executions, use it in the next request.</p>",
         "ListMonitoringExecutionsResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of jobs, use it in the subsequent reques</p>",
         "ListMonitoringSchedulesRequest$NextToken": "<p>The token returned if the response is truncated. To retrieve the next set of job executions, use it in the next request.</p>",
-        "ListMonitoringSchedulesResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of jobs, use it in the subsequent reques</p>",
+        "ListMonitoringSchedulesResponse$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To retrieve the next set of jobs, use it in the subsequent request.</p>",
         "ListNotebookInstanceLifecycleConfigsInput$NextToken": "<p>If the result of a <code>ListNotebookInstanceLifecycleConfigs</code> request was truncated, the response includes a <code>NextToken</code>. To get the next set of lifecycle configurations, use the token in the next request.</p>",
         "ListNotebookInstanceLifecycleConfigsOutput$NextToken": "<p>If the response is truncated, Amazon SageMaker returns this token. To get the next set of lifecycle configurations, use it in the next request. </p>",
         "ListNotebookInstancesInput$NextToken": "<p> If the previous call to the <code>ListNotebookInstances</code> is truncated, the response includes a <code>NextToken</code>. You can use this token in your subsequent <code>ListNotebookInstances</code> request to fetch the next set of notebook instances. </p> <note> <p>You might specify a filter or a sort order in your request. When response is truncated, you must use the same values for the filer and sort order in the next request. </p> </note>",
@@ -6196,7 +7008,8 @@
     "OptionalVolumeSizeInGB": {
       "base": null,
       "refs": {
-        "DebugRuleConfiguration$VolumeSizeInGB": "<p>The size, in GB, of the ML storage volume attached to the processing instance.</p>"
+        "DebugRuleConfiguration$VolumeSizeInGB": "<p>The size, in GB, of the ML storage volume attached to the processing instance.</p>",
+        "ProfilerRuleConfiguration$VolumeSizeInGB": "<p>The size, in GB, of the ML storage volume attached to the processing instance.</p>"
       }
     },
     "OrderKey": {
@@ -6505,6 +7318,12 @@
         "CreatePresignedDomainUrlResponse$AuthorizedUrl": "<p>The presigned URL.</p>"
       }
     },
+    "ProbabilityThresholdAttribute": {
+      "base": null,
+      "refs": {
+        "EndpointInput$ProbabilityThresholdAttribute": "<p>The threshold for the class probability to be evaluated as a positive result.</p>"
+      }
+    },
     "ProblemType": {
       "base": null,
       "refs": {
@@ -6571,9 +7390,10 @@
     "ProcessingInstanceType": {
       "base": null,
       "refs": {
-        "DebugRuleConfiguration$InstanceType": "<p>The instance type to deploy for a training job.</p>",
+        "DebugRuleConfiguration$InstanceType": "<p>The instance type to deploy a Debugger custom rule for debugging a training job.</p>",
         "MonitoringClusterConfig$InstanceType": "<p>The ML compute instance type for the processing job.</p>",
-        "ProcessingClusterConfig$InstanceType": "<p>The ML compute instance type for the processing job.</p>"
+        "ProcessingClusterConfig$InstanceType": "<p>The ML compute instance type for the processing job.</p>",
+        "ProfilerRuleConfiguration$InstanceType": "<p>The instance type to deploy a Debugger custom rule for profiling a training job.</p>"
       }
     },
     "ProcessingJob": {
@@ -6591,15 +7411,21 @@
         "MonitoringExecutionSummary$ProcessingJobArn": "<p>The Amazon Resource Name (ARN) of the monitoring job.</p>",
         "ProcessingJob$ProcessingJobArn": "<p>The ARN of the processing job.</p>",
         "ProcessingJobStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the processing job.</p>",
-        "ProcessingJobSummary$ProcessingJobArn": "<p>The Amazon Resource Name (ARN) of the processing job..</p>"
+        "ProcessingJobSummary$ProcessingJobArn": "<p>The Amazon Resource Name (ARN) of the processing job..</p>",
+        "ProfilerRuleEvaluationStatus$RuleEvaluationJobArn": "<p>The Amazon Resource Name (ARN) of the rule evaluation job.</p>"
       }
     },
     "ProcessingJobName": {
       "base": null,
       "refs": {
         "CreateProcessingJobRequest$ProcessingJobName": "<p> The name of the processing job. The name must be unique within an AWS Region in the AWS account.</p>",
+        "DataQualityBaselineConfig$BaseliningJobName": "<p>The name of the job that performs baselining for the data quality monitoring job.</p>",
         "DescribeProcessingJobRequest$ProcessingJobName": "<p>The name of the processing job. The name must be unique within an AWS Region in the AWS account.</p>",
         "DescribeProcessingJobResponse$ProcessingJobName": "<p>The name of the processing job. The name must be unique within an AWS Region in the AWS account.</p>",
+        "ModelBiasBaselineConfig$BaseliningJobName": "<p>The name of the baseline model bias job.</p>",
+        "ModelExplainabilityBaselineConfig$BaseliningJobName": "<p>The name of the baseline model explainability job.</p>",
+        "ModelQualityBaselineConfig$BaseliningJobName": "<p>The name of the job that performs baselining for the monitoring job.</p>",
+        "MonitoringBaselineConfig$BaseliningJobName": "<p>The name of the job that performs baselining for the monitoring job.</p>",
         "ProcessingJob$ProcessingJobName": "<p>The name of the processing job.</p>",
         "ProcessingJobSummary$ProcessingJobName": "<p>The name of the processing job.</p>",
         "StopProcessingJobRequest$ProcessingJobName": "<p>The name of the processing job to stop.</p>"
@@ -6788,6 +7614,65 @@
         "Endpoint$ProductionVariants": "<p>A list of the production variants hosted on the endpoint. Each production variant is a model.</p>"
       }
     },
+    "ProfilerConfig": {
+      "base": "<p>Configuration information for Debugger system monitoring, framework profiling, and storage paths.</p>",
+      "refs": {
+        "CreateTrainingJobRequest$ProfilerConfig": null,
+        "DescribeTrainingJobResponse$ProfilerConfig": null
+      }
+    },
+    "ProfilerConfigForUpdate": {
+      "base": "<p>Configuration information for updating the Debugger profile parameters, system and framework metrics configurations, and storage paths.</p>",
+      "refs": {
+        "UpdateTrainingJobRequest$ProfilerConfig": "<p>Configuration information for Debugger system monitoring, framework profiling, and storage paths.</p>"
+      }
+    },
+    "ProfilerRuleConfiguration": {
+      "base": "<p>Configuration information for profiling rules.</p>",
+      "refs": {
+        "ProfilerRuleConfigurations$member": null
+      }
+    },
+    "ProfilerRuleConfigurations": {
+      "base": null,
+      "refs": {
+        "CreateTrainingJobRequest$ProfilerRuleConfigurations": "<p>Configuration information for Debugger rules for profiling system and framework metrics.</p>",
+        "DescribeTrainingJobResponse$ProfilerRuleConfigurations": "<p>Configuration information for Debugger rules for profiling system and framework metrics.</p>",
+        "UpdateTrainingJobRequest$ProfilerRuleConfigurations": "<p>Configuration information for Debugger rules for profiling system and framework metrics.</p>"
+      }
+    },
+    "ProfilerRuleEvaluationStatus": {
+      "base": "<p>Information about the status of the rule evaluation.</p>",
+      "refs": {
+        "ProfilerRuleEvaluationStatuses$member": null
+      }
+    },
+    "ProfilerRuleEvaluationStatuses": {
+      "base": null,
+      "refs": {
+        "DescribeTrainingJobResponse$ProfilerRuleEvaluationStatuses": "<p>Evaluation status of Debugger rules for profiling on a training job.</p>"
+      }
+    },
+    "ProfilingIntervalInMilliseconds": {
+      "base": null,
+      "refs": {
+        "ProfilerConfig$ProfilingIntervalInMilliseconds": "<p>A time interval for capturing system metrics in milliseconds. Available values are 100, 200, 500, 1000 (1 second), 5000 (5 seconds), and 60000 (1 minute) milliseconds. The default value is 500 milliseconds.</p>",
+        "ProfilerConfigForUpdate$ProfilingIntervalInMilliseconds": "<p>A time interval for capturing system metrics in milliseconds. Available values are 100, 200, 500, 1000 (1 second), 5000 (5 seconds), and 60000 (1 minute) milliseconds. The default value is 500 milliseconds.</p>"
+      }
+    },
+    "ProfilingParameters": {
+      "base": null,
+      "refs": {
+        "ProfilerConfig$ProfilingParameters": "<p>Configuration information for capturing framework metrics. Available key strings for different profiling options are <code>DetailedProfilingConfig</code>, <code>PythonProfilingConfig</code>, and <code>DataLoaderProfilingConfig</code>. The following codes are configuration structures for the <code>ProfilingParameters</code> parameter. To learn more about how to configure the <code>ProfilingParameters</code> parameter, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html\">Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job</a>. </p>",
+        "ProfilerConfigForUpdate$ProfilingParameters": "<p>Configuration information for capturing framework metrics. Available key strings for different profiling options are <code>DetailedProfilingConfig</code>, <code>PythonProfilingConfig</code>, and <code>DataLoaderProfilingConfig</code>. The following codes are configuration structures for the <code>ProfilingParameters</code> parameter. To learn more about how to configure the <code>ProfilingParameters</code> parameter, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/debugger-createtrainingjob-api.html\">Use the SageMaker and Debugger Configuration API Operations to Create, Update, and Debug Your Training Job</a>. </p>"
+      }
+    },
+    "ProfilingStatus": {
+      "base": null,
+      "refs": {
+        "DescribeTrainingJobResponse$ProfilingStatus": "<p>Profiling status of a training job.</p>"
+      }
+    },
     "ProjectArn": {
       "base": null,
       "refs": {
@@ -6971,6 +7856,11 @@
         "RedshiftDatasetDefinition$DbUser": null
       }
     },
+    "RegisterDevicesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RegisterModelStepMetadata": {
       "base": "<p>Metadata for a register model job step.</p>",
       "refs": {
@@ -7119,22 +8009,34 @@
         "AlgorithmValidationSpecification$ValidationRole": "<p>The IAM roles that Amazon SageMaker uses to run the training jobs.</p>",
         "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that is used to access the data.</p>",
         "CreateCompilationJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf. </p> <p>During model compilation, Amazon SageMaker needs your permission to:</p> <ul> <li> <p>Read input data from an S3 bucket</p> </li> <li> <p>Write model artifacts to an S3 bucket</p> </li> <li> <p>Write logs to Amazon CloudWatch Logs</p> </li> <li> <p>Publish metrics to Amazon CloudWatch</p> </li> </ul> <p>You grant permissions for all of these tasks to an IAM role. To pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles.</a> </p>",
+        "CreateDataQualityJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
+        "CreateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT).</p>",
+        "CreateEdgePackagingJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to download and upload the model, and to contact SageMaker Neo.</p>",
         "CreateFeatureGroupRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the <code>OfflineStore</code> if an <code>OfflineStoreConfig</code> is provided.</p>",
         "CreateFlowDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the role needed to call other services on your behalf. For example, <code>arn:aws:iam::1234567890:role/service-role/AmazonSageMaker-ExecutionRole-20180111T151298</code>.</p>",
         "CreateImageRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "CreateLabelingJobRequest$RoleArn": "<p>The Amazon Resource Number (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during data labeling. You must grant this role the necessary permissions so that Amazon SageMaker can successfully complete data labeling.</p>",
+        "CreateModelBiasJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
+        "CreateModelExplainabilityJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "CreateModelInput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume to access model artifacts and docker image for deployment on ML compute instances or for batch transform jobs. Deploying on ML compute instances is part of model hosting. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles</a>. </p> <note> <p>To be able to pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.</p> </note>",
+        "CreateModelQualityJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "CreateNotebookInstanceInput$RoleArn": "<p> When you send any requests to AWS resources from the notebook instance, Amazon SageMaker assumes this role to perform tasks on your behalf. You must grant this role necessary permissions so Amazon SageMaker can perform these tasks. The policy must allow the Amazon SageMaker service principal (sagemaker.amazonaws.com) permissions to assume this role. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles</a>. </p> <note> <p>To be able to pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.</p> </note>",
         "CreatePipelineRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the role used by the pipeline to access and create resources.</p>",
         "CreateProcessingJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "CreateTrainingJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf. </p> <p>During model training, Amazon SageMaker needs your permission to read input data from an S3 bucket, download a Docker image that contains training code, write model artifacts to an S3 bucket, write logs to Amazon CloudWatch Logs, and publish metrics to Amazon CloudWatch. You grant permissions for all of these tasks to an IAM role. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles</a>. </p> <note> <p>To be able to pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.</p> </note>",
         "DescribeAutoMLJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that has read permission to the input data location and write permission to the output data location in Amazon S3.</p>",
         "DescribeCompilationJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the model compilation job.</p>",
+        "DescribeDataQualityJobDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
+        "DescribeDeviceFleetResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT).</p>",
+        "DescribeEdgePackagingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to download and upload the model, and to contact Neo.</p>",
         "DescribeFeatureGroupResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM execution role used to persist data into the <code>OfflineStore</code> if an <code>OfflineStoreConfig</code> is provided.</p>",
         "DescribeFlowDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) execution role for the flow definition.</p>",
         "DescribeImageResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "DescribeLabelingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that Amazon SageMaker assumes to perform tasks on your behalf during data labeling.</p>",
+        "DescribeModelBiasJobDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that has read permission to the input data location and write permission to the output data location in Amazon S3.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that has read permission to the input data location and write permission to the output data location in Amazon S3.</p>",
         "DescribeModelOutput$ExecutionRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that you specified for the model.</p>",
+        "DescribeModelQualityJobDefinitionResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "DescribeNotebookInstanceOutput$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role associated with the instance. </p>",
         "DescribePipelineResponse$RoleArn": "<p>The Amazon Resource Name (ARN) that the pipeline uses to execute.</p>",
         "DescribeProcessingJobResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
@@ -7149,6 +8051,7 @@
         "RedshiftDatasetDefinition$ClusterRoleArn": "<p>The IAM role attached to your Redshift cluster that Amazon SageMaker uses to generate datasets.</p>",
         "RenderUiTemplateRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to the S3 objects that are used by the template.</p>",
         "TrainingJob$RoleArn": "<p>The AWS Identity and Access Management (IAM) role configured for the training job.</p>",
+        "UpdateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the device.</p>",
         "UpdateImageRequest$RoleArn": "<p>The new Amazon Resource Name (ARN) for the IAM role that enables Amazon SageMaker to perform tasks on your behalf.</p>",
         "UpdateNotebookInstanceInput$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker can assume to access the notebook instance. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles</a>. </p> <note> <p>To be able to pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission.</p> </note>",
         "UpdatePipelineRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that the pipeline uses to execute.</p>",
@@ -7167,19 +8070,23 @@
       "base": null,
       "refs": {
         "DebugRuleConfiguration$RuleConfigurationName": "<p>The name of the rule configuration. It must be unique relative to other rule configuration names.</p>",
-        "DebugRuleEvaluationStatus$RuleConfigurationName": "<p>The name of the rule configuration</p>"
+        "DebugRuleEvaluationStatus$RuleConfigurationName": "<p>The name of the rule configuration.</p>",
+        "ProfilerRuleConfiguration$RuleConfigurationName": "<p>The name of the rule configuration. It must be unique relative to other rule configuration names.</p>",
+        "ProfilerRuleEvaluationStatus$RuleConfigurationName": "<p>The name of the rule configuration.</p>"
       }
     },
     "RuleEvaluationStatus": {
       "base": null,
       "refs": {
-        "DebugRuleEvaluationStatus$RuleEvaluationStatus": "<p>Status of the rule evaluation.</p>"
+        "DebugRuleEvaluationStatus$RuleEvaluationStatus": "<p>Status of the rule evaluation.</p>",
+        "ProfilerRuleEvaluationStatus$RuleEvaluationStatus": "<p>Status of the rule evaluation.</p>"
       }
     },
     "RuleParameters": {
       "base": null,
       "refs": {
-        "DebugRuleConfiguration$RuleParameters": "<p> Runtime configuration for rule container.</p>"
+        "DebugRuleConfiguration$RuleParameters": "<p>Runtime configuration for rule container.</p>",
+        "ProfilerRuleConfiguration$RuleParameters": "<p>Runtime configuration for rule container.</p>"
       }
     },
     "S3DataDistribution": {
@@ -7215,9 +8122,13 @@
         "AutoMLS3DataSource$S3Uri": "<p>The URL to the Amazon S3 data source.</p>",
         "CheckpointConfig$S3Uri": "<p>Identifies the S3 path where you want Amazon SageMaker to store checkpoints. For example, <code>s3://bucket-name/key-name-prefix</code>.</p>",
         "CreateLabelingJobRequest$LabelCategoryConfigS3Uri": "<p>The S3 URI of the file that defines the categories used to label the data objects.</p> <p>For 3D point cloud task types, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-label-category-config.html\">Create a Labeling Category Configuration File for 3D Point Cloud Labeling Jobs</a>. </p> <p>For all other <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html\">built-in task types</a> and <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates.html\">custom tasks</a>, your label category configuration file must be a JSON file in the following format. Identify the labels you want to use by replacing <code>label_1</code>, <code>label_2</code>,<code>...</code>,<code>label_n</code> with your label categories.</p> <p> <code>{</code> </p> <p> <code> \"document-version\": \"2018-11-28\"</code> </p> <p> <code> \"labels\": [</code> </p> <p> <code> {</code> </p> <p> <code> \"label\": \"<i>label_1</i>\"</code> </p> <p> <code> },</code> </p> <p> <code> {</code> </p> <p> <code> \"label\": \"<i>label_2</i>\"</code> </p> <p> <code> },</code> </p> <p> <code> ...</code> </p> <p> <code> {</code> </p> <p> <code> \"label\": \"<i>label_n</i>\"</code> </p> <p> <code> }</code> </p> <p> <code> ]</code> </p> <p> <code>}</code> </p>",
-        "DebugHookConfig$S3OutputPath": "<p>Path to Amazon S3 storage location for tensors.</p>",
+        "DataQualityAppSpecification$RecordPreprocessorSourceUri": "<p>An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers.</p>",
+        "DataQualityAppSpecification$PostAnalyticsProcessorSourceUri": "<p>An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.</p>",
+        "DebugHookConfig$S3OutputPath": "<p>Path to Amazon S3 storage location for metrics and tensors.</p>",
         "DebugRuleConfiguration$S3OutputPath": "<p>Path to Amazon S3 storage location for rules.</p>",
+        "DescribeEdgePackagingJobResponse$ModelArtifact": "<p>The Amazon Simple Storage (S3) URI where model artifacts ares stored.</p>",
         "DescribeLabelingJobResponse$LabelCategoryConfigS3Uri": "<p>The S3 location of the JSON file that defines the categories used to label data objects. Please note the following label-category limits:</p> <ul> <li> <p>Semantic segmentation labeling jobs using automated labeling: 20 labels</p> </li> <li> <p>Box bounding labeling jobs (all): 10 labels</p> </li> </ul> <p>The file is a JSON structure in the following format:</p> <p> <code>{</code> </p> <p> <code> \"document-version\": \"2018-11-28\"</code> </p> <p> <code> \"labels\": [</code> </p> <p> <code> {</code> </p> <p> <code> \"label\": \"<i>label 1</i>\"</code> </p> <p> <code> },</code> </p> <p> <code> {</code> </p> <p> <code> \"label\": \"<i>label 2</i>\"</code> </p> <p> <code> },</code> </p> <p> <code> ...</code> </p> <p> <code> {</code> </p> <p> <code> \"label\": \"<i>label n</i>\"</code> </p> <p> <code> }</code> </p> <p> <code> ]</code> </p> <p> <code>}</code> </p>",
+        "EdgeOutputConfig$S3OutputLocation": "<p>The Amazon Simple Storage (S3) bucker URI.</p>",
         "FlowDefinitionOutputConfig$S3OutputPath": "<p>The Amazon S3 path where the object containing human output will be made available.</p>",
         "InputConfig$S3Uri": "<p>The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix).</p>",
         "LabelingJobOutput$OutputDatasetS3Uri": "<p>The Amazon S3 bucket location of the manifest file for labeled data. </p>",
@@ -7225,6 +8136,10 @@
         "LabelingJobS3DataSource$ManifestS3Uri": "<p>The Amazon S3 location of the manifest file that describes the input data objects.</p>",
         "MetricsSource$S3Uri": "<p/>",
         "ModelArtifacts$S3ModelArtifacts": "<p>The path of the S3 object that contains the model artifacts. For example, <code>s3://bucket-name/keynameprefix/model.tar.gz</code>.</p>",
+        "ModelBiasAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines bias parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/json-bias-parameter-config.html\">Configure bias parameters</a>.</p>",
+        "ModelExplainabilityAppSpecification$ConfigUri": "<p>JSON formatted S3 file that defines explainability parameters. For more information on this JSON configuration file, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/json-model-explainability-parameter-config.html\">Configure model explainability parameters</a>.</p>",
+        "ModelQualityAppSpecification$RecordPreprocessorSourceUri": "<p>An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers.</p>",
+        "ModelQualityAppSpecification$PostAnalyticsProcessorSourceUri": "<p>An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.</p>",
         "MonitoringAppSpecification$RecordPreprocessorSourceUri": "<p>An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers.</p>",
         "MonitoringAppSpecification$PostAnalyticsProcessorSourceUri": "<p>An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.</p>",
         "MonitoringConstraintsResource$S3Uri": "<p>The Amazon S3 URI for the constraints resource.</p>",
@@ -7233,6 +8148,9 @@
         "OutputDataConfig$S3OutputPath": "<p>Identifies the S3 path where you want Amazon SageMaker to store the model artifacts. For example, <code>s3://bucket-name/key-name-prefix</code>. </p>",
         "ProcessingS3Input$S3Uri": "<p>The URI for the Amazon S3 storage where you want Amazon SageMaker to download the artifacts needed to run a processing job.</p>",
         "ProcessingS3Output$S3Uri": "<p>A URI that identifies the Amazon S3 bucket where you want Amazon SageMaker to save the results of a processing job.</p>",
+        "ProfilerConfig$S3OutputPath": "<p>Path to Amazon S3 storage location for system and framework metrics.</p>",
+        "ProfilerConfigForUpdate$S3OutputPath": "<p>Path to Amazon S3 storage location for system and framework metrics.</p>",
+        "ProfilerRuleConfiguration$S3OutputPath": "<p>Path to Amazon S3 storage location for rules.</p>",
         "RedshiftDatasetDefinition$OutputS3Uri": "<p>The location in Amazon S3 where the Redshift query results are stored.</p>",
         "S3DataSource$S3Uri": "<p>Depending on the value specified for the <code>S3DataType</code>, identifies either a key name prefix or a manifest. For example: </p> <ul> <li> <p> A key name prefix might look like this: <code>s3://bucketname/exampleprefix</code> </p> </li> <li> <p> A manifest might look like this: <code>s3://bucketname/example.manifest</code> </p> <p> A manifest is an S3 object which is a JSON file consisting of an array of elements. The first element is a prefix which is followed by one or more suffixes. SageMaker appends the suffix elements to the prefix to get a full set of <code>S3Uri</code>. Note that the prefix must be a valid non-empty <code>S3Uri</code> that precludes users from specifying a manifest whose individual <code>S3Uri</code> is sourced from different S3 buckets.</p> <p> The following code example shows a valid manifest format: </p> <p> <code>[ {\"prefix\": \"s3://customer_bucket/some/prefix/\"},</code> </p> <p> <code> \"relative/path/to/custdata-1\",</code> </p> <p> <code> \"relative/path/custdata-2\",</code> </p> <p> <code> ...</code> </p> <p> <code> \"relative/path/custdata-N\"</code> </p> <p> <code>]</code> </p> <p> This JSON is equivalent to the following <code>S3Uri</code> list:</p> <p> <code>s3://customer_bucket/some/prefix/relative/path/to/custdata-1</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-2</code> </p> <p> <code>...</code> </p> <p> <code>s3://customer_bucket/some/prefix/relative/path/custdata-N</code> </p> <p>The complete set of <code>S3Uri</code> in this manifest is the input data for the channel for this data source. The object that each <code>S3Uri</code> points to must be readable by the IAM role that Amazon SageMaker uses to perform tasks on your behalf. </p> </li> </ul>",
         "S3StorageConfig$S3Uri": "<p>The S3 URI, or location in Amazon S3, of <code>OfflineStore</code>.</p> <p>S3 URIs have a format similar to the following: <code>s3://example-bucket/prefix/</code>.</p>",
@@ -7472,14 +8390,20 @@
         "ListAssociationsRequest$SortOrder": "<p>The sort order. The default value is <code>Descending</code>.</p>",
         "ListCompilationJobsRequest$SortOrder": "<p>The sort order for results. The default is <code>Ascending</code>.</p>",
         "ListContextsRequest$SortOrder": "<p>The sort order. The default value is <code>Descending</code>.</p>",
+        "ListDataQualityJobDefinitionsRequest$SortOrder": "<p>The sort order for results. The default is <code>Descending</code>.</p>",
+        "ListDeviceFleetsRequest$SortOrder": "<p>What direction to sort in.</p>",
+        "ListEdgePackagingJobsRequest$SortOrder": "<p>What direction to sort by.</p>",
         "ListExperimentsRequest$SortOrder": "<p>The sort order. The default value is <code>Descending</code>.</p>",
         "ListFlowDefinitionsRequest$SortOrder": "<p>An optional value that specifies whether you want the results sorted in <code>Ascending</code> or <code>Descending</code> order.</p>",
         "ListHumanTaskUisRequest$SortOrder": "<p>An optional value that specifies whether you want the results sorted in <code>Ascending</code> or <code>Descending</code> order.</p>",
         "ListHyperParameterTuningJobsRequest$SortOrder": "<p>The sort order for results. The default is <code>Ascending</code>.</p>",
         "ListLabelingJobsForWorkteamRequest$SortOrder": "<p>The sort order for results. The default is <code>Ascending</code>.</p>",
         "ListLabelingJobsRequest$SortOrder": "<p>The sort order for results. The default is <code>Ascending</code>.</p>",
+        "ListModelBiasJobDefinitionsRequest$SortOrder": "<p>Whether to sort the results in <code>Ascending</code> or <code>Descending</code> order. The default is <code>Descending</code>.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$SortOrder": "<p>Whether to sort the results in <code>Ascending</code> or <code>Descending</code> order. The default is <code>Descending</code>.</p>",
         "ListModelPackageGroupsInput$SortOrder": "<p>The sort order for results. The default is <code>Ascending</code>.</p>",
         "ListModelPackagesInput$SortOrder": "<p>The sort order for the results. The default is <code>Ascending</code>.</p>",
+        "ListModelQualityJobDefinitionsRequest$SortOrder": "<p>The sort order for results. The default is <code>Descending</code>.</p>",
         "ListMonitoringExecutionsRequest$SortOrder": "<p>Whether to sort the results in <code>Ascending</code> or <code>Descending</code> order. The default is <code>Descending</code>.</p>",
         "ListMonitoringSchedulesRequest$SortOrder": "<p>Whether to sort the results in <code>Ascending</code> or <code>Descending</code> order. The default is <code>Descending</code>.</p>",
         "ListPipelineExecutionStepsRequest$SortOrder": "<p>The field by which to sort results. The default is <code>CreatedTime</code>.</p>",
@@ -7593,7 +8517,8 @@
     "StatusDetails": {
       "base": null,
       "refs": {
-        "DebugRuleEvaluationStatus$StatusDetails": "<p>Details from the rule evaluation.</p>"
+        "DebugRuleEvaluationStatus$StatusDetails": "<p>Details from the rule evaluation.</p>",
+        "ProfilerRuleEvaluationStatus$StatusDetails": "<p>Details from the rule evaluation.</p>"
       }
     },
     "StatusMessage": {
@@ -7620,6 +8545,11 @@
       }
     },
     "StopCompilationJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopEdgePackagingJobRequest": {
       "base": null,
       "refs": {
       }
@@ -7685,6 +8615,11 @@
       "base": null,
       "refs": {
         "AlgorithmStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
+        "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",
+        "DescribeEdgePackagingJobResponse$ModelSignature": "<p>The signature document of files in the model artifact.</p>",
+        "EndpointInput$FeaturesAttribute": "<p>The attributes of the input data that are the input features.</p>",
+        "EndpointInput$InferenceAttribute": "<p>The attribute of the input data that represents the ground truth label.</p>",
+        "EndpointInput$ProbabilityAttribute": "<p>In a classification problem, the attribute that represents the class probability.</p>",
         "ListProcessingJobsRequest$NameContains": "<p>A string in the processing job name. This filter returns only processing jobs whose name contains the specified string.</p>",
         "ModelPackageStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
         "ProcessingInput$InputName": "<p>The name of the inputs for the processing job.</p>",
@@ -7855,7 +8790,10 @@
         "CreateCodeRepositoryInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreateCompilationJobRequest$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreateContextRequest$Tags": "<p>A list of tags to apply to the context.</p>",
+        "CreateDataQualityJobDefinitionRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
+        "CreateDeviceFleetRequest$Tags": "<p>Creates tags for the specified fleet.</p>",
         "CreateDomainRequest$Tags": "<p>Tags to associated with the Domain. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the <a>Search</a> API.</p>",
+        "CreateEdgePackagingJobRequest$Tags": "<p>Creates tags for the packaging job.</p>",
         "CreateEndpointConfigInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreateEndpointInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreateExperimentRequest$Tags": "<p>A list of tags to associate with the experiment. You can use <a>Search</a> API to search on the tags.</p>",
@@ -7865,9 +8803,12 @@
         "CreateHyperParameterTuningJobRequest$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p> <p>Tags that you specify for the tuning job are also added to all training jobs that the tuning job launches.</p>",
         "CreateImageRequest$Tags": "<p>A list of tags to apply to the image.</p>",
         "CreateLabelingJobRequest$Tags": "<p>An array of key/value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
+        "CreateModelBiasJobDefinitionRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
+        "CreateModelExplainabilityJobDefinitionRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "CreateModelInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreateModelPackageGroupInput$Tags": "<p>A list of key value pairs associated with the model group. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference Guide</i>.</p>",
         "CreateModelPackageInput$Tags": "<p>A list of key value pairs associated with the model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference Guide</i>.</p>",
+        "CreateModelQualityJobDefinitionRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "CreateMonitoringScheduleRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\" https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "CreateNotebookInstanceInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreatePipelineRequest$Tags": "<p>A list of tags to apply to the created pipeline.</p>",
@@ -7890,6 +8831,7 @@
         "MonitoringSchedule$Tags": "<p>A list of the tags associated with the monitoring schedlue. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a> in the <i>AWS General Reference Guide</i>.</p>",
         "Pipeline$Tags": "<p>A list of tags that apply to the pipeline.</p>",
         "ProcessingJob$Tags": "<p>An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
+        "RegisterDevicesRequest$Tags": "<p>The tags associated with devices.</p>",
         "TrainingJob$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "TransformJob$Tags": "<p>A list of tags associated with the transform job.</p>",
         "Trial$Tags": "<p>The list of tags that are associated with the trial. You can use <a>Search</a> API to search on the tags.</p>",
@@ -8024,7 +8966,7 @@
       }
     },
     "TensorBoardOutputConfig": {
-      "base": "<p>Configuration of storage locations for TensorBoard output.</p>",
+      "base": "<p>Configuration of storage locations for the Debugger TensorBoard output data.</p>",
       "refs": {
         "CreateTrainingJobRequest$TensorBoardOutputConfig": null,
         "DescribeTrainingJobResponse$TensorBoardOutputConfig": null,
@@ -8041,6 +8983,14 @@
       "base": null,
       "refs": {
         "BlueGreenUpdatePolicy$TerminationWaitInSeconds": "<p/>"
+      }
+    },
+    "ThingName": {
+      "base": null,
+      "refs": {
+        "DescribeDeviceResponse$IotThingName": "<p>The AWS Internet of Things (IoT) object thing name associated with the device.</p>",
+        "Device$IotThingName": "<p>AWS Internet of Things (IoT) object name.</p>",
+        "DeviceSummary$IotThingName": "<p>The AWS Internet of Things (IoT) object thing name associated with the device..</p>"
       }
     },
     "Timestamp": {
@@ -8082,6 +9032,13 @@
         "DescribeCompilationJobResponse$CompilationEndTime": "<p>The time when the model compilation job on a compilation job instance ended. For a successful or stopped job, this is when the job's model artifacts have finished uploading. For a failed job, this is when Amazon SageMaker detected that the job failed. </p>",
         "DescribeContextResponse$CreationTime": "<p>When the context was created.</p>",
         "DescribeContextResponse$LastModifiedTime": "<p>When the context was last modified.</p>",
+        "DescribeDataQualityJobDefinitionResponse$CreationTime": "<p>The time that the data quality monitoring job definition was created.</p>",
+        "DescribeDeviceFleetResponse$CreationTime": "<p>Timestamp of when the device fleet was created.</p>",
+        "DescribeDeviceFleetResponse$LastModifiedTime": "<p>Timestamp of when the device fleet was last updated.</p>",
+        "DescribeDeviceResponse$RegistrationTime": "<p>The timestamp of the last registration or de-reregistration.</p>",
+        "DescribeDeviceResponse$LatestHeartbeat": "<p>The last heartbeat received from the device.</p>",
+        "DescribeEdgePackagingJobResponse$CreationTime": "<p>The timestamp of when the packaging job was created.</p>",
+        "DescribeEdgePackagingJobResponse$LastModifiedTime": "<p>The timestamp of when the job was last updated.</p>",
         "DescribeEndpointConfigOutput$CreationTime": "<p>A timestamp that shows when the endpoint configuration was created.</p>",
         "DescribeEndpointOutput$CreationTime": "<p>A timestamp that shows when the endpoint was created.</p>",
         "DescribeEndpointOutput$LastModifiedTime": "<p>A timestamp that shows when the endpoint was last modified.</p>",
@@ -8098,8 +9055,11 @@
         "DescribeImageVersionResponse$LastModifiedTime": "<p>When the version was last modified.</p>",
         "DescribeLabelingJobResponse$CreationTime": "<p>The date and time that the labeling job was created.</p>",
         "DescribeLabelingJobResponse$LastModifiedTime": "<p>The date and time that the labeling job was last updated.</p>",
+        "DescribeModelBiasJobDefinitionResponse$CreationTime": "<p>The time at which the model bias job was created.</p>",
+        "DescribeModelExplainabilityJobDefinitionResponse$CreationTime": "<p>The time at which the model explainability job was created.</p>",
         "DescribeModelOutput$CreationTime": "<p>A timestamp that shows when the model was created.</p>",
         "DescribeModelPackageOutput$LastModifiedTime": "<p>The last time the model package was modified.</p>",
+        "DescribeModelQualityJobDefinitionResponse$CreationTime": "<p>The time at which the model quality job was created.</p>",
         "DescribeMonitoringScheduleResponse$CreationTime": "<p>The time at which the monitoring job was created.</p>",
         "DescribeMonitoringScheduleResponse$LastModifiedTime": "<p>The time at which the monitoring job was last modified.</p>",
         "DescribePipelineDefinitionForExecutionResponse$CreationTime": "<p>The time when the pipeline was created.</p>",
@@ -8126,6 +9086,14 @@
         "DescribeTrialComponentResponse$LastModifiedTime": "<p>When the component was last modified.</p>",
         "DescribeTrialResponse$CreationTime": "<p>When the trial was created.</p>",
         "DescribeTrialResponse$LastModifiedTime": "<p>When the trial was last modified.</p>",
+        "DeviceFleetSummary$CreationTime": "<p>Timestamp of when the device fleet was created.</p>",
+        "DeviceFleetSummary$LastModifiedTime": "<p>Timestamp of when the device fleet was last updated.</p>",
+        "DeviceSummary$RegistrationTime": "<p>The timestamp of the last registration or de-reregistration.</p>",
+        "DeviceSummary$LatestHeartbeat": "<p>The last heartbeat received from the device.</p>",
+        "EdgeModel$LatestSampleTime": "<p>The timestamp of the last data sample taken.</p>",
+        "EdgeModel$LatestInference": "<p>The timestamp of the last inference that was made.</p>",
+        "EdgePackagingJobSummary$CreationTime": "<p>The timestamp of when the job was created.</p>",
+        "EdgePackagingJobSummary$LastModifiedTime": "<p>The timestamp of when the edge packaging job was last updated.</p>",
         "Endpoint$CreationTime": "<p>The time that the endpoint was created.</p>",
         "Endpoint$LastModifiedTime": "<p>The last time the endpoint was modified.</p>",
         "EndpointConfigSummary$CreationTime": "<p>A timestamp that shows when the endpoint configuration was created.</p>",
@@ -8137,6 +9105,7 @@
         "ExperimentSummary$LastModifiedTime": "<p>When the experiment was last modified.</p>",
         "FeatureGroupSummary$CreationTime": "<p>A timestamp indicating the time of creation time of the <code>FeatureGroup</code>.</p>",
         "FlowDefinitionSummary$CreationTime": "<p>The timestamp when SageMaker created the flow definition.</p>",
+        "GetDeviceFleetReportResponse$ReportGenerated": "<p>Timestamp of when the report was generated.</p>",
         "HumanTaskUiSummary$CreationTime": "<p>A timestamp when SageMaker created the human task user interface.</p>",
         "HyperParameterTrainingJobSummary$CreationTime": "<p>The date and time that the training job was created.</p>",
         "HyperParameterTrainingJobSummary$TrainingStartTime": "<p>The date and time that the training job started.</p>",
@@ -8169,6 +9138,17 @@
         "ListCodeRepositoriesInput$LastModifiedTimeBefore": "<p>A filter that returns only Git repositories that were last modified before the specified time.</p>",
         "ListContextsRequest$CreatedAfter": "<p>A filter that returns only contexts created on or after the specified time.</p>",
         "ListContextsRequest$CreatedBefore": "<p>A filter that returns only contexts created on or before the specified time.</p>",
+        "ListDataQualityJobDefinitionsRequest$CreationTimeBefore": "<p>A filter that returns only data quality monitoring job definitions created before the specified time.</p>",
+        "ListDataQualityJobDefinitionsRequest$CreationTimeAfter": "<p>A filter that returns only data quality monitoring job definitions created after the specified time.</p>",
+        "ListDeviceFleetsRequest$CreationTimeAfter": "<p>Filter fleets where packaging job was created after specified time.</p>",
+        "ListDeviceFleetsRequest$CreationTimeBefore": "<p>Filter fleets where the edge packaging job was created before specified time.</p>",
+        "ListDeviceFleetsRequest$LastModifiedTimeAfter": "<p>Select fleets where the job was updated after X</p>",
+        "ListDeviceFleetsRequest$LastModifiedTimeBefore": "<p>Select fleets where the job was updated before X</p>",
+        "ListDevicesRequest$LatestHeartbeatAfter": "<p>Select fleets where the job was updated after X</p>",
+        "ListEdgePackagingJobsRequest$CreationTimeAfter": "<p>Select jobs where the job was created after specified time.</p>",
+        "ListEdgePackagingJobsRequest$CreationTimeBefore": "<p>Select jobs where the job was created before specified time.</p>",
+        "ListEdgePackagingJobsRequest$LastModifiedTimeAfter": "<p>Select jobs where the job was updated after specified time.</p>",
+        "ListEdgePackagingJobsRequest$LastModifiedTimeBefore": "<p>Select jobs where the job was updated before specified time.</p>",
         "ListEndpointConfigsInput$CreationTimeBefore": "<p>A filter that returns only endpoint configurations created before the specified time (timestamp).</p>",
         "ListEndpointConfigsInput$CreationTimeAfter": "<p>A filter that returns only endpoint configurations with a creation time greater than or equal to the specified time (timestamp).</p>",
         "ListEndpointsInput$CreationTimeBefore": "<p>A filter that returns only endpoints that were created before the specified time (timestamp).</p>",
@@ -8199,6 +9179,12 @@
         "ListLabelingJobsRequest$CreationTimeBefore": "<p>A filter that returns only labeling jobs created before the specified time (timestamp).</p>",
         "ListLabelingJobsRequest$LastModifiedTimeAfter": "<p>A filter that returns only labeling jobs modified after the specified time (timestamp).</p>",
         "ListLabelingJobsRequest$LastModifiedTimeBefore": "<p>A filter that returns only labeling jobs modified before the specified time (timestamp).</p>",
+        "ListModelBiasJobDefinitionsRequest$CreationTimeBefore": "<p>A filter that returns only model bias jobs created before a specified time.</p>",
+        "ListModelBiasJobDefinitionsRequest$CreationTimeAfter": "<p>A filter that returns only model bias jobs created after a specified time.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$CreationTimeBefore": "<p>A filter that returns only model explainability jobs created before a specified time.</p>",
+        "ListModelExplainabilityJobDefinitionsRequest$CreationTimeAfter": "<p>A filter that returns only model explainability jobs created after a specified time.</p>",
+        "ListModelQualityJobDefinitionsRequest$CreationTimeBefore": "<p>A filter that returns only model quality monitoring job definitions created before the specified time.</p>",
+        "ListModelQualityJobDefinitionsRequest$CreationTimeAfter": "<p>A filter that returns only model quality monitoring job definitions created after the specified time.</p>",
         "ListModelsInput$CreationTimeBefore": "<p>A filter that returns only models created before the specified time (timestamp).</p>",
         "ListModelsInput$CreationTimeAfter": "<p>A filter that returns only models with a creation time greater than or equal to the specified time (timestamp).</p>",
         "ListMonitoringExecutionsRequest$ScheduledTimeBefore": "<p>Filter for jobs scheduled before a specified time.</p>",
@@ -8239,6 +9225,7 @@
         "MonitoringExecutionSummary$ScheduledTime": "<p>The time the monitoring job was scheduled.</p>",
         "MonitoringExecutionSummary$CreationTime": "<p>The time at which the monitoring job was created.</p>",
         "MonitoringExecutionSummary$LastModifiedTime": "<p>A timestamp that indicates the last time the monitoring job was modified.</p>",
+        "MonitoringJobDefinitionSummary$CreationTime": "<p>The time that the monitoring job was created.</p>",
         "MonitoringSchedule$CreationTime": "<p>The time that the monitoring schedule was created.</p>",
         "MonitoringSchedule$LastModifiedTime": "<p>The last time the monitoring schedule was changed.</p>",
         "MonitoringScheduleSummary$CreationTime": "<p>The creation time of the monitoring schedule.</p>",
@@ -8261,6 +9248,7 @@
         "ProcessingJobSummary$CreationTime": "<p>The time at which the processing job was created.</p>",
         "ProcessingJobSummary$ProcessingEndTime": "<p>The time at which the processing job completed.</p>",
         "ProcessingJobSummary$LastModifiedTime": "<p>A timestamp that indicates the last time the processing job was modified.</p>",
+        "ProfilerRuleEvaluationStatus$LastModifiedTime": "<p>Timestamp when the rule evaluation status was last modified.</p>",
         "ProjectSummary$CreationTime": "<p>The time that the project was created.</p>",
         "SecondaryStatusTransition$StartTime": "<p>A timestamp that shows when the training job transitioned to the current secondary status state.</p>",
         "SecondaryStatusTransition$EndTime": "<p>A timestamp that shows when the training job transitioned out of this secondary status state into another secondary status state or when the training job has ended.</p>",
@@ -8357,7 +9345,8 @@
         "ProcessingJob$TrainingJobArn": "<p>The ARN of the training job associated with this processing job.</p>",
         "TrainingJob$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>",
         "TrainingJobStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the training job that was run by this step execution.</p>",
-        "TrainingJobSummary$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>"
+        "TrainingJobSummary$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>",
+        "UpdateTrainingJobResponse$TrainingJobArn": "<p>The Amazon Resource Name (ARN) of the training job.</p>"
       }
     },
     "TrainingJobDefinition": {
@@ -8381,7 +9370,8 @@
         "HyperParameterTrainingJobSummary$TrainingJobName": "<p>The name of the training job.</p>",
         "StopTrainingJobRequest$TrainingJobName": "<p>The name of the training job to stop.</p>",
         "TrainingJob$TrainingJobName": "<p>The name of the training job.</p>",
-        "TrainingJobSummary$TrainingJobName": "<p>The name of the training job that you want a summary for.</p>"
+        "TrainingJobSummary$TrainingJobName": "<p>The name of the training job that you want a summary for.</p>",
+        "UpdateTrainingJobRequest$TrainingJobName": "<p>The name of a training job to update the Debugger profiling configuration.</p>"
       }
     },
     "TrainingJobSortByOptions": {
@@ -8871,6 +9861,16 @@
       "refs": {
       }
     },
+    "UpdateDeviceFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDevicesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDomainRequest": {
       "base": null,
       "refs": {
@@ -8977,6 +9977,16 @@
       }
     },
     "UpdatePipelineResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTrainingJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTrainingJobResponse": {
       "base": null,
       "refs": {
       }
@@ -9203,6 +10213,7 @@
         "DescribeModelOutput$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that this model has access to. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html\">Protect Endpoints by Using an Amazon Virtual Private Cloud</a> </p>",
         "DescribeTrainingJobResponse$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that this training job has access to. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html\">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.</p>",
         "HyperParameterTrainingJobDefinition$VpcConfig": "<p>The <a>VpcConfig</a> object that specifies the VPC that you want the training jobs that this hyperparameter tuning job launches to connect to. Control access to and from your training container by configuring the VPC. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html\">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.</p>",
+        "MonitoringNetworkConfig$VpcConfig": null,
         "NetworkConfig$VpcConfig": null,
         "TrainingJob$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that this training job has access to. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html\">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.</p>"
       }
