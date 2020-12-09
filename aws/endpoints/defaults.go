@@ -2685,6 +2685,14 @@ var awsPartition = partition{
 				"us-west-2":      endpoint{},
 			},
 		},
+		"emr-containers": service{
+
+			Endpoints: endpoints{
+				"eu-west-1": endpoint{},
+				"us-east-1": endpoint{},
+				"us-west-2": endpoint{},
+			},
+		},
 		"entitlement.marketplace": service{
 			Defaults: endpoint{
 				CredentialScope: credentialScope{
@@ -3246,6 +3254,14 @@ var awsPartition = partition{
 						Region: "us-east-2",
 					},
 				},
+			},
+		},
+		"healthlake": service{
+			Defaults: endpoint{
+				Protocols: []string{"https"},
+			},
+			Endpoints: endpoints{
+				"us-east-1": endpoint{},
 			},
 		},
 		"honeycode": service{

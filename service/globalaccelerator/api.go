@@ -13,6 +13,120 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAddCustomRoutingEndpoints = "AddCustomRoutingEndpoints"
+
+// AddCustomRoutingEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the AddCustomRoutingEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddCustomRoutingEndpoints for more information on using the AddCustomRoutingEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddCustomRoutingEndpointsRequest method.
+//    req, resp := client.AddCustomRoutingEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/AddCustomRoutingEndpoints
+func (c *GlobalAccelerator) AddCustomRoutingEndpointsRequest(input *AddCustomRoutingEndpointsInput) (req *request.Request, output *AddCustomRoutingEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opAddCustomRoutingEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddCustomRoutingEndpointsInput{}
+	}
+
+	output = &AddCustomRoutingEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddCustomRoutingEndpoints API operation for AWS Global Accelerator.
+//
+// Associate a virtual private cloud (VPC) subnet endpoint with your custom
+// routing accelerator.
+//
+// The listener port range must be large enough to support the number of IP
+// addresses that can be specified in your subnet. The number of ports required
+// is: subnet size times the number of ports per destination EC2 instances.
+// For example, a subnet defined as /24 requires a listener port range of at
+// least 255 ports.
+//
+// Note: You must have enough remaining listener ports available to map to the
+// subnet ports, or the call will fail with a LimitExceededException.
+//
+// By default, all destinations in a subnet in a custom routing accelerator
+// cannot receive traffic. To enable all destinations to receive traffic, or
+// to specify individual port mappings that can receive traffic, see the AllowCustomRoutingTraffic
+// (https://docs.aws.amazon.com/global-accelerator/latest/api/API_AllowCustomRoutingTraffic.html)
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation AddCustomRoutingEndpoints for usage and error information.
+//
+// Returned Error Types:
+//   * EndpointAlreadyExistsException
+//   The endpoint that you specified doesn't exist.
+//
+//   * EndpointGroupNotFoundException
+//   The endpoint group that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * LimitExceededException
+//   Processing your request would cause you to exceed an AWS Global Accelerator
+//   limit.
+//
+//   * AccessDeniedException
+//   You don't have access permission.
+//
+//   * ConflictException
+//   You can't use both of those options.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/AddCustomRoutingEndpoints
+func (c *GlobalAccelerator) AddCustomRoutingEndpoints(input *AddCustomRoutingEndpointsInput) (*AddCustomRoutingEndpointsOutput, error) {
+	req, out := c.AddCustomRoutingEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// AddCustomRoutingEndpointsWithContext is the same as AddCustomRoutingEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddCustomRoutingEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) AddCustomRoutingEndpointsWithContext(ctx aws.Context, input *AddCustomRoutingEndpointsInput, opts ...request.Option) (*AddCustomRoutingEndpointsOutput, error) {
+	req, out := c.AddCustomRoutingEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAdvertiseByoipCidr = "AdvertiseByoipCidr"
 
 // AdvertiseByoipCidrRequest generates a "aws/request.Request" representing the
@@ -60,8 +174,7 @@ func (c *GlobalAccelerator) AdvertiseByoipCidrRequest(input *AdvertiseByoipCidrI
 // Advertises an IPv4 address range that is provisioned for use with your AWS
 // resources through bring your own IP addresses (BYOIP). It can take a few
 // minutes before traffic to the specified addresses starts routing to AWS because
-// of propagation delays. To see an AWS CLI example of advertising an address
-// range, scroll down to Example.
+// of propagation delays.
 //
 // To stop advertising the BYOIP address range, use WithdrawByoipCidr (https://docs.aws.amazon.com/global-accelerator/latest/api/WithdrawByoipCidr.html).
 //
@@ -114,6 +227,97 @@ func (c *GlobalAccelerator) AdvertiseByoipCidrWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opAllowCustomRoutingTraffic = "AllowCustomRoutingTraffic"
+
+// AllowCustomRoutingTrafficRequest generates a "aws/request.Request" representing the
+// client's request for the AllowCustomRoutingTraffic operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AllowCustomRoutingTraffic for more information on using the AllowCustomRoutingTraffic
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AllowCustomRoutingTrafficRequest method.
+//    req, resp := client.AllowCustomRoutingTrafficRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/AllowCustomRoutingTraffic
+func (c *GlobalAccelerator) AllowCustomRoutingTrafficRequest(input *AllowCustomRoutingTrafficInput) (req *request.Request, output *AllowCustomRoutingTrafficOutput) {
+	op := &request.Operation{
+		Name:       opAllowCustomRoutingTraffic,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AllowCustomRoutingTrafficInput{}
+	}
+
+	output = &AllowCustomRoutingTrafficOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AllowCustomRoutingTraffic API operation for AWS Global Accelerator.
+//
+// Specify the Amazon EC2 instance (destination) IP addresses and ports for
+// a VPC subnet endpoint that can receive traffic for a custom routing accelerator.
+// You can allow traffic to all destinations in the subnet endpoint, or allow
+// traffic to a specified list of destination IP addresses and ports in the
+// subnet. Note that you cannot specify IP addresses or ports outside of the
+// range that you configured for the endpoint group.
+//
+// After you make changes, you can verify that the updates are complete by checking
+// the status of your accelerator: the status changes from IN_PROGRESS to DEPLOYED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation AllowCustomRoutingTraffic for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/AllowCustomRoutingTraffic
+func (c *GlobalAccelerator) AllowCustomRoutingTraffic(input *AllowCustomRoutingTrafficInput) (*AllowCustomRoutingTrafficOutput, error) {
+	req, out := c.AllowCustomRoutingTrafficRequest(input)
+	return out, req.Send()
+}
+
+// AllowCustomRoutingTrafficWithContext is the same as AllowCustomRoutingTraffic with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AllowCustomRoutingTraffic for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) AllowCustomRoutingTrafficWithContext(ctx aws.Context, input *AllowCustomRoutingTrafficInput, opts ...request.Option) (*AllowCustomRoutingTrafficOutput, error) {
+	req, out := c.AllowCustomRoutingTrafficRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAccelerator = "CreateAccelerator"
 
 // CreateAcceleratorRequest generates a "aws/request.Request" representing the
@@ -160,8 +364,7 @@ func (c *GlobalAccelerator) CreateAcceleratorRequest(input *CreateAcceleratorInp
 //
 // Create an accelerator. An accelerator includes one or more listeners that
 // process inbound connections and direct traffic to one or more endpoint groups,
-// each of which includes endpoints, such as Network Load Balancers. To see
-// an AWS CLI example of creating an accelerator, scroll down to Example.
+// each of which includes endpoints, such as Network Load Balancers.
 //
 // Global Accelerator is a global service that supports endpoints in multiple
 // AWS Regions but you must specify the US West (Oregon) Region to create or
@@ -202,6 +405,301 @@ func (c *GlobalAccelerator) CreateAccelerator(input *CreateAcceleratorInput) (*C
 // for more information on using Contexts.
 func (c *GlobalAccelerator) CreateAcceleratorWithContext(ctx aws.Context, input *CreateAcceleratorInput, opts ...request.Option) (*CreateAcceleratorOutput, error) {
 	req, out := c.CreateAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCustomRoutingAccelerator = "CreateCustomRoutingAccelerator"
+
+// CreateCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomRoutingAccelerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomRoutingAccelerator for more information on using the CreateCustomRoutingAccelerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCustomRoutingAcceleratorRequest method.
+//    req, resp := client.CreateCustomRoutingAcceleratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingAccelerator
+func (c *GlobalAccelerator) CreateCustomRoutingAcceleratorRequest(input *CreateCustomRoutingAcceleratorInput) (req *request.Request, output *CreateCustomRoutingAcceleratorOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomRoutingAccelerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomRoutingAcceleratorInput{}
+	}
+
+	output = &CreateCustomRoutingAcceleratorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomRoutingAccelerator API operation for AWS Global Accelerator.
+//
+// Create a custom routing accelerator. A custom routing accelerator directs
+// traffic to one of possibly thousands of Amazon EC2 instance destinations
+// running in a single or multiple virtual private clouds (VPC) subnet endpoints.
+//
+// Be aware that, by default, all destination EC2 instances in a VPC subnet
+// endpoint cannot receive traffic. To enable all destinations to receive traffic,
+// or to specify individual port mappings that can receive traffic, see the
+// AllowCustomRoutingTraffic (https://docs.aws.amazon.com/global-accelerator/latest/api/API_AllowCustomRoutingTraffic.html)
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation CreateCustomRoutingAccelerator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * LimitExceededException
+//   Processing your request would cause you to exceed an AWS Global Accelerator
+//   limit.
+//
+//   * AccessDeniedException
+//   You don't have access permission.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingAccelerator
+func (c *GlobalAccelerator) CreateCustomRoutingAccelerator(input *CreateCustomRoutingAcceleratorInput) (*CreateCustomRoutingAcceleratorOutput, error) {
+	req, out := c.CreateCustomRoutingAcceleratorRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomRoutingAcceleratorWithContext is the same as CreateCustomRoutingAccelerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomRoutingAccelerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) CreateCustomRoutingAcceleratorWithContext(ctx aws.Context, input *CreateCustomRoutingAcceleratorInput, opts ...request.Option) (*CreateCustomRoutingAcceleratorOutput, error) {
+	req, out := c.CreateCustomRoutingAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCustomRoutingEndpointGroup = "CreateCustomRoutingEndpointGroup"
+
+// CreateCustomRoutingEndpointGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomRoutingEndpointGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomRoutingEndpointGroup for more information on using the CreateCustomRoutingEndpointGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCustomRoutingEndpointGroupRequest method.
+//    req, resp := client.CreateCustomRoutingEndpointGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingEndpointGroup
+func (c *GlobalAccelerator) CreateCustomRoutingEndpointGroupRequest(input *CreateCustomRoutingEndpointGroupInput) (req *request.Request, output *CreateCustomRoutingEndpointGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomRoutingEndpointGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomRoutingEndpointGroupInput{}
+	}
+
+	output = &CreateCustomRoutingEndpointGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomRoutingEndpointGroup API operation for AWS Global Accelerator.
+//
+// Create an endpoint group for the specified listener for a custom routing
+// accelerator. An endpoint group is a collection of endpoints in one AWS Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation CreateCustomRoutingEndpointGroup for usage and error information.
+//
+// Returned Error Types:
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * EndpointGroupAlreadyExistsException
+//   The endpoint group that you specified already exists.
+//
+//   * ListenerNotFoundException
+//   The listener that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InvalidPortRangeException
+//   The port numbers that you specified are not valid numbers or are not unique
+//   for this accelerator.
+//
+//   * LimitExceededException
+//   Processing your request would cause you to exceed an AWS Global Accelerator
+//   limit.
+//
+//   * AccessDeniedException
+//   You don't have access permission.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingEndpointGroup
+func (c *GlobalAccelerator) CreateCustomRoutingEndpointGroup(input *CreateCustomRoutingEndpointGroupInput) (*CreateCustomRoutingEndpointGroupOutput, error) {
+	req, out := c.CreateCustomRoutingEndpointGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomRoutingEndpointGroupWithContext is the same as CreateCustomRoutingEndpointGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomRoutingEndpointGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) CreateCustomRoutingEndpointGroupWithContext(ctx aws.Context, input *CreateCustomRoutingEndpointGroupInput, opts ...request.Option) (*CreateCustomRoutingEndpointGroupOutput, error) {
+	req, out := c.CreateCustomRoutingEndpointGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCustomRoutingListener = "CreateCustomRoutingListener"
+
+// CreateCustomRoutingListenerRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomRoutingListener operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomRoutingListener for more information on using the CreateCustomRoutingListener
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCustomRoutingListenerRequest method.
+//    req, resp := client.CreateCustomRoutingListenerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingListener
+func (c *GlobalAccelerator) CreateCustomRoutingListenerRequest(input *CreateCustomRoutingListenerInput) (req *request.Request, output *CreateCustomRoutingListenerOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomRoutingListener,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomRoutingListenerInput{}
+	}
+
+	output = &CreateCustomRoutingListenerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomRoutingListener API operation for AWS Global Accelerator.
+//
+// Create a listener to process inbound connections from clients to a custom
+// routing accelerator. Connections arrive to assigned static IP addresses on
+// the port range that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation CreateCustomRoutingListener for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InvalidPortRangeException
+//   The port numbers that you specified are not valid numbers or are not unique
+//   for this accelerator.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * LimitExceededException
+//   Processing your request would cause you to exceed an AWS Global Accelerator
+//   limit.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/CreateCustomRoutingListener
+func (c *GlobalAccelerator) CreateCustomRoutingListener(input *CreateCustomRoutingListenerInput) (*CreateCustomRoutingListenerOutput, error) {
+	req, out := c.CreateCustomRoutingListenerRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomRoutingListenerWithContext is the same as CreateCustomRoutingListener with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomRoutingListener for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) CreateCustomRoutingListenerWithContext(ctx aws.Context, input *CreateCustomRoutingListenerInput, opts ...request.Option) (*CreateCustomRoutingListenerOutput, error) {
+	req, out := c.CreateCustomRoutingListenerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -254,8 +752,6 @@ func (c *GlobalAccelerator) CreateEndpointGroupRequest(input *CreateEndpointGrou
 // Create an endpoint group for the specified listener. An endpoint group is
 // a collection of endpoints in one AWS Region. A resource must be valid and
 // active when you add it as an endpoint.
-//
-// To see an AWS CLI example of creating an endpoint group, scroll down to Example.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -355,8 +851,7 @@ func (c *GlobalAccelerator) CreateListenerRequest(input *CreateListenerInput) (r
 //
 // Create a listener to process inbound connections from clients to an accelerator.
 // Connections arrive to assigned static IP addresses on a port, port range,
-// or list of port ranges that you specify. To see an AWS CLI example of creating
-// a listener, scroll down to Example.
+// or list of port ranges that you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -511,6 +1006,293 @@ func (c *GlobalAccelerator) DeleteAccelerator(input *DeleteAcceleratorInput) (*D
 // for more information on using Contexts.
 func (c *GlobalAccelerator) DeleteAcceleratorWithContext(ctx aws.Context, input *DeleteAcceleratorInput, opts ...request.Option) (*DeleteAcceleratorOutput, error) {
 	req, out := c.DeleteAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomRoutingAccelerator = "DeleteCustomRoutingAccelerator"
+
+// DeleteCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomRoutingAccelerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomRoutingAccelerator for more information on using the DeleteCustomRoutingAccelerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCustomRoutingAcceleratorRequest method.
+//    req, resp := client.DeleteCustomRoutingAcceleratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingAccelerator
+func (c *GlobalAccelerator) DeleteCustomRoutingAcceleratorRequest(input *DeleteCustomRoutingAcceleratorInput) (req *request.Request, output *DeleteCustomRoutingAcceleratorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomRoutingAccelerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomRoutingAcceleratorInput{}
+	}
+
+	output = &DeleteCustomRoutingAcceleratorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCustomRoutingAccelerator API operation for AWS Global Accelerator.
+//
+// Delete a custom routing accelerator. Before you can delete an accelerator,
+// you must disable it and remove all dependent resources (listeners and endpoint
+// groups). To disable the accelerator, update the accelerator to set Enabled
+// to false.
+//
+// When you create a custom routing accelerator, by default, Global Accelerator
+// provides you with a set of two static IP addresses.
+//
+// The IP addresses are assigned to your accelerator for as long as it exists,
+// even if you disable the accelerator and it no longer accepts or routes traffic.
+// However, when you delete an accelerator, you lose the static IP addresses
+// that are assigned to the accelerator, so you can no longer route traffic
+// by using them. As a best practice, ensure that you have permissions in place
+// to avoid inadvertently deleting accelerators. You can use IAM policies with
+// Global Accelerator to limit the users who have permissions to delete an accelerator.
+// For more information, see Authentication and Access Control (https://docs.aws.amazon.com/global-accelerator/latest/dg/auth-and-access-control.html)
+// in the AWS Global Accelerator Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DeleteCustomRoutingAccelerator for usage and error information.
+//
+// Returned Error Types:
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * AcceleratorNotDisabledException
+//   The accelerator that you specified could not be disabled.
+//
+//   * AssociatedListenerFoundException
+//   The accelerator that you specified has a listener associated with it. You
+//   must remove all dependent resources from an accelerator before you can delete
+//   it.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingAccelerator
+func (c *GlobalAccelerator) DeleteCustomRoutingAccelerator(input *DeleteCustomRoutingAcceleratorInput) (*DeleteCustomRoutingAcceleratorOutput, error) {
+	req, out := c.DeleteCustomRoutingAcceleratorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomRoutingAcceleratorWithContext is the same as DeleteCustomRoutingAccelerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomRoutingAccelerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DeleteCustomRoutingAcceleratorWithContext(ctx aws.Context, input *DeleteCustomRoutingAcceleratorInput, opts ...request.Option) (*DeleteCustomRoutingAcceleratorOutput, error) {
+	req, out := c.DeleteCustomRoutingAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomRoutingEndpointGroup = "DeleteCustomRoutingEndpointGroup"
+
+// DeleteCustomRoutingEndpointGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomRoutingEndpointGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomRoutingEndpointGroup for more information on using the DeleteCustomRoutingEndpointGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCustomRoutingEndpointGroupRequest method.
+//    req, resp := client.DeleteCustomRoutingEndpointGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingEndpointGroup
+func (c *GlobalAccelerator) DeleteCustomRoutingEndpointGroupRequest(input *DeleteCustomRoutingEndpointGroupInput) (req *request.Request, output *DeleteCustomRoutingEndpointGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomRoutingEndpointGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomRoutingEndpointGroupInput{}
+	}
+
+	output = &DeleteCustomRoutingEndpointGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCustomRoutingEndpointGroup API operation for AWS Global Accelerator.
+//
+// Delete an endpoint group from a listener for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DeleteCustomRoutingEndpointGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * EndpointGroupNotFoundException
+//   The endpoint group that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingEndpointGroup
+func (c *GlobalAccelerator) DeleteCustomRoutingEndpointGroup(input *DeleteCustomRoutingEndpointGroupInput) (*DeleteCustomRoutingEndpointGroupOutput, error) {
+	req, out := c.DeleteCustomRoutingEndpointGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomRoutingEndpointGroupWithContext is the same as DeleteCustomRoutingEndpointGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomRoutingEndpointGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DeleteCustomRoutingEndpointGroupWithContext(ctx aws.Context, input *DeleteCustomRoutingEndpointGroupInput, opts ...request.Option) (*DeleteCustomRoutingEndpointGroupOutput, error) {
+	req, out := c.DeleteCustomRoutingEndpointGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomRoutingListener = "DeleteCustomRoutingListener"
+
+// DeleteCustomRoutingListenerRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomRoutingListener operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomRoutingListener for more information on using the DeleteCustomRoutingListener
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCustomRoutingListenerRequest method.
+//    req, resp := client.DeleteCustomRoutingListenerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingListener
+func (c *GlobalAccelerator) DeleteCustomRoutingListenerRequest(input *DeleteCustomRoutingListenerInput) (req *request.Request, output *DeleteCustomRoutingListenerOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomRoutingListener,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomRoutingListenerInput{}
+	}
+
+	output = &DeleteCustomRoutingListenerOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCustomRoutingListener API operation for AWS Global Accelerator.
+//
+// Delete a listener for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DeleteCustomRoutingListener for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * ListenerNotFoundException
+//   The listener that you specified doesn't exist.
+//
+//   * AssociatedEndpointGroupFoundException
+//   The listener that you specified has an endpoint group associated with it.
+//   You must remove all dependent resources from a listener before you can delete
+//   it.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DeleteCustomRoutingListener
+func (c *GlobalAccelerator) DeleteCustomRoutingListener(input *DeleteCustomRoutingListenerInput) (*DeleteCustomRoutingListenerOutput, error) {
+	req, out := c.DeleteCustomRoutingListenerRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomRoutingListenerWithContext is the same as DeleteCustomRoutingListener with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomRoutingListener for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DeleteCustomRoutingListenerWithContext(ctx aws.Context, input *DeleteCustomRoutingListenerInput, opts ...request.Option) (*DeleteCustomRoutingListenerOutput, error) {
+	req, out := c.DeleteCustomRoutingListenerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -693,6 +1475,97 @@ func (c *GlobalAccelerator) DeleteListenerWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opDenyCustomRoutingTraffic = "DenyCustomRoutingTraffic"
+
+// DenyCustomRoutingTrafficRequest generates a "aws/request.Request" representing the
+// client's request for the DenyCustomRoutingTraffic operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DenyCustomRoutingTraffic for more information on using the DenyCustomRoutingTraffic
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DenyCustomRoutingTrafficRequest method.
+//    req, resp := client.DenyCustomRoutingTrafficRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DenyCustomRoutingTraffic
+func (c *GlobalAccelerator) DenyCustomRoutingTrafficRequest(input *DenyCustomRoutingTrafficInput) (req *request.Request, output *DenyCustomRoutingTrafficOutput) {
+	op := &request.Operation{
+		Name:       opDenyCustomRoutingTraffic,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DenyCustomRoutingTrafficInput{}
+	}
+
+	output = &DenyCustomRoutingTrafficOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DenyCustomRoutingTraffic API operation for AWS Global Accelerator.
+//
+// Specify the Amazon EC2 instance (destination) IP addresses and ports for
+// a VPC subnet endpoint that cannot receive traffic for a custom routing accelerator.
+// You can deny traffic to all destinations in the VPC endpoint, or deny traffic
+// to a specified list of destination IP addresses and ports. Note that you
+// cannot specify IP addresses or ports outside of the range that you configured
+// for the endpoint group.
+//
+// After you make changes, you can verify that the updates are complete by checking
+// the status of your accelerator: the status changes from IN_PROGRESS to DEPLOYED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DenyCustomRoutingTraffic for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DenyCustomRoutingTraffic
+func (c *GlobalAccelerator) DenyCustomRoutingTraffic(input *DenyCustomRoutingTrafficInput) (*DenyCustomRoutingTrafficOutput, error) {
+	req, out := c.DenyCustomRoutingTrafficRequest(input)
+	return out, req.Send()
+}
+
+// DenyCustomRoutingTrafficWithContext is the same as DenyCustomRoutingTraffic with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DenyCustomRoutingTraffic for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DenyCustomRoutingTrafficWithContext(ctx aws.Context, input *DenyCustomRoutingTrafficInput, opts ...request.Option) (*DenyCustomRoutingTrafficOutput, error) {
+	req, out := c.DenyCustomRoutingTrafficRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeprovisionByoipCidr = "DeprovisionByoipCidr"
 
 // DeprovisionByoipCidrRequest generates a "aws/request.Request" representing the
@@ -739,8 +1612,7 @@ func (c *GlobalAccelerator) DeprovisionByoipCidrRequest(input *DeprovisionByoipC
 //
 // Releases the specified address range that you provisioned to use with your
 // AWS resources through bring your own IP addresses (BYOIP) and deletes the
-// corresponding address pool. To see an AWS CLI example of deprovisioning an
-// address range, scroll down to Example.
+// corresponding address pool.
 //
 // Before you can release an address range, you must stop advertising it by
 // using WithdrawByoipCidr (https://docs.aws.amazon.com/global-accelerator/latest/api/WithdrawByoipCidr.html)
@@ -840,8 +1712,7 @@ func (c *GlobalAccelerator) DescribeAcceleratorRequest(input *DescribeAccelerato
 
 // DescribeAccelerator API operation for AWS Global Accelerator.
 //
-// Describe an accelerator. To see an AWS CLI example of describing an accelerator,
-// scroll down to Example.
+// Describe an accelerator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -926,8 +1797,7 @@ func (c *GlobalAccelerator) DescribeAcceleratorAttributesRequest(input *Describe
 
 // DescribeAcceleratorAttributes API operation for AWS Global Accelerator.
 //
-// Describe the attributes of an accelerator. To see an AWS CLI example of describing
-// the attributes of an accelerator, scroll down to Example.
+// Describe the attributes of an accelerator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -963,6 +1833,346 @@ func (c *GlobalAccelerator) DescribeAcceleratorAttributes(input *DescribeAcceler
 // for more information on using Contexts.
 func (c *GlobalAccelerator) DescribeAcceleratorAttributesWithContext(ctx aws.Context, input *DescribeAcceleratorAttributesInput, opts ...request.Option) (*DescribeAcceleratorAttributesOutput, error) {
 	req, out := c.DescribeAcceleratorAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCustomRoutingAccelerator = "DescribeCustomRoutingAccelerator"
+
+// DescribeCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomRoutingAccelerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomRoutingAccelerator for more information on using the DescribeCustomRoutingAccelerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCustomRoutingAcceleratorRequest method.
+//    req, resp := client.DescribeCustomRoutingAcceleratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingAccelerator
+func (c *GlobalAccelerator) DescribeCustomRoutingAcceleratorRequest(input *DescribeCustomRoutingAcceleratorInput) (req *request.Request, output *DescribeCustomRoutingAcceleratorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomRoutingAccelerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCustomRoutingAcceleratorInput{}
+	}
+
+	output = &DescribeCustomRoutingAcceleratorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomRoutingAccelerator API operation for AWS Global Accelerator.
+//
+// Describe a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DescribeCustomRoutingAccelerator for usage and error information.
+//
+// Returned Error Types:
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingAccelerator
+func (c *GlobalAccelerator) DescribeCustomRoutingAccelerator(input *DescribeCustomRoutingAcceleratorInput) (*DescribeCustomRoutingAcceleratorOutput, error) {
+	req, out := c.DescribeCustomRoutingAcceleratorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomRoutingAcceleratorWithContext is the same as DescribeCustomRoutingAccelerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomRoutingAccelerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DescribeCustomRoutingAcceleratorWithContext(ctx aws.Context, input *DescribeCustomRoutingAcceleratorInput, opts ...request.Option) (*DescribeCustomRoutingAcceleratorOutput, error) {
+	req, out := c.DescribeCustomRoutingAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCustomRoutingAcceleratorAttributes = "DescribeCustomRoutingAcceleratorAttributes"
+
+// DescribeCustomRoutingAcceleratorAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomRoutingAcceleratorAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomRoutingAcceleratorAttributes for more information on using the DescribeCustomRoutingAcceleratorAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCustomRoutingAcceleratorAttributesRequest method.
+//    req, resp := client.DescribeCustomRoutingAcceleratorAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingAcceleratorAttributes
+func (c *GlobalAccelerator) DescribeCustomRoutingAcceleratorAttributesRequest(input *DescribeCustomRoutingAcceleratorAttributesInput) (req *request.Request, output *DescribeCustomRoutingAcceleratorAttributesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomRoutingAcceleratorAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCustomRoutingAcceleratorAttributesInput{}
+	}
+
+	output = &DescribeCustomRoutingAcceleratorAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomRoutingAcceleratorAttributes API operation for AWS Global Accelerator.
+//
+// Describe the attributes of a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DescribeCustomRoutingAcceleratorAttributes for usage and error information.
+//
+// Returned Error Types:
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingAcceleratorAttributes
+func (c *GlobalAccelerator) DescribeCustomRoutingAcceleratorAttributes(input *DescribeCustomRoutingAcceleratorAttributesInput) (*DescribeCustomRoutingAcceleratorAttributesOutput, error) {
+	req, out := c.DescribeCustomRoutingAcceleratorAttributesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomRoutingAcceleratorAttributesWithContext is the same as DescribeCustomRoutingAcceleratorAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomRoutingAcceleratorAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DescribeCustomRoutingAcceleratorAttributesWithContext(ctx aws.Context, input *DescribeCustomRoutingAcceleratorAttributesInput, opts ...request.Option) (*DescribeCustomRoutingAcceleratorAttributesOutput, error) {
+	req, out := c.DescribeCustomRoutingAcceleratorAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCustomRoutingEndpointGroup = "DescribeCustomRoutingEndpointGroup"
+
+// DescribeCustomRoutingEndpointGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomRoutingEndpointGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomRoutingEndpointGroup for more information on using the DescribeCustomRoutingEndpointGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCustomRoutingEndpointGroupRequest method.
+//    req, resp := client.DescribeCustomRoutingEndpointGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingEndpointGroup
+func (c *GlobalAccelerator) DescribeCustomRoutingEndpointGroupRequest(input *DescribeCustomRoutingEndpointGroupInput) (req *request.Request, output *DescribeCustomRoutingEndpointGroupOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomRoutingEndpointGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCustomRoutingEndpointGroupInput{}
+	}
+
+	output = &DescribeCustomRoutingEndpointGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomRoutingEndpointGroup API operation for AWS Global Accelerator.
+//
+// Describe an endpoint group for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DescribeCustomRoutingEndpointGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * EndpointGroupNotFoundException
+//   The endpoint group that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingEndpointGroup
+func (c *GlobalAccelerator) DescribeCustomRoutingEndpointGroup(input *DescribeCustomRoutingEndpointGroupInput) (*DescribeCustomRoutingEndpointGroupOutput, error) {
+	req, out := c.DescribeCustomRoutingEndpointGroupRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomRoutingEndpointGroupWithContext is the same as DescribeCustomRoutingEndpointGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomRoutingEndpointGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DescribeCustomRoutingEndpointGroupWithContext(ctx aws.Context, input *DescribeCustomRoutingEndpointGroupInput, opts ...request.Option) (*DescribeCustomRoutingEndpointGroupOutput, error) {
+	req, out := c.DescribeCustomRoutingEndpointGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeCustomRoutingListener = "DescribeCustomRoutingListener"
+
+// DescribeCustomRoutingListenerRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomRoutingListener operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomRoutingListener for more information on using the DescribeCustomRoutingListener
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCustomRoutingListenerRequest method.
+//    req, resp := client.DescribeCustomRoutingListenerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingListener
+func (c *GlobalAccelerator) DescribeCustomRoutingListenerRequest(input *DescribeCustomRoutingListenerInput) (req *request.Request, output *DescribeCustomRoutingListenerOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomRoutingListener,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeCustomRoutingListenerInput{}
+	}
+
+	output = &DescribeCustomRoutingListenerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomRoutingListener API operation for AWS Global Accelerator.
+//
+// The description of a listener for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation DescribeCustomRoutingListener for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * ListenerNotFoundException
+//   The listener that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/DescribeCustomRoutingListener
+func (c *GlobalAccelerator) DescribeCustomRoutingListener(input *DescribeCustomRoutingListenerInput) (*DescribeCustomRoutingListenerOutput, error) {
+	req, out := c.DescribeCustomRoutingListenerRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomRoutingListenerWithContext is the same as DescribeCustomRoutingListener with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomRoutingListener for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) DescribeCustomRoutingListenerWithContext(ctx aws.Context, input *DescribeCustomRoutingListenerInput, opts ...request.Option) (*DescribeCustomRoutingListenerOutput, error) {
+	req, out := c.DescribeCustomRoutingListenerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1012,8 +2222,7 @@ func (c *GlobalAccelerator) DescribeEndpointGroupRequest(input *DescribeEndpoint
 
 // DescribeEndpointGroup API operation for AWS Global Accelerator.
 //
-// Describe an endpoint group. To see an AWS CLI example of describing an endpoint
-// group, scroll down to Example.
+// Describe an endpoint group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1098,8 +2307,7 @@ func (c *GlobalAccelerator) DescribeListenerRequest(input *DescribeListenerInput
 
 // DescribeListener API operation for AWS Global Accelerator.
 //
-// Describe a listener. To see an AWS CLI example of describing a listener,
-// scroll down to Example.
+// Describe a listener.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1171,6 +2379,12 @@ func (c *GlobalAccelerator) ListAcceleratorsRequest(input *ListAcceleratorsInput
 		Name:       opListAccelerators,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1184,8 +2398,7 @@ func (c *GlobalAccelerator) ListAcceleratorsRequest(input *ListAcceleratorsInput
 
 // ListAccelerators API operation for AWS Global Accelerator.
 //
-// List the accelerators for an AWS account. To see an AWS CLI example of listing
-// the accelerators for an AWS account, scroll down to Example.
+// List the accelerators for an AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1224,6 +2437,58 @@ func (c *GlobalAccelerator) ListAcceleratorsWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListAcceleratorsPages iterates over the pages of a ListAccelerators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccelerators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAccelerators operation.
+//    pageNum := 0
+//    err := client.ListAcceleratorsPages(params,
+//        func(page *globalaccelerator.ListAcceleratorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListAcceleratorsPages(input *ListAcceleratorsInput, fn func(*ListAcceleratorsOutput, bool) bool) error {
+	return c.ListAcceleratorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAcceleratorsPagesWithContext same as ListAcceleratorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListAcceleratorsPagesWithContext(ctx aws.Context, input *ListAcceleratorsInput, fn func(*ListAcceleratorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAcceleratorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAcceleratorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAcceleratorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListByoipCidrs = "ListByoipCidrs"
@@ -1274,9 +2539,6 @@ func (c *GlobalAccelerator) ListByoipCidrsRequest(input *ListByoipCidrsInput) (r
 // (https://docs.aws.amazon.com/global-accelerator/latest/api/ProvisionByoipCidr.html),
 // including the current state and a history of state changes.
 //
-// To see an AWS CLI example of listing BYOIP CIDR addresses, scroll down to
-// Example.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1319,6 +2581,755 @@ func (c *GlobalAccelerator) ListByoipCidrsWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+const opListCustomRoutingAccelerators = "ListCustomRoutingAccelerators"
+
+// ListCustomRoutingAcceleratorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomRoutingAccelerators operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomRoutingAccelerators for more information on using the ListCustomRoutingAccelerators
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomRoutingAcceleratorsRequest method.
+//    req, resp := client.ListCustomRoutingAcceleratorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingAccelerators
+func (c *GlobalAccelerator) ListCustomRoutingAcceleratorsRequest(input *ListCustomRoutingAcceleratorsInput) (req *request.Request, output *ListCustomRoutingAcceleratorsOutput) {
+	op := &request.Operation{
+		Name:       opListCustomRoutingAccelerators,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomRoutingAcceleratorsInput{}
+	}
+
+	output = &ListCustomRoutingAcceleratorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomRoutingAccelerators API operation for AWS Global Accelerator.
+//
+// List the custom routing accelerators for an AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCustomRoutingAccelerators for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InvalidNextTokenException
+//   There isn't another item to return.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingAccelerators
+func (c *GlobalAccelerator) ListCustomRoutingAccelerators(input *ListCustomRoutingAcceleratorsInput) (*ListCustomRoutingAcceleratorsOutput, error) {
+	req, out := c.ListCustomRoutingAcceleratorsRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomRoutingAcceleratorsWithContext is the same as ListCustomRoutingAccelerators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomRoutingAccelerators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingAcceleratorsWithContext(ctx aws.Context, input *ListCustomRoutingAcceleratorsInput, opts ...request.Option) (*ListCustomRoutingAcceleratorsOutput, error) {
+	req, out := c.ListCustomRoutingAcceleratorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomRoutingAcceleratorsPages iterates over the pages of a ListCustomRoutingAccelerators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomRoutingAccelerators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomRoutingAccelerators operation.
+//    pageNum := 0
+//    err := client.ListCustomRoutingAcceleratorsPages(params,
+//        func(page *globalaccelerator.ListCustomRoutingAcceleratorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListCustomRoutingAcceleratorsPages(input *ListCustomRoutingAcceleratorsInput, fn func(*ListCustomRoutingAcceleratorsOutput, bool) bool) error {
+	return c.ListCustomRoutingAcceleratorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomRoutingAcceleratorsPagesWithContext same as ListCustomRoutingAcceleratorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingAcceleratorsPagesWithContext(ctx aws.Context, input *ListCustomRoutingAcceleratorsInput, fn func(*ListCustomRoutingAcceleratorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomRoutingAcceleratorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomRoutingAcceleratorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomRoutingAcceleratorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCustomRoutingEndpointGroups = "ListCustomRoutingEndpointGroups"
+
+// ListCustomRoutingEndpointGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomRoutingEndpointGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomRoutingEndpointGroups for more information on using the ListCustomRoutingEndpointGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomRoutingEndpointGroupsRequest method.
+//    req, resp := client.ListCustomRoutingEndpointGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingEndpointGroups
+func (c *GlobalAccelerator) ListCustomRoutingEndpointGroupsRequest(input *ListCustomRoutingEndpointGroupsInput) (req *request.Request, output *ListCustomRoutingEndpointGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListCustomRoutingEndpointGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomRoutingEndpointGroupsInput{}
+	}
+
+	output = &ListCustomRoutingEndpointGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomRoutingEndpointGroups API operation for AWS Global Accelerator.
+//
+// List the endpoint groups that are associated with a listener for a custom
+// routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCustomRoutingEndpointGroups for usage and error information.
+//
+// Returned Error Types:
+//   * ListenerNotFoundException
+//   The listener that you specified doesn't exist.
+//
+//   * InvalidNextTokenException
+//   There isn't another item to return.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingEndpointGroups
+func (c *GlobalAccelerator) ListCustomRoutingEndpointGroups(input *ListCustomRoutingEndpointGroupsInput) (*ListCustomRoutingEndpointGroupsOutput, error) {
+	req, out := c.ListCustomRoutingEndpointGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomRoutingEndpointGroupsWithContext is the same as ListCustomRoutingEndpointGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomRoutingEndpointGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingEndpointGroupsWithContext(ctx aws.Context, input *ListCustomRoutingEndpointGroupsInput, opts ...request.Option) (*ListCustomRoutingEndpointGroupsOutput, error) {
+	req, out := c.ListCustomRoutingEndpointGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomRoutingEndpointGroupsPages iterates over the pages of a ListCustomRoutingEndpointGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomRoutingEndpointGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomRoutingEndpointGroups operation.
+//    pageNum := 0
+//    err := client.ListCustomRoutingEndpointGroupsPages(params,
+//        func(page *globalaccelerator.ListCustomRoutingEndpointGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListCustomRoutingEndpointGroupsPages(input *ListCustomRoutingEndpointGroupsInput, fn func(*ListCustomRoutingEndpointGroupsOutput, bool) bool) error {
+	return c.ListCustomRoutingEndpointGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomRoutingEndpointGroupsPagesWithContext same as ListCustomRoutingEndpointGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingEndpointGroupsPagesWithContext(ctx aws.Context, input *ListCustomRoutingEndpointGroupsInput, fn func(*ListCustomRoutingEndpointGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomRoutingEndpointGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomRoutingEndpointGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomRoutingEndpointGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCustomRoutingListeners = "ListCustomRoutingListeners"
+
+// ListCustomRoutingListenersRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomRoutingListeners operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomRoutingListeners for more information on using the ListCustomRoutingListeners
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomRoutingListenersRequest method.
+//    req, resp := client.ListCustomRoutingListenersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingListeners
+func (c *GlobalAccelerator) ListCustomRoutingListenersRequest(input *ListCustomRoutingListenersInput) (req *request.Request, output *ListCustomRoutingListenersOutput) {
+	op := &request.Operation{
+		Name:       opListCustomRoutingListeners,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomRoutingListenersInput{}
+	}
+
+	output = &ListCustomRoutingListenersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomRoutingListeners API operation for AWS Global Accelerator.
+//
+// List the listeners for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCustomRoutingListeners for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InvalidNextTokenException
+//   There isn't another item to return.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingListeners
+func (c *GlobalAccelerator) ListCustomRoutingListeners(input *ListCustomRoutingListenersInput) (*ListCustomRoutingListenersOutput, error) {
+	req, out := c.ListCustomRoutingListenersRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomRoutingListenersWithContext is the same as ListCustomRoutingListeners with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomRoutingListeners for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingListenersWithContext(ctx aws.Context, input *ListCustomRoutingListenersInput, opts ...request.Option) (*ListCustomRoutingListenersOutput, error) {
+	req, out := c.ListCustomRoutingListenersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomRoutingListenersPages iterates over the pages of a ListCustomRoutingListeners operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomRoutingListeners method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomRoutingListeners operation.
+//    pageNum := 0
+//    err := client.ListCustomRoutingListenersPages(params,
+//        func(page *globalaccelerator.ListCustomRoutingListenersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListCustomRoutingListenersPages(input *ListCustomRoutingListenersInput, fn func(*ListCustomRoutingListenersOutput, bool) bool) error {
+	return c.ListCustomRoutingListenersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomRoutingListenersPagesWithContext same as ListCustomRoutingListenersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingListenersPagesWithContext(ctx aws.Context, input *ListCustomRoutingListenersInput, fn func(*ListCustomRoutingListenersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomRoutingListenersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomRoutingListenersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomRoutingListenersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCustomRoutingPortMappings = "ListCustomRoutingPortMappings"
+
+// ListCustomRoutingPortMappingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomRoutingPortMappings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomRoutingPortMappings for more information on using the ListCustomRoutingPortMappings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomRoutingPortMappingsRequest method.
+//    req, resp := client.ListCustomRoutingPortMappingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingPortMappings
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsRequest(input *ListCustomRoutingPortMappingsInput) (req *request.Request, output *ListCustomRoutingPortMappingsOutput) {
+	op := &request.Operation{
+		Name:       opListCustomRoutingPortMappings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomRoutingPortMappingsInput{}
+	}
+
+	output = &ListCustomRoutingPortMappingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomRoutingPortMappings API operation for AWS Global Accelerator.
+//
+// Provides a complete mapping from the public accelerator IP address and port
+// to destination EC2 instance IP addresses and ports in the virtual public
+// cloud (VPC) subnet endpoint for a custom routing accelerator. For each subnet
+// endpoint that you add, Global Accelerator creates a new static port mapping
+// for the accelerator. The port mappings don't change after Global Accelerator
+// generates them, so you can retrieve and cache the full mapping on your servers.
+//
+// If you remove a subnet from your accelerator, Global Accelerator removes
+// (reclaims) the port mappings. If you add a subnet to your accelerator, Global
+// Accelerator creates new port mappings (the existing ones don't change). If
+// you add or remove EC2 instances in your subnet, the port mappings don't change,
+// because the mappings are created when you add the subnet to Global Accelerator.
+//
+// The mappings also include a flag for each destination denoting which destination
+// IP addresses and ports are allowed or denied traffic.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCustomRoutingPortMappings for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InvalidNextTokenException
+//   There isn't another item to return.
+//
+//   * EndpointGroupNotFoundException
+//   The endpoint group that you specified doesn't exist.
+//
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingPortMappings
+func (c *GlobalAccelerator) ListCustomRoutingPortMappings(input *ListCustomRoutingPortMappingsInput) (*ListCustomRoutingPortMappingsOutput, error) {
+	req, out := c.ListCustomRoutingPortMappingsRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomRoutingPortMappingsWithContext is the same as ListCustomRoutingPortMappings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomRoutingPortMappings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsWithContext(ctx aws.Context, input *ListCustomRoutingPortMappingsInput, opts ...request.Option) (*ListCustomRoutingPortMappingsOutput, error) {
+	req, out := c.ListCustomRoutingPortMappingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomRoutingPortMappingsPages iterates over the pages of a ListCustomRoutingPortMappings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomRoutingPortMappings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomRoutingPortMappings operation.
+//    pageNum := 0
+//    err := client.ListCustomRoutingPortMappingsPages(params,
+//        func(page *globalaccelerator.ListCustomRoutingPortMappingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsPages(input *ListCustomRoutingPortMappingsInput, fn func(*ListCustomRoutingPortMappingsOutput, bool) bool) error {
+	return c.ListCustomRoutingPortMappingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomRoutingPortMappingsPagesWithContext same as ListCustomRoutingPortMappingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsPagesWithContext(ctx aws.Context, input *ListCustomRoutingPortMappingsInput, fn func(*ListCustomRoutingPortMappingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomRoutingPortMappingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomRoutingPortMappingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomRoutingPortMappingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCustomRoutingPortMappingsByDestination = "ListCustomRoutingPortMappingsByDestination"
+
+// ListCustomRoutingPortMappingsByDestinationRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomRoutingPortMappingsByDestination operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomRoutingPortMappingsByDestination for more information on using the ListCustomRoutingPortMappingsByDestination
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomRoutingPortMappingsByDestinationRequest method.
+//    req, resp := client.ListCustomRoutingPortMappingsByDestinationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingPortMappingsByDestination
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsByDestinationRequest(input *ListCustomRoutingPortMappingsByDestinationInput) (req *request.Request, output *ListCustomRoutingPortMappingsByDestinationOutput) {
+	op := &request.Operation{
+		Name:       opListCustomRoutingPortMappingsByDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomRoutingPortMappingsByDestinationInput{}
+	}
+
+	output = &ListCustomRoutingPortMappingsByDestinationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomRoutingPortMappingsByDestination API operation for AWS Global Accelerator.
+//
+// List the port mappings for a specific EC2 instance (destination) in a VPC
+// subnet endpoint. The response is the mappings for one destination IP address.
+// This is useful when your subnet endpoint has mappings that span multiple
+// custom routing accelerators in your account, or for scenarios where you only
+// want to list the port mappings for a specific destination instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation ListCustomRoutingPortMappingsByDestination for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InvalidNextTokenException
+//   There isn't another item to return.
+//
+//   * EndpointNotFoundException
+//   The endpoint that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/ListCustomRoutingPortMappingsByDestination
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsByDestination(input *ListCustomRoutingPortMappingsByDestinationInput) (*ListCustomRoutingPortMappingsByDestinationOutput, error) {
+	req, out := c.ListCustomRoutingPortMappingsByDestinationRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomRoutingPortMappingsByDestinationWithContext is the same as ListCustomRoutingPortMappingsByDestination with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomRoutingPortMappingsByDestination for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsByDestinationWithContext(ctx aws.Context, input *ListCustomRoutingPortMappingsByDestinationInput, opts ...request.Option) (*ListCustomRoutingPortMappingsByDestinationOutput, error) {
+	req, out := c.ListCustomRoutingPortMappingsByDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomRoutingPortMappingsByDestinationPages iterates over the pages of a ListCustomRoutingPortMappingsByDestination operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomRoutingPortMappingsByDestination method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomRoutingPortMappingsByDestination operation.
+//    pageNum := 0
+//    err := client.ListCustomRoutingPortMappingsByDestinationPages(params,
+//        func(page *globalaccelerator.ListCustomRoutingPortMappingsByDestinationOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsByDestinationPages(input *ListCustomRoutingPortMappingsByDestinationInput, fn func(*ListCustomRoutingPortMappingsByDestinationOutput, bool) bool) error {
+	return c.ListCustomRoutingPortMappingsByDestinationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomRoutingPortMappingsByDestinationPagesWithContext same as ListCustomRoutingPortMappingsByDestinationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListCustomRoutingPortMappingsByDestinationPagesWithContext(ctx aws.Context, input *ListCustomRoutingPortMappingsByDestinationInput, fn func(*ListCustomRoutingPortMappingsByDestinationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomRoutingPortMappingsByDestinationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomRoutingPortMappingsByDestinationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomRoutingPortMappingsByDestinationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListEndpointGroups = "ListEndpointGroups"
 
 // ListEndpointGroupsRequest generates a "aws/request.Request" representing the
@@ -1350,6 +3361,12 @@ func (c *GlobalAccelerator) ListEndpointGroupsRequest(input *ListEndpointGroupsI
 		Name:       opListEndpointGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1363,8 +3380,7 @@ func (c *GlobalAccelerator) ListEndpointGroupsRequest(input *ListEndpointGroupsI
 
 // ListEndpointGroups API operation for AWS Global Accelerator.
 //
-// List the endpoint groups that are associated with a listener. To see an AWS
-// CLI example of listing the endpoint groups for listener, scroll down to Example.
+// List the endpoint groups that are associated with a listener.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1408,6 +3424,58 @@ func (c *GlobalAccelerator) ListEndpointGroupsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// ListEndpointGroupsPages iterates over the pages of a ListEndpointGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEndpointGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEndpointGroups operation.
+//    pageNum := 0
+//    err := client.ListEndpointGroupsPages(params,
+//        func(page *globalaccelerator.ListEndpointGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListEndpointGroupsPages(input *ListEndpointGroupsInput, fn func(*ListEndpointGroupsOutput, bool) bool) error {
+	return c.ListEndpointGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEndpointGroupsPagesWithContext same as ListEndpointGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListEndpointGroupsPagesWithContext(ctx aws.Context, input *ListEndpointGroupsInput, fn func(*ListEndpointGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEndpointGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEndpointGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEndpointGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListListeners = "ListListeners"
 
 // ListListenersRequest generates a "aws/request.Request" representing the
@@ -1439,6 +3507,12 @@ func (c *GlobalAccelerator) ListListenersRequest(input *ListListenersInput) (req
 		Name:       opListListeners,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1452,8 +3526,7 @@ func (c *GlobalAccelerator) ListListenersRequest(input *ListListenersInput) (req
 
 // ListListeners API operation for AWS Global Accelerator.
 //
-// List the listeners for an accelerator. To see an AWS CLI example of listing
-// the listeners for an accelerator, scroll down to Example.
+// List the listeners for an accelerator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1495,6 +3568,58 @@ func (c *GlobalAccelerator) ListListenersWithContext(ctx aws.Context, input *Lis
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListListenersPages iterates over the pages of a ListListeners operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListListeners method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListListeners operation.
+//    pageNum := 0
+//    err := client.ListListenersPages(params,
+//        func(page *globalaccelerator.ListListenersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListListenersPages(input *ListListenersInput, fn func(*ListListenersOutput, bool) bool) error {
+	return c.ListListenersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListListenersPagesWithContext same as ListListenersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListListenersPagesWithContext(ctx aws.Context, input *ListListenersInput, fn func(*ListListenersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListListenersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListListenersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListListenersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -1541,8 +3666,7 @@ func (c *GlobalAccelerator) ListTagsForResourceRequest(input *ListTagsForResourc
 
 // ListTagsForResource API operation for AWS Global Accelerator.
 //
-// List all tags for an accelerator. To see an AWS CLI example of listing tags
-// for an accelerator, scroll down to Example.
+// List all tags for an accelerator.
 //
 // For more information, see Tagging in AWS Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html)
 // in the AWS Global Accelerator Developer Guide.
@@ -1635,9 +3759,6 @@ func (c *GlobalAccelerator) ProvisionByoipCidrRequest(input *ProvisionByoipCidrI
 // the address range is provisioned, it is ready to be advertised using AdvertiseByoipCidr
 // (https://docs.aws.amazon.com/global-accelerator/latest/api/AdvertiseByoipCidr.html).
 //
-// To see an AWS CLI example of provisioning an address range for BYOIP, scroll
-// down to Example.
-//
 // For more information, see Bring Your Own IP Addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
 // in the AWS Global Accelerator Developer Guide.
 //
@@ -1688,6 +3809,101 @@ func (c *GlobalAccelerator) ProvisionByoipCidrWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opRemoveCustomRoutingEndpoints = "RemoveCustomRoutingEndpoints"
+
+// RemoveCustomRoutingEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveCustomRoutingEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveCustomRoutingEndpoints for more information on using the RemoveCustomRoutingEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveCustomRoutingEndpointsRequest method.
+//    req, resp := client.RemoveCustomRoutingEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/RemoveCustomRoutingEndpoints
+func (c *GlobalAccelerator) RemoveCustomRoutingEndpointsRequest(input *RemoveCustomRoutingEndpointsInput) (req *request.Request, output *RemoveCustomRoutingEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opRemoveCustomRoutingEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveCustomRoutingEndpointsInput{}
+	}
+
+	output = &RemoveCustomRoutingEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RemoveCustomRoutingEndpoints API operation for AWS Global Accelerator.
+//
+// Remove endpoints from a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation RemoveCustomRoutingEndpoints for usage and error information.
+//
+// Returned Error Types:
+//   * EndpointGroupNotFoundException
+//   The endpoint group that you specified doesn't exist.
+//
+//   * EndpointNotFoundException
+//   The endpoint that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * AccessDeniedException
+//   You don't have access permission.
+//
+//   * ConflictException
+//   You can't use both of those options.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/RemoveCustomRoutingEndpoints
+func (c *GlobalAccelerator) RemoveCustomRoutingEndpoints(input *RemoveCustomRoutingEndpointsInput) (*RemoveCustomRoutingEndpointsOutput, error) {
+	req, out := c.RemoveCustomRoutingEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// RemoveCustomRoutingEndpointsWithContext is the same as RemoveCustomRoutingEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveCustomRoutingEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) RemoveCustomRoutingEndpointsWithContext(ctx aws.Context, input *RemoveCustomRoutingEndpointsInput, opts ...request.Option) (*RemoveCustomRoutingEndpointsOutput, error) {
+	req, out := c.RemoveCustomRoutingEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1733,8 +3949,7 @@ func (c *GlobalAccelerator) TagResourceRequest(input *TagResourceInput) (req *re
 
 // TagResource API operation for AWS Global Accelerator.
 //
-// Add tags to an accelerator resource. To see an AWS CLI example of adding
-// tags to an accelerator, scroll down to Example.
+// Add tags to an accelerator resource.
 //
 // For more information, see Tagging in AWS Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html)
 // in the AWS Global Accelerator Developer Guide.
@@ -1824,10 +4039,9 @@ func (c *GlobalAccelerator) UntagResourceRequest(input *UntagResourceInput) (req
 // UntagResource API operation for AWS Global Accelerator.
 //
 // Remove tags from a Global Accelerator resource. When you specify a tag key,
-// the action removes both that key and its associated value. To see an AWS
-// CLI example of removing tags from an accelerator, scroll down to Example.
-// The operation succeeds even if you attempt to remove tags from an accelerator
-// that was already removed.
+// the action removes both that key and its associated value. The operation
+// succeeds even if you attempt to remove tags from an accelerator that was
+// already removed.
 //
 // For more information, see Tagging in AWS Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html)
 // in the AWS Global Accelerator Developer Guide.
@@ -1915,8 +4129,7 @@ func (c *GlobalAccelerator) UpdateAcceleratorRequest(input *UpdateAcceleratorInp
 
 // UpdateAccelerator API operation for AWS Global Accelerator.
 //
-// Update an accelerator. To see an AWS CLI example of updating an accelerator,
-// scroll down to Example.
+// Update an accelerator.
 //
 // Global Accelerator is a global service that supports endpoints in multiple
 // AWS Regions but you must specify the US West (Oregon) Region to create or
@@ -2005,8 +4218,7 @@ func (c *GlobalAccelerator) UpdateAcceleratorAttributesRequest(input *UpdateAcce
 
 // UpdateAcceleratorAttributes API operation for AWS Global Accelerator.
 //
-// Update the attributes for an accelerator. To see an AWS CLI example of updating
-// an accelerator to enable flow logs, scroll down to Example.
+// Update the attributes for an accelerator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2045,6 +4257,272 @@ func (c *GlobalAccelerator) UpdateAcceleratorAttributes(input *UpdateAccelerator
 // for more information on using Contexts.
 func (c *GlobalAccelerator) UpdateAcceleratorAttributesWithContext(ctx aws.Context, input *UpdateAcceleratorAttributesInput, opts ...request.Option) (*UpdateAcceleratorAttributesOutput, error) {
 	req, out := c.UpdateAcceleratorAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCustomRoutingAccelerator = "UpdateCustomRoutingAccelerator"
+
+// UpdateCustomRoutingAcceleratorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCustomRoutingAccelerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCustomRoutingAccelerator for more information on using the UpdateCustomRoutingAccelerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCustomRoutingAcceleratorRequest method.
+//    req, resp := client.UpdateCustomRoutingAcceleratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingAccelerator
+func (c *GlobalAccelerator) UpdateCustomRoutingAcceleratorRequest(input *UpdateCustomRoutingAcceleratorInput) (req *request.Request, output *UpdateCustomRoutingAcceleratorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCustomRoutingAccelerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCustomRoutingAcceleratorInput{}
+	}
+
+	output = &UpdateCustomRoutingAcceleratorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCustomRoutingAccelerator API operation for AWS Global Accelerator.
+//
+// Update a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation UpdateCustomRoutingAccelerator for usage and error information.
+//
+// Returned Error Types:
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingAccelerator
+func (c *GlobalAccelerator) UpdateCustomRoutingAccelerator(input *UpdateCustomRoutingAcceleratorInput) (*UpdateCustomRoutingAcceleratorOutput, error) {
+	req, out := c.UpdateCustomRoutingAcceleratorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCustomRoutingAcceleratorWithContext is the same as UpdateCustomRoutingAccelerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCustomRoutingAccelerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) UpdateCustomRoutingAcceleratorWithContext(ctx aws.Context, input *UpdateCustomRoutingAcceleratorInput, opts ...request.Option) (*UpdateCustomRoutingAcceleratorOutput, error) {
+	req, out := c.UpdateCustomRoutingAcceleratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCustomRoutingAcceleratorAttributes = "UpdateCustomRoutingAcceleratorAttributes"
+
+// UpdateCustomRoutingAcceleratorAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCustomRoutingAcceleratorAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCustomRoutingAcceleratorAttributes for more information on using the UpdateCustomRoutingAcceleratorAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCustomRoutingAcceleratorAttributesRequest method.
+//    req, resp := client.UpdateCustomRoutingAcceleratorAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingAcceleratorAttributes
+func (c *GlobalAccelerator) UpdateCustomRoutingAcceleratorAttributesRequest(input *UpdateCustomRoutingAcceleratorAttributesInput) (req *request.Request, output *UpdateCustomRoutingAcceleratorAttributesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCustomRoutingAcceleratorAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCustomRoutingAcceleratorAttributesInput{}
+	}
+
+	output = &UpdateCustomRoutingAcceleratorAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCustomRoutingAcceleratorAttributes API operation for AWS Global Accelerator.
+//
+// Update the attributes for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation UpdateCustomRoutingAcceleratorAttributes for usage and error information.
+//
+// Returned Error Types:
+//   * AcceleratorNotFoundException
+//   The accelerator that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * AccessDeniedException
+//   You don't have access permission.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingAcceleratorAttributes
+func (c *GlobalAccelerator) UpdateCustomRoutingAcceleratorAttributes(input *UpdateCustomRoutingAcceleratorAttributesInput) (*UpdateCustomRoutingAcceleratorAttributesOutput, error) {
+	req, out := c.UpdateCustomRoutingAcceleratorAttributesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCustomRoutingAcceleratorAttributesWithContext is the same as UpdateCustomRoutingAcceleratorAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCustomRoutingAcceleratorAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) UpdateCustomRoutingAcceleratorAttributesWithContext(ctx aws.Context, input *UpdateCustomRoutingAcceleratorAttributesInput, opts ...request.Option) (*UpdateCustomRoutingAcceleratorAttributesOutput, error) {
+	req, out := c.UpdateCustomRoutingAcceleratorAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCustomRoutingListener = "UpdateCustomRoutingListener"
+
+// UpdateCustomRoutingListenerRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCustomRoutingListener operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCustomRoutingListener for more information on using the UpdateCustomRoutingListener
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCustomRoutingListenerRequest method.
+//    req, resp := client.UpdateCustomRoutingListenerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingListener
+func (c *GlobalAccelerator) UpdateCustomRoutingListenerRequest(input *UpdateCustomRoutingListenerInput) (req *request.Request, output *UpdateCustomRoutingListenerOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCustomRoutingListener,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCustomRoutingListenerInput{}
+	}
+
+	output = &UpdateCustomRoutingListenerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCustomRoutingListener API operation for AWS Global Accelerator.
+//
+// Update a listener for a custom routing accelerator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Global Accelerator's
+// API operation UpdateCustomRoutingListener for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   An argument that you specified is invalid.
+//
+//   * InvalidPortRangeException
+//   The port numbers that you specified are not valid numbers or are not unique
+//   for this accelerator.
+//
+//   * ListenerNotFoundException
+//   The listener that you specified doesn't exist.
+//
+//   * InternalServiceErrorException
+//   There was an internal error for AWS Global Accelerator.
+//
+//   * LimitExceededException
+//   Processing your request would cause you to exceed an AWS Global Accelerator
+//   limit.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/globalaccelerator-2018-08-08/UpdateCustomRoutingListener
+func (c *GlobalAccelerator) UpdateCustomRoutingListener(input *UpdateCustomRoutingListenerInput) (*UpdateCustomRoutingListenerOutput, error) {
+	req, out := c.UpdateCustomRoutingListenerRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCustomRoutingListenerWithContext is the same as UpdateCustomRoutingListener with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCustomRoutingListener for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) UpdateCustomRoutingListenerWithContext(ctx aws.Context, input *UpdateCustomRoutingListenerInput, opts ...request.Option) (*UpdateCustomRoutingListenerOutput, error) {
+	req, out := c.UpdateCustomRoutingListenerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2096,8 +4574,6 @@ func (c *GlobalAccelerator) UpdateEndpointGroupRequest(input *UpdateEndpointGrou
 //
 // Update an endpoint group. A resource must be valid and active when you add
 // it as an endpoint.
-//
-// To see an AWS CLI example of updating an endpoint group, scroll down to Example.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2189,8 +4665,7 @@ func (c *GlobalAccelerator) UpdateListenerRequest(input *UpdateListenerInput) (r
 
 // UpdateListener API operation for AWS Global Accelerator.
 //
-// Update a listener. To see an AWS CLI example of updating listener, scroll
-// down to Example.
+// Update a listener.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2285,9 +4760,7 @@ func (c *GlobalAccelerator) WithdrawByoipCidrRequest(input *WithdrawByoipCidrInp
 //
 // Stops advertising an address range that is provisioned as an address pool.
 // You can perform this operation at most once every 10 seconds, even if you
-// specify different address ranges each time. To see an AWS CLI example of
-// withdrawing an address range for BYOIP so it will no longer be advertised
-// by AWS, scroll down to Example.
+// specify different address ranges each time.
 //
 // It can take a few minutes before traffic to the specified addresses stops
 // routing to AWS because of propagation delays.
@@ -2676,6 +5149,95 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AddCustomRoutingEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of endpoint objects to add to a custom routing accelerator.
+	//
+	// EndpointConfigurations is a required field
+	EndpointConfigurations []*CustomRoutingEndpointConfiguration `min:"1" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group for the custom routing
+	// endpoint.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddCustomRoutingEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddCustomRoutingEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddCustomRoutingEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddCustomRoutingEndpointsInput"}
+	if s.EndpointConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointConfigurations"))
+	}
+	if s.EndpointConfigurations != nil && len(s.EndpointConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointConfigurations", 1))
+	}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointConfigurations sets the EndpointConfigurations field's value.
+func (s *AddCustomRoutingEndpointsInput) SetEndpointConfigurations(v []*CustomRoutingEndpointConfiguration) *AddCustomRoutingEndpointsInput {
+	s.EndpointConfigurations = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *AddCustomRoutingEndpointsInput) SetEndpointGroupArn(v string) *AddCustomRoutingEndpointsInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+type AddCustomRoutingEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint objects added to the custom routing accelerator.
+	EndpointDescriptions []*CustomRoutingEndpointDescription `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group for the custom routing
+	// endpoint.
+	EndpointGroupArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AddCustomRoutingEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddCustomRoutingEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointDescriptions sets the EndpointDescriptions field's value.
+func (s *AddCustomRoutingEndpointsOutput) SetEndpointDescriptions(v []*CustomRoutingEndpointDescription) *AddCustomRoutingEndpointsOutput {
+	s.EndpointDescriptions = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *AddCustomRoutingEndpointsOutput) SetEndpointGroupArn(v string) *AddCustomRoutingEndpointsOutput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
 type AdvertiseByoipCidrInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2736,6 +5298,119 @@ func (s AdvertiseByoipCidrOutput) GoString() string {
 func (s *AdvertiseByoipCidrOutput) SetByoipCidr(v *ByoipCidr) *AdvertiseByoipCidrOutput {
 	s.ByoipCidr = v
 	return s
+}
+
+type AllowCustomRoutingTrafficInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether all destination IP addresses and ports for a specified
+	// VPC subnet endpoint can receive traffic from a custom routing accelerator.
+	// The value is TRUE or FALSE.
+	//
+	// When set to TRUE, all destinations in the custom routing VPC subnet can receive
+	// traffic. Note that you cannot specify destination IP addresses and ports
+	// when the value is set to TRUE.
+	//
+	// When set to FALSE (or not specified), you must specify a list of destination
+	// IP addresses that are allowed to receive traffic. A list of ports is optional.
+	// If you don't specify a list of ports, the ports that can accept traffic is
+	// the same as the ports configured for the endpoint group.
+	//
+	// The default value is FALSE.
+	AllowAllTrafficToEndpoint *bool `type:"boolean"`
+
+	// A list of specific Amazon EC2 instance IP addresses (destination addresses)
+	// in a subnet that you want to allow to receive traffic. The IP addresses must
+	// be a subset of the IP addresses that you specified for the endpoint group.
+	//
+	// DestinationAddresses is required if AllowAllTrafficToEndpoint is FALSE or
+	// is not specified.
+	DestinationAddresses []*string `type:"list"`
+
+	// A list of specific Amazon EC2 instance ports (destination ports) that you
+	// want to allow to receive traffic.
+	DestinationPorts []*int64 `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+
+	// An ID for the endpoint. For custom routing accelerators, this is the virtual
+	// private cloud (VPC) subnet ID.
+	//
+	// EndpointId is a required field
+	EndpointId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AllowCustomRoutingTrafficInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AllowCustomRoutingTrafficInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowCustomRoutingTrafficInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowCustomRoutingTrafficInput"}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowAllTrafficToEndpoint sets the AllowAllTrafficToEndpoint field's value.
+func (s *AllowCustomRoutingTrafficInput) SetAllowAllTrafficToEndpoint(v bool) *AllowCustomRoutingTrafficInput {
+	s.AllowAllTrafficToEndpoint = &v
+	return s
+}
+
+// SetDestinationAddresses sets the DestinationAddresses field's value.
+func (s *AllowCustomRoutingTrafficInput) SetDestinationAddresses(v []*string) *AllowCustomRoutingTrafficInput {
+	s.DestinationAddresses = v
+	return s
+}
+
+// SetDestinationPorts sets the DestinationPorts field's value.
+func (s *AllowCustomRoutingTrafficInput) SetDestinationPorts(v []*int64) *AllowCustomRoutingTrafficInput {
+	s.DestinationPorts = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *AllowCustomRoutingTrafficInput) SetEndpointGroupArn(v string) *AllowCustomRoutingTrafficInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *AllowCustomRoutingTrafficInput) SetEndpointId(v string) *AllowCustomRoutingTrafficInput {
+	s.EndpointId = &v
+	return s
+}
+
+type AllowCustomRoutingTrafficOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AllowCustomRoutingTrafficOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AllowCustomRoutingTrafficOutput) GoString() string {
+	return s.String()
 }
 
 // The listener that you specified has an endpoint group associated with it.
@@ -3094,6 +5769,62 @@ func (s *CidrAuthorizationContext) SetSignature(v string) *CidrAuthorizationCont
 	return s
 }
 
+// You can't use both of those options.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type CreateAcceleratorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3232,6 +5963,338 @@ func (s CreateAcceleratorOutput) GoString() string {
 // SetAccelerator sets the Accelerator field's value.
 func (s *CreateAcceleratorOutput) SetAccelerator(v *Accelerator) *CreateAcceleratorOutput {
 	s.Accelerator = v
+	return s
+}
+
+type CreateCustomRoutingAcceleratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether an accelerator is enabled. The value is true or false.
+	// The default value is true.
+	//
+	// If the value is set to true, an accelerator cannot be deleted. If set to
+	// false, the accelerator can be deleted.
+	Enabled *bool `type:"boolean"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency—that
+	// is, the uniqueness—of the request.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// The value for the address type must be IPv4.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
+
+	// The name of a custom routing accelerator. The name can have a maximum of
+	// 64 characters, must contain only alphanumeric characters or hyphens (-),
+	// and must not begin or end with a hyphen.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// Create tags for an accelerator.
+	//
+	// For more information, see Tagging in AWS Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/tagging-in-global-accelerator.html)
+	// in the AWS Global Accelerator Developer Guide.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateCustomRoutingAcceleratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomRoutingAcceleratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomRoutingAcceleratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomRoutingAcceleratorInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CreateCustomRoutingAcceleratorInput) SetEnabled(v bool) *CreateCustomRoutingAcceleratorInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateCustomRoutingAcceleratorInput) SetIdempotencyToken(v string) *CreateCustomRoutingAcceleratorInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *CreateCustomRoutingAcceleratorInput) SetIpAddressType(v string) *CreateCustomRoutingAcceleratorInput {
+	s.IpAddressType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateCustomRoutingAcceleratorInput) SetName(v string) *CreateCustomRoutingAcceleratorInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCustomRoutingAcceleratorInput) SetTags(v []*Tag) *CreateCustomRoutingAcceleratorInput {
+	s.Tags = v
+	return s
+}
+
+type CreateCustomRoutingAcceleratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The accelerator that is created.
+	Accelerator *CustomRoutingAccelerator `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCustomRoutingAcceleratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomRoutingAcceleratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccelerator sets the Accelerator field's value.
+func (s *CreateCustomRoutingAcceleratorOutput) SetAccelerator(v *CustomRoutingAccelerator) *CreateCustomRoutingAcceleratorOutput {
+	s.Accelerator = v
+	return s
+}
+
+type CreateCustomRoutingEndpointGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// Sets the port range and protocol for all endpoints (virtual private cloud
+	// subnets) in a custom routing endpoint group to accept client traffic on.
+	//
+	// DestinationConfigurations is a required field
+	DestinationConfigurations []*CustomRoutingDestinationConfiguration `min:"1" type:"list" required:"true"`
+
+	// The AWS Region where the endpoint group is located. A listener can have only
+	// one endpoint group in a specific Region.
+	//
+	// EndpointGroupRegion is a required field
+	EndpointGroupRegion *string `type:"string" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency—that
+	// is, the uniqueness—of the request.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the listener for a custom routing endpoint.
+	//
+	// ListenerArn is a required field
+	ListenerArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateCustomRoutingEndpointGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomRoutingEndpointGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomRoutingEndpointGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomRoutingEndpointGroupInput"}
+	if s.DestinationConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationConfigurations"))
+	}
+	if s.DestinationConfigurations != nil && len(s.DestinationConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationConfigurations", 1))
+	}
+	if s.EndpointGroupRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupRegion"))
+	}
+	if s.ListenerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ListenerArn"))
+	}
+	if s.DestinationConfigurations != nil {
+		for i, v := range s.DestinationConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DestinationConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationConfigurations sets the DestinationConfigurations field's value.
+func (s *CreateCustomRoutingEndpointGroupInput) SetDestinationConfigurations(v []*CustomRoutingDestinationConfiguration) *CreateCustomRoutingEndpointGroupInput {
+	s.DestinationConfigurations = v
+	return s
+}
+
+// SetEndpointGroupRegion sets the EndpointGroupRegion field's value.
+func (s *CreateCustomRoutingEndpointGroupInput) SetEndpointGroupRegion(v string) *CreateCustomRoutingEndpointGroupInput {
+	s.EndpointGroupRegion = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateCustomRoutingEndpointGroupInput) SetIdempotencyToken(v string) *CreateCustomRoutingEndpointGroupInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetListenerArn sets the ListenerArn field's value.
+func (s *CreateCustomRoutingEndpointGroupInput) SetListenerArn(v string) *CreateCustomRoutingEndpointGroupInput {
+	s.ListenerArn = &v
+	return s
+}
+
+type CreateCustomRoutingEndpointGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information about the endpoint group created for a custom routing accelerator.
+	EndpointGroup *CustomRoutingEndpointGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCustomRoutingEndpointGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomRoutingEndpointGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointGroup sets the EndpointGroup field's value.
+func (s *CreateCustomRoutingEndpointGroupOutput) SetEndpointGroup(v *CustomRoutingEndpointGroup) *CreateCustomRoutingEndpointGroupOutput {
+	s.EndpointGroup = v
+	return s
+}
+
+type CreateCustomRoutingListenerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accelerator for a custom routing listener.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency—that
+	// is, the uniqueness—of the request.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// The port range to support for connections from clients to your accelerator.
+	//
+	// Separately, you set port ranges for endpoints. For more information, see
+	// About endpoints for custom routing accelerators (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-custom-routing-endpoints.html).
+	//
+	// PortRanges is a required field
+	PortRanges []*PortRange `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateCustomRoutingListenerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomRoutingListenerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomRoutingListenerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomRoutingListenerInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+	if s.PortRanges == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortRanges"))
+	}
+	if s.PortRanges != nil && len(s.PortRanges) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PortRanges", 1))
+	}
+	if s.PortRanges != nil {
+		for i, v := range s.PortRanges {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PortRanges", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *CreateCustomRoutingListenerInput) SetAcceleratorArn(v string) *CreateCustomRoutingListenerInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateCustomRoutingListenerInput) SetIdempotencyToken(v string) *CreateCustomRoutingListenerInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetPortRanges sets the PortRanges field's value.
+func (s *CreateCustomRoutingListenerInput) SetPortRanges(v []*PortRange) *CreateCustomRoutingListenerInput {
+	s.PortRanges = v
+	return s
+}
+
+type CreateCustomRoutingListenerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The listener that you've created for a custom routing accelerator.
+	Listener *CustomRoutingListener `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCustomRoutingListenerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomRoutingListenerOutput) GoString() string {
+	return s.String()
+}
+
+// SetListener sets the Listener field's value.
+func (s *CreateCustomRoutingListenerOutput) SetListener(v *CustomRoutingListener) *CreateCustomRoutingListenerOutput {
+	s.Listener = v
 	return s
 }
 
@@ -3574,6 +6637,443 @@ func (s *CreateListenerOutput) SetListener(v *Listener) *CreateListenerOutput {
 	return s
 }
 
+// Attributes of a custom routing accelerator.
+type CustomRoutingAccelerator struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom routing accelerator.
+	AcceleratorArn *string `type:"string"`
+
+	// The date and time that the accelerator was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The Domain Name System (DNS) name that Global Accelerator creates that points
+	// to your accelerator's static IP addresses.
+	//
+	// The naming convention for the DNS name is the following: A lowercase letter
+	// a, followed by a 16-bit random hex string, followed by .awsglobalaccelerator.com.
+	// For example: a1234567890abcdef.awsglobalaccelerator.com.
+	//
+	// For more information about the default DNS name, see Support for DNS Addressing
+	// in Global Accelerator (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-accelerators.html#about-accelerators.dns-addressing)
+	// in the AWS Global Accelerator Developer Guide.
+	DnsName *string `type:"string"`
+
+	// Indicates whether the accelerator is enabled. The value is true or false.
+	// The default value is true.
+	//
+	// If the value is set to true, the accelerator cannot be deleted. If set to
+	// false, accelerator can be deleted.
+	Enabled *bool `type:"boolean"`
+
+	// The value for the address type must be IPv4.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
+
+	// The static IP addresses that Global Accelerator associates with the accelerator.
+	IpSets []*IpSet `type:"list"`
+
+	// The date and time that the accelerator was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the accelerator. The name must contain only alphanumeric characters
+	// or hyphens (-), and must not begin or end with a hyphen.
+	Name *string `type:"string"`
+
+	// Describes the deployment status of the accelerator.
+	Status *string `type:"string" enum:"CustomRoutingAcceleratorStatus"`
+}
+
+// String returns the string representation
+func (s CustomRoutingAccelerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingAccelerator) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *CustomRoutingAccelerator) SetAcceleratorArn(v string) *CustomRoutingAccelerator {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *CustomRoutingAccelerator) SetCreatedTime(v time.Time) *CustomRoutingAccelerator {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDnsName sets the DnsName field's value.
+func (s *CustomRoutingAccelerator) SetDnsName(v string) *CustomRoutingAccelerator {
+	s.DnsName = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CustomRoutingAccelerator) SetEnabled(v bool) *CustomRoutingAccelerator {
+	s.Enabled = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *CustomRoutingAccelerator) SetIpAddressType(v string) *CustomRoutingAccelerator {
+	s.IpAddressType = &v
+	return s
+}
+
+// SetIpSets sets the IpSets field's value.
+func (s *CustomRoutingAccelerator) SetIpSets(v []*IpSet) *CustomRoutingAccelerator {
+	s.IpSets = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *CustomRoutingAccelerator) SetLastModifiedTime(v time.Time) *CustomRoutingAccelerator {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CustomRoutingAccelerator) SetName(v string) *CustomRoutingAccelerator {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CustomRoutingAccelerator) SetStatus(v string) *CustomRoutingAccelerator {
+	s.Status = &v
+	return s
+}
+
+// Attributes of a custom routing accelerator.
+type CustomRoutingAcceleratorAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether flow logs are enabled. The default value is false. If the
+	// value is true, FlowLogsS3Bucket and FlowLogsS3Prefix must be specified.
+	//
+	// For more information, see Flow Logs (https://docs.aws.amazon.com/global-accelerator/latest/dg/monitoring-global-accelerator.flow-logs.html)
+	// in the AWS Global Accelerator Developer Guide.
+	FlowLogsEnabled *bool `type:"boolean"`
+
+	// The name of the Amazon S3 bucket for the flow logs. Attribute is required
+	// if FlowLogsEnabled is true. The bucket must exist and have a bucket policy
+	// that grants AWS Global Accelerator permission to write to the bucket.
+	FlowLogsS3Bucket *string `type:"string"`
+
+	// The prefix for the location in the Amazon S3 bucket for the flow logs. Attribute
+	// is required if FlowLogsEnabled is true.
+	//
+	// If you don’t specify a prefix, the flow logs are stored in the root of
+	// the bucket. If you specify slash (/) for the S3 bucket prefix, the log file
+	// bucket folder structure will include a double slash (//), like the following:
+	//
+	// DOC-EXAMPLE-BUCKET//AWSLogs/aws_account_id
+	FlowLogsS3Prefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CustomRoutingAcceleratorAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingAcceleratorAttributes) GoString() string {
+	return s.String()
+}
+
+// SetFlowLogsEnabled sets the FlowLogsEnabled field's value.
+func (s *CustomRoutingAcceleratorAttributes) SetFlowLogsEnabled(v bool) *CustomRoutingAcceleratorAttributes {
+	s.FlowLogsEnabled = &v
+	return s
+}
+
+// SetFlowLogsS3Bucket sets the FlowLogsS3Bucket field's value.
+func (s *CustomRoutingAcceleratorAttributes) SetFlowLogsS3Bucket(v string) *CustomRoutingAcceleratorAttributes {
+	s.FlowLogsS3Bucket = &v
+	return s
+}
+
+// SetFlowLogsS3Prefix sets the FlowLogsS3Prefix field's value.
+func (s *CustomRoutingAcceleratorAttributes) SetFlowLogsS3Prefix(v string) *CustomRoutingAcceleratorAttributes {
+	s.FlowLogsS3Prefix = &v
+	return s
+}
+
+// For a custom routing accelerator, sets the port range and protocol for all
+// endpoints (virtual private cloud subnets) in an endpoint group to accept
+// client traffic on.
+type CustomRoutingDestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The first port, inclusive, in the range of ports for the endpoint group that
+	// is associated with a custom routing accelerator.
+	//
+	// FromPort is a required field
+	FromPort *int64 `min:"1" type:"integer" required:"true"`
+
+	// The protocol for the endpoint group that is associated with a custom routing
+	// accelerator. The protocol can be either TCP or UDP.
+	//
+	// Protocols is a required field
+	Protocols []*string `min:"1" type:"list" required:"true"`
+
+	// The last port, inclusive, in the range of ports for the endpoint group that
+	// is associated with a custom routing accelerator.
+	//
+	// ToPort is a required field
+	ToPort *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomRoutingDestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingDestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomRoutingDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomRoutingDestinationConfiguration"}
+	if s.FromPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromPort"))
+	}
+	if s.FromPort != nil && *s.FromPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FromPort", 1))
+	}
+	if s.Protocols == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protocols"))
+	}
+	if s.Protocols != nil && len(s.Protocols) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Protocols", 1))
+	}
+	if s.ToPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToPort"))
+	}
+	if s.ToPort != nil && *s.ToPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ToPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *CustomRoutingDestinationConfiguration) SetFromPort(v int64) *CustomRoutingDestinationConfiguration {
+	s.FromPort = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *CustomRoutingDestinationConfiguration) SetProtocols(v []*string) *CustomRoutingDestinationConfiguration {
+	s.Protocols = v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *CustomRoutingDestinationConfiguration) SetToPort(v int64) *CustomRoutingDestinationConfiguration {
+	s.ToPort = &v
+	return s
+}
+
+// For a custom routing accelerator, describes the port range and protocol for
+// all endpoints (virtual private cloud subnets) in an endpoint group to accept
+// client traffic on.
+type CustomRoutingDestinationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The first port, inclusive, in the range of ports for the endpoint group that
+	// is associated with a custom routing accelerator.
+	FromPort *int64 `min:"1" type:"integer"`
+
+	// The protocol for the endpoint group that is associated with a custom routing
+	// accelerator. The protocol can be either TCP or UDP.
+	Protocols []*string `type:"list"`
+
+	// The last port, inclusive, in the range of ports for the endpoint group that
+	// is associated with a custom routing accelerator.
+	ToPort *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s CustomRoutingDestinationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingDestinationDescription) GoString() string {
+	return s.String()
+}
+
+// SetFromPort sets the FromPort field's value.
+func (s *CustomRoutingDestinationDescription) SetFromPort(v int64) *CustomRoutingDestinationDescription {
+	s.FromPort = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *CustomRoutingDestinationDescription) SetProtocols(v []*string) *CustomRoutingDestinationDescription {
+	s.Protocols = v
+	return s
+}
+
+// SetToPort sets the ToPort field's value.
+func (s *CustomRoutingDestinationDescription) SetToPort(v int64) *CustomRoutingDestinationDescription {
+	s.ToPort = &v
+	return s
+}
+
+// The list of endpoint objects. For custom routing, this is a list of virtual
+// private cloud (VPC) subnet IDs.
+type CustomRoutingEndpointConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An ID for the endpoint. For custom routing accelerators, this is the virtual
+	// private cloud (VPC) subnet ID.
+	EndpointId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CustomRoutingEndpointConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingEndpointConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *CustomRoutingEndpointConfiguration) SetEndpointId(v string) *CustomRoutingEndpointConfiguration {
+	s.EndpointId = &v
+	return s
+}
+
+// A complex type for an endpoint for a custom routing accelerator. Each endpoint
+// group can include one or more endpoints, which are virtual private cloud
+// (VPC) subnets.
+type CustomRoutingEndpointDescription struct {
+	_ struct{} `type:"structure"`
+
+	// An ID for the endpoint. For custom routing accelerators, this is the virtual
+	// private cloud (VPC) subnet ID.
+	EndpointId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CustomRoutingEndpointDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingEndpointDescription) GoString() string {
+	return s.String()
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *CustomRoutingEndpointDescription) SetEndpointId(v string) *CustomRoutingEndpointDescription {
+	s.EndpointId = &v
+	return s
+}
+
+// A complex type for the endpoint group for a custom routing accelerator. An
+// AWS Region can have only one endpoint group for a specific listener.
+type CustomRoutingEndpointGroup struct {
+	_ struct{} `type:"structure"`
+
+	// For a custom routing accelerator, describes the port range and protocol for
+	// all endpoints (virtual private cloud subnets) in an endpoint group to accept
+	// client traffic on.
+	DestinationDescriptions []*CustomRoutingDestinationDescription `type:"list"`
+
+	// For a custom routing accelerator, describes the endpoints (virtual private
+	// cloud subnets) in an endpoint group to accept client traffic on.
+	EndpointDescriptions []*CustomRoutingEndpointDescription `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	EndpointGroupArn *string `type:"string"`
+
+	// The AWS Region where the endpoint group is located.
+	EndpointGroupRegion *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CustomRoutingEndpointGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingEndpointGroup) GoString() string {
+	return s.String()
+}
+
+// SetDestinationDescriptions sets the DestinationDescriptions field's value.
+func (s *CustomRoutingEndpointGroup) SetDestinationDescriptions(v []*CustomRoutingDestinationDescription) *CustomRoutingEndpointGroup {
+	s.DestinationDescriptions = v
+	return s
+}
+
+// SetEndpointDescriptions sets the EndpointDescriptions field's value.
+func (s *CustomRoutingEndpointGroup) SetEndpointDescriptions(v []*CustomRoutingEndpointDescription) *CustomRoutingEndpointGroup {
+	s.EndpointDescriptions = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *CustomRoutingEndpointGroup) SetEndpointGroupArn(v string) *CustomRoutingEndpointGroup {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointGroupRegion sets the EndpointGroupRegion field's value.
+func (s *CustomRoutingEndpointGroup) SetEndpointGroupRegion(v string) *CustomRoutingEndpointGroup {
+	s.EndpointGroupRegion = &v
+	return s
+}
+
+// A complex type for a listener for a custom routing accelerator.
+type CustomRoutingListener struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the listener.
+	ListenerArn *string `type:"string"`
+
+	// The port range to support for connections from clients to your accelerator.
+	//
+	// Separately, you set port ranges for endpoints. For more information, see
+	// About endpoints for custom routing accelerators (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-custom-routing-endpoints.html).
+	PortRanges []*PortRange `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CustomRoutingListener) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRoutingListener) GoString() string {
+	return s.String()
+}
+
+// SetListenerArn sets the ListenerArn field's value.
+func (s *CustomRoutingListener) SetListenerArn(v string) *CustomRoutingListener {
+	s.ListenerArn = &v
+	return s
+}
+
+// SetPortRanges sets the PortRanges field's value.
+func (s *CustomRoutingListener) SetPortRanges(v []*PortRange) *CustomRoutingListener {
+	s.PortRanges = v
+	return s
+}
+
 type DeleteAcceleratorInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3623,6 +7123,162 @@ func (s DeleteAcceleratorOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteAcceleratorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCustomRoutingAcceleratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom routing accelerator to delete.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCustomRoutingAcceleratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomRoutingAcceleratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomRoutingAcceleratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomRoutingAcceleratorInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *DeleteCustomRoutingAcceleratorInput) SetAcceleratorArn(v string) *DeleteCustomRoutingAcceleratorInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+type DeleteCustomRoutingAcceleratorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCustomRoutingAcceleratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomRoutingAcceleratorOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCustomRoutingEndpointGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group to delete.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCustomRoutingEndpointGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomRoutingEndpointGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomRoutingEndpointGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomRoutingEndpointGroupInput"}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *DeleteCustomRoutingEndpointGroupInput) SetEndpointGroupArn(v string) *DeleteCustomRoutingEndpointGroupInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+type DeleteCustomRoutingEndpointGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCustomRoutingEndpointGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomRoutingEndpointGroupOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCustomRoutingListenerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the listener to delete.
+	//
+	// ListenerArn is a required field
+	ListenerArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCustomRoutingListenerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomRoutingListenerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomRoutingListenerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomRoutingListenerInput"}
+	if s.ListenerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ListenerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetListenerArn sets the ListenerArn field's value.
+func (s *DeleteCustomRoutingListenerInput) SetListenerArn(v string) *DeleteCustomRoutingListenerInput {
+	s.ListenerArn = &v
+	return s
+}
+
+type DeleteCustomRoutingListenerOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCustomRoutingListenerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomRoutingListenerOutput) GoString() string {
 	return s.String()
 }
 
@@ -3727,6 +7383,117 @@ func (s DeleteListenerOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteListenerOutput) GoString() string {
+	return s.String()
+}
+
+type DenyCustomRoutingTrafficInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether all destination IP addresses and ports for a specified
+	// VPC subnet endpoint cannot receive traffic from a custom routing accelerator.
+	// The value is TRUE or FALSE.
+	//
+	// When set to TRUE, no destinations in the custom routing VPC subnet can receive
+	// traffic. Note that you cannot specify destination IP addresses and ports
+	// when the value is set to TRUE.
+	//
+	// When set to FALSE (or not specified), you must specify a list of destination
+	// IP addresses that cannot receive traffic. A list of ports is optional. If
+	// you don't specify a list of ports, the ports that can accept traffic is the
+	// same as the ports configured for the endpoint group.
+	//
+	// The default value is FALSE.
+	DenyAllTrafficToEndpoint *bool `type:"boolean"`
+
+	// A list of specific Amazon EC2 instance IP addresses (destination addresses)
+	// in a subnet that you want to prevent from receiving traffic. The IP addresses
+	// must be a subset of the IP addresses allowed for the VPC subnet associated
+	// with the endpoint group.
+	DestinationAddresses []*string `type:"list"`
+
+	// A list of specific Amazon EC2 instance ports (destination ports) in a subnet
+	// endpoint that you want to prevent from receiving traffic.
+	DestinationPorts []*int64 `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+
+	// An ID for the endpoint. For custom routing accelerators, this is the virtual
+	// private cloud (VPC) subnet ID.
+	//
+	// EndpointId is a required field
+	EndpointId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DenyCustomRoutingTrafficInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DenyCustomRoutingTrafficInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DenyCustomRoutingTrafficInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DenyCustomRoutingTrafficInput"}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDenyAllTrafficToEndpoint sets the DenyAllTrafficToEndpoint field's value.
+func (s *DenyCustomRoutingTrafficInput) SetDenyAllTrafficToEndpoint(v bool) *DenyCustomRoutingTrafficInput {
+	s.DenyAllTrafficToEndpoint = &v
+	return s
+}
+
+// SetDestinationAddresses sets the DestinationAddresses field's value.
+func (s *DenyCustomRoutingTrafficInput) SetDestinationAddresses(v []*string) *DenyCustomRoutingTrafficInput {
+	s.DestinationAddresses = v
+	return s
+}
+
+// SetDestinationPorts sets the DestinationPorts field's value.
+func (s *DenyCustomRoutingTrafficInput) SetDestinationPorts(v []*int64) *DenyCustomRoutingTrafficInput {
+	s.DestinationPorts = v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *DenyCustomRoutingTrafficInput) SetEndpointGroupArn(v string) *DenyCustomRoutingTrafficInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *DenyCustomRoutingTrafficInput) SetEndpointId(v string) *DenyCustomRoutingTrafficInput {
+	s.EndpointId = &v
+	return s
+}
+
+type DenyCustomRoutingTrafficOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DenyCustomRoutingTrafficOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DenyCustomRoutingTrafficOutput) GoString() string {
 	return s.String()
 }
 
@@ -3915,6 +7682,251 @@ func (s *DescribeAcceleratorOutput) SetAccelerator(v *Accelerator) *DescribeAcce
 	return s
 }
 
+type DescribeCustomRoutingAcceleratorAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom routing accelerator to describe
+	// the attributes for.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingAcceleratorAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingAcceleratorAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCustomRoutingAcceleratorAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCustomRoutingAcceleratorAttributesInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *DescribeCustomRoutingAcceleratorAttributesInput) SetAcceleratorArn(v string) *DescribeCustomRoutingAcceleratorAttributesInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+type DescribeCustomRoutingAcceleratorAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes of the custom routing accelerator.
+	AcceleratorAttributes *CustomRoutingAcceleratorAttributes `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingAcceleratorAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingAcceleratorAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorAttributes sets the AcceleratorAttributes field's value.
+func (s *DescribeCustomRoutingAcceleratorAttributesOutput) SetAcceleratorAttributes(v *CustomRoutingAcceleratorAttributes) *DescribeCustomRoutingAcceleratorAttributesOutput {
+	s.AcceleratorAttributes = v
+	return s
+}
+
+type DescribeCustomRoutingAcceleratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accelerator to describe.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingAcceleratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingAcceleratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCustomRoutingAcceleratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCustomRoutingAcceleratorInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *DescribeCustomRoutingAcceleratorInput) SetAcceleratorArn(v string) *DescribeCustomRoutingAcceleratorInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+type DescribeCustomRoutingAcceleratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the custom routing accelerator.
+	Accelerator *CustomRoutingAccelerator `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingAcceleratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingAcceleratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccelerator sets the Accelerator field's value.
+func (s *DescribeCustomRoutingAcceleratorOutput) SetAccelerator(v *CustomRoutingAccelerator) *DescribeCustomRoutingAcceleratorOutput {
+	s.Accelerator = v
+	return s
+}
+
+type DescribeCustomRoutingEndpointGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group to describe.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingEndpointGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingEndpointGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCustomRoutingEndpointGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCustomRoutingEndpointGroupInput"}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *DescribeCustomRoutingEndpointGroupInput) SetEndpointGroupArn(v string) *DescribeCustomRoutingEndpointGroupInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+type DescribeCustomRoutingEndpointGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of an endpoint group for a custom routing accelerator.
+	EndpointGroup *CustomRoutingEndpointGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingEndpointGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingEndpointGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointGroup sets the EndpointGroup field's value.
+func (s *DescribeCustomRoutingEndpointGroupOutput) SetEndpointGroup(v *CustomRoutingEndpointGroup) *DescribeCustomRoutingEndpointGroupOutput {
+	s.EndpointGroup = v
+	return s
+}
+
+type DescribeCustomRoutingListenerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the listener to describe.
+	//
+	// ListenerArn is a required field
+	ListenerArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingListenerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingListenerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCustomRoutingListenerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCustomRoutingListenerInput"}
+	if s.ListenerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ListenerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetListenerArn sets the ListenerArn field's value.
+func (s *DescribeCustomRoutingListenerInput) SetListenerArn(v string) *DescribeCustomRoutingListenerInput {
+	s.ListenerArn = &v
+	return s
+}
+
+type DescribeCustomRoutingListenerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of a listener for a custom routing accelerator.
+	Listener *CustomRoutingListener `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCustomRoutingListenerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomRoutingListenerOutput) GoString() string {
+	return s.String()
+}
+
+// SetListener sets the Listener field's value.
+func (s *DescribeCustomRoutingListenerOutput) SetListener(v *CustomRoutingListener) *DescribeCustomRoutingListenerOutput {
+	s.Listener = v
+	return s
+}
+
 type DescribeEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4037,6 +8049,154 @@ func (s *DescribeListenerOutput) SetListener(v *Listener) *DescribeListenerOutpu
 	return s
 }
 
+// The port mappings for a specified endpoint IP address (destination).
+type DestinationPortMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom routing accelerator that you
+	// have port mappings for.
+	AcceleratorArn *string `type:"string"`
+
+	// The IP address/port combinations (sockets) that map to a given destination
+	// socket address.
+	AcceleratorSocketAddresses []*SocketAddress `type:"list"`
+
+	// The endpoint IP address/port combination for traffic received on the accelerator
+	// socket address.
+	DestinationSocketAddress *SocketAddress `type:"structure"`
+
+	// Indicates whether or not a port mapping destination can receive traffic.
+	// The value is either ALLOW, if traffic is allowed to the destination, or DENY,
+	// if traffic is not allowed to the destination.
+	DestinationTrafficState *string `type:"string" enum:"CustomRoutingDestinationTrafficState"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	EndpointGroupArn *string `type:"string"`
+
+	// The AWS Region for the endpoint group.
+	EndpointGroupRegion *string `type:"string"`
+
+	// The ID for the virtual private cloud (VPC) subnet.
+	EndpointId *string `type:"string"`
+
+	// The IP address type, which must be IPv4.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
+}
+
+// String returns the string representation
+func (s DestinationPortMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DestinationPortMapping) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *DestinationPortMapping) SetAcceleratorArn(v string) *DestinationPortMapping {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetAcceleratorSocketAddresses sets the AcceleratorSocketAddresses field's value.
+func (s *DestinationPortMapping) SetAcceleratorSocketAddresses(v []*SocketAddress) *DestinationPortMapping {
+	s.AcceleratorSocketAddresses = v
+	return s
+}
+
+// SetDestinationSocketAddress sets the DestinationSocketAddress field's value.
+func (s *DestinationPortMapping) SetDestinationSocketAddress(v *SocketAddress) *DestinationPortMapping {
+	s.DestinationSocketAddress = v
+	return s
+}
+
+// SetDestinationTrafficState sets the DestinationTrafficState field's value.
+func (s *DestinationPortMapping) SetDestinationTrafficState(v string) *DestinationPortMapping {
+	s.DestinationTrafficState = &v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *DestinationPortMapping) SetEndpointGroupArn(v string) *DestinationPortMapping {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointGroupRegion sets the EndpointGroupRegion field's value.
+func (s *DestinationPortMapping) SetEndpointGroupRegion(v string) *DestinationPortMapping {
+	s.EndpointGroupRegion = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *DestinationPortMapping) SetEndpointId(v string) *DestinationPortMapping {
+	s.EndpointId = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *DestinationPortMapping) SetIpAddressType(v string) *DestinationPortMapping {
+	s.IpAddressType = &v
+	return s
+}
+
+// The endpoint that you specified doesn't exist.
+type EndpointAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s EndpointAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorEndpointAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &EndpointAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EndpointAlreadyExistsException) Code() string {
+	return "EndpointAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *EndpointAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EndpointAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *EndpointAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EndpointAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EndpointAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A complex type for endpoints. A resource must be valid and active when you
 // add it as an endpoint.
 type EndpointConfiguration struct {
@@ -4124,31 +8284,12 @@ type EndpointDescription struct {
 	// An ID for the endpoint. If the endpoint is a Network Load Balancer or Application
 	// Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If
 	// the endpoint is an Elastic IP address, this is the Elastic IP address allocation
-	// ID. For EC2 instances, this is the EC2 instance ID.
+	// ID. For Amazon EC2 instances, this is the EC2 instance ID.
 	//
 	// An Application Load Balancer can be either internal or internet-facing.
 	EndpointId *string `type:"string"`
 
-	// The reason code associated with why the endpoint is not healthy. If the endpoint
-	// state is healthy, a reason code is not provided.
-	//
-	// If the endpoint state is unhealthy, the reason code can be one of the following
-	// values:
-	//
-	//    * Timeout: The health check requests to the endpoint are timing out before
-	//    returning a status.
-	//
-	//    * Failed: The health check failed, for example because the endpoint response
-	//    was invalid (malformed).
-	//
-	// If the endpoint state is initial, the reason code can be one of the following
-	// values:
-	//
-	//    * ProvisioningInProgress: The endpoint is in the process of being provisioned.
-	//
-	//    * InitialHealthChecking: Global Accelerator is still setting up the minimum
-	//    number of health checks for the endpoint that are required to determine
-	//    its health status.
+	// Returns a null result.
 	HealthReason *string `type:"string"`
 
 	// The health status of the endpoint.
@@ -4441,6 +8582,62 @@ func (s *EndpointGroupNotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *EndpointGroupNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The endpoint that you specified doesn't exist.
+type EndpointNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s EndpointNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorEndpointNotFoundException(v protocol.ResponseMetadata) error {
+	return &EndpointNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *EndpointNotFoundException) Code() string {
+	return "EndpointNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *EndpointNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *EndpointNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *EndpointNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *EndpointNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *EndpointNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -4975,6 +9172,489 @@ func (s *ListByoipCidrsOutput) SetNextToken(v string) *ListByoipCidrsOutput {
 	return s
 }
 
+type ListCustomRoutingAcceleratorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of custom routing Global Accelerator objects that you want to
+	// return with this call. The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingAcceleratorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingAcceleratorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomRoutingAcceleratorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomRoutingAcceleratorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomRoutingAcceleratorsInput) SetMaxResults(v int64) *ListCustomRoutingAcceleratorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingAcceleratorsInput) SetNextToken(v string) *ListCustomRoutingAcceleratorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingAcceleratorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of custom routing accelerators for a customer account.
+	Accelerators []*CustomRoutingAccelerator `type:"list"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingAcceleratorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingAcceleratorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccelerators sets the Accelerators field's value.
+func (s *ListCustomRoutingAcceleratorsOutput) SetAccelerators(v []*CustomRoutingAccelerator) *ListCustomRoutingAcceleratorsOutput {
+	s.Accelerators = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingAcceleratorsOutput) SetNextToken(v string) *ListCustomRoutingAcceleratorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingEndpointGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the listener to list endpoint groups for.
+	//
+	// ListenerArn is a required field
+	ListenerArn *string `type:"string" required:"true"`
+
+	// The number of endpoint group objects that you want to return with this call.
+	// The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingEndpointGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingEndpointGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomRoutingEndpointGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomRoutingEndpointGroupsInput"}
+	if s.ListenerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ListenerArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetListenerArn sets the ListenerArn field's value.
+func (s *ListCustomRoutingEndpointGroupsInput) SetListenerArn(v string) *ListCustomRoutingEndpointGroupsInput {
+	s.ListenerArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomRoutingEndpointGroupsInput) SetMaxResults(v int64) *ListCustomRoutingEndpointGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingEndpointGroupsInput) SetNextToken(v string) *ListCustomRoutingEndpointGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingEndpointGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of the endpoint groups associated with a listener for a custom routing
+	// accelerator.
+	EndpointGroups []*CustomRoutingEndpointGroup `type:"list"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingEndpointGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingEndpointGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointGroups sets the EndpointGroups field's value.
+func (s *ListCustomRoutingEndpointGroupsOutput) SetEndpointGroups(v []*CustomRoutingEndpointGroup) *ListCustomRoutingEndpointGroupsOutput {
+	s.EndpointGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingEndpointGroupsOutput) SetNextToken(v string) *ListCustomRoutingEndpointGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingListenersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accelerator to list listeners for.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+
+	// The number of listener objects that you want to return with this call. The
+	// default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingListenersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingListenersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomRoutingListenersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomRoutingListenersInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *ListCustomRoutingListenersInput) SetAcceleratorArn(v string) *ListCustomRoutingListenersInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomRoutingListenersInput) SetMaxResults(v int64) *ListCustomRoutingListenersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingListenersInput) SetNextToken(v string) *ListCustomRoutingListenersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingListenersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of listeners for a custom routing accelerator.
+	Listeners []*CustomRoutingListener `type:"list"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingListenersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingListenersOutput) GoString() string {
+	return s.String()
+}
+
+// SetListeners sets the Listeners field's value.
+func (s *ListCustomRoutingListenersOutput) SetListeners(v []*CustomRoutingListener) *ListCustomRoutingListenersOutput {
+	s.Listeners = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingListenersOutput) SetNextToken(v string) *ListCustomRoutingListenersOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingPortMappingsByDestinationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint IP address in a virtual private cloud (VPC) subnet for which
+	// you want to receive back port mappings.
+	//
+	// DestinationAddress is a required field
+	DestinationAddress *string `type:"string" required:"true"`
+
+	// The ID for the virtual private cloud (VPC) subnet.
+	//
+	// EndpointId is a required field
+	EndpointId *string `type:"string" required:"true"`
+
+	// The number of destination port mappings that you want to return with this
+	// call. The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingPortMappingsByDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingPortMappingsByDestinationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomRoutingPortMappingsByDestinationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomRoutingPortMappingsByDestinationInput"}
+	if s.DestinationAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationAddress"))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationAddress sets the DestinationAddress field's value.
+func (s *ListCustomRoutingPortMappingsByDestinationInput) SetDestinationAddress(v string) *ListCustomRoutingPortMappingsByDestinationInput {
+	s.DestinationAddress = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *ListCustomRoutingPortMappingsByDestinationInput) SetEndpointId(v string) *ListCustomRoutingPortMappingsByDestinationInput {
+	s.EndpointId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomRoutingPortMappingsByDestinationInput) SetMaxResults(v int64) *ListCustomRoutingPortMappingsByDestinationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingPortMappingsByDestinationInput) SetNextToken(v string) *ListCustomRoutingPortMappingsByDestinationInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingPortMappingsByDestinationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The port mappings for the endpoint IP address that you specified in the request.
+	DestinationPortMappings []*DestinationPortMapping `type:"list"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingPortMappingsByDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingPortMappingsByDestinationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestinationPortMappings sets the DestinationPortMappings field's value.
+func (s *ListCustomRoutingPortMappingsByDestinationOutput) SetDestinationPortMappings(v []*DestinationPortMapping) *ListCustomRoutingPortMappingsByDestinationOutput {
+	s.DestinationPortMappings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingPortMappingsByDestinationOutput) SetNextToken(v string) *ListCustomRoutingPortMappingsByDestinationOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingPortMappingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accelerator to list the custom routing
+	// port mappings for.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group to list the custom routing
+	// port mappings for.
+	EndpointGroupArn *string `type:"string"`
+
+	// The number of destination port mappings that you want to return with this
+	// call. The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingPortMappingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingPortMappingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomRoutingPortMappingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomRoutingPortMappingsInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *ListCustomRoutingPortMappingsInput) SetAcceleratorArn(v string) *ListCustomRoutingPortMappingsInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *ListCustomRoutingPortMappingsInput) SetEndpointGroupArn(v string) *ListCustomRoutingPortMappingsInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomRoutingPortMappingsInput) SetMaxResults(v int64) *ListCustomRoutingPortMappingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingPortMappingsInput) SetNextToken(v string) *ListCustomRoutingPortMappingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomRoutingPortMappingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results. You receive this token from a previous
+	// call.
+	NextToken *string `type:"string"`
+
+	// The port mappings for a custom routing accelerator.
+	PortMappings []*PortMapping `type:"list"`
+}
+
+// String returns the string representation
+func (s ListCustomRoutingPortMappingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomRoutingPortMappingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomRoutingPortMappingsOutput) SetNextToken(v string) *ListCustomRoutingPortMappingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPortMappings sets the PortMappings field's value.
+func (s *ListCustomRoutingPortMappingsOutput) SetPortMappings(v []*PortMapping) *ListCustomRoutingPortMappingsOutput {
+	s.PortMappings = v
+	return s
+}
+
 type ListEndpointGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5355,6 +10035,82 @@ func (s *ListenerNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Returns the ports and associated IP addresses and ports of Amazon EC2 instances
+// in your virtual private cloud (VPC) subnets. Custom routing is a port mapping
+// protocol in AWS Global Accelerator that statically associates port ranges
+// with VPC subnets, which allows Global Accelerator to route to specific instances
+// and ports within one or more subnets.
+type PortMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The accelerator port.
+	AcceleratorPort *int64 `min:"1" type:"integer"`
+
+	// The EC2 instance IP address and port number in the virtual private cloud
+	// (VPC) subnet.
+	DestinationSocketAddress *SocketAddress `type:"structure"`
+
+	// Indicates whether or not a port mapping destination can receive traffic.
+	// The value is either ALLOW, if traffic is allowed to the destination, or DENY,
+	// if traffic is not allowed to the destination.
+	DestinationTrafficState *string `type:"string" enum:"CustomRoutingDestinationTrafficState"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group.
+	EndpointGroupArn *string `type:"string"`
+
+	// The IP address of the VPC subnet (the subnet ID).
+	EndpointId *string `type:"string"`
+
+	// The protocols supported by the endpoint group.
+	Protocols []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s PortMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PortMapping) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorPort sets the AcceleratorPort field's value.
+func (s *PortMapping) SetAcceleratorPort(v int64) *PortMapping {
+	s.AcceleratorPort = &v
+	return s
+}
+
+// SetDestinationSocketAddress sets the DestinationSocketAddress field's value.
+func (s *PortMapping) SetDestinationSocketAddress(v *SocketAddress) *PortMapping {
+	s.DestinationSocketAddress = v
+	return s
+}
+
+// SetDestinationTrafficState sets the DestinationTrafficState field's value.
+func (s *PortMapping) SetDestinationTrafficState(v string) *PortMapping {
+	s.DestinationTrafficState = &v
+	return s
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *PortMapping) SetEndpointGroupArn(v string) *PortMapping {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *PortMapping) SetEndpointId(v string) *PortMapping {
+	s.EndpointId = &v
+	return s
+}
+
+// SetProtocols sets the Protocols field's value.
+func (s *PortMapping) SetProtocols(v []*string) *PortMapping {
+	s.Protocols = v
+	return s
+}
+
 // Override specific listener ports used to route traffic to endpoints that
 // are part of an endpoint group. For example, you can create a port override
 // in which the listener receives user traffic on ports 80 and 443, but your
@@ -5543,6 +10299,107 @@ func (s ProvisionByoipCidrOutput) GoString() string {
 // SetByoipCidr sets the ByoipCidr field's value.
 func (s *ProvisionByoipCidrOutput) SetByoipCidr(v *ByoipCidr) *ProvisionByoipCidrOutput {
 	s.ByoipCidr = v
+	return s
+}
+
+type RemoveCustomRoutingEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the endpoint group to remove endpoints
+	// from.
+	//
+	// EndpointGroupArn is a required field
+	EndpointGroupArn *string `type:"string" required:"true"`
+
+	// The IDs for the endpoints. For custom routing accelerators, endpoint IDs
+	// are the virtual private cloud (VPC) subnet IDs.
+	//
+	// EndpointIds is a required field
+	EndpointIds []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveCustomRoutingEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveCustomRoutingEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveCustomRoutingEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveCustomRoutingEndpointsInput"}
+	if s.EndpointGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointGroupArn"))
+	}
+	if s.EndpointIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointGroupArn sets the EndpointGroupArn field's value.
+func (s *RemoveCustomRoutingEndpointsInput) SetEndpointGroupArn(v string) *RemoveCustomRoutingEndpointsInput {
+	s.EndpointGroupArn = &v
+	return s
+}
+
+// SetEndpointIds sets the EndpointIds field's value.
+func (s *RemoveCustomRoutingEndpointsInput) SetEndpointIds(v []*string) *RemoveCustomRoutingEndpointsInput {
+	s.EndpointIds = v
+	return s
+}
+
+type RemoveCustomRoutingEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveCustomRoutingEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveCustomRoutingEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// An IP address/port combination.
+type SocketAddress struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address for the socket address.
+	IpAddress *string `type:"string"`
+
+	// The port for the socket address.
+	Port *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s SocketAddress) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SocketAddress) GoString() string {
+	return s.String()
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *SocketAddress) SetIpAddress(v string) *SocketAddress {
+	s.IpAddress = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *SocketAddress) SetPort(v int64) *SocketAddress {
+	s.Port = &v
 	return s
 }
 
@@ -5869,7 +10726,7 @@ type UpdateAcceleratorInput struct {
 	// false, the accelerator can be deleted.
 	Enabled *bool `type:"boolean"`
 
-	// The value for the address type must be IPv4.
+	// The IP address type, which must be IPv4.
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
 	// The name of the accelerator. The name can have a maximum of 32 characters,
@@ -5945,6 +10802,295 @@ func (s UpdateAcceleratorOutput) GoString() string {
 // SetAccelerator sets the Accelerator field's value.
 func (s *UpdateAcceleratorOutput) SetAccelerator(v *Accelerator) *UpdateAcceleratorOutput {
 	s.Accelerator = v
+	return s
+}
+
+type UpdateCustomRoutingAcceleratorAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the custom routing accelerator to update
+	// attributes for.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+
+	// Update whether flow logs are enabled. The default value is false. If the
+	// value is true, FlowLogsS3Bucket and FlowLogsS3Prefix must be specified.
+	//
+	// For more information, see Flow Logs (https://docs.aws.amazon.com/global-accelerator/latest/dg/monitoring-global-accelerator.flow-logs.html)
+	// in the AWS Global Accelerator Developer Guide.
+	FlowLogsEnabled *bool `type:"boolean"`
+
+	// The name of the Amazon S3 bucket for the flow logs. Attribute is required
+	// if FlowLogsEnabled is true. The bucket must exist and have a bucket policy
+	// that grants AWS Global Accelerator permission to write to the bucket.
+	FlowLogsS3Bucket *string `type:"string"`
+
+	// Update the prefix for the location in the Amazon S3 bucket for the flow logs.
+	// Attribute is required if FlowLogsEnabled is true.
+	//
+	// If you don’t specify a prefix, the flow logs are stored in the root of
+	// the bucket. If you specify slash (/) for the S3 bucket prefix, the log file
+	// bucket folder structure will include a double slash (//), like the following:
+	//
+	// DOC-EXAMPLE-BUCKET//AWSLogs/aws_account_id
+	FlowLogsS3Prefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateCustomRoutingAcceleratorAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomRoutingAcceleratorAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCustomRoutingAcceleratorAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCustomRoutingAcceleratorAttributesInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *UpdateCustomRoutingAcceleratorAttributesInput) SetAcceleratorArn(v string) *UpdateCustomRoutingAcceleratorAttributesInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetFlowLogsEnabled sets the FlowLogsEnabled field's value.
+func (s *UpdateCustomRoutingAcceleratorAttributesInput) SetFlowLogsEnabled(v bool) *UpdateCustomRoutingAcceleratorAttributesInput {
+	s.FlowLogsEnabled = &v
+	return s
+}
+
+// SetFlowLogsS3Bucket sets the FlowLogsS3Bucket field's value.
+func (s *UpdateCustomRoutingAcceleratorAttributesInput) SetFlowLogsS3Bucket(v string) *UpdateCustomRoutingAcceleratorAttributesInput {
+	s.FlowLogsS3Bucket = &v
+	return s
+}
+
+// SetFlowLogsS3Prefix sets the FlowLogsS3Prefix field's value.
+func (s *UpdateCustomRoutingAcceleratorAttributesInput) SetFlowLogsS3Prefix(v string) *UpdateCustomRoutingAcceleratorAttributesInput {
+	s.FlowLogsS3Prefix = &v
+	return s
+}
+
+type UpdateCustomRoutingAcceleratorAttributesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Updated custom routing accelerator.
+	AcceleratorAttributes *CustomRoutingAcceleratorAttributes `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateCustomRoutingAcceleratorAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomRoutingAcceleratorAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorAttributes sets the AcceleratorAttributes field's value.
+func (s *UpdateCustomRoutingAcceleratorAttributesOutput) SetAcceleratorAttributes(v *CustomRoutingAcceleratorAttributes) *UpdateCustomRoutingAcceleratorAttributesOutput {
+	s.AcceleratorAttributes = v
+	return s
+}
+
+type UpdateCustomRoutingAcceleratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the accelerator to update.
+	//
+	// AcceleratorArn is a required field
+	AcceleratorArn *string `type:"string" required:"true"`
+
+	// Indicates whether an accelerator is enabled. The value is true or false.
+	// The default value is true.
+	//
+	// If the value is set to true, the accelerator cannot be deleted. If set to
+	// false, the accelerator can be deleted.
+	Enabled *bool `type:"boolean"`
+
+	// The value for the address type must be IPv4.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
+
+	// The name of the accelerator. The name can have a maximum of 32 characters,
+	// must contain only alphanumeric characters or hyphens (-), and must not begin
+	// or end with a hyphen.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateCustomRoutingAcceleratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomRoutingAcceleratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCustomRoutingAcceleratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCustomRoutingAcceleratorInput"}
+	if s.AcceleratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AcceleratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceleratorArn sets the AcceleratorArn field's value.
+func (s *UpdateCustomRoutingAcceleratorInput) SetAcceleratorArn(v string) *UpdateCustomRoutingAcceleratorInput {
+	s.AcceleratorArn = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateCustomRoutingAcceleratorInput) SetEnabled(v bool) *UpdateCustomRoutingAcceleratorInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *UpdateCustomRoutingAcceleratorInput) SetIpAddressType(v string) *UpdateCustomRoutingAcceleratorInput {
+	s.IpAddressType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateCustomRoutingAcceleratorInput) SetName(v string) *UpdateCustomRoutingAcceleratorInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateCustomRoutingAcceleratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the updated custom routing accelerator.
+	Accelerator *CustomRoutingAccelerator `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateCustomRoutingAcceleratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomRoutingAcceleratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccelerator sets the Accelerator field's value.
+func (s *UpdateCustomRoutingAcceleratorOutput) SetAccelerator(v *CustomRoutingAccelerator) *UpdateCustomRoutingAcceleratorOutput {
+	s.Accelerator = v
+	return s
+}
+
+type UpdateCustomRoutingListenerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the listener to update.
+	//
+	// ListenerArn is a required field
+	ListenerArn *string `type:"string" required:"true"`
+
+	// The updated port range to support for connections from clients to your accelerator.
+	// If you remove ports that are currently being used by a subnet endpoint, the
+	// call fails.
+	//
+	// Separately, you set port ranges for endpoints. For more information, see
+	// About endpoints for custom routing accelerators (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-custom-routing-endpoints.html).
+	//
+	// PortRanges is a required field
+	PortRanges []*PortRange `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateCustomRoutingListenerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomRoutingListenerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCustomRoutingListenerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCustomRoutingListenerInput"}
+	if s.ListenerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ListenerArn"))
+	}
+	if s.PortRanges == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortRanges"))
+	}
+	if s.PortRanges != nil && len(s.PortRanges) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PortRanges", 1))
+	}
+	if s.PortRanges != nil {
+		for i, v := range s.PortRanges {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PortRanges", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetListenerArn sets the ListenerArn field's value.
+func (s *UpdateCustomRoutingListenerInput) SetListenerArn(v string) *UpdateCustomRoutingListenerInput {
+	s.ListenerArn = &v
+	return s
+}
+
+// SetPortRanges sets the PortRanges field's value.
+func (s *UpdateCustomRoutingListenerInput) SetPortRanges(v []*PortRange) *UpdateCustomRoutingListenerInput {
+	s.PortRanges = v
+	return s
+}
+
+type UpdateCustomRoutingListenerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information for the updated listener for a custom routing accelerator.
+	Listener *CustomRoutingListener `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateCustomRoutingListenerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomRoutingListenerOutput) GoString() string {
+	return s.String()
+}
+
+// SetListener sets the Listener field's value.
+func (s *UpdateCustomRoutingListenerOutput) SetListener(v *CustomRoutingListener) *UpdateCustomRoutingListenerOutput {
+	s.Listener = v
 	return s
 }
 
@@ -6385,6 +11531,54 @@ func ClientAffinity_Values() []string {
 	return []string{
 		ClientAffinityNone,
 		ClientAffinitySourceIp,
+	}
+}
+
+const (
+	// CustomRoutingAcceleratorStatusDeployed is a CustomRoutingAcceleratorStatus enum value
+	CustomRoutingAcceleratorStatusDeployed = "DEPLOYED"
+
+	// CustomRoutingAcceleratorStatusInProgress is a CustomRoutingAcceleratorStatus enum value
+	CustomRoutingAcceleratorStatusInProgress = "IN_PROGRESS"
+)
+
+// CustomRoutingAcceleratorStatus_Values returns all elements of the CustomRoutingAcceleratorStatus enum
+func CustomRoutingAcceleratorStatus_Values() []string {
+	return []string{
+		CustomRoutingAcceleratorStatusDeployed,
+		CustomRoutingAcceleratorStatusInProgress,
+	}
+}
+
+const (
+	// CustomRoutingDestinationTrafficStateAllow is a CustomRoutingDestinationTrafficState enum value
+	CustomRoutingDestinationTrafficStateAllow = "ALLOW"
+
+	// CustomRoutingDestinationTrafficStateDeny is a CustomRoutingDestinationTrafficState enum value
+	CustomRoutingDestinationTrafficStateDeny = "DENY"
+)
+
+// CustomRoutingDestinationTrafficState_Values returns all elements of the CustomRoutingDestinationTrafficState enum
+func CustomRoutingDestinationTrafficState_Values() []string {
+	return []string{
+		CustomRoutingDestinationTrafficStateAllow,
+		CustomRoutingDestinationTrafficStateDeny,
+	}
+}
+
+const (
+	// CustomRoutingProtocolTcp is a CustomRoutingProtocol enum value
+	CustomRoutingProtocolTcp = "TCP"
+
+	// CustomRoutingProtocolUdp is a CustomRoutingProtocol enum value
+	CustomRoutingProtocolUdp = "UDP"
+)
+
+// CustomRoutingProtocol_Values returns all elements of the CustomRoutingProtocol enum
+func CustomRoutingProtocol_Values() []string {
+	return []string{
+		CustomRoutingProtocolTcp,
+		CustomRoutingProtocolUdp,
 	}
 }
 

@@ -2545,6 +2545,13 @@
           "us-west-2" : { }
         }
       },
+      "emr-containers" : {
+        "endpoints" : {
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "entitlement.marketplace" : {
         "defaults" : {
           "credentialScope" : {
@@ -3096,6 +3103,14 @@
             },
             "hostname" : "health-fips.us-east-2.amazonaws.com"
           }
+        }
+      },
+      "healthlake" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-east-1" : { }
         }
       },
       "honeycode" : {

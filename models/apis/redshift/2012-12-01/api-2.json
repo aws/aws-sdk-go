@@ -370,7 +370,8 @@
         {"shape":"InvalidScheduleFault"},
         {"shape":"SnapshotScheduleQuotaExceededFault"},
         {"shape":"TagLimitExceededFault"},
-        {"shape":"ScheduleDefinitionTypeUnsupportedFault"}
+        {"shape":"ScheduleDefinitionTypeUnsupportedFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "CreateTags":{
@@ -383,7 +384,8 @@
       "errors":[
         {"shape":"TagLimitExceededFault"},
         {"shape":"ResourceNotFoundFault"},
-        {"shape":"InvalidTagFault"}
+        {"shape":"InvalidTagFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "CreateUsageLimit":{
@@ -1527,7 +1529,8 @@
       },
       "errors":[
         {"shape":"ClusterNotFoundFault"},
-        {"shape":"InvalidClusterStateFault"}
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"InsufficientClusterCapacityFault"}
       ]
     },
     "RevokeClusterSecurityGroupIngress":{
@@ -1897,6 +1900,7 @@
         "ExpectedNextSnapshotScheduleTimeStatus":{"shape":"String"},
         "NextMaintenanceWindowStartTime":{"shape":"TStamp"},
         "ResizeInfo":{"shape":"ResizeInfo"},
+        "AvailabilityZoneRelocationStatus":{"shape":"String"},
         "ClusterNamespaceArn":{"shape":"String"}
       },
       "wrapper":true
@@ -2395,7 +2399,8 @@
         "AdditionalInfo":{"shape":"String"},
         "IamRoles":{"shape":"IamRoleArnList"},
         "MaintenanceTrackName":{"shape":"String"},
-        "SnapshotScheduleIdentifier":{"shape":"String"}
+        "SnapshotScheduleIdentifier":{"shape":"String"},
+        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -3184,7 +3189,8 @@
       "type":"structure",
       "members":{
         "Address":{"shape":"String"},
-        "Port":{"shape":"Integer"}
+        "Port":{"shape":"Integer"},
+        "VpcEndpoints":{"shape":"SpartaProxyVpcEndpointList"}
       }
     },
     "Event":{
@@ -3922,7 +3928,10 @@
         "EnhancedVpcRouting":{"shape":"BooleanOptional"},
         "MaintenanceTrackName":{"shape":"String"},
         "Encrypted":{"shape":"BooleanOptional"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
+        "AvailabilityZone":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"}
       }
     },
     "ModifyClusterParameterGroupMessage":{
@@ -4413,7 +4422,7 @@
         "ClusterIdentifier":{"shape":"String"},
         "ClusterType":{"shape":"String"},
         "NodeType":{"shape":"String"},
-        "NumberOfNodes":{"shape":"Integer"},
+        "NumberOfNodes":{"shape":"IntegerOptional"},
         "Classic":{"shape":"BooleanOptional"}
       }
     },
@@ -4512,7 +4521,8 @@
         "IamRoles":{"shape":"IamRoleArnList"},
         "MaintenanceTrackName":{"shape":"String"},
         "SnapshotScheduleIdentifier":{"shape":"String"},
-        "NumberOfNodes":{"shape":"IntegerOptional"}
+        "NumberOfNodes":{"shape":"IntegerOptional"},
+        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"}
       }
     },
     "RestoreFromClusterSnapshotResult":{
@@ -4842,6 +4852,7 @@
         "ClusterCreateTime":{"shape":"TStamp"},
         "MasterUsername":{"shape":"String"},
         "ClusterVersion":{"shape":"String"},
+        "EngineFullVersion":{"shape":"String"},
         "SnapshotType":{"shape":"String"},
         "NodeType":{"shape":"String"},
         "NumberOfNodes":{"shape":"Integer"},
@@ -5109,7 +5120,23 @@
         "scheduled-action"
       ]
     },
-    "String":{"type":"string"},
+    "SpartaProxyVpcEndpoint":{
+      "type":"structure",
+      "members":{
+        "VpcEndpointId":{"shape":"String"}
+      }
+    },
+    "SpartaProxyVpcEndpointList":{
+      "type":"list",
+      "member":{
+        "shape":"SpartaProxyVpcEndpoint",
+        "locationName":"SpartaProxyVpcEndpoint"
+      }
+    },
+    "String":{
+      "type":"string",
+      "max":2147483647
+    },
     "Subnet":{
       "type":"structure",
       "members":{

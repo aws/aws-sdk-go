@@ -1869,6 +1869,9 @@ func (c *Redshift) CreateSnapshotScheduleRequest(input *CreateSnapshotScheduleIn
 //   * ErrCodeScheduleDefinitionTypeUnsupportedFault "ScheduleDefinitionTypeUnsupported"
 //   The definition you submitted is not supported.
 //
+//   * ErrCodeInvalidTagFault "InvalidTagFault"
+//   The tag is invalid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateSnapshotSchedule
 func (c *Redshift) CreateSnapshotSchedule(input *CreateSnapshotScheduleInput) (*CreateSnapshotScheduleOutput, error) {
 	req, out := c.CreateSnapshotScheduleRequest(input)
@@ -1960,6 +1963,9 @@ func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *request.Reque
 //
 //   * ErrCodeInvalidTagFault "InvalidTagFault"
 //   The tag is invalid.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateTags
 func (c *Redshift) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
@@ -9440,7 +9446,7 @@ func (c *Redshift) ResizeClusterRequest(input *ResizeClusterInput) (req *request
 //
 //    * You can only resize clusters of the following types: dc1.large (if your
 //    cluster is in a VPC) dc1.8xlarge (if your cluster is in a VPC) dc2.large
-//    dc2.8xlarge ds2.xlarge ds2.8xlarge ra3.4xlarge ra3.16xlarge
+//    dc2.8xlarge ds2.xlarge ds2.8xlarge ra3.xlplus ra3.4xlarge ra3.16xlarge
 //
 //    * The type of nodes that you add must match the node type for the cluster.
 //
@@ -9852,6 +9858,9 @@ func (c *Redshift) ResumeClusterRequest(input *ResumeClusterInput) (req *request
 //
 //   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
 //   The specified cluster is not in the available state.
+//
+//   * ErrCodeInsufficientClusterCapacityFault "InsufficientClusterCapacity"
+//   The number of nodes specified exceeds the allotted capacity of the cluster.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ResumeCluster
 func (c *Redshift) ResumeCluster(input *ResumeClusterInput) (*ResumeClusterOutput, error) {
@@ -10942,6 +10951,9 @@ type Cluster struct {
 	// The name of the Availability Zone in which the cluster is located.
 	AvailabilityZone *string `type:"string"`
 
+	// Describes the status of the Availability Zone relocation operation.
+	AvailabilityZoneRelocationStatus *string `type:"string"`
+
 	// The availability status of the cluster for queries. Possible values are the
 	// following:
 	//
@@ -11203,6 +11215,12 @@ func (s *Cluster) SetAutomatedSnapshotRetentionPeriod(v int64) *Cluster {
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *Cluster) SetAvailabilityZone(v string) *Cluster {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneRelocationStatus sets the AvailabilityZoneRelocationStatus field's value.
+func (s *Cluster) SetAvailabilityZoneRelocationStatus(v string) *Cluster {
+	s.AvailabilityZoneRelocationStatus = &v
 	return s
 }
 
@@ -12261,6 +12279,10 @@ type CreateClusterInput struct {
 	// the current endpoint.
 	AvailabilityZone *string `type:"string"`
 
+	// The option to enable relocation for an Amazon Redshift cluster between Availability
+	// Zones after the cluster is created.
+	AvailabilityZoneRelocation *bool `type:"boolean"`
+
 	// A unique identifier for the cluster. You use this identifier to refer to
 	// the cluster for any subsequent cluster operations such as deleting or modifying.
 	// The identifier also appears in the Amazon Redshift console.
@@ -12445,7 +12467,7 @@ type CreateClusterInput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	//
 	// Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large
-	// | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge
+	// | dc2.8xlarge | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
 	//
 	// NodeType is a required field
 	NodeType *string `type:"string" required:"true"`
@@ -12561,6 +12583,12 @@ func (s *CreateClusterInput) SetAutomatedSnapshotRetentionPeriod(v int64) *Creat
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *CreateClusterInput) SetAvailabilityZone(v string) *CreateClusterInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneRelocation sets the AvailabilityZoneRelocation field's value.
+func (s *CreateClusterInput) SetAvailabilityZoneRelocation(v bool) *CreateClusterInput {
+	s.AvailabilityZoneRelocation = &v
 	return s
 }
 
@@ -19065,6 +19093,9 @@ type Endpoint struct {
 
 	// The port that the database engine is listening on.
 	Port *int64 `type:"integer"`
+
+	// Describes a connection endpoint.
+	VpcEndpoints []*SpartaProxyVpcEndpoint `locationNameList:"SpartaProxyVpcEndpoint" type:"list"`
 }
 
 // String returns the string representation
@@ -19086,6 +19117,12 @@ func (s *Endpoint) SetAddress(v string) *Endpoint {
 // SetPort sets the Port field's value.
 func (s *Endpoint) SetPort(v int64) *Endpoint {
 	s.Port = &v
+	return s
+}
+
+// SetVpcEndpoints sets the VpcEndpoints field's value.
+func (s *Endpoint) SetVpcEndpoints(v []*SpartaProxyVpcEndpoint) *Endpoint {
+	s.VpcEndpoints = v
 	return s
 }
 
@@ -20183,6 +20220,14 @@ type ModifyClusterInput struct {
 	// Constraints: Must be a value from 0 to 35.
 	AutomatedSnapshotRetentionPeriod *int64 `type:"integer"`
 
+	// The option to initiate relocation for an Amazon Redshift cluster to the target
+	// Availability Zone.
+	AvailabilityZone *string `type:"string"`
+
+	// The option to enable relocation for an Amazon Redshift cluster between Availability
+	// Zones after the cluster modification is complete.
+	AvailabilityZoneRelocation *bool `type:"boolean"`
+
 	// The unique identifier of the cluster to be modified.
 	//
 	// Example: examplecluster
@@ -20343,7 +20388,7 @@ type ModifyClusterInput struct {
 	// in the Amazon Redshift Cluster Management Guide.
 	//
 	// Valid Values: ds2.xlarge | ds2.8xlarge | dc1.large | dc1.8xlarge | dc2.large
-	// | dc2.8xlarge | ra3.4xlarge | ra3.16xlarge
+	// | dc2.8xlarge | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
 	NodeType *string `type:"string"`
 
 	// The new number of nodes of the cluster. If you specify a new number of nodes,
@@ -20355,6 +20400,9 @@ type ModifyClusterInput struct {
 	//
 	// Valid Values: Integer greater than 0.
 	NumberOfNodes *int64 `type:"integer"`
+
+	// The option to change the port of an Amazon Redshift cluster.
+	Port *int64 `type:"integer"`
 
 	// The weekly time range (in UTC) during which system maintenance can occur,
 	// if necessary. If system maintenance is necessary during the window, it may
@@ -20415,6 +20463,18 @@ func (s *ModifyClusterInput) SetAllowVersionUpgrade(v bool) *ModifyClusterInput 
 // SetAutomatedSnapshotRetentionPeriod sets the AutomatedSnapshotRetentionPeriod field's value.
 func (s *ModifyClusterInput) SetAutomatedSnapshotRetentionPeriod(v int64) *ModifyClusterInput {
 	s.AutomatedSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *ModifyClusterInput) SetAvailabilityZone(v string) *ModifyClusterInput {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneRelocation sets the AvailabilityZoneRelocation field's value.
+func (s *ModifyClusterInput) SetAvailabilityZoneRelocation(v bool) *ModifyClusterInput {
+	s.AvailabilityZoneRelocation = &v
 	return s
 }
 
@@ -20517,6 +20577,12 @@ func (s *ModifyClusterInput) SetNodeType(v string) *ModifyClusterInput {
 // SetNumberOfNodes sets the NumberOfNodes field's value.
 func (s *ModifyClusterInput) SetNumberOfNodes(v int64) *ModifyClusterInput {
 	s.NumberOfNodes = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ModifyClusterInput) SetPort(v int64) *ModifyClusterInput {
+	s.Port = &v
 	return s
 }
 
@@ -22937,6 +23003,10 @@ type RestoreFromClusterSnapshotInput struct {
 	// Example: us-east-2a
 	AvailabilityZone *string `type:"string"`
 
+	// The option to enable relocation for an Amazon Redshift cluster between Availability
+	// Zones after the cluster is restored.
+	AvailabilityZoneRelocation *bool `type:"boolean"`
+
 	// The identifier of the cluster that will be created from restoring the snapshot.
 	//
 	// Constraints:
@@ -23152,6 +23222,12 @@ func (s *RestoreFromClusterSnapshotInput) SetAutomatedSnapshotRetentionPeriod(v 
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *RestoreFromClusterSnapshotInput) SetAvailabilityZone(v string) *RestoreFromClusterSnapshotInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneRelocation sets the AvailabilityZoneRelocation field's value.
+func (s *RestoreFromClusterSnapshotInput) SetAvailabilityZoneRelocation(v bool) *RestoreFromClusterSnapshotInput {
+	s.AvailabilityZoneRelocation = &v
 	return s
 }
 
@@ -24214,6 +24290,10 @@ type Snapshot struct {
 	// using HSM keys.
 	EncryptedWithHSM *bool `type:"boolean"`
 
+	// The cluster version of the cluster used to create the snapshot. For example,
+	// 1.0.15503.
+	EngineFullVersion *string `type:"string"`
+
 	// An option that specifies whether to create the cluster with enhanced VPC
 	// routing enabled. To create a cluster that uses enhanced VPC routing, the
 	// cluster must be in a VPC. For more information, see Enhanced VPC Routing
@@ -24384,6 +24464,12 @@ func (s *Snapshot) SetEncrypted(v bool) *Snapshot {
 // SetEncryptedWithHSM sets the EncryptedWithHSM field's value.
 func (s *Snapshot) SetEncryptedWithHSM(v bool) *Snapshot {
 	s.EncryptedWithHSM = &v
+	return s
+}
+
+// SetEngineFullVersion sets the EngineFullVersion field's value.
+func (s *Snapshot) SetEngineFullVersion(v string) *Snapshot {
+	s.EngineFullVersion = &v
 	return s
 }
 
@@ -24737,6 +24823,32 @@ func (s *SnapshotSortingEntity) SetAttribute(v string) *SnapshotSortingEntity {
 // SetSortOrder sets the SortOrder field's value.
 func (s *SnapshotSortingEntity) SetSortOrder(v string) *SnapshotSortingEntity {
 	s.SortOrder = &v
+	return s
+}
+
+// The connection endpoint for connecting an Amazon Redshift cluster through
+// the proxy.
+type SpartaProxyVpcEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The connection endpoint ID for connecting an Amazon Redshift cluster through
+	// the proxy.
+	VpcEndpointId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SpartaProxyVpcEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SpartaProxyVpcEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *SpartaProxyVpcEndpoint) SetVpcEndpointId(v string) *SpartaProxyVpcEndpoint {
+	s.VpcEndpointId = &v
 	return s
 }
 
