@@ -3,6 +3,7 @@ package request
 import (
 	"errors"
 	"fmt"
+	"net/http"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -10,47 +11,91 @@ import (
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
 )
 
-func TestRequestThrottling(t *testing.T) {
-	req := Request{}
+func TestRequestIsErrorThrottle(t *testing.T) {
 	cases := []struct {
-		ecode string
+		Err      error
+		Throttle bool
+		Req      Request
 	}{
 		{
-			ecode: "ProvisionedThroughputExceededException",
+			Err:      awserr.New("ProvisionedThroughputExceededException", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "ThrottledException",
+			Err:      awserr.New("ThrottledException", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "Throttling",
+			Err:      awserr.New("Throttling", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "ThrottlingException",
+			Err:      awserr.New("ThrottlingException", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "RequestLimitExceeded",
+			Err:      awserr.New("RequestLimitExceeded", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "RequestThrottled",
+			Err:      awserr.New("RequestThrottled", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "TooManyRequestsException",
+			Err:      awserr.New("TooManyRequestsException", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "PriorRequestNotComplete",
+			Err:      awserr.New("PriorRequestNotComplete", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "TransactionInProgressException",
+			Err:      awserr.New("TransactionInProgressException", "", nil),
+			Throttle: true,
 		},
 		{
-			ecode: "EC2ThrottledException",
+			Err:      awserr.New("EC2ThrottledException", "", nil),
+			Throttle: true,
+		},
+		{
+			Err: awserr.NewRequestFailure(
+				awserr.New(ErrCodeSerialization, "some error",
+					awserr.NewUnmarshalError(nil, "blah", []byte{}),
+				),
+				503,
+				"request-id",
+			),
+			Req: Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 503,
+					Header:     http.Header{},
+				},
+			},
+			Throttle: true,
+		},
+		{
+			Err: awserr.NewRequestFailure(
+				awserr.New(ErrCodeSerialization, "some error",
+					awserr.NewUnmarshalError(nil, "blah", []byte{}),
+				),
+				400,
+				"request-id",
+			),
+			Req: Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 400,
+					Header:     http.Header{},
+				},
+			},
+			Throttle: false,
 		},
 	}
 
-	for _, c := range cases {
-		req.Error = awserr.New(c.ecode, "", nil)
-		if e, a := true, req.IsErrorThrottle(); e != a {
-			t.Errorf("expect %s to be throttled, was %t", c.ecode, a)
+	for i, c := range cases {
+		req := c.Req
+		req.Error = c.Err
+		if e, a := c.Throttle, req.IsErrorThrottle(); e != a {
+			t.Errorf("%d, expect %v to be throttled, was %t", i, c.Err, a)
 		}
 	}
 }
@@ -64,9 +109,10 @@ func (e mockTempError) Temporary() bool {
 	return bool(e)
 }
 
-func TestIsErrorRetryable(t *testing.T) {
+func TestRequestIsErrorRetryable(t *testing.T) {
 	cases := []struct {
 		Err       error
+		Req       Request
 		Retryable bool
 	}{
 		{
@@ -80,6 +126,38 @@ func TestIsErrorRetryable(t *testing.T) {
 		{
 			Err:       awserr.New(ErrCodeSerialization, "some error", errors.New("blah")),
 			Retryable: true,
+		},
+		{
+			Err: awserr.NewRequestFailure(
+				awserr.New(ErrCodeSerialization, "some error",
+					awserr.NewUnmarshalError(nil, "blah", []byte{}),
+				),
+				503,
+				"request-id",
+			),
+			Req: Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 503,
+					Header:     http.Header{},
+				},
+			},
+			Retryable: false, // classified as throttled not retryable
+		},
+		{
+			Err: awserr.NewRequestFailure(
+				awserr.New(ErrCodeSerialization, "some error",
+					awserr.NewUnmarshalError(nil, "blah", []byte{}),
+				),
+				400,
+				"request-id",
+			),
+			Req: Request{
+				HTTPResponse: &http.Response{
+					StatusCode: 400,
+					Header:     http.Header{},
+				},
+			},
+			Retryable: false,
 		},
 		{
 			Err:       awserr.New("SomeError", "some error", nil),
@@ -96,9 +174,11 @@ func TestIsErrorRetryable(t *testing.T) {
 	}
 
 	for i, c := range cases {
-		retryable := IsErrorRetryable(c.Err)
-		if e, a := c.Retryable, retryable; e != a {
-			t.Errorf("%d, expect %t temporary error, got %t", i, e, a)
+		req := c.Req
+		req.Error = c.Err
+
+		if e, a := c.Retryable, req.IsErrorRetryable(); e != a {
+			t.Errorf("%d, expect %v to be retryable, was %t", i, c.Err, a)
 		}
 	}
 }
