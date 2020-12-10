@@ -49,6 +49,41 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "AssociateTransitGatewayConnectPeer":{
+      "name":"AssociateTransitGatewayConnectPeer",
+      "http":{
+        "method":"POST",
+        "requestUri":"/global-networks/{globalNetworkId}/transit-gateway-connect-peer-associations"
+      },
+      "input":{"shape":"AssociateTransitGatewayConnectPeerRequest"},
+      "output":{"shape":"AssociateTransitGatewayConnectPeerResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateConnection":{
+      "name":"CreateConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/global-networks/{globalNetworkId}/connections"
+      },
+      "input":{"shape":"CreateConnectionRequest"},
+      "output":{"shape":"CreateConnectionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateDevice":{
       "name":"CreateDevice",
       "http":{
@@ -113,6 +148,23 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteConnection":{
+      "name":"DeleteConnection",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/global-networks/{globalNetworkId}/connections/{connectionId}"
+      },
+      "input":{"shape":"DeleteConnectionRequest"},
+      "output":{"shape":"DeleteConnectionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
@@ -255,6 +307,39 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DisassociateTransitGatewayConnectPeer":{
+      "name":"DisassociateTransitGatewayConnectPeer",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/global-networks/{globalNetworkId}/transit-gateway-connect-peer-associations/{transitGatewayConnectPeerArn}"
+      },
+      "input":{"shape":"DisassociateTransitGatewayConnectPeerRequest"},
+      "output":{"shape":"DisassociateTransitGatewayConnectPeerResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetConnections":{
+      "name":"GetConnections",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/connections"
+      },
+      "input":{"shape":"GetConnectionsRequest"},
+      "output":{"shape":"GetConnectionsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetCustomerGatewayAssociations":{
       "name":"GetCustomerGatewayAssociations",
       "http":{
@@ -332,6 +417,23 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetTransitGatewayConnectPeerAssociations":{
+      "name":"GetTransitGatewayConnectPeerAssociations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/transit-gateway-connect-peer-associations"
+      },
+      "input":{"shape":"GetTransitGatewayConnectPeerAssociationsRequest"},
+      "output":{"shape":"GetTransitGatewayConnectPeerAssociationsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
@@ -420,6 +522,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateConnection":{
+      "name":"UpdateConnection",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/global-networks/{globalNetworkId}/connections/{connectionId}"
+      },
+      "input":{"shape":"UpdateConnectionRequest"},
+      "output":{"shape":"UpdateConnectionResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateDevice":{
       "name":"UpdateDevice",
       "http":{
@@ -491,6 +610,13 @@
     }
   },
   "shapes":{
+    "AWSLocation":{
+      "type":"structure",
+      "members":{
+        "Zone":{"shape":"String"},
+        "SubnetArn":{"shape":"String"}
+      }
+    },
     "AccessDeniedException":{
       "type":"structure",
       "required":["Message"],
@@ -547,6 +673,30 @@
         "LinkAssociation":{"shape":"LinkAssociation"}
       }
     },
+    "AssociateTransitGatewayConnectPeerRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "TransitGatewayConnectPeerArn",
+        "DeviceId"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "TransitGatewayConnectPeerArn":{"shape":"String"},
+        "DeviceId":{"shape":"String"},
+        "LinkId":{"shape":"String"}
+      }
+    },
+    "AssociateTransitGatewayConnectPeerResponse":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayConnectPeerAssociation":{"shape":"TransitGatewayConnectPeerAssociation"}
+      }
+    },
     "Bandwidth":{
       "type":"structure",
       "members":{
@@ -569,6 +719,62 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "Connection":{
+      "type":"structure",
+      "members":{
+        "ConnectionId":{"shape":"String"},
+        "ConnectionArn":{"shape":"String"},
+        "GlobalNetworkId":{"shape":"String"},
+        "DeviceId":{"shape":"String"},
+        "ConnectedDeviceId":{"shape":"String"},
+        "LinkId":{"shape":"String"},
+        "ConnectedLinkId":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "CreatedAt":{"shape":"DateTime"},
+        "State":{"shape":"ConnectionState"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "ConnectionList":{
+      "type":"list",
+      "member":{"shape":"Connection"}
+    },
+    "ConnectionState":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "AVAILABLE",
+        "DELETING",
+        "UPDATING"
+      ]
+    },
+    "CreateConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "DeviceId",
+        "ConnectedDeviceId"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "DeviceId":{"shape":"String"},
+        "ConnectedDeviceId":{"shape":"String"},
+        "LinkId":{"shape":"String"},
+        "ConnectedLinkId":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "Connection":{"shape":"Connection"}
+      }
+    },
     "CreateDeviceRequest":{
       "type":"structure",
       "required":["GlobalNetworkId"],
@@ -578,6 +784,7 @@
           "location":"uri",
           "locationName":"globalNetworkId"
         },
+        "AWSLocation":{"shape":"AWSLocation"},
         "Description":{"shape":"String"},
         "Type":{"shape":"String"},
         "Vendor":{"shape":"String"},
@@ -678,6 +885,31 @@
       ]
     },
     "DateTime":{"type":"timestamp"},
+    "DeleteConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "ConnectionId"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "ConnectionId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"connectionId"
+        }
+      }
+    },
+    "DeleteConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "Connection":{"shape":"Connection"}
+      }
+    },
     "DeleteDeviceRequest":{
       "type":"structure",
       "required":[
@@ -828,6 +1060,7 @@
         "DeviceId":{"shape":"String"},
         "DeviceArn":{"shape":"String"},
         "GlobalNetworkId":{"shape":"String"},
+        "AWSLocation":{"shape":"AWSLocation"},
         "Description":{"shape":"String"},
         "Type":{"shape":"String"},
         "Vendor":{"shape":"String"},
@@ -907,6 +1140,69 @@
       "type":"structure",
       "members":{
         "LinkAssociation":{"shape":"LinkAssociation"}
+      }
+    },
+    "DisassociateTransitGatewayConnectPeerRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "TransitGatewayConnectPeerArn"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "TransitGatewayConnectPeerArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"transitGatewayConnectPeerArn"
+        }
+      }
+    },
+    "DisassociateTransitGatewayConnectPeerResponse":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayConnectPeerAssociation":{"shape":"TransitGatewayConnectPeerAssociation"}
+      }
+    },
+    "GetConnectionsRequest":{
+      "type":"structure",
+      "required":["GlobalNetworkId"],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "ConnectionIds":{
+          "shape":"StringList",
+          "location":"querystring",
+          "locationName":"connectionIds"
+        },
+        "DeviceId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"deviceId"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetConnectionsResponse":{
+      "type":"structure",
+      "members":{
+        "Connections":{"shape":"ConnectionList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "GetCustomerGatewayAssociationsRequest":{
@@ -1099,6 +1395,39 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "GetTransitGatewayConnectPeerAssociationsRequest":{
+      "type":"structure",
+      "required":["GlobalNetworkId"],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "TransitGatewayConnectPeerArns":{
+          "shape":"StringList",
+          "location":"querystring",
+          "locationName":"transitGatewayConnectPeerArns"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetTransitGatewayConnectPeerAssociationsResponse":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayConnectPeerAssociations":{"shape":"TransitGatewayConnectPeerAssociationList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "GetTransitGatewayRegistrationsRequest":{
       "type":"structure",
       "required":["GlobalNetworkId"],
@@ -1246,7 +1575,8 @@
         "Address":{"shape":"String"},
         "Latitude":{"shape":"String"},
         "Longitude":{"shape":"String"}
-      }
+      },
+      "sensitive":true
     },
     "MaxResults":{
       "type":"integer",
@@ -1390,6 +1720,29 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TransitGatewayConnectPeerAssociation":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayConnectPeerArn":{"shape":"String"},
+        "GlobalNetworkId":{"shape":"String"},
+        "DeviceId":{"shape":"String"},
+        "LinkId":{"shape":"String"},
+        "State":{"shape":"TransitGatewayConnectPeerAssociationState"}
+      }
+    },
+    "TransitGatewayConnectPeerAssociationList":{
+      "type":"list",
+      "member":{"shape":"TransitGatewayConnectPeerAssociation"}
+    },
+    "TransitGatewayConnectPeerAssociationState":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "AVAILABLE",
+        "DELETING",
+        "DELETED"
+      ]
+    },
     "TransitGatewayRegistration":{
       "type":"structure",
       "members":{
@@ -1443,6 +1796,34 @@
       "members":{
       }
     },
+    "UpdateConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "ConnectionId"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "ConnectionId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"connectionId"
+        },
+        "LinkId":{"shape":"String"},
+        "ConnectedLinkId":{"shape":"String"},
+        "Description":{"shape":"String"}
+      }
+    },
+    "UpdateConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "Connection":{"shape":"Connection"}
+      }
+    },
     "UpdateDeviceRequest":{
       "type":"structure",
       "required":[
@@ -1460,6 +1841,7 @@
           "location":"uri",
           "locationName":"deviceId"
         },
+        "AWSLocation":{"shape":"AWSLocation"},
         "Description":{"shape":"String"},
         "Type":{"shape":"String"},
         "Vendor":{"shape":"String"},

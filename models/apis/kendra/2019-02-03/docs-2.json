@@ -7,17 +7,21 @@
     "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
     "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p>",
     "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the <code>Status</code> field returned from a call to . The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the operation or using one of the supported data sources. </p>",
+    "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p>",
     "DeleteDataSource": "<p>Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the operation is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
     "DeleteFaq": "<p>Removes an FAQ from an index.</p>",
     "DeleteIndex": "<p>Deletes an existing Amazon Kendra index. An exception is not thrown if the index is already being deleted. While the index is being deleted, the <code>Status</code> field returned by a call to the <a>DescribeIndex</a> operation is set to <code>DELETING</code>.</p>",
+    "DeleteThesaurus": "<p>Deletes an existing Amazon Kendra thesaurus. </p>",
     "DescribeDataSource": "<p>Gets information about a Amazon Kendra data source.</p>",
     "DescribeFaq": "<p>Gets information about an FAQ list.</p>",
     "DescribeIndex": "<p>Describes an existing Amazon Kendra index</p>",
+    "DescribeThesaurus": "<p>Describes an existing Amazon Kendra thesaurus.</p>",
     "ListDataSourceSyncJobs": "<p>Gets statistics about synchronizing Amazon Kendra with a data source.</p>",
     "ListDataSources": "<p>Lists the data sources that you have created.</p>",
     "ListFaqs": "<p>Gets a list of FAQ lists associated with an index.</p>",
     "ListIndices": "<p>Lists the Amazon Kendra indexes that you have created.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a specified resource. Indexes, FAQs, and data sources can have tags associated with them.</p>",
+    "ListThesauri": "<p>Lists the Amazon Kendra thesauri associated with an index.</p>",
     "Query": "<p>Searches an active index. Use this API to search your documents using query. The <code>Query</code> operation enables to do faceted search and to filter results based on document attributes.</p> <p>It also enables you to provide user context that Amazon Kendra uses to enforce document access control in the search results. </p> <p>Amazon Kendra searches your index for text content and question and answer (FAQ) content. By default the response contains three types of results.</p> <ul> <li> <p>Relevant passages</p> </li> <li> <p>Matching FAQs</p> </li> <li> <p>Relevant documents</p> </li> </ul> <p>You can specify that the query return only one type of result using the <code>QueryResultTypeConfig</code> parameter.</p> <p>Each query returns the 100 most relevant results. </p>",
     "StartDataSourceSyncJob": "<p>Starts a synchronization job for a data source. If a synchronization job is already in progress, Amazon Kendra returns a <code>ResourceInUseException</code> exception.</p>",
     "StopDataSourceSyncJob": "<p>Stops a running synchronization job. You can't stop a scheduled synchronization job.</p>",
@@ -25,7 +29,8 @@
     "TagResource": "<p>Adds the specified tag to the specified index, FAQ, or data source resource. If the tag already exists, the existing value is replaced with the new value.</p>",
     "UntagResource": "<p>Removes a tag from an index, FAQ, or a data source.</p>",
     "UpdateDataSource": "<p>Updates an existing Amazon Kendra data source.</p>",
-    "UpdateIndex": "<p>Updates an existing Amazon Kendra index.</p>"
+    "UpdateIndex": "<p>Updates an existing Amazon Kendra index.</p>",
+    "UpdateThesaurus": "<p>Updates a thesaurus file associated with an index.</p>"
   },
   "shapes": {
     "AccessControlListConfiguration": {
@@ -198,7 +203,8 @@
       "refs": {
         "CreateDataSourceRequest$ClientToken": "<p>A token that you provide to identify the request to create a data source. Multiple calls to the <code>CreateDataSource</code> operation with the same client token will create only one data source.</p>",
         "CreateFaqRequest$ClientToken": "<p>A token that you provide to identify the request to create a FAQ. Multiple calls to the <code>CreateFaqRequest</code> operation with the same client token will create only one FAQ. </p>",
-        "CreateIndexRequest$ClientToken": "<p>A token that you provide to identify the request to create an index. Multiple calls to the <code>CreateIndex</code> operation with the same client token will create only one index.</p>"
+        "CreateIndexRequest$ClientToken": "<p>A token that you provide to identify the request to create an index. Multiple calls to the <code>CreateIndex</code> operation with the same client token will create only one index.</p>",
+        "CreateThesaurusRequest$ClientToken": "<p>A token that you provide to identify the request to create a thesaurus. Multiple calls to the <code>CreateThesaurus</code> operation with the same client token will create only one index. </p>"
       }
     },
     "ColumnConfiguration": {
@@ -381,6 +387,16 @@
       }
     },
     "CreateIndexResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateThesaurusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateThesaurusResponse": {
       "base": null,
       "refs": {
       }
@@ -614,6 +630,11 @@
       "refs": {
       }
     },
+    "DeleteThesaurusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDataSourceRequest": {
       "base": null,
       "refs": {
@@ -644,17 +665,30 @@
       "refs": {
       }
     },
+    "DescribeThesaurusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeThesaurusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Description": {
       "base": null,
       "refs": {
         "CreateDataSourceRequest$Description": "<p>A description for the data source.</p>",
         "CreateFaqRequest$Description": "<p>A description of the FAQ.</p>",
         "CreateIndexRequest$Description": "<p>A description for the index.</p>",
+        "CreateThesaurusRequest$Description": "<p>The description for the new thesaurus.</p>",
         "DescribeDataSourceResponse$Description": "<p>The description of the data source.</p>",
         "DescribeFaqResponse$Description": "<p>The description of the FAQ that you provided when it was created.</p>",
         "DescribeIndexResponse$Description": "<p>The description of the index.</p>",
+        "DescribeThesaurusResponse$Description": "<p>The thesaurus description.</p>",
         "UpdateDataSourceRequest$Description": "<p>The new description for the data source.</p>",
-        "UpdateIndexRequest$Description": "<p>A new description for the index.</p>"
+        "UpdateIndexRequest$Description": "<p>A new description for the index.</p>",
+        "UpdateThesaurusRequest$Description": "<p>The updated description of the thesaurus.</p>"
       }
     },
     "Document": {
@@ -815,6 +849,7 @@
         "DescribeDataSourceResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a description of the error that caused the data source to fail.</p>",
         "DescribeFaqResponse$ErrorMessage": "<p>If the <code>Status</code> field is <code>FAILED</code>, the <code>ErrorMessage</code> field contains the reason why the FAQ failed.</p>",
         "DescribeIndexResponse$ErrorMessage": "<p>When th e<code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a message that explains why.</p>",
+        "DescribeThesaurusResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field provides more information. </p>",
         "InternalServerException$Message": null,
         "ResourceAlreadyExistException$Message": null,
         "ResourceInUseException$Message": null,
@@ -948,6 +983,12 @@
         "TextWithHighlights$Highlights": "<p>The beginning and end of the text that should be highlighted.</p>"
       }
     },
+    "HighlightType": {
+      "base": null,
+      "refs": {
+        "Highlight$Type": "<p>The highlight type. </p>"
+      }
+    },
     "Importance": {
       "base": null,
       "refs": {
@@ -993,25 +1034,31 @@
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index that should be associated with this data source.</p>",
         "CreateFaqRequest$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "CreateIndexResponse$Id": "<p>The unique identifier of the index. Use this identifier when you query an index, set up a data source, or index a document.</p>",
+        "CreateThesaurusRequest$IndexId": "<p>The unique identifier of the index for the new thesaurus. </p>",
         "DeleteDataSourceRequest$IndexId": "<p>The unique identifier of the index associated with the data source.</p>",
         "DeleteFaqRequest$IndexId": "<p>The index to remove the FAQ from.</p>",
         "DeleteIndexRequest$Id": "<p>The identifier of the index to delete.</p>",
+        "DeleteThesaurusRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to delete.</p>",
         "DescribeDataSourceRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "DescribeDataSourceResponse$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "DescribeFaqRequest$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "DescribeFaqResponse$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "DescribeIndexRequest$Id": "<p>The name of the index to describe.</p>",
-        "DescribeIndexResponse$Id": "<p>the name of the index.</p>",
+        "DescribeIndexResponse$Id": "<p>The name of the index.</p>",
+        "DescribeThesaurusRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to describe.</p>",
+        "DescribeThesaurusResponse$IndexId": "<p>The identifier of the index associated with the thesaurus to describe.</p>",
         "IndexConfigurationSummary$Id": "<p>A unique identifier for the index. Use this to identify the index when you are using operations such as <code>Query</code>, <code>DescribeIndex</code>, <code>UpdateIndex</code>, and <code>DeleteIndex</code>.</p>",
         "ListDataSourceSyncJobsRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "ListDataSourcesRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "ListFaqsRequest$IndexId": "<p>The index that contains the FAQ lists.</p>",
+        "ListThesauriRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to list.</p>",
         "QueryRequest$IndexId": "<p>The unique identifier of the index to search. The identifier is returned in the response from the operation.</p>",
         "StartDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "StopDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "SubmitFeedbackRequest$IndexId": "<p>The identifier of the index that was queried.</p>",
         "UpdateDataSourceRequest$IndexId": "<p>The identifier of the index that contains the data source to update.</p>",
-        "UpdateIndexRequest$Id": "<p>The identifier of the index to update.</p>"
+        "UpdateIndexRequest$Id": "<p>The identifier of the index to update.</p>",
+        "UpdateThesaurusRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to update.</p>"
       }
     },
     "IndexName": {
@@ -1150,9 +1197,22 @@
       "refs": {
       }
     },
+    "ListThesauriRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListThesauriResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
+        "DescribeThesaurusResponse$FileSizeBytes": "<p>The size of the thesaurus file in bytes.</p>",
+        "DescribeThesaurusResponse$TermCount": "<p>The number of unique terms in the thesaurus file. For example, the synonyms <code>a,b,c</code> and <code>a=&gt;d</code>, the term count would be 4. </p>",
+        "DescribeThesaurusResponse$SynonymRuleCount": "<p>The number of synonym rules in the thesaurus file.</p>",
         "DocumentAttributeValue$LongValue": "<p>A long integer value.</p>"
       }
     },
@@ -1178,6 +1238,12 @@
       "base": null,
       "refs": {
         "ListIndicesRequest$MaxResults": "<p>The maximum number of data sources to return.</p>"
+      }
+    },
+    "MaxResultsIntegerForListThesauriRequest": {
+      "base": null,
+      "refs": {
+        "ListThesauriRequest$MaxResults": "<p>The maximum number of thesauri to return.</p>"
       }
     },
     "MetricValue": {
@@ -1206,7 +1272,9 @@
         "ListFaqsRequest$NextToken": "<p>If the result of the previous request to <code>ListFaqs</code> was truncated, include the <code>NextToken</code> to fetch the next set of FAQs.</p>",
         "ListFaqsResponse$NextToken": "<p>The <code>ListFaqs</code> operation returns a page of FAQs at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Kendra returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListFaqs</code> operation to return the next page of FAQs.</p>",
         "ListIndicesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of indexes (<code>DataSourceSummaryItems</code>). </p>",
-        "ListIndicesResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of indexes.</p>"
+        "ListIndicesResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of indexes.</p>",
+        "ListThesauriRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of thesauri (<code>ThesaurusSummaryItems</code>). </p>",
+        "ListThesauriResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of thesauri. </p>"
       }
     },
     "OneDriveConfiguration": {
@@ -1382,12 +1450,15 @@
         "CreateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p> <p>You can't specify the <code>RoleArn</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>RoleArn</code> parameter is required for all other data sources.</p>",
         "CreateFaqRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
         "CreateIndexRequest$RoleArn": "<p>An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role used when you use the <code>BatchPutDocument</code> operation to index documents from an Amazon S3 bucket.</p>",
+        "CreateThesaurusRequest$RoleArn": "<p>An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
         "DescribeDataSourceResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that enables the data source to access its resources.</p>",
         "DescribeFaqResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that provides access to the S3 bucket containing the input files for the FAQ.</p>",
         "DescribeIndexResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission to write to your Amazon Cloudwatch logs.</p>",
+        "DescribeThesaurusResponse$RoleArn": "<p>An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
         "JwtTokenTypeConfiguration$SecretManagerArn": "<p>The Amazon Resource Name (arn) of the secret.</p>",
         "UpdateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the new role to use when the data source is accessing resources on your behalf.</p>",
-        "UpdateIndexRequest$RoleArn": "<p>A new IAM role that gives Amazon Kendra permission to access your Amazon CloudWatch logs.</p>"
+        "UpdateIndexRequest$RoleArn": "<p>A new IAM role that gives Amazon Kendra permission to access your Amazon CloudWatch logs.</p>",
+        "UpdateThesaurusRequest$RoleArn": "<p>The updated role ARN of the thesaurus.</p>"
       }
     },
     "S3BucketName": {
@@ -1415,9 +1486,12 @@
       "base": "<p>Information required to find a specific file in an Amazon S3 bucket.</p>",
       "refs": {
         "CreateFaqRequest$S3Path": "<p>The S3 location of the FAQ input data.</p>",
+        "CreateThesaurusRequest$SourceS3Path": "<p>The thesaurus file Amazon S3 source path. </p>",
         "DescribeFaqResponse$S3Path": null,
+        "DescribeThesaurusResponse$SourceS3Path": null,
         "Document$S3Path": null,
-        "OneDriveUsers$OneDriveUserS3Path": "<p>The S3 bucket location of a file containing a list of users whose documents should be indexed.</p>"
+        "OneDriveUsers$OneDriveUserS3Path": "<p>The S3 bucket location of a file containing a list of users whose documents should be indexed.</p>",
+        "UpdateThesaurusRequest$SourceS3Path": null
       }
     },
     "SalesforceChatterFeedConfiguration": {
@@ -1720,6 +1794,7 @@
         "CreateDataSourceRequest$Tags": "<p>A list of key-value pairs that identify the data source. You can use the tags to identify and organize your resources and to control access to resources.</p>",
         "CreateFaqRequest$Tags": "<p>A list of key-value pairs that identify the FAQ. You can use the tags to identify and organize your resources and to control access to resources.</p>",
         "CreateIndexRequest$Tags": "<p>A list of key-value pairs that identify the index. You can use the tags to identify and organize your resources and to control access to resources.</p>",
+        "CreateThesaurusRequest$Tags": "<p>A list of key-value pairs that identify the thesaurus. You can use the tags to identify and organize your resources and to control access to resources. </p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags associated with the index, FAQ, or data source.</p>",
         "TagResourceRequest$Tags": "<p>A list of tag keys to add to the index, FAQ, or data source. If a tag already exists, the existing value is replaced with the new value.</p>"
       }
@@ -1760,6 +1835,45 @@
         "QueryResultItem$DocumentExcerpt": "<p>An extract of the text in the document. Contains information about highlighting the relevant terms in the excerpt.</p>"
       }
     },
+    "ThesaurusId": {
+      "base": null,
+      "refs": {
+        "CreateThesaurusResponse$Id": "<p>The unique identifier of the thesaurus. </p>",
+        "DeleteThesaurusRequest$Id": "<p>The identifier of the thesaurus to delete.</p>",
+        "DescribeThesaurusRequest$Id": "<p>The identifier of the thesaurus to describe.</p>",
+        "DescribeThesaurusResponse$Id": "<p>The identifier of the thesaurus.</p>",
+        "ThesaurusSummary$Id": "<p>The identifier of the thesaurus.</p>",
+        "UpdateThesaurusRequest$Id": "<p>The identifier of the thesaurus to update.</p>"
+      }
+    },
+    "ThesaurusName": {
+      "base": null,
+      "refs": {
+        "CreateThesaurusRequest$Name": "<p>The name for the new thesaurus.</p>",
+        "DescribeThesaurusResponse$Name": "<p>The thesaurus name.</p>",
+        "ThesaurusSummary$Name": "<p>The name of the thesaurus.</p>",
+        "UpdateThesaurusRequest$Name": "<p>The updated name of the thesaurus.</p>"
+      }
+    },
+    "ThesaurusStatus": {
+      "base": null,
+      "refs": {
+        "DescribeThesaurusResponse$Status": "<p>The current status of the thesaurus. When the value is <code>ACTIVE</code>, queries are able to use the thesaurus. If the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field provides more information. </p> <p>If the status is <code>ACTIVE_BUT_UPDATE_FAILED</code>, it means that Amazon Kendra could not ingest the new thesaurus file. The old thesaurus file is still active. </p>",
+        "ThesaurusSummary$Status": "<p>The status of the thesaurus.</p>"
+      }
+    },
+    "ThesaurusSummary": {
+      "base": "<p>An array of summary information for one or more thesauruses.</p>",
+      "refs": {
+        "ThesaurusSummaryItems$member": null
+      }
+    },
+    "ThesaurusSummaryItems": {
+      "base": null,
+      "refs": {
+        "ListThesauriResponse$ThesaurusSummaryItems": "<p>An array of summary information for one or more thesauruses.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p/>",
       "refs": {
@@ -1785,11 +1899,15 @@
         "DescribeFaqResponse$UpdatedAt": "<p>The date and time that the FAQ was last updated.</p>",
         "DescribeIndexResponse$CreatedAt": "<p>The Unix datetime that the index was created.</p>",
         "DescribeIndexResponse$UpdatedAt": "<p>The Unix datetime that the index was last updated.</p>",
+        "DescribeThesaurusResponse$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
+        "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
         "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p>",
         "FaqSummary$CreatedAt": "<p>The UNIX datetime that the FAQ was added to the index.</p>",
         "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
         "IndexConfigurationSummary$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",
         "IndexConfigurationSummary$UpdatedAt": "<p>The Unix timestamp when the index was last updated by the <code>UpdateIndex</code> operation.</p>",
+        "ThesaurusSummary$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
+        "ThesaurusSummary$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
         "TimeRange$StartTime": "<p>The UNIX datetime of the beginning of the time range.</p>",
         "TimeRange$EndTime": "<p>The UNIX datetime of the end of the time range.</p>"
       }
@@ -1822,6 +1940,11 @@
       }
     },
     "UpdateIndexRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateThesaurusRequest": {
       "base": null,
       "refs": {
       }

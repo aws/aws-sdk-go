@@ -6,6 +6,12 @@
       "limit_key": "MaxResults",
       "result_key": "GlobalNetworks"
     },
+    "GetConnections": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Connections"
+    },
     "GetCustomerGatewayAssociations": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -35,6 +41,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "Sites"
+    },
+    "GetTransitGatewayConnectPeerAssociations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "TransitGatewayConnectPeerAssociations"
     },
     "GetTransitGatewayRegistrations": {
       "input_token": "NextToken",
