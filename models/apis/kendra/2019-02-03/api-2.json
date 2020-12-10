@@ -104,6 +104,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateThesaurus":{
+      "name":"CreateThesaurus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateThesaurusRequest"},
+      "output":{"shape":"CreateThesaurusResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteDataSource":{
       "name":"DeleteDataSource",
       "http":{
@@ -143,6 +161,22 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteIndexRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteThesaurus":{
+      "name":"DeleteThesaurus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteThesaurusRequest"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
@@ -192,6 +226,22 @@
       },
       "input":{"shape":"DescribeIndexRequest"},
       "output":{"shape":"DescribeIndexResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeThesaurus":{
+      "name":"DescribeThesaurus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeThesaurusRequest"},
+      "output":{"shape":"DescribeThesaurusResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -275,6 +325,22 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceUnavailableException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListThesauri":{
+      "name":"ListThesauri",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListThesauriRequest"},
+      "output":{"shape":"ListThesauriResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -409,6 +475,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateThesaurus":{
+      "name":"UpdateThesaurus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateThesaurusRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
     }
@@ -908,6 +990,33 @@
         "Id":{"shape":"IndexId"}
       }
     },
+    "CreateThesaurusRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Name",
+        "RoleArn",
+        "SourceS3Path"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Name":{"shape":"ThesaurusName"},
+        "Description":{"shape":"Description"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Tags":{"shape":"TagList"},
+        "SourceS3Path":{"shape":"S3Path"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateThesaurusResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ThesaurusId"}
+      }
+    },
     "DataSourceConfiguration":{
       "type":"structure",
       "members":{
@@ -1150,6 +1259,17 @@
         "Id":{"shape":"IndexId"}
       }
     },
+    "DeleteThesaurusRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ThesaurusId"},
+        "IndexId":{"shape":"IndexId"}
+      }
+    },
     "DescribeDataSourceRequest":{
       "type":"structure",
       "required":[
@@ -1230,6 +1350,35 @@
         "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
         "UserContextPolicy":{"shape":"UserContextPolicy"}
+      }
+    },
+    "DescribeThesaurusRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ThesaurusId"},
+        "IndexId":{"shape":"IndexId"}
+      }
+    },
+    "DescribeThesaurusResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ThesaurusId"},
+        "IndexId":{"shape":"IndexId"},
+        "Name":{"shape":"ThesaurusName"},
+        "Description":{"shape":"Description"},
+        "Status":{"shape":"ThesaurusStatus"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "RoleArn":{"shape":"RoleArn"},
+        "SourceS3Path":{"shape":"S3Path"},
+        "FileSizeBytes":{"shape":"Long"},
+        "TermCount":{"shape":"Long"},
+        "SynonymRuleCount":{"shape":"Long"}
       }
     },
     "Description":{
@@ -1509,12 +1658,20 @@
       "members":{
         "BeginOffset":{"shape":"Integer"},
         "EndOffset":{"shape":"Integer"},
-        "TopAnswer":{"shape":"Boolean"}
+        "TopAnswer":{"shape":"Boolean"},
+        "Type":{"shape":"HighlightType"}
       }
     },
     "HighlightList":{
       "type":"list",
       "member":{"shape":"Highlight"}
+    },
+    "HighlightType":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "THESAURUS_SYNONYM"
+      ]
     },
     "Importance":{
       "type":"integer",
@@ -1733,6 +1890,22 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ListThesauriRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsIntegerForListThesauriRequest"}
+      }
+    },
+    "ListThesauriResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ThesaurusSummaryItems":{"shape":"ThesaurusSummaryItems"}
+      }
+    },
     "Long":{"type":"long"},
     "MaxResultsIntegerForListDataSourceSyncJobsRequest":{
       "type":"integer",
@@ -1750,6 +1923,11 @@
       "min":1
     },
     "MaxResultsIntegerForListIndicesRequest":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "MaxResultsIntegerForListThesauriRequest":{
       "type":"integer",
       "max":100,
       "min":1
@@ -1849,7 +2027,8 @@
     "QueryId":{
       "type":"string",
       "max":36,
-      "min":1
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9-]*"
     },
     "QueryIdentifiersEnclosingOption":{
       "type":"string",
@@ -2482,6 +2661,43 @@
         "Highlights":{"shape":"HighlightList"}
       }
     },
+    "ThesaurusId":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "ThesaurusName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "ThesaurusStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "UPDATING",
+        "ACTIVE_BUT_UPDATE_FAILED",
+        "FAILED"
+      ]
+    },
+    "ThesaurusSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ThesaurusId"},
+        "Name":{"shape":"ThesaurusName"},
+        "Status":{"shape":"ThesaurusStatus"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "ThesaurusSummaryItems":{
+      "type":"list",
+      "member":{"shape":"ThesaurusSummary"}
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -2548,6 +2764,21 @@
         "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
         "UserContextPolicy":{"shape":"UserContextPolicy"}
+      }
+    },
+    "UpdateThesaurusRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ThesaurusId"},
+        "Name":{"shape":"ThesaurusName"},
+        "IndexId":{"shape":"IndexId"},
+        "Description":{"shape":"Description"},
+        "RoleArn":{"shape":"RoleArn"},
+        "SourceS3Path":{"shape":"S3Path"}
       }
     },
     "Url":{

@@ -80,6 +80,10 @@ type KendraAPI interface {
 	CreateIndexWithContext(aws.Context, *kendra.CreateIndexInput, ...request.Option) (*kendra.CreateIndexOutput, error)
 	CreateIndexRequest(*kendra.CreateIndexInput) (*request.Request, *kendra.CreateIndexOutput)
 
+	CreateThesaurus(*kendra.CreateThesaurusInput) (*kendra.CreateThesaurusOutput, error)
+	CreateThesaurusWithContext(aws.Context, *kendra.CreateThesaurusInput, ...request.Option) (*kendra.CreateThesaurusOutput, error)
+	CreateThesaurusRequest(*kendra.CreateThesaurusInput) (*request.Request, *kendra.CreateThesaurusOutput)
+
 	DeleteDataSource(*kendra.DeleteDataSourceInput) (*kendra.DeleteDataSourceOutput, error)
 	DeleteDataSourceWithContext(aws.Context, *kendra.DeleteDataSourceInput, ...request.Option) (*kendra.DeleteDataSourceOutput, error)
 	DeleteDataSourceRequest(*kendra.DeleteDataSourceInput) (*request.Request, *kendra.DeleteDataSourceOutput)
@@ -92,6 +96,10 @@ type KendraAPI interface {
 	DeleteIndexWithContext(aws.Context, *kendra.DeleteIndexInput, ...request.Option) (*kendra.DeleteIndexOutput, error)
 	DeleteIndexRequest(*kendra.DeleteIndexInput) (*request.Request, *kendra.DeleteIndexOutput)
 
+	DeleteThesaurus(*kendra.DeleteThesaurusInput) (*kendra.DeleteThesaurusOutput, error)
+	DeleteThesaurusWithContext(aws.Context, *kendra.DeleteThesaurusInput, ...request.Option) (*kendra.DeleteThesaurusOutput, error)
+	DeleteThesaurusRequest(*kendra.DeleteThesaurusInput) (*request.Request, *kendra.DeleteThesaurusOutput)
+
 	DescribeDataSource(*kendra.DescribeDataSourceInput) (*kendra.DescribeDataSourceOutput, error)
 	DescribeDataSourceWithContext(aws.Context, *kendra.DescribeDataSourceInput, ...request.Option) (*kendra.DescribeDataSourceOutput, error)
 	DescribeDataSourceRequest(*kendra.DescribeDataSourceInput) (*request.Request, *kendra.DescribeDataSourceOutput)
@@ -103,6 +111,10 @@ type KendraAPI interface {
 	DescribeIndex(*kendra.DescribeIndexInput) (*kendra.DescribeIndexOutput, error)
 	DescribeIndexWithContext(aws.Context, *kendra.DescribeIndexInput, ...request.Option) (*kendra.DescribeIndexOutput, error)
 	DescribeIndexRequest(*kendra.DescribeIndexInput) (*request.Request, *kendra.DescribeIndexOutput)
+
+	DescribeThesaurus(*kendra.DescribeThesaurusInput) (*kendra.DescribeThesaurusOutput, error)
+	DescribeThesaurusWithContext(aws.Context, *kendra.DescribeThesaurusInput, ...request.Option) (*kendra.DescribeThesaurusOutput, error)
+	DescribeThesaurusRequest(*kendra.DescribeThesaurusInput) (*request.Request, *kendra.DescribeThesaurusOutput)
 
 	ListDataSourceSyncJobs(*kendra.ListDataSourceSyncJobsInput) (*kendra.ListDataSourceSyncJobsOutput, error)
 	ListDataSourceSyncJobsWithContext(aws.Context, *kendra.ListDataSourceSyncJobsInput, ...request.Option) (*kendra.ListDataSourceSyncJobsOutput, error)
@@ -132,6 +144,10 @@ type KendraAPI interface {
 	ListTagsForResource(*kendra.ListTagsForResourceInput) (*kendra.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *kendra.ListTagsForResourceInput, ...request.Option) (*kendra.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*kendra.ListTagsForResourceInput) (*request.Request, *kendra.ListTagsForResourceOutput)
+
+	ListThesauri(*kendra.ListThesauriInput) (*kendra.ListThesauriOutput, error)
+	ListThesauriWithContext(aws.Context, *kendra.ListThesauriInput, ...request.Option) (*kendra.ListThesauriOutput, error)
+	ListThesauriRequest(*kendra.ListThesauriInput) (*request.Request, *kendra.ListThesauriOutput)
 
 	Query(*kendra.QueryInput) (*kendra.QueryOutput, error)
 	QueryWithContext(aws.Context, *kendra.QueryInput, ...request.Option) (*kendra.QueryOutput, error)
@@ -164,6 +180,10 @@ type KendraAPI interface {
 	UpdateIndex(*kendra.UpdateIndexInput) (*kendra.UpdateIndexOutput, error)
 	UpdateIndexWithContext(aws.Context, *kendra.UpdateIndexInput, ...request.Option) (*kendra.UpdateIndexOutput, error)
 	UpdateIndexRequest(*kendra.UpdateIndexInput) (*request.Request, *kendra.UpdateIndexOutput)
+
+	UpdateThesaurus(*kendra.UpdateThesaurusInput) (*kendra.UpdateThesaurusOutput, error)
+	UpdateThesaurusWithContext(aws.Context, *kendra.UpdateThesaurusInput, ...request.Option) (*kendra.UpdateThesaurusOutput, error)
+	UpdateThesaurusRequest(*kendra.UpdateThesaurusInput) (*request.Request, *kendra.UpdateThesaurusOutput)
 }
 
 var _ KendraAPI = (*kendra.Kendra)(nil)

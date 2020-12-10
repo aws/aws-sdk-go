@@ -491,6 +491,97 @@ func (c *Kendra) CreateIndexWithContext(ctx aws.Context, input *CreateIndexInput
 	return out, req.Send()
 }
 
+const opCreateThesaurus = "CreateThesaurus"
+
+// CreateThesaurusRequest generates a "aws/request.Request" representing the
+// client's request for the CreateThesaurus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateThesaurus for more information on using the CreateThesaurus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateThesaurusRequest method.
+//    req, resp := client.CreateThesaurusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateThesaurus
+func (c *Kendra) CreateThesaurusRequest(input *CreateThesaurusInput) (req *request.Request, output *CreateThesaurusOutput) {
+	op := &request.Operation{
+		Name:       opCreateThesaurus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateThesaurusInput{}
+	}
+
+	output = &CreateThesaurusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateThesaurus API operation for AWSKendraFrontendService.
+//
+// Creates a thesaurus for an index. The thesaurus contains a list of synonyms
+// in Solr format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation CreateThesaurus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * ServiceQuotaExceededException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateThesaurus
+func (c *Kendra) CreateThesaurus(input *CreateThesaurusInput) (*CreateThesaurusOutput, error) {
+	req, out := c.CreateThesaurusRequest(input)
+	return out, req.Send()
+}
+
+// CreateThesaurusWithContext is the same as CreateThesaurus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateThesaurus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) CreateThesaurusWithContext(ctx aws.Context, input *CreateThesaurusInput, opts ...request.Option) (*CreateThesaurusOutput, error) {
+	req, out := c.CreateThesaurusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDataSource = "DeleteDataSource"
 
 // DeleteDataSourceRequest generates a "aws/request.Request" representing the
@@ -763,6 +854,95 @@ func (c *Kendra) DeleteIndexWithContext(ctx aws.Context, input *DeleteIndexInput
 	return out, req.Send()
 }
 
+const opDeleteThesaurus = "DeleteThesaurus"
+
+// DeleteThesaurusRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteThesaurus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteThesaurus for more information on using the DeleteThesaurus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteThesaurusRequest method.
+//    req, resp := client.DeleteThesaurusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteThesaurus
+func (c *Kendra) DeleteThesaurusRequest(input *DeleteThesaurusInput) (req *request.Request, output *DeleteThesaurusOutput) {
+	op := &request.Operation{
+		Name:       opDeleteThesaurus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteThesaurusInput{}
+	}
+
+	output = &DeleteThesaurusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteThesaurus API operation for AWSKendraFrontendService.
+//
+// Deletes an existing Amazon Kendra thesaurus.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DeleteThesaurus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteThesaurus
+func (c *Kendra) DeleteThesaurus(input *DeleteThesaurusInput) (*DeleteThesaurusOutput, error) {
+	req, out := c.DeleteThesaurusRequest(input)
+	return out, req.Send()
+}
+
+// DeleteThesaurusWithContext is the same as DeleteThesaurus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteThesaurus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DeleteThesaurusWithContext(ctx aws.Context, input *DeleteThesaurusInput, opts ...request.Option) (*DeleteThesaurusOutput, error) {
+	req, out := c.DeleteThesaurusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDataSource = "DescribeDataSource"
 
 // DescribeDataSourceRequest generates a "aws/request.Request" representing the
@@ -1016,6 +1196,92 @@ func (c *Kendra) DescribeIndex(input *DescribeIndexInput) (*DescribeIndexOutput,
 // for more information on using Contexts.
 func (c *Kendra) DescribeIndexWithContext(ctx aws.Context, input *DescribeIndexInput, opts ...request.Option) (*DescribeIndexOutput, error) {
 	req, out := c.DescribeIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeThesaurus = "DescribeThesaurus"
+
+// DescribeThesaurusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeThesaurus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeThesaurus for more information on using the DescribeThesaurus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeThesaurusRequest method.
+//    req, resp := client.DescribeThesaurusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeThesaurus
+func (c *Kendra) DescribeThesaurusRequest(input *DescribeThesaurusInput) (req *request.Request, output *DescribeThesaurusOutput) {
+	op := &request.Operation{
+		Name:       opDescribeThesaurus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeThesaurusInput{}
+	}
+
+	output = &DescribeThesaurusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeThesaurus API operation for AWSKendraFrontendService.
+//
+// Describes an existing Amazon Kendra thesaurus.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DescribeThesaurus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeThesaurus
+func (c *Kendra) DescribeThesaurus(input *DescribeThesaurusInput) (*DescribeThesaurusOutput, error) {
+	req, out := c.DescribeThesaurusRequest(input)
+	return out, req.Send()
+}
+
+// DescribeThesaurusWithContext is the same as DescribeThesaurus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeThesaurus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DescribeThesaurusWithContext(ctx aws.Context, input *DescribeThesaurusInput, opts ...request.Option) (*DescribeThesaurusOutput, error) {
+	req, out := c.DescribeThesaurusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1621,6 +1887,92 @@ func (c *Kendra) ListTagsForResource(input *ListTagsForResourceInput) (*ListTags
 // for more information on using Contexts.
 func (c *Kendra) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListThesauri = "ListThesauri"
+
+// ListThesauriRequest generates a "aws/request.Request" representing the
+// client's request for the ListThesauri operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListThesauri for more information on using the ListThesauri
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListThesauriRequest method.
+//    req, resp := client.ListThesauriRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListThesauri
+func (c *Kendra) ListThesauriRequest(input *ListThesauriInput) (req *request.Request, output *ListThesauriOutput) {
+	op := &request.Operation{
+		Name:       opListThesauri,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListThesauriInput{}
+	}
+
+	output = &ListThesauriOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListThesauri API operation for AWSKendraFrontendService.
+//
+// Lists the Amazon Kendra thesauri associated with an index.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListThesauri for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListThesauri
+func (c *Kendra) ListThesauri(input *ListThesauriInput) (*ListThesauriOutput, error) {
+	req, out := c.ListThesauriRequest(input)
+	return out, req.Send()
+}
+
+// ListThesauriWithContext is the same as ListThesauri with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListThesauri for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListThesauriWithContext(ctx aws.Context, input *ListThesauriInput, opts ...request.Option) (*ListThesauriOutput, error) {
+	req, out := c.ListThesauriRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2354,6 +2706,95 @@ func (c *Kendra) UpdateIndex(input *UpdateIndexInput) (*UpdateIndexOutput, error
 // for more information on using Contexts.
 func (c *Kendra) UpdateIndexWithContext(ctx aws.Context, input *UpdateIndexInput, opts ...request.Option) (*UpdateIndexOutput, error) {
 	req, out := c.UpdateIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateThesaurus = "UpdateThesaurus"
+
+// UpdateThesaurusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateThesaurus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateThesaurus for more information on using the UpdateThesaurus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateThesaurusRequest method.
+//    req, resp := client.UpdateThesaurusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateThesaurus
+func (c *Kendra) UpdateThesaurusRequest(input *UpdateThesaurusInput) (req *request.Request, output *UpdateThesaurusOutput) {
+	op := &request.Operation{
+		Name:       opUpdateThesaurus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateThesaurusInput{}
+	}
+
+	output = &UpdateThesaurusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateThesaurus API operation for AWSKendraFrontendService.
+//
+// Updates a thesaurus file associated with an index.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation UpdateThesaurus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateThesaurus
+func (c *Kendra) UpdateThesaurus(input *UpdateThesaurusInput) (*UpdateThesaurusOutput, error) {
+	req, out := c.UpdateThesaurusRequest(input)
+	return out, req.Send()
+}
+
+// UpdateThesaurusWithContext is the same as UpdateThesaurus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateThesaurus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) UpdateThesaurusWithContext(ctx aws.Context, input *UpdateThesaurusInput, opts ...request.Option) (*UpdateThesaurusOutput, error) {
+	req, out := c.UpdateThesaurusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4737,6 +5178,167 @@ func (s *CreateIndexOutput) SetId(v string) *CreateIndexOutput {
 	return s
 }
 
+type CreateThesaurusInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you provide to identify the request to create a thesaurus. Multiple
+	// calls to the CreateThesaurus operation with the same client token will create
+	// only one index.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The description for the new thesaurus.
+	Description *string `type:"string"`
+
+	// The unique identifier of the index for the new thesaurus.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The name for the new thesaurus.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// An AWS Identity and Access Management (IAM) role that gives Amazon Kendra
+	// permissions to access thesaurus file specified in SourceS3Path.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"1" type:"string" required:"true"`
+
+	// The thesaurus file Amazon S3 source path.
+	//
+	// SourceS3Path is a required field
+	SourceS3Path *S3Path `type:"structure" required:"true"`
+
+	// A list of key-value pairs that identify the thesaurus. You can use the tags
+	// to identify and organize your resources and to control access to resources.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateThesaurusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateThesaurusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateThesaurusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateThesaurusInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.SourceS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceS3Path"))
+	}
+	if s.SourceS3Path != nil {
+		if err := s.SourceS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SourceS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateThesaurusInput) SetClientToken(v string) *CreateThesaurusInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateThesaurusInput) SetDescription(v string) *CreateThesaurusInput {
+	s.Description = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *CreateThesaurusInput) SetIndexId(v string) *CreateThesaurusInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateThesaurusInput) SetName(v string) *CreateThesaurusInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateThesaurusInput) SetRoleArn(v string) *CreateThesaurusInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSourceS3Path sets the SourceS3Path field's value.
+func (s *CreateThesaurusInput) SetSourceS3Path(v *S3Path) *CreateThesaurusInput {
+	s.SourceS3Path = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateThesaurusInput) SetTags(v []*Tag) *CreateThesaurusInput {
+	s.Tags = v
+	return s
+}
+
+type CreateThesaurusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the thesaurus.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateThesaurusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateThesaurusOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *CreateThesaurusOutput) SetId(v string) *CreateThesaurusOutput {
+	s.Id = &v
+	return s
+}
+
 // Configuration information for a Amazon Kendra data source.
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5618,6 +6220,78 @@ func (s DeleteIndexOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteThesaurusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the thesaurus to delete.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index associated with the thesaurus to delete.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteThesaurusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteThesaurusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteThesaurusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteThesaurusInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteThesaurusInput) SetId(v string) *DeleteThesaurusInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DeleteThesaurusInput) SetIndexId(v string) *DeleteThesaurusInput {
+	s.IndexId = &v
+	return s
+}
+
+type DeleteThesaurusOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteThesaurusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteThesaurusOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6044,7 +6718,7 @@ type DescribeIndexOutput struct {
 	// message that explains why.
 	ErrorMessage *string `min:"1" type:"string"`
 
-	// the name of the index.
+	// The name of the index.
 	Id *string `min:"36" type:"string"`
 
 	// Provides information about the number of FAQ questions and answers and the
@@ -6174,6 +6848,203 @@ func (s *DescribeIndexOutput) SetUserContextPolicy(v string) *DescribeIndexOutpu
 // SetUserTokenConfigurations sets the UserTokenConfigurations field's value.
 func (s *DescribeIndexOutput) SetUserTokenConfigurations(v []*UserTokenConfiguration) *DescribeIndexOutput {
 	s.UserTokenConfigurations = v
+	return s
+}
+
+type DescribeThesaurusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the thesaurus to describe.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index associated with the thesaurus to describe.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeThesaurusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeThesaurusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeThesaurusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeThesaurusInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeThesaurusInput) SetId(v string) *DescribeThesaurusInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeThesaurusInput) SetIndexId(v string) *DescribeThesaurusInput {
+	s.IndexId = &v
+	return s
+}
+
+type DescribeThesaurusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix datetime that the thesaurus was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The thesaurus description.
+	Description *string `type:"string"`
+
+	// When the Status field value is FAILED, the ErrorMessage field provides more
+	// information.
+	ErrorMessage *string `min:"1" type:"string"`
+
+	// The size of the thesaurus file in bytes.
+	FileSizeBytes *int64 `type:"long"`
+
+	// The identifier of the thesaurus.
+	Id *string `min:"1" type:"string"`
+
+	// The identifier of the index associated with the thesaurus to describe.
+	IndexId *string `min:"36" type:"string"`
+
+	// The thesaurus name.
+	Name *string `min:"1" type:"string"`
+
+	// An AWS Identity and Access Management (IAM) role that gives Amazon Kendra
+	// permissions to access thesaurus file specified in SourceS3Path.
+	RoleArn *string `min:"1" type:"string"`
+
+	// Information required to find a specific file in an Amazon S3 bucket.
+	SourceS3Path *S3Path `type:"structure"`
+
+	// The current status of the thesaurus. When the value is ACTIVE, queries are
+	// able to use the thesaurus. If the Status field value is FAILED, the ErrorMessage
+	// field provides more information.
+	//
+	// If the status is ACTIVE_BUT_UPDATE_FAILED, it means that Amazon Kendra could
+	// not ingest the new thesaurus file. The old thesaurus file is still active.
+	Status *string `type:"string" enum:"ThesaurusStatus"`
+
+	// The number of synonym rules in the thesaurus file.
+	SynonymRuleCount *int64 `type:"long"`
+
+	// The number of unique terms in the thesaurus file. For example, the synonyms
+	// a,b,c and a=>d, the term count would be 4.
+	TermCount *int64 `type:"long"`
+
+	// The Unix datetime that the thesaurus was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DescribeThesaurusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeThesaurusOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeThesaurusOutput) SetCreatedAt(v time.Time) *DescribeThesaurusOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeThesaurusOutput) SetDescription(v string) *DescribeThesaurusOutput {
+	s.Description = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *DescribeThesaurusOutput) SetErrorMessage(v string) *DescribeThesaurusOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetFileSizeBytes sets the FileSizeBytes field's value.
+func (s *DescribeThesaurusOutput) SetFileSizeBytes(v int64) *DescribeThesaurusOutput {
+	s.FileSizeBytes = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeThesaurusOutput) SetId(v string) *DescribeThesaurusOutput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeThesaurusOutput) SetIndexId(v string) *DescribeThesaurusOutput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeThesaurusOutput) SetName(v string) *DescribeThesaurusOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeThesaurusOutput) SetRoleArn(v string) *DescribeThesaurusOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSourceS3Path sets the SourceS3Path field's value.
+func (s *DescribeThesaurusOutput) SetSourceS3Path(v *S3Path) *DescribeThesaurusOutput {
+	s.SourceS3Path = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeThesaurusOutput) SetStatus(v string) *DescribeThesaurusOutput {
+	s.Status = &v
+	return s
+}
+
+// SetSynonymRuleCount sets the SynonymRuleCount field's value.
+func (s *DescribeThesaurusOutput) SetSynonymRuleCount(v int64) *DescribeThesaurusOutput {
+	s.SynonymRuleCount = &v
+	return s
+}
+
+// SetTermCount sets the TermCount field's value.
+func (s *DescribeThesaurusOutput) SetTermCount(v int64) *DescribeThesaurusOutput {
+	s.TermCount = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *DescribeThesaurusOutput) SetUpdatedAt(v time.Time) *DescribeThesaurusOutput {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -6919,6 +7790,9 @@ type Highlight struct {
 	// Indicates whether the response is the best response. True if this is the
 	// best response; otherwise, false.
 	TopAnswer *bool `type:"boolean"`
+
+	// The highlight type.
+	Type *string `type:"string" enum:"HighlightType"`
 }
 
 // String returns the string representation
@@ -6946,6 +7820,12 @@ func (s *Highlight) SetEndOffset(v int64) *Highlight {
 // SetTopAnswer sets the TopAnswer field's value.
 func (s *Highlight) SetTopAnswer(v bool) *Highlight {
 	s.TopAnswer = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Highlight) SetType(v string) *Highlight {
+	s.Type = &v
 	return s
 }
 
@@ -7779,6 +8659,106 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListThesauriInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index associated with the thesaurus to list.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum number of thesauri to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of thesauri (ThesaurusSummaryItems).
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListThesauriInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListThesauriInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListThesauriInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListThesauriInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ListThesauriInput) SetIndexId(v string) *ListThesauriInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListThesauriInput) SetMaxResults(v int64) *ListThesauriInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListThesauriInput) SetNextToken(v string) *ListThesauriInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListThesauriOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Kendra returns this token that you can
+	// use in the subsequent request to retrieve the next set of thesauri.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of summary information for one or more thesauruses.
+	ThesaurusSummaryItems []*ThesaurusSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListThesauriOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListThesauriOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListThesauriOutput) SetNextToken(v string) *ListThesauriOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetThesaurusSummaryItems sets the ThesaurusSummaryItems field's value.
+func (s *ListThesauriOutput) SetThesaurusSummaryItems(v []*ThesaurusSummary) *ListThesauriOutput {
+	s.ThesaurusSummaryItems = v
 	return s
 }
 
@@ -10957,6 +11937,66 @@ func (s *TextWithHighlights) SetText(v string) *TextWithHighlights {
 	return s
 }
 
+// An array of summary information for one or more thesauruses.
+type ThesaurusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix datetime that the thesaurus was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The identifier of the thesaurus.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the thesaurus.
+	Name *string `min:"1" type:"string"`
+
+	// The status of the thesaurus.
+	Status *string `type:"string" enum:"ThesaurusStatus"`
+
+	// The Unix datetime that the thesaurus was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ThesaurusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThesaurusSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ThesaurusSummary) SetCreatedAt(v time.Time) *ThesaurusSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ThesaurusSummary) SetId(v string) *ThesaurusSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ThesaurusSummary) SetName(v string) *ThesaurusSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ThesaurusSummary) SetStatus(v string) *ThesaurusSummary {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *ThesaurusSummary) SetUpdatedAt(v time.Time) *ThesaurusSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11399,6 +12439,125 @@ func (s UpdateIndexOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateIndexOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateThesaurusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated description of the thesaurus.
+	Description *string `type:"string"`
+
+	// The identifier of the thesaurus to update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index associated with the thesaurus to update.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The updated name of the thesaurus.
+	Name *string `min:"1" type:"string"`
+
+	// The updated role ARN of the thesaurus.
+	RoleArn *string `min:"1" type:"string"`
+
+	// Information required to find a specific file in an Amazon S3 bucket.
+	SourceS3Path *S3Path `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateThesaurusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateThesaurusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateThesaurusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateThesaurusInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.SourceS3Path != nil {
+		if err := s.SourceS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SourceS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateThesaurusInput) SetDescription(v string) *UpdateThesaurusInput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateThesaurusInput) SetId(v string) *UpdateThesaurusInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *UpdateThesaurusInput) SetIndexId(v string) *UpdateThesaurusInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateThesaurusInput) SetName(v string) *UpdateThesaurusInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateThesaurusInput) SetRoleArn(v string) *UpdateThesaurusInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSourceS3Path sets the SourceS3Path field's value.
+func (s *UpdateThesaurusInput) SetSourceS3Path(v *S3Path) *UpdateThesaurusInput {
+	s.SourceS3Path = v
+	return s
+}
+
+type UpdateThesaurusOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateThesaurusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateThesaurusOutput) GoString() string {
 	return s.String()
 }
 
@@ -12000,6 +13159,22 @@ func FaqStatus_Values() []string {
 }
 
 const (
+	// HighlightTypeStandard is a HighlightType enum value
+	HighlightTypeStandard = "STANDARD"
+
+	// HighlightTypeThesaurusSynonym is a HighlightType enum value
+	HighlightTypeThesaurusSynonym = "THESAURUS_SYNONYM"
+)
+
+// HighlightType_Values returns all elements of the HighlightType enum
+func HighlightType_Values() []string {
+	return []string{
+		HighlightTypeStandard,
+		HighlightTypeThesaurusSynonym,
+	}
+}
+
+const (
 	// IndexEditionDeveloperEdition is a IndexEdition enum value
 	IndexEditionDeveloperEdition = "DEVELOPER_EDITION"
 
@@ -12341,6 +13516,38 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderDesc,
 		SortOrderAsc,
+	}
+}
+
+const (
+	// ThesaurusStatusCreating is a ThesaurusStatus enum value
+	ThesaurusStatusCreating = "CREATING"
+
+	// ThesaurusStatusActive is a ThesaurusStatus enum value
+	ThesaurusStatusActive = "ACTIVE"
+
+	// ThesaurusStatusDeleting is a ThesaurusStatus enum value
+	ThesaurusStatusDeleting = "DELETING"
+
+	// ThesaurusStatusUpdating is a ThesaurusStatus enum value
+	ThesaurusStatusUpdating = "UPDATING"
+
+	// ThesaurusStatusActiveButUpdateFailed is a ThesaurusStatus enum value
+	ThesaurusStatusActiveButUpdateFailed = "ACTIVE_BUT_UPDATE_FAILED"
+
+	// ThesaurusStatusFailed is a ThesaurusStatus enum value
+	ThesaurusStatusFailed = "FAILED"
+)
+
+// ThesaurusStatus_Values returns all elements of the ThesaurusStatus enum
+func ThesaurusStatus_Values() []string {
+	return []string{
+		ThesaurusStatusCreating,
+		ThesaurusStatusActive,
+		ThesaurusStatusDeleting,
+		ThesaurusStatusUpdating,
+		ThesaurusStatusActiveButUpdateFailed,
+		ThesaurusStatusFailed,
 	}
 }
 
