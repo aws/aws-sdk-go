@@ -1,13 +1,16 @@
 {
   "version": "2.0",
-  "service": "<p>Transit Gateway Network Manager (Network Manager) enables you to create a global network, in which you can monitor your AWS and on-premises networks that are built around transit gateways.</p>",
+  "service": "<p>Transit Gateway Network Manager (Network Manager) enables you to create a global network, in which you can monitor your AWS and on-premises networks that are built around transit gateways.</p> <p>The Network Manager APIs are supported in the US West (Oregon) Region only. You must specify the <code>us-west-2</code> Region in all requests made to Network Manager.</p>",
   "operations": {
     "AssociateCustomerGateway": "<p>Associates a customer gateway with a device and optionally, with a link. If you specify a link, it must be associated with the specified device. </p> <p>You can only associate customer gateways that are connected to a VPN attachment on a transit gateway. The transit gateway must be registered in your global network. When you register a transit gateway, customer gateways that are connected to the transit gateway are automatically included in the global network. To list customer gateways that are connected to a transit gateway, use the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html\">DescribeVpnConnections</a> EC2 API and filter by <code>transit-gateway-id</code>.</p> <p>You cannot associate a customer gateway with more than one device and link. </p>",
     "AssociateLink": "<p>Associates a link to a device. A device can be associated to multiple links and a link can be associated to multiple devices. The device and link must be in the same global network and the same site.</p>",
+    "AssociateTransitGatewayConnectPeer": "<p>Associates a transit gateway Connect peer with a device, and optionally, with a link. If you specify a link, it must be associated with the specified device. </p> <p>You can only associate transit gateway Connect peers that have been created on a transit gateway that's registered in your global network.</p> <p>You cannot associate a transit gateway Connect peer with more than one device and link. </p>",
+    "CreateConnection": "<p>Creates a connection between two devices. The devices can be a physical or virtual appliance that connects to a third-party appliance in a VPC, or a physical appliance that connects to another physical appliance in an on-premises network.</p>",
     "CreateDevice": "<p>Creates a new device in a global network. If you specify both a site ID and a location, the location of the site is used for visualization in the Network Manager console.</p>",
     "CreateGlobalNetwork": "<p>Creates a new, empty global network.</p>",
     "CreateLink": "<p>Creates a new link for a specified site.</p>",
     "CreateSite": "<p>Creates a new site in a global network.</p>",
+    "DeleteConnection": "<p>Deletes the specified connection in your global network.</p>",
     "DeleteDevice": "<p>Deletes an existing device. You must first disassociate the device from any links and customer gateways.</p>",
     "DeleteGlobalNetwork": "<p>Deletes an existing global network. You must first delete all global network objects (devices, links, and sites) and deregister all transit gateways.</p>",
     "DeleteLink": "<p>Deletes an existing link. You must first disassociate the link from any devices and customer gateways.</p>",
@@ -16,22 +19,34 @@
     "DescribeGlobalNetworks": "<p>Describes one or more global networks. By default, all global networks are described. To describe the objects in your global network, you must use the appropriate <code>Get*</code> action. For example, to list the transit gateways in your global network, use <a>GetTransitGatewayRegistrations</a>.</p>",
     "DisassociateCustomerGateway": "<p>Disassociates a customer gateway from a device and a link.</p>",
     "DisassociateLink": "<p>Disassociates an existing device from a link. You must first disassociate any customer gateways that are associated with the link.</p>",
+    "DisassociateTransitGatewayConnectPeer": "<p>Disassociates a transit gateway Connect peer from a device and link.</p>",
+    "GetConnections": "<p>Gets information about one or more of your connections in a global network.</p>",
     "GetCustomerGatewayAssociations": "<p>Gets the association information for customer gateways that are associated with devices and links in your global network.</p>",
     "GetDevices": "<p>Gets information about one or more of your devices in a global network.</p>",
     "GetLinkAssociations": "<p>Gets the link associations for a device or a link. Either the device ID or the link ID must be specified.</p>",
     "GetLinks": "<p>Gets information about one or more links in a specified global network.</p> <p>If you specify the site ID, you cannot specify the type or provider in the same request. You can specify the type and provider in the same request.</p>",
     "GetSites": "<p>Gets information about one or more of your sites in a global network.</p>",
+    "GetTransitGatewayConnectPeerAssociations": "<p>Gets information about one or more of your transit gateway Connect peer associations in a global network.</p>",
     "GetTransitGatewayRegistrations": "<p>Gets information about the transit gateway registrations in a specified global network.</p>",
     "ListTagsForResource": "<p>Lists the tags for a specified resource.</p>",
     "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any AWS Region, but it must be owned by the same AWS account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
     "TagResource": "<p>Tags a specified resource.</p>",
     "UntagResource": "<p>Removes tags from a specified resource.</p>",
+    "UpdateConnection": "<p>Updates the information for an existing connection. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateDevice": "<p>Updates the details for an existing device. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateGlobalNetwork": "<p>Updates an existing global network. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateLink": "<p>Updates the details for an existing link. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateSite": "<p>Updates the information for an existing site. To remove information for any of the parameters, specify an empty string.</p>"
   },
   "shapes": {
+    "AWSLocation": {
+      "base": "<p>Specifies a location in AWS.</p>",
+      "refs": {
+        "CreateDeviceRequest$AWSLocation": "<p>The AWS location of the device.</p>",
+        "Device$AWSLocation": "<p>The AWS location of the device.</p>",
+        "UpdateDeviceRequest$AWSLocation": "<p>The AWS location of the device.</p>"
+      }
+    },
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
@@ -57,6 +72,16 @@
       "refs": {
       }
     },
+    "AssociateTransitGatewayConnectPeerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateTransitGatewayConnectPeerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Bandwidth": {
       "base": "<p>Describes bandwidth information.</p>",
       "refs": {
@@ -67,6 +92,37 @@
     },
     "ConflictException": {
       "base": "<p>There was a conflict processing the request. Updating or deleting the resource can cause an inconsistent state.</p>",
+      "refs": {
+      }
+    },
+    "Connection": {
+      "base": "<p>Describes a connection.</p>",
+      "refs": {
+        "ConnectionList$member": null,
+        "CreateConnectionResponse$Connection": "<p>Information about the connection.</p>",
+        "DeleteConnectionResponse$Connection": "<p>Information about the connection.</p>",
+        "UpdateConnectionResponse$Connection": "<p>Information about the connection.</p>"
+      }
+    },
+    "ConnectionList": {
+      "base": null,
+      "refs": {
+        "GetConnectionsResponse$Connections": "<p>Information about the connections.</p>"
+      }
+    },
+    "ConnectionState": {
+      "base": null,
+      "refs": {
+        "Connection$State": "<p>The state of the connection.</p>"
+      }
+    },
+    "CreateConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectionResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -133,10 +189,21 @@
     "DateTime": {
       "base": null,
       "refs": {
+        "Connection$CreatedAt": "<p>The date and time that the connection was created.</p>",
         "Device$CreatedAt": "<p>The date and time that the site was created.</p>",
         "GlobalNetwork$CreatedAt": "<p>The date and time that the global network was created.</p>",
         "Link$CreatedAt": "<p>The date and time that the link was created.</p>",
         "Site$CreatedAt": "<p>The date and time that the site was created.</p>"
+      }
+    },
+    "DeleteConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConnectionResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteDeviceRequest": {
@@ -240,6 +307,26 @@
       "refs": {
       }
     },
+    "DisassociateTransitGatewayConnectPeerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateTransitGatewayConnectPeerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConnectionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetConnectionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetCustomerGatewayAssociationsRequest": {
       "base": null,
       "refs": {
@@ -286,6 +373,16 @@
       }
     },
     "GetSitesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransitGatewayConnectPeerAssociationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetTransitGatewayConnectPeerAssociationsResponse": {
       "base": null,
       "refs": {
       }
@@ -399,11 +496,13 @@
       "base": null,
       "refs": {
         "DescribeGlobalNetworksRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetConnectionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetCustomerGatewayAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetDevicesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetLinkAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetLinksRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetSitesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetTransitGatewayConnectPeerAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTransitGatewayRegistrationsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
       }
     },
@@ -466,6 +565,8 @@
     "String": {
       "base": null,
       "refs": {
+        "AWSLocation$Zone": "<p>The Zone the device is located in. This can be the ID of an Availability Zone, Local Zone, Wavelength Zone, or an Outpost.</p>",
+        "AWSLocation$SubnetArn": "<p>The Amazon Resource Name (ARN) of the subnet the device is located in.</p>",
         "AccessDeniedException$Message": null,
         "AssociateCustomerGatewayRequest$CustomerGatewayArn": "<p>The Amazon Resource Name (ARN) of the customer gateway. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies\">Resources Defined by Amazon EC2</a>.</p>",
         "AssociateCustomerGatewayRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
@@ -474,9 +575,27 @@
         "AssociateLinkRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "AssociateLinkRequest$DeviceId": "<p>The ID of the device.</p>",
         "AssociateLinkRequest$LinkId": "<p>The ID of the link.</p>",
+        "AssociateTransitGatewayConnectPeerRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "AssociateTransitGatewayConnectPeerRequest$TransitGatewayConnectPeerArn": "<p>The Amazon Resource Name (ARN) of the Connect peer.</p>",
+        "AssociateTransitGatewayConnectPeerRequest$DeviceId": "<p>The ID of the device.</p>",
+        "AssociateTransitGatewayConnectPeerRequest$LinkId": "<p>The ID of the link.</p>",
         "ConflictException$Message": null,
         "ConflictException$ResourceId": "<p>The ID of the resource.</p>",
         "ConflictException$ResourceType": "<p>The resource type.</p>",
+        "Connection$ConnectionId": "<p>The ID of the connection.</p>",
+        "Connection$ConnectionArn": "<p>The Amazon Resource Name (ARN) of the connection.</p>",
+        "Connection$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "Connection$DeviceId": "<p>The ID of the first device in the connection.</p>",
+        "Connection$ConnectedDeviceId": "<p>The ID of the second device in the connection.</p>",
+        "Connection$LinkId": "<p>The ID of the link for the first device in the connection.</p>",
+        "Connection$ConnectedLinkId": "<p>The ID of the link for the second device in the connection.</p>",
+        "Connection$Description": "<p>The description of the connection.</p>",
+        "CreateConnectionRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "CreateConnectionRequest$DeviceId": "<p>The ID of the first device in the connection.</p>",
+        "CreateConnectionRequest$ConnectedDeviceId": "<p>The ID of the second device in the connection.</p>",
+        "CreateConnectionRequest$LinkId": "<p>The ID of the link for the first device.</p>",
+        "CreateConnectionRequest$ConnectedLinkId": "<p>The ID of the link for the second device.</p>",
+        "CreateConnectionRequest$Description": "<p>A description of the connection.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
         "CreateDeviceRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "CreateDeviceRequest$Description": "<p>A description of the device.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
         "CreateDeviceRequest$Type": "<p>The type of the device.</p>",
@@ -496,6 +615,8 @@
         "CustomerGatewayAssociation$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "CustomerGatewayAssociation$DeviceId": "<p>The ID of the device.</p>",
         "CustomerGatewayAssociation$LinkId": "<p>The ID of the link.</p>",
+        "DeleteConnectionRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "DeleteConnectionRequest$ConnectionId": "<p>The ID of the connection.</p>",
         "DeleteDeviceRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "DeleteDeviceRequest$DeviceId": "<p>The ID of the device.</p>",
         "DeleteGlobalNetworkRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
@@ -521,6 +642,12 @@
         "DisassociateLinkRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "DisassociateLinkRequest$DeviceId": "<p>The ID of the device.</p>",
         "DisassociateLinkRequest$LinkId": "<p>The ID of the link.</p>",
+        "DisassociateTransitGatewayConnectPeerRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "DisassociateTransitGatewayConnectPeerRequest$TransitGatewayConnectPeerArn": "<p>The Amazon Resource Name (ARN) of the transit gateway Connect peer.</p>",
+        "GetConnectionsRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetConnectionsRequest$DeviceId": "<p>The ID of the device.</p>",
+        "GetConnectionsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetConnectionsResponse$NextToken": "<p>The token to use for the next page of results.</p>",
         "GetCustomerGatewayAssociationsRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "GetCustomerGatewayAssociationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetCustomerGatewayAssociationsResponse$NextToken": "<p>The token for the next page of results.</p>",
@@ -542,6 +669,9 @@
         "GetSitesRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "GetSitesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetSitesResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "GetTransitGatewayConnectPeerAssociationsRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetTransitGatewayConnectPeerAssociationsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetTransitGatewayConnectPeerAssociationsResponse$NextToken": "<p>The token to use for the next page of results.</p>",
         "GetTransitGatewayRegistrationsRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "GetTransitGatewayRegistrationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetTransitGatewayRegistrationsResponse$NextToken": "<p>The token for the next page of results.</p>",
@@ -578,9 +708,18 @@
         "Site$Description": "<p>The description of the site.</p>",
         "StringList$member": null,
         "ThrottlingException$Message": null,
+        "TransitGatewayConnectPeerAssociation$TransitGatewayConnectPeerArn": "<p>The Amazon Resource Name (ARN) of the transit gateway Connect peer.</p>",
+        "TransitGatewayConnectPeerAssociation$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "TransitGatewayConnectPeerAssociation$DeviceId": "<p>The ID of the device.</p>",
+        "TransitGatewayConnectPeerAssociation$LinkId": "<p>The ID of the link.</p>",
         "TransitGatewayRegistration$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "TransitGatewayRegistration$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway.</p>",
         "TransitGatewayRegistrationStateReason$Message": "<p>The message for the state reason.</p>",
+        "UpdateConnectionRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "UpdateConnectionRequest$ConnectionId": "<p>The ID of the connection.</p>",
+        "UpdateConnectionRequest$LinkId": "<p>The ID of the link for the first device in the connection.</p>",
+        "UpdateConnectionRequest$ConnectedLinkId": "<p>The ID of the link for the second device in the connection.</p>",
+        "UpdateConnectionRequest$Description": "<p>A description of the connection.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
         "UpdateDeviceRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "UpdateDeviceRequest$DeviceId": "<p>The ID of the device.</p>",
         "UpdateDeviceRequest$Description": "<p>A description of the device.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
@@ -608,10 +747,12 @@
       "base": null,
       "refs": {
         "DescribeGlobalNetworksRequest$GlobalNetworkIds": "<p>The IDs of one or more global networks. The maximum is 10.</p>",
+        "GetConnectionsRequest$ConnectionIds": "<p>One or more connection IDs.</p>",
         "GetCustomerGatewayAssociationsRequest$CustomerGatewayArns": "<p>One or more customer gateway Amazon Resource Names (ARNs). For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies\">Resources Defined by Amazon EC2</a>. The maximum is 10.</p>",
         "GetDevicesRequest$DeviceIds": "<p>One or more device IDs. The maximum is 10.</p>",
         "GetLinksRequest$LinkIds": "<p>One or more link IDs. The maximum is 10.</p>",
         "GetSitesRequest$SiteIds": "<p>One or more site IDs. The maximum is 10.</p>",
+        "GetTransitGatewayConnectPeerAssociationsRequest$TransitGatewayConnectPeerArns": "<p>One or more transit gateway Connect peer Amazon Resource Names (ARNs).</p>",
         "GetTransitGatewayRegistrationsRequest$TransitGatewayArns": "<p>The Amazon Resource Names (ARNs) of one or more transit gateways. The maximum is 10.</p>"
       }
     },
@@ -637,6 +778,8 @@
     "TagList": {
       "base": null,
       "refs": {
+        "Connection$Tags": "<p>The tags for the connection.</p>",
+        "CreateConnectionRequest$Tags": "<p>The tags to apply to the resource during creation.</p>",
         "CreateDeviceRequest$Tags": "<p>The tags to apply to the resource during creation.</p>",
         "CreateGlobalNetworkRequest$Tags": "<p>The tags to apply to the resource during creation.</p>",
         "CreateLinkRequest$Tags": "<p>The tags to apply to the resource during creation.</p>",
@@ -668,6 +811,26 @@
     "ThrottlingException": {
       "base": "<p>The request was denied due to request throttling.</p>",
       "refs": {
+      }
+    },
+    "TransitGatewayConnectPeerAssociation": {
+      "base": "<p>Describes a transit gateway Connect peer association.</p>",
+      "refs": {
+        "AssociateTransitGatewayConnectPeerResponse$TransitGatewayConnectPeerAssociation": "<p>The transit gateway Connect peer association.</p>",
+        "DisassociateTransitGatewayConnectPeerResponse$TransitGatewayConnectPeerAssociation": "<p>The transit gateway Connect peer association.</p>",
+        "TransitGatewayConnectPeerAssociationList$member": null
+      }
+    },
+    "TransitGatewayConnectPeerAssociationList": {
+      "base": null,
+      "refs": {
+        "GetTransitGatewayConnectPeerAssociationsResponse$TransitGatewayConnectPeerAssociations": "<p>Information about the transit gateway Connect peer associations.</p>"
+      }
+    },
+    "TransitGatewayConnectPeerAssociationState": {
+      "base": null,
+      "refs": {
+        "TransitGatewayConnectPeerAssociation$State": "<p>The state of the association.</p>"
       }
     },
     "TransitGatewayRegistration": {
@@ -702,6 +865,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectionResponse": {
       "base": null,
       "refs": {
       }

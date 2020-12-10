@@ -279,6 +279,18 @@
       "output_token": "NextToken",
       "result_key": "NetworkAcls"
     },
+    "DescribeNetworkInsightsAnalyses": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "NetworkInsightsAnalyses"
+    },
+    "DescribeNetworkInsightsPaths": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "NetworkInsightsPaths"
+    },
     "DescribeNetworkInterfacePermissions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -421,6 +433,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "TransitGatewayAttachments"
+    },
+    "DescribeTransitGatewayConnectPeers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayConnectPeers"
+    },
+    "DescribeTransitGatewayConnects": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "TransitGatewayConnects"
     },
     "DescribeTransitGatewayMulticastDomains": {
       "input_token": "NextToken",
