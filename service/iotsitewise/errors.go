@@ -75,6 +75,12 @@ const (
 	// more information, see Tag naming limits and requirements (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
 	// in the AWS General Reference.
 	ErrCodeTooManyTagsException = "TooManyTagsException"
+
+	// ErrCodeUnauthorizedException for service response error code
+	// "UnauthorizedException".
+	//
+	// You are not authorized.
+	ErrCodeUnauthorizedException = "UnauthorizedException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -87,4 +93,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ServiceUnavailableException":    newErrorServiceUnavailableException,
 	"ThrottlingException":            newErrorThrottlingException,
 	"TooManyTagsException":           newErrorTooManyTagsException,
+	"UnauthorizedException":          newErrorUnauthorizedException,
 }

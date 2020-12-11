@@ -69,7 +69,8 @@
         {"shape":"InsufficientDependencyServiceAccessPermissionException"},
         {"shape":"NotOrganizationMasterAccountException"},
         {"shape":"OrganizationsNotInUseException"},
-        {"shape":"OrganizationNotInAllFeaturesModeException"}
+        {"shape":"OrganizationNotInAllFeaturesModeException"},
+        {"shape":"CloudTrailInvalidClientTokenIdException"}
       ],
       "idempotent":true
     },
@@ -374,7 +375,8 @@
         {"shape":"InsufficientDependencyServiceAccessPermissionException"},
         {"shape":"OrganizationsNotInUseException"},
         {"shape":"NotOrganizationMasterAccountException"},
-        {"shape":"OrganizationNotInAllFeaturesModeException"}
+        {"shape":"OrganizationNotInAllFeaturesModeException"},
+        {"shape":"CloudTrailInvalidClientTokenIdException"}
       ],
       "idempotent":true
     }
@@ -395,10 +397,7 @@
     },
     "AdvancedEventSelector":{
       "type":"structure",
-      "required":[
-        "Name",
-        "FieldSelectors"
-      ],
+      "required":["FieldSelectors"],
       "members":{
         "Name":{"shape":"SelectorName"},
         "FieldSelectors":{"shape":"AdvancedFieldSelectors"}
@@ -435,6 +434,12 @@
       "exception":true
     },
     "CloudTrailAccessNotEnabledException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "CloudTrailInvalidClientTokenIdException":{
       "type":"structure",
       "members":{
       },
@@ -1068,8 +1073,8 @@
     "SelectorName":{
       "type":"string",
       "max":1000,
-      "min":1,
-      "pattern":".+"
+      "min":0,
+      "pattern":".*"
     },
     "StartLoggingRequest":{
       "type":"structure",

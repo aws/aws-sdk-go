@@ -100,10 +100,6 @@ type IoTSiteWiseAPI interface {
 	CreatePortalWithContext(aws.Context, *iotsitewise.CreatePortalInput, ...request.Option) (*iotsitewise.CreatePortalOutput, error)
 	CreatePortalRequest(*iotsitewise.CreatePortalInput) (*request.Request, *iotsitewise.CreatePortalOutput)
 
-	CreatePresignedPortalUrl(*iotsitewise.CreatePresignedPortalUrlInput) (*iotsitewise.CreatePresignedPortalUrlOutput, error)
-	CreatePresignedPortalUrlWithContext(aws.Context, *iotsitewise.CreatePresignedPortalUrlInput, ...request.Option) (*iotsitewise.CreatePresignedPortalUrlOutput, error)
-	CreatePresignedPortalUrlRequest(*iotsitewise.CreatePresignedPortalUrlInput) (*request.Request, *iotsitewise.CreatePresignedPortalUrlOutput)
-
 	CreateProject(*iotsitewise.CreateProjectInput) (*iotsitewise.CreateProjectOutput, error)
 	CreateProjectWithContext(aws.Context, *iotsitewise.CreateProjectInput, ...request.Option) (*iotsitewise.CreateProjectOutput, error)
 	CreateProjectRequest(*iotsitewise.CreateProjectInput) (*request.Request, *iotsitewise.CreateProjectOutput)
@@ -215,6 +211,13 @@ type IoTSiteWiseAPI interface {
 
 	ListAssetModelsPages(*iotsitewise.ListAssetModelsInput, func(*iotsitewise.ListAssetModelsOutput, bool) bool) error
 	ListAssetModelsPagesWithContext(aws.Context, *iotsitewise.ListAssetModelsInput, func(*iotsitewise.ListAssetModelsOutput, bool) bool, ...request.Option) error
+
+	ListAssetRelationships(*iotsitewise.ListAssetRelationshipsInput) (*iotsitewise.ListAssetRelationshipsOutput, error)
+	ListAssetRelationshipsWithContext(aws.Context, *iotsitewise.ListAssetRelationshipsInput, ...request.Option) (*iotsitewise.ListAssetRelationshipsOutput, error)
+	ListAssetRelationshipsRequest(*iotsitewise.ListAssetRelationshipsInput) (*request.Request, *iotsitewise.ListAssetRelationshipsOutput)
+
+	ListAssetRelationshipsPages(*iotsitewise.ListAssetRelationshipsInput, func(*iotsitewise.ListAssetRelationshipsOutput, bool) bool) error
+	ListAssetRelationshipsPagesWithContext(aws.Context, *iotsitewise.ListAssetRelationshipsInput, func(*iotsitewise.ListAssetRelationshipsOutput, bool) bool, ...request.Option) error
 
 	ListAssets(*iotsitewise.ListAssetsInput) (*iotsitewise.ListAssetsOutput, error)
 	ListAssetsWithContext(aws.Context, *iotsitewise.ListAssetsInput, ...request.Option) (*iotsitewise.ListAssetsOutput, error)

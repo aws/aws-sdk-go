@@ -58,7 +58,7 @@ func (c *GuardDuty) AcceptInvitationRequest(input *AcceptInvitationInput) (req *
 
 // AcceptInvitation API operation for Amazon GuardDuty.
 //
-// Accepts the invitation to be monitored by a master GuardDuty account.
+// Accepts the invitation to be monitored by a GuardDuty administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -143,8 +143,8 @@ func (c *GuardDuty) ArchiveFindingsRequest(input *ArchiveFindingsInput) (req *re
 //
 // Archives GuardDuty findings that are specified by the list of finding IDs.
 //
-// Only the master account can archive findings. Member accounts don't have
-// permission to archive findings from their accounts.
+// Only the administrator account can archive findings. Member accounts don't
+// have permission to archive findings from their accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -398,7 +398,7 @@ func (c *GuardDuty) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Re
 // interface. An IPSet is a list of IP addresses that are trusted for secure
 // communication with AWS infrastructure and applications. GuardDuty doesn't
 // generate findings for IP addresses that are included in IPSets. Only users
-// from the master account can use this operation.
+// from the administrator account can use this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -486,8 +486,8 @@ func (c *GuardDuty) CreateMembersRequest(input *CreateMembersInput) (req *reques
 //
 // When using Create Members as an organizations delegated administrator this
 // action will enable GuardDuty in the added member accounts, with the exception
-// of the organization master account, which must enable GuardDuty prior to
-// being added as a member.
+// of the organization delegated administrator account, which must enable GuardDuty
+// prior to being added as a member.
 //
 // If you are adding accounts by invitation use this action after GuardDuty
 // has been enabled in potential member accounts and before using Invite Members
@@ -743,7 +743,7 @@ func (c *GuardDuty) CreateThreatIntelSetRequest(input *CreateThreatIntelSetInput
 //
 // Creates a new ThreatIntelSet. ThreatIntelSets consist of known malicious
 // IP addresses. GuardDuty generates findings based on ThreatIntelSets. Only
-// users of the master account can use this operation.
+// users of the administrator account can use this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1241,8 +1241,8 @@ func (c *GuardDuty) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 
 // DeleteMembers API operation for Amazon GuardDuty.
 //
-// Deletes GuardDuty member accounts (to the current GuardDuty master account)
-// specified by the account IDs.
+// Deletes GuardDuty member accounts (to the current GuardDuty administrator
+// account) specified by the account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1741,7 +1741,8 @@ func (c *GuardDuty) DisassociateFromMasterAccountRequest(input *DisassociateFrom
 
 // DisassociateFromMasterAccount API operation for Amazon GuardDuty.
 //
-// Disassociates the current GuardDuty member account from its master account.
+// Disassociates the current GuardDuty member account from its administrator
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1823,7 +1824,7 @@ func (c *GuardDuty) DisassociateMembersRequest(input *DisassociateMembersInput) 
 
 // DisassociateMembers API operation for Amazon GuardDuty.
 //
-// Disassociates GuardDuty member accounts (to the current GuardDuty master
+// Disassociates GuardDuty member accounts (to the current GuardDuty administrator
 // account) specified by the account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2483,8 +2484,8 @@ func (c *GuardDuty) GetMasterAccountRequest(input *GetMasterAccountInput) (req *
 
 // GetMasterAccount API operation for Amazon GuardDuty.
 //
-// Provides the details for the GuardDuty master account associated with the
-// current GuardDuty member account.
+// Provides the details for the GuardDuty administrator account associated with
+// the current GuardDuty member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2648,8 +2649,8 @@ func (c *GuardDuty) GetMembersRequest(input *GetMembersInput) (req *request.Requ
 
 // GetMembers API operation for Amazon GuardDuty.
 //
-// Retrieves GuardDuty member accounts (to the current GuardDuty master account)
-// specified by the account IDs.
+// Retrieves GuardDuty member accounts (of the current GuardDuty administrator
+// account) specified by the account IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2960,8 +2961,8 @@ func (c *GuardDuty) InviteMembersRequest(input *InviteMembersInput) (req *reques
 //
 // Invites other AWS accounts (created as members of the current AWS account
 // by CreateMembers) to enable GuardDuty, and allow the current AWS account
-// to view and manage these accounts' GuardDuty findings on their behalf as
-// the master account.
+// to view and manage these accounts' findings on their behalf as the GuardDuty
+// administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3471,7 +3472,7 @@ func (c *GuardDuty) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Requ
 //
 // Lists the IPSets of the GuardDuty service specified by the detector ID. If
 // you use this operation from a member account, the IPSets returned are the
-// IPSets from the associated master account.
+// IPSets from the associated administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3752,7 +3753,7 @@ func (c *GuardDuty) ListMembersRequest(input *ListMembersInput) (req *request.Re
 
 // ListMembers API operation for Amazon GuardDuty.
 //
-// Lists details about all member accounts for the current GuardDuty master
+// Lists details about all member accounts for the current GuardDuty administrator
 // account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4260,7 +4261,7 @@ func (c *GuardDuty) ListThreatIntelSetsRequest(input *ListThreatIntelSetsInput) 
 //
 // Lists the ThreatIntelSets of the GuardDuty service specified by the detector
 // ID. If you use this operation from a member account, the ThreatIntelSets
-// associated with the master account are returned.
+// associated with the administrator account are returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5436,12 +5437,14 @@ type AcceptInvitationInput struct {
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
 
-	// The value that is used to validate the master account to the member account.
+	// The value that is used to validate the administrator account to the member
+	// account.
 	//
 	// InvitationId is a required field
 	InvitationId *string `locationName:"invitationId" type:"string" required:"true"`
 
-	// The account ID of the master GuardDuty account whose invitation you're accepting.
+	// The account ID of the GuardDuty administrator account whose invitation you're
+	// accepting.
 	//
 	// MasterId is a required field
 	MasterId *string `locationName:"masterId" type:"string" required:"true"`
@@ -6341,7 +6344,7 @@ type CreateDetectorInput struct {
 	// The idempotency token for the create request.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// An object that describes which data sources will be enabled for the detector.
+	// Describes which data sources will be enabled for the detector.
 	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
 	// A Boolean value that specifies whether the detector is to be enabled.
@@ -6349,7 +6352,7 @@ type CreateDetectorInput struct {
 	// Enable is a required field
 	Enable *bool `locationName:"enable" type:"boolean" required:"true"`
 
-	// An enum value that specifies how frequently updated findings are exported.
+	// A value that specifies how frequently updated findings are exported.
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	// The tags to be added to a new detector resource.
@@ -6453,8 +6456,8 @@ type CreateFilterInput struct {
 	// The description of the filter.
 	Description *string `locationName:"description" type:"string"`
 
-	// The unique ID of the detector of the GuardDuty account that you want to create
-	// a filter for.
+	// The ID of the detector belonging to the GuardDuty account that you want to
+	// create a filter for.
 	//
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
@@ -6515,6 +6518,8 @@ type CreateFilterInput struct {
 	//
 	//    * service.action.awsApiCallAction.callerType
 	//
+	//    * service.action.awsApiCallAction.errorCode
+	//
 	//    * service.action.awsApiCallAction.remoteIpDetails.city.cityName
 	//
 	//    * service.action.awsApiCallAction.remoteIpDetails.country.countryName
@@ -6569,7 +6574,9 @@ type CreateFilterInput struct {
 	// FindingCriteria is a required field
 	FindingCriteria *FindingCriteria `locationName:"findingCriteria" type:"structure" required:"true"`
 
-	// The name of the filter.
+	// The name of the filter. Minimum length of 3. Maximum length of 64. Valid
+	// characters include alphanumeric characters, dot (.), underscore (_), and
+	// dash (-). Spaces are not allowed.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"3" type:"string" required:"true"`
@@ -6860,7 +6867,7 @@ type CreateMembersInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of account ID and email address pairs of the accounts that you want
-	// to associate with the master GuardDuty account.
+	// to associate with the GuardDuty administrator account.
 	//
 	// AccountDetails is a required field
 	AccountDetails []*AccountDetail `locationName:"accountDetails" min:"1" type:"list" required:"true"`
@@ -8057,12 +8064,11 @@ type DescribeOrganizationConfigurationOutput struct {
 	// AutoEnable is a required field
 	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
 
-	// An object that describes which data sources are enabled automatically for
-	// member accounts.
+	// Describes which data sources are enabled automatically for member accounts.
 	DataSources *OrganizationDataSourceConfigurationsResult `locationName:"dataSources" type:"structure"`
 
 	// Indicates whether the maximum number of allowed member accounts are already
-	// associated with the delegated administrator master account.
+	// associated with the delegated administrator account for your organization.
 	//
 	// MemberAccountLimitReached is a required field
 	MemberAccountLimitReached *bool `locationName:"memberAccountLimitReached" type:"boolean" required:"true"`
@@ -8423,13 +8429,13 @@ type DisassociateMembersInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of account IDs of the GuardDuty member accounts that you want to disassociate
-	// from the master account.
+	// from the administrator account.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
 
 	// The unique ID of the detector of the GuardDuty account whose members you
-	// want to disassociate from the master account.
+	// want to disassociate from the administrator account.
 	//
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
@@ -8957,7 +8963,7 @@ type GetDetectorOutput struct {
 	// The timestamp of when the detector was created.
 	CreatedAt *string `locationName:"createdAt" type:"string"`
 
-	// An object that describes which data sources are enabled for the detector.
+	// Describes which data sources are enabled for the detector.
 	DataSources *DataSourceConfigurationsResult `locationName:"dataSources" type:"structure"`
 
 	// The publishing frequency of the finding.
@@ -9552,7 +9558,7 @@ func (s *GetMasterAccountInput) SetDetectorId(v string) *GetMasterAccountInput {
 type GetMasterAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The master account details.
+	// The administrator account details.
 	//
 	// Master is a required field
 	Master *Master `locationName:"master" type:"structure" required:"true"`
@@ -9582,7 +9588,7 @@ type GetMemberDetectorsInput struct {
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
 
-	// The detector ID for the master account.
+	// The detector ID for the administrator account.
 	//
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
@@ -11167,8 +11173,7 @@ func (s *ListOrganizationAdminAccountsInput) SetNextToken(v string) *ListOrganiz
 type ListOrganizationAdminAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An AdminAccounts object that includes a list of accounts configured as GuardDuty
-	// delegated administrators.
+	// A list of accounts configured as GuardDuty delegated administrators.
 	AdminAccounts []*AdminAccount `locationName:"adminAccounts" type:"list"`
 
 	// The pagination parameter to be used on the next list operation to retrieve
@@ -11523,20 +11528,20 @@ func (s *LocalPortDetails) SetPortName(v string) *LocalPortDetails {
 	return s
 }
 
-// Contains information about the master account and invitation.
+// Contains information about the administrator account and invitation.
 type Master struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the account used as the master account.
+	// The ID of the account used as the administrator account.
 	AccountId *string `locationName:"accountId" min:"12" type:"string"`
 
-	// The value used to validate the master account to the member account.
+	// The value used to validate the administrator account to the member account.
 	InvitationId *string `locationName:"invitationId" type:"string"`
 
 	// The timestamp when the invitation was sent.
 	InvitedAt *string `locationName:"invitedAt" type:"string"`
 
-	// The status of the relationship between the master and member accounts.
+	// The status of the relationship between the administrator and member accounts.
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string"`
 }
 
@@ -11594,12 +11599,12 @@ type Member struct {
 	// The timestamp when the invitation was sent.
 	InvitedAt *string `locationName:"invitedAt" type:"string"`
 
-	// The master account ID.
+	// The administrator account ID.
 	//
 	// MasterId is a required field
 	MasterId *string `locationName:"masterId" type:"string" required:"true"`
 
-	// The status of the relationship between the member and the master.
+	// The status of the relationship between the member and the administrator.
 	//
 	// RelationshipStatus is a required field
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" required:"true"`
@@ -12787,7 +12792,7 @@ type StartMonitoringMembersInput struct {
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
 
-	// The unique ID of the detector of the GuardDuty master account associated
+	// The unique ID of the detector of the GuardDuty administrator account associated
 	// with the member accounts to monitor.
 	//
 	// DetectorId is a required field
@@ -12872,8 +12877,8 @@ type StopMonitoringMembersInput struct {
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
 
-	// The unique ID of the detector associated with the GuardDuty master account
-	// that is monitoring member accounts.
+	// The unique ID of the detector associated with the GuardDuty administrator
+	// account that is monitoring member accounts.
 	//
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
@@ -13305,7 +13310,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDetectorInput struct {
 	_ struct{} `type:"structure"`
 
-	// An object that describes which data sources will be updated.
+	// Describes which data sources will be updated.
 	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
 	// The unique ID of the detector to update.
@@ -13724,10 +13729,10 @@ type UpdateMemberDetectorsInput struct {
 	// AccountIds is a required field
 	AccountIds []*string `locationName:"accountIds" min:"1" type:"list" required:"true"`
 
-	// An object describes which data sources will be updated.
+	// Describes which data sources will be updated.
 	DataSources *DataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
-	// The detector ID of the master account.
+	// The detector ID of the administrator account.
 	//
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
@@ -13822,7 +13827,7 @@ type UpdateOrganizationConfigurationInput struct {
 	// AutoEnable is a required field
 	AutoEnable *bool `locationName:"autoEnable" type:"boolean" required:"true"`
 
-	// An object describes which data sources will be updated.
+	// Describes which data sources will be updated.
 	DataSources *OrganizationDataSourceConfigurations `locationName:"dataSources" type:"structure"`
 
 	// The ID of the detector to update the delegated administrator for.
@@ -13992,8 +13997,7 @@ type UpdateThreatIntelSetInput struct {
 	// DetectorId is a required field
 	DetectorId *string `location:"uri" locationName:"detectorId" min:"1" type:"string" required:"true"`
 
-	// The updated URI of the file that contains the ThreateIntelSet. For example:
-	// https://s3.us-west-2.amazonaws.com/my-bucket/my-object-key.
+	// The updated URI of the file that contains the ThreateIntelSet.
 	Location *string `locationName:"location" min:"1" type:"string"`
 
 	// The unique ID that specifies the ThreatIntelSet that you want to update.

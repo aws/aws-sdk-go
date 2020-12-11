@@ -26,6 +26,14 @@ const (
 	// and Prepare For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 	ErrCodeAccessNotEnabledException = "CloudTrailAccessNotEnabledException"
 
+	// ErrCodeCloudTrailInvalidClientTokenIdException for service response error code
+	// "CloudTrailInvalidClientTokenIdException".
+	//
+	// This exception is thrown when a call results in the InvalidClientTokenId
+	// error code. This can occur when you are creating or updating a trail to send
+	// notifications to an Amazon SNS topic that is in a suspended AWS account.
+	ErrCodeCloudTrailInvalidClientTokenIdException = "CloudTrailInvalidClientTokenIdException"
+
 	// ErrCodeCloudWatchLogsDeliveryUnavailableException for service response error code
 	// "CloudWatchLogsDeliveryUnavailableException".
 	//
@@ -90,11 +98,13 @@ const (
 	// "InvalidEventSelectorsException".
 	//
 	// This exception is thrown when the PutEventSelectors operation is called with
-	// a number of event selectors or data resources that is not valid. The combination
-	// of event selectors and data resources is not valid. A trail can have up to
-	// 5 event selectors. A trail is limited to 250 data resources. These data resources
-	// can be distributed across event selectors, but the overall total cannot exceed
-	// 250.
+	// a number of event selectors, advanced event selectors, or data resources
+	// that is not valid. The combination of event selectors or advanced event selectors
+	// and data resources is not valid. A trail can have up to 5 event selectors.
+	// If a trail uses advanced event selectors, a maximum of 500 total values for
+	// all conditions in all advanced event selectors is allowed. A trail is limited
+	// to 250 data resources. These data resources can be distributed across event
+	// selectors, but the overall total cannot exceed 250.
 	//
 	// You can:
 	//
@@ -105,6 +115,9 @@ const (
 	//    up to 250. However, this upper limit is allowed only if the total number
 	//    of data resources does not exceed 250 across all event selectors for a
 	//    trail.
+	//
+	//    * Specify up to 500 values for all conditions in all advanced event selectors
+	//    for a trail.
 	//
 	//    * Specify a valid value for a parameter. For example, specifying the ReadWriteType
 	//    parameter with a value of read-only is invalid.
@@ -327,6 +340,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CloudTrailARNInvalidException":                          newErrorARNInvalidException,
 	"CloudTrailAccessNotEnabledException":                    newErrorAccessNotEnabledException,
+	"CloudTrailInvalidClientTokenIdException":                newErrorCloudTrailInvalidClientTokenIdException,
 	"CloudWatchLogsDeliveryUnavailableException":             newErrorCloudWatchLogsDeliveryUnavailableException,
 	"InsightNotEnabledException":                             newErrorInsightNotEnabledException,
 	"InsufficientDependencyServiceAccessPermissionException": newErrorInsufficientDependencyServiceAccessPermissionException,
