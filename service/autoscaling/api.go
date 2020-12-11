@@ -6511,7 +6511,7 @@ type CreateAutoScalingGroupInput struct {
 	//
 	// Conditional: If your account supports EC2-Classic and VPC, this parameter
 	// is required to launch instances into EC2-Classic.
-	AvailabilityZones []*string `min:"1" type:"list"`
+	AvailabilityZones []*string `type:"list"`
 
 	// Indicates whether Capacity Rebalancing is enabled. Otherwise, Capacity Rebalancing
 	// is disabled. When you turn on Capacity Rebalancing, Amazon EC2 Auto Scaling
@@ -6706,9 +6706,6 @@ func (s *CreateAutoScalingGroupInput) Validate() error {
 	}
 	if s.AutoScalingGroupName != nil && len(*s.AutoScalingGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AutoScalingGroupName", 1))
-	}
-	if s.AvailabilityZones != nil && len(s.AvailabilityZones) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZones", 1))
 	}
 	if s.HealthCheckType != nil && len(*s.HealthCheckType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("HealthCheckType", 1))
@@ -10354,7 +10351,7 @@ type Group struct {
 	// One or more Availability Zones for the group.
 	//
 	// AvailabilityZones is a required field
-	AvailabilityZones []*string `min:"1" type:"list" required:"true"`
+	AvailabilityZones []*string `type:"list" required:"true"`
 
 	// Indicates whether Capacity Rebalancing is enabled.
 	CapacityRebalance *bool `type:"boolean"`
@@ -11712,7 +11709,7 @@ type LifecycleHook struct {
 	// The ARN of the target that Amazon EC2 Auto Scaling sends notifications to
 	// when an instance is in the transition state for the lifecycle hook. The notification
 	// target can be either an SQS queue or an SNS topic.
-	NotificationTargetARN *string `min:"1" type:"string"`
+	NotificationTargetARN *string `type:"string"`
 
 	// The ARN of the IAM role that allows the Auto Scaling group to publish to
 	// the specified notification target.
@@ -14540,7 +14537,7 @@ type UpdateAutoScalingGroupInput struct {
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group.
-	AvailabilityZones []*string `min:"1" type:"list"`
+	AvailabilityZones []*string `type:"list"`
 
 	// Enables or disables Capacity Rebalancing. For more information, see Amazon
 	// EC2 Auto Scaling Capacity Rebalancing (https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html)
@@ -14662,9 +14659,6 @@ func (s *UpdateAutoScalingGroupInput) Validate() error {
 	}
 	if s.AutoScalingGroupName != nil && len(*s.AutoScalingGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AutoScalingGroupName", 1))
-	}
-	if s.AvailabilityZones != nil && len(s.AvailabilityZones) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZones", 1))
 	}
 	if s.HealthCheckType != nil && len(*s.HealthCheckType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("HealthCheckType", 1))
