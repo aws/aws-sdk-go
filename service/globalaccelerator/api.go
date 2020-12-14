@@ -2522,6 +2522,12 @@ func (c *GlobalAccelerator) ListByoipCidrsRequest(input *ListByoipCidrsInput) (r
 		Name:       opListByoipCidrs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2579,6 +2585,58 @@ func (c *GlobalAccelerator) ListByoipCidrsWithContext(ctx aws.Context, input *Li
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListByoipCidrsPages iterates over the pages of a ListByoipCidrs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListByoipCidrs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListByoipCidrs operation.
+//    pageNum := 0
+//    err := client.ListByoipCidrsPages(params,
+//        func(page *globalaccelerator.ListByoipCidrsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlobalAccelerator) ListByoipCidrsPages(input *ListByoipCidrsInput, fn func(*ListByoipCidrsOutput, bool) bool) error {
+	return c.ListByoipCidrsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListByoipCidrsPagesWithContext same as ListByoipCidrsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlobalAccelerator) ListByoipCidrsPagesWithContext(ctx aws.Context, input *ListByoipCidrsInput, fn func(*ListByoipCidrsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListByoipCidrsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListByoipCidrsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListByoipCidrsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListCustomRoutingAccelerators = "ListCustomRoutingAccelerators"

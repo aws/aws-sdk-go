@@ -171,6 +171,9 @@ type GlobalAcceleratorAPI interface {
 	ListByoipCidrsWithContext(aws.Context, *globalaccelerator.ListByoipCidrsInput, ...request.Option) (*globalaccelerator.ListByoipCidrsOutput, error)
 	ListByoipCidrsRequest(*globalaccelerator.ListByoipCidrsInput) (*request.Request, *globalaccelerator.ListByoipCidrsOutput)
 
+	ListByoipCidrsPages(*globalaccelerator.ListByoipCidrsInput, func(*globalaccelerator.ListByoipCidrsOutput, bool) bool) error
+	ListByoipCidrsPagesWithContext(aws.Context, *globalaccelerator.ListByoipCidrsInput, func(*globalaccelerator.ListByoipCidrsOutput, bool) bool, ...request.Option) error
+
 	ListCustomRoutingAccelerators(*globalaccelerator.ListCustomRoutingAcceleratorsInput) (*globalaccelerator.ListCustomRoutingAcceleratorsOutput, error)
 	ListCustomRoutingAcceleratorsWithContext(aws.Context, *globalaccelerator.ListCustomRoutingAcceleratorsInput, ...request.Option) (*globalaccelerator.ListCustomRoutingAcceleratorsOutput, error)
 	ListCustomRoutingAcceleratorsRequest(*globalaccelerator.ListCustomRoutingAcceleratorsInput) (*request.Request, *globalaccelerator.ListCustomRoutingAcceleratorsOutput)
