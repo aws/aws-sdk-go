@@ -57,6 +57,21 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 
 // AddNotificationChannel API operation for Amazon DevOps Guru.
 //
+// Adds a notification channel to DevOps Guru. A notification channel is used
+// to notify you about important DevOps Guru events, such as when an insight
+// is generated.
+//
+// If you use an Amazon SNS topic in another account, you must attach a policy
+// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+// adds the required policy on your behalf to send notifications using Amazon
+// SNS in your account. For more information, see Permissions for cross account
+// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+//
+// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
+// Service customer-managed key (CMK), then you must add permissions to the
+// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
+// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -65,19 +80,31 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 // API operation AddNotificationChannel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerException
-//
-//   * ServiceQuotaExceededException
-//
 //   * AccessDeniedException
-//
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * ConflictException
+//   An exception that is thrown when a conflict occurs.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ServiceQuotaExceededException
+//   The request contains a value that exceeds a maximum quota.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/AddNotificationChannel
 func (c *DevOpsGuru) AddNotificationChannel(input *AddNotificationChannelInput) (*AddNotificationChannelOutput, error) {
@@ -145,6 +172,10 @@ func (c *DevOpsGuru) DescribeAccountHealthRequest(input *DescribeAccountHealthIn
 
 // DescribeAccountHealth API operation for Amazon DevOps Guru.
 //
+// Returns the number of open reactive insights, the number of open proactive
+// insights, and the number of metrics analyzed in your AWS account. Use these
+// numbers to gauge the health of operations in your AWS account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -153,13 +184,22 @@ func (c *DevOpsGuru) DescribeAccountHealthRequest(input *DescribeAccountHealthIn
 // API operation DescribeAccountHealth for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAccountHealth
 func (c *DevOpsGuru) DescribeAccountHealth(input *DescribeAccountHealthInput) (*DescribeAccountHealthOutput, error) {
@@ -227,6 +267,10 @@ func (c *DevOpsGuru) DescribeAccountOverviewRequest(input *DescribeAccountOvervi
 
 // DescribeAccountOverview API operation for Amazon DevOps Guru.
 //
+// For the time range passed in, returns the number of open reactive insight
+// that were created, the number of open proactive insights that were created,
+// and the Mean Time to Recover (MTTR) for all closed reactive insights.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -235,13 +279,22 @@ func (c *DevOpsGuru) DescribeAccountOverviewRequest(input *DescribeAccountOvervi
 // API operation DescribeAccountOverview for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAccountOverview
 func (c *DevOpsGuru) DescribeAccountOverview(input *DescribeAccountOverviewInput) (*DescribeAccountOverviewOutput, error) {
@@ -309,6 +362,8 @@ func (c *DevOpsGuru) DescribeAnomalyRequest(input *DescribeAnomalyInput) (req *r
 
 // DescribeAnomaly API operation for Amazon DevOps Guru.
 //
+// Returns details about an anomaly that you specify using its ID.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -317,15 +372,25 @@ func (c *DevOpsGuru) DescribeAnomalyRequest(input *DescribeAnomalyInput) (req *r
 // API operation DescribeAnomaly for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeAnomaly
 func (c *DevOpsGuru) DescribeAnomaly(input *DescribeAnomalyInput) (*DescribeAnomalyOutput, error) {
@@ -393,6 +458,8 @@ func (c *DevOpsGuru) DescribeInsightRequest(input *DescribeInsightInput) (req *r
 
 // DescribeInsight API operation for Amazon DevOps Guru.
 //
+// Returns details about an insight that you specify using its ID.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -401,15 +468,25 @@ func (c *DevOpsGuru) DescribeInsightRequest(input *DescribeInsightInput) (req *r
 // API operation DescribeInsight for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeInsight
 func (c *DevOpsGuru) DescribeInsight(input *DescribeInsightInput) (*DescribeInsightOutput, error) {
@@ -483,6 +560,13 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 
 // DescribeResourceCollectionHealth API operation for Amazon DevOps Guru.
 //
+// Returns the number of open proactive insights, open reactive insights, and
+// the Mean Time to Recover (MTTR) for all closed insights in resource collections
+// in your account. You specify the type of AWS resources collection. The one
+// type of AWS resource collection supported is AWS CloudFormation stacks. DevOps
+// Guru can be configured to analyze only the AWS resources that are defined
+// in the stacks.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -491,13 +575,22 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 // API operation DescribeResourceCollectionHealth for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeResourceCollectionHealth
 func (c *DevOpsGuru) DescribeResourceCollectionHealth(input *DescribeResourceCollectionHealthInput) (*DescribeResourceCollectionHealthOutput, error) {
@@ -617,6 +710,10 @@ func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceInt
 
 // DescribeServiceIntegration API operation for Amazon DevOps Guru.
 //
+// Returns the integration status of services that are integrated with DevOps
+// Guru. The one service that can be integrated with DevOps Guru is AWS Systems
+// Manager, which can be used to create an OpsItem for each generated insight.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -625,13 +722,22 @@ func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceInt
 // API operation DescribeServiceIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeServiceIntegration
 func (c *DevOpsGuru) DescribeServiceIntegration(input *DescribeServiceIntegrationInput) (*DescribeServiceIntegrationOutput, error) {
@@ -705,6 +811,11 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 
 // GetResourceCollection API operation for Amazon DevOps Guru.
 //
+// Returns lists AWS resources that are of the specified resource collection
+// type. The one type of AWS resource collection supported is AWS CloudFormation
+// stacks. DevOps Guru can be configured to analyze only the AWS resources that
+// are defined in the stacks.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -713,15 +824,25 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 // API operation GetResourceCollection for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetResourceCollection
 func (c *DevOpsGuru) GetResourceCollection(input *GetResourceCollectionInput) (*GetResourceCollectionOutput, error) {
@@ -847,6 +968,9 @@ func (c *DevOpsGuru) ListAnomaliesForInsightRequest(input *ListAnomaliesForInsig
 
 // ListAnomaliesForInsight API operation for Amazon DevOps Guru.
 //
+// Returns a list of the anomalies that belong to an insight that you specify
+// using its ID.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -855,15 +979,25 @@ func (c *DevOpsGuru) ListAnomaliesForInsightRequest(input *ListAnomaliesForInsig
 // API operation ListAnomaliesForInsight for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListAnomaliesForInsight
 func (c *DevOpsGuru) ListAnomaliesForInsight(input *ListAnomaliesForInsightInput) (*ListAnomaliesForInsightOutput, error) {
@@ -989,6 +1123,9 @@ func (c *DevOpsGuru) ListEventsRequest(input *ListEventsInput) (req *request.Req
 
 // ListEvents API operation for Amazon DevOps Guru.
 //
+// Returns a list of the events emitted by the resources that are evaluated
+// by DevOps Guru. You can use filters to specify which events are returned.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -997,15 +1134,25 @@ func (c *DevOpsGuru) ListEventsRequest(input *ListEventsInput) (req *request.Req
 // API operation ListEvents for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListEvents
 func (c *DevOpsGuru) ListEvents(input *ListEventsInput) (*ListEventsOutput, error) {
@@ -1131,6 +1278,9 @@ func (c *DevOpsGuru) ListInsightsRequest(input *ListInsightsInput) (req *request
 
 // ListInsights API operation for Amazon DevOps Guru.
 //
+// Returns a list of insights in your AWS account. You can specify which insights
+// are returned by their start time and status (ONGOING, CLOSED, or ANY).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1139,13 +1289,22 @@ func (c *DevOpsGuru) ListInsightsRequest(input *ListInsightsInput) (req *request
 // API operation ListInsights for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListInsights
 func (c *DevOpsGuru) ListInsights(input *ListInsightsInput) (*ListInsightsOutput, error) {
@@ -1271,6 +1430,12 @@ func (c *DevOpsGuru) ListNotificationChannelsRequest(input *ListNotificationChan
 
 // ListNotificationChannels API operation for Amazon DevOps Guru.
 //
+// Returns a list of notification channels configured for DevOps Guru. Each
+// notification channel is used to notify you when DevOps Guru generates an
+// insight that contains information about how to improve your operations. The
+// one supported notification channel is Amazon Simple Notification Service
+// (Amazon SNS).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1279,13 +1444,22 @@ func (c *DevOpsGuru) ListNotificationChannelsRequest(input *ListNotificationChan
 // API operation ListNotificationChannels for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListNotificationChannels
 func (c *DevOpsGuru) ListNotificationChannels(input *ListNotificationChannelsInput) (*ListNotificationChannelsOutput, error) {
@@ -1411,6 +1585,9 @@ func (c *DevOpsGuru) ListRecommendationsRequest(input *ListRecommendationsInput)
 
 // ListRecommendations API operation for Amazon DevOps Guru.
 //
+// Returns a list of a specified insight's recommendations. Each recommendation
+// includes a list of related metrics and a list of related events.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1419,15 +1596,25 @@ func (c *DevOpsGuru) ListRecommendationsRequest(input *ListRecommendationsInput)
 // API operation ListRecommendations for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListRecommendations
 func (c *DevOpsGuru) ListRecommendations(input *ListRecommendationsInput) (*ListRecommendationsOutput, error) {
@@ -1548,6 +1735,8 @@ func (c *DevOpsGuru) PutFeedbackRequest(input *PutFeedbackInput) (req *request.R
 
 // PutFeedback API operation for Amazon DevOps Guru.
 //
+// Collects customer feedback about the specified insight.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1556,17 +1745,28 @@ func (c *DevOpsGuru) PutFeedbackRequest(input *PutFeedbackInput) (req *request.R
 // API operation PutFeedback for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerException
-//
 //   * AccessDeniedException
-//
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * ConflictException
+//   An exception that is thrown when a conflict occurs.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/PutFeedback
 func (c *DevOpsGuru) PutFeedback(input *PutFeedbackInput) (*PutFeedbackOutput, error) {
@@ -1635,6 +1835,10 @@ func (c *DevOpsGuru) RemoveNotificationChannelRequest(input *RemoveNotificationC
 
 // RemoveNotificationChannel API operation for Amazon DevOps Guru.
 //
+// Removes a notification channel from DevOps Guru. A notification channel is
+// used to notify you when DevOps Guru generates an insight that contains information
+// about how to improve your operations.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1643,17 +1847,28 @@ func (c *DevOpsGuru) RemoveNotificationChannelRequest(input *RemoveNotificationC
 // API operation RemoveNotificationChannel for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerException
-//
 //   * AccessDeniedException
-//
-//   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * ConflictException
+//   An exception that is thrown when a conflict occurs.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/RemoveNotificationChannel
 func (c *DevOpsGuru) RemoveNotificationChannel(input *RemoveNotificationChannelInput) (*RemoveNotificationChannelOutput, error) {
@@ -1727,6 +1942,14 @@ func (c *DevOpsGuru) SearchInsightsRequest(input *SearchInsightsInput) (req *req
 
 // SearchInsights API operation for Amazon DevOps Guru.
 //
+// Returns a list of insights in your AWS account. You can specify which insights
+// are returned by their start time, one or more statuses (ONGOING, CLOSED,
+// and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE
+// or PROACTIVE).
+//
+// Use the Filters parameter to specify status and severity search parameters.
+// Use the Type parameter to specify REACTIVE or PROACTIVE in your search.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1735,13 +1958,22 @@ func (c *DevOpsGuru) SearchInsightsRequest(input *SearchInsightsInput) (req *req
 // API operation SearchInsights for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * InternalServerException
+//   An internal failure in an Amazon service occurred.
 //
-//   * AccessDeniedException
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchInsights
 func (c *DevOpsGuru) SearchInsights(input *SearchInsightsInput) (*SearchInsightsOutput, error) {
@@ -1862,6 +2094,12 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 
 // UpdateResourceCollection API operation for Amazon DevOps Guru.
 //
+// Updates the collection of resources that DevOps Guru analyzes. The one type
+// of AWS resource collection supported is AWS CloudFormation stacks. DevOps
+// Guru can be configured to analyze only the AWS resources that are defined
+// in the stacks. This method also creates the IAM role required for you to
+// use DevOps Guru.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1870,15 +2108,25 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 // API operation UpdateResourceCollection for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
-//
-//   * InternalServerException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * ConflictException
+//   An exception that is thrown when a conflict occurs.
 //
-//   * AccessDeniedException
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateResourceCollection
 func (c *DevOpsGuru) UpdateResourceCollection(input *UpdateResourceCollectionInput) (*UpdateResourceCollectionOutput, error) {
@@ -1947,6 +2195,11 @@ func (c *DevOpsGuru) UpdateServiceIntegrationRequest(input *UpdateServiceIntegra
 
 // UpdateServiceIntegration API operation for Amazon DevOps Guru.
 //
+// Enables or disables integration with a service that can be integrated with
+// DevOps Guru. The one service that can be integrated with DevOps Guru is AWS
+// Systems Manager, which can be used to create an OpsItem for each generated
+// insight.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1955,15 +2208,25 @@ func (c *DevOpsGuru) UpdateServiceIntegrationRequest(input *UpdateServiceIntegra
 // API operation UpdateServiceIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * ThrottlingException
-//
-//   * ValidationException
-//
-//   * InternalServerException
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
 //
 //   * ConflictException
+//   An exception that is thrown when a conflict occurs.
 //
-//   * AccessDeniedException
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/UpdateServiceIntegration
 func (c *DevOpsGuru) UpdateServiceIntegration(input *UpdateServiceIntegrationInput) (*UpdateServiceIntegrationOutput, error) {
@@ -1987,6 +2250,11 @@ func (c *DevOpsGuru) UpdateServiceIntegrationWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// You don't have permissions to perform the requested operation. The user or
+// role that is making the request must have at least one IAM permissions policy
+// attached that grants the required permissions. For more information, see
+// Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+// in the IAM User Guide.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2045,6 +2313,10 @@ func (s *AccessDeniedException) RequestID() string {
 type AddNotificationChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	// A NotificationChannelConfig object that specifies what type of notification
+	// channel to add. The one supported notification channel is Amazon Simple Notification
+	// Service (Amazon SNS).
+	//
 	// Config is a required field
 	Config *NotificationChannelConfig `type:"structure" required:"true"`
 }
@@ -2086,7 +2358,10 @@ func (s *AddNotificationChannelInput) SetConfig(v *NotificationChannelConfig) *A
 type AddNotificationChannelOutput struct {
 	_ struct{} `type:"structure"`
 
-	Id *string `min:"36" type:"string"`
+	// The ID of the added notification channel.
+	//
+	// Id is a required field
+	Id *string `min:"36" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2105,9 +2380,13 @@ func (s *AddNotificationChannelOutput) SetId(v string) *AddNotificationChannelOu
 	return s
 }
 
+// Details about the source of the anomalous operational data that triggered
+// the anomaly. The one supported source is Amazon CloudWatch metrics.
 type AnomalySourceDetails struct {
 	_ struct{} `type:"structure"`
 
+	// An array of CloudWatchMetricsDetail object that contains information about
+	// the analyzed metrics that displayed anomalous behavior.
 	CloudWatchMetrics []*CloudWatchMetricsDetail `type:"list"`
 }
 
@@ -2127,13 +2406,18 @@ func (s *AnomalySourceDetails) SetCloudWatchMetrics(v []*CloudWatchMetricsDetail
 	return s
 }
 
+// A time range that specifies when the observed unusual behavior in an anomaly
+// started and ended.
 type AnomalyTimeRange struct {
 	_ struct{} `type:"structure"`
 
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The time when the anomalous behavior ended.
+	EndTime *time.Time `type:"timestamp"`
 
+	// The time when the anomalous behavior started.
+	//
 	// StartTime is a required field
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -2158,9 +2442,14 @@ func (s *AnomalyTimeRange) SetStartTime(v time.Time) *AnomalyTimeRange {
 	return s
 }
 
+// Information about AWS CloudFormation stacks. You can use stacks to specify
+// which AWS resources in your account to analyze. For more information, see
+// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the AWS CloudFormation User Guide.
 type CloudFormationCollection struct {
 	_ struct{} `type:"structure"`
 
+	// An array of CloudFormation stack names.
 	StackNames []*string `type:"list"`
 }
 
@@ -2180,9 +2469,14 @@ func (s *CloudFormationCollection) SetStackNames(v []*string) *CloudFormationCol
 	return s
 }
 
+// Information about AWS CloudFormation stacks. You can use stacks to specify
+// which AWS resources in your account to analyze. For more information, see
+// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the AWS CloudFormation User Guide.
 type CloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
+	// An array of CloudFormation stack names.
 	StackNames []*string `type:"list"`
 }
 
@@ -2202,11 +2496,17 @@ func (s *CloudFormationCollectionFilter) SetStackNames(v []*string) *CloudFormat
 	return s
 }
 
+// Information about the health of AWS resources in your account that are specified
+// by an AWS CloudFormation stack.
 type CloudFormationHealth struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the health of the AWS resources in your account that are
+	// specified by an AWS CloudFormation stack, including the number of open proactive,
+	// open reactive insights, and the Mean Time to Recover (MTTR) of closed insights.
 	Insight *InsightHealth `type:"structure"`
 
+	// The name of the CloudFormation stack.
 	StackName *string `min:"1" type:"string"`
 }
 
@@ -2232,19 +2532,30 @@ func (s *CloudFormationHealth) SetStackName(v string) *CloudFormationHealth {
 	return s
 }
 
+// Information about an Amazon CloudWatch metric.
 type CloudWatchMetricsDetail struct {
 	_ struct{} `type:"structure"`
 
+	// An array of CloudWatch dimensions associated with
 	Dimensions []*CloudWatchMetricsDimension `type:"list"`
 
+	// The name of the CloudWatch metric.
 	MetricName *string `type:"string"`
 
+	// The namespace of the CloudWatch metric. A namespace is a container for CloudWatch
+	// metrics.
 	Namespace *string `type:"string"`
 
+	// The length of time associated with the CloudWatch metric in number of seconds.
 	Period *int64 `type:"integer"`
 
+	// The type of statistic associated with the CloudWatch metric. For more information,
+	// see Statistics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic)
+	// in the Amazon CloudWatch User Guide.
 	Stat *string `type:"string" enum:"CloudWatchMetricsStat"`
 
+	// The unit of measure used for the CloudWatch metric. For example, Bytes, Seconds,
+	// Count, and Percent.
 	Unit *string `type:"string"`
 }
 
@@ -2294,11 +2605,19 @@ func (s *CloudWatchMetricsDetail) SetUnit(v string) *CloudWatchMetricsDetail {
 	return s
 }
 
+// The dimension of a Amazon CloudWatch metric that is used when DevOps Guru
+// analyzes the resources in your account for operational problems and anomalous
+// behaviour. A dimension is a name/value pair that is part of the identity
+// of a metric. A metric can have up to 10 dimensions. For more information,
+// see Dimensions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension)
+// in the Amazon CloudWatch User Guide.
 type CloudWatchMetricsDimension struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the CloudWatch dimension.
 	Name *string `type:"string"`
 
+	// The value of the CloudWatch dimension.
 	Value *string `type:"string"`
 }
 
@@ -2324,15 +2643,20 @@ func (s *CloudWatchMetricsDimension) SetValue(v string) *CloudWatchMetricsDimens
 	return s
 }
 
+// An exception that is thrown when a conflict occurs.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The ID of the AWS resource in which a conflict occurred.
+	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
+	// The type of the AWS resource in which a conflict occurred.
+	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true"`
 }
@@ -2402,11 +2726,23 @@ func (s DescribeAccountHealthInput) GoString() string {
 type DescribeAccountHealthOutput struct {
 	_ struct{} `type:"structure"`
 
-	MetricsAnalyzed *int64 `type:"integer"`
+	// An integer that specifies the number of metrics that have been analyzed in
+	// your AWS account.
+	//
+	// MetricsAnalyzed is a required field
+	MetricsAnalyzed *int64 `type:"integer" required:"true"`
 
-	OpenProactiveInsights *int64 `type:"integer"`
+	// An integer that specifies the number of open proactive insights in your AWS
+	// account.
+	//
+	// OpenProactiveInsights is a required field
+	OpenProactiveInsights *int64 `type:"integer" required:"true"`
 
-	OpenReactiveInsights *int64 `type:"integer"`
+	// An integer that specifies the number of open reactive insights in your AWS
+	// account.
+	//
+	// OpenReactiveInsights is a required field
+	OpenReactiveInsights *int64 `type:"integer" required:"true"`
 }
 
 // String returns the string representation
@@ -2440,10 +2776,17 @@ func (s *DescribeAccountHealthOutput) SetOpenReactiveInsights(v int64) *Describe
 type DescribeAccountOverviewInput struct {
 	_ struct{} `type:"structure"`
 
+	// The start of the time range passed in. The start time granularity is at the
+	// day level. The floor of the start time is used. Returned information occurred
+	// after this day.
+	//
 	// FromTime is a required field
-	FromTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+	FromTime *time.Time `type:"timestamp" required:"true"`
 
-	ToTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The end of the time range passed in. The start time granularity is at the
+	// day level. The floor of the start time is used. Returned information occurred
+	// before this day. If this is not specified, then the current day is used.
+	ToTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -2484,11 +2827,23 @@ func (s *DescribeAccountOverviewInput) SetToTime(v time.Time) *DescribeAccountOv
 type DescribeAccountOverviewOutput struct {
 	_ struct{} `type:"structure"`
 
-	MeanTimeToRecoverInMilliseconds *int64 `type:"long"`
+	// The Mean Time to Recover (MTTR) for all closed insights that were created
+	// during the time range passed in.
+	//
+	// MeanTimeToRecoverInMilliseconds is a required field
+	MeanTimeToRecoverInMilliseconds *int64 `type:"long" required:"true"`
 
-	ProactiveInsights *int64 `type:"integer"`
+	// An integer that specifies the number of open proactive insights in your AWS
+	// account that were created during the time range passed in.
+	//
+	// ProactiveInsights is a required field
+	ProactiveInsights *int64 `type:"integer" required:"true"`
 
-	ReactiveInsights *int64 `type:"integer"`
+	// An integer that specifies the number of open reactive insights in your AWS
+	// account that were created during the time range passed in.
+	//
+	// ReactiveInsights is a required field
+	ReactiveInsights *int64 `type:"integer" required:"true"`
 }
 
 // String returns the string representation
@@ -2522,8 +2877,10 @@ func (s *DescribeAccountOverviewOutput) SetReactiveInsights(v int64) *DescribeAc
 type DescribeAnomalyInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the anomaly.
+	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2561,8 +2918,10 @@ func (s *DescribeAnomalyInput) SetId(v string) *DescribeAnomalyInput {
 type DescribeAnomalyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// An ReactiveAnomaly object that represents the requested anomaly.
 	ProactiveAnomaly *ProactiveAnomaly `type:"structure"`
 
+	// An ProactiveAnomaly object that represents the requested anomaly.
 	ReactiveAnomaly *ReactiveAnomaly `type:"structure"`
 }
 
@@ -2591,8 +2950,10 @@ func (s *DescribeAnomalyOutput) SetReactiveAnomaly(v *ReactiveAnomaly) *Describe
 type DescribeInsightInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the insight.
+	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2630,8 +2991,10 @@ func (s *DescribeInsightInput) SetId(v string) *DescribeInsightInput {
 type DescribeInsightOutput struct {
 	_ struct{} `type:"structure"`
 
+	// An ProactiveInsight object that represents the requested insight.
 	ProactiveInsight *ProactiveInsight `type:"structure"`
 
+	// An ReactiveInsight object that represents the requested insight.
 	ReactiveInsight *ReactiveInsight `type:"structure"`
 }
 
@@ -2660,10 +3023,17 @@ func (s *DescribeInsightOutput) SetReactiveInsight(v *ReactiveInsight) *Describe
 type DescribeResourceCollectionHealthInput struct {
 	_ struct{} `type:"structure"`
 
-	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
+	// An AWS resource collection type. This type specifies how analyzed AWS resources
+	// are defined. The one type of AWS resource collection supported is AWS CloudFormation
+	// stacks. DevOps Guru can be configured to analyze only the AWS resources that
+	// are defined in the stacks.
+	//
 	// ResourceCollectionType is a required field
-	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true"`
+	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
 }
 
 // String returns the string representation
@@ -2679,6 +3049,9 @@ func (s DescribeResourceCollectionHealthInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeResourceCollectionHealthInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeResourceCollectionHealthInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
 	if s.ResourceCollectionType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceCollectionType"))
 	}
@@ -2707,8 +3080,14 @@ func (s *DescribeResourceCollectionHealthInput) SetResourceCollectionType(v stri
 type DescribeResourceCollectionHealthOutput struct {
 	_ struct{} `type:"structure"`
 
-	CloudFormation []*CloudFormationHealth `type:"list"`
+	// The returned CloudFormationHealthOverview object that contains an InsightHealthOverview
+	// object with the requested system health information.
+	//
+	// CloudFormation is a required field
+	CloudFormation []*CloudFormationHealth `type:"list" required:"true"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 }
 
@@ -2751,6 +3130,8 @@ func (s DescribeServiceIntegrationInput) GoString() string {
 type DescribeServiceIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the integration of DevOps Guru with another AWS service,
+	// such as AWS Systems Manager.
 	ServiceIntegration *ServiceIntegrationConfig `type:"structure"`
 }
 
@@ -2770,12 +3151,16 @@ func (s *DescribeServiceIntegrationOutput) SetServiceIntegration(v *ServiceInteg
 	return s
 }
 
+// A range of time that specifies when anomalous behavior in an anomaly or insight
+// ended.
 type EndTimeRange struct {
 	_ struct{} `type:"structure"`
 
-	FromTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The earliest end time in the time range.
+	FromTime *time.Time `type:"timestamp"`
 
-	ToTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The latest end time in the time range.
+	ToTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -2800,24 +3185,40 @@ func (s *EndTimeRange) SetToTime(v time.Time) *EndTimeRange {
 	return s
 }
 
+// An AWS resource event. AWS resource events and metrics are analyzed by DevOps
+// Guru to find anomalous behavior and provide recommendations to improve your
+// operational solutions.
 type Event struct {
 	_ struct{} `type:"structure"`
 
+	// The source, AWS_CLOUD_TRAIL or AWS_CODE_DEPLOY, where DevOps Guru analysis
+	// found the event.
 	DataSource *string `type:"string" enum:"EventDataSource"`
 
+	// The class of the event. The class specifies what the event is related to,
+	// such as an infrastructure change, a deployment, or a schema change.
 	EventClass *string `type:"string" enum:"EventClass"`
 
+	// The AWS source that emitted the event.
 	EventSource *string `min:"10" type:"string"`
 
+	// The ID of the event.
 	Id *string `type:"string"`
 
+	// The name of the event.
 	Name *string `type:"string"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// An EventResource object that contains information about the resource that
+	// emitted the event.
 	Resources []*EventResource `type:"list"`
 
-	Time *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// A Timestamp that specifies the time the event occurred.
+	Time *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -2878,13 +3279,19 @@ func (s *Event) SetTime(v time.Time) *Event {
 	return s
 }
 
+// The AWS resource that emitted an event. AWS resource events and metrics are
+// analyzed by DevOps Guru to find anomalous behavior and provide recommendations
+// to improve your operational solutions.
 type EventResource struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the resource that emitted an event.
 	Arn *string `min:"36" type:"string"`
 
+	// The name of the resource that emitted an event.
 	Name *string `type:"string"`
 
+	// The type of resource that emitted an event.
 	Type *string `type:"string"`
 }
 
@@ -2916,14 +3323,21 @@ func (s *EventResource) SetType(v string) *EventResource {
 	return s
 }
 
+// The time range during which an AWS event occurred. AWS resource events and
+// metrics are analyzed by DevOps Guru to find anomalous behavior and provide
+// recommendations to improve your operational solutions.
 type EventTimeRange struct {
 	_ struct{} `type:"structure"`
 
+	// The time when the event started.
+	//
 	// FromTime is a required field
-	FromTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+	FromTime *time.Time `type:"timestamp" required:"true"`
 
+	// The time when the event ended.
+	//
 	// ToTime is a required field
-	ToTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+	ToTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -2967,10 +3381,15 @@ func (s *EventTimeRange) SetToTime(v time.Time) *EventTimeRange {
 type GetResourceCollectionInput struct {
 	_ struct{} `type:"structure"`
 
-	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
+	// The type of AWS resource collections to return. The one valid value is CLOUD_FORMATION
+	// for AWS CloudFormation stacks.
+	//
 	// ResourceCollectionType is a required field
-	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true"`
+	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
 }
 
 // String returns the string representation
@@ -2986,6 +3405,9 @@ func (s GetResourceCollectionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetResourceCollectionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetResourceCollectionInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
 	if s.ResourceCollectionType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceCollectionType"))
 	}
@@ -3014,8 +3436,13 @@ func (s *GetResourceCollectionInput) SetResourceCollectionType(v string) *GetRes
 type GetResourceCollectionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
+	// The requested list of AWS resource collections. The one type of AWS resource
+	// collection supported is AWS CloudFormation stacks. DevOps Guru can be configured
+	// to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollectionFilter `type:"structure"`
 }
 
@@ -3041,11 +3468,14 @@ func (s *GetResourceCollectionOutput) SetResourceCollection(v *ResourceCollectio
 	return s
 }
 
+// Information about insight feedback received from a customer.
 type InsightFeedback struct {
 	_ struct{} `type:"structure"`
 
+	// The feedback provided by the customer.
 	Feedback *string `type:"string" enum:"InsightFeedbackOption"`
 
+	// The insight feedback ID.
 	Id *string `min:"1" type:"string"`
 }
 
@@ -3084,13 +3514,18 @@ func (s *InsightFeedback) SetId(v string) *InsightFeedback {
 	return s
 }
 
+// Information about the number of open reactive and proactive insights that
+// can be used to gauge the health of your system.
 type InsightHealth struct {
 	_ struct{} `type:"structure"`
 
+	// The Meant Time to Recover (MTTR) for the insight.
 	MeanTimeToRecoverInMilliseconds *int64 `type:"long"`
 
+	// The number of open proactive insights.
 	OpenProactiveInsights *int64 `type:"integer"`
 
+	// The number of open reactive insights.
 	OpenReactiveInsights *int64 `type:"integer"`
 }
 
@@ -3122,13 +3557,18 @@ func (s *InsightHealth) SetOpenReactiveInsights(v int64) *InsightHealth {
 	return s
 }
 
+// A time ranged that specifies when the observed behavior in an insight started
+// and ended.
 type InsightTimeRange struct {
 	_ struct{} `type:"structure"`
 
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The time when the behavior described in an insight ended.
+	EndTime *time.Time `type:"timestamp"`
 
+	// The time when the behavior described in an insight started.
+	//
 	// StartTime is a required field
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -3153,11 +3593,16 @@ func (s *InsightTimeRange) SetStartTime(v time.Time) *InsightTimeRange {
 	return s
 }
 
+// An internal failure in an Amazon service occurred.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
+
+	// The number of seconds after which the action that caused the internal server
+	// exception can be retried.
+	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
 }
 
 // String returns the string representation
@@ -3195,7 +3640,7 @@ func (s *InternalServerException) OrigErr() error {
 }
 
 func (s *InternalServerException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -3211,13 +3656,21 @@ func (s *InternalServerException) RequestID() string {
 type ListAnomaliesForInsightInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the insight. The returned anomalies belong to this insight.
+	//
 	// InsightId is a required field
-	InsightId *string `location:"uri" locationName:"InsightId" type:"string" required:"true"`
+	InsightId *string `location:"uri" locationName:"InsightId" min:"1" type:"string" required:"true"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
 
+	// A time range used to specify when the requested anomalies started. All returned
+	// anomalies started during this time range.
 	StartTimeRange *StartTimeRange `type:"structure"`
 }
 
@@ -3280,10 +3733,15 @@ func (s *ListAnomaliesForInsightInput) SetStartTimeRange(v *StartTimeRange) *Lis
 type ListAnomaliesForInsightOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
+	// An array of ProactiveAnomalySummary objects that represent the requested
+	// anomalies
 	ProactiveAnomalies []*ProactiveAnomalySummary `type:"list"`
 
+	// An array of ReactiveAnomalySummary objects that represent the requested anomalies
 	ReactiveAnomalies []*ReactiveAnomalySummary `type:"list"`
 }
 
@@ -3315,19 +3773,30 @@ func (s *ListAnomaliesForInsightOutput) SetReactiveAnomalies(v []*ReactiveAnomal
 	return s
 }
 
+// Filters you can use to specify which events are returned when ListEvents
+// is called.
 type ListEventsFilters struct {
 	_ struct{} `type:"structure"`
 
+	// The source, AWS_CLOUD_TRAIL or AWS_CODE_DEPLOY, of the events you want returned.
 	DataSource *string `type:"string" enum:"EventDataSource"`
 
+	// The class of the events you want to filter for, such as an infrastructure
+	// change, a deployment, or a schema change.
 	EventClass *string `type:"string" enum:"EventClass"`
 
+	// The AWS source that emitted the events you want to filter for.
 	EventSource *string `min:"10" type:"string"`
 
+	// A time range during which you want the filtered events to have occurred.
 	EventTimeRange *EventTimeRange `type:"structure"`
 
+	// An ID of an insight that is related to the events you want to filter for.
 	InsightId *string `min:"1" type:"string"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 }
 
@@ -3401,11 +3870,17 @@ func (s *ListEventsFilters) SetResourceCollection(v *ResourceCollection) *ListEv
 type ListEventsInput struct {
 	_ struct{} `type:"structure"`
 
+	// A ListEventsFilters object used to specify which events to return.
+	//
 	// Filters is a required field
 	Filters *ListEventsFilters `type:"structure" required:"true"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
 }
 
@@ -3464,8 +3939,13 @@ func (s *ListEventsInput) SetNextToken(v string) *ListEventsInput {
 type ListEventsOutput struct {
 	_ struct{} `type:"structure"`
 
-	Events []*Event `type:"list"`
+	// A list of the requested events.
+	//
+	// Events is a required field
+	Events []*Event `type:"list" required:"true"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 }
 
@@ -3491,12 +3971,17 @@ func (s *ListEventsOutput) SetNextToken(v string) *ListEventsOutput {
 	return s
 }
 
+// Used to filter for insights that have any status.
 type ListInsightsAnyStatusFilter struct {
 	_ struct{} `type:"structure"`
 
+	// A time range used to specify when the behavior of the filtered insights started.
+	//
 	// StartTimeRange is a required field
 	StartTimeRange *StartTimeRange `type:"structure" required:"true"`
 
+	// Use to filter for either REACTIVE or PROACTIVE insights.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
@@ -3539,12 +4024,17 @@ func (s *ListInsightsAnyStatusFilter) SetType(v string) *ListInsightsAnyStatusFi
 	return s
 }
 
+// Used to filter for insights that have the status CLOSED.
 type ListInsightsClosedStatusFilter struct {
 	_ struct{} `type:"structure"`
 
+	// A time range used to specify when the behavior of the filtered insights ended.
+	//
 	// EndTimeRange is a required field
 	EndTimeRange *EndTimeRange `type:"structure" required:"true"`
 
+	// Use to filter for either REACTIVE or PROACTIVE insights.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
@@ -3590,10 +4080,17 @@ func (s *ListInsightsClosedStatusFilter) SetType(v string) *ListInsightsClosedSt
 type ListInsightsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
 
+	// A filter used to filter the returned insights by their status. You can specify
+	// one status filter.
+	//
 	// StatusFilter is a required field
 	StatusFilter *ListInsightsStatusFilter `type:"structure" required:"true"`
 }
@@ -3650,9 +4147,12 @@ func (s *ListInsightsInput) SetStatusFilter(v *ListInsightsStatusFilter) *ListIn
 	return s
 }
 
+// Used to filter for insights that have the status ONGOING.
 type ListInsightsOngoingStatusFilter struct {
 	_ struct{} `type:"structure"`
 
+	// Use to filter for either REACTIVE or PROACTIVE insights.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
@@ -3689,10 +4189,14 @@ func (s *ListInsightsOngoingStatusFilter) SetType(v string) *ListInsightsOngoing
 type ListInsightsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
+	// The returned list of proactive insights.
 	ProactiveInsights []*ProactiveInsightSummary `type:"list"`
 
+	// The returned list of reactive insights.
 	ReactiveInsights []*ReactiveInsightSummary `type:"list"`
 }
 
@@ -3724,13 +4228,20 @@ func (s *ListInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) *L
 	return s
 }
 
+// A filter used by ListInsights to specify which insights to return.
 type ListInsightsStatusFilter struct {
 	_ struct{} `type:"structure"`
 
+	// A ListInsightsAnyStatusFilter that specifies insights of any status that
+	// are either REACTIVE or PROACTIVE.
 	Any *ListInsightsAnyStatusFilter `type:"structure"`
 
+	// A ListInsightsClosedStatusFilter that specifies closed insights that are
+	// either REACTIVE or PROACTIVE.
 	Closed *ListInsightsClosedStatusFilter `type:"structure"`
 
+	// A ListInsightsAnyStatusFilter that specifies ongoing insights that are either
+	// REACTIVE or PROACTIVE.
 	Ongoing *ListInsightsOngoingStatusFilter `type:"structure"`
 }
 
@@ -3790,6 +4301,8 @@ func (s *ListInsightsStatusFilter) SetOngoing(v *ListInsightsOngoingStatusFilter
 type ListNotificationChannelsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
 }
 
@@ -3825,8 +4338,11 @@ func (s *ListNotificationChannelsInput) SetNextToken(v string) *ListNotification
 type ListNotificationChannelsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// An array that contains the requested notification channels.
 	Channels []*NotificationChannel `type:"list"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 }
 
@@ -3855,9 +4371,13 @@ func (s *ListNotificationChannelsOutput) SetNextToken(v string) *ListNotificatio
 type ListRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the requested insight.
+	//
 	// InsightId is a required field
 	InsightId *string `min:"1" type:"string" required:"true"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
 }
 
@@ -3905,8 +4425,11 @@ func (s *ListRecommendationsInput) SetNextToken(v string) *ListRecommendationsIn
 type ListRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
+	// An array of the requested recommendations.
 	Recommendations []*Recommendation `type:"list"`
 }
 
@@ -3932,11 +4455,28 @@ func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *Lis
 	return s
 }
 
+// Information about a notification channel. A notification channel is used
+// to notify you when DevOps Guru creates an insight. The one supported notification
+// channel is Amazon Simple Notification Service (Amazon SNS).
+//
+// If you use an Amazon SNS topic in another account, you must attach a policy
+// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+// adds the required policy on your behalf to send notifications using Amazon
+// SNS in your account. For more information, see Permissions for cross account
+// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+//
+// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
+// Service customer-managed key (CMK), then you must add permissions to the
+// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
+// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 type NotificationChannel struct {
 	_ struct{} `type:"structure"`
 
+	// A NotificationChannelConfig object that contains information about configured
+	// notification channels.
 	Config *NotificationChannelConfig `type:"structure"`
 
+	// The ID of a notification channel.
 	Id *string `min:"36" type:"string"`
 }
 
@@ -3962,9 +4502,26 @@ func (s *NotificationChannel) SetId(v string) *NotificationChannel {
 	return s
 }
 
+// Information about notification channels you have configured with DevOps Guru.
+// The one supported notification channel is Amazon Simple Notification Service
+// (Amazon SNS).
 type NotificationChannelConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about a notification channel configured in DevOps Guru to send
+	// notifications when insights are created.
+	//
+	// If you use an Amazon SNS topic in another account, you must attach a policy
+	// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+	// adds the required policy on your behalf to send notifications using Amazon
+	// SNS in your account. For more information, see Permissions for cross account
+	// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+	//
+	// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
+	// Service customer-managed key (CMK), then you must add permissions to the
+	// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
+	// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+	//
 	// Sns is a required field
 	Sns *SnsChannelConfig `type:"structure" required:"true"`
 }
@@ -4003,9 +4560,13 @@ func (s *NotificationChannelConfig) SetSns(v *SnsChannelConfig) *NotificationCha
 	return s
 }
 
+// Information about whether DevOps Guru is configured to create an OpsItem
+// in AWS Systems Manager OpsCenter for each created insight.
 type OpsCenterIntegration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
+	// for each created insight.
 	OptInStatus *string `type:"string" enum:"OptInStatus"`
 }
 
@@ -4025,9 +4586,13 @@ func (s *OpsCenterIntegration) SetOptInStatus(v string) *OpsCenterIntegration {
 	return s
 }
 
+// Information about whether DevOps Guru is configured to create an OpsItem
+// in AWS Systems Manager OpsCenter for each created insight.
 type OpsCenterIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
+	// for each created insight.
 	OptInStatus *string `type:"string" enum:"OptInStatus"`
 }
 
@@ -4047,13 +4612,19 @@ func (s *OpsCenterIntegrationConfig) SetOptInStatus(v string) *OpsCenterIntegrat
 	return s
 }
 
+// The time range during which anomalous behavior in a proactive anomaly or
+// an insight is expected to occur.
 type PredictionTimeRange struct {
 	_ struct{} `type:"structure"`
 
-	EndTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The time when the behavior in a proactive insight is expected to end.
+	EndTime *time.Time `type:"timestamp"`
 
+	// The time range during which a metric limit is expected to be exceeded. This
+	// applies to proactive insights only.
+	//
 	// StartTime is a required field
-	StartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+	StartTime *time.Time `type:"timestamp" required:"true"`
 }
 
 // String returns the string representation
@@ -4078,28 +4649,46 @@ func (s *PredictionTimeRange) SetStartTime(v time.Time) *PredictionTimeRange {
 	return s
 }
 
+// Information about an anomaly. This object is returned by ListAnomalies.
 type ProactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// A time range that specifies when the observed unusual behavior in an anomaly
+	// started and ended.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
+	// The ID of the insight that contains this anomaly. An insight is composed
+	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of a proactive anomaly.
 	Id *string `min:"1" type:"string"`
 
+	// A threshold that was exceeded by behavior in analyzed resources. Exceeding
+	// this threshold is related to the anomalous behavior that generated this anomaly.
 	Limit *float64 `type:"double"`
 
+	// The time range during which anomalous behavior in a proactive anomaly or
+	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of a proactive anomaly.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
+	// Details about the source of the analyzed operational data that triggered
+	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
+	// The status of a proactive anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
 
-	UpdateTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The time of the anomaly's most recent update.
+	UpdateTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4172,28 +4761,46 @@ func (s *ProactiveAnomaly) SetUpdateTime(v time.Time) *ProactiveAnomaly {
 	return s
 }
 
+// Details about a proactive anomaly. This object is returned by DescribeAnomaly.
 type ProactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
+	// A time range that specifies when the observed unusual behavior in an anomaly
+	// started and ended.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
+	// The ID of the insight that contains this anomaly. An insight is composed
+	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the anomaly.
 	Id *string `min:"1" type:"string"`
 
+	// A threshold that was exceeded by behavior in analyzed resources. Exceeding
+	// this threshold is related to the anomalous behavior that generated this anomaly.
 	Limit *float64 `type:"double"`
 
+	// The time range during which anomalous behavior in a proactive anomaly or
+	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of the anomaly.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
+	// Details about the source of the analyzed operational data that triggered
+	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
+	// The status of the anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
 
-	UpdateTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The time of the anomaly's most recent update.
+	UpdateTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -4266,23 +4873,38 @@ func (s *ProactiveAnomalySummary) SetUpdateTime(v time.Time) *ProactiveAnomalySu
 	return s
 }
 
+// Details about a proactive insight. This object is returned by ListInsights.
 type ProactiveInsight struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the proactive insight.
 	Id *string `min:"1" type:"string"`
 
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
 	InsightTimeRange *InsightTimeRange `type:"structure"`
 
+	// The name of the proactive insight.
 	Name *string `min:"1" type:"string"`
 
+	// The time range during which anomalous behavior in a proactive anomaly or
+	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of the proactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
+	// The ID of the AWS System Manager OpsItem created for this insight. You must
+	// enable the creation of OpstItems insights before they are created for each
+	// insight.
 	SsmOpsItemId *string `min:"1" type:"string"`
 
+	// The status of the proactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
@@ -4344,21 +4966,33 @@ func (s *ProactiveInsight) SetStatus(v string) *ProactiveInsight {
 	return s
 }
 
+// Details about a proactive insight. This object is returned by DescribeInsight.
 type ProactiveInsightSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the proactive insight.
 	Id *string `min:"1" type:"string"`
 
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
 	InsightTimeRange *InsightTimeRange `type:"structure"`
 
+	// The name of the proactive insight.
 	Name *string `min:"1" type:"string"`
 
+	// The time range during which anomalous behavior in a proactive anomaly or
+	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of the proactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
+	// The status of the proactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
@@ -4417,6 +5051,7 @@ func (s *ProactiveInsightSummary) SetStatus(v string) *ProactiveInsightSummary {
 type PutFeedbackInput struct {
 	_ struct{} `type:"structure"`
 
+	// The feedback from customers is about the recommendations in this insight.
 	InsightFeedback *InsightFeedback `type:"structure"`
 }
 
@@ -4465,21 +5100,34 @@ func (s PutFeedbackOutput) GoString() string {
 	return s.String()
 }
 
+// Details about a reactive anomaly. This object is returned by ListAnomalies.
 type ReactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// A time range that specifies when the observed unusual behavior in an anomaly
+	// started and ended.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
+	// The ID of the insight that contains this anomaly. An insight is composed
+	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of the anomaly.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
+	// Details about the source of the analyzed operational data that triggered
+	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
+	// The status of the anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
 }
 
@@ -4535,21 +5183,34 @@ func (s *ReactiveAnomaly) SetStatus(v string) *ReactiveAnomaly {
 	return s
 }
 
+// Details about a reactive anomaly. This object is returned by DescribeAnomaly.
 type ReactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
+	// A time range that specifies when the observed unusual behavior in an anomaly
+	// started and ended.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
+	// The ID of the insight that contains this anomaly. An insight is composed
+	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of the reactive anomaly.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
+	// Details about the source of the analyzed operational data that triggered
+	// the anomaly. The one supported source is Amazon CloudWatch metrics.
 	SourceDetails *AnomalySourceDetails `type:"structure"`
 
+	// The status of the reactive anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
 }
 
@@ -4605,21 +5266,34 @@ func (s *ReactiveAnomalySummary) SetStatus(v string) *ReactiveAnomalySummary {
 	return s
 }
 
+// Information about a reactive insight. This object is returned by ListInsights.
 type ReactiveInsight struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of a reactive insight.
 	Id *string `min:"1" type:"string"`
 
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
 	InsightTimeRange *InsightTimeRange `type:"structure"`
 
+	// The name of a reactive insight.
 	Name *string `min:"1" type:"string"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of a reactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
+	// The ID of the AWS System Manager OpsItem created for this insight. You must
+	// enable the creation of OpstItems insights before they are created for each
+	// insight.
 	SsmOpsItemId *string `min:"1" type:"string"`
 
+	// The status of a reactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
@@ -4675,19 +5349,29 @@ func (s *ReactiveInsight) SetStatus(v string) *ReactiveInsight {
 	return s
 }
 
+// Information about a reactive insight. This object is returned by DescribeInsight.
 type ReactiveInsightSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of a reactive summary.
 	Id *string `min:"1" type:"string"`
 
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
 	InsightTimeRange *InsightTimeRange `type:"structure"`
 
+	// The name of a reactive insight.
 	Name *string `min:"1" type:"string"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// The severity of a reactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
+	// The status of a reactive insight.
 	Status *string `type:"string" enum:"InsightStatus"`
 }
 
@@ -4737,19 +5421,29 @@ func (s *ReactiveInsightSummary) SetStatus(v string) *ReactiveInsightSummary {
 	return s
 }
 
+// Recommendation information to help you remediate detected anomalous behavior
+// that generated an insight.
 type Recommendation struct {
 	_ struct{} `type:"structure"`
 
+	// A description of the problem.
 	Description *string `type:"string"`
 
+	// A hyperlink to information to help you address the problem.
 	Link *string `type:"string"`
 
+	// The name of the recommendation.
 	Name *string `type:"string"`
 
+	// The reason DevOps Guru flagged the anomalous behavior as a problem.
 	Reason *string `type:"string"`
 
+	// Anomalies that are related to the problem. Use these Anomalies to learn more
+	// about what's happening and to help address the issue.
 	RelatedAnomalies []*RecommendationRelatedAnomaly `type:"list"`
 
+	// Events that are related to the problem. Use these events to learn more about
+	// what's happening and to help address the issue.
 	RelatedEvents []*RecommendationRelatedEvent `type:"list"`
 }
 
@@ -4799,11 +5493,16 @@ func (s *Recommendation) SetRelatedEvents(v []*RecommendationRelatedEvent) *Reco
 	return s
 }
 
+// Information about an anomaly that is related to a recommendation.
 type RecommendationRelatedAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// An array of objects that represent resources in which DevOps Guru detected
+	// anomalous behavior. Each object contains the name and type of the resource.
 	Resources []*RecommendationRelatedAnomalyResource `type:"list"`
 
+	// Information about where the anomalous behavior related the recommendation
+	// was found. For example, details in Amazon CloudWatch metrics.
 	SourceDetails []*RecommendationRelatedAnomalySourceDetail `type:"list"`
 }
 
@@ -4829,11 +5528,14 @@ func (s *RecommendationRelatedAnomaly) SetSourceDetails(v []*RecommendationRelat
 	return s
 }
 
+// Information about a resource in which DevOps Guru detected anomalous behavior.
 type RecommendationRelatedAnomalyResource struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the resource.
 	Name *string `type:"string"`
 
+	// The type of the resource.
 	Type *string `type:"string"`
 }
 
@@ -4859,9 +5561,13 @@ func (s *RecommendationRelatedAnomalyResource) SetType(v string) *Recommendation
 	return s
 }
 
+// Contains an array of RecommendationRelatedCloudWatchMetricsSourceDetail objects
+// that contain the name and namespace of an Amazon CloudWatch metric.
 type RecommendationRelatedAnomalySourceDetail struct {
 	_ struct{} `type:"structure"`
 
+	// An array of CloudWatchMetricsDetail objects that contains information about
+	// the analyzed metrics that displayed anomalous behavior.
 	CloudWatchMetrics []*RecommendationRelatedCloudWatchMetricsSourceDetail `type:"list"`
 }
 
@@ -4881,11 +5587,16 @@ func (s *RecommendationRelatedAnomalySourceDetail) SetCloudWatchMetrics(v []*Rec
 	return s
 }
 
+// Information about an Amazon CloudWatch metric that is analyzed by DevOps
+// Guru. It is one of many analyzed metrics that are used to generate insights.
 type RecommendationRelatedCloudWatchMetricsSourceDetail struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the CloudWatch metric.
 	MetricName *string `type:"string"`
 
+	// The namespace of the CloudWatch metric. A namespace is a container for CloudWatch
+	// metrics.
 	Namespace *string `type:"string"`
 }
 
@@ -4911,11 +5622,15 @@ func (s *RecommendationRelatedCloudWatchMetricsSourceDetail) SetNamespace(v stri
 	return s
 }
 
+// Information about an event that is related to a recommendation.
 type RecommendationRelatedEvent struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the event. This corresponds to the Name field in an Event object.
 	Name *string `type:"string"`
 
+	// A ResourceCollection object that contains arrays of the names of AWS CloudFormation
+	// stacks.
 	Resources []*RecommendationRelatedEventResource `type:"list"`
 }
 
@@ -4941,11 +5656,17 @@ func (s *RecommendationRelatedEvent) SetResources(v []*RecommendationRelatedEven
 	return s
 }
 
+// Information about an AWS resource that emitted and event that is related
+// to a recommendation in an insight.
 type RecommendationRelatedEventResource struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the resource that emitted the event. This corresponds to the
+	// Name field in an EventResource object.
 	Name *string `type:"string"`
 
+	// The type of the resource that emitted the event. This corresponds to the
+	// Type field in an EventResource object.
 	Type *string `type:"string"`
 }
 
@@ -4974,8 +5695,10 @@ func (s *RecommendationRelatedEventResource) SetType(v string) *RecommendationRe
 type RemoveNotificationChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the notification channel to be removed.
+	//
 	// Id is a required field
-	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" min:"36" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -4994,8 +5717,8 @@ func (s *RemoveNotificationChannelInput) Validate() error {
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
-	if s.Id != nil && len(*s.Id) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5024,9 +5747,14 @@ func (s RemoveNotificationChannelOutput) GoString() string {
 	return s.String()
 }
 
+// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+// be configured to analyze only the AWS resources that are defined in the stacks.
 type ResourceCollection struct {
 	_ struct{} `type:"structure"`
 
+	// An array of the names of AWS CloudFormation stacks. The stacks define AWS
+	// resources that DevOps Guru analyzes.
 	CloudFormation *CloudFormationCollection `type:"structure"`
 }
 
@@ -5046,9 +5774,15 @@ func (s *ResourceCollection) SetCloudFormation(v *CloudFormationCollection) *Res
 	return s
 }
 
+// Information about a filter used to specify which AWS resources are analyzed
+// for anomalous behavior by DevOps Guru.
 type ResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
+	// Information about AWS CloudFormation stacks. You can use stacks to specify
+	// which AWS resources in your account to analyze. For more information, see
+	// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+	// in the AWS CloudFormation User Guide.
 	CloudFormation *CloudFormationCollectionFilter `type:"structure"`
 }
 
@@ -5068,15 +5802,20 @@ func (s *ResourceCollectionFilter) SetCloudFormation(v *CloudFormationCollection
 	return s
 }
 
+// A requested resource could not be found
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The ID of the AWS resource that could not be found.
+	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
+	// The type of the AWS resource that could not be found.
+	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true"`
 }
@@ -5129,13 +5868,20 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies one or more severity values and one or more status values that
+// are used to search for insights.
 type SearchInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
+	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
+	// be configured to analyze only the AWS resources that are defined in the stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
+	// An array of severity values used to search for insights.
 	Severities []*string `type:"list"`
 
+	// An array of status values used to search for insights.
 	Statuses []*string `type:"list"`
 }
 
@@ -5170,15 +5916,26 @@ func (s *SearchInsightsFilters) SetStatuses(v []*string) *SearchInsightsFilters 
 type SearchInsightsInput struct {
 	_ struct{} `type:"structure"`
 
+	// A SearchInsightsFilters object that is used to set the severity and status
+	// filters on your insight search.
 	Filters *SearchInsightsFilters `type:"structure"`
 
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
 
+	// The start of the time range passed in. Returned insights occurred after this
+	// time.
+	//
 	// StartTimeRange is a required field
 	StartTimeRange *StartTimeRange `type:"structure" required:"true"`
 
+	// The type of insights you are searching for (REACTIVE or PROACTIVE).
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"InsightType"`
 }
@@ -5248,10 +6005,14 @@ func (s *SearchInsightsInput) SetType(v string) *SearchInsightsInput {
 type SearchInsightsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
+	// The returned proactive insights.
 	ProactiveInsights []*ProactiveInsightSummary `type:"list"`
 
+	// The returned reactive insights.
 	ReactiveInsights []*ReactiveInsightSummary `type:"list"`
 }
 
@@ -5283,9 +6044,13 @@ func (s *SearchInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) 
 	return s
 }
 
+// Information about the integration of DevOps Guru with another AWS service,
+// such as AWS Systems Manager.
 type ServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to create an OpsItem
+	// in AWS Systems Manager OpsCenter for each created insight.
 	OpsCenter *OpsCenterIntegration `type:"structure"`
 }
 
@@ -5305,6 +6070,7 @@ func (s *ServiceIntegrationConfig) SetOpsCenter(v *OpsCenterIntegration) *Servic
 	return s
 }
 
+// The request contains a value that exceeds a maximum quota.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5360,9 +6126,23 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification
+// Service topic.
+//
+// If you use an Amazon SNS topic in another account, you must attach a policy
+// to it that grants DevOps Guru permission to it notifications. DevOps Guru
+// adds the required policy on your behalf to send notifications using Amazon
+// SNS in your account. For more information, see Permissions for cross account
+// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
+//
+// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
+// Service customer-managed key (CMK), then you must add permissions to the
+// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
+// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 type SnsChannelConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic.
 	TopicArn *string `min:"36" type:"string"`
 }
 
@@ -5395,12 +6175,15 @@ func (s *SnsChannelConfig) SetTopicArn(v string) *SnsChannelConfig {
 	return s
 }
 
+// A time range used to specify when the behavior of an insight or anomaly started.
 type StartTimeRange struct {
 	_ struct{} `type:"structure"`
 
-	FromTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The start time of the time range.
+	FromTime *time.Time `type:"timestamp"`
 
-	ToTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+	// The end time of the time range.
+	ToTime *time.Time `type:"timestamp"`
 }
 
 // String returns the string representation
@@ -5425,14 +6208,21 @@ func (s *StartTimeRange) SetToTime(v time.Time) *StartTimeRange {
 	return s
 }
 
+// The request was denied due to a request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The code of the quota that was exceeded, causing the throttling exception.
 	QuotaCode *string `type:"string"`
 
+	// The number of seconds after which the action that caused the throttling exception
+	// can be retried.
+	RetryAfterSeconds *int64 `location:"header" locationName:"Retry-After" type:"integer"`
+
+	// The code of the service that caused the throttling exception.
 	ServiceCode *string `type:"string"`
 }
 
@@ -5484,9 +6274,12 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the names of AWS CloudFormation stacks used to update a collection
+// of stacks.
 type UpdateCloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
+	// An array of the name of stacks to update.
 	StackNames []*string `type:"list"`
 }
 
@@ -5506,9 +6299,11 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 	return s
 }
 
+// Contains information used to update a collection of AWS resources.
 type UpdateResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
+	// An collection of AWS CloudFormation stacks.
 	CloudFormation *UpdateCloudFormationCollectionFilter `type:"structure"`
 }
 
@@ -5531,9 +6326,14 @@ func (s *UpdateResourceCollectionFilter) SetCloudFormation(v *UpdateCloudFormati
 type UpdateResourceCollectionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies if the resource collection in the request is added or deleted to
+	// the resource collection.
+	//
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"UpdateResourceCollectionAction"`
 
+	// Contains information used to update a collection of AWS resources.
+	//
 	// ResourceCollection is a required field
 	ResourceCollection *UpdateResourceCollectionFilter `type:"structure" required:"true"`
 }
@@ -5590,9 +6390,13 @@ func (s UpdateResourceCollectionOutput) GoString() string {
 	return s.String()
 }
 
+// Information about updating the integration status of an AWS service, such
+// as AWS Systems Manager, with DevOps Guru.
 type UpdateServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Information about whether DevOps Guru is configured to create an OpsItem
+	// in AWS Systems Manager OpsCenter for each created insight.
 	OpsCenter *OpsCenterIntegrationConfig `type:"structure"`
 }
 
@@ -5615,6 +6419,9 @@ func (s *UpdateServiceIntegrationConfig) SetOpsCenter(v *OpsCenterIntegrationCon
 type UpdateServiceIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
+	// An IntegratedServiceConfig object used to specify the integrated service
+	// you want to update, and whether you want to update it to enabled or disabled.
+	//
 	// ServiceIntegration is a required field
 	ServiceIntegration *UpdateServiceIntegrationConfig `type:"structure" required:"true"`
 }
@@ -5662,14 +6469,19 @@ func (s UpdateServiceIntegrationOutput) GoString() string {
 	return s.String()
 }
 
+// Contains information about data passed in to a field during a request that
+// is not valid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// An array of fields that are associated with the validation exception.
 	Fields []*ValidationExceptionField `type:"list"`
 
+	// A message that describes the validation exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// The reason the validation exception was thrown.
 	Reason *string `type:"string" enum:"ValidationExceptionReason"`
 }
 
@@ -5721,12 +6533,18 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The field associated with the validation exception.
 type ValidationExceptionField struct {
 	_ struct{} `type:"structure"`
 
+	// The message associated with the validation exception with information to
+	// help determine its cause.
+	//
 	// Message is a required field
 	Message *string `type:"string" required:"true"`
 
+	// The name of the field.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 }
@@ -5953,6 +6771,8 @@ func InsightType_Values() []string {
 	}
 }
 
+// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
+// for each created insight.
 const (
 	// OptInStatusEnabled is a OptInStatus enum value
 	OptInStatusEnabled = "ENABLED"
@@ -5966,6 +6786,18 @@ func OptInStatus_Values() []string {
 	return []string{
 		OptInStatusEnabled,
 		OptInStatusDisabled,
+	}
+}
+
+const (
+	// ResourceCollectionTypeAwsCloudFormation is a ResourceCollectionType enum value
+	ResourceCollectionTypeAwsCloudFormation = "AWS_CLOUD_FORMATION"
+)
+
+// ResourceCollectionType_Values returns all elements of the ResourceCollectionType enum
+func ResourceCollectionType_Values() []string {
+	return []string{
+		ResourceCollectionTypeAwsCloudFormation,
 	}
 }
 

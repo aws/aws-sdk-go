@@ -1,3 +1,12 @@
+Release v1.36.8 (2020-12-14)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API, documentation, paginators, and examples
+* `service/ec2`: Updates service API
+  * Add c5n.metal to ec2 instance types list
+* `service/globalaccelerator`: Updates service paginators
+
 Release v1.36.7 (2020-12-11)
 ===
 

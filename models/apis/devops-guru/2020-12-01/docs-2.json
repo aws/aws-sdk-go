@@ -1,906 +1,1163 @@
 {
-  "version" : "2.0",
-  "service" : null,
-  "operations" : {
-    "AddNotificationChannel" : null,
-    "DescribeAccountHealth" : null,
-    "DescribeAccountOverview" : null,
-    "DescribeAnomaly" : null,
-    "DescribeInsight" : null,
-    "DescribeResourceCollectionHealth" : null,
-    "DescribeServiceIntegration" : null,
-    "GetResourceCollection" : null,
-    "ListAnomaliesForInsight" : null,
-    "ListEvents" : null,
-    "ListInsights" : null,
-    "ListNotificationChannels" : null,
-    "ListRecommendations" : null,
-    "PutFeedback" : null,
-    "RemoveNotificationChannel" : null,
-    "SearchInsights" : null,
-    "UpdateResourceCollection" : null,
-    "UpdateServiceIntegration" : null
+  "version": "2.0",
+  "service": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the AWS resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and AWS CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in AWS Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>",
+  "operations": {
+    "AddNotificationChannel": "<p> Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important DevOps Guru events, such as when an insight is generated. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>",
+    "DescribeAccountHealth": "<p> Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your AWS account. Use these numbers to gauge the health of operations in your AWS account. </p>",
+    "DescribeAccountOverview": "<p> For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights. </p>",
+    "DescribeAnomaly": "<p> Returns details about an anomaly that you specify using its ID. </p>",
+    "DescribeInsight": "<p> Returns details about an insight that you specify using its ID. </p>",
+    "DescribeResourceCollectionHealth": "<p> Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of AWS resources collection. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>",
+    "DescribeServiceIntegration": "<p> Returns the integration status of services that are integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight. </p>",
+    "GetResourceCollection": "<p> Returns lists AWS resources that are of the specified resource collection type. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>",
+    "ListAnomaliesForInsight": "<p> Returns a list of the anomalies that belong to an insight that you specify using its ID. </p>",
+    "ListEvents": "<p> Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters to specify which events are returned. </p>",
+    "ListInsights": "<p> Returns a list of insights in your AWS account. You can specify which insights are returned by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>). </p>",
+    "ListNotificationChannels": "<p> Returns a list of notification channels configured for DevOps Guru. Each notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p>",
+    "ListRecommendations": "<p> Returns a list of a specified insight's recommendations. Each recommendation includes a list of related metrics and a list of related events. </p>",
+    "PutFeedback": "<p> Collects customer feedback about the specified insight. </p>",
+    "RemoveNotificationChannel": "<p> Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. </p>",
+    "SearchInsights": "<p> Returns a list of insights in your AWS account. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
+    "UpdateResourceCollection": "<p> Updates the collection of resources that DevOps Guru analyzes. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. This method also creates the IAM role required for you to use DevOps Guru. </p>",
+    "UpdateServiceIntegration": "<p> Enables or disables integration with a service that can be integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight. </p>"
   },
-  "shapes" : {
-    "AccessDeniedException" : {
-      "base" : null,
-      "refs" : { }
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p> You don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access Management</a> in the <i>IAM User Guide</i>. </p>",
+      "refs": {
+      }
+    },
+    "AddNotificationChannelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AddNotificationChannelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AnomalyId": {
+      "base": null,
+      "refs": {
+        "DescribeAnomalyRequest$Id": "<p> The ID of the anomaly. </p>",
+        "ProactiveAnomaly$Id": "<p> The ID of a proactive anomaly. </p>",
+        "ProactiveAnomalySummary$Id": "<p>The ID of the anomaly.</p>",
+        "ReactiveAnomaly$Id": "<p>The ID of the reactive anomaly. </p>",
+        "ReactiveAnomalySummary$Id": "<p> The ID of the reactive anomaly. </p>"
+      }
+    },
+    "AnomalyLimit": {
+      "base": null,
+      "refs": {
+        "ProactiveAnomaly$Limit": "<p> A threshold that was exceeded by behavior in analyzed resources. Exceeding this threshold is related to the anomalous behavior that generated this anomaly. </p>",
+        "ProactiveAnomalySummary$Limit": "<p> A threshold that was exceeded by behavior in analyzed resources. Exceeding this threshold is related to the anomalous behavior that generated this anomaly. </p>"
+      }
+    },
+    "AnomalySeverity": {
+      "base": null,
+      "refs": {
+        "ProactiveAnomaly$Severity": "<p> The severity of a proactive anomaly. </p>",
+        "ProactiveAnomalySummary$Severity": "<p>The severity of the anomaly.</p>",
+        "ReactiveAnomaly$Severity": "<p>The severity of the anomaly. </p>",
+        "ReactiveAnomalySummary$Severity": "<p> The severity of the reactive anomaly. </p>"
+      }
+    },
+    "AnomalySourceDetails": {
+      "base": "<p> Details about the source of the anomalous operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
+      "refs": {
+        "ProactiveAnomaly$SourceDetails": "<p> Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
+        "ProactiveAnomalySummary$SourceDetails": "<p> Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
+        "ReactiveAnomaly$SourceDetails": "<p> Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
+        "ReactiveAnomalySummary$SourceDetails": "<p> Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>"
+      }
+    },
+    "AnomalyStatus": {
+      "base": null,
+      "refs": {
+        "ProactiveAnomaly$Status": "<p> The status of a proactive anomaly. </p>",
+        "ProactiveAnomalySummary$Status": "<p>The status of the anomaly.</p>",
+        "ReactiveAnomaly$Status": "<p> The status of the anomaly. </p>",
+        "ReactiveAnomalySummary$Status": "<p> The status of the reactive anomaly. </p>"
+      }
+    },
+    "AnomalyTimeRange": {
+      "base": "<p> A time range that specifies when the observed unusual behavior in an anomaly started and ended. </p>",
+      "refs": {
+        "ProactiveAnomaly$AnomalyTimeRange": null,
+        "ProactiveAnomalySummary$AnomalyTimeRange": null,
+        "ReactiveAnomaly$AnomalyTimeRange": null,
+        "ReactiveAnomalySummary$AnomalyTimeRange": null
+      }
+    },
+    "Channels": {
+      "base": null,
+      "refs": {
+        "ListNotificationChannelsResponse$Channels": "<p> An array that contains the requested notification channels. </p>"
+      }
+    },
+    "CloudFormationCollection": {
+      "base": "<p> Information about AWS CloudFormation stacks. You can use stacks to specify which AWS resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>. </p>",
+      "refs": {
+        "ResourceCollection$CloudFormation": "<p> An array of the names of AWS CloudFormation stacks. The stacks define AWS resources that DevOps Guru analyzes. </p>"
+      }
+    },
+    "CloudFormationCollectionFilter": {
+      "base": "<p> Information about AWS CloudFormation stacks. You can use stacks to specify which AWS resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>. </p>",
+      "refs": {
+        "ResourceCollectionFilter$CloudFormation": "<p> Information about AWS CloudFormation stacks. You can use stacks to specify which AWS resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>. </p>"
+      }
+    },
+    "CloudFormationHealth": {
+      "base": "<p> Information about the health of AWS resources in your account that are specified by an AWS CloudFormation stack. </p>",
+      "refs": {
+        "CloudFormationHealths$member": null
+      }
+    },
+    "CloudFormationHealths": {
+      "base": null,
+      "refs": {
+        "DescribeResourceCollectionHealthResponse$CloudFormation": "<p> The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information. </p>"
+      }
+    },
+    "CloudWatchMetricsDetail": {
+      "base": "<p> Information about an Amazon CloudWatch metric. </p>",
+      "refs": {
+        "CloudWatchMetricsDetails$member": null
+      }
+    },
+    "CloudWatchMetricsDetails": {
+      "base": null,
+      "refs": {
+        "AnomalySourceDetails$CloudWatchMetrics": "<p> An array of <code>CloudWatchMetricsDetail</code> object that contains information about the analyzed metrics that displayed anomalous behavior. </p>"
+      }
+    },
+    "CloudWatchMetricsDimension": {
+      "base": "<p> The dimension of a Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behaviour. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
+      "refs": {
+        "CloudWatchMetricsDimensions$member": null
+      }
+    },
+    "CloudWatchMetricsDimensionName": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDimension$Name": "<p> The name of the CloudWatch dimension. </p>"
+      }
+    },
+    "CloudWatchMetricsDimensionValue": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDimension$Value": "<p> The value of the CloudWatch dimension. </p>"
+      }
+    },
+    "CloudWatchMetricsDimensions": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDetail$Dimensions": "<p> An array of CloudWatch dimensions associated with </p>"
+      }
+    },
+    "CloudWatchMetricsMetricName": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDetail$MetricName": "<p> The name of the CloudWatch metric. </p>"
+      }
+    },
+    "CloudWatchMetricsNamespace": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDetail$Namespace": "<p> The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics. </p>"
+      }
+    },
+    "CloudWatchMetricsPeriod": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDetail$Period": "<p> The length of time associated with the CloudWatch metric in number of seconds. </p>"
+      }
+    },
+    "CloudWatchMetricsStat": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDetail$Stat": "<p> The type of statistic associated with the CloudWatch metric. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic\">Statistics</a> in the <i>Amazon CloudWatch User Guide</i>. </p>"
+      }
+    },
+    "CloudWatchMetricsUnit": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDetail$Unit": "<p> The unit of measure used for the CloudWatch metric. For example, <code>Bytes</code>, <code>Seconds</code>, <code>Count</code>, and <code>Percent</code>. </p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p> An exception that is thrown when a conflict occurs. </p>",
+      "refs": {
+      }
+    },
+    "DescribeAccountHealthRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountHealthResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountOverviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAccountOverviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAnomalyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAnomalyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInsightRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInsightResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeResourceCollectionHealthRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeResourceCollectionHealthResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeServiceIntegrationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeServiceIntegrationResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "AddNotificationChannelRequest" : {
-      "base" : null,
-      "refs" : { }
+    "EndTimeRange": {
+      "base": "<p> A range of time that specifies when anomalous behavior in an anomaly or insight ended. </p>",
+      "refs": {
+        "ListInsightsClosedStatusFilter$EndTimeRange": "<p> A time range used to specify when the behavior of the filtered insights ended. </p>"
+      }
+    },
+    "ErrorMessageString": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$Message": null,
+        "ConflictException$Message": null,
+        "InternalServerException$Message": null,
+        "ResourceNotFoundException$Message": null,
+        "ServiceQuotaExceededException$Message": null,
+        "ThrottlingException$Message": null,
+        "ValidationException$Message": "<p> A message that describes the validation exception. </p>",
+        "ValidationExceptionField$Message": "<p> The message associated with the validation exception with information to help determine its cause. </p>"
+      }
+    },
+    "ErrorNameString": {
+      "base": null,
+      "refs": {
+        "ValidationExceptionField$Name": "<p> The name of the field. </p>"
+      }
+    },
+    "ErrorQuotaCodeString": {
+      "base": null,
+      "refs": {
+        "ThrottlingException$QuotaCode": "<p> The code of the quota that was exceeded, causing the throttling exception. </p>"
+      }
     },
-    "AddNotificationChannelResponse" : {
-      "base" : null,
-      "refs" : { }
+    "ErrorServiceCodeString": {
+      "base": null,
+      "refs": {
+        "ThrottlingException$ServiceCode": "<p> The code of the service that caused the throttling exception. </p>"
+      }
+    },
+    "Event": {
+      "base": "<p> An AWS resource event. AWS resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
+      "refs": {
+        "Events$member": null
+      }
+    },
+    "EventClass": {
+      "base": null,
+      "refs": {
+        "Event$EventClass": "<p> The class of the event. The class specifies what the event is related to, such as an infrastructure change, a deployment, or a schema change. </p>",
+        "ListEventsFilters$EventClass": "<p> The class of the events you want to filter for, such as an infrastructure change, a deployment, or a schema change. </p>"
+      }
     },
-    "AnomalySeverity" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveAnomaly$Severity" : null,
-        "ProactiveAnomalySummary$Severity" : null,
-        "ReactiveAnomaly$Severity" : null,
-        "ReactiveAnomalySummary$Severity" : null
+    "EventDataSource": {
+      "base": null,
+      "refs": {
+        "Event$DataSource": "<p> The source, <code>AWS_CLOUD_TRAIL</code> or <code>AWS_CODE_DEPLOY</code>, where DevOps Guru analysis found the event. </p>",
+        "ListEventsFilters$DataSource": "<p> The source, <code>AWS_CLOUD_TRAIL</code> or <code>AWS_CODE_DEPLOY</code>, of the events you want returned. </p>"
       }
     },
-    "AnomalySourceDetails" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveAnomaly$SourceDetails" : null,
-        "ProactiveAnomalySummary$SourceDetails" : null,
-        "ReactiveAnomaly$SourceDetails" : null,
-        "ReactiveAnomalySummary$SourceDetails" : null
+    "EventId": {
+      "base": null,
+      "refs": {
+        "Event$Id": "<p> The ID of the event. </p>"
       }
     },
-    "AnomalyStatus" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveAnomaly$Status" : null,
-        "ProactiveAnomalySummary$Status" : null,
-        "ReactiveAnomaly$Status" : null,
-        "ReactiveAnomalySummary$Status" : null
+    "EventName": {
+      "base": null,
+      "refs": {
+        "Event$Name": "<p> The name of the event. </p>"
       }
     },
-    "AnomalyTimeRange" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveAnomaly$AnomalyTimeRange" : null,
-        "ProactiveAnomalySummary$AnomalyTimeRange" : null,
-        "ReactiveAnomaly$AnomalyTimeRange" : null,
-        "ReactiveAnomalySummary$AnomalyTimeRange" : null
+    "EventResource": {
+      "base": "<p> The AWS resource that emitted an event. AWS resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
+      "refs": {
+        "EventResources$member": null
       }
     },
-    "CloudFormationCollection" : {
-      "base" : null,
-      "refs" : {
-        "ResourceCollection$CloudFormation" : null
+    "EventResourceArn": {
+      "base": null,
+      "refs": {
+        "EventResource$Arn": "<p> The Amazon Resource Name (ARN) of the resource that emitted an event. </p>"
       }
     },
-    "CloudFormationCollectionFilter" : {
-      "base" : null,
-      "refs" : {
-        "ResourceCollectionFilter$CloudFormation" : null
+    "EventResourceName": {
+      "base": null,
+      "refs": {
+        "EventResource$Name": "<p> The name of the resource that emitted an event. </p>"
       }
     },
-    "CloudFormationHealth" : {
-      "base" : null,
-      "refs" : {
-        "__listOfCloudFormationHealth$member" : null
+    "EventResourceType": {
+      "base": null,
+      "refs": {
+        "EventResource$Type": "<p> The type of resource that emitted an event. </p>"
       }
     },
-    "CloudWatchMetricsDetail" : {
-      "base" : null,
-      "refs" : {
-        "__listOfCloudWatchMetricsDetail$member" : null
+    "EventResources": {
+      "base": null,
+      "refs": {
+        "Event$Resources": "<p> An <code>EventResource</code> object that contains information about the resource that emitted the event. </p>"
       }
     },
-    "CloudWatchMetricsDimension" : {
-      "base" : null,
-      "refs" : {
-        "__listOfCloudWatchMetricsDimension$member" : null
+    "EventSource": {
+      "base": null,
+      "refs": {
+        "Event$EventSource": "<p> The AWS source that emitted the event. </p>",
+        "ListEventsFilters$EventSource": "<p> The AWS source that emitted the events you want to filter for. </p>"
       }
     },
-    "CloudWatchMetricsStat" : {
-      "base" : null,
-      "refs" : {
-        "CloudWatchMetricsDetail$Stat" : null
+    "EventTimeRange": {
+      "base": "<p> The time range during which an AWS event occurred. AWS resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
+      "refs": {
+        "ListEventsFilters$EventTimeRange": "<p> A time range during which you want the filtered events to have occurred. </p>"
       }
     },
-    "ConflictException" : {
-      "base" : null,
-      "refs" : { }
+    "Events": {
+      "base": null,
+      "refs": {
+        "ListEventsResponse$Events": "<p> A list of the requested events. </p>"
+      }
     },
-    "DescribeAccountHealthResponse" : {
-      "base" : null,
-      "refs" : { }
+    "GetResourceCollectionRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "DescribeAccountOverviewRequest" : {
-      "base" : null,
-      "refs" : { }
+    "GetResourceCollectionResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "DescribeAccountOverviewResponse" : {
-      "base" : null,
-      "refs" : { }
+    "InsightFeedback": {
+      "base": "<p> Information about insight feedback received from a customer. </p>",
+      "refs": {
+        "PutFeedbackRequest$InsightFeedback": "<p> The feedback from customers is about the recommendations in this insight. </p>"
+      }
     },
-    "DescribeAnomalyResponse" : {
-      "base" : null,
-      "refs" : { }
+    "InsightFeedbackOption": {
+      "base": null,
+      "refs": {
+        "InsightFeedback$Feedback": "<p> The feedback provided by the customer. </p>"
+      }
     },
-    "DescribeInsightResponse" : {
-      "base" : null,
-      "refs" : { }
+    "InsightHealth": {
+      "base": "<p> Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. </p>",
+      "refs": {
+        "CloudFormationHealth$Insight": "<p> Information about the health of the AWS resources in your account that are specified by an AWS CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>"
+      }
     },
-    "DescribeResourceCollectionHealthResponse" : {
-      "base" : null,
-      "refs" : { }
+    "InsightId": {
+      "base": null,
+      "refs": {
+        "DescribeInsightRequest$Id": "<p> The ID of the insight. </p>",
+        "InsightFeedback$Id": "<p> The insight feedback ID. </p>",
+        "ListAnomaliesForInsightRequest$InsightId": "<p> The ID of the insight. The returned anomalies belong to this insight. </p>",
+        "ListEventsFilters$InsightId": "<p> An ID of an insight that is related to the events you want to filter for. </p>",
+        "ListRecommendationsRequest$InsightId": "<p> The ID of the requested insight. </p>",
+        "ProactiveAnomaly$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
+        "ProactiveAnomalySummary$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
+        "ProactiveInsight$Id": "<p>The ID of the proactive insight. </p>",
+        "ProactiveInsightSummary$Id": "<p>The ID of the proactive insight. </p>",
+        "ReactiveAnomaly$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
+        "ReactiveAnomalySummary$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
+        "ReactiveInsight$Id": "<p> The ID of a reactive insight. </p>",
+        "ReactiveInsightSummary$Id": "<p> The ID of a reactive summary. </p>"
+      }
     },
-    "DescribeServiceIntegrationResponse" : {
-      "base" : null,
-      "refs" : { }
+    "InsightName": {
+      "base": null,
+      "refs": {
+        "ProactiveInsight$Name": "<p>The name of the proactive insight. </p>",
+        "ProactiveInsightSummary$Name": "<p>The name of the proactive insight. </p>",
+        "ReactiveInsight$Name": "<p> The name of a reactive insight. </p>",
+        "ReactiveInsightSummary$Name": "<p> The name of a reactive insight. </p>"
+      }
     },
-    "EndTimeRange" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsClosedStatusFilter$EndTimeRange" : null
+    "InsightSeverities": {
+      "base": null,
+      "refs": {
+        "SearchInsightsFilters$Severities": "<p> An array of severity values used to search for insights. </p>"
       }
     },
-    "Event" : {
-      "base" : null,
-      "refs" : {
-        "__listOfEvent$member" : null
+    "InsightSeverity": {
+      "base": null,
+      "refs": {
+        "InsightSeverities$member": null,
+        "ProactiveInsight$Severity": "<p>The severity of the proactive insight. </p>",
+        "ProactiveInsightSummary$Severity": "<p>The severity of the proactive insight. </p>",
+        "ReactiveInsight$Severity": "<p> The severity of a reactive insight. </p>",
+        "ReactiveInsightSummary$Severity": "<p> The severity of a reactive insight. </p>"
       }
     },
-    "EventClass" : {
-      "base" : null,
-      "refs" : {
-        "Event$EventClass" : null,
-        "ListEventsFilters$EventClass" : null
+    "InsightStatus": {
+      "base": null,
+      "refs": {
+        "InsightStatuses$member": null,
+        "ProactiveInsight$Status": "<p>The status of the proactive insight. </p>",
+        "ProactiveInsightSummary$Status": "<p>The status of the proactive insight. </p>",
+        "ReactiveInsight$Status": "<p> The status of a reactive insight. </p>",
+        "ReactiveInsightSummary$Status": "<p> The status of a reactive insight. </p>"
       }
     },
-    "EventDataSource" : {
-      "base" : null,
-      "refs" : {
-        "Event$DataSource" : null,
-        "ListEventsFilters$DataSource" : null
+    "InsightStatuses": {
+      "base": null,
+      "refs": {
+        "SearchInsightsFilters$Statuses": "<p> An array of status values used to search for insights. </p>"
       }
     },
-    "EventResource" : {
-      "base" : null,
-      "refs" : {
-        "__listOfEventResource$member" : null
+    "InsightTimeRange": {
+      "base": "<p> A time ranged that specifies when the observed behavior in an insight started and ended. </p>",
+      "refs": {
+        "ProactiveInsight$InsightTimeRange": null,
+        "ProactiveInsightSummary$InsightTimeRange": null,
+        "ReactiveInsight$InsightTimeRange": null,
+        "ReactiveInsightSummary$InsightTimeRange": null
       }
     },
-    "EventTimeRange" : {
-      "base" : null,
-      "refs" : {
-        "ListEventsFilters$EventTimeRange" : null
+    "InsightType": {
+      "base": null,
+      "refs": {
+        "ListInsightsAnyStatusFilter$Type": "<p> Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. </p>",
+        "ListInsightsClosedStatusFilter$Type": "<p> Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. </p>",
+        "ListInsightsOngoingStatusFilter$Type": "<p> Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. </p>",
+        "SearchInsightsRequest$Type": "<p> The type of insights you are searching for (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p>"
       }
     },
-    "GetResourceCollectionResponse" : {
-      "base" : null,
-      "refs" : { }
+    "InternalServerException": {
+      "base": "<p>An internal failure in an Amazon service occurred.</p>",
+      "refs": {
+      }
     },
-    "InsightFeedback" : {
-      "base" : null,
-      "refs" : {
-        "PutFeedbackRequest$InsightFeedback" : null
+    "ListAnomaliesForInsightMaxResults": {
+      "base": null,
+      "refs": {
+        "ListAnomaliesForInsightRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
     },
-    "InsightFeedbackOption" : {
-      "base" : null,
-      "refs" : {
-        "InsightFeedback$Feedback" : null
+    "ListAnomaliesForInsightRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "InsightHealth" : {
-      "base" : null,
-      "refs" : {
-        "CloudFormationHealth$Insight" : null
+    "ListAnomaliesForInsightResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "InsightSeverity" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveInsight$Severity" : null,
-        "ProactiveInsightSummary$Severity" : null,
-        "ReactiveInsight$Severity" : null,
-        "ReactiveInsightSummary$Severity" : null,
-        "__listOfInsightSeverity$member" : null
+    "ListEventsFilters": {
+      "base": "<p> Filters you can use to specify which events are returned when <code>ListEvents</code> is called. </p>",
+      "refs": {
+        "ListEventsRequest$Filters": "<p> A <code>ListEventsFilters</code> object used to specify which events to return. </p>"
       }
     },
-    "InsightStatus" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveInsight$Status" : null,
-        "ProactiveInsightSummary$Status" : null,
-        "ReactiveInsight$Status" : null,
-        "ReactiveInsightSummary$Status" : null,
-        "__listOfInsightStatus$member" : null
+    "ListEventsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListEventsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
     },
-    "InsightTimeRange" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveInsight$InsightTimeRange" : null,
-        "ProactiveInsightSummary$InsightTimeRange" : null,
-        "ReactiveInsight$InsightTimeRange" : null,
-        "ReactiveInsightSummary$InsightTimeRange" : null
+    "ListEventsRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "InsightType" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsAnyStatusFilter$Type" : null,
-        "ListInsightsClosedStatusFilter$Type" : null,
-        "ListInsightsOngoingStatusFilter$Type" : null,
-        "SearchInsightsRequest$Type" : null
+    "ListEventsResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "InternalServerException" : {
-      "base" : null,
-      "refs" : { }
+    "ListInsightsAnyStatusFilter": {
+      "base": "<p> Used to filter for insights that have any status. </p>",
+      "refs": {
+        "ListInsightsStatusFilter$Any": "<p> A <code>ListInsightsAnyStatusFilter</code> that specifies insights of any status that are either <code>REACTIVE</code> or <code>PROACTIVE</code>. </p>"
+      }
     },
-    "ListAnomaliesForInsightRequest" : {
-      "base" : null,
-      "refs" : { }
+    "ListInsightsClosedStatusFilter": {
+      "base": "<p> Used to filter for insights that have the status <code>CLOSED</code>. </p>",
+      "refs": {
+        "ListInsightsStatusFilter$Closed": "<p> A <code>ListInsightsClosedStatusFilter</code> that specifies closed insights that are either <code>REACTIVE</code> or <code>PROACTIVE</code>. </p>"
+      }
     },
-    "ListAnomaliesForInsightResponse" : {
-      "base" : null,
-      "refs" : { }
+    "ListInsightsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListInsightsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
     },
-    "ListEventsFilters" : {
-      "base" : null,
-      "refs" : {
-        "ListEventsRequest$Filters" : null
+    "ListInsightsOngoingStatusFilter": {
+      "base": "<p> Used to filter for insights that have the status <code>ONGOING</code>. </p>",
+      "refs": {
+        "ListInsightsStatusFilter$Ongoing": "<p> A <code>ListInsightsAnyStatusFilter</code> that specifies ongoing insights that are either <code>REACTIVE</code> or <code>PROACTIVE</code>. </p>"
       }
     },
-    "ListEventsRequest" : {
-      "base" : null,
-      "refs" : { }
+    "ListInsightsRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListEventsResponse" : {
-      "base" : null,
-      "refs" : { }
+    "ListInsightsResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListInsightsAnyStatusFilter" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsStatusFilter$Any" : null
+    "ListInsightsStatusFilter": {
+      "base": "<p> A filter used by <code>ListInsights</code> to specify which insights to return. </p>",
+      "refs": {
+        "ListInsightsRequest$StatusFilter": "<p> A filter used to filter the returned insights by their status. You can specify one status filter. </p>"
       }
     },
-    "ListInsightsClosedStatusFilter" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsStatusFilter$Closed" : null
+    "ListNotificationChannelsRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ListInsightsOngoingStatusFilter" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsStatusFilter$Ongoing" : null
+    "ListNotificationChannelsResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "ListInsightsRequest" : {
-      "base" : null,
-      "refs" : { }
+    "ListRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListInsightsResponse" : {
-      "base" : null,
-      "refs" : { }
+    "ListRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListInsightsStatusFilter" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsRequest$StatusFilter" : null
+    "MeanTimeToRecoverInMilliseconds": {
+      "base": null,
+      "refs": {
+        "DescribeAccountOverviewResponse$MeanTimeToRecoverInMilliseconds": "<p> The Mean Time to Recover (MTTR) for all closed insights that were created during the time range passed in. </p>",
+        "InsightHealth$MeanTimeToRecoverInMilliseconds": "<p> The Meant Time to Recover (MTTR) for the insight. </p>"
       }
     },
-    "ListNotificationChannelsRequest" : {
-      "base" : null,
-      "refs" : { }
+    "NotificationChannel": {
+      "base": "<p> Information about a notification channel. A notification channel is used to notify you when DevOps Guru creates an insight. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>",
+      "refs": {
+        "Channels$member": null
+      }
     },
-    "ListNotificationChannelsResponse" : {
-      "base" : null,
-      "refs" : { }
+    "NotificationChannelConfig": {
+      "base": "<p> Information about notification channels you have configured with DevOps Guru. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS).</p>",
+      "refs": {
+        "AddNotificationChannelRequest$Config": "<p> A <code>NotificationChannelConfig</code> object that specifies what type of notification channel to add. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p>",
+        "NotificationChannel$Config": "<p> A <code>NotificationChannelConfig</code> object that contains information about configured notification channels. </p>"
+      }
     },
-    "ListRecommendationsRequest" : {
-      "base" : null,
-      "refs" : { }
+    "NotificationChannelId": {
+      "base": null,
+      "refs": {
+        "AddNotificationChannelResponse$Id": "<p> The ID of the added notification channel. </p>",
+        "NotificationChannel$Id": "<p> The ID of a notification channel. </p>",
+        "RemoveNotificationChannelRequest$Id": "<p> The ID of the notification channel to be removed. </p>"
+      }
     },
-    "ListRecommendationsResponse" : {
-      "base" : null,
-      "refs" : { }
+    "NumMetricsAnalyzed": {
+      "base": null,
+      "refs": {
+        "DescribeAccountHealthResponse$MetricsAnalyzed": "<p> An integer that specifies the number of metrics that have been analyzed in your AWS account. </p>"
+      }
     },
-    "NotificationChannel" : {
-      "base" : null,
-      "refs" : {
-        "__listOfNotificationChannel$member" : null
+    "NumOpenProactiveInsights": {
+      "base": null,
+      "refs": {
+        "DescribeAccountHealthResponse$OpenProactiveInsights": "<p> An integer that specifies the number of open proactive insights in your AWS account. </p>",
+        "InsightHealth$OpenProactiveInsights": "<p> The number of open proactive insights. </p>"
       }
     },
-    "NotificationChannelConfig" : {
-      "base" : null,
-      "refs" : {
-        "AddNotificationChannelRequest$Config" : null,
-        "NotificationChannel$Config" : null
+    "NumOpenReactiveInsights": {
+      "base": null,
+      "refs": {
+        "DescribeAccountHealthResponse$OpenReactiveInsights": "<p> An integer that specifies the number of open reactive insights in your AWS account. </p>",
+        "InsightHealth$OpenReactiveInsights": "<p> The number of open reactive insights. </p>"
       }
     },
-    "OpsCenterIntegration" : {
-      "base" : null,
-      "refs" : {
-        "ServiceIntegrationConfig$OpsCenter" : null
+    "NumProactiveInsights": {
+      "base": null,
+      "refs": {
+        "DescribeAccountOverviewResponse$ProactiveInsights": "<p> An integer that specifies the number of open proactive insights in your AWS account that were created during the time range passed in. </p>"
       }
     },
-    "OpsCenterIntegrationConfig" : {
-      "base" : null,
-      "refs" : {
-        "UpdateServiceIntegrationConfig$OpsCenter" : null
+    "NumReactiveInsights": {
+      "base": null,
+      "refs": {
+        "DescribeAccountOverviewResponse$ReactiveInsights": "<p> An integer that specifies the number of open reactive insights in your AWS account that were created during the time range passed in. </p>"
       }
     },
-    "OptInStatus" : {
-      "base" : null,
-      "refs" : {
-        "OpsCenterIntegration$OptInStatus" : null,
-        "OpsCenterIntegrationConfig$OptInStatus" : null
+    "OpsCenterIntegration": {
+      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in AWS Systems Manager OpsCenter for each created insight. </p>",
+      "refs": {
+        "ServiceIntegrationConfig$OpsCenter": "<p> Information about whether DevOps Guru is configured to create an OpsItem in AWS Systems Manager OpsCenter for each created insight. </p>"
       }
     },
-    "PredictionTimeRange" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveAnomaly$PredictionTimeRange" : null,
-        "ProactiveAnomalySummary$PredictionTimeRange" : null,
-        "ProactiveInsight$PredictionTimeRange" : null,
-        "ProactiveInsightSummary$PredictionTimeRange" : null
+    "OpsCenterIntegrationConfig": {
+      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in AWS Systems Manager OpsCenter for each created insight. </p>",
+      "refs": {
+        "UpdateServiceIntegrationConfig$OpsCenter": null
       }
     },
-    "ProactiveAnomaly" : {
-      "base" : null,
-      "refs" : {
-        "DescribeAnomalyResponse$ProactiveAnomaly" : null
+    "OptInStatus": {
+      "base": "<p> Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem for each created insight. </p>",
+      "refs": {
+        "OpsCenterIntegration$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem for each created insight. </p>",
+        "OpsCenterIntegrationConfig$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem for each created insight. </p>"
       }
     },
-    "ProactiveAnomalySummary" : {
-      "base" : null,
-      "refs" : {
-        "__listOfProactiveAnomalySummary$member" : null
+    "PredictionTimeRange": {
+      "base": "<p> The time range during which anomalous behavior in a proactive anomaly or an insight is expected to occur. </p>",
+      "refs": {
+        "ProactiveAnomaly$PredictionTimeRange": null,
+        "ProactiveAnomalySummary$PredictionTimeRange": null,
+        "ProactiveInsight$PredictionTimeRange": null,
+        "ProactiveInsightSummary$PredictionTimeRange": null
       }
     },
-    "ProactiveInsight" : {
-      "base" : null,
-      "refs" : {
-        "DescribeInsightResponse$ProactiveInsight" : null
+    "ProactiveAnomalies": {
+      "base": null,
+      "refs": {
+        "ListAnomaliesForInsightResponse$ProactiveAnomalies": "<p> An array of <code>ProactiveAnomalySummary</code> objects that represent the requested anomalies </p>"
       }
     },
-    "ProactiveInsightSummary" : {
-      "base" : null,
-      "refs" : {
-        "__listOfProactiveInsightSummary$member" : null
+    "ProactiveAnomaly": {
+      "base": "<p>Information about an anomaly. This object is returned by <code>ListAnomalies</code>.</p>",
+      "refs": {
+        "DescribeAnomalyResponse$ProactiveAnomaly": "<p> An <code>ReactiveAnomaly</code> object that represents the requested anomaly. </p>"
       }
     },
-    "PutFeedbackRequest" : {
-      "base" : null,
-      "refs" : { }
+    "ProactiveAnomalySummary": {
+      "base": "<p>Details about a proactive anomaly. This object is returned by <code>DescribeAnomaly.</code> </p>",
+      "refs": {
+        "ProactiveAnomalies$member": null
+      }
     },
-    "PutFeedbackResponse" : {
-      "base" : null,
-      "refs" : { }
+    "ProactiveInsight": {
+      "base": "<p>Details about a proactive insight. This object is returned by <code>ListInsights</code>.</p>",
+      "refs": {
+        "DescribeInsightResponse$ProactiveInsight": "<p> An <code>ProactiveInsight</code> object that represents the requested insight. </p>"
+      }
     },
-    "ReactiveAnomaly" : {
-      "base" : null,
-      "refs" : {
-        "DescribeAnomalyResponse$ReactiveAnomaly" : null
+    "ProactiveInsightSummary": {
+      "base": "<p>Details about a proactive insight. This object is returned by <code>DescribeInsight.</code> </p>",
+      "refs": {
+        "ProactiveInsights$member": null
       }
     },
-    "ReactiveAnomalySummary" : {
-      "base" : null,
-      "refs" : {
-        "__listOfReactiveAnomalySummary$member" : null
+    "ProactiveInsights": {
+      "base": null,
+      "refs": {
+        "ListInsightsResponse$ProactiveInsights": "<p> The returned list of proactive insights. </p>",
+        "SearchInsightsResponse$ProactiveInsights": "<p> The returned proactive insights. </p>"
       }
     },
-    "ReactiveInsight" : {
-      "base" : null,
-      "refs" : {
-        "DescribeInsightResponse$ReactiveInsight" : null
+    "PutFeedbackRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ReactiveInsightSummary" : {
-      "base" : null,
-      "refs" : {
-        "__listOfReactiveInsightSummary$member" : null
+    "PutFeedbackResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "Recommendation" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendation$member" : null
+    "ReactiveAnomalies": {
+      "base": null,
+      "refs": {
+        "ListAnomaliesForInsightResponse$ReactiveAnomalies": "<p> An array of <code>ReactiveAnomalySummary</code> objects that represent the requested anomalies </p>"
       }
     },
-    "RecommendationRelatedAnomaly" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendationRelatedAnomaly$member" : null
+    "ReactiveAnomaly": {
+      "base": "<p>Details about a reactive anomaly. This object is returned by <code>ListAnomalies</code>.</p>",
+      "refs": {
+        "DescribeAnomalyResponse$ReactiveAnomaly": "<p> An <code>ProactiveAnomaly</code> object that represents the requested anomaly. </p>"
       }
     },
-    "RecommendationRelatedAnomalyResource" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendationRelatedAnomalyResource$member" : null
+    "ReactiveAnomalySummary": {
+      "base": "<p>Details about a reactive anomaly. This object is returned by <code>DescribeAnomaly.</code> </p>",
+      "refs": {
+        "ReactiveAnomalies$member": null
       }
     },
-    "RecommendationRelatedAnomalySourceDetail" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendationRelatedAnomalySourceDetail$member" : null
+    "ReactiveInsight": {
+      "base": "<p> Information about a reactive insight. This object is returned by <code>ListInsights</code>. </p>",
+      "refs": {
+        "DescribeInsightResponse$ReactiveInsight": "<p> An <code>ReactiveInsight</code> object that represents the requested insight. </p>"
       }
     },
-    "RecommendationRelatedCloudWatchMetricsSourceDetail" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendationRelatedCloudWatchMetricsSourceDetail$member" : null
+    "ReactiveInsightSummary": {
+      "base": "<p> Information about a reactive insight. This object is returned by <code>DescribeInsight.</code> </p>",
+      "refs": {
+        "ReactiveInsights$member": null
       }
     },
-    "RecommendationRelatedEvent" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendationRelatedEvent$member" : null
+    "ReactiveInsights": {
+      "base": null,
+      "refs": {
+        "ListInsightsResponse$ReactiveInsights": "<p> The returned list of reactive insights. </p>",
+        "SearchInsightsResponse$ReactiveInsights": "<p> The returned reactive insights. </p>"
       }
     },
-    "RecommendationRelatedEventResource" : {
-      "base" : null,
-      "refs" : {
-        "__listOfRecommendationRelatedEventResource$member" : null
+    "Recommendation": {
+      "base": "<p> Recommendation information to help you remediate detected anomalous behavior that generated an insight. </p>",
+      "refs": {
+        "Recommendations$member": null
       }
     },
-    "RemoveNotificationChannelResponse" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationDescription": {
+      "base": null,
+      "refs": {
+        "Recommendation$Description": "<p> A description of the problem. </p>"
+      }
     },
-    "ResourceCollection" : {
-      "base" : null,
-      "refs" : {
-        "Event$ResourceCollection" : null,
-        "ListEventsFilters$ResourceCollection" : null,
-        "ProactiveAnomaly$ResourceCollection" : null,
-        "ProactiveAnomalySummary$ResourceCollection" : null,
-        "ProactiveInsight$ResourceCollection" : null,
-        "ProactiveInsightSummary$ResourceCollection" : null,
-        "ReactiveAnomaly$ResourceCollection" : null,
-        "ReactiveAnomalySummary$ResourceCollection" : null,
-        "ReactiveInsight$ResourceCollection" : null,
-        "ReactiveInsightSummary$ResourceCollection" : null,
-        "SearchInsightsFilters$ResourceCollection" : null
+    "RecommendationLink": {
+      "base": null,
+      "refs": {
+        "Recommendation$Link": "<p> A hyperlink to information to help you address the problem. </p>"
       }
     },
-    "ResourceCollectionFilter" : {
-      "base" : null,
-      "refs" : {
-        "GetResourceCollectionResponse$ResourceCollection" : null
+    "RecommendationName": {
+      "base": null,
+      "refs": {
+        "Recommendation$Name": "<p> The name of the recommendation. </p>"
       }
     },
-    "ResourceNotFoundException" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationReason": {
+      "base": null,
+      "refs": {
+        "Recommendation$Reason": "<p> The reason DevOps Guru flagged the anomalous behavior as a problem. </p>"
+      }
     },
-    "SearchInsightsFilters" : {
-      "base" : null,
-      "refs" : {
-        "SearchInsightsRequest$Filters" : null
+    "RecommendationRelatedAnomalies": {
+      "base": null,
+      "refs": {
+        "Recommendation$RelatedAnomalies": "<p> Anomalies that are related to the problem. Use these Anomalies to learn more about what's happening and to help address the issue. </p>"
       }
     },
-    "SearchInsightsRequest" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedAnomaly": {
+      "base": "<p> Information about an anomaly that is related to a recommendation. </p>",
+      "refs": {
+        "RecommendationRelatedAnomalies$member": null
+      }
     },
-    "SearchInsightsResponse" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedAnomalyResource": {
+      "base": "<p> Information about a resource in which DevOps Guru detected anomalous behavior. </p>",
+      "refs": {
+        "RecommendationRelatedAnomalyResources$member": null
+      }
     },
-    "ServiceIntegrationConfig" : {
-      "base" : null,
-      "refs" : {
-        "DescribeServiceIntegrationResponse$ServiceIntegration" : null
+    "RecommendationRelatedAnomalyResourceName": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedAnomalyResource$Name": "<p> The name of the resource. </p>"
       }
     },
-    "ServiceQuotaExceededException" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedAnomalyResourceType": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedAnomalyResource$Type": "<p> The type of the resource. </p>"
+      }
     },
-    "SnsChannelConfig" : {
-      "base" : null,
-      "refs" : {
-        "NotificationChannelConfig$Sns" : null
+    "RecommendationRelatedAnomalyResources": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedAnomaly$Resources": "<p> An array of objects that represent resources in which DevOps Guru detected anomalous behavior. Each object contains the name and type of the resource. </p>"
       }
     },
-    "StartTimeRange" : {
-      "base" : null,
-      "refs" : {
-        "ListAnomaliesForInsightRequest$StartTimeRange" : null,
-        "ListInsightsAnyStatusFilter$StartTimeRange" : null,
-        "SearchInsightsRequest$StartTimeRange" : null
+    "RecommendationRelatedAnomalySourceDetail": {
+      "base": "<p> Contains an array of <code>RecommendationRelatedCloudWatchMetricsSourceDetail</code> objects that contain the name and namespace of an Amazon CloudWatch metric. </p>",
+      "refs": {
+        "RelatedAnomalySourceDetails$member": null
       }
     },
-    "ThrottlingException" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedCloudWatchMetricsSourceDetail": {
+      "base": "<p> Information about an Amazon CloudWatch metric that is analyzed by DevOps Guru. It is one of many analyzed metrics that are used to generate insights. </p>",
+      "refs": {
+        "RecommendationRelatedCloudWatchMetricsSourceDetails$member": null
+      }
     },
-    "UpdateCloudFormationCollectionFilter" : {
-      "base" : null,
-      "refs" : {
-        "UpdateResourceCollectionFilter$CloudFormation" : null
+    "RecommendationRelatedCloudWatchMetricsSourceDetails": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedAnomalySourceDetail$CloudWatchMetrics": "<p> An array of <code>CloudWatchMetricsDetail</code> objects that contains information about the analyzed metrics that displayed anomalous behavior. </p>"
       }
     },
-    "UpdateResourceCollectionAction" : {
-      "base" : null,
-      "refs" : {
-        "UpdateResourceCollectionRequest$Action" : null
+    "RecommendationRelatedCloudWatchMetricsSourceMetricName": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedCloudWatchMetricsSourceDetail$MetricName": "<p>The name of the CloudWatch metric.</p>"
       }
     },
-    "UpdateResourceCollectionFilter" : {
-      "base" : null,
-      "refs" : {
-        "UpdateResourceCollectionRequest$ResourceCollection" : null
+    "RecommendationRelatedCloudWatchMetricsSourceNamespace": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedCloudWatchMetricsSourceDetail$Namespace": "<p>The namespace of the CloudWatch metric. A namespace is a container for CloudWatch metrics.</p>"
       }
     },
-    "UpdateResourceCollectionRequest" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedEvent": {
+      "base": "<p> Information about an event that is related to a recommendation. </p>",
+      "refs": {
+        "RecommendationRelatedEvents$member": null
+      }
     },
-    "UpdateResourceCollectionResponse" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedEventName": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedEvent$Name": "<p> The name of the event. This corresponds to the <code>Name</code> field in an <code>Event</code> object. </p>"
+      }
     },
-    "UpdateServiceIntegrationConfig" : {
-      "base" : null,
-      "refs" : {
-        "UpdateServiceIntegrationRequest$ServiceIntegration" : null
+    "RecommendationRelatedEventResource": {
+      "base": "<p> Information about an AWS resource that emitted and event that is related to a recommendation in an insight. </p>",
+      "refs": {
+        "RecommendationRelatedEventResources$member": null
       }
     },
-    "UpdateServiceIntegrationRequest" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedEventResourceName": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedEventResource$Name": "<p> The name of the resource that emitted the event. This corresponds to the <code>Name</code> field in an <code>EventResource</code> object. </p>"
+      }
     },
-    "UpdateServiceIntegrationResponse" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedEventResourceType": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedEventResource$Type": "<p> The type of the resource that emitted the event. This corresponds to the <code>Type</code> field in an <code>EventResource</code> object. </p>"
+      }
     },
-    "ValidationException" : {
-      "base" : null,
-      "refs" : { }
+    "RecommendationRelatedEventResources": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedEvent$Resources": "<p> A <code>ResourceCollection</code> object that contains arrays of the names of AWS CloudFormation stacks. </p>"
+      }
     },
-    "ValidationExceptionField" : {
-      "base" : null,
-      "refs" : {
-        "__listOfValidationExceptionField$member" : null
+    "RecommendationRelatedEvents": {
+      "base": null,
+      "refs": {
+        "Recommendation$RelatedEvents": "<p> Events that are related to the problem. Use these events to learn more about what's happening and to help address the issue. </p>"
       }
     },
-    "ValidationExceptionReason" : {
-      "base" : null,
-      "refs" : {
-        "ValidationException$Reason" : null
+    "Recommendations": {
+      "base": null,
+      "refs": {
+        "ListRecommendationsResponse$Recommendations": "<p> An array of the requested recommendations. </p>"
       }
     },
-    "__double" : {
-      "base" : null,
-      "refs" : {
-        "AnomalyTimeRange$EndTime" : null,
-        "AnomalyTimeRange$StartTime" : null,
-        "DescribeAccountOverviewRequest$FromTime" : null,
-        "DescribeAccountOverviewRequest$ToTime" : null,
-        "EndTimeRange$FromTime" : null,
-        "EndTimeRange$ToTime" : null,
-        "Event$Time" : null,
-        "EventTimeRange$FromTime" : null,
-        "EventTimeRange$ToTime" : null,
-        "InsightTimeRange$EndTime" : null,
-        "InsightTimeRange$StartTime" : null,
-        "PredictionTimeRange$EndTime" : null,
-        "PredictionTimeRange$StartTime" : null,
-        "ProactiveAnomaly$Limit" : null,
-        "ProactiveAnomaly$UpdateTime" : null,
-        "ProactiveAnomalySummary$Limit" : null,
-        "ProactiveAnomalySummary$UpdateTime" : null,
-        "StartTimeRange$FromTime" : null,
-        "StartTimeRange$ToTime" : null
+    "RelatedAnomalySourceDetails": {
+      "base": null,
+      "refs": {
+        "RecommendationRelatedAnomaly$SourceDetails": "<p> Information about where the anomalous behavior related the recommendation was found. For example, details in Amazon CloudWatch metrics. </p>"
       }
     },
-    "__integer" : {
-      "base" : null,
-      "refs" : {
-        "CloudWatchMetricsDetail$Period" : null,
-        "DescribeAccountHealthResponse$MetricsAnalyzed" : null,
-        "DescribeAccountHealthResponse$OpenProactiveInsights" : null,
-        "DescribeAccountHealthResponse$OpenReactiveInsights" : null,
-        "DescribeAccountOverviewResponse$ProactiveInsights" : null,
-        "DescribeAccountOverviewResponse$ReactiveInsights" : null,
-        "InsightHealth$OpenProactiveInsights" : null,
-        "InsightHealth$OpenReactiveInsights" : null
+    "RemoveNotificationChannelRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "__integerMin1Max100" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsRequest$MaxResults" : null,
-        "SearchInsightsRequest$MaxResults" : null
+    "RemoveNotificationChannelResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "__integerMin1Max200" : {
-      "base" : null,
-      "refs" : {
-        "ListEventsRequest$MaxResults" : null
+    "ResourceCollection": {
+      "base": "<p> A collection of AWS resources supported by DevOps Guru. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>",
+      "refs": {
+        "Event$ResourceCollection": null,
+        "ListEventsFilters$ResourceCollection": null,
+        "ProactiveAnomaly$ResourceCollection": null,
+        "ProactiveAnomalySummary$ResourceCollection": null,
+        "ProactiveInsight$ResourceCollection": null,
+        "ProactiveInsightSummary$ResourceCollection": null,
+        "ReactiveAnomaly$ResourceCollection": null,
+        "ReactiveAnomalySummary$ResourceCollection": null,
+        "ReactiveInsight$ResourceCollection": null,
+        "ReactiveInsightSummary$ResourceCollection": null,
+        "SearchInsightsFilters$ResourceCollection": null
       }
     },
-    "__integerMin1Max500" : {
-      "base" : null,
-      "refs" : {
-        "ListAnomaliesForInsightRequest$MaxResults" : null
+    "ResourceCollectionFilter": {
+      "base": "<p> Information about a filter used to specify which AWS resources are analyzed for anomalous behavior by DevOps Guru. </p>",
+      "refs": {
+        "GetResourceCollectionResponse$ResourceCollection": "<p> The requested list of AWS resource collections. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>"
       }
     },
-    "__listOfCloudFormationHealth" : {
-      "base" : null,
-      "refs" : {
-        "DescribeResourceCollectionHealthResponse$CloudFormation" : null
+    "ResourceCollectionType": {
+      "base": null,
+      "refs": {
+        "DescribeResourceCollectionHealthRequest$ResourceCollectionType": "<p> An AWS resource collection type. This type specifies how analyzed AWS resources are defined. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>",
+        "GetResourceCollectionRequest$ResourceCollectionType": "<p> The type of AWS resource collections to return. The one valid value is <code>CLOUD_FORMATION</code> for AWS CloudFormation stacks. </p>"
       }
     },
-    "__listOfCloudWatchMetricsDetail" : {
-      "base" : null,
-      "refs" : {
-        "AnomalySourceDetails$CloudWatchMetrics" : null
+    "ResourceIdString": {
+      "base": null,
+      "refs": {
+        "ConflictException$ResourceId": "<p> The ID of the AWS resource in which a conflict occurred. </p>",
+        "ResourceNotFoundException$ResourceId": "<p> The ID of the AWS resource that could not be found. </p>"
       }
     },
-    "__listOfCloudWatchMetricsDimension" : {
-      "base" : null,
-      "refs" : {
-        "CloudWatchMetricsDetail$Dimensions" : null
+    "ResourceIdType": {
+      "base": null,
+      "refs": {
+        "ConflictException$ResourceType": "<p> The type of the AWS resource in which a conflict occurred. </p>",
+        "ResourceNotFoundException$ResourceType": "<p> The type of the AWS resource that could not be found. </p>"
       }
     },
-    "__listOfEvent" : {
-      "base" : null,
-      "refs" : {
-        "ListEventsResponse$Events" : null
+    "ResourceNotFoundException": {
+      "base": "<p>A requested resource could not be found</p>",
+      "refs": {
       }
     },
-    "__listOfEventResource" : {
-      "base" : null,
-      "refs" : {
-        "Event$Resources" : null
+    "RetryAfterSeconds": {
+      "base": null,
+      "refs": {
+        "InternalServerException$RetryAfterSeconds": "<p> The number of seconds after which the action that caused the internal server exception can be retried. </p>",
+        "ThrottlingException$RetryAfterSeconds": "<p> The number of seconds after which the action that caused the throttling exception can be retried. </p>"
       }
     },
-    "__listOfInsightSeverity" : {
-      "base" : null,
-      "refs" : {
-        "SearchInsightsFilters$Severities" : null
+    "SearchInsightsFilters": {
+      "base": "<p> Specifies one or more severity values and one or more status values that are used to search for insights. </p>",
+      "refs": {
+        "SearchInsightsRequest$Filters": "<p> A <code>SearchInsightsFilters</code> object that is used to set the severity and status filters on your insight search. </p>"
       }
     },
-    "__listOfInsightStatus" : {
-      "base" : null,
-      "refs" : {
-        "SearchInsightsFilters$Statuses" : null
+    "SearchInsightsMaxResults": {
+      "base": null,
+      "refs": {
+        "SearchInsightsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
     },
-    "__listOfNotificationChannel" : {
-      "base" : null,
-      "refs" : {
-        "ListNotificationChannelsResponse$Channels" : null
+    "SearchInsightsRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "__listOfProactiveAnomalySummary" : {
-      "base" : null,
-      "refs" : {
-        "ListAnomaliesForInsightResponse$ProactiveAnomalies" : null
+    "SearchInsightsResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "__listOfProactiveInsightSummary" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsResponse$ProactiveInsights" : null,
-        "SearchInsightsResponse$ProactiveInsights" : null
+    "ServiceIntegrationConfig": {
+      "base": "<p> Information about the integration of DevOps Guru with another AWS service, such as AWS Systems Manager. </p>",
+      "refs": {
+        "DescribeServiceIntegrationResponse$ServiceIntegration": null
       }
     },
-    "__listOfReactiveAnomalySummary" : {
-      "base" : null,
-      "refs" : {
-        "ListAnomaliesForInsightResponse$ReactiveAnomalies" : null
+    "ServiceQuotaExceededException": {
+      "base": "<p>The request contains a value that exceeds a maximum quota.</p>",
+      "refs": {
       }
     },
-    "__listOfReactiveInsightSummary" : {
-      "base" : null,
-      "refs" : {
-        "ListInsightsResponse$ReactiveInsights" : null,
-        "SearchInsightsResponse$ReactiveInsights" : null
+    "SnsChannelConfig": {
+      "base": "<p> Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>",
+      "refs": {
+        "NotificationChannelConfig$Sns": "<p> Information about a notification channel configured in DevOps Guru to send notifications when insights are created. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>"
       }
     },
-    "__listOfRecommendation" : {
-      "base" : null,
-      "refs" : {
-        "ListRecommendationsResponse$Recommendations" : null
+    "SsmOpsItemId": {
+      "base": null,
+      "refs": {
+        "ProactiveInsight$SsmOpsItemId": "<p> The ID of the AWS System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. </p>",
+        "ReactiveInsight$SsmOpsItemId": "<p> The ID of the AWS System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. </p>"
       }
     },
-    "__listOfRecommendationRelatedAnomaly" : {
-      "base" : null,
-      "refs" : {
-        "Recommendation$RelatedAnomalies" : null
+    "StackName": {
+      "base": null,
+      "refs": {
+        "CloudFormationHealth$StackName": "<p> The name of the CloudFormation stack. </p>",
+        "StackNames$member": null,
+        "UpdateStackNames$member": null
       }
     },
-    "__listOfRecommendationRelatedAnomalyResource" : {
-      "base" : null,
-      "refs" : {
-        "RecommendationRelatedAnomaly$Resources" : null
+    "StackNames": {
+      "base": null,
+      "refs": {
+        "CloudFormationCollection$StackNames": "<p> An array of CloudFormation stack names. </p>",
+        "CloudFormationCollectionFilter$StackNames": "<p> An array of CloudFormation stack names. </p>"
       }
     },
-    "__listOfRecommendationRelatedAnomalySourceDetail" : {
-      "base" : null,
-      "refs" : {
-        "RecommendationRelatedAnomaly$SourceDetails" : null
+    "StartTimeRange": {
+      "base": "<p> A time range used to specify when the behavior of an insight or anomaly started. </p>",
+      "refs": {
+        "ListAnomaliesForInsightRequest$StartTimeRange": "<p> A time range used to specify when the requested anomalies started. All returned anomalies started during this time range. </p>",
+        "ListInsightsAnyStatusFilter$StartTimeRange": "<p> A time range used to specify when the behavior of the filtered insights started. </p>",
+        "SearchInsightsRequest$StartTimeRange": "<p> The start of the time range passed in. Returned insights occurred after this time. </p>"
       }
     },
-    "__listOfRecommendationRelatedCloudWatchMetricsSourceDetail" : {
-      "base" : null,
-      "refs" : {
-        "RecommendationRelatedAnomalySourceDetail$CloudWatchMetrics" : null
+    "ThrottlingException": {
+      "base": "<p>The request was denied due to a request throttling.</p>",
+      "refs": {
       }
     },
-    "__listOfRecommendationRelatedEvent" : {
-      "base" : null,
-      "refs" : {
-        "Recommendation$RelatedEvents" : null
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "AnomalyTimeRange$StartTime": "<p> The time when the anomalous behavior started. </p>",
+        "AnomalyTimeRange$EndTime": "<p> The time when the anomalous behavior ended. </p>",
+        "DescribeAccountOverviewRequest$FromTime": "<p> The start of the time range passed in. The start time granularity is at the day level. The floor of the start time is used. Returned information occurred after this day. </p>",
+        "DescribeAccountOverviewRequest$ToTime": "<p> The end of the time range passed in. The start time granularity is at the day level. The floor of the start time is used. Returned information occurred before this day. If this is not specified, then the current day is used. </p>",
+        "EndTimeRange$FromTime": "<p> The earliest end time in the time range. </p>",
+        "EndTimeRange$ToTime": "<p> The latest end time in the time range. </p>",
+        "Event$Time": "<p> A <code>Timestamp</code> that specifies the time the event occurred. </p>",
+        "EventTimeRange$FromTime": "<p> The time when the event started. </p>",
+        "EventTimeRange$ToTime": "<p> The time when the event ended. </p>",
+        "InsightTimeRange$StartTime": "<p> The time when the behavior described in an insight started. </p>",
+        "InsightTimeRange$EndTime": "<p> The time when the behavior described in an insight ended. </p>",
+        "PredictionTimeRange$StartTime": "<p> The time range during which a metric limit is expected to be exceeded. This applies to proactive insights only. </p>",
+        "PredictionTimeRange$EndTime": "<p> The time when the behavior in a proactive insight is expected to end. </p>",
+        "ProactiveAnomaly$UpdateTime": "<p> The time of the anomaly's most recent update. </p>",
+        "ProactiveAnomalySummary$UpdateTime": "<p> The time of the anomaly's most recent update. </p>",
+        "StartTimeRange$FromTime": "<p> The start time of the time range. </p>",
+        "StartTimeRange$ToTime": "<p> The end time of the time range. </p>"
       }
     },
-    "__listOfRecommendationRelatedEventResource" : {
-      "base" : null,
-      "refs" : {
-        "RecommendationRelatedEvent$Resources" : null
+    "TopicArn": {
+      "base": null,
+      "refs": {
+        "SnsChannelConfig$TopicArn": "<p> The Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. </p>"
       }
     },
-    "__listOfValidationExceptionField" : {
-      "base" : null,
-      "refs" : {
-        "ValidationException$Fields" : null
+    "UpdateCloudFormationCollectionFilter": {
+      "base": "<p> Contains the names of AWS CloudFormation stacks used to update a collection of stacks. </p>",
+      "refs": {
+        "UpdateResourceCollectionFilter$CloudFormation": "<p> An collection of AWS CloudFormation stacks. </p>"
       }
     },
-    "__listOf__stringMin1Max128PatternAZAZAZAZ09" : {
-      "base" : null,
-      "refs" : {
-        "CloudFormationCollection$StackNames" : null,
-        "CloudFormationCollectionFilter$StackNames" : null,
-        "UpdateCloudFormationCollectionFilter$StackNames" : null
+    "UpdateResourceCollectionAction": {
+      "base": null,
+      "refs": {
+        "UpdateResourceCollectionRequest$Action": "<p> Specifies if the resource collection in the request is added or deleted to the resource collection. </p>"
       }
     },
-    "__long" : {
-      "base" : null,
-      "refs" : {
-        "DescribeAccountOverviewResponse$MeanTimeToRecoverInMilliseconds" : null,
-        "InsightHealth$MeanTimeToRecoverInMilliseconds" : null
+    "UpdateResourceCollectionFilter": {
+      "base": "<p> Contains information used to update a collection of AWS resources. </p>",
+      "refs": {
+        "UpdateResourceCollectionRequest$ResourceCollection": null
       }
     },
-    "__string" : {
-      "base" : null,
-      "refs" : {
-        "AccessDeniedException$Message" : null,
-        "CloudWatchMetricsDetail$MetricName" : null,
-        "CloudWatchMetricsDetail$Namespace" : null,
-        "CloudWatchMetricsDetail$Unit" : null,
-        "CloudWatchMetricsDimension$Name" : null,
-        "CloudWatchMetricsDimension$Value" : null,
-        "ConflictException$Message" : null,
-        "ConflictException$ResourceId" : null,
-        "ConflictException$ResourceType" : null,
-        "Event$Id" : null,
-        "InternalServerException$Message" : null,
-        "Recommendation$Description" : null,
-        "Recommendation$Link" : null,
-        "Recommendation$Name" : null,
-        "Recommendation$Reason" : null,
-        "RecommendationRelatedAnomalyResource$Name" : null,
-        "RecommendationRelatedAnomalyResource$Type" : null,
-        "RecommendationRelatedCloudWatchMetricsSourceDetail$MetricName" : null,
-        "RecommendationRelatedCloudWatchMetricsSourceDetail$Namespace" : null,
-        "RecommendationRelatedEvent$Name" : null,
-        "RecommendationRelatedEventResource$Name" : null,
-        "RecommendationRelatedEventResource$Type" : null,
-        "ResourceNotFoundException$Message" : null,
-        "ResourceNotFoundException$ResourceId" : null,
-        "ResourceNotFoundException$ResourceType" : null,
-        "ServiceQuotaExceededException$Message" : null,
-        "ThrottlingException$Message" : null,
-        "ThrottlingException$QuotaCode" : null,
-        "ThrottlingException$ServiceCode" : null,
-        "ValidationException$Message" : null,
-        "ValidationExceptionField$Message" : null,
-        "ValidationExceptionField$Name" : null
+    "UpdateResourceCollectionRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "__stringMin0Max2048Pattern" : {
-      "base" : null,
-      "refs" : {
-        "EventResource$Name" : null,
-        "EventResource$Type" : null
+    "UpdateResourceCollectionResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "__stringMin0Max50" : {
-      "base" : null,
-      "refs" : {
-        "Event$Name" : null
+    "UpdateServiceIntegrationConfig": {
+      "base": "<p> Information about updating the integration status of an AWS service, such as AWS Systems Manager, with DevOps Guru. </p>",
+      "refs": {
+        "UpdateServiceIntegrationRequest$ServiceIntegration": "<p> An <code>IntegratedServiceConfig</code> object used to specify the integrated service you want to update, and whether you want to update it to enabled or disabled. </p>"
       }
     },
-    "__stringMin10Max50PatternAZAZ09AmazonawsComAwsEvents" : {
-      "base" : null,
-      "refs" : {
-        "Event$EventSource" : null,
-        "ListEventsFilters$EventSource" : null
+    "UpdateServiceIntegrationRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "__stringMin1Max100Pattern" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveInsight$SsmOpsItemId" : null,
-        "ReactiveInsight$SsmOpsItemId" : null
+    "UpdateServiceIntegrationResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "__stringMin1Max100PatternW" : {
-      "base" : null,
-      "refs" : {
-        "InsightFeedback$Id" : null,
-        "ListEventsFilters$InsightId" : null,
-        "ListRecommendationsRequest$InsightId" : null,
-        "ProactiveAnomaly$AssociatedInsightId" : null,
-        "ProactiveAnomaly$Id" : null,
-        "ProactiveAnomalySummary$AssociatedInsightId" : null,
-        "ProactiveAnomalySummary$Id" : null,
-        "ProactiveInsight$Id" : null,
-        "ProactiveInsightSummary$Id" : null,
-        "ReactiveAnomaly$AssociatedInsightId" : null,
-        "ReactiveAnomaly$Id" : null,
-        "ReactiveAnomalySummary$AssociatedInsightId" : null,
-        "ReactiveAnomalySummary$Id" : null,
-        "ReactiveInsight$Id" : null,
-        "ReactiveInsightSummary$Id" : null
+    "UpdateStackNames": {
+      "base": null,
+      "refs": {
+        "UpdateCloudFormationCollectionFilter$StackNames": "<p> An array of the name of stacks to update. </p>"
       }
     },
-    "__stringMin1Max128PatternAZAZAZAZ09" : {
-      "base" : null,
-      "refs" : {
-        "CloudFormationHealth$StackName" : null,
-        "__listOf__stringMin1Max128PatternAZAZAZAZ09$member" : null
+    "UuidNextToken": {
+      "base": null,
+      "refs": {
+        "DescribeResourceCollectionHealthRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "DescribeResourceCollectionHealthResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "GetResourceCollectionRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "GetResourceCollectionResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListAnomaliesForInsightRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListAnomaliesForInsightResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListEventsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListEventsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListNotificationChannelsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListNotificationChannelsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListRecommendationsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListRecommendationsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "SearchInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "SearchInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>"
       }
     },
-    "__stringMin1Max530PatternSS" : {
-      "base" : null,
-      "refs" : {
-        "ProactiveInsight$Name" : null,
-        "ProactiveInsightSummary$Name" : null,
-        "ReactiveInsight$Name" : null,
-        "ReactiveInsightSummary$Name" : null
+    "ValidationException": {
+      "base": "<p> Contains information about data passed in to a field during a request that is not valid. </p>",
+      "refs": {
       }
     },
-    "__stringMin36Max1024PatternArnAwsAZ09SnsAZ09D12" : {
-      "base" : null,
-      "refs" : {
-        "SnsChannelConfig$TopicArn" : null
+    "ValidationExceptionField": {
+      "base": "<p> The field associated with the validation exception. </p>",
+      "refs": {
+        "ValidationExceptionFields$member": null
       }
     },
-    "__stringMin36Max2048PatternArnAwsAZAZ09AZ09D12" : {
-      "base" : null,
-      "refs" : {
-        "EventResource$Arn" : null
+    "ValidationExceptionFields": {
+      "base": "<p> An array of fields that are associated with the validation exception. </p>",
+      "refs": {
+        "ValidationException$Fields": null
       }
     },
-    "__stringMin36Max36PatternAF098AF094AF094AF094AF0912" : {
-      "base" : null,
-      "refs" : {
-        "AddNotificationChannelResponse$Id" : null,
-        "DescribeResourceCollectionHealthResponse$NextToken" : null,
-        "GetResourceCollectionResponse$NextToken" : null,
-        "ListAnomaliesForInsightRequest$NextToken" : null,
-        "ListAnomaliesForInsightResponse$NextToken" : null,
-        "ListEventsRequest$NextToken" : null,
-        "ListEventsResponse$NextToken" : null,
-        "ListInsightsRequest$NextToken" : null,
-        "ListInsightsResponse$NextToken" : null,
-        "ListNotificationChannelsRequest$NextToken" : null,
-        "ListNotificationChannelsResponse$NextToken" : null,
-        "ListRecommendationsRequest$NextToken" : null,
-        "ListRecommendationsResponse$NextToken" : null,
-        "NotificationChannel$Id" : null,
-        "SearchInsightsRequest$NextToken" : null,
-        "SearchInsightsResponse$NextToken" : null
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "ValidationException$Reason": "<p> The reason the validation exception was thrown. </p>"
       }
     }
   }
