@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "GetBehaviorModelTrainingSummaries": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "summaries"
+    },
     "ListActiveViolations": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
@@ -71,6 +77,24 @@
       "limit_key": "pageSize",
       "output_token": "nextMarker",
       "result_key": "certificates"
+    },
+    "ListCustomMetrics": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "metricNames"
+    },
+    "ListDetectMitigationActionsExecutions": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "actionsExecutions"
+    },
+    "ListDetectMitigationActionsTasks": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "tasks"
     },
     "ListDimensions": {
       "input_token": "nextToken",

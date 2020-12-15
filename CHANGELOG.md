@@ -1,3 +1,20 @@
+Release v1.36.9 (2020-12-15)
+===
+
+### Service Client Updates
+* `service/amp`: Adds new service
+* `service/greengrassv2`: Adds new service
+* `service/iot`: Updates service API, documentation, and paginators
+  * AWS IoT Rules Engine adds Kafka Action that allows sending data to Apache Kafka clusters inside a VPC. AWS IoT Device Defender adds custom metrics and machine-learning based anomaly detection.
+* `service/iotanalytics`: Updates service API and documentation
+* `service/iotdeviceadvisor`: Adds new service
+* `service/iotfleethub`: Adds new service
+* `service/iotwireless`: Adds new service
+* `service/lambda`: Updates service API, documentation, and examples
+  * Added support for Apache Kafka as a event source. Added support for TumblingWindowInSeconds for streams event source mappings. Added support for FunctionResponseTypes for streams event source mappings
+* `service/ssm`: Updates service API, documentation, and paginators
+  * Adding support for Change Manager API content
+
 Release v1.36.8 (2020-12-14)
 ===
 

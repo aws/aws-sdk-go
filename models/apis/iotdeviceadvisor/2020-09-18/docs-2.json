@@ -1,0 +1,544 @@
+{
+  "version": "2.0",
+  "service": "<p>AWS IoT Core Device Advisor is a cloud-based, fully managed test capability for validating IoT devices during device software development. Device Advisor provides pre-built tests that you can use to validate IoT devices for reliable and secure connectivity with AWS IoT Core before deploying devices to production. By using Device Advisor, you can confirm that your devices can connect to AWS IoT Core, follow security best practices and, if applicable, receive software updates from IoT Device Management. You can also download signed qualification reports to submit to the AWS Partner Network to get your device qualified for the AWS Partner Device Catalog without the need to send your device in and wait for it to be tested.</p>",
+  "operations": {
+    "CreateSuiteDefinition": "<p>Creates a Device Advisor test suite.</p>",
+    "DeleteSuiteDefinition": "<p>Deletes a Device Advisor test suite.</p>",
+    "GetSuiteDefinition": "<p>Gets information about a Device Advisor test suite.</p>",
+    "GetSuiteRun": "<p>Gets information about a Device Advisor test suite run.</p>",
+    "GetSuiteRunReport": "<p>Gets a report download link for a successful Device Advisor qualifying test suite run.</p>",
+    "ListSuiteDefinitions": "<p>Lists the Device Advisor test suites you have created.</p>",
+    "ListSuiteRuns": "<p>Lists the runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite.</p>",
+    "ListTagsForResource": "<p>Lists the tags attached to an IoT Device Advisor resource.</p>",
+    "ListTestCases": "<p>Lists all the test cases in the test suite.</p>",
+    "StartSuiteRun": "<p>Starts a Device Advisor test suite run.</p>",
+    "TagResource": "<p>Adds to and modifies existing tags of an IoT Device Advisor resource.</p>",
+    "UntagResource": "<p>Removes tags from an IoT Device Advisor resource.</p>",
+    "UpdateSuiteDefinition": "<p>Updates a Device Advisor test suite.</p>"
+  },
+  "shapes": {
+    "AmazonResourceName": {
+      "base": null,
+      "refs": {
+        "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Creates a Device Advisor test suite with Amazon Resource name.</p>",
+        "DeviceUnderTest$thingArn": "<p>Lists devices thing arn</p>",
+        "DeviceUnderTest$certificateArn": "<p>Lists devices certificate arn</p>",
+        "GetSuiteDefinitionResponse$suiteDefinitionArn": "<p>The ARN of the suite definition.</p>",
+        "GetSuiteRunResponse$suiteRunArn": "<p>The ARN of the suite run.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the IoT Device Advisor resource.</p>",
+        "StartSuiteRunResponse$suiteRunArn": "<p>Starts a Device Advisor test suite run based on suite run arn.</p>",
+        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets device permission arn.</p>",
+        "TagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
+        "UpdateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Updates a Device Advisor test suite with Amazon Resource name.</p>"
+      }
+    },
+    "CategoryName": {
+      "base": null,
+      "refs": {
+        "TestCaseCategory$name": "<p>Lists all the tests name in the specified category.</p>"
+      }
+    },
+    "ConfigString": {
+      "base": null,
+      "refs": {
+        "TestConfiguration$key": null,
+        "TestConfiguration$value": null
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Sends Conflict Exception.</p>",
+      "refs": {
+      }
+    },
+    "CreateSuiteDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSuiteDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSuiteDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSuiteDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeviceUnderTest": {
+      "base": "<p>Lists all the devices under test</p>",
+      "refs": {
+        "DeviceUnderTestList$member": null,
+        "SuiteRunConfiguration$primaryDevice": "<p>Gets the primary device for suite run.</p>",
+        "SuiteRunConfiguration$secondaryDevice": "<p>Gets the secondary device for suite run.</p>"
+      }
+    },
+    "DeviceUnderTestList": {
+      "base": null,
+      "refs": {
+        "SuiteDefinitionConfiguration$devices": "<p>Gets the devices configured.</p>",
+        "SuiteDefinitionInformation$defaultDevices": "<p>Specifies the devices under test.</p>"
+      }
+    },
+    "ErrorReason": {
+      "base": null,
+      "refs": {
+        "GetSuiteRunResponse$errorReason": "<p>Gets the information about Device Advisor test suite run based on error.</p>"
+      }
+    },
+    "Failure": {
+      "base": null,
+      "refs": {
+        "TestCaseRun$failure": "<p>Provides test case run failure result.</p>"
+      }
+    },
+    "GetSuiteDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSuiteDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSuiteRunReportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSuiteRunReportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSuiteRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSuiteRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GroupName": {
+      "base": null,
+      "refs": {
+        "GroupResult$groupName": "<p>Show Group Result Name.</p>"
+      }
+    },
+    "GroupResult": {
+      "base": "<p>Show Group Result.</p>",
+      "refs": {
+        "GroupResultList$member": null
+      }
+    },
+    "GroupResultList": {
+      "base": "<p>how Group Result list.</p>",
+      "refs": {
+        "TestResult$groups": "<p>Show each group of test results.</p>"
+      }
+    },
+    "IntendedForQualificationBoolean": {
+      "base": null,
+      "refs": {
+        "ListTestCasesRequest$intendedForQualification": "<p>Lists all the qualification test cases in the test suite.</p>",
+        "SuiteDefinitionConfiguration$intendedForQualification": "<p>Gets the tests intended for qualification in a suite.</p>",
+        "SuiteDefinitionInformation$intendedForQualification": "<p>Gets the test suites which will be used for qualification.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Sends Internal Failure Exception.</p>",
+      "refs": {
+      }
+    },
+    "ListSuiteDefinitionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSuiteDefinitionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSuiteRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSuiteRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestCasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTestCasesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LogUrl": {
+      "base": null,
+      "refs": {
+        "TestCaseRun$logUrl": "<p>Provides test case run log Url.</p>"
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListSuiteDefinitionsRequest$maxResults": "<p>Request the list of all the Device Advisor test suites.</p>",
+        "ListSuiteRunsRequest$maxResults": "<p>MaxResults for list suite run API request.</p>",
+        "ListTestCasesRequest$maxResults": "<p>Requests the test cases max results.</p>"
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "ConflictException$message": "<p>Sends Conflict Exception message.</p>",
+        "InternalServerException$message": "<p>Sends Internal Failure Exception message.</p>",
+        "ResourceNotFoundException$message": "<p>Sends Resource Not Found Exception message.</p>",
+        "ValidationException$message": "<p>Sends invalid request exception message.</p>"
+      }
+    },
+    "QualificationReportDownloadUrl": {
+      "base": null,
+      "refs": {
+        "GetSuiteRunReportResponse$qualificationReportDownloadUrl": "<p>Gets the download URL of the qualification report.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>Sends Resource Not Found Exception.</p>",
+      "refs": {
+      }
+    },
+    "RootGroup": {
+      "base": null,
+      "refs": {
+        "SuiteDefinitionConfiguration$rootGroup": "<p>Gets test suite root group.</p>"
+      }
+    },
+    "SelectedTestList": {
+      "base": null,
+      "refs": {
+        "SuiteRunConfiguration$selectedTestList": "<p>Gets test case list.</p>"
+      }
+    },
+    "StartSuiteRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartSuiteRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Status": {
+      "base": null,
+      "refs": {
+        "TestCaseRun$status": "<p>Provides test case run status.</p>"
+      }
+    },
+    "String128": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "String256": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
+    "SuiteDefinitionConfiguration": {
+      "base": "<p>Gets Suite Definition Configuration.</p>",
+      "refs": {
+        "CreateSuiteDefinitionRequest$suiteDefinitionConfiguration": "<p>Creates a Device Advisor test suite with suite definition configuration.</p>",
+        "GetSuiteDefinitionResponse$suiteDefinitionConfiguration": "<p>Gets the suite configuration with GetSuiteDefinition API call.</p>",
+        "UpdateSuiteDefinitionRequest$suiteDefinitionConfiguration": "<p>Updates a Device Advisor test suite with suite definition configuration.</p>"
+      }
+    },
+    "SuiteDefinitionInformation": {
+      "base": "<p>Get suite definition information.</p>",
+      "refs": {
+        "SuiteDefinitionInformationList$member": null
+      }
+    },
+    "SuiteDefinitionInformationList": {
+      "base": null,
+      "refs": {
+        "ListSuiteDefinitionsResponse$suiteDefinitionInformationList": "<p>Lists test suite information using List suite definition.</p>"
+      }
+    },
+    "SuiteDefinitionName": {
+      "base": null,
+      "refs": {
+        "CreateSuiteDefinitionResponse$suiteDefinitionName": "<p>Creates a Device Advisor test suite with suite definition name.</p>",
+        "SuiteDefinitionConfiguration$suiteDefinitionName": "<p>Gets Suite Definition Configuration name.</p>",
+        "SuiteDefinitionInformation$suiteDefinitionName": "<p>Get test suite name.</p>",
+        "SuiteRunInformation$suiteDefinitionName": "<p>Get suite run information based on suite definition name.</p>",
+        "UpdateSuiteDefinitionResponse$suiteDefinitionName": "<p>Updates a Device Advisor test suite with suite definition name.</p>"
+      }
+    },
+    "SuiteDefinitionVersion": {
+      "base": null,
+      "refs": {
+        "GetSuiteDefinitionRequest$suiteDefinitionVersion": "<p>Requests the suite definition version of a test suite.</p>",
+        "GetSuiteDefinitionResponse$suiteDefinitionVersion": "<p>Gets suite definition version with GetSuiteDefinition API call.</p>",
+        "GetSuiteDefinitionResponse$latestVersion": "<p>Gets latest suite definition version with GetSuiteDefinition API call.</p>",
+        "GetSuiteRunResponse$suiteDefinitionVersion": "<p>Gets the information about Device Advisor test suite run based on suite definition version.</p>",
+        "ListSuiteRunsRequest$suiteDefinitionVersion": "<p>Lists the runs of the specified Device Advisor test suite based on suite definition version.</p>",
+        "StartSuiteRunRequest$suiteDefinitionVersion": "<p>Request to start suite run based on suite definition version.</p>",
+        "SuiteRunInformation$suiteDefinitionVersion": "<p>Get suite run information based on suite definition version.</p>",
+        "UpdateSuiteDefinitionResponse$suiteDefinitionVersion": "<p>Updates a Device Advisor test suite with suite definition version.</p>"
+      }
+    },
+    "SuiteRunConfiguration": {
+      "base": "<p>Gets suite run configuration.</p>",
+      "refs": {
+        "GetSuiteRunResponse$suiteRunConfiguration": "<p>Gets the information about Device Advisor test suite run based on suite configuration.</p>",
+        "StartSuiteRunRequest$suiteRunConfiguration": "<p>Request to start suite run based on suite configuration.</p>"
+      }
+    },
+    "SuiteRunInformation": {
+      "base": "<p>Get suite run information.</p>",
+      "refs": {
+        "SuiteRunsList$member": null
+      }
+    },
+    "SuiteRunResultCount": {
+      "base": null,
+      "refs": {
+        "SuiteRunInformation$passed": "<p>Get suite run information based on result of the test suite run.</p>",
+        "SuiteRunInformation$failed": "<p>Get suite run information based on result of the test suite run.</p>"
+      }
+    },
+    "SuiteRunStatus": {
+      "base": null,
+      "refs": {
+        "GetSuiteRunResponse$status": "<p>Gets the information about Device Advisor test suite run based on its status.</p>",
+        "SuiteRunInformation$status": "<p>Get suite run information based on test run status.</p>"
+      }
+    },
+    "SuiteRunsList": {
+      "base": null,
+      "refs": {
+        "ListSuiteRunsResponse$suiteRunsList": "<p>Lists the runs of the specified Device Advisor test suite.</p>"
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>List of tag keys to remove from the IoT Device Advisor resource.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateSuiteDefinitionRequest$tags": "<p>The tags to be attached to the suite definition.</p>",
+        "GetSuiteDefinitionResponse$tags": "<p>Tags attached to the suite definition.</p>",
+        "GetSuiteRunResponse$tags": "<p>The tags attached to the suite run.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The tags attached to the IoT Device Advisor resource.</p>",
+        "StartSuiteRunRequest$tags": "<p>The tags to be attached to the suite run.</p>",
+        "TagResourceRequest$tags": "<p>The tags to be attached to the IoT Device Advisor resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestCase": {
+      "base": "<p>Shows tests in a test group.</p>",
+      "refs": {
+        "TestCaseList$member": null
+      }
+    },
+    "TestCaseCategory": {
+      "base": "<p>Gets the test case category.</p>",
+      "refs": {
+        "TestCategory$member": null
+      }
+    },
+    "TestCaseDefinition": {
+      "base": "<p>Provides test case definition.</p>",
+      "refs": {
+        "TestCase$test": "<p>Specifies a test.</p>"
+      }
+    },
+    "TestCaseDefinitionName": {
+      "base": null,
+      "refs": {
+        "TestCaseRun$testCaseDefinitionName": "<p>Provides test case run definition Name.</p>"
+      }
+    },
+    "TestCaseList": {
+      "base": null,
+      "refs": {
+        "TestCaseCategory$tests": "<p>Lists all the tests in the specified category.</p>"
+      }
+    },
+    "TestCaseName": {
+      "base": null,
+      "refs": {
+        "TestCase$name": "<p>Shows test case name.</p>",
+        "TestCaseDefinition$id": "<p>Provides test case definition Id.</p>"
+      }
+    },
+    "TestCaseRun": {
+      "base": "<p>Provides test case run.</p>",
+      "refs": {
+        "TestCaseRuns$member": null
+      }
+    },
+    "TestCaseRuns": {
+      "base": "<p>Show each group result.</p>",
+      "refs": {
+        "GroupResult$tests": "<p>Show Group Result.</p>"
+      }
+    },
+    "TestCaseVersion": {
+      "base": null,
+      "refs": {
+        "TestCaseDefinition$testCaseVersion": "<p>Provides test case definition version.</p>"
+      }
+    },
+    "TestCategory": {
+      "base": null,
+      "refs": {
+        "ListTestCasesResponse$categories": "<p>Gets the category of test case.</p>"
+      }
+    },
+    "TestConfiguration": {
+      "base": null,
+      "refs": {
+        "ListTestCasesResponse$rootGroupConfiguration": "<p>Gets the configuration of root test group.</p>",
+        "ListTestCasesResponse$groupConfiguration": "<p>Gets the configuration of test group.</p>",
+        "TestCase$configuration": "<p>Shows test case configuration.</p>"
+      }
+    },
+    "TestResult": {
+      "base": "<p>Show each group result.</p>",
+      "refs": {
+        "GetSuiteRunResponse$testResult": "<p>Gets the information about Device Advisor test suite run based on test case runs.</p>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "CreateSuiteDefinitionResponse$createdAt": "<p>Creates a Device Advisor test suite with TimeStamp of when it was created.</p>",
+        "GetSuiteDefinitionResponse$createdAt": "<p>Gets the timestamp of the time suite was created with GetSuiteDefinition API call.</p>",
+        "GetSuiteDefinitionResponse$lastModifiedAt": "<p>Gets the timestamp of the time suite was modified with GetSuiteDefinition API call.</p>",
+        "GetSuiteRunResponse$startTime": "<p>Gets the information about Device Advisor test suite run based on start time.</p>",
+        "GetSuiteRunResponse$endTime": "<p>Gets the information about Device Advisor test suite run based on end time.</p>",
+        "StartSuiteRunResponse$createdAt": "<p>Starts a Device Advisor test suite run based on suite create time.</p>",
+        "SuiteDefinitionInformation$createdAt": "<p>Gets the information of when the test suite was created.</p>",
+        "SuiteRunInformation$createdAt": "<p>Get suite run information based on time suite was created.</p>",
+        "SuiteRunInformation$startedAt": "<p>Get suite run information based on start time of the run.</p>",
+        "SuiteRunInformation$endAt": "<p>Get suite run information based on end time of the run.</p>",
+        "TestCaseRun$startTime": "<p>Provides test case run start time.</p>",
+        "TestCaseRun$endTime": "<p>Provides test case run end time.</p>",
+        "UpdateSuiteDefinitionResponse$createdAt": "<p>Updates a Device Advisor test suite with TimeStamp of when it was created.</p>",
+        "UpdateSuiteDefinitionResponse$lastUpdatedAt": "<p>Updates a Device Advisor test suite with TimeStamp of when it was updated.</p>"
+      }
+    },
+    "Token": {
+      "base": null,
+      "refs": {
+        "ListSuiteDefinitionsRequest$nextToken": "<p>Requests the Device Advisor test suites next token.</p>",
+        "ListSuiteDefinitionsResponse$nextToken": "<p>Creates a Device Advisor test suite.</p>",
+        "ListSuiteRunsRequest$nextToken": "<p>Next pagination token for list suite run request.</p>",
+        "ListSuiteRunsResponse$nextToken": "<p>Next pagination token for list suite run response.</p>",
+        "ListTestCasesRequest$nextToken": "<p>Requests the test cases next token.</p>",
+        "ListTestCasesResponse$nextToken": "<p>Test cases next token response.</p>"
+      }
+    },
+    "UUID": {
+      "base": null,
+      "refs": {
+        "CreateSuiteDefinitionResponse$suiteDefinitionId": "<p>Creates a Device Advisor test suite with suite UUID.</p>",
+        "DeleteSuiteDefinitionRequest$suiteDefinitionId": "<p>Deletes a Device Advisor test suite with defined suite Id.</p>",
+        "GetSuiteDefinitionRequest$suiteDefinitionId": "<p>Requests suite definition Id with GetSuiteDefinition API call.</p>",
+        "GetSuiteDefinitionResponse$suiteDefinitionId": "<p>Gets suite definition Id with GetSuiteDefinition API call.</p>",
+        "GetSuiteRunReportRequest$suiteDefinitionId": "<p>Device Advisor suite definition Id.</p>",
+        "GetSuiteRunReportRequest$suiteRunId": "<p>Device Advisor suite run Id.</p>",
+        "GetSuiteRunRequest$suiteDefinitionId": "<p>Requests the information about Device Advisor test suite run based on suite definition Id.</p>",
+        "GetSuiteRunRequest$suiteRunId": "<p>Requests the information about Device Advisor test suite run based on suite run Id.</p>",
+        "GetSuiteRunResponse$suiteDefinitionId": "<p>Gets the information about Device Advisor test suite run based on suite definition Id.</p>",
+        "GetSuiteRunResponse$suiteRunId": "<p>Gets the information about Device Advisor test suite run based on suite run Id.</p>",
+        "GroupResult$groupId": "<p>Show Group Result Id.</p>",
+        "ListSuiteRunsRequest$suiteDefinitionId": "<p>Lists the runs of the specified Device Advisor test suite based on suite definition Id.</p>",
+        "SelectedTestList$member": null,
+        "StartSuiteRunRequest$suiteDefinitionId": "<p>Request to start suite run based on suite definition Id.</p>",
+        "StartSuiteRunResponse$suiteRunId": "<p>Starts a Device Advisor test suite run based on suite Run Id.</p>",
+        "SuiteDefinitionInformation$suiteDefinitionId": "<p>Get suite definition Id.</p>",
+        "SuiteRunInformation$suiteDefinitionId": "<p>Get suite run information based on suite definition Id.</p>",
+        "SuiteRunInformation$suiteRunId": "<p>Get suite run information based on suite run Id.</p>",
+        "TestCaseRun$testCaseRunId": "<p>Provides test case run Id.</p>",
+        "TestCaseRun$testCaseDefinitionId": "<p>Provides test case run definition Id.</p>",
+        "UpdateSuiteDefinitionRequest$suiteDefinitionId": "<p>Updates a Device Advisor test suite with suite definition id.</p>",
+        "UpdateSuiteDefinitionResponse$suiteDefinitionId": "<p>Updates a Device Advisor test suite with suite UUID.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSuiteDefinitionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSuiteDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>Sends invalid request exception.</p>",
+      "refs": {
+      }
+    },
+    "Warnings": {
+      "base": null,
+      "refs": {
+        "TestCaseRun$warnings": "<p>Provides test case run warnings.</p>"
+      }
+    }
+  }
+}

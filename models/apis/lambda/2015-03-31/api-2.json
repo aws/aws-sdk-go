@@ -1261,10 +1261,7 @@
     },
     "CreateEventSourceMappingRequest":{
       "type":"structure",
-      "required":[
-        "EventSourceArn",
-        "FunctionName"
-      ],
+      "required":["FunctionName"],
       "members":{
         "EventSourceArn":{"shape":"Arn"},
         "FunctionName":{"shape":"FunctionName"},
@@ -1278,9 +1275,12 @@
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},
         "BisectBatchOnFunctionError":{"shape":"BisectBatchOnFunctionError"},
         "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"},
+        "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
         "Topics":{"shape":"Topics"},
         "Queues":{"shape":"Queues"},
-        "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"}
+        "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"},
+        "SelfManagedEventSource":{"shape":"SelfManagedEventSource"},
+        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"}
       }
     },
     "CreateFunctionRequest":{
@@ -1550,6 +1550,29 @@
       "exception":true
     },
     "Enabled":{"type":"boolean"},
+    "EndPointType":{
+      "type":"string",
+      "enum":["KAFKA_BOOTSTRAP_SERVERS"]
+    },
+    "Endpoint":{
+      "type":"string",
+      "max":300,
+      "min":1,
+      "pattern":"^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9]):[0-9]{1,5}"
+    },
+    "EndpointLists":{
+      "type":"list",
+      "member":{"shape":"Endpoint"},
+      "max":10,
+      "min":1
+    },
+    "Endpoints":{
+      "type":"map",
+      "key":{"shape":"EndPointType"},
+      "value":{"shape":"EndpointLists"},
+      "max":2,
+      "min":1
+    },
     "Environment":{
       "type":"structure",
       "members":{
@@ -1604,9 +1627,12 @@
         "Topics":{"shape":"Topics"},
         "Queues":{"shape":"Queues"},
         "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"},
+        "SelfManagedEventSource":{"shape":"SelfManagedEventSource"},
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},
         "BisectBatchOnFunctionError":{"shape":"BisectBatchOnFunctionError"},
-        "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"}
+        "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"},
+        "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
+        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"}
       }
     },
     "EventSourceMappingsList":{
@@ -1734,6 +1760,16 @@
       "max":140,
       "min":1,
       "pattern":"(arn:(aws[a-zA-Z-]*)?:lambda:)?([a-z]{2}(-gov)?-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+    },
+    "FunctionResponseType":{
+      "type":"string",
+      "enum":["ReportBatchItemFailures"]
+    },
+    "FunctionResponseTypeList":{
+      "type":"list",
+      "member":{"shape":"FunctionResponseType"},
+      "max":1,
+      "min":1
     },
     "FunctionVersion":{
       "type":"string",
@@ -3164,6 +3200,12 @@
       "member":{"shape":"SecurityGroupId"},
       "max":5
     },
+    "SelfManagedEventSource":{
+      "type":"structure",
+      "members":{
+        "Endpoints":{"shape":"Endpoints"}
+      }
+    },
     "SensitiveString":{
       "type":"string",
       "sensitive":true
@@ -3187,18 +3229,24 @@
       "type":"structure",
       "members":{
         "Type":{"shape":"SourceAccessType"},
-        "URI":{"shape":"Arn"}
+        "URI":{"shape":"URI"}
       }
     },
     "SourceAccessConfigurations":{
       "type":"list",
       "member":{"shape":"SourceAccessConfiguration"},
-      "max":1,
+      "max":22,
       "min":1
     },
     "SourceAccessType":{
       "type":"string",
-      "enum":["BASIC_AUTH"]
+      "enum":[
+        "BASIC_AUTH",
+        "VPC_SUBNET",
+        "VPC_SECURITY_GROUP",
+        "SASL_SCRAM_512_AUTH",
+        "SASL_SCRAM_256_AUTH"
+      ]
     },
     "SourceOwner":{
       "type":"string",
@@ -3346,6 +3394,17 @@
         "PassThrough"
       ]
     },
+    "TumblingWindowInSeconds":{
+      "type":"integer",
+      "max":900,
+      "min":0
+    },
+    "URI":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-\\/*:_+=.@-]*"
+    },
     "UnreservedConcurrentExecutions":{
       "type":"integer",
       "min":0
@@ -3440,7 +3499,9 @@
         "BisectBatchOnFunctionError":{"shape":"BisectBatchOnFunctionError"},
         "MaximumRetryAttempts":{"shape":"MaximumRetryAttemptsEventSourceMapping"},
         "ParallelizationFactor":{"shape":"ParallelizationFactor"},
-        "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"}
+        "SourceAccessConfigurations":{"shape":"SourceAccessConfigurations"},
+        "TumblingWindowInSeconds":{"shape":"TumblingWindowInSeconds"},
+        "FunctionResponseTypes":{"shape":"FunctionResponseTypeList"}
       }
     },
     "UpdateFunctionCodeRequest":{

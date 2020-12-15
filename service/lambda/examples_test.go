@@ -932,9 +932,9 @@ func ExampleLambda_GetPolicy_shared00() {
 	fmt.Println(result)
 }
 
-// To get a provisioned concurrency configuration
+// To view a provisioned concurrency configuration
 //
-// The following example returns details for the provisioned concurrency configuration
+// The following example displays details for the provisioned concurrency configuration
 // for the BLUE alias of the specified function.
 func ExampleLambda_GetProvisionedConcurrencyConfig_shared00() {
 	svc := lambda.New(session.New())
@@ -971,9 +971,9 @@ func ExampleLambda_GetProvisionedConcurrencyConfig_shared00() {
 	fmt.Println(result)
 }
 
-// To view a provisioned concurrency configuration
+// To get a provisioned concurrency configuration
 //
-// The following example displays details for the provisioned concurrency configuration
+// The following example returns details for the provisioned concurrency configuration
 // for the BLUE alias of the specified function.
 func ExampleLambda_GetProvisionedConcurrencyConfig_shared01() {
 	svc := lambda.New(session.New())

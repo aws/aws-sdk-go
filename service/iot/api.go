@@ -903,8 +903,7 @@ func (c *IoT) CancelAuditTaskRequest(input *CancelAuditTaskInput) (req *request.
 // CancelAuditTask API operation for AWS IoT.
 //
 // Cancels an audit that is in progress. The audit can be either scheduled or
-// on-demand. If the audit is not in progress, an "InvalidRequestException"
-// occurs.
+// on demand. If the audit isn't in progress, an "InvalidRequestException" occurs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1047,6 +1046,92 @@ func (c *IoT) CancelCertificateTransfer(input *CancelCertificateTransferInput) (
 // for more information on using Contexts.
 func (c *IoT) CancelCertificateTransferWithContext(ctx aws.Context, input *CancelCertificateTransferInput, opts ...request.Option) (*CancelCertificateTransferOutput, error) {
 	req, out := c.CancelCertificateTransferRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCancelDetectMitigationActionsTask = "CancelDetectMitigationActionsTask"
+
+// CancelDetectMitigationActionsTaskRequest generates a "aws/request.Request" representing the
+// client's request for the CancelDetectMitigationActionsTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelDetectMitigationActionsTask for more information on using the CancelDetectMitigationActionsTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelDetectMitigationActionsTaskRequest method.
+//    req, resp := client.CancelDetectMitigationActionsTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) CancelDetectMitigationActionsTaskRequest(input *CancelDetectMitigationActionsTaskInput) (req *request.Request, output *CancelDetectMitigationActionsTaskOutput) {
+	op := &request.Operation{
+		Name:       opCancelDetectMitigationActionsTask,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/detect/mitigationactions/tasks/{taskId}/cancel",
+	}
+
+	if input == nil {
+		input = &CancelDetectMitigationActionsTaskInput{}
+	}
+
+	output = &CancelDetectMitigationActionsTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelDetectMitigationActionsTask API operation for AWS IoT.
+//
+// Cancels a Device Defender ML Detect mitigation action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CancelDetectMitigationActionsTask for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) CancelDetectMitigationActionsTask(input *CancelDetectMitigationActionsTaskInput) (*CancelDetectMitigationActionsTaskOutput, error) {
+	req, out := c.CancelDetectMitigationActionsTaskRequest(input)
+	return out, req.Send()
+}
+
+// CancelDetectMitigationActionsTaskWithContext is the same as CancelDetectMitigationActionsTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelDetectMitigationActionsTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CancelDetectMitigationActionsTaskWithContext(ctx aws.Context, input *CancelDetectMitigationActionsTaskInput, opts ...request.Option) (*CancelDetectMitigationActionsTaskOutput, error) {
+	req, out := c.CancelDetectMitigationActionsTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1809,6 +1894,95 @@ func (c *IoT) CreateCertificateFromCsr(input *CreateCertificateFromCsrInput) (*C
 // for more information on using Contexts.
 func (c *IoT) CreateCertificateFromCsrWithContext(ctx aws.Context, input *CreateCertificateFromCsrInput, opts ...request.Option) (*CreateCertificateFromCsrOutput, error) {
 	req, out := c.CreateCertificateFromCsrRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCustomMetric = "CreateCustomMetric"
+
+// CreateCustomMetricRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomMetric for more information on using the CreateCustomMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCustomMetricRequest method.
+//    req, resp := client.CreateCustomMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) CreateCustomMetricRequest(input *CreateCustomMetricInput) (req *request.Request, output *CreateCustomMetricOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomMetric,
+		HTTPMethod: "POST",
+		HTTPPath:   "/custom-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &CreateCustomMetricInput{}
+	}
+
+	output = &CreateCustomMetricOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomMetric API operation for AWS IoT.
+//
+// Use this API to define a Custom Metric published by your devices to Device
+// Defender.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateCustomMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) CreateCustomMetric(input *CreateCustomMetricInput) (*CreateCustomMetricOutput, error) {
+	req, out := c.CreateCustomMetricRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomMetricWithContext is the same as CreateCustomMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreateCustomMetricWithContext(ctx aws.Context, input *CreateCustomMetricInput, opts ...request.Option) (*CreateCustomMetricOutput, error) {
+	req, out := c.CreateCustomMetricRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4330,6 +4504,95 @@ func (c *IoT) DeleteCertificateWithContext(ctx aws.Context, input *DeleteCertifi
 	return out, req.Send()
 }
 
+const opDeleteCustomMetric = "DeleteCustomMetric"
+
+// DeleteCustomMetricRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomMetric for more information on using the DeleteCustomMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCustomMetricRequest method.
+//    req, resp := client.DeleteCustomMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DeleteCustomMetricRequest(input *DeleteCustomMetricInput) (req *request.Request, output *DeleteCustomMetricOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomMetric,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/custom-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &DeleteCustomMetricInput{}
+	}
+
+	output = &DeleteCustomMetricOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCustomMetric API operation for AWS IoT.
+//
+//
+// Before you can delete a custom metric, you must first remove the custom metric
+// from all security profiles it's a part of. The security profile associated
+// with the custom metric can be found using the ListSecurityProfiles (https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html)
+// API with metricName set to your custom metric name.
+//
+// Deletes a Device Defender detect custom metric.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteCustomMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) DeleteCustomMetric(input *DeleteCustomMetricInput) (*DeleteCustomMetricOutput, error) {
+	req, out := c.DeleteCustomMetricRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomMetricWithContext is the same as DeleteCustomMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeleteCustomMetricWithContext(ctx aws.Context, input *DeleteCustomMetricInput, opts ...request.Option) (*DeleteCustomMetricOutput, error) {
+	req, out := c.DeleteCustomMetricRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDimension = "DeleteDimension"
 
 // DeleteDimensionRequest generates a "aws/request.Request" representing the
@@ -6574,8 +6837,8 @@ func (c *IoT) DescribeAuditFindingRequest(input *DescribeAuditFindingInput) (req
 // DescribeAuditFinding API operation for AWS IoT.
 //
 // Gets information about a single audit finding. Properties include the reason
-// for noncompliance, the severity of the issue, and when the audit that returned
-// the finding was started.
+// for noncompliance, the severity of the issue, and the start time when the
+// audit that returned the finding.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7234,6 +7497,91 @@ func (c *IoT) DescribeCertificateWithContext(ctx aws.Context, input *DescribeCer
 	return out, req.Send()
 }
 
+const opDescribeCustomMetric = "DescribeCustomMetric"
+
+// DescribeCustomMetricRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeCustomMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeCustomMetric for more information on using the DescribeCustomMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeCustomMetricRequest method.
+//    req, resp := client.DescribeCustomMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DescribeCustomMetricRequest(input *DescribeCustomMetricInput) (req *request.Request, output *DescribeCustomMetricOutput) {
+	op := &request.Operation{
+		Name:       opDescribeCustomMetric,
+		HTTPMethod: "GET",
+		HTTPPath:   "/custom-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &DescribeCustomMetricInput{}
+	}
+
+	output = &DescribeCustomMetricOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeCustomMetric API operation for AWS IoT.
+//
+// Gets information about a Device Defender detect custom metric.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeCustomMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) DescribeCustomMetric(input *DescribeCustomMetricInput) (*DescribeCustomMetricOutput, error) {
+	req, out := c.DescribeCustomMetricRequest(input)
+	return out, req.Send()
+}
+
+// DescribeCustomMetricWithContext is the same as DescribeCustomMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeCustomMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeCustomMetricWithContext(ctx aws.Context, input *DescribeCustomMetricInput, opts ...request.Option) (*DescribeCustomMetricOutput, error) {
+	req, out := c.DescribeCustomMetricRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDefaultAuthorizer = "DescribeDefaultAuthorizer"
 
 // DescribeDefaultAuthorizerRequest generates a "aws/request.Request" representing the
@@ -7320,6 +7668,91 @@ func (c *IoT) DescribeDefaultAuthorizer(input *DescribeDefaultAuthorizerInput) (
 // for more information on using Contexts.
 func (c *IoT) DescribeDefaultAuthorizerWithContext(ctx aws.Context, input *DescribeDefaultAuthorizerInput, opts ...request.Option) (*DescribeDefaultAuthorizerOutput, error) {
 	req, out := c.DescribeDefaultAuthorizerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDetectMitigationActionsTask = "DescribeDetectMitigationActionsTask"
+
+// DescribeDetectMitigationActionsTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDetectMitigationActionsTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDetectMitigationActionsTask for more information on using the DescribeDetectMitigationActionsTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDetectMitigationActionsTaskRequest method.
+//    req, resp := client.DescribeDetectMitigationActionsTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DescribeDetectMitigationActionsTaskRequest(input *DescribeDetectMitigationActionsTaskInput) (req *request.Request, output *DescribeDetectMitigationActionsTaskOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDetectMitigationActionsTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/detect/mitigationactions/tasks/{taskId}",
+	}
+
+	if input == nil {
+		input = &DescribeDetectMitigationActionsTaskInput{}
+	}
+
+	output = &DescribeDetectMitigationActionsTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDetectMitigationActionsTask API operation for AWS IoT.
+//
+// Gets information about a Device Defender ML Detect mitigation action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeDetectMitigationActionsTask for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) DescribeDetectMitigationActionsTask(input *DescribeDetectMitigationActionsTaskInput) (*DescribeDetectMitigationActionsTaskOutput, error) {
+	req, out := c.DescribeDetectMitigationActionsTaskRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDetectMitigationActionsTaskWithContext is the same as DescribeDetectMitigationActionsTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDetectMitigationActionsTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeDetectMitigationActionsTaskWithContext(ctx aws.Context, input *DescribeDetectMitigationActionsTaskInput, opts ...request.Option) (*DescribeDetectMitigationActionsTaskOutput, error) {
+	req, out := c.DescribeDetectMitigationActionsTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9453,6 +9886,149 @@ func (c *IoT) EnableTopicRuleWithContext(ctx aws.Context, input *EnableTopicRule
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetBehaviorModelTrainingSummaries = "GetBehaviorModelTrainingSummaries"
+
+// GetBehaviorModelTrainingSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the GetBehaviorModelTrainingSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBehaviorModelTrainingSummaries for more information on using the GetBehaviorModelTrainingSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBehaviorModelTrainingSummariesRequest method.
+//    req, resp := client.GetBehaviorModelTrainingSummariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) GetBehaviorModelTrainingSummariesRequest(input *GetBehaviorModelTrainingSummariesInput) (req *request.Request, output *GetBehaviorModelTrainingSummariesOutput) {
+	op := &request.Operation{
+		Name:       opGetBehaviorModelTrainingSummaries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/behavior-model-training/summaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetBehaviorModelTrainingSummariesInput{}
+	}
+
+	output = &GetBehaviorModelTrainingSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBehaviorModelTrainingSummaries API operation for AWS IoT.
+//
+// Returns a Device Defender's ML Detect Security Profile training model's status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetBehaviorModelTrainingSummaries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+func (c *IoT) GetBehaviorModelTrainingSummaries(input *GetBehaviorModelTrainingSummariesInput) (*GetBehaviorModelTrainingSummariesOutput, error) {
+	req, out := c.GetBehaviorModelTrainingSummariesRequest(input)
+	return out, req.Send()
+}
+
+// GetBehaviorModelTrainingSummariesWithContext is the same as GetBehaviorModelTrainingSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBehaviorModelTrainingSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) GetBehaviorModelTrainingSummariesWithContext(ctx aws.Context, input *GetBehaviorModelTrainingSummariesInput, opts ...request.Option) (*GetBehaviorModelTrainingSummariesOutput, error) {
+	req, out := c.GetBehaviorModelTrainingSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetBehaviorModelTrainingSummariesPages iterates over the pages of a GetBehaviorModelTrainingSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetBehaviorModelTrainingSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetBehaviorModelTrainingSummaries operation.
+//    pageNum := 0
+//    err := client.GetBehaviorModelTrainingSummariesPages(params,
+//        func(page *iot.GetBehaviorModelTrainingSummariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) GetBehaviorModelTrainingSummariesPages(input *GetBehaviorModelTrainingSummariesInput, fn func(*GetBehaviorModelTrainingSummariesOutput, bool) bool) error {
+	return c.GetBehaviorModelTrainingSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetBehaviorModelTrainingSummariesPagesWithContext same as GetBehaviorModelTrainingSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) GetBehaviorModelTrainingSummariesPagesWithContext(ctx aws.Context, input *GetBehaviorModelTrainingSummariesInput, fn func(*GetBehaviorModelTrainingSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetBehaviorModelTrainingSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetBehaviorModelTrainingSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetBehaviorModelTrainingSummariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetCardinality = "GetCardinality"
@@ -12462,6 +13038,427 @@ func (c *IoT) ListCertificatesByCAPagesWithContext(ctx aws.Context, input *ListC
 	return p.Err()
 }
 
+const opListCustomMetrics = "ListCustomMetrics"
+
+// ListCustomMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCustomMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCustomMetrics for more information on using the ListCustomMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCustomMetricsRequest method.
+//    req, resp := client.ListCustomMetricsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListCustomMetricsRequest(input *ListCustomMetricsInput) (req *request.Request, output *ListCustomMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListCustomMetrics,
+		HTTPMethod: "GET",
+		HTTPPath:   "/custom-metrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCustomMetricsInput{}
+	}
+
+	output = &ListCustomMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCustomMetrics API operation for AWS IoT.
+//
+// Lists your Device Defender detect custom metrics.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListCustomMetrics for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) ListCustomMetrics(input *ListCustomMetricsInput) (*ListCustomMetricsOutput, error) {
+	req, out := c.ListCustomMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListCustomMetricsWithContext is the same as ListCustomMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCustomMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListCustomMetricsWithContext(ctx aws.Context, input *ListCustomMetricsInput, opts ...request.Option) (*ListCustomMetricsOutput, error) {
+	req, out := c.ListCustomMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCustomMetricsPages iterates over the pages of a ListCustomMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCustomMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCustomMetrics operation.
+//    pageNum := 0
+//    err := client.ListCustomMetricsPages(params,
+//        func(page *iot.ListCustomMetricsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListCustomMetricsPages(input *ListCustomMetricsInput, fn func(*ListCustomMetricsOutput, bool) bool) error {
+	return c.ListCustomMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCustomMetricsPagesWithContext same as ListCustomMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListCustomMetricsPagesWithContext(ctx aws.Context, input *ListCustomMetricsInput, fn func(*ListCustomMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCustomMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCustomMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCustomMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDetectMitigationActionsExecutions = "ListDetectMitigationActionsExecutions"
+
+// ListDetectMitigationActionsExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDetectMitigationActionsExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDetectMitigationActionsExecutions for more information on using the ListDetectMitigationActionsExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDetectMitigationActionsExecutionsRequest method.
+//    req, resp := client.ListDetectMitigationActionsExecutionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListDetectMitigationActionsExecutionsRequest(input *ListDetectMitigationActionsExecutionsInput) (req *request.Request, output *ListDetectMitigationActionsExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opListDetectMitigationActionsExecutions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/detect/mitigationactions/executions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDetectMitigationActionsExecutionsInput{}
+	}
+
+	output = &ListDetectMitigationActionsExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDetectMitigationActionsExecutions API operation for AWS IoT.
+//
+// Lists mitigation actions executions for a Device Defender ML Detect Security
+// Profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListDetectMitigationActionsExecutions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) ListDetectMitigationActionsExecutions(input *ListDetectMitigationActionsExecutionsInput) (*ListDetectMitigationActionsExecutionsOutput, error) {
+	req, out := c.ListDetectMitigationActionsExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// ListDetectMitigationActionsExecutionsWithContext is the same as ListDetectMitigationActionsExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDetectMitigationActionsExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListDetectMitigationActionsExecutionsWithContext(ctx aws.Context, input *ListDetectMitigationActionsExecutionsInput, opts ...request.Option) (*ListDetectMitigationActionsExecutionsOutput, error) {
+	req, out := c.ListDetectMitigationActionsExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDetectMitigationActionsExecutionsPages iterates over the pages of a ListDetectMitigationActionsExecutions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDetectMitigationActionsExecutions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDetectMitigationActionsExecutions operation.
+//    pageNum := 0
+//    err := client.ListDetectMitigationActionsExecutionsPages(params,
+//        func(page *iot.ListDetectMitigationActionsExecutionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListDetectMitigationActionsExecutionsPages(input *ListDetectMitigationActionsExecutionsInput, fn func(*ListDetectMitigationActionsExecutionsOutput, bool) bool) error {
+	return c.ListDetectMitigationActionsExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDetectMitigationActionsExecutionsPagesWithContext same as ListDetectMitigationActionsExecutionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListDetectMitigationActionsExecutionsPagesWithContext(ctx aws.Context, input *ListDetectMitigationActionsExecutionsInput, fn func(*ListDetectMitigationActionsExecutionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDetectMitigationActionsExecutionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDetectMitigationActionsExecutionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDetectMitigationActionsExecutionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDetectMitigationActionsTasks = "ListDetectMitigationActionsTasks"
+
+// ListDetectMitigationActionsTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListDetectMitigationActionsTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDetectMitigationActionsTasks for more information on using the ListDetectMitigationActionsTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDetectMitigationActionsTasksRequest method.
+//    req, resp := client.ListDetectMitigationActionsTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListDetectMitigationActionsTasksRequest(input *ListDetectMitigationActionsTasksInput) (req *request.Request, output *ListDetectMitigationActionsTasksOutput) {
+	op := &request.Operation{
+		Name:       opListDetectMitigationActionsTasks,
+		HTTPMethod: "GET",
+		HTTPPath:   "/detect/mitigationactions/tasks",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDetectMitigationActionsTasksInput{}
+	}
+
+	output = &ListDetectMitigationActionsTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDetectMitigationActionsTasks API operation for AWS IoT.
+//
+// List of Device Defender ML Detect mitigation actions tasks.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListDetectMitigationActionsTasks for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) ListDetectMitigationActionsTasks(input *ListDetectMitigationActionsTasksInput) (*ListDetectMitigationActionsTasksOutput, error) {
+	req, out := c.ListDetectMitigationActionsTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListDetectMitigationActionsTasksWithContext is the same as ListDetectMitigationActionsTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDetectMitigationActionsTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListDetectMitigationActionsTasksWithContext(ctx aws.Context, input *ListDetectMitigationActionsTasksInput, opts ...request.Option) (*ListDetectMitigationActionsTasksOutput, error) {
+	req, out := c.ListDetectMitigationActionsTasksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDetectMitigationActionsTasksPages iterates over the pages of a ListDetectMitigationActionsTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDetectMitigationActionsTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDetectMitigationActionsTasks operation.
+//    pageNum := 0
+//    err := client.ListDetectMitigationActionsTasksPages(params,
+//        func(page *iot.ListDetectMitigationActionsTasksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListDetectMitigationActionsTasksPages(input *ListDetectMitigationActionsTasksInput, fn func(*ListDetectMitigationActionsTasksOutput, bool) bool) error {
+	return c.ListDetectMitigationActionsTasksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDetectMitigationActionsTasksPagesWithContext same as ListDetectMitigationActionsTasksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListDetectMitigationActionsTasksPagesWithContext(ctx aws.Context, input *ListDetectMitigationActionsTasksInput, fn func(*ListDetectMitigationActionsTasksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDetectMitigationActionsTasksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDetectMitigationActionsTasksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDetectMitigationActionsTasksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDimensions = "ListDimensions"
 
 // ListDimensionsRequest generates a "aws/request.Request" representing the
@@ -15098,9 +16095,10 @@ func (c *IoT) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) (req
 
 // ListSecurityProfiles API operation for AWS IoT.
 //
-// Lists the Device Defender security profiles you have created. You can use
-// filters to list only those security profiles associated with a thing group
-// or only those associated with your account.
+// Lists the Device Defender security profiles you've created. You can filter
+// security profiles by dimension or custom metric.
+//
+// dimensionName and metricName cannot be used in the same request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19213,6 +20211,95 @@ func (c *IoT) StartAuditMitigationActionsTaskWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opStartDetectMitigationActionsTask = "StartDetectMitigationActionsTask"
+
+// StartDetectMitigationActionsTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartDetectMitigationActionsTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDetectMitigationActionsTask for more information on using the StartDetectMitigationActionsTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartDetectMitigationActionsTaskRequest method.
+//    req, resp := client.StartDetectMitigationActionsTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) StartDetectMitigationActionsTaskRequest(input *StartDetectMitigationActionsTaskInput) (req *request.Request, output *StartDetectMitigationActionsTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartDetectMitigationActionsTask,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/detect/mitigationactions/tasks/{taskId}",
+	}
+
+	if input == nil {
+		input = &StartDetectMitigationActionsTaskInput{}
+	}
+
+	output = &StartDetectMitigationActionsTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDetectMitigationActionsTask API operation for AWS IoT.
+//
+// Starts a Device Defender ML Detect mitigation actions task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation StartDetectMitigationActionsTask for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * TaskAlreadyExistsException
+//   This exception occurs if you attempt to start a task with the same task-id
+//   as an existing task but with a different clientRequestToken.
+//
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) StartDetectMitigationActionsTask(input *StartDetectMitigationActionsTaskInput) (*StartDetectMitigationActionsTaskOutput, error) {
+	req, out := c.StartDetectMitigationActionsTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartDetectMitigationActionsTaskWithContext is the same as StartDetectMitigationActionsTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDetectMitigationActionsTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) StartDetectMitigationActionsTaskWithContext(ctx aws.Context, input *StartDetectMitigationActionsTaskInput, opts ...request.Option) (*StartDetectMitigationActionsTaskOutput, error) {
+	req, out := c.StartDetectMitigationActionsTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartOnDemandAuditTask = "StartOnDemandAuditTask"
 
 // StartOnDemandAuditTaskRequest generates a "aws/request.Request" representing the
@@ -20498,6 +21585,91 @@ func (c *IoT) UpdateCertificateWithContext(ctx aws.Context, input *UpdateCertifi
 	return out, req.Send()
 }
 
+const opUpdateCustomMetric = "UpdateCustomMetric"
+
+// UpdateCustomMetricRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCustomMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCustomMetric for more information on using the UpdateCustomMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCustomMetricRequest method.
+//    req, resp := client.UpdateCustomMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) UpdateCustomMetricRequest(input *UpdateCustomMetricInput) (req *request.Request, output *UpdateCustomMetricOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCustomMetric,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/custom-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &UpdateCustomMetricInput{}
+	}
+
+	output = &UpdateCustomMetricOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCustomMetric API operation for AWS IoT.
+//
+// Updates a Device Defender detect custom metric.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateCustomMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) UpdateCustomMetric(input *UpdateCustomMetricInput) (*UpdateCustomMetricOutput, error) {
+	req, out := c.UpdateCustomMetricRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCustomMetricWithContext is the same as UpdateCustomMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCustomMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdateCustomMetricWithContext(ctx aws.Context, input *UpdateCustomMetricInput, opts ...request.Option) (*UpdateCustomMetricOutput, error) {
+	req, out := c.UpdateCustomMetricRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDimension = "UpdateDimension"
 
 // UpdateDimensionRequest generates a "aws/request.Request" representing the
@@ -20541,7 +21713,7 @@ func (c *IoT) UpdateDimensionRequest(input *UpdateDimensionInput) (req *request.
 // UpdateDimension API operation for AWS IoT.
 //
 // Updates the definition for a dimension. You cannot change the type of a dimension
-// after it is created (you can delete it and re-create it).
+// after it is created (you can delete it and recreate it).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22254,6 +23426,10 @@ type Action struct {
 	// asset properties.
 	IotSiteWise *IotSiteWiseAction `locationName:"iotSiteWise" type:"structure"`
 
+	// Send messages to an Amazon Managed Streaming for Apache Kafka (Amazon MSK)
+	// or self-managed Apache Kafka cluster.
+	Kafka *KafkaAction `locationName:"kafka" type:"structure"`
+
 	// Write data to an Amazon Kinesis stream.
 	Kinesis *KinesisAction `locationName:"kinesis" type:"structure"`
 
@@ -22346,6 +23522,11 @@ func (s *Action) Validate() error {
 	if s.IotSiteWise != nil {
 		if err := s.IotSiteWise.Validate(); err != nil {
 			invalidParams.AddNested("IotSiteWise", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Kafka != nil {
+		if err := s.Kafka.Validate(); err != nil {
+			invalidParams.AddNested("Kafka", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Kinesis != nil {
@@ -22466,6 +23647,12 @@ func (s *Action) SetIotSiteWise(v *IotSiteWiseAction) *Action {
 	return s
 }
 
+// SetKafka sets the Kafka field's value.
+func (s *Action) SetKafka(v *KafkaAction) *Action {
+	s.Kafka = v
+	return s
+}
+
 // SetKinesis sets the Kinesis field's value.
 func (s *Action) SetKinesis(v *KinesisAction) *Action {
 	s.Kinesis = v
@@ -22524,20 +23711,23 @@ func (s *Action) SetTimestream(v *TimestreamAction) *Action {
 type ActiveViolation struct {
 	_ struct{} `type:"structure"`
 
-	// The behavior which is being violated.
+	// The behavior that is being violated.
 	Behavior *Behavior `locationName:"behavior" type:"structure"`
 
 	// The time the most recent violation occurred.
 	LastViolationTime *time.Time `locationName:"lastViolationTime" type:"timestamp"`
 
-	// The value of the metric (the measurement) which caused the most recent violation.
+	// The value of the metric (the measurement) that caused the most recent violation.
 	LastViolationValue *MetricValue `locationName:"lastViolationValue" type:"structure"`
 
-	// The security profile whose behavior is in violation.
+	// The security profile with the behavior is in violation.
 	SecurityProfileName *string `locationName:"securityProfileName" min:"1" type:"string"`
 
 	// The name of the thing responsible for the active violation.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+
+	// The details of a violation event.
+	ViolationEventAdditionalInfo *ViolationEventAdditionalInfo `locationName:"violationEventAdditionalInfo" type:"structure"`
 
 	// The ID of the active violation.
 	ViolationId *string `locationName:"violationId" min:"1" type:"string"`
@@ -22583,6 +23773,12 @@ func (s *ActiveViolation) SetSecurityProfileName(v string) *ActiveViolation {
 // SetThingName sets the ThingName field's value.
 func (s *ActiveViolation) SetThingName(v string) *ActiveViolation {
 	s.ThingName = &v
+	return s
+}
+
+// SetViolationEventAdditionalInfo sets the ViolationEventAdditionalInfo field's value.
+func (s *ActiveViolation) SetViolationEventAdditionalInfo(v *ViolationEventAdditionalInfo) *ActiveViolation {
+	s.ViolationEventAdditionalInfo = v
 	return s
 }
 
@@ -22776,12 +23972,12 @@ type AddThingsToThingGroupParams struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies if this mitigation action can move the things that triggered the
-	// mitigation action even if they are part of one or more dynamic things groups.
+	// mitigation action even if they are part of one or more dynamic thing groups.
 	OverrideDynamicGroups *bool `locationName:"overrideDynamicGroups" type:"boolean"`
 
 	// The list of groups to which you want to add the things that triggered the
 	// mitigation action. You can add a thing to a maximum of 10 groups, but you
-	// cannot add a thing to more than one group in the same hierarchy.
+	// can't add a thing to more than one group in the same hierarchy.
 	//
 	// ThingGroupNames is a required field
 	ThingGroupNames []*string `locationName:"thingGroupNames" min:"1" type:"list" required:"true"`
@@ -22829,7 +24025,8 @@ func (s *AddThingsToThingGroupParams) SetThingGroupNames(v []*string) *AddThings
 type AlertTarget struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the notification target to which alerts are sent.
+	// The Amazon Resource Name (ARN) of the notification target to which alerts
+	// are sent.
 	//
 	// AlertTargetArn is a required field
 	AlertTargetArn *string `locationName:"alertTargetArn" type:"string" required:"true"`
@@ -24823,14 +26020,18 @@ type Behavior struct {
 	Metric *string `locationName:"metric" type:"string"`
 
 	// The dimension for a metric in your behavior. For example, using a TOPIC_FILTER
-	// dimension, you can narrow down the scope of the metric only to MQTT topics
-	// whose name match the pattern specified in the dimension.
+	// dimension, you can narrow down the scope of the metric to only MQTT topics
+	// where the name matches the pattern specified in the dimension. This can't
+	// be used with custom metrics.
 	MetricDimension *MetricDimension `locationName:"metricDimension" type:"structure"`
 
-	// The name you have given to the behavior.
+	// The name you've given to the behavior.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Suppresses alerts.
+	SuppressAlerts *bool `locationName:"suppressAlerts" type:"boolean"`
 }
 
 // String returns the string representation
@@ -24893,12 +26094,26 @@ func (s *Behavior) SetName(v string) *Behavior {
 	return s
 }
 
+// SetSuppressAlerts sets the SuppressAlerts field's value.
+func (s *Behavior) SetSuppressAlerts(v bool) *Behavior {
+	s.SuppressAlerts = &v
+	return s
+}
+
 // The criteria by which the behavior is determined to be normal.
 type BehaviorCriteria struct {
 	_ struct{} `type:"structure"`
 
 	// The operator that relates the thing measured (metric) to the criteria (containing
-	// a value or statisticalThreshold).
+	// a value or statisticalThreshold). Valid operators include:
+	//
+	//    * string-list: in-set and not-in-set
+	//
+	//    * number-list: in-set and not-in-set
+	//
+	//    * ip-address-list: in-cidr-set and not-in-cidr-set
+	//
+	//    * number: less-than, less-than-equals, greater-than, and greater-than-equals
 	ComparisonOperator *string `locationName:"comparisonOperator" type:"string" enum:"ComparisonOperator"`
 
 	// If a device is in violation of the behavior for the specified number of consecutive
@@ -24911,14 +26126,18 @@ type BehaviorCriteria struct {
 	ConsecutiveDatapointsToClear *int64 `locationName:"consecutiveDatapointsToClear" min:"1" type:"integer"`
 
 	// Use this to specify the time duration over which the behavior is evaluated,
-	// for those criteria which have a time dimension (for example, NUM_MESSAGES_SENT).
+	// for those criteria that have a time dimension (for example, NUM_MESSAGES_SENT).
 	// For a statisticalThreshhold metric comparison, measurements from all devices
 	// are accumulated over this time duration before being used to calculate percentiles,
 	// and later, measurements from an individual device are also accumulated over
-	// this time duration before being given a percentile rank.
+	// this time duration before being given a percentile rank. Cannot be used with
+	// list-based metric datatypes.
 	DurationSeconds *int64 `locationName:"durationSeconds" type:"integer"`
 
-	// A statistical ranking (percentile) which indicates a threshold value by which
+	// The configuration of an ML Detect
+	MlDetectionConfig *MachineLearningDetectionConfig `locationName:"mlDetectionConfig" type:"structure"`
+
+	// A statistical ranking (percentile)that indicates a threshold value by which
 	// a behavior is determined to be in compliance or in violation of the behavior.
 	StatisticalThreshold *StatisticalThreshold `locationName:"statisticalThreshold" type:"structure"`
 
@@ -24944,6 +26163,11 @@ func (s *BehaviorCriteria) Validate() error {
 	}
 	if s.ConsecutiveDatapointsToClear != nil && *s.ConsecutiveDatapointsToClear < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ConsecutiveDatapointsToClear", 1))
+	}
+	if s.MlDetectionConfig != nil {
+		if err := s.MlDetectionConfig.Validate(); err != nil {
+			invalidParams.AddNested("MlDetectionConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -24976,6 +26200,12 @@ func (s *BehaviorCriteria) SetDurationSeconds(v int64) *BehaviorCriteria {
 	return s
 }
 
+// SetMlDetectionConfig sets the MlDetectionConfig field's value.
+func (s *BehaviorCriteria) SetMlDetectionConfig(v *MachineLearningDetectionConfig) *BehaviorCriteria {
+	s.MlDetectionConfig = v
+	return s
+}
+
 // SetStatisticalThreshold sets the StatisticalThreshold field's value.
 func (s *BehaviorCriteria) SetStatisticalThreshold(v *StatisticalThreshold) *BehaviorCriteria {
 	s.StatisticalThreshold = v
@@ -24985,6 +26215,75 @@ func (s *BehaviorCriteria) SetStatisticalThreshold(v *StatisticalThreshold) *Beh
 // SetValue sets the Value field's value.
 func (s *BehaviorCriteria) SetValue(v *MetricValue) *BehaviorCriteria {
 	s.Value = v
+	return s
+}
+
+// The summary of an ML Detect behavior model.
+type BehaviorModelTrainingSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the behavior.
+	BehaviorName *string `locationName:"behaviorName" min:"1" type:"string"`
+
+	// The percentage of datapoints collected.
+	DatapointsCollectionPercentage *float64 `locationName:"datapointsCollectionPercentage" type:"double"`
+
+	// The date the model was last refreshed.
+	LastModelRefreshDate *time.Time `locationName:"lastModelRefreshDate" type:"timestamp"`
+
+	// The status of the behavior model.
+	ModelStatus *string `locationName:"modelStatus" type:"string" enum:"ModelStatus"`
+
+	// The name of the security profile.
+	SecurityProfileName *string `locationName:"securityProfileName" min:"1" type:"string"`
+
+	// The date a training model started collecting data.
+	TrainingDataCollectionStartDate *time.Time `locationName:"trainingDataCollectionStartDate" type:"timestamp"`
+}
+
+// String returns the string representation
+func (s BehaviorModelTrainingSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BehaviorModelTrainingSummary) GoString() string {
+	return s.String()
+}
+
+// SetBehaviorName sets the BehaviorName field's value.
+func (s *BehaviorModelTrainingSummary) SetBehaviorName(v string) *BehaviorModelTrainingSummary {
+	s.BehaviorName = &v
+	return s
+}
+
+// SetDatapointsCollectionPercentage sets the DatapointsCollectionPercentage field's value.
+func (s *BehaviorModelTrainingSummary) SetDatapointsCollectionPercentage(v float64) *BehaviorModelTrainingSummary {
+	s.DatapointsCollectionPercentage = &v
+	return s
+}
+
+// SetLastModelRefreshDate sets the LastModelRefreshDate field's value.
+func (s *BehaviorModelTrainingSummary) SetLastModelRefreshDate(v time.Time) *BehaviorModelTrainingSummary {
+	s.LastModelRefreshDate = &v
+	return s
+}
+
+// SetModelStatus sets the ModelStatus field's value.
+func (s *BehaviorModelTrainingSummary) SetModelStatus(v string) *BehaviorModelTrainingSummary {
+	s.ModelStatus = &v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *BehaviorModelTrainingSummary) SetSecurityProfileName(v string) *BehaviorModelTrainingSummary {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTrainingDataCollectionStartDate sets the TrainingDataCollectionStartDate field's value.
+func (s *BehaviorModelTrainingSummary) SetTrainingDataCollectionStartDate(v time.Time) *BehaviorModelTrainingSummary {
+	s.TrainingDataCollectionStartDate = &v
 	return s
 }
 
@@ -25369,6 +26668,61 @@ func (s CancelCertificateTransferOutput) String() string {
 
 // GoString returns the string representation
 func (s CancelCertificateTransferOutput) GoString() string {
+	return s.String()
+}
+
+type CancelDetectMitigationActionsTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the task.
+	//
+	// TaskId is a required field
+	TaskId *string `location:"uri" locationName:"taskId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelDetectMitigationActionsTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelDetectMitigationActionsTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelDetectMitigationActionsTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelDetectMitigationActionsTaskInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *CancelDetectMitigationActionsTaskInput) SetTaskId(v string) *CancelDetectMitigationActionsTaskInput {
+	s.TaskId = &v
+	return s
+}
+
+type CancelDetectMitigationActionsTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelDetectMitigationActionsTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelDetectMitigationActionsTaskOutput) GoString() string {
 	return s.String()
 }
 
@@ -27004,6 +28358,141 @@ func (s *CreateCertificateFromCsrOutput) SetCertificatePem(v string) *CreateCert
 	return s
 }
 
+type CreateCustomMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// Each custom metric must have a unique client request token. If you try to
+	// create a new custom metric that already exists with a different token, an
+	// exception occurs. If you omit this value, AWS SDKs will automatically generate
+	// a unique client request.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Field represents a friendly name in the console for the custom metric; it
+	// doesn't have to be unique. Don't use this name as the metric identifier in
+	// the device metric report. Can be updated once defined.
+	DisplayName *string `locationName:"displayName" type:"string"`
+
+	// The name of the custom metric. This will be used in the metric report submitted
+	// from the device/thing. Shouldn't begin with aws:. Cannot be updated once
+	// defined.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+
+	// The type of the custom metric. Types include string-list, ip-address-list,
+	// number-list, and number.
+	//
+	// MetricType is a required field
+	MetricType *string `locationName:"metricType" type:"string" required:"true" enum:"CustomMetricType"`
+
+	// Metadata that can be used to manage the custom metric.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateCustomMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomMetricInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+	if s.MetricType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricType"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateCustomMetricInput) SetClientRequestToken(v string) *CreateCustomMetricInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateCustomMetricInput) SetDisplayName(v string) *CreateCustomMetricInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CreateCustomMetricInput) SetMetricName(v string) *CreateCustomMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricType sets the MetricType field's value.
+func (s *CreateCustomMetricInput) SetMetricType(v string) *CreateCustomMetricInput {
+	s.MetricType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCustomMetricInput) SetTags(v []*Tag) *CreateCustomMetricInput {
+	s.Tags = v
+	return s
+}
+
+type CreateCustomMetricOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the custom metric, e.g. arn:aws-partition:iot:region:accountId:custommetric/metricName
+	MetricArn *string `locationName:"metricArn" type:"string"`
+
+	// The name of the custom metric to be used in the metric report.
+	MetricName *string `locationName:"metricName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateCustomMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomMetricOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricArn sets the MetricArn field's value.
+func (s *CreateCustomMetricOutput) SetMetricArn(v string) *CreateCustomMetricOutput {
+	s.MetricArn = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CreateCustomMetricOutput) SetMetricName(v string) *CreateCustomMetricOutput {
+	s.MetricName = &v
+	return s
+}
+
 type CreateDimensionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27116,7 +28605,7 @@ func (s *CreateDimensionInput) SetType(v string) *CreateDimensionInput {
 type CreateDimensionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN (Amazon resource name) of the created dimension.
+	// The Amazon Resource Name (ARN) of the created dimension.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// A unique identifier for the dimension.
@@ -28975,20 +30464,19 @@ func (s *CreateRoleAliasOutput) SetRoleAliasArn(v string) *CreateRoleAliasOutput
 type CreateScheduledAuditInput struct {
 	_ struct{} `type:"structure"`
 
-	// The day of the month on which the scheduled audit takes place. Can be "1"
-	// through "31" or "LAST". This field is required if the "frequency" parameter
-	// is set to "MONTHLY". If days 29-31 are specified, and the month does not
-	// have that many days, the audit takes place on the "LAST" day of the month.
+	// The day of the month on which the scheduled audit takes place. This can be
+	// "1" through "31" or "LAST". This field is required if the "frequency" parameter
+	// is set to MONTHLY. If days 29 to 31 are specified, and the month doesn't
+	// have that many days, the audit takes place on the LAST day of the month.
 	DayOfMonth *string `locationName:"dayOfMonth" type:"string"`
 
-	// The day of the week on which the scheduled audit takes place. Can be one
-	// of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is required
-	// if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+	// The day of the week on which the scheduled audit takes place, either SUN,
+	// MON, TUE, WED, THU, FRI, or SAT. This field is required if the frequency
+	// parameter is set to WEEKLY or BIWEEKLY.
 	DayOfWeek *string `locationName:"dayOfWeek" type:"string" enum:"DayOfWeek"`
 
-	// How often the scheduled audit takes place. Can be one of "DAILY", "WEEKLY",
-	// "BIWEEKLY" or "MONTHLY". The start time of each audit is determined by the
-	// system.
+	// How often the scheduled audit takes place, either DAILY, WEEKLY, BIWEEKLY
+	// or MONTHLY. The start time of each audit is determined by the system.
 	//
 	// Frequency is a required field
 	Frequency *string `locationName:"frequency" type:"string" required:"true" enum:"AuditFrequency"`
@@ -29118,14 +30606,16 @@ type CreateSecurityProfileInput struct {
 	//
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
-	// any metric specified here.
+	// any metric specified here. Can be used with custom metrics; cannot be used
+	// with dimensions.
 	//
 	// Deprecated: Use additionalMetricsToRetainV2.
 	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
 
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
-	// any metric specified here.
+	// any metric specified here. Can be used with custom metrics; cannot be used
+	// with dimensions.
 	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Specifies the destinations to which alerts are sent. (Alerts are always sent
@@ -30430,6 +31920,61 @@ func (s *DeleteConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *DeleteConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type DeleteCustomMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom metric.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCustomMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomMetricInput"}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DeleteCustomMetricInput) SetMetricName(v string) *DeleteCustomMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+type DeleteCustomMetricOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCustomMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomMetricOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDimensionInput struct {
@@ -32729,6 +34274,118 @@ func (s *DescribeCertificateOutput) SetCertificateDescription(v *CertificateDesc
 	return s
 }
 
+type DescribeCustomMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom metric.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeCustomMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeCustomMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeCustomMetricInput"}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DescribeCustomMetricInput) SetMetricName(v string) *DescribeCustomMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+type DescribeCustomMetricOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date of the custom metric in milliseconds since epoch.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// Field represents a friendly name in the console for the custom metric; doesn't
+	// have to be unique. Don't use this name as the metric identifier in the device
+	// metric report. Can be updated.
+	DisplayName *string `locationName:"displayName" type:"string"`
+
+	// The time the custom metric was last modified in milliseconds since epoch.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The Amazon Resource Number (ARN) of the custom metric.
+	MetricArn *string `locationName:"metricArn" type:"string"`
+
+	// The name of the custom metric.
+	MetricName *string `locationName:"metricName" min:"1" type:"string"`
+
+	// The type of the custom metric. Types include string-list, ip-address-list,
+	// number-list, and number.
+	MetricType *string `locationName:"metricType" type:"string" enum:"CustomMetricType"`
+}
+
+// String returns the string representation
+func (s DescribeCustomMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomMetricOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DescribeCustomMetricOutput) SetCreationDate(v time.Time) *DescribeCustomMetricOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *DescribeCustomMetricOutput) SetDisplayName(v string) *DescribeCustomMetricOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *DescribeCustomMetricOutput) SetLastModifiedDate(v time.Time) *DescribeCustomMetricOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetMetricArn sets the MetricArn field's value.
+func (s *DescribeCustomMetricOutput) SetMetricArn(v string) *DescribeCustomMetricOutput {
+	s.MetricArn = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DescribeCustomMetricOutput) SetMetricName(v string) *DescribeCustomMetricOutput {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricType sets the MetricType field's value.
+func (s *DescribeCustomMetricOutput) SetMetricType(v string) *DescribeCustomMetricOutput {
+	s.MetricType = &v
+	return s
+}
+
 type DescribeDefaultAuthorizerInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -32763,6 +34420,70 @@ func (s DescribeDefaultAuthorizerOutput) GoString() string {
 // SetAuthorizerDescription sets the AuthorizerDescription field's value.
 func (s *DescribeDefaultAuthorizerOutput) SetAuthorizerDescription(v *AuthorizerDescription) *DescribeDefaultAuthorizerOutput {
 	s.AuthorizerDescription = v
+	return s
+}
+
+type DescribeDetectMitigationActionsTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the task.
+	//
+	// TaskId is a required field
+	TaskId *string `location:"uri" locationName:"taskId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDetectMitigationActionsTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDetectMitigationActionsTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDetectMitigationActionsTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDetectMitigationActionsTaskInput"}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *DescribeDetectMitigationActionsTaskInput) SetTaskId(v string) *DescribeDetectMitigationActionsTaskInput {
+	s.TaskId = &v
+	return s
+}
+
+type DescribeDetectMitigationActionsTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of a task.
+	TaskSummary *DetectMitigationActionsTaskSummary `locationName:"taskSummary" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDetectMitigationActionsTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDetectMitigationActionsTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetTaskSummary sets the TaskSummary field's value.
+func (s *DescribeDetectMitigationActionsTaskOutput) SetTaskSummary(v *DetectMitigationActionsTaskSummary) *DescribeDetectMitigationActionsTaskOutput {
+	s.TaskSummary = v
 	return s
 }
 
@@ -32810,7 +34531,7 @@ func (s *DescribeDimensionInput) SetName(v string) *DescribeDimensionInput {
 type DescribeDimensionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN (Amazon resource name) for the dimension.
+	// The Amazon Resource Name (ARN) for the dimension.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date the dimension was created.
@@ -33874,17 +35595,17 @@ func (s *DescribeScheduledAuditInput) SetScheduledAuditName(v string) *DescribeS
 type DescribeScheduledAuditOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The day of the month on which the scheduled audit takes place. Will be "1"
-	// through "31" or "LAST". If days 29-31 are specified, and the month does not
-	// have that many days, the audit takes place on the "LAST" day of the month.
+	// The day of the month on which the scheduled audit takes place. This is will
+	// be 1 through 31 or LAST. If days 29-31 are specified, and the month does
+	// not have that many days, the audit takes place on the LAST day of the month.
 	DayOfMonth *string `locationName:"dayOfMonth" type:"string"`
 
-	// The day of the week on which the scheduled audit takes place. One of "SUN",
-	// "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+	// The day of the week on which the scheduled audit takes place, either one
+	// of SUN, MON, TUE, WED, THU, FRI, or SAT.
 	DayOfWeek *string `locationName:"dayOfWeek" type:"string" enum:"DayOfWeek"`
 
-	// How often the scheduled audit takes place. One of "DAILY", "WEEKLY", "BIWEEKLY",
-	// or "MONTHLY". The start time of each audit is determined by the system.
+	// How often the scheduled audit takes place, either one of DAILY, WEEKLY, BIWEEKLY,
+	// or MONTHLY. The start time of each audit is determined by the system.
 	Frequency *string `locationName:"frequency" type:"string" enum:"AuditFrequency"`
 
 	// The ARN of the scheduled audit.
@@ -35043,6 +36764,310 @@ func (s DetachThingPrincipalOutput) GoString() string {
 	return s.String()
 }
 
+// Describes which mitigation actions should be executed.
+type DetectMitigationActionExecution struct {
+	_ struct{} `type:"structure"`
+
+	// The friendly name that uniquely identifies the mitigation action.
+	ActionName *string `locationName:"actionName" type:"string"`
+
+	// The error code of a mitigation action.
+	ErrorCode *string `locationName:"errorCode" type:"string"`
+
+	// The date a mitigation action ended.
+	ExecutionEndDate *time.Time `locationName:"executionEndDate" type:"timestamp"`
+
+	// The date a mitigation action was started.
+	ExecutionStartDate *time.Time `locationName:"executionStartDate" type:"timestamp"`
+
+	// The message of a mitigation action.
+	Message *string `locationName:"message" type:"string"`
+
+	// The status of a mitigation action.
+	Status *string `locationName:"status" type:"string" enum:"DetectMitigationActionExecutionStatus"`
+
+	// The unique identifier of the task.
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
+
+	// The name of the thing.
+	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+
+	// The unique identifier of the violation.
+	ViolationId *string `locationName:"violationId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DetectMitigationActionExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectMitigationActionExecution) GoString() string {
+	return s.String()
+}
+
+// SetActionName sets the ActionName field's value.
+func (s *DetectMitigationActionExecution) SetActionName(v string) *DetectMitigationActionExecution {
+	s.ActionName = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *DetectMitigationActionExecution) SetErrorCode(v string) *DetectMitigationActionExecution {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetExecutionEndDate sets the ExecutionEndDate field's value.
+func (s *DetectMitigationActionExecution) SetExecutionEndDate(v time.Time) *DetectMitigationActionExecution {
+	s.ExecutionEndDate = &v
+	return s
+}
+
+// SetExecutionStartDate sets the ExecutionStartDate field's value.
+func (s *DetectMitigationActionExecution) SetExecutionStartDate(v time.Time) *DetectMitigationActionExecution {
+	s.ExecutionStartDate = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DetectMitigationActionExecution) SetMessage(v string) *DetectMitigationActionExecution {
+	s.Message = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DetectMitigationActionExecution) SetStatus(v string) *DetectMitigationActionExecution {
+	s.Status = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *DetectMitigationActionExecution) SetTaskId(v string) *DetectMitigationActionExecution {
+	s.TaskId = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *DetectMitigationActionExecution) SetThingName(v string) *DetectMitigationActionExecution {
+	s.ThingName = &v
+	return s
+}
+
+// SetViolationId sets the ViolationId field's value.
+func (s *DetectMitigationActionExecution) SetViolationId(v string) *DetectMitigationActionExecution {
+	s.ViolationId = &v
+	return s
+}
+
+// The statistics of a mitigation action task.
+type DetectMitigationActionsTaskStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The actions that were performed.
+	ActionsExecuted *int64 `locationName:"actionsExecuted" type:"long"`
+
+	// The actions that failed.
+	ActionsFailed *int64 `locationName:"actionsFailed" type:"long"`
+
+	// The actions that were skipped.
+	ActionsSkipped *int64 `locationName:"actionsSkipped" type:"long"`
+}
+
+// String returns the string representation
+func (s DetectMitigationActionsTaskStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectMitigationActionsTaskStatistics) GoString() string {
+	return s.String()
+}
+
+// SetActionsExecuted sets the ActionsExecuted field's value.
+func (s *DetectMitigationActionsTaskStatistics) SetActionsExecuted(v int64) *DetectMitigationActionsTaskStatistics {
+	s.ActionsExecuted = &v
+	return s
+}
+
+// SetActionsFailed sets the ActionsFailed field's value.
+func (s *DetectMitigationActionsTaskStatistics) SetActionsFailed(v int64) *DetectMitigationActionsTaskStatistics {
+	s.ActionsFailed = &v
+	return s
+}
+
+// SetActionsSkipped sets the ActionsSkipped field's value.
+func (s *DetectMitigationActionsTaskStatistics) SetActionsSkipped(v int64) *DetectMitigationActionsTaskStatistics {
+	s.ActionsSkipped = &v
+	return s
+}
+
+// The summary of the mitigation action tasks.
+type DetectMitigationActionsTaskSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The definition of the actions.
+	ActionsDefinition []*MitigationAction `locationName:"actionsDefinition" type:"list"`
+
+	// Includes only active violations.
+	OnlyActiveViolationsIncluded *bool `locationName:"onlyActiveViolationsIncluded" type:"boolean"`
+
+	// Includes suppressed alerts.
+	SuppressedAlertsIncluded *bool `locationName:"suppressedAlertsIncluded" type:"boolean"`
+
+	// Specifies the ML Detect findings to which the mitigation actions are applied.
+	Target *DetectMitigationActionsTaskTarget `locationName:"target" type:"structure"`
+
+	// The date the task ended.
+	TaskEndTime *time.Time `locationName:"taskEndTime" type:"timestamp"`
+
+	// The unique identifier of the task.
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
+
+	// The date the task started.
+	TaskStartTime *time.Time `locationName:"taskStartTime" type:"timestamp"`
+
+	// The statistics of a mitigation action task.
+	TaskStatistics *DetectMitigationActionsTaskStatistics `locationName:"taskStatistics" type:"structure"`
+
+	// The status of the task.
+	TaskStatus *string `locationName:"taskStatus" type:"string" enum:"DetectMitigationActionsTaskStatus"`
+
+	// Specifies the time period of which violation events occurred between.
+	ViolationEventOccurrenceRange *ViolationEventOccurrenceRange `locationName:"violationEventOccurrenceRange" type:"structure"`
+}
+
+// String returns the string representation
+func (s DetectMitigationActionsTaskSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectMitigationActionsTaskSummary) GoString() string {
+	return s.String()
+}
+
+// SetActionsDefinition sets the ActionsDefinition field's value.
+func (s *DetectMitigationActionsTaskSummary) SetActionsDefinition(v []*MitigationAction) *DetectMitigationActionsTaskSummary {
+	s.ActionsDefinition = v
+	return s
+}
+
+// SetOnlyActiveViolationsIncluded sets the OnlyActiveViolationsIncluded field's value.
+func (s *DetectMitigationActionsTaskSummary) SetOnlyActiveViolationsIncluded(v bool) *DetectMitigationActionsTaskSummary {
+	s.OnlyActiveViolationsIncluded = &v
+	return s
+}
+
+// SetSuppressedAlertsIncluded sets the SuppressedAlertsIncluded field's value.
+func (s *DetectMitigationActionsTaskSummary) SetSuppressedAlertsIncluded(v bool) *DetectMitigationActionsTaskSummary {
+	s.SuppressedAlertsIncluded = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *DetectMitigationActionsTaskSummary) SetTarget(v *DetectMitigationActionsTaskTarget) *DetectMitigationActionsTaskSummary {
+	s.Target = v
+	return s
+}
+
+// SetTaskEndTime sets the TaskEndTime field's value.
+func (s *DetectMitigationActionsTaskSummary) SetTaskEndTime(v time.Time) *DetectMitigationActionsTaskSummary {
+	s.TaskEndTime = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *DetectMitigationActionsTaskSummary) SetTaskId(v string) *DetectMitigationActionsTaskSummary {
+	s.TaskId = &v
+	return s
+}
+
+// SetTaskStartTime sets the TaskStartTime field's value.
+func (s *DetectMitigationActionsTaskSummary) SetTaskStartTime(v time.Time) *DetectMitigationActionsTaskSummary {
+	s.TaskStartTime = &v
+	return s
+}
+
+// SetTaskStatistics sets the TaskStatistics field's value.
+func (s *DetectMitigationActionsTaskSummary) SetTaskStatistics(v *DetectMitigationActionsTaskStatistics) *DetectMitigationActionsTaskSummary {
+	s.TaskStatistics = v
+	return s
+}
+
+// SetTaskStatus sets the TaskStatus field's value.
+func (s *DetectMitigationActionsTaskSummary) SetTaskStatus(v string) *DetectMitigationActionsTaskSummary {
+	s.TaskStatus = &v
+	return s
+}
+
+// SetViolationEventOccurrenceRange sets the ViolationEventOccurrenceRange field's value.
+func (s *DetectMitigationActionsTaskSummary) SetViolationEventOccurrenceRange(v *ViolationEventOccurrenceRange) *DetectMitigationActionsTaskSummary {
+	s.ViolationEventOccurrenceRange = v
+	return s
+}
+
+// The target of a mitigation action task.
+type DetectMitigationActionsTaskTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the behavior.
+	BehaviorName *string `locationName:"behaviorName" min:"1" type:"string"`
+
+	// The name of the security profile.
+	SecurityProfileName *string `locationName:"securityProfileName" min:"1" type:"string"`
+
+	// The unique identifiers of the violations.
+	ViolationIds []*string `locationName:"violationIds" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DetectMitigationActionsTaskTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectMitigationActionsTaskTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectMitigationActionsTaskTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectMitigationActionsTaskTarget"}
+	if s.BehaviorName != nil && len(*s.BehaviorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BehaviorName", 1))
+	}
+	if s.SecurityProfileName != nil && len(*s.SecurityProfileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileName", 1))
+	}
+	if s.ViolationIds != nil && len(s.ViolationIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViolationIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBehaviorName sets the BehaviorName field's value.
+func (s *DetectMitigationActionsTaskTarget) SetBehaviorName(v string) *DetectMitigationActionsTaskTarget {
+	s.BehaviorName = &v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *DetectMitigationActionsTaskTarget) SetSecurityProfileName(v string) *DetectMitigationActionsTaskTarget {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetViolationIds sets the ViolationIds field's value.
+func (s *DetectMitigationActionsTaskTarget) SetViolationIds(v []*string) *DetectMitigationActionsTaskTarget {
+	s.ViolationIds = v
+	return s
+}
+
 // The input for the DisableTopicRuleRequest operation.
 type DisableTopicRuleInput struct {
 	_ struct{} `type:"structure"`
@@ -35514,12 +37539,12 @@ func (s *ElasticsearchAction) SetType(v string) *ElasticsearchAction {
 type EnableIoTLoggingParams struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the types of information to be logged.
+	// Specifies the type of information to be logged.
 	//
 	// LogLevel is a required field
 	LogLevel *string `locationName:"logLevel" type:"string" required:"true" enum:"LogLevel"`
 
-	// The ARN of the IAM role used for logging.
+	// The Amazon Resource Name (ARN) of the IAM role used for logging.
 	//
 	// RoleArnForLogging is a required field
 	RoleArnForLogging *string `locationName:"roleArnForLogging" min:"20" type:"string" required:"true"`
@@ -35924,6 +37949,97 @@ func (s *FirehoseAction) SetRoleArn(v string) *FirehoseAction {
 // SetSeparator sets the Separator field's value.
 func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
 	s.Separator = &v
+	return s
+}
+
+type GetBehaviorModelTrainingSummariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return at one time. The default is 25.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The name of the security profile.
+	SecurityProfileName *string `location:"querystring" locationName:"securityProfileName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetBehaviorModelTrainingSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBehaviorModelTrainingSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBehaviorModelTrainingSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBehaviorModelTrainingSummariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SecurityProfileName != nil && len(*s.SecurityProfileName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetBehaviorModelTrainingSummariesInput) SetMaxResults(v int64) *GetBehaviorModelTrainingSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBehaviorModelTrainingSummariesInput) SetNextToken(v string) *GetBehaviorModelTrainingSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *GetBehaviorModelTrainingSummariesInput) SetSecurityProfileName(v string) *GetBehaviorModelTrainingSummariesInput {
+	s.SecurityProfileName = &v
+	return s
+}
+
+type GetBehaviorModelTrainingSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of all ML Detect behaviors and their model status for a given Security
+	// Profile.
+	Summaries []*BehaviorModelTrainingSummary `locationName:"summaries" type:"list"`
+}
+
+// String returns the string representation
+func (s GetBehaviorModelTrainingSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBehaviorModelTrainingSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBehaviorModelTrainingSummariesOutput) SetNextToken(v string) *GetBehaviorModelTrainingSummariesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaries sets the Summaries field's value.
+func (s *GetBehaviorModelTrainingSummariesOutput) SetSummaries(v []*BehaviorModelTrainingSummary) *GetBehaviorModelTrainingSummariesOutput {
+	s.Summaries = v
 	return s
 }
 
@@ -38795,6 +40911,92 @@ func (s *JobSummary) SetThingGroupId(v string) *JobSummary {
 	return s
 }
 
+// Send messages to an Amazon Managed Streaming for Apache Kafka (Amazon MSK)
+// or self-managed Apache Kafka cluster.
+type KafkaAction struct {
+	_ struct{} `type:"structure"`
+
+	// Properties of the Apache Kafka producer client.
+	//
+	// ClientProperties is a required field
+	ClientProperties map[string]*string `locationName:"clientProperties" type:"map" required:"true"`
+
+	// The ARN of Kafka action's VPC TopicRuleDestination.
+	//
+	// DestinationArn is a required field
+	DestinationArn *string `locationName:"destinationArn" type:"string" required:"true"`
+
+	// The Kafka message key.
+	Key *string `locationName:"key" type:"string"`
+
+	// The Kafka message partition.
+	Partition *string `locationName:"partition" type:"string"`
+
+	// The Kafka topic for messages to be sent to the Kafka broker.
+	//
+	// Topic is a required field
+	Topic *string `locationName:"topic" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s KafkaAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KafkaAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KafkaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KafkaAction"}
+	if s.ClientProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientProperties"))
+	}
+	if s.DestinationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationArn"))
+	}
+	if s.Topic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Topic"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientProperties sets the ClientProperties field's value.
+func (s *KafkaAction) SetClientProperties(v map[string]*string) *KafkaAction {
+	s.ClientProperties = v
+	return s
+}
+
+// SetDestinationArn sets the DestinationArn field's value.
+func (s *KafkaAction) SetDestinationArn(v string) *KafkaAction {
+	s.DestinationArn = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *KafkaAction) SetKey(v string) *KafkaAction {
+	s.Key = &v
+	return s
+}
+
+// SetPartition sets the Partition field's value.
+func (s *KafkaAction) SetPartition(v string) *KafkaAction {
+	s.Partition = &v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *KafkaAction) SetTopic(v string) *KafkaAction {
+	s.Topic = &v
+	return s
+}
+
 // Describes a key pair.
 type KeyPair struct {
 	_ struct{} `type:"structure"`
@@ -38989,6 +41191,12 @@ func (s *LimitExceededException) RequestID() string {
 type ListActiveViolationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The criteria for a behavior.
+	BehaviorCriteriaType *string `location:"querystring" locationName:"behaviorCriteriaType" type:"string" enum:"BehaviorCriteriaType"`
+
+	// A list of all suppressed alerts.
+	ListSuppressedAlerts *bool `location:"querystring" locationName:"listSuppressedAlerts" type:"boolean"`
+
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -39030,6 +41238,18 @@ func (s *ListActiveViolationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBehaviorCriteriaType sets the BehaviorCriteriaType field's value.
+func (s *ListActiveViolationsInput) SetBehaviorCriteriaType(v string) *ListActiveViolationsInput {
+	s.BehaviorCriteriaType = &v
+	return s
+}
+
+// SetListSuppressedAlerts sets the ListSuppressedAlerts field's value.
+func (s *ListActiveViolationsInput) SetListSuppressedAlerts(v bool) *ListActiveViolationsInput {
+	s.ListSuppressedAlerts = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -40315,6 +42535,326 @@ func (s *ListCertificatesOutput) SetCertificates(v []*Certificate) *ListCertific
 // SetNextMarker sets the NextMarker field's value.
 func (s *ListCertificatesOutput) SetNextMarker(v string) *ListCertificatesOutput {
 	s.NextMarker = &v
+	return s
+}
+
+type ListCustomMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return at one time. The default is 25.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCustomMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCustomMetricsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCustomMetricsInput) SetMaxResults(v int64) *ListCustomMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomMetricsInput) SetNextToken(v string) *ListCustomMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCustomMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom metric.
+	MetricNames []*string `locationName:"metricNames" type:"list"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListCustomMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCustomMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricNames sets the MetricNames field's value.
+func (s *ListCustomMetricsOutput) SetMetricNames(v []*string) *ListCustomMetricsOutput {
+	s.MetricNames = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCustomMetricsOutput) SetNextToken(v string) *ListCustomMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDetectMitigationActionsExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time period for which ML Detect mitigation actions executions
+	// are returned.
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp"`
+
+	// The maximum number of results to return at one time. The default is 25.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// A filter to limit results to those found after the specified time. You must
+	// specify either the startTime and endTime or the taskId, but not both.
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp"`
+
+	// The unique identifier of the task.
+	TaskId *string `location:"querystring" locationName:"taskId" min:"1" type:"string"`
+
+	// The name of the thing whose mitigation actions are listed.
+	ThingName *string `location:"querystring" locationName:"thingName" min:"1" type:"string"`
+
+	// The unique identifier of the violation.
+	ViolationId *string `location:"querystring" locationName:"violationId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDetectMitigationActionsExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDetectMitigationActionsExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDetectMitigationActionsExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDetectMitigationActionsExecutionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 1))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+	if s.ViolationId != nil && len(*s.ViolationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViolationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetEndTime(v time.Time) *ListDetectMitigationActionsExecutionsInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetMaxResults(v int64) *ListDetectMitigationActionsExecutionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetNextToken(v string) *ListDetectMitigationActionsExecutionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetStartTime(v time.Time) *ListDetectMitigationActionsExecutionsInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetTaskId(v string) *ListDetectMitigationActionsExecutionsInput {
+	s.TaskId = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetThingName(v string) *ListDetectMitigationActionsExecutionsInput {
+	s.ThingName = &v
+	return s
+}
+
+// SetViolationId sets the ViolationId field's value.
+func (s *ListDetectMitigationActionsExecutionsInput) SetViolationId(v string) *ListDetectMitigationActionsExecutionsInput {
+	s.ViolationId = &v
+	return s
+}
+
+type ListDetectMitigationActionsExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of actions executions.
+	ActionsExecutions []*DetectMitigationActionExecution `locationName:"actionsExecutions" type:"list"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDetectMitigationActionsExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDetectMitigationActionsExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetActionsExecutions sets the ActionsExecutions field's value.
+func (s *ListDetectMitigationActionsExecutionsOutput) SetActionsExecutions(v []*DetectMitigationActionExecution) *ListDetectMitigationActionsExecutionsOutput {
+	s.ActionsExecutions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDetectMitigationActionsExecutionsOutput) SetNextToken(v string) *ListDetectMitigationActionsExecutionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDetectMitigationActionsTasksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time period for which ML Detect mitigation actions tasks are
+	// returned.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" required:"true"`
+
+	// The maximum number of results to return at one time. The default is 25.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// A filter to limit results to those found after the specified time. You must
+	// specify either the startTime and endTime or the taskId, but not both.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `location:"querystring" locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s ListDetectMitigationActionsTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDetectMitigationActionsTasksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDetectMitigationActionsTasksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDetectMitigationActionsTasksInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ListDetectMitigationActionsTasksInput) SetEndTime(v time.Time) *ListDetectMitigationActionsTasksInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDetectMitigationActionsTasksInput) SetMaxResults(v int64) *ListDetectMitigationActionsTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDetectMitigationActionsTasksInput) SetNextToken(v string) *ListDetectMitigationActionsTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ListDetectMitigationActionsTasksInput) SetStartTime(v time.Time) *ListDetectMitigationActionsTasksInput {
+	s.StartTime = &v
+	return s
+}
+
+type ListDetectMitigationActionsTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that can be used to retrieve the next set of results, or null if
+	// there are no additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The collection of ML Detect mitigation tasks that matched the filter criteria.
+	Tasks []*DetectMitigationActionsTaskSummary `locationName:"tasks" type:"list"`
+}
+
+// String returns the string representation
+func (s ListDetectMitigationActionsTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDetectMitigationActionsTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDetectMitigationActionsTasksOutput) SetNextToken(v string) *ListDetectMitigationActionsTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *ListDetectMitigationActionsTasksOutput) SetTasks(v []*DetectMitigationActionsTaskSummary) *ListDetectMitigationActionsTasksOutput {
+	s.Tasks = v
 	return s
 }
 
@@ -42103,10 +44643,14 @@ type ListSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
 	// A filter to limit results to the security profiles that use the defined dimension.
+	// Cannot be used with metricName
 	DimensionName *string `location:"querystring" locationName:"dimensionName" min:"1" type:"string"`
 
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The name of the custom metric. Cannot be used with dimensionName.
+	MetricName *string `location:"querystring" locationName:"metricName" min:"1" type:"string"`
 
 	// The token for the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -42131,6 +44675,9 @@ func (s *ListSecurityProfilesInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -42147,6 +44694,12 @@ func (s *ListSecurityProfilesInput) SetDimensionName(v string) *ListSecurityProf
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListSecurityProfilesInput) SetMaxResults(v int64) *ListSecurityProfilesInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *ListSecurityProfilesInput) SetMetricName(v string) *ListSecurityProfilesInput {
+	s.MetricName = &v
 	return s
 }
 
@@ -43732,10 +46285,16 @@ func (s *ListV2LoggingLevelsOutput) SetNextToken(v string) *ListV2LoggingLevelsO
 type ListViolationEventsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The criteria for a behavior.
+	BehaviorCriteriaType *string `location:"querystring" locationName:"behaviorCriteriaType" type:"string" enum:"BehaviorCriteriaType"`
+
 	// The end time for the alerts to be listed.
 	//
 	// EndTime is a required field
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp" required:"true"`
+
+	// A list of all suppressed alerts.
+	ListSuppressedAlerts *bool `location:"querystring" locationName:"listSuppressedAlerts" type:"boolean"`
 
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -43791,9 +46350,21 @@ func (s *ListViolationEventsInput) Validate() error {
 	return nil
 }
 
+// SetBehaviorCriteriaType sets the BehaviorCriteriaType field's value.
+func (s *ListViolationEventsInput) SetBehaviorCriteriaType(v string) *ListViolationEventsInput {
+	s.BehaviorCriteriaType = &v
+	return s
+}
+
 // SetEndTime sets the EndTime field's value.
 func (s *ListViolationEventsInput) SetEndTime(v time.Time) *ListViolationEventsInput {
 	s.EndTime = &v
+	return s
+}
+
+// SetListSuppressedAlerts sets the ListSuppressedAlerts field's value.
+func (s *ListViolationEventsInput) SetListSuppressedAlerts(v bool) *ListViolationEventsInput {
+	s.ListSuppressedAlerts = &v
 	return s
 }
 
@@ -43991,6 +46562,46 @@ func (s *LoggingOptionsPayload) SetRoleArn(v string) *LoggingOptionsPayload {
 	return s
 }
 
+// The configuration of an ML Detect Security Profile.
+type MachineLearningDetectionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The sensitivity of anomalous behavior evaluation. Can be Low, Medium, or
+	// High.
+	//
+	// ConfidenceLevel is a required field
+	ConfidenceLevel *string `locationName:"confidenceLevel" type:"string" required:"true" enum:"ConfidenceLevel"`
+}
+
+// String returns the string representation
+func (s MachineLearningDetectionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MachineLearningDetectionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MachineLearningDetectionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MachineLearningDetectionConfig"}
+	if s.ConfidenceLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfidenceLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfidenceLevel sets the ConfidenceLevel field's value.
+func (s *MachineLearningDetectionConfig) SetConfidenceLevel(v string) *MachineLearningDetectionConfig {
+	s.ConfidenceLevel = &v
+	return s
+}
+
 // The policy documentation is not valid.
 type MalformedPolicyException struct {
 	_            struct{}                  `type:"structure"`
@@ -44113,7 +46724,7 @@ type MetricToRetain struct {
 	// Metric is a required field
 	Metric *string `locationName:"metric" type:"string" required:"true"`
 
-	// The dimension of a metric.
+	// The dimension of a metric. This can't be used with custom metrics.
 	MetricDimension *MetricDimension `locationName:"metricDimension" type:"structure"`
 }
 
@@ -44169,9 +46780,18 @@ type MetricValue struct {
 	// that numeric value to be compared with the metric.
 	Count *int64 `locationName:"count" type:"long"`
 
+	// The numeral value of a metric.
+	Number *float64 `locationName:"number" type:"double"`
+
+	// The numeral values of a metric.
+	Numbers []*float64 `locationName:"numbers" type:"list"`
+
 	// If the comparisonOperator calls for a set of ports, use this to specify that
 	// set to be compared with the metric.
 	Ports []*int64 `locationName:"ports" type:"list"`
+
+	// The string values of a metric.
+	Strings []*string `locationName:"strings" type:"list"`
 }
 
 // String returns the string representation
@@ -44196,9 +46816,27 @@ func (s *MetricValue) SetCount(v int64) *MetricValue {
 	return s
 }
 
+// SetNumber sets the Number field's value.
+func (s *MetricValue) SetNumber(v float64) *MetricValue {
+	s.Number = &v
+	return s
+}
+
+// SetNumbers sets the Numbers field's value.
+func (s *MetricValue) SetNumbers(v []*float64) *MetricValue {
+	s.Numbers = v
+	return s
+}
+
 // SetPorts sets the Ports field's value.
 func (s *MetricValue) SetPorts(v []*int64) *MetricValue {
 	s.Ports = v
+	return s
+}
+
+// SetStrings sets the Strings field's value.
+func (s *MetricValue) SetStrings(v []*string) *MetricValue {
+	s.Strings = v
 	return s
 }
 
@@ -44312,8 +46950,8 @@ type MitigationActionParams struct {
 	EnableIoTLoggingParams *EnableIoTLoggingParams `locationName:"enableIoTLoggingParams" type:"structure"`
 
 	// Parameters to define a mitigation action that publishes findings to Amazon
-	// SNS. You can implement your own custom actions in response to the Amazon
-	// SNS messages.
+	// Simple Notification Service (Amazon SNS. You can implement your own custom
+	// actions in response to the Amazon SNS messages.
 	PublishFindingToSnsParams *PublishFindingToSnsParams `locationName:"publishFindingToSnsParams" type:"structure"`
 
 	// Parameters to define a mitigation action that adds a blank policy to restrict
@@ -47331,7 +49969,7 @@ type SecurityProfileIdentifier struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The name you have given to the security profile.
+	// The name you've given to the security profile.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -48159,7 +50797,7 @@ type StartAuditMitigationActionsTaskInput struct {
 
 	// Specifies the audit findings to which the mitigation actions are applied.
 	// You can apply them to a type of audit check, to all findings from an audit,
-	// or to a speecific set of findings.
+	// or to a specific set of findings.
 	//
 	// Target is a required field
 	Target *AuditMitigationActionsTaskTarget `locationName:"target" type:"structure" required:"true"`
@@ -48255,6 +50893,153 @@ func (s StartAuditMitigationActionsTaskOutput) GoString() string {
 
 // SetTaskId sets the TaskId field's value.
 func (s *StartAuditMitigationActionsTaskOutput) SetTaskId(v string) *StartAuditMitigationActionsTaskOutput {
+	s.TaskId = &v
+	return s
+}
+
+type StartDetectMitigationActionsTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The actions to be performed when a device has unexpected behavior.
+	//
+	// Actions is a required field
+	Actions []*string `locationName:"actions" min:"1" type:"list" required:"true"`
+
+	// Each mitigation action task must have a unique client request token. If you
+	// try to create a new task with the same token as a task that already exists,
+	// an exception occurs. If you omit this value, AWS SDKs will automatically
+	// generate a unique client request.
+	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies to list only active violations.
+	IncludeOnlyActiveViolations *bool `locationName:"includeOnlyActiveViolations" type:"boolean"`
+
+	// Specifies to include suppressed alerts.
+	IncludeSuppressedAlerts *bool `locationName:"includeSuppressedAlerts" type:"boolean"`
+
+	// Specifies the ML Detect findings to which the mitigation actions are applied.
+	//
+	// Target is a required field
+	Target *DetectMitigationActionsTaskTarget `locationName:"target" type:"structure" required:"true"`
+
+	// The unique identifier of the task.
+	//
+	// TaskId is a required field
+	TaskId *string `location:"uri" locationName:"taskId" min:"1" type:"string" required:"true"`
+
+	// Specifies the time period of which violation events occurred between.
+	ViolationEventOccurrenceRange *ViolationEventOccurrenceRange `locationName:"violationEventOccurrenceRange" type:"structure"`
+}
+
+// String returns the string representation
+func (s StartDetectMitigationActionsTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartDetectMitigationActionsTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDetectMitigationActionsTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDetectMitigationActionsTaskInput"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.Actions != nil && len(s.Actions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Target == nil {
+		invalidParams.Add(request.NewErrParamRequired("Target"))
+	}
+	if s.TaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskId"))
+	}
+	if s.TaskId != nil && len(*s.TaskId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskId", 1))
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ViolationEventOccurrenceRange != nil {
+		if err := s.ViolationEventOccurrenceRange.Validate(); err != nil {
+			invalidParams.AddNested("ViolationEventOccurrenceRange", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetActions(v []*string) *StartDetectMitigationActionsTaskInput {
+	s.Actions = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetClientRequestToken(v string) *StartDetectMitigationActionsTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetIncludeOnlyActiveViolations sets the IncludeOnlyActiveViolations field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetIncludeOnlyActiveViolations(v bool) *StartDetectMitigationActionsTaskInput {
+	s.IncludeOnlyActiveViolations = &v
+	return s
+}
+
+// SetIncludeSuppressedAlerts sets the IncludeSuppressedAlerts field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetIncludeSuppressedAlerts(v bool) *StartDetectMitigationActionsTaskInput {
+	s.IncludeSuppressedAlerts = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetTarget(v *DetectMitigationActionsTaskTarget) *StartDetectMitigationActionsTaskInput {
+	s.Target = v
+	return s
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetTaskId(v string) *StartDetectMitigationActionsTaskInput {
+	s.TaskId = &v
+	return s
+}
+
+// SetViolationEventOccurrenceRange sets the ViolationEventOccurrenceRange field's value.
+func (s *StartDetectMitigationActionsTaskInput) SetViolationEventOccurrenceRange(v *ViolationEventOccurrenceRange) *StartDetectMitigationActionsTaskInput {
+	s.ViolationEventOccurrenceRange = v
+	return s
+}
+
+type StartDetectMitigationActionsTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the task.
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartDetectMitigationActionsTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartDetectMitigationActionsTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetTaskId sets the TaskId field's value.
+func (s *StartDetectMitigationActionsTaskOutput) SetTaskId(v string) *StartDetectMitigationActionsTaskOutput {
 	s.TaskId = &v
 	return s
 }
@@ -48494,12 +51279,12 @@ func (s *StartThingRegistrationTaskOutput) SetTaskId(v string) *StartThingRegist
 	return s
 }
 
-// A statistical ranking (percentile) which indicates a threshold value by which
+// A statistical ranking (percentile) that indicates a threshold value by which
 // a behavior is determined to be in compliance or in violation of the behavior.
 type StatisticalThreshold struct {
 	_ struct{} `type:"structure"`
 
-	// The percentile which resolves to a threshold value by which compliance with
+	// The percentile that resolves to a threshold value by which compliance with
 	// a behavior is determined. Metrics are collected over the specified period
 	// (durationSeconds) from all reporting devices in your account and statistical
 	// ranks are calculated. Then, the measurements from a device are collected
@@ -50626,8 +53411,14 @@ type TopicRuleDestination struct {
 	// The topic rule destination URL.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The date and time when the topic rule destination was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
 	// Properties of the HTTP URL.
 	HttpUrlProperties *HttpUrlDestinationProperties `locationName:"httpUrlProperties" type:"structure"`
+
+	// The date and time when the topic rule destination was last updated.
+	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The status of the topic rule destination. Valid values are:
 	//
@@ -50660,6 +53451,9 @@ type TopicRuleDestination struct {
 	// Additional details or reason why the topic rule destination is in the current
 	// status.
 	StatusReason *string `locationName:"statusReason" type:"string"`
+
+	// Properties of the virtual private cloud (VPC) connection.
+	VpcProperties *VpcDestinationProperties `locationName:"vpcProperties" type:"structure"`
 }
 
 // String returns the string representation
@@ -50678,9 +53472,21 @@ func (s *TopicRuleDestination) SetArn(v string) *TopicRuleDestination {
 	return s
 }
 
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *TopicRuleDestination) SetCreatedAt(v time.Time) *TopicRuleDestination {
+	s.CreatedAt = &v
+	return s
+}
+
 // SetHttpUrlProperties sets the HttpUrlProperties field's value.
 func (s *TopicRuleDestination) SetHttpUrlProperties(v *HttpUrlDestinationProperties) *TopicRuleDestination {
 	s.HttpUrlProperties = v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *TopicRuleDestination) SetLastUpdatedAt(v time.Time) *TopicRuleDestination {
+	s.LastUpdatedAt = &v
 	return s
 }
 
@@ -50696,12 +53502,21 @@ func (s *TopicRuleDestination) SetStatusReason(v string) *TopicRuleDestination {
 	return s
 }
 
+// SetVpcProperties sets the VpcProperties field's value.
+func (s *TopicRuleDestination) SetVpcProperties(v *VpcDestinationProperties) *TopicRuleDestination {
+	s.VpcProperties = v
+	return s
+}
+
 // Configuration of the topic rule destination.
 type TopicRuleDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Configuration of the HTTP URL.
 	HttpUrlConfiguration *HttpUrlDestinationConfiguration `locationName:"httpUrlConfiguration" type:"structure"`
+
+	// Configuration of the virtual private cloud (VPC) connection.
+	VpcConfiguration *VpcDestinationConfiguration `locationName:"vpcConfiguration" type:"structure"`
 }
 
 // String returns the string representation
@@ -50722,6 +53537,11 @@ func (s *TopicRuleDestinationConfiguration) Validate() error {
 			invalidParams.AddNested("HttpUrlConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -50735,6 +53555,12 @@ func (s *TopicRuleDestinationConfiguration) SetHttpUrlConfiguration(v *HttpUrlDe
 	return s
 }
 
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *TopicRuleDestinationConfiguration) SetVpcConfiguration(v *VpcDestinationConfiguration) *TopicRuleDestinationConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
 // Information about the topic rule destination.
 type TopicRuleDestinationSummary struct {
 	_ struct{} `type:"structure"`
@@ -50742,8 +53568,14 @@ type TopicRuleDestinationSummary struct {
 	// The topic rule destination ARN.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The date and time when the topic rule destination was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
 	// Information about the HTTP URL.
 	HttpUrlSummary *HttpUrlDestinationSummary `locationName:"httpUrlSummary" type:"structure"`
+
+	// The date and time when the topic rule destination was last updated.
+	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
 	// The status of the topic rule destination. Valid values are:
 	//
@@ -50775,6 +53607,9 @@ type TopicRuleDestinationSummary struct {
 
 	// The reason the topic rule destination is in the current status.
 	StatusReason *string `locationName:"statusReason" type:"string"`
+
+	// Information about the virtual private cloud (VPC) connection.
+	VpcDestinationSummary *VpcDestinationSummary `locationName:"vpcDestinationSummary" type:"structure"`
 }
 
 // String returns the string representation
@@ -50793,9 +53628,21 @@ func (s *TopicRuleDestinationSummary) SetArn(v string) *TopicRuleDestinationSumm
 	return s
 }
 
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *TopicRuleDestinationSummary) SetCreatedAt(v time.Time) *TopicRuleDestinationSummary {
+	s.CreatedAt = &v
+	return s
+}
+
 // SetHttpUrlSummary sets the HttpUrlSummary field's value.
 func (s *TopicRuleDestinationSummary) SetHttpUrlSummary(v *HttpUrlDestinationSummary) *TopicRuleDestinationSummary {
 	s.HttpUrlSummary = v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *TopicRuleDestinationSummary) SetLastUpdatedAt(v time.Time) *TopicRuleDestinationSummary {
+	s.LastUpdatedAt = &v
 	return s
 }
 
@@ -50808,6 +53655,12 @@ func (s *TopicRuleDestinationSummary) SetStatus(v string) *TopicRuleDestinationS
 // SetStatusReason sets the StatusReason field's value.
 func (s *TopicRuleDestinationSummary) SetStatusReason(v string) *TopicRuleDestinationSummary {
 	s.StatusReason = &v
+	return s
+}
+
+// SetVpcDestinationSummary sets the VpcDestinationSummary field's value.
+func (s *TopicRuleDestinationSummary) SetVpcDestinationSummary(v *VpcDestinationSummary) *TopicRuleDestinationSummary {
+	s.VpcDestinationSummary = v
 	return s
 }
 
@@ -51380,7 +54233,7 @@ type UpdateAccountAuditConfigurationInput struct {
 	// When a check is disabled, any data collected so far in relation to the check
 	// is deleted.
 	//
-	// You cannot disable a check if it is used by any scheduled audit. You must
+	// You cannot disable a check if it's used by any scheduled audit. You must
 	// first delete the check from the scheduled audit or delete the scheduled audit
 	// itself.
 	//
@@ -51391,9 +54244,9 @@ type UpdateAccountAuditConfigurationInput struct {
 	// Information about the targets to which audit notifications are sent.
 	AuditNotificationTargetConfigurations map[string]*AuditNotificationTarget `locationName:"auditNotificationTargetConfigurations" type:"map"`
 
-	// The ARN of the role that grants permission to AWS IoT to access information
-	// about your devices, policies, certificates and other items as required when
-	// performing an audit.
+	// The Amazon Resource Name (ARN) of the role that grants permission to AWS
+	// IoT to access information about your devices, policies, certificates, and
+	// other items as required when performing an audit.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 }
 
@@ -51870,7 +54723,7 @@ func (s UpdateCACertificateOutput) GoString() string {
 type UpdateCACertificateParams struct {
 	_ struct{} `type:"structure"`
 
-	// The action that you want to apply to the CA cerrtificate. The only supported
+	// The action that you want to apply to the CA certificate. The only supported
 	// value is DEACTIVATE.
 	//
 	// Action is a required field
@@ -51985,12 +54838,138 @@ func (s UpdateCertificateOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateCustomMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// Field represents a friendly name in the console for the custom metric, it
+	// doesn't have to be unique. Don't use this name as the metric identifier in
+	// the device metric report. Can be updated.
+	//
+	// DisplayName is a required field
+	DisplayName *string `locationName:"displayName" type:"string" required:"true"`
+
+	// The name of the custom metric. Cannot be updated.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateCustomMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCustomMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCustomMetricInput"}
+	if s.DisplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DisplayName"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateCustomMetricInput) SetDisplayName(v string) *UpdateCustomMetricInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *UpdateCustomMetricInput) SetMetricName(v string) *UpdateCustomMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+type UpdateCustomMetricOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date of the custom metric in milliseconds since epoch.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// A friendly name in the console for the custom metric
+	DisplayName *string `locationName:"displayName" type:"string"`
+
+	// The time the custom metric was last modified in milliseconds since epoch.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The Amazon Resource Number (ARN) of the custom metric.
+	MetricArn *string `locationName:"metricArn" type:"string"`
+
+	// The name of the custom metric.
+	MetricName *string `locationName:"metricName" min:"1" type:"string"`
+
+	// The type of the custom metric. Types include string-list, ip-address-list,
+	// number-list, and number.
+	MetricType *string `locationName:"metricType" type:"string" enum:"CustomMetricType"`
+}
+
+// String returns the string representation
+func (s UpdateCustomMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCustomMetricOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *UpdateCustomMetricOutput) SetCreationDate(v time.Time) *UpdateCustomMetricOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateCustomMetricOutput) SetDisplayName(v string) *UpdateCustomMetricOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *UpdateCustomMetricOutput) SetLastModifiedDate(v time.Time) *UpdateCustomMetricOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetMetricArn sets the MetricArn field's value.
+func (s *UpdateCustomMetricOutput) SetMetricArn(v string) *UpdateCustomMetricOutput {
+	s.MetricArn = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *UpdateCustomMetricOutput) SetMetricName(v string) *UpdateCustomMetricOutput {
+	s.MetricName = &v
+	return s
+}
+
+// SetMetricType sets the MetricType field's value.
+func (s *UpdateCustomMetricOutput) SetMetricType(v string) *UpdateCustomMetricOutput {
+	s.MetricType = &v
+	return s
+}
+
 // Parameters to define a mitigation action that changes the state of the device
 // certificate to inactive.
 type UpdateDeviceCertificateParams struct {
 	_ struct{} `type:"structure"`
 
-	// The action that you want to apply to the device cerrtificate. The only supported
+	// The action that you want to apply to the device certificate. The only supported
 	// value is DEACTIVATE.
 	//
 	// Action is a required field
@@ -52090,7 +55069,7 @@ func (s *UpdateDimensionInput) SetStringValues(v []*string) *UpdateDimensionInpu
 type UpdateDimensionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN (Amazon resource name) of the created dimension.
+	// The Amazon Resource Name (ARN)of the created dimension.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date and time, in milliseconds since epoch, when the dimension was initially
@@ -52631,9 +55610,9 @@ func (s UpdateJobOutput) GoString() string {
 type UpdateMitigationActionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The friendly name for the mitigation action. You can't change the name by
-	// using UpdateMitigationAction. Instead, you must delete and re-create the
-	// mitigation action with the new name.
+	// The friendly name for the mitigation action. You cannot change the name by
+	// using UpdateMitigationAction. Instead, you must delete and recreate the mitigation
+	// action with the new name.
 	//
 	// ActionName is a required field
 	ActionName *string `location:"uri" locationName:"actionName" type:"string" required:"true"`
@@ -52947,20 +55926,19 @@ func (s *UpdateRoleAliasOutput) SetRoleAliasArn(v string) *UpdateRoleAliasOutput
 type UpdateScheduledAuditInput struct {
 	_ struct{} `type:"structure"`
 
-	// The day of the month on which the scheduled audit takes place. Can be "1"
-	// through "31" or "LAST". This field is required if the "frequency" parameter
-	// is set to "MONTHLY". If days 29-31 are specified, and the month does not
-	// have that many days, the audit takes place on the "LAST" day of the month.
+	// The day of the month on which the scheduled audit takes place. This can be
+	// 1 through 31 or LAST. This field is required if the frequency parameter is
+	// set to MONTHLY. If days 29-31 are specified, and the month does not have
+	// that many days, the audit takes place on the "LAST" day of the month.
 	DayOfMonth *string `locationName:"dayOfMonth" type:"string"`
 
-	// The day of the week on which the scheduled audit takes place. Can be one
-	// of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is required
-	// if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+	// The day of the week on which the scheduled audit takes place. This can be
+	// one of SUN, MON, TUE, WED, THU, FRI, or SAT. This field is required if the
+	// "frequency" parameter is set to WEEKLY or BIWEEKLY.
 	DayOfWeek *string `locationName:"dayOfWeek" type:"string" enum:"DayOfWeek"`
 
-	// How often the scheduled audit takes place. Can be one of "DAILY", "WEEKLY",
-	// "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by the
-	// system.
+	// How often the scheduled audit takes place, either DAILY, WEEKLY, BIWEEKLY,
+	// or MONTHLY. The start time of each audit is determined by the system.
 	Frequency *string `locationName:"frequency" type:"string" enum:"AuditFrequency"`
 
 	// The name of the scheduled audit. (Max. 128 chars)
@@ -53061,14 +56039,16 @@ type UpdateSecurityProfileInput struct {
 	//
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
-	// any metric specified here.
+	// any metric specified here. Can be used with custom metrics; cannot be used
+	// with dimensions.
 	//
 	// Deprecated: Use additionalMetricsToRetainV2.
 	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
 
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
-	// any metric specified here.
+	// any metric specified here. Can be used with custom metrics; cannot be used
+	// with dimensions.
 	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Where the alerts are sent. (Alerts are always sent to the console.)
@@ -53235,7 +56215,8 @@ type UpdateSecurityProfileOutput struct {
 
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
-	// any metric specified here.
+	// any metric specified here. Can be used with custom metrics; cannot be used
+	// with dimensions.
 	AdditionalMetricsToRetainV2 []*MetricToRetain `locationName:"additionalMetricsToRetainV2" type:"list"`
 
 	// Where the alerts are sent. (Alerts are always sent to the console.)
@@ -54058,7 +57039,7 @@ func (s *VersionsLimitExceededException) RequestID() string {
 type ViolationEvent struct {
 	_ struct{} `type:"structure"`
 
-	// The behavior which was violated.
+	// The behavior that was violated.
 	Behavior *Behavior `locationName:"behavior" type:"structure"`
 
 	// The value of the metric (the measurement).
@@ -54069,6 +57050,9 @@ type ViolationEvent struct {
 
 	// The name of the thing responsible for the violation event.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+
+	// The details of a violation event.
+	ViolationEventAdditionalInfo *ViolationEventAdditionalInfo `locationName:"violationEventAdditionalInfo" type:"structure"`
 
 	// The time the violation event occurred.
 	ViolationEventTime *time.Time `locationName:"violationEventTime" type:"timestamp"`
@@ -54114,6 +57098,12 @@ func (s *ViolationEvent) SetThingName(v string) *ViolationEvent {
 	return s
 }
 
+// SetViolationEventAdditionalInfo sets the ViolationEventAdditionalInfo field's value.
+func (s *ViolationEvent) SetViolationEventAdditionalInfo(v *ViolationEventAdditionalInfo) *ViolationEvent {
+	s.ViolationEventAdditionalInfo = v
+	return s
+}
+
 // SetViolationEventTime sets the ViolationEventTime field's value.
 func (s *ViolationEvent) SetViolationEventTime(v time.Time) *ViolationEvent {
 	s.ViolationEventTime = &v
@@ -54129,6 +57119,265 @@ func (s *ViolationEvent) SetViolationEventType(v string) *ViolationEvent {
 // SetViolationId sets the ViolationId field's value.
 func (s *ViolationEvent) SetViolationId(v string) *ViolationEvent {
 	s.ViolationId = &v
+	return s
+}
+
+// The details of a violation event.
+type ViolationEventAdditionalInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The sensitivity of anomalous behavior evaluation. Can be Low, Medium, or
+	// High.
+	ConfidenceLevel *string `locationName:"confidenceLevel" type:"string" enum:"ConfidenceLevel"`
+}
+
+// String returns the string representation
+func (s ViolationEventAdditionalInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ViolationEventAdditionalInfo) GoString() string {
+	return s.String()
+}
+
+// SetConfidenceLevel sets the ConfidenceLevel field's value.
+func (s *ViolationEventAdditionalInfo) SetConfidenceLevel(v string) *ViolationEventAdditionalInfo {
+	s.ConfidenceLevel = &v
+	return s
+}
+
+// Specifies the time period of which violation events occurred between.
+type ViolationEventOccurrenceRange struct {
+	_ struct{} `type:"structure"`
+
+	// The end date and time of a time period in which violation events occurred.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
+
+	// The start date and time of a time period in which violation events occurred.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s ViolationEventOccurrenceRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ViolationEventOccurrenceRange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ViolationEventOccurrenceRange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ViolationEventOccurrenceRange"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ViolationEventOccurrenceRange) SetEndTime(v time.Time) *ViolationEventOccurrenceRange {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ViolationEventOccurrenceRange) SetStartTime(v time.Time) *ViolationEventOccurrenceRange {
+	s.StartTime = &v
+	return s
+}
+
+// The configuration information for a virtual private cloud (VPC) destination.
+type VpcDestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a role that has permission to create and attach to elastic network
+	// interfaces (ENIs).
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The security groups of the VPC destination.
+	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
+
+	// The subnet IDs of the VPC destination.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
+
+	// The ID of the VPC.
+	//
+	// VpcId is a required field
+	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcDestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcDestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcDestinationConfiguration"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VpcDestinationConfiguration) SetRoleArn(v string) *VpcDestinationConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *VpcDestinationConfiguration) SetSecurityGroups(v []*string) *VpcDestinationConfiguration {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcDestinationConfiguration) SetSubnetIds(v []*string) *VpcDestinationConfiguration {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcDestinationConfiguration) SetVpcId(v string) *VpcDestinationConfiguration {
+	s.VpcId = &v
+	return s
+}
+
+// The properties of a virtual private cloud (VPC) destination.
+type VpcDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a role that has permission to create and attach to elastic network
+	// interfaces (ENIs).
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The security groups of the VPC destination.
+	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
+
+	// The subnet IDs of the VPC destination.
+	SubnetIds []*string `locationName:"subnetIds" type:"list"`
+
+	// The ID of the VPC.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation
+func (s VpcDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VpcDestinationProperties) SetRoleArn(v string) *VpcDestinationProperties {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *VpcDestinationProperties) SetSecurityGroups(v []*string) *VpcDestinationProperties {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcDestinationProperties) SetSubnetIds(v []*string) *VpcDestinationProperties {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcDestinationProperties) SetVpcId(v string) *VpcDestinationProperties {
+	s.VpcId = &v
+	return s
+}
+
+// The summary of a virtual private cloud (VPC) destination.
+type VpcDestinationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of a role that has permission to create and attach to elastic network
+	// interfaces (ENIs).
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The security groups of the VPC destination.
+	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
+
+	// The subnet IDs of the VPC destination.
+	SubnetIds []*string `locationName:"subnetIds" type:"list"`
+
+	// The ID of the VPC.
+	VpcId *string `locationName:"vpcId" type:"string"`
+}
+
+// String returns the string representation
+func (s VpcDestinationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcDestinationSummary) GoString() string {
+	return s.String()
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *VpcDestinationSummary) SetRoleArn(v string) *VpcDestinationSummary {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *VpcDestinationSummary) SetSecurityGroups(v []*string) *VpcDestinationSummary {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcDestinationSummary) SetSubnetIds(v []*string) *VpcDestinationSummary {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcDestinationSummary) SetVpcId(v string) *VpcDestinationSummary {
+	s.VpcId = &v
 	return s
 }
 
@@ -54458,6 +57707,26 @@ func AwsJobAbortCriteriaFailureType_Values() []string {
 }
 
 const (
+	// BehaviorCriteriaTypeStatic is a BehaviorCriteriaType enum value
+	BehaviorCriteriaTypeStatic = "STATIC"
+
+	// BehaviorCriteriaTypeStatistical is a BehaviorCriteriaType enum value
+	BehaviorCriteriaTypeStatistical = "STATISTICAL"
+
+	// BehaviorCriteriaTypeMachineLearning is a BehaviorCriteriaType enum value
+	BehaviorCriteriaTypeMachineLearning = "MACHINE_LEARNING"
+)
+
+// BehaviorCriteriaType_Values returns all elements of the BehaviorCriteriaType enum
+func BehaviorCriteriaType_Values() []string {
+	return []string{
+		BehaviorCriteriaTypeStatic,
+		BehaviorCriteriaTypeStatistical,
+		BehaviorCriteriaTypeMachineLearning,
+	}
+}
+
+const (
 	// CACertificateStatusActive is a CACertificateStatus enum value
 	CACertificateStatusActive = "ACTIVE"
 
@@ -54597,6 +57866,12 @@ const (
 
 	// ComparisonOperatorNotInPortSet is a ComparisonOperator enum value
 	ComparisonOperatorNotInPortSet = "not-in-port-set"
+
+	// ComparisonOperatorInSet is a ComparisonOperator enum value
+	ComparisonOperatorInSet = "in-set"
+
+	// ComparisonOperatorNotInSet is a ComparisonOperator enum value
+	ComparisonOperatorNotInSet = "not-in-set"
 )
 
 // ComparisonOperator_Values returns all elements of the ComparisonOperator enum
@@ -54610,6 +57885,52 @@ func ComparisonOperator_Values() []string {
 		ComparisonOperatorNotInCidrSet,
 		ComparisonOperatorInPortSet,
 		ComparisonOperatorNotInPortSet,
+		ComparisonOperatorInSet,
+		ComparisonOperatorNotInSet,
+	}
+}
+
+const (
+	// ConfidenceLevelLow is a ConfidenceLevel enum value
+	ConfidenceLevelLow = "LOW"
+
+	// ConfidenceLevelMedium is a ConfidenceLevel enum value
+	ConfidenceLevelMedium = "MEDIUM"
+
+	// ConfidenceLevelHigh is a ConfidenceLevel enum value
+	ConfidenceLevelHigh = "HIGH"
+)
+
+// ConfidenceLevel_Values returns all elements of the ConfidenceLevel enum
+func ConfidenceLevel_Values() []string {
+	return []string{
+		ConfidenceLevelLow,
+		ConfidenceLevelMedium,
+		ConfidenceLevelHigh,
+	}
+}
+
+const (
+	// CustomMetricTypeStringList is a CustomMetricType enum value
+	CustomMetricTypeStringList = "string-list"
+
+	// CustomMetricTypeIpAddressList is a CustomMetricType enum value
+	CustomMetricTypeIpAddressList = "ip-address-list"
+
+	// CustomMetricTypeNumberList is a CustomMetricType enum value
+	CustomMetricTypeNumberList = "number-list"
+
+	// CustomMetricTypeNumber is a CustomMetricType enum value
+	CustomMetricTypeNumber = "number"
+)
+
+// CustomMetricType_Values returns all elements of the CustomMetricType enum
+func CustomMetricType_Values() []string {
+	return []string{
+		CustomMetricTypeStringList,
+		CustomMetricTypeIpAddressList,
+		CustomMetricTypeNumberList,
+		CustomMetricTypeNumber,
 	}
 }
 
@@ -54646,6 +57967,54 @@ func DayOfWeek_Values() []string {
 		DayOfWeekThu,
 		DayOfWeekFri,
 		DayOfWeekSat,
+	}
+}
+
+const (
+	// DetectMitigationActionExecutionStatusInProgress is a DetectMitigationActionExecutionStatus enum value
+	DetectMitigationActionExecutionStatusInProgress = "IN_PROGRESS"
+
+	// DetectMitigationActionExecutionStatusSuccessful is a DetectMitigationActionExecutionStatus enum value
+	DetectMitigationActionExecutionStatusSuccessful = "SUCCESSFUL"
+
+	// DetectMitigationActionExecutionStatusFailed is a DetectMitigationActionExecutionStatus enum value
+	DetectMitigationActionExecutionStatusFailed = "FAILED"
+
+	// DetectMitigationActionExecutionStatusSkipped is a DetectMitigationActionExecutionStatus enum value
+	DetectMitigationActionExecutionStatusSkipped = "SKIPPED"
+)
+
+// DetectMitigationActionExecutionStatus_Values returns all elements of the DetectMitigationActionExecutionStatus enum
+func DetectMitigationActionExecutionStatus_Values() []string {
+	return []string{
+		DetectMitigationActionExecutionStatusInProgress,
+		DetectMitigationActionExecutionStatusSuccessful,
+		DetectMitigationActionExecutionStatusFailed,
+		DetectMitigationActionExecutionStatusSkipped,
+	}
+}
+
+const (
+	// DetectMitigationActionsTaskStatusInProgress is a DetectMitigationActionsTaskStatus enum value
+	DetectMitigationActionsTaskStatusInProgress = "IN_PROGRESS"
+
+	// DetectMitigationActionsTaskStatusSuccessful is a DetectMitigationActionsTaskStatus enum value
+	DetectMitigationActionsTaskStatusSuccessful = "SUCCESSFUL"
+
+	// DetectMitigationActionsTaskStatusFailed is a DetectMitigationActionsTaskStatus enum value
+	DetectMitigationActionsTaskStatusFailed = "FAILED"
+
+	// DetectMitigationActionsTaskStatusCanceled is a DetectMitigationActionsTaskStatus enum value
+	DetectMitigationActionsTaskStatusCanceled = "CANCELED"
+)
+
+// DetectMitigationActionsTaskStatus_Values returns all elements of the DetectMitigationActionsTaskStatus enum
+func DetectMitigationActionsTaskStatus_Values() []string {
+	return []string{
+		DetectMitigationActionsTaskStatusInProgress,
+		DetectMitigationActionsTaskStatusSuccessful,
+		DetectMitigationActionsTaskStatusFailed,
+		DetectMitigationActionsTaskStatusCanceled,
 	}
 }
 
@@ -55034,6 +58403,26 @@ func MitigationActionType_Values() []string {
 }
 
 const (
+	// ModelStatusPendingBuild is a ModelStatus enum value
+	ModelStatusPendingBuild = "PENDING_BUILD"
+
+	// ModelStatusActive is a ModelStatus enum value
+	ModelStatusActive = "ACTIVE"
+
+	// ModelStatusExpired is a ModelStatus enum value
+	ModelStatusExpired = "EXPIRED"
+)
+
+// ModelStatus_Values returns all elements of the ModelStatus enum
+func ModelStatus_Values() []string {
+	return []string{
+		ModelStatusPendingBuild,
+		ModelStatusActive,
+		ModelStatusExpired,
+	}
+}
+
+const (
 	// OTAUpdateStatusCreatePending is a OTAUpdateStatus enum value
 	OTAUpdateStatusCreatePending = "CREATE_PENDING"
 
@@ -55285,6 +58674,9 @@ const (
 
 	// TopicRuleDestinationStatusError is a TopicRuleDestinationStatus enum value
 	TopicRuleDestinationStatusError = "ERROR"
+
+	// TopicRuleDestinationStatusDeleting is a TopicRuleDestinationStatus enum value
+	TopicRuleDestinationStatusDeleting = "DELETING"
 )
 
 // TopicRuleDestinationStatus_Values returns all elements of the TopicRuleDestinationStatus enum
@@ -55294,6 +58686,7 @@ func TopicRuleDestinationStatus_Values() []string {
 		TopicRuleDestinationStatusInProgress,
 		TopicRuleDestinationStatusDisabled,
 		TopicRuleDestinationStatusError,
+		TopicRuleDestinationStatusDeleting,
 	}
 }
 
