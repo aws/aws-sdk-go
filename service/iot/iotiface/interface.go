@@ -104,6 +104,10 @@ type IoTAPI interface {
 	CancelCertificateTransferWithContext(aws.Context, *iot.CancelCertificateTransferInput, ...request.Option) (*iot.CancelCertificateTransferOutput, error)
 	CancelCertificateTransferRequest(*iot.CancelCertificateTransferInput) (*request.Request, *iot.CancelCertificateTransferOutput)
 
+	CancelDetectMitigationActionsTask(*iot.CancelDetectMitigationActionsTaskInput) (*iot.CancelDetectMitigationActionsTaskOutput, error)
+	CancelDetectMitigationActionsTaskWithContext(aws.Context, *iot.CancelDetectMitigationActionsTaskInput, ...request.Option) (*iot.CancelDetectMitigationActionsTaskOutput, error)
+	CancelDetectMitigationActionsTaskRequest(*iot.CancelDetectMitigationActionsTaskInput) (*request.Request, *iot.CancelDetectMitigationActionsTaskOutput)
+
 	CancelJob(*iot.CancelJobInput) (*iot.CancelJobOutput, error)
 	CancelJobWithContext(aws.Context, *iot.CancelJobInput, ...request.Option) (*iot.CancelJobOutput, error)
 	CancelJobRequest(*iot.CancelJobInput) (*request.Request, *iot.CancelJobOutput)
@@ -135,6 +139,10 @@ type IoTAPI interface {
 	CreateCertificateFromCsr(*iot.CreateCertificateFromCsrInput) (*iot.CreateCertificateFromCsrOutput, error)
 	CreateCertificateFromCsrWithContext(aws.Context, *iot.CreateCertificateFromCsrInput, ...request.Option) (*iot.CreateCertificateFromCsrOutput, error)
 	CreateCertificateFromCsrRequest(*iot.CreateCertificateFromCsrInput) (*request.Request, *iot.CreateCertificateFromCsrOutput)
+
+	CreateCustomMetric(*iot.CreateCustomMetricInput) (*iot.CreateCustomMetricOutput, error)
+	CreateCustomMetricWithContext(aws.Context, *iot.CreateCustomMetricInput, ...request.Option) (*iot.CreateCustomMetricOutput, error)
+	CreateCustomMetricRequest(*iot.CreateCustomMetricInput) (*request.Request, *iot.CreateCustomMetricOutput)
 
 	CreateDimension(*iot.CreateDimensionInput) (*iot.CreateDimensionOutput, error)
 	CreateDimensionWithContext(aws.Context, *iot.CreateDimensionInput, ...request.Option) (*iot.CreateDimensionOutput, error)
@@ -243,6 +251,10 @@ type IoTAPI interface {
 	DeleteCertificate(*iot.DeleteCertificateInput) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateWithContext(aws.Context, *iot.DeleteCertificateInput, ...request.Option) (*iot.DeleteCertificateOutput, error)
 	DeleteCertificateRequest(*iot.DeleteCertificateInput) (*request.Request, *iot.DeleteCertificateOutput)
+
+	DeleteCustomMetric(*iot.DeleteCustomMetricInput) (*iot.DeleteCustomMetricOutput, error)
+	DeleteCustomMetricWithContext(aws.Context, *iot.DeleteCustomMetricInput, ...request.Option) (*iot.DeleteCustomMetricOutput, error)
+	DeleteCustomMetricRequest(*iot.DeleteCustomMetricInput) (*request.Request, *iot.DeleteCustomMetricOutput)
 
 	DeleteDimension(*iot.DeleteDimensionInput) (*iot.DeleteDimensionOutput, error)
 	DeleteDimensionWithContext(aws.Context, *iot.DeleteDimensionInput, ...request.Option) (*iot.DeleteDimensionOutput, error)
@@ -372,9 +384,17 @@ type IoTAPI interface {
 	DescribeCertificateWithContext(aws.Context, *iot.DescribeCertificateInput, ...request.Option) (*iot.DescribeCertificateOutput, error)
 	DescribeCertificateRequest(*iot.DescribeCertificateInput) (*request.Request, *iot.DescribeCertificateOutput)
 
+	DescribeCustomMetric(*iot.DescribeCustomMetricInput) (*iot.DescribeCustomMetricOutput, error)
+	DescribeCustomMetricWithContext(aws.Context, *iot.DescribeCustomMetricInput, ...request.Option) (*iot.DescribeCustomMetricOutput, error)
+	DescribeCustomMetricRequest(*iot.DescribeCustomMetricInput) (*request.Request, *iot.DescribeCustomMetricOutput)
+
 	DescribeDefaultAuthorizer(*iot.DescribeDefaultAuthorizerInput) (*iot.DescribeDefaultAuthorizerOutput, error)
 	DescribeDefaultAuthorizerWithContext(aws.Context, *iot.DescribeDefaultAuthorizerInput, ...request.Option) (*iot.DescribeDefaultAuthorizerOutput, error)
 	DescribeDefaultAuthorizerRequest(*iot.DescribeDefaultAuthorizerInput) (*request.Request, *iot.DescribeDefaultAuthorizerOutput)
+
+	DescribeDetectMitigationActionsTask(*iot.DescribeDetectMitigationActionsTaskInput) (*iot.DescribeDetectMitigationActionsTaskOutput, error)
+	DescribeDetectMitigationActionsTaskWithContext(aws.Context, *iot.DescribeDetectMitigationActionsTaskInput, ...request.Option) (*iot.DescribeDetectMitigationActionsTaskOutput, error)
+	DescribeDetectMitigationActionsTaskRequest(*iot.DescribeDetectMitigationActionsTaskInput) (*request.Request, *iot.DescribeDetectMitigationActionsTaskOutput)
 
 	DescribeDimension(*iot.DescribeDimensionInput) (*iot.DescribeDimensionOutput, error)
 	DescribeDimensionWithContext(aws.Context, *iot.DescribeDimensionInput, ...request.Option) (*iot.DescribeDimensionOutput, error)
@@ -471,6 +491,13 @@ type IoTAPI interface {
 	EnableTopicRule(*iot.EnableTopicRuleInput) (*iot.EnableTopicRuleOutput, error)
 	EnableTopicRuleWithContext(aws.Context, *iot.EnableTopicRuleInput, ...request.Option) (*iot.EnableTopicRuleOutput, error)
 	EnableTopicRuleRequest(*iot.EnableTopicRuleInput) (*request.Request, *iot.EnableTopicRuleOutput)
+
+	GetBehaviorModelTrainingSummaries(*iot.GetBehaviorModelTrainingSummariesInput) (*iot.GetBehaviorModelTrainingSummariesOutput, error)
+	GetBehaviorModelTrainingSummariesWithContext(aws.Context, *iot.GetBehaviorModelTrainingSummariesInput, ...request.Option) (*iot.GetBehaviorModelTrainingSummariesOutput, error)
+	GetBehaviorModelTrainingSummariesRequest(*iot.GetBehaviorModelTrainingSummariesInput) (*request.Request, *iot.GetBehaviorModelTrainingSummariesOutput)
+
+	GetBehaviorModelTrainingSummariesPages(*iot.GetBehaviorModelTrainingSummariesInput, func(*iot.GetBehaviorModelTrainingSummariesOutput, bool) bool) error
+	GetBehaviorModelTrainingSummariesPagesWithContext(aws.Context, *iot.GetBehaviorModelTrainingSummariesInput, func(*iot.GetBehaviorModelTrainingSummariesOutput, bool) bool, ...request.Option) error
 
 	GetCardinality(*iot.GetCardinalityInput) (*iot.GetCardinalityOutput, error)
 	GetCardinalityWithContext(aws.Context, *iot.GetCardinalityInput, ...request.Option) (*iot.GetCardinalityOutput, error)
@@ -611,6 +638,27 @@ type IoTAPI interface {
 
 	ListCertificatesByCAPages(*iot.ListCertificatesByCAInput, func(*iot.ListCertificatesByCAOutput, bool) bool) error
 	ListCertificatesByCAPagesWithContext(aws.Context, *iot.ListCertificatesByCAInput, func(*iot.ListCertificatesByCAOutput, bool) bool, ...request.Option) error
+
+	ListCustomMetrics(*iot.ListCustomMetricsInput) (*iot.ListCustomMetricsOutput, error)
+	ListCustomMetricsWithContext(aws.Context, *iot.ListCustomMetricsInput, ...request.Option) (*iot.ListCustomMetricsOutput, error)
+	ListCustomMetricsRequest(*iot.ListCustomMetricsInput) (*request.Request, *iot.ListCustomMetricsOutput)
+
+	ListCustomMetricsPages(*iot.ListCustomMetricsInput, func(*iot.ListCustomMetricsOutput, bool) bool) error
+	ListCustomMetricsPagesWithContext(aws.Context, *iot.ListCustomMetricsInput, func(*iot.ListCustomMetricsOutput, bool) bool, ...request.Option) error
+
+	ListDetectMitigationActionsExecutions(*iot.ListDetectMitigationActionsExecutionsInput) (*iot.ListDetectMitigationActionsExecutionsOutput, error)
+	ListDetectMitigationActionsExecutionsWithContext(aws.Context, *iot.ListDetectMitigationActionsExecutionsInput, ...request.Option) (*iot.ListDetectMitigationActionsExecutionsOutput, error)
+	ListDetectMitigationActionsExecutionsRequest(*iot.ListDetectMitigationActionsExecutionsInput) (*request.Request, *iot.ListDetectMitigationActionsExecutionsOutput)
+
+	ListDetectMitigationActionsExecutionsPages(*iot.ListDetectMitigationActionsExecutionsInput, func(*iot.ListDetectMitigationActionsExecutionsOutput, bool) bool) error
+	ListDetectMitigationActionsExecutionsPagesWithContext(aws.Context, *iot.ListDetectMitigationActionsExecutionsInput, func(*iot.ListDetectMitigationActionsExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListDetectMitigationActionsTasks(*iot.ListDetectMitigationActionsTasksInput) (*iot.ListDetectMitigationActionsTasksOutput, error)
+	ListDetectMitigationActionsTasksWithContext(aws.Context, *iot.ListDetectMitigationActionsTasksInput, ...request.Option) (*iot.ListDetectMitigationActionsTasksOutput, error)
+	ListDetectMitigationActionsTasksRequest(*iot.ListDetectMitigationActionsTasksInput) (*request.Request, *iot.ListDetectMitigationActionsTasksOutput)
+
+	ListDetectMitigationActionsTasksPages(*iot.ListDetectMitigationActionsTasksInput, func(*iot.ListDetectMitigationActionsTasksOutput, bool) bool) error
+	ListDetectMitigationActionsTasksPagesWithContext(aws.Context, *iot.ListDetectMitigationActionsTasksInput, func(*iot.ListDetectMitigationActionsTasksOutput, bool) bool, ...request.Option) error
 
 	ListDimensions(*iot.ListDimensionsInput) (*iot.ListDimensionsOutput, error)
 	ListDimensionsWithContext(aws.Context, *iot.ListDimensionsInput, ...request.Option) (*iot.ListDimensionsOutput, error)
@@ -928,6 +976,10 @@ type IoTAPI interface {
 	StartAuditMitigationActionsTaskWithContext(aws.Context, *iot.StartAuditMitigationActionsTaskInput, ...request.Option) (*iot.StartAuditMitigationActionsTaskOutput, error)
 	StartAuditMitigationActionsTaskRequest(*iot.StartAuditMitigationActionsTaskInput) (*request.Request, *iot.StartAuditMitigationActionsTaskOutput)
 
+	StartDetectMitigationActionsTask(*iot.StartDetectMitigationActionsTaskInput) (*iot.StartDetectMitigationActionsTaskOutput, error)
+	StartDetectMitigationActionsTaskWithContext(aws.Context, *iot.StartDetectMitigationActionsTaskInput, ...request.Option) (*iot.StartDetectMitigationActionsTaskOutput, error)
+	StartDetectMitigationActionsTaskRequest(*iot.StartDetectMitigationActionsTaskInput) (*request.Request, *iot.StartDetectMitigationActionsTaskOutput)
+
 	StartOnDemandAuditTask(*iot.StartOnDemandAuditTaskInput) (*iot.StartOnDemandAuditTaskOutput, error)
 	StartOnDemandAuditTaskWithContext(aws.Context, *iot.StartOnDemandAuditTaskInput, ...request.Option) (*iot.StartOnDemandAuditTaskOutput, error)
 	StartOnDemandAuditTaskRequest(*iot.StartOnDemandAuditTaskInput) (*request.Request, *iot.StartOnDemandAuditTaskOutput)
@@ -983,6 +1035,10 @@ type IoTAPI interface {
 	UpdateCertificate(*iot.UpdateCertificateInput) (*iot.UpdateCertificateOutput, error)
 	UpdateCertificateWithContext(aws.Context, *iot.UpdateCertificateInput, ...request.Option) (*iot.UpdateCertificateOutput, error)
 	UpdateCertificateRequest(*iot.UpdateCertificateInput) (*request.Request, *iot.UpdateCertificateOutput)
+
+	UpdateCustomMetric(*iot.UpdateCustomMetricInput) (*iot.UpdateCustomMetricOutput, error)
+	UpdateCustomMetricWithContext(aws.Context, *iot.UpdateCustomMetricInput, ...request.Option) (*iot.UpdateCustomMetricOutput, error)
+	UpdateCustomMetricRequest(*iot.UpdateCustomMetricInput) (*request.Request, *iot.UpdateCustomMetricOutput)
 
 	UpdateDimension(*iot.UpdateDimensionInput) (*iot.UpdateDimensionOutput, error)
 	UpdateDimensionWithContext(aws.Context, *iot.UpdateDimensionInput, ...request.Option) (*iot.UpdateDimensionOutput, error)

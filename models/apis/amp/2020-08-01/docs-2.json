@@ -1,0 +1,232 @@
+{
+  "version": "2.0",
+  "service": "<p>StealFire Service</p>",
+  "operations": {
+    "CreateWorkspace": "<p>Creates a new StealFire workspace.</p>",
+    "DeleteWorkspace": "<p>Deletes a StealFire workspace.</p>",
+    "DescribeWorkspace": "<p>Describes an existing StealFire workspace.</p>",
+    "ListWorkspaces": "<p>Lists all StealFire workspaces, including workspaces being created or deleted.</p>",
+    "UpdateWorkspaceAlias": "<p>Updates a StealFire workspace alias.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>User does not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
+      "refs": {
+      }
+    },
+    "CreateWorkspaceRequest": {
+      "base": "<p>Represents the input of a CreateWorkspace operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateWorkspaceResponse": {
+      "base": "<p>Represents the output of a CreateWorkspace operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceRequest": {
+      "base": "<p>Represents the input of a DeleteWorkspace operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeWorkspaceRequest": {
+      "base": "<p>Represents the input of a DescribeWorkspace operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeWorkspaceResponse": {
+      "base": "<p>Represents the output of a DescribeWorkspace operation.</p>",
+      "refs": {
+      }
+    },
+    "IdempotencyToken": {
+      "base": "<p>An identifier used to ensure the idempotency of a write request.</p>",
+      "refs": {
+        "CreateWorkspaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
+        "DeleteWorkspaceRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>",
+        "UpdateWorkspaceAliasRequest$clientToken": "<p>Optional, unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "InternalServerException$retryAfterSeconds": "<p>Advice to clients on when the call can be safely retried.</p>",
+        "ThrottlingException$retryAfterSeconds": "<p>Advice to clients on when the call can be safely retried.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>Unexpected error during processing of request.</p>",
+      "refs": {
+      }
+    },
+    "ListWorkspacesRequest": {
+      "base": "<p>Represents the input of a ListWorkspaces operation.</p>",
+      "refs": {
+      }
+    },
+    "ListWorkspacesRequestMaxResultsInteger": {
+      "base": null,
+      "refs": {
+        "ListWorkspacesRequest$maxResults": "<p>Maximum results to return in response (default=100, maximum=1000).</p>"
+      }
+    },
+    "ListWorkspacesResponse": {
+      "base": "<p>Represents the output of a ListWorkspaces operation.</p>",
+      "refs": {
+      }
+    },
+    "PaginationToken": {
+      "base": "<p>A token used to access the next page in a paginated result set.</p>",
+      "refs": {
+        "ListWorkspacesRequest$nextToken": "<p>Pagination token to request the next page in a paginated list. This token is obtained from the output of the previous ListWorkspaces request.</p>",
+        "ListWorkspacesResponse$nextToken": "<p>Pagination token to use when requesting the next page in this list.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>Request references a resource which does not exist.</p>",
+      "refs": {
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>Request would cause a service quota to be exceeded.</p>",
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$message": "<p>Description of the error.</p>",
+        "ConflictException$message": "<p>Description of the error.</p>",
+        "ConflictException$resourceId": "<p>Identifier of the resource affected.</p>",
+        "ConflictException$resourceType": "<p>Type of the resource affected.</p>",
+        "InternalServerException$message": "<p>Description of the error.</p>",
+        "ResourceNotFoundException$message": "<p>Description of the error.</p>",
+        "ResourceNotFoundException$resourceId": "<p>Identifier of the resource affected.</p>",
+        "ResourceNotFoundException$resourceType": "<p>Type of the resource affected.</p>",
+        "ServiceQuotaExceededException$message": "<p>Description of the error.</p>",
+        "ServiceQuotaExceededException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
+        "ServiceQuotaExceededException$resourceId": "<p>Identifier of the resource affected.</p>",
+        "ServiceQuotaExceededException$resourceType": "<p>Type of the resource affected.</p>",
+        "ServiceQuotaExceededException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
+        "ThrottlingException$message": "<p>Description of the error.</p>",
+        "ThrottlingException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
+        "ThrottlingException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
+        "ValidationException$message": "<p>Description of the error.</p>",
+        "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>",
+        "ValidationExceptionField$name": "<p>The field name.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>Request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "WorkspaceDescription$createdAt": "<p>The time when the workspace was created.</p>",
+        "WorkspaceSummary$createdAt": "<p>The time when the workspace was created.</p>"
+      }
+    },
+    "UpdateWorkspaceAliasRequest": {
+      "base": "<p>Represents the input of an UpdateWorkspaceAlias operation.</p>",
+      "refs": {
+      }
+    },
+    "Uri": {
+      "base": null,
+      "refs": {
+        "WorkspaceDescription$prometheusEndpoint": "<p>Prometheus endpoint URI.</p>"
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>Stores information about a field passed inside a request that resulted in an exception.</p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": "<p>A list of fields.</p>",
+      "refs": {
+        "ValidationException$fieldList": "<p>The field that caused the error, if applicable. If more than one field caused the error, pick one and elaborate in the message.</p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": "<p>Possible reasons a request failed validation.</p>",
+      "refs": {
+        "ValidationException$reason": "<p>Reason the request failed validation.</p>"
+      }
+    },
+    "WorkspaceAlias": {
+      "base": "<p>A user-assigned workspace alias.</p>",
+      "refs": {
+        "CreateWorkspaceRequest$alias": "<p>An optional user-assigned alias for this workspace. This alias is for user reference and does not need to be unique.</p>",
+        "ListWorkspacesRequest$alias": "<p>Optional filter for workspace alias. Only the workspaces with aliases that begin with this value will be returned.</p>",
+        "UpdateWorkspaceAliasRequest$alias": "<p>The new alias of the workspace.</p>",
+        "WorkspaceDescription$alias": "<p>Alias of this workspace.</p>",
+        "WorkspaceSummary$alias": "<p>Alias of this workspace.</p>"
+      }
+    },
+    "WorkspaceArn": {
+      "base": "<p>An ARN identifying a Workspace.</p>",
+      "refs": {
+        "CreateWorkspaceResponse$arn": "<p>The ARN of the workspace that was just created.</p>",
+        "WorkspaceDescription$arn": "<p>The Amazon Resource Name (ARN) of this workspace.</p>",
+        "WorkspaceSummary$arn": "<p>The AmazonResourceName of this workspace.</p>"
+      }
+    },
+    "WorkspaceDescription": {
+      "base": "<p>Represents the properties of a workspace.</p>",
+      "refs": {
+        "DescribeWorkspaceResponse$workspace": "<p>The properties of the selected workspace.</p>"
+      }
+    },
+    "WorkspaceId": {
+      "base": "<p>A workspace ID.</p>",
+      "refs": {
+        "CreateWorkspaceResponse$workspaceId": "<p>The generated ID of the workspace that was just created.</p>",
+        "DeleteWorkspaceRequest$workspaceId": "<p>The ID of the workspace to delete.</p>",
+        "DescribeWorkspaceRequest$workspaceId": "<p>The ID of the workspace to describe.</p>",
+        "UpdateWorkspaceAliasRequest$workspaceId": "<p>The ID of the workspace being updated.</p>",
+        "WorkspaceDescription$workspaceId": "<p>Unique string identifying this workspace.</p>",
+        "WorkspaceSummary$workspaceId": "<p>Unique string identifying this workspace.</p>"
+      }
+    },
+    "WorkspaceStatus": {
+      "base": "<p>Represents the status of a workspace.</p>",
+      "refs": {
+        "CreateWorkspaceResponse$status": "<p>The status of the workspace that was just created (usually CREATING).</p>",
+        "WorkspaceDescription$status": "<p>The status of this workspace.</p>",
+        "WorkspaceSummary$status": "<p>The status of this workspace.</p>"
+      }
+    },
+    "WorkspaceStatusCode": {
+      "base": "<p>State of a workspace.</p>",
+      "refs": {
+        "WorkspaceStatus$statusCode": "<p>Status code of this workspace.</p>"
+      }
+    },
+    "WorkspaceSummary": {
+      "base": "<p>Represents a summary of the properties of a workspace.</p>",
+      "refs": {
+        "WorkspaceSummaryList$member": null
+      }
+    },
+    "WorkspaceSummaryList": {
+      "base": "<p>A list of workspace summaries.</p>",
+      "refs": {
+        "ListWorkspacesResponse$workspaces": "<p>The list of existing workspaces, including those undergoing creation or deletion.</p>"
+      }
+    }
+  }
+}

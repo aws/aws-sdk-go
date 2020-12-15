@@ -6,7 +6,7 @@
     "AddPermission": "<p>Grants an AWS service or another account permission to use a function. You can apply the policy at the function level, or specify a qualifier to restrict access to a single version or alias. If you use a qualifier, the invoker must use the full Amazon Resource Name (ARN) of that version or alias to invoke the function.</p> <p>To grant permission to another account, specify the account ID as the <code>Principal</code>. For AWS services, the principal is a domain-style identifier defined by the service, like <code>s3.amazonaws.com</code> or <code>sns.amazonaws.com</code>. For AWS services, you can also specify the ARN of the associated resource as the <code>SourceArn</code>. If you grant permission to a service principal without specifying the source, other accounts could potentially configure resources in their account to invoke your Lambda function.</p> <p>This action adds a statement to a resource-based permissions policy for the function. For more information about function policies, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html\">Lambda Function Policies</a>. </p>",
     "CreateAlias": "<p>Creates an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">alias</a> for a Lambda function version. Use aliases to provide clients with a function identifier that you can update to invoke a different version.</p> <p>You can also map an alias to split invocation requests between two versions. Use the <code>RoutingConfig</code> parameter to specify a second version and the percentage of invocation requests that it receives.</p>",
     "CreateCodeSigningConfig": "<p>Creates a code signing configuration. A <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-trustedcode.html\">code signing configuration</a> defines a list of allowed signing profiles and defines the code-signing validation policy (action to be taken if deployment validation checks fail). </p>",
-    "CreateEventSourceMapping": "<p>Creates a mapping between an event source and an AWS Lambda function. Lambda reads items from the event source and triggers the function.</p> <p>For details about each event source type, see the following topics.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html\">Using AWS Lambda with Amazon DynamoDB</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html\">Using AWS Lambda with Amazon Kinesis</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html\">Using AWS Lambda with Amazon SQS</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html\">Using AWS Lambda with Amazon MQ</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html\">Using AWS Lambda with Amazon MSK</a> </p> </li> </ul> <p>The following error handling options are only available for stream sources (DynamoDB and Kinesis):</p> <ul> <li> <p> <code>BisectBatchOnFunctionError</code> - If the function returns an error, split the batch in two and retry.</p> </li> <li> <p> <code>DestinationConfig</code> - Send discarded records to an Amazon SQS queue or Amazon SNS topic.</p> </li> <li> <p> <code>MaximumRecordAgeInSeconds</code> - Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires</p> </li> <li> <p> <code>MaximumRetryAttempts</code> - Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.</p> </li> <li> <p> <code>ParallelizationFactor</code> - Process multiple batches from each shard concurrently.</p> </li> </ul>",
+    "CreateEventSourceMapping": "<p>Creates a mapping between an event source and an AWS Lambda function. Lambda reads items from the event source and triggers the function.</p> <p>For details about each event source type, see the following topics.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html\">Using AWS Lambda with Amazon DynamoDB</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html\">Using AWS Lambda with Amazon Kinesis</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html\">Using AWS Lambda with Amazon SQS</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html\">Using AWS Lambda with Amazon MQ</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html\">Using AWS Lambda with Amazon MSK</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html\">Using AWS Lambda with Self-Managed Apache Kafka</a> </p> </li> </ul> <p>The following error handling options are only available for stream sources (DynamoDB and Kinesis):</p> <ul> <li> <p> <code>BisectBatchOnFunctionError</code> - If the function returns an error, split the batch in two and retry.</p> </li> <li> <p> <code>DestinationConfig</code> - Send discarded records to an Amazon SQS queue or Amazon SNS topic.</p> </li> <li> <p> <code>MaximumRecordAgeInSeconds</code> - Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires</p> </li> <li> <p> <code>MaximumRetryAttempts</code> - Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.</p> </li> <li> <p> <code>ParallelizationFactor</code> - Process multiple batches from each shard concurrently.</p> </li> </ul>",
     "CreateFunction": "<p>Creates a Lambda function. To create a function, you need a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html\">deployment package</a> and an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role\">execution role</a>. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use AWS services, such as Amazon CloudWatch Logs for log streaming and AWS X-Ray for request tracing.</p> <p>When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The <code>State</code>, <code>StateReason</code>, and <code>StateReasonCode</code> fields in the response from <a>GetFunctionConfiguration</a> indicate when the function is ready to invoke. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html\">Function States</a>.</p> <p>A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the <code>Publish</code> parameter to create version <code>1</code> of your function from its initial configuration.</p> <p>The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with <a>UpdateFunctionConfiguration</a>. Function-level settings apply to both the unpublished and published versions of the function, and include tags (<a>TagResource</a>) and per-function concurrency limits (<a>PutFunctionConcurrency</a>).</p> <p>You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with <a>UpdateFunctionCode</a>, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set set of signing profiles, which define the trusted publishers for this function.</p> <p>If another account or an AWS service invokes your function, use <a>AddPermission</a> to grant permission by creating a resource-based IAM policy. You can grant permissions at the function level, on a version, or on an alias.</p> <p>To invoke your function directly, use <a>Invoke</a>. To invoke your function in response to events in other AWS services, create an event source mapping (<a>CreateEventSourceMapping</a>), or configure a function trigger in the other service. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html\">Invoking Functions</a>.</p>",
     "DeleteAlias": "<p>Deletes a Lambda function <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">alias</a>.</p>",
     "DeleteCodeSigningConfig": "<p>Deletes the code signing configuration. You can delete the code signing configuration only if no function is using it. </p>",
@@ -161,16 +161,15 @@
         "Layer$SigningProfileVersionArn": "<p>The Amazon Resource Name (ARN) for a signing profile version.</p>",
         "Layer$SigningJobArn": "<p>The Amazon Resource Name (ARN) of a signing job.</p>",
         "ListEventSourceMappingsRequest$EventSourceArn": "<p>The Amazon Resource Name (ARN) of the event source.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - The ARN of the data stream or a stream consumer.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - The ARN of the stream.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - The ARN of the queue.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - The ARN of the cluster.</p> </li> </ul>",
-        "SigningProfileVersionArns$member": null,
-        "SourceAccessConfiguration$URI": "<p>To reference the secret, use the following format: <code>[ { \"Type\": \"BASIC_AUTH\", \"URI\": \"secretARN\" } ]</code> </p> <p>The value of <code>Type</code> is always <code>BASIC_AUTH</code>. To encrypt the secret, you can use customer or service managed keys. When using a customer managed KMS key, the Lambda execution role requires <code>kms:Decrypt</code> permissions.</p>"
+        "SigningProfileVersionArns$member": null
       }
     },
     "BatchSize": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$BatchSize": "<p>The maximum number of items to retrieve in a single batch.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - Default 100. Max 10,000.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - Default 100. Max 1,000.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - Default 10. Max 10.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - Default 100. Max 10,000.</p> </li> </ul>",
+        "CreateEventSourceMappingRequest$BatchSize": "<p>The maximum number of items to retrieve in a single batch.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - Default 100. Max 10,000.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - Default 100. Max 1,000.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - Default 100. Max 10,000.</p> </li> <li> <p> <b>Self-Managed Apache Kafka</b> - Default 100. Max 10,000.</p> </li> </ul>",
         "EventSourceMappingConfiguration$BatchSize": "<p>The maximum number of items to retrieve in a single batch.</p>",
-        "UpdateEventSourceMappingRequest$BatchSize": "<p>The maximum number of items to retrieve in a single batch.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - Default 100. Max 10,000.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - Default 100. Max 1,000.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - Default 10. Max 10.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - Default 100. Max 10,000.</p> </li> </ul>"
+        "UpdateEventSourceMappingRequest$BatchSize": "<p>The maximum number of items to retrieve in a single batch.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - Default 100. Max 10,000.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - Default 100. Max 1,000.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - Default 10. For standard queues the max is 10,000. For FIFO queues the max is 10.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - Default 100. Max 10,000.</p> </li> <li> <p> <b>Self-Managed Apache Kafka</b> - Default 100. Max 10,000.</p> </li> </ul>"
       }
     },
     "BisectBatchOnFunctionError": {
@@ -460,6 +459,30 @@
         "UpdateEventSourceMappingRequest$Enabled": "<p>If true, the event source mapping is active. Set to false to pause polling and invocation.</p>"
       }
     },
+    "EndPointType": {
+      "base": null,
+      "refs": {
+        "Endpoints$key": null
+      }
+    },
+    "Endpoint": {
+      "base": null,
+      "refs": {
+        "EndpointLists$member": null
+      }
+    },
+    "EndpointLists": {
+      "base": null,
+      "refs": {
+        "Endpoints$value": null
+      }
+    },
+    "Endpoints": {
+      "base": null,
+      "refs": {
+        "SelfManagedEventSource$Endpoints": "<p>The list of bootstrap servers for your Kafka brokers in the following format: <code>\"KAFKA_BOOTSTRAP_SERVERS\": [\"abc.xyz.com:xxxx\",\"abc2.xyz.com:xxxx\"]</code>.</p>"
+      }
+    },
     "Environment": {
       "base": "<p>A function's environment variable settings.</p>",
       "refs": {
@@ -638,6 +661,20 @@
         "UpdateFunctionEventInvokeConfigRequest$FunctionName": "<p>The name of the Lambda function, version, or alias.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias).</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
       }
     },
+    "FunctionResponseType": {
+      "base": null,
+      "refs": {
+        "FunctionResponseTypeList$member": null
+      }
+    },
+    "FunctionResponseTypeList": {
+      "base": null,
+      "refs": {
+        "CreateEventSourceMappingRequest$FunctionResponseTypes": "<p>(Streams) A list of current response type enums applied to the event source mapping.</p>",
+        "EventSourceMappingConfiguration$FunctionResponseTypes": "<p>(Streams) A list of current response type enums applied to the event source mapping.</p>",
+        "UpdateEventSourceMappingRequest$FunctionResponseTypes": "<p>(Streams) A list of current response type enums applied to the event source mapping.</p>"
+      }
+    },
     "FunctionVersion": {
       "base": null,
       "refs": {
@@ -774,7 +811,7 @@
       }
     },
     "ImageConfig": {
-      "base": "<p>Configuration values that override the container image Dockerfile. See <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-images-settings.html\">Override Container settings</a>. </p>",
+      "base": "<p>Configuration values that override the container image Dockerfile settings. See <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html\">Container settings</a>. </p>",
       "refs": {
         "CreateFunctionRequest$ImageConfig": "<p>Configuration values that override the container image Dockerfile.</p>",
         "ImageConfigResponse$ImageConfig": "<p>Configuration values that override the container image Dockerfile.</p>",
@@ -1204,9 +1241,9 @@
     "MaximumBatchingWindowInSeconds": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": "<p>(Streams) The maximum amount of time to gather records before invoking the function, in seconds.</p>",
-        "EventSourceMappingConfiguration$MaximumBatchingWindowInSeconds": "<p>(Streams) The maximum amount of time to gather records before invoking the function, in seconds. The default value is zero.</p>",
-        "UpdateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": "<p>(Streams) The maximum amount of time to gather records before invoking the function, in seconds.</p>"
+        "CreateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": "<p>(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds.</p>",
+        "EventSourceMappingConfiguration$MaximumBatchingWindowInSeconds": "<p>(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds. The default value is zero.</p>",
+        "UpdateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": "<p>(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds.</p>"
       }
     },
     "MaximumEventAgeInSeconds": {
@@ -1549,6 +1586,13 @@
         "VpcConfigResponse$SecurityGroupIds": "<p>A list of VPC security groups IDs.</p>"
       }
     },
+    "SelfManagedEventSource": {
+      "base": "<p>The Self-Managed Apache Kafka cluster for your event source.</p>",
+      "refs": {
+        "CreateEventSourceMappingRequest$SelfManagedEventSource": "<p>The Self-Managed Apache Kafka cluster to send records.</p>",
+        "EventSourceMappingConfiguration$SelfManagedEventSource": "<p>The Self-Managed Apache Kafka cluster for your event source.</p>"
+      }
+    },
     "SensitiveString": {
       "base": null,
       "refs": {
@@ -1568,7 +1612,7 @@
       }
     },
     "SourceAccessConfiguration": {
-      "base": "<p> (MQ) The Secrets Manager secret that stores your broker credentials. To store your secret, use the following format: <code> { \"username\": \"your username\", \"password\": \"your password\" }</code> </p>",
+      "base": "<p>You can specify the authentication protocol, or the VPC components to secure access to your event source.</p>",
       "refs": {
         "SourceAccessConfigurations$member": null
       }
@@ -1576,15 +1620,15 @@
     "SourceAccessConfigurations": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$SourceAccessConfigurations": "<p> (MQ) The Secrets Manager secret that stores your broker credentials. To store your secret, use the following format: <code> { \"username\": \"your username\", \"password\": \"your password\" }</code> </p> <p>To reference the secret, use the following format: <code>[ { \"Type\": \"BASIC_AUTH\", \"URI\": \"secretARN\" } ]</code> </p> <p>The value of <code>Type</code> is always <code>BASIC_AUTH</code>. To encrypt the secret, you can use customer or service managed keys. When using a customer managed KMS key, the Lambda execution role requires <code>kms:Decrypt</code> permissions.</p>",
-        "EventSourceMappingConfiguration$SourceAccessConfigurations": "<p> (MQ) The Secrets Manager secret that stores your broker credentials. To store your secret, use the following format: <code> { \"username\": \"your username\", \"password\": \"your password\" }</code> </p> <p>To reference the secret, use the following format: <code>[ { \"Type\": \"BASIC_AUTH\", \"URI\": \"secretARN\" } ]</code> </p> <p>The value of <code>Type</code> is always <code>BASIC_AUTH</code>. To encrypt the secret, you can use customer or service managed keys. When using a customer managed KMS key, the Lambda execution role requires <code>kms:Decrypt</code> permissions.</p>",
-        "UpdateEventSourceMappingRequest$SourceAccessConfigurations": "<p> (MQ) The Secrets Manager secret that stores your broker credentials. To store your secret, use the following format: <code> { \"username\": \"your username\", \"password\": \"your password\" }</code> </p> <p>To reference the secret, use the following format: <code>[ { \"Type\": \"BASIC_AUTH\", \"URI\": \"secretARN\" } ]</code> </p> <p>The value of <code>Type</code> is always <code>BASIC_AUTH</code>. To encrypt the secret, you can use customer or service managed keys. When using a customer managed KMS key, the Lambda execution role requires <code>kms:Decrypt</code> permissions.</p>"
+        "CreateEventSourceMappingRequest$SourceAccessConfigurations": "<p>An array of the authentication protocol, or the VPC components to secure your event source.</p>",
+        "EventSourceMappingConfiguration$SourceAccessConfigurations": "<p>An array of the authentication protocol, or the VPC components to secure your event source.</p>",
+        "UpdateEventSourceMappingRequest$SourceAccessConfigurations": "<p>An array of the authentication protocol, or the VPC components to secure your event source.</p>"
       }
     },
     "SourceAccessType": {
       "base": null,
       "refs": {
-        "SourceAccessConfiguration$Type": "<p>To reference the secret, use the following format: <code>[ { \"Type\": \"BASIC_AUTH\", \"URI\": \"secretARN\" } ]</code> </p> <p>The value of <code>Type</code> is always <code>BASIC_AUTH</code>. To encrypt the secret, you can use customer or service managed keys. When using a customer managed KMS key, the Lambda execution role requires <code>kms:Decrypt</code> permissions.</p>"
+        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol or the VPC components for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The ARN of your secret key used for SASL SCRAM-256 authentication of your Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The ARN of your secret key used for SASL SCRAM-512 authentication of your Kafka brokers.</p> </li> </ul>"
       }
     },
     "SourceOwner": {
@@ -1858,8 +1902,8 @@
     "Topics": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$Topics": "<p> (MSK) The name of the Kafka topic. </p>",
-        "EventSourceMappingConfiguration$Topics": "<p> (MSK) The name of the Kafka topic to consume. </p>"
+        "CreateEventSourceMappingRequest$Topics": "<p>The name of the Kafka topic.</p>",
+        "EventSourceMappingConfiguration$Topics": "<p>The name of the Kafka topic.</p>"
       }
     },
     "TracingConfig": {
@@ -1880,6 +1924,20 @@
       "refs": {
         "TracingConfig$Mode": "<p>The tracing mode.</p>",
         "TracingConfigResponse$Mode": "<p>The tracing mode.</p>"
+      }
+    },
+    "TumblingWindowInSeconds": {
+      "base": null,
+      "refs": {
+        "CreateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams) The duration of a processing window in seconds. The range is between 1 second up to 15 minutes.</p>",
+        "EventSourceMappingConfiguration$TumblingWindowInSeconds": "<p>(Streams) The duration of a processing window in seconds. The range is between 1 second up to 15 minutes.</p>",
+        "UpdateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams) The duration of a processing window in seconds. The range is between 1 second up to 15 minutes.</p>"
+      }
+    },
+    "URI": {
+      "base": null,
+      "refs": {
+        "SourceAccessConfiguration$URI": "<p>The value for your chosen configuration in <code>Type</code>. For example: <code>\"URI\": \"arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName\"</code>.</p>"
       }
     },
     "UnreservedConcurrentExecutions": {

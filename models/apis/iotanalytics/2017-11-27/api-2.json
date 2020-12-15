@@ -693,6 +693,12 @@
       }
     },
     "ChannelArn":{"type":"string"},
+    "ChannelMessages":{
+      "type":"structure",
+      "members":{
+        "s3Paths":{"shape":"S3PathChannelMessages"}
+      }
+    },
     "ChannelName":{
       "type":"string",
       "max":128,
@@ -741,6 +747,33 @@
         "lastUpdateTime":{"shape":"Timestamp"},
         "lastMessageArrivalTime":{"shape":"Timestamp"}
       }
+    },
+    "Column":{
+      "type":"structure",
+      "required":[
+        "name",
+        "type"
+      ],
+      "members":{
+        "name":{"shape":"ColumnName"},
+        "type":{"shape":"ColumnDataType"}
+      }
+    },
+    "ColumnDataType":{
+      "type":"string",
+      "max":131072,
+      "min":1,
+      "pattern":"^[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*$"
+    },
+    "ColumnName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[A-Za-z_]([A-Za-z0-9]*|[A-Za-z0-9][A-Za-z0-9_]*)$"
+    },
+    "Columns":{
+      "type":"list",
+      "member":{"shape":"Column"}
     },
     "ComputeType":{
       "type":"string",
@@ -831,7 +864,8 @@
         "datastoreName":{"shape":"DatastoreName"},
         "datastoreStorage":{"shape":"DatastoreStorage"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"}
       }
     },
     "CreateDatastoreResponse":{
@@ -1083,7 +1117,8 @@
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "lastMessageArrivalTime":{"shape":"Timestamp"}
+        "lastMessageArrivalTime":{"shape":"Timestamp"},
+        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"}
       }
     },
     "DatastoreActivity":{
@@ -1144,7 +1179,8 @@
         "status":{"shape":"DatastoreStatus"},
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
-        "lastMessageArrivalTime":{"shape":"Timestamp"}
+        "lastMessageArrivalTime":{"shape":"Timestamp"},
+        "fileFormatType":{"shape":"FileFormatType"}
       }
     },
     "DeleteChannelRequest":{
@@ -1360,6 +1396,20 @@
         "estimatedOn":{"shape":"Timestamp"}
       }
     },
+    "FileFormatConfiguration":{
+      "type":"structure",
+      "members":{
+        "jsonConfiguration":{"shape":"JsonConfiguration"},
+        "parquetConfiguration":{"shape":"ParquetConfiguration"}
+      }
+    },
+    "FileFormatType":{
+      "type":"string",
+      "enum":[
+        "JSON",
+        "PARQUET"
+      ]
+    },
     "FilterActivity":{
       "type":"structure",
       "required":[
@@ -1462,6 +1512,11 @@
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "JsonConfiguration":{
+      "type":"structure",
+      "members":{
+      }
     },
     "LambdaActivity":{
       "type":"structure",
@@ -1753,6 +1808,12 @@
         "fileName":{"shape":"OutputFileName"}
       }
     },
+    "ParquetConfiguration":{
+      "type":"structure",
+      "members":{
+        "schemaDefinition":{"shape":"SchemaDefinition"}
+      }
+    },
     "Pipeline":{
       "type":"structure",
       "members":{
@@ -1948,6 +2009,18 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9!_.*'()/{}:-]*/$"
     },
+    "S3PathChannelMessage":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9/_!'(){}\\*\\s\\.\\-\\=\\:]+$"
+    },
+    "S3PathChannelMessages":{
+      "type":"list",
+      "member":{"shape":"S3PathChannelMessage"},
+      "max":100,
+      "min":1
+    },
     "SampleChannelDataRequest":{
       "type":"structure",
       "required":["channelName"],
@@ -1987,6 +2060,12 @@
       }
     },
     "ScheduleExpression":{"type":"string"},
+    "SchemaDefinition":{
+      "type":"structure",
+      "members":{
+        "columns":{"shape":"Columns"}
+      }
+    },
     "SelectAttributesActivity":{
       "type":"structure",
       "required":[
@@ -2053,7 +2132,8 @@
           "locationName":"pipelineName"
         },
         "startTime":{"shape":"StartTime"},
-        "endTime":{"shape":"EndTime"}
+        "endTime":{"shape":"EndTime"},
+        "channelMessages":{"shape":"ChannelMessages"}
       }
     },
     "StartPipelineReprocessingResponse":{
@@ -2207,7 +2287,8 @@
           "locationName":"datastoreName"
         },
         "retentionPeriod":{"shape":"RetentionPeriod"},
-        "datastoreStorage":{"shape":"DatastoreStorage"}
+        "datastoreStorage":{"shape":"DatastoreStorage"},
+        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"}
       }
     },
     "UpdatePipelineRequest":{

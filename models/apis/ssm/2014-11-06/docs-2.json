@@ -11,7 +11,7 @@
     "CreateDocument": "<p>Creates a Systems Manager (SSM) document. An SSM document defines the actions that Systems Manager performs on your managed instances. For more information about SSM documents, including information about supported schemas, features, and syntax, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-ssm-docs.html\">AWS Systems Manager Documents</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
     "CreateMaintenanceWindow": "<p>Creates a new maintenance window.</p> <note> <p>The value you specify for <code>Duration</code> determines the specific end time for the maintenance window based on the time it begins. No maintenance window tasks are permitted to start after the resulting endtime minus the number of hours you specify for <code>Cutoff</code>. For example, if the maintenance window starts at 3 PM, the duration is three hours, and the value you specify for <code>Cutoff</code> is one hour, no maintenance window tasks can start after 5 PM.</p> </note>",
     "CreateOpsItem": "<p>Creates a new OpsItem. You must have permission in AWS Identity and Access Management (IAM) to create a new OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
-    "CreateOpsMetadata": "<p>If you create a new application in AppManager, Systems Manager calls this API action to specify information about the new application, including the application type.</p>",
+    "CreateOpsMetadata": "<p>If you create a new application in Application Manager, Systems Manager calls this API action to specify information about the new application, including the application type.</p>",
     "CreatePatchBaseline": "<p>Creates a patch baseline.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>",
     "CreateResourceDataSync": "<p>A resource data sync helps you view data from multiple sources in a single location. Systems Manager offers two types of resource data sync: <code>SyncToDestination</code> and <code>SyncFromSource</code>.</p> <p>You can configure Systems Manager Inventory to use the <code>SyncToDestination</code> type to synchronize Inventory data from multiple AWS Regions to a single S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync.html\">Configuring Resource Data Sync for Inventory</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>You can configure Systems Manager Explorer to use the <code>SyncFromSource</code> type to synchronize operational work items (OpsItems) and operational data (OpsData) from multiple AWS Regions to a single S3 bucket. This type can synchronize OpsItems and OpsData from multiple AWS accounts and Regions or <code>EntireOrganization</code> by using AWS Organizations. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resource-data-sync.html\">Setting up Systems Manager Explorer to display data from multiple accounts and Regions</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>A resource data sync is an asynchronous operation that returns immediately. After a successful initial sync is completed, the system continuously syncs data. To check the status of a sync, use the <a>ListResourceDataSync</a>.</p> <note> <p>By default, data is not encrypted in Amazon S3. We strongly recommend that you enable encryption in Amazon S3 to ensure secure data storage. We also recommend that you secure access to the Amazon S3 bucket by creating a restrictive bucket policy. </p> </note>",
     "DeleteActivation": "<p>Deletes an activation. You are not required to delete an activation. If you delete an activation, you can no longer use it to register additional managed instances. Deleting an activation does not de-register managed instances. You must manually de-register managed instances.</p>",
@@ -75,7 +75,7 @@
     "GetMaintenanceWindowExecutionTaskInvocation": "<p>Retrieves information about a specific task running on a specific target.</p>",
     "GetMaintenanceWindowTask": "<p>Lists the tasks in a maintenance window.</p>",
     "GetOpsItem": "<p>Get information about an OpsItem by using the ID. You must have permission in AWS Identity and Access Management (IAM) to view information about an OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
-    "GetOpsMetadata": "<p>View operational metadata related to an application in AppManager.</p>",
+    "GetOpsMetadata": "<p>View operational metadata related to an application in Application Manager.</p>",
     "GetOpsSummary": "<p>View a summary of OpsItems based on specified filters and aggregators.</p>",
     "GetParameter": "<p>Get information about a parameter by using the parameter name. Don't confuse this API action with the <a>GetParameters</a> API action.</p>",
     "GetParameterHistory": "<p>Retrieves the history of all changes to a parameter.</p>",
@@ -91,10 +91,12 @@
     "ListCommands": "<p>Lists the commands requested by users of the AWS account.</p>",
     "ListComplianceItems": "<p>For a specified resource ID, this API action returns a list of compliance statuses for different resource types. Currently, you can only specify one resource ID per call. List results depend on the criteria specified in the filter.</p>",
     "ListComplianceSummaries": "<p>Returns a summary count of compliant and non-compliant resources for a compliance type. For example, this call can return State Manager associations, patches, or custom compliance types according to the filter criteria that you specify.</p>",
+    "ListDocumentMetadataHistory": "<p>Information about approval reviews for a version of an SSM document.</p>",
     "ListDocumentVersions": "<p>List all versions for a document.</p>",
     "ListDocuments": "<p>Returns all Systems Manager (SSM) documents in the current AWS account and Region. You can limit the results of this request by using a filter.</p>",
     "ListInventoryEntries": "<p>A list of inventory items returned by the request.</p>",
-    "ListOpsMetadata": "<p>Systems Manager calls this API action when displaying all AppManager OpsMetadata objects or blobs.</p>",
+    "ListOpsItemEvents": "<p>Returns a list of all OpsItem events in the current AWS account and Region. You can limit the results to events associated with specific OpsItems by specifying a filter.</p>",
+    "ListOpsMetadata": "<p>Systems Manager calls this API action when displaying all Application Manager OpsMetadata objects or blobs.</p>",
     "ListResourceComplianceSummaries": "<p>Returns a resource-level summary count. The summary includes information about compliant and non-compliant statuses and detailed compliance-item severity counts, according to the filter criteria you specify.</p>",
     "ListResourceDataSync": "<p>Lists your resource data sync configurations. Includes information about the last time a sync attempted to start, the last sync status, and the last time a sync successfully completed.</p> <p>The number of sync configurations might be too large to return using a single call to <code>ListResourceDataSync</code>. You can limit the number of sync configurations returned by using the <code>MaxResults</code> parameter. To determine whether there are more sync configurations to list, check the value of <code>NextToken</code> in the output. If there are more sync configurations to list, you can request them by specifying the <code>NextToken</code> returned in the call to the parameter of a subsequent call. </p>",
     "ListTagsForResource": "<p>Returns a list of the tags assigned to the specified resource.</p>",
@@ -113,6 +115,7 @@
     "SendCommand": "<p>Runs commands on one or more managed instances.</p>",
     "StartAssociationsOnce": "<p>Use this API action to run an association immediately and only one time. This action can be helpful when troubleshooting associations.</p>",
     "StartAutomationExecution": "<p>Initiates execution of an Automation document.</p>",
+    "StartChangeRequestExecution": "<p>Creates a change request for Change Manager. The runbooks (Automation documents) specified in the change request run only after all required approvals for the change request have been received.</p>",
     "StartSession": "<p>Initiates a connection to a target (for example, an instance) for a Session Manager session. Returns a URL and token that can be used to open a WebSocket connection for sending input and receiving outputs.</p> <note> <p>AWS CLI usage: <code>start-session</code> is an interactive command that requires the Session Manager plugin to be installed on the client machine making the call. For information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html\">Install the Session Manager plugin for the AWS CLI</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>AWS Tools for PowerShell usage: Start-SSMSession is not currently supported by AWS Tools for PowerShell on Windows local machines.</p> </note>",
     "StopAutomationExecution": "<p>Stop an Automation that is currently running.</p>",
     "TerminateSession": "<p>Permanently ends a session and closes the data connection between the Session Manager client and SSM Agent on the instance. A terminated session cannot be resumed.</p>",
@@ -120,12 +123,13 @@
     "UpdateAssociationStatus": "<p>Updates the status of the Systems Manager document associated with the specified instance.</p>",
     "UpdateDocument": "<p>Updates one or more values for an SSM document.</p>",
     "UpdateDocumentDefaultVersion": "<p>Set the default version of a document. </p>",
+    "UpdateDocumentMetadata": "<p>Updates information related to approval reviews for a specific version of a document.</p>",
     "UpdateMaintenanceWindow": "<p>Updates an existing maintenance window. Only specified parameters are modified.</p> <note> <p>The value you specify for <code>Duration</code> determines the specific end time for the maintenance window based on the time it begins. No maintenance window tasks are permitted to start after the resulting endtime minus the number of hours you specify for <code>Cutoff</code>. For example, if the maintenance window starts at 3 PM, the duration is three hours, and the value you specify for <code>Cutoff</code> is one hour, no maintenance window tasks can start after 5 PM.</p> </note>",
     "UpdateMaintenanceWindowTarget": "<p>Modifies the target of an existing maintenance window. You can change the following:</p> <ul> <li> <p>Name</p> </li> <li> <p>Description</p> </li> <li> <p>Owner</p> </li> <li> <p>IDs for an ID target</p> </li> <li> <p>Tags for a Tag target</p> </li> <li> <p>From any supported tag type to another. The three supported tag types are ID target, Tag target, and resource group. For more information, see <a>Target</a>.</p> </li> </ul> <note> <p>If a parameter is null, then the corresponding field is not modified.</p> </note>",
     "UpdateMaintenanceWindowTask": "<p>Modifies a task assigned to a maintenance window. You can't change the task type, but you can change the following values:</p> <ul> <li> <p>TaskARN. For example, you can change a RUN_COMMAND task from AWS-RunPowerShellScript to AWS-RunShellScript.</p> </li> <li> <p>ServiceRoleArn</p> </li> <li> <p>TaskInvocationParameters</p> </li> <li> <p>Priority</p> </li> <li> <p>MaxConcurrency</p> </li> <li> <p>MaxErrors</p> </li> </ul> <p>If the value for a parameter in <code>UpdateMaintenanceWindowTask</code> is null, then the corresponding field is not modified. If you set <code>Replace</code> to true, then all fields required by the <a>RegisterTaskWithMaintenanceWindow</a> action are required for this request. Optional fields that aren't specified are set to null.</p> <important> <p>When you update a maintenance window task that has options specified in <code>TaskInvocationParameters</code>, you must provide again all the <code>TaskInvocationParameters</code> values that you want to retain. The values you do not specify again are removed. For example, suppose that when you registered a Run Command task, you specified <code>TaskInvocationParameters</code> values for <code>Comment</code>, <code>NotificationConfig</code>, and <code>OutputS3BucketName</code>. If you update the maintenance window task and specify only a different <code>OutputS3BucketName</code> value, the values for <code>Comment</code> and <code>NotificationConfig</code> are removed.</p> </important>",
     "UpdateManagedInstanceRole": "<p>Changes the Amazon Identity and Access Management (IAM) role that is assigned to the on-premises instance or virtual machines (VM). IAM roles are first assigned to these hybrid instances during the activation process. For more information, see <a>CreateActivation</a>.</p>",
     "UpdateOpsItem": "<p>Edit or change an OpsItem. You must have permission in AWS Identity and Access Management (IAM) to update an OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
-    "UpdateOpsMetadata": "<p>Systems Manager calls this API action when you edit OpsMetadata in AppManager.</p>",
+    "UpdateOpsMetadata": "<p>Systems Manager calls this API action when you edit OpsMetadata in Application Manager.</p>",
     "UpdatePatchBaseline": "<p>Modifies an existing patch baseline. Fields not specified in the request are left unchanged.</p> <note> <p>For information about valid key and value pairs in <code>PatchFilters</code> for each supported operating system type, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/APIReference/API_PatchFilter.html\">PatchFilter</a>.</p> </note>",
     "UpdateResourceDataSync": "<p>Update a resource data sync. After you create a resource data sync for a Region, you can't change the account options for that sync. For example, if you create a sync in the us-east-2 (Ohio) Region and you choose the Include only the current account option, you can't edit that sync later and choose the Include all accounts from my AWS Organizations configuration option. Instead, you must delete the first resource data sync, and create a new one.</p> <note> <p>This API action only supports a resource data sync that was created with a SyncFromSource <code>SyncType</code>.</p> </note>",
     "UpdateServiceSetting": "<p> <code>ServiceSetting</code> is an account-level setting for an AWS service. This setting defines how a user interacts with or uses a service or a feature of a service. For example, if an AWS service charges money to the account based on feature or service usage, then the AWS service team might create a default setting of \"false\". This means the user can't use this feature unless they change the setting to \"true\" and intentionally opt in for a paid feature.</p> <p>Services map a <code>SettingId</code> object to a setting value. AWS services teams define the default value for a <code>SettingId</code>. You can't create a new <code>SettingId</code>, but you can overwrite the default value if you have the <code>ssm:UpdateServiceSetting</code> permission for the setting. Use the <a>GetServiceSetting</a> API action to view the current value. Or, use the <a>ResetServiceSetting</a> to change the value back to the original value defined by the AWS service team.</p> <p>Update the service setting for the account. </p>"
@@ -656,6 +660,11 @@
         "StepExecution$Action": "<p>The action this step performs. The action determines the behavior of the step.</p>"
       }
     },
+    "AutomationDefinitionNotApprovedException": {
+      "base": "<p>Indicates that the Change Manager change template used in the change request was rejected or is still in a pending state.</p>",
+      "refs": {
+      }
+    },
     "AutomationDefinitionNotFoundException": {
       "base": "<p>An Automation document with the specified name could not be found.</p>",
       "refs": {
@@ -713,6 +722,7 @@
         "GetAutomationExecutionRequest$AutomationExecutionId": "<p>The unique identifier for an existing automation execution to examine. The execution ID is returned by StartAutomationExecution when the execution of an Automation document is initiated.</p>",
         "SendAutomationSignalRequest$AutomationExecutionId": "<p>The unique identifier for an existing Automation execution that you want to send the signal to.</p>",
         "StartAutomationExecutionResult$AutomationExecutionId": "<p>The unique ID of a newly scheduled automation execution.</p>",
+        "StartChangeRequestExecutionResult$AutomationExecutionId": "<p>The unique ID of a runbook workflow operation. (A runbook workflow is a type of Automation operation.) </p>",
         "StopAutomationExecutionRequest$AutomationExecutionId": "<p>The execution ID of the Automation to stop.</p>"
       }
     },
@@ -752,6 +762,7 @@
         "AutomationExecution$TargetParameterName": "<p>The parameter name.</p>",
         "AutomationExecutionMetadata$TargetParameterName": "<p>The list of execution outputs as defined in the Automation document.</p>",
         "AutomationParameterMap$key": null,
+        "Runbook$TargetParameterName": "<p>The name of the parameter used as the target resource for the rate-controlled runbook workflow. Required if you specify <code>Targets</code>. </p>",
         "StartAutomationExecutionRequest$TargetParameterName": "<p>The name of the parameter used as the target resource for the rate-controlled execution. Required if you specify targets.</p>"
       }
     },
@@ -763,8 +774,10 @@
         "AutomationExecutionMetadata$Outputs": "<p>The list of execution outputs as defined in the Automation document.</p>",
         "FailureDetails$Details": "<p>Detailed information about the Automation step failure.</p>",
         "MaintenanceWindowAutomationParameters$Parameters": "<p>The parameters for the AUTOMATION task.</p> <p>For information about specifying and updating task parameters, see <a>RegisterTaskWithMaintenanceWindow</a> and <a>UpdateMaintenanceWindowTask</a>.</p> <note> <p> <code>LoggingInfo</code> has been deprecated. To specify an S3 bucket to contain logs, instead use the <code>OutputS3BucketName</code> and <code>OutputS3KeyPrefix</code> options in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> <p> <code>TaskParameters</code> has been deprecated. To specify parameters to pass to a task when it runs, instead use the <code>Parameters</code> option in the <code>TaskInvocationParameters</code> structure. For information about how Systems Manager handles these options for the supported maintenance window task types, see <a>MaintenanceWindowTaskInvocationParameters</a>.</p> <p>For AUTOMATION task types, Systems Manager ignores any values specified for these parameters.</p> </note>",
+        "Runbook$Parameters": "<p>The key-value map of execution parameters, which were supplied when calling <code>StartChangeRequestExecution</code>.</p>",
         "SendAutomationSignalRequest$Payload": "<p>The data sent with the signal. The data schema depends on the type of signal used in the request.</p> <p>For <code>Approve</code> and <code>Reject</code> signal types, the payload is an optional comment that you can send with the signal type. For example:</p> <p> <code>Comment=\"Looks good\"</code> </p> <p>For <code>StartStep</code> and <code>Resume</code> signal types, you must send the name of the Automation step to start or resume as the payload. For example:</p> <p> <code>StepName=\"step1\"</code> </p> <p>For the <code>StopStep</code> signal type, you must send the step execution ID as the payload. For example:</p> <p> <code>StepExecutionId=\"97fff367-fc5a-4299-aed8-0123456789ab\"</code> </p>",
         "StartAutomationExecutionRequest$Parameters": "<p>A key-value map of execution parameters, which match the declared parameters in the Automation document.</p>",
+        "StartChangeRequestExecutionRequest$Parameters": "<p>A key-value map of parameters that match the declared parameters in the change template document.</p>",
         "StepExecution$Outputs": "<p>Returned values from the execution of the step.</p>",
         "StepExecution$OverriddenParameters": "<p>A user-specified list of parameters to override when running a step.</p>"
       }
@@ -784,6 +797,13 @@
     "AutomationStepNotFoundException": {
       "base": "<p>The specified step name and execution ID don't exist. Verify the information and try again.</p>",
       "refs": {
+      }
+    },
+    "AutomationSubtype": {
+      "base": null,
+      "refs": {
+        "AutomationExecution$AutomationSubtype": "<p>The subtype of the Automation operation. Currently, the only supported value is <code>ChangeRequest</code>.</p>",
+        "AutomationExecutionMetadata$AutomationSubtype": "<p>The subtype of the Automation operation. Currently, the only supported value is <code>ChangeRequest</code>.</p>"
       }
     },
     "AutomationTargetParameterName": {
@@ -917,6 +937,14 @@
     "CancelMaintenanceWindowExecutionResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "ChangeRequestName": {
+      "base": null,
+      "refs": {
+        "AutomationExecution$ChangeRequestName": "<p>The name of the Change Manager change request.</p>",
+        "AutomationExecutionMetadata$ChangeRequestName": "<p>The name of the Change Manager change request.</p>",
+        "StartChangeRequestExecutionRequest$ChangeRequestName": "<p>The name of the change request associated with the runbook workflow to be run.</p>"
       }
     },
     "ClientToken": {
@@ -1434,15 +1462,23 @@
         "AssociationVersionInfo$CreatedDate": "<p>The date the association version was created.</p>",
         "AutomationExecution$ExecutionStartTime": "<p>The time the execution started.</p>",
         "AutomationExecution$ExecutionEndTime": "<p>The time the execution finished.</p>",
+        "AutomationExecution$ScheduledTime": "<p>The date and time the Automation operation is scheduled to start.</p>",
         "AutomationExecutionMetadata$ExecutionStartTime": "<p>The time the execution started.</p>",
         "AutomationExecutionMetadata$ExecutionEndTime": "<p>The time the execution finished. This is not populated if the execution is still in progress.</p>",
+        "AutomationExecutionMetadata$ScheduledTime": "<p>The date and time the Automation operation is scheduled to start.</p>",
         "Command$ExpiresAfter": "<p>If this time is reached and the command has not already started running, it will not run. Calculated based on the ExpiresAfter user input provided as part of the SendCommand API.</p>",
         "Command$RequestedDateTime": "<p>The date and time the command was requested.</p>",
         "CommandInvocation$RequestedDateTime": "<p>The time and date the request was sent to this instance.</p>",
         "CommandPlugin$ResponseStartDateTime": "<p>The time the plugin started running. </p>",
         "CommandPlugin$ResponseFinishDateTime": "<p>The time the plugin stopped running. Could stop prematurely if, for example, a cancel command was sent. </p>",
         "ComplianceExecutionSummary$ExecutionTime": "<p>The time the execution ran as a datetime object that is saved in the following format: yyyy-MM-dd'T'HH:mm:ss'Z'.</p>",
+        "CreateOpsItemRequest$ActualStartTime": "<p>The time a runbook workflow started. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "CreateOpsItemRequest$ActualEndTime": "<p>The time a runbook workflow ended. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "CreateOpsItemRequest$PlannedStartTime": "<p>The time specified in a change request for a runbook workflow to start. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "CreateOpsItemRequest$PlannedEndTime": "<p>The time specified in a change request for a runbook workflow to end. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
         "DocumentDescription$CreatedDate": "<p>The date when the document was created.</p>",
+        "DocumentReviewerResponseSource$CreateTime": "<p>The date and time that a reviewer entered a response to a document review request.</p>",
+        "DocumentReviewerResponseSource$UpdatedTime": "<p>The date and time that a reviewer last updated a response to a document review request.</p>",
         "DocumentVersionInfo$CreatedDate": "<p>The date the document was created.</p>",
         "GetMaintenanceWindowExecutionResult$StartTime": "<p>The time the maintenance window started running.</p>",
         "GetMaintenanceWindowExecutionResult$EndTime": "<p>The time the maintenance window finished running.</p>",
@@ -1455,7 +1491,7 @@
         "GetPatchBaselineResult$CreatedDate": "<p>The date the patch baseline was created.</p>",
         "GetPatchBaselineResult$ModifiedDate": "<p>The date the patch baseline was last modified.</p>",
         "InstanceAssociationStatusInfo$ExecutionDate": "<p>The date the instance association ran. </p>",
-        "InstanceInformation$LastPingDateTime": "<p>The date and time when agent last pinged Systems Manager service. </p>",
+        "InstanceInformation$LastPingDateTime": "<p>The date and time when the agent last pinged the Systems Manager service. </p>",
         "InstanceInformation$RegistrationDate": "<p>The date the server or VM was registered with AWS as a managed instance.</p>",
         "InstanceInformation$LastAssociationExecutionDate": "<p>The date the association was last run.</p>",
         "InstanceInformation$LastSuccessfulAssociationExecutionDate": "<p>The last date the association was successfully run.</p>",
@@ -1470,8 +1506,17 @@
         "MaintenanceWindowExecutionTaskInvocationIdentity$EndTime": "<p>The time the invocation finished.</p>",
         "OpsItem$CreatedTime": "<p>The date and time the OpsItem was created.</p>",
         "OpsItem$LastModifiedTime": "<p>The date and time the OpsItem was last updated.</p>",
+        "OpsItem$ActualStartTime": "<p>The time a runbook workflow started. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItem$ActualEndTime": "<p>The time a runbook workflow ended. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItem$PlannedStartTime": "<p>The time specified in a change request for a runbook workflow to start. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItem$PlannedEndTime": "<p>The time specified in a change request for a runbook workflow to end. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItemEventSummary$CreatedTime": "<p>The date and time the OpsItem event was created.</p>",
         "OpsItemSummary$CreatedTime": "<p>The date and time the OpsItem was created.</p>",
         "OpsItemSummary$LastModifiedTime": "<p>The date and time the OpsItem was last updated.</p>",
+        "OpsItemSummary$ActualStartTime": "<p>The time a runbook workflow started. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItemSummary$ActualEndTime": "<p>The time a runbook workflow ended. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItemSummary$PlannedStartTime": "<p>The time specified in a change request for a runbook workflow to start. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "OpsItemSummary$PlannedEndTime": "<p>The time specified in a change request for a runbook workflow to end. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
         "OpsMetadata$LastModifiedDate": "<p>The date the OpsMetadata object was last updated.</p>",
         "OpsMetadata$CreationDate": "<p>The date the OpsMetadata objects was created.</p>",
         "Parameter$LastModifiedDate": "<p>Date the parameter was last changed or updated and the parameter version was created.</p>",
@@ -1480,11 +1525,17 @@
         "Patch$ReleaseDate": "<p>The date the patch was released.</p>",
         "PatchComplianceData$InstalledTime": "<p>The date/time the patch was installed on the instance. Note that not all operating systems provide this level of information.</p>",
         "PatchStatus$ApprovalDate": "<p>The date the patch was approved (or will be approved if the status is PENDING_APPROVAL).</p>",
+        "ReviewInformation$ReviewedTime": "<p>The time that the reviewer took action on the document review request.</p>",
         "ServiceSetting$LastModifiedDate": "<p>The last time the service setting was modified.</p>",
         "Session$StartDate": "<p>The date and time, in ISO-8601 Extended format, when the session began.</p>",
         "Session$EndDate": "<p>The date and time, in ISO-8601 Extended format, when the session was terminated.</p>",
+        "StartChangeRequestExecutionRequest$ScheduledTime": "<p>The date and time specified in the change request to run the Automation runbooks.</p> <note> <p>The Automation runbooks specified for the runbook workflow can't run until all required approvals for the change request have been received.</p> </note>",
         "StepExecution$ExecutionStartTime": "<p>If a step has begun execution, this contains the time the step started. If the step is in Pending status, this field is not populated.</p>",
         "StepExecution$ExecutionEndTime": "<p>If a step has finished execution, this contains the time the execution ended. If the step has not yet concluded, this field is not populated.</p>",
+        "UpdateOpsItemRequest$ActualStartTime": "<p>The time a runbook workflow started. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "UpdateOpsItemRequest$ActualEndTime": "<p>The time a runbook workflow ended. Currently reported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "UpdateOpsItemRequest$PlannedStartTime": "<p>The time specified in a change request for a runbook workflow to start. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
+        "UpdateOpsItemRequest$PlannedEndTime": "<p>The time specified in a change request for a runbook workflow to end. Currently supported only for the OpsItem type <code>/aws/changerequest</code>.</p>",
         "UpdatePatchBaselineResult$CreatedDate": "<p>The date when the patch baseline was created.</p>",
         "UpdatePatchBaselineResult$ModifiedDate": "<p>The date when the patch baseline was last modified.</p>"
       }
@@ -2010,8 +2061,10 @@
         "GetDocumentResult$Name": "<p>The name of the Systems Manager document.</p>",
         "InstanceAssociationStatusInfo$Name": "<p>The name of the association.</p>",
         "ListDocumentVersionsRequest$Name": "<p>The name of the document. You can specify an Amazon Resource Name (ARN).</p>",
+        "Runbook$DocumentName": "<p>The name of the Automation runbook (Automation document) used in a runbook workflow.</p>",
         "SendCommandRequest$DocumentName": "<p>Required. The name of the Systems Manager document to run. This can be a public document or a custom document.</p>",
         "StartAutomationExecutionRequest$DocumentName": "<p>The name of the Automation document to use for this execution.</p>",
+        "StartChangeRequestExecutionRequest$DocumentName": "<p>The name of the change template document to run during the runbook workflow.</p>",
         "StartSessionRequest$DocumentName": "<p>The name of the SSM document to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>. You can call the <a>GetDocument</a> API to verify the document exists before attempting to start a session. If no document name is provided, a shell to the instance is launched by default.</p>",
         "UpdateAssociationRequest$Name": "<p>The name of the SSM document that contains the configuration information for the instance. You can specify Command or Automation documents.</p> <p>You can specify AWS-predefined documents, documents you created, or a document that is shared with you from another account.</p> <p>For SSM documents that are shared with you from other AWS accounts, you must specify the complete SSM document ARN, in the following format:</p> <p> <code>arn:aws:ssm:<i>region</i>:<i>account-id</i>:document/<i>document-name</i> </code> </p> <p>For example:</p> <p> <code>arn:aws:ssm:us-east-2:12345678912:document/My-Shared-Document</code> </p> <p>For AWS-predefined documents and SSM documents you created in your account, you only need to specify the document name. For example, <code>AWS-ApplyPatchBaseline</code> or <code>My-Document</code>.</p>",
         "UpdateAssociationStatusRequest$Name": "<p>The name of the Systems Manager document.</p>"
@@ -2020,6 +2073,14 @@
     "DocumentAlreadyExists": {
       "base": "<p>The specified document already exists.</p>",
       "refs": {
+      }
+    },
+    "DocumentAuthor": {
+      "base": null,
+      "refs": {
+        "DocumentDescription$Author": "<p>The user in your organization who created the document.</p>",
+        "DocumentIdentifier$Author": "<p>The user in your organization who created the document.</p>",
+        "ListDocumentMetadataHistoryResponse$Author": "<p>The user ID of the person in the organization who requested the document review.</p>"
       }
     },
     "DocumentContent": {
@@ -2144,6 +2205,18 @@
       "refs": {
       }
     },
+    "DocumentMetadataEnum": {
+      "base": null,
+      "refs": {
+        "ListDocumentMetadataHistoryRequest$Metadata": "<p>The type of data for which details are being requested. Currently, the only supported value is <code>DocumentReviews</code>.</p>"
+      }
+    },
+    "DocumentMetadataResponseInfo": {
+      "base": "<p>Details about the response to a document review request.</p>",
+      "refs": {
+        "ListDocumentMetadataHistoryResponse$Metadata": "<p>Information about the response to the document approval request.</p>"
+      }
+    },
     "DocumentName": {
       "base": null,
       "refs": {
@@ -2157,9 +2230,12 @@
         "DocumentDefaultVersionDescription$Name": "<p>The name of the document.</p>",
         "DocumentVersionInfo$Name": "<p>The document name.</p>",
         "GetCommandInvocationResult$DocumentName": "<p>The name of the document that was run. For example, AWS-RunShellScript.</p>",
+        "ListDocumentMetadataHistoryRequest$Name": "<p>The name of the document.</p>",
+        "ListDocumentMetadataHistoryResponse$Name": "<p>The name of the document.</p>",
         "ModifyDocumentPermissionRequest$Name": "<p>The name of the document that you want to share.</p>",
         "Session$DocumentName": "<p>The name of the Session Manager SSM document used to define the parameters and plugin settings for the session. For example, <code>SSM-SessionManagerRunShell</code>.</p>",
         "UpdateDocumentDefaultVersionRequest$Name": "<p>The name of a custom document that you want to set as the default version.</p>",
+        "UpdateDocumentMetadataRequest$Name": "<p>The name of the document for which a version is to be updated.</p>",
         "UpdateDocumentRequest$Name": "<p>The name of the document that you want to update.</p>"
       }
     },
@@ -2233,6 +2309,55 @@
         "GetDocumentResult$Requires": "<p>A list of SSM documents required by a document. For example, an <code>ApplicationConfiguration</code> document requires an <code>ApplicationConfigurationSchema</code> document.</p>"
       }
     },
+    "DocumentReviewAction": {
+      "base": null,
+      "refs": {
+        "DocumentReviews$Action": "<p>The action to take on a document approval review request.</p>"
+      }
+    },
+    "DocumentReviewComment": {
+      "base": null,
+      "refs": {
+        "DocumentReviewCommentSource$Content": "<p>The content of a comment entered by a user who requests a review of a new document version, or who reviews the new version.</p>"
+      }
+    },
+    "DocumentReviewCommentList": {
+      "base": null,
+      "refs": {
+        "DocumentReviewerResponseSource$Comment": "<p>The comment entered by a reviewer as part of their document review response.</p>",
+        "DocumentReviews$Comment": "<p>A comment entered by a user in your organization about the document review request.</p>"
+      }
+    },
+    "DocumentReviewCommentSource": {
+      "base": "<p>Information about comments added to a document review request.</p>",
+      "refs": {
+        "DocumentReviewCommentList$member": null
+      }
+    },
+    "DocumentReviewCommentType": {
+      "base": null,
+      "refs": {
+        "DocumentReviewCommentSource$Type": "<p>The type of information added to a review request. Currently, only the value <code>Comment</code> is supported.</p>"
+      }
+    },
+    "DocumentReviewerResponseList": {
+      "base": null,
+      "refs": {
+        "DocumentMetadataResponseInfo$ReviewerResponse": "<p>Details about a reviewer's response to a document review request.</p>"
+      }
+    },
+    "DocumentReviewerResponseSource": {
+      "base": "<p>Information about a reviewer's response to a document review request.</p>",
+      "refs": {
+        "DocumentReviewerResponseList$member": null
+      }
+    },
+    "DocumentReviews": {
+      "base": "<p>Information about a document approval review.</p>",
+      "refs": {
+        "UpdateDocumentMetadataRequest$DocumentReviews": "<p>The document review details to update.</p>"
+      }
+    },
     "DocumentSchemaVersion": {
       "base": null,
       "refs": {
@@ -2289,6 +2414,8 @@
         "DocumentDescription$DocumentVersion": "<p>The document version.</p>",
         "DocumentDescription$LatestVersion": "<p>The latest version of the document.</p>",
         "DocumentDescription$DefaultVersion": "<p>The default version.</p>",
+        "DocumentDescription$ApprovedVersion": "<p>The version of the document currently approved for use in the organization.</p>",
+        "DocumentDescription$PendingReviewVersion": "<p>The version of the document that is currently under review.</p>",
         "DocumentIdentifier$DocumentVersion": "<p>The document version.</p>",
         "DocumentRequires$Version": "<p>The document version required by the current document.</p>",
         "DocumentVersionInfo$DocumentVersion": "<p>The document version.</p>",
@@ -2296,11 +2423,16 @@
         "GetDocumentRequest$DocumentVersion": "<p>The document version for which you want information.</p>",
         "GetDocumentResult$DocumentVersion": "<p>The document version.</p>",
         "InstanceAssociationStatusInfo$DocumentVersion": "<p>The association document versions.</p>",
+        "ListDocumentMetadataHistoryRequest$DocumentVersion": "<p>The version of the document.</p>",
+        "ListDocumentMetadataHistoryResponse$DocumentVersion": "<p>The version of the document.</p>",
         "MaintenanceWindowAutomationParameters$DocumentVersion": "<p>The version of an Automation document to use during task execution.</p>",
         "MaintenanceWindowRunCommandParameters$DocumentVersion": "<p>The SSM document version to use in the request. You can specify $DEFAULT, $LATEST, or a specific version number. If you run commands by using the AWS CLI, then you must escape the first two options by using a backslash. If you specify a version number, then you don't need to use the backslash. For example:</p> <p>--document-version \"\\$DEFAULT\"</p> <p>--document-version \"\\$LATEST\"</p> <p>--document-version \"3\"</p>",
+        "Runbook$DocumentVersion": "<p>The version of the Automation runbook (Automation document) used in a runbook workflow.</p>",
         "SendCommandRequest$DocumentVersion": "<p>The SSM document version to use in the request. You can specify $DEFAULT, $LATEST, or a specific version number. If you run commands by using the AWS CLI, then you must escape the first two options by using a backslash. If you specify a version number, then you don't need to use the backslash. For example:</p> <p>--document-version \"\\$DEFAULT\"</p> <p>--document-version \"\\$LATEST\"</p> <p>--document-version \"3\"</p>",
         "StartAutomationExecutionRequest$DocumentVersion": "<p>The version of the Automation document to use for this execution.</p>",
+        "StartChangeRequestExecutionRequest$DocumentVersion": "<p>The version of the change template document to run during the runbook workflow.</p>",
         "UpdateAssociationRequest$DocumentVersion": "<p>The document version you want update for the association. </p>",
+        "UpdateDocumentMetadataRequest$DocumentVersion": "<p>The version of a document to update.</p>",
         "UpdateDocumentRequest$DocumentVersion": "<p>(Required) The latest version of the document that you want to update. The latest document version can be specified using the $LATEST variable or by the version number. Updating a previous version of a document is not supported.</p>"
       }
     },
@@ -2403,7 +2535,7 @@
     "ExecutionRoleName": {
       "base": null,
       "refs": {
-        "TargetLocation$ExecutionRoleName": "<p>The Automation execution role used by the currently running Automation.</p>"
+        "TargetLocation$ExecutionRoleName": "<p>The Automation execution role used by the currently running Automation. If not specified, the default value is <code>AWS-SystemsManager-AutomationExecutionRole</code>.</p>"
       }
     },
     "ExpirationDate": {
@@ -2736,7 +2868,8 @@
     "IdempotencyToken": {
       "base": null,
       "refs": {
-        "StartAutomationExecutionRequest$ClientToken": "<p>User-provided idempotency token. The token must be unique, is case insensitive, enforces the UUID format, and can't be reused.</p>"
+        "StartAutomationExecutionRequest$ClientToken": "<p>User-provided idempotency token. The token must be unique, is case insensitive, enforces the UUID format, and can't be reused.</p>",
+        "StartChangeRequestExecutionRequest$ClientToken": "<p>The user-provided idempotency token. The token must be unique, is case insensitive, enforces the UUID format, and can't be reused.</p>"
       }
     },
     "IdempotentParameterMismatch": {
@@ -3669,6 +3802,16 @@
       "refs": {
       }
     },
+    "ListDocumentMetadataHistoryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDocumentMetadataHistoryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDocumentVersionsRequest": {
       "base": null,
       "refs": {
@@ -3695,6 +3838,16 @@
       }
     },
     "ListInventoryEntriesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOpsItemEventsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOpsItemEventsResponse": {
       "base": null,
       "refs": {
       }
@@ -4087,10 +4240,10 @@
     "MaintenanceWindowOffset": {
       "base": null,
       "refs": {
-        "CreateMaintenanceWindowRequest$ScheduleOffset": "<p>The number of days to wait after the date and time specified by a CRON expression before running the maintenance window.</p> <p>For example, the following cron expression schedules a maintenance window to run on the third Tuesday of every month at 11:30 PM.</p> <p> <code>cron(0 30 23 ? * TUE#3 *)</code> </p> <p>If the schedule offset is <code>2</code>, the maintenance window won't run until two days later.</p>",
+        "CreateMaintenanceWindowRequest$ScheduleOffset": "<p>The number of days to wait after the date and time specified by a CRON expression before running the maintenance window.</p> <p>For example, the following cron expression schedules a maintenance window to run on the third Tuesday of every month at 11:30 PM.</p> <p> <code>cron(30 23 ? * TUE#3 *)</code> </p> <p>If the schedule offset is <code>2</code>, the maintenance window won't run until two days later.</p>",
         "GetMaintenanceWindowResult$ScheduleOffset": "<p>The number of days to wait to run a maintenance window after the scheduled CRON expression date and time.</p>",
         "MaintenanceWindowIdentity$ScheduleOffset": "<p>The number of days to wait to run a maintenance window after the scheduled CRON expression date and time.</p>",
-        "UpdateMaintenanceWindowRequest$ScheduleOffset": "<p>The number of days to wait after the date and time specified by a CRON expression before running the maintenance window.</p> <p>For example, the following cron expression schedules a maintenance window to run the third Tuesday of every month at 11:30 PM.</p> <p> <code>cron(0 30 23 ? * TUE#3 *)</code> </p> <p>If the schedule offset is <code>2</code>, the maintenance window won't run until two days later.</p>",
+        "UpdateMaintenanceWindowRequest$ScheduleOffset": "<p>The number of days to wait after the date and time specified by a CRON expression before running the maintenance window.</p> <p>For example, the following cron expression schedules a maintenance window to run the third Tuesday of every month at 11:30 PM.</p> <p> <code>cron(30 23 ? * TUE#3 *)</code> </p> <p>If the schedule offset is <code>2</code>, the maintenance window won't run until two days later.</p>",
         "UpdateMaintenanceWindowResult$ScheduleOffset": "<p>The number of days to wait to run a maintenance window after the scheduled CRON expression date and time.</p>"
       }
     },
@@ -4156,7 +4309,7 @@
         "MaintenanceWindowIdentity$StartDate": "<p>The date and time, in ISO-8601 Extended format, for when the maintenance window is scheduled to become active.</p>",
         "MaintenanceWindowIdentity$NextExecutionTime": "<p>The next time the maintenance window will actually run, taking into account any specified times for the maintenance window to become active or inactive.</p>",
         "ScheduledWindowExecution$ExecutionTime": "<p>The time, in ISO-8601 Extended format, that the maintenance window is scheduled to be run.</p>",
-        "UpdateMaintenanceWindowRequest$StartDate": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"etc/UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
+        "UpdateMaintenanceWindowRequest$StartDate": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
         "UpdateMaintenanceWindowRequest$EndDate": "<p>The date and time, in ISO-8601 Extended format, for when you want the maintenance window to become inactive. EndDate allows you to set a date and time in the future when the maintenance window will no longer run.</p>",
         "UpdateMaintenanceWindowResult$StartDate": "<p>The date and time, in ISO-8601 Extended format, for when the maintenance window is scheduled to become active. The maintenance window will not run before this specified time.</p>",
         "UpdateMaintenanceWindowResult$EndDate": "<p>The date and time, in ISO-8601 Extended format, for when the maintenance window is scheduled to become inactive. The maintenance window will not run after this specified time.</p>"
@@ -4305,11 +4458,11 @@
     "MaintenanceWindowTimezone": {
       "base": null,
       "refs": {
-        "CreateMaintenanceWindowRequest$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"etc/UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
-        "GetMaintenanceWindowResult$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"etc/UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
+        "CreateMaintenanceWindowRequest$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
+        "GetMaintenanceWindowResult$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
         "MaintenanceWindowIdentity$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format.</p>",
-        "UpdateMaintenanceWindowRequest$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"etc/UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
-        "UpdateMaintenanceWindowResult$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"etc/UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>"
+        "UpdateMaintenanceWindowRequest$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>",
+        "UpdateMaintenanceWindowResult$ScheduleTimezone": "<p>The time zone that the scheduled maintenance window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"UTC\", or \"Asia/Seoul\". For more information, see the <a href=\"https://www.iana.org/time-zones\">Time Zone Database</a> on the IANA website.</p>"
       }
     },
     "MaintenanceWindowsForTargetList": {
@@ -4339,9 +4492,10 @@
         "GetMaintenanceWindowTaskResult$MaxConcurrency": "<p>The maximum number of targets allowed to run this task in parallel.</p>",
         "MaintenanceWindowTask$MaxConcurrency": "<p>The maximum number of targets this task can be run for, in parallel.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$MaxConcurrency": "<p>The maximum number of targets this task can be run for in parallel.</p>",
+        "Runbook$MaxConcurrency": "<p>The <code>MaxConcurrency</code> value specified by the user when the operation started, indicating the maximum number of resources that the runbook operation can run on at the same time.</p>",
         "SendCommandRequest$MaxConcurrency": "<p>(Optional) The maximum number of instances that are allowed to run the command at the same time. You can specify a number such as 10 or a percentage such as 10%. The default value is 50. For more information about how to use MaxConcurrency, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-velocity\">Using concurrency controls</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "StartAutomationExecutionRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run this task in parallel. You can specify a number, such as 10, or a percentage, such as 10%. The default value is 10.</p>",
-        "TargetLocation$TargetLocationMaxConcurrency": "<p>The maximum number of AWS accounts and AWS regions allowed to run the Automation concurrently </p>",
+        "TargetLocation$TargetLocationMaxConcurrency": "<p>The maximum number of AWS accounts and AWS regions allowed to run the Automation concurrently.</p>",
         "UpdateAssociationRequest$MaxConcurrency": "<p>The maximum number of targets allowed to run the association at the same time. You can specify a number, for example 10, or a percentage of the target set, for example 10%. The default value is 100%, which means all targets run the association at the same time.</p> <p>If a new instance starts and attempts to run an association while Systems Manager is running MaxConcurrency associations, the association is allowed to run. During the next association interval, the new instance will process its association within the limit specified for MaxConcurrency.</p>",
         "UpdateMaintenanceWindowTaskRequest$MaxConcurrency": "<p>The new <code>MaxConcurrency</code> value you want to specify. <code>MaxConcurrency</code> is the number of targets that are allowed to run this task in parallel.</p>",
         "UpdateMaintenanceWindowTaskResult$MaxConcurrency": "<p>The updated MaxConcurrency value.</p>"
@@ -4366,9 +4520,10 @@
         "GetMaintenanceWindowTaskResult$MaxErrors": "<p>The maximum number of errors allowed before the task stops being scheduled.</p>",
         "MaintenanceWindowTask$MaxErrors": "<p>The maximum number of errors allowed before this task stops being scheduled.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$MaxErrors": "<p>The maximum number of errors allowed before this task stops being scheduled.</p>",
+        "Runbook$MaxErrors": "<p>The <code>MaxErrors</code> value specified by the user when the execution started, indicating the maximum number of errors that can occur during the operation before the updates are stopped or rolled back.</p>",
         "SendCommandRequest$MaxErrors": "<p>The maximum number of errors allowed without the command failing. When the command fails one more time beyond the value of MaxErrors, the systems stops sending the command to additional targets. You can specify a number like 10 or a percentage like 10%. The default value is 0. For more information about how to use MaxErrors, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-maxerrors\">Using error controls</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "StartAutomationExecutionRequest$MaxErrors": "<p>The number of errors that are allowed before the system stops running the automation on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops running the automation when the fourth error is received. If you specify 0, then the system stops running the automation on additional targets after the first error result is returned. If you run an automation on 50 resources and set max-errors to 10%, then the system stops running the automation on additional targets when the sixth error is received.</p> <p>Executions that are already running an automation when max-errors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set max-concurrency to 1 so the executions proceed one at a time.</p>",
-        "TargetLocation$TargetLocationMaxErrors": "<p>The maximum number of errors allowed before the system stops queueing additional Automation executions for the currently running Automation. </p>",
+        "TargetLocation$TargetLocationMaxErrors": "<p>The maximum number of errors allowed before the system stops queueing additional Automation executions for the currently running Automation.</p>",
         "UpdateAssociationRequest$MaxErrors": "<p>The number of errors that are allowed before the system stops sending requests to run the association on additional targets. You can specify either an absolute number of errors, for example 10, or a percentage of the target set, for example 10%. If you specify 3, for example, the system stops sending requests when the fourth error is received. If you specify 0, then the system stops sending requests after the first error is returned. If you run an association on 50 instances and set MaxError to 10%, then the system stops sending the request when the sixth error is received.</p> <p>Executions that are already running an association when MaxErrors is reached are allowed to complete, but some of these executions may fail as well. If you need to ensure that there won't be more than max-errors failed executions, set MaxConcurrency to 1 so that executions proceed one at a time.</p>",
         "UpdateMaintenanceWindowTaskRequest$MaxErrors": "<p>The new <code>MaxErrors</code> value to specify. <code>MaxErrors</code> is the maximum number of errors that are allowed before the task stops being scheduled.</p>",
         "UpdateMaintenanceWindowTaskResult$MaxErrors": "<p>The updated MaxErrors value.</p>"
@@ -4393,6 +4548,7 @@
         "ListAssociationsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListComplianceItemsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListComplianceSummariesRequest$MaxResults": "<p>The maximum number of items to return for this call. Currently, you can specify null or 50. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
+        "ListDocumentMetadataHistoryRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListDocumentVersionsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListDocumentsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListInventoryEntriesRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
@@ -4422,13 +4578,13 @@
     "MetadataMap": {
       "base": null,
       "refs": {
-        "CreateOpsMetadataRequest$Metadata": "<p>Metadata for a new AppManager application. </p>",
-        "GetOpsMetadataResult$Metadata": "<p>OpsMetadata for an AppManager application.</p>",
+        "CreateOpsMetadataRequest$Metadata": "<p>Metadata for a new Application Manager application. </p>",
+        "GetOpsMetadataResult$Metadata": "<p>OpsMetadata for an Application Manager application.</p>",
         "UpdateOpsMetadataRequest$MetadataToUpdate": "<p>Metadata to add to an OpsMetadata object.</p>"
       }
     },
     "MetadataValue": {
-      "base": "<p>Metadata to assign to an AppManager application.</p>",
+      "base": "<p>Metadata to assign to an Application Manager application.</p>",
       "refs": {
         "MetadataMap$value": null
       }
@@ -4436,7 +4592,7 @@
     "MetadataValueString": {
       "base": null,
       "refs": {
-        "MetadataValue$Value": "<p>Metadata value to assign to an AppManager application.</p>"
+        "MetadataValue$Value": "<p>Metadata value to assign to an Application Manager application.</p>"
       }
     },
     "ModifyDocumentPermissionRequest": {
@@ -4530,6 +4686,8 @@
         "ListComplianceItemsResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
         "ListComplianceSummariesRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
         "ListComplianceSummariesResult$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results.</p>",
+        "ListDocumentMetadataHistoryRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
+        "ListDocumentMetadataHistoryResponse$NextToken": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.</p>",
         "ListDocumentVersionsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
         "ListDocumentVersionsResult$NextToken": "<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>",
         "ListDocumentsRequest$NextToken": "<p>The token for the next set of items to return. (You received this token from a previous call.)</p>",
@@ -4797,6 +4955,60 @@
         "UpdateOpsItemRequest$Description": "<p>Update the information about the OpsItem. Provide enough information so that users reading this OpsItem for the first time understand the issue. </p>"
       }
     },
+    "OpsItemEventFilter": {
+      "base": "<p>Describes a filter for a specific list of OpsItem events. You can filter event information by using tags. You specify tags by using a key-value pair mapping. </p>",
+      "refs": {
+        "OpsItemEventFilters$member": null
+      }
+    },
+    "OpsItemEventFilterKey": {
+      "base": null,
+      "refs": {
+        "OpsItemEventFilter$Key": "<p>The name of the filter key. Currently, the only supported value is <code>OpsItemId</code>.</p>"
+      }
+    },
+    "OpsItemEventFilterOperator": {
+      "base": null,
+      "refs": {
+        "OpsItemEventFilter$Operator": "<p>The operator used by the filter call. Currently, the only supported value is <code>Equal</code>.</p>"
+      }
+    },
+    "OpsItemEventFilterValue": {
+      "base": null,
+      "refs": {
+        "OpsItemEventFilterValues$member": null
+      }
+    },
+    "OpsItemEventFilterValues": {
+      "base": null,
+      "refs": {
+        "OpsItemEventFilter$Values": "<p>The values for the filter, consisting of one or more OpsItem IDs.</p>"
+      }
+    },
+    "OpsItemEventFilters": {
+      "base": null,
+      "refs": {
+        "ListOpsItemEventsRequest$Filters": "<p>One or more OpsItem filters. Use a filter to return a more specific list of results. </p>"
+      }
+    },
+    "OpsItemEventMaxResults": {
+      "base": null,
+      "refs": {
+        "ListOpsItemEventsRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results. </p>"
+      }
+    },
+    "OpsItemEventSummaries": {
+      "base": null,
+      "refs": {
+        "ListOpsItemEventsResponse$Summaries": "<p>A list of event information for the specified OpsItems.</p>"
+      }
+    },
+    "OpsItemEventSummary": {
+      "base": "<p>Summary information about an OpsItem event.</p>",
+      "refs": {
+        "OpsItemEventSummaries$member": null
+      }
+    },
     "OpsItemFilter": {
       "base": "<p>Describes an OpsItem filter.</p>",
       "refs": {
@@ -4840,6 +5052,12 @@
         "OpsItem$OpsItemId": "<p>The ID of the OpsItem.</p>",
         "OpsItemSummary$OpsItemId": "<p>The ID of the OpsItem.</p>",
         "UpdateOpsItemRequest$OpsItemId": "<p>The ID of the OpsItem.</p>"
+      }
+    },
+    "OpsItemIdentity": {
+      "base": "<p>Information about the user or resource that created an OpsItem event.</p>",
+      "refs": {
+        "OpsItemEventSummary$CreatedBy": "<p>Information about the user or resource that created the OpsItem event.</p>"
       }
     },
     "OpsItemInvalidParameterException": {
@@ -4954,8 +5172,16 @@
         "UpdateOpsItemRequest$Title": "<p>A short heading that describes the nature of the OpsItem and the impacted resource.</p>"
       }
     },
+    "OpsItemType": {
+      "base": null,
+      "refs": {
+        "CreateOpsItemRequest$OpsItemType": "<p>The type of OpsItem to create. Currently, the only valid values are <code>/aws/changerequest</code> and <code>/aws/issue</code>.</p>",
+        "OpsItem$OpsItemType": "<p>The type of OpsItem. Currently, the only valid values are <code>/aws/changerequest</code> and <code>/aws/issue</code>.</p>",
+        "OpsItemSummary$OpsItemType": "<p>The type of OpsItem. Currently, the only valid values are <code>/aws/changerequest</code> and <code>/aws/issue</code>.</p>"
+      }
+    },
     "OpsMetadata": {
-      "base": "<p>Operational metadata for an application in AppManager.</p>",
+      "base": "<p>Operational metadata for an application in Application Manager.</p>",
       "refs": {
         "OpsMetadataList$member": null
       }
@@ -5012,12 +5238,12 @@
       }
     },
     "OpsMetadataKeyLimitExceededException": {
-      "base": "<p>The OpsMetadata object exceeds the maximum number of OpsMetadata keys that you can assign to an application in AppManager.</p>",
+      "base": "<p>The OpsMetadata object exceeds the maximum number of OpsMetadata keys that you can assign to an application in Application Manager.</p>",
       "refs": {
       }
     },
     "OpsMetadataLimitExceededException": {
-      "base": "<p>Your account reached the maximum number of OpsMetadata objects allowed by AppManager. The maximum is 200 OpsMetadata objects. Delete one or more OpsMetadata object and try again.</p>",
+      "base": "<p>Your account reached the maximum number of OpsMetadata objects allowed by Application Manager. The maximum is 200 OpsMetadata objects. Delete one or more OpsMetadata object and try again.</p>",
       "refs": {
       }
     },
@@ -5035,9 +5261,9 @@
     "OpsMetadataResourceId": {
       "base": null,
       "refs": {
-        "CreateOpsMetadataRequest$ResourceId": "<p>A resource ID for a new AppManager application.</p>",
-        "GetOpsMetadataResult$ResourceId": "<p>The resource ID of the AppManager application.</p>",
-        "OpsMetadata$ResourceId": "<p>The ID of the AppManager application.</p>"
+        "CreateOpsMetadataRequest$ResourceId": "<p>A resource ID for a new Application Manager application.</p>",
+        "GetOpsMetadataResult$ResourceId": "<p>The resource ID of the Application Manager application.</p>",
+        "OpsMetadata$ResourceId": "<p>The ID of the Application Manager application.</p>"
       }
     },
     "OpsMetadataTooManyUpdatesException": {
@@ -6379,6 +6605,50 @@
       "refs": {
       }
     },
+    "ReviewInformation": {
+      "base": "<p>Information about the result of a document review request.</p>",
+      "refs": {
+        "ReviewInformationList$member": null
+      }
+    },
+    "ReviewInformationList": {
+      "base": null,
+      "refs": {
+        "DocumentDescription$ReviewInformation": "<p>Details about the review of a document.</p>"
+      }
+    },
+    "ReviewStatus": {
+      "base": null,
+      "refs": {
+        "DocumentDescription$ReviewStatus": "<p>The current status of the review.</p>",
+        "DocumentIdentifier$ReviewStatus": "<p>The current status of a document review.</p>",
+        "DocumentReviewerResponseSource$ReviewStatus": "<p>The current review status of a new custom SSM document created by a member of your organization, or of the latest version of an existing SSM document.</p> <p>Only one version of a document can be in the APPROVED state at a time. When a new version is approved, the status of the previous version changes to REJECTED.</p> <p>Only one version of a document can be in review, or PENDING, at a time.</p>",
+        "DocumentVersionInfo$ReviewStatus": "<p>The current status of the approval review for the latest version of the document.</p>",
+        "GetDocumentResult$ReviewStatus": "<p>The current review status of a new custom Systems Manager document (SSM document) created by a member of your organization, or of the latest version of an existing SSM document.</p> <p>Only one version of an SSM document can be in the APPROVED state at a time. When a new version is approved, the status of the previous version changes to REJECTED.</p> <p>Only one version of an SSM document can be in review, or PENDING, at a time.</p>",
+        "ReviewInformation$Status": "<p>The current status of the document review request.</p>"
+      }
+    },
+    "Reviewer": {
+      "base": null,
+      "refs": {
+        "DocumentReviewerResponseSource$Reviewer": "<p>The user in your organization assigned to review a document request.</p>",
+        "ReviewInformation$Reviewer": "<p>The reviewer assigned to take action on the document review request.</p>"
+      }
+    },
+    "Runbook": {
+      "base": "<p>Information about an Automation runbook (Automation document) used in a runbook workflow in Change Manager.</p> <note> <p>The Automation runbooks specified for the runbook workflow can't run until all required approvals for the change request have been received.</p> </note>",
+      "refs": {
+        "Runbooks$member": null
+      }
+    },
+    "Runbooks": {
+      "base": null,
+      "refs": {
+        "AutomationExecution$Runbooks": "<p>Information about the Automation runbooks (Automation documents) that are run as part of a runbook workflow.</p> <note> <p>The Automation runbooks specified for the runbook workflow can't run until all required approvals for the change request have been received.</p> </note>",
+        "AutomationExecutionMetadata$Runbooks": "<p>Information about the Automation runbooks (Automation documents) that are run during a runbook workflow in Change Manager.</p> <note> <p>The Automation runbooks specified for the runbook workflow can't run until all required approvals for the change request have been received.</p> </note>",
+        "StartChangeRequestExecutionRequest$Runbooks": "<p>Information about the Automation runbooks (Automation documents) that are run during the runbook workflow.</p> <note> <p>The Automation runbooks specified for the runbook workflow can't run until all required approvals for the change request have been received.</p> </note>"
+      }
+    },
     "S3BucketName": {
       "base": null,
       "refs": {
@@ -6703,6 +6973,16 @@
       "refs": {
       }
     },
+    "StartChangeRequestExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartChangeRequestExecutionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartSessionRequest": {
       "base": null,
       "refs": {
@@ -6829,6 +7109,7 @@
         "AssociationDoesNotExist$Message": null,
         "AssociationExecutionDoesNotExist$Message": null,
         "AssociationVersionLimitExceeded$Message": null,
+        "AutomationDefinitionNotApprovedException$Message": null,
         "AutomationDefinitionNotFoundException$Message": null,
         "AutomationDefinitionVersionNotFoundException$Message": null,
         "AutomationExecution$FailureMessage": "<p>A message describing why an execution has failed, if the status is set to Failed.</p>",
@@ -6836,6 +7117,8 @@
         "AutomationExecution$CurrentStepName": "<p>The name of the step that is currently running.</p>",
         "AutomationExecution$CurrentAction": "<p>The action of the step that is currently running.</p>",
         "AutomationExecution$Target": "<p>The target of the execution.</p>",
+        "AutomationExecution$OpsItemId": "<p>The ID of an OpsItem that is created to represent a Change Manager change request.</p>",
+        "AutomationExecution$AssociationId": "<p>The ID of a State Manager association used in the Automation operation.</p>",
         "AutomationExecutionLimitExceededException$Message": null,
         "AutomationExecutionMetadata$ExecutedBy": "<p>The IAM role ARN of the user who ran the Automation.</p>",
         "AutomationExecutionMetadata$LogFile": "<p>An S3 bucket where execution information is stored.</p>",
@@ -6843,6 +7126,8 @@
         "AutomationExecutionMetadata$CurrentAction": "<p>The action of the step that is currently running.</p>",
         "AutomationExecutionMetadata$FailureMessage": "<p>The list of execution outputs as defined in the Automation document.</p>",
         "AutomationExecutionMetadata$Target": "<p>The list of execution outputs as defined in the Automation document.</p>",
+        "AutomationExecutionMetadata$OpsItemId": "<p>The ID of an OpsItem that is created to represent a Change Manager change request.</p>",
+        "AutomationExecutionMetadata$AssociationId": "<p>The ID of a State Manager association used in the Automation operation.</p>",
         "AutomationExecutionNotFoundException$Message": null,
         "AutomationStepNotFoundException$Message": null,
         "ComplianceTypeCountLimitExceededException$Message": null,
@@ -6910,6 +7195,8 @@
         "InvalidUpdate$Message": null,
         "ItemContentMismatchException$Message": null,
         "ItemSizeLimitExceededException$Message": null,
+        "ListOpsItemEventsRequest$NextToken": "<p>A token to start the list. Use this token to get the next set of results. </p>",
+        "ListOpsItemEventsResponse$NextToken": "<p>The token for the next set of items to return. Use this token to get the next set of results. </p>",
         "MaxDocumentSizeExceeded$Message": null,
         "NormalStringMap$key": null,
         "NormalStringMap$value": null,
@@ -6918,6 +7205,12 @@
         "OpsItem$Version": "<p>The version of this OpsItem. Each time the OpsItem is edited the version number increments by one.</p>",
         "OpsItemAlreadyExistsException$Message": null,
         "OpsItemAlreadyExistsException$OpsItemId": null,
+        "OpsItemEventSummary$OpsItemId": "<p>The ID of the OpsItem.</p>",
+        "OpsItemEventSummary$EventId": "<p>The ID of the OpsItem event.</p>",
+        "OpsItemEventSummary$Source": "<p>The source of the OpsItem event.</p>",
+        "OpsItemEventSummary$DetailType": "<p>The type of information provided as a detail.</p>",
+        "OpsItemEventSummary$Detail": "<p>Specific information about the OpsItem event.</p>",
+        "OpsItemIdentity$Arn": "<p>The Amazon Resource Name (ARN) of the IAM entity that created the OpsItem event.</p>",
         "OpsItemInvalidParameterException$Message": null,
         "OpsItemLimitExceededException$LimitType": null,
         "OpsItemLimitExceededException$Message": null,
@@ -7028,7 +7321,8 @@
         "DocumentIdentifier$Tags": "<p>The tags, or metadata, that have been applied to the document.</p>",
         "ListTagsForResourceResult$TagList": "<p>A list of tags.</p>",
         "PutParameterRequest$Tags": "<p>Optional metadata that you assign to a resource. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a Systems Manager parameter to identify the type of resource to which it applies, the environment, or the type of configuration data referenced by the parameter. In this case, you could specify the following key name/value pairs:</p> <ul> <li> <p> <code>Key=Resource,Value=S3bucket</code> </p> </li> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> <li> <p> <code>Key=ParameterType,Value=LicenseKey</code> </p> </li> </ul> <note> <p>To add tags to an existing Systems Manager parameter, use the <a>AddTagsToResource</a> action.</p> </note>",
-        "StartAutomationExecutionRequest$Tags": "<p>Optional metadata that you assign to a resource. You can specify a maximum of five tags for an automation. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an automation to identify an environment or operating system. In this case, you could specify the following key name/value pairs:</p> <ul> <li> <p> <code>Key=environment,Value=test</code> </p> </li> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> </ul> <note> <p>To add tags to an existing patch baseline, use the <a>AddTagsToResource</a> action.</p> </note>"
+        "StartAutomationExecutionRequest$Tags": "<p>Optional metadata that you assign to a resource. You can specify a maximum of five tags for an automation. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag an automation to identify an environment or operating system. In this case, you could specify the following key name/value pairs:</p> <ul> <li> <p> <code>Key=environment,Value=test</code> </p> </li> <li> <p> <code>Key=OS,Value=Windows</code> </p> </li> </ul> <note> <p>To add tags to an existing patch baseline, use the <a>AddTagsToResource</a> action.</p> </note>",
+        "StartChangeRequestExecutionRequest$Tags": "<p>Optional metadata that you assign to a resource. You can specify a maximum of five tags for a change request. Tags enable you to categorize a resource in different ways, such as by purpose, owner, or environment. For example, you might want to tag a change request to identify an environment or target AWS Region. In this case, you could specify the following key-value pairs:</p> <ul> <li> <p> <code>Key=Environment,Value=Production</code> </p> </li> <li> <p> <code>Key=Region,Value=us-east-2</code> </p> </li> </ul>"
       }
     },
     "TagValue": {
@@ -7070,8 +7364,14 @@
     "TargetLocations": {
       "base": null,
       "refs": {
+        "AssociationDescription$TargetLocations": "<p>The combination of AWS Regions and AWS accounts where you want to run the association.</p>",
+        "AssociationVersionInfo$TargetLocations": "<p>The combination of AWS Regions and AWS accounts where you wanted to run the association when this association version was created.</p>",
         "AutomationExecution$TargetLocations": "<p>The combination of AWS Regions and/or AWS accounts where you want to run the Automation.</p>",
-        "StartAutomationExecutionRequest$TargetLocations": "<p>A location is a combination of AWS Regions and/or AWS accounts where you want to run the Automation. Use this action to start an Automation in multiple Regions and multiple accounts. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Running Automation workflows in multiple AWS Regions and accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>"
+        "CreateAssociationBatchRequestEntry$TargetLocations": "<p>Use this action to create an association in multiple Regions and multiple accounts.</p>",
+        "CreateAssociationRequest$TargetLocations": "<p>A location is a combination of AWS Regions and AWS accounts where you want to run the association. Use this action to create an association in multiple Regions and multiple accounts.</p>",
+        "Runbook$TargetLocations": "<p>Information about the AWS Regions and accounts targeted by the current Runbook operation.</p>",
+        "StartAutomationExecutionRequest$TargetLocations": "<p>A location is a combination of AWS Regions and/or AWS accounts where you want to run the Automation. Use this action to start an Automation in multiple Regions and multiple accounts. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html\">Running Automation workflows in multiple AWS Regions and accounts</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
+        "UpdateAssociationRequest$TargetLocations": "<p>A location is a combination of AWS Regions and AWS accounts where you want to run the association. Use this action to update an association in multiple Regions and multiple accounts.</p>"
       }
     },
     "TargetMap": {
@@ -7155,7 +7455,8 @@
         "MaintenanceWindowTarget$Targets": "<p>The targets, either instances or tags.</p> <p>Specify instances using the following format:</p> <p> <code>Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;</code> </p> <p>Tags are specified using the following format:</p> <p> <code>Key=&lt;tag name&gt;,Values=&lt;tag value&gt;</code>.</p>",
         "MaintenanceWindowTask$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
         "RegisterTargetWithMaintenanceWindowRequest$Targets": "<p>The targets to register with the maintenance window. In other words, the instances to run commands on when the maintenance window runs.</p> <p>You can specify targets using instance IDs, resource group names, or tags that have been applied to instances.</p> <p> <b>Example 1</b>: Specify instance IDs</p> <p> <code>Key=InstanceIds,Values=<i>instance-id-1</i>,<i>instance-id-2</i>,<i>instance-id-3</i> </code> </p> <p> <b>Example 2</b>: Use tag key-pairs applied to instances</p> <p> <code>Key=tag:<i>my-tag-key</i>,Values=<i>my-tag-value-1</i>,<i>my-tag-value-2</i> </code> </p> <p> <b>Example 3</b>: Use tag-keys applied to instances</p> <p> <code>Key=tag-key,Values=<i>my-tag-key-1</i>,<i>my-tag-key-2</i> </code> </p> <p> <b>Example 4</b>: Use resource group names</p> <p> <code>Key=resource-groups:Name,Values=<i>resource-group-name</i> </code> </p> <p> <b>Example 5</b>: Use filters for resource group types</p> <p> <code>Key=resource-groups:ResourceTypeFilters,Values=<i>resource-type-1</i>,<i>resource-type-2</i> </code> </p> <note> <p>For <code>Key=resource-groups:ResourceTypeFilters</code>, specify resource types in the following format</p> <p> <code>Key=resource-groups:ResourceTypeFilters,Values=<i>AWS::EC2::INSTANCE</i>,<i>AWS::EC2::VPC</i> </code> </p> </note> <p>For more information about these examples formats, including the best use case for each one, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/mw-cli-tutorial-targets-examples.html\">Examples: Register targets with a maintenance window</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
-        "RegisterTaskWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or maintenance window targets).</p> <p>Specify instances using the following format: </p> <p> <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> </p> <p>Specify maintenance window targets using the following format:</p> <p> <code>Key=WindowTargetIds;,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;</code> </p>",
+        "RegisterTaskWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or maintenance window targets).</p> <p>Specify instances using the following format: </p> <p> <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> </p> <p>Specify maintenance window targets using the following format:</p> <p> <code>Key=WindowTargetIds,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;</code> </p>",
+        "Runbook$Targets": "<p>A key-value mapping to target resources that the Runbook operation performs tasks on. Required if you specify <code>TargetParameterName</code>.</p>",
         "SendCommandRequest$Targets": "<p>An array of search criteria that targets instances using a <code>Key,Value</code> combination that you specify. Specifying targets is most useful when you want to send a command to a large number of instances at once. Using <code>Targets</code>, which accepts tag key-value pairs to identify instances, you can send a command to tens, hundreds, or thousands of instances at once.</p> <p>To send a command to a smaller number of instances, you can use the <code>InstanceIds</code> option instead.</p> <p>For more information about how to use targets, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending commands to a fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "StartAutomationExecutionRequest$Targets": "<p>A key-value mapping to target resources. Required if you specify TargetParameterName.</p>",
         "StepExecution$Targets": "<p>The targets for the step execution.</p>",
@@ -7282,6 +7583,16 @@
       }
     },
     "UpdateDocumentDefaultVersionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDocumentMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDocumentMetadataResponse": {
       "base": null,
       "refs": {
       }

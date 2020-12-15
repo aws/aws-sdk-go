@@ -243,6 +243,18 @@
       "output_token": "NextToken",
       "result_key": "DocumentIdentifiers"
     },
+    "ListOpsItemEvents": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Summaries"
+    },
+    "ListOpsMetadata": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "OpsMetadataList"
+    },
     "ListResourceComplianceSummaries": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

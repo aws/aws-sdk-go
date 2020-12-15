@@ -167,6 +167,12 @@
         "CreateChannelResponse$channelArn": "<p>The ARN of the channel.</p>"
       }
     },
+    "ChannelMessages": {
+      "base": "<p>Specifies one or more sets of channel messages.</p>",
+      "refs": {
+        "StartPipelineReprocessingRequest$channelMessages": "<p>Specifies one or more sets of channel messages that you want to reprocess.</p> <p>If you use the <code>channelMessages</code> object, you must not specify a value for <code>startTime</code> and <code>endTime</code>.</p>"
+      }
+    },
     "ChannelName": {
       "base": null,
       "refs": {
@@ -219,6 +225,30 @@
       "base": "<p>A summary of information about a channel.</p>",
       "refs": {
         "ChannelSummaries$member": null
+      }
+    },
+    "Column": {
+      "base": "<p>Contains information about a column that stores your data.</p>",
+      "refs": {
+        "Columns$member": null
+      }
+    },
+    "ColumnDataType": {
+      "base": null,
+      "refs": {
+        "Column$type": "<p>The type of data. For more information about the supported data types, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html\">Common data types</a> in the <i>AWS Glue Developer Guide</i>.</p>"
+      }
+    },
+    "ColumnName": {
+      "base": null,
+      "refs": {
+        "Column$name": "<p>The name of the column.</p>"
+      }
+    },
+    "Columns": {
+      "base": null,
+      "refs": {
+        "SchemaDefinition$columns": "<p>Specifies one or more columns that store your data.</p> <p>Each schema can have up to 100 columns. Each column can have up to 100 nested types</p>"
       }
     },
     "ComputeType": {
@@ -664,7 +694,7 @@
       "base": null,
       "refs": {
         "SampleChannelDataRequest$endTime": "<p>The end of the time window from which sample messages are retrieved.</p>",
-        "StartPipelineReprocessingRequest$endTime": "<p>The end time (exclusive) of raw message data that is reprocessed.</p>"
+        "StartPipelineReprocessingRequest$endTime": "<p>The end time (exclusive) of raw message data that is reprocessed.</p> <p>If you specify a value for the <code>endTime</code> parameter, you must not use the <code>channelMessages</code> object.</p>"
       }
     },
     "EntryName": {
@@ -691,6 +721,20 @@
       "refs": {
         "ChannelStatistics$size": "<p>The estimated size of the channel.</p>",
         "DatastoreStatistics$size": "<p>The estimated size of the data store.</p>"
+      }
+    },
+    "FileFormatConfiguration": {
+      "base": "<p>Contains the configuration information of file formats. AWS IoT Analytics data stores support JSON and <a href=\"https://parquet.apache.org/\">Parquet</a>.</p> <p>The default file format is JSON. You can specify only one format.</p> <p>You can't change the file format after you create the data store.</p>",
+      "refs": {
+        "CreateDatastoreRequest$fileFormatConfiguration": "<p>Contains the configuration information of file formats. AWS IoT Analytics data stores support JSON and <a href=\"https://parquet.apache.org/\">Parquet</a>.</p> <p>The default file format is JSON. You can specify only one format.</p> <p>You can't change the file format after you create the data store.</p>",
+        "Datastore$fileFormatConfiguration": "<p>Contains the configuration information of file formats. AWS IoT Analytics data stores support JSON and <a href=\"https://parquet.apache.org/\">Parquet</a>.</p> <p>The default file format is JSON. You can specify only one format.</p> <p>You can't change the file format after you create the data store.</p>",
+        "UpdateDatastoreRequest$fileFormatConfiguration": "<p>Contains the configuration information of file formats. AWS IoT Analytics data stores support JSON and <a href=\"https://parquet.apache.org/\">Parquet</a>.</p> <p>The default file format is JSON. You can specify only one format.</p> <p>You can't change the file format after you create the data store.</p>"
+      }
+    },
+    "FileFormatType": {
+      "base": null,
+      "refs": {
+        "DatastoreSummary$fileFormatType": "<p>The file format of the data in the data store.</p>"
       }
     },
     "FilterActivity": {
@@ -766,6 +810,12 @@
       "base": null,
       "refs": {
         "IotEventsDestinationConfiguration$inputName": "<p>The name of the AWS IoT Events input to which dataset contents are delivered.</p>"
+      }
+    },
+    "JsonConfiguration": {
+      "base": "<p>Contains the configuration information of the JSON format.</p>",
+      "refs": {
+        "FileFormatConfiguration$jsonConfiguration": "<p>Contains the configuration information of the JSON format.</p>"
       }
     },
     "LambdaActivity": {
@@ -997,6 +1047,12 @@
         "Variable$outputFileUriValue": "<p>The value of the variable as a structure that specifies an output file URI.</p>"
       }
     },
+    "ParquetConfiguration": {
+      "base": "<p>Contains the configuration information of the Parquet format.</p>",
+      "refs": {
+        "FileFormatConfiguration$parquetConfiguration": "<p>Contains the configuration information of the Parquet format.</p>"
+      }
+    },
     "Pipeline": {
       "base": "<p>Contains information about a pipeline.</p>",
       "refs": {
@@ -1200,6 +1256,18 @@
         "CustomerManagedDatastoreS3StorageSummary$keyPrefix": "<p>Optional. The prefix used to create the keys of the data store data objects. Each object in an S3 bucket has a key that is its unique identifier in the bucket. Each object in a bucket has exactly one key. The prefix must end with a forward slash (/).</p>"
       }
     },
+    "S3PathChannelMessage": {
+      "base": null,
+      "refs": {
+        "S3PathChannelMessages$member": null
+      }
+    },
+    "S3PathChannelMessages": {
+      "base": null,
+      "refs": {
+        "ChannelMessages$s3Paths": "<p>Specifies one or more keys that identify the Amazon Simple Storage Service (Amazon S3) objects that save your channel messages.</p>"
+      }
+    },
     "SampleChannelDataRequest": {
       "base": null,
       "refs": {
@@ -1220,6 +1288,12 @@
       "base": null,
       "refs": {
         "Schedule$expression": "<p>The expression that defines when to trigger an update. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html\">Schedule Expressions for Rules</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>"
+      }
+    },
+    "SchemaDefinition": {
+      "base": "<p>Information needed to define a schema.</p>",
+      "refs": {
+        "ParquetConfiguration$schemaDefinition": "<p>Information needed to define a schema.</p>"
       }
     },
     "SelectAttributesActivity": {
@@ -1295,7 +1369,7 @@
       "base": null,
       "refs": {
         "SampleChannelDataRequest$startTime": "<p>The start of the time window from which sample messages are retrieved.</p>",
-        "StartPipelineReprocessingRequest$startTime": "<p>The start time (inclusive) of raw message data that is reprocessed.</p>"
+        "StartPipelineReprocessingRequest$startTime": "<p>The start time (inclusive) of raw message data that is reprocessed.</p> <p>If you specify a value for the <code>startTime</code> parameter, you must not use the <code>channelMessages</code> object.</p>"
       }
     },
     "StringValue": {

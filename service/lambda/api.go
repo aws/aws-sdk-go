@@ -475,6 +475,8 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //
 //    * Using AWS Lambda with Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
 //
+//    * Using AWS Lambda with Self-Managed Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
+//
 // The following error handling options are only available for stream sources
 // (DynamoDB and Kinesis):
 //
@@ -7291,9 +7293,12 @@ type CreateEventSourceMappingInput struct {
 	//
 	//    * Amazon DynamoDB Streams - Default 100. Max 1,000.
 	//
-	//    * Amazon Simple Queue Service - Default 10. Max 10.
+	//    * Amazon Simple Queue Service - Default 10. For standard queues the max
+	//    is 10,000. For FIFO queues the max is 10.
 	//
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
+	//
+	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams) If the function returns an error, split the batch in two and retry.
@@ -7316,9 +7321,7 @@ type CreateEventSourceMappingInput struct {
 	//    * Amazon Simple Queue Service - The ARN of the queue.
 	//
 	//    * Amazon Managed Streaming for Apache Kafka - The ARN of the cluster.
-	//
-	// EventSourceArn is a required field
-	EventSourceArn *string `type:"string" required:"true"`
+	EventSourceArn *string `type:"string"`
 
 	// The name of the Lambda function.
 	//
@@ -7338,8 +7341,12 @@ type CreateEventSourceMappingInput struct {
 	// FunctionName is a required field
 	FunctionName *string `min:"1" type:"string" required:"true"`
 
-	// (Streams) The maximum amount of time to gather records before invoking the
-	// function, in seconds.
+	// (Streams) A list of current response type enums applied to the event source
+	// mapping.
+	FunctionResponseTypes []*string `min:"1" type:"list"`
+
+	// (Streams and SQS standard queues) The maximum amount of time to gather records
+	// before invoking the function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams) Discard records older than the specified age. The default value
@@ -7357,16 +7364,11 @@ type CreateEventSourceMappingInput struct {
 	// (MQ) The name of the Amazon MQ broker destination queue to consume.
 	Queues []*string `min:"1" type:"list"`
 
-	// (MQ) The Secrets Manager secret that stores your broker credentials. To store
-	// your secret, use the following format: { "username": "your username", "password":
-	// "your password" }
-	//
-	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
-	// "URI": "secretARN" } ]
-	//
-	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
-	// customer or service managed keys. When using a customer managed KMS key,
-	// the Lambda execution role requires kms:Decrypt permissions.
+	// The Self-Managed Apache Kafka cluster to send records.
+	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
+
+	// An array of the authentication protocol, or the VPC components to secure
+	// your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
@@ -7377,8 +7379,12 @@ type CreateEventSourceMappingInput struct {
 	// With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.
 	StartingPositionTimestamp *time.Time `type:"timestamp"`
 
-	// (MSK) The name of the Kafka topic.
+	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
+
+	// (Streams) The duration of a processing window in seconds. The range is between
+	// 1 second up to 15 minutes.
+	TumblingWindowInSeconds *int64 `type:"integer"`
 }
 
 // String returns the string representation
@@ -7397,14 +7403,14 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	if s.BatchSize != nil && *s.BatchSize < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("BatchSize", 1))
 	}
-	if s.EventSourceArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("EventSourceArn"))
-	}
 	if s.FunctionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
 	}
 	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.FunctionResponseTypes != nil && len(s.FunctionResponseTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionResponseTypes", 1))
 	}
 	if s.MaximumRecordAgeInSeconds != nil && *s.MaximumRecordAgeInSeconds < -1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaximumRecordAgeInSeconds", -1))
@@ -7423,6 +7429,21 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	}
 	if s.Topics != nil && len(s.Topics) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Topics", 1))
+	}
+	if s.SelfManagedEventSource != nil {
+		if err := s.SelfManagedEventSource.Validate(); err != nil {
+			invalidParams.AddNested("SelfManagedEventSource", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceAccessConfigurations != nil {
+		for i, v := range s.SourceAccessConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SourceAccessConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7467,6 +7488,12 @@ func (s *CreateEventSourceMappingInput) SetFunctionName(v string) *CreateEventSo
 	return s
 }
 
+// SetFunctionResponseTypes sets the FunctionResponseTypes field's value.
+func (s *CreateEventSourceMappingInput) SetFunctionResponseTypes(v []*string) *CreateEventSourceMappingInput {
+	s.FunctionResponseTypes = v
+	return s
+}
+
 // SetMaximumBatchingWindowInSeconds sets the MaximumBatchingWindowInSeconds field's value.
 func (s *CreateEventSourceMappingInput) SetMaximumBatchingWindowInSeconds(v int64) *CreateEventSourceMappingInput {
 	s.MaximumBatchingWindowInSeconds = &v
@@ -7497,6 +7524,12 @@ func (s *CreateEventSourceMappingInput) SetQueues(v []*string) *CreateEventSourc
 	return s
 }
 
+// SetSelfManagedEventSource sets the SelfManagedEventSource field's value.
+func (s *CreateEventSourceMappingInput) SetSelfManagedEventSource(v *SelfManagedEventSource) *CreateEventSourceMappingInput {
+	s.SelfManagedEventSource = v
+	return s
+}
+
 // SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
 func (s *CreateEventSourceMappingInput) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *CreateEventSourceMappingInput {
 	s.SourceAccessConfigurations = v
@@ -7518,6 +7551,12 @@ func (s *CreateEventSourceMappingInput) SetStartingPositionTimestamp(v time.Time
 // SetTopics sets the Topics field's value.
 func (s *CreateEventSourceMappingInput) SetTopics(v []*string) *CreateEventSourceMappingInput {
 	s.Topics = v
+	return s
+}
+
+// SetTumblingWindowInSeconds sets the TumblingWindowInSeconds field's value.
+func (s *CreateEventSourceMappingInput) SetTumblingWindowInSeconds(v int64) *CreateEventSourceMappingInput {
+	s.TumblingWindowInSeconds = &v
 	return s
 }
 
@@ -9062,14 +9101,18 @@ type EventSourceMappingConfiguration struct {
 	// The ARN of the Lambda function.
 	FunctionArn *string `type:"string"`
 
+	// (Streams) A list of current response type enums applied to the event source
+	// mapping.
+	FunctionResponseTypes []*string `min:"1" type:"list"`
+
 	// The date that the event source mapping was last updated, or its state changed.
 	LastModified *time.Time `type:"timestamp"`
 
 	// The result of the last AWS Lambda invocation of your Lambda function.
 	LastProcessingResult *string `type:"string"`
 
-	// (Streams) The maximum amount of time to gather records before invoking the
-	// function, in seconds. The default value is zero.
+	// (Streams and SQS standard queues) The maximum amount of time to gather records
+	// before invoking the function, in seconds. The default value is zero.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams) Discard records older than the specified age. The default value
@@ -9089,16 +9132,11 @@ type EventSourceMappingConfiguration struct {
 	// (MQ) The name of the Amazon MQ broker destination queue to consume.
 	Queues []*string `min:"1" type:"list"`
 
-	// (MQ) The Secrets Manager secret that stores your broker credentials. To store
-	// your secret, use the following format: { "username": "your username", "password":
-	// "your password" }
-	//
-	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
-	// "URI": "secretARN" } ]
-	//
-	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
-	// customer or service managed keys. When using a customer managed KMS key,
-	// the Lambda execution role requires kms:Decrypt permissions.
+	// The Self-Managed Apache Kafka cluster for your event source.
+	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
+
+	// An array of the authentication protocol, or the VPC components to secure
+	// your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
@@ -9117,8 +9155,12 @@ type EventSourceMappingConfiguration struct {
 	// a user, or by the Lambda service.
 	StateTransitionReason *string `type:"string"`
 
-	// (MSK) The name of the Kafka topic to consume.
+	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
+
+	// (Streams) The duration of a processing window in seconds. The range is between
+	// 1 second up to 15 minutes.
+	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
 	UUID *string `type:"string"`
@@ -9164,6 +9206,12 @@ func (s *EventSourceMappingConfiguration) SetFunctionArn(v string) *EventSourceM
 	return s
 }
 
+// SetFunctionResponseTypes sets the FunctionResponseTypes field's value.
+func (s *EventSourceMappingConfiguration) SetFunctionResponseTypes(v []*string) *EventSourceMappingConfiguration {
+	s.FunctionResponseTypes = v
+	return s
+}
+
 // SetLastModified sets the LastModified field's value.
 func (s *EventSourceMappingConfiguration) SetLastModified(v time.Time) *EventSourceMappingConfiguration {
 	s.LastModified = &v
@@ -9206,6 +9254,12 @@ func (s *EventSourceMappingConfiguration) SetQueues(v []*string) *EventSourceMap
 	return s
 }
 
+// SetSelfManagedEventSource sets the SelfManagedEventSource field's value.
+func (s *EventSourceMappingConfiguration) SetSelfManagedEventSource(v *SelfManagedEventSource) *EventSourceMappingConfiguration {
+	s.SelfManagedEventSource = v
+	return s
+}
+
 // SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
 func (s *EventSourceMappingConfiguration) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *EventSourceMappingConfiguration {
 	s.SourceAccessConfigurations = v
@@ -9239,6 +9293,12 @@ func (s *EventSourceMappingConfiguration) SetStateTransitionReason(v string) *Ev
 // SetTopics sets the Topics field's value.
 func (s *EventSourceMappingConfiguration) SetTopics(v []*string) *EventSourceMappingConfiguration {
 	s.Topics = v
+	return s
+}
+
+// SetTumblingWindowInSeconds sets the TumblingWindowInSeconds field's value.
+func (s *EventSourceMappingConfiguration) SetTumblingWindowInSeconds(v int64) *EventSourceMappingConfiguration {
+	s.TumblingWindowInSeconds = &v
 	return s
 }
 
@@ -11114,8 +11174,8 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetPr
 	return s
 }
 
-// Configuration values that override the container image Dockerfile. See Override
-// Container settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images-settings.html).
+// Configuration values that override the container image Dockerfile settings.
+// See Container settings (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html).
 type ImageConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -15130,6 +15190,44 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The Self-Managed Apache Kafka cluster for your event source.
+type SelfManagedEventSource struct {
+	_ struct{} `type:"structure"`
+
+	// The list of bootstrap servers for your Kafka brokers in the following format:
+	// "KAFKA_BOOTSTRAP_SERVERS": ["abc.xyz.com:xxxx","abc2.xyz.com:xxxx"].
+	Endpoints map[string][]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s SelfManagedEventSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SelfManagedEventSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SelfManagedEventSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SelfManagedEventSource"}
+	if s.Endpoints != nil && len(s.Endpoints) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Endpoints", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *SelfManagedEventSource) SetEndpoints(v map[string][]*string) *SelfManagedEventSource {
+	s.Endpoints = v
+	return s
+}
+
 // The AWS Lambda service encountered an internal error.
 type ServiceException struct {
 	_            struct{}                  `type:"structure"`
@@ -15188,27 +15286,32 @@ func (s *ServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// (MQ) The Secrets Manager secret that stores your broker credentials. To store
-// your secret, use the following format: { "username": "your username", "password":
-// "your password" }
+// You can specify the authentication protocol, or the VPC components to secure
+// access to your event source.
 type SourceAccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
-	// "URI": "secretARN" } ]
+	// The type of authentication protocol or the VPC components for your event
+	// source. For example: "Type":"SASL_SCRAM_512_AUTH".
 	//
-	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
-	// customer or service managed keys. When using a customer managed KMS key,
-	// the Lambda execution role requires kms:Decrypt permissions.
+	//    * BASIC_AUTH - (MQ) The Secrets Manager secret that stores your broker
+	//    credentials.
+	//
+	//    * VPC_SUBNET - The subnets associated with your VPC. Lambda connects to
+	//    these subnets to fetch data from your Kafka cluster.
+	//
+	//    * VPC_SECURITY_GROUP - The VPC security group used to manage access to
+	//    your Kafka brokers.
+	//
+	//    * SASL_SCRAM_256_AUTH - The ARN of your secret key used for SASL SCRAM-256
+	//    authentication of your Kafka brokers.
+	//
+	//    * SASL_SCRAM_512_AUTH - The ARN of your secret key used for SASL SCRAM-512
+	//    authentication of your Kafka brokers.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
-	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
-	// "URI": "secretARN" } ]
-	//
-	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
-	// customer or service managed keys. When using a customer managed KMS key,
-	// the Lambda execution role requires kms:Decrypt permissions.
-	URI *string `type:"string"`
+	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
+	URI *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -15219,6 +15322,19 @@ func (s SourceAccessConfiguration) String() string {
 // GoString returns the string representation
 func (s SourceAccessConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceAccessConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceAccessConfiguration"}
+	if s.URI != nil && len(*s.URI) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("URI", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetType sets the Type field's value.
@@ -15818,9 +15934,12 @@ type UpdateEventSourceMappingInput struct {
 	//
 	//    * Amazon DynamoDB Streams - Default 100. Max 1,000.
 	//
-	//    * Amazon Simple Queue Service - Default 10. Max 10.
+	//    * Amazon Simple Queue Service - Default 10. For standard queues the max
+	//    is 10,000. For FIFO queues the max is 10.
 	//
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
+	//
+	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams) If the function returns an error, split the batch in two and retry.
@@ -15850,8 +15969,12 @@ type UpdateEventSourceMappingInput struct {
 	// function name, it's limited to 64 characters in length.
 	FunctionName *string `min:"1" type:"string"`
 
-	// (Streams) The maximum amount of time to gather records before invoking the
-	// function, in seconds.
+	// (Streams) A list of current response type enums applied to the event source
+	// mapping.
+	FunctionResponseTypes []*string `min:"1" type:"list"`
+
+	// (Streams and SQS standard queues) The maximum amount of time to gather records
+	// before invoking the function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams) Discard records older than the specified age. The default value
@@ -15866,17 +15989,13 @@ type UpdateEventSourceMappingInput struct {
 	// (Streams) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
-	// (MQ) The Secrets Manager secret that stores your broker credentials. To store
-	// your secret, use the following format: { "username": "your username", "password":
-	// "your password" }
-	//
-	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
-	// "URI": "secretARN" } ]
-	//
-	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
-	// customer or service managed keys. When using a customer managed KMS key,
-	// the Lambda execution role requires kms:Decrypt permissions.
+	// An array of the authentication protocol, or the VPC components to secure
+	// your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
+
+	// (Streams) The duration of a processing window in seconds. The range is between
+	// 1 second up to 15 minutes.
+	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
 	//
@@ -15903,6 +16022,9 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
 	}
+	if s.FunctionResponseTypes != nil && len(s.FunctionResponseTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionResponseTypes", 1))
+	}
 	if s.MaximumRecordAgeInSeconds != nil && *s.MaximumRecordAgeInSeconds < -1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaximumRecordAgeInSeconds", -1))
 	}
@@ -15920,6 +16042,16 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	}
 	if s.UUID != nil && len(*s.UUID) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UUID", 1))
+	}
+	if s.SourceAccessConfigurations != nil {
+		for i, v := range s.SourceAccessConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SourceAccessConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15958,6 +16090,12 @@ func (s *UpdateEventSourceMappingInput) SetFunctionName(v string) *UpdateEventSo
 	return s
 }
 
+// SetFunctionResponseTypes sets the FunctionResponseTypes field's value.
+func (s *UpdateEventSourceMappingInput) SetFunctionResponseTypes(v []*string) *UpdateEventSourceMappingInput {
+	s.FunctionResponseTypes = v
+	return s
+}
+
 // SetMaximumBatchingWindowInSeconds sets the MaximumBatchingWindowInSeconds field's value.
 func (s *UpdateEventSourceMappingInput) SetMaximumBatchingWindowInSeconds(v int64) *UpdateEventSourceMappingInput {
 	s.MaximumBatchingWindowInSeconds = &v
@@ -15985,6 +16123,12 @@ func (s *UpdateEventSourceMappingInput) SetParallelizationFactor(v int64) *Updat
 // SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
 func (s *UpdateEventSourceMappingInput) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *UpdateEventSourceMappingInput {
 	s.SourceAccessConfigurations = v
+	return s
+}
+
+// SetTumblingWindowInSeconds sets the TumblingWindowInSeconds field's value.
+func (s *UpdateEventSourceMappingInput) SetTumblingWindowInSeconds(v int64) *UpdateEventSourceMappingInput {
+	s.TumblingWindowInSeconds = &v
 	return s
 }
 
@@ -16623,6 +16767,18 @@ func CodeSigningPolicy_Values() []string {
 }
 
 const (
+	// EndPointTypeKafkaBootstrapServers is a EndPointType enum value
+	EndPointTypeKafkaBootstrapServers = "KAFKA_BOOTSTRAP_SERVERS"
+)
+
+// EndPointType_Values returns all elements of the EndPointType enum
+func EndPointType_Values() []string {
+	return []string{
+		EndPointTypeKafkaBootstrapServers,
+	}
+}
+
+const (
 	// EventSourcePositionTrimHorizon is a EventSourcePosition enum value
 	EventSourcePositionTrimHorizon = "TRIM_HORIZON"
 
@@ -16639,6 +16795,18 @@ func EventSourcePosition_Values() []string {
 		EventSourcePositionTrimHorizon,
 		EventSourcePositionLatest,
 		EventSourcePositionAtTimestamp,
+	}
+}
+
+const (
+	// FunctionResponseTypeReportBatchItemFailures is a FunctionResponseType enum value
+	FunctionResponseTypeReportBatchItemFailures = "ReportBatchItemFailures"
+)
+
+// FunctionResponseType_Values returns all elements of the FunctionResponseType enum
+func FunctionResponseType_Values() []string {
+	return []string{
+		FunctionResponseTypeReportBatchItemFailures,
 	}
 }
 
@@ -16897,12 +17065,28 @@ func Runtime_Values() []string {
 const (
 	// SourceAccessTypeBasicAuth is a SourceAccessType enum value
 	SourceAccessTypeBasicAuth = "BASIC_AUTH"
+
+	// SourceAccessTypeVpcSubnet is a SourceAccessType enum value
+	SourceAccessTypeVpcSubnet = "VPC_SUBNET"
+
+	// SourceAccessTypeVpcSecurityGroup is a SourceAccessType enum value
+	SourceAccessTypeVpcSecurityGroup = "VPC_SECURITY_GROUP"
+
+	// SourceAccessTypeSaslScram512Auth is a SourceAccessType enum value
+	SourceAccessTypeSaslScram512Auth = "SASL_SCRAM_512_AUTH"
+
+	// SourceAccessTypeSaslScram256Auth is a SourceAccessType enum value
+	SourceAccessTypeSaslScram256Auth = "SASL_SCRAM_256_AUTH"
 )
 
 // SourceAccessType_Values returns all elements of the SourceAccessType enum
 func SourceAccessType_Values() []string {
 	return []string{
 		SourceAccessTypeBasicAuth,
+		SourceAccessTypeVpcSubnet,
+		SourceAccessTypeVpcSecurityGroup,
+		SourceAccessTypeSaslScram512Auth,
+		SourceAccessTypeSaslScram256Auth,
 	}
 }
 

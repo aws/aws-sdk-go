@@ -3906,6 +3906,44 @@ func (s *ChannelActivity) SetNext(v string) *ChannelActivity {
 	return s
 }
 
+// Specifies one or more sets of channel messages.
+type ChannelMessages struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies one or more keys that identify the Amazon Simple Storage Service
+	// (Amazon S3) objects that save your channel messages.
+	S3Paths []*string `locationName:"s3Paths" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ChannelMessages) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelMessages) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChannelMessages) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChannelMessages"}
+	if s.S3Paths != nil && len(s.S3Paths) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Paths", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Paths sets the S3Paths field's value.
+func (s *ChannelMessages) SetS3Paths(v []*string) *ChannelMessages {
+	s.S3Paths = v
+	return s
+}
+
 // Statistics information about the channel.
 type ChannelStatistics struct {
 	_ struct{} `type:"structure"`
@@ -4090,6 +4128,67 @@ func (s *ChannelSummary) SetLastUpdateTime(v time.Time) *ChannelSummary {
 // SetStatus sets the Status field's value.
 func (s *ChannelSummary) SetStatus(v string) *ChannelSummary {
 	s.Status = &v
+	return s
+}
+
+// Contains information about a column that stores your data.
+type Column struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the column.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The type of data. For more information about the supported data types, see
+	// Common data types (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html)
+	// in the AWS Glue Developer Guide.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Column) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Column) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Column) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Column"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Type != nil && len(*s.Type) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Type", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *Column) SetName(v string) *Column {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Column) SetType(v string) *Column {
+	s.Type = &v
 	return s
 }
 
@@ -4657,6 +4756,14 @@ type CreateDatastoreInput struct {
 	// You cannot change this storage option after the data store is created.
 	DatastoreStorage *DatastoreStorage `locationName:"datastoreStorage" type:"structure"`
 
+	// Contains the configuration information of file formats. AWS IoT Analytics
+	// data stores support JSON and Parquet (https://parquet.apache.org/).
+	//
+	// The default file format is JSON. You can specify only one format.
+	//
+	// You can't change the file format after you create the data store.
+	FileFormatConfiguration *FileFormatConfiguration `locationName:"fileFormatConfiguration" type:"structure"`
+
 	// How long, in days, message data is kept for the data store. When customerManagedS3
 	// storage is selected, this parameter is ignored.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
@@ -4692,6 +4799,11 @@ func (s *CreateDatastoreInput) Validate() error {
 			invalidParams.AddNested("DatastoreStorage", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.FileFormatConfiguration != nil {
+		if err := s.FileFormatConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FileFormatConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetentionPeriod != nil {
 		if err := s.RetentionPeriod.Validate(); err != nil {
 			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
@@ -4723,6 +4835,12 @@ func (s *CreateDatastoreInput) SetDatastoreName(v string) *CreateDatastoreInput 
 // SetDatastoreStorage sets the DatastoreStorage field's value.
 func (s *CreateDatastoreInput) SetDatastoreStorage(v *DatastoreStorage) *CreateDatastoreInput {
 	s.DatastoreStorage = v
+	return s
+}
+
+// SetFileFormatConfiguration sets the FileFormatConfiguration field's value.
+func (s *CreateDatastoreInput) SetFileFormatConfiguration(v *FileFormatConfiguration) *CreateDatastoreInput {
+	s.FileFormatConfiguration = v
 	return s
 }
 
@@ -5794,6 +5912,14 @@ type Datastore struct {
 	// When the data store was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
+	// Contains the configuration information of file formats. AWS IoT Analytics
+	// data stores support JSON and Parquet (https://parquet.apache.org/).
+	//
+	// The default file format is JSON. You can specify only one format.
+	//
+	// You can't change the file format after you create the data store.
+	FileFormatConfiguration *FileFormatConfiguration `locationName:"fileFormatConfiguration" type:"structure"`
+
 	// The last time when a new message arrived in the data store.
 	//
 	// AWS IoT Analytics updates this value at most once per minute for one data
@@ -5853,6 +5979,12 @@ func (s *Datastore) SetArn(v string) *Datastore {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Datastore) SetCreationTime(v time.Time) *Datastore {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFileFormatConfiguration sets the FileFormatConfiguration field's value.
+func (s *Datastore) SetFileFormatConfiguration(v *FileFormatConfiguration) *Datastore {
+	s.FileFormatConfiguration = v
 	return s
 }
 
@@ -6076,6 +6208,9 @@ type DatastoreSummary struct {
 	// Where data store data is stored.
 	DatastoreStorage *DatastoreStorageSummary `locationName:"datastoreStorage" type:"structure"`
 
+	// The file format of the data in the data store.
+	FileFormatType *string `locationName:"fileFormatType" type:"string" enum:"FileFormatType"`
+
 	// The last time when a new message arrived in the data store.
 	//
 	// AWS IoT Analytics updates this value at most once per minute for one data
@@ -6117,6 +6252,12 @@ func (s *DatastoreSummary) SetDatastoreName(v string) *DatastoreSummary {
 // SetDatastoreStorage sets the DatastoreStorage field's value.
 func (s *DatastoreSummary) SetDatastoreStorage(v *DatastoreStorageSummary) *DatastoreSummary {
 	s.DatastoreStorage = v
+	return s
+}
+
+// SetFileFormatType sets the FileFormatType field's value.
+func (s *DatastoreSummary) SetFileFormatType(v string) *DatastoreSummary {
+	s.FileFormatType = &v
 	return s
 }
 
@@ -7126,6 +7267,59 @@ func (s *EstimatedResourceSize) SetEstimatedSizeInBytes(v float64) *EstimatedRes
 	return s
 }
 
+// Contains the configuration information of file formats. AWS IoT Analytics
+// data stores support JSON and Parquet (https://parquet.apache.org/).
+//
+// The default file format is JSON. You can specify only one format.
+//
+// You can't change the file format after you create the data store.
+type FileFormatConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the configuration information of the JSON format.
+	JsonConfiguration *JsonConfiguration `locationName:"jsonConfiguration" type:"structure"`
+
+	// Contains the configuration information of the Parquet format.
+	ParquetConfiguration *ParquetConfiguration `locationName:"parquetConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s FileFormatConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileFormatConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileFormatConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileFormatConfiguration"}
+	if s.ParquetConfiguration != nil {
+		if err := s.ParquetConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ParquetConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJsonConfiguration sets the JsonConfiguration field's value.
+func (s *FileFormatConfiguration) SetJsonConfiguration(v *JsonConfiguration) *FileFormatConfiguration {
+	s.JsonConfiguration = v
+	return s
+}
+
+// SetParquetConfiguration sets the ParquetConfiguration field's value.
+func (s *FileFormatConfiguration) SetParquetConfiguration(v *ParquetConfiguration) *FileFormatConfiguration {
+	s.ParquetConfiguration = v
+	return s
+}
+
 // An activity that filters a message based on its attributes.
 type FilterActivity struct {
 	_ struct{} `type:"structure"`
@@ -7528,6 +7722,21 @@ func (s *IotEventsDestinationConfiguration) SetInputName(v string) *IotEventsDes
 func (s *IotEventsDestinationConfiguration) SetRoleArn(v string) *IotEventsDestinationConfiguration {
 	s.RoleArn = &v
 	return s
+}
+
+// Contains the configuration information of the JSON format.
+type JsonConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s JsonConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JsonConfiguration) GoString() string {
+	return s.String()
 }
 
 // An activity that runs a Lambda function to modify the message.
@@ -8532,6 +8741,45 @@ func (s *OutputFileUriValue) Validate() error {
 // SetFileName sets the FileName field's value.
 func (s *OutputFileUriValue) SetFileName(v string) *OutputFileUriValue {
 	s.FileName = &v
+	return s
+}
+
+// Contains the configuration information of the Parquet format.
+type ParquetConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Information needed to define a schema.
+	SchemaDefinition *SchemaDefinition `locationName:"schemaDefinition" type:"structure"`
+}
+
+// String returns the string representation
+func (s ParquetConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ParquetConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ParquetConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ParquetConfiguration"}
+	if s.SchemaDefinition != nil {
+		if err := s.SchemaDefinition.Validate(); err != nil {
+			invalidParams.AddNested("SchemaDefinition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSchemaDefinition sets the SchemaDefinition field's value.
+func (s *ParquetConfiguration) SetSchemaDefinition(v *SchemaDefinition) *ParquetConfiguration {
+	s.SchemaDefinition = v
 	return s
 }
 
@@ -9588,6 +9836,53 @@ func (s *Schedule) SetExpression(v string) *Schedule {
 	return s
 }
 
+// Information needed to define a schema.
+type SchemaDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies one or more columns that store your data.
+	//
+	// Each schema can have up to 100 columns. Each column can have up to 100 nested
+	// types
+	Columns []*Column `locationName:"columns" type:"list"`
+}
+
+// String returns the string representation
+func (s SchemaDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SchemaDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SchemaDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SchemaDefinition"}
+	if s.Columns != nil {
+		for i, v := range s.Columns {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Columns", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumns sets the Columns field's value.
+func (s *SchemaDefinition) SetColumns(v []*Column) *SchemaDefinition {
+	s.Columns = v
+	return s
+}
+
 // Creates a new message using only the specified attributes from the original
 // message.
 type SelectAttributesActivity struct {
@@ -9841,7 +10136,16 @@ func (s *SqlQueryDatasetAction) SetSqlQuery(v string) *SqlQueryDatasetAction {
 type StartPipelineReprocessingInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies one or more sets of channel messages that you want to reprocess.
+	//
+	// If you use the channelMessages object, you must not specify a value for startTime
+	// and endTime.
+	ChannelMessages *ChannelMessages `locationName:"channelMessages" type:"structure"`
+
 	// The end time (exclusive) of raw message data that is reprocessed.
+	//
+	// If you specify a value for the endTime parameter, you must not use the channelMessages
+	// object.
 	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
 
 	// The name of the pipeline on which to start reprocessing.
@@ -9850,6 +10154,9 @@ type StartPipelineReprocessingInput struct {
 	PipelineName *string `location:"uri" locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The start time (inclusive) of raw message data that is reprocessed.
+	//
+	// If you specify a value for the startTime parameter, you must not use the
+	// channelMessages object.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 }
 
@@ -9872,11 +10179,22 @@ func (s *StartPipelineReprocessingInput) Validate() error {
 	if s.PipelineName != nil && len(*s.PipelineName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PipelineName", 1))
 	}
+	if s.ChannelMessages != nil {
+		if err := s.ChannelMessages.Validate(); err != nil {
+			invalidParams.AddNested("ChannelMessages", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChannelMessages sets the ChannelMessages field's value.
+func (s *StartPipelineReprocessingInput) SetChannelMessages(v *ChannelMessages) *StartPipelineReprocessingInput {
+	s.ChannelMessages = v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -10512,6 +10830,14 @@ type UpdateDatastoreInput struct {
 	// You cannot change this storage option after the data store is created.
 	DatastoreStorage *DatastoreStorage `locationName:"datastoreStorage" type:"structure"`
 
+	// Contains the configuration information of file formats. AWS IoT Analytics
+	// data stores support JSON and Parquet (https://parquet.apache.org/).
+	//
+	// The default file format is JSON. You can specify only one format.
+	//
+	// You can't change the file format after you create the data store.
+	FileFormatConfiguration *FileFormatConfiguration `locationName:"fileFormatConfiguration" type:"structure"`
+
 	// How long, in days, message data is kept for the data store. The retention
 	// period cannot be updated if the data store's S3 storage is customer-managed.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
@@ -10541,6 +10867,11 @@ func (s *UpdateDatastoreInput) Validate() error {
 			invalidParams.AddNested("DatastoreStorage", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.FileFormatConfiguration != nil {
+		if err := s.FileFormatConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("FileFormatConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RetentionPeriod != nil {
 		if err := s.RetentionPeriod.Validate(); err != nil {
 			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
@@ -10562,6 +10893,12 @@ func (s *UpdateDatastoreInput) SetDatastoreName(v string) *UpdateDatastoreInput 
 // SetDatastoreStorage sets the DatastoreStorage field's value.
 func (s *UpdateDatastoreInput) SetDatastoreStorage(v *DatastoreStorage) *UpdateDatastoreInput {
 	s.DatastoreStorage = v
+	return s
+}
+
+// SetFileFormatConfiguration sets the FileFormatConfiguration field's value.
+func (s *UpdateDatastoreInput) SetFileFormatConfiguration(v *FileFormatConfiguration) *UpdateDatastoreInput {
+	s.FileFormatConfiguration = v
 	return s
 }
 
@@ -10925,6 +11262,22 @@ func DatastoreStatus_Values() []string {
 		DatastoreStatusCreating,
 		DatastoreStatusActive,
 		DatastoreStatusDeleting,
+	}
+}
+
+const (
+	// FileFormatTypeJson is a FileFormatType enum value
+	FileFormatTypeJson = "JSON"
+
+	// FileFormatTypeParquet is a FileFormatType enum value
+	FileFormatTypeParquet = "PARQUET"
+)
+
+// FileFormatType_Values returns all elements of the FileFormatType enum
+func FileFormatType_Values() []string {
+	return []string{
+		FileFormatTypeJson,
+		FileFormatTypeParquet,
 	}
 }
 
