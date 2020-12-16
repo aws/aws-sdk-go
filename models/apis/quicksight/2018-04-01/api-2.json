@@ -6177,10 +6177,15 @@
       ],
       "members":{
         "DataSourceArn":{"shape":"Arn"},
+        "Catalog":{"shape":"RelationalTableCatalog"},
         "Schema":{"shape":"RelationalTableSchema"},
         "Name":{"shape":"RelationalTableName"},
         "InputColumns":{"shape":"InputColumnList"}
       }
+    },
+    "RelationalTableCatalog":{
+      "type":"string",
+      "max":256
     },
     "RelationalTableName":{
       "type":"string",

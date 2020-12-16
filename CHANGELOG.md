@@ -1,3 +1,14 @@
+Release v1.36.10 (2020-12-16)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service documentation
+* `service/ce`: Updates service API and documentation
+* `service/location`: Adds new service
+* `service/quicksight`: Updates service API and documentation
+  * QuickSight now supports connecting to federated data sources of Athena
+* `service/wellarchitected`: Adds new service
+
 Release v1.36.9 (2020-12-15)
 ===
 

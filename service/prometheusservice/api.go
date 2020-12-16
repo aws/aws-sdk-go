@@ -57,7 +57,7 @@ func (c *PrometheusService) CreateWorkspaceRequest(input *CreateWorkspaceInput) 
 
 // CreateWorkspace API operation for Amazon Prometheus Service.
 //
-// Creates a new StealFire workspace.
+// Creates a new AMP workspace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -152,7 +152,7 @@ func (c *PrometheusService) DeleteWorkspaceRequest(input *DeleteWorkspaceInput) 
 
 // DeleteWorkspace API operation for Amazon Prometheus Service.
 //
-// Deletes a StealFire workspace.
+// Deletes an AMP workspace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -243,7 +243,7 @@ func (c *PrometheusService) DescribeWorkspaceRequest(input *DescribeWorkspaceInp
 
 // DescribeWorkspace API operation for Amazon Prometheus Service.
 //
-// Describes an existing StealFire workspace.
+// Describes an existing AMP workspace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -340,7 +340,7 @@ func (c *PrometheusService) ListWorkspacesRequest(input *ListWorkspacesInput) (r
 
 // ListWorkspaces API operation for Amazon Prometheus Service.
 //
-// Lists all StealFire workspaces, including workspaces being created or deleted.
+// Lists all AMP workspaces, including workspaces being created or deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -481,7 +481,7 @@ func (c *PrometheusService) UpdateWorkspaceAliasRequest(input *UpdateWorkspaceAl
 
 // UpdateWorkspaceAlias API operation for Amazon Prometheus Service.
 //
-// Updates a StealFire workspace alias.
+// Updates an AMP workspace alias.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

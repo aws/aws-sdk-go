@@ -111,13 +111,12 @@ const (
 	//
 	// This error indicates that you are calling an embedding operation in Amazon
 	// QuickSight without the required pricing plan on your AWS account. Before
-	// you can use anonymous embedding, a QuickSight administrator needs to add
-	// capacity pricing to QuickSight. You can do this on the Manage QuickSight
+	// you can use embedding for anonymous users, a QuickSight administrator needs
+	// to add capacity pricing to QuickSight. You can do this on the Manage QuickSight
 	// page.
 	//
-	// After capacity pricing is added, you can enable anonymous embedding by using
-	// the GetDashboardEmbedUrl API operation with the --identity-type ANONYMOUS
-	// option.
+	// After capacity pricing is added, you can use the GetDashboardEmbedUrl API
+	// operation with the --identity-type ANONYMOUS option.
 	ErrCodeUnsupportedPricingPlanException = "UnsupportedPricingPlanException"
 
 	// ErrCodeUnsupportedUserEditionException for service response error code

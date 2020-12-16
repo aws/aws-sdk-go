@@ -3360,6 +3360,22 @@
           "us-west-2" : { }
         }
       },
+      "iotwireless" : {
+        "endpoints" : {
+          "eu-west-1" : {
+            "credentialScope" : {
+              "region" : "eu-west-1"
+            },
+            "hostname" : "api.iotwireless.eu-west-1.amazonaws.com"
+          },
+          "us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "api.iotwireless.us-east-1.amazonaws.com"
+          }
+        }
+      },
       "kafka" : {
         "endpoints" : {
           "ap-east-1" : { },

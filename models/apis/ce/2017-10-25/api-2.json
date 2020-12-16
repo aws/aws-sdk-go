@@ -506,7 +506,7 @@
       "members":{
         "SubscriptionArn":{"shape":"GenericString"},
         "AccountId":{"shape":"GenericString"},
-        "MonitorArnList":{"shape":"Values"},
+        "MonitorArnList":{"shape":"MonitorArnList"},
         "Subscribers":{"shape":"Subscribers"},
         "Threshold":{"shape":"NullableNonNegativeDouble"},
         "Frequency":{"shape":"AnomalySubscriptionFrequency"},
@@ -1546,6 +1546,10 @@
         "TargetInstances":{"shape":"TargetInstancesList"}
       }
     },
+    "MonitorArnList":{
+      "type":"list",
+      "member":{"shape":"Arn"}
+    },
     "MonitorDimension":{
       "type":"string",
       "enum":["SERVICE"]
@@ -2196,7 +2200,7 @@
         "SubscriptionArn":{"shape":"GenericString"},
         "Threshold":{"shape":"NullableNonNegativeDouble"},
         "Frequency":{"shape":"AnomalySubscriptionFrequency"},
-        "MonitorArnList":{"shape":"Values"},
+        "MonitorArnList":{"shape":"MonitorArnList"},
         "Subscribers":{"shape":"Subscribers"},
         "SubscriptionName":{"shape":"GenericString"}
       }
