@@ -1016,7 +1016,7 @@ func (c *QuickSight) CreateIngestionRequest(input *CreateIngestionInput) (req *r
 //
 // Any ingestions operating on tagged datasets inherit the same tags automatically
 // for use in access control. For an example, see How do I create an IAM policy
-// to control access to Amazon EC2 resources using tags? (https://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/)
+// to control access to Amazon EC2 resources using tags? (http://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/)
 // in the AWS Knowledge Center. Tags are visible on the tagged dataset, but
 // not on the ingestion resource.
 //
@@ -5304,8 +5304,8 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //
 //    * The resulting user session is valid for 10 hours.
 //
-// For more information, see Embedding Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/embedding-dashboards.html)
-// in the Amazon QuickSight User Guide .
+// For more information, see Embedded Analytics (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html)
+// in the Amazon QuickSight User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5360,13 +5360,12 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your AWS account. Before
-//   you can use anonymous embedding, a QuickSight administrator needs to add
-//   capacity pricing to QuickSight. You can do this on the Manage QuickSight
+//   you can use embedding for anonymous users, a QuickSight administrator needs
+//   to add capacity pricing to QuickSight. You can do this on the Manage QuickSight
 //   page.
 //
-//   After capacity pricing is added, you can enable anonymous embedding by using
-//   the GetDashboardEmbedUrl API operation with the --identity-type ANONYMOUS
-//   option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
+//   operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -15964,7 +15963,7 @@ type DataSet struct {
 	// The ID of the dataset.
 	DataSetId *string `type:"string"`
 
-	// Indicates whether you want to import the data into SPICE.
+	// A value that indicates whether you want to import the data into SPICE.
 	ImportMode *string `type:"string" enum:"DataSetImportMode"`
 
 	// The last time that this dataset was updated.
@@ -16202,7 +16201,7 @@ type DataSetSummary struct {
 	// The Amazon Resource Name (ARN) of the dataset.
 	Arn *string `type:"string"`
 
-	// Indicates if the dataset has column level permission configured.
+	// A value that indicates if the dataset has column level permission configured.
 	ColumnLevelPermissionRulesApplied *bool `type:"boolean"`
 
 	// The time that this dataset was created.
@@ -16211,7 +16210,7 @@ type DataSetSummary struct {
 	// The ID of the dataset.
 	DataSetId *string `type:"string"`
 
-	// Indicates whether you want to import the data into SPICE.
+	// A value that indicates whether you want to import the data into SPICE.
 	ImportMode *string `type:"string" enum:"DataSetImportMode"`
 
 	// The last time that this dataset was updated.
@@ -21306,15 +21305,15 @@ func (s *GeoSpatialColumnGroup) SetName(v string) *GeoSpatialColumnGroup {
 	return s
 }
 
-// Parameter input for the GetDashboardEmbedUrl operation.
 type GetDashboardEmbedUrlInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of one or more dashboard ids that you want to add to a session that
-	// includes anonymous authorizations. IdentityType must be set to ANONYMOUS
+	// A list of one or more dashboard IDs that you want to add to a session that
+	// includes anonymous users. The IdentityType parameter must be set to ANONYMOUS
 	// for this to work, because other identity types authenticate as QuickSight
-	// users. For example, if you set "--dashboard-id dash_id1 --dashboard-id dash_id2
-	// dash_id3 identity-type ANONYMOUS", the session can access all three dashboards.
+	// or IAM users. For example, if you set "--dashboard-id dash_id1 --dashboard-id
+	// dash_id2 dash_id3 identity-type ANONYMOUS", the session can access all three
+	// dashboards.
 	AdditionalDashboardIds []*string `location:"querystring" locationName:"additional-dashboard-ids" min:"1" type:"list"`
 
 	// The ID for the AWS account that contains the dashboard that you're embedding.
@@ -21322,7 +21321,8 @@ type GetDashboardEmbedUrlInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID for the dashboard, also added to the IAM policy.
+	// The ID for the dashboard, also added to the AWS Identity and Access Management
+	// (IAM) policy.
 	//
 	// DashboardId is a required field
 	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
@@ -21348,9 +21348,9 @@ type GetDashboardEmbedUrlInput struct {
 	// Persistence applies to the sheet and the parameter settings. These are control
 	// settings that the dashboard subscriber (QuickSight reader) chooses while
 	// viewing the dashboard. If this is set to TRUE, the settings are the same
-	// when the the subscriber reopens the same dashboard URL. The state is stored
-	// in QuickSight, not in a browser cookie. If this is set to FALSE, the state
-	// of the user session is not persisted. The default is FALSE.
+	// when the subscriber reopens the same dashboard URL. The state is stored in
+	// QuickSight, not in a browser cookie. If this is set to FALSE, the state of
+	// the user session is not persisted. The default is FALSE.
 	StatePersistenceEnabled *bool `location:"querystring" locationName:"state-persistence-enabled" type:"boolean"`
 
 	// Remove the undo/redo button on the embedded dashboard. The default is FALSE,
@@ -21558,10 +21558,11 @@ type GetSessionEmbedUrlInput struct {
 	//
 	// Invited nonfederated users
 	//
-	// IAM users and IAM role-based sessions authenticated through Federated Single
-	// Sign-On using SAML, OpenID Connect, or IAM federation
+	// AWS Identity and Access Management (IAM) users and IAM role-based sessions
+	// authenticated through Federated Single Sign-On using SAML, OpenID Connect,
+	// or IAM federation
 	//
-	// Omit this parameter for users in the third group – IAM users and IAM role-based
+	// Omit this parameter for users in the third group, IAM users and IAM role-based
 	// sessions.
 	UserArn *string `location:"querystring" locationName:"user-arn" type:"string"`
 }
@@ -22499,8 +22500,8 @@ func (s *JoinInstruction) SetType(v string) *JoinInstruction {
 type JoinKeyProperties struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates that a row in a table is uniquely identified by the columns in
-	// a join key. This is used by QuickSight to optimize query performance.
+	// A value that indicates that a row in a table is uniquely identified by the
+	// columns in a join key. This is used by QuickSight to optimize query performance.
 	UniqueKey *bool `type:"boolean"`
 }
 
@@ -26336,7 +26337,7 @@ type RegisterUserInput struct {
 	// scenarios, for example when you are registering an IAM user or an Amazon
 	// QuickSight user. You can register multiple users using the same IAM role
 	// if each user has a different session name. For more information on assuming
-	// IAM roles, see assume-role (https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sts/assume-role.html)
+	// IAM roles, see assume-role (https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html)
 	// in the AWS CLI Reference.
 	SessionName *string `min:"2" type:"string"`
 
@@ -26522,6 +26523,9 @@ func (s *RegisterUserOutput) SetUserInvitationUrl(v string) *RegisterUserOutput 
 type RelationalTable struct {
 	_ struct{} `type:"structure"`
 
+	// The catalog associated with a table.
+	Catalog *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) for the data source.
 	//
 	// DataSourceArn is a required field
@@ -26584,6 +26588,12 @@ func (s *RelationalTable) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCatalog sets the Catalog field's value.
+func (s *RelationalTable) SetCatalog(v string) *RelationalTable {
+	s.Catalog = &v
+	return s
 }
 
 // SetDataSourceArn sets the DataSourceArn field's value.
@@ -29717,13 +29727,12 @@ func (s *UIColorPalette) SetWarningForeground(v string) *UIColorPalette {
 
 // This error indicates that you are calling an embedding operation in Amazon
 // QuickSight without the required pricing plan on your AWS account. Before
-// you can use anonymous embedding, a QuickSight administrator needs to add
-// capacity pricing to QuickSight. You can do this on the Manage QuickSight
+// you can use embedding for anonymous users, a QuickSight administrator needs
+// to add capacity pricing to QuickSight. You can do this on the Manage QuickSight
 // page.
 //
-// After capacity pricing is added, you can enable anonymous embedding by using
-// the GetDashboardEmbedUrl API operation with the --identity-type ANONYMOUS
-// option.
+// After capacity pricing is added, you can use the GetDashboardEmbedUrl API
+// operation with the --identity-type ANONYMOUS option.
 type UnsupportedPricingPlanException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

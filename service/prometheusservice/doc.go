@@ -3,7 +3,7 @@
 // Package prometheusservice provides the client and types for making API
 // requests to Amazon Prometheus Service.
 //
-// StealFire Service
+// Amazon Managed Service for Prometheus
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01 for more information on this service.
 //

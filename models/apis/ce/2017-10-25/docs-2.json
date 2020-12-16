@@ -128,6 +128,7 @@
         "DeleteCostCategoryDefinitionRequest$CostCategoryArn": "<p> The unique identifier for your Cost Category. </p>",
         "DeleteCostCategoryDefinitionResponse$CostCategoryArn": "<p> The unique identifier for your Cost Category. </p>",
         "DescribeCostCategoryDefinitionRequest$CostCategoryArn": "<p> The unique identifier for your Cost Category. </p>",
+        "MonitorArnList$member": null,
         "UpdateCostCategoryDefinitionRequest$CostCategoryArn": "<p>The unique identifier for your Cost Category.</p>",
         "UpdateCostCategoryDefinitionResponse$CostCategoryArn": "<p> The unique identifier for your Cost Category. </p>"
       }
@@ -1100,6 +1101,13 @@
         "RightsizingRecommendation$ModifyRecommendationDetail": "<p> Details for modification recommendations. </p>"
       }
     },
+    "MonitorArnList": {
+      "base": null,
+      "refs": {
+        "AnomalySubscription$MonitorArnList": "<p> A list of cost anomaly monitors. </p>",
+        "UpdateAnomalySubscriptionRequest$MonitorArnList": "<p> A list of cost anomaly subscription ARNs. </p>"
+      }
+    },
     "MonitorDimension": {
       "base": null,
       "refs": {
@@ -1810,13 +1818,11 @@
     "Values": {
       "base": null,
       "refs": {
-        "AnomalySubscription$MonitorArnList": "<p> A list of cost anomaly monitors. </p>",
         "CostCategoryValues$Values": "<p>The specific value of the Cost Category.</p>",
         "DimensionValues$Values": "<p>The metadata values that you can use to filter and group your results. You can use <code>GetDimensionValues</code> to find specific values.</p>",
         "GetAnomalyMonitorsRequest$MonitorArnList": "<p> A list of cost anomaly monitor ARNs. </p>",
         "GetAnomalySubscriptionsRequest$SubscriptionArnList": "<p> A list of cost anomaly subscription ARNs. </p>",
-        "TagValues$Values": "<p>The specific value of the tag.</p>",
-        "UpdateAnomalySubscriptionRequest$MonitorArnList": "<p> A list of cost anomaly subscription ARNs. </p>"
+        "TagValues$Values": "<p>The specific value of the tag.</p>"
       }
     },
     "YearMonthDay": {

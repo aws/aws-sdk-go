@@ -1,12 +1,12 @@
 {
   "version": "2.0",
-  "service": "<p>StealFire Service</p>",
+  "service": "<p>Amazon Managed Service for Prometheus</p>",
   "operations": {
-    "CreateWorkspace": "<p>Creates a new StealFire workspace.</p>",
-    "DeleteWorkspace": "<p>Deletes a StealFire workspace.</p>",
-    "DescribeWorkspace": "<p>Describes an existing StealFire workspace.</p>",
-    "ListWorkspaces": "<p>Lists all StealFire workspaces, including workspaces being created or deleted.</p>",
-    "UpdateWorkspaceAlias": "<p>Updates a StealFire workspace alias.</p>"
+    "CreateWorkspace": "<p>Creates a new AMP workspace.</p>",
+    "DeleteWorkspace": "<p>Deletes an AMP workspace.</p>",
+    "DescribeWorkspace": "<p>Describes an existing AMP workspace.</p>",
+    "ListWorkspaces": "<p>Lists all AMP workspaces, including workspaces being created or deleted.</p>",
+    "UpdateWorkspaceAlias": "<p>Updates an AMP workspace alias.</p>"
   },
   "shapes": {
     "AccessDeniedException": {

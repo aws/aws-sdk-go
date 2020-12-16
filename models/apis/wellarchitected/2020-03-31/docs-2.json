@@ -1,0 +1,1212 @@
+{
+  "version": "2.0",
+  "service": "<fullname>AWS Well-Architected Tool</fullname> <p>This is the <i>AWS Well-Architected Tool API Reference</i>.</p> <p>The AWS Well-Architected Tool API provides programmatic access to the <a href=\"http://aws.amazon.com/well-architected-tool\">AWS Well-Architected Tool</a> in the <a href=\"https://console.aws.amazon.com/wellarchitected\">AWS Management Console</a>.</p> <p> <b>Managing workloads:</b> </p> <ul> <li> <p> <a>CreateWorkload</a>: Define a new workload.</p> </li> <li> <p> <a>ListWorkloads</a>: List workloads.</p> </li> <li> <p> <a>GetWorkload</a>: Get the properties of a workload.</p> </li> <li> <p> <a>UpdateWorkload</a>: Update the properties of a workload.</p> </li> <li> <p> <a>DeleteWorkload</a>: Delete a workload.</p> </li> </ul> <p> <b>Managing milestones:</b> </p> <ul> <li> <p> <a>CreateMilestone</a>: Create a milestone.</p> </li> <li> <p> <a>ListMilestones</a>: List milestones.</p> </li> <li> <p> <a>GetMilestone</a>: Get the properties of a milestone.</p> </li> </ul> <p> <b>Managing lenses:</b> </p> <ul> <li> <p> <a>ListLenses</a>: List the available lenses.</p> </li> <li> <p> <a>AssociateLenses</a>: Add one or more lenses to a workload.</p> </li> <li> <p> <a>DisassociateLenses</a>: Remove one or more lenses from a workload.</p> </li> <li> <p> <a>ListNotifications</a>: List lens notifications for a workload.</p> </li> <li> <p> <a>GetLensVersionDifference</a>: Get the differences between the version of a lens used in a workload and the latest version.</p> </li> <li> <p> <a>UpgradeLensReview</a>: Upgrade a workload to use the latest version of a lens.</p> </li> </ul> <p> <b>Managing reviews:</b> </p> <ul> <li> <p> <a>ListLensReviews</a>: List reviews associated with a workload.</p> </li> <li> <p> <a>GetLensReview</a>: Get pillar and risk data associated with a workload review.</p> </li> <li> <p> <a>GetLensReviewReport</a>: Get the report associated with a workload review.</p> </li> <li> <p> <a>UpdateLensReview</a>: Update the notes associated with a workload review.</p> </li> <li> <p> <a>ListAnswers</a>: List the questions and answers in a workload review.</p> </li> <li> <p> <a>UpdateAnswer</a>: Update the answer to a specific question in a workload review.</p> </li> <li> <p> <a>ListLensReviewImprovements</a>: List the improvement plan associated with a workload review.</p> </li> </ul> <p> <b>Managing workload shares:</b> </p> <ul> <li> <p> <a>ListWorkloadShares</a>: List the workload shares associated with a workload.</p> </li> <li> <p> <a>CreateWorkloadShare</a>: Create a workload share.</p> </li> <li> <p> <a>UpdateWorkloadShare</a>: Update a workload share.</p> </li> <li> <p> <a>DeleteWorkloadShare</a>: Delete a workload share.</p> </li> </ul> <p> <b>Managing workload share invitations:</b> </p> <ul> <li> <p> <a>ListShareInvitations</a>: List workload share invitations.</p> </li> <li> <p> <a>UpdateShareInvitation</a>: Update a workload share invitation.</p> </li> </ul> <p>For information about the AWS Well-Architected Tool, see the <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/intro.html\">AWS Well-Architected Tool User Guide</a>.</p>",
+  "operations": {
+    "AssociateLenses": "<p>Associate a lens to a workload.</p>",
+    "CreateMilestone": "<p>Create a milestone for an existing workload.</p>",
+    "CreateWorkload": "<p>Create a new workload.</p> <p>The owner of a workload can share the workload with other AWS accounts and IAM users in the same AWS Region. Only the owner of a workload can delete it.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/define-workload.html\">Defining a Workload</a> in the <i>AWS Well-Architected Tool User Guide</i>.</p>",
+    "CreateWorkloadShare": "<p>Create a workload share.</p> <p>The owner of a workload can share it with other AWS accounts and IAM users in the same AWS Region. Shared access to a workload is not removed until the workload invitation is deleted.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/wellarchitected/latest/userguide/workloads-sharing.html\">Sharing a Workload</a> in the <i>AWS Well-Architected Tool User Guide</i>.</p>",
+    "DeleteWorkload": "<p>Delete an existing workload.</p>",
+    "DeleteWorkloadShare": "<p>Delete a workload share.</p>",
+    "DisassociateLenses": "<p>Disassociate a lens from a workload.</p> <note> <p>The AWS Well-Architected Framework lens (<code>wellarchitected</code>) cannot be removed from a workload.</p> </note>",
+    "GetAnswer": "<p>Get lens review.</p>",
+    "GetLensReview": "<p>Get lens review.</p>",
+    "GetLensReviewReport": "<p>Get lens review report.</p>",
+    "GetLensVersionDifference": "<p>Get lens version differences.</p>",
+    "GetMilestone": "<p>Get a milestone for an existing workload.</p>",
+    "GetWorkload": "<p>Get an existing workload.</p>",
+    "ListAnswers": "<p>List of answers.</p>",
+    "ListLensReviewImprovements": "<p>List lens review improvements.</p>",
+    "ListLensReviews": "<p>List lens reviews.</p>",
+    "ListLenses": "<p>List the available lenses.</p>",
+    "ListMilestones": "<p>List all milestones for an existing workload.</p>",
+    "ListNotifications": "<p>List lens notifications.</p>",
+    "ListShareInvitations": "<p>List the workload invitations.</p>",
+    "ListWorkloadShares": "<p>List the workload shares associated with the workload.</p>",
+    "ListWorkloads": "<p>List workloads. Paginated.</p>",
+    "UpdateAnswer": "<p>Update the answer.</p>",
+    "UpdateLensReview": "<p>Update lens review.</p>",
+    "UpdateShareInvitation": "<p>Update a workload invitation.</p>",
+    "UpdateWorkload": "<p>Update an existing workload.</p>",
+    "UpdateWorkloadShare": "<p>Update a workload share.</p>",
+    "UpgradeLensReview": "<p>Upgrade lens review.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>User does not have sufficient access to perform this action.</p>",
+      "refs": {
+      }
+    },
+    "Answer": {
+      "base": "<p>An answer of the question.</p>",
+      "refs": {
+        "GetAnswerOutput$Answer": null,
+        "UpdateAnswerOutput$Answer": null
+      }
+    },
+    "AnswerSummaries": {
+      "base": "<p>List of answer summaries of lens review in a workload.</p>",
+      "refs": {
+        "ListAnswersOutput$AnswerSummaries": null
+      }
+    },
+    "AnswerSummary": {
+      "base": "<p>An answer summary of a lens review in a workload.</p>",
+      "refs": {
+        "AnswerSummaries$member": null
+      }
+    },
+    "AssociateLensesInput": {
+      "base": "<p>Input to associate lens reviews.</p>",
+      "refs": {
+      }
+    },
+    "AwsAccountId": {
+      "base": "<p>An AWS account ID.</p>",
+      "refs": {
+        "ShareInvitationSummary$SharedBy": null,
+        "Workload$Owner": null,
+        "WorkloadAccountIds$member": null,
+        "WorkloadShare$SharedBy": null,
+        "WorkloadSummary$Owner": null
+      }
+    },
+    "AwsRegion": {
+      "base": "<p>An AWS Region, for example, <code>us-west-2</code> or <code>ap-northeast-1</code>.</p>",
+      "refs": {
+        "WorkloadAwsRegions$member": null
+      }
+    },
+    "Base64String": {
+      "base": "<p>The Base64-encoded string representation of a lens review report.</p> <p>This data can be used to create a PDF file.</p>",
+      "refs": {
+        "LensReviewReport$Base64String": null
+      }
+    },
+    "Choice": {
+      "base": "<p>A choice available to answer question.</p>",
+      "refs": {
+        "Choices$member": null
+      }
+    },
+    "ChoiceDescription": {
+      "base": "<p>The description of a choice.</p>",
+      "refs": {
+        "Choice$Description": null
+      }
+    },
+    "ChoiceId": {
+      "base": "<p>The ID of a choice.</p>",
+      "refs": {
+        "Choice$ChoiceId": null,
+        "SelectedChoices$member": null
+      }
+    },
+    "ChoiceTitle": {
+      "base": "<p>The title of a choice.</p>",
+      "refs": {
+        "Choice$Title": null
+      }
+    },
+    "Choices": {
+      "base": "<p>List of choices available for a question.</p>",
+      "refs": {
+        "Answer$Choices": null,
+        "AnswerSummary$Choices": null
+      }
+    },
+    "ClientRequestToken": {
+      "base": "<p>A unique case-sensitive string used to ensure that this request is idempotent (executes only once).</p> <p>You should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned. </p> <important> <p>This token is listed as required, however, if you do not specify it, the AWS SDKs automatically generate one for you. If you are not using the AWS SDK or the AWS CLI, you must provide this token or the request will fail.</p> </important>",
+      "refs": {
+        "CreateMilestoneInput$ClientRequestToken": null,
+        "CreateWorkloadInput$ClientRequestToken": null,
+        "CreateWorkloadShareInput$ClientRequestToken": null,
+        "DeleteWorkloadInput$ClientRequestToken": null,
+        "DeleteWorkloadShareInput$ClientRequestToken": null,
+        "UpgradeLensReviewInput$ClientRequestToken": null
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The resource already exists.</p>",
+      "refs": {
+      }
+    },
+    "Count": {
+      "base": "<p>A non-negative integer that denotes how many.</p>",
+      "refs": {
+        "RiskCounts$value": null
+      }
+    },
+    "CreateMilestoneInput": {
+      "base": "<p>Input for milestone creation.</p>",
+      "refs": {
+      }
+    },
+    "CreateMilestoneOutput": {
+      "base": "<p>Output of a create milestone call.</p>",
+      "refs": {
+      }
+    },
+    "CreateWorkloadInput": {
+      "base": "<p>Input for workload creation.</p>",
+      "refs": {
+      }
+    },
+    "CreateWorkloadOutput": {
+      "base": "<p>Output of a create workload call.</p>",
+      "refs": {
+      }
+    },
+    "CreateWorkloadShareInput": {
+      "base": "<p>Input for Create Workload Share</p>",
+      "refs": {
+      }
+    },
+    "CreateWorkloadShareOutput": {
+      "base": "<p>Input for Create Workload Share</p>",
+      "refs": {
+      }
+    },
+    "DeleteWorkloadInput": {
+      "base": "<p>Input for workload deletion.</p>",
+      "refs": {
+      }
+    },
+    "DeleteWorkloadShareInput": {
+      "base": "<p>Input for Delete Workload Share</p>",
+      "refs": {
+      }
+    },
+    "DifferenceStatus": {
+      "base": null,
+      "refs": {
+        "PillarDifference$DifferenceStatus": "<p>Indicates the type of change to the pillar.</p>",
+        "QuestionDifference$DifferenceStatus": "<p>Indicates the type of change to the question.</p>"
+      }
+    },
+    "DisassociateLensesInput": {
+      "base": "<p>Input to disassociate lens reviews.</p>",
+      "refs": {
+      }
+    },
+    "ExceptionMessage": {
+      "base": "<p>Description of the error.</p>",
+      "refs": {
+        "AccessDeniedException$Message": null,
+        "ConflictException$Message": null,
+        "InternalServerException$Message": null,
+        "ResourceNotFoundException$Message": null,
+        "ServiceQuotaExceededException$Message": null,
+        "ThrottlingException$Message": null,
+        "ValidationException$Message": null,
+        "ValidationExceptionField$Message": null
+      }
+    },
+    "ExceptionResourceId": {
+      "base": "<p>Identifier of the resource affected.</p>",
+      "refs": {
+        "ConflictException$ResourceId": null,
+        "ResourceNotFoundException$ResourceId": null,
+        "ServiceQuotaExceededException$ResourceId": null
+      }
+    },
+    "ExceptionResourceType": {
+      "base": "<p>Type of the resource affected.</p>",
+      "refs": {
+        "ConflictException$ResourceType": null,
+        "ResourceNotFoundException$ResourceType": null,
+        "ServiceQuotaExceededException$ResourceType": null
+      }
+    },
+    "GetAnswerInput": {
+      "base": "<p>Input to get answer.</p>",
+      "refs": {
+      }
+    },
+    "GetAnswerOutput": {
+      "base": "<p>Output of a get answer call.</p>",
+      "refs": {
+      }
+    },
+    "GetLensReviewInput": {
+      "base": "<p>Input to get lens review.</p>",
+      "refs": {
+      }
+    },
+    "GetLensReviewOutput": {
+      "base": "<p>Output of a get lens review call.</p>",
+      "refs": {
+      }
+    },
+    "GetLensReviewReportInput": {
+      "base": "<p>Input to get lens review report.</p>",
+      "refs": {
+      }
+    },
+    "GetLensReviewReportOutput": {
+      "base": "<p>Output of a get lens review report call.</p>",
+      "refs": {
+      }
+    },
+    "GetLensVersionDifferenceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLensVersionDifferenceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMilestoneInput": {
+      "base": "<p>Input to get a milestone.</p>",
+      "refs": {
+      }
+    },
+    "GetMilestoneOutput": {
+      "base": "<p>Output of a get milestone call.</p>",
+      "refs": {
+      }
+    },
+    "GetWorkloadInput": {
+      "base": "<p>Input to get a workload.</p>",
+      "refs": {
+      }
+    },
+    "GetWorkloadOutput": {
+      "base": "<p>Output of a get workload call.</p>",
+      "refs": {
+      }
+    },
+    "HelpfulResourceUrl": {
+      "base": "<p>The helpful resource URL for a question.</p>",
+      "refs": {
+        "Answer$HelpfulResourceUrl": null
+      }
+    },
+    "ImprovementPlanUrl": {
+      "base": "<p>The improvement plan URL for a question.</p>",
+      "refs": {
+        "Answer$ImprovementPlanUrl": null,
+        "ImprovementSummary$ImprovementPlanUrl": null
+      }
+    },
+    "ImprovementSummaries": {
+      "base": "<p>List of improvement summaries of lens review in a workload.</p>",
+      "refs": {
+        "ListLensReviewImprovementsOutput$ImprovementSummaries": null
+      }
+    },
+    "ImprovementSummary": {
+      "base": "<p>An improvement summary of a lens review in a workload.</p>",
+      "refs": {
+        "ImprovementSummaries$member": null
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>There is a problem with the AWS Well-Architected Tool API service.</p>",
+      "refs": {
+      }
+    },
+    "IsApplicable": {
+      "base": "<p>Defines whether this question is applicable to a lens review.</p>",
+      "refs": {
+        "Answer$IsApplicable": null,
+        "AnswerSummary$IsApplicable": null,
+        "UpdateAnswerInput$IsApplicable": null
+      }
+    },
+    "IsReviewOwnerUpdateAcknowledged": {
+      "base": null,
+      "refs": {
+        "UpdateWorkloadInput$IsReviewOwnerUpdateAcknowledged": "<p>Flag indicating whether the workload owner has acknowledged that the <i>Review owner</i> field is required.</p> <p>If a <b>Review owner</b> is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.</p>",
+        "Workload$IsReviewOwnerUpdateAcknowledged": "<p>Flag indicating whether the workload owner has acknowledged that the <i>Review owner</i> field is required.</p> <p>If a <b>Review owner</b> is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.</p>"
+      }
+    },
+    "LensAlias": {
+      "base": "<p>The alias of the lens, for example, <code>serverless</code>.</p> <p>Each lens is identified by its <a>LensSummary$LensAlias</a>.</p>",
+      "refs": {
+        "GetAnswerInput$LensAlias": null,
+        "GetAnswerOutput$LensAlias": null,
+        "GetLensReviewInput$LensAlias": null,
+        "GetLensReviewReportInput$LensAlias": null,
+        "GetLensVersionDifferenceInput$LensAlias": null,
+        "GetLensVersionDifferenceOutput$LensAlias": null,
+        "LensAliases$member": null,
+        "LensReview$LensAlias": null,
+        "LensReviewReport$LensAlias": null,
+        "LensReviewSummary$LensAlias": null,
+        "LensSummary$LensAlias": null,
+        "LensUpgradeSummary$LensAlias": null,
+        "ListAnswersInput$LensAlias": null,
+        "ListAnswersOutput$LensAlias": null,
+        "ListLensReviewImprovementsInput$LensAlias": null,
+        "ListLensReviewImprovementsOutput$LensAlias": null,
+        "UpdateAnswerInput$LensAlias": null,
+        "UpdateAnswerOutput$LensAlias": null,
+        "UpdateLensReviewInput$LensAlias": null,
+        "UpgradeLensReviewInput$LensAlias": null,
+        "WorkloadLenses$member": null
+      }
+    },
+    "LensAliases": {
+      "base": "<p>List of lens aliases to associate or disassociate with a workload.</p> <p>Identify a lens using its <a>LensSummary$LensAlias</a>.</p>",
+      "refs": {
+        "AssociateLensesInput$LensAliases": null,
+        "DisassociateLensesInput$LensAliases": null
+      }
+    },
+    "LensDescription": {
+      "base": "<p>The description of the lens.</p>",
+      "refs": {
+        "LensSummary$Description": null
+      }
+    },
+    "LensName": {
+      "base": "<p>The full name of the lens.</p>",
+      "refs": {
+        "LensReview$LensName": null,
+        "LensReviewSummary$LensName": null,
+        "LensSummary$LensName": null
+      }
+    },
+    "LensReview": {
+      "base": "<p>A lens review of a question.</p>",
+      "refs": {
+        "GetLensReviewOutput$LensReview": null,
+        "UpdateLensReviewOutput$LensReview": null
+      }
+    },
+    "LensReviewReport": {
+      "base": "<p>A report of a lens review.</p>",
+      "refs": {
+        "GetLensReviewReportOutput$LensReviewReport": null
+      }
+    },
+    "LensReviewSummaries": {
+      "base": "<p>List of lens summaries of lens reviews of a workload.</p>",
+      "refs": {
+        "ListLensReviewsOutput$LensReviewSummaries": null
+      }
+    },
+    "LensReviewSummary": {
+      "base": "<p>A lens review summary of a workload.</p>",
+      "refs": {
+        "LensReviewSummaries$member": null
+      }
+    },
+    "LensStatus": {
+      "base": null,
+      "refs": {
+        "LensReview$LensStatus": "<p>The status of the lens.</p>",
+        "LensReviewSummary$LensStatus": "<p>The status of the lens.</p>"
+      }
+    },
+    "LensSummaries": {
+      "base": "<p>List of lens summaries of available lenses.</p>",
+      "refs": {
+        "ListLensesOutput$LensSummaries": null
+      }
+    },
+    "LensSummary": {
+      "base": "<p>A lens summary of a lens.</p>",
+      "refs": {
+        "LensSummaries$member": null
+      }
+    },
+    "LensUpgradeSummary": {
+      "base": "<p>Lens upgrade summary return object.</p>",
+      "refs": {
+        "NotificationSummary$LensUpgradeSummary": "<p>Summary of lens upgrade.</p>"
+      }
+    },
+    "LensVersion": {
+      "base": null,
+      "refs": {
+        "GetLensVersionDifferenceInput$BaseLensVersion": "<p>The base version of the lens.</p>",
+        "GetLensVersionDifferenceOutput$BaseLensVersion": "<p>The base version of the lens.</p>",
+        "GetLensVersionDifferenceOutput$LatestLensVersion": "<p>The latest version of the lens.</p>",
+        "LensReview$LensVersion": "<p>The version of the lens.</p>",
+        "LensReviewSummary$LensVersion": "<p>The version of the lens.</p>",
+        "LensSummary$LensVersion": "<p>The version of the lens.</p>",
+        "LensUpgradeSummary$CurrentLensVersion": "<p>The current version of the lens.</p>",
+        "LensUpgradeSummary$LatestLensVersion": "<p>The latest version of the lens.</p>"
+      }
+    },
+    "ListAnswersInput": {
+      "base": "<p>Input to list answers.</p>",
+      "refs": {
+      }
+    },
+    "ListAnswersMaxResults": {
+      "base": null,
+      "refs": {
+        "ListAnswersInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListAnswersOutput": {
+      "base": "<p>Output of a list answers call.</p>",
+      "refs": {
+      }
+    },
+    "ListLensReviewImprovementsInput": {
+      "base": "<p>Input to list lens review improvements.</p>",
+      "refs": {
+      }
+    },
+    "ListLensReviewImprovementsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListLensReviewImprovementsInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListLensReviewImprovementsOutput": {
+      "base": "<p>Output of a list lens review improvements call.</p>",
+      "refs": {
+      }
+    },
+    "ListLensReviewsInput": {
+      "base": "<p>Input to list lens reviews.</p>",
+      "refs": {
+      }
+    },
+    "ListLensReviewsOutput": {
+      "base": "<p>Output of a list lens reviews call.</p>",
+      "refs": {
+      }
+    },
+    "ListLensesInput": {
+      "base": "<p>Input to list lenses.</p>",
+      "refs": {
+      }
+    },
+    "ListLensesOutput": {
+      "base": "<p>Output of a list lenses call.</p>",
+      "refs": {
+      }
+    },
+    "ListMilestonesInput": {
+      "base": "<p>Input to list all milestones for a workload.</p>",
+      "refs": {
+      }
+    },
+    "ListMilestonesOutput": {
+      "base": "<p>Output of a list milestones call.</p>",
+      "refs": {
+      }
+    },
+    "ListNotificationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListNotificationsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListNotificationsInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListNotificationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListShareInvitationsInput": {
+      "base": "<p>Input for List Share Invitations</p>",
+      "refs": {
+      }
+    },
+    "ListShareInvitationsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListShareInvitationsInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListShareInvitationsOutput": {
+      "base": "<p>Input for List Share Invitations</p>",
+      "refs": {
+      }
+    },
+    "ListWorkloadSharesInput": {
+      "base": "<p>Input for List Workload Share</p>",
+      "refs": {
+      }
+    },
+    "ListWorkloadSharesMaxResults": {
+      "base": null,
+      "refs": {
+        "ListWorkloadSharesInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListWorkloadSharesOutput": {
+      "base": "<p>Input for List Workload Share</p>",
+      "refs": {
+      }
+    },
+    "ListWorkloadsInput": {
+      "base": "<p>Input to list all workloads.</p>",
+      "refs": {
+      }
+    },
+    "ListWorkloadsMaxResults": {
+      "base": null,
+      "refs": {
+        "ListWorkloadsInput$MaxResults": "<p>The maximum number of results to return for this request.</p>"
+      }
+    },
+    "ListWorkloadsOutput": {
+      "base": "<p>Output of a list workloads call.</p>",
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": "<p>The maximum number of results to return for this request.</p>",
+      "refs": {
+        "ListLensReviewsInput$MaxResults": null,
+        "ListLensesInput$MaxResults": null,
+        "ListMilestonesInput$MaxResults": null
+      }
+    },
+    "Milestone": {
+      "base": "<p>A milestone return object.</p>",
+      "refs": {
+        "GetMilestoneOutput$Milestone": null
+      }
+    },
+    "MilestoneName": {
+      "base": "<p>The name of the milestone in a workload.</p> <p>Milestone names must be unique within a workload.</p>",
+      "refs": {
+        "CreateMilestoneInput$MilestoneName": null,
+        "Milestone$MilestoneName": null,
+        "MilestoneSummary$MilestoneName": null,
+        "UpgradeLensReviewInput$MilestoneName": null
+      }
+    },
+    "MilestoneNumber": {
+      "base": "<p>The milestone number.</p> <p>A workload can have a maximum of 100 milestones.</p>",
+      "refs": {
+        "CreateMilestoneOutput$MilestoneNumber": null,
+        "GetAnswerInput$MilestoneNumber": null,
+        "GetAnswerOutput$MilestoneNumber": null,
+        "GetLensReviewInput$MilestoneNumber": null,
+        "GetLensReviewOutput$MilestoneNumber": null,
+        "GetLensReviewReportInput$MilestoneNumber": null,
+        "GetLensReviewReportOutput$MilestoneNumber": null,
+        "GetMilestoneInput$MilestoneNumber": null,
+        "ListAnswersInput$MilestoneNumber": null,
+        "ListAnswersOutput$MilestoneNumber": null,
+        "ListLensReviewImprovementsInput$MilestoneNumber": null,
+        "ListLensReviewImprovementsOutput$MilestoneNumber": null,
+        "ListLensReviewsInput$MilestoneNumber": null,
+        "ListLensReviewsOutput$MilestoneNumber": null,
+        "Milestone$MilestoneNumber": null,
+        "MilestoneSummary$MilestoneNumber": null
+      }
+    },
+    "MilestoneSummaries": {
+      "base": "<p>A list of milestone summaries.</p>",
+      "refs": {
+        "ListMilestonesOutput$MilestoneSummaries": null
+      }
+    },
+    "MilestoneSummary": {
+      "base": "<p>A milestone summary return object.</p>",
+      "refs": {
+        "MilestoneSummaries$member": null
+      }
+    },
+    "NextToken": {
+      "base": "<p>The token to use to retrieve the next set of results.</p>",
+      "refs": {
+        "LensReview$NextToken": null,
+        "ListAnswersInput$NextToken": null,
+        "ListAnswersOutput$NextToken": null,
+        "ListLensReviewImprovementsInput$NextToken": null,
+        "ListLensReviewImprovementsOutput$NextToken": null,
+        "ListLensReviewsInput$NextToken": null,
+        "ListLensReviewsOutput$NextToken": null,
+        "ListLensesInput$NextToken": null,
+        "ListLensesOutput$NextToken": null,
+        "ListMilestonesInput$NextToken": null,
+        "ListMilestonesOutput$NextToken": null,
+        "ListNotificationsInput$NextToken": null,
+        "ListNotificationsOutput$NextToken": null,
+        "ListShareInvitationsInput$NextToken": null,
+        "ListShareInvitationsOutput$NextToken": null,
+        "ListWorkloadSharesInput$NextToken": null,
+        "ListWorkloadSharesOutput$NextToken": null,
+        "ListWorkloadsInput$NextToken": null,
+        "ListWorkloadsOutput$NextToken": null
+      }
+    },
+    "Notes": {
+      "base": "<p>The notes associated with the workload.</p>",
+      "refs": {
+        "Answer$Notes": null,
+        "CreateWorkloadInput$Notes": null,
+        "LensReview$Notes": null,
+        "PillarNotes$value": null,
+        "PillarReviewSummary$Notes": null,
+        "UpdateAnswerInput$Notes": null,
+        "UpdateLensReviewInput$LensNotes": null,
+        "UpdateWorkloadInput$Notes": null,
+        "Workload$Notes": null
+      }
+    },
+    "NotificationSummaries": {
+      "base": null,
+      "refs": {
+        "ListNotificationsOutput$NotificationSummaries": "<p>List of lens notification summaries in a workload.</p>"
+      }
+    },
+    "NotificationSummary": {
+      "base": "<p>A notification summary return object.</p>",
+      "refs": {
+        "NotificationSummaries$member": null
+      }
+    },
+    "NotificationType": {
+      "base": null,
+      "refs": {
+        "NotificationSummary$Type": "<p>The type of notification.</p>"
+      }
+    },
+    "PermissionType": {
+      "base": "<p>Permission granted on a workload share.</p>",
+      "refs": {
+        "CreateWorkloadShareInput$PermissionType": null,
+        "ShareInvitationSummary$PermissionType": null,
+        "UpdateWorkloadShareInput$PermissionType": null,
+        "WorkloadShare$PermissionType": null,
+        "WorkloadShareSummary$PermissionType": null
+      }
+    },
+    "PillarDifference": {
+      "base": "<p>A pillar difference return object.</p>",
+      "refs": {
+        "PillarDifferences$member": null
+      }
+    },
+    "PillarDifferences": {
+      "base": null,
+      "refs": {
+        "VersionDifferences$PillarDifferences": "<p>The differences between the base and latest versions of the lens.</p>"
+      }
+    },
+    "PillarId": {
+      "base": "<p>The ID used to identify a pillar, for example, <code>security</code>.</p> <p>A pillar is identified by its <a>PillarReviewSummary$PillarId</a>.</p>",
+      "refs": {
+        "Answer$PillarId": null,
+        "AnswerSummary$PillarId": null,
+        "ImprovementSummary$PillarId": null,
+        "ListAnswersInput$PillarId": null,
+        "ListLensReviewImprovementsInput$PillarId": null,
+        "PillarDifference$PillarId": null,
+        "PillarNotes$key": null,
+        "PillarReviewSummary$PillarId": null,
+        "WorkloadPillarPriorities$member": null
+      }
+    },
+    "PillarName": {
+      "base": "<p>The name of the pillar.</p>",
+      "refs": {
+        "PillarReviewSummary$PillarName": null
+      }
+    },
+    "PillarNotes": {
+      "base": "<p>List of pillar notes of a lens review in a workload.</p>",
+      "refs": {
+        "UpdateLensReviewInput$PillarNotes": null
+      }
+    },
+    "PillarReviewSummaries": {
+      "base": "<p>List of pillar review summaries of lens review in a workload.</p>",
+      "refs": {
+        "LensReview$PillarReviewSummaries": null
+      }
+    },
+    "PillarReviewSummary": {
+      "base": "<p>A pillar review summary of a lens review.</p>",
+      "refs": {
+        "PillarReviewSummaries$member": null
+      }
+    },
+    "QuestionDescription": {
+      "base": "<p>The description of the question.</p>",
+      "refs": {
+        "Answer$QuestionDescription": null
+      }
+    },
+    "QuestionDifference": {
+      "base": "<p>A question difference return object.</p>",
+      "refs": {
+        "QuestionDifferences$member": null
+      }
+    },
+    "QuestionDifferences": {
+      "base": null,
+      "refs": {
+        "PillarDifference$QuestionDifferences": "<p>List of question differences.</p>"
+      }
+    },
+    "QuestionId": {
+      "base": "<p>The ID of the question.</p>",
+      "refs": {
+        "Answer$QuestionId": null,
+        "AnswerSummary$QuestionId": null,
+        "GetAnswerInput$QuestionId": null,
+        "ImprovementSummary$QuestionId": null,
+        "QuestionDifference$QuestionId": null,
+        "UpdateAnswerInput$QuestionId": null
+      }
+    },
+    "QuestionTitle": {
+      "base": "<p>The title of the question.</p>",
+      "refs": {
+        "Answer$QuestionTitle": null,
+        "AnswerSummary$QuestionTitle": null,
+        "ImprovementSummary$QuestionTitle": null,
+        "QuestionDifference$QuestionTitle": null
+      }
+    },
+    "QuotaCode": {
+      "base": "<p>Service Quotas requirement to identify originating quota.</p>",
+      "refs": {
+        "ServiceQuotaExceededException$QuotaCode": null,
+        "ThrottlingException$QuotaCode": null
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The requested resource was not found.</p>",
+      "refs": {
+      }
+    },
+    "Risk": {
+      "base": "<p>The risk for a given workload, lens review, pillar, or question.</p>",
+      "refs": {
+        "Answer$Risk": null,
+        "AnswerSummary$Risk": null,
+        "ImprovementSummary$Risk": null,
+        "RiskCounts$key": null
+      }
+    },
+    "RiskCounts": {
+      "base": "<p>A map from risk names to the count of how questions have that rating.</p>",
+      "refs": {
+        "LensReview$RiskCounts": null,
+        "LensReviewSummary$RiskCounts": null,
+        "PillarReviewSummary$RiskCounts": null,
+        "Workload$RiskCounts": null,
+        "WorkloadSummary$RiskCounts": null
+      }
+    },
+    "SelectedChoices": {
+      "base": "<p>List of selected choice IDs in a question answer.</p>",
+      "refs": {
+        "Answer$SelectedChoices": null,
+        "AnswerSummary$SelectedChoices": null,
+        "UpdateAnswerInput$SelectedChoices": null
+      }
+    },
+    "ServiceCode": {
+      "base": "<p>Service Quotas requirement to identify originating service.</p>",
+      "refs": {
+        "ServiceQuotaExceededException$ServiceCode": null,
+        "ThrottlingException$ServiceCode": null
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The user has reached their resource quota.</p>",
+      "refs": {
+      }
+    },
+    "ShareId": {
+      "base": "<p>The ID associated with the workload share.</p>",
+      "refs": {
+        "CreateWorkloadShareOutput$ShareId": null,
+        "DeleteWorkloadShareInput$ShareId": null,
+        "UpdateWorkloadShareInput$ShareId": null,
+        "WorkloadShare$ShareId": null,
+        "WorkloadShareSummary$ShareId": null
+      }
+    },
+    "ShareInvitation": {
+      "base": "<p>The share invitation.</p>",
+      "refs": {
+        "UpdateShareInvitationOutput$ShareInvitation": "<p>The updated workload share invitation.</p>"
+      }
+    },
+    "ShareInvitationAction": {
+      "base": "<p>Share invitation action taken by contributor.</p>",
+      "refs": {
+        "UpdateShareInvitationInput$ShareInvitationAction": null
+      }
+    },
+    "ShareInvitationId": {
+      "base": null,
+      "refs": {
+        "ShareInvitation$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
+        "ShareInvitationSummary$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
+        "UpdateShareInvitationInput$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>",
+        "Workload$ShareInvitationId": "<p>The ID assigned to the share invitation.</p>"
+      }
+    },
+    "ShareInvitationSummaries": {
+      "base": null,
+      "refs": {
+        "ListShareInvitationsOutput$ShareInvitationSummaries": "<p>List of share invitation summaries in a workload.</p>"
+      }
+    },
+    "ShareInvitationSummary": {
+      "base": "<p>A share invitation summary return object.</p>",
+      "refs": {
+        "ShareInvitationSummaries$member": null
+      }
+    },
+    "ShareStatus": {
+      "base": "<p>The status of a workload share.</p>",
+      "refs": {
+        "WorkloadShare$Status": null,
+        "WorkloadShareSummary$Status": null
+      }
+    },
+    "SharedWith": {
+      "base": "<p>The AWS account ID or IAM role with which the workload is shared.</p>",
+      "refs": {
+        "CreateWorkloadShareInput$SharedWith": null,
+        "ShareInvitationSummary$SharedWith": null,
+        "WorkloadShare$SharedWith": null,
+        "WorkloadShareSummary$SharedWith": null
+      }
+    },
+    "SharedWithPrefix": {
+      "base": null,
+      "refs": {
+        "ListWorkloadSharesInput$SharedWithPrefix": "<p>The AWS account ID or IAM role with which the workload is shared.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>Request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": "<p>The date and time recorded.</p>",
+      "refs": {
+        "LensReview$UpdatedAt": null,
+        "LensReviewSummary$UpdatedAt": null,
+        "Milestone$RecordedAt": null,
+        "MilestoneSummary$RecordedAt": null,
+        "Workload$UpdatedAt": null,
+        "Workload$ReviewRestrictionDate": null,
+        "WorkloadSummary$UpdatedAt": null
+      }
+    },
+    "UpdateAnswerInput": {
+      "base": "<p>Input to update answer.</p>",
+      "refs": {
+      }
+    },
+    "UpdateAnswerOutput": {
+      "base": "<p>Output of a update answer call.</p>",
+      "refs": {
+      }
+    },
+    "UpdateLensReviewInput": {
+      "base": "<p>Input for update lens review.</p>",
+      "refs": {
+      }
+    },
+    "UpdateLensReviewOutput": {
+      "base": "<p>Output of a update lens review call.</p>",
+      "refs": {
+      }
+    },
+    "UpdateShareInvitationInput": {
+      "base": "<p>Input for Update Share Invitation</p>",
+      "refs": {
+      }
+    },
+    "UpdateShareInvitationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkloadInput": {
+      "base": "<p>Input to update a workload.</p>",
+      "refs": {
+      }
+    },
+    "UpdateWorkloadOutput": {
+      "base": "<p>Output of an update workload call.</p>",
+      "refs": {
+      }
+    },
+    "UpdateWorkloadShareInput": {
+      "base": "<p>Input for Update Workload Share</p>",
+      "refs": {
+      }
+    },
+    "UpdateWorkloadShareOutput": {
+      "base": "<p>Input for Update Workload Share</p>",
+      "refs": {
+      }
+    },
+    "UpgradeLensReviewInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The user input is not valid.</p>",
+      "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>Stores information about a field passed inside a request that resulted in an exception.</p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": "<p>The fields that caused the error, if applicable.</p>",
+      "refs": {
+        "ValidationException$Fields": null
+      }
+    },
+    "ValidationExceptionFieldName": {
+      "base": "<p>The field name for which validation failed.</p>",
+      "refs": {
+        "ValidationExceptionField$Name": null
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": "<p>The reason why the request failed validation.</p>",
+      "refs": {
+        "ValidationException$Reason": null
+      }
+    },
+    "VersionDifferences": {
+      "base": "<p>The differences between the base and latest versions of the lens.</p>",
+      "refs": {
+        "GetLensVersionDifferenceOutput$VersionDifferences": null
+      }
+    },
+    "Workload": {
+      "base": "<p>A workload return object.</p>",
+      "refs": {
+        "GetWorkloadOutput$Workload": null,
+        "Milestone$Workload": null,
+        "UpdateWorkloadOutput$Workload": null
+      }
+    },
+    "WorkloadAccountIds": {
+      "base": "<p>The list of AWS account IDs associated with the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$AccountIds": null,
+        "UpdateWorkloadInput$AccountIds": null,
+        "Workload$AccountIds": null
+      }
+    },
+    "WorkloadArchitecturalDesign": {
+      "base": "<p>The URL of the architectural design for the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$ArchitecturalDesign": null,
+        "UpdateWorkloadInput$ArchitecturalDesign": null,
+        "Workload$ArchitecturalDesign": null
+      }
+    },
+    "WorkloadArn": {
+      "base": "<p>The ARN for the workload.</p>",
+      "refs": {
+        "CreateWorkloadOutput$WorkloadArn": null,
+        "Workload$WorkloadArn": null,
+        "WorkloadSummary$WorkloadArn": null
+      }
+    },
+    "WorkloadAwsRegions": {
+      "base": "<p>The list of AWS Regions associated with the workload, for example, <code>us-east-2</code>, or <code>ca-central-1</code>.</p>",
+      "refs": {
+        "CreateWorkloadInput$AwsRegions": null,
+        "UpdateWorkloadInput$AwsRegions": null,
+        "Workload$AwsRegions": null
+      }
+    },
+    "WorkloadDescription": {
+      "base": "<p>The description for the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$Description": null,
+        "UpdateWorkloadInput$Description": null,
+        "Workload$Description": null
+      }
+    },
+    "WorkloadEnvironment": {
+      "base": "<p>The environment for the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$Environment": null,
+        "UpdateWorkloadInput$Environment": null,
+        "Workload$Environment": null
+      }
+    },
+    "WorkloadId": {
+      "base": "<p>The ID assigned to the workload. This ID is unique within an AWS Region.</p>",
+      "refs": {
+        "AssociateLensesInput$WorkloadId": null,
+        "CreateMilestoneInput$WorkloadId": null,
+        "CreateMilestoneOutput$WorkloadId": null,
+        "CreateWorkloadOutput$WorkloadId": null,
+        "CreateWorkloadShareInput$WorkloadId": null,
+        "CreateWorkloadShareOutput$WorkloadId": null,
+        "DeleteWorkloadInput$WorkloadId": null,
+        "DeleteWorkloadShareInput$WorkloadId": null,
+        "DisassociateLensesInput$WorkloadId": null,
+        "GetAnswerInput$WorkloadId": null,
+        "GetAnswerOutput$WorkloadId": null,
+        "GetLensReviewInput$WorkloadId": null,
+        "GetLensReviewOutput$WorkloadId": null,
+        "GetLensReviewReportInput$WorkloadId": null,
+        "GetLensReviewReportOutput$WorkloadId": null,
+        "GetMilestoneInput$WorkloadId": null,
+        "GetMilestoneOutput$WorkloadId": null,
+        "GetWorkloadInput$WorkloadId": null,
+        "LensUpgradeSummary$WorkloadId": null,
+        "ListAnswersInput$WorkloadId": null,
+        "ListAnswersOutput$WorkloadId": null,
+        "ListLensReviewImprovementsInput$WorkloadId": null,
+        "ListLensReviewImprovementsOutput$WorkloadId": null,
+        "ListLensReviewsInput$WorkloadId": null,
+        "ListLensReviewsOutput$WorkloadId": null,
+        "ListMilestonesInput$WorkloadId": null,
+        "ListMilestonesOutput$WorkloadId": null,
+        "ListNotificationsInput$WorkloadId": null,
+        "ListWorkloadSharesInput$WorkloadId": null,
+        "ListWorkloadSharesOutput$WorkloadId": null,
+        "ShareInvitation$WorkloadId": null,
+        "ShareInvitationSummary$WorkloadId": null,
+        "UpdateAnswerInput$WorkloadId": null,
+        "UpdateAnswerOutput$WorkloadId": null,
+        "UpdateLensReviewInput$WorkloadId": null,
+        "UpdateLensReviewOutput$WorkloadId": null,
+        "UpdateWorkloadInput$WorkloadId": null,
+        "UpdateWorkloadShareInput$WorkloadId": null,
+        "UpdateWorkloadShareOutput$WorkloadId": null,
+        "UpgradeLensReviewInput$WorkloadId": null,
+        "Workload$WorkloadId": null,
+        "WorkloadShare$WorkloadId": null,
+        "WorkloadSummary$WorkloadId": null
+      }
+    },
+    "WorkloadImprovementStatus": {
+      "base": "<p>The improvement status for a workload.</p>",
+      "refs": {
+        "UpdateWorkloadInput$ImprovementStatus": null,
+        "Workload$ImprovementStatus": null,
+        "WorkloadSummary$ImprovementStatus": null
+      }
+    },
+    "WorkloadIndustry": {
+      "base": "<p>The industry for the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$Industry": null,
+        "UpdateWorkloadInput$Industry": null,
+        "Workload$Industry": null
+      }
+    },
+    "WorkloadIndustryType": {
+      "base": "<p>The industry type for the workload.</p> <p>If specified, must be one of the following:</p> <ul> <li> <p> <code>Agriculture</code> </p> </li> <li> <p> <code>Automobile</code> </p> </li> <li> <p> <code>Defense</code> </p> </li> <li> <p> <code>Design and Engineering</code> </p> </li> <li> <p> <code>Digital Advertising</code> </p> </li> <li> <p> <code>Education</code> </p> </li> <li> <p> <code>Environmental Protection</code> </p> </li> <li> <p> <code>Financial Services</code> </p> </li> <li> <p> <code>Gaming</code> </p> </li> <li> <p> <code>General Public Services</code> </p> </li> <li> <p> <code>Healthcare</code> </p> </li> <li> <p> <code>Hospitality</code> </p> </li> <li> <p> <code>InfoTech</code> </p> </li> <li> <p> <code>Justice and Public Safety</code> </p> </li> <li> <p> <code>Life Sciences</code> </p> </li> <li> <p> <code>Manufacturing</code> </p> </li> <li> <p> <code>Media &amp; Entertainment</code> </p> </li> <li> <p> <code>Mining &amp; Resources</code> </p> </li> <li> <p> <code>Oil &amp; Gas</code> </p> </li> <li> <p> <code>Power &amp; Utilities</code> </p> </li> <li> <p> <code>Professional Services</code> </p> </li> <li> <p> <code>Real Estate &amp; Construction</code> </p> </li> <li> <p> <code>Retail &amp; Wholesale</code> </p> </li> <li> <p> <code>Social Protection</code> </p> </li> <li> <p> <code>Telecommunications</code> </p> </li> <li> <p> <code>Travel, Transportation &amp; Logistics</code> </p> </li> <li> <p> <code>Other</code> </p> </li> </ul>",
+      "refs": {
+        "CreateWorkloadInput$IndustryType": null,
+        "UpdateWorkloadInput$IndustryType": null,
+        "Workload$IndustryType": null
+      }
+    },
+    "WorkloadLenses": {
+      "base": "<p>The list of lenses associated with the workload. Each lens is identified by its <a>LensSummary$LensAlias</a>.</p>",
+      "refs": {
+        "CreateWorkloadInput$Lenses": null,
+        "Workload$Lenses": null,
+        "WorkloadSummary$Lenses": null
+      }
+    },
+    "WorkloadName": {
+      "base": "<p>The name of the workload.</p> <p>The name must be unique within an account within a Region. Spaces and capitalization are ignored when checking for uniqueness.</p>",
+      "refs": {
+        "CreateWorkloadInput$WorkloadName": null,
+        "LensUpgradeSummary$WorkloadName": null,
+        "ShareInvitationSummary$WorkloadName": null,
+        "UpdateWorkloadInput$WorkloadName": null,
+        "Workload$WorkloadName": null,
+        "WorkloadShare$WorkloadName": null,
+        "WorkloadSummary$WorkloadName": null
+      }
+    },
+    "WorkloadNamePrefix": {
+      "base": "<p>An optional string added to the beginning of each workload name returned in the results.</p>",
+      "refs": {
+        "ListShareInvitationsInput$WorkloadNamePrefix": null,
+        "ListWorkloadsInput$WorkloadNamePrefix": null
+      }
+    },
+    "WorkloadNonAwsRegion": {
+      "base": null,
+      "refs": {
+        "WorkloadNonAwsRegions$member": null
+      }
+    },
+    "WorkloadNonAwsRegions": {
+      "base": "<p> The list of non-AWS Regions associated with the workload.</p>",
+      "refs": {
+        "CreateWorkloadInput$NonAwsRegions": null,
+        "UpdateWorkloadInput$NonAwsRegions": null,
+        "Workload$NonAwsRegions": null
+      }
+    },
+    "WorkloadPillarPriorities": {
+      "base": "<p>The priorities of the pillars, which are used to order items in the improvement plan. Each pillar is represented by its <a>PillarReviewSummary$PillarId</a>.</p>",
+      "refs": {
+        "CreateWorkloadInput$PillarPriorities": null,
+        "UpdateWorkloadInput$PillarPriorities": null,
+        "Workload$PillarPriorities": null
+      }
+    },
+    "WorkloadReviewOwner": {
+      "base": "<p>The review owner of the workload. The name, email address, or identifier for the primary group or individual that owns the workload review process.</p>",
+      "refs": {
+        "CreateWorkloadInput$ReviewOwner": null,
+        "UpdateWorkloadInput$ReviewOwner": null,
+        "Workload$ReviewOwner": null
+      }
+    },
+    "WorkloadShare": {
+      "base": "<p>A workload share return object.</p>",
+      "refs": {
+        "UpdateWorkloadShareOutput$WorkloadShare": null
+      }
+    },
+    "WorkloadShareSummaries": {
+      "base": "<p>A list of workload share summaries.</p>",
+      "refs": {
+        "ListWorkloadSharesOutput$WorkloadShareSummaries": null
+      }
+    },
+    "WorkloadShareSummary": {
+      "base": "<p>A workload share summary return object.</p>",
+      "refs": {
+        "WorkloadShareSummaries$member": null
+      }
+    },
+    "WorkloadSummaries": {
+      "base": "<p>A list of workload summaries.</p>",
+      "refs": {
+        "ListWorkloadsOutput$WorkloadSummaries": null
+      }
+    },
+    "WorkloadSummary": {
+      "base": "<p>A workload summary return object.</p>",
+      "refs": {
+        "MilestoneSummary$WorkloadSummary": null,
+        "WorkloadSummaries$member": null
+      }
+    }
+  }
+}
