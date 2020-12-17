@@ -818,7 +818,9 @@
       "members":{
         "AliasName":{"shape":"AliasNameType"},
         "AliasArn":{"shape":"ArnType"},
-        "TargetKeyId":{"shape":"KeyIdType"}
+        "TargetKeyId":{"shape":"KeyIdType"},
+        "CreationDate":{"shape":"DateType"},
+        "LastUpdatedDate":{"shape":"DateType"}
       }
     },
     "AliasNameType":{

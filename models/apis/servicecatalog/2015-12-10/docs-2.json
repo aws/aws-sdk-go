@@ -13,10 +13,10 @@
     "CopyProduct": "<p>Copies the specified source product to the specified target product or a new product.</p> <p>You can copy a product to the same account or another account. You can copy a product to the same region or another region.</p> <p>This operation is performed asynchronously. To track the progress of the operation, use <a>DescribeCopyProductStatus</a>.</p>",
     "CreateConstraint": "<p>Creates a constraint.</p> <p>A delegated admin is authorized to invoke this command.</p>",
     "CreatePortfolio": "<p>Creates a portfolio.</p> <p>A delegated admin is authorized to invoke this command.</p>",
-    "CreatePortfolioShare": "<p>Shares the specified portfolio with the specified account or organization node. Shares to an organization node can only be created by the management account of an organization or by a delegated administrator. You can share portfolios to an organization, an organizational unit, or a specific account.</p> <p>Note that if a delegated admin is de-registered, they can no longer create portfolio shares.</p> <p> <code>AWSOrganizationsAccess</code> must be enabled in order to create a portfolio share to an organization node.</p> <p>You can't share a shared resource. This includes portfolios that contain a shared product.</p>",
-    "CreateProduct": "<p>Creates a product.</p> <p>A delegated admin is authorized to invoke this command.</p>",
+    "CreatePortfolioShare": "<p>Shares the specified portfolio with the specified account or organization node. Shares to an organization node can only be created by the management account of an organization or by a delegated administrator. You can share portfolios to an organization, an organizational unit, or a specific account.</p> <p>Note that if a delegated admin is de-registered, they can no longer create portfolio shares.</p> <p> <code>AWSOrganizationsAccess</code> must be enabled in order to create a portfolio share to an organization node.</p> <p>You can't share a shared resource, including portfolios that contain a shared product.</p> <p>If the portfolio share with the specified account or organization node already exists, this action will have no effect and will not return an error. To update an existing share, you must use the <code> UpdatePortfolioShare</code> API instead.</p>",
+    "CreateProduct": "<p>Creates a product.</p> <p>A delegated admin is authorized to invoke this command.</p> <p>The user or role that performs this operation must have the <code>cloudformation:GetTemplate</code> IAM policy permission. This policy permission is required when using the <code>ImportFromPhysicalId</code> template source in the information data section.</p>",
     "CreateProvisionedProductPlan": "<p>Creates a plan. A plan includes the list of resources to be created (when provisioning a new product) or modified (when updating a provisioned product) when the plan is executed.</p> <p>You can create one plan per provisioned product. To create a plan for an existing provisioned product, the product status must be AVAILBLE or TAINTED.</p> <p>To view the resource changes in the change set, use <a>DescribeProvisionedProductPlan</a>. To create or modify the provisioned product, use <a>ExecuteProvisionedProductPlan</a>.</p>",
-    "CreateProvisioningArtifact": "<p>Creates a provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot create a provisioning artifact for a product that was shared with you.</p>",
+    "CreateProvisioningArtifact": "<p>Creates a provisioning artifact (also known as a version) for the specified product.</p> <p>You cannot create a provisioning artifact for a product that was shared with you.</p> <p>The user or role that performs this operation must have the <code>cloudformation:GetTemplate</code> IAM policy permission. This policy permission is required when using the <code>ImportFromPhysicalId</code> template source in the information data section.</p>",
     "CreateServiceAction": "<p>Creates a self-service action.</p>",
     "CreateTagOption": "<p>Creates a TagOption.</p>",
     "DeleteConstraint": "<p>Deletes the specified constraint.</p> <p>A delegated admin is authorized to invoke this command.</p>",
@@ -31,6 +31,7 @@
     "DescribeCopyProductStatus": "<p>Gets the status of the specified copy product operation.</p>",
     "DescribePortfolio": "<p>Gets information about the specified portfolio.</p> <p>A delegated admin is authorized to invoke this command.</p>",
     "DescribePortfolioShareStatus": "<p>Gets the status of the specified portfolio share operation. This API can only be called by the management account in the organization or by a delegated admin.</p>",
+    "DescribePortfolioShares": "<p>Returns a summary of each of the portfolio shares that were created for the specified portfolio.</p> <p>You can use this API to determine which accounts or organizational nodes this portfolio have been shared, whether the recipient entity has imported the share, and whether TagOptions are included with the share.</p> <p>The <code>PortfolioId</code> and <code>Type</code> parameters are both required.</p>",
     "DescribeProduct": "<p>Gets information about the specified product.</p>",
     "DescribeProductAsAdmin": "<p>Gets information about the specified product. This operation is run with administrator access.</p>",
     "DescribeProductView": "<p>Gets information about the specified product.</p>",
@@ -53,7 +54,7 @@
     "ExecuteProvisionedProductServiceAction": "<p>Executes a self-service action against a provisioned product.</p>",
     "GetAWSOrganizationsAccessStatus": "<p>Get the Access Status for AWS Organization portfolio share feature. This API can only be called by the management account in the organization or by a delegated admin.</p>",
     "GetProvisionedProductOutputs": "<p>This API takes either a <code>ProvisonedProductId</code> or a <code>ProvisionedProductName</code>, along with a list of one or more output keys, and responds with the key/value pairs of those outputs.</p>",
-    "ImportAsProvisionedProduct": "<p>Requests the import of a resource as a Service Catalog provisioned product that is associated to a Service Catalog product and provisioning artifact. Once imported all supported Service Catalog governance actions are supported on the provisioned product.</p> <p>Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets and non-root nested stacks are not supported.</p> <p>The CloudFormation stack must have one of the following statuses to be imported: CREATE_COMPLETE, UPDATE_COMPLETE, UPDATE_ROLLBACK_COMPLETE, IMPORT_COMPLETE, IMPORT_ROLLBACK_COMPLETE.</p> <p>Import of the resource requires that the CloudFormation stack template matches the associated Service Catalog product provisioning artifact. </p>",
+    "ImportAsProvisionedProduct": "<p>Requests the import of a resource as a Service Catalog provisioned product that is associated to a Service Catalog product and provisioning artifact. Once imported, all supported Service Catalog governance actions are supported on the provisioned product.</p> <p>Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets and non-root nested stacks are not supported.</p> <p>The CloudFormation stack must have one of the following statuses to be imported: <code>CREATE_COMPLETE</code>, <code>UPDATE_COMPLETE</code>, <code>UPDATE_ROLLBACK_COMPLETE</code>, <code>IMPORT_COMPLETE</code>, <code>IMPORT_ROLLBACK_COMPLETE</code>.</p> <p>Import of the resource requires that the CloudFormation stack template matches the associated Service Catalog product provisioning artifact. </p> <p>The user or role that performs this operation must have the <code>cloudformation:GetTemplate</code> and <code>cloudformation:DescribeStacks</code> IAM policy permissions. </p>",
     "ListAcceptedPortfolioShares": "<p>Lists all portfolios for which sharing was accepted by this account.</p>",
     "ListBudgetsForResource": "<p>Lists all the budgets associated to the specified resource.</p>",
     "ListConstraintsForPortfolio": "<p>Lists the constraints for the specified portfolio and product.</p>",
@@ -81,6 +82,7 @@
     "TerminateProvisionedProduct": "<p>Terminates the specified provisioned product.</p> <p>This operation does not delete any records associated with the provisioned product.</p> <p>You can check the status of this request using <a>DescribeRecord</a>.</p>",
     "UpdateConstraint": "<p>Updates the specified constraint.</p>",
     "UpdatePortfolio": "<p>Updates the specified portfolio.</p> <p>You cannot update a product that was shared with you.</p>",
+    "UpdatePortfolioShare": "<p>Updates the specified portfolio share. You can use this API to enable or disable TagOptions sharing for an existing portfolio share. </p> <p>The portfolio share cannot be updated if the <code> CreatePortfolioShare</code> operation is <code>IN_PROGRESS</code>, as the share is not available to recipient entities. In this case, you must wait for the portfolio share to be COMPLETED.</p> <p>You must provide the <code>accountId</code> or organization node in the input, but not both.</p> <p>If the portfolio is shared to both an external account and an organization node, and both shares need to be updated, you must invoke <code>UpdatePortfolioShare</code> separately for each share type. </p> <p>This API cannot be used for removing the portfolio share. You must use <code>DeletePortfolioShare</code> API for that action. </p>",
     "UpdateProduct": "<p>Updates the specified product.</p>",
     "UpdateProvisionedProduct": "<p>Requests updates to the configuration of the specified provisioned product.</p> <p>If there are tags associated with the object, they cannot be updated or added. Depending on the specific updates requested, this operation can update with no interruption, with some interruption, or replace the provisioned product entirely.</p> <p>You can check the status of this request using <a>DescribeRecord</a>.</p>",
     "UpdateProvisionedProductProperties": "<p>Requests updates to the properties of the specified provisioned product.</p>",
@@ -158,6 +160,7 @@
         "TerminateProvisionedProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateConstraintInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdatePortfolioInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
+        "UpdatePortfolioShareInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProvisionedProductInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
         "UpdateProvisionedProductPropertiesInput$AcceptLanguage": "<p>The language code.</p> <ul> <li> <p> <code>en</code> - English (default)</p> </li> <li> <p> <code>jp</code> - Japanese</p> </li> <li> <p> <code>zh</code> - Chinese</p> </li> </ul>",
@@ -212,7 +215,8 @@
         "Namespaces$member": null,
         "StackInstance$Account": "<p>The name of the AWS account that the stack instance is associated with.</p>",
         "StackSetAccounts$member": null,
-        "SuccessfulShares$member": null
+        "SuccessfulShares$member": null,
+        "UpdatePortfolioShareInput$AccountId": "<p>The AWS Account Id of the recipient account. This field is required when updating an external account to account type share.</p>"
       }
     },
     "AccountIds": {
@@ -322,6 +326,14 @@
     "BatchDisassociateServiceActionFromProvisioningArtifactOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "CreatePortfolioShareInput$ShareTagOptions": "<p>Enables or disables <code>TagOptions </code> sharing when creating the portfolio share. If this flag is not provided, TagOptions sharing is disabled.</p>",
+        "PortfolioShareDetail$Accepted": "<p>Indicates whether the shared portfolio is imported by the recipient account. If the recipient is in an organization node, the share is automatically imported, and the field is always set to true.</p>",
+        "PortfolioShareDetail$ShareTagOptions": "<p>Indicates whether TagOptions sharing is enabled or disabled for the portfolio share.</p>"
       }
     },
     "BudgetDetail": {
@@ -679,6 +691,23 @@
       }
     },
     "DescribePortfolioShareStatusOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePortfolioShareType": {
+      "base": null,
+      "refs": {
+        "DescribePortfolioSharesInput$Type": "<p>The type of portfolio share to summarize. This field acts as a filter on the type of portfolio share, which can be one of the following:</p> <p>1. <code>ACCOUNT</code> - Represents an external account to account share.</p> <p>2. <code>ORGANIZATION</code> - Represents a share to an organization. This share is available to every account in the organization.</p> <p>3. <code>ORGANIZATIONAL_UNIT</code> - Represents a share to an organizational unit.</p> <p>4. <code>ORGANIZATION_MEMBER_ACCOUNT</code> - Represents a share to an account in the organization.</p>",
+        "PortfolioShareDetail$Type": "<p>The type of the portfolio share.</p>"
+      }
+    },
+    "DescribePortfolioSharesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePortfolioSharesOutput": {
       "base": null,
       "refs": {
       }
@@ -1052,7 +1081,9 @@
         "DescribePortfolioShareStatusInput$PortfolioShareToken": "<p>The token for the portfolio share operation. This token is returned either by CreatePortfolioShare or by DeletePortfolioShare.</p>",
         "DescribePortfolioShareStatusOutput$PortfolioShareToken": "<p>The token for the portfolio share operation. For example, <code>share-6v24abcdefghi</code>.</p>",
         "DescribePortfolioShareStatusOutput$PortfolioId": "<p>The portfolio identifier.</p>",
+        "DescribePortfolioSharesInput$PortfolioId": "<p>The unique identifier of the portfolio for which shares will be retrieved.</p>",
         "DescribeProductAsAdminInput$Id": "<p>The product identifier.</p>",
+        "DescribeProductAsAdminInput$SourcePortfolioId": "<p>The unique identifier of the shared portfolio that the specified product is associated with.</p> <p>You can provide this parameter to retrieve the shared TagOptions associated with the product. If this parameter is provided and if TagOptions sharing is enabled in the portfolio share, the API returns both local and shared TagOptions associated with the product. Otherwise only local TagOptions will be returned. </p>",
         "DescribeProductInput$Id": "<p>The product identifier.</p>",
         "DescribeProductViewInput$Id": "<p>The product view identifier.</p>",
         "DescribeProvisionedProductInput$Id": "<p>The provisioned product identifier. You must provide the name or ID, but not both.</p> <p>If you do not provide a name or ID, or you provide both name and ID, an <code>InvalidParametersException</code> will occur.</p>",
@@ -1100,6 +1131,7 @@
         "ListServiceActionsForProvisioningArtifactInput$ProvisioningArtifactId": "<p>The identifier of the provisioning artifact. For example, <code>pa-4abcdjnxjj6ne</code>.</p>",
         "ListStackInstancesForProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product.</p>",
         "PortfolioDetail$Id": "<p>The portfolio identifier.</p>",
+        "PortfolioShareDetail$PrincipalId": "<p>The identifier of the recipient entity that received the portfolio share. The recipient entities can be one of the following: </p> <p>1. An external account.</p> <p>2. An organziation member account.</p> <p>3. An organzational unit (OU).</p> <p>4. The organization itself. (This shares with every account in the organization).</p>",
         "ProductViewSummary$Id": "<p>The product view identifier.</p>",
         "ProductViewSummary$ProductId": "<p>The product identifier.</p>",
         "ProvisionProductInput$ProductId": "<p>The product identifier. You must provide the name or ID, but not both.</p>",
@@ -1140,6 +1172,8 @@
         "TerminateProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product. You cannot specify both <code>ProvisionedProductName</code> and <code>ProvisionedProductId</code>.</p>",
         "UpdateConstraintInput$Id": "<p>The identifier of the constraint.</p>",
         "UpdatePortfolioInput$Id": "<p>The portfolio identifier.</p>",
+        "UpdatePortfolioShareInput$PortfolioId": "<p>The unique identifier of the portfolio for which the share will be updated.</p>",
+        "UpdatePortfolioShareOutput$PortfolioShareToken": "<p>The token that tracks the status of the <code>UpdatePortfolioShare</code> operation for external account to account or organizational type sharing.</p>",
         "UpdateProductInput$Id": "<p>The product identifier.</p>",
         "UpdateProvisionedProductInput$ProvisionedProductId": "<p>The identifier of the provisioned product. You must provide the name or ID, but not both.</p>",
         "UpdateProvisionedProductInput$ProductId": "<p>The identifier of the product. You must provide the name or ID, but not both.</p>",
@@ -1478,6 +1512,12 @@
         "ProvisionedProductPlanDetails$NotificationArns": "<p>Passed to CloudFormation. The SNS topic ARNs to which to publish stack-related events.</p>"
       }
     },
+    "NullableBoolean": {
+      "base": null,
+      "refs": {
+        "UpdatePortfolioShareInput$ShareTagOptions": "<p>A flag to enable or disable TagOptions sharing for the portfolio share. If this field is not provided, the current state of TagOptions sharing on the portfolio share will not be modified.</p>"
+      }
+    },
     "OperationNotSupportedException": {
       "base": "<p>The operation is not supported.</p>",
       "refs": {
@@ -1488,7 +1528,8 @@
       "refs": {
         "CreatePortfolioShareInput$OrganizationNode": "<p>The organization node to whom you are going to share. If <code>OrganizationNode</code> is passed in, <code>PortfolioShare</code> will be created for the node an ListOrganizationPortfolioAccessd its children (when applies), and a <code>PortfolioShareToken</code> will be returned in the output in order for the administrator to monitor the status of the <code>PortfolioShare</code> creation process.</p>",
         "DeletePortfolioShareInput$OrganizationNode": "<p>The organization node to whom you are going to stop sharing.</p>",
-        "OrganizationNodes$member": null
+        "OrganizationNodes$member": null,
+        "UpdatePortfolioShareInput$OrganizationNode": null
       }
     },
     "OrganizationNodeType": {
@@ -1536,6 +1577,12 @@
         "RecordOutput$OutputValue": "<p>The output value.</p>"
       }
     },
+    "Owner": {
+      "base": null,
+      "refs": {
+        "TagOptionDetail$Owner": "<p>The AWS account Id of the owner account that created the TagOption.</p>"
+      }
+    },
     "PageSize": {
       "base": null,
       "refs": {
@@ -1566,12 +1613,15 @@
     "PageSizeMax100": {
       "base": null,
       "refs": {
+        "DescribePortfolioSharesInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListPortfolioAccessInput$PageSize": "<p>The maximum number of items to return with this call.</p>"
       }
     },
     "PageToken": {
       "base": null,
       "refs": {
+        "DescribePortfolioSharesInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
+        "DescribePortfolioSharesOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "DescribeProvisionedProductPlanInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
         "DescribeProvisionedProductPlanOutput$NextPageToken": "<p>The page token to use to retrieve the next set of results. If there are no additional results, this value is null.</p>",
         "DescribeRecordInput$PageToken": "<p>The page token for the next set of results. To retrieve the first set of results, use null.</p>",
@@ -1710,6 +1760,18 @@
       "refs": {
         "LaunchPath$Name": "<p>The name of the launch path.</p>",
         "LaunchPathSummary$Name": "<p>The name of the portfolio to which the user was assigned.</p>"
+      }
+    },
+    "PortfolioShareDetail": {
+      "base": "<p>Information about the portfolio share.</p>",
+      "refs": {
+        "PortfolioShareDetails$member": null
+      }
+    },
+    "PortfolioShareDetails": {
+      "base": null,
+      "refs": {
+        "DescribePortfolioSharesOutput$PortfolioShareDetails": "<p>Summaries about each of the portfolio shares.</p>"
       }
     },
     "PortfolioShareType": {
@@ -2136,9 +2198,9 @@
     "ProvisioningArtifactInfo": {
       "base": null,
       "refs": {
-        "CreateProvisioningArtifactOutput$Info": "<p>The URL of the CloudFormation template in Amazon S3, in JSON format.</p>",
+        "CreateProvisioningArtifactOutput$Info": "<p>Specify the template source with one of the following options, but not both. Keys accepted: [ <code>LoadTemplateFromURL</code>, <code>ImportFromPhysicalId</code> ].</p> <p>The URL of the CloudFormation template in Amazon S3, in JSON format. </p> <p> <code>LoadTemplateFromURL</code> </p> <p>Use the URL of the CloudFormation template in Amazon S3 in JSON format.</p> <p> <code>ImportFromPhysicalId</code> </p> <p>Use the physical id of the resource that contains the template; currently supports CloudFormation stack ARN.</p>",
         "DescribeProvisioningArtifactOutput$Info": "<p>The URL of the CloudFormation template in Amazon S3.</p>",
-        "ProvisioningArtifactProperties$Info": "<p>The URL of the CloudFormation template in Amazon S3. Specify the URL in JSON format as follows:</p> <p> <code>\"LoadTemplateFromURL\": \"https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/...\"</code> </p>",
+        "ProvisioningArtifactProperties$Info": "<p>Specify the template source with one of the following options, but not both. Keys accepted: [ <code>LoadTemplateFromURL</code>, <code>ImportFromPhysicalId</code> ]</p> <p>The URL of the CloudFormation template in Amazon S3. Specify the URL in JSON format as follows:</p> <p> <code>\"LoadTemplateFromURL\": \"https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/...\"</code> </p> <p> <code>ImportFromPhysicalId</code>: The physical id of the resource that contains the template. Currently only supports CloudFormation stack arn. Specify the physical id in JSON format as follows: <code>ImportFromPhysicalId: “arn:aws:cloudformation:[us-east-1]:[accountId]:stack/[StackName]/[resourceId]</code> </p>",
         "ProvisioningArtifactSummary$ProvisioningArtifactMetadata": "<p>The metadata for the provisioning artifact. This is used with AWS Marketplace products.</p>",
         "UpdateProvisioningArtifactOutput$Info": "<p>The URL of the CloudFormation template in Amazon S3.</p>"
       }
@@ -2210,8 +2272,8 @@
     "ProvisioningArtifactProperties": {
       "base": "<p>Information about a provisioning artifact (also known as a version) for a product.</p>",
       "refs": {
-        "CreateProductInput$ProvisioningArtifactParameters": "<p>The configuration of the provisioning artifact. The <code>info</code> field accepts <code>ImportFromPhysicalID</code>.</p>",
-        "CreateProvisioningArtifactInput$Parameters": "<p>The configuration for the provisioning artifact. The <code>info</code> field accepts <code>ImportFromPhysicalID</code>. </p>"
+        "CreateProductInput$ProvisioningArtifactParameters": "<p>The configuration of the provisioning artifact. </p>",
+        "CreateProvisioningArtifactInput$Parameters": "<p>The configuration for the provisioning artifact.</p>"
       }
     },
     "ProvisioningArtifactPropertyName": {
@@ -2277,7 +2339,7 @@
       }
     },
     "ProvisioningPreferences": {
-      "base": "<p>The user-defined preferences that will be applied when updating a provisioned product. Not all preferences are applicable to all provisioned product types.</p>",
+      "base": "<p>The user-defined preferences that will be applied when updating a provisioned product. Not all preferences are applicable to all provisioned product type</p> <p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>",
       "refs": {
         "ProvisionProductInput$ProvisioningPreferences": "<p>An object that contains information about the provisioning preferences for a stack set.</p>"
       }
@@ -2504,7 +2566,7 @@
     "RetainPhysicalResources": {
       "base": null,
       "refs": {
-        "TerminateProvisionedProductInput$RetainPhysicalResources": "<p>When this boolean parameter is set to true, the TerminateProvisionedProduct API deletes the Service Catalog provisioned product. However, it does not remove the CloudFormation stack, stack set, or the underlying resources of the deleted provisioned product. The default value is false.</p>"
+        "TerminateProvisionedProductInput$RetainPhysicalResources": "<p>When this boolean parameter is set to true, the <code>TerminateProvisionedProduct</code> API deletes the Service Catalog provisioned product. However, it does not remove the CloudFormation stack, stack set, or the underlying resources of the deleted provisioned product. The default value is false.</p>"
       }
     },
     "RoleArn": {
@@ -2689,7 +2751,8 @@
     "ShareStatus": {
       "base": null,
       "refs": {
-        "DescribePortfolioShareStatusOutput$Status": "<p>Status of the portfolio share operation.</p>"
+        "DescribePortfolioShareStatusOutput$Status": "<p>Status of the portfolio share operation.</p>",
+        "UpdatePortfolioShareOutput$Status": "<p>The status of <code>UpdatePortfolioShare</code> operation. You can also obtain the operation status using <code>DescribePortfolioShareStatus</code> API. </p>"
       }
     },
     "SortField": {
@@ -2740,7 +2803,7 @@
       "base": null,
       "refs": {
         "ProvisioningArtifactPreferences$StackSetAccounts": "<p>One or more AWS accounts where stack instances are deployed from the stack set. These accounts can be scoped in <code>ProvisioningPreferences$StackSetAccounts</code> and <code>UpdateProvisioningPreferences$StackSetAccounts</code>.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p>",
-        "ProvisioningPreferences$StackSetAccounts": "<p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>",
+        "ProvisioningPreferences$StackSetAccounts": "<p>One or more AWS accounts where the provisioned product will be available.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The specified accounts should be within the list of accounts from the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all acounts from the <code>STACKSET</code> constraint.</p>",
         "UpdateProvisioningPreferences$StackSetAccounts": "<p>One or more AWS accounts that will have access to the provisioned product.</p> <p>Applicable only to a <code>CFN_STACKSET</code> provisioned product type.</p> <p>The AWS accounts specified should be within the list of accounts in the <code>STACKSET</code> constraint. To get the list of accounts in the <code>STACKSET</code> constraint, use the <code>DescribeProvisioningParameters</code> operation.</p> <p>If no values are specified, the default value is all accounts from the <code>STACKSET</code> constraint.</p>"
       }
     },
@@ -2835,7 +2898,7 @@
     "SupportUrl": {
       "base": null,
       "refs": {
-        "CreateProductInput$SupportUrl": "<p>The contact URL for product support.</p>",
+        "CreateProductInput$SupportUrl": "<p>The contact URL for product support.</p> <p> <code>^https?:\\/\\// </code>/ is the pattern used to validate SupportUrl.</p>",
         "ProductViewSummary$SupportUrl": "<p>The URL information to obtain support for this Product.</p>",
         "UpdateProductInput$SupportUrl": "<p>The updated support URL for the product.</p>"
       }
@@ -2995,6 +3058,16 @@
       }
     },
     "UpdatePortfolioOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePortfolioShareInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePortfolioShareOutput": {
       "base": null,
       "refs": {
       }

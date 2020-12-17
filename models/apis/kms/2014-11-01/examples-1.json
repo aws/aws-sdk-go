@@ -109,7 +109,8 @@
     "Decrypt": [
       {
         "input": {
-          "CiphertextBlob": "<binary data>"
+          "CiphertextBlob": "<binary data>",
+          "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
         },
         "output": {
           "KeyId": "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
@@ -117,7 +118,8 @@
         },
         "comments": {
           "input": {
-            "CiphertextBlob": "The encrypted data (ciphertext)."
+            "CiphertextBlob": "The encrypted data (ciphertext).",
+            "KeyId": "A key identifier for the CMK to use to decrypt the data."
           },
           "output": {
             "KeyId": "The Amazon Resource Name (ARN) of the CMK that was used to decrypt the data.",
@@ -754,12 +756,13 @@
         "comments": {
           "input": {
             "CiphertextBlob": "The data to reencrypt.",
-            "DestinationKeyId": "The identifier of the CMK to use to reencrypt the data. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK."
+            "DestinationKeyId": "The identifier of the CMK to use to reencrypt the data. You can use any valid key identifier.",
+            "SourceKeyId": "The identifier of the CMK to use to decrypt the data. You can use any valid key identifier."
           },
           "output": {
             "CiphertextBlob": "The reencrypted data.",
             "KeyId": "The ARN of the CMK that was used to reencrypt the data.",
-            "SourceKeyId": "The ARN of the CMK that was used to originally encrypt the data."
+            "SourceKeyId": "The ARN of the CMK that was originally used to encrypt the data."
           }
         },
         "description": "The following example reencrypts data with the specified CMK.",

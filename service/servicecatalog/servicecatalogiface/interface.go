@@ -176,6 +176,13 @@ type ServiceCatalogAPI interface {
 	DescribePortfolioShareStatusWithContext(aws.Context, *servicecatalog.DescribePortfolioShareStatusInput, ...request.Option) (*servicecatalog.DescribePortfolioShareStatusOutput, error)
 	DescribePortfolioShareStatusRequest(*servicecatalog.DescribePortfolioShareStatusInput) (*request.Request, *servicecatalog.DescribePortfolioShareStatusOutput)
 
+	DescribePortfolioShares(*servicecatalog.DescribePortfolioSharesInput) (*servicecatalog.DescribePortfolioSharesOutput, error)
+	DescribePortfolioSharesWithContext(aws.Context, *servicecatalog.DescribePortfolioSharesInput, ...request.Option) (*servicecatalog.DescribePortfolioSharesOutput, error)
+	DescribePortfolioSharesRequest(*servicecatalog.DescribePortfolioSharesInput) (*request.Request, *servicecatalog.DescribePortfolioSharesOutput)
+
+	DescribePortfolioSharesPages(*servicecatalog.DescribePortfolioSharesInput, func(*servicecatalog.DescribePortfolioSharesOutput, bool) bool) error
+	DescribePortfolioSharesPagesWithContext(aws.Context, *servicecatalog.DescribePortfolioSharesInput, func(*servicecatalog.DescribePortfolioSharesOutput, bool) bool, ...request.Option) error
+
 	DescribeProduct(*servicecatalog.DescribeProductInput) (*servicecatalog.DescribeProductOutput, error)
 	DescribeProductWithContext(aws.Context, *servicecatalog.DescribeProductInput, ...request.Option) (*servicecatalog.DescribeProductOutput, error)
 	DescribeProductRequest(*servicecatalog.DescribeProductInput) (*request.Request, *servicecatalog.DescribeProductOutput)
@@ -429,6 +436,10 @@ type ServiceCatalogAPI interface {
 	UpdatePortfolio(*servicecatalog.UpdatePortfolioInput) (*servicecatalog.UpdatePortfolioOutput, error)
 	UpdatePortfolioWithContext(aws.Context, *servicecatalog.UpdatePortfolioInput, ...request.Option) (*servicecatalog.UpdatePortfolioOutput, error)
 	UpdatePortfolioRequest(*servicecatalog.UpdatePortfolioInput) (*request.Request, *servicecatalog.UpdatePortfolioOutput)
+
+	UpdatePortfolioShare(*servicecatalog.UpdatePortfolioShareInput) (*servicecatalog.UpdatePortfolioShareOutput, error)
+	UpdatePortfolioShareWithContext(aws.Context, *servicecatalog.UpdatePortfolioShareInput, ...request.Option) (*servicecatalog.UpdatePortfolioShareOutput, error)
+	UpdatePortfolioShareRequest(*servicecatalog.UpdatePortfolioShareInput) (*request.Request, *servicecatalog.UpdatePortfolioShareOutput)
 
 	UpdateProduct(*servicecatalog.UpdateProductInput) (*servicecatalog.UpdateProductOutput, error)
 	UpdateProductWithContext(aws.Context, *servicecatalog.UpdateProductInput, ...request.Option) (*servicecatalog.UpdateProductOutput, error)

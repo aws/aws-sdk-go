@@ -129,6 +129,29 @@
     }
   },
   "shapes":{
+    "Action":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "CrossRegionCopy"
+      ],
+      "members":{
+        "Name":{"shape":"ActionName"},
+        "CrossRegionCopy":{"shape":"CrossRegionCopyActionList"}
+      }
+    },
+    "ActionList":{
+      "type":"list",
+      "member":{"shape":"Action"},
+      "max":1,
+      "min":1
+    },
+    "ActionName":{
+      "type":"string",
+      "max":120,
+      "min":0,
+      "pattern":"[0-9A-Za-z _-]+"
+    },
     "AvailabilityZone":{
       "type":"string",
       "max":16,
@@ -140,6 +163,12 @@
       "member":{"shape":"AvailabilityZone"},
       "max":10,
       "min":1
+    },
+    "AwsAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^[0-9]{12}$"
     },
     "CmkArn":{
       "type":"string",
@@ -191,6 +220,24 @@
       "min":17,
       "pattern":"cron\\([^\\n]{11,100}\\)"
     },
+    "CrossRegionCopyAction":{
+      "type":"structure",
+      "required":[
+        "Target",
+        "EncryptionConfiguration"
+      ],
+      "members":{
+        "Target":{"shape":"Target"},
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"},
+        "RetainRule":{"shape":"CrossRegionCopyRetainRule"}
+      }
+    },
+    "CrossRegionCopyActionList":{
+      "type":"list",
+      "member":{"shape":"CrossRegionCopyAction"},
+      "max":3,
+      "min":0
+    },
     "CrossRegionCopyRetainRule":{
       "type":"structure",
       "members":{
@@ -234,9 +281,52 @@
       "members":{
       }
     },
+    "DescriptionRegex":{
+      "type":"string",
+      "max":1000,
+      "min":0,
+      "pattern":"[\\p{all}]*"
+    },
     "Encrypted":{"type":"boolean"},
+    "EncryptionConfiguration":{
+      "type":"structure",
+      "required":["Encrypted"],
+      "members":{
+        "Encrypted":{"shape":"Encrypted"},
+        "CmkArn":{"shape":"CmkArn"}
+      }
+    },
     "ErrorCode":{"type":"string"},
     "ErrorMessage":{"type":"string"},
+    "EventParameters":{
+      "type":"structure",
+      "required":[
+        "EventType",
+        "SnapshotOwner",
+        "DescriptionRegex"
+      ],
+      "members":{
+        "EventType":{"shape":"EventTypeValues"},
+        "SnapshotOwner":{"shape":"SnapshotOwnerList"},
+        "DescriptionRegex":{"shape":"DescriptionRegex"}
+      }
+    },
+    "EventSource":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"EventSourceValues"},
+        "Parameters":{"shape":"EventParameters"}
+      }
+    },
+    "EventSourceValues":{
+      "type":"string",
+      "enum":["MANAGED_CWE"]
+    },
+    "EventTypeValues":{
+      "type":"string",
+      "enum":["shareSnapshot"]
+    },
     "ExcludeBootVolume":{"type":"boolean"},
     "ExecutionRoleArn":{
       "type":"string",
@@ -431,7 +521,9 @@
         "ResourceTypes":{"shape":"ResourceTypeValuesList"},
         "TargetTags":{"shape":"TargetTagList"},
         "Schedules":{"shape":"ScheduleList"},
-        "Parameters":{"shape":"Parameters"}
+        "Parameters":{"shape":"Parameters"},
+        "EventSource":{"shape":"EventSource"},
+        "Actions":{"shape":"ActionList"}
       }
     },
     "PolicyId":{
@@ -448,7 +540,8 @@
       "type":"string",
       "enum":[
         "EBS_SNAPSHOT_MANAGEMENT",
-        "IMAGE_MANAGEMENT"
+        "IMAGE_MANAGEMENT",
+        "EVENT_BASED_POLICY"
       ]
     },
     "ResourceNotFoundException":{
@@ -502,7 +595,8 @@
         "CreateRule":{"shape":"CreateRule"},
         "RetainRule":{"shape":"RetainRule"},
         "FastRestoreRule":{"shape":"FastRestoreRule"},
-        "CrossRegionCopyRules":{"shape":"CrossRegionCopyRules"}
+        "CrossRegionCopyRules":{"shape":"CrossRegionCopyRules"},
+        "ShareRules":{"shape":"ShareRules"}
       }
     },
     "ScheduleList":{
@@ -515,7 +609,7 @@
       "type":"string",
       "max":120,
       "min":0,
-      "pattern":"[\\p{all}]*"
+      "pattern":"[0-9A-Za-z _-]+"
     },
     "SettablePolicyStateValues":{
       "type":"string",
@@ -523,6 +617,32 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "ShareRule":{
+      "type":"structure",
+      "required":["TargetAccounts"],
+      "members":{
+        "TargetAccounts":{"shape":"ShareTargetAccountList"},
+        "UnshareInterval":{"shape":"Interval"},
+        "UnshareIntervalUnit":{"shape":"RetentionIntervalUnitValues"}
+      }
+    },
+    "ShareRules":{
+      "type":"list",
+      "member":{"shape":"ShareRule"},
+      "max":1,
+      "min":0
+    },
+    "ShareTargetAccountList":{
+      "type":"list",
+      "member":{"shape":"AwsAccountId"},
+      "min":1
+    },
+    "SnapshotOwnerList":{
+      "type":"list",
+      "member":{"shape":"AwsAccountId"},
+      "max":50,
+      "min":0
     },
     "StatusMessage":{
       "type":"string",
@@ -608,6 +728,12 @@
       "member":{"shape":"Tag"},
       "max":45,
       "min":0
+    },
+    "Target":{
+      "type":"string",
+      "max":16,
+      "min":0,
+      "pattern":"^[\\\\w:\\\\-\\\\/\\\\*]+$"
     },
     "TargetRegion":{
       "type":"string",

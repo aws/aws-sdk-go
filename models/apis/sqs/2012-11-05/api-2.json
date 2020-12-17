@@ -857,7 +857,9 @@
         "FifoQueue",
         "ContentBasedDeduplication",
         "KmsMasterKeyId",
-        "KmsDataKeyReusePeriodSeconds"
+        "KmsDataKeyReusePeriodSeconds",
+        "DeduplicationScope",
+        "FifoThroughputLimit"
       ]
     },
     "QueueDeletedRecently":{

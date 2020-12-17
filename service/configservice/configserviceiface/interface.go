@@ -329,6 +329,10 @@ type ConfigServiceAPI interface {
 	PutEvaluationsWithContext(aws.Context, *configservice.PutEvaluationsInput, ...request.Option) (*configservice.PutEvaluationsOutput, error)
 	PutEvaluationsRequest(*configservice.PutEvaluationsInput) (*request.Request, *configservice.PutEvaluationsOutput)
 
+	PutExternalEvaluation(*configservice.PutExternalEvaluationInput) (*configservice.PutExternalEvaluationOutput, error)
+	PutExternalEvaluationWithContext(aws.Context, *configservice.PutExternalEvaluationInput, ...request.Option) (*configservice.PutExternalEvaluationOutput, error)
+	PutExternalEvaluationRequest(*configservice.PutExternalEvaluationInput) (*request.Request, *configservice.PutExternalEvaluationOutput)
+
 	PutOrganizationConfigRule(*configservice.PutOrganizationConfigRuleInput) (*configservice.PutOrganizationConfigRuleOutput, error)
 	PutOrganizationConfigRuleWithContext(aws.Context, *configservice.PutOrganizationConfigRuleInput, ...request.Option) (*configservice.PutOrganizationConfigRuleOutput, error)
 	PutOrganizationConfigRuleRequest(*configservice.PutOrganizationConfigRuleInput) (*request.Request, *configservice.PutOrganizationConfigRuleOutput)

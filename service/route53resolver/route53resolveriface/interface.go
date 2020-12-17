@@ -108,6 +108,10 @@ type Route53ResolverAPI interface {
 	DisassociateResolverRuleWithContext(aws.Context, *route53resolver.DisassociateResolverRuleInput, ...request.Option) (*route53resolver.DisassociateResolverRuleOutput, error)
 	DisassociateResolverRuleRequest(*route53resolver.DisassociateResolverRuleInput) (*request.Request, *route53resolver.DisassociateResolverRuleOutput)
 
+	GetResolverDnssecConfig(*route53resolver.GetResolverDnssecConfigInput) (*route53resolver.GetResolverDnssecConfigOutput, error)
+	GetResolverDnssecConfigWithContext(aws.Context, *route53resolver.GetResolverDnssecConfigInput, ...request.Option) (*route53resolver.GetResolverDnssecConfigOutput, error)
+	GetResolverDnssecConfigRequest(*route53resolver.GetResolverDnssecConfigInput) (*request.Request, *route53resolver.GetResolverDnssecConfigOutput)
+
 	GetResolverEndpoint(*route53resolver.GetResolverEndpointInput) (*route53resolver.GetResolverEndpointOutput, error)
 	GetResolverEndpointWithContext(aws.Context, *route53resolver.GetResolverEndpointInput, ...request.Option) (*route53resolver.GetResolverEndpointOutput, error)
 	GetResolverEndpointRequest(*route53resolver.GetResolverEndpointInput) (*request.Request, *route53resolver.GetResolverEndpointOutput)
@@ -135,6 +139,13 @@ type Route53ResolverAPI interface {
 	GetResolverRulePolicy(*route53resolver.GetResolverRulePolicyInput) (*route53resolver.GetResolverRulePolicyOutput, error)
 	GetResolverRulePolicyWithContext(aws.Context, *route53resolver.GetResolverRulePolicyInput, ...request.Option) (*route53resolver.GetResolverRulePolicyOutput, error)
 	GetResolverRulePolicyRequest(*route53resolver.GetResolverRulePolicyInput) (*request.Request, *route53resolver.GetResolverRulePolicyOutput)
+
+	ListResolverDnssecConfigs(*route53resolver.ListResolverDnssecConfigsInput) (*route53resolver.ListResolverDnssecConfigsOutput, error)
+	ListResolverDnssecConfigsWithContext(aws.Context, *route53resolver.ListResolverDnssecConfigsInput, ...request.Option) (*route53resolver.ListResolverDnssecConfigsOutput, error)
+	ListResolverDnssecConfigsRequest(*route53resolver.ListResolverDnssecConfigsInput) (*request.Request, *route53resolver.ListResolverDnssecConfigsOutput)
+
+	ListResolverDnssecConfigsPages(*route53resolver.ListResolverDnssecConfigsInput, func(*route53resolver.ListResolverDnssecConfigsOutput, bool) bool) error
+	ListResolverDnssecConfigsPagesWithContext(aws.Context, *route53resolver.ListResolverDnssecConfigsInput, func(*route53resolver.ListResolverDnssecConfigsOutput, bool) bool, ...request.Option) error
 
 	ListResolverEndpointIpAddresses(*route53resolver.ListResolverEndpointIpAddressesInput) (*route53resolver.ListResolverEndpointIpAddressesOutput, error)
 	ListResolverEndpointIpAddressesWithContext(aws.Context, *route53resolver.ListResolverEndpointIpAddressesInput, ...request.Option) (*route53resolver.ListResolverEndpointIpAddressesOutput, error)
@@ -200,6 +211,10 @@ type Route53ResolverAPI interface {
 	UntagResource(*route53resolver.UntagResourceInput) (*route53resolver.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *route53resolver.UntagResourceInput, ...request.Option) (*route53resolver.UntagResourceOutput, error)
 	UntagResourceRequest(*route53resolver.UntagResourceInput) (*request.Request, *route53resolver.UntagResourceOutput)
+
+	UpdateResolverDnssecConfig(*route53resolver.UpdateResolverDnssecConfigInput) (*route53resolver.UpdateResolverDnssecConfigOutput, error)
+	UpdateResolverDnssecConfigWithContext(aws.Context, *route53resolver.UpdateResolverDnssecConfigInput, ...request.Option) (*route53resolver.UpdateResolverDnssecConfigOutput, error)
+	UpdateResolverDnssecConfigRequest(*route53resolver.UpdateResolverDnssecConfigInput) (*request.Request, *route53resolver.UpdateResolverDnssecConfigOutput)
 
 	UpdateResolverEndpoint(*route53resolver.UpdateResolverEndpointInput) (*route53resolver.UpdateResolverEndpointOutput, error)
 	UpdateResolverEndpointWithContext(aws.Context, *route53resolver.UpdateResolverEndpointInput, ...request.Option) (*route53resolver.UpdateResolverEndpointOutput, error)

@@ -898,6 +898,19 @@
         {"shape":"NoSuchConfigRuleException"}
       ]
     },
+    "PutExternalEvaluation":{
+      "name":"PutExternalEvaluation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutExternalEvaluationRequest"},
+      "output":{"shape":"PutExternalEvaluationResponse"},
+      "errors":[
+        {"shape":"NoSuchConfigRuleException"},
+        {"shape":"InvalidParameterValueException"}
+      ]
+    },
     "PutOrganizationConfigRule":{
       "name":"PutOrganizationConfigRule",
       "http":{
@@ -2483,6 +2496,22 @@
       "max":4096,
       "min":1
     },
+    "ExternalEvaluation":{
+      "type":"structure",
+      "required":[
+        "ComplianceResourceType",
+        "ComplianceResourceId",
+        "ComplianceType",
+        "OrderingTimestamp"
+      ],
+      "members":{
+        "ComplianceResourceType":{"shape":"StringWithCharLimit256"},
+        "ComplianceResourceId":{"shape":"BaseResourceId"},
+        "ComplianceType":{"shape":"ComplianceType"},
+        "Annotation":{"shape":"StringWithCharLimit256"},
+        "OrderingTimestamp":{"shape":"OrderingTimestamp"}
+      }
+    },
     "FailedDeleteRemediationExceptionsBatch":{
       "type":"structure",
       "members":{
@@ -3530,6 +3559,22 @@
       "type":"structure",
       "members":{
         "FailedEvaluations":{"shape":"Evaluations"}
+      }
+    },
+    "PutExternalEvaluationRequest":{
+      "type":"structure",
+      "required":[
+        "ConfigRuleName",
+        "ExternalEvaluation"
+      ],
+      "members":{
+        "ConfigRuleName":{"shape":"ConfigRuleName"},
+        "ExternalEvaluation":{"shape":"ExternalEvaluation"}
+      }
+    },
+    "PutExternalEvaluationResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "PutOrganizationConfigRuleRequest":{

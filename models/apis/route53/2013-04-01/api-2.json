@@ -12,6 +12,22 @@
     "uid":"route53-2013-04-01"
   },
   "operations":{
+    "ActivateKeySigningKey":{
+      "name":"ActivateKeySigningKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/activate"
+      },
+      "input":{"shape":"ActivateKeySigningKeyRequest"},
+      "output":{"shape":"ActivateKeySigningKeyResponse"},
+      "errors":[
+        {"shape":"ConcurrentModification"},
+        {"shape":"NoSuchKeySigningKey"},
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidSigningStatus"},
+        {"shape":"InvalidKMSArn"}
+      ]
+    },
     "AssociateVPCWithHostedZone":{
       "name":"AssociateVPCWithHostedZone",
       "http":{
@@ -117,6 +133,32 @@
         {"shape":"ConflictingDomainExists"},
         {"shape":"NoSuchDelegationSet"},
         {"shape":"DelegationSetNotReusable"}
+      ]
+    },
+    "CreateKeySigningKey":{
+      "name":"CreateKeySigningKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/keysigningkey",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateKeySigningKeyRequest",
+        "locationName":"CreateKeySigningKeyRequest",
+        "xmlNamespace":{"uri":"https://route53.amazonaws.com/doc/2013-04-01/"}
+      },
+      "output":{"shape":"CreateKeySigningKeyResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidInput"},
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidSigningStatus"},
+        {"shape":"InvalidKeySigningKeyName"},
+        {"shape":"KeySigningKeyAlreadyExists"},
+        {"shape":"TooManyKeySigningKeys"},
+        {"shape":"ConcurrentModification"}
       ]
     },
     "CreateQueryLoggingConfig":{
@@ -246,6 +288,23 @@
         {"shape":"InvalidInput"}
       ]
     },
+    "DeactivateKeySigningKey":{
+      "name":"DeactivateKeySigningKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/keysigningkey/{HostedZoneId}/{Name}/deactivate"
+      },
+      "input":{"shape":"DeactivateKeySigningKeyRequest"},
+      "output":{"shape":"DeactivateKeySigningKeyResponse"},
+      "errors":[
+        {"shape":"ConcurrentModification"},
+        {"shape":"NoSuchKeySigningKey"},
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidSigningStatus"},
+        {"shape":"KeySigningKeyInUse"},
+        {"shape":"KeySigningKeyInParentDSRecord"}
+      ]
+    },
     "DeleteHealthCheck":{
       "name":"DeleteHealthCheck",
       "http":{
@@ -274,6 +333,22 @@
         {"shape":"PriorRequestNotComplete"},
         {"shape":"InvalidInput"},
         {"shape":"InvalidDomainName"}
+      ]
+    },
+    "DeleteKeySigningKey":{
+      "name":"DeleteKeySigningKey",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2013-04-01/keysigningkey/{HostedZoneId}/{Name}"
+      },
+      "input":{"shape":"DeleteKeySigningKeyRequest"},
+      "output":{"shape":"DeleteKeySigningKeyResponse"},
+      "errors":[
+        {"shape":"ConcurrentModification"},
+        {"shape":"NoSuchKeySigningKey"},
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidSigningStatus"},
+        {"shape":"InvalidKMSArn"}
       ]
     },
     "DeleteQueryLoggingConfig":{
@@ -354,6 +429,24 @@
         {"shape":"InvalidInput"}
       ]
     },
+    "DisableHostedZoneDNSSEC":{
+      "name":"DisableHostedZoneDNSSEC",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/hostedzone/{Id}/disable-dnssec"
+      },
+      "input":{"shape":"DisableHostedZoneDNSSECRequest"},
+      "output":{"shape":"DisableHostedZoneDNSSECResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidArgument"},
+        {"shape":"ConcurrentModification"},
+        {"shape":"KeySigningKeyInParentDSRecord"},
+        {"shape":"DNSSECNotFound"},
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidKMSArn"}
+      ]
+    },
     "DisassociateVPCFromHostedZone":{
       "name":"DisassociateVPCFromHostedZone",
       "http":{
@@ -372,6 +465,25 @@
         {"shape":"VPCAssociationNotFound"},
         {"shape":"LastVPCAssociation"},
         {"shape":"InvalidInput"}
+      ]
+    },
+    "EnableHostedZoneDNSSEC":{
+      "name":"EnableHostedZoneDNSSEC",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2013-04-01/hostedzone/{Id}/enable-dnssec"
+      },
+      "input":{"shape":"EnableHostedZoneDNSSECRequest"},
+      "output":{"shape":"EnableHostedZoneDNSSECResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidArgument"},
+        {"shape":"ConcurrentModification"},
+        {"shape":"KeySigningKeyWithActiveStatusNotFound"},
+        {"shape":"InvalidKMSArn"},
+        {"shape":"HostedZonePartiallyDelegated"},
+        {"shape":"DNSSECNotFound"},
+        {"shape":"InvalidKeySigningKeyStatus"}
       ]
     },
     "GetAccountLimit":{
@@ -407,6 +519,19 @@
       },
       "input":{"shape":"GetCheckerIpRangesRequest"},
       "output":{"shape":"GetCheckerIpRangesResponse"}
+    },
+    "GetDNSSEC":{
+      "name":"GetDNSSEC",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2013-04-01/hostedzone/{Id}/dnssec"
+      },
+      "input":{"shape":"GetDNSSECRequest"},
+      "output":{"shape":"GetDNSSECResponse"},
+      "errors":[
+        {"shape":"NoSuchHostedZone"},
+        {"shape":"InvalidArgument"}
+      ]
     },
     "GetGeoLocation":{
       "name":"GetGeoLocation",
@@ -914,6 +1039,32 @@
         "MAX_TRAFFIC_POLICIES_BY_OWNER"
       ]
     },
+    "ActivateKeySigningKeyRequest":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "Name"
+      ],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"HostedZoneId"
+        },
+        "Name":{
+          "shape":"SigningKeyName",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
+    },
+    "ActivateKeySigningKeyResponse":{
+      "type":"structure",
+      "required":["ChangeInfo"],
+      "members":{
+        "ChangeInfo":{"shape":"ChangeInfo"}
+      }
+    },
     "AlarmIdentifier":{
       "type":"structure",
       "required":[
@@ -1233,6 +1384,40 @@
         }
       }
     },
+    "CreateKeySigningKeyRequest":{
+      "type":"structure",
+      "required":[
+        "CallerReference",
+        "HostedZoneId",
+        "KeyManagementServiceArn",
+        "Name",
+        "Status"
+      ],
+      "members":{
+        "CallerReference":{"shape":"Nonce"},
+        "HostedZoneId":{"shape":"ResourceId"},
+        "KeyManagementServiceArn":{"shape":"SigningKeyString"},
+        "Name":{"shape":"SigningKeyName"},
+        "Status":{"shape":"SigningKeyStatus"}
+      }
+    },
+    "CreateKeySigningKeyResponse":{
+      "type":"structure",
+      "required":[
+        "ChangeInfo",
+        "KeySigningKey",
+        "Location"
+      ],
+      "members":{
+        "ChangeInfo":{"shape":"ChangeInfo"},
+        "KeySigningKey":{"shape":"KeySigningKey"},
+        "Location":{
+          "shape":"ResourceURI",
+          "location":"header",
+          "locationName":"Location"
+        }
+      }
+    },
     "CreateQueryLoggingConfigRequest":{
       "type":"structure",
       "required":[
@@ -1403,6 +1588,47 @@
       "max":1024
     },
     "DNSRCode":{"type":"string"},
+    "DNSSECNotFound":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "DNSSECStatus":{
+      "type":"structure",
+      "members":{
+        "ServeSignature":{"shape":"ServeSignature"},
+        "StatusMessage":{"shape":"SigningKeyStatusMessage"}
+      }
+    },
+    "DeactivateKeySigningKeyRequest":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "Name"
+      ],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"HostedZoneId"
+        },
+        "Name":{
+          "shape":"SigningKeyName",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
+    },
+    "DeactivateKeySigningKeyResponse":{
+      "type":"structure",
+      "required":["ChangeInfo"],
+      "members":{
+        "ChangeInfo":{"shape":"ChangeInfo"}
+      }
+    },
     "DelegationSet":{
       "type":"structure",
       "required":["NameServers"],
@@ -1490,6 +1716,32 @@
       }
     },
     "DeleteHostedZoneResponse":{
+      "type":"structure",
+      "required":["ChangeInfo"],
+      "members":{
+        "ChangeInfo":{"shape":"ChangeInfo"}
+      }
+    },
+    "DeleteKeySigningKeyRequest":{
+      "type":"structure",
+      "required":[
+        "HostedZoneId",
+        "Name"
+      ],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"HostedZoneId"
+        },
+        "Name":{
+          "shape":"SigningKeyName",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
+    },
+    "DeleteKeySigningKeyResponse":{
       "type":"structure",
       "required":["ChangeInfo"],
       "members":{
@@ -1612,6 +1864,24 @@
       },
       "max":10
     },
+    "DisableHostedZoneDNSSECRequest":{
+      "type":"structure",
+      "required":["HostedZoneId"],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "DisableHostedZoneDNSSECResponse":{
+      "type":"structure",
+      "required":["ChangeInfo"],
+      "members":{
+        "ChangeInfo":{"shape":"ChangeInfo"}
+      }
+    },
     "Disabled":{"type":"boolean"},
     "DisassociateVPCComment":{"type":"string"},
     "DisassociateVPCFromHostedZoneRequest":{
@@ -1631,6 +1901,24 @@
       }
     },
     "DisassociateVPCFromHostedZoneResponse":{
+      "type":"structure",
+      "required":["ChangeInfo"],
+      "members":{
+        "ChangeInfo":{"shape":"ChangeInfo"}
+      }
+    },
+    "EnableHostedZoneDNSSECRequest":{
+      "type":"structure",
+      "required":["HostedZoneId"],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "EnableHostedZoneDNSSECResponse":{
       "type":"structure",
       "required":["ChangeInfo"],
       "members":{
@@ -1765,6 +2053,28 @@
       "required":["CheckerIpRanges"],
       "members":{
         "CheckerIpRanges":{"shape":"CheckerIpRanges"}
+      }
+    },
+    "GetDNSSECRequest":{
+      "type":"structure",
+      "required":["HostedZoneId"],
+      "members":{
+        "HostedZoneId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetDNSSECResponse":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "KeySigningKeys"
+      ],
+      "members":{
+        "Status":{"shape":"DNSSECStatus"},
+        "KeySigningKeys":{"shape":"KeySigningKeys"}
       }
     },
     "GetGeoLocationRequest":{
@@ -2269,6 +2579,13 @@
       "type":"string",
       "max":128
     },
+    "HostedZonePartiallyDelegated":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "HostedZoneRRSetCount":{"type":"long"},
     "HostedZoneSummaries":{
       "type":"list",
@@ -2358,12 +2675,42 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "InvalidKMSArn":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "InvalidKeySigningKeyName":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidKeySigningKeyStatus":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "InvalidPaginationToken":{
       "type":"structure",
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidSigningStatus":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
       "exception":true
     },
     "InvalidTrafficPolicyDocument":{
@@ -2384,6 +2731,61 @@
     },
     "Inverted":{"type":"boolean"},
     "IsPrivateZone":{"type":"boolean"},
+    "KeySigningKey":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"SigningKeyName"},
+        "KmsArn":{"shape":"SigningKeyString"},
+        "Flag":{"shape":"SigningKeyInteger"},
+        "SigningAlgorithmMnemonic":{"shape":"SigningKeyString"},
+        "SigningAlgorithmType":{"shape":"SigningKeyInteger"},
+        "DigestAlgorithmMnemonic":{"shape":"SigningKeyString"},
+        "DigestAlgorithmType":{"shape":"SigningKeyInteger"},
+        "KeyTag":{"shape":"SigningKeyTag"},
+        "DigestValue":{"shape":"SigningKeyString"},
+        "PublicKey":{"shape":"SigningKeyString"},
+        "DSRecord":{"shape":"SigningKeyString"},
+        "DNSKEYRecord":{"shape":"SigningKeyString"},
+        "Status":{"shape":"SigningKeyStatus"},
+        "StatusMessage":{"shape":"SigningKeyStatusMessage"},
+        "CreatedDate":{"shape":"TimeStamp"},
+        "LastModifiedDate":{"shape":"TimeStamp"}
+      }
+    },
+    "KeySigningKeyAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "KeySigningKeyInParentDSRecord":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "KeySigningKeyInUse":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "KeySigningKeyWithActiveStatusNotFound":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "KeySigningKeys":{
+      "type":"list",
+      "member":{"shape":"KeySigningKey"}
+    },
     "LastVPCAssociation":{
       "type":"structure",
       "members":{
@@ -3054,6 +3456,14 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NoSuchKeySigningKey":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
     "NoSuchQueryLoggingConfig":{
       "type":"structure",
       "members":{
@@ -3177,7 +3587,8 @@
         "SRV",
         "SPF",
         "AAAA",
-        "CAA"
+        "CAA",
+        "DS"
       ]
     },
     "RecordData":{
@@ -3358,9 +3769,36 @@
       "type":"string",
       "max":255
     },
+    "ServeSignature":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ServicePrincipal":{
       "type":"string",
       "max":128
+    },
+    "SigningKeyInteger":{"type":"integer"},
+    "SigningKeyName":{
+      "type":"string",
+      "max":128,
+      "min":3
+    },
+    "SigningKeyStatus":{
+      "type":"string",
+      "max":150,
+      "min":5
+    },
+    "SigningKeyStatusMessage":{
+      "type":"string",
+      "max":512,
+      "min":0
+    },
+    "SigningKeyString":{"type":"string"},
+    "SigningKeyTag":{
+      "type":"integer",
+      "max":65536,
+      "min":0
     },
     "Statistic":{
       "type":"string",
@@ -3525,6 +3963,13 @@
         "message":{"shape":"ErrorMessage"}
       },
       "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyKeySigningKeys":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
       "exception":true
     },
     "TooManyTrafficPolicies":{

@@ -3067,10 +3067,6 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesRequest(input *Des
 //
 // Provides organization config rule deployment status for an organization.
 //
-// Only a master account and a delegated administrator account can call this
-// API. When calling this API with a delegated administrator, you must ensure
-// AWS Organizations ListDelegatedAdministrator permissions are added.
-//
 // The status is not considered successful until organization config rule is
 // successfully deployed in all the member accounts with an exception of excluded
 // accounts.
@@ -3174,10 +3170,6 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 //
 // Returns a list of organization config rules.
 //
-// Only a master account and a delegated administrator account can call this
-// API. When calling this API with a delegated administrator, you must ensure
-// AWS Organizations ListDelegatedAdministrator permissions are added.
-//
 // When you specify the limit and the next token, you receive a paginated response.
 // Limit and next token are not applicable if you specify organization config
 // rule names. It is only applicable, when you request all the organization
@@ -3276,10 +3268,6 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesRequest(input
 // DescribeOrganizationConformancePackStatuses API operation for AWS Config.
 //
 // Provides organization conformance pack deployment status for an organization.
-//
-// Only a master account and a delegated administrator account can call this
-// API. When calling this API with a delegated administrator, you must ensure
-// AWS Organizations ListDelegatedAdministrator permissions are added.
 //
 // The status is not considered successful until organization conformance pack
 // is successfully deployed in all the member accounts with an exception of
@@ -3387,10 +3375,6 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 // DescribeOrganizationConformancePacks API operation for AWS Config.
 //
 // Returns a list of organization conformance packs.
-//
-// Only a master account and a delegated administrator account can call this
-// API. When calling this API with a delegated administrator, you must ensure
-// AWS Organizations ListDelegatedAdministrator permissions are added.
 //
 // When you specify the limit and the next token, you receive a paginated response.
 //
@@ -5051,10 +5035,6 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusRequest(input *Ge
 // Returns detailed status for each member account within an organization for
 // a given organization config rule.
 //
-// Only a master account and a delegated administrator account can call this
-// API. When calling this API with a delegated administrator, you must ensure
-// AWS Organizations ListDelegatedAdministrator permissions are added.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5149,10 +5129,6 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusRequest(inpu
 //
 // Returns detailed status for each member account within an organization for
 // a given organization conformance pack.
-//
-// Only a master account and a delegated administrator account can call this
-// API. When calling this API with a delegated administrator, you must ensure
-// AWS Organizations ListDelegatedAdministrator permissions are added.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6471,6 +6447,89 @@ func (c *ConfigService) PutEvaluationsWithContext(ctx aws.Context, input *PutEva
 	return out, req.Send()
 }
 
+const opPutExternalEvaluation = "PutExternalEvaluation"
+
+// PutExternalEvaluationRequest generates a "aws/request.Request" representing the
+// client's request for the PutExternalEvaluation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutExternalEvaluation for more information on using the PutExternalEvaluation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutExternalEvaluationRequest method.
+//    req, resp := client.PutExternalEvaluationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutExternalEvaluation
+func (c *ConfigService) PutExternalEvaluationRequest(input *PutExternalEvaluationInput) (req *request.Request, output *PutExternalEvaluationOutput) {
+	op := &request.Operation{
+		Name:       opPutExternalEvaluation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutExternalEvaluationInput{}
+	}
+
+	output = &PutExternalEvaluationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutExternalEvaluation API operation for AWS Config.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutExternalEvaluation for usage and error information.
+//
+// Returned Error Types:
+//   * NoSuchConfigRuleException
+//   One or more AWS Config rules in the request are invalid. Verify that the
+//   rule names are correct and try again.
+//
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutExternalEvaluation
+func (c *ConfigService) PutExternalEvaluation(input *PutExternalEvaluationInput) (*PutExternalEvaluationOutput, error) {
+	req, out := c.PutExternalEvaluationRequest(input)
+	return out, req.Send()
+}
+
+// PutExternalEvaluationWithContext is the same as PutExternalEvaluation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutExternalEvaluation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) PutExternalEvaluationWithContext(ctx aws.Context, input *PutExternalEvaluationInput, opts ...request.Option) (*PutExternalEvaluationOutput, error) {
+	req, out := c.PutExternalEvaluationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutOrganizationConfigRule = "PutOrganizationConfigRule"
 
 // PutOrganizationConfigRuleRequest generates a "aws/request.Request" representing the
@@ -6874,6 +6933,10 @@ func (c *ConfigService) PutRemediationConfigurationsRequest(input *PutRemediatio
 // If you make backward incompatible changes to the SSM document, you must call
 // this again to ensure the remediations can run.
 //
+// This API does not support adding remediation configurations for service-linked
+// AWS Config Rules such as Organization Config rules, the rules deployed by
+// conformance packs, and rules deployed by AWS Security Hub.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6970,7 +7033,7 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 // PutRemediationExceptions API operation for AWS Config.
 //
 // A remediation exception is when a specific resource is no longer considered
-// for auto-remediation. This API adds a new exception or updates an exisiting
+// for auto-remediation. This API adds a new exception or updates an existing
 // exception for a specific resource with a specific AWS Config rule.
 //
 // AWS Config generates a remediation exception when a problem occurs executing
@@ -9865,7 +9928,7 @@ type ConfigurationItem struct {
 	// The 12-digit AWS account ID associated with the resource.
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// accoun
+	// Amazon Resource Name (ARN) associated with the resource.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The Availability Zone associated with the resource.
@@ -10312,11 +10375,14 @@ type ConformancePackDetail struct {
 	// AWS service that created the conformance pack.
 	CreatedBy *string `min:"1" type:"string"`
 
-	// Conformance pack template that is used to create a pack. The delivery bucket
-	// name should start with awsconfigconforms. For example: "Resource": "arn:aws:s3:::your_bucket_name/*".
+	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	//
+	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
+	//
+	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// Last time when conformation pack update was requested.
@@ -14097,6 +14163,95 @@ func (s *ExecutionControls) SetSsmControls(v *SsmControls) *ExecutionControls {
 	return s
 }
 
+type ExternalEvaluation struct {
+	_ struct{} `type:"structure"`
+
+	Annotation *string `min:"1" type:"string"`
+
+	// ComplianceResourceId is a required field
+	ComplianceResourceId *string `min:"1" type:"string" required:"true"`
+
+	// ComplianceResourceType is a required field
+	ComplianceResourceType *string `min:"1" type:"string" required:"true"`
+
+	// ComplianceType is a required field
+	ComplianceType *string `type:"string" required:"true" enum:"ComplianceType"`
+
+	// OrderingTimestamp is a required field
+	OrderingTimestamp *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s ExternalEvaluation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExternalEvaluation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExternalEvaluation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExternalEvaluation"}
+	if s.Annotation != nil && len(*s.Annotation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Annotation", 1))
+	}
+	if s.ComplianceResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComplianceResourceId"))
+	}
+	if s.ComplianceResourceId != nil && len(*s.ComplianceResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComplianceResourceId", 1))
+	}
+	if s.ComplianceResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComplianceResourceType"))
+	}
+	if s.ComplianceResourceType != nil && len(*s.ComplianceResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComplianceResourceType", 1))
+	}
+	if s.ComplianceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComplianceType"))
+	}
+	if s.OrderingTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderingTimestamp"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnnotation sets the Annotation field's value.
+func (s *ExternalEvaluation) SetAnnotation(v string) *ExternalEvaluation {
+	s.Annotation = &v
+	return s
+}
+
+// SetComplianceResourceId sets the ComplianceResourceId field's value.
+func (s *ExternalEvaluation) SetComplianceResourceId(v string) *ExternalEvaluation {
+	s.ComplianceResourceId = &v
+	return s
+}
+
+// SetComplianceResourceType sets the ComplianceResourceType field's value.
+func (s *ExternalEvaluation) SetComplianceResourceType(v string) *ExternalEvaluation {
+	s.ComplianceResourceType = &v
+	return s
+}
+
+// SetComplianceType sets the ComplianceType field's value.
+func (s *ExternalEvaluation) SetComplianceType(v string) *ExternalEvaluation {
+	s.ComplianceType = &v
+	return s
+}
+
+// SetOrderingTimestamp sets the OrderingTimestamp field's value.
+func (s *ExternalEvaluation) SetOrderingTimestamp(v time.Time) *ExternalEvaluation {
+	s.OrderingTimestamp = &v
+	return s
+}
+
 // List of each of the failed delete remediation exceptions with specific reasons.
 type FailedDeleteRemediationExceptionsBatch struct {
 	_ struct{} `type:"structure"`
@@ -16678,9 +16833,9 @@ type ListAggregateDiscoveredResourcesInput struct {
 	// Filters the results based on the ResourceFilters object.
 	Filters *ResourceFilters `type:"structure"`
 
-	// The maximum number of resource identifiers returned on each page. The default
-	// is 100. You cannot specify a number greater than 100. If you specify 0, AWS
-	// Config uses the default.
+	// The maximum number of resource identifiers returned on each page. You cannot
+	// specify a number greater than 100. If you specify 0, AWS Config uses the
+	// default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -18835,11 +18990,14 @@ type OrganizationConformancePack struct {
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Location of an Amazon S3 bucket where AWS Config can deliver evaluation results
-	// and conformance pack template that is used to create a pack.
+	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	//
+	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// Any folder structure you want to add to an Amazon S3 bucket.
+	//
+	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A comma-separated list of accounts excluded from organization conformance
@@ -19990,10 +20148,14 @@ type PutConformancePackInput struct {
 	// ConformancePackName is a required field
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 
-	// AWS Config stores intermediate files while processing conformance pack template.
+	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	//
+	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
+	//
+	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A string containing full conformance pack template body. Structure containing
@@ -20270,6 +20432,76 @@ func (s *PutEvaluationsOutput) SetFailedEvaluations(v []*Evaluation) *PutEvaluat
 	return s
 }
 
+type PutExternalEvaluationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ConfigRuleName is a required field
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	// ExternalEvaluation is a required field
+	ExternalEvaluation *ExternalEvaluation `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PutExternalEvaluationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutExternalEvaluationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutExternalEvaluationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutExternalEvaluationInput"}
+	if s.ConfigRuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigRuleName"))
+	}
+	if s.ConfigRuleName != nil && len(*s.ConfigRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigRuleName", 1))
+	}
+	if s.ExternalEvaluation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalEvaluation"))
+	}
+	if s.ExternalEvaluation != nil {
+		if err := s.ExternalEvaluation.Validate(); err != nil {
+			invalidParams.AddNested("ExternalEvaluation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigRuleName sets the ConfigRuleName field's value.
+func (s *PutExternalEvaluationInput) SetConfigRuleName(v string) *PutExternalEvaluationInput {
+	s.ConfigRuleName = &v
+	return s
+}
+
+// SetExternalEvaluation sets the ExternalEvaluation field's value.
+func (s *PutExternalEvaluationInput) SetExternalEvaluation(v *ExternalEvaluation) *PutExternalEvaluationInput {
+	s.ExternalEvaluation = v
+	return s
+}
+
+type PutExternalEvaluationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutExternalEvaluationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutExternalEvaluationOutput) GoString() string {
+	return s.String()
+}
+
 type PutOrganizationConfigRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20378,15 +20610,14 @@ type PutOrganizationConformancePackInput struct {
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Location of an Amazon S3 bucket where AWS Config can deliver evaluation results.
-	// AWS Config stores intermediate files while processing conformance pack template.
+	// Amazon S3 bucket where AWS Config stores conformance pack templates.
 	//
-	// The delivery bucket name should start with awsconfigconforms. For example:
-	// "Resource": "arn:aws:s3:::your_bucket_name/*". For more information, see
-	// Permissions for cross account bucket access (https://docs.aws.amazon.com/config/latest/developerguide/conformance-pack-organization-apis.html).
+	// This field is optional.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
+	//
+	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A list of AWS accounts to be excluded from an organization conformance pack
@@ -21100,7 +21331,7 @@ type RemediationConfiguration struct {
 	// The maximum number of failed attempts for auto-remediation. If you do not
 	// select a number, the default is 5.
 	//
-	// For example, if you specify MaximumAutomaticAttempts as 5 with RetryAttemptsSeconds
+	// For example, if you specify MaximumAutomaticAttempts as 5 with RetryAttemptSeconds
 	// as 50 seconds, AWS Config will put a RemediationException on your behalf
 	// for the failing resource after the 5th failed attempt within 50 seconds.
 	MaximumAutomaticAttempts *int64 `min:"1" type:"integer"`
@@ -21114,7 +21345,7 @@ type RemediationConfiguration struct {
 	// Maximum time in seconds that AWS Config runs auto-remediation. If you do
 	// not select a number, the default is 60 seconds.
 	//
-	// For example, if you specify RetryAttemptsSeconds as 50 seconds and MaximumAutomaticAttempts
+	// For example, if you specify RetryAttemptSeconds as 50 seconds and MaximumAutomaticAttempts
 	// as 5, AWS Config will run auto-remediations 5 times within 50 seconds before
 	// throwing an exception.
 	RetryAttemptSeconds *int64 `min:"1" type:"long"`
