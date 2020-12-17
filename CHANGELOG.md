@@ -1,3 +1,22 @@
+Release v1.36.11 (2020-12-17)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API
+  * C6gn instances are powered by AWS Graviton2 processors and offer 100 Gbps networking bandwidth. These instances deliver up to 40% better price-performance benefit versus comparable x86-based instances
+* `service/imagebuilder`: Updates service API, documentation, and paginators
+* `service/kms`: Updates service API, documentation, and examples
+  * Added CreationDate and LastUpdatedDate timestamps to ListAliases API response
+* `service/route53`: Updates service API and documentation
+  * This release adds support for DNSSEC signing in Amazon Route 53.
+* `service/route53resolver`: Updates service API, documentation, and paginators
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * Support TagOptions sharing with Service Catalog portfolio sharing.
+* `service/sqs`: Updates service API and documentation
+  * Amazon SQS adds queue attributes to enable high throughput FIFO.
+
 Release v1.36.10 (2020-12-16)
 ===
 

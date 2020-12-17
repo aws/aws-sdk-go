@@ -233,6 +233,121 @@ func (c *Imagebuilder) CreateComponentWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateContainerRecipe = "CreateContainerRecipe"
+
+// CreateContainerRecipeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContainerRecipe operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContainerRecipe for more information on using the CreateContainerRecipe
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContainerRecipeRequest method.
+//    req, resp := client.CreateContainerRecipeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateContainerRecipe
+func (c *Imagebuilder) CreateContainerRecipeRequest(input *CreateContainerRecipeInput) (req *request.Request, output *CreateContainerRecipeOutput) {
+	op := &request.Operation{
+		Name:       opCreateContainerRecipe,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/CreateContainerRecipe",
+	}
+
+	if input == nil {
+		input = &CreateContainerRecipeInput{}
+	}
+
+	output = &CreateContainerRecipeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContainerRecipe API operation for EC2 Image Builder.
+//
+// Creates a new container recipe. Container recipes define how images are configured,
+// tested, and assessed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation CreateContainerRecipe for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an invalid resource identifier.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * IdempotentParameterMismatchException
+//   You have specified a client token for an operation using parameter values
+//   that differ from a previous request that used the same client token.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+//   * InvalidVersionNumberException
+//   Your version number is out of bounds or does not follow the required syntax.
+//
+//   * ResourceInUseException
+//   The resource that you are trying to operate on is currently in use. Review
+//   the message details and retry later.
+//
+//   * ResourceAlreadyExistsException
+//   The resource that you are trying to create already exists.
+//
+//   * ServiceQuotaExceededException
+//   You have exceeded the number of permitted resources or operations for this
+//   service. For service quotas, see EC2 Image Builder endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/imagebuilder.html#limits_imagebuilder).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/CreateContainerRecipe
+func (c *Imagebuilder) CreateContainerRecipe(input *CreateContainerRecipeInput) (*CreateContainerRecipeOutput, error) {
+	req, out := c.CreateContainerRecipeRequest(input)
+	return out, req.Send()
+}
+
+// CreateContainerRecipeWithContext is the same as CreateContainerRecipe with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContainerRecipe for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) CreateContainerRecipeWithContext(ctx aws.Context, input *CreateContainerRecipeInput, opts ...request.Option) (*CreateContainerRecipeOutput, error) {
+	req, out := c.CreateContainerRecipeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDistributionConfiguration = "CreateDistributionConfiguration"
 
 // CreateDistributionConfigurationRequest generates a "aws/request.Request" representing the
@@ -892,6 +1007,106 @@ func (c *Imagebuilder) DeleteComponent(input *DeleteComponentInput) (*DeleteComp
 // for more information on using Contexts.
 func (c *Imagebuilder) DeleteComponentWithContext(ctx aws.Context, input *DeleteComponentInput, opts ...request.Option) (*DeleteComponentOutput, error) {
 	req, out := c.DeleteComponentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContainerRecipe = "DeleteContainerRecipe"
+
+// DeleteContainerRecipeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContainerRecipe operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContainerRecipe for more information on using the DeleteContainerRecipe
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContainerRecipeRequest method.
+//    req, resp := client.DeleteContainerRecipeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteContainerRecipe
+func (c *Imagebuilder) DeleteContainerRecipeRequest(input *DeleteContainerRecipeInput) (req *request.Request, output *DeleteContainerRecipeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContainerRecipe,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/DeleteContainerRecipe",
+	}
+
+	if input == nil {
+		input = &DeleteContainerRecipeInput{}
+	}
+
+	output = &DeleteContainerRecipeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteContainerRecipe API operation for EC2 Image Builder.
+//
+// Deletes a container recipe.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation DeleteContainerRecipe for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an invalid resource identifier.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+//   * ResourceDependencyException
+//   You have attempted to mutate or delete a resource with a dependency that
+//   prohibits this action. See the error message for more details.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/DeleteContainerRecipe
+func (c *Imagebuilder) DeleteContainerRecipe(input *DeleteContainerRecipeInput) (*DeleteContainerRecipeOutput, error) {
+	req, out := c.DeleteContainerRecipeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContainerRecipeWithContext is the same as DeleteContainerRecipe with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContainerRecipe for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) DeleteContainerRecipeWithContext(ctx aws.Context, input *DeleteContainerRecipeInput, opts ...request.Option) (*DeleteContainerRecipeOutput, error) {
+	req, out := c.DeleteContainerRecipeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1582,6 +1797,196 @@ func (c *Imagebuilder) GetComponentPolicy(input *GetComponentPolicyInput) (*GetC
 // for more information on using Contexts.
 func (c *Imagebuilder) GetComponentPolicyWithContext(ctx aws.Context, input *GetComponentPolicyInput, opts ...request.Option) (*GetComponentPolicyOutput, error) {
 	req, out := c.GetComponentPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerRecipe = "GetContainerRecipe"
+
+// GetContainerRecipeRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerRecipe operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerRecipe for more information on using the GetContainerRecipe
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerRecipeRequest method.
+//    req, resp := client.GetContainerRecipeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetContainerRecipe
+func (c *Imagebuilder) GetContainerRecipeRequest(input *GetContainerRecipeInput) (req *request.Request, output *GetContainerRecipeOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerRecipe,
+		HTTPMethod: "GET",
+		HTTPPath:   "/GetContainerRecipe",
+	}
+
+	if input == nil {
+		input = &GetContainerRecipeInput{}
+	}
+
+	output = &GetContainerRecipeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerRecipe API operation for EC2 Image Builder.
+//
+// Retrieves a container recipe.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation GetContainerRecipe for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an invalid resource identifier.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetContainerRecipe
+func (c *Imagebuilder) GetContainerRecipe(input *GetContainerRecipeInput) (*GetContainerRecipeOutput, error) {
+	req, out := c.GetContainerRecipeRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerRecipeWithContext is the same as GetContainerRecipe with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerRecipe for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) GetContainerRecipeWithContext(ctx aws.Context, input *GetContainerRecipeInput, opts ...request.Option) (*GetContainerRecipeOutput, error) {
+	req, out := c.GetContainerRecipeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerRecipePolicy = "GetContainerRecipePolicy"
+
+// GetContainerRecipePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerRecipePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerRecipePolicy for more information on using the GetContainerRecipePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerRecipePolicyRequest method.
+//    req, resp := client.GetContainerRecipePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetContainerRecipePolicy
+func (c *Imagebuilder) GetContainerRecipePolicyRequest(input *GetContainerRecipePolicyInput) (req *request.Request, output *GetContainerRecipePolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerRecipePolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/GetContainerRecipePolicy",
+	}
+
+	if input == nil {
+		input = &GetContainerRecipePolicyInput{}
+	}
+
+	output = &GetContainerRecipePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerRecipePolicy API operation for EC2 Image Builder.
+//
+// Retrieves the policy for a container recipe.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation GetContainerRecipePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * ResourceNotFoundException
+//   At least one of the resources referenced by your request does not exist.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/GetContainerRecipePolicy
+func (c *Imagebuilder) GetContainerRecipePolicy(input *GetContainerRecipePolicyInput) (*GetContainerRecipePolicyOutput, error) {
+	req, out := c.GetContainerRecipePolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerRecipePolicyWithContext is the same as GetContainerRecipePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerRecipePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) GetContainerRecipePolicyWithContext(ctx aws.Context, input *GetContainerRecipePolicyInput, opts ...request.Option) (*GetContainerRecipePolicyOutput, error) {
+	req, out := c.GetContainerRecipePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2673,6 +3078,163 @@ func (c *Imagebuilder) ListComponentsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListComponentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListContainerRecipes = "ListContainerRecipes"
+
+// ListContainerRecipesRequest generates a "aws/request.Request" representing the
+// client's request for the ListContainerRecipes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContainerRecipes for more information on using the ListContainerRecipes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListContainerRecipesRequest method.
+//    req, resp := client.ListContainerRecipesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListContainerRecipes
+func (c *Imagebuilder) ListContainerRecipesRequest(input *ListContainerRecipesInput) (req *request.Request, output *ListContainerRecipesOutput) {
+	op := &request.Operation{
+		Name:       opListContainerRecipes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListContainerRecipes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContainerRecipesInput{}
+	}
+
+	output = &ListContainerRecipesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContainerRecipes API operation for EC2 Image Builder.
+//
+// Returns a list of container recipes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation ListContainerRecipes for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an invalid resource identifier.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * InvalidPaginationTokenException
+//   You have provided an invalid pagination token in your request.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListContainerRecipes
+func (c *Imagebuilder) ListContainerRecipes(input *ListContainerRecipesInput) (*ListContainerRecipesOutput, error) {
+	req, out := c.ListContainerRecipesRequest(input)
+	return out, req.Send()
+}
+
+// ListContainerRecipesWithContext is the same as ListContainerRecipes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContainerRecipes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListContainerRecipesWithContext(ctx aws.Context, input *ListContainerRecipesInput, opts ...request.Option) (*ListContainerRecipesOutput, error) {
+	req, out := c.ListContainerRecipesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContainerRecipesPages iterates over the pages of a ListContainerRecipes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContainerRecipes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContainerRecipes operation.
+//    pageNum := 0
+//    err := client.ListContainerRecipesPages(params,
+//        func(page *imagebuilder.ListContainerRecipesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Imagebuilder) ListContainerRecipesPages(input *ListContainerRecipesInput, fn func(*ListContainerRecipesOutput, bool) bool) error {
+	return c.ListContainerRecipesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContainerRecipesPagesWithContext same as ListContainerRecipesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListContainerRecipesPagesWithContext(ctx aws.Context, input *ListContainerRecipesInput, fn func(*ListContainerRecipesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContainerRecipesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContainerRecipesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContainerRecipesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3970,6 +4532,113 @@ func (c *Imagebuilder) PutComponentPolicy(input *PutComponentPolicyInput) (*PutC
 // for more information on using Contexts.
 func (c *Imagebuilder) PutComponentPolicyWithContext(ctx aws.Context, input *PutComponentPolicyInput, opts ...request.Option) (*PutComponentPolicyOutput, error) {
 	req, out := c.PutComponentPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutContainerRecipePolicy = "PutContainerRecipePolicy"
+
+// PutContainerRecipePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutContainerRecipePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutContainerRecipePolicy for more information on using the PutContainerRecipePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutContainerRecipePolicyRequest method.
+//    req, resp := client.PutContainerRecipePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/PutContainerRecipePolicy
+func (c *Imagebuilder) PutContainerRecipePolicyRequest(input *PutContainerRecipePolicyInput) (req *request.Request, output *PutContainerRecipePolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutContainerRecipePolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/PutContainerRecipePolicy",
+	}
+
+	if input == nil {
+		input = &PutContainerRecipePolicyInput{}
+	}
+
+	output = &PutContainerRecipePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutContainerRecipePolicy API operation for EC2 Image Builder.
+//
+// Applies a policy to a container image. We recommend that you call the RAM
+// API CreateResourceShare (https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html)
+// to share resources. If you call the Image Builder API PutContainerImagePolicy,
+// you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
+// in order for the resource to be visible to all principals with whom the resource
+// is shared.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation PutContainerRecipePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an invalid resource identifier.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * InvalidParameterValueException
+//   The value that you provided for the specified parameter is invalid.
+//
+//   * ResourceNotFoundException
+//   At least one of the resources referenced by your request does not exist.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/PutContainerRecipePolicy
+func (c *Imagebuilder) PutContainerRecipePolicy(input *PutContainerRecipePolicyInput) (*PutContainerRecipePolicyOutput, error) {
+	req, out := c.PutContainerRecipePolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutContainerRecipePolicyWithContext is the same as PutContainerRecipePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutContainerRecipePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) PutContainerRecipePolicyWithContext(ctx aws.Context, input *PutContainerRecipePolicyInput, opts ...request.Option) (*PutContainerRecipePolicyOutput, error) {
+	req, out := c.PutContainerRecipePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5563,6 +6232,357 @@ func (s *ComponentVersion) SetVersion(v string) *ComponentVersion {
 	return s
 }
 
+// A container encapsulates the runtime environment for an application.
+type Container struct {
+	_ struct{} `type:"structure"`
+
+	// A list of URIs for containers created in the context Region.
+	ImageUris []*string `locationName:"imageUris" type:"list"`
+
+	// Containers and container images are Region-specific. This is the Region context
+	// for the container.
+	Region *string `locationName:"region" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Container) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Container) GoString() string {
+	return s.String()
+}
+
+// SetImageUris sets the ImageUris field's value.
+func (s *Container) SetImageUris(v []*string) *Container {
+	s.ImageUris = v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *Container) SetRegion(v string) *Container {
+	s.Region = &v
+	return s
+}
+
+// Container distribution settings for encryption, licensing, and sharing in
+// a specific Region.
+type ContainerDistributionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Tags that are attached to the container distribution configuration.
+	ContainerTags []*string `locationName:"containerTags" type:"list"`
+
+	// The description of the container distribution configuration.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The destination repository for the container distribution configuration.
+	//
+	// TargetRepository is a required field
+	TargetRepository *TargetContainerRepository `locationName:"targetRepository" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ContainerDistributionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerDistributionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerDistributionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerDistributionConfiguration"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.TargetRepository == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetRepository"))
+	}
+	if s.TargetRepository != nil {
+		if err := s.TargetRepository.Validate(); err != nil {
+			invalidParams.AddNested("TargetRepository", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerTags sets the ContainerTags field's value.
+func (s *ContainerDistributionConfiguration) SetContainerTags(v []*string) *ContainerDistributionConfiguration {
+	s.ContainerTags = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ContainerDistributionConfiguration) SetDescription(v string) *ContainerDistributionConfiguration {
+	s.Description = &v
+	return s
+}
+
+// SetTargetRepository sets the TargetRepository field's value.
+func (s *ContainerDistributionConfiguration) SetTargetRepository(v *TargetContainerRepository) *ContainerDistributionConfiguration {
+	s.TargetRepository = v
+	return s
+}
+
+// A container recipe.
+type ContainerRecipe struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// Components for build and test that are included in the container recipe.
+	Components []*ComponentConfiguration `locationName:"components" min:"1" type:"list"`
+
+	// Specifies the type of container, such as Docker.
+	ContainerType *string `locationName:"containerType" type:"string" enum:"ContainerType"`
+
+	// The date when this container recipe was created.
+	DateCreated *string `locationName:"dateCreated" type:"string"`
+
+	// The description of the container recipe.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// Dockerfiles are text documents that are used to build Docker containers,
+	// and ensure that they contain all of the elements required by the application
+	// running inside. The template data consists of contextual variables where
+	// Image Builder places build information or scripts, based on your container
+	// image recipe.
+	DockerfileTemplateData *string `locationName:"dockerfileTemplateData" type:"string"`
+
+	// A flag that indicates if the target container is encrypted.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// Identifies which KMS key is used to encrypt the container image for distribution
+	// to the target Region.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// The name of the container recipe.
+	Name *string `locationName:"name" type:"string"`
+
+	// The owner of the container recipe.
+	Owner *string `locationName:"owner" min:"1" type:"string"`
+
+	// The source image for the container recipe.
+	ParentImage *string `locationName:"parentImage" min:"1" type:"string"`
+
+	// The system platform for the container, such as Windows or Linux.
+	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
+
+	// Tags that are attached to the container recipe.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The destination repository for the container image.
+	TargetRepository *TargetContainerRepository `locationName:"targetRepository" type:"structure"`
+
+	// The semantic version of the container recipe (<major>.<minor>.<patch>).
+	Version *string `locationName:"version" type:"string"`
+
+	// The working directory for use during build and test workflows.
+	WorkingDirectory *string `locationName:"workingDirectory" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ContainerRecipe) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerRecipe) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContainerRecipe) SetArn(v string) *ContainerRecipe {
+	s.Arn = &v
+	return s
+}
+
+// SetComponents sets the Components field's value.
+func (s *ContainerRecipe) SetComponents(v []*ComponentConfiguration) *ContainerRecipe {
+	s.Components = v
+	return s
+}
+
+// SetContainerType sets the ContainerType field's value.
+func (s *ContainerRecipe) SetContainerType(v string) *ContainerRecipe {
+	s.ContainerType = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *ContainerRecipe) SetDateCreated(v string) *ContainerRecipe {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ContainerRecipe) SetDescription(v string) *ContainerRecipe {
+	s.Description = &v
+	return s
+}
+
+// SetDockerfileTemplateData sets the DockerfileTemplateData field's value.
+func (s *ContainerRecipe) SetDockerfileTemplateData(v string) *ContainerRecipe {
+	s.DockerfileTemplateData = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *ContainerRecipe) SetEncrypted(v bool) *ContainerRecipe {
+	s.Encrypted = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ContainerRecipe) SetKmsKeyId(v string) *ContainerRecipe {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerRecipe) SetName(v string) *ContainerRecipe {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ContainerRecipe) SetOwner(v string) *ContainerRecipe {
+	s.Owner = &v
+	return s
+}
+
+// SetParentImage sets the ParentImage field's value.
+func (s *ContainerRecipe) SetParentImage(v string) *ContainerRecipe {
+	s.ParentImage = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ContainerRecipe) SetPlatform(v string) *ContainerRecipe {
+	s.Platform = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContainerRecipe) SetTags(v map[string]*string) *ContainerRecipe {
+	s.Tags = v
+	return s
+}
+
+// SetTargetRepository sets the TargetRepository field's value.
+func (s *ContainerRecipe) SetTargetRepository(v *TargetContainerRepository) *ContainerRecipe {
+	s.TargetRepository = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ContainerRecipe) SetVersion(v string) *ContainerRecipe {
+	s.Version = &v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *ContainerRecipe) SetWorkingDirectory(v string) *ContainerRecipe {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// A summary of a container recipe
+type ContainerRecipeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// Specifies the type of container, such as "Docker".
+	ContainerType *string `locationName:"containerType" type:"string" enum:"ContainerType"`
+
+	// The date when this container recipe was created.
+	DateCreated *string `locationName:"dateCreated" type:"string"`
+
+	// The name of the container recipe.
+	Name *string `locationName:"name" type:"string"`
+
+	// The owner of the container recipe.
+	Owner *string `locationName:"owner" min:"1" type:"string"`
+
+	// The source image for the container recipe.
+	ParentImage *string `locationName:"parentImage" min:"1" type:"string"`
+
+	// The system platform for the container, such as Windows or Linux.
+	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
+
+	// Tags that are attached to the container recipe.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s ContainerRecipeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerRecipeSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContainerRecipeSummary) SetArn(v string) *ContainerRecipeSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetContainerType sets the ContainerType field's value.
+func (s *ContainerRecipeSummary) SetContainerType(v string) *ContainerRecipeSummary {
+	s.ContainerType = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *ContainerRecipeSummary) SetDateCreated(v string) *ContainerRecipeSummary {
+	s.DateCreated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerRecipeSummary) SetName(v string) *ContainerRecipeSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ContainerRecipeSummary) SetOwner(v string) *ContainerRecipeSummary {
+	s.Owner = &v
+	return s
+}
+
+// SetParentImage sets the ParentImage field's value.
+func (s *ContainerRecipeSummary) SetParentImage(v string) *ContainerRecipeSummary {
+	s.ParentImage = &v
+	return s
+}
+
+// SetPlatform sets the Platform field's value.
+func (s *ContainerRecipeSummary) SetPlatform(v string) *ContainerRecipeSummary {
+	s.Platform = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContainerRecipeSummary) SetTags(v map[string]*string) *ContainerRecipeSummary {
+	s.Tags = v
+	return s
+}
+
 type CreateComponentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5774,6 +6794,284 @@ func (s *CreateComponentOutput) SetRequestId(v string) *CreateComponentOutput {
 	return s
 }
 
+type CreateContainerRecipeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client token used to make this request idempotent.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Components for build and test that are included in the container recipe.
+	//
+	// Components is a required field
+	Components []*ComponentConfiguration `locationName:"components" min:"1" type:"list" required:"true"`
+
+	// The type of container to create.
+	//
+	// ContainerType is a required field
+	ContainerType *string `locationName:"containerType" type:"string" required:"true" enum:"ContainerType"`
+
+	// The description of the container recipe.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The Dockerfile template used to build your image as an inline data blob.
+	//
+	// DockerfileTemplateData is a required field
+	DockerfileTemplateData *string `locationName:"dockerfileTemplateData" min:"1" type:"string" required:"true"`
+
+	// The S3 URI for the Dockerfile that will be used to build your container image.
+	DockerfileTemplateUri *string `locationName:"dockerfileTemplateUri" type:"string"`
+
+	// Specifies the operating system version for the source image.
+	ImageOsVersionOverride *string `locationName:"imageOsVersionOverride" min:"1" type:"string"`
+
+	// Identifies which KMS key is used to encrypt the container image.
+	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
+
+	// The name of the container recipe.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The source image for the container recipe.
+	//
+	// ParentImage is a required field
+	ParentImage *string `locationName:"parentImage" min:"1" type:"string" required:"true"`
+
+	// Specifies the operating system platform when you use a custom source image.
+	PlatformOverride *string `locationName:"platformOverride" type:"string" enum:"Platform"`
+
+	// The semantic version of the container recipe (<major>.<minor>.<patch>).
+	//
+	// SemanticVersion is a required field
+	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
+
+	// Tags that are attached to the container recipe.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The destination repository for the container image.
+	//
+	// TargetRepository is a required field
+	TargetRepository *TargetContainerRepository `locationName:"targetRepository" type:"structure" required:"true"`
+
+	// The working directory for use during build and test workflows.
+	WorkingDirectory *string `locationName:"workingDirectory" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateContainerRecipeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerRecipeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContainerRecipeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContainerRecipeInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Components == nil {
+		invalidParams.Add(request.NewErrParamRequired("Components"))
+	}
+	if s.Components != nil && len(s.Components) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Components", 1))
+	}
+	if s.ContainerType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerType"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DockerfileTemplateData == nil {
+		invalidParams.Add(request.NewErrParamRequired("DockerfileTemplateData"))
+	}
+	if s.DockerfileTemplateData != nil && len(*s.DockerfileTemplateData) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DockerfileTemplateData", 1))
+	}
+	if s.ImageOsVersionOverride != nil && len(*s.ImageOsVersionOverride) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageOsVersionOverride", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.ParentImage == nil {
+		invalidParams.Add(request.NewErrParamRequired("ParentImage"))
+	}
+	if s.ParentImage != nil && len(*s.ParentImage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ParentImage", 1))
+	}
+	if s.SemanticVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("SemanticVersion"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.TargetRepository == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetRepository"))
+	}
+	if s.WorkingDirectory != nil && len(*s.WorkingDirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkingDirectory", 1))
+	}
+	if s.Components != nil {
+		for i, v := range s.Components {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Components", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TargetRepository != nil {
+		if err := s.TargetRepository.Validate(); err != nil {
+			invalidParams.AddNested("TargetRepository", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateContainerRecipeInput) SetClientToken(v string) *CreateContainerRecipeInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetComponents sets the Components field's value.
+func (s *CreateContainerRecipeInput) SetComponents(v []*ComponentConfiguration) *CreateContainerRecipeInput {
+	s.Components = v
+	return s
+}
+
+// SetContainerType sets the ContainerType field's value.
+func (s *CreateContainerRecipeInput) SetContainerType(v string) *CreateContainerRecipeInput {
+	s.ContainerType = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateContainerRecipeInput) SetDescription(v string) *CreateContainerRecipeInput {
+	s.Description = &v
+	return s
+}
+
+// SetDockerfileTemplateData sets the DockerfileTemplateData field's value.
+func (s *CreateContainerRecipeInput) SetDockerfileTemplateData(v string) *CreateContainerRecipeInput {
+	s.DockerfileTemplateData = &v
+	return s
+}
+
+// SetDockerfileTemplateUri sets the DockerfileTemplateUri field's value.
+func (s *CreateContainerRecipeInput) SetDockerfileTemplateUri(v string) *CreateContainerRecipeInput {
+	s.DockerfileTemplateUri = &v
+	return s
+}
+
+// SetImageOsVersionOverride sets the ImageOsVersionOverride field's value.
+func (s *CreateContainerRecipeInput) SetImageOsVersionOverride(v string) *CreateContainerRecipeInput {
+	s.ImageOsVersionOverride = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateContainerRecipeInput) SetKmsKeyId(v string) *CreateContainerRecipeInput {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateContainerRecipeInput) SetName(v string) *CreateContainerRecipeInput {
+	s.Name = &v
+	return s
+}
+
+// SetParentImage sets the ParentImage field's value.
+func (s *CreateContainerRecipeInput) SetParentImage(v string) *CreateContainerRecipeInput {
+	s.ParentImage = &v
+	return s
+}
+
+// SetPlatformOverride sets the PlatformOverride field's value.
+func (s *CreateContainerRecipeInput) SetPlatformOverride(v string) *CreateContainerRecipeInput {
+	s.PlatformOverride = &v
+	return s
+}
+
+// SetSemanticVersion sets the SemanticVersion field's value.
+func (s *CreateContainerRecipeInput) SetSemanticVersion(v string) *CreateContainerRecipeInput {
+	s.SemanticVersion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContainerRecipeInput) SetTags(v map[string]*string) *CreateContainerRecipeInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetRepository sets the TargetRepository field's value.
+func (s *CreateContainerRecipeInput) SetTargetRepository(v *TargetContainerRepository) *CreateContainerRecipeInput {
+	s.TargetRepository = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *CreateContainerRecipeInput) SetWorkingDirectory(v string) *CreateContainerRecipeInput {
+	s.WorkingDirectory = &v
+	return s
+}
+
+type CreateContainerRecipeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The client token used to make this request idempotent.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string"`
+
+	// Returns the Amazon Resource Name (ARN) of the container recipe that the request
+	// created.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateContainerRecipeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerRecipeOutput) GoString() string {
+	return s.String()
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateContainerRecipeOutput) SetClientToken(v string) *CreateContainerRecipeOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *CreateContainerRecipeOutput) SetContainerRecipeArn(v string) *CreateContainerRecipeOutput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateContainerRecipeOutput) SetRequestId(v string) *CreateContainerRecipeOutput {
+	s.RequestId = &v
+	return s
+}
+
 type CreateDistributionConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5920,6 +7218,10 @@ type CreateImageInput struct {
 	// The idempotency token used to make this request idempotent.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Amazon Resource Name (ARN) of the container recipe that defines how images
+	// are configured and tested.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the distribution configuration that defines
 	// and configures the outputs of your pipeline.
 	DistributionConfigurationArn *string `locationName:"distributionConfigurationArn" type:"string"`
@@ -5932,9 +7234,7 @@ type CreateImageInput struct {
 
 	// The Amazon Resource Name (ARN) of the image recipe that defines how images
 	// are configured, tested, and assessed.
-	//
-	// ImageRecipeArn is a required field
-	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string" required:"true"`
+	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string"`
 
 	// The image tests configuration of the image.
 	ImageTestsConfiguration *ImageTestsConfiguration `locationName:"imageTestsConfiguration" type:"structure"`
@@ -5965,9 +7265,6 @@ func (s *CreateImageInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
-	if s.ImageRecipeArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ImageRecipeArn"))
-	}
 	if s.InfrastructureConfigurationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("InfrastructureConfigurationArn"))
 	}
@@ -5989,6 +7286,12 @@ func (s *CreateImageInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateImageInput) SetClientToken(v string) *CreateImageInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *CreateImageInput) SetContainerRecipeArn(v string) *CreateImageInput {
+	s.ContainerRecipeArn = &v
 	return s
 }
 
@@ -6075,6 +7378,10 @@ type CreateImagePipelineInput struct {
 	// The idempotency token used to make this request idempotent.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Amazon Resource Name (ARN) of the container recipe that is used to configure
+	// images created by this container pipeline.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
+
 	// The description of the image pipeline.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
@@ -6090,9 +7397,7 @@ type CreateImagePipelineInput struct {
 
 	// The Amazon Resource Name (ARN) of the image recipe that will be used to configure
 	// images created by this image pipeline.
-	//
-	// ImageRecipeArn is a required field
-	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string" required:"true"`
+	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string"`
 
 	// The image test configuration of the image pipeline.
 	ImageTestsConfiguration *ImageTestsConfiguration `locationName:"imageTestsConfiguration" type:"structure"`
@@ -6137,9 +7442,6 @@ func (s *CreateImagePipelineInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
-	if s.ImageRecipeArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ImageRecipeArn"))
-	}
 	if s.InfrastructureConfigurationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("InfrastructureConfigurationArn"))
 	}
@@ -6169,6 +7471,12 @@ func (s *CreateImagePipelineInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateImagePipelineInput) SetClientToken(v string) *CreateImagePipelineInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *CreateImagePipelineInput) SetContainerRecipeArn(v string) *CreateImagePipelineInput {
+	s.ContainerRecipeArn = &v
 	return s
 }
 
@@ -6781,6 +8089,76 @@ func (s *DeleteComponentOutput) SetRequestId(v string) *DeleteComponentOutput {
 	return s
 }
 
+type DeleteContainerRecipeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe to delete.
+	//
+	// ContainerRecipeArn is a required field
+	ContainerRecipeArn *string `location:"querystring" locationName:"containerRecipeArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteContainerRecipeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContainerRecipeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContainerRecipeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContainerRecipeInput"}
+	if s.ContainerRecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerRecipeArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *DeleteContainerRecipeInput) SetContainerRecipeArn(v string) *DeleteContainerRecipeInput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+type DeleteContainerRecipeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe that was deleted.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteContainerRecipeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContainerRecipeOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *DeleteContainerRecipeOutput) SetContainerRecipeArn(v string) *DeleteContainerRecipeOutput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteContainerRecipeOutput) SetRequestId(v string) *DeleteContainerRecipeOutput {
+	s.RequestId = &v
+	return s
+}
+
 type DeleteDistributionConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7140,6 +8518,10 @@ type Distribution struct {
 	// The specific AMI settings (for example, launch permissions, AMI tags).
 	AmiDistributionConfiguration *AmiDistributionConfiguration `locationName:"amiDistributionConfiguration" type:"structure"`
 
+	// Container distribution settings for encryption, licensing, and sharing in
+	// a specific Region.
+	ContainerDistributionConfiguration *ContainerDistributionConfiguration `locationName:"containerDistributionConfiguration" type:"structure"`
+
 	// The License Manager Configuration to associate with the AMI in the specified
 	// Region.
 	LicenseConfigurationArns []*string `locationName:"licenseConfigurationArns" min:"1" type:"list"`
@@ -7177,6 +8559,11 @@ func (s *Distribution) Validate() error {
 			invalidParams.AddNested("AmiDistributionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ContainerDistributionConfiguration != nil {
+		if err := s.ContainerDistributionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ContainerDistributionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7187,6 +8574,12 @@ func (s *Distribution) Validate() error {
 // SetAmiDistributionConfiguration sets the AmiDistributionConfiguration field's value.
 func (s *Distribution) SetAmiDistributionConfiguration(v *AmiDistributionConfiguration) *Distribution {
 	s.AmiDistributionConfiguration = v
+	return s
+}
+
+// SetContainerDistributionConfiguration sets the ContainerDistributionConfiguration field's value.
+func (s *Distribution) SetContainerDistributionConfiguration(v *ContainerDistributionConfiguration) *Distribution {
+	s.ContainerDistributionConfiguration = v
 	return s
 }
 
@@ -7310,6 +8703,9 @@ type DistributionConfigurationSummary struct {
 	// The name of the distribution configuration.
 	Name *string `locationName:"name" type:"string"`
 
+	// A list of Regions where the container image is distributed to.
+	Regions []*string `locationName:"regions" type:"list"`
+
 	// The tags associated with the distribution configuration.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -7351,6 +8747,12 @@ func (s *DistributionConfigurationSummary) SetDescription(v string) *Distributio
 // SetName sets the Name field's value.
 func (s *DistributionConfigurationSummary) SetName(v string) *DistributionConfigurationSummary {
 	s.Name = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *DistributionConfigurationSummary) SetRegions(v []*string) *DistributionConfigurationSummary {
+	s.Regions = v
 	return s
 }
 
@@ -7702,6 +9104,147 @@ func (s *GetComponentPolicyOutput) SetPolicy(v string) *GetComponentPolicyOutput
 
 // SetRequestId sets the RequestId field's value.
 func (s *GetComponentPolicyOutput) SetRequestId(v string) *GetComponentPolicyOutput {
+	s.RequestId = &v
+	return s
+}
+
+type GetContainerRecipeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe to retrieve.
+	//
+	// ContainerRecipeArn is a required field
+	ContainerRecipeArn *string `location:"querystring" locationName:"containerRecipeArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContainerRecipeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerRecipeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerRecipeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerRecipeInput"}
+	if s.ContainerRecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerRecipeArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *GetContainerRecipeInput) SetContainerRecipeArn(v string) *GetContainerRecipeInput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+type GetContainerRecipeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The container recipe object that is returned.
+	ContainerRecipe *ContainerRecipe `locationName:"containerRecipe" type:"structure"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetContainerRecipeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerRecipeOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerRecipe sets the ContainerRecipe field's value.
+func (s *GetContainerRecipeOutput) SetContainerRecipe(v *ContainerRecipe) *GetContainerRecipeOutput {
+	s.ContainerRecipe = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetContainerRecipeOutput) SetRequestId(v string) *GetContainerRecipeOutput {
+	s.RequestId = &v
+	return s
+}
+
+type GetContainerRecipePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe for the policy being
+	// requested.
+	//
+	// ContainerRecipeArn is a required field
+	ContainerRecipeArn *string `location:"querystring" locationName:"containerRecipeArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContainerRecipePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerRecipePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerRecipePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerRecipePolicyInput"}
+	if s.ContainerRecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerRecipeArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *GetContainerRecipePolicyInput) SetContainerRecipeArn(v string) *GetContainerRecipePolicyInput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+type GetContainerRecipePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The container recipe policy object that is returned.
+	Policy *string `locationName:"policy" min:"1" type:"string"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetContainerRecipePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerRecipePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetContainerRecipePolicyOutput) SetPolicy(v string) *GetContainerRecipePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *GetContainerRecipePolicyOutput) SetRequestId(v string) *GetContainerRecipePolicyOutput {
 	s.RequestId = &v
 	return s
 }
@@ -8265,6 +9808,9 @@ type Image struct {
 	// The Amazon Resource Name (ARN) of the image.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The container recipe used to create the container image type.
+	ContainerRecipe *ContainerRecipe `locationName:"containerRecipe" type:"structure"`
+
 	// The date on which this image was created.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
 
@@ -8311,6 +9857,9 @@ type Image struct {
 	// The tags of the image.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// Specifies whether this is an AMI or container image.
+	Type *string `locationName:"type" type:"string" enum:"ImageType"`
+
 	// The semantic version of the image.
 	Version *string `locationName:"version" type:"string"`
 }
@@ -8328,6 +9877,12 @@ func (s Image) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *Image) SetArn(v string) *Image {
 	s.Arn = &v
+	return s
+}
+
+// SetContainerRecipe sets the ContainerRecipe field's value.
+func (s *Image) SetContainerRecipe(v *ContainerRecipe) *Image {
+	s.ContainerRecipe = v
 	return s
 }
 
@@ -8415,6 +9970,12 @@ func (s *Image) SetTags(v map[string]*string) *Image {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *Image) SetType(v string) *Image {
+	s.Type = &v
+	return s
+}
+
 // SetVersion sets the Version field's value.
 func (s *Image) SetVersion(v string) *Image {
 	s.Version = &v
@@ -8427,6 +9988,10 @@ type ImagePipeline struct {
 
 	// The Amazon Resource Name (ARN) of the image pipeline.
 	Arn *string `locationName:"arn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the container recipe that is used for this
+	// pipeline.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
 
 	// The date on which this image pipeline was created.
 	DateCreated *string `locationName:"dateCreated" type:"string"`
@@ -8493,6 +10058,12 @@ func (s ImagePipeline) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ImagePipeline) SetArn(v string) *ImagePipeline {
 	s.Arn = &v
+	return s
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *ImagePipeline) SetContainerRecipeArn(v string) *ImagePipeline {
+	s.ContainerRecipeArn = &v
 	return s
 }
 
@@ -8620,6 +10191,10 @@ type ImageRecipe struct {
 	// The tags of the image recipe.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// Specifies which type of image is created by the recipe - an AMI or a container
+	// image.
+	Type *string `locationName:"type" type:"string" enum:"ImageType"`
+
 	// The version of the image recipe.
 	Version *string `locationName:"version" type:"string"`
 
@@ -8694,6 +10269,12 @@ func (s *ImageRecipe) SetPlatform(v string) *ImageRecipe {
 // SetTags sets the Tags field's value.
 func (s *ImageRecipe) SetTags(v map[string]*string) *ImageRecipe {
 	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ImageRecipe) SetType(v string) *ImageRecipe {
+	s.Type = &v
 	return s
 }
 
@@ -8852,6 +10433,9 @@ type ImageSummary struct {
 	// The tags of the image.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// Specifies whether this is an AMI or container image.
+	Type *string `locationName:"type" type:"string" enum:"ImageType"`
+
 	// The version of the image.
 	Version *string `locationName:"version" type:"string"`
 }
@@ -8917,6 +10501,12 @@ func (s *ImageSummary) SetState(v *ImageState) *ImageSummary {
 // SetTags sets the Tags field's value.
 func (s *ImageSummary) SetTags(v map[string]*string) *ImageSummary {
 	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ImageSummary) SetType(v string) *ImageSummary {
+	s.Type = &v
 	return s
 }
 
@@ -8995,6 +10585,9 @@ type ImageVersion struct {
 	// The platform of the image semantic version.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
+	// Specifies whether this is an AMI or container image.
+	Type *string `locationName:"type" type:"string" enum:"ImageType"`
+
 	// The semantic version of the image semantic version.
 	Version *string `locationName:"version" type:"string"`
 }
@@ -9042,6 +10635,12 @@ func (s *ImageVersion) SetOwner(v string) *ImageVersion {
 // SetPlatform sets the Platform field's value.
 func (s *ImageVersion) SetPlatform(v string) *ImageVersion {
 	s.Platform = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ImageVersion) SetType(v string) *ImageVersion {
+	s.Type = &v
 	return s
 }
 
@@ -10075,6 +11674,9 @@ func (s *ListComponentBuildVersionsOutput) SetRequestId(v string) *ListComponent
 type ListComponentsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the list of component build versions for the specified semantic version.
+	ByName *bool `locationName:"byName" type:"boolean"`
+
 	// The filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
@@ -10129,6 +11731,12 @@ func (s *ListComponentsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetByName sets the ByName field's value.
+func (s *ListComponentsInput) SetByName(v bool) *ListComponentsInput {
+	s.ByName = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -10194,6 +11802,133 @@ func (s *ListComponentsOutput) SetNextToken(v string) *ListComponentsOutput {
 
 // SetRequestId sets the RequestId field's value.
 func (s *ListComponentsOutput) SetRequestId(v string) *ListComponentsOutput {
+	s.RequestId = &v
+	return s
+}
+
+type ListContainerRecipesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Request filters that are used to narrow the list of container images that
+	// are returned.
+	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
+
+	// The maximum number of results to return in the list.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// Provides a token for pagination, which determines where to begin the next
+	// set of results when the current set reaches the maximum for one request.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// Returns container recipes belonging to the specified owner, that have been
+	// shared with you. You can omit this field to return container recipes belonging
+	// to your account.
+	Owner *string `locationName:"owner" type:"string" enum:"Ownership"`
+}
+
+// String returns the string representation
+func (s ListContainerRecipesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContainerRecipesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContainerRecipesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContainerRecipesInput"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListContainerRecipesInput) SetFilters(v []*Filter) *ListContainerRecipesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListContainerRecipesInput) SetMaxResults(v int64) *ListContainerRecipesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContainerRecipesInput) SetNextToken(v string) *ListContainerRecipesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *ListContainerRecipesInput) SetOwner(v string) *ListContainerRecipesInput {
+	s.Owner = &v
+	return s
+}
+
+type ListContainerRecipesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of container recipes returned for the request.
+	ContainerRecipeSummaryList []*ContainerRecipeSummary `locationName:"containerRecipeSummaryList" type:"list"`
+
+	// The next token field is used for paginated responses. When this is not empty,
+	// there are additional container recipes that the service has not included
+	// in this response. Use this token with the next request to retrieve additional
+	// list items.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListContainerRecipesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContainerRecipesOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerRecipeSummaryList sets the ContainerRecipeSummaryList field's value.
+func (s *ListContainerRecipesOutput) SetContainerRecipeSummaryList(v []*ContainerRecipeSummary) *ListContainerRecipesOutput {
+	s.ContainerRecipeSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContainerRecipesOutput) SetNextToken(v string) *ListContainerRecipesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListContainerRecipesOutput) SetRequestId(v string) *ListContainerRecipesOutput {
 	s.RequestId = &v
 	return s
 }
@@ -10815,8 +12550,14 @@ func (s *ListImageRecipesOutput) SetRequestId(v string) *ListImageRecipesOutput 
 type ListImagesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Requests a list of images with a specific recipe name.
+	ByName *bool `locationName:"byName" type:"boolean"`
+
 	// The filters.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
+
+	// Includes deprecated images in the response list.
+	IncludeDeprecated *bool `locationName:"includeDeprecated" type:"boolean"`
 
 	// The maximum items to return in a request.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -10871,9 +12612,21 @@ func (s *ListImagesInput) Validate() error {
 	return nil
 }
 
+// SetByName sets the ByName field's value.
+func (s *ListImagesInput) SetByName(v bool) *ListImagesInput {
+	s.ByName = &v
+	return s
+}
+
 // SetFilters sets the Filters field's value.
 func (s *ListImagesInput) SetFilters(v []*Filter) *ListImagesInput {
 	s.Filters = v
+	return s
+}
+
+// SetIncludeDeprecated sets the IncludeDeprecated field's value.
+func (s *ListImagesInput) SetIncludeDeprecated(v bool) *ListImagesInput {
+	s.IncludeDeprecated = &v
 	return s
 }
 
@@ -11161,6 +12914,10 @@ type OutputResources struct {
 
 	// The EC2 AMIs created by this image.
 	Amis []*Ami `locationName:"amis" type:"list"`
+
+	// Container images that the pipeline has generated and stored in the output
+	// repository.
+	Containers []*Container `locationName:"containers" type:"list"`
 }
 
 // String returns the string representation
@@ -11176,6 +12933,12 @@ func (s OutputResources) GoString() string {
 // SetAmis sets the Amis field's value.
 func (s *OutputResources) SetAmis(v []*Ami) *OutputResources {
 	s.Amis = v
+	return s
+}
+
+// SetContainers sets the Containers field's value.
+func (s *OutputResources) SetContainers(v []*Container) *OutputResources {
+	s.Containers = v
 	return s
 }
 
@@ -11264,6 +13027,95 @@ func (s *PutComponentPolicyOutput) SetComponentArn(v string) *PutComponentPolicy
 
 // SetRequestId sets the RequestId field's value.
 func (s *PutComponentPolicyOutput) SetRequestId(v string) *PutComponentPolicyOutput {
+	s.RequestId = &v
+	return s
+}
+
+type PutContainerRecipePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe that this policy should
+	// be applied to.
+	//
+	// ContainerRecipeArn is a required field
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string" required:"true"`
+
+	// The policy to apply to the container recipe.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutContainerRecipePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutContainerRecipePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutContainerRecipePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutContainerRecipePolicyInput"}
+	if s.ContainerRecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerRecipeArn"))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *PutContainerRecipePolicyInput) SetContainerRecipeArn(v string) *PutContainerRecipePolicyInput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutContainerRecipePolicyInput) SetPolicy(v string) *PutContainerRecipePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+type PutContainerRecipePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container recipe that this policy was
+	// applied to.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutContainerRecipePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutContainerRecipePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *PutContainerRecipePolicyOutput) SetContainerRecipeArn(v string) *PutContainerRecipePolicyOutput {
+	s.ContainerRecipeArn = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *PutContainerRecipePolicyOutput) SetRequestId(v string) *PutContainerRecipePolicyOutput {
 	s.RequestId = &v
 	return s
 }
@@ -12113,6 +13965,63 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The container repository where the output container image is stored.
+type TargetContainerRepository struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container repository where the output container image is
+	// stored. This name is prefixed by the repository location.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// Specifies the service in which this image was registered.
+	//
+	// Service is a required field
+	Service *string `locationName:"service" type:"string" required:"true" enum:"ContainerRepositoryService"`
+}
+
+// String returns the string representation
+func (s TargetContainerRepository) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TargetContainerRepository) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TargetContainerRepository) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TargetContainerRepository"}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.Service == nil {
+		invalidParams.Add(request.NewErrParamRequired("Service"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *TargetContainerRepository) SetRepositoryName(v string) *TargetContainerRepository {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *TargetContainerRepository) SetService(v string) *TargetContainerRepository {
+	s.Service = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12320,6 +14229,9 @@ type UpdateImagePipelineInput struct {
 	// The idempotency token used to make this request idempotent.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Amazon Resource Name (ARN) of the container pipeline to update.
+	ContainerRecipeArn *string `locationName:"containerRecipeArn" type:"string"`
+
 	// The description of the image pipeline.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
@@ -12340,9 +14252,7 @@ type UpdateImagePipelineInput struct {
 
 	// The Amazon Resource Name (ARN) of the image recipe that will be used to configure
 	// images updated by this image pipeline.
-	//
-	// ImageRecipeArn is a required field
-	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string" required:"true"`
+	ImageRecipeArn *string `locationName:"imageRecipeArn" type:"string"`
 
 	// The image test configuration of the image pipeline.
 	ImageTestsConfiguration *ImageTestsConfiguration `locationName:"imageTestsConfiguration" type:"structure"`
@@ -12382,9 +14292,6 @@ func (s *UpdateImagePipelineInput) Validate() error {
 	if s.ImagePipelineArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ImagePipelineArn"))
 	}
-	if s.ImageRecipeArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ImageRecipeArn"))
-	}
 	if s.InfrastructureConfigurationArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("InfrastructureConfigurationArn"))
 	}
@@ -12408,6 +14315,12 @@ func (s *UpdateImagePipelineInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdateImagePipelineInput) SetClientToken(v string) *UpdateImagePipelineInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetContainerRecipeArn sets the ContainerRecipeArn field's value.
+func (s *UpdateImagePipelineInput) SetContainerRecipeArn(v string) *UpdateImagePipelineInput {
+	s.ContainerRecipeArn = &v
 	return s
 }
 
@@ -12751,6 +14664,30 @@ func ComponentType_Values() []string {
 }
 
 const (
+	// ContainerRepositoryServiceEcr is a ContainerRepositoryService enum value
+	ContainerRepositoryServiceEcr = "ECR"
+)
+
+// ContainerRepositoryService_Values returns all elements of the ContainerRepositoryService enum
+func ContainerRepositoryService_Values() []string {
+	return []string{
+		ContainerRepositoryServiceEcr,
+	}
+}
+
+const (
+	// ContainerTypeDocker is a ContainerType enum value
+	ContainerTypeDocker = "DOCKER"
+)
+
+// ContainerType_Values returns all elements of the ContainerType enum
+func ContainerType_Values() []string {
+	return []string{
+		ContainerTypeDocker,
+	}
+}
+
+const (
 	// EbsVolumeTypeStandard is a EbsVolumeType enum value
 	EbsVolumeTypeStandard = "standard"
 
@@ -12831,6 +14768,22 @@ func ImageStatus_Values() []string {
 		ImageStatusFailed,
 		ImageStatusDeprecated,
 		ImageStatusDeleted,
+	}
+}
+
+const (
+	// ImageTypeAmi is a ImageType enum value
+	ImageTypeAmi = "AMI"
+
+	// ImageTypeDocker is a ImageType enum value
+	ImageTypeDocker = "DOCKER"
+)
+
+// ImageType_Values returns all elements of the ImageType enum
+func ImageType_Values() []string {
+	return []string{
+		ImageTypeAmi,
+		ImageTypeDocker,
 	}
 }
 

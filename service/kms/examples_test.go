@@ -213,6 +213,7 @@ func ExampleKMS_Decrypt_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.DecryptInput{
 		CiphertextBlob: []byte("<binary data>"),
+		KeyId:          aws.String("arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"),
 	}
 
 	result, err := svc.Decrypt(input)

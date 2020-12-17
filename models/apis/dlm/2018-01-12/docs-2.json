@@ -12,6 +12,24 @@
     "UpdateLifecyclePolicy": "<p>Updates the specified lifecycle policy.</p>"
   },
   "shapes": {
+    "Action": {
+      "base": "<p>Specifies an action for an event-based policy.</p>",
+      "refs": {
+        "ActionList$member": null
+      }
+    },
+    "ActionList": {
+      "base": null,
+      "refs": {
+        "PolicyDetails$Actions": "<p>The actions to be performed when the event-based policy is triggered. You can specify only one action per policy.</p> <p>This parameter is required for event-based policies only. If you are creating a snapshot or AMI policy, omit this parameter.</p>"
+      }
+    },
+    "ActionName": {
+      "base": null,
+      "refs": {
+        "Action$Name": "<p>A descriptive name for the action.</p>"
+      }
+    },
     "AvailabilityZone": {
       "base": null,
       "refs": {
@@ -24,10 +42,18 @@
         "FastRestoreRule$AvailabilityZones": "<p>The Availability Zones in which to enable fast snapshot restore.</p>"
       }
     },
+    "AwsAccountId": {
+      "base": null,
+      "refs": {
+        "ShareTargetAccountList$member": null,
+        "SnapshotOwnerList$member": null
+      }
+    },
     "CmkArn": {
       "base": null,
       "refs": {
-        "CrossRegionCopyRule$CmkArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to use for EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used.</p>"
+        "CrossRegionCopyRule$CmkArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to use for EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used.</p>",
+        "EncryptionConfiguration$CmkArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to use for EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used.</p>"
       }
     },
     "CopyTags": {
@@ -71,9 +97,22 @@
         "CreateRule$CronExpression": "<p>The schedule, as a Cron expression. The schedule interval must be between 1 hour and 1 year. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions\">Cron expressions</a> in the <i>Amazon CloudWatch User Guide</i>.</p>"
       }
     },
+    "CrossRegionCopyAction": {
+      "base": "<p>Specifies a rule for copying shared snapshots across Regions.</p>",
+      "refs": {
+        "CrossRegionCopyActionList$member": null
+      }
+    },
+    "CrossRegionCopyActionList": {
+      "base": null,
+      "refs": {
+        "Action$CrossRegionCopy": "<p>The rule for copying shared snapshots across Regions.</p>"
+      }
+    },
     "CrossRegionCopyRetainRule": {
       "base": "<p>Specifies the retention rule for cross-Region snapshot copies.</p>",
       "refs": {
+        "CrossRegionCopyAction$RetainRule": null,
         "CrossRegionCopyRule$RetainRule": "<p>The retention rule.</p>"
       }
     },
@@ -99,10 +138,23 @@
       "refs": {
       }
     },
+    "DescriptionRegex": {
+      "base": null,
+      "refs": {
+        "EventParameters$DescriptionRegex": "<p>The snapshot description that can trigger the policy. The description pattern is specified using a regular expression. The policy runs only if a snapshot with a description that matches the specified pattern is shared with your account.</p> <p>For example, specifying <code>^.*Created for policy: policy-1234567890abcdef0.*$</code> configures the policy to run only if snapshots created by policy <code>policy-1234567890abcdef0</code> are shared with your account.</p>"
+      }
+    },
     "Encrypted": {
       "base": null,
       "refs": {
-        "CrossRegionCopyRule$Encrypted": "<p>To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled, enable encryption using this parameter. Copies of encrypted snapshots are encrypted, even if this parameter is false or if encryption by default is not enabled.</p>"
+        "CrossRegionCopyRule$Encrypted": "<p>To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled, enable encryption using this parameter. Copies of encrypted snapshots are encrypted, even if this parameter is false or if encryption by default is not enabled.</p>",
+        "EncryptionConfiguration$Encrypted": "<p>To encrypt a copy of an unencrypted snapshot when encryption by default is not enabled, enable encryption using this parameter. Copies of encrypted snapshots are encrypted, even if this parameter is false or when encryption by default is not enabled.</p>"
+      }
+    },
+    "EncryptionConfiguration": {
+      "base": "<p>Specifies the encryption settings for shared snapshots that are copied across Regions.</p>",
+      "refs": {
+        "CrossRegionCopyAction$EncryptionConfiguration": "<p>The encryption settings for the copied snapshot.</p>"
       }
     },
     "ErrorCode": {
@@ -121,6 +173,30 @@
         "InvalidRequestException$Message": null,
         "LimitExceededException$Message": null,
         "ResourceNotFoundException$Message": null
+      }
+    },
+    "EventParameters": {
+      "base": "<p>Specifies an event that triggers an event-based policy.</p>",
+      "refs": {
+        "EventSource$Parameters": "<p>Information about the event.</p>"
+      }
+    },
+    "EventSource": {
+      "base": "<p>Specifies an event that triggers an event-based policy.</p>",
+      "refs": {
+        "PolicyDetails$EventSource": "<p>The event that triggers the event-based policy. </p> <p>This parameter is required for event-based policies only. If you are creating a snapshot or AMI policy, omit this parameter.</p>"
+      }
+    },
+    "EventSourceValues": {
+      "base": null,
+      "refs": {
+        "EventSource$Type": "<p>The source of the event. Currently only managed AWS CloudWatch Events rules are supported.</p>"
+      }
+    },
+    "EventTypeValues": {
+      "base": null,
+      "refs": {
+        "EventParameters$EventType": "<p>The type of event. Currently, only snapshot sharing events are supported.</p>"
       }
     },
     "ExcludeBootVolume": {
@@ -182,7 +258,8 @@
         "CreateRule$Interval": "<p>The interval between snapshots. The supported values are 1, 2, 3, 4, 6, 8, 12, and 24.</p>",
         "CrossRegionCopyRetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
         "FastRestoreRule$Interval": "<p>The amount of time to enable fast snapshot restore. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
-        "RetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>"
+        "RetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
+        "ShareRule$UnshareInterval": "<p>The period after which snapshots that are shared with other AWS accounts are automatically unshared.</p>"
       }
     },
     "IntervalUnitValues": {
@@ -232,7 +309,7 @@
     "NoReboot": {
       "base": null,
       "refs": {
-        "Parameters$NoReboot": "<p>Applies to AMI lifecycle policies only. Indicates whether targeted instances are rebooted when the lifecycle policy runs. <code>true</code> indicates that targeted instances are not rebooted when the policy runs. <code>false</code> indicates that target instances are rebooted when the policy runs. The default is <code>true</code> (instance are not rebooted).</p>"
+        "Parameters$NoReboot": "<p>Applies to AMI lifecycle policies only. Indicates whether targeted instances are rebooted when the lifecycle policy runs. <code>true</code> indicates that targeted instances are not rebooted when the policy runs. <code>false</code> indicates that target instances are rebooted when the policy runs. The default is <code>true</code> (instances are not rebooted).</p>"
       }
     },
     "Parameter": {
@@ -251,7 +328,7 @@
     "Parameters": {
       "base": "<p>Specifies optional parameters to add to a policy. The set of valid parameters depends on the combination of policy type and resource type.</p>",
       "refs": {
-        "PolicyDetails$Parameters": "<p>A set of optional parameters for the policy. </p>"
+        "PolicyDetails$Parameters": "<p>A set of optional parameters for snapshot and AMI lifecycle policies. </p> <p>This parameter is required for snapshot and AMI policies only. If you are creating an event-based policy, omit this parameter.</p>"
       }
     },
     "PolicyArn": {
@@ -303,7 +380,7 @@
       "base": null,
       "refs": {
         "LifecyclePolicySummary$PolicyType": "<p>The type of policy. <code>EBS_SNAPSHOT_MANAGEMENT</code> indicates that the policy manages the lifecycle of Amazon EBS snapshots. <code>IMAGE_MANAGEMENT</code> indicates that the policy manages the lifecycle of EBS-backed AMIs.</p>",
-        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. Specify <code>EBS_SNAPSHOT_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of Amazon EBS snapshots. Specify <code>IMAGE_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of EBS-backed AMIs. The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.</p>"
+        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. Specify <code>EBS_SNAPSHOT_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of Amazon EBS snapshots. Specify <code>IMAGE_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of EBS-backed AMIs. Specify <code>EVENT_BASED_POLICY </code> to create an event-based policy that performs specific actions when a defined event occurs in your AWS account.</p> <p>The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -321,7 +398,7 @@
       "base": null,
       "refs": {
         "GetLifecyclePoliciesRequest$ResourceTypes": "<p>The resource type.</p>",
-        "PolicyDetails$ResourceTypes": "<p>The resource type. Use VOLUME to create snapshots of individual volumes or use INSTANCE to create multi-volume snapshots from the volumes for an instance.</p>"
+        "PolicyDetails$ResourceTypes": "<p>The target resource type for snapshot and AMI lifecycle policies. Use <code>VOLUME </code>to create snapshots of individual volumes or use <code>INSTANCE</code> to create multi-volume snapshots from the volumes for an instance.</p> <p>This parameter is required for snapshot and AMI policies only. If you are creating an event-based policy, omit this parameter.</p>"
       }
     },
     "RetainRule": {
@@ -335,11 +412,12 @@
       "refs": {
         "CrossRegionCopyRetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>",
         "FastRestoreRule$IntervalUnit": "<p>The unit of time for enabling fast snapshot restore.</p>",
-        "RetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>"
+        "RetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>",
+        "ShareRule$UnshareIntervalUnit": "<p>The unit of time for the automatic unsharing interval.</p>"
       }
     },
     "Schedule": {
-      "base": "<p>Specifies a backup schedule.</p>",
+      "base": "<p>Specifies a backup schedule for a snapshot or AMI lifecycle policy.</p>",
       "refs": {
         "ScheduleList$member": null
       }
@@ -347,7 +425,7 @@
     "ScheduleList": {
       "base": null,
       "refs": {
-        "PolicyDetails$Schedules": "<p>The schedules of policy-defined actions. A policy can have up to four schedules - one mandatory schedule and up to three optional schedules.</p>"
+        "PolicyDetails$Schedules": "<p>The schedules of policy-defined actions for snapshot and AMI lifecycle policies. A policy can have up to four schedules—one mandatory schedule and up to three optional schedules.</p> <p>This parameter is required for snapshot and AMI policies only. If you are creating an event-based policy, omit this parameter.</p>"
       }
     },
     "ScheduleName": {
@@ -361,6 +439,30 @@
       "refs": {
         "CreateLifecyclePolicyRequest$State": "<p>The desired activation state of the lifecycle policy after creation.</p>",
         "UpdateLifecyclePolicyRequest$State": "<p>The desired activation state of the lifecycle policy after creation.</p>"
+      }
+    },
+    "ShareRule": {
+      "base": "<p>Specifies a rule for sharing snapshots across AWS accounts.</p>",
+      "refs": {
+        "ShareRules$member": null
+      }
+    },
+    "ShareRules": {
+      "base": null,
+      "refs": {
+        "Schedule$ShareRules": "<p>The rule for sharing snapshots with other AWS accounts.</p>"
+      }
+    },
+    "ShareTargetAccountList": {
+      "base": null,
+      "refs": {
+        "ShareRule$TargetAccounts": "<p>The IDs of the AWS accounts with which to share the snapshots.</p>"
+      }
+    },
+    "SnapshotOwnerList": {
+      "base": null,
+      "refs": {
+        "EventParameters$SnapshotOwner": "<p>The IDs of the AWS accounts that can trigger policy by sharing snapshots with your account. The policy only runs if one of the specified AWS accounts shares a snapshot with your account.</p>"
       }
     },
     "StatusMessage": {
@@ -444,6 +546,12 @@
         "Schedule$TagsToAdd": "<p>The tags to apply to policy-created resources. These user-defined tags are in addition to the AWS-added lifecycle tags.</p>"
       }
     },
+    "Target": {
+      "base": null,
+      "refs": {
+        "CrossRegionCopyAction$Target": "<p>The target Region.</p>"
+      }
+    },
     "TargetRegion": {
       "base": null,
       "refs": {
@@ -453,7 +561,7 @@
     "TargetTagList": {
       "base": null,
       "refs": {
-        "PolicyDetails$TargetTags": "<p>The single tag that identifies targeted resources for this policy.</p>"
+        "PolicyDetails$TargetTags": "<p>The single tag that identifies targeted resources for this policy.</p> <p>This parameter is required for snapshot and AMI policies only. If you are creating an event-based policy, omit this parameter.</p>"
       }
     },
     "TargetTagsFilterList": {

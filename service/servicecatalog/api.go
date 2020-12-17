@@ -1045,8 +1045,12 @@ func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShare
 // AWSOrganizationsAccess must be enabled in order to create a portfolio share
 // to an organization node.
 //
-// You can't share a shared resource. This includes portfolios that contain
-// a shared product.
+// You can't share a shared resource, including portfolios that contain a shared
+// product.
+//
+// If the portfolio share with the specified account or organization node already
+// exists, this action will have no effect and will not return an error. To
+// update an existing share, you must use the UpdatePortfolioShare API instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1144,6 +1148,10 @@ func (c *ServiceCatalog) CreateProductRequest(input *CreateProductInput) (req *r
 // Creates a product.
 //
 // A delegated admin is authorized to invoke this command.
+//
+// The user or role that performs this operation must have the cloudformation:GetTemplate
+// IAM policy permission. This policy permission is required when using the
+// ImportFromPhysicalId template source in the information data section.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1332,6 +1340,10 @@ func (c *ServiceCatalog) CreateProvisioningArtifactRequest(input *CreateProvisio
 //
 // You cannot create a provisioning artifact for a product that was shared with
 // you.
+//
+// The user or role that performs this operation must have the cloudformation:GetTemplate
+// IAM policy permission. This policy permission is required when using the
+// ImportFromPhysicalId template source in the information data section.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2595,6 +2607,153 @@ func (c *ServiceCatalog) DescribePortfolioShareStatusWithContext(ctx aws.Context
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opDescribePortfolioShares = "DescribePortfolioShares"
+
+// DescribePortfolioSharesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePortfolioShares operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePortfolioShares for more information on using the DescribePortfolioShares
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribePortfolioSharesRequest method.
+//    req, resp := client.DescribePortfolioSharesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioShares
+func (c *ServiceCatalog) DescribePortfolioSharesRequest(input *DescribePortfolioSharesInput) (req *request.Request, output *DescribePortfolioSharesOutput) {
+	op := &request.Operation{
+		Name:       opDescribePortfolioShares,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"PageToken"},
+			OutputTokens:    []string{"NextPageToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribePortfolioSharesInput{}
+	}
+
+	output = &DescribePortfolioSharesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePortfolioShares API operation for AWS Service Catalog.
+//
+// Returns a summary of each of the portfolio shares that were created for the
+// specified portfolio.
+//
+// You can use this API to determine which accounts or organizational nodes
+// this portfolio have been shared, whether the recipient entity has imported
+// the share, and whether TagOptions are included with the share.
+//
+// The PortfolioId and Type parameters are both required.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation DescribePortfolioShares for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/DescribePortfolioShares
+func (c *ServiceCatalog) DescribePortfolioShares(input *DescribePortfolioSharesInput) (*DescribePortfolioSharesOutput, error) {
+	req, out := c.DescribePortfolioSharesRequest(input)
+	return out, req.Send()
+}
+
+// DescribePortfolioSharesWithContext is the same as DescribePortfolioShares with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePortfolioShares for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) DescribePortfolioSharesWithContext(ctx aws.Context, input *DescribePortfolioSharesInput, opts ...request.Option) (*DescribePortfolioSharesOutput, error) {
+	req, out := c.DescribePortfolioSharesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribePortfolioSharesPages iterates over the pages of a DescribePortfolioShares operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribePortfolioShares method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribePortfolioShares operation.
+//    pageNum := 0
+//    err := client.DescribePortfolioSharesPages(params,
+//        func(page *servicecatalog.DescribePortfolioSharesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ServiceCatalog) DescribePortfolioSharesPages(input *DescribePortfolioSharesInput, fn func(*DescribePortfolioSharesOutput, bool) bool) error {
+	return c.DescribePortfolioSharesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribePortfolioSharesPagesWithContext same as DescribePortfolioSharesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) DescribePortfolioSharesPagesWithContext(ctx aws.Context, input *DescribePortfolioSharesInput, fn func(*DescribePortfolioSharesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribePortfolioSharesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribePortfolioSharesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribePortfolioSharesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeProduct = "DescribeProduct"
@@ -4574,7 +4733,7 @@ func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvis
 //
 // Requests the import of a resource as a Service Catalog provisioned product
 // that is associated to a Service Catalog product and provisioning artifact.
-// Once imported all supported Service Catalog governance actions are supported
+// Once imported, all supported Service Catalog governance actions are supported
 // on the provisioned product.
 //
 // Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets
@@ -4586,6 +4745,9 @@ func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvis
 //
 // Import of the resource requires that the CloudFormation stack template matches
 // the associated Service Catalog product provisioning artifact.
+//
+// The user or role that performs this operation must have the cloudformation:GetTemplate
+// and cloudformation:DescribeStacks IAM policy permissions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7866,6 +8028,111 @@ func (c *ServiceCatalog) UpdatePortfolioWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
+const opUpdatePortfolioShare = "UpdatePortfolioShare"
+
+// UpdatePortfolioShareRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePortfolioShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePortfolioShare for more information on using the UpdatePortfolioShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePortfolioShareRequest method.
+//    req, resp := client.UpdatePortfolioShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioShare
+func (c *ServiceCatalog) UpdatePortfolioShareRequest(input *UpdatePortfolioShareInput) (req *request.Request, output *UpdatePortfolioShareOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePortfolioShare,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdatePortfolioShareInput{}
+	}
+
+	output = &UpdatePortfolioShareOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePortfolioShare API operation for AWS Service Catalog.
+//
+// Updates the specified portfolio share. You can use this API to enable or
+// disable TagOptions sharing for an existing portfolio share.
+//
+// The portfolio share cannot be updated if the CreatePortfolioShare operation
+// is IN_PROGRESS, as the share is not available to recipient entities. In this
+// case, you must wait for the portfolio share to be COMPLETED.
+//
+// You must provide the accountId or organization node in the input, but not
+// both.
+//
+// If the portfolio is shared to both an external account and an organization
+// node, and both shares need to be updated, you must invoke UpdatePortfolioShare
+// separately for each share type.
+//
+// This API cannot be used for removing the portfolio share. You must use DeletePortfolioShare
+// API for that action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation UpdatePortfolioShare for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are not valid.
+//
+//   * OperationNotSupportedException
+//   The operation is not supported.
+//
+//   * InvalidStateException
+//   An attempt was made to modify a resource that is in a state that is not valid.
+//   Check your resources to ensure that they are in valid states before retrying
+//   the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/UpdatePortfolioShare
+func (c *ServiceCatalog) UpdatePortfolioShare(input *UpdatePortfolioShareInput) (*UpdatePortfolioShareOutput, error) {
+	req, out := c.UpdatePortfolioShareRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePortfolioShareWithContext is the same as UpdatePortfolioShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePortfolioShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) UpdatePortfolioShareWithContext(ctx aws.Context, input *UpdatePortfolioShareInput, opts ...request.Option) (*UpdatePortfolioShareOutput, error) {
+	req, out := c.UpdatePortfolioShareRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateProduct = "UpdateProduct"
 
 // UpdateProductRequest generates a "aws/request.Request" representing the
@@ -9856,6 +10123,10 @@ type CreatePortfolioShareInput struct {
 	//
 	// PortfolioId is a required field
 	PortfolioId *string `min:"1" type:"string" required:"true"`
+
+	// Enables or disables TagOptions sharing when creating the portfolio share.
+	// If this flag is not provided, TagOptions sharing is disabled.
+	ShareTagOptions *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -9905,6 +10176,12 @@ func (s *CreatePortfolioShareInput) SetOrganizationNode(v *OrganizationNode) *Cr
 // SetPortfolioId sets the PortfolioId field's value.
 func (s *CreatePortfolioShareInput) SetPortfolioId(v string) *CreatePortfolioShareInput {
 	s.PortfolioId = &v
+	return s
+}
+
+// SetShareTagOptions sets the ShareTagOptions field's value.
+func (s *CreatePortfolioShareInput) SetShareTagOptions(v bool) *CreatePortfolioShareInput {
+	s.ShareTagOptions = &v
 	return s
 }
 
@@ -9970,7 +10247,7 @@ type CreateProductInput struct {
 	// ProductType is a required field
 	ProductType *string `type:"string" required:"true" enum:"ProductType"`
 
-	// The configuration of the provisioning artifact. The info field accepts ImportFromPhysicalID.
+	// The configuration of the provisioning artifact.
 	//
 	// ProvisioningArtifactParameters is a required field
 	ProvisioningArtifactParameters *ProvisioningArtifactProperties `type:"structure" required:"true"`
@@ -9982,6 +10259,8 @@ type CreateProductInput struct {
 	SupportEmail *string `type:"string"`
 
 	// The contact URL for product support.
+	//
+	// ^https?:\/\// / is the pattern used to validate SupportUrl.
 	SupportUrl *string `type:"string"`
 
 	// One or more tags.
@@ -10427,7 +10706,7 @@ type CreateProvisioningArtifactInput struct {
 	// repeated request.
 	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The configuration for the provisioning artifact. The info field accepts ImportFromPhysicalID.
+	// The configuration for the provisioning artifact.
 	//
 	// Parameters is a required field
 	Parameters *ProvisioningArtifactProperties `type:"structure" required:"true"`
@@ -10502,7 +10781,19 @@ func (s *CreateProvisioningArtifactInput) SetProductId(v string) *CreateProvisio
 type CreateProvisioningArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Specify the template source with one of the following options, but not both.
+	// Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ].
+	//
 	// The URL of the CloudFormation template in Amazon S3, in JSON format.
+	//
+	// LoadTemplateFromURL
+	//
+	// Use the URL of the CloudFormation template in Amazon S3 in JSON format.
+	//
+	// ImportFromPhysicalId
+	//
+	// Use the physical id of the resource that contains the template; currently
+	// supports CloudFormation stack ARN.
 	Info map[string]*string `min:"1" type:"map"`
 
 	// Information about the provisioning artifact.
@@ -11782,6 +12073,124 @@ func (s *DescribePortfolioShareStatusOutput) SetStatus(v string) *DescribePortfo
 	return s
 }
 
+type DescribePortfolioSharesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of items to return with this call.
+	PageSize *int64 `type:"integer"`
+
+	// The page token for the next set of results. To retrieve the first set of
+	// results, use null.
+	PageToken *string `type:"string"`
+
+	// The unique identifier of the portfolio for which shares will be retrieved.
+	//
+	// PortfolioId is a required field
+	PortfolioId *string `min:"1" type:"string" required:"true"`
+
+	// The type of portfolio share to summarize. This field acts as a filter on
+	// the type of portfolio share, which can be one of the following:
+	//
+	// 1. ACCOUNT - Represents an external account to account share.
+	//
+	// 2. ORGANIZATION - Represents a share to an organization. This share is available
+	// to every account in the organization.
+	//
+	// 3. ORGANIZATIONAL_UNIT - Represents a share to an organizational unit.
+	//
+	// 4. ORGANIZATION_MEMBER_ACCOUNT - Represents a share to an account in the
+	// organization.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"DescribePortfolioShareType"`
+}
+
+// String returns the string representation
+func (s DescribePortfolioSharesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePortfolioSharesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePortfolioSharesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePortfolioSharesInput"}
+	if s.PortfolioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortfolioId"))
+	}
+	if s.PortfolioId != nil && len(*s.PortfolioId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PortfolioId", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *DescribePortfolioSharesInput) SetPageSize(v int64) *DescribePortfolioSharesInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *DescribePortfolioSharesInput) SetPageToken(v string) *DescribePortfolioSharesInput {
+	s.PageToken = &v
+	return s
+}
+
+// SetPortfolioId sets the PortfolioId field's value.
+func (s *DescribePortfolioSharesInput) SetPortfolioId(v string) *DescribePortfolioSharesInput {
+	s.PortfolioId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribePortfolioSharesInput) SetType(v string) *DescribePortfolioSharesInput {
+	s.Type = &v
+	return s
+}
+
+type DescribePortfolioSharesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The page token to use to retrieve the next set of results. If there are no
+	// additional results, this value is null.
+	NextPageToken *string `type:"string"`
+
+	// Summaries about each of the portfolio shares.
+	PortfolioShareDetails []*PortfolioShareDetail `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribePortfolioSharesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePortfolioSharesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *DescribePortfolioSharesOutput) SetNextPageToken(v string) *DescribePortfolioSharesOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetPortfolioShareDetails sets the PortfolioShareDetails field's value.
+func (s *DescribePortfolioSharesOutput) SetPortfolioShareDetails(v []*PortfolioShareDetail) *DescribePortfolioSharesOutput {
+	s.PortfolioShareDetails = v
+	return s
+}
+
 type DescribeProductAsAdminInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11799,6 +12208,16 @@ type DescribeProductAsAdminInput struct {
 
 	// The product name.
 	Name *string `type:"string"`
+
+	// The unique identifier of the shared portfolio that the specified product
+	// is associated with.
+	//
+	// You can provide this parameter to retrieve the shared TagOptions associated
+	// with the product. If this parameter is provided and if TagOptions sharing
+	// is enabled in the portfolio share, the API returns both local and shared
+	// TagOptions associated with the product. Otherwise only local TagOptions will
+	// be returned.
+	SourcePortfolioId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -11816,6 +12235,9 @@ func (s *DescribeProductAsAdminInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeProductAsAdminInput"}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.SourcePortfolioId != nil && len(*s.SourcePortfolioId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourcePortfolioId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -11839,6 +12261,12 @@ func (s *DescribeProductAsAdminInput) SetId(v string) *DescribeProductAsAdminInp
 // SetName sets the Name field's value.
 func (s *DescribeProductAsAdminInput) SetName(v string) *DescribeProductAsAdminInput {
 	s.Name = &v
+	return s
+}
+
+// SetSourcePortfolioId sets the SourcePortfolioId field's value.
+func (s *DescribeProductAsAdminInput) SetSourcePortfolioId(v string) *DescribeProductAsAdminInput {
+	s.SourcePortfolioId = &v
 	return s
 }
 
@@ -16592,6 +17020,69 @@ func (s *PortfolioDetail) SetProviderName(v string) *PortfolioDetail {
 	return s
 }
 
+// Information about the portfolio share.
+type PortfolioShareDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the shared portfolio is imported by the recipient account.
+	// If the recipient is in an organization node, the share is automatically imported,
+	// and the field is always set to true.
+	Accepted *bool `type:"boolean"`
+
+	// The identifier of the recipient entity that received the portfolio share.
+	// The recipient entities can be one of the following:
+	//
+	// 1. An external account.
+	//
+	// 2. An organziation member account.
+	//
+	// 3. An organzational unit (OU).
+	//
+	// 4. The organization itself. (This shares with every account in the organization).
+	PrincipalId *string `min:"1" type:"string"`
+
+	// Indicates whether TagOptions sharing is enabled or disabled for the portfolio
+	// share.
+	ShareTagOptions *bool `type:"boolean"`
+
+	// The type of the portfolio share.
+	Type *string `type:"string" enum:"DescribePortfolioShareType"`
+}
+
+// String returns the string representation
+func (s PortfolioShareDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PortfolioShareDetail) GoString() string {
+	return s.String()
+}
+
+// SetAccepted sets the Accepted field's value.
+func (s *PortfolioShareDetail) SetAccepted(v bool) *PortfolioShareDetail {
+	s.Accepted = &v
+	return s
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *PortfolioShareDetail) SetPrincipalId(v string) *PortfolioShareDetail {
+	s.PrincipalId = &v
+	return s
+}
+
+// SetShareTagOptions sets the ShareTagOptions field's value.
+func (s *PortfolioShareDetail) SetShareTagOptions(v bool) *PortfolioShareDetail {
+	s.ShareTagOptions = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PortfolioShareDetail) SetType(v string) *PortfolioShareDetail {
+	s.Type = &v
+	return s
+}
+
 // Information about a principal.
 type Principal struct {
 	_ struct{} `type:"structure"`
@@ -18008,10 +18499,17 @@ type ProvisioningArtifactProperties struct {
 	// artifact even if it is invalid.
 	DisableTemplateValidation *bool `type:"boolean"`
 
+	// Specify the template source with one of the following options, but not both.
+	// Keys accepted: [ LoadTemplateFromURL, ImportFromPhysicalId ]
+	//
 	// The URL of the CloudFormation template in Amazon S3. Specify the URL in JSON
 	// format as follows:
 	//
 	// "LoadTemplateFromURL": "https://s3.amazonaws.com/cf-templates-ozkq9d3hgiq2-us-east-1/..."
+	//
+	// ImportFromPhysicalId: The physical id of the resource that contains the template.
+	// Currently only supports CloudFormation stack arn. Specify the physical id
+	// in JSON format as follows: ImportFromPhysicalId: “arn:aws:cloudformation:[us-east-1]:[accountId]:stack/[StackName]/[resourceId]
 	//
 	// Info is a required field
 	Info map[string]*string `min:"1" type:"map" required:"true"`
@@ -18230,19 +18728,30 @@ func (s *ProvisioningParameter) SetValue(v string) *ProvisioningParameter {
 }
 
 // The user-defined preferences that will be applied when updating a provisioned
-// product. Not all preferences are applicable to all provisioned product types.
+// product. Not all preferences are applicable to all provisioned product type
+//
+// One or more AWS accounts that will have access to the provisioned product.
+//
+// Applicable only to a CFN_STACKSET provisioned product type.
+//
+// The AWS accounts specified should be within the list of accounts in the STACKSET
+// constraint. To get the list of accounts in the STACKSET constraint, use the
+// DescribeProvisioningParameters operation.
+//
+// If no values are specified, the default value is all accounts from the STACKSET
+// constraint.
 type ProvisioningPreferences struct {
 	_ struct{} `type:"structure"`
 
-	// One or more AWS accounts that will have access to the provisioned product.
+	// One or more AWS accounts where the provisioned product will be available.
 	//
 	// Applicable only to a CFN_STACKSET provisioned product type.
 	//
-	// The AWS accounts specified should be within the list of accounts in the STACKSET
+	// The specified accounts should be within the list of accounts from the STACKSET
 	// constraint. To get the list of accounts in the STACKSET constraint, use the
 	// DescribeProvisioningParameters operation.
 	//
-	// If no values are specified, the default value is all accounts from the STACKSET
+	// If no values are specified, the default value is all acounts from the STACKSET
 	// constraint.
 	StackSetAccounts []*string `type:"list"`
 
@@ -19933,6 +20442,9 @@ type TagOptionDetail struct {
 	// The TagOption key.
 	Key *string `min:"1" type:"string"`
 
+	// The AWS account Id of the owner account that created the TagOption.
+	Owner *string `type:"string"`
+
 	// The TagOption value.
 	Value *string `min:"1" type:"string"`
 }
@@ -19962,6 +20474,12 @@ func (s *TagOptionDetail) SetId(v string) *TagOptionDetail {
 // SetKey sets the Key field's value.
 func (s *TagOptionDetail) SetKey(v string) *TagOptionDetail {
 	s.Key = &v
+	return s
+}
+
+// SetOwner sets the Owner field's value.
+func (s *TagOptionDetail) SetOwner(v string) *TagOptionDetail {
+	s.Owner = &v
 	return s
 }
 
@@ -20508,6 +21026,126 @@ func (s *UpdatePortfolioOutput) SetPortfolioDetail(v *PortfolioDetail) *UpdatePo
 // SetTags sets the Tags field's value.
 func (s *UpdatePortfolioOutput) SetTags(v []*Tag) *UpdatePortfolioOutput {
 	s.Tags = v
+	return s
+}
+
+type UpdatePortfolioShareInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code.
+	//
+	//    * en - English (default)
+	//
+	//    * jp - Japanese
+	//
+	//    * zh - Chinese
+	AcceptLanguage *string `type:"string"`
+
+	// The AWS Account Id of the recipient account. This field is required when
+	// updating an external account to account type share.
+	AccountId *string `type:"string"`
+
+	// Information about the organization node.
+	OrganizationNode *OrganizationNode `type:"structure"`
+
+	// The unique identifier of the portfolio for which the share will be updated.
+	//
+	// PortfolioId is a required field
+	PortfolioId *string `min:"1" type:"string" required:"true"`
+
+	// A flag to enable or disable TagOptions sharing for the portfolio share. If
+	// this field is not provided, the current state of TagOptions sharing on the
+	// portfolio share will not be modified.
+	ShareTagOptions *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s UpdatePortfolioShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePortfolioShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePortfolioShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePortfolioShareInput"}
+	if s.PortfolioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortfolioId"))
+	}
+	if s.PortfolioId != nil && len(*s.PortfolioId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PortfolioId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceptLanguage sets the AcceptLanguage field's value.
+func (s *UpdatePortfolioShareInput) SetAcceptLanguage(v string) *UpdatePortfolioShareInput {
+	s.AcceptLanguage = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdatePortfolioShareInput) SetAccountId(v string) *UpdatePortfolioShareInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetOrganizationNode sets the OrganizationNode field's value.
+func (s *UpdatePortfolioShareInput) SetOrganizationNode(v *OrganizationNode) *UpdatePortfolioShareInput {
+	s.OrganizationNode = v
+	return s
+}
+
+// SetPortfolioId sets the PortfolioId field's value.
+func (s *UpdatePortfolioShareInput) SetPortfolioId(v string) *UpdatePortfolioShareInput {
+	s.PortfolioId = &v
+	return s
+}
+
+// SetShareTagOptions sets the ShareTagOptions field's value.
+func (s *UpdatePortfolioShareInput) SetShareTagOptions(v bool) *UpdatePortfolioShareInput {
+	s.ShareTagOptions = &v
+	return s
+}
+
+type UpdatePortfolioShareOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token that tracks the status of the UpdatePortfolioShare operation for
+	// external account to account or organizational type sharing.
+	PortfolioShareToken *string `min:"1" type:"string"`
+
+	// The status of UpdatePortfolioShare operation. You can also obtain the operation
+	// status using DescribePortfolioShareStatus API.
+	Status *string `type:"string" enum:"ShareStatus"`
+}
+
+// String returns the string representation
+func (s UpdatePortfolioShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePortfolioShareOutput) GoString() string {
+	return s.String()
+}
+
+// SetPortfolioShareToken sets the PortfolioShareToken field's value.
+func (s *UpdatePortfolioShareOutput) SetPortfolioShareToken(v string) *UpdatePortfolioShareOutput {
+	s.PortfolioShareToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdatePortfolioShareOutput) SetStatus(v string) *UpdatePortfolioShareOutput {
+	s.Status = &v
 	return s
 }
 
@@ -21790,6 +22428,30 @@ func CopyProductStatus_Values() []string {
 		CopyProductStatusSucceeded,
 		CopyProductStatusInProgress,
 		CopyProductStatusFailed,
+	}
+}
+
+const (
+	// DescribePortfolioShareTypeAccount is a DescribePortfolioShareType enum value
+	DescribePortfolioShareTypeAccount = "ACCOUNT"
+
+	// DescribePortfolioShareTypeOrganization is a DescribePortfolioShareType enum value
+	DescribePortfolioShareTypeOrganization = "ORGANIZATION"
+
+	// DescribePortfolioShareTypeOrganizationalUnit is a DescribePortfolioShareType enum value
+	DescribePortfolioShareTypeOrganizationalUnit = "ORGANIZATIONAL_UNIT"
+
+	// DescribePortfolioShareTypeOrganizationMemberAccount is a DescribePortfolioShareType enum value
+	DescribePortfolioShareTypeOrganizationMemberAccount = "ORGANIZATION_MEMBER_ACCOUNT"
+)
+
+// DescribePortfolioShareType_Values returns all elements of the DescribePortfolioShareType enum
+func DescribePortfolioShareType_Values() []string {
+	return []string{
+		DescribePortfolioShareTypeAccount,
+		DescribePortfolioShareTypeOrganization,
+		DescribePortfolioShareTypeOrganizationalUnit,
+		DescribePortfolioShareTypeOrganizationMemberAccount,
 	}
 }
 

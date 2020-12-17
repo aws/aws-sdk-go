@@ -1,15 +1,17 @@
 {
   "version": "2.0",
-  "service": "<p>EC2 Image Builder is a fully managed AWS service that makes it easier to automate the creation, management, and deployment of customized, secure, and up-to-date “golden” server images that are pre-installed and pre-configured with software and settings to meet specific IT standards.</p>",
+  "service": "<p>EC2 Image Builder is a fully managed AWS service that makes it easier to automate the creation, management, and deployment of customized, secure, and up-to-date \"golden\" server images that are pre-installed and pre-configured with software and settings to meet specific IT standards.</p>",
   "operations": {
     "CancelImageCreation": "<p>CancelImageCreation cancels the creation of Image. This operation can only be used on images in a non-terminal state.</p>",
     "CreateComponent": "<p>Creates a new component that can be used to build, validate, test, and assess your image.</p>",
+    "CreateContainerRecipe": "<p>Creates a new container recipe. Container recipes define how images are configured, tested, and assessed.</p>",
     "CreateDistributionConfiguration": "<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline. </p>",
     "CreateImage": "<p> Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. </p>",
     "CreateImagePipeline": "<p> Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images. </p>",
     "CreateImageRecipe": "<p> Creates a new image recipe. Image recipes define how images are configured, tested, and assessed. </p>",
     "CreateInfrastructureConfiguration": "<p> Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested. </p>",
     "DeleteComponent": "<p> Deletes a component build version. </p>",
+    "DeleteContainerRecipe": "<p>Deletes a container recipe.</p>",
     "DeleteDistributionConfiguration": "<p> Deletes a distribution configuration. </p>",
     "DeleteImage": "<p> Deletes an image. </p>",
     "DeleteImagePipeline": "<p> Deletes an image pipeline. </p>",
@@ -17,6 +19,8 @@
     "DeleteInfrastructureConfiguration": "<p> Deletes an infrastructure configuration. </p>",
     "GetComponent": "<p> Gets a component object. </p>",
     "GetComponentPolicy": "<p> Gets a component policy. </p>",
+    "GetContainerRecipe": "<p>Retrieves a container recipe.</p>",
+    "GetContainerRecipePolicy": "<p>Retrieves the policy for a container recipe.</p>",
     "GetDistributionConfiguration": "<p> Gets a distribution configuration. </p>",
     "GetImage": "<p> Gets an image. </p>",
     "GetImagePipeline": "<p> Gets an image pipeline. </p>",
@@ -27,7 +31,8 @@
     "ImportComponent": "<p>Imports a component and transforms its data into a component document. </p>",
     "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version. </p>",
     "ListComponents": "<p>Returns the list of component build versions for the specified semantic version. </p>",
-    "ListDistributionConfigurations": "<p> Returns a list of distribution configurations. </p>",
+    "ListContainerRecipes": "<p>Returns a list of container recipes.</p>",
+    "ListDistributionConfigurations": "<p>Returns a list of distribution configurations. </p>",
     "ListImageBuildVersions": "<p> Returns a list of image build versions. </p>",
     "ListImagePipelineImages": "<p> Returns a list of images created by the specified pipeline. </p>",
     "ListImagePipelines": "<p>Returns a list of image pipelines. </p>",
@@ -36,6 +41,7 @@
     "ListInfrastructureConfigurations": "<p> Returns a list of infrastructure configurations. </p>",
     "ListTagsForResource": "<p> Returns the list of tags for the specified resource. </p>",
     "PutComponentPolicy": "<p> Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared. </p>",
+    "PutContainerRecipePolicy": "<p>Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutImagePolicy": "<p>Applies a policy to an image. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImagePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared. </p>",
     "PutImageRecipePolicy": "<p> Applies a policy to an image recipe. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared. </p>",
     "StartImagePipelineExecution": "<p> Manually triggers a pipeline to create an image. </p>",
@@ -88,8 +94,16 @@
       "refs": {
         "Image$sourcePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that created this image.</p>",
         "ImagePipeline$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe associated with this image pipeline.</p>",
+        "ImagePipeline$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe that is used for this pipeline.</p>",
         "ImagePipeline$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration associated with this image pipeline.</p>",
         "ImagePipeline$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration associated with this image pipeline.</p>"
+      }
+    },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "ListComponentsRequest$byName": "<p>Returns the list of component build versions for the specified semantic version.</p>",
+        "ListImagesRequest$byName": "<p>Requests a list of images with a specific recipe name.</p>"
       }
     },
     "CallRateLimitExceededException": {
@@ -119,6 +133,8 @@
         "CancelImageCreationResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
         "CreateComponentRequest$clientToken": "<p>The idempotency token of the component.</p>",
         "CreateComponentResponse$clientToken": "<p>The idempotency token used to make this request idempotent.</p>",
+        "CreateContainerRecipeRequest$clientToken": "<p>The client token used to make this request idempotent.</p>",
+        "CreateContainerRecipeResponse$clientToken": "<p>The client token used to make this request idempotent.</p>",
         "CreateDistributionConfigurationRequest$clientToken": "<p> The idempotency token of the distribution configuration. </p>",
         "CreateDistributionConfigurationResponse$clientToken": "<p> The idempotency token used to make this request idempotent. </p>",
         "CreateImagePipelineRequest$clientToken": "<p> The idempotency token used to make this request idempotent. </p>",
@@ -168,6 +184,8 @@
     "ComponentConfigurationList": {
       "base": null,
       "refs": {
+        "ContainerRecipe$components": "<p>Components for build and test that are included in the container recipe.</p>",
+        "CreateContainerRecipeRequest$components": "<p>Components for build and test that are included in the container recipe.</p>",
         "CreateImageRecipeRequest$components": "<p>The components of the image recipe. </p>",
         "ImageRecipe$components": "<p>The components of the image recipe.</p>"
       }
@@ -230,12 +248,88 @@
         "ListComponentsResponse$componentVersionList": "<p>The list of component semantic versions. </p>"
       }
     },
+    "Container": {
+      "base": "<p>A container encapsulates the runtime environment for an application.</p>",
+      "refs": {
+        "ContainerList$member": null
+      }
+    },
+    "ContainerDistributionConfiguration": {
+      "base": "<p>Container distribution settings for encryption, licensing, and sharing in a specific Region.</p>",
+      "refs": {
+        "Distribution$containerDistributionConfiguration": "<p>Container distribution settings for encryption, licensing, and sharing in a specific Region.</p>"
+      }
+    },
+    "ContainerList": {
+      "base": null,
+      "refs": {
+        "OutputResources$containers": "<p>Container images that the pipeline has generated and stored in the output repository.</p>"
+      }
+    },
+    "ContainerRecipe": {
+      "base": "<p>A container recipe.</p>",
+      "refs": {
+        "GetContainerRecipeResponse$containerRecipe": "<p>The container recipe object that is returned.</p>",
+        "Image$containerRecipe": "<p>The container recipe used to create the container image type.</p>"
+      }
+    },
+    "ContainerRecipeArn": {
+      "base": null,
+      "refs": {
+        "CreateContainerRecipeResponse$containerRecipeArn": "<p>Returns the Amazon Resource Name (ARN) of the container recipe that the request created.</p>",
+        "CreateImagePipelineRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe that is used to configure images created by this container pipeline.</p>",
+        "CreateImageRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested.</p>",
+        "DeleteContainerRecipeRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe to delete.</p>",
+        "DeleteContainerRecipeResponse$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe that was deleted.</p>",
+        "GetContainerRecipePolicyRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe for the policy being requested.</p>",
+        "GetContainerRecipeRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe to retrieve.</p>",
+        "PutContainerRecipePolicyRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe that this policy should be applied to.</p>",
+        "PutContainerRecipePolicyResponse$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container recipe that this policy was applied to.</p>",
+        "UpdateImagePipelineRequest$containerRecipeArn": "<p>The Amazon Resource Name (ARN) of the container pipeline to update.</p>"
+      }
+    },
+    "ContainerRecipeSummary": {
+      "base": "<p>A summary of a container recipe</p>",
+      "refs": {
+        "ContainerRecipeSummaryList$member": null
+      }
+    },
+    "ContainerRecipeSummaryList": {
+      "base": null,
+      "refs": {
+        "ListContainerRecipesResponse$containerRecipeSummaryList": "<p>The list of container recipes returned for the request.</p>"
+      }
+    },
+    "ContainerRepositoryService": {
+      "base": null,
+      "refs": {
+        "TargetContainerRepository$service": "<p>Specifies the service in which this image was registered.</p>"
+      }
+    },
+    "ContainerType": {
+      "base": null,
+      "refs": {
+        "ContainerRecipe$containerType": "<p>Specifies the type of container, such as Docker.</p>",
+        "ContainerRecipeSummary$containerType": "<p>Specifies the type of container, such as \"Docker\".</p>",
+        "CreateContainerRecipeRequest$containerType": "<p>The type of container to create.</p>"
+      }
+    },
     "CreateComponentRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerRecipeResponse": {
       "base": null,
       "refs": {
       }
@@ -296,6 +390,8 @@
         "Component$dateCreated": "<p>The date that the component was created.</p>",
         "ComponentSummary$dateCreated": "<p>The date that the component was created.</p>",
         "ComponentVersion$dateCreated": "<p>The date that the component was created.</p>",
+        "ContainerRecipe$dateCreated": "<p>The date when this container recipe was created.</p>",
+        "ContainerRecipeSummary$dateCreated": "<p>The date when this container recipe was created.</p>",
         "DistributionConfiguration$dateCreated": "<p>The date on which this distribution configuration was created.</p>",
         "DistributionConfiguration$dateUpdated": "<p>The date on which this distribution configuration was last updated.</p>",
         "DistributionConfigurationSummary$dateCreated": "<p>The date on which the distribution configuration was created.</p>",
@@ -321,6 +417,16 @@
       }
     },
     "DeleteComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContainerRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContainerRecipeResponse": {
       "base": null,
       "refs": {
       }
@@ -428,6 +534,12 @@
         "DistributionConfiguration$timeoutMinutes": "<p>The maximum duration in minutes for this distribution configuration.</p>"
       }
     },
+    "DockerFileTemplate": {
+      "base": null,
+      "refs": {
+        "ContainerRecipe$dockerfileTemplateData": "<p>Dockerfiles are text documents that are used to build Docker containers, and ensure that they contain all of the elements required by the application running inside. The template data consists of contextual variables where Image Builder places build information or scripts, based on your container image recipe.</p>"
+      }
+    },
     "EbsInstanceBlockDeviceSpecification": {
       "base": "<p>Amazon EBS-specific block device mapping specifications.</p>",
       "refs": {
@@ -490,6 +602,7 @@
       "base": null,
       "refs": {
         "ListComponentsRequest$filters": "<p>The filters. </p>",
+        "ListContainerRecipesRequest$filters": "<p>Request filters that are used to narrow the list of container images that are returned.</p>",
         "ListDistributionConfigurationsRequest$filters": "<p>The filters. </p> <ul> <li> <p> <code>name</code> - The name of this distribution configuration.</p> </li> </ul>",
         "ListImageBuildVersionsRequest$filters": "<p>The filters. </p>",
         "ListImagePipelineImagesRequest$filters": "<p>The filters. </p>",
@@ -538,6 +651,26 @@
       }
     },
     "GetComponentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerRecipePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerRecipePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerRecipeResponse": {
       "base": null,
       "refs": {
       }
@@ -643,6 +776,8 @@
         "Component$arn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
         "ComponentSummary$arn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
         "ComponentVersion$arn": "<p>The Amazon Resource Name (ARN) of the component.</p>",
+        "ContainerRecipe$arn": "<p>The Amazon Resource Name (ARN) of the container recipe.</p>",
+        "ContainerRecipeSummary$arn": "<p>The Amazon Resource Name (ARN) of the container recipe.</p>",
         "DistributionConfiguration$arn": "<p>The Amazon Resource Name (ARN) of the distribution configuration.</p>",
         "DistributionConfigurationSummary$arn": "<p>The Amazon Resource Name (ARN) of the distribution configuration.</p>",
         "Image$arn": "<p>The Amazon Resource Name (ARN) of the image.</p>",
@@ -761,6 +896,15 @@
         "ImageTestsConfiguration$timeoutMinutes": "<p>The maximum time in minutes that tests are permitted to run.</p>"
       }
     },
+    "ImageType": {
+      "base": null,
+      "refs": {
+        "Image$type": "<p>Specifies whether this is an AMI or container image.</p>",
+        "ImageRecipe$type": "<p>Specifies which type of image is created by the recipe - an AMI or a container image.</p>",
+        "ImageSummary$type": "<p>Specifies whether this is an AMI or container image.</p>",
+        "ImageVersion$type": "<p>Specifies whether this is an AMI or container image.</p>"
+      }
+    },
     "ImageVersion": {
       "base": "<p>An image semantic version.</p>",
       "refs": {
@@ -832,6 +976,12 @@
       "base": null,
       "refs": {
         "CreateComponentRequest$data": "<p>The data of the component. Used to specify the data inline. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>"
+      }
+    },
+    "InlineDockerFileTemplate": {
+      "base": null,
+      "refs": {
+        "CreateContainerRecipeRequest$dockerfileTemplateData": "<p>The Dockerfile template used to build your image as an inline data blob.</p>"
       }
     },
     "InstanceBlockDeviceMapping": {
@@ -925,6 +1075,16 @@
       }
     },
     "ListComponentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContainerRecipesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContainerRecipesResponse": {
       "base": null,
       "refs": {
       }
@@ -1037,10 +1197,25 @@
         "ComponentSummary$changeDescription": "<p>The change description of the component.</p>",
         "ComponentVersion$description": "<p>The description of the component.</p>",
         "ComponentVersion$owner": "<p>The owner of the component.</p>",
+        "Container$region": "<p>Containers and container images are Region-specific. This is the Region context for the container.</p>",
+        "ContainerDistributionConfiguration$description": "<p>The description of the container distribution configuration.</p>",
+        "ContainerRecipe$description": "<p>The description of the container recipe.</p>",
+        "ContainerRecipe$owner": "<p>The owner of the container recipe.</p>",
+        "ContainerRecipe$kmsKeyId": "<p>Identifies which KMS key is used to encrypt the container image for distribution to the target Region.</p>",
+        "ContainerRecipe$parentImage": "<p>The source image for the container recipe.</p>",
+        "ContainerRecipe$workingDirectory": "<p>The working directory for use during build and test workflows.</p>",
+        "ContainerRecipeSummary$owner": "<p>The owner of the container recipe.</p>",
+        "ContainerRecipeSummary$parentImage": "<p>The source image for the container recipe.</p>",
         "CreateComponentRequest$description": "<p>The description of the component. Describes the contents of the component.</p>",
         "CreateComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.</p>",
         "CreateComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component.</p>",
         "CreateComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "CreateContainerRecipeRequest$description": "<p>The description of the container recipe.</p>",
+        "CreateContainerRecipeRequest$imageOsVersionOverride": "<p>Specifies the operating system version for the source image.</p>",
+        "CreateContainerRecipeRequest$parentImage": "<p>The source image for the container recipe.</p>",
+        "CreateContainerRecipeRequest$workingDirectory": "<p>The working directory for use during build and test workflows.</p>",
+        "CreateContainerRecipeRequest$kmsKeyId": "<p>Identifies which KMS key is used to encrypt the container image.</p>",
+        "CreateContainerRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateDistributionConfigurationRequest$description": "<p> The description of the distribution configuration. </p>",
         "CreateDistributionConfigurationResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "CreateImagePipelineRequest$description": "<p> The description of the image pipeline. </p>",
@@ -1056,6 +1231,7 @@
         "CreateInfrastructureConfigurationRequest$keyPair": "<p>The key pair of the infrastructure configuration. This can be used to log on to and debug the instance used to create your image. </p>",
         "CreateInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "DeleteComponentResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "DeleteContainerRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "DeleteDistributionConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "DeleteImagePipelineResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "DeleteImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
@@ -1068,6 +1244,8 @@
         "EbsInstanceBlockDeviceSpecification$snapshotId": "<p>The snapshot that defines the device contents.</p>",
         "GetComponentPolicyResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "GetComponentResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "GetContainerRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "GetContainerRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "GetDistributionConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "GetImagePipelineResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "GetImagePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
@@ -1100,6 +1278,9 @@
         "InstanceBlockDeviceMapping$virtualName": "<p>Use to manage instance ephemeral devices.</p>",
         "ListComponentBuildVersionsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListComponentsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "ListContainerRecipesRequest$nextToken": "<p>Provides a token for pagination, which determines where to begin the next set of results when the current set reaches the maximum for one request.</p>",
+        "ListContainerRecipesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
+        "ListContainerRecipesResponse$nextToken": "<p>The next token field is used for paginated responses. When this is not empty, there are additional container recipes that the service has not included in this response. Use this token with the next request to retrieve additional list items.</p>",
         "ListDistributionConfigurationsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListImageBuildVersionsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListImagePipelineImagesResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
@@ -1108,14 +1289,17 @@
         "ListImagesResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListInfrastructureConfigurationsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "PutComponentPolicyResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "PutContainerRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "PutImagePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "PutImageRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "RegionList$member": null,
         "S3Logs$s3BucketName": "<p>The Amazon S3 bucket in which to store the logs.</p>",
         "S3Logs$s3KeyPrefix": "<p>The Amazon S3 path in which to store the logs.</p>",
         "Schedule$scheduleExpression": "<p>The cron expression determines how often EC2 Image Builder evaluates your <code>pipelineExecutionStartCondition</code>.</p> <p>For information on how to format a cron expression in Image Builder, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/userguide/image-builder-cron.html\">Use cron expressions in EC2 Image Builder</a>.</p>",
         "SecurityGroupIds$member": null,
         "StartImagePipelineExecutionResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "StringList$member": null,
+        "TargetContainerRepository$repositoryName": "<p>The name of the container repository where the output container image is stored. This name is prefixed by the repository location.</p>",
         "UpdateDistributionConfigurationRequest$description": "<p>The description of the distribution configuration. </p>",
         "UpdateDistributionConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "UpdateImagePipelineRequest$description": "<p>The description of the image pipeline. </p>",
@@ -1131,6 +1315,7 @@
       "base": null,
       "refs": {
         "Component$encrypted": "<p>The encryption status of the component.</p>",
+        "ContainerRecipe$encrypted": "<p>A flag that indicates if the target container is encrypted.</p>",
         "CreateImagePipelineRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default. </p>",
         "CreateImageRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default. </p>",
         "CreateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails. </p>",
@@ -1140,6 +1325,7 @@
         "ImagePipeline$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default. </p>",
         "ImageTestsConfiguration$imageTestsEnabled": "<p>Defines if tests should be executed when building this image.</p>",
         "InfrastructureConfiguration$terminateInstanceOnFailure": "<p>The terminate instance on failure configuration of the infrastructure configuration.</p>",
+        "ListImagesRequest$includeDeprecated": "<p>Includes deprecated images in the response list.</p>",
         "UpdateImagePipelineRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default. </p>",
         "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails. </p>"
       }
@@ -1173,6 +1359,7 @@
       "base": null,
       "refs": {
         "ListComponentsRequest$owner": "<p>The owner defines which components you want to list. By default, this request will only show components owned by your account. You can use this field to specify if you want to view components owned by yourself, by Amazon, or those components that have been shared with you by other customers. </p>",
+        "ListContainerRecipesRequest$owner": "<p>Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.</p>",
         "ListImageRecipesRequest$owner": "<p>The owner defines which image recipes you want to list. By default, this request will only show image recipes owned by your account. You can use this field to specify if you want to view image recipes owned by yourself, by Amazon, or those image recipes that have been shared with you by other customers. </p>",
         "ListImagesRequest$owner": "<p>The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers. </p>"
       }
@@ -1220,7 +1407,10 @@
         "Component$platform": "<p>The platform of the component.</p>",
         "ComponentSummary$platform": "<p>The platform of the component.</p>",
         "ComponentVersion$platform": "<p>The platform of the component.</p>",
+        "ContainerRecipe$platform": "<p>The system platform for the container, such as Windows or Linux.</p>",
+        "ContainerRecipeSummary$platform": "<p>The system platform for the container, such as Windows or Linux.</p>",
         "CreateComponentRequest$platform": "<p>The platform of the component.</p>",
+        "CreateContainerRecipeRequest$platformOverride": "<p>Specifies the operating system platform when you use a custom source image.</p>",
         "Image$platform": "<p>The platform of the image.</p>",
         "ImagePipeline$platform": "<p>The platform of the image pipeline.</p>",
         "ImageRecipe$platform": "<p>The platform of the image recipe.</p>",
@@ -1236,6 +1426,16 @@
       }
     },
     "PutComponentPolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutContainerRecipePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutContainerRecipePolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -1260,6 +1460,12 @@
       "refs": {
       }
     },
+    "RegionList": {
+      "base": null,
+      "refs": {
+        "DistributionConfigurationSummary$regions": "<p>A list of Regions where the container image is distributed to.</p>"
+      }
+    },
     "ResourceAlreadyExistsException": {
       "base": "<p>The resource that you are trying to create already exists.</p>",
       "refs": {
@@ -1281,7 +1487,10 @@
         "Component$name": "<p>The name of the component.</p>",
         "ComponentSummary$name": "<p>The name of the component.</p>",
         "ComponentVersion$name": "<p>The name of the component.</p>",
+        "ContainerRecipe$name": "<p>The name of the container recipe.</p>",
+        "ContainerRecipeSummary$name": "<p>The name of the container recipe.</p>",
         "CreateComponentRequest$name": "<p>The name of the component.</p>",
+        "CreateContainerRecipeRequest$name": "<p>The name of the container recipe.</p>",
         "CreateDistributionConfigurationRequest$name": "<p> The name of the distribution configuration. </p>",
         "CreateImagePipelineRequest$name": "<p> The name of the image pipeline. </p>",
         "CreateImageRecipeRequest$name": "<p> The name of the image recipe. </p>",
@@ -1309,9 +1518,11 @@
       "base": null,
       "refs": {
         "GetComponentPolicyResponse$policy": "<p>The component policy. </p>",
+        "GetContainerRecipePolicyResponse$policy": "<p>The container recipe policy object that is returned.</p>",
         "GetImagePolicyResponse$policy": "<p>The image policy object. </p>",
         "GetImageRecipePolicyResponse$policy": "<p>The image recipe policy object. </p>",
         "PutComponentPolicyRequest$policy": "<p>The policy to apply. </p>",
+        "PutContainerRecipePolicyRequest$policy": "<p>The policy to apply to the container recipe.</p>",
         "PutImagePolicyRequest$policy": "<p>The policy to apply. </p>",
         "PutImageRecipePolicyRequest$policy": "<p>The policy to apply. </p>"
       }
@@ -1330,6 +1541,7 @@
       "refs": {
         "ListComponentBuildVersionsRequest$maxResults": "<p>The maximum items to return in a request. </p>",
         "ListComponentsRequest$maxResults": "<p>The maximum items to return in a request. </p>",
+        "ListContainerRecipesRequest$maxResults": "<p>The maximum number of results to return in the list.</p>",
         "ListDistributionConfigurationsRequest$maxResults": "<p>The maximum items to return in a request. </p>",
         "ListImageBuildVersionsRequest$maxResults": "<p>The maximum items to return in a request. </p>",
         "ListImagePipelineImagesRequest$maxResults": "<p>The maximum items to return in a request. </p>",
@@ -1396,6 +1608,8 @@
     "StringList": {
       "base": null,
       "refs": {
+        "Container$imageUris": "<p>A list of URIs for containers created in the context Region.</p>",
+        "ContainerDistributionConfiguration$containerTags": "<p>Tags that are attached to the container distribution configuration.</p>",
         "LaunchPermissionConfiguration$userGroups": "<p>The name of the group. </p>"
       }
     },
@@ -1419,7 +1633,10 @@
         "AmiDistributionConfiguration$amiTags": "<p>The tags to apply to AMIs distributed to this Region. </p>",
         "Component$tags": "<p>The tags associated with the component.</p>",
         "ComponentSummary$tags": "<p>The tags associated with the component.</p>",
+        "ContainerRecipe$tags": "<p>Tags that are attached to the container recipe.</p>",
+        "ContainerRecipeSummary$tags": "<p>Tags that are attached to the container recipe.</p>",
         "CreateComponentRequest$tags": "<p>The tags of the component.</p>",
+        "CreateContainerRecipeRequest$tags": "<p>Tags that are attached to the container recipe.</p>",
         "CreateDistributionConfigurationRequest$tags": "<p> The tags of the distribution configuration. </p>",
         "CreateImagePipelineRequest$tags": "<p> The tags of the image pipeline. </p>",
         "CreateImageRecipeRequest$tags": "<p> The tags of the image recipe. </p>",
@@ -1454,6 +1671,14 @@
       "refs": {
         "ResourceTagMap$value": null,
         "TagMap$value": null
+      }
+    },
+    "TargetContainerRepository": {
+      "base": "<p>The container repository where the output container image is stored.</p>",
+      "refs": {
+        "ContainerDistributionConfiguration$targetRepository": "<p>The destination repository for the container distribution configuration.</p>",
+        "ContainerRecipe$targetRepository": "<p>The destination repository for the container image.</p>",
+        "CreateContainerRecipeRequest$targetRepository": "<p>The destination repository for the container image.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1500,6 +1725,7 @@
       "base": null,
       "refs": {
         "CreateComponentRequest$uri": "<p>The uri of the component. Must be an S3 URL and the requester must have permission to access the S3 bucket. If you use S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component.</p>",
+        "CreateContainerRecipeRequest$dockerfileTemplateUri": "<p>The S3 URI for the Dockerfile that will be used to build your container image.</p>",
         "ImportComponentRequest$uri": "<p>The uri of the component. Must be an S3 URL and the requester must have permission to access the S3 bucket. If you use S3, you can specify component content up to your service quota. Either <code>data</code> or <code>uri</code> can be used to specify the data within the component. </p>"
       }
     },
@@ -1509,7 +1735,9 @@
         "Component$version": "<p>The version of the component.</p>",
         "ComponentSummary$version": "<p>The version of the component.</p>",
         "ComponentVersion$version": "<p>The semantic version of the component.</p>",
+        "ContainerRecipe$version": "<p>The semantic version of the container recipe (&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;).</p>",
         "CreateComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax. For example, major.minor.patch. This could be versioned like software (2.0.1) or like a date (2019.12.01).</p>",
+        "CreateContainerRecipeRequest$semanticVersion": "<p>The semantic version of the container recipe (&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;).</p>",
         "CreateImageRecipeRequest$semanticVersion": "<p>The semantic version of the image recipe. </p>",
         "Image$version": "<p>The semantic version of the image.</p>",
         "ImageRecipe$version": "<p>The version of the image recipe.</p>",

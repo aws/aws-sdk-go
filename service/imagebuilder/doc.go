@@ -5,7 +5,7 @@
 //
 // EC2 Image Builder is a fully managed AWS service that makes it easier to
 // automate the creation, management, and deployment of customized, secure,
-// and up-to-date “golden” server images that are pre-installed and pre-configured
+// and up-to-date "golden" server images that are pre-installed and pre-configured
 // with software and settings to meet specific IT standards.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02 for more information on this service.

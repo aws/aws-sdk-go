@@ -413,6 +413,19 @@
         {"shape":"OperationNotSupportedException"}
       ]
     },
+    "DescribePortfolioShares":{
+      "name":"DescribePortfolioShares",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePortfolioSharesInput"},
+      "output":{"shape":"DescribePortfolioSharesOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
+      ]
+    },
     "DescribeProduct":{
       "name":"DescribeProduct",
       "http":{
@@ -1063,6 +1076,21 @@
         {"shape":"TagOptionNotMigratedException"}
       ]
     },
+    "UpdatePortfolioShare":{
+      "name":"UpdatePortfolioShare",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePortfolioShareInput"},
+      "output":{"shape":"UpdatePortfolioShareOutput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"InvalidStateException"}
+      ]
+    },
     "UpdateProduct":{
       "name":"UpdateProduct",
       "http":{
@@ -1325,6 +1353,7 @@
         "FailedServiceActionAssociations":{"shape":"FailedServiceActionAssociations"}
       }
     },
+    "Boolean":{"type":"boolean"},
     "BudgetDetail":{
       "type":"structure",
       "members":{
@@ -1500,7 +1529,8 @@
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "PortfolioId":{"shape":"Id"},
         "AccountId":{"shape":"AccountId"},
-        "OrganizationNode":{"shape":"OrganizationNode"}
+        "OrganizationNode":{"shape":"OrganizationNode"},
+        "ShareTagOptions":{"shape":"Boolean"}
       }
     },
     "CreatePortfolioShareOutput":{
@@ -1829,12 +1859,42 @@
         "ShareDetails":{"shape":"ShareDetails"}
       }
     },
+    "DescribePortfolioShareType":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT",
+        "ORGANIZATION",
+        "ORGANIZATIONAL_UNIT",
+        "ORGANIZATION_MEMBER_ACCOUNT"
+      ]
+    },
+    "DescribePortfolioSharesInput":{
+      "type":"structure",
+      "required":[
+        "PortfolioId",
+        "Type"
+      ],
+      "members":{
+        "PortfolioId":{"shape":"Id"},
+        "Type":{"shape":"DescribePortfolioShareType"},
+        "PageToken":{"shape":"PageToken"},
+        "PageSize":{"shape":"PageSizeMax100"}
+      }
+    },
+    "DescribePortfolioSharesOutput":{
+      "type":"structure",
+      "members":{
+        "NextPageToken":{"shape":"PageToken"},
+        "PortfolioShareDetails":{"shape":"PortfolioShareDetails"}
+      }
+    },
     "DescribeProductAsAdminInput":{
       "type":"structure",
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
         "Id":{"shape":"Id"},
-        "Name":{"shape":"ProductViewName"}
+        "Name":{"shape":"ProductViewName"},
+        "SourcePortfolioId":{"shape":"Id"}
       }
     },
     "DescribeProductAsAdminOutput":{
@@ -2695,6 +2755,10 @@
       "member":{"shape":"NotificationArn"},
       "max":5
     },
+    "NullableBoolean":{
+      "type":"boolean",
+      "box":true
+    },
     "OperationNotSupportedException":{
       "type":"structure",
       "members":{
@@ -2735,6 +2799,7 @@
       "max":60
     },
     "OutputValue":{"type":"string"},
+    "Owner":{"type":"string"},
     "PageSize":{
       "type":"integer",
       "max":20,
@@ -2798,6 +2863,19 @@
       "min":1
     },
     "PortfolioName":{"type":"string"},
+    "PortfolioShareDetail":{
+      "type":"structure",
+      "members":{
+        "PrincipalId":{"shape":"Id"},
+        "Type":{"shape":"DescribePortfolioShareType"},
+        "Accepted":{"shape":"Boolean"},
+        "ShareTagOptions":{"shape":"Boolean"}
+      }
+    },
+    "PortfolioShareDetails":{
+      "type":"list",
+      "member":{"shape":"PortfolioShareDetail"}
+    },
     "PortfolioShareType":{
       "type":"string",
       "enum":[
@@ -3836,7 +3914,8 @@
         "Key":{"shape":"TagOptionKey"},
         "Value":{"shape":"TagOptionValue"},
         "Active":{"shape":"TagOptionActive"},
-        "Id":{"shape":"TagOptionId"}
+        "Id":{"shape":"TagOptionId"},
+        "Owner":{"shape":"Owner"}
       }
     },
     "TagOptionDetails":{
@@ -3950,6 +4029,24 @@
       "members":{
         "PortfolioDetail":{"shape":"PortfolioDetail"},
         "Tags":{"shape":"Tags"}
+      }
+    },
+    "UpdatePortfolioShareInput":{
+      "type":"structure",
+      "required":["PortfolioId"],
+      "members":{
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "PortfolioId":{"shape":"Id"},
+        "AccountId":{"shape":"AccountId"},
+        "OrganizationNode":{"shape":"OrganizationNode"},
+        "ShareTagOptions":{"shape":"NullableBoolean"}
+      }
+    },
+    "UpdatePortfolioShareOutput":{
+      "type":"structure",
+      "members":{
+        "PortfolioShareToken":{"shape":"Id"},
+        "Status":{"shape":"ShareStatus"}
       }
     },
     "UpdateProductInput":{

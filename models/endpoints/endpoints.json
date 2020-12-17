@@ -714,6 +714,30 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "fips-us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "athena-fips.us-east-1.amazonaws.com"
+          },
+          "fips-us-east-2" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "athena-fips.us-east-2.amazonaws.com"
+          },
+          "fips-us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "athena-fips.us-west-1.amazonaws.com"
+          },
+          "fips-us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "athena-fips.us-west-2.amazonaws.com"
+          },
           "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
@@ -9281,6 +9305,11 @@
             "protocols" : [ "http", "https" ],
             "signatureVersions" : [ "s3v4" ]
           }
+        }
+      },
+      "secretsmanager" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
         }
       },
       "snowball" : {

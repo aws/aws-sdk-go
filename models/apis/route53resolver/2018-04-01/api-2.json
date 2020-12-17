@@ -223,6 +223,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetResolverDnssecConfig":{
+      "name":"GetResolverDnssecConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResolverDnssecConfigRequest"},
+      "output":{"shape":"GetResolverDnssecConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetResolverEndpoint":{
       "name":"GetResolverEndpoint",
       "http":{
@@ -330,6 +347,23 @@
         {"shape":"InvalidParameterException"},
         {"shape":"UnknownResourceException"},
         {"shape":"InternalServiceErrorException"}
+      ]
+    },
+    "ListResolverDnssecConfigs":{
+      "name":"ListResolverDnssecConfigs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResolverDnssecConfigsRequest"},
+      "output":{"shape":"ListResolverDnssecConfigsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListResolverEndpointIpAddresses":{
@@ -511,6 +545,23 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateResolverDnssecConfig":{
+      "name":"UpdateResolverDnssecConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateResolverDnssecConfigRequest"},
+      "output":{"shape":"UpdateResolverDnssecConfigResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateResolverEndpoint":{
@@ -838,6 +889,19 @@
       "type":"list",
       "member":{"shape":"Filter"}
     },
+    "GetResolverDnssecConfigRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"ResourceId"}
+      }
+    },
+    "GetResolverDnssecConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverDNSSECConfig":{"shape":"ResolverDnssecConfig"}
+      }
+    },
     "GetResolverEndpointRequest":{
       "type":"structure",
       "required":["ResolverEndpointId"],
@@ -1051,6 +1115,30 @@
         "ResourceType":{"shape":"String"}
       },
       "exception":true
+    },
+    "ListResolverDnssecConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "box":true
+        },
+        "Filters":{
+          "shape":"Filters",
+          "box":true
+        }
+      }
+    },
+    "ListResolverDnssecConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ResolverDnssecConfigs":{"shape":"ResolverDnssecConfigList"}
+      }
     },
     "ListResolverEndpointIpAddressesRequest":{
       "type":"structure",
@@ -1268,6 +1356,28 @@
       "members":{
         "ReturnValue":{"shape":"Boolean"}
       }
+    },
+    "ResolverDNSSECValidationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "DISABLED"
+      ]
+    },
+    "ResolverDnssecConfig":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceId"},
+        "OwnerId":{"shape":"AccountId"},
+        "ResourceId":{"shape":"ResourceId"},
+        "ValidationStatus":{"shape":"ResolverDNSSECValidationStatus"}
+      }
+    },
+    "ResolverDnssecConfigList":{
+      "type":"list",
+      "member":{"shape":"ResolverDnssecConfig"}
     },
     "ResolverEndpoint":{
       "type":"structure",
@@ -1628,6 +1738,23 @@
       "members":{
       }
     },
+    "UpdateResolverDnssecConfigRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "Validation"
+      ],
+      "members":{
+        "ResourceId":{"shape":"ResourceId"},
+        "Validation":{"shape":"Validation"}
+      }
+    },
+    "UpdateResolverDnssecConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverDNSSECConfig":{"shape":"ResolverDnssecConfig"}
+      }
+    },
     "UpdateResolverEndpointRequest":{
       "type":"structure",
       "required":["ResolverEndpointId"],
@@ -1661,6 +1788,13 @@
       "members":{
         "ResolverRule":{"shape":"ResolverRule"}
       }
+    },
+    "Validation":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
     }
   }
 }

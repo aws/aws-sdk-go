@@ -68,6 +68,10 @@ type ImagebuilderAPI interface {
 	CreateComponentWithContext(aws.Context, *imagebuilder.CreateComponentInput, ...request.Option) (*imagebuilder.CreateComponentOutput, error)
 	CreateComponentRequest(*imagebuilder.CreateComponentInput) (*request.Request, *imagebuilder.CreateComponentOutput)
 
+	CreateContainerRecipe(*imagebuilder.CreateContainerRecipeInput) (*imagebuilder.CreateContainerRecipeOutput, error)
+	CreateContainerRecipeWithContext(aws.Context, *imagebuilder.CreateContainerRecipeInput, ...request.Option) (*imagebuilder.CreateContainerRecipeOutput, error)
+	CreateContainerRecipeRequest(*imagebuilder.CreateContainerRecipeInput) (*request.Request, *imagebuilder.CreateContainerRecipeOutput)
+
 	CreateDistributionConfiguration(*imagebuilder.CreateDistributionConfigurationInput) (*imagebuilder.CreateDistributionConfigurationOutput, error)
 	CreateDistributionConfigurationWithContext(aws.Context, *imagebuilder.CreateDistributionConfigurationInput, ...request.Option) (*imagebuilder.CreateDistributionConfigurationOutput, error)
 	CreateDistributionConfigurationRequest(*imagebuilder.CreateDistributionConfigurationInput) (*request.Request, *imagebuilder.CreateDistributionConfigurationOutput)
@@ -91,6 +95,10 @@ type ImagebuilderAPI interface {
 	DeleteComponent(*imagebuilder.DeleteComponentInput) (*imagebuilder.DeleteComponentOutput, error)
 	DeleteComponentWithContext(aws.Context, *imagebuilder.DeleteComponentInput, ...request.Option) (*imagebuilder.DeleteComponentOutput, error)
 	DeleteComponentRequest(*imagebuilder.DeleteComponentInput) (*request.Request, *imagebuilder.DeleteComponentOutput)
+
+	DeleteContainerRecipe(*imagebuilder.DeleteContainerRecipeInput) (*imagebuilder.DeleteContainerRecipeOutput, error)
+	DeleteContainerRecipeWithContext(aws.Context, *imagebuilder.DeleteContainerRecipeInput, ...request.Option) (*imagebuilder.DeleteContainerRecipeOutput, error)
+	DeleteContainerRecipeRequest(*imagebuilder.DeleteContainerRecipeInput) (*request.Request, *imagebuilder.DeleteContainerRecipeOutput)
 
 	DeleteDistributionConfiguration(*imagebuilder.DeleteDistributionConfigurationInput) (*imagebuilder.DeleteDistributionConfigurationOutput, error)
 	DeleteDistributionConfigurationWithContext(aws.Context, *imagebuilder.DeleteDistributionConfigurationInput, ...request.Option) (*imagebuilder.DeleteDistributionConfigurationOutput, error)
@@ -119,6 +127,14 @@ type ImagebuilderAPI interface {
 	GetComponentPolicy(*imagebuilder.GetComponentPolicyInput) (*imagebuilder.GetComponentPolicyOutput, error)
 	GetComponentPolicyWithContext(aws.Context, *imagebuilder.GetComponentPolicyInput, ...request.Option) (*imagebuilder.GetComponentPolicyOutput, error)
 	GetComponentPolicyRequest(*imagebuilder.GetComponentPolicyInput) (*request.Request, *imagebuilder.GetComponentPolicyOutput)
+
+	GetContainerRecipe(*imagebuilder.GetContainerRecipeInput) (*imagebuilder.GetContainerRecipeOutput, error)
+	GetContainerRecipeWithContext(aws.Context, *imagebuilder.GetContainerRecipeInput, ...request.Option) (*imagebuilder.GetContainerRecipeOutput, error)
+	GetContainerRecipeRequest(*imagebuilder.GetContainerRecipeInput) (*request.Request, *imagebuilder.GetContainerRecipeOutput)
+
+	GetContainerRecipePolicy(*imagebuilder.GetContainerRecipePolicyInput) (*imagebuilder.GetContainerRecipePolicyOutput, error)
+	GetContainerRecipePolicyWithContext(aws.Context, *imagebuilder.GetContainerRecipePolicyInput, ...request.Option) (*imagebuilder.GetContainerRecipePolicyOutput, error)
+	GetContainerRecipePolicyRequest(*imagebuilder.GetContainerRecipePolicyInput) (*request.Request, *imagebuilder.GetContainerRecipePolicyOutput)
 
 	GetDistributionConfiguration(*imagebuilder.GetDistributionConfigurationInput) (*imagebuilder.GetDistributionConfigurationOutput, error)
 	GetDistributionConfigurationWithContext(aws.Context, *imagebuilder.GetDistributionConfigurationInput, ...request.Option) (*imagebuilder.GetDistributionConfigurationOutput, error)
@@ -165,6 +181,13 @@ type ImagebuilderAPI interface {
 
 	ListComponentsPages(*imagebuilder.ListComponentsInput, func(*imagebuilder.ListComponentsOutput, bool) bool) error
 	ListComponentsPagesWithContext(aws.Context, *imagebuilder.ListComponentsInput, func(*imagebuilder.ListComponentsOutput, bool) bool, ...request.Option) error
+
+	ListContainerRecipes(*imagebuilder.ListContainerRecipesInput) (*imagebuilder.ListContainerRecipesOutput, error)
+	ListContainerRecipesWithContext(aws.Context, *imagebuilder.ListContainerRecipesInput, ...request.Option) (*imagebuilder.ListContainerRecipesOutput, error)
+	ListContainerRecipesRequest(*imagebuilder.ListContainerRecipesInput) (*request.Request, *imagebuilder.ListContainerRecipesOutput)
+
+	ListContainerRecipesPages(*imagebuilder.ListContainerRecipesInput, func(*imagebuilder.ListContainerRecipesOutput, bool) bool) error
+	ListContainerRecipesPagesWithContext(aws.Context, *imagebuilder.ListContainerRecipesInput, func(*imagebuilder.ListContainerRecipesOutput, bool) bool, ...request.Option) error
 
 	ListDistributionConfigurations(*imagebuilder.ListDistributionConfigurationsInput) (*imagebuilder.ListDistributionConfigurationsOutput, error)
 	ListDistributionConfigurationsWithContext(aws.Context, *imagebuilder.ListDistributionConfigurationsInput, ...request.Option) (*imagebuilder.ListDistributionConfigurationsOutput, error)
@@ -222,6 +245,10 @@ type ImagebuilderAPI interface {
 	PutComponentPolicy(*imagebuilder.PutComponentPolicyInput) (*imagebuilder.PutComponentPolicyOutput, error)
 	PutComponentPolicyWithContext(aws.Context, *imagebuilder.PutComponentPolicyInput, ...request.Option) (*imagebuilder.PutComponentPolicyOutput, error)
 	PutComponentPolicyRequest(*imagebuilder.PutComponentPolicyInput) (*request.Request, *imagebuilder.PutComponentPolicyOutput)
+
+	PutContainerRecipePolicy(*imagebuilder.PutContainerRecipePolicyInput) (*imagebuilder.PutContainerRecipePolicyOutput, error)
+	PutContainerRecipePolicyWithContext(aws.Context, *imagebuilder.PutContainerRecipePolicyInput, ...request.Option) (*imagebuilder.PutContainerRecipePolicyOutput, error)
+	PutContainerRecipePolicyRequest(*imagebuilder.PutContainerRecipePolicyInput) (*request.Request, *imagebuilder.PutContainerRecipePolicyOutput)
 
 	PutImagePolicy(*imagebuilder.PutImagePolicyInput) (*imagebuilder.PutImagePolicyOutput, error)
 	PutImagePolicyWithContext(aws.Context, *imagebuilder.PutImagePolicyInput, ...request.Option) (*imagebuilder.PutImagePolicyOutput, error)

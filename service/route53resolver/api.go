@@ -1243,6 +1243,101 @@ func (c *Route53Resolver) DisassociateResolverRuleWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opGetResolverDnssecConfig = "GetResolverDnssecConfig"
+
+// GetResolverDnssecConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetResolverDnssecConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResolverDnssecConfig for more information on using the GetResolverDnssecConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResolverDnssecConfigRequest method.
+//    req, resp := client.GetResolverDnssecConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverDnssecConfig
+func (c *Route53Resolver) GetResolverDnssecConfigRequest(input *GetResolverDnssecConfigInput) (req *request.Request, output *GetResolverDnssecConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetResolverDnssecConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResolverDnssecConfigInput{}
+	}
+
+	output = &GetResolverDnssecConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResolverDnssecConfig API operation for Amazon Route 53 Resolver.
+//
+// Gets DNSSEC validation information for a specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetResolverDnssecConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more parameters in this request are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverDnssecConfig
+func (c *Route53Resolver) GetResolverDnssecConfig(input *GetResolverDnssecConfigInput) (*GetResolverDnssecConfigOutput, error) {
+	req, out := c.GetResolverDnssecConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetResolverDnssecConfigWithContext is the same as GetResolverDnssecConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResolverDnssecConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetResolverDnssecConfigWithContext(ctx aws.Context, input *GetResolverDnssecConfigInput, opts ...request.Option) (*GetResolverDnssecConfigOutput, error) {
+	req, out := c.GetResolverDnssecConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResolverEndpoint = "GetResolverEndpoint"
 
 // GetResolverEndpointRequest generates a "aws/request.Request" representing the
@@ -1845,9 +1940,10 @@ func (c *Route53Resolver) GetResolverRulePolicyRequest(input *GetResolverRulePol
 
 // GetResolverRulePolicy API operation for Amazon Route 53 Resolver.
 //
-// Gets information about a Resolver rule policy. A Resolver rule policy specifies
-// the Resolver operations and resources that you want to allow another AWS
-// account to be able to use.
+// Gets information about the Resolver rule policy for a specified rule. A Resolver
+// rule policy includes the rule that you want to share with another account,
+// the account that you want to share the rule with, and the Resolver operations
+// that you want to allow the account to use.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1886,6 +1982,160 @@ func (c *Route53Resolver) GetResolverRulePolicyWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListResolverDnssecConfigs = "ListResolverDnssecConfigs"
+
+// ListResolverDnssecConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListResolverDnssecConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResolverDnssecConfigs for more information on using the ListResolverDnssecConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListResolverDnssecConfigsRequest method.
+//    req, resp := client.ListResolverDnssecConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverDnssecConfigs
+func (c *Route53Resolver) ListResolverDnssecConfigsRequest(input *ListResolverDnssecConfigsInput) (req *request.Request, output *ListResolverDnssecConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListResolverDnssecConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResolverDnssecConfigsInput{}
+	}
+
+	output = &ListResolverDnssecConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResolverDnssecConfigs API operation for Amazon Route 53 Resolver.
+//
+// Lists the configurations for DNSSEC validation that are associated with the
+// current AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListResolverDnssecConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidNextTokenException
+//   The value that you specified for NextToken in a List request isn't valid.
+//
+//   * InvalidParameterException
+//   One or more parameters in this request are not valid.
+//
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverDnssecConfigs
+func (c *Route53Resolver) ListResolverDnssecConfigs(input *ListResolverDnssecConfigsInput) (*ListResolverDnssecConfigsOutput, error) {
+	req, out := c.ListResolverDnssecConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListResolverDnssecConfigsWithContext is the same as ListResolverDnssecConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResolverDnssecConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListResolverDnssecConfigsWithContext(ctx aws.Context, input *ListResolverDnssecConfigsInput, opts ...request.Option) (*ListResolverDnssecConfigsOutput, error) {
+	req, out := c.ListResolverDnssecConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResolverDnssecConfigsPages iterates over the pages of a ListResolverDnssecConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResolverDnssecConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResolverDnssecConfigs operation.
+//    pageNum := 0
+//    err := client.ListResolverDnssecConfigsPages(params,
+//        func(page *route53resolver.ListResolverDnssecConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListResolverDnssecConfigsPages(input *ListResolverDnssecConfigsInput, fn func(*ListResolverDnssecConfigsOutput, bool) bool) error {
+	return c.ListResolverDnssecConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResolverDnssecConfigsPagesWithContext same as ListResolverDnssecConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListResolverDnssecConfigsPagesWithContext(ctx aws.Context, input *ListResolverDnssecConfigsInput, fn func(*ListResolverDnssecConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResolverDnssecConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResolverDnssecConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResolverDnssecConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListResolverEndpointIpAddresses = "ListResolverEndpointIpAddresses"
@@ -3088,9 +3338,9 @@ func (c *Route53Resolver) PutResolverRulePolicyRequest(input *PutResolverRulePol
 
 // PutResolverRulePolicy API operation for Amazon Route 53 Resolver.
 //
-// Specifies an AWS account that you want to share rules with, the Resolver
-// rules that you want to share, and the operations that you want the account
-// to be able to perform on those rules.
+// Specifies an AWS rule that you want to share with another account, the account
+// that you want to share the rule with, and the operations that you want the
+// account to be able to perform on the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3319,6 +3569,102 @@ func (c *Route53Resolver) UntagResource(input *UntagResourceInput) (*UntagResour
 // for more information on using Contexts.
 func (c *Route53Resolver) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResolverDnssecConfig = "UpdateResolverDnssecConfig"
+
+// UpdateResolverDnssecConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResolverDnssecConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResolverDnssecConfig for more information on using the UpdateResolverDnssecConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateResolverDnssecConfigRequest method.
+//    req, resp := client.UpdateResolverDnssecConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverDnssecConfig
+func (c *Route53Resolver) UpdateResolverDnssecConfigRequest(input *UpdateResolverDnssecConfigInput) (req *request.Request, output *UpdateResolverDnssecConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResolverDnssecConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateResolverDnssecConfigInput{}
+	}
+
+	output = &UpdateResolverDnssecConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateResolverDnssecConfig API operation for Amazon Route 53 Resolver.
+//
+// Updates an existing DNSSEC validation configuration. If there is no existing
+// DNSSEC validation configuration, one is created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateResolverDnssecConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more parameters in this request are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverDnssecConfig
+func (c *Route53Resolver) UpdateResolverDnssecConfig(input *UpdateResolverDnssecConfigInput) (*UpdateResolverDnssecConfigOutput, error) {
+	req, out := c.UpdateResolverDnssecConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResolverDnssecConfigWithContext is the same as UpdateResolverDnssecConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResolverDnssecConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateResolverDnssecConfigWithContext(ctx aws.Context, input *UpdateResolverDnssecConfigInput, opts ...request.Option) (*UpdateResolverDnssecConfigOutput, error) {
+	req, out := c.UpdateResolverDnssecConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4755,7 +5101,8 @@ func (s *DisassociateResolverRuleOutput) SetResolverRuleAssociation(v *ResolverR
 // ListResolverRules (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverRules.html),
 // ListResolverRuleAssociations (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverRuleAssociations.html),
 // ListResolverQueryLogConfigs (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverQueryLogConfigs.html),
-// and ListResolverQueryLogConfigAssociations (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverQueryLogConfigAssociations.html)),
+// ListResolverQueryLogConfigAssociations (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverQueryLogConfigAssociations.html)),
+// and ListResolverDnssecConfigs (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ListResolverDnssecConfigs.html)),
 // an optional specification to return a subset of objects.
 //
 // To filter objects, such as Resolver endpoints or Resolver rules, you specify
@@ -4908,7 +5255,7 @@ type Filter struct {
 	//
 	//    * Status: The status of the query logging association. If you specify
 	//    Status for Name, specify the applicable status code for Values: CREATING,
-	//    CREATED, DELETING, or FAILED. For more information, see Status (https://docs.aws.amazon.com/API_route53resolver_ResolverQueryLogConfigAssociation.html#Route53Resolver-Type-route53resolver_ResolverQueryLogConfigAssociation-Status).
+	//    CREATED, DELETING, or FAILED. For more information, see Status (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_ResolverQueryLogConfigAssociation.html#Route53Resolver-Type-route53resolver_ResolverQueryLogConfigAssociation-Status).
 	Name *string `min:"1" type:"string"`
 
 	// When you're using a List operation and you want the operation to return a
@@ -4951,6 +5298,70 @@ func (s *Filter) SetName(v string) *Filter {
 // SetValues sets the Values field's value.
 func (s *Filter) SetValues(v []*string) *Filter {
 	s.Values = v
+	return s
+}
+
+type GetResolverDnssecConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the virtual private cloud (VPC) for the DNSSEC validation status.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetResolverDnssecConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResolverDnssecConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResolverDnssecConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResolverDnssecConfigInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *GetResolverDnssecConfigInput) SetResourceId(v string) *GetResolverDnssecConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type GetResolverDnssecConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information about a configuration for DNSSEC validation.
+	ResolverDNSSECConfig *ResolverDnssecConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetResolverDnssecConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResolverDnssecConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetResolverDNSSECConfig sets the ResolverDNSSECConfig field's value.
+func (s *GetResolverDnssecConfigOutput) SetResolverDNSSECConfig(v *ResolverDnssecConfig) *GetResolverDnssecConfigOutput {
+	s.ResolverDNSSECConfig = v
 	return s
 }
 
@@ -5351,7 +5762,8 @@ func (s *GetResolverRuleOutput) SetResolverRule(v *ResolverRule) *GetResolverRul
 type GetResolverRulePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Resolver rule policy that you want to get information about.
+	// The ID of the Resolver rule that you want to get the Resolver rule policy
+	// for.
 	//
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
@@ -5392,7 +5804,7 @@ func (s *GetResolverRulePolicyInput) SetArn(v string) *GetResolverRulePolicyInpu
 type GetResolverRulePolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the Resolver rule policy that you specified in a GetResolverRulePolicy
+	// The Resolver rule policy for the rule that you specified in a GetResolverRulePolicy
 	// request.
 	ResolverRulePolicy *string `type:"string"`
 }
@@ -6015,6 +6427,118 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListResolverDnssecConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional specification to return a subset of objects.
+	Filters []*Filter `type:"list"`
+
+	// Optional: An integer that specifies the maximum number of DNSSEC configuration
+	// results that you want Amazon Route 53 to return. If you don't specify a value
+	// for MaxResults, Route 53 returns up to 100 configuration per page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) If the current AWS account has more than MaxResults DNSSEC configurations,
+	// use NextToken to get the second and subsequent pages of results.
+	//
+	// For the first ListResolverDnssecConfigs request, omit this value.
+	//
+	// For the second and subsequent requests, get the value of NextToken from the
+	// previous response and specify that value for NextToken in the request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListResolverDnssecConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListResolverDnssecConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResolverDnssecConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResolverDnssecConfigsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListResolverDnssecConfigsInput) SetFilters(v []*Filter) *ListResolverDnssecConfigsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResolverDnssecConfigsInput) SetMaxResults(v int64) *ListResolverDnssecConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResolverDnssecConfigsInput) SetNextToken(v string) *ListResolverDnssecConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResolverDnssecConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If a response includes the last of the DNSSEC configurations that are associated
+	// with the current AWS account, NextToken doesn't appear in the response.
+	//
+	// If a response doesn't include the last of the configurations, you can get
+	// more configurations by submitting another ListResolverDnssecConfigs (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListResolverDnssecConfigs.html)
+	// request. Get the value of NextToken that Amazon Route 53 returned in the
+	// previous response and include it in NextToken in the next request.
+	NextToken *string `type:"string"`
+
+	// An array that contains one ResolverDnssecConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResolverDnssecConfig.html)
+	// element for each configuration for DNSSEC validation that is associated with
+	// the current AWS account.
+	ResolverDnssecConfigs []*ResolverDnssecConfig `type:"list"`
+}
+
+// String returns the string representation
+func (s ListResolverDnssecConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListResolverDnssecConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResolverDnssecConfigsOutput) SetNextToken(v string) *ListResolverDnssecConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResolverDnssecConfigs sets the ResolverDnssecConfigs field's value.
+func (s *ListResolverDnssecConfigsOutput) SetResolverDnssecConfigs(v []*ResolverDnssecConfig) *ListResolverDnssecConfigsOutput {
+	s.ResolverDnssecConfigs = v
+	return s
 }
 
 type ListResolverEndpointIpAddressesInput struct {
@@ -7087,8 +7611,8 @@ func (s *PutResolverQueryLogConfigPolicyOutput) SetReturnValue(v bool) *PutResol
 type PutResolverRulePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the account that you want to share rules
-	// with.
+	// The Amazon Resource Name (ARN) of the rule that you want to share with another
+	// account.
 	//
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
@@ -7096,7 +7620,7 @@ type PutResolverRulePolicyInput struct {
 	// An AWS Identity and Access Management policy statement that lists the rules
 	// that you want to share with another AWS account and the operations that you
 	// want the account to be able to perform. You can specify the following operations
-	// in the Actions section of the statement:
+	// in the Action section of the statement:
 	//
 	//    * route53resolver:GetResolverRule
 	//
@@ -7108,8 +7632,9 @@ type PutResolverRulePolicyInput struct {
 	//
 	//    * route53resolver:ListResolverRuleAssociations
 	//
-	// In the Resource section of the statement, you specify the ARNs for the rules
-	// that you want to share with the account that you specified in Arn.
+	// In the Resource section of the statement, specify the ARN for the rule that
+	// you want to share with another account. Specify the same ARN that you specified
+	// in Arn.
 	//
 	// ResolverRulePolicy is a required field
 	ResolverRulePolicy *string `type:"string" required:"true"`
@@ -7177,6 +7702,69 @@ func (s PutResolverRulePolicyOutput) GoString() string {
 // SetReturnValue sets the ReturnValue field's value.
 func (s *PutResolverRulePolicyOutput) SetReturnValue(v bool) *PutResolverRulePolicyOutput {
 	s.ReturnValue = &v
+	return s
+}
+
+// A complex type that contains information about a configuration for DNSSEC
+// validation.
+type ResolverDnssecConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for a configuration for DNSSEC validation.
+	Id *string `min:"1" type:"string"`
+
+	// The owner account ID of the virtual private cloud (VPC) for a configuration
+	// for DNSSEC validation.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The ID of the virtual private cloud (VPC) that you're configuring the DNSSEC
+	// validation status for.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The validation status for a DNSSEC configuration. The status can be one of
+	// the following:
+	//
+	//    * ENABLING: DNSSEC validation is being enabled but is not complete.
+	//
+	//    * ENABLED: DNSSEC validation is enabled.
+	//
+	//    * DISABLING: DNSSEC validation is being disabled but is not complete.
+	//
+	//    * DISABLED DNSSEC validation is disabled.
+	ValidationStatus *string `type:"string" enum:"ResolverDNSSECValidationStatus"`
+}
+
+// String returns the string representation
+func (s ResolverDnssecConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResolverDnssecConfig) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ResolverDnssecConfig) SetId(v string) *ResolverDnssecConfig {
+	s.Id = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *ResolverDnssecConfig) SetOwnerId(v string) *ResolverDnssecConfig {
+	s.OwnerId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ResolverDnssecConfig) SetResourceId(v string) *ResolverDnssecConfig {
+	s.ResourceId = &v
+	return s
+}
+
+// SetValidationStatus sets the ValidationStatus field's value.
+func (s *ResolverDnssecConfig) SetValidationStatus(v string) *ResolverDnssecConfig {
+	s.ValidationStatus = &v
 	return s
 }
 
@@ -8552,6 +9140,87 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateResolverDnssecConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the virtual private cloud (VPC) that you're updating the DNSSEC
+	// validation status for.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+
+	// The new value that you are specifying for DNSSEC validation for the VPC.
+	// The value can be ENABLE or DISABLE. Be aware that it can take time for a
+	// validation status change to be completed.
+	//
+	// Validation is a required field
+	Validation *string `type:"string" required:"true" enum:"Validation"`
+}
+
+// String returns the string representation
+func (s UpdateResolverDnssecConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResolverDnssecConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResolverDnssecConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResolverDnssecConfigInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+	if s.Validation == nil {
+		invalidParams.Add(request.NewErrParamRequired("Validation"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UpdateResolverDnssecConfigInput) SetResourceId(v string) *UpdateResolverDnssecConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+// SetValidation sets the Validation field's value.
+func (s *UpdateResolverDnssecConfigInput) SetValidation(v string) *UpdateResolverDnssecConfigInput {
+	s.Validation = &v
+	return s
+}
+
+type UpdateResolverDnssecConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains settings for the specified DNSSEC configuration.
+	ResolverDNSSECConfig *ResolverDnssecConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateResolverDnssecConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResolverDnssecConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetResolverDNSSECConfig sets the ResolverDNSSECConfig field's value.
+func (s *UpdateResolverDnssecConfigOutput) SetResolverDNSSECConfig(v *ResolverDnssecConfig) *UpdateResolverDnssecConfigOutput {
+	s.ResolverDNSSECConfig = v
+	return s
+}
+
 type UpdateResolverEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8753,6 +9422,30 @@ func IpAddressStatus_Values() []string {
 		IpAddressStatusFailedResourceGone,
 		IpAddressStatusDeleting,
 		IpAddressStatusDeleteFailedFasExpired,
+	}
+}
+
+const (
+	// ResolverDNSSECValidationStatusEnabling is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusEnabling = "ENABLING"
+
+	// ResolverDNSSECValidationStatusEnabled is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusEnabled = "ENABLED"
+
+	// ResolverDNSSECValidationStatusDisabling is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusDisabling = "DISABLING"
+
+	// ResolverDNSSECValidationStatusDisabled is a ResolverDNSSECValidationStatus enum value
+	ResolverDNSSECValidationStatusDisabled = "DISABLED"
+)
+
+// ResolverDNSSECValidationStatus_Values returns all elements of the ResolverDNSSECValidationStatus enum
+func ResolverDNSSECValidationStatus_Values() []string {
+	return []string{
+		ResolverDNSSECValidationStatusEnabling,
+		ResolverDNSSECValidationStatusEnabled,
+		ResolverDNSSECValidationStatusDisabling,
+		ResolverDNSSECValidationStatusDisabled,
 	}
 }
 
@@ -8985,5 +9678,21 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// ValidationEnable is a Validation enum value
+	ValidationEnable = "ENABLE"
+
+	// ValidationDisable is a Validation enum value
+	ValidationDisable = "DISABLE"
+)
+
+// Validation_Values returns all elements of the Validation enum
+func Validation_Values() []string {
+	return []string{
+		ValidationEnable,
+		ValidationDisable,
 	}
 }

@@ -2,28 +2,35 @@
   "version": "2.0",
   "service": "<p>Amazon Route 53 is a highly available and scalable Domain Name System (DNS) web service.</p>",
   "operations": {
+    "ActivateKeySigningKey": "<p>Activates a key signing key (KSK) so that it can be used for signing by DNSSEC. This operation changes the KSK status to <code>ACTIVE</code>.</p>",
     "AssociateVPCWithHostedZone": "<p>Associates an Amazon VPC with a private hosted zone. </p> <important> <p>To perform the association, the VPC and the private hosted zone must already exist. You can't convert a public hosted zone into a private hosted zone.</p> </important> <note> <p>If you want to associate a VPC that was created by using one AWS account with a private hosted zone that was created by using a different account, the AWS account that created the private hosted zone must first submit a <code>CreateVPCAssociationAuthorization</code> request. Then the account that created the VPC must submit an <code>AssociateVPCWithHostedZone</code> request.</p> </note>",
     "ChangeResourceRecordSets": "<p>Creates, changes, or deletes a resource record set, which contains authoritative DNS information for a specified domain name or subdomain name. For example, you can use <code>ChangeResourceRecordSets</code> to create a resource record set that routes traffic for test.example.com to a web server that has an IP address of 192.0.2.44.</p> <p> <b>Deleting Resource Record Sets</b> </p> <p>To delete a resource record set, you must specify all the same values that you specified when you created it.</p> <p> <b>Change Batches and Transactional Changes</b> </p> <p>The request body must include a document with a <code>ChangeResourceRecordSetsRequest</code> element. The request body contains a list of change items, known as a change batch. Change batches are considered transactional changes. Route 53 validates the changes in the request and then either makes all or none of the changes in the change batch request. This ensures that DNS routing isn't adversely affected by partial changes to the resource record sets in a hosted zone. </p> <p>For example, suppose a change batch request contains two changes: it deletes the <code>CNAME</code> resource record set for www.example.com and creates an alias resource record set for www.example.com. If validation for both records succeeds, Route 53 deletes the first resource record set and creates the second resource record set in a single operation. If validation for either the <code>DELETE</code> or the <code>CREATE</code> action fails, then the request is canceled, and the original <code>CNAME</code> record continues to exist.</p> <note> <p>If you try to delete the same resource record set more than once in a single change batch, Route 53 returns an <code>InvalidChangeBatch</code> error.</p> </note> <p> <b>Traffic Flow</b> </p> <p>To create resource record sets for complex routing configurations, use either the traffic flow visual editor in the Route 53 console or the API actions for traffic policies and traffic policy instances. Save the configuration as a traffic policy, then associate the traffic policy with one or more domain names (such as example.com) or subdomain names (such as www.example.com), in the same hosted zone or in multiple hosted zones. You can roll back the updates if the new configuration isn't performing as expected. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/traffic-flow.html\">Using Traffic Flow to Route DNS Traffic</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p> <b>Create, Delete, and Upsert</b> </p> <p>Use <code>ChangeResourceRecordsSetsRequest</code> to perform the following actions:</p> <ul> <li> <p> <code>CREATE</code>: Creates a resource record set that has the specified values.</p> </li> <li> <p> <code>DELETE</code>: Deletes an existing resource record set that has the specified values.</p> </li> <li> <p> <code>UPSERT</code>: If a resource record set does not already exist, AWS creates it. If a resource set does exist, Route 53 updates it with the values in the request. </p> </li> </ul> <p> <b>Syntaxes for Creating, Updating, and Deleting Resource Record Sets</b> </p> <p>The syntax for a request depends on the type of resource record set that you want to create, delete, or update, such as weighted, alias, or failover. The XML elements in your request must appear in the order listed in the syntax. </p> <p>For an example for each type of resource record set, see \"Examples.\"</p> <p>Don't refer to the syntax in the \"Parameter Syntax\" section, which includes all of the elements for every kind of resource record set that you can create, delete, or update by using <code>ChangeResourceRecordSets</code>. </p> <p> <b>Change Propagation to Route 53 DNS Servers</b> </p> <p>When you submit a <code>ChangeResourceRecordSets</code> request, Route 53 propagates your changes to all of the Route 53 authoritative DNS servers. While your changes are propagating, <code>GetChange</code> returns a status of <code>PENDING</code>. When propagation is complete, <code>GetChange</code> returns a status of <code>INSYNC</code>. Changes generally propagate to all Route 53 name servers within 60 seconds. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetChange.html\">GetChange</a>.</p> <p> <b>Limits on ChangeResourceRecordSets Requests</b> </p> <p>For information about the limits on a <code>ChangeResourceRecordSets</code> request, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p>",
     "ChangeTagsForResource": "<p>Adds, edits, or deletes tags for a health check or a hosted zone.</p> <p>For information about using tags for cost allocation, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
     "CreateHealthCheck": "<p>Creates a new health check.</p> <p>For information about adding health checks to resource record sets, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResourceRecordSet.html#Route53-Type-ResourceRecordSet-HealthCheckId\">HealthCheckId</a> in <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html\">ChangeResourceRecordSets</a>. </p> <p> <b>ELB Load Balancers</b> </p> <p>If you're registering EC2 instances with an Elastic Load Balancing (ELB) load balancer, do not create Amazon Route 53 health checks for the EC2 instances. When you register an EC2 instance with a load balancer, you configure settings for an ELB health check, which performs a similar function to a Route 53 health check.</p> <p> <b>Private Hosted Zones</b> </p> <p>You can associate health checks with failover resource record sets in a private hosted zone. Note the following:</p> <ul> <li> <p>Route 53 health checkers are outside the VPC. To check the health of an endpoint within a VPC by IP address, you must assign a public IP address to the instance in the VPC.</p> </li> <li> <p>You can configure a health checker to check the health of an external resource that the instance relies on, such as a database server.</p> </li> <li> <p>You can create a CloudWatch metric, associate an alarm with the metric, and then create a health check that is based on the state of the alarm. For example, you might create a CloudWatch metric that checks the status of the Amazon EC2 <code>StatusCheckFailed</code> metric, add an alarm to the metric, and then create a health check that is based on the state of the alarm. For information about creating CloudWatch metrics and alarms by using the CloudWatch console, see the <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/WhatIsCloudWatch.html\">Amazon CloudWatch User Guide</a>.</p> </li> </ul>",
     "CreateHostedZone": "<p>Creates a new public or private hosted zone. You create records in a public hosted zone to define how you want to route traffic on the internet for a domain, such as example.com, and its subdomains (apex.example.com, acme.example.com). You create records in a private hosted zone to define how you want to route traffic for a domain and its subdomains within one or more Amazon Virtual Private Clouds (Amazon VPCs). </p> <important> <p>You can't convert a public hosted zone to a private hosted zone or vice versa. Instead, you must create a new hosted zone with the same name and create new resource record sets.</p> </important> <p>For more information about charges for hosted zones, see <a href=\"http://aws.amazon.com/route53/pricing/\">Amazon Route 53 Pricing</a>.</p> <p>Note the following:</p> <ul> <li> <p>You can't create a hosted zone for a top-level domain (TLD) such as .com.</p> </li> <li> <p>For public hosted zones, Route 53 automatically creates a default SOA record and four NS records for the zone. For more information about SOA and NS records, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/SOA-NSrecords.html\">NS and SOA Records that Route 53 Creates for a Hosted Zone</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>If you want to use the same name servers for multiple public hosted zones, you can optionally associate a reusable delegation set with the hosted zone. See the <code>DelegationSetId</code> element.</p> </li> <li> <p>If your domain is registered with a registrar other than Route 53, you must update the name servers with your registrar to make Route 53 the DNS service for the domain. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html\">Migrating DNS Service for an Existing Domain to Amazon Route 53</a> in the <i>Amazon Route 53 Developer Guide</i>. </p> </li> </ul> <p>When you submit a <code>CreateHostedZone</code> request, the initial status of the hosted zone is <code>PENDING</code>. For public hosted zones, this means that the NS and SOA records are not yet available on all Route 53 DNS servers. When the NS and SOA records are available, the status of the zone changes to <code>INSYNC</code>.</p>",
+    "CreateKeySigningKey": "<p>Creates a new key signing key (KSK) associated with a hosted zone. You can only have two KSKs per hosted zone.</p>",
     "CreateQueryLoggingConfig": "<p>Creates a configuration for DNS query logging. After you create a query logging configuration, Amazon Route 53 begins to publish log data to an Amazon CloudWatch Logs log group.</p> <p>DNS query logs contain information about the queries that Route 53 receives for a specified public hosted zone, such as the following:</p> <ul> <li> <p>Route 53 edge location that responded to the DNS query</p> </li> <li> <p>Domain or subdomain that was requested</p> </li> <li> <p>DNS record type, such as A or AAAA</p> </li> <li> <p>DNS response code, such as <code>NoError</code> or <code>ServFail</code> </p> </li> </ul> <dl> <dt>Log Group and Resource Policy</dt> <dd> <p>Before you create a query logging configuration, perform the following operations.</p> <note> <p>If you create a query logging configuration using the Route 53 console, Route 53 performs these operations automatically.</p> </note> <ol> <li> <p>Create a CloudWatch Logs log group, and make note of the ARN, which you specify when you create a query logging configuration. Note the following:</p> <ul> <li> <p>You must create the log group in the us-east-1 region.</p> </li> <li> <p>You must use the same AWS account to create the log group and the hosted zone that you want to configure query logging for.</p> </li> <li> <p>When you create log groups for query logging, we recommend that you use a consistent prefix, for example:</p> <p> <code>/aws/route53/<i>hosted zone name</i> </code> </p> <p>In the next step, you'll create a resource policy, which controls access to one or more log groups and the associated AWS resources, such as Route 53 hosted zones. There's a limit on the number of resource policies that you can create, so we recommend that you use a consistent prefix so you can use the same resource policy for all the log groups that you create for query logging.</p> </li> </ul> </li> <li> <p>Create a CloudWatch Logs resource policy, and give it the permissions that Route 53 needs to create log streams and to send query logs to log streams. For the value of <code>Resource</code>, specify the ARN for the log group that you created in the previous step. To use the same resource policy for all the CloudWatch Logs log groups that you created for query logging configurations, replace the hosted zone name with <code>*</code>, for example:</p> <p> <code>arn:aws:logs:us-east-1:123412341234:log-group:/aws/route53/*</code> </p> <note> <p>You can't use the CloudWatch console to create or edit a resource policy. You must use the CloudWatch API, one of the AWS SDKs, or the AWS CLI.</p> </note> </li> </ol> </dd> <dt>Log Streams and Edge Locations</dt> <dd> <p>When Route 53 finishes creating the configuration for DNS query logging, it does the following:</p> <ul> <li> <p>Creates a log stream for an edge location the first time that the edge location responds to DNS queries for the specified hosted zone. That log stream is used to log all queries that Route 53 responds to for that edge location.</p> </li> <li> <p>Begins to send query logs to the applicable log stream.</p> </li> </ul> <p>The name of each log stream is in the following format:</p> <p> <code> <i>hosted zone ID</i>/<i>edge location code</i> </code> </p> <p>The edge location code is a three-letter code and an arbitrarily assigned number, for example, DFW3. The three-letter code typically corresponds with the International Air Transport Association airport code for an airport near the edge location. (These abbreviations might change in the future.) For a list of edge locations, see \"The Route 53 Global Network\" on the <a href=\"http://aws.amazon.com/route53/details/\">Route 53 Product Details</a> page.</p> </dd> <dt>Queries That Are Logged</dt> <dd> <p>Query logs contain only the queries that DNS resolvers forward to Route 53. If a DNS resolver has already cached the response to a query (such as the IP address for a load balancer for example.com), the resolver will continue to return the cached response. It doesn't forward another query to Route 53 until the TTL for the corresponding resource record set expires. Depending on how many DNS queries are submitted for a resource record set, and depending on the TTL for that resource record set, query logs might contain information about only one query out of every several thousand queries that are submitted to DNS. For more information about how DNS works, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/welcome-dns-service.html\">Routing Internet Traffic to Your Website or Web Application</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> </dd> <dt>Log File Format</dt> <dd> <p>For a list of the values in each query log and the format of each value, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/query-logs.html\">Logging DNS Queries</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> </dd> <dt>Pricing</dt> <dd> <p>For information about charges for query logs, see <a href=\"http://aws.amazon.com/cloudwatch/pricing/\">Amazon CloudWatch Pricing</a>.</p> </dd> <dt>How to Stop Logging</dt> <dd> <p>If you want Route 53 to stop sending query logs to CloudWatch Logs, delete the query logging configuration. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_DeleteQueryLoggingConfig.html\">DeleteQueryLoggingConfig</a>.</p> </dd> </dl>",
     "CreateReusableDelegationSet": "<p>Creates a delegation set (a group of four name servers) that can be reused by multiple hosted zones that were created by the same AWS account. </p> <p>You can also create a reusable delegation set that uses the four name servers that are associated with an existing hosted zone. Specify the hosted zone ID in the <code>CreateReusableDelegationSet</code> request.</p> <note> <p>You can't associate a reusable delegation set with a private hosted zone.</p> </note> <p>For information about using a reusable delegation set to configure white label name servers, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/white-label-name-servers.html\">Configuring White Label Name Servers</a>.</p> <p>The process for migrating existing hosted zones to use a reusable delegation set is comparable to the process for configuring white label name servers. You need to perform the following steps:</p> <ol> <li> <p>Create a reusable delegation set.</p> </li> <li> <p>Recreate hosted zones, and reduce the TTL to 60 seconds or less.</p> </li> <li> <p>Recreate resource record sets in the new hosted zones.</p> </li> <li> <p>Change the registrar's name servers to use the name servers for the new hosted zones.</p> </li> <li> <p>Monitor traffic for the website or application.</p> </li> <li> <p>Change TTLs back to their original values.</p> </li> </ol> <p>If you want to migrate existing hosted zones to use a reusable delegation set, the existing hosted zones can't use any of the name servers that are assigned to the reusable delegation set. If one or more hosted zones do use one or more name servers that are assigned to the reusable delegation set, you can do one of the following:</p> <ul> <li> <p>For small numbers of hosted zones—up to a few hundred—it's relatively easy to create reusable delegation sets until you get one that has four name servers that don't overlap with any of the name servers in your hosted zones.</p> </li> <li> <p>For larger numbers of hosted zones, the easiest solution is to use more than one reusable delegation set.</p> </li> <li> <p>For larger numbers of hosted zones, you can also migrate hosted zones that have overlapping name servers to hosted zones that don't have overlapping name servers, then migrate the hosted zones again to use the reusable delegation set.</p> </li> </ul>",
     "CreateTrafficPolicy": "<p>Creates a traffic policy, which you use to create multiple DNS resource record sets for one domain name (such as example.com) or one subdomain name (such as www.example.com).</p>",
     "CreateTrafficPolicyInstance": "<p>Creates resource record sets in a specified hosted zone based on the settings in a specified traffic policy version. In addition, <code>CreateTrafficPolicyInstance</code> associates the resource record sets with a specified domain name (such as example.com) or subdomain name (such as www.example.com). Amazon Route 53 responds to DNS queries for the domain or subdomain name by using the resource record sets that <code>CreateTrafficPolicyInstance</code> created.</p>",
     "CreateTrafficPolicyVersion": "<p>Creates a new version of an existing traffic policy. When you create a new version of a traffic policy, you specify the ID of the traffic policy that you want to update and a JSON-formatted document that describes the new version. You use traffic policies to create multiple DNS resource record sets for one domain name (such as example.com) or one subdomain name (such as www.example.com). You can create a maximum of 1000 versions of a traffic policy. If you reach the limit and need to create another version, you'll need to start a new traffic policy.</p>",
     "CreateVPCAssociationAuthorization": "<p>Authorizes the AWS account that created a specified VPC to submit an <code>AssociateVPCWithHostedZone</code> request to associate the VPC with a specified hosted zone that was created by a different account. To submit a <code>CreateVPCAssociationAuthorization</code> request, you must use the account that created the hosted zone. After you authorize the association, use the account that created the VPC to submit an <code>AssociateVPCWithHostedZone</code> request.</p> <note> <p>If you want to associate multiple VPCs that you created by using one account with a hosted zone that you created by using a different account, you must submit one authorization request for each VPC.</p> </note>",
+    "DeactivateKeySigningKey": "<p>Deactivates a key signing key (KSK) so that it will not be used for signing by DNSSEC. This operation changes the KSK status to <code>INACTIVE</code>.</p>",
     "DeleteHealthCheck": "<p>Deletes a health check.</p> <important> <p>Amazon Route 53 does not prevent you from deleting a health check even if the health check is associated with one or more resource record sets. If you delete a health check and you don't update the associated resource record sets, the future status of the health check can't be predicted and may change. This will affect the routing of DNS queries for your DNS failover configuration. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html#health-checks-deleting.html\">Replacing and Deleting Health Checks</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> </important> <p>If you're using AWS Cloud Map and you configured Cloud Map to create a Route 53 health check when you register an instance, you can't use the Route 53 <code>DeleteHealthCheck</code> command to delete the health check. The health check is deleted automatically when you deregister the instance; there can be a delay of several hours before the health check is deleted from Route 53. </p>",
     "DeleteHostedZone": "<p>Deletes a hosted zone.</p> <p>If the hosted zone was created by another service, such as AWS Cloud Map, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DeleteHostedZone.html#delete-public-hosted-zone-created-by-another-service\">Deleting Public Hosted Zones That Were Created by Another Service</a> in the <i>Amazon Route 53 Developer Guide</i> for information about how to delete it. (The process is the same for public and private hosted zones that were created by another service.)</p> <p>If you want to keep your domain registration but you want to stop routing internet traffic to your website or web application, we recommend that you delete resource record sets in the hosted zone instead of deleting the hosted zone.</p> <important> <p>If you delete a hosted zone, you can't undelete it. You must create a new hosted zone and update the name servers for your domain registration, which can require up to 48 hours to take effect. (If you delegated responsibility for a subdomain to a hosted zone and you delete the child hosted zone, you must update the name servers in the parent hosted zone.) In addition, if you delete a hosted zone, someone could hijack the domain and route traffic to their own resources using your domain name.</p> </important> <p>If you want to avoid the monthly charge for the hosted zone, you can transfer DNS service for the domain to a free DNS service. When you transfer DNS service, you have to update the name servers for the domain registration. If the domain is registered with Route 53, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_domains_UpdateDomainNameservers.html\">UpdateDomainNameservers</a> for information about how to replace Route 53 name servers with name servers for the new DNS service. If the domain is registered with another registrar, use the method provided by the registrar to update name servers for the domain registration. For more information, perform an internet search on \"free DNS service.\"</p> <p>You can delete a hosted zone only if it contains only the default SOA record and NS resource record sets. If the hosted zone contains other resource record sets, you must delete them before you can delete the hosted zone. If you try to delete a hosted zone that contains other resource record sets, the request fails, and Route 53 returns a <code>HostedZoneNotEmpty</code> error. For information about deleting records from your hosted zone, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ChangeResourceRecordSets.html\">ChangeResourceRecordSets</a>.</p> <p>To verify that the hosted zone has been deleted, do one of the following:</p> <ul> <li> <p>Use the <code>GetHostedZone</code> action to request information about the hosted zone.</p> </li> <li> <p>Use the <code>ListHostedZones</code> action to get a list of the hosted zones associated with the current AWS account.</p> </li> </ul>",
+    "DeleteKeySigningKey": "<p>Deletes a key signing key (KSK). Before you can delete a KSK, you must deactivate it. The KSK must be deactived before you can delete it regardless of whether the hosted zone is enabled for DNSSEC signing.</p>",
     "DeleteQueryLoggingConfig": "<p>Deletes a configuration for DNS query logging. If you delete a configuration, Amazon Route 53 stops sending query logs to CloudWatch Logs. Route 53 doesn't delete any logs that are already in CloudWatch Logs.</p> <p>For more information about DNS query logs, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateQueryLoggingConfig.html\">CreateQueryLoggingConfig</a>.</p>",
     "DeleteReusableDelegationSet": "<p>Deletes a reusable delegation set.</p> <important> <p>You can delete a reusable delegation set only if it isn't associated with any hosted zones.</p> </important> <p>To verify that the reusable delegation set is not associated with any hosted zones, submit a <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetReusableDelegationSet.html\">GetReusableDelegationSet</a> request and specify the ID of the reusable delegation set that you want to delete.</p>",
     "DeleteTrafficPolicy": "<p>Deletes a traffic policy.</p> <p>When you delete a traffic policy, Route 53 sets a flag on the policy to indicate that it has been deleted. However, Route 53 never fully deletes the traffic policy. Note the following:</p> <ul> <li> <p>Deleted traffic policies aren't listed if you run <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListTrafficPolicies.html\">ListTrafficPolicies</a>.</p> </li> <li> <p> There's no way to get a list of deleted policies.</p> </li> <li> <p>If you retain the ID of the policy, you can get information about the policy, including the traffic policy document, by running <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetTrafficPolicy.html\">GetTrafficPolicy</a>.</p> </li> </ul>",
     "DeleteTrafficPolicyInstance": "<p>Deletes a traffic policy instance and all of the resource record sets that Amazon Route 53 created when you created the instance.</p> <note> <p>In the Route 53 console, traffic policy instances are known as policy records.</p> </note>",
     "DeleteVPCAssociationAuthorization": "<p>Removes authorization to submit an <code>AssociateVPCWithHostedZone</code> request to associate a specified VPC with a hosted zone that was created by a different account. You must use the account that created the hosted zone to submit a <code>DeleteVPCAssociationAuthorization</code> request.</p> <important> <p>Sending this request only prevents the AWS account that created the VPC from associating the VPC with the Amazon Route 53 hosted zone in the future. If the VPC is already associated with the hosted zone, <code>DeleteVPCAssociationAuthorization</code> won't disassociate the VPC from the hosted zone. If you want to delete an existing association, use <code>DisassociateVPCFromHostedZone</code>.</p> </important>",
+    "DisableHostedZoneDNSSEC": "<p>Disables DNSSEC signing in a specific hosted zone. This action does not deactivate any key signing keys (KSKs) that are active in the hosted zone.</p>",
     "DisassociateVPCFromHostedZone": "<p>Disassociates an Amazon Virtual Private Cloud (Amazon VPC) from an Amazon Route 53 private hosted zone. Note the following:</p> <ul> <li> <p>You can't disassociate the last Amazon VPC from a private hosted zone.</p> </li> <li> <p>You can't convert a private hosted zone into a public hosted zone.</p> </li> <li> <p>You can submit a <code>DisassociateVPCFromHostedZone</code> request using either the account that created the hosted zone or the account that created the Amazon VPC.</p> </li> <li> <p>Some services, such as AWS Cloud Map and Amazon Elastic File System (Amazon EFS) automatically create hosted zones and associate VPCs with the hosted zones. A service can create a hosted zone using your account or using its own account. You can disassociate a VPC from a hosted zone only if the service created the hosted zone using your account.</p> <p>When you run <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListHostedZonesByVPC.html\">DisassociateVPCFromHostedZone</a>, if the hosted zone has a value for <code>OwningAccount</code>, you can use <code>DisassociateVPCFromHostedZone</code>. If the hosted zone has a value for <code>OwningService</code>, you can't use <code>DisassociateVPCFromHostedZone</code>.</p> </li> </ul>",
+    "EnableHostedZoneDNSSEC": "<p>Enables DNSSEC signing in a specific hosted zone.</p>",
     "GetAccountLimit": "<p>Gets the specified limit for the current account, for example, the maximum number of health checks that you can create using the account.</p> <p>For the default limit, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>. To request a higher limit, <a href=\"https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-route53\">open a case</a>.</p> <note> <p>You can also view account limits in AWS Trusted Advisor. Sign in to the AWS Management Console and open the Trusted Advisor console at <a href=\"https://console.aws.amazon.com/trustedadvisor\">https://console.aws.amazon.com/trustedadvisor/</a>. Then choose <b>Service limits</b> in the navigation pane.</p> </note>",
     "GetChange": "<p>Returns the current status of a change batch request. The status is one of the following values:</p> <ul> <li> <p> <code>PENDING</code> indicates that the changes in this request have not propagated to all Amazon Route 53 DNS servers. This is the initial status of all change batch requests.</p> </li> <li> <p> <code>INSYNC</code> indicates that the changes have propagated to all Route 53 DNS servers. </p> </li> </ul>",
     "GetCheckerIpRanges": "<important> <p> <code>GetCheckerIpRanges</code> still works, but we recommend that you download ip-ranges.json, which includes IP address ranges for all AWS services. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/route-53-ip-addresses.html\">IP Address Ranges of Amazon Route 53 Servers</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> </important>",
+    "GetDNSSEC": "<p>Returns information about DNSSEC for a specific hosted zone, including the key signing keys (KSKs) and zone signing keys (ZSKs) in the hosted zone.</p>",
     "GetGeoLocation": "<p>Gets information about whether a specified geographic location is supported for Amazon Route 53 geolocation resource record sets.</p> <p>Use the following syntax to determine whether a continent is supported for geolocation:</p> <p> <code>GET /2013-04-01/geolocation?continentcode=<i>two-letter abbreviation for a continent</i> </code> </p> <p>Use the following syntax to determine whether a country is supported for geolocation:</p> <p> <code>GET /2013-04-01/geolocation?countrycode=<i>two-character country code</i> </code> </p> <p>Use the following syntax to determine whether a subdivision of a country is supported for geolocation:</p> <p> <code>GET /2013-04-01/geolocation?countrycode=<i>two-character country code</i>&amp;subdivisioncode=<i>subdivision code</i> </code> </p>",
     "GetHealthCheck": "<p>Gets information about a specified health check.</p>",
     "GetHealthCheckCount": "<p>Retrieves the number of health checks that are associated with the current AWS account.</p>",
@@ -78,6 +85,16 @@
       "refs": {
         "AccountLimit$Type": "<p>The limit that you requested. Valid values include the following:</p> <ul> <li> <p> <b>MAX_HEALTH_CHECKS_BY_OWNER</b>: The maximum number of health checks that you can create using the current account.</p> </li> <li> <p> <b>MAX_HOSTED_ZONES_BY_OWNER</b>: The maximum number of hosted zones that you can create using the current account.</p> </li> <li> <p> <b>MAX_REUSABLE_DELEGATION_SETS_BY_OWNER</b>: The maximum number of reusable delegation sets that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICIES_BY_OWNER</b>: The maximum number of traffic policies that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER</b>: The maximum number of traffic policy instances that you can create using the current account. (Traffic policy instances are referred to as traffic flow policy records in the Amazon Route 53 console.)</p> </li> </ul>",
         "GetAccountLimitRequest$Type": "<p>The limit that you want to get. Valid values include the following:</p> <ul> <li> <p> <b>MAX_HEALTH_CHECKS_BY_OWNER</b>: The maximum number of health checks that you can create using the current account.</p> </li> <li> <p> <b>MAX_HOSTED_ZONES_BY_OWNER</b>: The maximum number of hosted zones that you can create using the current account.</p> </li> <li> <p> <b>MAX_REUSABLE_DELEGATION_SETS_BY_OWNER</b>: The maximum number of reusable delegation sets that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICIES_BY_OWNER</b>: The maximum number of traffic policies that you can create using the current account.</p> </li> <li> <p> <b>MAX_TRAFFIC_POLICY_INSTANCES_BY_OWNER</b>: The maximum number of traffic policy instances that you can create using the current account. (Traffic policy instances are referred to as traffic flow policy records in the Amazon Route 53 console.)</p> </li> </ul>"
+      }
+    },
+    "ActivateKeySigningKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ActivateKeySigningKeyResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "AlarmIdentifier": {
@@ -142,11 +159,17 @@
     "ChangeInfo": {
       "base": "<p>A complex type that describes change information about changes made to your hosted zone.</p>",
       "refs": {
+        "ActivateKeySigningKeyResponse$ChangeInfo": null,
         "AssociateVPCWithHostedZoneResponse$ChangeInfo": "<p>A complex type that describes the changes made to your hosted zone.</p>",
         "ChangeResourceRecordSetsResponse$ChangeInfo": "<p>A complex type that contains information about changes made to your hosted zone.</p> <p>This element contains an ID that you use when performing a <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetChange.html\">GetChange</a> action to get detailed information about the change.</p>",
         "CreateHostedZoneResponse$ChangeInfo": "<p>A complex type that contains information about the <code>CreateHostedZone</code> request.</p>",
+        "CreateKeySigningKeyResponse$ChangeInfo": null,
+        "DeactivateKeySigningKeyResponse$ChangeInfo": null,
         "DeleteHostedZoneResponse$ChangeInfo": "<p>A complex type that contains the ID, the status, and the date and time of a request to delete a hosted zone.</p>",
+        "DeleteKeySigningKeyResponse$ChangeInfo": null,
+        "DisableHostedZoneDNSSECResponse$ChangeInfo": null,
         "DisassociateVPCFromHostedZoneResponse$ChangeInfo": "<p>A complex type that describes the changes made to the specified private hosted zone.</p>",
+        "EnableHostedZoneDNSSECResponse$ChangeInfo": null,
         "GetChangeResponse$ChangeInfo": "<p>A complex type that contains information about the specified change batch.</p>"
       }
     },
@@ -255,6 +278,16 @@
       "refs": {
       }
     },
+    "CreateKeySigningKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKeySigningKeyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateQueryLoggingConfigRequest": {
       "base": null,
       "refs": {
@@ -347,6 +380,27 @@
         "TestDNSAnswerResponse$ResponseCode": "<p>A code that indicates whether the request is valid or not. The most common response code is <code>NOERROR</code>, meaning that the request is valid. If the response is not valid, Amazon Route 53 returns a response code that describes the error. For a list of possible response codes, see <a href=\"http://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-6\">DNS RCODES</a> on the IANA website. </p>"
       }
     },
+    "DNSSECNotFound": {
+      "base": "<p>The hosted zone doesn't have any DNSSEC resources.</p>",
+      "refs": {
+      }
+    },
+    "DNSSECStatus": {
+      "base": "<p>A string repesenting the status of DNSSEC signing.</p>",
+      "refs": {
+        "GetDNSSECResponse$Status": "<p>A string repesenting the status of DNSSEC.</p>"
+      }
+    },
+    "DeactivateKeySigningKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeactivateKeySigningKeyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DelegationSet": {
       "base": "<p>A complex type that lists the name servers in a delegation set, as well as the <code>CallerReference</code> and the <code>ID</code> for the delegation set.</p>",
       "refs": {
@@ -411,6 +465,16 @@
     },
     "DeleteHostedZoneResponse": {
       "base": "<p>A complex type that contains the response to a <code>DeleteHostedZone</code> request.</p>",
+      "refs": {
+      }
+    },
+    "DeleteKeySigningKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteKeySigningKeyResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -483,6 +547,16 @@
         "CloudWatchAlarmConfiguration$Dimensions": "<p>For the metric that the CloudWatch alarm is associated with, a complex type that contains information about the dimensions for the metric. For information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/CW_Support_For_AWS.html\">Amazon CloudWatch Namespaces, Dimensions, and Metrics Reference</a> in the <i>Amazon CloudWatch User Guide</i>.</p>"
       }
     },
+    "DisableHostedZoneDNSSECRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableHostedZoneDNSSECResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Disabled": {
       "base": null,
       "refs": {
@@ -506,6 +580,16 @@
       "refs": {
       }
     },
+    "EnableHostedZoneDNSSECRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableHostedZoneDNSSECResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EnableSNI": {
       "base": null,
       "refs": {
@@ -516,64 +600,76 @@
     "ErrorMessage": {
       "base": null,
       "refs": {
-        "ConcurrentModification$message": "<p>Descriptive message for the error response.</p>",
+        "ConcurrentModification$message": "<p/>",
         "ConflictingDomainExists$message": null,
-        "ConflictingTypes$message": "<p>Descriptive message for the error response.</p>",
-        "DelegationSetAlreadyCreated$message": "<p>Descriptive message for the error response.</p>",
-        "DelegationSetAlreadyReusable$message": "<p>Descriptive message for the error response.</p>",
-        "DelegationSetInUse$message": "<p>Descriptive message for the error response.</p>",
-        "DelegationSetNotAvailable$message": "<p>Descriptive message for the error response.</p>",
-        "DelegationSetNotReusable$message": "<p>Descriptive message for the error response.</p>",
+        "ConflictingTypes$message": "<p/>",
+        "DNSSECNotFound$message": null,
+        "DelegationSetAlreadyCreated$message": "<p/>",
+        "DelegationSetAlreadyReusable$message": "<p/>",
+        "DelegationSetInUse$message": "<p/>",
+        "DelegationSetNotAvailable$message": "<p/>",
+        "DelegationSetNotReusable$message": "<p/>",
         "ErrorMessages$member": null,
-        "HealthCheckAlreadyExists$message": "<p>Descriptive message for the error response.</p>",
-        "HealthCheckInUse$message": "<p>Descriptive message for the error response.</p>",
+        "HealthCheckAlreadyExists$message": "<p/>",
+        "HealthCheckInUse$message": "<p/>",
         "HealthCheckVersionMismatch$message": null,
-        "HostedZoneAlreadyExists$message": "<p>Descriptive message for the error response.</p>",
-        "HostedZoneNotEmpty$message": "<p>Descriptive message for the error response.</p>",
-        "HostedZoneNotFound$message": "<p>Descriptive message for the error response.</p>",
-        "HostedZoneNotPrivate$message": "<p>Descriptive message for the error response.</p>",
+        "HostedZoneAlreadyExists$message": "<p/>",
+        "HostedZoneNotEmpty$message": "<p/>",
+        "HostedZoneNotFound$message": "<p/>",
+        "HostedZoneNotPrivate$message": "<p/>",
+        "HostedZonePartiallyDelegated$message": null,
         "IncompatibleVersion$message": null,
         "InsufficientCloudWatchLogsResourcePolicy$message": null,
-        "InvalidArgument$message": "<p>Descriptive message for the error response.</p>",
+        "InvalidArgument$message": "<p/>",
         "InvalidChangeBatch$message": null,
-        "InvalidDomainName$message": "<p>Descriptive message for the error response.</p>",
-        "InvalidInput$message": "<p>Descriptive message for the error response.</p>",
+        "InvalidDomainName$message": "<p/>",
+        "InvalidInput$message": "<p/>",
+        "InvalidKMSArn$message": null,
+        "InvalidKeySigningKeyName$message": null,
+        "InvalidKeySigningKeyStatus$message": null,
         "InvalidPaginationToken$message": null,
-        "InvalidTrafficPolicyDocument$message": "<p>Descriptive message for the error response.</p>",
-        "InvalidVPCId$message": "<p>Descriptive message for the error response.</p>",
-        "LastVPCAssociation$message": "<p>Descriptive message for the error response.</p>",
-        "LimitsExceeded$message": "<p>Descriptive message for the error response.</p>",
+        "InvalidSigningStatus$message": null,
+        "InvalidTrafficPolicyDocument$message": "<p/>",
+        "InvalidVPCId$message": "<p/>",
+        "KeySigningKeyAlreadyExists$message": null,
+        "KeySigningKeyInParentDSRecord$message": null,
+        "KeySigningKeyInUse$message": null,
+        "KeySigningKeyWithActiveStatusNotFound$message": null,
+        "LastVPCAssociation$message": "<p/>",
+        "LimitsExceeded$message": "<p/>",
         "NoSuchChange$message": null,
         "NoSuchCloudWatchLogsLogGroup$message": null,
-        "NoSuchDelegationSet$message": "<p>Descriptive message for the error response.</p>",
-        "NoSuchGeoLocation$message": "<p>Descriptive message for the error response.</p>",
-        "NoSuchHealthCheck$message": "<p>Descriptive message for the error response.</p>",
-        "NoSuchHostedZone$message": "<p>Descriptive message for the error response.</p>",
+        "NoSuchDelegationSet$message": "<p/>",
+        "NoSuchGeoLocation$message": "<p/>",
+        "NoSuchHealthCheck$message": "<p/>",
+        "NoSuchHostedZone$message": "<p/>",
+        "NoSuchKeySigningKey$message": null,
         "NoSuchQueryLoggingConfig$message": null,
-        "NoSuchTrafficPolicy$message": "<p>Descriptive message for the error response.</p>",
-        "NoSuchTrafficPolicyInstance$message": "<p>Descriptive message for the error response.</p>",
-        "NotAuthorizedException$message": "<p>Descriptive message for the error response.</p>",
+        "NoSuchTrafficPolicy$message": "<p/>",
+        "NoSuchTrafficPolicyInstance$message": "<p/>",
+        "NotAuthorizedException$message": "<p/>",
         "PriorRequestNotComplete$message": null,
-        "PublicZoneVPCAssociation$message": "<p>Descriptive message for the error response.</p>",
+        "PublicZoneVPCAssociation$message": "<p/>",
         "QueryLoggingConfigAlreadyExists$message": null,
         "ThrottlingException$message": null,
         "TooManyHealthChecks$message": null,
-        "TooManyHostedZones$message": "<p>Descriptive message for the error response.</p>",
-        "TooManyTrafficPolicies$message": "<p>Descriptive message for the error response.</p>",
-        "TooManyTrafficPolicyInstances$message": "<p>Descriptive message for the error response.</p>",
-        "TooManyTrafficPolicyVersionsForCurrentPolicy$message": "<p>Descriptive message for the error response.</p>",
-        "TooManyVPCAssociationAuthorizations$message": "<p>Descriptive message for the error response.</p>",
-        "TrafficPolicyAlreadyExists$message": "<p>Descriptive message for the error response.</p>",
-        "TrafficPolicyInUse$message": "<p>Descriptive message for the error response.</p>",
-        "TrafficPolicyInstanceAlreadyExists$message": "<p>Descriptive message for the error response.</p>",
-        "VPCAssociationAuthorizationNotFound$message": "<p>Descriptive message for the error response.</p>",
-        "VPCAssociationNotFound$message": "<p>Descriptive message for the error response.</p>"
+        "TooManyHostedZones$message": "<p/>",
+        "TooManyKeySigningKeys$message": null,
+        "TooManyTrafficPolicies$message": "<p/>",
+        "TooManyTrafficPolicyInstances$message": "<p/>",
+        "TooManyTrafficPolicyVersionsForCurrentPolicy$message": "<p/>",
+        "TooManyVPCAssociationAuthorizations$message": "<p/>",
+        "TrafficPolicyAlreadyExists$message": "<p/>",
+        "TrafficPolicyInUse$message": "<p/>",
+        "TrafficPolicyInstanceAlreadyExists$message": "<p/>",
+        "VPCAssociationAuthorizationNotFound$message": "<p/>",
+        "VPCAssociationNotFound$message": "<p>The specified VPC or hosted zone weren't found.</p>"
       }
     },
     "ErrorMessages": {
       "base": null,
       "refs": {
-        "InvalidChangeBatch$messages": "<p>Descriptive message for the error response.</p>"
+        "InvalidChangeBatch$messages": "<p/>"
       }
     },
     "EvaluationPeriods": {
@@ -690,6 +786,16 @@
     },
     "GetCheckerIpRangesResponse": {
       "base": "<p>A complex type that contains the <code>CheckerIpRanges</code> element.</p>",
+      "refs": {
+      }
+    },
+    "GetDNSSECRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDNSSECResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1010,6 +1116,11 @@
         "HostedZoneOwner$OwningService": "<p>If an AWS service uses its own account to create a hosted zone and associate the specified VPC with that hosted zone, <code>OwningService</code> contains an abbreviation that identifies the service. For example, if Amazon Elastic File System (Amazon EFS) created a hosted zone and associated a VPC with the hosted zone, the value of <code>OwningService</code> is <code>efs.amazonaws.com</code>.</p>"
       }
     },
+    "HostedZonePartiallyDelegated": {
+      "base": "<p>The hosted zone nameservers don't match the parent nameservers. The hosted zone and parent must have the same nameservers.</p>",
+      "refs": {
+      }
+    },
     "HostedZoneRRSetCount": {
       "base": null,
       "refs": {
@@ -1069,7 +1180,7 @@
       }
     },
     "InvalidArgument": {
-      "base": "<p>Parameter name is invalid.</p>",
+      "base": "<p>Parameter name is not valid.</p>",
       "refs": {
       }
     },
@@ -1088,13 +1199,33 @@
       "refs": {
       }
     },
+    "InvalidKMSArn": {
+      "base": "<p>The KeyManagementServiceArn that you specified isn't valid to use with DNSSEC signing.</p>",
+      "refs": {
+      }
+    },
+    "InvalidKeySigningKeyName": {
+      "base": "<p>The key signing key (KSK) name that you specified isn't a valid name.</p>",
+      "refs": {
+      }
+    },
+    "InvalidKeySigningKeyStatus": {
+      "base": "<p>The key signing key (KSK) status isn't valid or another KSK has the status <code>INTERNAL_FAILURE</code>.</p>",
+      "refs": {
+      }
+    },
     "InvalidPaginationToken": {
       "base": "<p>The value that you specified to get the second or subsequent page of results is invalid.</p>",
       "refs": {
       }
     },
+    "InvalidSigningStatus": {
+      "base": "<p>Your hosted zone status isn't valid for this operation. In the hosted zone, change the status to enable <code>DNSSEC</code> or disable <code>DNSSEC</code>.</p>",
+      "refs": {
+      }
+    },
     "InvalidTrafficPolicyDocument": {
-      "base": "<p>The format of the traffic policy document that you specified in the <code>Document</code> element is invalid.</p>",
+      "base": "<p>The format of the traffic policy document that you specified in the <code>Document</code> element is not valid.</p>",
       "refs": {
       }
     },
@@ -1114,6 +1245,39 @@
       "base": null,
       "refs": {
         "HostedZoneConfig$PrivateZone": "<p>A value that indicates whether this is a private hosted zone.</p>"
+      }
+    },
+    "KeySigningKey": {
+      "base": "<p>A key signing key (KSK) is a complex type that represents a public/private key pair. The private key is used to generate a digital signature for the zone signing key (ZSK). The public key is stored in the DNS and is used to authenticate the ZSK. A KSK is always associated with a hosted zone; it cannot exist by itself.</p>",
+      "refs": {
+        "CreateKeySigningKeyResponse$KeySigningKey": "<p>The key signing key (KSK) that the request creates.</p>",
+        "KeySigningKeys$member": null
+      }
+    },
+    "KeySigningKeyAlreadyExists": {
+      "base": "<p>You've already created a key signing key (KSK) with this name or with the same customer managed key (CMK) ARN.</p>",
+      "refs": {
+      }
+    },
+    "KeySigningKeyInParentDSRecord": {
+      "base": "<p>The key signing key (KSK) is specified in a parent DS record.</p>",
+      "refs": {
+      }
+    },
+    "KeySigningKeyInUse": {
+      "base": "<p>The key signing key (KSK) that you specified can't be deactivated because it's the only KSK for a currently-enabled DNSSEC. Disable DNSSEC signing, or add or enable another KSK.</p>",
+      "refs": {
+      }
+    },
+    "KeySigningKeyWithActiveStatusNotFound": {
+      "base": "<p>A key signing key (KSK) with <code>ACTIVE</code> status wasn't found.</p>",
+      "refs": {
+      }
+    },
+    "KeySigningKeys": {
+      "base": null,
+      "refs": {
+        "GetDNSSECResponse$KeySigningKeys": "<p>The key signing keys (KSKs) in your account.</p>"
       }
     },
     "LastVPCAssociation": {
@@ -1368,6 +1532,11 @@
       "refs": {
       }
     },
+    "NoSuchKeySigningKey": {
+      "base": "<p>The specified key signing key (KSK) doesn't exist.</p>",
+      "refs": {
+      }
+    },
     "NoSuchQueryLoggingConfig": {
       "base": "<p>There is no DNS query logging configuration with the specified ID.</p>",
       "refs": {
@@ -1387,6 +1556,7 @@
       "base": null,
       "refs": {
         "CreateHostedZoneRequest$CallerReference": "<p>A unique string that identifies the request and that allows failed <code>CreateHostedZone</code> requests to be retried without the risk of executing the operation twice. You must use a unique <code>CallerReference</code> string every time you submit a <code>CreateHostedZone</code> request. <code>CallerReference</code> can be any unique string, for example, a date/time stamp.</p>",
+        "CreateKeySigningKeyRequest$CallerReference": "<p>A unique string that identifies the request.</p>",
         "CreateReusableDelegationSetRequest$CallerReference": "<p>A unique string that identifies the request, and that allows you to retry failed <code>CreateReusableDelegationSet</code> requests without the risk of executing the operation twice. You must use a unique <code>CallerReference</code> string every time you submit a <code>CreateReusableDelegationSet</code> request. <code>CallerReference</code> can be any unique string, for example a date/time stamp.</p>",
         "DelegationSet$CallerReference": "<p>The value that you specified for <code>CallerReference</code> when you created the reusable delegation set.</p>",
         "HostedZone$CallerReference": "<p>The value that you specified for <code>CallerReference</code> when you created the hosted zone.</p>"
@@ -1585,22 +1755,29 @@
     "ResourceId": {
       "base": null,
       "refs": {
+        "ActivateKeySigningKeyRequest$HostedZoneId": "<p>A unique string used to identify a hosted zone.</p>",
         "AliasTarget$HostedZoneId": "<p> <i>Alias resource records sets only</i>: The value used depends on where you want to route traffic:</p> <dl> <dt>Amazon API Gateway custom regional APIs and edge-optimized APIs</dt> <dd> <p>Specify the hosted zone ID for your API. You can get the applicable value using the AWS CLI command <a href=\"https://docs.aws.amazon.com/cli/latest/reference/apigateway/get-domain-names.html\">get-domain-names</a>:</p> <ul> <li> <p>For regional APIs, specify the value of <code>regionalHostedZoneId</code>.</p> </li> <li> <p>For edge-optimized APIs, specify the value of <code>distributionHostedZoneId</code>.</p> </li> </ul> </dd> <dt>Amazon Virtual Private Cloud interface VPC endpoint</dt> <dd> <p>Specify the hosted zone ID for your interface endpoint. You can get the value of <code>HostedZoneId</code> using the AWS CLI command <a href=\"https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-vpc-endpoints.html\">describe-vpc-endpoints</a>.</p> </dd> <dt>CloudFront distribution</dt> <dd> <p>Specify <code>Z2FDTNDATAQYW2</code>.</p> <note> <p>Alias resource record sets for CloudFront can't be created in a private zone.</p> </note> </dd> <dt>Elastic Beanstalk environment</dt> <dd> <p>Specify the hosted zone ID for the region that you created the environment in. The environment must have a regionalized subdomain. For a list of regions and the corresponding hosted zone IDs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region\">AWS Elastic Beanstalk</a> in the \"AWS Service Endpoints\" chapter of the <i>Amazon Web Services General Reference</i>.</p> </dd> <dt>ELB load balancer</dt> <dd> <p>Specify the value of the hosted zone ID for the load balancer. Use the following methods to get the hosted zone ID:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/general/latest/gr/elb.html\">Service Endpoints</a> table in the \"Elastic Load Balancing Endpoints and Quotas\" topic in the <i>Amazon Web Services General Reference</i>: Use the value that corresponds with the region that you created your load balancer in. Note that there are separate columns for Application and Classic Load Balancers and for Network Load Balancers.</p> </li> <li> <p> <b>AWS Management Console</b>: Go to the Amazon EC2 page, choose <b>Load Balancers</b> in the navigation pane, select the load balancer, and get the value of the <b>Hosted zone</b> field on the <b>Description</b> tab.</p> </li> <li> <p> <b>Elastic Load Balancing API</b>: Use <code>DescribeLoadBalancers</code> to get the applicable value. For more information, see the applicable guide:</p> <ul> <li> <p>Classic Load Balancers: Use <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/2012-06-01/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> to get the value of <code>CanonicalHostedZoneNameId</code>.</p> </li> <li> <p>Application and Network Load Balancers: Use <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html\">DescribeLoadBalancers</a> to get the value of <code>CanonicalHostedZoneId</code>.</p> </li> </ul> </li> <li> <p> <b>AWS CLI</b>: Use <code>describe-load-balancers</code> to get the applicable value. For more information, see the applicable guide:</p> <ul> <li> <p>Classic Load Balancers: Use <a href=\"http://docs.aws.amazon.com/cli/latest/reference/elb/describe-load-balancers.html\">describe-load-balancers</a> to get the value of <code>CanonicalHostedZoneNameId</code>.</p> </li> <li> <p>Application and Network Load Balancers: Use <a href=\"http://docs.aws.amazon.com/cli/latest/reference/elbv2/describe-load-balancers.html\">describe-load-balancers</a> to get the value of <code>CanonicalHostedZoneId</code>.</p> </li> </ul> </li> </ul> </dd> <dt>AWS Global Accelerator accelerator</dt> <dd> <p>Specify <code>Z2BJ6XQ5FK7U4H</code>.</p> </dd> <dt>An Amazon S3 bucket configured as a static website</dt> <dd> <p>Specify the hosted zone ID for the region that you created the bucket in. For more information about valid values, see the table <a href=\"https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_website_region_endpoints\">Amazon S3 Website Endpoints</a> in the <i>Amazon Web Services General Reference</i>.</p> </dd> <dt>Another Route 53 resource record set in your hosted zone</dt> <dd> <p>Specify the hosted zone ID of your hosted zone. (An alias resource record set can't reference a resource record set in a different hosted zone.)</p> </dd> </dl>",
         "AssociateVPCWithHostedZoneRequest$HostedZoneId": "<p>The ID of the private hosted zone that you want to associate an Amazon VPC with.</p> <p>Note that you can't associate a VPC with a hosted zone that doesn't have an existing VPC association.</p>",
         "ChangeInfo$Id": "<p>The ID of the request.</p>",
         "ChangeResourceRecordSetsRequest$HostedZoneId": "<p>The ID of the hosted zone that contains the resource record sets that you want to change.</p>",
         "CreateHostedZoneRequest$DelegationSetId": "<p>If you want to associate a reusable delegation set with this hosted zone, the ID that Amazon Route 53 assigned to the reusable delegation set when you created it. For more information about reusable delegation sets, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_CreateReusableDelegationSet.html\">CreateReusableDelegationSet</a>.</p>",
+        "CreateKeySigningKeyRequest$HostedZoneId": "<p>The unique string (ID) used to identify a hosted zone.</p>",
         "CreateQueryLoggingConfigRequest$HostedZoneId": "<p>The ID of the hosted zone that you want to log queries for. You can log queries only for public hosted zones.</p>",
         "CreateReusableDelegationSetRequest$HostedZoneId": "<p>If you want to mark the delegation set for an existing hosted zone as reusable, the ID for that hosted zone.</p>",
         "CreateTrafficPolicyInstanceRequest$HostedZoneId": "<p>The ID of the hosted zone that you want Amazon Route 53 to create resource record sets in by using the configuration in a traffic policy.</p>",
         "CreateVPCAssociationAuthorizationRequest$HostedZoneId": "<p>The ID of the private hosted zone that you want to authorize associating a VPC with.</p>",
         "CreateVPCAssociationAuthorizationResponse$HostedZoneId": "<p>The ID of the hosted zone that you authorized associating a VPC with.</p>",
+        "DeactivateKeySigningKeyRequest$HostedZoneId": "<p>A unique string used to identify a hosted zone.</p>",
         "DelegationSet$Id": "<p>The ID that Amazon Route 53 assigns to a reusable delegation set.</p>",
         "DeleteHostedZoneRequest$Id": "<p>The ID of the hosted zone you want to delete.</p>",
+        "DeleteKeySigningKeyRequest$HostedZoneId": "<p>A unique string used to identify a hosted zone.</p>",
         "DeleteReusableDelegationSetRequest$Id": "<p>The ID of the reusable delegation set that you want to delete.</p>",
         "DeleteVPCAssociationAuthorizationRequest$HostedZoneId": "<p>When removing authorization to associate a VPC that was created by one AWS account with a hosted zone that was created with a different AWS account, the ID of the hosted zone.</p>",
+        "DisableHostedZoneDNSSECRequest$HostedZoneId": "<p>A unique string used to identify a hosted zone.</p>",
         "DisassociateVPCFromHostedZoneRequest$HostedZoneId": "<p>The ID of the private hosted zone that you want to disassociate a VPC from.</p>",
+        "EnableHostedZoneDNSSECRequest$HostedZoneId": "<p>A unique string used to identify a hosted zone.</p>",
         "GetChangeRequest$Id": "<p>The ID of the change batch request. The value that you specify here is the value that <code>ChangeResourceRecordSets</code> returned in the <code>Id</code> element when you submitted the request.</p>",
+        "GetDNSSECRequest$HostedZoneId": "<p>A unique string used to identify a hosted zone.</p>",
         "GetHostedZoneLimitRequest$HostedZoneId": "<p>The ID of the hosted zone that you want to get a limit for.</p>",
         "GetHostedZoneRequest$Id": "<p>The ID of the hosted zone that you want to get information about.</p>",
         "GetReusableDelegationSetLimitRequest$DelegationSetId": "<p>The ID of the delegation set that you want to get the limit for.</p>",
@@ -1708,6 +1885,7 @@
       "refs": {
         "CreateHealthCheckResponse$Location": "<p>The unique URL representing the new health check.</p>",
         "CreateHostedZoneResponse$Location": "<p>The unique URL representing the new hosted zone.</p>",
+        "CreateKeySigningKeyResponse$Location": "<p>The unique URL representing the new key signing key (KSK).</p>",
         "CreateQueryLoggingConfigResponse$Location": "<p>The unique URL representing the new query logging configuration.</p>",
         "CreateReusableDelegationSetResponse$Location": "<p>The unique URL representing the new reusable delegation set.</p>",
         "CreateTrafficPolicyInstanceResponse$Location": "<p>A unique URL that represents a new traffic policy instance.</p>",
@@ -1735,10 +1913,67 @@
         "UpdateHealthCheckRequest$SearchString": "<p>If the value of <code>Type</code> is <code>HTTP_STR_MATCH</code> or <code>HTTPS_STR_MATCH</code>, the string that you want Amazon Route 53 to search for in the response body from the specified resource. If the string appears in the response body, Route 53 considers the resource healthy. (You can't change the value of <code>Type</code> when you update a health check.)</p>"
       }
     },
+    "ServeSignature": {
+      "base": null,
+      "refs": {
+        "DNSSECStatus$ServeSignature": "<p>Indicates your hosted zone signging status: <code>SIGNING</code>, <code>NOT_SIGNING</code>, or <code>INTERNAL_FAILURE</code>. If the status is <code>INTERNAL_FAILURE</code>, see <code>StatusMessage</code> for information about steps that you can take to correct the problem.</p> <p>A status <code>INTERNAL_FAILURE</code> means there was an error during a request. Before you can continue to work with DNSSEC signing, including working with key signing keys (KSKs), you must correct the problem by enabling or disabling DNSSEC signing for the hosted zone.</p>"
+      }
+    },
     "ServicePrincipal": {
       "base": null,
       "refs": {
         "LinkedService$ServicePrincipal": "<p>If the health check or hosted zone was created by another service, the service that created the resource. When a resource is created by another service, you can't edit or delete it using Amazon Route 53. </p>"
+      }
+    },
+    "SigningKeyInteger": {
+      "base": null,
+      "refs": {
+        "KeySigningKey$Flag": "<p>An integer that specifies how the key is used. For key signing key (KSK), this value is always 257.</p>",
+        "KeySigningKey$SigningAlgorithmType": "<p>An integer used to represent the signing algorithm. This value must follow the guidelines provided by <a href=\"https://tools.ietf.org/html/rfc8624#section-3.1\">RFC-8624 Section 3.1</a>. </p>",
+        "KeySigningKey$DigestAlgorithmType": "<p>An integer used to represent the delegation signer digest algorithm. This value must follow the guidelines provided by <a href=\"https://tools.ietf.org/html/rfc8624#section-3.3\">RFC-8624 Section 3.3</a>.</p>"
+      }
+    },
+    "SigningKeyName": {
+      "base": null,
+      "refs": {
+        "ActivateKeySigningKeyRequest$Name": "<p>An alphanumeric string used to identify a key signing key (KSK).</p>",
+        "CreateKeySigningKeyRequest$Name": "<p>An alphanumeric string used to identify a key signing key (KSK). <code>Name</code> must be unique for each key signing key in the same hosted zone.</p>",
+        "DeactivateKeySigningKeyRequest$Name": "<p>An alphanumeric string used to identify a key signing key (KSK).</p>",
+        "DeleteKeySigningKeyRequest$Name": "<p>An alphanumeric string used to identify a key signing key (KSK).</p>",
+        "KeySigningKey$Name": "<p>An alphanumeric string used to identify a key signing key (KSK). <code>Name</code> must be unique for each key signing key in the same hosted zone.</p>"
+      }
+    },
+    "SigningKeyStatus": {
+      "base": null,
+      "refs": {
+        "CreateKeySigningKeyRequest$Status": "<p>A string specifying the initial status of the key signing key (KSK). You can set the value to <code>ACTIVE</code> or <code>INACTIVE</code>.</p>",
+        "KeySigningKey$Status": "<p>A string that represents the current key signing key (KSK) status.</p> <p>Status can have one of the following values:</p> <dl> <dt>ACTIVE</dt> <dd> <p>The KSK is being used for signing.</p> </dd> <dt>INACTIVE</dt> <dd> <p>The KSK is not being used for signing.</p> </dd> <dt>ACTION_NEEDED</dt> <dd> <p>There is an error in the KSK that requires you to take action to resolve.</p> </dd> <dt>INTERNAL_FAILURE</dt> <dd> <p>There was an error during a request. Before you can continue to work with DNSSEC signing, including actions that involve this KSK, you must correct the problem. For example, you may need to activate or deactivate the KSK.</p> </dd> </dl>"
+      }
+    },
+    "SigningKeyStatusMessage": {
+      "base": null,
+      "refs": {
+        "DNSSECStatus$StatusMessage": "<p>The status message provided for the following DNSSEC signing status: <code>INTERNAL_FAILURE</code>. The status message includes information about what the problem might be and steps that you can take to correct the issue.</p>",
+        "KeySigningKey$StatusMessage": "<p>The status message provided for the following key signing key (KSK) statuses: <code>ACTION_NEEDED</code> or <code>INTERNAL_FAILURE</code>. The status message includes information about what the problem might be and steps that you can take to correct the issue.</p>"
+      }
+    },
+    "SigningKeyString": {
+      "base": null,
+      "refs": {
+        "CreateKeySigningKeyRequest$KeyManagementServiceArn": "<p>The Amazon resource name (ARN) for a customer managed key (CMK) in AWS Key Management Service (KMS). The <code>KeyManagementServiceArn</code> must be unique for each key signing key (KSK) in a single hosted zone. To see an example of <code>KeyManagementServiceArn</code> that grants the correct permissions for DNSSEC, scroll down to <b>Example</b>. </p> <p>You must configure the CMK as follows:</p> <dl> <dt>Status</dt> <dd> <p>Enabled</p> </dd> <dt>Key spec</dt> <dd> <p>ECC_NIST_P256</p> </dd> <dt>Key usage</dt> <dd> <p>Sign and verify</p> </dd> <dt>Key policy</dt> <dd> <p>The key policy must give permission for the following actions:</p> <ul> <li> <p>DescribeKey</p> </li> <li> <p>GetPublicKey</p> </li> <li> <p>Sign</p> </li> </ul> <p>The key policy must also include the Amazon Route 53 service in the principal for your account. Specify the following:</p> <ul> <li> <p> <code>\"Service\": \"api-service.dnssec.route53.aws.internal\"</code> </p> </li> </ul> </dd> </dl> <p>For more information about working with CMK in KMS, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html\">AWS Key Management Service concepts</a>.</p>",
+        "KeySigningKey$KmsArn": "<p>The Amazon resource name (ARN) used to identify the customer managed key (CMK) in AWS Key Management Service (KMS). The <code>KmsArn</code> must be unique for each key signing key (KSK) in a single hosted zone.</p> <p>You must configure the CMK as follows:</p> <dl> <dt>Status</dt> <dd> <p>Enabled</p> </dd> <dt>Key spec</dt> <dd> <p>ECC_NIST_P256</p> </dd> <dt>Key usage</dt> <dd> <p>Sign and verify</p> </dd> <dt>Key policy</dt> <dd> <p>The key policy must give permission for the following actions:</p> <ul> <li> <p>DescribeKey</p> </li> <li> <p>GetPublicKey</p> </li> <li> <p>Sign</p> </li> </ul> <p>The key policy must also include the Amazon Route 53 service in the principal for your account. Specify the following:</p> <ul> <li> <p> <code>\"Service\": \"api-service.dnssec.route53.aws.internal\"</code> </p> </li> </ul> </dd> </dl> <p>For more information about working with the customer managed key (CMK) in KMS, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html\">AWS Key Management Service concepts</a>.</p>",
+        "KeySigningKey$SigningAlgorithmMnemonic": "<p>A string used to represent the signing algorithm. This value must follow the guidelines provided by <a href=\"https://tools.ietf.org/html/rfc8624#section-3.1\">RFC-8624 Section 3.1</a>. </p>",
+        "KeySigningKey$DigestAlgorithmMnemonic": "<p>A string used to represent the delegation signer digest algorithm. This value must follow the guidelines provided by <a href=\"https://tools.ietf.org/html/rfc8624#section-3.3\">RFC-8624 Section 3.3</a>. </p>",
+        "KeySigningKey$DigestValue": "<p>A cryptographic digest of a DNSKEY resource record (RR). DNSKEY records are used to publish the public key that resolvers can use to verify DNSSEC signatures that are used to secure certain kinds of information provided by the DNS system.</p>",
+        "KeySigningKey$PublicKey": "<p>The public key, represented as a Base64 encoding, as required by <a href=\"https://tools.ietf.org/rfc/rfc4034.txt\"> RFC-4034 Page 5</a>.</p>",
+        "KeySigningKey$DSRecord": "<p>A string that represents a delegation signer (DS) record.</p>",
+        "KeySigningKey$DNSKEYRecord": "<p>A string that represents a DNSKEY record.</p>"
+      }
+    },
+    "SigningKeyTag": {
+      "base": null,
+      "refs": {
+        "KeySigningKey$KeyTag": "<p>An integer used to identify the DNSSEC record for the domain name. The process used to calculate the value is described in <a href=\"https://tools.ietf.org/rfc/rfc4034.txt\">RFC-4034 Appendix B</a>.</p>"
       }
     },
     "Statistic": {
@@ -1855,6 +2090,8 @@
       "base": null,
       "refs": {
         "ChangeInfo$SubmittedAt": "<p>The date and time that the change request was submitted in <a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601 format</a> and Coordinated Universal Time (UTC). For example, the value <code>2017-03-27T17:48:16.751Z</code> represents March 27, 2017 at 17:48:16.751 UTC.</p>",
+        "KeySigningKey$CreatedDate": "<p>The date when the key signing key (KSK) was created.</p>",
+        "KeySigningKey$LastModifiedDate": "<p>The last time that the key signing key (KSK) was changed.</p>",
         "StatusReport$CheckedTime": "<p>The date and time that the health checker performed the health check in <a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601 format</a> and Coordinated Universal Time (UTC). For example, the value <code>2017-03-27T17:48:16.751Z</code> represents March 27, 2017 at 17:48:16.751 UTC.</p>"
       }
     },
@@ -1865,6 +2102,11 @@
     },
     "TooManyHostedZones": {
       "base": "<p>This operation can't be completed either because the current account has reached the limit on the number of hosted zones or because you've reached the limit on the number of hosted zones that can be associated with a reusable delegation set.</p> <p>For information about default limits, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/DNSLimitations.html\">Limits</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>To get the current limit on hosted zones that can be created by an account, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetAccountLimit.html\">GetAccountLimit</a>.</p> <p>To get the current limit on hosted zones that can be associated with a reusable delegation set, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_GetReusableDelegationSetLimit.html\">GetReusableDelegationSetLimit</a>.</p> <p>To request a higher limit, <a href=\"http://aws.amazon.com/route53-request\">create a case</a> with the AWS Support Center.</p>",
+      "refs": {
+      }
+    },
+    "TooManyKeySigningKeys": {
+      "base": "<p>You've reached the limit for the number of key signing keys (KSKs). Remove at least one KSK, and then try again.</p>",
       "refs": {
       }
     },
