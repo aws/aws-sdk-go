@@ -364,14 +364,23 @@ const (
 
 	// ErrCodeGlobalClusterAlreadyExistsFault for service response error code
 	// "GlobalClusterAlreadyExistsFault".
+	//
+	// The GlobalClusterIdentifier already exists. Choose a new global database
+	// identifier (unique name) to create a new global database cluster.
 	ErrCodeGlobalClusterAlreadyExistsFault = "GlobalClusterAlreadyExistsFault"
 
 	// ErrCodeGlobalClusterNotFoundFault for service response error code
 	// "GlobalClusterNotFoundFault".
+	//
+	// The GlobalClusterIdentifier doesn't refer to an existing global database
+	// cluster.
 	ErrCodeGlobalClusterNotFoundFault = "GlobalClusterNotFoundFault"
 
 	// ErrCodeGlobalClusterQuotaExceededFault for service response error code
 	// "GlobalClusterQuotaExceededFault".
+	//
+	// The number of global database clusters for this account is already at the
+	// maximum allowed.
 	ErrCodeGlobalClusterQuotaExceededFault = "GlobalClusterQuotaExceededFault"
 
 	// ErrCodeIamRoleMissingPermissionsFault for service response error code
@@ -545,6 +554,9 @@ const (
 
 	// ErrCodeInvalidGlobalClusterStateFault for service response error code
 	// "InvalidGlobalClusterStateFault".
+	//
+	// The global cluster is in an invalid state and can't perform the requested
+	// operation.
 	ErrCodeInvalidGlobalClusterStateFault = "InvalidGlobalClusterStateFault"
 
 	// ErrCodeInvalidOptionGroupStateFault for service response error code

@@ -1,3 +1,13 @@
+Release v1.36.12 (2020-12-18)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * EBS io2 volumes now supports Multi-Attach
+* `service/personalize-runtime`: Updates service API
+* `service/rds`: Updates service API and documentation
+  * Adds IAM DB authentication information to the PendingModifiedValues output of the DescribeDBInstances API. Adds ClusterPendingModifiedValues information to the output of the DescribeDBClusters API.
+
 Release v1.36.11 (2020-12-17)
 ===
 

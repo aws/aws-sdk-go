@@ -2616,6 +2616,16 @@
         "DisableLogTypes":{"shape":"LogTypeList"}
       }
     },
+    "ClusterPendingModifiedValues":{
+      "type":"structure",
+      "members":{
+        "PendingCloudwatchLogsExports":{"shape":"PendingCloudwatchLogsExports"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "MasterUserPassword":{"shape":"String"},
+        "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"},
+        "EngineVersion":{"shape":"String"}
+      }
+    },
     "ConnectionPoolConfiguration":{
       "type":"structure",
       "members":{
@@ -3248,7 +3258,8 @@
         "DomainMemberships":{"shape":"DomainMembershipList"},
         "TagList":{"shape":"TagList"},
         "GlobalWriteForwardingStatus":{"shape":"WriteForwardingStatus"},
-        "GlobalWriteForwardingRequested":{"shape":"BooleanOptional"}
+        "GlobalWriteForwardingRequested":{"shape":"BooleanOptional"},
+        "PendingModifiedValues":{"shape":"ClusterPendingModifiedValues"}
       },
       "wrapper":true
     },
@@ -6597,7 +6608,8 @@
         "CACertificateIdentifier":{"shape":"String"},
         "DBSubnetGroupName":{"shape":"String"},
         "PendingCloudwatchLogsExports":{"shape":"PendingCloudwatchLogsExports"},
-        "ProcessorFeatures":{"shape":"ProcessorFeatureList"}
+        "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
+        "IAMDatabaseAuthenticationEnabled":{"shape":"BooleanOptional"}
       }
     },
     "PointInTimeRestoreNotEnabledFault":{
