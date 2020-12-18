@@ -1468,8 +1468,12 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 //   unless there is only one Availability Zone.
 //
 //   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global database
+//   cluster.
 //
 //   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The global cluster is in an invalid state and can't perform the requested
+//   operation.
 //
 //   * ErrCodeDomainNotFoundFault "DomainNotFoundFault"
 //   Domain doesn't refer to an existing Active Directory domain.
@@ -2744,8 +2748,12 @@ func (c *RDS) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req *
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalClusterAlreadyExistsFault "GlobalClusterAlreadyExistsFault"
+//   The GlobalClusterIdentifier already exists. Choose a new global database
+//   identifier (unique name) to create a new global database cluster.
 //
 //   * ErrCodeGlobalClusterQuotaExceededFault "GlobalClusterQuotaExceededFault"
+//   The number of global database clusters for this account is already at the
+//   maximum allowed.
 //
 //   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
 //   The requested operation can't be performed while the cluster is in this state.
@@ -4086,8 +4094,12 @@ func (c *RDS) DeleteGlobalClusterRequest(input *DeleteGlobalClusterInput) (req *
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global database
+//   cluster.
 //
 //   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The global cluster is in an invalid state and can't perform the requested
+//   operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteGlobalCluster
 func (c *RDS) DeleteGlobalCluster(input *DeleteGlobalClusterInput) (*DeleteGlobalClusterOutput, error) {
@@ -8216,6 +8228,8 @@ func (c *RDS) DescribeGlobalClustersRequest(input *DescribeGlobalClustersInput) 
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global database
+//   cluster.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeGlobalClusters
 func (c *RDS) DescribeGlobalClusters(input *DescribeGlobalClustersInput) (*DescribeGlobalClustersOutput, error) {
@@ -11389,8 +11403,12 @@ func (c *RDS) ModifyGlobalClusterRequest(input *ModifyGlobalClusterInput) (req *
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global database
+//   cluster.
 //
 //   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The global cluster is in an invalid state and can't perform the requested
+//   operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyGlobalCluster
 func (c *RDS) ModifyGlobalCluster(input *ModifyGlobalClusterInput) (*ModifyGlobalClusterOutput, error) {
@@ -12018,8 +12036,12 @@ func (c *RDS) RemoveFromGlobalClusterRequest(input *RemoveFromGlobalClusterInput
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global database
+//   cluster.
 //
 //   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The global cluster is in an invalid state and can't perform the requested
+//   operation.
 //
 //   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
 //   DBClusterIdentifier doesn't refer to an existing DB cluster.
@@ -15793,6 +15815,69 @@ func (s *CloudwatchLogsExportConfiguration) SetEnableLogTypes(v []*string) *Clou
 	return s
 }
 
+// This data type is used as a response element in the ModifyDBCluster operation
+// and contains changes that will be applied during the next maintenance window.
+type ClusterPendingModifiedValues struct {
+	_ struct{} `type:"structure"`
+
+	// The DBClusterIdentifier for the DB cluster.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The database engine version.
+	EngineVersion *string `type:"string"`
+
+	// Whether mapping of AWS Identity and Access Management (IAM) accounts to database
+	// accounts is enabled.
+	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
+
+	// The master credentials for the DB cluster.
+	MasterUserPassword *string `type:"string"`
+
+	// A list of the log types whose configuration is still pending. In other words,
+	// these log types are in the process of being activated or deactivated.
+	PendingCloudwatchLogsExports *PendingCloudwatchLogsExports `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClusterPendingModifiedValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClusterPendingModifiedValues) GoString() string {
+	return s.String()
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *ClusterPendingModifiedValues) SetDBClusterIdentifier(v string) *ClusterPendingModifiedValues {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ClusterPendingModifiedValues) SetEngineVersion(v string) *ClusterPendingModifiedValues {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetIAMDatabaseAuthenticationEnabled sets the IAMDatabaseAuthenticationEnabled field's value.
+func (s *ClusterPendingModifiedValues) SetIAMDatabaseAuthenticationEnabled(v bool) *ClusterPendingModifiedValues {
+	s.IAMDatabaseAuthenticationEnabled = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *ClusterPendingModifiedValues) SetMasterUserPassword(v string) *ClusterPendingModifiedValues {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetPendingCloudwatchLogsExports sets the PendingCloudwatchLogsExports field's value.
+func (s *ClusterPendingModifiedValues) SetPendingCloudwatchLogsExports(v *PendingCloudwatchLogsExports) *ClusterPendingModifiedValues {
+	s.PendingCloudwatchLogsExports = v
+	return s
+}
+
 // Specifies the settings that control the size and behavior of the connection
 // pool associated with a DBProxyTargetGroup.
 type ConnectionPoolConfiguration struct {
@@ -18149,8 +18234,7 @@ type CreateDBInstanceInput struct {
 	// PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, the default "postgres" database is created in
-	// the DB instance.
+	// parameter isn't specified, no database is created in the DB instance.
 	//
 	// Constraints:
 	//
@@ -19186,9 +19270,9 @@ type CreateDBInstanceReadReplicaInput struct {
 	// for the AWS KMS CMK.
 	//
 	// If you create an encrypted read replica in the same AWS Region as the source
-	// DB instance, then you do not have to specify a value for this parameter.
-	// The read replica is encrypted with the same AWS KMS CMK as the source DB
-	// instance.
+	// DB instance, then do not specify a value for this parameter. A read replica
+	// in the same Region is always encrypted with the same AWS KMS CMK as the source
+	// DB instance.
 	//
 	// If you create an encrypted read replica in a different AWS Region, then you
 	// must specify a AWS KMS key identifier for the destination AWS Region. AWS
@@ -20910,6 +20994,10 @@ type DBCluster struct {
 	// Specifies whether the DB cluster has instances in multiple Availability Zones.
 	MultiAZ *bool `type:"boolean"`
 
+	// Specifies that changes to the DB cluster are pending. This element is only
+	// included when changes are pending. Specific changes are identified by subelements.
+	PendingModifiedValues *ClusterPendingModifiedValues `type:"structure"`
+
 	// Specifies the progress of the operation as a percentage.
 	PercentProgress *string `type:"string"`
 
@@ -21231,6 +21319,12 @@ func (s *DBCluster) SetMasterUsername(v string) *DBCluster {
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *DBCluster) SetMultiAZ(v bool) *DBCluster {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *DBCluster) SetPendingModifiedValues(v *ClusterPendingModifiedValues) *DBCluster {
+	s.PendingModifiedValues = v
 	return s
 }
 
@@ -36326,36 +36420,37 @@ func (s *PendingMaintenanceAction) SetOptInStatus(v string) *PendingMaintenanceA
 	return s
 }
 
-// This data type is used as a response element in the ModifyDBInstance action.
+// This data type is used as a response element in the ModifyDBInstance action
+// and contains changes that will be applied during the next maintenance window.
 type PendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the new AllocatedStorage size for the DB instance that will be applied
-	// or is currently being applied.
+	// The allocated storage size for the DB instance specified in gibibytes .
 	AllocatedStorage *int64 `type:"integer"`
 
-	// Specifies the pending number of days for which automated backups are retained.
+	// The number of days for which automated backups are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// Specifies the identifier of the CA certificate for the DB instance.
+	// The identifier of the CA certificate for the DB instance.
 	CACertificateIdentifier *string `type:"string"`
 
-	// Contains the new DBInstanceClass for the DB instance that will be applied
-	// or is currently being applied.
+	// The name of the compute and memory capacity class for the DB instance.
 	DBInstanceClass *string `type:"string"`
 
-	// Contains the new DBInstanceIdentifier for the DB instance that will be applied
-	// or is currently being applied.
+	// The database identifier for the DB instance.
 	DBInstanceIdentifier *string `type:"string"`
 
-	// The new DB subnet group for the DB instance.
+	// The DB subnet group for the DB instance.
 	DBSubnetGroupName *string `type:"string"`
 
-	// Indicates the database engine version.
+	// The database engine version.
 	EngineVersion *string `type:"string"`
 
-	// Specifies the new Provisioned IOPS value for the DB instance that will be
-	// applied or is currently being applied.
+	// Whether mapping of AWS Identity and Access Management (IAM) accounts to database
+	// accounts is enabled.
+	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
+
+	// The Provisioned IOPS value for the DB instance.
 	Iops *int64 `type:"integer"`
 
 	// The license model for the DB instance.
@@ -36363,25 +36458,24 @@ type PendingModifiedValues struct {
 	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
-	// Contains the pending or currently-in-progress change of the master credentials
-	// for the DB instance.
+	// The master credentials for the DB instance.
 	MasterUserPassword *string `type:"string"`
 
-	// Indicates that the Single-AZ DB instance is to change to a Multi-AZ deployment.
+	// Indicates that the Single-AZ DB instance will change to a Multi-AZ deployment.
 	MultiAZ *bool `type:"boolean"`
 
 	// A list of the log types whose configuration is still pending. In other words,
 	// these log types are in the process of being activated or deactivated.
 	PendingCloudwatchLogsExports *PendingCloudwatchLogsExports `type:"structure"`
 
-	// Specifies the pending port for the DB instance.
+	// The port for the DB instance.
 	Port *int64 `type:"integer"`
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// Specifies the storage type to be associated with the DB instance.
+	// The storage type of the DB instance.
 	StorageType *string `type:"string"`
 }
 
@@ -36434,6 +36528,12 @@ func (s *PendingModifiedValues) SetDBSubnetGroupName(v string) *PendingModifiedV
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *PendingModifiedValues) SetEngineVersion(v string) *PendingModifiedValues {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetIAMDatabaseAuthenticationEnabled sets the IAMDatabaseAuthenticationEnabled field's value.
+func (s *PendingModifiedValues) SetIAMDatabaseAuthenticationEnabled(v bool) *PendingModifiedValues {
+	s.IAMDatabaseAuthenticationEnabled = &v
 	return s
 }
 

@@ -67,7 +67,7 @@
     "FilterAttributeName":{
       "type":"string",
       "max":50,
-      "pattern":"[A-Za-z0-9]+"
+      "pattern":"[A-Za-z0-9_]+"
     },
     "FilterAttributeValue":{
       "type":"string",
