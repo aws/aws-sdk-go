@@ -329,6 +329,13 @@ const (
 	// Systems Manager or wait and try again later.
 	ErrCodeRemediationInProgressException = "RemediationInProgressException"
 
+	// ErrCodeResourceConcurrentModificationException for service response error code
+	// "ResourceConcurrentModificationException".
+	//
+	// Two users are trying to modify the same query at the same time. Wait for
+	// a moment and try again.
+	ErrCodeResourceConcurrentModificationException = "ResourceConcurrentModificationException"
+
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
@@ -432,6 +439,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"OrganizationConformancePackTemplateValidationException":   newErrorOrganizationConformancePackTemplateValidationException,
 	"OversizedConfigurationItemException":                      newErrorOversizedConfigurationItemException,
 	"RemediationInProgressException":                           newErrorRemediationInProgressException,
+	"ResourceConcurrentModificationException":                  newErrorResourceConcurrentModificationException,
 	"ResourceInUseException":                                   newErrorResourceInUseException,
 	"ResourceNotDiscoveredException":                           newErrorResourceNotDiscoveredException,
 	"ResourceNotFoundException":                                newErrorResourceNotFoundException,

@@ -13,6 +13,23 @@
     "uid":"connectparticipant-2018-09-07"
   },
   "operations":{
+    "CompleteAttachmentUpload":{
+      "name":"CompleteAttachmentUpload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/participant/complete-attachment-upload"
+      },
+      "input":{"shape":"CompleteAttachmentUploadRequest"},
+      "output":{"shape":"CompleteAttachmentUploadResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "CreateParticipantConnection":{
       "name":"CreateParticipantConnection",
       "http":{
@@ -36,6 +53,21 @@
       },
       "input":{"shape":"DisconnectParticipantRequest"},
       "output":{"shape":"DisconnectParticipantResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "GetAttachment":{
+      "name":"GetAttachment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/participant/attachment"
+      },
+      "input":{"shape":"GetAttachmentRequest"},
+      "output":{"shape":"GetAttachmentResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
@@ -87,6 +119,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ]
+    },
+    "StartAttachmentUpload":{
+      "name":"StartAttachmentUpload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/participant/start-attachment-upload"
+      },
+      "input":{"shape":"StartAttachmentUploadRequest"},
+      "output":{"shape":"StartAttachmentUploadResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
     }
   },
   "shapes":{
@@ -98,6 +146,47 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "ArtifactId":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "ArtifactStatus":{
+      "type":"string",
+      "enum":[
+        "APPROVED",
+        "REJECTED",
+        "IN_PROGRESS"
+      ]
+    },
+    "AttachmentIdList":{
+      "type":"list",
+      "member":{"shape":"ArtifactId"},
+      "max":1,
+      "min":1
+    },
+    "AttachmentItem":{
+      "type":"structure",
+      "members":{
+        "ContentType":{"shape":"ContentType"},
+        "AttachmentId":{"shape":"ArtifactId"},
+        "AttachmentName":{"shape":"AttachmentName"},
+        "Status":{"shape":"ArtifactStatus"}
+      }
+    },
+    "AttachmentName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "AttachmentSizeInBytes":{
+      "type":"long",
+      "min":1
+    },
+    "Attachments":{
+      "type":"list",
+      "member":{"shape":"AttachmentItem"}
     },
     "ChatContent":{
       "type":"string",
@@ -117,14 +206,55 @@
     "ChatItemType":{
       "type":"string",
       "enum":[
+        "TYPING",
+        "PARTICIPANT_JOINED",
+        "PARTICIPANT_LEFT",
+        "CHAT_ENDED",
+        "TRANSFER_SUCCEEDED",
+        "TRANSFER_FAILED",
         "MESSAGE",
         "EVENT",
+        "ATTACHMENT",
         "CONNECTION_ACK"
       ]
     },
     "ClientToken":{
       "type":"string",
       "max":500
+    },
+    "CompleteAttachmentUploadRequest":{
+      "type":"structure",
+      "required":[
+        "AttachmentIds",
+        "ClientToken",
+        "ConnectionToken"
+      ],
+      "members":{
+        "AttachmentIds":{"shape":"AttachmentIdList"},
+        "ClientToken":{
+          "shape":"NonEmptyClientToken",
+          "idempotencyToken":true
+        },
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "CompleteAttachmentUploadResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ConflictException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"Reason"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "ConnectionCredentials":{
       "type":"structure",
@@ -148,6 +278,11 @@
     "ContactId":{
       "type":"string",
       "max":256,
+      "min":1
+    },
+    "ContentType":{
+      "type":"string",
+      "max":255,
       "min":1
     },
     "CreateParticipantConnectionRequest":{
@@ -196,6 +331,28 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "GetAttachmentRequest":{
+      "type":"structure",
+      "required":[
+        "AttachmentId",
+        "ConnectionToken"
+      ],
+      "members":{
+        "AttachmentId":{"shape":"ArtifactId"},
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "GetAttachmentResponse":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"PreSignedAttachmentUrl"},
+        "UrlExpiry":{"shape":"ISO8601Datetime"}
+      }
     },
     "GetTranscriptRequest":{
       "type":"structure",
@@ -251,7 +408,8 @@
         "Type":{"shape":"ChatItemType"},
         "ParticipantId":{"shape":"ParticipantId"},
         "DisplayName":{"shape":"DisplayName"},
-        "ParticipantRole":{"shape":"ParticipantRole"}
+        "ParticipantRole":{"shape":"ParticipantRole"},
+        "Attachments":{"shape":"Attachments"}
       }
     },
     "MaxResults":{
@@ -270,6 +428,11 @@
       "max":1000,
       "min":1
     },
+    "NonEmptyClientToken":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
     "ParticipantId":{
       "type":"string",
       "max":256,
@@ -286,6 +449,11 @@
     "ParticipantToken":{
       "type":"string",
       "max":1000,
+      "min":1
+    },
+    "PreSignedAttachmentUrl":{
+      "type":"string",
+      "max":2000,
       "min":1
     },
     "PreSignedConnectionUrl":{
@@ -360,12 +528,52 @@
         "AbsoluteTime":{"shape":"Instant"}
       }
     },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":402},
+      "exception":true
+    },
     "SortKey":{
       "type":"string",
       "enum":[
         "DESCENDING",
         "ASCENDING"
       ]
+    },
+    "StartAttachmentUploadRequest":{
+      "type":"structure",
+      "required":[
+        "ContentType",
+        "AttachmentSizeInBytes",
+        "AttachmentName",
+        "ClientToken",
+        "ConnectionToken"
+      ],
+      "members":{
+        "ContentType":{"shape":"ContentType"},
+        "AttachmentSizeInBytes":{"shape":"AttachmentSizeInBytes"},
+        "AttachmentName":{"shape":"AttachmentName"},
+        "ClientToken":{
+          "shape":"NonEmptyClientToken",
+          "idempotencyToken":true
+        },
+        "ConnectionToken":{
+          "shape":"ParticipantToken",
+          "location":"header",
+          "locationName":"X-Amz-Bearer"
+        }
+      }
+    },
+    "StartAttachmentUploadResponse":{
+      "type":"structure",
+      "members":{
+        "AttachmentId":{"shape":"ArtifactId"},
+        "UploadMetadata":{"shape":"UploadMetadata"}
+      }
     },
     "StartPosition":{
       "type":"structure",
@@ -387,6 +595,34 @@
     "Transcript":{
       "type":"list",
       "member":{"shape":"Item"}
+    },
+    "UploadMetadata":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"UploadMetadataUrl"},
+        "UrlExpiry":{"shape":"ISO8601Datetime"},
+        "HeadersToInclude":{"shape":"UploadMetadataSignedHeaders"}
+      }
+    },
+    "UploadMetadataSignedHeaders":{
+      "type":"map",
+      "key":{"shape":"UploadMetadataSignedHeadersKey"},
+      "value":{"shape":"UploadMetadataSignedHeadersValue"}
+    },
+    "UploadMetadataSignedHeadersKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "UploadMetadataSignedHeadersValue":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "UploadMetadataUrl":{
+      "type":"string",
+      "max":2000,
+      "min":1
     },
     "ValidationException":{
       "type":"structure",

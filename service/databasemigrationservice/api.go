@@ -10269,6 +10269,25 @@ type DocDbSettings struct {
 	// The port value for the DocumentDB source endpoint.
 	Port *int64 `type:"integer"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the DocumentDB endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the DocumentDB endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// The name of the server on the DocumentDB source endpoint.
 	ServerName *string `type:"string"`
 
@@ -10325,6 +10344,18 @@ func (s *DocDbSettings) SetPassword(v string) *DocDbSettings {
 // SetPort sets the Port field's value.
 func (s *DocDbSettings) SetPort(v int64) *DocDbSettings {
 	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *DocDbSettings) SetSecretsManagerAccessRoleArn(v string) *DocDbSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *DocDbSettings) SetSecretsManagerSecretId(v string) *DocDbSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -11039,7 +11070,7 @@ func (s *EventSubscription) SetSubscriptionCreationTime(v string) *EventSubscrip
 // Identifies the name and value of a filter object. This filter is used to
 // limit the number and type of AWS DMS objects that are returned for a particular
 // Describe* call or similar operation. Filters are used as an optional parameter
-// to the following APIs.
+// for certain API operations.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
@@ -11113,6 +11144,25 @@ type IBMDb2Settings struct {
 	// Endpoint TCP port.
 	Port *int64 `type:"integer"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the Db2 LUW endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the Db2 LUW endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
 
@@ -11160,6 +11210,18 @@ func (s *IBMDb2Settings) SetPassword(v string) *IBMDb2Settings {
 // SetPort sets the Port field's value.
 func (s *IBMDb2Settings) SetPort(v int64) *IBMDb2Settings {
 	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *IBMDb2Settings) SetSecretsManagerAccessRoleArn(v string) *IBMDb2Settings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *IBMDb2Settings) SetSecretsManagerSecretId(v string) *IBMDb2Settings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -12201,9 +12263,9 @@ type MicrosoftSQLServerSettings struct {
 	// The maximum size of the packets (in bytes) used to transfer data using BCP.
 	BcpPacketSize *int64 `type:"integer"`
 
-	// Specify a filegroup for the AWS DMS internal tables. When the replication
+	// Specifies a file group for the AWS DMS internal tables. When the replication
 	// task starts, all the internal AWS DMS control tables (awsdms_ apply_exception,
-	// awsdms_apply, awsdms_changes) are created on the specified filegroup.
+	// awsdms_apply, awsdms_changes) are created for the specified file group.
 	ControlTablesFileGroup *string `type:"string"`
 
 	// Database name for the endpoint.
@@ -12239,6 +12301,25 @@ type MicrosoftSQLServerSettings struct {
 	// at any given time. Therefore, if you need to run parallel AWS DMS tasks against
 	// the same database, use the default method.
 	SafeguardPolicy *string `type:"string" enum:"SafeguardPolicy"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the SQL Server endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the SQL Server endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
 
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
@@ -12301,6 +12382,18 @@ func (s *MicrosoftSQLServerSettings) SetReadBackupOnly(v bool) *MicrosoftSQLServ
 // SetSafeguardPolicy sets the SafeguardPolicy field's value.
 func (s *MicrosoftSQLServerSettings) SetSafeguardPolicy(v string) *MicrosoftSQLServerSettings {
 	s.SafeguardPolicy = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *MicrosoftSQLServerSettings) SetSecretsManagerAccessRoleArn(v string) *MicrosoftSQLServerSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *MicrosoftSQLServerSettings) SetSecretsManagerSecretId(v string) *MicrosoftSQLServerSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -12860,7 +12953,7 @@ type ModifyReplicationInstanceInput struct {
 
 	// A value that indicates that minor version upgrades are applied automatically
 	// to the replication instance during the maintenance window. Changing this
-	// parameter doesn't result in an outage, except in the case dsecribed following.
+	// parameter doesn't result in an outage, except in the case described following.
 	// The change is asynchronously applied as soon as possible.
 	//
 	// An outage does result if these factors apply:
@@ -13348,6 +13441,25 @@ type MongoDbSettings struct {
 	// The port value for the MongoDB source endpoint.
 	Port *int64 `type:"integer"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the MongoDB endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the MongoDB endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// The name of the server on the MongoDB source endpoint.
 	ServerName *string `type:"string"`
 
@@ -13422,6 +13534,18 @@ func (s *MongoDbSettings) SetPassword(v string) *MongoDbSettings {
 // SetPort sets the Port field's value.
 func (s *MongoDbSettings) SetPort(v int64) *MongoDbSettings {
 	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *MongoDbSettings) SetSecretsManagerAccessRoleArn(v string) *MongoDbSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *MongoDbSettings) SetSecretsManagerSecretId(v string) *MongoDbSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -13539,7 +13663,7 @@ type MySQLSettings struct {
 	// Example: maxFileSize=512
 	MaxFileSize *int64 `type:"integer"`
 
-	// Improves performance when loading data into the MySQLcompatible target database.
+	// Improves performance when loading data into the MySQL-compatible target database.
 	// Specifies how many threads to use to load the data into the MySQL-compatible
 	// target database. Setting a large number of threads can have an adverse effect
 	// on database performance, because a separate connection is required for each
@@ -13553,6 +13677,25 @@ type MySQLSettings struct {
 
 	// Endpoint TCP port.
 	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the MySQL endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the MySQL endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
 
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
@@ -13623,6 +13766,18 @@ func (s *MySQLSettings) SetPassword(v string) *MySQLSettings {
 // SetPort sets the Port field's value.
 func (s *MySQLSettings) SetPort(v int64) *MySQLSettings {
 	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *MySQLSettings) SetSecretsManagerAccessRoleArn(v string) *MySQLSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *MySQLSettings) SetSecretsManagerSecretId(v string) *MySQLSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -13903,6 +14058,25 @@ type OracleSettings struct {
 	// Example: retryInterval=6;
 	RetryInterval *int64 `type:"integer"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the Oracle endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the Oracle endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// For an Oracle source endpoint, the transparent data encryption (TDE) password
 	// required by AWM DMS to access Oracle redo logs encrypted by TDE using Binary
 	// Reader. It is also the TDE_Password part of the comma-separated value you
@@ -14092,6 +14266,18 @@ func (s *OracleSettings) SetReplacePathPrefix(v bool) *OracleSettings {
 // SetRetryInterval sets the RetryInterval field's value.
 func (s *OracleSettings) SetRetryInterval(v int64) *OracleSettings {
 	s.RetryInterval = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *OracleSettings) SetSecretsManagerAccessRoleArn(v string) *OracleSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *OracleSettings) SetSecretsManagerSecretId(v string) *OracleSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -14374,6 +14560,25 @@ type PostgreSQLSettings struct {
 	// Endpoint TCP port.
 	Port *int64 `type:"integer"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the PostgreSQL endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the PostgreSQL endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
 
@@ -14449,6 +14654,18 @@ func (s *PostgreSQLSettings) SetPassword(v string) *PostgreSQLSettings {
 // SetPort sets the Port field's value.
 func (s *PostgreSQLSettings) SetPort(v int64) *PostgreSQLSettings {
 	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *PostgreSQLSettings) SetSecretsManagerAccessRoleArn(v string) *PostgreSQLSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *PostgreSQLSettings) SetSecretsManagerSecretId(v string) *PostgreSQLSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -14565,8 +14782,8 @@ type RedshiftSettings struct {
 	// For full load mode, AWS DMS converts source records into .csv files and loads
 	// them to the BucketFolder/TableID path. AWS DMS uses the Redshift COPY command
 	// to upload the .csv files to the target table. The files are deleted once
-	// the COPY operation has finished. For more information, see Amazon Redshift
-	// Database Developer Guide (https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html)
+	// the COPY operation has finished. For more information, see COPY (https://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html)
+	// in the Amazon Redshift Database Developer Guide.
 	//
 	// For change-data-capture (CDC) mode, AWS DMS creates a NetChanges table, and
 	// loads the .csv files to this BucketFolder/NetChangesTableID path.
@@ -14667,6 +14884,25 @@ type RedshiftSettings struct {
 
 	// A list of characters that you want to replace. Use with ReplaceChars.
 	ReplaceInvalidChars *string `type:"string"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the Amazon Redshift endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the Amazon Redshift endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
 
 	// The name of the Amazon Redshift cluster you are using.
 	ServerName *string `type:"string"`
@@ -14836,6 +15072,18 @@ func (s *RedshiftSettings) SetReplaceChars(v string) *RedshiftSettings {
 // SetReplaceInvalidChars sets the ReplaceInvalidChars field's value.
 func (s *RedshiftSettings) SetReplaceInvalidChars(v string) *RedshiftSettings {
 	s.ReplaceInvalidChars = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *RedshiftSettings) SetSecretsManagerAccessRoleArn(v string) *RedshiftSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *RedshiftSettings) SetSecretsManagerSecretId(v string) *RedshiftSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 
@@ -16846,13 +17094,13 @@ type S3Settings struct {
 	// Specifies the folder path of CDC files. For an S3 source, this setting is
 	// required if a task captures change data; otherwise, it's optional. If CdcPath
 	// is set, AWS DMS reads CDC files from this path and replicates the data changes
-	// to the target endpoint. For an S3 target, if CdcPathis set, it is the folder
-	// path where data changes are replicated. If you set PreserveTransactions (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-PreserveTransactions)
+	// to the target endpoint. For an S3 target if you set PreserveTransactions
+	// (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-PreserveTransactions)
 	// to true, AWS DMS verifies that you have set this parameter to a folder path
 	// on your S3 target where AWS DMS can save the transaction order for the CDC
 	// load. AWS DMS creates this CDC folder path in either your S3 target working
-	// directory or the S3 target location specified by BucketFolder (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketFolder)
-	// and BucketName (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketName).
+	// directory or the S3 target location specified by BucketFolder (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketFolder)
+	// and BucketName (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-BucketName).
 	//
 	// For example, if you specify CdcPath as MyChangedData, and you specify BucketName
 	// as MyTargetBucket but do not specify BucketFolder, AWS DMS creates the CDC
@@ -16861,6 +17109,10 @@ type S3Settings struct {
 	// If you specify the same CdcPath, and you specify BucketName as MyTargetBucket
 	// and BucketFolder as MyTargetData, AWS DMS creates the CDC folder path following:
 	// MyTargetBucket/MyTargetData/MyChangedData.
+	//
+	// For more information on CDC including transaction order on an S3 target,
+	// see Capturing data changes (CDC) including transaction order on the S3 target
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.EndpointSettings.CdcPath).
 	//
 	// This setting is supported in AWS DMS versions 3.4.2 and later.
 	CdcPath *string `type:"string"`
@@ -16876,7 +17128,7 @@ type S3Settings struct {
 	CsvDelimiter *string `type:"string"`
 
 	// This setting only applies if your Amazon S3 output files during a change
-	// data capture (CDC) load are written in .csv format. If UseCsvNoSupValue (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-UseCsvNoSupValue)
+	// data capture (CDC) load are written in .csv format. If UseCsvNoSupValue (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-UseCsvNoSupValue)
 	// is set to true, specify a string value that you want AWS DMS to use for all
 	// columns not included in the supplemental log. If you do not specify a string
 	// value, AWS DMS uses the null value for these columns regardless of the UseCsvNoSupValue
@@ -17028,7 +17280,9 @@ type S3Settings struct {
 	ParquetVersion *string `type:"string" enum:"ParquetVersionValue"`
 
 	// If set to true, AWS DMS saves the transaction order for a change data capture
-	// (CDC) load on the Amazon S3 target specified by CdcPath (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CdcPath).
+	// (CDC) load on the Amazon S3 target specified by CdcPath (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CdcPath).
+	// For more information, see Capturing data changes (CDC) including transaction
+	// order on the S3 target (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.EndpointSettings.CdcPath).
 	//
 	// This setting is supported in AWS DMS versions 3.4.2 and later.
 	PreserveTransactions *bool `type:"boolean"`
@@ -17082,7 +17336,7 @@ type S3Settings struct {
 	// This setting applies if the S3 output files during a change data capture
 	// (CDC) load are written in .csv format. If set to true for columns not included
 	// in the supplemental log, AWS DMS uses the value specified by CsvNoSupValue
-	// (dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CsvNoSupValue).
+	// (https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CsvNoSupValue).
 	// If not set or set to false, AWS DMS uses the null value for these columns.
 	//
 	// This setting is supported in AWS DMS versions 3.4.1 and later.
@@ -18048,6 +18302,25 @@ type SybaseSettings struct {
 	// Endpoint TCP port.
 	Port *int64 `type:"integer"`
 
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS
+	// as the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. SecretsManagerSecret has the value of the AWS Secrets
+	// Manager secret that allows access to the SAP ASE endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access AWS Database Migration Service resources
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the AWS Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the SAP SAE endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
 
@@ -18080,6 +18353,18 @@ func (s *SybaseSettings) SetPassword(v string) *SybaseSettings {
 // SetPort sets the Port field's value.
 func (s *SybaseSettings) SetPort(v int64) *SybaseSettings {
 	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *SybaseSettings) SetSecretsManagerAccessRoleArn(v string) *SybaseSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *SybaseSettings) SetSecretsManagerSecretId(v string) *SybaseSettings {
+	s.SecretsManagerSecretId = &v
 	return s
 }
 

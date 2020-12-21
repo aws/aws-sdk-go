@@ -74,7 +74,7 @@ func (c *Batch) CancelJobRequest(input *CancelJobInput) (req *request.Request, o
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -156,7 +156,7 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 // either to use EC2 On-Demand Instances and EC2 Spot Instances, or to use Fargate
 // and Fargate Spot capacity in your managed compute environment. You can optionally
 // set a maximum price so that Spot Instances only launch when the Spot Instance
-// price is below a specified percentage of the On-Demand price.
+// price is less than a specified percentage of the On-Demand price.
 //
 // Multi-node parallel jobs are not supported on Spot Instances.
 //
@@ -167,7 +167,7 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 // For more information, see container instance AMIs (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container_instance_AMIs.html)
 // in the Amazon Elastic Container Service Developer Guide. After you have created
 // your unmanaged compute environment, you can use the DescribeComputeEnvironments
-// operation to find the Amazon ECS cluster that is associated with it. Then,
+// operation to find the Amazon ECS cluster that's associated with it. Then,
 // manually launch your container instances into that Amazon ECS cluster. For
 // more information, see Launching an Amazon ECS container instance (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html)
 // in the Amazon Elastic Container Service Developer Guide.
@@ -199,7 +199,7 @@ func (c *Batch) CreateComputeEnvironmentRequest(input *CreateComputeEnvironmentI
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -291,7 +291,7 @@ func (c *Batch) CreateJobQueueRequest(input *CreateJobQueueInput) (req *request.
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -383,7 +383,7 @@ func (c *Batch) DeleteComputeEnvironmentRequest(input *DeleteComputeEnvironmentI
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -456,8 +456,9 @@ func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.
 // DeleteJobQueue API operation for AWS Batch.
 //
 // Deletes the specified job queue. You must first disable submissions for a
-// queue with the UpdateJobQueue operation. All jobs in the queue are terminated
-// when you delete a job queue.
+// queue with the UpdateJobQueue operation. All jobs in the queue are eventually
+// terminated when you delete a job queue. The jobs are terminated at a rate
+// of about 16 jobs each second.
 //
 // It's not necessary to disassociate compute environments from a queue before
 // submitting a DeleteJobQueue request.
@@ -473,7 +474,7 @@ func (c *Batch) DeleteJobQueueRequest(input *DeleteJobQueueInput) (req *request.
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -559,7 +560,7 @@ func (c *Batch) DeregisterJobDefinitionRequest(input *DeregisterJobDefinitionInp
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -653,7 +654,7 @@ func (c *Batch) DescribeComputeEnvironmentsRequest(input *DescribeComputeEnviron
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -796,7 +797,7 @@ func (c *Batch) DescribeJobDefinitionsRequest(input *DescribeJobDefinitionsInput
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -938,7 +939,7 @@ func (c *Batch) DescribeJobQueuesRequest(input *DescribeJobQueuesInput) (req *re
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1074,7 +1075,7 @@ func (c *Batch) DescribeJobsRequest(input *DescribeJobsInput) (req *request.Requ
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1175,7 +1176,7 @@ func (c *Batch) ListJobsRequest(input *ListJobsInput) (req *request.Request, out
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1313,7 +1314,7 @@ func (c *Batch) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1397,7 +1398,7 @@ func (c *Batch) RegisterJobDefinitionRequest(input *RegisterJobDefinitionInput) 
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1485,7 +1486,7 @@ func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, o
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1575,7 +1576,7 @@ func (c *Batch) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1662,7 +1663,7 @@ func (c *Batch) TerminateJobRequest(input *TerminateJobInput) (req *request.Requ
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1747,7 +1748,7 @@ func (c *Batch) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1831,7 +1832,7 @@ func (c *Batch) UpdateComputeEnvironmentRequest(input *UpdateComputeEnvironmentI
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1915,7 +1916,7 @@ func (c *Batch) UpdateJobQueueRequest(input *UpdateJobQueueInput) (req *request.
 //   * ClientException
 //   These errors are usually caused by a client action, such as using an action
 //   or resource on behalf of a user that doesn't have permissions to use the
-//   action or resource, or specifying an identifier that isn't valid.
+//   action or resource, or specifying an identifier that's not valid.
 //
 //   * ServerException
 //   These errors are usually caused by a server issue.
@@ -1970,7 +1971,7 @@ func (s *ArrayProperties) SetSize(v int64) *ArrayProperties {
 type ArrayPropertiesDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The job index within the array that is associated with this job. This parameter
+	// The job index within the array that's associated with this job. This parameter
 	// is returned for array job children.
 	Index *int64 `locationName:"index" type:"integer"`
 
@@ -2014,7 +2015,7 @@ func (s *ArrayPropertiesDetail) SetStatusSummary(v map[string]*int64) *ArrayProp
 type ArrayPropertiesSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The job index within the array that is associated with this job. This parameter
+	// The job index within the array that's associated with this job. This parameter
 	// is returned for children of array jobs.
 	Index *int64 `locationName:"index" type:"integer"`
 
@@ -2044,7 +2045,7 @@ func (s *ArrayPropertiesSummary) SetSize(v int64) *ArrayPropertiesSummary {
 	return s
 }
 
-// An object representing the details of a container that is part of a job attempt.
+// An object representing the details of a container that's part of a job attempt.
 type AttemptContainerDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -2067,9 +2068,9 @@ type AttemptContainerDetail struct {
 	// details about a running or stopped container.
 	Reason *string `locationName:"reason" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Amazon ECS task that is associated
-	// with the job attempt. Each container attempt receives a task ARN when they
-	// reach the STARTING status.
+	// The Amazon Resource Name (ARN) of the Amazon ECS task that's associated with
+	// the job attempt. Each container attempt receives a task ARN when they reach
+	// the STARTING status.
 	TaskArn *string `locationName:"taskArn" type:"string"`
 }
 
@@ -2174,6 +2175,7 @@ func (s *AttemptDetail) SetStoppedAt(v int64) *AttemptDetail {
 	return s
 }
 
+// Contains the parameters for CancelJob.
 type CancelJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2244,7 +2246,7 @@ func (s CancelJobOutput) GoString() string {
 
 // These errors are usually caused by a client action, such as using an action
 // or resource on behalf of a user that doesn't have permissions to use the
-// action or resource, or specifying an identifier that isn't valid.
+// action or resource, or specifying an identifier that's not valid.
 type ClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2309,12 +2311,15 @@ type ComputeEnvironmentDetail struct {
 	// ComputeEnvironmentArn is a required field
 	ComputeEnvironmentArn *string `locationName:"computeEnvironmentArn" type:"string" required:"true"`
 
-	// The name of the compute environment.
+	// The name of the compute environment. Up to 128 letters (uppercase and lowercase),
+	// numbers, hyphens, and underscores are allowed.
 	//
 	// ComputeEnvironmentName is a required field
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string" required:"true"`
 
-	// The compute resources defined for the compute environment.
+	// The compute resources defined for the compute environment. For more information,
+	// see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+	// in the AWS Batch User Guide.
 	ComputeResources *ComputeResource `locationName:"computeResources" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the underlying Amazon ECS cluster used
@@ -2324,7 +2329,9 @@ type ComputeEnvironmentDetail struct {
 	EcsClusterArn *string `locationName:"ecsClusterArn" type:"string" required:"true"`
 
 	// The service role associated with the compute environment that allows AWS
-	// Batch to make calls to AWS API operations on your behalf.
+	// Batch to make calls to AWS API operations on your behalf. For more information,
+	// see AWS Batch service IAM role (https://docs.aws.amazon.com/batch/latest/userguide/service_IAM_role.html)
+	// in the AWS Batch User Guide.
 	ServiceRole *string `locationName:"serviceRole" type:"string"`
 
 	// The state of the compute environment. The valid values are ENABLED or DISABLED.
@@ -2337,7 +2344,7 @@ type ComputeEnvironmentDetail struct {
 	// If the state is DISABLED, then the AWS Batch scheduler doesn't attempt to
 	// place jobs within the environment. Jobs in a STARTING or RUNNING state continue
 	// to progress normally. Managed compute environments in the DISABLED state
-	// do not scale out. However, they scale in to minvCpus value after instances
+	// don't scale out. However, they scale in to minvCpus value after instances
 	// become idle.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
 
@@ -2351,8 +2358,8 @@ type ComputeEnvironmentDetail struct {
 	// The tags applied to the compute environment.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The type of compute environment: EC2, SPOT, FARGATE, or FARGATE_SPOT. For
-	// more information, see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+	// The type of the compute environment: MANAGED or UNMANAGED. For more information,
+	// see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
 	// in the AWS Batch User Guide.
 	Type *string `locationName:"type" type:"string" enum:"CEType"`
 }
@@ -2431,6 +2438,14 @@ func (s *ComputeEnvironmentDetail) SetType(v string) *ComputeEnvironmentDetail {
 // a queue. Compute environments are tried in ascending order. For example,
 // if two compute environments are associated with a job queue, the compute
 // environment with a lower order integer value is tried for job placement first.
+// Compute environments must be in the VALID state before you can associate
+// them with a job queue. All of the compute environments must be either EC2
+// (EC2 or SPOT) or Fargate (FARGATE or FARGATE_SPOT); EC2 and Fargate compute
+// environments can't be mixed.
+//
+// All compute environments that are associated with a job queue must share
+// the same architecture. AWS Batch doesn't support mixing compute environment
+// architecture types in a single job queue.
 type ComputeEnvironmentOrder struct {
 	_ struct{} `type:"structure"`
 
@@ -2486,7 +2501,9 @@ func (s *ComputeEnvironmentOrder) SetOrder(v int64) *ComputeEnvironmentOrder {
 	return s
 }
 
-// An object representing an AWS Batch compute resource.
+// An object representing an AWS Batch compute resource. For more information,
+// see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+// in the AWS Batch User Guide.
 type ComputeResource struct {
 	_ struct{} `type:"structure"`
 
@@ -2535,7 +2552,7 @@ type ComputeResource struct {
 	// The maximum percentage that a Spot Instance price can be when compared with
 	// the On-Demand price for that instance type before instances are launched.
 	// For example, if your maximum percentage is 20%, then the Spot price must
-	// be below 20% of the current On-Demand price for that Amazon EC2 instance.
+	// be less than 20% of the current On-Demand price for that Amazon EC2 instance.
 	// You always pay the lowest (market) price and never more than your maximum
 	// percentage. If you leave this field empty, the default value is 100% of the
 	// On-Demand price.
@@ -2552,15 +2569,15 @@ type ComputeResource struct {
 	// shouldn't be specified.
 	DesiredvCpus *int64 `locationName:"desiredvCpus" type:"integer"`
 
-	// Provides information used to select Amazon Machine Images (AMIs) for instances
-	// in the compute environment. If Ec2Configuration isn't specified, the default
-	// is ECS_AL1.
+	// Provides information used to select Amazon Machine Images (AMIs) for EC2
+	// instances in the compute environment. If Ec2Configuration isn't specified,
+	// the default is ECS_AL1.
 	//
 	// This parameter isn't applicable to jobs running on Fargate resources, and
 	// shouldn't be specified.
 	Ec2Configuration []*Ec2Configuration `locationName:"ec2Configuration" type:"list"`
 
-	// The Amazon EC2 key pair that is used for instances launched in the compute
+	// The Amazon EC2 key pair that's used for instances launched in the compute
 	// environment. You can use this key pair to log in to your instances with SSH.
 	//
 	// This parameter isn't applicable to jobs running on Fargate resources, and
@@ -2595,11 +2612,11 @@ type ComputeResource struct {
 	// shouldn't be specified.
 	InstanceRole *string `locationName:"instanceRole" type:"string"`
 
-	// The instances types that may be launched. You can specify instance families
+	// The instances types that can be launched. You can specify instance families
 	// to launch any instance type within those families (for example, c5 or p3),
 	// or you can specify specific sizes within a family (such as c5.8xlarge). You
-	// can also choose optimal to select instance types (from the C, M, and R instance
-	// families) on the fly that match the demand of your job queues.
+	// can also choose optimal to select instance types (from the C4, M4, and R4
+	// instance families) on the fly that match the demand of your job queues.
 	//
 	// This parameter isn't applicable to jobs running on Fargate resources, and
 	// shouldn't be specified.
@@ -2607,6 +2624,10 @@ type ComputeResource struct {
 	// When you create a compute environment, the instance types that you select
 	// for the compute environment must share the same architecture. For example,
 	// you can't mix x86 and ARM instances in the same compute environment.
+	//
+	// Currently, optimal uses instance types from the C4, M4, and R4 instance families.
+	// In Regions that don't have instance types from those instance families, instance
+	// types from the C5, M5. and R5 instance families are used.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
 
 	// The launch template to use for your compute resources. Any other compute
@@ -2620,10 +2641,10 @@ type ComputeResource struct {
 	// shouldn't be specified.
 	LaunchTemplate *LaunchTemplateSpecification `locationName:"launchTemplate" type:"structure"`
 
-	// The maximum number of Amazon EC2 vCPUs that an environment can reach.
+	// The maximum number of Amazon EC2 vCPUs that a compute environment can reach.
 	//
 	// With both BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED allocation strategies,
-	// AWS Batch may need to go above maxvCpus to meet your capacity requirements.
+	// AWS Batch might need to go above maxvCpus to meet your capacity requirements.
 	// In this event, AWS Batch will never go above maxvCpus by more than a single
 	// instance (e.g., no more than a single instance from among those specified
 	// in your compute environment).
@@ -2687,17 +2708,25 @@ type ComputeResource struct {
 
 	// Key-value pair tags to be applied to EC2 resources that are launched in the
 	// compute environment. For AWS Batch, these take the form of "String1": "String2",
-	// where String1 is the tag key and String2 is the tag value—for example,
+	// where String1 is the tag key and String2 is the tag value−for example,
 	// { "Name": "AWS Batch Instance - C4OnDemand" }. This is helpful for recognizing
-	// your AWS Batch instances in the Amazon EC2 console. These tags can not be
-	// updated or removed after the compute environment has been created; any changes
-	// require creating a new compute environment and removing the old compute environment.
+	// your AWS Batch instances in the Amazon EC2 console. These tags can't be updated
+	// or removed after the compute environment has been created; any changes require
+	// creating a new compute environment and removing the old compute environment.
 	// These tags are not seen when using the AWS Batch ListTagsForResource API
 	// operation.
+	//
+	// This parameter isn't applicable to jobs running on Fargate resources, and
+	// shouldn't be specified.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The type of compute environment: EC2, SPOT, FARGATE, or FARGATE_SPOT. For
 	// more information, see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+	// in the AWS Batch User Guide.
+	//
+	// If you choose SPOT, you must also specify an Amazon EC2 Spot Fleet role with
+	// the spotIamFleetRole parameter. For more information, see Amazon EC2 Spot
+	// Fleet role (https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html)
 	// in the AWS Batch User Guide.
 	//
 	// Type is a required field
@@ -2846,7 +2875,8 @@ func (s *ComputeResource) SetType(v string) *ComputeResource {
 }
 
 // An object representing the attributes of a compute environment that can be
-// updated.
+// updated. For more information, see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+// in the AWS Batch User Guide.
 type ComputeResourceUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -2857,11 +2887,17 @@ type ComputeResourceUpdate struct {
 	DesiredvCpus *int64 `locationName:"desiredvCpus" type:"integer"`
 
 	// The maximum number of Amazon EC2 vCPUs that an environment can reach.
+	//
+	// With both BEST_FIT_PROGRESSIVE and SPOT_CAPACITY_OPTIMIZED allocation strategies,
+	// AWS Batch might need to go above maxvCpus to meet your capacity requirements.
+	// In this event, AWS Batch will never go above maxvCpus by more than a single
+	// instance (e.g., no more than a single instance from among those specified
+	// in your compute environment).
 	MaxvCpus *int64 `locationName:"maxvCpus" type:"integer"`
 
 	// The minimum number of Amazon EC2 vCPUs that an environment should maintain.
 	//
-	// This parameter isnt applicable to jobs running on Fargate resources, and
+	// This parameter isn't applicable to jobs running on Fargate resources, and
 	// shouldn't be specified.
 	MinvCpus *int64 `locationName:"minvCpus" type:"integer"`
 
@@ -2869,7 +2905,7 @@ type ComputeResourceUpdate struct {
 	// compute environment. This parameter is required for Fargate compute resources,
 	// where it can contain up to 5 security groups. This can't be specified for
 	// EC2 compute resources. Providing an empty list is handled as if this parameter
-	// wasn't specified and no changeis made.
+	// wasn't specified and no change is made.
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 
 	// The VPC subnets that the compute resources are launched into. This parameter
@@ -2921,11 +2957,11 @@ func (s *ComputeResourceUpdate) SetSubnets(v []*string) *ComputeResourceUpdate {
 	return s
 }
 
-// An object representing the details of a container that is part of a job.
+// An object representing the details of a container that's part of a job.
 type ContainerDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The command that is passed to the container.
+	// The command that's passed to the container.
 	Command []*string `locationName:"command" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the container instance that the container
@@ -2983,7 +3019,8 @@ type ContainerDetail struct {
 	//
 	// AWS Batch currently supports a subset of the logging drivers available to
 	// the Docker daemon (shown in the LogConfiguration data type). Additional log
-	// drivers may be available in future releases of the Amazon ECS container agent.
+	// drivers might be available in future releases of the Amazon ECS container
+	// agent.
 	//
 	// This parameter requires version 1.18 of the Docker Remote API or greater
 	// on your container instance. To check the Docker Remote API version on your
@@ -3046,9 +3083,9 @@ type ContainerDetail struct {
 	// in the AWS Batch User Guide.
 	Secrets []*Secret `locationName:"secrets" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the Amazon ECS task that is associated
-	// with the container job. Each container attempt receives a task ARN when they
-	// reach the STARTING status.
+	// The Amazon Resource Name (ARN) of the Amazon ECS task that's associated with
+	// the container job. Each container attempt receives a task ARN when they reach
+	// the STARTING status.
 	TaskArn *string `locationName:"taskArn" type:"string"`
 
 	// A list of ulimit values to set in the container. This parameter maps to Ulimits
@@ -3372,11 +3409,11 @@ func (s *ContainerOverrides) SetVcpus(v int64) *ContainerOverrides {
 }
 
 // Container properties are used in job definitions to describe the container
-// that is launched as part of a job.
+// that's launched as part of a job.
 type ContainerProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The command that is passed to the container. This parameter maps to Cmd in
+	// The command that's passed to the container. This parameter maps to Cmd in
 	// the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
 	// and the COMMAND parameter to docker run (https://docs.docker.com/engine/reference/run/).
@@ -3787,6 +3824,7 @@ func (s *ContainerSummary) SetReason(v string) *ContainerSummary {
 	return s
 }
 
+// Contains the parameters for CreateComputeEnvironment.
 type CreateComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3803,13 +3841,15 @@ type CreateComputeEnvironmentInput struct {
 	ComputeResources *ComputeResource `locationName:"computeResources" type:"structure"`
 
 	// The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch
-	// to make calls to other AWS services on your behalf.
+	// to make calls to other AWS services on your behalf. For more information,
+	// see AWS Batch service IAM role (https://docs.aws.amazon.com/batch/latest/userguide/service_IAM_role.html)
+	// in the AWS Batch User Guide.
 	//
 	// If your specified role has a path other than /, then you must either specify
 	// the full role ARN (this is recommended) or prefix the role name with the
 	// path.
 	//
-	// Depending on how you created your AWS Batch service role, its ARN may contain
+	// Depending on how you created your AWS Batch service role, its ARN might contain
 	// the service-role path prefix. When you only specify the name of the service
 	// role, AWS Batch assumes that your ARN doesn't use the service-role path prefix.
 	// Because of this, we recommend that you specify the full ARN of your service
@@ -3821,6 +3861,17 @@ type CreateComputeEnvironmentInput struct {
 	// The state of the compute environment. If the state is ENABLED, then the compute
 	// environment accepts jobs from a queue and can scale out automatically based
 	// on queues.
+	//
+	// If the state is ENABLED, then the AWS Batch scheduler can attempt to place
+	// jobs from an associated job queue on the compute resources within the environment.
+	// If the compute environment is managed, then it can scale its instances out
+	// or in automatically, based on the job queue demand.
+	//
+	// If the state is DISABLED, then the AWS Batch scheduler doesn't attempt to
+	// place jobs within the environment. Jobs in a STARTING or RUNNING state continue
+	// to progress normally. Managed compute environments in the DISABLED state
+	// don't scale out. However, they scale in to minvCpus value after instances
+	// become idle.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
 
 	// The tags that you apply to the compute environment to help you categorize
@@ -3920,7 +3971,8 @@ type CreateComputeEnvironmentOutput struct {
 	// The Amazon Resource Name (ARN) of the compute environment.
 	ComputeEnvironmentArn *string `locationName:"computeEnvironmentArn" type:"string"`
 
-	// The name of the compute environment.
+	// The name of the compute environment. Up to 128 letters (uppercase and lowercase),
+	// numbers, hyphens, and underscores are allowed.
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string"`
 }
 
@@ -3946,6 +3998,7 @@ func (s *CreateComputeEnvironmentOutput) SetComputeEnvironmentName(v string) *Cr
 	return s
 }
 
+// Contains the parameters for CreateJobQueue.
 type CreateJobQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3957,10 +4010,15 @@ type CreateJobQueueInput struct {
 	// must be either EC2 (EC2 or SPOT) or Fargate (FARGATE or FARGATE_SPOT); EC2
 	// and Fargate compute environments can't be mixed.
 	//
+	// All compute environments that are associated with a job queue must share
+	// the same architecture. AWS Batch doesn't support mixing compute environment
+	// architecture types in a single job queue.
+	//
 	// ComputeEnvironmentOrder is a required field
 	ComputeEnvironmentOrder []*ComputeEnvironmentOrder `locationName:"computeEnvironmentOrder" type:"list" required:"true"`
 
-	// The name of the job queue.
+	// The name of the job queue. Up to 128 letters (uppercase and lowercase), numbers,
+	// and underscores are allowed.
 	//
 	// JobQueueName is a required field
 	JobQueueName *string `locationName:"jobQueueName" type:"string" required:"true"`
@@ -3969,7 +4027,9 @@ type CreateJobQueueInput struct {
 	// integer value for the priority parameter) are evaluated first when associated
 	// with the same compute environment. Priority is determined in descending order.
 	// For example, a job queue with a priority value of 10 is given scheduling
-	// preference over a job queue with a priority value of 1.
+	// preference over a job queue with a priority value of 1. All of the compute
+	// environments must be either EC2 (EC2 or SPOT) or Fargate (FARGATE or FARGATE_SPOT);
+	// EC2 and Fargate compute environments cannot be mixed.
 	//
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
@@ -3981,8 +4041,8 @@ type CreateJobQueueInput struct {
 
 	// The tags that you apply to the job queue to help you categorize and organize
 	// your resources. Each tag consists of a key and an optional value. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in AWS General Reference.
+	// information, see Tagging your AWS Batch resources (https://docs.aws.amazon.com/batch/latest/userguide/using-tags.html)
+	// in AWS Batch User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -4094,6 +4154,7 @@ func (s *CreateJobQueueOutput) SetJobQueueName(v string) *CreateJobQueueOutput {
 	return s
 }
 
+// Contains the parameters for DeleteComputeEnvironment.
 type DeleteComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4146,6 +4207,7 @@ func (s DeleteComputeEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DeleteJobQueue.
 type DeleteJobQueueInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4251,6 +4313,7 @@ func (s DeregisterJobDefinitionOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for DescribeComputeEnvironments.
 type DescribeComputeEnvironmentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4273,7 +4336,7 @@ type DescribeComputeEnvironmentsInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	// This token should be treated as an opaque identifier that is only used to
+	// This token should be treated as an opaque identifier that's only used to
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -4341,6 +4404,7 @@ func (s *DescribeComputeEnvironmentsOutput) SetNextToken(v string) *DescribeComp
 	return s
 }
 
+// Contains the parameters for DescribeJobDefinitions.
 type DescribeJobDefinitionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4366,7 +4430,7 @@ type DescribeJobDefinitionsInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	// This token should be treated as an opaque identifier that is only used to
+	// This token should be treated as an opaque identifier that's only used to
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
@@ -4449,6 +4513,7 @@ func (s *DescribeJobDefinitionsOutput) SetNextToken(v string) *DescribeJobDefini
 	return s
 }
 
+// Contains the parameters for DescribeJobQueues.
 type DescribeJobQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4471,7 +4536,7 @@ type DescribeJobQueuesInput struct {
 	// returned the nextToken value. This value is null when there are no more results
 	// to return.
 	//
-	// This token should be treated as an opaque identifier that is only used to
+	// This token should be treated as an opaque identifier that's only used to
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -4539,6 +4604,7 @@ func (s *DescribeJobQueuesOutput) SetNextToken(v string) *DescribeJobQueuesOutpu
 	return s
 }
 
+// Contains the parameters for DescribeJobs.
 type DescribeJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4694,7 +4760,7 @@ type Ec2Configuration struct {
 	// ECS_AL1
 	//
 	// Amazon Linux (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami)−Default
-	// for all non-GPU, non-AWS-Graviton instance families. Amazon Linux is reaching
+	// for all non-GPU, non-AWS Graviton instance families. Amazon Linux is reaching
 	// the end-of-life of standard support. For more information, see Amazon Linux
 	// AMI (http://aws.amazon.com/amazon-linux-ami/).
 	//
@@ -4859,7 +4925,7 @@ func (s *FargatePlatformConfiguration) SetPlatformVersion(v string) *FargatePlat
 type Host struct {
 	_ struct{} `type:"structure"`
 
-	// The path on the host container instance that is presented to the container.
+	// The path on the host container instance that's presented to the container.
 	// If this parameter is empty, then the Docker daemon has assigned a host path
 	// for you. If this parameter contains a file location, then the data volume
 	// persists at the specified location on the host container instance until you
@@ -5107,7 +5173,7 @@ type JobDetail struct {
 	// The Amazon Resource Name (ARN) of the job.
 	JobArn *string `locationName:"jobArn" type:"string"`
 
-	// The job definition that is used by this job.
+	// The job definition that's used by this job.
 	//
 	// JobDefinition is a required field
 	JobDefinition *string `locationName:"jobDefinition" type:"string" required:"true"`
@@ -5128,7 +5194,7 @@ type JobDetail struct {
 	// JobQueue is a required field
 	JobQueue *string `locationName:"jobQueue" type:"string" required:"true"`
 
-	// An object representing the details of a node that is associated with a multi-node
+	// An object representing the details of a node that's associated with a multi-node
 	// parallel job.
 	NodeDetails *NodeDetails `locationName:"nodeDetails" type:"structure"`
 
@@ -5166,7 +5232,7 @@ type JobDetail struct {
 
 	// The current status for the job.
 	//
-	// If your jobs do not progress to STARTING, see Jobs Stuck in RUNNABLE Status
+	// If your jobs don't progress to STARTING, see Jobs Stuck in RUNNABLE Status
 	// (https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#job_stuck_in_runnable)
 	// in the troubleshooting section of the AWS Batch User Guide.
 	//
@@ -5352,7 +5418,13 @@ type JobQueueDetail struct {
 	// JobQueueName is a required field
 	JobQueueName *string `locationName:"jobQueueName" type:"string" required:"true"`
 
-	// The priority of the job queue.
+	// The priority of the job queue. Job queues with a higher priority (or a higher
+	// integer value for the priority parameter) are evaluated first when associated
+	// with the same compute environment. Priority is determined in descending order,
+	// for example, a job queue with a priority value of 10 is given scheduling
+	// preference over a job queue with a priority value of 1. All of the compute
+	// environments must be either EC2 (EC2 or SPOT) or Fargate (FARGATE or FARGATE_SPOT);
+	// EC2 and Fargate compute environments cannot be mixed.
 	//
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
@@ -5371,7 +5443,9 @@ type JobQueueDetail struct {
 	// status of the job queue.
 	StatusReason *string `locationName:"statusReason" type:"string"`
 
-	// The tags applied to the job queue.
+	// The tags applied to the job queue. For more information, see Tagging your
+	// AWS Batch resources (https://docs.aws.amazon.com/batch/latest/userguide/using-tags.html)
+	// in AWS Batch User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -5440,7 +5514,7 @@ type JobSummary struct {
 	// The array properties of the job, if it is an array job.
 	ArrayProperties *ArrayPropertiesSummary `locationName:"arrayProperties" type:"structure"`
 
-	// An object representing the details of the container that is associated with
+	// An object representing the details of the container that's associated with
 	// the job.
 	Container *ContainerSummary `locationName:"container" type:"structure"`
 
@@ -5726,8 +5800,27 @@ type LinuxParameters struct {
 	// value of 100 causes pages to be swapped very aggressively. Accepted values
 	// are whole numbers between 0 and 100. If the swappiness parameter isn't specified,
 	// a default value of 60 is used. If a value isn't specified for maxSwap then
-	// this parameter is ignored. This parameter maps to the --memory-swappiness
-	// option to docker run (https://docs.docker.com/engine/reference/run/).
+	// this parameter is ignored. If maxSwap is set to 0, the container doesn't
+	// use swap. This parameter maps to the --memory-swappiness option to docker
+	// run (https://docs.docker.com/engine/reference/run/).
+	//
+	// Consider the following when you use a per-container swap configuration.
+	//
+	//    * Swap space must be enabled and allocated on the container instance for
+	//    the containers to use. The Amazon ECS optimized AMIs don't have swap enabled
+	//    by default. You must enable swap on the instance to use this feature.
+	//    For more information, see Instance Store Swap Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-store-swap-volumes.html)
+	//    in the Amazon EC2 User Guide for Linux Instances or How do I allocate
+	//    memory to work as swap space in an Amazon EC2 instance by using a swap
+	//    file? (http://aws.amazon.com/premiumsupport/knowledge-center/ec2-memory-swap-file/)
+	//
+	//    * The swap space parameters are only supported for job definitions using
+	//    EC2 resources.
+	//
+	//    * If the maxSwap and swappiness parameters are omitted from a job definition,
+	//    each container will have a default swappiness value of 60 and the total
+	//    swap usage will be limited to two times the memory reservation of the
+	//    container.
 	//
 	// This parameter isn't applicable to jobs running on Fargate resources and
 	// shouldn't be provided.
@@ -5817,6 +5910,7 @@ func (s *LinuxParameters) SetTmpfs(v []*Tmpfs) *LinuxParameters {
 	return s
 }
 
+// Contains the parameters for ListJobs.
 type ListJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5851,7 +5945,7 @@ type ListJobsInput struct {
 	// Pagination continues from the end of the previous results that returned the
 	// nextToken value. This value is null when there are no more results to return.
 	//
-	// This token should be treated as an opaque identifier that is only used to
+	// This token should be treated as an opaque identifier that's only used to
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -6063,9 +6157,9 @@ type LogConfiguration struct {
 	// and options, see Syslog logging driver (https://docs.docker.com/config/containers/logging/syslog/)
 	// in the Docker documentation.
 	//
-	// If you have a custom driver that isn't listed earlier that you want to work
+	// If you have a custom driver that'sn't listed earlier that you want to work
 	// with the Amazon ECS container agent, you can fork the Amazon ECS container
-	// agent project that is available on GitHub (https://github.com/aws/amazon-ecs-agent)
+	// agent project that's available on GitHub (https://github.com/aws/amazon-ecs-agent)
 	// and customize it to work with that driver. We encourage you to submit pull
 	// requests for changes that you want to have included. However, Amazon Web
 	// Services doesn't currently support running modified copies of this software.
@@ -6142,8 +6236,8 @@ func (s *LogConfiguration) SetSecretOptions(v []*Secret) *LogConfiguration {
 	return s
 }
 
-// Details on a Docker volume mount point that is used in a job's container
-// properties. This parameter maps to Volumes in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container)
+// Details on a Docker volume mount point that's used in a job's container properties.
+// This parameter maps to Volumes in the Create a container (https://docs.docker.com/engine/reference/api/docker_remote_api_v1.19/#create-a-container)
 // section of the Docker Remote API and the --volume option to docker run.
 type MountPoint struct {
 	_ struct{} `type:"structure"`
@@ -6296,7 +6390,7 @@ func (s *NodeDetails) SetNodeIndex(v int64) *NodeDetails {
 	return s
 }
 
-// Object representing any node overrides to a job definition that is used in
+// Object representing any node overrides to a job definition that's used in
 // a SubmitJob API operation.
 //
 // This isn't applicable to jobs running on Fargate resources and shouldn't
@@ -6443,7 +6537,7 @@ func (s *NodeProperties) SetNumNodes(v int64) *NodeProperties {
 	return s
 }
 
-// An object representing the properties of a node that is associated with a
+// An object representing the properties of a node that's associated with a
 // multi-node parallel job.
 type NodePropertiesSummary struct {
 	_ struct{} `type:"structure"`
@@ -6489,7 +6583,7 @@ func (s *NodePropertiesSummary) SetNumNodes(v int64) *NodePropertiesSummary {
 	return s
 }
 
-// Object representing any node overrides to a job definition that is used in
+// Object representing any node overrides to a job definition that's used in
 // a SubmitJob API operation.
 type NodePropertyOverride struct {
 	_ struct{} `type:"structure"`
@@ -6559,7 +6653,7 @@ type NodeRangeProperty struct {
 	// with index values of 0 through 3. If the starting range value is omitted
 	// (:n), then 0 is used to start the range. If the ending range value is omitted
 	// (n:), then the highest possible node index is used to end the range. Your
-	// accumulative node ranges must account for all nodes (0:n). You may nest node
+	// accumulative node ranges must account for all nodes (0:n). You can nest node
 	// ranges, for example 0:10 and 4:5, in which case the 4:5 range properties
 	// override the 0:10 properties.
 	//
@@ -6607,6 +6701,7 @@ func (s *NodeRangeProperty) SetTargetNodes(v string) *NodeRangeProperty {
 	return s
 }
 
+// Contains the parameters for RegisterJobDefinition.
 type RegisterJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6653,7 +6748,7 @@ type RegisterJobDefinitionInput struct {
 	PropagateTags *bool `locationName:"propagateTags" type:"boolean"`
 
 	// The retry strategy to use for failed jobs that are submitted with this job
-	// definition. Any retry strategy that is specified during a SubmitJob operation
+	// definition. Any retry strategy that's specified during a SubmitJob operation
 	// overrides the retry strategy defined here. If a job is terminated due to
 	// a timeout, it isn't retried.
 	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
@@ -6667,7 +6762,7 @@ type RegisterJobDefinitionInput struct {
 	// The timeout configuration for jobs that are submitted with this job definition,
 	// after which AWS Batch terminates your jobs if they have not finished. If
 	// a job is terminated due to a timeout, it isn't retried. The minimum value
-	// for the timeout is 60 seconds. Any timeout configuration that is specified
+	// for the timeout is 60 seconds. Any timeout configuration that's specified
 	// during a SubmitJob operation overrides the timeout configuration defined
 	// here. For more information, see Job Timeouts (https://docs.aws.amazon.com/batch/latest/userguide/job_timeouts.html)
 	// in the AWS Batch User Guide.
@@ -6870,51 +6965,50 @@ type ResourceRequirement struct {
 	// in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
 	// and the --memory option to docker run (https://docs.docker.com/engine/reference/run/).
-	// You must specify at least 4 MiB of memory for a job.
 	//
 	// If you're trying to maximize your resource utilization by providing your
 	// jobs as much memory as possible for a particular instance type, see Memory
 	// Management (https://docs.aws.amazon.com/batch/latest/userguide/memory-management.html)
 	// in the AWS Batch User Guide.
 	//
-	// For jobs running on Fargate resources, then value is the hard limit (in GiB),
-	// represented in decimal form, and must match one of the supported values (0.5
-	// and whole numbers between 1 and 30, inclusive) and the VCPU values must be
-	// one of the values supported for that memory value.
+	// For jobs running on Fargate resources, then value is the hard limit (in MiB),
+	// and must match one of the supported values and the VCPU values must be one
+	// of the values supported for that memory value.
 	//
-	// value = 0.5
+	// value = 512
 	//
 	// VCPU = 0.25
 	//
-	// value = 1
+	// value = 1024
 	//
 	// VCPU = 0.25 or 0.5
 	//
-	// value = 2
+	// value = 2048
 	//
 	// VCPU = 0.25, 0.5, or 1
 	//
-	// value = 3
+	// value = 3072
 	//
 	// VCPU = 0.5, or 1
 	//
-	// value = 4
+	// value = 4096
 	//
 	// VCPU = 0.5, 1, or 2
 	//
-	// value = 5, 6, or 7
+	// value = 5120, 6144, or 7168
 	//
 	// VCPU = 1 or 2
 	//
-	// value = 8
+	// value = 8192
 	//
 	// VCPU = 1, 2, or 4
 	//
-	// value = 9, 10, 11, 12, 13, 14, 15, or 16
+	// value = 9216, 10240, 11264, 12288, 13312, 14336, 15360, or 16384
 	//
 	// VCPU = 2 or 4
 	//
-	// value = 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, or 30
+	// value = 17408, 18432, 19456, 20480, 21504, 22528, 23552, 24576, 25600, 26624,
+	// 27648, 28672, 29696, or 30720
 	//
 	// VCPU = 4
 	//
@@ -6924,9 +7018,9 @@ type ResourceRequirement struct {
 	// in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
 	// and the --cpu-shares option to docker run (https://docs.docker.com/engine/reference/run/).
-	// Each vCPU is equivalent to 1,024 CPU shares. You must specify at least one
-	// vCPU. This is required but can be specified in several places; it must be
-	// specified for each node at least once.
+	// Each vCPU is equivalent to 1,024 CPU shares. For EC2 resources, you must
+	// specify at least one vCPU. This is required but can be specified in several
+	// places; it must be specified for each node at least once.
 	//
 	// For jobs running on Fargate resources, then value must match one of the supported
 	// values and the MEMORY values must be one of the values supported for that
@@ -6934,24 +7028,26 @@ type ResourceRequirement struct {
 	//
 	// value = 0.25
 	//
-	// MEMORY = 0.5, 1, or 2
+	// MEMORY = 512, 1024, or 2048
 	//
 	// value = 0.5
 	//
-	// MEMORY = 1, 2, 3, or 4
+	// MEMORY = 1024, 2048, 3072, or 4096
 	//
 	// value = 1
 	//
-	// MEMORY = 2, 3, 4, 5, 6, 7, or 8
+	// MEMORY = 2048, 3072, 4096, 5120, 6144, 7168, or 8192
 	//
 	// value = 2
 	//
-	// MEMORY = 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, or 16
+	// MEMORY = 4096, 5120, 6144, 7168, 8192, 9216, 10240, 11264, 12288, 13312,
+	// 14336, 15360, or 16384
 	//
 	// value = 4
 	//
-	// MEMORY = 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-	// 25, 26, 27, 28, 29, or 30
+	// MEMORY = 8192, 9216, 10240, 11264, 12288, 13312, 14336, 15360, 16384, 17408,
+	// 18432, 19456, 20480, 21504, 22528, 23552, 24576, 25600, 26624, 27648, 28672,
+	// 29696, or 30720
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -7001,7 +7097,7 @@ func (s *ResourceRequirement) SetValue(v string) *ResourceRequirement {
 type RetryStrategy struct {
 	_ struct{} `type:"structure"`
 
-	// The number of times to move a job to the RUNNABLE status. You may specify
+	// The number of times to move a job to the RUNNABLE status. You can specify
 	// between 1 and 10 attempts. If the value of attempts is greater than one,
 	// the job is retried on failure the same number of attempts as the value.
 	Attempts *int64 `locationName:"attempts" type:"integer"`
@@ -7180,6 +7276,7 @@ func (s *ServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the parameters for SubmitJob.
 type SubmitJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7192,7 +7289,7 @@ type SubmitJobInput struct {
 
 	// A list of container overrides in JSON format that specify the name of a container
 	// in the specified job definition and the overrides it should receive. You
-	// can override the default command for a container (that is specified in the
+	// can override the default command for a container (that's specified in the
 	// job definition or the Docker image) with a command override. You can also
 	// override existing environment variables (that are specified in the job definition
 	// or Docker image) on a container or add new environment variables to it with
@@ -7514,6 +7611,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for TerminateJob.
 type TerminateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7797,6 +7895,7 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Contains the parameters for UpdateComputeEnvironment.
 type UpdateComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7807,11 +7906,15 @@ type UpdateComputeEnvironmentInput struct {
 	ComputeEnvironment *string `locationName:"computeEnvironment" type:"string" required:"true"`
 
 	// Details of the compute resources managed by the compute environment. Required
-	// for a managed compute environment.
+	// for a managed compute environment. For more information, see Compute Environments
+	// (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+	// in the AWS Batch User Guide.
 	ComputeResources *ComputeResourceUpdate `locationName:"computeResources" type:"structure"`
 
 	// The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch
-	// to make calls to other AWS services on your behalf.
+	// to make calls to other AWS services on your behalf. For more information,
+	// see AWS Batch service IAM role (https://docs.aws.amazon.com/batch/latest/userguide/service_IAM_role.html)
+	// in the AWS Batch User Guide.
 	//
 	// If your specified role has a path other than /, then you must either specify
 	// the full role ARN (this is recommended) or prefix the role name with the
@@ -7827,6 +7930,17 @@ type UpdateComputeEnvironmentInput struct {
 	// The state of the compute environment. Compute environments in the ENABLED
 	// state can accept jobs from a queue and scale in or out automatically based
 	// on the workload demand of its associated queues.
+	//
+	// If the state is ENABLED, then the AWS Batch scheduler can attempt to place
+	// jobs from an associated job queue on the compute resources within the environment.
+	// If the compute environment is managed, then it can scale its instances out
+	// or in automatically, based on the job queue demand.
+	//
+	// If the state is DISABLED, then the AWS Batch scheduler doesn't attempt to
+	// place jobs within the environment. Jobs in a STARTING or RUNNING state continue
+	// to progress normally. Managed compute environments in the DISABLED state
+	// don't scale out. However, they scale in to minvCpus value after instances
+	// become idle.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
 }
 
@@ -7883,7 +7997,8 @@ type UpdateComputeEnvironmentOutput struct {
 	// The Amazon Resource Name (ARN) of the compute environment.
 	ComputeEnvironmentArn *string `locationName:"computeEnvironmentArn" type:"string"`
 
-	// The name of the compute environment.
+	// The name of the compute environment. Up to 128 letters (uppercase and lowercase),
+	// numbers, hyphens, and underscores are allowed.
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string"`
 }
 
@@ -7909,14 +8024,21 @@ func (s *UpdateComputeEnvironmentOutput) SetComputeEnvironmentName(v string) *Up
 	return s
 }
 
+// Contains the parameters for UpdateJobQueue.
 type UpdateJobQueueInput struct {
 	_ struct{} `type:"structure"`
 
 	// Details the set of compute environments mapped to a job queue and their order
 	// relative to each other. This is one of the parameters used by the job scheduler
-	// to determine which compute environment should run a given job. All of the
-	// compute environments must be either EC2 (EC2 or SPOT) or Fargate (FARGATE
-	// or FARGATE_SPOT); EC2 and Fargate compute environments can't be mixed.
+	// to determine which compute environment should run a given job. Compute environments
+	// must be in the VALID state before you can associate them with a job queue.
+	// All of the compute environments must be either EC2 (EC2 or SPOT) or Fargate
+	// (FARGATE or FARGATE_SPOT); EC2 and Fargate compute environments can't be
+	// mixed.
+	//
+	// All compute environments that are associated with a job queue must share
+	// the same architecture. AWS Batch doesn't support mixing compute environment
+	// architecture types in a single job queue.
 	ComputeEnvironmentOrder []*ComputeEnvironmentOrder `locationName:"computeEnvironmentOrder" type:"list"`
 
 	// The name or the Amazon Resource Name (ARN) of the job queue.
@@ -7928,7 +8050,9 @@ type UpdateJobQueueInput struct {
 	// integer value for the priority parameter) are evaluated first when associated
 	// with the same compute environment. Priority is determined in descending order,
 	// for example, a job queue with a priority value of 10 is given scheduling
-	// preference over a job queue with a priority value of 1.
+	// preference over a job queue with a priority value of 1. All of the compute
+	// environments must be either EC2 (EC2 or SPOT) or Fargate (FARGATE or FARGATE_SPOT);
+	// EC2 and Fargate compute environments cannot be mixed.
 	Priority *int64 `locationName:"priority" type:"integer"`
 
 	// Describes the queue's ability to accept new jobs. If the job queue state

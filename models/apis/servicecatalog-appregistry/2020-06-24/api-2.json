@@ -229,6 +229,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "SyncResource":{
+      "name":"SyncResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sync/{resourceType}/{resource}"
+      },
+      "input":{"shape":"SyncResourceRequest"},
+      "output":{"shape":"SyncResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -843,6 +857,40 @@
       "pattern":"arn:aws[-a-z]*:cloudformation:[a-z]{2}(-gov)?-[a-z]+-\\d:\\d{12}:stack/[a-zA-Z][-A-Za-z0-9]{0,127}/[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}"
     },
     "String":{"type":"string"},
+    "SyncAction":{
+      "type":"string",
+      "enum":[
+        "START_SYNC",
+        "NO_ACTION"
+      ]
+    },
+    "SyncResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceType",
+        "resource"
+      ],
+      "members":{
+        "resourceType":{
+          "shape":"ResourceType",
+          "location":"uri",
+          "locationName":"resourceType"
+        },
+        "resource":{
+          "shape":"ResourceSpecifier",
+          "location":"uri",
+          "locationName":"resource"
+        }
+      }
+    },
+    "SyncResourceResponse":{
+      "type":"structure",
+      "members":{
+        "applicationArn":{"shape":"ApplicationArn"},
+        "resourceArn":{"shape":"Arn"},
+        "actionTaken":{"shape":"SyncAction"}
+      }
+    },
     "TagKey":{
       "type":"string",
       "max":128,

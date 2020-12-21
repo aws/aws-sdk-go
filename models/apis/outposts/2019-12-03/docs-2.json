@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Outposts is a fully-managed service that extends AWS infrastructure, APIs, and tools to customer premises. By providing local access to AWS-managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs.</p>",
+  "service": "<p>AWS Outposts is a fully managed service that extends AWS infrastructure, APIs, and tools to customer premises. By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs.</p>",
   "operations": {
     "CreateOutpost": "<p>Creates an Outpost.</p>",
     "DeleteOutpost": "<p>Deletes the Outpost.</p>",
@@ -8,7 +8,10 @@
     "GetOutpost": "<p>Gets information about the specified Outpost.</p>",
     "GetOutpostInstanceTypes": "<p>Lists the instance types for the specified Outpost.</p>",
     "ListOutposts": "<p>List the Outposts for your AWS account.</p>",
-    "ListSites": "<p>Lists the sites for the specified AWS account.</p>"
+    "ListSites": "<p>Lists the sites for the specified AWS account.</p>",
+    "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
+    "TagResource": "<p>Adds tags to the specified resource.</p>",
+    "UntagResource": "<p>Removes tags from the specified resource.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -20,6 +23,14 @@
       "base": "<p>The ID of the AWS account.</p>",
       "refs": {
         "Site$AccountId": null
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>"
       }
     },
     "AvailabilityZone": {
@@ -145,6 +156,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults1000": {
       "base": "<p>The maximum page size.</p>",
       "refs": {
@@ -174,7 +195,7 @@
       }
     },
     "OutpostDescription": {
-      "base": "<p>The Outpost description.</p>",
+      "base": "<p>The description of the Outpost.</p>",
       "refs": {
         "CreateOutpostInput$Description": null,
         "Outpost$Description": null
@@ -238,15 +259,34 @@
     "TagKey": {
       "base": null,
       "refs": {
+        "TagKeyList$member": null,
         "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys.</p>"
       }
     },
     "TagMap": {
       "base": null,
       "refs": {
         "CreateOutpostInput$Tags": "<p>The tags to apply to the Outpost.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The resource tags.</p>",
         "Outpost$Tags": "<p>The Outpost tags.</p>",
-        "Site$Tags": "<p>The site tags.</p>"
+        "Site$Tags": "<p>The site tags.</p>",
+        "TagResourceRequest$Tags": "<p>The tags to add to the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValue": {
@@ -264,6 +304,16 @@
         "ListOutpostsOutput$NextToken": null,
         "ListSitesInput$NextToken": null,
         "ListSitesOutput$NextToken": null
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ValidationException": {

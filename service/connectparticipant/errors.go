@@ -14,12 +14,24 @@ const (
 	// You do not have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// An attachment with that identifier is already being uploaded.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
 	// This exception occurs when there is an internal failure in the Amazon Connect
 	// service.
 	ErrCodeInternalServerException = "InternalServerException"
+
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// The number of attachments per contact exceeds the quota.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
@@ -35,8 +47,10 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":   newErrorAccessDeniedException,
-	"InternalServerException": newErrorInternalServerException,
-	"ThrottlingException":     newErrorThrottlingException,
-	"ValidationException":     newErrorValidationException,
+	"AccessDeniedException":         newErrorAccessDeniedException,
+	"ConflictException":             newErrorConflictException,
+	"InternalServerException":       newErrorInternalServerException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ThrottlingException":           newErrorThrottlingException,
+	"ValidationException":           newErrorValidationException,
 }

@@ -132,6 +132,10 @@ type AppRegistryAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *appregistry.ListTagsForResourceInput, ...request.Option) (*appregistry.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*appregistry.ListTagsForResourceInput) (*request.Request, *appregistry.ListTagsForResourceOutput)
 
+	SyncResource(*appregistry.SyncResourceInput) (*appregistry.SyncResourceOutput, error)
+	SyncResourceWithContext(aws.Context, *appregistry.SyncResourceInput, ...request.Option) (*appregistry.SyncResourceOutput, error)
+	SyncResourceRequest(*appregistry.SyncResourceInput) (*request.Request, *appregistry.SyncResourceOutput)
+
 	TagResource(*appregistry.TagResourceInput) (*appregistry.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *appregistry.TagResourceInput, ...request.Option) (*appregistry.TagResourceOutput, error)
 	TagResourceRequest(*appregistry.TagResourceInput) (*request.Request, *appregistry.TagResourceOutput)

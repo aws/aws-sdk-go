@@ -12,13 +12,13 @@ const (
 	// "AWSServiceAccessNotEnabledException".
 	//
 	// The action you attempted is not allowed unless Service Access with Service
-	// Quotas is enabled in your organization. To enable, call AssociateServiceQuotaTemplate.
+	// Quotas is enabled in your organization.
 	ErrCodeAWSServiceAccessNotEnabledException = "AWSServiceAccessNotEnabledException"
 
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have sufficient access to perform this action.
+	// You do not have sufficient permission to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeDependencyAccessDeniedException for service response error code
@@ -42,7 +42,7 @@ const (
 	// ErrCodeInvalidResourceStateException for service response error code
 	// "InvalidResourceStateException".
 	//
-	// Invalid input was provided for the .
+	// The resource is in an invalid state.
 	ErrCodeInvalidResourceStateException = "InvalidResourceStateException"
 
 	// ErrCodeNoAvailableOrganizationException for service response error code
@@ -60,8 +60,7 @@ const (
 	// ErrCodeOrganizationNotInAllFeaturesModeException for service response error code
 	// "OrganizationNotInAllFeaturesModeException".
 	//
-	// The organization that your account belongs to, is not in All Features mode.
-	// To enable all features mode, see EnableAllFeatures (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAllFeatures.html).
+	// The organization that your account belongs to is not in All Features mode.
 	ErrCodeOrganizationNotInAllFeaturesModeException = "OrganizationNotInAllFeaturesModeException"
 
 	// ErrCodeQuotaExceededException for service response error code
@@ -88,15 +87,18 @@ const (
 	// "ServiceQuotaTemplateNotInUseException".
 	//
 	// The quota request template is not associated with your organization.
-	//
-	// To use the template, call AssociateServiceQuotaTemplate.
 	ErrCodeServiceQuotaTemplateNotInUseException = "ServiceQuotaTemplateNotInUseException"
+
+	// ErrCodeTagPolicyViolationException for service response error code
+	// "TagPolicyViolationException".
+	//
+	// The specified tag is a reserved word and cannot be used.
+	ErrCodeTagPolicyViolationException = "TagPolicyViolationException"
 
 	// ErrCodeTemplatesNotAvailableInRegionException for service response error code
 	// "TemplatesNotAvailableInRegionException".
 	//
-	// The Service Quotas template is not available in the Region where you are
-	// making the request. Please make the request in us-east-1.
+	// The Service Quotas template is not available in this AWS Region.
 	ErrCodeTemplatesNotAvailableInRegionException = "TemplatesNotAvailableInRegionException"
 
 	// ErrCodeTooManyRequestsException for service response error code
@@ -105,6 +107,14 @@ const (
 	// Due to throttling, the request was denied. Slow down the rate of request
 	// calls, or request an increase for this quota.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// You've exceeded the number of tags allowed for a resource. For more information,
+	// see Tag restrictions (https://docs.aws.amazon.com/servicequotas/latest/userguide/sq-tagging.html#sq-tagging-restrictions)
+	// in the Service Quotas User Guide.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -121,6 +131,8 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceAlreadyExistsException":            newErrorResourceAlreadyExistsException,
 	"ServiceException":                          newErrorServiceException,
 	"ServiceQuotaTemplateNotInUseException":     newErrorServiceQuotaTemplateNotInUseException,
+	"TagPolicyViolationException":               newErrorTagPolicyViolationException,
 	"TemplatesNotAvailableInRegionException":    newErrorTemplatesNotAvailableInRegionException,
 	"TooManyRequestsException":                  newErrorTooManyRequestsException,
+	"TooManyTagsException":                      newErrorTooManyTagsException,
 }

@@ -1,27 +1,27 @@
 {
   "version": "2.0",
-  "service": "<p/> <p>Amazon Managed Blockchain is a fully managed service for creating and managing blockchain networks using open source frameworks. Blockchain allows you to build applications where multiple parties can securely and transparently run transactions and share data without the need for a trusted, central authority. Currently, Managed Blockchain supports the Hyperledger Fabric open source framework. </p>",
+  "service": "<p/> <p>Amazon Managed Blockchain is a fully managed service for creating and managing blockchain networks using open-source frameworks. Blockchain allows you to build applications where multiple parties can securely and transparently run transactions and share data without the need for a trusted, central authority.</p> <p>Managed Blockchain supports the Hyperledger Fabric and Ethereum open-source frameworks. Because of fundamental differences between the frameworks, some API actions or data types may only apply in the context of one framework and not the other. For example, actions related to Hyperledger Fabric network members such as <code>CreateMember</code> and <code>DeleteMember</code> do not apply to Ethereum.</p> <p>The description for each action indicates the framework or frameworks to which it applies. Data types and properties that apply only in the context of a particular framework are similarly indicated.</p>",
   "operations": {
-    "CreateMember": "<p>Creates a member within a Managed Blockchain network.</p>",
-    "CreateNetwork": "<p>Creates a new blockchain network using Amazon Managed Blockchain.</p>",
-    "CreateNode": "<p>Creates a peer node in a member.</p>",
-    "CreateProposal": "<p>Creates a proposal for a change to the network that other members of the network can vote on, for example, a proposal to add a new member to the network. Any member can create a proposal.</p>",
-    "DeleteMember": "<p>Deletes a member. Deleting a member removes the member and all associated resources from the network. <code>DeleteMember</code> can only be called for a specified <code>MemberId</code> if the principal performing the action is associated with the AWS account that owns the member. In all other cases, the <code>DeleteMember</code> action is carried out as the result of an approved proposal to remove a member. If <code>MemberId</code> is the last member in a network specified by the last AWS account, the network is deleted also.</p>",
-    "DeleteNode": "<p>Deletes a peer node from a member that your AWS account owns. All data on the node is lost and cannot be recovered.</p>",
-    "GetMember": "<p>Returns detailed information about a member.</p>",
-    "GetNetwork": "<p>Returns detailed information about a network.</p>",
-    "GetNode": "<p>Returns detailed information about a peer node.</p>",
-    "GetProposal": "<p>Returns detailed information about a proposal.</p>",
-    "ListInvitations": "<p>Returns a listing of all invitations for the current AWS account.</p>",
-    "ListMembers": "<p>Returns a listing of the members in a network and properties of their configurations.</p>",
-    "ListNetworks": "<p>Returns information about the networks in which the current AWS account has members.</p>",
-    "ListNodes": "<p>Returns information about the nodes within a network.</p>",
-    "ListProposalVotes": "<p>Returns the listing of votes for a specified proposal, including the value of each vote and the unique identifier of the member that cast the vote.</p>",
-    "ListProposals": "<p>Returns a listing of proposals for the network.</p>",
-    "RejectInvitation": "<p>Rejects an invitation to join a network. This action can be called by a principal in an AWS account that has received an invitation to create a member and join a network.</p>",
-    "UpdateMember": "<p>Updates a member configuration with new parameters.</p>",
-    "UpdateNode": "<p>Updates a node configuration with new parameters.</p>",
-    "VoteOnProposal": "<p>Casts a vote for a specified <code>ProposalId</code> on behalf of a member. The member to vote as, specified by <code>VoterMemberId</code>, must be in the same AWS account as the principal that calls the action.</p>"
+    "CreateMember": "<p>Creates a member within a Managed Blockchain network.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "CreateNetwork": "<p>Creates a new blockchain network using Amazon Managed Blockchain.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "CreateNode": "<p>Creates a node on the specified blockchain network.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
+    "CreateProposal": "<p>Creates a proposal for a change to the network that other members of the network can vote on, for example, a proposal to add a new member to the network. Any member can create a proposal.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "DeleteMember": "<p>Deletes a member. Deleting a member removes the member and all associated resources from the network. <code>DeleteMember</code> can only be called for a specified <code>MemberId</code> if the principal performing the action is associated with the AWS account that owns the member. In all other cases, the <code>DeleteMember</code> action is carried out as the result of an approved proposal to remove a member. If <code>MemberId</code> is the last member in a network specified by the last AWS account, the network is deleted also.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "DeleteNode": "<p>Deletes a node that your AWS account owns. All data on the node is lost and cannot be recovered.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
+    "GetMember": "<p>Returns detailed information about a member.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "GetNetwork": "<p>Returns detailed information about a network.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
+    "GetNode": "<p>Returns detailed information about a node.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
+    "GetProposal": "<p>Returns detailed information about a proposal.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "ListInvitations": "<p>Returns a list of all invitations for the current AWS account.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "ListMembers": "<p>Returns a list of the members in a network and properties of their configurations.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "ListNetworks": "<p>Returns information about the networks in which the current AWS account participates.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
+    "ListNodes": "<p>Returns information about the nodes within a network.</p> <p>Applies to Hyperledger Fabric and Ethereum.</p>",
+    "ListProposalVotes": "<p>Returns the list of votes for a specified proposal, including the value of each vote and the unique identifier of the member that cast the vote.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "ListProposals": "<p>Returns a list of proposals for the network.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "RejectInvitation": "<p>Rejects an invitation to join a network. This action can be called by a principal in an AWS account that has received an invitation to create a member and join a network.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "UpdateMember": "<p>Updates a member configuration with new parameters.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "UpdateNode": "<p>Updates a node configuration with new parameters.</p> <p>Applies only to Hyperledger Fabric.</p>",
+    "VoteOnProposal": "<p>Casts a vote for a specified <code>ProposalId</code> on behalf of a member. The member to vote as, specified by <code>VoterMemberId</code>, must be in the same AWS account as the principal that calls the action.</p> <p>Applies only to Hyperledger Fabric.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -30,7 +30,7 @@
       }
     },
     "ApprovalThresholdPolicy": {
-      "base": "<p>A policy type that defines the voting rules for the network. The rules decide if a proposal is approved. Approval may be based on criteria such as the percentage of <code>YES</code> votes and the duration of the proposal. The policy applies to all proposals and is specified when the network is created.</p>",
+      "base": "<p>A policy type that defines the voting rules for the network. The rules decide if a proposal is approved. Approval may be based on criteria such as the percentage of <code>YES</code> votes and the duration of the proposal. The policy applies to all proposals and is specified when the network is created.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "VotingPolicy$ApprovalThresholdPolicy": "<p>Defines the rules for the network for voting on proposals, such as the percentage of <code>YES</code> votes required for the proposal to be approved and the duration of the proposal. The policy applies to all proposals and is specified when the network is created.</p>"
       }
@@ -220,7 +220,7 @@
       }
     },
     "Invitation": {
-      "base": "<p>An invitation to an AWS account to create a member and join the network.</p>",
+      "base": "<p>An invitation to an AWS account to create a member and join the network.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "InvitationList$member": null
       }
@@ -238,7 +238,7 @@
       }
     },
     "InviteAction": {
-      "base": "<p>An action to invite a specific AWS account to create a member and join the network. The <code>InviteAction</code> is carried out when a <code>Proposal</code> is <code>APPROVED</code>.</p>",
+      "base": "<p>An action to invite a specific AWS account to create a member and join the network. The <code>InviteAction</code> is carried out when a <code>Proposal</code> is <code>APPROVED</code>.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "InviteActionList$member": null
       }
@@ -331,13 +331,13 @@
       }
     },
     "Member": {
-      "base": "<p>Member configuration properties.</p>",
+      "base": "<p>Member configuration properties.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "GetMemberOutput$Member": "<p>The properties of a member.</p>"
       }
     },
     "MemberConfiguration": {
-      "base": "<p>Configuration properties of the member.</p>",
+      "base": "<p>Configuration properties of the member.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "CreateMemberInput$MemberConfiguration": "<p>Member configuration parameters.</p>",
         "CreateNetworkInput$MemberConfiguration": "<p>Configuration properties for the first member within the network.</p>"
@@ -396,7 +396,7 @@
       }
     },
     "MemberSummary": {
-      "base": "<p>A summary of configuration properties for a member.</p>",
+      "base": "<p>A summary of configuration properties for a member.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "MemberSummaryList$member": null
       }
@@ -419,6 +419,12 @@
       "base": "<p>Network configuration properties.</p>",
       "refs": {
         "GetNetworkOutput$Network": "<p>An object containing network configuration parameters.</p>"
+      }
+    },
+    "NetworkEthereumAttributes": {
+      "base": "<p>Attributes of Ethereum for a network.</p>",
+      "refs": {
+        "NetworkFrameworkAttributes$Ethereum": "<p>Attributes of an Ethereum network for Managed Blockchain resources participating in an Ethereum network.</p>"
       }
     },
     "NetworkFabricAttributes": {
@@ -465,7 +471,7 @@
     "NetworkStatus": {
       "base": null,
       "refs": {
-        "ListNetworksInput$Status": "<p>An optional status specifier. If provided, only networks currently in this status are listed.</p>",
+        "ListNetworksInput$Status": "<p>An optional status specifier. If provided, only networks currently in this status are listed.</p> <p>Applies only to Hyperledger Fabric.</p>",
         "Network$Status": "<p>The current status of the network.</p>",
         "NetworkSummary$Status": "<p>The current status of the network.</p>"
       }
@@ -484,19 +490,25 @@
       }
     },
     "Node": {
-      "base": "<p>Configuration properties of a peer node.</p>",
+      "base": "<p>Configuration properties of a node.</p>",
       "refs": {
         "GetNodeOutput$Node": "<p>Properties of the node configuration.</p>"
       }
     },
     "NodeConfiguration": {
-      "base": "<p>Configuration properties of a peer node.</p>",
+      "base": "<p>Configuration properties of a node.</p>",
       "refs": {
         "CreateNodeInput$NodeConfiguration": "<p>The properties of a node configuration.</p>"
       }
     },
+    "NodeEthereumAttributes": {
+      "base": "<p>Attributes of an Ethereum node.</p>",
+      "refs": {
+        "NodeFrameworkAttributes$Ethereum": "<p>Attributes of Ethereum for a node on a Managed Blockchain network that uses Ethereum.</p>"
+      }
+    },
     "NodeFabricAttributes": {
-      "base": "<p>Attributes of Hyperledger Fabric for a peer node on a Managed Blockchain network that uses Hyperledger Fabric.</p>",
+      "base": "<p>Attributes of Hyperledger Fabric for a peer node on a Hyperledger Fabric network on Managed Blockchain.</p>",
       "refs": {
         "NodeFrameworkAttributes$Fabric": "<p>Attributes of Hyperledger Fabric for a peer node on a Managed Blockchain network that uses Hyperledger Fabric.</p>"
       }
@@ -508,7 +520,7 @@
       }
     },
     "NodeFrameworkAttributes": {
-      "base": "<p>Attributes relevant to a peer node on a Managed Blockchain network for the blockchain framework that the network uses.</p>",
+      "base": "<p>Attributes relevant to a node on a Managed Blockchain network for the blockchain framework that the network uses.</p>",
       "refs": {
         "Node$FrameworkAttributes": "<p>Attributes of the blockchain framework being used.</p>"
       }
@@ -520,10 +532,10 @@
       }
     },
     "NodeLogPublishingConfiguration": {
-      "base": "<p>Configuration properties for logging events associated with a peer node owned by a member in a Managed Blockchain network.</p>",
+      "base": "<p>Configuration properties for logging events associated with a peer node on a Hyperledger Fabric network on Managed Blockchain.</p>",
       "refs": {
-        "Node$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a peer node owned by a member in a Managed Blockchain network.</p>",
-        "NodeConfiguration$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a peer node owned by a member in a Managed Blockchain network. </p>",
+        "Node$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a peer node on a Hyperledger Fabric network on Managed Blockchain.</p>",
+        "NodeConfiguration$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a peer node on a Hyperledger Fabric network on Managed Blockchain. </p>",
         "UpdateNodeInput$LogPublishingConfiguration": "<p>Configuration properties for publishing to Amazon CloudWatch Logs.</p>"
       }
     },
@@ -536,7 +548,7 @@
       }
     },
     "NodeSummary": {
-      "base": "<p>A summary of configuration properties for a peer node.</p>",
+      "base": "<p>A summary of configuration properties for a node.</p>",
       "refs": {
         "NodeSummaryList$member": null
       }
@@ -567,7 +579,7 @@
     "PasswordString": {
       "base": null,
       "refs": {
-        "MemberFabricConfiguration$AdminPassword": "<p>The password for the member's initial administrative user. The <code>AdminPassword</code> must be at least eight characters long and no more than 32 characters. It must contain at least one uppercase letter, one lowercase letter, and one digit. It cannot have a single quote(‘), double quote(“), forward slash(/), backward slash(\\), @, or a space.</p>"
+        "MemberFabricConfiguration$AdminPassword": "<p>The password for the member's initial administrative user. The <code>AdminPassword</code> must be at least eight characters long and no more than 32 characters. It must contain at least one uppercase letter, one lowercase letter, and one digit. It cannot have a single quotation mark (‘), a double quotation marks (“), a forward slash(/), a backward slash(\\), @, or a space.</p>"
       }
     },
     "PrincipalString": {
@@ -577,13 +589,13 @@
       }
     },
     "Proposal": {
-      "base": "<p>Properties of a proposal on a Managed Blockchain network.</p>",
+      "base": "<p>Properties of a proposal on a Managed Blockchain network.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "GetProposalOutput$Proposal": "<p>Information about a proposal.</p>"
       }
     },
     "ProposalActions": {
-      "base": "<p> The actions to carry out if a proposal is <code>APPROVED</code>. </p>",
+      "base": "<p> The actions to carry out if a proposal is <code>APPROVED</code>. </p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "CreateProposalInput$Actions": "<p>The type of actions proposed, such as inviting a member or removing a member. The types of <code>Actions</code> in a proposal are mutually exclusive. For example, a proposal with <code>Invitations</code> actions cannot also contain <code>Removals</code> actions.</p>",
         "Proposal$Actions": "<p>The actions to perform on the network if the proposal is <code>APPROVED</code>.</p>"
@@ -611,7 +623,7 @@
       }
     },
     "ProposalSummary": {
-      "base": "<p>Properties of a proposal.</p>",
+      "base": "<p>Properties of a proposal.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "ProposalSummaryList$member": null
       }
@@ -625,7 +637,7 @@
     "ProposalVoteList": {
       "base": null,
       "refs": {
-        "ListProposalVotesOutput$ProposalVotes": "<p> The listing of votes. </p>"
+        "ListProposalVotesOutput$ProposalVotes": "<p> The list of votes. </p>"
       }
     },
     "RejectInvitationInput": {
@@ -639,7 +651,7 @@
       }
     },
     "RemoveAction": {
-      "base": "<p>An action to remove a member from a Managed Blockchain network as the result of a removal proposal that is <code>APPROVED</code>. The member and all associated resources are deleted from the network.</p>",
+      "base": "<p>An action to remove a member from a Managed Blockchain network as the result of a removal proposal that is <code>APPROVED</code>. The member and all associated resources are deleted from the network.</p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "RemoveActionList$member": null
       }
@@ -663,29 +675,29 @@
         "CreateMemberOutput$MemberId": "<p>The unique identifier of the member.</p>",
         "CreateNetworkOutput$NetworkId": "<p>The unique identifier for the network.</p>",
         "CreateNetworkOutput$MemberId": "<p>The unique identifier for the first member within the network.</p>",
-        "CreateNodeInput$NetworkId": "<p>The unique identifier of the network in which this node runs.</p>",
-        "CreateNodeInput$MemberId": "<p>The unique identifier of the member that owns this node.</p>",
+        "CreateNodeInput$NetworkId": "<p>The unique identifier of the network for the node.</p> <p>Ethereum public networks have the following <code>NetworkId</code>s:</p> <ul> <li> <p> <code>n-ethereum-mainnet</code> </p> </li> <li> <p> <code>n-ethereum-rinkeby</code> </p> </li> <li> <p> <code>n-ethereum-ropsten</code> </p> </li> </ul>",
+        "CreateNodeInput$MemberId": "<p>The unique identifier of the member that owns this node.</p> <p>Applies only to Hyperledger Fabric.</p>",
         "CreateNodeOutput$NodeId": "<p>The unique identifier of the node.</p>",
         "CreateProposalInput$NetworkId": "<p> The unique identifier of the network for which the proposal is made.</p>",
         "CreateProposalInput$MemberId": "<p>The unique identifier of the member that is creating the proposal. This identifier is especially useful for identifying the member making the proposal when multiple members exist in a single AWS account.</p>",
         "CreateProposalOutput$ProposalId": "<p>The unique identifier of the proposal.</p>",
         "DeleteMemberInput$NetworkId": "<p>The unique identifier of the network from which the member is removed.</p>",
         "DeleteMemberInput$MemberId": "<p>The unique identifier of the member to remove.</p>",
-        "DeleteNodeInput$NetworkId": "<p>The unique identifier of the network that the node belongs to.</p>",
-        "DeleteNodeInput$MemberId": "<p>The unique identifier of the member that owns this node.</p>",
+        "DeleteNodeInput$NetworkId": "<p>The unique identifier of the network that the node is on.</p> <p>Ethereum public networks have the following <code>NetworkId</code>s:</p> <ul> <li> <p> <code>n-ethereum-mainnet</code> </p> </li> <li> <p> <code>n-ethereum-rinkeby</code> </p> </li> <li> <p> <code>n-ethereum-ropsten</code> </p> </li> </ul>",
+        "DeleteNodeInput$MemberId": "<p>The unique identifier of the member that owns this node.</p> <p>Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.</p>",
         "DeleteNodeInput$NodeId": "<p>The unique identifier of the node.</p>",
         "GetMemberInput$NetworkId": "<p>The unique identifier of the network to which the member belongs.</p>",
         "GetMemberInput$MemberId": "<p>The unique identifier of the member.</p>",
         "GetNetworkInput$NetworkId": "<p>The unique identifier of the network to get information about.</p>",
-        "GetNodeInput$NetworkId": "<p>The unique identifier of the network to which the node belongs.</p>",
-        "GetNodeInput$MemberId": "<p>The unique identifier of the member that owns the node.</p>",
+        "GetNodeInput$NetworkId": "<p>The unique identifier of the network that the node is on.</p>",
+        "GetNodeInput$MemberId": "<p>The unique identifier of the member that owns the node.</p> <p>Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.</p>",
         "GetNodeInput$NodeId": "<p>The unique identifier of the node.</p>",
         "GetProposalInput$NetworkId": "<p>The unique identifier of the network for which the proposal is made.</p>",
         "GetProposalInput$ProposalId": "<p>The unique identifier of the proposal.</p>",
         "Invitation$InvitationId": "<p>The unique identifier for the invitation.</p>",
         "ListMembersInput$NetworkId": "<p>The unique identifier of the network for which to list members.</p>",
         "ListNodesInput$NetworkId": "<p>The unique identifier of the network for which to list nodes.</p>",
-        "ListNodesInput$MemberId": "<p>The unique identifier of the member who owns the nodes to list.</p>",
+        "ListNodesInput$MemberId": "<p>The unique identifier of the member who owns the nodes to list.</p> <p>Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.</p>",
         "ListProposalVotesInput$NetworkId": "<p> The unique identifier of the network. </p>",
         "ListProposalVotesInput$ProposalId": "<p> The unique identifier of the proposal. </p>",
         "ListProposalsInput$NetworkId": "<p> The unique identifier of the network. </p>",
@@ -694,8 +706,8 @@
         "MemberSummary$Id": "<p>The unique identifier of the member.</p>",
         "Network$Id": "<p>The unique identifier of the network.</p>",
         "NetworkSummary$Id": "<p>The unique identifier of the network.</p>",
-        "Node$NetworkId": "<p>The unique identifier of the network that the node is in.</p>",
-        "Node$MemberId": "<p>The unique identifier of the member to which the node belongs.</p>",
+        "Node$NetworkId": "<p>The unique identifier of the network that the node is on.</p>",
+        "Node$MemberId": "<p>The unique identifier of the member to which the node belongs.</p> <p>Applies only to Hyperledger Fabric.</p>",
         "Node$Id": "<p>The unique identifier of the node.</p>",
         "NodeSummary$Id": "<p>The unique identifier of the node.</p>",
         "Proposal$ProposalId": "<p>The unique identifier of the proposal.</p>",
@@ -705,11 +717,11 @@
         "ProposalSummary$ProposedByMemberId": "<p> The unique identifier of the member that created the proposal. </p>",
         "RejectInvitationInput$InvitationId": "<p>The unique identifier of the invitation to reject.</p>",
         "RemoveAction$MemberId": "<p>The unique identifier of the member to remove.</p>",
-        "UpdateMemberInput$NetworkId": "<p>The unique ID of the Managed Blockchain network to which the member belongs.</p>",
-        "UpdateMemberInput$MemberId": "<p>The unique ID of the member.</p>",
-        "UpdateNodeInput$NetworkId": "<p>The unique ID of the Managed Blockchain network to which the node belongs.</p>",
-        "UpdateNodeInput$MemberId": "<p>The unique ID of the member that owns the node.</p>",
-        "UpdateNodeInput$NodeId": "<p>The unique ID of the node.</p>",
+        "UpdateMemberInput$NetworkId": "<p>The unique identifier of the Managed Blockchain network to which the member belongs.</p>",
+        "UpdateMemberInput$MemberId": "<p>The unique identifier of the member.</p>",
+        "UpdateNodeInput$NetworkId": "<p>The unique identifier of the network that the node is on.</p>",
+        "UpdateNodeInput$MemberId": "<p>The unique identifier of the member that owns the node.</p> <p>Applies only to Hyperledger Fabric.</p>",
+        "UpdateNodeInput$NodeId": "<p>The unique identifier of the node.</p>",
         "VoteOnProposalInput$NetworkId": "<p> The unique identifier of the network. </p>",
         "VoteOnProposalInput$ProposalId": "<p> The unique identifier of the proposal. </p>",
         "VoteOnProposalInput$VoterMemberId": "<p>The unique identifier of the member casting the vote. </p>",
@@ -734,20 +746,24 @@
     "StateDBType": {
       "base": null,
       "refs": {
-        "Node$StateDB": "<p>The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>.</p>",
-        "NodeConfiguration$StateDB": "<p>The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>. When using an Amazon Managed Blockchain network with Hyperledger Fabric version 1.4 or later, the default is <code>CouchDB</code>.</p>"
+        "Node$StateDB": "<p>The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>.</p> <p>Applies only to Hyperledger Fabric.</p>",
+        "NodeConfiguration$StateDB": "<p>The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>. When using an Amazon Managed Blockchain network with Hyperledger Fabric version 1.4 or later, the default is <code>CouchDB</code>.</p> <p>Applies only to Hyperledger Fabric.</p>"
       }
     },
     "String": {
       "base": null,
       "refs": {
+        "AccessDeniedException$Message": null,
         "IllegalActionException$Message": null,
         "InvalidRequestException$Message": null,
         "ListMembersInput$Name": "<p>The optional name of the member to list.</p>",
         "ListNetworksInput$Name": "<p>The name of the network.</p>",
         "MemberFabricAttributes$CaEndpoint": "<p>The endpoint used to access the member's certificate authority.</p>",
         "Network$VpcEndpointServiceName": "<p>The VPC endpoint service name of the VPC endpoint service of the network. Members use the VPC endpoint service name to create a VPC endpoint to access network resources.</p>",
+        "NetworkEthereumAttributes$ChainId": "<p>The Ethereum <code>CHAIN_ID</code> associated with the Ethereum network. Chain IDs are as follows:</p> <ul> <li> <p>mainnet = <code>1</code> </p> </li> <li> <p>rinkeby = <code>4</code> </p> </li> <li> <p>ropsten = <code>3</code> </p> </li> </ul>",
         "NetworkFabricAttributes$OrderingServiceEndpoint": "<p>The endpoint of the ordering service for the network.</p>",
+        "NodeEthereumAttributes$HttpEndpoint": "<p>The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC methods over HTTP connections from a client. Use this endpoint in client code for smart contracts when using an HTTP connection. Connections to this endpoint are authenticated using <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>.</p>",
+        "NodeEthereumAttributes$WebSocketEndpoint": "<p>The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC methods over WebSockets connections from a client. Use this endpoint in client code for smart contracts when using a WebSockets connection. Connections to this endpoint are authenticated using <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>.</p>",
         "NodeFabricAttributes$PeerEndpoint": "<p>The endpoint that identifies the peer node for all services except peer channel-based event services.</p>",
         "NodeFabricAttributes$PeerEventEndpoint": "<p>The endpoint that identifies the peer node for peer channel-based event services.</p>",
         "ResourceAlreadyExistsException$Message": null,
@@ -836,7 +852,7 @@
       }
     },
     "VoteSummary": {
-      "base": "<p> Properties of an individual vote that a member cast for a proposal. </p>",
+      "base": "<p> Properties of an individual vote that a member cast for a proposal. </p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "ProposalVoteList$member": null
       }
@@ -849,7 +865,7 @@
       }
     },
     "VotingPolicy": {
-      "base": "<p> The voting rules for the network to decide if a proposal is accepted </p>",
+      "base": "<p> The voting rules for the network to decide if a proposal is accepted </p> <p>Applies only to Hyperledger Fabric.</p>",
       "refs": {
         "CreateNetworkInput$VotingPolicy": "<p> The voting rules used by the network to determine if a proposal is approved. </p>",
         "Network$VotingPolicy": "<p>The voting rules for the network to decide if a proposal is accepted.</p>"

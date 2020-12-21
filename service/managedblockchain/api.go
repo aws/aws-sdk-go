@@ -59,6 +59,8 @@ func (c *ManagedBlockchain) CreateMemberRequest(input *CreateMemberInput) (req *
 //
 // Creates a member within a Managed Blockchain network.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -168,6 +170,8 @@ func (c *ManagedBlockchain) CreateNetworkRequest(input *CreateNetworkInput) (req
 //
 // Creates a new blockchain network using Amazon Managed Blockchain.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -253,7 +257,7 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 	op := &request.Operation{
 		Name:       opCreateNode,
 		HTTPMethod: "POST",
-		HTTPPath:   "/networks/{networkId}/members/{memberId}/nodes",
+		HTTPPath:   "/networks/{networkId}/nodes",
 	}
 
 	if input == nil {
@@ -267,7 +271,9 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 
 // CreateNode API operation for Amazon Managed Blockchain.
 //
-// Creates a peer node in a member.
+// Creates a node on the specified blockchain network.
+//
+// Applies to Hyperledger Fabric and Ethereum.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -380,6 +386,8 @@ func (c *ManagedBlockchain) CreateProposalRequest(input *CreateProposalInput) (r
 // network can vote on, for example, a proposal to add a new member to the network.
 // Any member can create a proposal.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -488,6 +496,8 @@ func (c *ManagedBlockchain) DeleteMemberRequest(input *DeleteMemberInput) (req *
 // If MemberId is the last member in a network specified by the last AWS account,
 // the network is deleted also.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -573,7 +583,7 @@ func (c *ManagedBlockchain) DeleteNodeRequest(input *DeleteNodeInput) (req *requ
 	op := &request.Operation{
 		Name:       opDeleteNode,
 		HTTPMethod: "DELETE",
-		HTTPPath:   "/networks/{networkId}/members/{memberId}/nodes/{nodeId}",
+		HTTPPath:   "/networks/{networkId}/nodes/{nodeId}",
 	}
 
 	if input == nil {
@@ -588,8 +598,10 @@ func (c *ManagedBlockchain) DeleteNodeRequest(input *DeleteNodeInput) (req *requ
 
 // DeleteNode API operation for Amazon Managed Blockchain.
 //
-// Deletes a peer node from a member that your AWS account owns. All data on
-// the node is lost and cannot be recovered.
+// Deletes a node that your AWS account owns. All data on the node is lost and
+// cannot be recovered.
+//
+// Applies to Hyperledger Fabric and Ethereum.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -692,6 +704,8 @@ func (c *ManagedBlockchain) GetMemberRequest(input *GetMemberInput) (req *reques
 //
 // Returns detailed information about a member.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -789,6 +803,8 @@ func (c *ManagedBlockchain) GetNetworkRequest(input *GetNetworkInput) (req *requ
 //
 // Returns detailed information about a network.
 //
+// Applies to Hyperledger Fabric and Ethereum.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -870,7 +886,7 @@ func (c *ManagedBlockchain) GetNodeRequest(input *GetNodeInput) (req *request.Re
 	op := &request.Operation{
 		Name:       opGetNode,
 		HTTPMethod: "GET",
-		HTTPPath:   "/networks/{networkId}/members/{memberId}/nodes/{nodeId}",
+		HTTPPath:   "/networks/{networkId}/nodes/{nodeId}",
 	}
 
 	if input == nil {
@@ -884,7 +900,9 @@ func (c *ManagedBlockchain) GetNodeRequest(input *GetNodeInput) (req *request.Re
 
 // GetNode API operation for Amazon Managed Blockchain.
 //
-// Returns detailed information about a peer node.
+// Returns detailed information about a node.
+//
+// Applies to Hyperledger Fabric and Ethereum.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -982,6 +1000,8 @@ func (c *ManagedBlockchain) GetProposalRequest(input *GetProposalInput) (req *re
 // GetProposal API operation for Amazon Managed Blockchain.
 //
 // Returns detailed information about a proposal.
+//
+// Applies only to Hyperledger Fabric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1084,7 +1104,9 @@ func (c *ManagedBlockchain) ListInvitationsRequest(input *ListInvitationsInput) 
 
 // ListInvitations API operation for Amazon Managed Blockchain.
 //
-// Returns a listing of all invitations for the current AWS account.
+// Returns a list of all invitations for the current AWS account.
+//
+// Applies only to Hyperledger Fabric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1244,7 +1266,9 @@ func (c *ManagedBlockchain) ListMembersRequest(input *ListMembersInput) (req *re
 
 // ListMembers API operation for Amazon Managed Blockchain.
 //
-// Returns a listing of the members in a network and properties of their configurations.
+// Returns a list of the members in a network and properties of their configurations.
+//
+// Applies only to Hyperledger Fabric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1395,8 +1419,9 @@ func (c *ManagedBlockchain) ListNetworksRequest(input *ListNetworksInput) (req *
 
 // ListNetworks API operation for Amazon Managed Blockchain.
 //
-// Returns information about the networks in which the current AWS account has
-// members.
+// Returns information about the networks in which the current AWS account participates.
+//
+// Applies to Hyperledger Fabric and Ethereum.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1527,7 +1552,7 @@ func (c *ManagedBlockchain) ListNodesRequest(input *ListNodesInput) (req *reques
 	op := &request.Operation{
 		Name:       opListNodes,
 		HTTPMethod: "GET",
-		HTTPPath:   "/networks/{networkId}/members/{memberId}/nodes",
+		HTTPPath:   "/networks/{networkId}/nodes",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -1548,6 +1573,8 @@ func (c *ManagedBlockchain) ListNodesRequest(input *ListNodesInput) (req *reques
 // ListNodes API operation for Amazon Managed Blockchain.
 //
 // Returns information about the nodes within a network.
+//
+// Applies to Hyperledger Fabric and Ethereum.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1698,8 +1725,10 @@ func (c *ManagedBlockchain) ListProposalVotesRequest(input *ListProposalVotesInp
 
 // ListProposalVotes API operation for Amazon Managed Blockchain.
 //
-// Returns the listing of votes for a specified proposal, including the value
-// of each vote and the unique identifier of the member that cast the vote.
+// Returns the list of votes for a specified proposal, including the value of
+// each vote and the unique identifier of the member that cast the vote.
+//
+// Applies only to Hyperledger Fabric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1850,7 +1879,9 @@ func (c *ManagedBlockchain) ListProposalsRequest(input *ListProposalsInput) (req
 
 // ListProposals API operation for Amazon Managed Blockchain.
 //
-// Returns a listing of proposals for the network.
+// Returns a list of proposals for the network.
+//
+// Applies only to Hyperledger Fabric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2004,6 +2035,8 @@ func (c *ManagedBlockchain) RejectInvitationRequest(input *RejectInvitationInput
 // in an AWS account that has received an invitation to create a member and
 // join a network.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2104,6 +2137,8 @@ func (c *ManagedBlockchain) UpdateMemberRequest(input *UpdateMemberInput) (req *
 //
 // Updates a member configuration with new parameters.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2185,7 +2220,7 @@ func (c *ManagedBlockchain) UpdateNodeRequest(input *UpdateNodeInput) (req *requ
 	op := &request.Operation{
 		Name:       opUpdateNode,
 		HTTPMethod: "PATCH",
-		HTTPPath:   "/networks/{networkId}/members/{memberId}/nodes/{nodeId}",
+		HTTPPath:   "/networks/{networkId}/nodes/{nodeId}",
 	}
 
 	if input == nil {
@@ -2201,6 +2236,8 @@ func (c *ManagedBlockchain) UpdateNodeRequest(input *UpdateNodeInput) (req *requ
 // UpdateNode API operation for Amazon Managed Blockchain.
 //
 // Updates a node configuration with new parameters.
+//
+// Applies only to Hyperledger Fabric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2302,6 +2339,8 @@ func (c *ManagedBlockchain) VoteOnProposalRequest(input *VoteOnProposalInput) (r
 // to vote as, specified by VoterMemberId, must be in the same AWS account as
 // the principal that calls the action.
 //
+// Applies only to Hyperledger Fabric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2360,7 +2399,7 @@ type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"message" type:"string"`
+	Message_ *string `locationName:"Message" type:"string"`
 }
 
 // String returns the string representation
@@ -2415,6 +2454,8 @@ func (s *AccessDeniedException) RequestID() string {
 // if a proposal is approved. Approval may be based on criteria such as the
 // percentage of YES votes and the duration of the proposal. The policy applies
 // to all proposals and is specified when the network is created.
+//
+// Applies only to Hyperledger Fabric.
 type ApprovalThresholdPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -2789,10 +2830,18 @@ type CreateNodeInput struct {
 
 	// The unique identifier of the member that owns this node.
 	//
-	// MemberId is a required field
-	MemberId *string `location:"uri" locationName:"memberId" min:"1" type:"string" required:"true"`
+	// Applies only to Hyperledger Fabric.
+	MemberId *string `min:"1" type:"string"`
 
-	// The unique identifier of the network in which this node runs.
+	// The unique identifier of the network for the node.
+	//
+	// Ethereum public networks have the following NetworkIds:
+	//
+	//    * n-ethereum-mainnet
+	//
+	//    * n-ethereum-rinkeby
+	//
+	//    * n-ethereum-ropsten
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -2818,9 +2867,6 @@ func (s *CreateNodeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateNodeInput"}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
-	}
-	if s.MemberId == nil {
-		invalidParams.Add(request.NewErrParamRequired("MemberId"))
 	}
 	if s.MemberId != nil && len(*s.MemberId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
@@ -3100,10 +3146,18 @@ type DeleteNodeInput struct {
 
 	// The unique identifier of the member that owns this node.
 	//
-	// MemberId is a required field
-	MemberId *string `location:"uri" locationName:"memberId" min:"1" type:"string" required:"true"`
+	// Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.
+	MemberId *string `location:"querystring" locationName:"memberId" min:"1" type:"string"`
 
-	// The unique identifier of the network that the node belongs to.
+	// The unique identifier of the network that the node is on.
+	//
+	// Ethereum public networks have the following NetworkIds:
+	//
+	//    * n-ethereum-mainnet
+	//
+	//    * n-ethereum-rinkeby
+	//
+	//    * n-ethereum-ropsten
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -3127,9 +3181,6 @@ func (s DeleteNodeInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteNodeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteNodeInput"}
-	if s.MemberId == nil {
-		invalidParams.Add(request.NewErrParamRequired("MemberId"))
-	}
 	if s.MemberId != nil && len(*s.MemberId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
 	}
@@ -3334,10 +3385,10 @@ type GetNodeInput struct {
 
 	// The unique identifier of the member that owns the node.
 	//
-	// MemberId is a required field
-	MemberId *string `location:"uri" locationName:"memberId" min:"1" type:"string" required:"true"`
+	// Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.
+	MemberId *string `location:"querystring" locationName:"memberId" min:"1" type:"string"`
 
-	// The unique identifier of the network to which the node belongs.
+	// The unique identifier of the network that the node is on.
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -3361,9 +3412,6 @@ func (s GetNodeInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetNodeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetNodeInput"}
-	if s.MemberId == nil {
-		invalidParams.Add(request.NewErrParamRequired("MemberId"))
-	}
 	if s.MemberId != nil && len(*s.MemberId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
 	}
@@ -3678,6 +3726,8 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 // An invitation to an AWS account to create a member and join the network.
+//
+// Applies only to Hyperledger Fabric.
 type Invitation struct {
 	_ struct{} `type:"structure"`
 
@@ -3756,6 +3806,8 @@ func (s *Invitation) SetStatus(v string) *Invitation {
 
 // An action to invite a specific AWS account to create a member and join the
 // network. The InviteAction is carried out when a Proposal is APPROVED.
+//
+// Applies only to Hyperledger Fabric.
 type InviteAction struct {
 	_ struct{} `type:"structure"`
 
@@ -4014,6 +4066,8 @@ type ListNetworksInput struct {
 
 	// An optional status specifier. If provided, only networks currently in this
 	// status are listed.
+	//
+	// Applies only to Hyperledger Fabric.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"NetworkStatus"`
 }
 
@@ -4111,8 +4165,8 @@ type ListNodesInput struct {
 
 	// The unique identifier of the member who owns the nodes to list.
 	//
-	// MemberId is a required field
-	MemberId *string `location:"uri" locationName:"memberId" min:"1" type:"string" required:"true"`
+	// Applies only to Hyperledger Fabric and is required for Hyperledger Fabric.
+	MemberId *string `location:"querystring" locationName:"memberId" min:"1" type:"string"`
 
 	// The unique identifier of the network for which to list nodes.
 	//
@@ -4142,9 +4196,6 @@ func (s *ListNodesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListNodesInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
-	}
-	if s.MemberId == nil {
-		invalidParams.Add(request.NewErrParamRequired("MemberId"))
 	}
 	if s.MemberId != nil && len(*s.MemberId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
@@ -4310,7 +4361,7 @@ type ListProposalVotesOutput struct {
 	// The pagination token that indicates the next set of results to retrieve.
 	NextToken *string `type:"string"`
 
-	// The listing of votes.
+	// The list of votes.
 	ProposalVotes []*VoteSummary `type:"list"`
 }
 
@@ -4479,6 +4530,8 @@ func (s *LogConfigurations) SetCloudwatch(v *LogConfiguration) *LogConfiguration
 }
 
 // Member configuration properties.
+//
+// Applies only to Hyperledger Fabric.
 type Member struct {
 	_ struct{} `type:"structure"`
 
@@ -4584,6 +4637,8 @@ func (s *Member) SetStatus(v string) *Member {
 }
 
 // Configuration properties of the member.
+//
+// Applies only to Hyperledger Fabric.
 type MemberConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4705,8 +4760,8 @@ type MemberFabricConfiguration struct {
 	// The password for the member's initial administrative user. The AdminPassword
 	// must be at least eight characters long and no more than 32 characters. It
 	// must contain at least one uppercase letter, one lowercase letter, and one
-	// digit. It cannot have a single quote(‘), double quote(“), forward slash(/),
-	// backward slash(\), @, or a space.
+	// digit. It cannot have a single quotation mark (‘), a double quotation marks
+	// (“), a forward slash(/), a backward slash(\), @, or a space.
 	//
 	// AdminPassword is a required field
 	AdminPassword *string `min:"8" type:"string" required:"true" sensitive:"true"`
@@ -4882,6 +4937,8 @@ func (s *MemberLogPublishingConfiguration) SetFabric(v *MemberFabricLogPublishin
 }
 
 // A summary of configuration properties for a member.
+//
+// Applies only to Hyperledger Fabric.
 type MemberSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5075,6 +5132,37 @@ func (s *Network) SetVpcEndpointServiceName(v string) *Network {
 	return s
 }
 
+// Attributes of Ethereum for a network.
+type NetworkEthereumAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The Ethereum CHAIN_ID associated with the Ethereum network. Chain IDs are
+	// as follows:
+	//
+	//    * mainnet = 1
+	//
+	//    * rinkeby = 4
+	//
+	//    * ropsten = 3
+	ChainId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkEthereumAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkEthereumAttributes) GoString() string {
+	return s.String()
+}
+
+// SetChainId sets the ChainId field's value.
+func (s *NetworkEthereumAttributes) SetChainId(v string) *NetworkEthereumAttributes {
+	s.ChainId = &v
+	return s
+}
+
 // Attributes of Hyperledger Fabric for a network.
 type NetworkFabricAttributes struct {
 	_ struct{} `type:"structure"`
@@ -5154,6 +5242,10 @@ func (s *NetworkFabricConfiguration) SetEdition(v string) *NetworkFabricConfigur
 type NetworkFrameworkAttributes struct {
 	_ struct{} `type:"structure"`
 
+	// Attributes of an Ethereum network for Managed Blockchain resources participating
+	// in an Ethereum network.
+	Ethereum *NetworkEthereumAttributes `type:"structure"`
+
 	// Attributes of Hyperledger Fabric for a Managed Blockchain network that uses
 	// Hyperledger Fabric.
 	Fabric *NetworkFabricAttributes `type:"structure"`
@@ -5167,6 +5259,12 @@ func (s NetworkFrameworkAttributes) String() string {
 // GoString returns the string representation
 func (s NetworkFrameworkAttributes) GoString() string {
 	return s.String()
+}
+
+// SetEthereum sets the Ethereum field's value.
+func (s *NetworkFrameworkAttributes) SetEthereum(v *NetworkEthereumAttributes) *NetworkFrameworkAttributes {
+	s.Ethereum = v
+	return s
 }
 
 // SetFabric sets the Fabric field's value.
@@ -5294,7 +5392,7 @@ func (s *NetworkSummary) SetStatus(v string) *NetworkSummary {
 	return s
 }
 
-// Configuration properties of a peer node.
+// Configuration properties of a node.
 type Node struct {
 	_ struct{} `type:"structure"`
 
@@ -5313,17 +5411,21 @@ type Node struct {
 	// The instance type of the node.
 	InstanceType *string `type:"string"`
 
-	// Configuration properties for logging events associated with a peer node owned
-	// by a member in a Managed Blockchain network.
+	// Configuration properties for logging events associated with a peer node on
+	// a Hyperledger Fabric network on Managed Blockchain.
 	LogPublishingConfiguration *NodeLogPublishingConfiguration `type:"structure"`
 
 	// The unique identifier of the member to which the node belongs.
+	//
+	// Applies only to Hyperledger Fabric.
 	MemberId *string `min:"1" type:"string"`
 
-	// The unique identifier of the network that the node is in.
+	// The unique identifier of the network that the node is on.
 	NetworkId *string `min:"1" type:"string"`
 
 	// The state database that the node uses. Values are LevelDB or CouchDB.
+	//
+	// Applies only to Hyperledger Fabric.
 	StateDB *string `type:"string" enum:"StateDBType"`
 
 	// The status of the node.
@@ -5400,27 +5502,27 @@ func (s *Node) SetStatus(v string) *Node {
 	return s
 }
 
-// Configuration properties of a peer node.
+// Configuration properties of a node.
 type NodeConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone in which the node exists.
-	//
-	// AvailabilityZone is a required field
-	AvailabilityZone *string `type:"string" required:"true"`
+	AvailabilityZone *string `type:"string"`
 
 	// The Amazon Managed Blockchain instance type for the node.
 	//
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true"`
 
-	// Configuration properties for logging events associated with a peer node owned
-	// by a member in a Managed Blockchain network.
+	// Configuration properties for logging events associated with a peer node on
+	// a Hyperledger Fabric network on Managed Blockchain.
 	LogPublishingConfiguration *NodeLogPublishingConfiguration `type:"structure"`
 
 	// The state database that the node uses. Values are LevelDB or CouchDB. When
 	// using an Amazon Managed Blockchain network with Hyperledger Fabric version
 	// 1.4 or later, the default is CouchDB.
+	//
+	// Applies only to Hyperledger Fabric.
 	StateDB *string `type:"string" enum:"StateDBType"`
 }
 
@@ -5437,9 +5539,6 @@ func (s NodeConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *NodeConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "NodeConfiguration"}
-	if s.AvailabilityZone == nil {
-		invalidParams.Add(request.NewErrParamRequired("AvailabilityZone"))
-	}
 	if s.InstanceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
 	}
@@ -5474,8 +5573,47 @@ func (s *NodeConfiguration) SetStateDB(v string) *NodeConfiguration {
 	return s
 }
 
-// Attributes of Hyperledger Fabric for a peer node on a Managed Blockchain
-// network that uses Hyperledger Fabric.
+// Attributes of an Ethereum node.
+type NodeEthereumAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC
+	// methods over HTTP connections from a client. Use this endpoint in client
+	// code for smart contracts when using an HTTP connection. Connections to this
+	// endpoint are authenticated using Signature Version 4 (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+	HttpEndpoint *string `type:"string"`
+
+	// The endpoint on which the Ethereum node listens to run Ethereum JSON-RPC
+	// methods over WebSockets connections from a client. Use this endpoint in client
+	// code for smart contracts when using a WebSockets connection. Connections
+	// to this endpoint are authenticated using Signature Version 4 (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+	WebSocketEndpoint *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NodeEthereumAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NodeEthereumAttributes) GoString() string {
+	return s.String()
+}
+
+// SetHttpEndpoint sets the HttpEndpoint field's value.
+func (s *NodeEthereumAttributes) SetHttpEndpoint(v string) *NodeEthereumAttributes {
+	s.HttpEndpoint = &v
+	return s
+}
+
+// SetWebSocketEndpoint sets the WebSocketEndpoint field's value.
+func (s *NodeEthereumAttributes) SetWebSocketEndpoint(v string) *NodeEthereumAttributes {
+	s.WebSocketEndpoint = &v
+	return s
+}
+
+// Attributes of Hyperledger Fabric for a peer node on a Hyperledger Fabric
+// network on Managed Blockchain.
 type NodeFabricAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -5550,10 +5688,14 @@ func (s *NodeFabricLogPublishingConfiguration) SetPeerLogs(v *LogConfigurations)
 	return s
 }
 
-// Attributes relevant to a peer node on a Managed Blockchain network for the
-// blockchain framework that the network uses.
+// Attributes relevant to a node on a Managed Blockchain network for the blockchain
+// framework that the network uses.
 type NodeFrameworkAttributes struct {
 	_ struct{} `type:"structure"`
+
+	// Attributes of Ethereum for a node on a Managed Blockchain network that uses
+	// Ethereum.
+	Ethereum *NodeEthereumAttributes `type:"structure"`
 
 	// Attributes of Hyperledger Fabric for a peer node on a Managed Blockchain
 	// network that uses Hyperledger Fabric.
@@ -5570,14 +5712,20 @@ func (s NodeFrameworkAttributes) GoString() string {
 	return s.String()
 }
 
+// SetEthereum sets the Ethereum field's value.
+func (s *NodeFrameworkAttributes) SetEthereum(v *NodeEthereumAttributes) *NodeFrameworkAttributes {
+	s.Ethereum = v
+	return s
+}
+
 // SetFabric sets the Fabric field's value.
 func (s *NodeFrameworkAttributes) SetFabric(v *NodeFabricAttributes) *NodeFrameworkAttributes {
 	s.Fabric = v
 	return s
 }
 
-// Configuration properties for logging events associated with a peer node owned
-// by a member in a Managed Blockchain network.
+// Configuration properties for logging events associated with a peer node on
+// a Hyperledger Fabric network on Managed Blockchain.
 type NodeLogPublishingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5603,7 +5751,7 @@ func (s *NodeLogPublishingConfiguration) SetFabric(v *NodeFabricLogPublishingCon
 	return s
 }
 
-// A summary of configuration properties for a peer node.
+// A summary of configuration properties for a node.
 type NodeSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5664,6 +5812,8 @@ func (s *NodeSummary) SetStatus(v string) *NodeSummary {
 }
 
 // Properties of a proposal on a Managed Blockchain network.
+//
+// Applies only to Hyperledger Fabric.
 type Proposal struct {
 	_ struct{} `type:"structure"`
 
@@ -5811,6 +5961,8 @@ func (s *Proposal) SetYesVoteCount(v int64) *Proposal {
 }
 
 // The actions to carry out if a proposal is APPROVED.
+//
+// Applies only to Hyperledger Fabric.
 type ProposalActions struct {
 	_ struct{} `type:"structure"`
 
@@ -5877,6 +6029,8 @@ func (s *ProposalActions) SetRemovals(v []*RemoveAction) *ProposalActions {
 }
 
 // Properties of a proposal.
+//
+// Applies only to Hyperledger Fabric.
 type ProposalSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6033,6 +6187,8 @@ func (s RejectInvitationOutput) GoString() string {
 // An action to remove a member from a Managed Blockchain network as the result
 // of a removal proposal that is APPROVED. The member and all associated resources
 // are deleted from the network.
+//
+// Applies only to Hyperledger Fabric.
 type RemoveAction struct {
 	_ struct{} `type:"structure"`
 
@@ -6367,12 +6523,13 @@ type UpdateMemberInput struct {
 	// Configuration properties for publishing to Amazon CloudWatch Logs.
 	LogPublishingConfiguration *MemberLogPublishingConfiguration `type:"structure"`
 
-	// The unique ID of the member.
+	// The unique identifier of the member.
 	//
 	// MemberId is a required field
 	MemberId *string `location:"uri" locationName:"memberId" min:"1" type:"string" required:"true"`
 
-	// The unique ID of the Managed Blockchain network to which the member belongs.
+	// The unique identifier of the Managed Blockchain network to which the member
+	// belongs.
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
@@ -6448,17 +6605,17 @@ type UpdateNodeInput struct {
 	// Configuration properties for publishing to Amazon CloudWatch Logs.
 	LogPublishingConfiguration *NodeLogPublishingConfiguration `type:"structure"`
 
-	// The unique ID of the member that owns the node.
+	// The unique identifier of the member that owns the node.
 	//
-	// MemberId is a required field
-	MemberId *string `location:"uri" locationName:"memberId" min:"1" type:"string" required:"true"`
+	// Applies only to Hyperledger Fabric.
+	MemberId *string `min:"1" type:"string"`
 
-	// The unique ID of the Managed Blockchain network to which the node belongs.
+	// The unique identifier of the network that the node is on.
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
 
-	// The unique ID of the node.
+	// The unique identifier of the node.
 	//
 	// NodeId is a required field
 	NodeId *string `location:"uri" locationName:"nodeId" min:"1" type:"string" required:"true"`
@@ -6477,9 +6634,6 @@ func (s UpdateNodeInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateNodeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateNodeInput"}
-	if s.MemberId == nil {
-		invalidParams.Add(request.NewErrParamRequired("MemberId"))
-	}
 	if s.MemberId != nil && len(*s.MemberId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
 	}
@@ -6644,6 +6798,8 @@ func (s VoteOnProposalOutput) GoString() string {
 }
 
 // Properties of an individual vote that a member cast for a proposal.
+//
+// Applies only to Hyperledger Fabric.
 type VoteSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6686,6 +6842,8 @@ func (s *VoteSummary) SetVote(v string) *VoteSummary {
 }
 
 // The voting rules for the network to decide if a proposal is accepted
+//
+// Applies only to Hyperledger Fabric.
 type VotingPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -6746,12 +6904,16 @@ func Edition_Values() []string {
 const (
 	// FrameworkHyperledgerFabric is a Framework enum value
 	FrameworkHyperledgerFabric = "HYPERLEDGER_FABRIC"
+
+	// FrameworkEthereum is a Framework enum value
+	FrameworkEthereum = "ETHEREUM"
 )
 
 // Framework_Values returns all elements of the Framework enum
 func Framework_Values() []string {
 	return []string{
 		FrameworkHyperledgerFabric,
+		FrameworkEthereum,
 	}
 }
 
@@ -6850,6 +7012,9 @@ const (
 	// NodeStatusAvailable is a NodeStatus enum value
 	NodeStatusAvailable = "AVAILABLE"
 
+	// NodeStatusUnhealthy is a NodeStatus enum value
+	NodeStatusUnhealthy = "UNHEALTHY"
+
 	// NodeStatusCreateFailed is a NodeStatus enum value
 	NodeStatusCreateFailed = "CREATE_FAILED"
 
@@ -6871,6 +7036,7 @@ func NodeStatus_Values() []string {
 	return []string{
 		NodeStatusCreating,
 		NodeStatusAvailable,
+		NodeStatusUnhealthy,
 		NodeStatusCreateFailed,
 		NodeStatusUpdating,
 		NodeStatusDeleting,

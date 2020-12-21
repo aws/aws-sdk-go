@@ -1545,6 +1545,95 @@ func (c *AppRegistry) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opSyncResource = "SyncResource"
+
+// SyncResourceRequest generates a "aws/request.Request" representing the
+// client's request for the SyncResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SyncResource for more information on using the SyncResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SyncResourceRequest method.
+//    req, resp := client.SyncResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/SyncResource
+func (c *AppRegistry) SyncResourceRequest(input *SyncResourceInput) (req *request.Request, output *SyncResourceOutput) {
+	op := &request.Operation{
+		Name:       opSyncResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sync/{resourceType}/{resource}",
+	}
+
+	if input == nil {
+		input = &SyncResourceInput{}
+	}
+
+	output = &SyncResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SyncResource API operation for AWS Service Catalog App Registry.
+//
+// Syncs the resource with what is currently recorded in App registry. Specifically,
+// the resource’s App registry system tags are synced with its associated
+// application. The resource is removed if it is not associated with the application.
+// The caller must have permissions to read and update the resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog App Registry's
+// API operation SyncResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InternalServerException
+//   The service is experiencing internal problems.
+//
+//   * ConflictException
+//   There was a conflict when processing the request (for example, a resource
+//   with the given name already exists within the account).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/SyncResource
+func (c *AppRegistry) SyncResource(input *SyncResourceInput) (*SyncResourceOutput, error) {
+	req, out := c.SyncResourceRequest(input)
+	return out, req.Send()
+}
+
+// SyncResourceWithContext is the same as SyncResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SyncResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRegistry) SyncResourceWithContext(ctx aws.Context, input *SyncResourceInput, opts ...request.Option) (*SyncResourceOutput, error) {
+	req, out := c.SyncResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1594,6 +1683,8 @@ func (c *AppRegistry) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 // Each tag consists of a key and an optional value. If a tag with the same
 // key is already associated with the resource, this action updates its value.
+//
+// This operation returns an empty response if the call was successful.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1680,6 +1771,8 @@ func (c *AppRegistry) UntagResourceRequest(input *UntagResourceInput) (req *requ
 // UntagResource API operation for AWS Service Catalog App Registry.
 //
 // Removes tags from a resource.
+//
+// This operation returns an empty response if the call was successful.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3885,6 +3978,107 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type SyncResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// An entity you can work with and specify with a name or ID. Examples include
+	// an Amazon EC2 instance, an AWS CloudFormation stack, or an Amazon S3 bucket.
+	//
+	// Resource is a required field
+	Resource *string `location:"uri" locationName:"resource" min:"1" type:"string" required:"true"`
+
+	// The type of resource of which the application will be associated.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"uri" locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s SyncResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SyncResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SyncResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SyncResourceInput"}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Resource != nil && len(*s.Resource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resource", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResource sets the Resource field's value.
+func (s *SyncResourceInput) SetResource(v string) *SyncResourceInput {
+	s.Resource = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *SyncResourceInput) SetResourceType(v string) *SyncResourceInput {
+	s.ResourceType = &v
+	return s
+}
+
+type SyncResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The results of the output if an application is associated with an ARN value,
+	// which could be syncStarted or None.
+	ActionTaken *string `locationName:"actionTaken" type:"string" enum:"SyncAction"`
+
+	// The Amazon resource name (ARN) that specifies the application.
+	ApplicationArn *string `locationName:"applicationArn" type:"string"`
+
+	// The Amazon resource name (ARN) that specifies the resource.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s SyncResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SyncResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetActionTaken sets the ActionTaken field's value.
+func (s *SyncResourceOutput) SetActionTaken(v string) *SyncResourceOutput {
+	s.ActionTaken = &v
+	return s
+}
+
+// SetApplicationArn sets the ApplicationArn field's value.
+func (s *SyncResourceOutput) SetApplicationArn(v string) *SyncResourceOutput {
+	s.ApplicationArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *SyncResourceOutput) SetResourceArn(v string) *SyncResourceOutput {
+	s.ResourceArn = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4274,5 +4468,21 @@ const (
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeCfnStack,
+	}
+}
+
+const (
+	// SyncActionStartSync is a SyncAction enum value
+	SyncActionStartSync = "START_SYNC"
+
+	// SyncActionNoAction is a SyncAction enum value
+	SyncActionNoAction = "NO_ACTION"
+)
+
+// SyncAction_Values returns all elements of the SyncAction enum
+func SyncAction_Values() []string {
+	return []string{
+		SyncActionStartSync,
+		SyncActionNoAction,
 	}
 }

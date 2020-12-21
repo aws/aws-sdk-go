@@ -17,8 +17,9 @@
     "ListAssociatedResources": "<p>Lists all resources that are associated with specified application. Results are paginated.</p>",
     "ListAttributeGroups": "<p>Lists all attribute groups which you have access to. Results are paginated.</p>",
     "ListTagsForResource": "<p>Lists all of the tags on the resource.</p>",
-    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified resource.</p> <p>Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.</p>",
-    "UntagResource": "<p>Removes tags from a resource.</p>",
+    "SyncResource": "<p>Syncs the resource with what is currently recorded in App registry. Specifically, the resource’s App registry system tags are synced with its associated application. The resource is removed if it is not associated with the application. The caller must have permissions to read and update the resource.</p>",
+    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified resource.</p> <p>Each tag consists of a key and an optional value. If a tag with the same key is already associated with the resource, this action updates its value.</p> <p>This operation returns an empty response if the call was successful.</p>",
+    "UntagResource": "<p>Removes tags from a resource.</p> <p>This operation returns an empty response if the call was successful.</p>",
     "UpdateApplication": "<p>Updates an existing application with new attributes.</p>",
     "UpdateAttributeGroup": "<p>Updates an existing attribute group with new details. </p>"
   },
@@ -39,7 +40,8 @@
         "AssociateResourceResponse$applicationArn": "<p>The Amazon resource name (ARN) of the application that was augmented with attributes.</p>",
         "DisassociateAttributeGroupResponse$applicationArn": "<p>The Amazon resource name (ARN) that specifies the application.</p>",
         "DisassociateResourceResponse$applicationArn": "<p>The Amazon resource name (ARN) that specifies the application.</p>",
-        "GetApplicationResponse$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>"
+        "GetApplicationResponse$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>",
+        "SyncResourceResponse$applicationArn": "<p>The Amazon resource name (ARN) that specifies the application.</p>"
       }
     },
     "ApplicationId": {
@@ -83,6 +85,7 @@
         "AssociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "DisassociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
+        "SyncResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>"
       }
@@ -391,14 +394,16 @@
       "refs": {
         "AssociateResourceRequest$resource": "<p>The name or ID of the resource of which the application will be associated.</p>",
         "DisassociateResourceRequest$resource": "<p>The name or ID of the resource.</p>",
-        "ResourceInfo$name": "<p>The name of the resource.</p>"
+        "ResourceInfo$name": "<p>The name of the resource.</p>",
+        "SyncResourceRequest$resource": "<p>An entity you can work with and specify with a name or ID. Examples include an Amazon EC2 instance, an AWS CloudFormation stack, or an Amazon S3 bucket.</p>"
       }
     },
     "ResourceType": {
       "base": null,
       "refs": {
         "AssociateResourceRequest$resourceType": "<p>The type of resource of which the application will be associated.</p>",
-        "DisassociateResourceRequest$resourceType": "<p>The type of the resource that is being disassociated.</p>"
+        "DisassociateResourceRequest$resourceType": "<p>The type of the resource that is being disassociated.</p>",
+        "SyncResourceRequest$resourceType": "<p>The type of resource of which the application will be associated.</p>"
       }
     },
     "Resources": {
@@ -426,6 +431,22 @@
         "ResourceNotFoundException$message": null,
         "ServiceQuotaExceededException$message": null,
         "ValidationException$message": null
+      }
+    },
+    "SyncAction": {
+      "base": null,
+      "refs": {
+        "SyncResourceResponse$actionTaken": "<p>The results of the output if an application is associated with an ARN value, which could be <code>syncStarted</code> or None.</p>"
+      }
+    },
+    "SyncResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SyncResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "TagKey": {

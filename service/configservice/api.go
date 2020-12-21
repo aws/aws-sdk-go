@@ -1558,6 +1558,89 @@ func (c *ConfigService) DeleteRetentionConfigurationWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opDeleteStoredQuery = "DeleteStoredQuery"
+
+// DeleteStoredQueryRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStoredQuery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStoredQuery for more information on using the DeleteStoredQuery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteStoredQueryRequest method.
+//    req, resp := client.DeleteStoredQueryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteStoredQuery
+func (c *ConfigService) DeleteStoredQueryRequest(input *DeleteStoredQueryInput) (req *request.Request, output *DeleteStoredQueryOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStoredQuery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStoredQueryInput{}
+	}
+
+	output = &DeleteStoredQueryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStoredQuery API operation for AWS Config.
+//
+// Deletes the stored query for an AWS account in an AWS Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DeleteStoredQuery for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   * ResourceNotFoundException
+//   You have specified a resource that does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteStoredQuery
+func (c *ConfigService) DeleteStoredQuery(input *DeleteStoredQueryInput) (*DeleteStoredQueryOutput, error) {
+	req, out := c.DeleteStoredQueryRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStoredQueryWithContext is the same as DeleteStoredQuery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStoredQuery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DeleteStoredQueryWithContext(ctx aws.Context, input *DeleteStoredQueryInput, opts ...request.Option) (*DeleteStoredQueryOutput, error) {
+	req, out := c.DeleteStoredQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeliverConfigSnapshot = "DeliverConfigSnapshot"
 
 // DeliverConfigSnapshotRequest generates a "aws/request.Request" representing the
@@ -5350,6 +5433,88 @@ func (c *ConfigService) GetResourceConfigHistoryPagesWithContext(ctx aws.Context
 	return p.Err()
 }
 
+const opGetStoredQuery = "GetStoredQuery"
+
+// GetStoredQueryRequest generates a "aws/request.Request" representing the
+// client's request for the GetStoredQuery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStoredQuery for more information on using the GetStoredQuery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetStoredQueryRequest method.
+//    req, resp := client.GetStoredQueryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetStoredQuery
+func (c *ConfigService) GetStoredQueryRequest(input *GetStoredQueryInput) (req *request.Request, output *GetStoredQueryOutput) {
+	op := &request.Operation{
+		Name:       opGetStoredQuery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetStoredQueryInput{}
+	}
+
+	output = &GetStoredQueryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetStoredQuery API operation for AWS Config.
+//
+// Returns the details of a specific stored query.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetStoredQuery for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   * ResourceNotFoundException
+//   You have specified a resource that does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetStoredQuery
+func (c *ConfigService) GetStoredQuery(input *GetStoredQueryInput) (*GetStoredQueryOutput, error) {
+	req, out := c.GetStoredQueryRequest(input)
+	return out, req.Send()
+}
+
+// GetStoredQueryWithContext is the same as GetStoredQuery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStoredQuery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetStoredQueryWithContext(ctx aws.Context, input *GetStoredQueryInput, opts ...request.Option) (*GetStoredQueryOutput, error) {
+	req, out := c.GetStoredQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAggregateDiscoveredResources = "ListAggregateDiscoveredResources"
 
 // ListAggregateDiscoveredResourcesRequest generates a "aws/request.Request" representing the
@@ -5549,6 +5714,148 @@ func (c *ConfigService) ListDiscoveredResourcesWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListStoredQueries = "ListStoredQueries"
+
+// ListStoredQueriesRequest generates a "aws/request.Request" representing the
+// client's request for the ListStoredQueries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStoredQueries for more information on using the ListStoredQueries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStoredQueriesRequest method.
+//    req, resp := client.ListStoredQueriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListStoredQueries
+func (c *ConfigService) ListStoredQueriesRequest(input *ListStoredQueriesInput) (req *request.Request, output *ListStoredQueriesOutput) {
+	op := &request.Operation{
+		Name:       opListStoredQueries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStoredQueriesInput{}
+	}
+
+	output = &ListStoredQueriesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStoredQueries API operation for AWS Config.
+//
+// List the stored queries for an AWS account in an AWS Region. The default
+// is 100.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation ListStoredQueries for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/ListStoredQueries
+func (c *ConfigService) ListStoredQueries(input *ListStoredQueriesInput) (*ListStoredQueriesOutput, error) {
+	req, out := c.ListStoredQueriesRequest(input)
+	return out, req.Send()
+}
+
+// ListStoredQueriesWithContext is the same as ListStoredQueries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStoredQueries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListStoredQueriesWithContext(ctx aws.Context, input *ListStoredQueriesInput, opts ...request.Option) (*ListStoredQueriesOutput, error) {
+	req, out := c.ListStoredQueriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStoredQueriesPages iterates over the pages of a ListStoredQueries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStoredQueries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStoredQueries operation.
+//    pageNum := 0
+//    err := client.ListStoredQueriesPages(params,
+//        func(page *configservice.ListStoredQueriesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) ListStoredQueriesPages(input *ListStoredQueriesInput, fn func(*ListStoredQueriesOutput, bool) bool) error {
+	return c.ListStoredQueriesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStoredQueriesPagesWithContext same as ListStoredQueriesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListStoredQueriesPagesWithContext(ctx aws.Context, input *ListStoredQueriesInput, fn func(*ListStoredQueriesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStoredQueriesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStoredQueriesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStoredQueriesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -7033,7 +7340,7 @@ func (c *ConfigService) PutRemediationExceptionsRequest(input *PutRemediationExc
 // PutRemediationExceptions API operation for AWS Config.
 //
 // A remediation exception is when a specific resource is no longer considered
-// for auto-remediation. This API adds a new exception or updates an existing
+// for auto-remediation. This API adds a new exception or updates an exisiting
 // exception for a specific resource with a specific AWS Config rule.
 //
 // AWS Config generates a remediation exception when a problem occurs executing
@@ -7295,6 +7602,95 @@ func (c *ConfigService) PutRetentionConfiguration(input *PutRetentionConfigurati
 // for more information on using Contexts.
 func (c *ConfigService) PutRetentionConfigurationWithContext(ctx aws.Context, input *PutRetentionConfigurationInput, opts ...request.Option) (*PutRetentionConfigurationOutput, error) {
 	req, out := c.PutRetentionConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutStoredQuery = "PutStoredQuery"
+
+// PutStoredQueryRequest generates a "aws/request.Request" representing the
+// client's request for the PutStoredQuery operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutStoredQuery for more information on using the PutStoredQuery
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutStoredQueryRequest method.
+//    req, resp := client.PutStoredQueryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutStoredQuery
+func (c *ConfigService) PutStoredQueryRequest(input *PutStoredQueryInput) (req *request.Request, output *PutStoredQueryOutput) {
+	op := &request.Operation{
+		Name:       opPutStoredQuery,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutStoredQueryInput{}
+	}
+
+	output = &PutStoredQueryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutStoredQuery API operation for AWS Config.
+//
+// Saves a new query or updates an existing saved query. The QueryName must
+// be unique for an AWS account in an AWS Region. You can create upto 300 queries
+// in an AWS account in an AWS Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation PutStoredQuery for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   * TooManyTagsException
+//   You have reached the limit of the number of tags you can use. You have more
+//   than 50 tags.
+//
+//   * ResourceConcurrentModificationException
+//   Two users are trying to modify the same query at the same time. Wait for
+//   a moment and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/PutStoredQuery
+func (c *ConfigService) PutStoredQuery(input *PutStoredQueryInput) (*PutStoredQueryOutput, error) {
+	req, out := c.PutStoredQueryRequest(input)
+	return out, req.Send()
+}
+
+// PutStoredQueryWithContext is the same as PutStoredQuery with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutStoredQuery for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) PutStoredQueryWithContext(ctx aws.Context, input *PutStoredQueryInput, opts ...request.Option) (*PutStoredQueryOutput, error) {
+	req, out := c.PutStoredQueryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9928,7 +10324,7 @@ type ConfigurationItem struct {
 	// The 12-digit AWS account ID associated with the resource.
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// Amazon Resource Name (ARN) associated with the resource.
+	// accoun
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The Availability Zone associated with the resource.
@@ -10375,14 +10771,11 @@ type ConformancePackDetail struct {
 	// AWS service that created the conformance pack.
 	CreatedBy *string `min:"1" type:"string"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
-	//
-	// This field is optional.
+	// Conformance pack template that is used to create a pack. The delivery bucket
+	// name should start with awsconfigconforms. For example: "Resource": "arn:aws:s3:::your_bucket_name/*".
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
-	//
-	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// Last time when conformation pack update was requested.
@@ -11717,6 +12110,61 @@ func (s DeleteRetentionConfigurationOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteRetentionConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStoredQueryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the query that you want to delete.
+	//
+	// QueryName is a required field
+	QueryName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteStoredQueryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStoredQueryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStoredQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStoredQueryInput"}
+	if s.QueryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryName"))
+	}
+	if s.QueryName != nil && len(*s.QueryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryName sets the QueryName field's value.
+func (s *DeleteStoredQueryInput) SetQueryName(v string) *DeleteStoredQueryInput {
+	s.QueryName = &v
+	return s
+}
+
+type DeleteStoredQueryOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStoredQueryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStoredQueryOutput) GoString() string {
 	return s.String()
 }
 
@@ -15864,6 +16312,70 @@ func (s *GetResourceConfigHistoryOutput) SetNextToken(v string) *GetResourceConf
 	return s
 }
 
+type GetStoredQueryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the query.
+	//
+	// QueryName is a required field
+	QueryName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetStoredQueryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetStoredQueryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStoredQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStoredQueryInput"}
+	if s.QueryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryName"))
+	}
+	if s.QueryName != nil && len(*s.QueryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryName sets the QueryName field's value.
+func (s *GetStoredQueryInput) SetQueryName(v string) *GetStoredQueryInput {
+	s.QueryName = &v
+	return s
+}
+
+type GetStoredQueryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a StoredQuery object.
+	StoredQuery *StoredQuery `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetStoredQueryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetStoredQueryOutput) GoString() string {
+	return s.String()
+}
+
+// SetStoredQuery sets the StoredQuery field's value.
+func (s *GetStoredQueryOutput) SetStoredQuery(v *StoredQuery) *GetStoredQueryOutput {
+	s.StoredQuery = v
+	return s
+}
+
 // The count of resources that are grouped by the group name.
 type GroupedResourceCount struct {
 	_ struct{} `type:"structure"`
@@ -16833,9 +17345,9 @@ type ListAggregateDiscoveredResourcesInput struct {
 	// Filters the results based on the ResourceFilters object.
 	Filters *ResourceFilters `type:"structure"`
 
-	// The maximum number of resource identifiers returned on each page. You cannot
-	// specify a number greater than 100. If you specify 0, AWS Config uses the
-	// default.
+	// The maximum number of resource identifiers returned on each page. The default
+	// is 100. You cannot specify a number greater than 100. If you specify 0, AWS
+	// Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
@@ -17067,6 +17579,75 @@ func (s *ListDiscoveredResourcesOutput) SetNextToken(v string) *ListDiscoveredRe
 // SetResourceIdentifiers sets the ResourceIdentifiers field's value.
 func (s *ListDiscoveredResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifier) *ListDiscoveredResourcesOutput {
 	s.ResourceIdentifiers = v
+	return s
+}
+
+type ListStoredQueriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to be returned with a single call.
+	MaxResults *int64 `type:"integer"`
+
+	// The nextToken string returned in a previous request that you use to request
+	// the next page of results in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListStoredQueriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStoredQueriesInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStoredQueriesInput) SetMaxResults(v int64) *ListStoredQueriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStoredQueriesInput) SetNextToken(v string) *ListStoredQueriesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListStoredQueriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the previous paginated request didn't return all of the remaining results,
+	// the response object's NextToken parameter value is set to a token. To retrieve
+	// the next set of results, call this action again and assign that token to
+	// the request object's NextToken parameter. If there are no remaining results,
+	// the previous response object's NextToken parameter is set to null.
+	NextToken *string `type:"string"`
+
+	// A list of StoredQueryMetadata objects.
+	StoredQueryMetadata []*StoredQueryMetadata `type:"list"`
+}
+
+// String returns the string representation
+func (s ListStoredQueriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStoredQueriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStoredQueriesOutput) SetNextToken(v string) *ListStoredQueriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStoredQueryMetadata sets the StoredQueryMetadata field's value.
+func (s *ListStoredQueriesOutput) SetStoredQueryMetadata(v []*StoredQueryMetadata) *ListStoredQueriesOutput {
+	s.StoredQueryMetadata = v
 	return s
 }
 
@@ -18990,14 +19571,11 @@ type OrganizationConformancePack struct {
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
-	//
-	// This field is optional.
+	// Location of an Amazon S3 bucket where AWS Config can deliver evaluation results
+	// and conformance pack template that is used to create a pack.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// Any folder structure you want to add to an Amazon S3 bucket.
-	//
-	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A comma-separated list of accounts excluded from organization conformance
@@ -20148,14 +20726,10 @@ type PutConformancePackInput struct {
 	// ConformancePackName is a required field
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
-	//
-	// This field is optional.
+	// AWS Config stores intermediate files while processing conformance pack template.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
-	//
-	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A string containing full conformance pack template body. Structure containing
@@ -20610,14 +21184,15 @@ type PutOrganizationConformancePackInput struct {
 	// A list of ConformancePackInputParameter objects.
 	ConformancePackInputParameters []*ConformancePackInputParameter `type:"list"`
 
-	// Amazon S3 bucket where AWS Config stores conformance pack templates.
+	// Location of an Amazon S3 bucket where AWS Config can deliver evaluation results.
+	// AWS Config stores intermediate files while processing conformance pack template.
 	//
-	// This field is optional.
+	// The delivery bucket name should start with awsconfigconforms. For example:
+	// "Resource": "arn:aws:s3:::your_bucket_name/*". For more information, see
+	// Permissions for cross account bucket access (https://docs.aws.amazon.com/config/latest/developerguide/conformance-pack-organization-apis.html).
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
-	//
-	// This field is optional.
 	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A list of AWS accounts to be excluded from an organization conformance pack
@@ -21127,6 +21702,91 @@ func (s PutRetentionConfigurationOutput) GoString() string {
 // SetRetentionConfiguration sets the RetentionConfiguration field's value.
 func (s *PutRetentionConfigurationOutput) SetRetentionConfiguration(v *RetentionConfiguration) *PutRetentionConfigurationOutput {
 	s.RetentionConfiguration = v
+	return s
+}
+
+type PutStoredQueryInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of StoredQuery objects. The mandatory fields are QueryName and Expression.
+	//
+	// StoredQuery is a required field
+	StoredQuery *StoredQuery `type:"structure" required:"true"`
+
+	// A list of Tags object.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s PutStoredQueryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStoredQueryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutStoredQueryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutStoredQueryInput"}
+	if s.StoredQuery == nil {
+		invalidParams.Add(request.NewErrParamRequired("StoredQuery"))
+	}
+	if s.StoredQuery != nil {
+		if err := s.StoredQuery.Validate(); err != nil {
+			invalidParams.AddNested("StoredQuery", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStoredQuery sets the StoredQuery field's value.
+func (s *PutStoredQueryInput) SetStoredQuery(v *StoredQuery) *PutStoredQueryInput {
+	s.StoredQuery = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutStoredQueryInput) SetTags(v []*Tag) *PutStoredQueryInput {
+	s.Tags = v
+	return s
+}
+
+type PutStoredQueryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-id.
+	QueryArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutStoredQueryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStoredQueryOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueryArn sets the QueryArn field's value.
+func (s *PutStoredQueryOutput) SetQueryArn(v string) *PutStoredQueryOutput {
+	s.QueryArn = &v
 	return s
 }
 
@@ -21850,6 +22510,63 @@ func (s *RemediationParameterValue) SetResourceValue(v *ResourceValue) *Remediat
 func (s *RemediationParameterValue) SetStaticValue(v *StaticValue) *RemediationParameterValue {
 	s.StaticValue = v
 	return s
+}
+
+// Two users are trying to modify the same query at the same time. Wait for
+// a moment and try again.
+type ResourceConcurrentModificationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceConcurrentModificationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceConcurrentModificationException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceConcurrentModificationException(v protocol.ResponseMetadata) error {
+	return &ResourceConcurrentModificationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceConcurrentModificationException) Code() string {
+	return "ResourceConcurrentModificationException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceConcurrentModificationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceConcurrentModificationException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceConcurrentModificationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceConcurrentModificationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceConcurrentModificationException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // An object that contains the resource type and the number of resources.
@@ -23273,6 +23990,153 @@ func (s StopConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
 
+// Provides the details of a stored query.
+type StoredQuery struct {
+	_ struct{} `type:"structure"`
+
+	// A unique description for the query.
+	Description *string `type:"string"`
+
+	// The expression of the query. For example, SELECT resourceId, resourceType,
+	// supplementaryConfiguration.BucketVersioningConfiguration.status WHERE resourceType
+	// = 'AWS::S3::Bucket' AND supplementaryConfiguration.BucketVersioningConfiguration.status
+	// = 'Off'.
+	Expression *string `min:"1" type:"string"`
+
+	// Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-id.
+	QueryArn *string `min:"1" type:"string"`
+
+	// The ID of the query.
+	QueryId *string `min:"1" type:"string"`
+
+	// The name of the query.
+	//
+	// QueryName is a required field
+	QueryName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StoredQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StoredQuery) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StoredQuery) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StoredQuery"}
+	if s.Expression != nil && len(*s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.QueryArn != nil && len(*s.QueryArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryArn", 1))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 1))
+	}
+	if s.QueryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryName"))
+	}
+	if s.QueryName != nil && len(*s.QueryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *StoredQuery) SetDescription(v string) *StoredQuery {
+	s.Description = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *StoredQuery) SetExpression(v string) *StoredQuery {
+	s.Expression = &v
+	return s
+}
+
+// SetQueryArn sets the QueryArn field's value.
+func (s *StoredQuery) SetQueryArn(v string) *StoredQuery {
+	s.QueryArn = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *StoredQuery) SetQueryId(v string) *StoredQuery {
+	s.QueryId = &v
+	return s
+}
+
+// SetQueryName sets the QueryName field's value.
+func (s *StoredQuery) SetQueryName(v string) *StoredQuery {
+	s.QueryName = &v
+	return s
+}
+
+// Returns details of a specific query.
+type StoredQueryMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A unique description for the query.
+	Description *string `type:"string"`
+
+	// Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-id.
+	//
+	// QueryArn is a required field
+	QueryArn *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the query.
+	//
+	// QueryId is a required field
+	QueryId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the query.
+	//
+	// QueryName is a required field
+	QueryName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StoredQueryMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StoredQueryMetadata) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *StoredQueryMetadata) SetDescription(v string) *StoredQueryMetadata {
+	s.Description = &v
+	return s
+}
+
+// SetQueryArn sets the QueryArn field's value.
+func (s *StoredQueryMetadata) SetQueryArn(v string) *StoredQueryMetadata {
+	s.QueryArn = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *StoredQueryMetadata) SetQueryId(v string) *StoredQueryMetadata {
+	s.QueryId = &v
+	return s
+}
+
+// SetQueryName sets the QueryName field's value.
+func (s *StoredQueryMetadata) SetQueryName(v string) *StoredQueryMetadata {
+	s.QueryName = &v
+	return s
+}
+
 // The tags for the resource. The metadata that you apply to a resource to help
 // you categorize and organize them. Each tag consists of a key and an optional
 // value, both of which you define. Tag keys can have a maximum character length
@@ -24371,6 +25235,15 @@ const (
 	// ResourceTypeAwsLambdaFunction is a ResourceType enum value
 	ResourceTypeAwsLambdaFunction = "AWS::Lambda::Function"
 
+	// ResourceTypeAwsNetworkFirewallFirewall is a ResourceType enum value
+	ResourceTypeAwsNetworkFirewallFirewall = "AWS::NetworkFirewall::Firewall"
+
+	// ResourceTypeAwsNetworkFirewallFirewallPolicy is a ResourceType enum value
+	ResourceTypeAwsNetworkFirewallFirewallPolicy = "AWS::NetworkFirewall::FirewallPolicy"
+
+	// ResourceTypeAwsNetworkFirewallRuleGroup is a ResourceType enum value
+	ResourceTypeAwsNetworkFirewallRuleGroup = "AWS::NetworkFirewall::RuleGroup"
+
 	// ResourceTypeAwsElasticBeanstalkApplication is a ResourceType enum value
 	ResourceTypeAwsElasticBeanstalkApplication = "AWS::ElasticBeanstalk::Application"
 
@@ -24524,6 +25397,9 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsCloudFrontDistribution,
 		ResourceTypeAwsCloudFrontStreamingDistribution,
 		ResourceTypeAwsLambdaFunction,
+		ResourceTypeAwsNetworkFirewallFirewall,
+		ResourceTypeAwsNetworkFirewallFirewallPolicy,
+		ResourceTypeAwsNetworkFirewallRuleGroup,
 		ResourceTypeAwsElasticBeanstalkApplication,
 		ResourceTypeAwsElasticBeanstalkApplicationVersion,
 		ResourceTypeAwsElasticBeanstalkEnvironment,

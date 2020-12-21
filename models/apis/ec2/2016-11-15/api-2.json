@@ -4215,6 +4215,10 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
         }
       }
     },

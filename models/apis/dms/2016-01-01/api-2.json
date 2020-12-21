@@ -1535,7 +1535,9 @@
         "NestingLevel":{"shape":"NestingLevelValue"},
         "ExtractDocId":{"shape":"BooleanOptional"},
         "DocsToInvestigate":{"shape":"IntegerOptional"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "DynamoDbSettings":{
@@ -1696,7 +1698,9 @@
         "SetDataCaptureChanges":{"shape":"BooleanOptional"},
         "CurrentLsn":{"shape":"String"},
         "MaxKBytesPerRead":{"shape":"IntegerOptional"},
-        "Username":{"shape":"String"}
+        "Username":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "ImportCertificateMessage":{
@@ -1868,7 +1872,9 @@
         "SafeguardPolicy":{"shape":"SafeguardPolicy"},
         "ServerName":{"shape":"String"},
         "Username":{"shape":"String"},
-        "UseBcpFullLoad":{"shape":"BooleanOptional"}
+        "UseBcpFullLoad":{"shape":"BooleanOptional"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "MigrationTypeValue":{
@@ -2014,7 +2020,9 @@
         "ExtractDocId":{"shape":"String"},
         "DocsToInvestigate":{"shape":"String"},
         "AuthSource":{"shape":"String"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "MoveReplicationTaskMessage":{
@@ -2047,7 +2055,9 @@
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
         "ServerTimezone":{"shape":"String"},
-        "Username":{"shape":"String"}
+        "Username":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "NeptuneSettings":{
@@ -2105,7 +2115,9 @@
         "SecurityDbEncryption":{"shape":"SecretString"},
         "SecurityDbEncryptionName":{"shape":"String"},
         "ServerName":{"shape":"String"},
-        "Username":{"shape":"String"}
+        "Username":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "OrderableReplicationInstance":{
@@ -2166,7 +2178,9 @@
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
         "Username":{"shape":"String"},
-        "SlotName":{"shape":"String"}
+        "SlotName":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "RebootReplicationInstanceMessage":{
@@ -2213,7 +2227,9 @@
         "TrimBlanks":{"shape":"BooleanOptional"},
         "TruncateColumns":{"shape":"BooleanOptional"},
         "Username":{"shape":"String"},
-        "WriteBufferSize":{"shape":"IntegerOptional"}
+        "WriteBufferSize":{"shape":"IntegerOptional"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "RefreshSchemasMessage":{
@@ -2740,7 +2756,9 @@
         "Password":{"shape":"SecretString"},
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
-        "Username":{"shape":"String"}
+        "Username":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
       }
     },
     "TStamp":{"type":"timestamp"},

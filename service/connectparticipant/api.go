@@ -12,6 +12,103 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCompleteAttachmentUpload = "CompleteAttachmentUpload"
+
+// CompleteAttachmentUploadRequest generates a "aws/request.Request" representing the
+// client's request for the CompleteAttachmentUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CompleteAttachmentUpload for more information on using the CompleteAttachmentUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CompleteAttachmentUploadRequest method.
+//    req, resp := client.CompleteAttachmentUploadRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/CompleteAttachmentUpload
+func (c *ConnectParticipant) CompleteAttachmentUploadRequest(input *CompleteAttachmentUploadInput) (req *request.Request, output *CompleteAttachmentUploadOutput) {
+	op := &request.Operation{
+		Name:       opCompleteAttachmentUpload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/participant/complete-attachment-upload",
+	}
+
+	if input == nil {
+		input = &CompleteAttachmentUploadInput{}
+	}
+
+	output = &CompleteAttachmentUploadOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CompleteAttachmentUpload API operation for Amazon Connect Participant Service.
+//
+// Allows you to confirm that the attachment has been uploaded using the pre-signed
+// URL provided in StartAttachmentUpload API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Participant Service's
+// API operation CompleteAttachmentUpload for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the Amazon Connect
+//   service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by Amazon Connect.
+//
+//   * ServiceQuotaExceededException
+//   The number of attachments per contact exceeds the quota.
+//
+//   * ConflictException
+//   An attachment with that identifier is already being uploaded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/CompleteAttachmentUpload
+func (c *ConnectParticipant) CompleteAttachmentUpload(input *CompleteAttachmentUploadInput) (*CompleteAttachmentUploadOutput, error) {
+	req, out := c.CompleteAttachmentUploadRequest(input)
+	return out, req.Send()
+}
+
+// CompleteAttachmentUploadWithContext is the same as CompleteAttachmentUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CompleteAttachmentUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectParticipant) CompleteAttachmentUploadWithContext(ctx aws.Context, input *CompleteAttachmentUploadInput, opts ...request.Option) (*CompleteAttachmentUploadOutput, error) {
+	req, out := c.CompleteAttachmentUploadRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateParticipantConnection = "CreateParticipantConnection"
 
 // CreateParticipantConnectionRequest generates a "aws/request.Request" representing the
@@ -60,7 +157,7 @@ func (c *ConnectParticipant) CreateParticipantConnectionRequest(input *CreatePar
 // for invoking this API instead of ConnectionToken.
 //
 // The participant token is valid for the lifetime of the participant – until
-// the they are part of a contact.
+// they are part of a contact.
 //
 // The response URL for WEBSOCKET Type has a connect expiry timeout of 100s.
 // Clients must manually connect to the returned websocket URL and subscribe
@@ -74,6 +171,9 @@ func (c *ConnectParticipant) CreateParticipantConnectionRequest(input *CreatePar
 // Upon websocket URL expiry, as specified in the response ConnectionExpiry
 // parameter, clients need to call this API again to obtain a new websocket
 // URL and perform the same steps as before.
+//
+// The Amazon Connect Participant Service APIs do not use Signature Version
+// 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -166,6 +266,9 @@ func (c *ConnectParticipant) DisconnectParticipantRequest(input *DisconnectParti
 // Disconnects a participant. Note that ConnectionToken is used for invoking
 // this API instead of ParticipantToken.
 //
+// The Amazon Connect Participant Service APIs do not use Signature Version
+// 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -204,6 +307,96 @@ func (c *ConnectParticipant) DisconnectParticipant(input *DisconnectParticipantI
 // for more information on using Contexts.
 func (c *ConnectParticipant) DisconnectParticipantWithContext(ctx aws.Context, input *DisconnectParticipantInput, opts ...request.Option) (*DisconnectParticipantOutput, error) {
 	req, out := c.DisconnectParticipantRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAttachment = "GetAttachment"
+
+// GetAttachmentRequest generates a "aws/request.Request" representing the
+// client's request for the GetAttachment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAttachment for more information on using the GetAttachment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAttachmentRequest method.
+//    req, resp := client.GetAttachmentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/GetAttachment
+func (c *ConnectParticipant) GetAttachmentRequest(input *GetAttachmentInput) (req *request.Request, output *GetAttachmentOutput) {
+	op := &request.Operation{
+		Name:       opGetAttachment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/participant/attachment",
+	}
+
+	if input == nil {
+		input = &GetAttachmentInput{}
+	}
+
+	output = &GetAttachmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAttachment API operation for Amazon Connect Participant Service.
+//
+// Provides a pre-signed URL for download of a completed attachment. This is
+// an asynchronous API for use with active contacts.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Participant Service's
+// API operation GetAttachment for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the Amazon Connect
+//   service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by Amazon Connect.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/GetAttachment
+func (c *ConnectParticipant) GetAttachment(input *GetAttachmentInput) (*GetAttachmentOutput, error) {
+	req, out := c.GetAttachmentRequest(input)
+	return out, req.Send()
+}
+
+// GetAttachmentWithContext is the same as GetAttachment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAttachment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectParticipant) GetAttachmentWithContext(ctx aws.Context, input *GetAttachmentInput, opts ...request.Option) (*GetAttachmentOutput, error) {
+	req, out := c.GetAttachmentRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -259,8 +452,11 @@ func (c *ConnectParticipant) GetTranscriptRequest(input *GetTranscriptInput) (re
 
 // GetTranscript API operation for Amazon Connect Participant Service.
 //
-// Retrieves a transcript of the session. Note that ConnectionToken is used
-// for invoking this API instead of ParticipantToken.
+// Retrieves a transcript of the session, including details about any attachments.
+// Note that ConnectionToken is used for invoking this API instead of ParticipantToken.
+//
+// The Amazon Connect Participant Service APIs do not use Signature Version
+// 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -404,6 +600,9 @@ func (c *ConnectParticipant) SendEventRequest(input *SendEventInput) (req *reque
 // Sends an event. Note that ConnectionToken is used for invoking this API instead
 // of ParticipantToken.
 //
+// The Amazon Connect Participant Service APIs do not use Signature Version
+// 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -494,6 +693,9 @@ func (c *ConnectParticipant) SendMessageRequest(input *SendMessageInput) (req *r
 // Sends a message. Note that ConnectionToken is used for invoking this API
 // instead of ParticipantToken.
 //
+// The Amazon Connect Participant Service APIs do not use Signature Version
+// 4 authentication (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -532,6 +734,99 @@ func (c *ConnectParticipant) SendMessage(input *SendMessageInput) (*SendMessageO
 // for more information on using Contexts.
 func (c *ConnectParticipant) SendMessageWithContext(ctx aws.Context, input *SendMessageInput, opts ...request.Option) (*SendMessageOutput, error) {
 	req, out := c.SendMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartAttachmentUpload = "StartAttachmentUpload"
+
+// StartAttachmentUploadRequest generates a "aws/request.Request" representing the
+// client's request for the StartAttachmentUpload operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartAttachmentUpload for more information on using the StartAttachmentUpload
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartAttachmentUploadRequest method.
+//    req, resp := client.StartAttachmentUploadRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/StartAttachmentUpload
+func (c *ConnectParticipant) StartAttachmentUploadRequest(input *StartAttachmentUploadInput) (req *request.Request, output *StartAttachmentUploadOutput) {
+	op := &request.Operation{
+		Name:       opStartAttachmentUpload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/participant/start-attachment-upload",
+	}
+
+	if input == nil {
+		input = &StartAttachmentUploadInput{}
+	}
+
+	output = &StartAttachmentUploadOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartAttachmentUpload API operation for Amazon Connect Participant Service.
+//
+// Provides a pre-signed Amazon S3 URL in response for uploading the file directly
+// to S3.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Participant Service's
+// API operation StartAttachmentUpload for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the Amazon Connect
+//   service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by Amazon Connect.
+//
+//   * ServiceQuotaExceededException
+//   The number of attachments per contact exceeds the quota.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connectparticipant-2018-09-07/StartAttachmentUpload
+func (c *ConnectParticipant) StartAttachmentUpload(input *StartAttachmentUploadInput) (*StartAttachmentUploadOutput, error) {
+	req, out := c.StartAttachmentUploadRequest(input)
+	return out, req.Send()
+}
+
+// StartAttachmentUploadWithContext is the same as StartAttachmentUpload with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartAttachmentUpload for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConnectParticipant) StartAttachmentUploadWithContext(ctx aws.Context, input *StartAttachmentUploadInput, opts ...request.Option) (*StartAttachmentUploadOutput, error) {
+	req, out := c.StartAttachmentUploadRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -593,6 +888,201 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The case-insensitive input to indicate standard MIME type that describes
+// the format of the file that will be uploaded.
+type AttachmentItem struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the attachment.
+	AttachmentId *string `min:"1" type:"string"`
+
+	// A case-sensitive name of the attachment being uploaded.
+	AttachmentName *string `min:"1" type:"string"`
+
+	// Describes the MIME file type of the attachment. For a list of supported file
+	// types, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
+	// in the Amazon Connect Administrator Guide.
+	ContentType *string `min:"1" type:"string"`
+
+	// Status of the attachment.
+	Status *string `type:"string" enum:"ArtifactStatus"`
+}
+
+// String returns the string representation
+func (s AttachmentItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentItem) GoString() string {
+	return s.String()
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *AttachmentItem) SetAttachmentId(v string) *AttachmentItem {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetAttachmentName sets the AttachmentName field's value.
+func (s *AttachmentItem) SetAttachmentName(v string) *AttachmentItem {
+	s.AttachmentName = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *AttachmentItem) SetContentType(v string) *AttachmentItem {
+	s.ContentType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AttachmentItem) SetStatus(v string) *AttachmentItem {
+	s.Status = &v
+	return s
+}
+
+type CompleteAttachmentUploadInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of unique identifiers for the attachments.
+	//
+	// AttachmentIds is a required field
+	AttachmentIds []*string `min:"1" type:"list" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The authentication token associated with the participant's connection.
+	//
+	// ConnectionToken is a required field
+	ConnectionToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CompleteAttachmentUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CompleteAttachmentUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CompleteAttachmentUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CompleteAttachmentUploadInput"}
+	if s.AttachmentIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentIds"))
+	}
+	if s.AttachmentIds != nil && len(s.AttachmentIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentIds", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ConnectionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionToken"))
+	}
+	if s.ConnectionToken != nil && len(*s.ConnectionToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentIds sets the AttachmentIds field's value.
+func (s *CompleteAttachmentUploadInput) SetAttachmentIds(v []*string) *CompleteAttachmentUploadInput {
+	s.AttachmentIds = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CompleteAttachmentUploadInput) SetClientToken(v string) *CompleteAttachmentUploadInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConnectionToken sets the ConnectionToken field's value.
+func (s *CompleteAttachmentUploadInput) SetConnectionToken(v string) *CompleteAttachmentUploadInput {
+	s.ConnectionToken = &v
+	return s
+}
+
+type CompleteAttachmentUploadOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CompleteAttachmentUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CompleteAttachmentUploadOutput) GoString() string {
+	return s.String()
+}
+
+// An attachment with that identifier is already being uploaded.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Connection credentials.
 type ConnectionCredentials struct {
 	_ struct{} `type:"structure"`
@@ -632,7 +1122,9 @@ func (s *ConnectionCredentials) SetExpiry(v string) *ConnectionCredentials {
 type CreateParticipantConnectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Participant Token as obtained from StartChatContact (https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html)
+	// This is a header parameter.
+	//
+	// The Participant Token as obtained from StartChatContact (https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html)
 	// API response.
 	//
 	// ParticipantToken is a required field
@@ -784,6 +1276,98 @@ func (s DisconnectParticipantOutput) String() string {
 // GoString returns the string representation
 func (s DisconnectParticipantOutput) GoString() string {
 	return s.String()
+}
+
+type GetAttachmentInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the attachment.
+	//
+	// AttachmentId is a required field
+	AttachmentId *string `min:"1" type:"string" required:"true"`
+
+	// The authentication token associated with the participant's connection.
+	//
+	// ConnectionToken is a required field
+	ConnectionToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAttachmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAttachmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAttachmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAttachmentInput"}
+	if s.AttachmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentId"))
+	}
+	if s.AttachmentId != nil && len(*s.AttachmentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentId", 1))
+	}
+	if s.ConnectionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionToken"))
+	}
+	if s.ConnectionToken != nil && len(*s.ConnectionToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *GetAttachmentInput) SetAttachmentId(v string) *GetAttachmentInput {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetConnectionToken sets the ConnectionToken field's value.
+func (s *GetAttachmentInput) SetConnectionToken(v string) *GetAttachmentInput {
+	s.ConnectionToken = &v
+	return s
+}
+
+type GetAttachmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pre-signed URL using which file would be downloaded from Amazon S3 by
+	// the API caller.
+	Url *string `min:"1" type:"string"`
+
+	// The expiration time of the URL in ISO timestamp. It's specified in ISO 8601
+	// format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.
+	UrlExpiry *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetAttachmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAttachmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetUrl sets the Url field's value.
+func (s *GetAttachmentOutput) SetUrl(v string) *GetAttachmentOutput {
+	s.Url = &v
+	return s
+}
+
+// SetUrlExpiry sets the UrlExpiry field's value.
+func (s *GetAttachmentOutput) SetUrlExpiry(v string) *GetAttachmentOutput {
+	s.UrlExpiry = &v
+	return s
 }
 
 type GetTranscriptInput struct {
@@ -1003,6 +1587,9 @@ type Item struct {
 	// 2019-11-08T02:41:28.172Z.
 	AbsoluteTime *string `min:"1" type:"string"`
 
+	// Provides information about the attachments.
+	Attachments []*AttachmentItem `type:"list"`
+
 	// The content of the message or event.
 	Content *string `min:"1" type:"string"`
 
@@ -1038,6 +1625,12 @@ func (s Item) GoString() string {
 // SetAbsoluteTime sets the AbsoluteTime field's value.
 func (s *Item) SetAbsoluteTime(v string) *Item {
 	s.AbsoluteTime = &v
+	return s
+}
+
+// SetAttachments sets the Attachments field's value.
+func (s *Item) SetAttachments(v []*AttachmentItem) *Item {
+	s.Attachments = v
 	return s
 }
 
@@ -1323,6 +1916,200 @@ func (s *SendMessageOutput) SetId(v string) *SendMessageOutput {
 	return s
 }
 
+// The number of attachments per contact exceeds the quota.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type StartAttachmentUploadInput struct {
+	_ struct{} `type:"structure"`
+
+	// A case-sensitive name of the attachment being uploaded.
+	//
+	// AttachmentName is a required field
+	AttachmentName *string `min:"1" type:"string" required:"true"`
+
+	// The size of the attachment in bytes.
+	//
+	// AttachmentSizeInBytes is a required field
+	AttachmentSizeInBytes *int64 `min:"1" type:"long" required:"true"`
+
+	// A unique case sensitive identifier to support idempotency of request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The authentication token associated with the participant's connection.
+	//
+	// ConnectionToken is a required field
+	ConnectionToken *string `location:"header" locationName:"X-Amz-Bearer" min:"1" type:"string" required:"true"`
+
+	// Describes the MIME file type of the attachment. For a list of supported file
+	// types, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
+	// in the Amazon Connect Administrator Guide.
+	//
+	// ContentType is a required field
+	ContentType *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartAttachmentUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartAttachmentUploadInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAttachmentUploadInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAttachmentUploadInput"}
+	if s.AttachmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentName"))
+	}
+	if s.AttachmentName != nil && len(*s.AttachmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentName", 1))
+	}
+	if s.AttachmentSizeInBytes == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttachmentSizeInBytes"))
+	}
+	if s.AttachmentSizeInBytes != nil && *s.AttachmentSizeInBytes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("AttachmentSizeInBytes", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ConnectionToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionToken"))
+	}
+	if s.ConnectionToken != nil && len(*s.ConnectionToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionToken", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+	if s.ContentType != nil && len(*s.ContentType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentName sets the AttachmentName field's value.
+func (s *StartAttachmentUploadInput) SetAttachmentName(v string) *StartAttachmentUploadInput {
+	s.AttachmentName = &v
+	return s
+}
+
+// SetAttachmentSizeInBytes sets the AttachmentSizeInBytes field's value.
+func (s *StartAttachmentUploadInput) SetAttachmentSizeInBytes(v int64) *StartAttachmentUploadInput {
+	s.AttachmentSizeInBytes = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartAttachmentUploadInput) SetClientToken(v string) *StartAttachmentUploadInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConnectionToken sets the ConnectionToken field's value.
+func (s *StartAttachmentUploadInput) SetConnectionToken(v string) *StartAttachmentUploadInput {
+	s.ConnectionToken = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *StartAttachmentUploadInput) SetContentType(v string) *StartAttachmentUploadInput {
+	s.ContentType = &v
+	return s
+}
+
+type StartAttachmentUploadOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the attachment.
+	AttachmentId *string `min:"1" type:"string"`
+
+	// Fields to be used while uploading the attachment.
+	UploadMetadata *UploadMetadata `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartAttachmentUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartAttachmentUploadOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttachmentId sets the AttachmentId field's value.
+func (s *StartAttachmentUploadOutput) SetAttachmentId(v string) *StartAttachmentUploadOutput {
+	s.AttachmentId = &v
+	return s
+}
+
+// SetUploadMetadata sets the UploadMetadata field's value.
+func (s *StartAttachmentUploadOutput) SetUploadMetadata(v *UploadMetadata) *StartAttachmentUploadOutput {
+	s.UploadMetadata = v
+	return s
+}
+
 // A filtering option for where to start. For example, if you sent 100 messages,
 // start with message 50.
 type StartPosition struct {
@@ -1441,6 +2228,50 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Fields to be used while uploading the attachment.
+type UploadMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The headers to be provided while uploading the file to the URL.
+	HeadersToInclude map[string]*string `type:"map"`
+
+	// The pre-signed URL using which file would be downloaded from Amazon S3 by
+	// the API caller.
+	Url *string `min:"1" type:"string"`
+
+	// The expiration time of the URL in ISO timestamp. It's specified in ISO 8601
+	// format: yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2019-11-08T02:41:28.172Z.
+	UrlExpiry *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UploadMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UploadMetadata) GoString() string {
+	return s.String()
+}
+
+// SetHeadersToInclude sets the HeadersToInclude field's value.
+func (s *UploadMetadata) SetHeadersToInclude(v map[string]*string) *UploadMetadata {
+	s.HeadersToInclude = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *UploadMetadata) SetUrl(v string) *UploadMetadata {
+	s.Url = &v
+	return s
+}
+
+// SetUrlExpiry sets the UrlExpiry field's value.
+func (s *UploadMetadata) SetUrlExpiry(v string) *UploadMetadata {
+	s.UrlExpiry = &v
+	return s
+}
+
 // The input fails to satisfy the constraints specified by Amazon Connect.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -1534,11 +2365,52 @@ func (s *Websocket) SetUrl(v string) *Websocket {
 }
 
 const (
+	// ArtifactStatusApproved is a ArtifactStatus enum value
+	ArtifactStatusApproved = "APPROVED"
+
+	// ArtifactStatusRejected is a ArtifactStatus enum value
+	ArtifactStatusRejected = "REJECTED"
+
+	// ArtifactStatusInProgress is a ArtifactStatus enum value
+	ArtifactStatusInProgress = "IN_PROGRESS"
+)
+
+// ArtifactStatus_Values returns all elements of the ArtifactStatus enum
+func ArtifactStatus_Values() []string {
+	return []string{
+		ArtifactStatusApproved,
+		ArtifactStatusRejected,
+		ArtifactStatusInProgress,
+	}
+}
+
+const (
+	// ChatItemTypeTyping is a ChatItemType enum value
+	ChatItemTypeTyping = "TYPING"
+
+	// ChatItemTypeParticipantJoined is a ChatItemType enum value
+	ChatItemTypeParticipantJoined = "PARTICIPANT_JOINED"
+
+	// ChatItemTypeParticipantLeft is a ChatItemType enum value
+	ChatItemTypeParticipantLeft = "PARTICIPANT_LEFT"
+
+	// ChatItemTypeChatEnded is a ChatItemType enum value
+	ChatItemTypeChatEnded = "CHAT_ENDED"
+
+	// ChatItemTypeTransferSucceeded is a ChatItemType enum value
+	ChatItemTypeTransferSucceeded = "TRANSFER_SUCCEEDED"
+
+	// ChatItemTypeTransferFailed is a ChatItemType enum value
+	ChatItemTypeTransferFailed = "TRANSFER_FAILED"
+
 	// ChatItemTypeMessage is a ChatItemType enum value
 	ChatItemTypeMessage = "MESSAGE"
 
 	// ChatItemTypeEvent is a ChatItemType enum value
 	ChatItemTypeEvent = "EVENT"
+
+	// ChatItemTypeAttachment is a ChatItemType enum value
+	ChatItemTypeAttachment = "ATTACHMENT"
 
 	// ChatItemTypeConnectionAck is a ChatItemType enum value
 	ChatItemTypeConnectionAck = "CONNECTION_ACK"
@@ -1547,8 +2419,15 @@ const (
 // ChatItemType_Values returns all elements of the ChatItemType enum
 func ChatItemType_Values() []string {
 	return []string{
+		ChatItemTypeTyping,
+		ChatItemTypeParticipantJoined,
+		ChatItemTypeParticipantLeft,
+		ChatItemTypeChatEnded,
+		ChatItemTypeTransferSucceeded,
+		ChatItemTypeTransferFailed,
 		ChatItemTypeMessage,
 		ChatItemTypeEvent,
+		ChatItemTypeAttachment,
 		ChatItemTypeConnectionAck,
 	}
 }

@@ -8172,6 +8172,24 @@
           "us-gov-west-1" : { }
         }
       },
+      "fsx" : {
+        "endpoints" : {
+          "fips-prod-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "fsx-fips.us-gov-east-1.amazonaws.com"
+          },
+          "fips-prod-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "fsx-fips.us-gov-west-1.amazonaws.com"
+          },
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
       "glacier" : {
         "endpoints" : {
           "us-gov-east-1" : {

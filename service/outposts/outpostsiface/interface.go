@@ -93,6 +93,18 @@ type OutpostsAPI interface {
 
 	ListSitesPages(*outposts.ListSitesInput, func(*outposts.ListSitesOutput, bool) bool) error
 	ListSitesPagesWithContext(aws.Context, *outposts.ListSitesInput, func(*outposts.ListSitesOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*outposts.ListTagsForResourceInput) (*outposts.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *outposts.ListTagsForResourceInput, ...request.Option) (*outposts.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*outposts.ListTagsForResourceInput) (*request.Request, *outposts.ListTagsForResourceOutput)
+
+	TagResource(*outposts.TagResourceInput) (*outposts.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *outposts.TagResourceInput, ...request.Option) (*outposts.TagResourceOutput, error)
+	TagResourceRequest(*outposts.TagResourceInput) (*request.Request, *outposts.TagResourceOutput)
+
+	UntagResource(*outposts.UntagResourceInput) (*outposts.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *outposts.UntagResourceInput, ...request.Option) (*outposts.UntagResourceOutput, error)
+	UntagResourceRequest(*outposts.UntagResourceInput) (*request.Request, *outposts.UntagResourceOutput)
 }
 
 var _ OutpostsAPI = (*outposts.Outposts)(nil)

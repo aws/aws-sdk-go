@@ -1,3 +1,28 @@
+Release v1.36.13 (2020-12-21)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway.
+* `service/batch`: Updates service documentation
+  * Documentation updates for batch
+* `service/config`: Updates service API, documentation, and paginators
+* `service/connectparticipant`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * AWS DMS launches support for AWS Secrets Manager to manage source and target database credentials.
+* `service/ec2`: Updates service API and documentation
+  * This release adds Tag On Create feature support for the AllocateAddress API.
+* `service/glue`: Updates service API and documentation
+  * Add 4 connection properties: SECRET_ID, CONNECTOR_URL, CONNECTOR_TYPE, CONNECTOR_CLASS_NAME. Add two connection types: MARKETPLACE, CUSTOM
+* `service/managedblockchain`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/qldb-session`: Updates service API and documentation
+* `service/s3`: Updates service API and examples
+  * Format GetObject's Expires header to be an http-date instead of iso8601
+* `service/securityhub`: Updates service documentation
+* `service/service-quotas`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
 Release v1.36.12 (2020-12-18)
 ===
 
