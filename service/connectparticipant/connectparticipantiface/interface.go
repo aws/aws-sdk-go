@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Connect Participant Service.
 //    func myFunc(svc connectparticipantiface.ConnectParticipantAPI) bool {
-//        // Make svc.CreateParticipantConnection request
+//        // Make svc.CompleteAttachmentUpload request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockConnectParticipantClient struct {
 //        connectparticipantiface.ConnectParticipantAPI
 //    }
-//    func (m *mockConnectParticipantClient) CreateParticipantConnection(input *connectparticipant.CreateParticipantConnectionInput) (*connectparticipant.CreateParticipantConnectionOutput, error) {
+//    func (m *mockConnectParticipantClient) CompleteAttachmentUpload(input *connectparticipant.CompleteAttachmentUploadInput) (*connectparticipant.CompleteAttachmentUploadOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ConnectParticipantAPI interface {
+	CompleteAttachmentUpload(*connectparticipant.CompleteAttachmentUploadInput) (*connectparticipant.CompleteAttachmentUploadOutput, error)
+	CompleteAttachmentUploadWithContext(aws.Context, *connectparticipant.CompleteAttachmentUploadInput, ...request.Option) (*connectparticipant.CompleteAttachmentUploadOutput, error)
+	CompleteAttachmentUploadRequest(*connectparticipant.CompleteAttachmentUploadInput) (*request.Request, *connectparticipant.CompleteAttachmentUploadOutput)
+
 	CreateParticipantConnection(*connectparticipant.CreateParticipantConnectionInput) (*connectparticipant.CreateParticipantConnectionOutput, error)
 	CreateParticipantConnectionWithContext(aws.Context, *connectparticipant.CreateParticipantConnectionInput, ...request.Option) (*connectparticipant.CreateParticipantConnectionOutput, error)
 	CreateParticipantConnectionRequest(*connectparticipant.CreateParticipantConnectionInput) (*request.Request, *connectparticipant.CreateParticipantConnectionOutput)
@@ -67,6 +71,10 @@ type ConnectParticipantAPI interface {
 	DisconnectParticipant(*connectparticipant.DisconnectParticipantInput) (*connectparticipant.DisconnectParticipantOutput, error)
 	DisconnectParticipantWithContext(aws.Context, *connectparticipant.DisconnectParticipantInput, ...request.Option) (*connectparticipant.DisconnectParticipantOutput, error)
 	DisconnectParticipantRequest(*connectparticipant.DisconnectParticipantInput) (*request.Request, *connectparticipant.DisconnectParticipantOutput)
+
+	GetAttachment(*connectparticipant.GetAttachmentInput) (*connectparticipant.GetAttachmentOutput, error)
+	GetAttachmentWithContext(aws.Context, *connectparticipant.GetAttachmentInput, ...request.Option) (*connectparticipant.GetAttachmentOutput, error)
+	GetAttachmentRequest(*connectparticipant.GetAttachmentInput) (*request.Request, *connectparticipant.GetAttachmentOutput)
 
 	GetTranscript(*connectparticipant.GetTranscriptInput) (*connectparticipant.GetTranscriptOutput, error)
 	GetTranscriptWithContext(aws.Context, *connectparticipant.GetTranscriptInput, ...request.Option) (*connectparticipant.GetTranscriptOutput, error)
@@ -82,6 +90,10 @@ type ConnectParticipantAPI interface {
 	SendMessage(*connectparticipant.SendMessageInput) (*connectparticipant.SendMessageOutput, error)
 	SendMessageWithContext(aws.Context, *connectparticipant.SendMessageInput, ...request.Option) (*connectparticipant.SendMessageOutput, error)
 	SendMessageRequest(*connectparticipant.SendMessageInput) (*request.Request, *connectparticipant.SendMessageOutput)
+
+	StartAttachmentUpload(*connectparticipant.StartAttachmentUploadInput) (*connectparticipant.StartAttachmentUploadOutput, error)
+	StartAttachmentUploadWithContext(aws.Context, *connectparticipant.StartAttachmentUploadInput, ...request.Option) (*connectparticipant.StartAttachmentUploadOutput, error)
+	StartAttachmentUploadRequest(*connectparticipant.StartAttachmentUploadInput) (*request.Request, *connectparticipant.StartAttachmentUploadOutput)
 }
 
 var _ ConnectParticipantAPI = (*connectparticipant.ConnectParticipant)(nil)

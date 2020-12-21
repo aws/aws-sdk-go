@@ -134,6 +134,10 @@ type ServiceQuotasAPI interface {
 	ListServicesPages(*servicequotas.ListServicesInput, func(*servicequotas.ListServicesOutput, bool) bool) error
 	ListServicesPagesWithContext(aws.Context, *servicequotas.ListServicesInput, func(*servicequotas.ListServicesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*servicequotas.ListTagsForResourceInput) (*servicequotas.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *servicequotas.ListTagsForResourceInput, ...request.Option) (*servicequotas.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*servicequotas.ListTagsForResourceInput) (*request.Request, *servicequotas.ListTagsForResourceOutput)
+
 	PutServiceQuotaIncreaseRequestIntoTemplate(*servicequotas.PutServiceQuotaIncreaseRequestIntoTemplateInput) (*servicequotas.PutServiceQuotaIncreaseRequestIntoTemplateOutput, error)
 	PutServiceQuotaIncreaseRequestIntoTemplateWithContext(aws.Context, *servicequotas.PutServiceQuotaIncreaseRequestIntoTemplateInput, ...request.Option) (*servicequotas.PutServiceQuotaIncreaseRequestIntoTemplateOutput, error)
 	PutServiceQuotaIncreaseRequestIntoTemplateRequest(*servicequotas.PutServiceQuotaIncreaseRequestIntoTemplateInput) (*request.Request, *servicequotas.PutServiceQuotaIncreaseRequestIntoTemplateOutput)
@@ -141,6 +145,14 @@ type ServiceQuotasAPI interface {
 	RequestServiceQuotaIncrease(*servicequotas.RequestServiceQuotaIncreaseInput) (*servicequotas.RequestServiceQuotaIncreaseOutput, error)
 	RequestServiceQuotaIncreaseWithContext(aws.Context, *servicequotas.RequestServiceQuotaIncreaseInput, ...request.Option) (*servicequotas.RequestServiceQuotaIncreaseOutput, error)
 	RequestServiceQuotaIncreaseRequest(*servicequotas.RequestServiceQuotaIncreaseInput) (*request.Request, *servicequotas.RequestServiceQuotaIncreaseOutput)
+
+	TagResource(*servicequotas.TagResourceInput) (*servicequotas.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *servicequotas.TagResourceInput, ...request.Option) (*servicequotas.TagResourceOutput, error)
+	TagResourceRequest(*servicequotas.TagResourceInput) (*request.Request, *servicequotas.TagResourceOutput)
+
+	UntagResource(*servicequotas.UntagResourceInput) (*servicequotas.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *servicequotas.UntagResourceInput, ...request.Option) (*servicequotas.UntagResourceOutput, error)
+	UntagResourceRequest(*servicequotas.UntagResourceInput) (*request.Request, *servicequotas.UntagResourceOutput)
 }
 
 var _ ServiceQuotasAPI = (*servicequotas.ServiceQuotas)(nil)

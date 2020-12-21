@@ -365,23 +365,28 @@ func (c *SecurityHub) BatchImportFindingsRequest(input *BatchImportFindingsInput
 // the following finding fields and objects, which Security Hub customers use
 // to manage their investigation workflow.
 //
-//    * Confidence
-//
-//    * Criticality
-//
 //    * Note
-//
-//    * RelatedFindings
-//
-//    * Severity
-//
-//    * Types
 //
 //    * UserDefinedFields
 //
 //    * VerificationState
 //
 //    * Workflow
+//
+// BatchImportFindings can be used to update the following finding fields and
+// objects only if they have not been updated using BatchUpdateFindings. After
+// they are updated using BatchUpdateFindings, these fields cannot be updated
+// using BatchImportFindings.
+//
+//    * Confidence
+//
+//    * Criticality
+//
+//    * RelatedFindings
+//
+//    * Severity
+//
+//    * Types
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23518,9 +23523,8 @@ func (s *Result) SetProcessingResult(v string) *Result {
 
 // The severity of the finding.
 //
-// The finding provider can provide the initial severity, but cannot update
-// it after that. The severity can only be updated by a master account. It cannot
-// be updated by a member account.
+// The finding provider can provide the initial severity. The finding provider
+// can only update the severity if it has not been updated using BatchUpdateFindings.
 //
 // The finding must have either Label or Normalized populated. If only one of
 // these attributes is populated, then Security Hub automatically populates

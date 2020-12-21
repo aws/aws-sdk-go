@@ -3250,7 +3250,11 @@
         "KAFKA_BOOTSTRAP_SERVERS",
         "KAFKA_SSL_ENABLED",
         "KAFKA_CUSTOM_CERT",
-        "KAFKA_SKIP_CUSTOM_CERT_VALIDATION"
+        "KAFKA_SKIP_CUSTOM_CERT_VALIDATION",
+        "SECRET_ID",
+        "CONNECTOR_URL",
+        "CONNECTOR_TYPE",
+        "CONNECTOR_CLASS_NAME"
       ]
     },
     "ConnectionType":{
@@ -3260,7 +3264,9 @@
         "SFTP",
         "MONGODB",
         "KAFKA",
-        "NETWORK"
+        "NETWORK",
+        "MARKETPLACE",
+        "CUSTOM"
       ]
     },
     "ConnectionsList":{

@@ -6734,7 +6734,10 @@
     "ResponseContentEncoding":{"type":"string"},
     "ResponseContentLanguage":{"type":"string"},
     "ResponseContentType":{"type":"string"},
-    "ResponseExpires":{"type":"timestamp"},
+    "ResponseExpires":{
+      "type":"timestamp",
+      "timestampFormat":"rfc822"
+    },
     "Restore":{"type":"string"},
     "RestoreObjectOutput":{
       "type":"structure",

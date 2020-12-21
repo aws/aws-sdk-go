@@ -53,7 +53,7 @@
       "name":"CreateNode",
       "http":{
         "method":"POST",
-        "requestUri":"/networks/{networkId}/members/{memberId}/nodes"
+        "requestUri":"/networks/{networkId}/nodes"
       },
       "input":{"shape":"CreateNodeInput"},
       "output":{"shape":"CreateNodeOutput"},
@@ -106,7 +106,7 @@
       "name":"DeleteNode",
       "http":{
         "method":"DELETE",
-        "requestUri":"/networks/{networkId}/members/{memberId}/nodes/{nodeId}"
+        "requestUri":"/networks/{networkId}/nodes/{nodeId}"
       },
       "input":{"shape":"DeleteNodeInput"},
       "output":{"shape":"DeleteNodeOutput"},
@@ -155,7 +155,7 @@
       "name":"GetNode",
       "http":{
         "method":"GET",
-        "requestUri":"/networks/{networkId}/members/{memberId}/nodes/{nodeId}"
+        "requestUri":"/networks/{networkId}/nodes/{nodeId}"
       },
       "input":{"shape":"GetNodeInput"},
       "output":{"shape":"GetNodeOutput"},
@@ -234,7 +234,7 @@
       "name":"ListNodes",
       "http":{
         "method":"GET",
-        "requestUri":"/networks/{networkId}/members/{memberId}/nodes"
+        "requestUri":"/networks/{networkId}/nodes"
       },
       "input":{"shape":"ListNodesInput"},
       "output":{"shape":"ListNodesOutput"},
@@ -313,7 +313,7 @@
       "name":"UpdateNode",
       "http":{
         "method":"PATCH",
-        "requestUri":"/networks/{networkId}/members/{memberId}/nodes/{nodeId}"
+        "requestUri":"/networks/{networkId}/nodes/{nodeId}"
       },
       "input":{"shape":"UpdateNodeInput"},
       "output":{"shape":"UpdateNodeOutput"},
@@ -347,6 +347,7 @@
     "AccessDeniedException":{
       "type":"structure",
       "members":{
+        "Message":{"shape":"String"}
       },
       "error":{"httpStatusCode":403},
       "exception":true
@@ -429,7 +430,6 @@
       "required":[
         "ClientRequestToken",
         "NetworkId",
-        "MemberId",
         "NodeConfiguration"
       ],
       "members":{
@@ -442,11 +442,7 @@
           "location":"uri",
           "locationName":"networkId"
         },
-        "MemberId":{
-          "shape":"ResourceIdString",
-          "location":"uri",
-          "locationName":"memberId"
-        },
+        "MemberId":{"shape":"ResourceIdString"},
         "NodeConfiguration":{"shape":"NodeConfiguration"}
       }
     },
@@ -513,7 +509,6 @@
       "type":"structure",
       "required":[
         "NetworkId",
-        "MemberId",
         "NodeId"
       ],
       "members":{
@@ -524,7 +519,7 @@
         },
         "MemberId":{
           "shape":"ResourceIdString",
-          "location":"uri",
+          "location":"querystring",
           "locationName":"memberId"
         },
         "NodeId":{
@@ -556,7 +551,10 @@
     },
     "Framework":{
       "type":"string",
-      "enum":["HYPERLEDGER_FABRIC"]
+      "enum":[
+        "HYPERLEDGER_FABRIC",
+        "ETHEREUM"
+      ]
     },
     "FrameworkVersionString":{
       "type":"string",
@@ -609,7 +607,6 @@
       "type":"structure",
       "required":[
         "NetworkId",
-        "MemberId",
         "NodeId"
       ],
       "members":{
@@ -620,7 +617,7 @@
         },
         "MemberId":{
           "shape":"ResourceIdString",
-          "location":"uri",
+          "location":"querystring",
           "locationName":"memberId"
         },
         "NodeId":{
@@ -828,10 +825,7 @@
     },
     "ListNodesInput":{
       "type":"structure",
-      "required":[
-        "NetworkId",
-        "MemberId"
-      ],
+      "required":["NetworkId"],
       "members":{
         "NetworkId":{
           "shape":"ResourceIdString",
@@ -840,7 +834,7 @@
         },
         "MemberId":{
           "shape":"ResourceIdString",
-          "location":"uri",
+          "location":"querystring",
           "locationName":"memberId"
         },
         "Status":{
@@ -1064,6 +1058,12 @@
         "CreationDate":{"shape":"Timestamp"}
       }
     },
+    "NetworkEthereumAttributes":{
+      "type":"structure",
+      "members":{
+        "ChainId":{"shape":"String"}
+      }
+    },
     "NetworkFabricAttributes":{
       "type":"structure",
       "members":{
@@ -1081,7 +1081,8 @@
     "NetworkFrameworkAttributes":{
       "type":"structure",
       "members":{
-        "Fabric":{"shape":"NetworkFabricAttributes"}
+        "Fabric":{"shape":"NetworkFabricAttributes"},
+        "Ethereum":{"shape":"NetworkEthereumAttributes"}
       }
     },
     "NetworkFrameworkConfiguration":{
@@ -1100,7 +1101,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"^(?!-)^[^0-9](?!.*--)[A-Za-z0-9-]+[^- ]$"
+      "pattern":"^(?!-|[0-9])(?!.*-$)(?!.*?--)[a-zA-Z0-9-]+$"
     },
     "NetworkStatus":{
       "type":"string",
@@ -1145,15 +1146,19 @@
     },
     "NodeConfiguration":{
       "type":"structure",
-      "required":[
-        "InstanceType",
-        "AvailabilityZone"
-      ],
+      "required":["InstanceType"],
       "members":{
         "InstanceType":{"shape":"InstanceTypeString"},
         "AvailabilityZone":{"shape":"AvailabilityZoneString"},
         "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"},
         "StateDB":{"shape":"StateDBType"}
+      }
+    },
+    "NodeEthereumAttributes":{
+      "type":"structure",
+      "members":{
+        "HttpEndpoint":{"shape":"String"},
+        "WebSocketEndpoint":{"shape":"String"}
       }
     },
     "NodeFabricAttributes":{
@@ -1173,7 +1178,8 @@
     "NodeFrameworkAttributes":{
       "type":"structure",
       "members":{
-        "Fabric":{"shape":"NodeFabricAttributes"}
+        "Fabric":{"shape":"NodeFabricAttributes"},
+        "Ethereum":{"shape":"NodeEthereumAttributes"}
       }
     },
     "NodeListMaxResults":{
@@ -1193,6 +1199,7 @@
       "enum":[
         "CREATING",
         "AVAILABLE",
+        "UNHEALTHY",
         "CREATE_FAILED",
         "UPDATING",
         "DELETING",
@@ -1417,7 +1424,6 @@
       "type":"structure",
       "required":[
         "NetworkId",
-        "MemberId",
         "NodeId"
       ],
       "members":{
@@ -1426,11 +1432,7 @@
           "location":"uri",
           "locationName":"networkId"
         },
-        "MemberId":{
-          "shape":"ResourceIdString",
-          "location":"uri",
-          "locationName":"memberId"
-        },
+        "MemberId":{"shape":"ResourceIdString"},
         "NodeId":{
           "shape":"ResourceIdString",
           "location":"uri",

@@ -124,6 +124,10 @@ type ConfigServiceAPI interface {
 	DeleteRetentionConfigurationWithContext(aws.Context, *configservice.DeleteRetentionConfigurationInput, ...request.Option) (*configservice.DeleteRetentionConfigurationOutput, error)
 	DeleteRetentionConfigurationRequest(*configservice.DeleteRetentionConfigurationInput) (*request.Request, *configservice.DeleteRetentionConfigurationOutput)
 
+	DeleteStoredQuery(*configservice.DeleteStoredQueryInput) (*configservice.DeleteStoredQueryOutput, error)
+	DeleteStoredQueryWithContext(aws.Context, *configservice.DeleteStoredQueryInput, ...request.Option) (*configservice.DeleteStoredQueryOutput, error)
+	DeleteStoredQueryRequest(*configservice.DeleteStoredQueryInput) (*request.Request, *configservice.DeleteStoredQueryOutput)
+
 	DeliverConfigSnapshot(*configservice.DeliverConfigSnapshotInput) (*configservice.DeliverConfigSnapshotOutput, error)
 	DeliverConfigSnapshotWithContext(aws.Context, *configservice.DeliverConfigSnapshotInput, ...request.Option) (*configservice.DeliverConfigSnapshotOutput, error)
 	DeliverConfigSnapshotRequest(*configservice.DeliverConfigSnapshotInput) (*request.Request, *configservice.DeliverConfigSnapshotOutput)
@@ -289,6 +293,10 @@ type ConfigServiceAPI interface {
 	GetResourceConfigHistoryPages(*configservice.GetResourceConfigHistoryInput, func(*configservice.GetResourceConfigHistoryOutput, bool) bool) error
 	GetResourceConfigHistoryPagesWithContext(aws.Context, *configservice.GetResourceConfigHistoryInput, func(*configservice.GetResourceConfigHistoryOutput, bool) bool, ...request.Option) error
 
+	GetStoredQuery(*configservice.GetStoredQueryInput) (*configservice.GetStoredQueryOutput, error)
+	GetStoredQueryWithContext(aws.Context, *configservice.GetStoredQueryInput, ...request.Option) (*configservice.GetStoredQueryOutput, error)
+	GetStoredQueryRequest(*configservice.GetStoredQueryInput) (*request.Request, *configservice.GetStoredQueryOutput)
+
 	ListAggregateDiscoveredResources(*configservice.ListAggregateDiscoveredResourcesInput) (*configservice.ListAggregateDiscoveredResourcesOutput, error)
 	ListAggregateDiscoveredResourcesWithContext(aws.Context, *configservice.ListAggregateDiscoveredResourcesInput, ...request.Option) (*configservice.ListAggregateDiscoveredResourcesOutput, error)
 	ListAggregateDiscoveredResourcesRequest(*configservice.ListAggregateDiscoveredResourcesInput) (*request.Request, *configservice.ListAggregateDiscoveredResourcesOutput)
@@ -296,6 +304,13 @@ type ConfigServiceAPI interface {
 	ListDiscoveredResources(*configservice.ListDiscoveredResourcesInput) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, ...request.Option) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)
+
+	ListStoredQueries(*configservice.ListStoredQueriesInput) (*configservice.ListStoredQueriesOutput, error)
+	ListStoredQueriesWithContext(aws.Context, *configservice.ListStoredQueriesInput, ...request.Option) (*configservice.ListStoredQueriesOutput, error)
+	ListStoredQueriesRequest(*configservice.ListStoredQueriesInput) (*request.Request, *configservice.ListStoredQueriesOutput)
+
+	ListStoredQueriesPages(*configservice.ListStoredQueriesInput, func(*configservice.ListStoredQueriesOutput, bool) bool) error
+	ListStoredQueriesPagesWithContext(aws.Context, *configservice.ListStoredQueriesInput, func(*configservice.ListStoredQueriesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*configservice.ListTagsForResourceInput) (*configservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *configservice.ListTagsForResourceInput, ...request.Option) (*configservice.ListTagsForResourceOutput, error)
@@ -356,6 +371,10 @@ type ConfigServiceAPI interface {
 	PutRetentionConfiguration(*configservice.PutRetentionConfigurationInput) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationWithContext(aws.Context, *configservice.PutRetentionConfigurationInput, ...request.Option) (*configservice.PutRetentionConfigurationOutput, error)
 	PutRetentionConfigurationRequest(*configservice.PutRetentionConfigurationInput) (*request.Request, *configservice.PutRetentionConfigurationOutput)
+
+	PutStoredQuery(*configservice.PutStoredQueryInput) (*configservice.PutStoredQueryOutput, error)
+	PutStoredQueryWithContext(aws.Context, *configservice.PutStoredQueryInput, ...request.Option) (*configservice.PutStoredQueryOutput, error)
+	PutStoredQueryRequest(*configservice.PutStoredQueryInput) (*request.Request, *configservice.PutStoredQueryOutput)
 
 	SelectAggregateResourceConfig(*configservice.SelectAggregateResourceConfigInput) (*configservice.SelectAggregateResourceConfigOutput, error)
 	SelectAggregateResourceConfigWithContext(aws.Context, *configservice.SelectAggregateResourceConfigInput, ...request.Option) (*configservice.SelectAggregateResourceConfigOutput, error)

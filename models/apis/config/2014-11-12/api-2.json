@@ -208,6 +208,19 @@
         {"shape":"NoSuchRetentionConfigurationException"}
       ]
     },
+    "DeleteStoredQuery":{
+      "name":"DeleteStoredQuery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteStoredQueryRequest"},
+      "output":{"shape":"DeleteStoredQueryResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DeliverConfigSnapshot":{
       "name":"DeliverConfigSnapshot",
       "http":{
@@ -748,6 +761,19 @@
         {"shape":"ResourceNotDiscoveredException"}
       ]
     },
+    "GetStoredQuery":{
+      "name":"GetStoredQuery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetStoredQueryRequest"},
+      "output":{"shape":"GetStoredQueryResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListAggregateDiscoveredResources":{
       "name":"ListAggregateDiscoveredResources",
       "http":{
@@ -776,6 +802,19 @@
         {"shape":"InvalidLimitException"},
         {"shape":"InvalidNextTokenException"},
         {"shape":"NoAvailableConfigurationRecorderException"}
+      ]
+    },
+    "ListStoredQueries":{
+      "name":"ListStoredQueries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStoredQueriesRequest"},
+      "output":{"shape":"ListStoredQueriesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InvalidNextTokenException"}
       ]
     },
     "ListTagsForResource":{
@@ -1000,6 +1039,20 @@
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"MaxNumberOfRetentionConfigurationsExceededException"}
+      ]
+    },
+    "PutStoredQuery":{
+      "name":"PutStoredQuery",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutStoredQueryRequest"},
+      "output":{"shape":"PutStoredQueryResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"TooManyTagsException"},
+        {"shape":"ResourceConcurrentModificationException"}
       ]
     },
     "SelectAggregateResourceConfig":{
@@ -1982,6 +2035,18 @@
         "RetentionConfigurationName":{"shape":"RetentionConfigurationName"}
       }
     },
+    "DeleteStoredQueryRequest":{
+      "type":"structure",
+      "required":["QueryName"],
+      "members":{
+        "QueryName":{"shape":"QueryName"}
+      }
+    },
+    "DeleteStoredQueryResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeliverConfigSnapshotRequest":{
       "type":"structure",
       "required":["deliveryChannelName"],
@@ -2423,6 +2488,7 @@
       "max":256,
       "min":0
     },
+    "ErrorMessage":{"type":"string"},
     "Evaluation":{
       "type":"structure",
       "required":[
@@ -2806,6 +2872,19 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "GetStoredQueryRequest":{
+      "type":"structure",
+      "required":["QueryName"],
+      "members":{
+        "QueryName":{"shape":"QueryName"}
+      }
+    },
+    "GetStoredQueryResponse":{
+      "type":"structure",
+      "members":{
+        "StoredQuery":{"shape":"StoredQuery"}
+      }
+    },
     "GroupByAPILimit":{
       "type":"integer",
       "max":1000,
@@ -2968,6 +3047,26 @@
       "members":{
         "resourceIdentifiers":{"shape":"ResourceIdentifierList"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListStoredQueriesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"String",
+          "box":true
+        },
+        "MaxResults":{
+          "shape":"Limit",
+          "box":true
+        }
+      }
+    },
+    "ListStoredQueriesResponse":{
+      "type":"structure",
+      "members":{
+        "StoredQueryMetadata":{"shape":"StoredQueryMetadataList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -3674,11 +3773,55 @@
         "RetentionConfiguration":{"shape":"RetentionConfiguration"}
       }
     },
+    "PutStoredQueryRequest":{
+      "type":"structure",
+      "required":["StoredQuery"],
+      "members":{
+        "StoredQuery":{"shape":"StoredQuery"},
+        "Tags":{"shape":"TagsList"}
+      }
+    },
+    "PutStoredQueryResponse":{
+      "type":"structure",
+      "members":{
+        "QueryArn":{"shape":"QueryArn"}
+      }
+    },
+    "QueryArn":{
+      "type":"string",
+      "max":500,
+      "min":1,
+      "pattern":"^arn:aws[a-z\\-]*:config:[a-z\\-\\d]+:\\d+:stored-query/[a-zA-Z0-9-_]+/query-[a-zA-Z\\d-_/]+$"
+    },
+    "QueryDescription":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
+    "QueryExpression":{
+      "type":"string",
+      "max":4096,
+      "min":1,
+      "pattern":"[\\s\\S]*"
+    },
+    "QueryId":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"^\\S+$"
+    },
     "QueryInfo":{
       "type":"structure",
       "members":{
         "SelectFields":{"shape":"FieldInfoList"}
       }
+    },
+    "QueryName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_]+$"
     },
     "RecorderName":{
       "type":"string",
@@ -3857,6 +4000,13 @@
       "type":"string",
       "enum":["SSM_DOCUMENT"]
     },
+    "ResourceConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "ResourceCount":{
       "type":"structure",
       "members":{
@@ -4027,6 +4177,9 @@
         "AWS::CloudFront::Distribution",
         "AWS::CloudFront::StreamingDistribution",
         "AWS::Lambda::Function",
+        "AWS::NetworkFirewall::Firewall",
+        "AWS::NetworkFirewall::FirewallPolicy",
+        "AWS::NetworkFirewall::RuleGroup",
         "AWS::ElasticBeanstalk::Application",
         "AWS::ElasticBeanstalk::ApplicationVersion",
         "AWS::ElasticBeanstalk::Environment",
@@ -4284,6 +4437,47 @@
       "members":{
         "ConfigurationRecorderName":{"shape":"RecorderName"}
       }
+    },
+    "StoredQuery":{
+      "type":"structure",
+      "required":["QueryName"],
+      "members":{
+        "QueryId":{
+          "shape":"QueryId",
+          "box":true
+        },
+        "QueryArn":{
+          "shape":"QueryArn",
+          "box":true
+        },
+        "QueryName":{"shape":"QueryName"},
+        "Description":{
+          "shape":"QueryDescription",
+          "box":true
+        },
+        "Expression":{
+          "shape":"QueryExpression",
+          "box":true
+        }
+      }
+    },
+    "StoredQueryMetadata":{
+      "type":"structure",
+      "required":[
+        "QueryId",
+        "QueryArn",
+        "QueryName"
+      ],
+      "members":{
+        "QueryId":{"shape":"QueryId"},
+        "QueryArn":{"shape":"QueryArn"},
+        "QueryName":{"shape":"QueryName"},
+        "Description":{"shape":"QueryDescription"}
+      }
+    },
+    "StoredQueryMetadataList":{
+      "type":"list",
+      "member":{"shape":"StoredQueryMetadata"}
     },
     "String":{"type":"string"},
     "StringWithCharLimit1024":{

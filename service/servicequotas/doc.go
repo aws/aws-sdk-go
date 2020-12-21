@@ -3,19 +3,10 @@
 // Package servicequotas provides the client and types for making API
 // requests to Service Quotas.
 //
-// Service Quotas is a web service that you can use to manage many of your AWS
-// service quotas. Quotas, also referred to as limits, are the maximum values
-// for a resource, item, or operation. This guide provide descriptions of the
-// Service Quotas actions that you can call from an API. For the Service Quotas
-// user guide, which explains how to use Service Quotas from the console, see
-// What is Service Quotas (https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html).
-//
-// AWS provides SDKs that consist of libraries and sample code for programming
-// languages and platforms (Java, Ruby, .NET, iOS, Android, etc...,). The SDKs
-// provide a convenient way to create programmatic access to Service Quotas
-// and AWS. For information about the AWS SDKs, including how to download and
-// install them, see the Tools for Amazon Web Services (https://docs.aws.amazon.com/aws.amazon.com/tools)
-// page.
+// With Service Quotas, you can view and manage your quotas easily as your AWS
+// workloads grow. Quotas, also referred to as limits, are the maximum number
+// of resources that you can create in your AWS account. For more information,
+// see the Service Quotas User Guide (https://docs.aws.amazon.com/servicequotas/latest/userguide/).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/service-quotas-2019-06-24 for more information on this service.
 //

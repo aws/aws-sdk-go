@@ -17,6 +17,11 @@
       "output_token": "nextToken",
       "result_key": "configurationItems"
     },
+    "ListStoredQueries": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "SelectAggregateResourceConfig": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
