@@ -679,6 +679,7 @@
         "RightsizingRecommendation$AccountId": "<p>The account that this recommendation is for.</p>",
         "RightsizingRecommendationMetadata$RecommendationId": "<p> The ID for this specific recommendation.</p>",
         "RightsizingRecommendationMetadata$GenerationTimestamp": "<p> The timestamp for when AWS made this recommendation.</p>",
+        "RightsizingRecommendationMetadata$AdditionalMetadata": "<p>Additional metadata that may be applicable to the recommendation.</p>",
         "RightsizingRecommendationSummary$TotalRecommendationCount": "<p> Total number of instance recommendations.</p>",
         "RightsizingRecommendationSummary$EstimatedTotalMonthlySavingsAmount": "<p> Estimated total savings resulting from modifications, on a monthly basis.</p>",
         "RightsizingRecommendationSummary$SavingsCurrencyCode": "<p> The currency code that AWS used to calculate the savings.</p>",
@@ -1105,7 +1106,7 @@
       "base": null,
       "refs": {
         "AnomalySubscription$MonitorArnList": "<p> A list of cost anomaly monitors. </p>",
-        "UpdateAnomalySubscriptionRequest$MonitorArnList": "<p> A list of cost anomaly subscription ARNs. </p>"
+        "UpdateAnomalySubscriptionRequest$MonitorArnList": "<p> A list of cost anomaly monitor ARNs. </p>"
       }
     },
     "MonitorDimension": {

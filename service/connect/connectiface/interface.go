@@ -96,6 +96,10 @@ type ConnectAPI interface {
 	CreateIntegrationAssociationWithContext(aws.Context, *connect.CreateIntegrationAssociationInput, ...request.Option) (*connect.CreateIntegrationAssociationOutput, error)
 	CreateIntegrationAssociationRequest(*connect.CreateIntegrationAssociationInput) (*request.Request, *connect.CreateIntegrationAssociationOutput)
 
+	CreateQuickConnect(*connect.CreateQuickConnectInput) (*connect.CreateQuickConnectOutput, error)
+	CreateQuickConnectWithContext(aws.Context, *connect.CreateQuickConnectInput, ...request.Option) (*connect.CreateQuickConnectOutput, error)
+	CreateQuickConnectRequest(*connect.CreateQuickConnectInput) (*request.Request, *connect.CreateQuickConnectOutput)
+
 	CreateRoutingProfile(*connect.CreateRoutingProfileInput) (*connect.CreateRoutingProfileOutput, error)
 	CreateRoutingProfileWithContext(aws.Context, *connect.CreateRoutingProfileInput, ...request.Option) (*connect.CreateRoutingProfileOutput, error)
 	CreateRoutingProfileRequest(*connect.CreateRoutingProfileInput) (*request.Request, *connect.CreateRoutingProfileOutput)
@@ -119,6 +123,10 @@ type ConnectAPI interface {
 	DeleteIntegrationAssociation(*connect.DeleteIntegrationAssociationInput) (*connect.DeleteIntegrationAssociationOutput, error)
 	DeleteIntegrationAssociationWithContext(aws.Context, *connect.DeleteIntegrationAssociationInput, ...request.Option) (*connect.DeleteIntegrationAssociationOutput, error)
 	DeleteIntegrationAssociationRequest(*connect.DeleteIntegrationAssociationInput) (*request.Request, *connect.DeleteIntegrationAssociationOutput)
+
+	DeleteQuickConnect(*connect.DeleteQuickConnectInput) (*connect.DeleteQuickConnectOutput, error)
+	DeleteQuickConnectWithContext(aws.Context, *connect.DeleteQuickConnectInput, ...request.Option) (*connect.DeleteQuickConnectOutput, error)
+	DeleteQuickConnectRequest(*connect.DeleteQuickConnectInput) (*request.Request, *connect.DeleteQuickConnectOutput)
 
 	DeleteUseCase(*connect.DeleteUseCaseInput) (*connect.DeleteUseCaseOutput, error)
 	DeleteUseCaseWithContext(aws.Context, *connect.DeleteUseCaseInput, ...request.Option) (*connect.DeleteUseCaseOutput, error)
@@ -147,6 +155,10 @@ type ConnectAPI interface {
 	DescribeInstanceStorageConfig(*connect.DescribeInstanceStorageConfigInput) (*connect.DescribeInstanceStorageConfigOutput, error)
 	DescribeInstanceStorageConfigWithContext(aws.Context, *connect.DescribeInstanceStorageConfigInput, ...request.Option) (*connect.DescribeInstanceStorageConfigOutput, error)
 	DescribeInstanceStorageConfigRequest(*connect.DescribeInstanceStorageConfigInput) (*request.Request, *connect.DescribeInstanceStorageConfigOutput)
+
+	DescribeQuickConnect(*connect.DescribeQuickConnectInput) (*connect.DescribeQuickConnectOutput, error)
+	DescribeQuickConnectWithContext(aws.Context, *connect.DescribeQuickConnectInput, ...request.Option) (*connect.DescribeQuickConnectOutput, error)
+	DescribeQuickConnectRequest(*connect.DescribeQuickConnectInput) (*request.Request, *connect.DescribeQuickConnectOutput)
 
 	DescribeRoutingProfile(*connect.DescribeRoutingProfileInput) (*connect.DescribeRoutingProfileOutput, error)
 	DescribeRoutingProfileWithContext(aws.Context, *connect.DescribeRoutingProfileInput, ...request.Option) (*connect.DescribeRoutingProfileOutput, error)
@@ -294,6 +306,13 @@ type ConnectAPI interface {
 	ListQueuesPages(*connect.ListQueuesInput, func(*connect.ListQueuesOutput, bool) bool) error
 	ListQueuesPagesWithContext(aws.Context, *connect.ListQueuesInput, func(*connect.ListQueuesOutput, bool) bool, ...request.Option) error
 
+	ListQuickConnects(*connect.ListQuickConnectsInput) (*connect.ListQuickConnectsOutput, error)
+	ListQuickConnectsWithContext(aws.Context, *connect.ListQuickConnectsInput, ...request.Option) (*connect.ListQuickConnectsOutput, error)
+	ListQuickConnectsRequest(*connect.ListQuickConnectsInput) (*request.Request, *connect.ListQuickConnectsOutput)
+
+	ListQuickConnectsPages(*connect.ListQuickConnectsInput, func(*connect.ListQuickConnectsOutput, bool) bool) error
+	ListQuickConnectsPagesWithContext(aws.Context, *connect.ListQuickConnectsInput, func(*connect.ListQuickConnectsOutput, bool) bool, ...request.Option) error
+
 	ListRoutingProfileQueues(*connect.ListRoutingProfileQueuesInput) (*connect.ListRoutingProfileQueuesOutput, error)
 	ListRoutingProfileQueuesWithContext(aws.Context, *connect.ListRoutingProfileQueuesInput, ...request.Option) (*connect.ListRoutingProfileQueuesOutput, error)
 	ListRoutingProfileQueuesRequest(*connect.ListRoutingProfileQueuesInput) (*request.Request, *connect.ListRoutingProfileQueuesOutput)
@@ -406,6 +425,14 @@ type ConnectAPI interface {
 	UpdateInstanceStorageConfig(*connect.UpdateInstanceStorageConfigInput) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigWithContext(aws.Context, *connect.UpdateInstanceStorageConfigInput, ...request.Option) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigRequest(*connect.UpdateInstanceStorageConfigInput) (*request.Request, *connect.UpdateInstanceStorageConfigOutput)
+
+	UpdateQuickConnectConfig(*connect.UpdateQuickConnectConfigInput) (*connect.UpdateQuickConnectConfigOutput, error)
+	UpdateQuickConnectConfigWithContext(aws.Context, *connect.UpdateQuickConnectConfigInput, ...request.Option) (*connect.UpdateQuickConnectConfigOutput, error)
+	UpdateQuickConnectConfigRequest(*connect.UpdateQuickConnectConfigInput) (*request.Request, *connect.UpdateQuickConnectConfigOutput)
+
+	UpdateQuickConnectName(*connect.UpdateQuickConnectNameInput) (*connect.UpdateQuickConnectNameOutput, error)
+	UpdateQuickConnectNameWithContext(aws.Context, *connect.UpdateQuickConnectNameInput, ...request.Option) (*connect.UpdateQuickConnectNameOutput, error)
+	UpdateQuickConnectNameRequest(*connect.UpdateQuickConnectNameInput) (*request.Request, *connect.UpdateQuickConnectNameOutput)
 
 	UpdateRoutingProfileConcurrency(*connect.UpdateRoutingProfileConcurrencyInput) (*connect.UpdateRoutingProfileConcurrencyOutput, error)
 	UpdateRoutingProfileConcurrencyWithContext(aws.Context, *connect.UpdateRoutingProfileConcurrencyInput, ...request.Option) (*connect.UpdateRoutingProfileConcurrencyOutput, error)

@@ -1481,6 +1481,13 @@
       "max":20,
       "min":0
     },
+    "Fingerprint":{
+      "type":"string",
+      "max":64,
+      "min":64,
+      "pattern":"[a-fA-F0-9]{64}",
+      "sensitive":true
+    },
     "GatewayEui":{
       "type":"string",
       "pattern":"^(([0-9A-Fa-f]{2}-){7}|([0-9A-Fa-f]{2}:){7}|([0-9A-Fa-f]{2}\\s){7}|([0-9A-Fa-f]{2}){7})([0-9A-Fa-f]{2})$"
@@ -2371,7 +2378,7 @@
       "type":"structure",
       "members":{
         "AmazonId":{"shape":"AmazonId"},
-        "AppServerPrivateKey":{"shape":"AppServerPrivateKey"}
+        "Fingerprint":{"shape":"Fingerprint"}
       }
     },
     "SidewalkAccountList":{

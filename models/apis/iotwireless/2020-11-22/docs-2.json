@@ -58,7 +58,7 @@
     "AbpV1_0_x": {
       "base": "<p>ABP device object for LoRaWAN specification v1.0.x</p>",
       "refs": {
-        "LoRaWANDevice$AbpV1_0_x": "<p>LoRa object for create APIs</p>"
+        "LoRaWANDevice$AbpV1_0_x": "<p>LoRaWAN object for create APIs</p>"
       }
     },
     "AbpV1_1": {
@@ -126,7 +126,6 @@
       "base": null,
       "refs": {
         "SidewalkAccountInfo$AppServerPrivateKey": "<p>The Sidewalk application server private key.</p>",
-        "SidewalkAccountInfoWithFingerprint$AppServerPrivateKey": "<p>The Sidewalk application server private key.</p>",
         "SidewalkUpdateAccount$AppServerPrivateKey": "<p>The new Sidewalk application server private key.</p>"
       }
     },
@@ -598,6 +597,12 @@
         "LoRaWANDeviceProfile$FactoryPresetFreqsList": "<p>The list of values that make up the FactoryPresetFreqs value.</p>"
       }
     },
+    "Fingerprint": {
+      "base": null,
+      "refs": {
+        "SidewalkAccountInfoWithFingerprint$Fingerprint": "<p>Fingerprint for Sidewalk application server private key.</p>"
+      }
+    },
     "GatewayEui": {
       "base": null,
       "refs": {
@@ -868,7 +873,7 @@
       }
     },
     "LoRaWANDevice": {
-      "base": "<p>LoRa object for create functions.</p>",
+      "base": "<p>LoRaWAN object for create functions.</p>",
       "refs": {
         "CreateWirelessDeviceRequest$LoRaWAN": "<p>The device configuration information to use to create the wireless device.</p>",
         "GetWirelessDeviceResponse$LoRaWAN": "<p>Information about the wireless device.</p>"
@@ -948,7 +953,7 @@
       }
     },
     "LoRaWANUpdateDevice": {
-      "base": "<p>LoRa object for update functions.</p>",
+      "base": "<p>LoRaWAN object for update functions.</p>",
       "refs": {
         "UpdateWirelessDeviceRequest$LoRaWAN": "<p>The updated wireless device's configuration.</p>"
       }
@@ -968,7 +973,7 @@
     "MacVersion": {
       "base": null,
       "refs": {
-        "LoRaWANDeviceProfile$MacVersion": "<p>The MAC version (such as OTAA 1.1 or OTA 1.0.3) to use with this device profile.</p>"
+        "LoRaWANDeviceProfile$MacVersion": "<p>The MAC version (such as OTAA 1.1 or OTAA 1.0.3) to use with this device profile.</p>"
       }
     },
     "MaxDutyCycle": {
@@ -1312,14 +1317,14 @@
     "SidewalkAccountInfoWithFingerprint": {
       "base": "<p>Information about a Sidewalk account.</p>",
       "refs": {
-        "GetPartnerAccountResponse$Sidewalk": "<p>The Sidewalk account credentials.</p> <p>The <code>AppServerPrivateKey</code> value is empty to protect its security.</p>",
+        "GetPartnerAccountResponse$Sidewalk": "<p>The Sidewalk account credentials.</p>",
         "SidewalkAccountList$member": null
       }
     },
     "SidewalkAccountList": {
       "base": null,
       "refs": {
-        "ListPartnerAccountsResponse$Sidewalk": "<p>The Sidewalk account credentials.</p> <p>The <code>AppServerPrivateKey</code> value is empty to protect its security.</p>"
+        "ListPartnerAccountsResponse$Sidewalk": "<p>The Sidewalk account credentials.</p>"
       }
     },
     "SidewalkListDevice": {
@@ -1444,8 +1449,8 @@
     "ThingName": {
       "base": null,
       "refs": {
-        "GetWirelessDeviceResponse$ThingName": "<p>The name of the thing associated with the wireless device.</p>",
-        "GetWirelessGatewayResponse$ThingName": "<p>The name of the thing associated with the wireless gateway.</p>"
+        "GetWirelessDeviceResponse$ThingName": "<p>The name of the thing associated with the wireless device. The value is empty if a thing isn't associated with the device.</p>",
+        "GetWirelessGatewayResponse$ThingName": "<p>The name of the thing associated with the wireless gateway. The value is empty if a thing isn't associated with the gateway.</p>"
       }
     },
     "ThrottlingException": {

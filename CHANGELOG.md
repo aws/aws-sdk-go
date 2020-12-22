@@ -1,3 +1,19 @@
+Release v1.36.14 (2020-12-22)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/glue`: Updates service API and documentation
+  * AWS Glue Find Matches machine learning transforms now support column importance scores.
+* `service/iotwireless`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Adds customer-owned IP address (CoIP) support to Amazon RDS on AWS Outposts.
+* `service/ssm`: Updates service API and documentation
+  * SSM Maintenance Window support for registering/updating maintenance window tasks without targets.
+
 Release v1.36.13 (2020-12-21)
 ===
 

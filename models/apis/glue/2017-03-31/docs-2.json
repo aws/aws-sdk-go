@@ -726,6 +726,18 @@
         "GetColumnStatisticsForTableResponse$Errors": "<p>List of ColumnStatistics that failed to be retrieved.</p>"
       }
     },
+    "ColumnImportance": {
+      "base": "<p>A structure containing the column name and column importance score for a column. </p> <p>Column importance helps you understand how columns contribute to your model, by identifying which columns in your records are more important than others.</p>",
+      "refs": {
+        "ColumnImportanceList$member": null
+      }
+    },
+    "ColumnImportanceList": {
+      "base": null,
+      "refs": {
+        "FindMatchesMetrics$ColumnImportances": "<p>A list of <code>ColumnImportance</code> structures containing column importance metrics, sorted in order of descending importance.</p>"
+      }
+    },
     "ColumnList": {
       "base": null,
       "refs": {
@@ -1874,6 +1886,7 @@
     "GenericBoundedDouble": {
       "base": null,
       "refs": {
+        "ColumnImportance$Importance": "<p>The column importance score for the column, as a decimal.</p>",
         "FindMatchesMetrics$AreaUnderPRCurve": "<p>The area under the precision/recall curve (AUPRC) is a single number measuring the overall quality of the transform, that is independent of the choice made for precision vs. recall. Higher values indicate that you have a more attractive precision vs. recall tradeoff.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
         "FindMatchesMetrics$Precision": "<p>The precision metric indicates when often your transform is correct when it predicts a match. Specifically, it measures how well the transform finds true positives from the total true positives possible.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
         "FindMatchesMetrics$Recall": "<p>The recall metric indicates that for an actual match, how often your transform predicts the match. Specifically, it measures how well the transform finds true positives from the total records in the source data.</p> <p>For more information, see <a href=\"https://en.wikipedia.org/wiki/Precision_and_recall\">Precision and recall</a> in Wikipedia.</p>",
@@ -3304,6 +3317,7 @@
         "ClassifierNameList$member": null,
         "Column$Name": "<p>The name of the <code>Column</code>.</p>",
         "ColumnError$ColumnName": "<p>The name of the column that failed.</p>",
+        "ColumnImportance$ColumnName": "<p>The name of a column.</p>",
         "ColumnStatistics$ColumnName": "<p>Name of column which statistics belong to.</p>",
         "Condition$JobName": "<p>The name of the job whose <code>JobRuns</code> this condition applies to, and on which this trigger waits.</p>",
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",

@@ -18602,6 +18602,43 @@ func (s *ColumnError) SetError(v *ErrorDetail) *ColumnError {
 	return s
 }
 
+// A structure containing the column name and column importance score for a
+// column.
+//
+// Column importance helps you understand how columns contribute to your model,
+// by identifying which columns in your records are more important than others.
+type ColumnImportance struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a column.
+	ColumnName *string `min:"1" type:"string"`
+
+	// The column importance score for the column, as a decimal.
+	Importance *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s ColumnImportance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnImportance) GoString() string {
+	return s.String()
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *ColumnImportance) SetColumnName(v string) *ColumnImportance {
+	s.ColumnName = &v
+	return s
+}
+
+// SetImportance sets the Importance field's value.
+func (s *ColumnImportance) SetImportance(v float64) *ColumnImportance {
+	s.Importance = &v
+	return s
+}
+
 // Represents the generated column-level statistics for a table or partition.
 type ColumnStatistics struct {
 	_ struct{} `type:"structure"`
@@ -26477,6 +26514,10 @@ type FindMatchesMetrics struct {
 	// in Wikipedia.
 	AreaUnderPRCurve *float64 `type:"double"`
 
+	// A list of ColumnImportance structures containing column importance metrics,
+	// sorted in order of descending importance.
+	ColumnImportances []*ColumnImportance `type:"list"`
+
 	// The confusion matrix shows you what your transform is predicting accurately
 	// and what types of errors it is making.
 	//
@@ -26521,6 +26562,12 @@ func (s FindMatchesMetrics) GoString() string {
 // SetAreaUnderPRCurve sets the AreaUnderPRCurve field's value.
 func (s *FindMatchesMetrics) SetAreaUnderPRCurve(v float64) *FindMatchesMetrics {
 	s.AreaUnderPRCurve = &v
+	return s
+}
+
+// SetColumnImportances sets the ColumnImportances field's value.
+func (s *FindMatchesMetrics) SetColumnImportances(v []*ColumnImportance) *FindMatchesMetrics {
+	s.ColumnImportances = v
 	return s
 }
 
