@@ -1093,7 +1093,7 @@ func (c *ElastiCache) CreateGlobalReplicationGroupRequest(input *CreateGlobalRep
 // cross-region replication. Using Global Datastore for Redis, you can create
 // cross-region read replica clusters for ElastiCache for Redis to enable low-latency
 // reads and disaster recovery across regions. For more information, see Replication
-// Across Regions Using Global Datastore (/AmazonElastiCache/latest/red-ug/Redis-Global-Clusters.html).
+// Across Regions Using Global Datastore (/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores.html).
 //
 //    * The GlobalReplicationGroupIdSuffix is the name of the Global Datastore.
 //
@@ -9868,7 +9868,7 @@ type CreateGlobalReplicationGroupInput struct {
 	// the Global Datastore name across multiple regions.
 	//
 	// For a full list of AWS Regions and their respective Global Datastore iD prefixes,
-	// see Using the AWS CLI with Global Datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Clusters-CLI.html).
+	// see Using the AWS CLI with Global Datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores-CLI.html).
 	//
 	// GlobalReplicationGroupIdSuffix is a required field
 	GlobalReplicationGroupIdSuffix *string `type:"string" required:"true"`

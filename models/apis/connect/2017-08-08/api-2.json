@@ -165,6 +165,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreateQuickConnect":{
+      "name":"CreateQuickConnect",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/quick-connects/{InstanceId}"
+      },
+      "input":{"shape":"CreateQuickConnectRequest"},
+      "output":{"shape":"CreateQuickConnectResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"DuplicateResourceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "CreateRoutingProfile":{
       "name":"CreateRoutingProfile",
       "http":{
@@ -260,6 +278,21 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteQuickConnect":{
+      "name":"DeleteQuickConnect",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/quick-connects/{InstanceId}/{QuickConnectId}"
+      },
+      "input":{"shape":"DeleteQuickConnectRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DeleteUseCase":{
@@ -368,6 +401,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "DescribeQuickConnect":{
+      "name":"DescribeQuickConnect",
+      "http":{
+        "method":"GET",
+        "requestUri":"/quick-connects/{InstanceId}/{QuickConnectId}"
+      },
+      "input":{"shape":"DescribeQuickConnectRequest"},
+      "output":{"shape":"DescribeQuickConnectResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DescribeRoutingProfile":{
@@ -775,6 +824,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListQuickConnects":{
+      "name":"ListQuickConnects",
+      "http":{
+        "method":"GET",
+        "requestUri":"/quick-connects/{InstanceId}"
+      },
+      "input":{"shape":"ListQuickConnectsRequest"},
+      "output":{"shape":"ListQuickConnectsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListRoutingProfileQueues":{
       "name":"ListRoutingProfileQueues",
       "http":{
@@ -1131,6 +1196,36 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateQuickConnectConfig":{
+      "name":"UpdateQuickConnectConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/quick-connects/{InstanceId}/{QuickConnectId}/config"
+      },
+      "input":{"shape":"UpdateQuickConnectConfigRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateQuickConnectName":{
+      "name":"UpdateQuickConnectName",
+      "http":{
+        "method":"POST",
+        "requestUri":"/quick-connects/{InstanceId}/{QuickConnectId}/name"
+      },
+      "input":{"shape":"UpdateQuickConnectNameRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "UpdateRoutingProfileConcurrency":{
@@ -1682,6 +1777,32 @@
         "IntegrationAssociationArn":{"shape":"ARN"}
       }
     },
+    "CreateQuickConnectRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Name",
+        "QuickConnectConfig"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"QuickConnectName"},
+        "Description":{"shape":"QuickConnectDescription"},
+        "QuickConnectConfig":{"shape":"QuickConnectConfig"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateQuickConnectResponse":{
+      "type":"structure",
+      "members":{
+        "QuickConnectARN":{"shape":"ARN"},
+        "QuickConnectId":{"shape":"QuickConnectId"}
+      }
+    },
     "CreateRoutingProfileRequest":{
       "type":"structure",
       "required":[
@@ -1894,6 +2015,25 @@
         }
       }
     },
+    "DeleteQuickConnectRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QuickConnectId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QuickConnectId":{
+          "shape":"QuickConnectId",
+          "location":"uri",
+          "locationName":"QuickConnectId"
+        }
+      }
+    },
     "DeleteUseCaseRequest":{
       "type":"structure",
       "required":[
@@ -2053,6 +2193,31 @@
       "type":"structure",
       "members":{
         "StorageConfig":{"shape":"InstanceStorageConfig"}
+      }
+    },
+    "DescribeQuickConnectRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QuickConnectId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QuickConnectId":{
+          "shape":"QuickConnectId",
+          "location":"uri",
+          "locationName":"QuickConnectId"
+        }
+      }
+    },
+    "DescribeQuickConnectResponse":{
+      "type":"structure",
+      "members":{
+        "QuickConnect":{"shape":"QuickConnect"}
       }
     },
     "DescribeRoutingProfileRequest":{
@@ -3218,6 +3383,40 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListQuickConnectsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult1000",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "QuickConnectTypes":{
+          "shape":"QuickConnectTypes",
+          "location":"querystring",
+          "locationName":"QuickConnectTypes"
+        }
+      }
+    },
+    "ListQuickConnectsResponse":{
+      "type":"structure",
+      "members":{
+        "QuickConnectSummaryList":{"shape":"QuickConnectSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListRoutingProfileQueuesRequest":{
       "type":"structure",
       "required":[
@@ -3798,6 +3997,13 @@
       "max":10
     },
     "PhoneNumberId":{"type":"string"},
+    "PhoneNumberQuickConnectConfig":{
+      "type":"structure",
+      "required":["PhoneNumber"],
+      "members":{
+        "PhoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
     "PhoneNumberSummary":{
       "type":"structure",
       "members":{
@@ -3886,6 +4092,17 @@
       "max":256,
       "min":1
     },
+    "QueueQuickConnectConfig":{
+      "type":"structure",
+      "required":[
+        "QueueId",
+        "ContactFlowId"
+      ],
+      "members":{
+        "QueueId":{"shape":"QueueId"},
+        "ContactFlowId":{"shape":"ContactFlowId"}
+      }
+    },
     "QueueReference":{
       "type":"structure",
       "members":{
@@ -3923,6 +4140,64 @@
       "member":{"shape":"QueueId"},
       "max":100,
       "min":1
+    },
+    "QuickConnect":{
+      "type":"structure",
+      "members":{
+        "QuickConnectARN":{"shape":"ARN"},
+        "QuickConnectId":{"shape":"QuickConnectId"},
+        "Name":{"shape":"QuickConnectName"},
+        "Description":{"shape":"QuickConnectDescription"},
+        "QuickConnectConfig":{"shape":"QuickConnectConfig"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "QuickConnectConfig":{
+      "type":"structure",
+      "required":["QuickConnectType"],
+      "members":{
+        "QuickConnectType":{"shape":"QuickConnectType"},
+        "UserConfig":{"shape":"UserQuickConnectConfig"},
+        "QueueConfig":{"shape":"QueueQuickConnectConfig"},
+        "PhoneConfig":{"shape":"PhoneNumberQuickConnectConfig"}
+      }
+    },
+    "QuickConnectDescription":{
+      "type":"string",
+      "max":250,
+      "min":0
+    },
+    "QuickConnectId":{"type":"string"},
+    "QuickConnectName":{
+      "type":"string",
+      "max":127,
+      "min":1
+    },
+    "QuickConnectSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QuickConnectId"},
+        "Arn":{"shape":"ARN"},
+        "Name":{"shape":"QuickConnectName"},
+        "QuickConnectType":{"shape":"QuickConnectType"}
+      }
+    },
+    "QuickConnectSummaryList":{
+      "type":"list",
+      "member":{"shape":"QuickConnectSummary"}
+    },
+    "QuickConnectType":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "QUEUE",
+        "PHONE_NUMBER"
+      ]
+    },
+    "QuickConnectTypes":{
+      "type":"list",
+      "member":{"shape":"QuickConnectType"},
+      "max":3
     },
     "Reference":{
       "type":"structure",
@@ -4541,6 +4816,48 @@
         "StorageConfig":{"shape":"InstanceStorageConfig"}
       }
     },
+    "UpdateQuickConnectConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QuickConnectId",
+        "QuickConnectConfig"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QuickConnectId":{
+          "shape":"QuickConnectId",
+          "location":"uri",
+          "locationName":"QuickConnectId"
+        },
+        "QuickConnectConfig":{"shape":"QuickConnectConfig"}
+      }
+    },
+    "UpdateQuickConnectNameRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QuickConnectId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QuickConnectId":{
+          "shape":"QuickConnectId",
+          "location":"uri",
+          "locationName":"QuickConnectId"
+        },
+        "Name":{"shape":"QuickConnectName"},
+        "Description":{"shape":"QuickConnectDescription"}
+      }
+    },
     "UpdateRoutingProfileConcurrencyRequest":{
       "type":"structure",
       "required":[
@@ -4826,6 +5143,17 @@
         "AutoAccept":{"shape":"AutoAccept"},
         "AfterContactWorkTimeLimit":{"shape":"AfterContactWorkTimeLimit"},
         "DeskPhoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
+    "UserQuickConnectConfig":{
+      "type":"structure",
+      "required":[
+        "UserId",
+        "ContactFlowId"
+      ],
+      "members":{
+        "UserId":{"shape":"UserId"},
+        "ContactFlowId":{"shape":"ContactFlowId"}
       }
     },
     "UserSummary":{

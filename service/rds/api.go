@@ -9308,8 +9308,8 @@ func (c *RDS) DescribeSourceRegionsRequest(input *DescribeSourceRegionsInput) (r
 // DescribeSourceRegions API operation for Amazon Relational Database Service.
 //
 // Returns a list of the source AWS Regions where the current AWS Region can
-// create a read replica or copy a DB snapshot from. This API action supports
-// pagination.
+// create a read replica, copy a DB snapshot from, or replicate automated backups
+// from. This API action supports pagination.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16556,7 +16556,7 @@ type CopyDBSnapshotInput struct {
 	// another, and your DB instance uses a nondefault option group. If your source
 	// DB instance uses Transparent Data Encryption for Oracle or Microsoft SQL
 	// Server, you must specify this option when copying across AWS Regions. For
-	// more information, see Option Group Considerations (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html#USER_CopySnapshot.Options)
+	// more information, see Option group considerations (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html#USER_CopySnapshot.Options)
 	// in the Amazon RDS User Guide.
 	OptionGroupName *string `type:"string"`
 
@@ -18352,6 +18352,22 @@ type CreateDBInstanceInput struct {
 	// Possible values are postgresql and upgrade.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
+	// A value that indicates whether to enable a customer-owned IP address (CoIP)
+	// for an RDS on Outposts DB instance.
+	//
+	// A CoIP provides local or external connectivity to resources in your Outpost
+	// subnets through your on-premises network. For some use cases, a CoIP can
+	// provide lower latency for connections to the DB instance from outside of
+	// its virtual private cloud (VPC) on your local network.
+	//
+	// For more information about RDS on Outposts, see Working with Amazon RDS on
+	// AWS Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// in the AWS Outposts User Guide.
+	EnableCustomerOwnedIp *bool `type:"boolean"`
+
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
 	//
@@ -18932,6 +18948,12 @@ func (s *CreateDBInstanceInput) SetDomainIAMRoleName(v string) *CreateDBInstance
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *CreateDBInstanceInput) SetEnableCloudwatchLogsExports(v []*string) *CreateDBInstanceInput {
 	s.EnableCloudwatchLogsExports = v
+	return s
+}
+
+// SetEnableCustomerOwnedIp sets the EnableCustomerOwnedIp field's value.
+func (s *CreateDBInstanceInput) SetEnableCustomerOwnedIp(v bool) *CreateDBInstanceInput {
+	s.EnableCustomerOwnedIp = &v
 	return s
 }
 
@@ -22293,6 +22315,22 @@ type DBInstance struct {
 	// For more information, see DBCluster.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
+	// Specifies whether a customer-owned IP address (CoIP) is enabled for an RDS
+	// on Outposts DB instance.
+	//
+	// A CoIP provides local or external connectivity to resources in your Outpost
+	// subnets through your on-premises network. For some use cases, a CoIP can
+	// provide lower latency for connections to the DB instance from outside of
+	// its virtual private cloud (VPC) on your local network.
+	//
+	// For more information about RDS on Outposts, see Working with Amazon RDS on
+	// AWS Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// in the AWS Outposts User Guide.
+	CustomerOwnedIpEnabled *bool `type:"boolean"`
+
 	// If the DB instance is a member of a DB cluster, contains the name of the
 	// DB cluster that the DB instance is a member of.
 	DBClusterIdentifier *string `type:"string"`
@@ -22606,6 +22644,12 @@ func (s *DBInstance) SetCharacterSetName(v string) *DBInstance {
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *DBInstance) SetCopyTagsToSnapshot(v bool) *DBInstance {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCustomerOwnedIpEnabled sets the CustomerOwnedIpEnabled field's value.
+func (s *DBInstance) SetCustomerOwnedIpEnabled(v bool) *DBInstance {
+	s.CustomerOwnedIpEnabled = &v
 	return s
 }
 
@@ -27154,16 +27198,17 @@ type DescribeDBInstanceAutomatedBackupsInput struct {
 	// Supported filters are the following:
 	//
 	//    * status active - automated backups for current instances retained - automated
-	//    backups for deleted instances creating - automated backups that are waiting
-	//    for the first automated snapshot to be available
+	//    backups for deleted instances and after backup replication is stopped
+	//    creating - automated backups that are waiting for the first automated
+	//    snapshot to be available
 	//
 	//    * db-instance-id - Accepts DB instance identifiers and Amazon Resource
-	//    Names (ARNs) for DB instances. The results list includes only information
-	//    about the DB instance automated backupss identified by these ARNs.
+	//    Names (ARNs). The results list includes only information about the DB
+	//    instance automated backups identified by these ARNs.
 	//
-	//    * dbi-resource-id - Accepts DB instance resource identifiers and DB Amazon
-	//    Resource Names (ARNs) for DB instances. The results list includes only
-	//    information about the DB instance resources identified by these ARNs.
+	//    * dbi-resource-id - Accepts DB resource identifiers and Amazon Resource
+	//    Names (ARNs). The results list includes only information about the DB
+	//    instance resources identified by these ARNs.
 	//
 	// Returns all resources by default. The status for each resource is specified
 	// in the response.
@@ -33625,7 +33670,7 @@ type ModifyDBInstanceInput struct {
 	// The new DB subnet group for the DB instance. You can use this parameter to
 	// move your DB instance to a different VPC. If your DB instance isn't in a
 	// VPC, you can also use this parameter to move your DB instance into a VPC.
-	// For more information, see Updating the VPC for a DB Instance (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC)
+	// For more information, see Working with a DB instance in a VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC)
 	// in the Amazon RDS User Guide.
 	//
 	// Changing the subnet group causes an outage during the change. The change
@@ -33653,6 +33698,22 @@ type ModifyDBInstanceInput struct {
 
 	// The name of the IAM role to use when making API calls to the Directory Service.
 	DomainIAMRoleName *string `type:"string"`
+
+	// A value that indicates whether to enable a customer-owned IP address (CoIP)
+	// for an RDS on Outposts DB instance.
+	//
+	// A CoIP provides local or external connectivity to resources in your Outpost
+	// subnets through your on-premises network. For some use cases, a CoIP can
+	// provide lower latency for connections to the DB instance from outside of
+	// its virtual private cloud (VPC) on your local network.
+	//
+	// For more information about RDS on Outposts, see Working with Amazon RDS on
+	// AWS Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// in the AWS Outposts User Guide.
+	EnableCustomerOwnedIp *bool `type:"boolean"`
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
@@ -34096,6 +34157,12 @@ func (s *ModifyDBInstanceInput) SetDomain(v string) *ModifyDBInstanceInput {
 // SetDomainIAMRoleName sets the DomainIAMRoleName field's value.
 func (s *ModifyDBInstanceInput) SetDomainIAMRoleName(v string) *ModifyDBInstanceInput {
 	s.DomainIAMRoleName = &v
+	return s
+}
+
+// SetEnableCustomerOwnedIp sets the EnableCustomerOwnedIp field's value.
+func (s *ModifyDBInstanceInput) SetEnableCustomerOwnedIp(v bool) *ModifyDBInstanceInput {
+	s.EnableCustomerOwnedIp = &v
 	return s
 }
 
@@ -34724,8 +34791,8 @@ type ModifyDBSnapshotInput struct {
 	//
 	// You can specify this parameter when you upgrade an Oracle DB snapshot. The
 	// same option group considerations apply when upgrading a DB snapshot as when
-	// upgrading a DB instance. For more information, see Option Group Considerations
-	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Oracle.html#USER_UpgradeDBInstance.Oracle.OGPG.OG)
+	// upgrading a DB instance. For more information, see Option group considerations
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Oracle.html#USER_UpgradeDBInstance.Oracle.OGPG.OG)
 	// in the Amazon RDS User Guide.
 	OptionGroupName *string `type:"string"`
 }
@@ -39357,6 +39424,22 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// in the Amazon RDS User Guide.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
+	// A value that indicates whether to enable a customer-owned IP address (CoIP)
+	// for an RDS on Outposts DB instance.
+	//
+	// A CoIP provides local or external connectivity to resources in your Outpost
+	// subnets through your on-premises network. For some use cases, a CoIP can
+	// provide lower latency for connections to the DB instance from outside of
+	// its virtual private cloud (VPC) on your local network.
+	//
+	// For more information about RDS on Outposts, see Working with Amazon RDS on
+	// AWS Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// in the AWS Outposts User Guide.
+	EnableCustomerOwnedIp *bool `type:"boolean"`
+
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
 	//
@@ -39589,6 +39672,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetDomainIAMRoleName(v string) *R
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetEnableCloudwatchLogsExports(v []*string) *RestoreDBInstanceFromDBSnapshotInput {
 	s.EnableCloudwatchLogsExports = v
+	return s
+}
+
+// SetEnableCustomerOwnedIp sets the EnableCustomerOwnedIp field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetEnableCustomerOwnedIp(v bool) *RestoreDBInstanceFromDBSnapshotInput {
+	s.EnableCustomerOwnedIp = &v
 	return s
 }
 
@@ -40447,6 +40536,22 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// in the Amazon RDS User Guide.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
+	// A value that indicates whether to enable a customer-owned IP address (CoIP)
+	// for an RDS on Outposts DB instance.
+	//
+	// A CoIP provides local or external connectivity to resources in your Outpost
+	// subnets through your on-premises network. For some use cases, a CoIP can
+	// provide lower latency for connections to the DB instance from outside of
+	// its virtual private cloud (VPC) on your local network.
+	//
+	// For more information about RDS on Outposts, see Working with Amazon RDS on
+	// AWS Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// For more information about CoIPs, see Customer-owned IP addresses (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-networking-components.html#ip-addressing)
+	// in the AWS Outposts User Guide.
+	EnableCustomerOwnedIp *bool `type:"boolean"`
+
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
 	//
@@ -40709,6 +40814,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetDomainIAMRoleName(v string) *Re
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetEnableCloudwatchLogsExports(v []*string) *RestoreDBInstanceToPointInTimeInput {
 	s.EnableCloudwatchLogsExports = v
+	return s
+}
+
+// SetEnableCustomerOwnedIp sets the EnableCustomerOwnedIp field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetEnableCustomerOwnedIp(v bool) *RestoreDBInstanceToPointInTimeInput {
+	s.EnableCustomerOwnedIp = &v
 	return s
 }
 

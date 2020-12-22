@@ -1841,7 +1841,8 @@
       "members":{
         "RecommendationId":{"shape":"GenericString"},
         "GenerationTimestamp":{"shape":"GenericString"},
-        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"}
+        "LookbackPeriodInDays":{"shape":"LookbackPeriodInDays"},
+        "AdditionalMetadata":{"shape":"GenericString"}
       }
     },
     "RightsizingRecommendationSummary":{

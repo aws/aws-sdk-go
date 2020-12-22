@@ -3020,6 +3020,19 @@
       "type":"list",
       "member":{"shape":"ColumnError"}
     },
+    "ColumnImportance":{
+      "type":"structure",
+      "members":{
+        "ColumnName":{"shape":"NameString"},
+        "Importance":{"shape":"GenericBoundedDouble"}
+      }
+    },
+    "ColumnImportanceList":{
+      "type":"list",
+      "member":{"shape":"ColumnImportance"},
+      "max":100,
+      "min":0
+    },
     "ColumnList":{
       "type":"list",
       "member":{"shape":"Column"}
@@ -4524,7 +4537,8 @@
         "Precision":{"shape":"GenericBoundedDouble"},
         "Recall":{"shape":"GenericBoundedDouble"},
         "F1":{"shape":"GenericBoundedDouble"},
-        "ConfusionMatrix":{"shape":"ConfusionMatrix"}
+        "ConfusionMatrix":{"shape":"ConfusionMatrix"},
+        "ColumnImportances":{"shape":"ColumnImportanceList"}
       }
     },
     "FindMatchesParameters":{

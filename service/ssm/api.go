@@ -5647,6 +5647,11 @@ func (c *SSM) DescribeMaintenanceWindowTasksRequest(input *DescribeMaintenanceWi
 //
 // Lists the tasks in a maintenance window.
 //
+// For maintenance window tasks without a specified target, you cannot supply
+// values for --max-errors and --max-concurrency. Instead, the system inserts
+// a placeholder value of 1, which may be reported in the response to this command.
+// These values do not affect the running of your task and can be ignored.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8325,6 +8330,11 @@ func (c *SSM) GetMaintenanceWindowTaskRequest(input *GetMaintenanceWindowTaskInp
 // GetMaintenanceWindowTask API operation for Amazon Simple Systems Manager (SSM).
 //
 // Lists the tasks in a maintenance window.
+//
+// For maintenance window tasks without a specified target, you cannot supply
+// values for --max-errors and --max-concurrency. Instead, the system inserts
+// a placeholder value of 1, which may be reported in the response to this command.
+// These values do not affect the running of your task and can be ignored.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14391,6 +14401,13 @@ func (c *SSM) UpdateMaintenanceWindowTaskRequest(input *UpdateMaintenanceWindowT
 //    * MaxConcurrency
 //
 //    * MaxErrors
+//
+// One or more targets must be specified for maintenance window Run Command-type
+// tasks. Depending on the task, targets are optional for other maintenance
+// window task types (Automation, AWS Lambda, and AWS Step Functions). For more
+// information about running tasks that do not specify targets, see see Registering
+// maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+// in the AWS Systems Manager User Guide.
 //
 // If the value for a parameter in UpdateMaintenanceWindowTask is null, then
 // the corresponding field is not modified. If you set Replace to true, then
@@ -29589,9 +29606,19 @@ type GetMaintenanceWindowTaskOutput struct {
 	LoggingInfo *LoggingInfo `type:"structure"`
 
 	// The maximum number of targets allowed to run this task in parallel.
+	//
+	// For maintenance window tasks without a target specified, you cannot supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1, which may be reported in the response to this command. This value does
+	// not affect the running of your task and can be ignored.
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed before the task stops being scheduled.
+	//
+	// For maintenance window tasks without a target specified, you cannot supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1, which may be reported in the response to this command. This value does
+	// not affect the running of your task and can be ignored.
 	MaxErrors *string `min:"1" type:"string"`
 
 	// The retrieved task name.
@@ -43622,13 +43649,17 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 
 	// The maximum number of targets this task can be run for in parallel.
 	//
-	// MaxConcurrency is a required field
-	MaxConcurrency *string `min:"1" type:"string" required:"true"`
+	// For maintenance window tasks without a target specified, you cannot supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1. This value does not affect the running of your task.
+	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed before this task stops being scheduled.
 	//
-	// MaxErrors is a required field
-	MaxErrors *string `min:"1" type:"string" required:"true"`
+	// For maintenance window tasks without a target specified, you cannot supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1. This value does not affect the running of your task.
+	MaxErrors *string `min:"1" type:"string"`
 
 	// An optional name for the task.
 	Name *string `min:"3" type:"string"`
@@ -43654,6 +43685,13 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 
 	// The targets (either instances or maintenance window targets).
 	//
+	// One or more targets must be specified for maintenance window Run Command-type
+	// tasks. Depending on the task, targets are optional for other maintenance
+	// window task types (Automation, AWS Lambda, and AWS Step Functions). For more
+	// information about running tasks that do not specify targets, see see Registering
+	// maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// in the AWS Systems Manager User Guide.
+	//
 	// Specify instances using the following format:
 	//
 	// Key=InstanceIds,Values=<instance-id-1>,<instance-id-2>
@@ -43661,9 +43699,7 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// Specify maintenance window targets using the following format:
 	//
 	// Key=WindowTargetIds,Values=<window-target-id-1>,<window-target-id-2>
-	//
-	// Targets is a required field
-	Targets []*Target `type:"list" required:"true"`
+	Targets []*Target `type:"list"`
 
 	// The ARN of the task to run.
 	//
@@ -43712,23 +43748,14 @@ func (s *RegisterTaskWithMaintenanceWindowInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
-	if s.MaxConcurrency == nil {
-		invalidParams.Add(request.NewErrParamRequired("MaxConcurrency"))
-	}
 	if s.MaxConcurrency != nil && len(*s.MaxConcurrency) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MaxConcurrency", 1))
-	}
-	if s.MaxErrors == nil {
-		invalidParams.Add(request.NewErrParamRequired("MaxErrors"))
 	}
 	if s.MaxErrors != nil && len(*s.MaxErrors) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MaxErrors", 1))
 	}
 	if s.Name != nil && len(*s.Name) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
-	}
-	if s.Targets == nil {
-		invalidParams.Add(request.NewErrParamRequired("Targets"))
 	}
 	if s.TaskArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("TaskArn"))
@@ -47546,6 +47573,13 @@ func (s *Tag) SetValue(v string) *Tag {
 // An array of search criteria that targets instances using a Key,Value combination
 // that you specify.
 //
+// One or more targets must be specified for maintenance window Run Command-type
+// tasks. Depending on the task, targets are optional for other maintenance
+// window task types (Automation, AWS Lambda, and AWS Step Functions). For more
+// information about running tasks that do not specify targets, see see Registering
+// maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+// in the AWS Systems Manager User Guide.
+//
 // Supported formats include the following.
 //
 //    * Key=InstanceIds,Values=instance-id-1,instance-id-2,instance-id-3
@@ -49693,10 +49727,20 @@ type UpdateMaintenanceWindowTaskInput struct {
 
 	// The new MaxConcurrency value you want to specify. MaxConcurrency is the number
 	// of targets that are allowed to run this task in parallel.
+	//
+	// For maintenance window tasks without a target specified, you cannot supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1, which may be reported in the response to this command. This value does
+	// not affect the running of your task and can be ignored.
 	MaxConcurrency *string `min:"1" type:"string"`
 
 	// The new MaxErrors value to specify. MaxErrors is the maximum number of errors
 	// that are allowed before the task stops being scheduled.
+	//
+	// For maintenance window tasks without a target specified, you cannot supply
+	// a value for this option. Instead, the system inserts a placeholder value
+	// of 1, which may be reported in the response to this command. This value does
+	// not affect the running of your task and can be ignored.
 	MaxErrors *string `min:"1" type:"string"`
 
 	// The new task name to specify.
@@ -49728,6 +49772,13 @@ type UpdateMaintenanceWindowTaskInput struct {
 	// The targets (either instances or tags) to modify. Instances are specified
 	// using Key=instanceids,Values=instanceID_1,instanceID_2. Tags are specified
 	// using Key=tag_name,Values=tag_value.
+	//
+	// One or more targets must be specified for maintenance window Run Command-type
+	// tasks. Depending on the task, targets are optional for other maintenance
+	// window task types (Automation, AWS Lambda, and AWS Step Functions). For more
+	// information about running tasks that do not specify targets, see see Registering
+	// maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
+	// in the AWS Systems Manager User Guide.
 	Targets []*Target `type:"list"`
 
 	// The task ARN to modify.

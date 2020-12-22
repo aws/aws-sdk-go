@@ -58,6 +58,8 @@ func (c *Connect) AssociateApprovedOriginRequest(input *AssociateApprovedOriginI
 
 // AssociateApprovedOrigin API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Associates an approved origin to an Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -154,6 +156,8 @@ func (c *Connect) AssociateInstanceStorageConfigRequest(input *AssociateInstance
 }
 
 // AssociateInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Associates a storage resource type for the first time. You can only associate
 // one type of storage configuration in a single call. This means, for example,
@@ -257,6 +261,8 @@ func (c *Connect) AssociateLambdaFunctionRequest(input *AssociateLambdaFunctionI
 
 // AssociateLambdaFunction API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Allows the specified Amazon Connect instance to access the specified Lambda
 // function.
 //
@@ -355,6 +361,8 @@ func (c *Connect) AssociateLexBotRequest(input *AssociateLexBotInput) (req *requ
 }
 
 // AssociateLexBot API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Allows the specified Amazon Connect instance to access the specified Amazon
 // Lex bot.
@@ -545,6 +553,8 @@ func (c *Connect) AssociateSecurityKeyRequest(input *AssociateSecurityKeyInput) 
 }
 
 // AssociateSecurityKey API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Associates a security key to the instance.
 //
@@ -843,7 +853,7 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 //
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// Create an AppIntegration association with anAmazon Connect instance.
+// Create an AppIntegration association with an Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -885,6 +895,105 @@ func (c *Connect) CreateIntegrationAssociation(input *CreateIntegrationAssociati
 // for more information on using Contexts.
 func (c *Connect) CreateIntegrationAssociationWithContext(ctx aws.Context, input *CreateIntegrationAssociationInput, opts ...request.Option) (*CreateIntegrationAssociationOutput, error) {
 	req, out := c.CreateIntegrationAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateQuickConnect = "CreateQuickConnect"
+
+// CreateQuickConnectRequest generates a "aws/request.Request" representing the
+// client's request for the CreateQuickConnect operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateQuickConnect for more information on using the CreateQuickConnect
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateQuickConnectRequest method.
+//    req, resp := client.CreateQuickConnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQuickConnect
+func (c *Connect) CreateQuickConnectRequest(input *CreateQuickConnectInput) (req *request.Request, output *CreateQuickConnectOutput) {
+	op := &request.Operation{
+		Name:       opCreateQuickConnect,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/quick-connects/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateQuickConnectInput{}
+	}
+
+	output = &CreateQuickConnectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateQuickConnect API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates a quick connect for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateQuickConnect for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQuickConnect
+func (c *Connect) CreateQuickConnect(input *CreateQuickConnectInput) (*CreateQuickConnectOutput, error) {
+	req, out := c.CreateQuickConnectRequest(input)
+	return out, req.Send()
+}
+
+// CreateQuickConnectWithContext is the same as CreateQuickConnect with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateQuickConnect for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateQuickConnectWithContext(ctx aws.Context, input *CreateQuickConnectInput, opts ...request.Option) (*CreateQuickConnectOutput, error) {
+	req, out := c.CreateQuickConnectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1458,6 +1567,100 @@ func (c *Connect) DeleteIntegrationAssociationWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteQuickConnect = "DeleteQuickConnect"
+
+// DeleteQuickConnectRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteQuickConnect operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteQuickConnect for more information on using the DeleteQuickConnect
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteQuickConnectRequest method.
+//    req, resp := client.DeleteQuickConnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQuickConnect
+func (c *Connect) DeleteQuickConnectRequest(input *DeleteQuickConnectInput) (req *request.Request, output *DeleteQuickConnectOutput) {
+	op := &request.Operation{
+		Name:       opDeleteQuickConnect,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/quick-connects/{InstanceId}/{QuickConnectId}",
+	}
+
+	if input == nil {
+		input = &DeleteQuickConnectInput{}
+	}
+
+	output = &DeleteQuickConnectOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteQuickConnect API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Deletes a quick connect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteQuickConnect for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQuickConnect
+func (c *Connect) DeleteQuickConnect(input *DeleteQuickConnectInput) (*DeleteQuickConnectOutput, error) {
+	req, out := c.DeleteQuickConnectRequest(input)
+	return out, req.Send()
+}
+
+// DeleteQuickConnectWithContext is the same as DeleteQuickConnect with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteQuickConnect for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteQuickConnectWithContext(ctx aws.Context, input *DeleteQuickConnectInput, opts ...request.Option) (*DeleteQuickConnectOutput, error) {
+	req, out := c.DeleteQuickConnectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUseCase = "DeleteUseCase"
 
 // DeleteUseCaseRequest generates a "aws/request.Request" representing the
@@ -1882,6 +2085,8 @@ func (c *Connect) DescribeInstanceRequest(input *DescribeInstanceInput) (req *re
 
 // DescribeInstance API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Returns the current state of the specified instance identifier. It tracks
 // the instance while it is being created and returns an error status if applicable.
 //
@@ -1971,6 +2176,8 @@ func (c *Connect) DescribeInstanceAttributeRequest(input *DescribeInstanceAttrib
 }
 
 // DescribeInstanceAttribute API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Describes the specified instance attribute.
 //
@@ -2063,6 +2270,8 @@ func (c *Connect) DescribeInstanceStorageConfigRequest(input *DescribeInstanceSt
 
 // DescribeInstanceStorageConfig API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Retrieves the current storage configurations for the specified resource type,
 // association ID, and instance ID.
 //
@@ -2106,6 +2315,99 @@ func (c *Connect) DescribeInstanceStorageConfig(input *DescribeInstanceStorageCo
 // for more information on using Contexts.
 func (c *Connect) DescribeInstanceStorageConfigWithContext(ctx aws.Context, input *DescribeInstanceStorageConfigInput, opts ...request.Option) (*DescribeInstanceStorageConfigOutput, error) {
 	req, out := c.DescribeInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeQuickConnect = "DescribeQuickConnect"
+
+// DescribeQuickConnectRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeQuickConnect operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeQuickConnect for more information on using the DescribeQuickConnect
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeQuickConnectRequest method.
+//    req, resp := client.DescribeQuickConnectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQuickConnect
+func (c *Connect) DescribeQuickConnectRequest(input *DescribeQuickConnectInput) (req *request.Request, output *DescribeQuickConnectOutput) {
+	op := &request.Operation{
+		Name:       opDescribeQuickConnect,
+		HTTPMethod: "GET",
+		HTTPPath:   "/quick-connects/{InstanceId}/{QuickConnectId}",
+	}
+
+	if input == nil {
+		input = &DescribeQuickConnectInput{}
+	}
+
+	output = &DescribeQuickConnectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeQuickConnect API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Describes the quick connect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeQuickConnect for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQuickConnect
+func (c *Connect) DescribeQuickConnect(input *DescribeQuickConnectInput) (*DescribeQuickConnectOutput, error) {
+	req, out := c.DescribeQuickConnectRequest(input)
+	return out, req.Send()
+}
+
+// DescribeQuickConnectWithContext is the same as DescribeQuickConnect with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeQuickConnect for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeQuickConnectWithContext(ctx aws.Context, input *DescribeQuickConnectInput, opts ...request.Option) (*DescribeQuickConnectOutput, error) {
+	req, out := c.DescribeQuickConnectRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2522,6 +2824,8 @@ func (c *Connect) DisassociateApprovedOriginRequest(input *DisassociateApprovedO
 
 // DisassociateApprovedOrigin API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Revokes access to integrated applications from Amazon Connect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2613,6 +2917,8 @@ func (c *Connect) DisassociateInstanceStorageConfigRequest(input *DisassociateIn
 }
 
 // DisassociateInstanceStorageConfig API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Removes the storage type configurations for the specified resource type and
 // association ID.
@@ -2707,6 +3013,8 @@ func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFun
 
 // DisassociateLambdaFunction API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Remove the Lambda function from the drop-down options available in the relevant
 // contact flow blocks.
 //
@@ -2799,6 +3107,8 @@ func (c *Connect) DisassociateLexBotRequest(input *DisassociateLexBotInput) (req
 }
 
 // DisassociateLexBot API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Revokes authorization from the specified instance to access the specified
 // Amazon Lex bot.
@@ -2984,6 +3294,8 @@ func (c *Connect) DisassociateSecurityKeyRequest(input *DisassociateSecurityKeyI
 }
 
 // DisassociateSecurityKey API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Deletes the specified security key.
 //
@@ -3565,6 +3877,8 @@ func (c *Connect) ListApprovedOriginsRequest(input *ListApprovedOriginsInput) (r
 }
 
 // ListApprovedOrigins API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Returns a paginated list of all approved origins associated with the instance.
 //
@@ -4622,6 +4936,8 @@ func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (r
 
 // ListLambdaFunctions API operation for Amazon Connect Service.
 //
+// This API is in preview release for Amazon Connect and is subject to change.
+//
 // Returns a paginated list of all the Lambda functions that show up in the
 // drop-down options in the relevant contact flow blocks.
 //
@@ -4771,6 +5087,8 @@ func (c *Connect) ListLexBotsRequest(input *ListLexBotsInput) (req *request.Requ
 }
 
 // ListLexBots API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Returns a paginated list of all the Amazon Lex bots currently associated
 // with the instance.
@@ -5327,6 +5645,158 @@ func (c *Connect) ListQueuesPagesWithContext(ctx aws.Context, input *ListQueuesI
 	return p.Err()
 }
 
+const opListQuickConnects = "ListQuickConnects"
+
+// ListQuickConnectsRequest generates a "aws/request.Request" representing the
+// client's request for the ListQuickConnects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListQuickConnects for more information on using the ListQuickConnects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListQuickConnectsRequest method.
+//    req, resp := client.ListQuickConnectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQuickConnects
+func (c *Connect) ListQuickConnectsRequest(input *ListQuickConnectsInput) (req *request.Request, output *ListQuickConnectsOutput) {
+	op := &request.Operation{
+		Name:       opListQuickConnects,
+		HTTPMethod: "GET",
+		HTTPPath:   "/quick-connects/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListQuickConnectsInput{}
+	}
+
+	output = &ListQuickConnectsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListQuickConnects API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Provides information about the quick connects for the specified Amazon Connect
+// instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListQuickConnects for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQuickConnects
+func (c *Connect) ListQuickConnects(input *ListQuickConnectsInput) (*ListQuickConnectsOutput, error) {
+	req, out := c.ListQuickConnectsRequest(input)
+	return out, req.Send()
+}
+
+// ListQuickConnectsWithContext is the same as ListQuickConnects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListQuickConnects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListQuickConnectsWithContext(ctx aws.Context, input *ListQuickConnectsInput, opts ...request.Option) (*ListQuickConnectsOutput, error) {
+	req, out := c.ListQuickConnectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListQuickConnectsPages iterates over the pages of a ListQuickConnects operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListQuickConnects method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListQuickConnects operation.
+//    pageNum := 0
+//    err := client.ListQuickConnectsPages(params,
+//        func(page *connect.ListQuickConnectsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListQuickConnectsPages(input *ListQuickConnectsInput, fn func(*ListQuickConnectsOutput, bool) bool) error {
+	return c.ListQuickConnectsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListQuickConnectsPagesWithContext same as ListQuickConnectsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListQuickConnectsPagesWithContext(ctx aws.Context, input *ListQuickConnectsInput, fn func(*ListQuickConnectsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListQuickConnectsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListQuickConnectsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListQuickConnectsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRoutingProfileQueues = "ListRoutingProfileQueues"
 
 // ListRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
@@ -5679,6 +6149,8 @@ func (c *Connect) ListSecurityKeysRequest(input *ListSecurityKeysInput) (req *re
 }
 
 // ListSecurityKeys API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Returns a paginated list of all security keys associated with the instance.
 //
@@ -7309,7 +7781,8 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //
 // Adds the specified tags to the specified resource.
 //
-// The supported resource types are users, routing profiles, and contact flows.
+// The supported resource types are users, routing profiles, quick connects,
+// and contact flows.
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
 // Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
@@ -7940,6 +8413,195 @@ func (c *Connect) UpdateInstanceStorageConfig(input *UpdateInstanceStorageConfig
 // for more information on using Contexts.
 func (c *Connect) UpdateInstanceStorageConfigWithContext(ctx aws.Context, input *UpdateInstanceStorageConfigInput, opts ...request.Option) (*UpdateInstanceStorageConfigOutput, error) {
 	req, out := c.UpdateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQuickConnectConfig = "UpdateQuickConnectConfig"
+
+// UpdateQuickConnectConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQuickConnectConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQuickConnectConfig for more information on using the UpdateQuickConnectConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQuickConnectConfigRequest method.
+//    req, resp := client.UpdateQuickConnectConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectConfig
+func (c *Connect) UpdateQuickConnectConfigRequest(input *UpdateQuickConnectConfigInput) (req *request.Request, output *UpdateQuickConnectConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQuickConnectConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/quick-connects/{InstanceId}/{QuickConnectId}/config",
+	}
+
+	if input == nil {
+		input = &UpdateQuickConnectConfigInput{}
+	}
+
+	output = &UpdateQuickConnectConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQuickConnectConfig API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the configuration settings for the specified quick connect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQuickConnectConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectConfig
+func (c *Connect) UpdateQuickConnectConfig(input *UpdateQuickConnectConfigInput) (*UpdateQuickConnectConfigOutput, error) {
+	req, out := c.UpdateQuickConnectConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQuickConnectConfigWithContext is the same as UpdateQuickConnectConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQuickConnectConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQuickConnectConfigWithContext(ctx aws.Context, input *UpdateQuickConnectConfigInput, opts ...request.Option) (*UpdateQuickConnectConfigOutput, error) {
+	req, out := c.UpdateQuickConnectConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQuickConnectName = "UpdateQuickConnectName"
+
+// UpdateQuickConnectNameRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQuickConnectName operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQuickConnectName for more information on using the UpdateQuickConnectName
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQuickConnectNameRequest method.
+//    req, resp := client.UpdateQuickConnectNameRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectName
+func (c *Connect) UpdateQuickConnectNameRequest(input *UpdateQuickConnectNameInput) (req *request.Request, output *UpdateQuickConnectNameOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQuickConnectName,
+		HTTPMethod: "POST",
+		HTTPPath:   "/quick-connects/{InstanceId}/{QuickConnectId}/name",
+	}
+
+	if input == nil {
+		input = &UpdateQuickConnectNameInput{}
+	}
+
+	output = &UpdateQuickConnectNameOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQuickConnectName API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the name and description of a quick connect. The request accepts
+// the following data in JSON format. At least Name or Description must be provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQuickConnectName for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectName
+func (c *Connect) UpdateQuickConnectName(input *UpdateQuickConnectNameInput) (*UpdateQuickConnectNameOutput, error) {
+	req, out := c.UpdateQuickConnectNameRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQuickConnectNameWithContext is the same as UpdateQuickConnectName with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQuickConnectName for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQuickConnectNameWithContext(ctx aws.Context, input *UpdateQuickConnectNameInput, opts ...request.Option) (*UpdateQuickConnectNameOutput, error) {
+	req, out := c.UpdateQuickConnectNameRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10227,6 +10889,136 @@ func (s *CreateIntegrationAssociationOutput) SetIntegrationAssociationId(v strin
 	return s
 }
 
+type CreateQuickConnectInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the quick connect.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the quick connect.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Configuration settings for the quick connect.
+	//
+	// QuickConnectConfig is a required field
+	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateQuickConnectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateQuickConnectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateQuickConnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateQuickConnectInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.QuickConnectConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectConfig"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.QuickConnectConfig != nil {
+		if err := s.QuickConnectConfig.Validate(); err != nil {
+			invalidParams.AddNested("QuickConnectConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateQuickConnectInput) SetDescription(v string) *CreateQuickConnectInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateQuickConnectInput) SetInstanceId(v string) *CreateQuickConnectInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateQuickConnectInput) SetName(v string) *CreateQuickConnectInput {
+	s.Name = &v
+	return s
+}
+
+// SetQuickConnectConfig sets the QuickConnectConfig field's value.
+func (s *CreateQuickConnectInput) SetQuickConnectConfig(v *QuickConnectConfig) *CreateQuickConnectInput {
+	s.QuickConnectConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateQuickConnectInput) SetTags(v map[string]*string) *CreateQuickConnectInput {
+	s.Tags = v
+	return s
+}
+
+type CreateQuickConnectOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the quick connect.
+	QuickConnectARN *string `type:"string"`
+
+	// The identifier for the quick connect.
+	QuickConnectId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateQuickConnectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateQuickConnectOutput) GoString() string {
+	return s.String()
+}
+
+// SetQuickConnectARN sets the QuickConnectARN field's value.
+func (s *CreateQuickConnectOutput) SetQuickConnectARN(v string) *CreateQuickConnectOutput {
+	s.QuickConnectARN = &v
+	return s
+}
+
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *CreateQuickConnectOutput) SetQuickConnectId(v string) *CreateQuickConnectOutput {
+	s.QuickConnectId = &v
+	return s
+}
+
 type CreateRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11097,6 +11889,78 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteQuickConnectInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the quick connect.
+	//
+	// QuickConnectId is a required field
+	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteQuickConnectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQuickConnectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteQuickConnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteQuickConnectInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QuickConnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectId"))
+	}
+	if s.QuickConnectId != nil && len(*s.QuickConnectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteQuickConnectInput) SetInstanceId(v string) *DeleteQuickConnectInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *DeleteQuickConnectInput) SetQuickConnectId(v string) *DeleteQuickConnectInput {
+	s.QuickConnectId = &v
+	return s
+}
+
+type DeleteQuickConnectOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteQuickConnectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQuickConnectOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11649,6 +12513,87 @@ func (s DescribeInstanceStorageConfigOutput) GoString() string {
 // SetStorageConfig sets the StorageConfig field's value.
 func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorageConfig) *DescribeInstanceStorageConfigOutput {
 	s.StorageConfig = v
+	return s
+}
+
+type DescribeQuickConnectInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the quick connect.
+	//
+	// QuickConnectId is a required field
+	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeQuickConnectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQuickConnectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeQuickConnectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeQuickConnectInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QuickConnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectId"))
+	}
+	if s.QuickConnectId != nil && len(*s.QuickConnectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeQuickConnectInput) SetInstanceId(v string) *DescribeQuickConnectInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *DescribeQuickConnectInput) SetQuickConnectId(v string) *DescribeQuickConnectInput {
+	s.QuickConnectId = &v
+	return s
+}
+
+type DescribeQuickConnectOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the quick connect.
+	QuickConnect *QuickConnect `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeQuickConnectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQuickConnectOutput) GoString() string {
+	return s.String()
+}
+
+// SetQuickConnect sets the QuickConnect field's value.
+func (s *DescribeQuickConnectOutput) SetQuickConnect(v *QuickConnect) *DescribeQuickConnectOutput {
+	s.QuickConnect = v
 	return s
 }
 
@@ -16060,6 +17005,112 @@ func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOut
 	return s
 }
 
+type ListQuickConnectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The type of quick connect. In the Amazon Connect console, when you create
+	// a quick connect, you are prompted to assign one of the following types: Agent
+	// (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+	QuickConnectTypes []*string `location:"querystring" locationName:"QuickConnectTypes" type:"list"`
+}
+
+// String returns the string representation
+func (s ListQuickConnectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListQuickConnectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListQuickConnectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListQuickConnectsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListQuickConnectsInput) SetInstanceId(v string) *ListQuickConnectsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListQuickConnectsInput) SetMaxResults(v int64) *ListQuickConnectsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQuickConnectsInput) SetNextToken(v string) *ListQuickConnectsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQuickConnectTypes sets the QuickConnectTypes field's value.
+func (s *ListQuickConnectsInput) SetQuickConnectTypes(v []*string) *ListQuickConnectsInput {
+	s.QuickConnectTypes = v
+	return s
+}
+
+type ListQuickConnectsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Information about the quick connects.
+	QuickConnectSummaryList []*QuickConnectSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListQuickConnectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListQuickConnectsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQuickConnectsOutput) SetNextToken(v string) *ListQuickConnectsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQuickConnectSummaryList sets the QuickConnectSummaryList field's value.
+func (s *ListQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSummary) *ListQuickConnectsOutput {
+	s.QuickConnectSummaryList = v
+	return s
+}
+
 type ListRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16981,6 +18032,45 @@ func (s *ParticipantDetails) SetDisplayName(v string) *ParticipantDetails {
 	return s
 }
 
+// Contains information about a phone number for a quick connect.
+type PhoneNumberQuickConnectConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number in E.164 format.
+	//
+	// PhoneNumber is a required field
+	PhoneNumber *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PhoneNumberQuickConnectConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PhoneNumberQuickConnectConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PhoneNumberQuickConnectConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PhoneNumberQuickConnectConfig"}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *PhoneNumberQuickConnectConfig) SetPhoneNumber(v string) *PhoneNumberQuickConnectConfig {
+	s.PhoneNumber = &v
+	return s
+}
+
 // Contains summary information about a phone number for a contact center.
 type PhoneNumberSummary struct {
 	_ struct{} `type:"structure"`
@@ -17107,6 +18197,60 @@ func (s *PromptSummary) SetName(v string) *PromptSummary {
 	return s
 }
 
+// Contains information about a queue for a quick connect. The contact flow
+// must be of type Transfer to Queue.
+type QueueQuickConnectConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// The identifier of the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s QueueQuickConnectConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QueueQuickConnectConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QueueQuickConnectConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QueueQuickConnectConfig"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *QueueQuickConnectConfig) SetContactFlowId(v string) *QueueQuickConnectConfig {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *QueueQuickConnectConfig) SetQueueId(v string) *QueueQuickConnectConfig {
+	s.QueueId = &v
+	return s
+}
+
 // Contains information about a queue resource for which metrics are returned.
 type QueueReference struct {
 	_ struct{} `type:"structure"`
@@ -17188,6 +18332,211 @@ func (s *QueueSummary) SetName(v string) *QueueSummary {
 // SetQueueType sets the QueueType field's value.
 func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 	s.QueueType = &v
+	return s
+}
+
+// Contains information about a quick connect.
+type QuickConnect struct {
+	_ struct{} `type:"structure"`
+
+	// The description.
+	Description *string `type:"string"`
+
+	// The name of the quick connect.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the quick connect.
+	QuickConnectARN *string `type:"string"`
+
+	// Contains information about the quick connect.
+	QuickConnectConfig *QuickConnectConfig `type:"structure"`
+
+	// The identifier for the quick connect.
+	QuickConnectId *string `type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s QuickConnect) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QuickConnect) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *QuickConnect) SetDescription(v string) *QuickConnect {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *QuickConnect) SetName(v string) *QuickConnect {
+	s.Name = &v
+	return s
+}
+
+// SetQuickConnectARN sets the QuickConnectARN field's value.
+func (s *QuickConnect) SetQuickConnectARN(v string) *QuickConnect {
+	s.QuickConnectARN = &v
+	return s
+}
+
+// SetQuickConnectConfig sets the QuickConnectConfig field's value.
+func (s *QuickConnect) SetQuickConnectConfig(v *QuickConnectConfig) *QuickConnect {
+	s.QuickConnectConfig = v
+	return s
+}
+
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *QuickConnect) SetQuickConnectId(v string) *QuickConnect {
+	s.QuickConnectId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *QuickConnect) SetTags(v map[string]*string) *QuickConnect {
+	s.Tags = v
+	return s
+}
+
+// Contains configuration settings for a quick connect.
+type QuickConnectConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The phone configuration. This is required only if QuickConnectType is PHONE_NUMBER.
+	PhoneConfig *PhoneNumberQuickConnectConfig `type:"structure"`
+
+	// The queue configuration. This is required only if QuickConnectType is QUEUE.
+	QueueConfig *QueueQuickConnectConfig `type:"structure"`
+
+	// The type of quick connect. In the Amazon Connect console, when you create
+	// a quick connect, you are prompted to assign one of the following types: Agent
+	// (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+	//
+	// QuickConnectType is a required field
+	QuickConnectType *string `type:"string" required:"true" enum:"QuickConnectType"`
+
+	// The user configuration. This is required only if QuickConnectType is USER.
+	UserConfig *UserQuickConnectConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s QuickConnectConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QuickConnectConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QuickConnectConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QuickConnectConfig"}
+	if s.QuickConnectType == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectType"))
+	}
+	if s.PhoneConfig != nil {
+		if err := s.PhoneConfig.Validate(); err != nil {
+			invalidParams.AddNested("PhoneConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.QueueConfig != nil {
+		if err := s.QueueConfig.Validate(); err != nil {
+			invalidParams.AddNested("QueueConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UserConfig != nil {
+		if err := s.UserConfig.Validate(); err != nil {
+			invalidParams.AddNested("UserConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPhoneConfig sets the PhoneConfig field's value.
+func (s *QuickConnectConfig) SetPhoneConfig(v *PhoneNumberQuickConnectConfig) *QuickConnectConfig {
+	s.PhoneConfig = v
+	return s
+}
+
+// SetQueueConfig sets the QueueConfig field's value.
+func (s *QuickConnectConfig) SetQueueConfig(v *QueueQuickConnectConfig) *QuickConnectConfig {
+	s.QueueConfig = v
+	return s
+}
+
+// SetQuickConnectType sets the QuickConnectType field's value.
+func (s *QuickConnectConfig) SetQuickConnectType(v string) *QuickConnectConfig {
+	s.QuickConnectType = &v
+	return s
+}
+
+// SetUserConfig sets the UserConfig field's value.
+func (s *QuickConnectConfig) SetUserConfig(v *UserQuickConnectConfig) *QuickConnectConfig {
+	s.UserConfig = v
+	return s
+}
+
+// Contains summary information about a quick connect.
+type QuickConnectSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The identifier for the quick connect.
+	Id *string `type:"string"`
+
+	// The name.
+	Name *string `min:"1" type:"string"`
+
+	// The type of quick connect. In the Amazon Connect console, when you create
+	// a quick connect, you are prompted to assign one of the following types: Agent
+	// (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+	QuickConnectType *string `type:"string" enum:"QuickConnectType"`
+}
+
+// String returns the string representation
+func (s QuickConnectSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QuickConnectSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *QuickConnectSummary) SetArn(v string) *QuickConnectSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *QuickConnectSummary) SetId(v string) *QuickConnectSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *QuickConnectSummary) SetName(v string) *QuickConnectSummary {
+	s.Name = &v
+	return s
+}
+
+// SetQuickConnectType sets the QuickConnectType field's value.
+func (s *QuickConnectSummary) SetQuickConnectType(v string) *QuickConnectSummary {
+	s.QuickConnectType = &v
 	return s
 }
 
@@ -19603,6 +20952,190 @@ func (s UpdateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateQuickConnectConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Information about the configuration settings for the quick connect.
+	//
+	// QuickConnectConfig is a required field
+	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
+
+	// The identifier for the quick connect.
+	//
+	// QuickConnectId is a required field
+	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateQuickConnectConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuickConnectConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQuickConnectConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQuickConnectConfigInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QuickConnectConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectConfig"))
+	}
+	if s.QuickConnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectId"))
+	}
+	if s.QuickConnectId != nil && len(*s.QuickConnectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectId", 1))
+	}
+	if s.QuickConnectConfig != nil {
+		if err := s.QuickConnectConfig.Validate(); err != nil {
+			invalidParams.AddNested("QuickConnectConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQuickConnectConfigInput) SetInstanceId(v string) *UpdateQuickConnectConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQuickConnectConfig sets the QuickConnectConfig field's value.
+func (s *UpdateQuickConnectConfigInput) SetQuickConnectConfig(v *QuickConnectConfig) *UpdateQuickConnectConfigInput {
+	s.QuickConnectConfig = v
+	return s
+}
+
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *UpdateQuickConnectConfigInput) SetQuickConnectId(v string) *UpdateQuickConnectConfigInput {
+	s.QuickConnectId = &v
+	return s
+}
+
+type UpdateQuickConnectConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQuickConnectConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuickConnectConfigOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQuickConnectNameInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the quick connect.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the quick connect.
+	Name *string `min:"1" type:"string"`
+
+	// The identifier for the quick connect.
+	//
+	// QuickConnectId is a required field
+	QuickConnectId *string `location:"uri" locationName:"QuickConnectId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateQuickConnectNameInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuickConnectNameInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQuickConnectNameInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQuickConnectNameInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.QuickConnectId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectId"))
+	}
+	if s.QuickConnectId != nil && len(*s.QuickConnectId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateQuickConnectNameInput) SetDescription(v string) *UpdateQuickConnectNameInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQuickConnectNameInput) SetInstanceId(v string) *UpdateQuickConnectNameInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateQuickConnectNameInput) SetName(v string) *UpdateQuickConnectNameInput {
+	s.Name = &v
+	return s
+}
+
+// SetQuickConnectId sets the QuickConnectId field's value.
+func (s *UpdateQuickConnectNameInput) SetQuickConnectId(v string) *UpdateQuickConnectNameInput {
+	s.QuickConnectId = &v
+	return s
+}
+
+type UpdateQuickConnectNameOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQuickConnectNameOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuickConnectNameOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateRoutingProfileConcurrencyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20907,6 +22440,60 @@ func (s *UserPhoneConfig) SetDeskPhoneNumber(v string) *UserPhoneConfig {
 // SetPhoneType sets the PhoneType field's value.
 func (s *UserPhoneConfig) SetPhoneType(v string) *UserPhoneConfig {
 	s.PhoneType = &v
+	return s
+}
+
+// Contains information about the quick connect configuration settings for a
+// user. The contact flow must be of type Transfer to Agent.
+type UserQuickConnectConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `type:"string" required:"true"`
+
+	// The identifier of the user.
+	//
+	// UserId is a required field
+	UserId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UserQuickConnectConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserQuickConnectConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserQuickConnectConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserQuickConnectConfig"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UserQuickConnectConfig) SetContactFlowId(v string) *UserQuickConnectConfig {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UserQuickConnectConfig) SetUserId(v string) *UserQuickConnectConfig {
+	s.UserId = &v
 	return s
 }
 
@@ -22371,6 +23958,26 @@ func QueueType_Values() []string {
 	return []string{
 		QueueTypeStandard,
 		QueueTypeAgent,
+	}
+}
+
+const (
+	// QuickConnectTypeUser is a QuickConnectType enum value
+	QuickConnectTypeUser = "USER"
+
+	// QuickConnectTypeQueue is a QuickConnectType enum value
+	QuickConnectTypeQueue = "QUEUE"
+
+	// QuickConnectTypePhoneNumber is a QuickConnectType enum value
+	QuickConnectTypePhoneNumber = "PHONE_NUMBER"
+)
+
+// QuickConnectType_Values returns all elements of the QuickConnectType enum
+func QuickConnectType_Values() []string {
+	return []string{
+		QuickConnectTypeUser,
+		QuickConnectTypeQueue,
+		QuickConnectTypePhoneNumber,
 	}
 }
 

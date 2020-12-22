@@ -7267,8 +7267,6 @@ type GetPartnerAccountOutput struct {
 	AccountLinked *bool `type:"boolean"`
 
 	// The Sidewalk account credentials.
-	//
-	// The AppServerPrivateKey value is empty to protect its security.
 	Sidewalk *SidewalkAccountInfoWithFingerprint `type:"structure"`
 }
 
@@ -7530,7 +7528,8 @@ type GetWirelessDeviceOutput struct {
 	// The ARN of the thing associated with the wireless device.
 	ThingArn *string `type:"string"`
 
-	// The name of the thing associated with the wireless device.
+	// The name of the thing associated with the wireless device. The value is empty
+	// if a thing isn't associated with the device.
 	ThingName *string `type:"string"`
 
 	// The wireless device type.
@@ -7887,7 +7886,8 @@ type GetWirelessGatewayOutput struct {
 	// The ARN of the thing associated with the wireless gateway.
 	ThingArn *string `type:"string"`
 
-	// The name of the thing associated with the wireless gateway.
+	// The name of the thing associated with the wireless gateway. The value is
+	// empty if a thing isn't associated with the gateway.
 	ThingName *string `type:"string"`
 }
 
@@ -8429,8 +8429,6 @@ type ListPartnerAccountsOutput struct {
 	NextToken *string `type:"string"`
 
 	// The Sidewalk account credentials.
-	//
-	// The AppServerPrivateKey value is empty to protect its security.
 	Sidewalk []*SidewalkAccountInfoWithFingerprint `type:"list"`
 }
 
@@ -8832,11 +8830,11 @@ func (s *ListWirelessGatewaysOutput) SetWirelessGatewayList(v []*WirelessGateway
 	return s
 }
 
-// LoRa object for create functions.
+// LoRaWAN object for create functions.
 type LoRaWANDevice struct {
 	_ struct{} `type:"structure"`
 
-	// LoRa object for create APIs
+	// LoRaWAN object for create APIs
 	AbpV1_0_x *AbpV10X `type:"structure"`
 
 	// ABP device object for create APIs for v1.1
@@ -8992,7 +8990,8 @@ type LoRaWANDeviceProfile struct {
 	// The list of values that make up the FactoryPresetFreqs value.
 	FactoryPresetFreqsList []*int64 `type:"list"`
 
-	// The MAC version (such as OTAA 1.1 or OTA 1.0.3) to use with this device profile.
+	// The MAC version (such as OTAA 1.1 or OTAA 1.0.3) to use with this device
+	// profile.
 	MacVersion *string `type:"string"`
 
 	// The MaxDutyCycle value.
@@ -9615,7 +9614,7 @@ func (s *LoRaWANServiceProfile) SetAddGwMetadata(v bool) *LoRaWANServiceProfile 
 	return s
 }
 
-// LoRa object for update functions.
+// LoRaWAN object for update functions.
 type LoRaWANUpdateDevice struct {
 	_ struct{} `type:"structure"`
 
@@ -10180,8 +10179,8 @@ type SidewalkAccountInfoWithFingerprint struct {
 	// The Sidewalk Amazon ID.
 	AmazonId *string `type:"string"`
 
-	// The Sidewalk application server private key.
-	AppServerPrivateKey *string `min:"1" type:"string" sensitive:"true"`
+	// Fingerprint for Sidewalk application server private key.
+	Fingerprint *string `min:"64" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -10200,9 +10199,9 @@ func (s *SidewalkAccountInfoWithFingerprint) SetAmazonId(v string) *SidewalkAcco
 	return s
 }
 
-// SetAppServerPrivateKey sets the AppServerPrivateKey field's value.
-func (s *SidewalkAccountInfoWithFingerprint) SetAppServerPrivateKey(v string) *SidewalkAccountInfoWithFingerprint {
-	s.AppServerPrivateKey = &v
+// SetFingerprint sets the Fingerprint field's value.
+func (s *SidewalkAccountInfoWithFingerprint) SetFingerprint(v string) *SidewalkAccountInfoWithFingerprint {
+	s.Fingerprint = &v
 	return s
 }
 

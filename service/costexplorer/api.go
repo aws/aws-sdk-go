@@ -9645,6 +9645,9 @@ func (s *RightsizingRecommendationConfiguration) SetRecommendationTarget(v strin
 type RightsizingRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// Additional metadata that may be applicable to the recommendation.
+	AdditionalMetadata *string `type:"string"`
+
 	// The timestamp for when AWS made this recommendation.
 	GenerationTimestamp *string `type:"string"`
 
@@ -9663,6 +9666,12 @@ func (s RightsizingRecommendationMetadata) String() string {
 // GoString returns the string representation
 func (s RightsizingRecommendationMetadata) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalMetadata sets the AdditionalMetadata field's value.
+func (s *RightsizingRecommendationMetadata) SetAdditionalMetadata(v string) *RightsizingRecommendationMetadata {
+	s.AdditionalMetadata = &v
+	return s
 }
 
 // SetGenerationTimestamp sets the GenerationTimestamp field's value.
@@ -11253,7 +11262,7 @@ type UpdateAnomalySubscriptionInput struct {
 	// The update to the frequency value at which subscribers will receive notifications.
 	Frequency *string `type:"string" enum:"AnomalySubscriptionFrequency"`
 
-	// A list of cost anomaly subscription ARNs.
+	// A list of cost anomaly monitor ARNs.
 	MonitorArnList []*string `type:"list"`
 
 	// The update to the subscriber list.

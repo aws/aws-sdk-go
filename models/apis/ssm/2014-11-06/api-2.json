@@ -8511,15 +8511,15 @@
       "type":"structure",
       "required":[
         "WindowId",
-        "Targets",
         "TaskArn",
-        "TaskType",
-        "MaxConcurrency",
-        "MaxErrors"
+        "TaskType"
       ],
       "members":{
         "WindowId":{"shape":"MaintenanceWindowId"},
-        "Targets":{"shape":"Targets"},
+        "Targets":{
+          "shape":"Targets",
+          "box":true
+        },
         "TaskArn":{"shape":"MaintenanceWindowTaskArn"},
         "ServiceRoleArn":{"shape":"ServiceRole"},
         "TaskType":{"shape":"MaintenanceWindowTaskType"},
@@ -8529,8 +8529,14 @@
           "shape":"MaintenanceWindowTaskPriority",
           "box":true
         },
-        "MaxConcurrency":{"shape":"MaxConcurrency"},
-        "MaxErrors":{"shape":"MaxErrors"},
+        "MaxConcurrency":{
+          "shape":"MaxConcurrency",
+          "box":true
+        },
+        "MaxErrors":{
+          "shape":"MaxErrors",
+          "box":true
+        },
         "LoggingInfo":{"shape":"LoggingInfo"},
         "Name":{"shape":"MaintenanceWindowName"},
         "Description":{"shape":"MaintenanceWindowDescription"},
