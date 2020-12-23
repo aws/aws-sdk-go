@@ -2117,7 +2117,9 @@
         "ServerName":{"shape":"String"},
         "Username":{"shape":"String"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
-        "SecretsManagerSecretId":{"shape":"String"}
+        "SecretsManagerSecretId":{"shape":"String"},
+        "SecretsManagerOracleAsmAccessRoleArn":{"shape":"String"},
+        "SecretsManagerOracleAsmSecretId":{"shape":"String"}
       }
     },
     "OrderableReplicationInstance":{

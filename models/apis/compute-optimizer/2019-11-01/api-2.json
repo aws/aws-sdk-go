@@ -163,6 +163,25 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetLambdaFunctionRecommendations":{
+      "name":"GetLambdaFunctionRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLambdaFunctionRecommendationsRequest"},
+      "output":{"shape":"GetLambdaFunctionRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "GetRecommendationSummaries":{
       "name":"GetRecommendationSummaries",
       "http":{
@@ -495,6 +514,19 @@
         "NotOptimized"
       ]
     },
+    "FindingReasonCode":{
+      "type":"string",
+      "enum":[
+        "MemoryOverprovisioned",
+        "MemoryUnderprovisioned"
+      ]
+    },
+    "FunctionArn":{"type":"string"},
+    "FunctionArns":{
+      "type":"list",
+      "member":{"shape":"FunctionArn"}
+    },
+    "FunctionVersion":{"type":"string"},
     "GetAutoScalingGroupRecommendationsRequest":{
       "type":"structure",
       "members":{
@@ -583,6 +615,23 @@
         "status":{"shape":"Status"},
         "statusReason":{"shape":"StatusReason"},
         "memberAccountsEnrolled":{"shape":"MemberAccountsEnrolled"}
+      }
+    },
+    "GetLambdaFunctionRecommendationsRequest":{
+      "type":"structure",
+      "members":{
+        "functionArns":{"shape":"FunctionArns"},
+        "accountIds":{"shape":"AccountIds"},
+        "filters":{"shape":"LambdaFunctionRecommendationFilters"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "GetLambdaFunctionRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "lambdaFunctionRecommendations":{"shape":"LambdaFunctionRecommendations"}
       }
     },
     "GetRecommendationError":{
@@ -697,6 +746,127 @@
         "Failed"
       ]
     },
+    "LambdaFunctionMemoryMetricName":{
+      "type":"string",
+      "enum":["Duration"]
+    },
+    "LambdaFunctionMemoryMetricStatistic":{
+      "type":"string",
+      "enum":[
+        "LowerBound",
+        "UpperBound",
+        "Expected"
+      ]
+    },
+    "LambdaFunctionMemoryProjectedMetric":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"LambdaFunctionMemoryMetricName"},
+        "statistic":{"shape":"LambdaFunctionMemoryMetricStatistic"},
+        "value":{"shape":"MetricValue"}
+      }
+    },
+    "LambdaFunctionMemoryProjectedMetrics":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionMemoryProjectedMetric"}
+    },
+    "LambdaFunctionMemoryRecommendationOption":{
+      "type":"structure",
+      "members":{
+        "rank":{"shape":"Rank"},
+        "memorySize":{"shape":"MemorySize"},
+        "projectedUtilizationMetrics":{"shape":"LambdaFunctionMemoryProjectedMetrics"}
+      }
+    },
+    "LambdaFunctionMemoryRecommendationOptions":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionMemoryRecommendationOption"}
+    },
+    "LambdaFunctionMetricName":{
+      "type":"string",
+      "enum":[
+        "Duration",
+        "Memory"
+      ]
+    },
+    "LambdaFunctionMetricStatistic":{
+      "type":"string",
+      "enum":[
+        "Maximum",
+        "Average"
+      ]
+    },
+    "LambdaFunctionRecommendation":{
+      "type":"structure",
+      "members":{
+        "functionArn":{"shape":"FunctionArn"},
+        "functionVersion":{"shape":"FunctionVersion"},
+        "accountId":{"shape":"AccountId"},
+        "currentMemorySize":{"shape":"MemorySize"},
+        "numberOfInvocations":{"shape":"NumberOfInvocations"},
+        "utilizationMetrics":{"shape":"LambdaFunctionUtilizationMetrics"},
+        "lookbackPeriodInDays":{"shape":"LookBackPeriodInDays"},
+        "lastRefreshTimestamp":{"shape":"LastRefreshTimestamp"},
+        "finding":{"shape":"LambdaFunctionRecommendationFinding"},
+        "findingReasonCodes":{"shape":"LambdaFunctionRecommendationFindingReasonCodes"},
+        "memorySizeRecommendationOptions":{"shape":"LambdaFunctionMemoryRecommendationOptions"}
+      }
+    },
+    "LambdaFunctionRecommendationFilter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"LambdaFunctionRecommendationFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "LambdaFunctionRecommendationFilterName":{
+      "type":"string",
+      "enum":[
+        "Finding",
+        "FindingReasonCode"
+      ]
+    },
+    "LambdaFunctionRecommendationFilters":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionRecommendationFilter"}
+    },
+    "LambdaFunctionRecommendationFinding":{
+      "type":"string",
+      "enum":[
+        "Optimized",
+        "NotOptimized",
+        "Unavailable"
+      ]
+    },
+    "LambdaFunctionRecommendationFindingReasonCode":{
+      "type":"string",
+      "enum":[
+        "MemoryOverprovisioned",
+        "MemoryUnderprovisioned",
+        "InsufficientData",
+        "Inconclusive"
+      ]
+    },
+    "LambdaFunctionRecommendationFindingReasonCodes":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionRecommendationFindingReasonCode"}
+    },
+    "LambdaFunctionRecommendations":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionRecommendation"}
+    },
+    "LambdaFunctionUtilizationMetric":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"LambdaFunctionMetricName"},
+        "statistic":{"shape":"LambdaFunctionMetricStatistic"},
+        "value":{"shape":"MetricValue"}
+      }
+    },
+    "LambdaFunctionUtilizationMetrics":{
+      "type":"list",
+      "member":{"shape":"LambdaFunctionUtilizationMetric"}
+    },
     "LastRefreshTimestamp":{"type":"timestamp"},
     "LastUpdatedTimestamp":{"type":"timestamp"},
     "LimitExceededException":{
@@ -714,6 +884,7 @@
     },
     "MaxSize":{"type":"integer"},
     "MemberAccountsEnrolled":{"type":"boolean"},
+    "MemorySize":{"type":"integer"},
     "Message":{"type":"string"},
     "MetadataKey":{"type":"string"},
     "MetricName":{
@@ -749,6 +920,7 @@
       "synthetic":true
     },
     "NextToken":{"type":"string"},
+    "NumberOfInvocations":{"type":"long"},
     "OptInRequiredException":{
       "type":"structure",
       "members":{
@@ -780,6 +952,17 @@
       "member":{"shape":"UtilizationMetric"}
     },
     "Rank":{"type":"integer"},
+    "ReasonCodeSummaries":{
+      "type":"list",
+      "member":{"shape":"ReasonCodeSummary"}
+    },
+    "ReasonCodeSummary":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"FindingReasonCode"},
+        "value":{"shape":"SummaryValue"}
+      }
+    },
     "RecommendationExportJob":{
       "type":"structure",
       "members":{
@@ -813,7 +996,8 @@
       "enum":[
         "Ec2Instance",
         "AutoScalingGroup",
-        "EbsVolume"
+        "EbsVolume",
+        "LambdaFunction"
       ]
     },
     "RecommendationSources":{
@@ -901,7 +1085,8 @@
       "type":"structure",
       "members":{
         "name":{"shape":"Finding"},
-        "value":{"shape":"SummaryValue"}
+        "value":{"shape":"SummaryValue"},
+        "reasonCodeSummaries":{"shape":"ReasonCodeSummaries"}
       }
     },
     "SummaryValue":{"type":"double"},

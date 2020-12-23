@@ -102,6 +102,10 @@ type ResourceGroupsAPI interface {
 	ListGroupsPages(*resourcegroups.ListGroupsInput, func(*resourcegroups.ListGroupsOutput, bool) bool) error
 	ListGroupsPagesWithContext(aws.Context, *resourcegroups.ListGroupsInput, func(*resourcegroups.ListGroupsOutput, bool) bool, ...request.Option) error
 
+	PutGroupConfiguration(*resourcegroups.PutGroupConfigurationInput) (*resourcegroups.PutGroupConfigurationOutput, error)
+	PutGroupConfigurationWithContext(aws.Context, *resourcegroups.PutGroupConfigurationInput, ...request.Option) (*resourcegroups.PutGroupConfigurationOutput, error)
+	PutGroupConfigurationRequest(*resourcegroups.PutGroupConfigurationInput) (*request.Request, *resourcegroups.PutGroupConfigurationOutput)
+
 	SearchResources(*resourcegroups.SearchResourcesInput) (*resourcegroups.SearchResourcesOutput, error)
 	SearchResourcesWithContext(aws.Context, *resourcegroups.SearchResourcesInput, ...request.Option) (*resourcegroups.SearchResourcesOutput, error)
 	SearchResourcesRequest(*resourcegroups.SearchResourcesInput) (*request.Request, *resourcegroups.SearchResourcesOutput)

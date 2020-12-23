@@ -860,6 +860,112 @@ func (c *ComputeOptimizer) GetEnrollmentStatusWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetLambdaFunctionRecommendations = "GetLambdaFunctionRecommendations"
+
+// GetLambdaFunctionRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetLambdaFunctionRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLambdaFunctionRecommendations for more information on using the GetLambdaFunctionRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLambdaFunctionRecommendationsRequest method.
+//    req, resp := client.GetLambdaFunctionRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetLambdaFunctionRecommendations
+func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsRequest(input *GetLambdaFunctionRecommendationsInput) (req *request.Request, output *GetLambdaFunctionRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opGetLambdaFunctionRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLambdaFunctionRecommendationsInput{}
+	}
+
+	output = &GetLambdaFunctionRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLambdaFunctionRecommendations API operation for AWS Compute Optimizer.
+//
+// Returns AWS Lambda function recommendations.
+//
+// AWS Compute Optimizer generates recommendations for functions that meet a
+// specific set of requirements. For more information, see the Supported resources
+// and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the AWS Compute Optimizer User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetLambdaFunctionRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to AWS Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   An invalid or out-of-range value was supplied for the input parameter.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) AWS access key ID or
+//   X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * LimitExceededException
+//   The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetLambdaFunctionRecommendations
+func (c *ComputeOptimizer) GetLambdaFunctionRecommendations(input *GetLambdaFunctionRecommendationsInput) (*GetLambdaFunctionRecommendationsOutput, error) {
+	req, out := c.GetLambdaFunctionRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// GetLambdaFunctionRecommendationsWithContext is the same as GetLambdaFunctionRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLambdaFunctionRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsWithContext(ctx aws.Context, input *GetLambdaFunctionRecommendationsInput, opts ...request.Option) (*GetLambdaFunctionRecommendationsOutput, error) {
+	req, out := c.GetLambdaFunctionRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetRecommendationSummaries = "GetRecommendationSummaries"
 
 // GetRecommendationSummariesRequest generates a "aws/request.Request" representing the
@@ -2469,6 +2575,117 @@ func (s *GetEnrollmentStatusOutput) SetStatusReason(v string) *GetEnrollmentStat
 	return s
 }
 
+type GetLambdaFunctionRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the AWS accounts for which to return function recommendations.
+	//
+	// If your account is the management account of an organization, use this parameter
+	// to specify the member accounts for which you want to return function recommendations.
+	//
+	// Only one account ID can be specified per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// An array of objects that describe a filter that returns a more specific list
+	// of function recommendations.
+	Filters []*LambdaFunctionRecommendationFilter `locationName:"filters" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the functions for which to return recommendations.
+	//
+	// You can specify a qualified or unqualified ARN. If you specify an unqualified
+	// ARN without a function version suffix, Compute Optimizer will return recommendations
+	// for the latest ($LATEST) version of the function. If you specify a qualified
+	// ARN with a version suffix, Compute Optimizer will return recommendations
+	// for the specified function version. For more information about using function
+	// versions, see Using versions (https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#versioning-versions-using)
+	// in the AWS Lambda Developer Guide.
+	FunctionArns []*string `locationName:"functionArns" type:"list"`
+
+	// The maximum number of function recommendations to return with a single request.
+	//
+	// To retrieve the remaining results, make another request with the returned
+	// NextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token to advance to the next page of function recommendations.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetLambdaFunctionRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLambdaFunctionRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *GetLambdaFunctionRecommendationsInput) SetAccountIds(v []*string) *GetLambdaFunctionRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetLambdaFunctionRecommendationsInput) SetFilters(v []*LambdaFunctionRecommendationFilter) *GetLambdaFunctionRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetFunctionArns sets the FunctionArns field's value.
+func (s *GetLambdaFunctionRecommendationsInput) SetFunctionArns(v []*string) *GetLambdaFunctionRecommendationsInput {
+	s.FunctionArns = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetLambdaFunctionRecommendationsInput) SetMaxResults(v int64) *GetLambdaFunctionRecommendationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLambdaFunctionRecommendationsInput) SetNextToken(v string) *GetLambdaFunctionRecommendationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetLambdaFunctionRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe function recommendations.
+	LambdaFunctionRecommendations []*LambdaFunctionRecommendation `locationName:"lambdaFunctionRecommendations" type:"list"`
+
+	// The token to use to advance to the next page of function recommendations.
+	//
+	// This value is null when there are no more pages of function recommendations
+	// to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetLambdaFunctionRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLambdaFunctionRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLambdaFunctionRecommendations sets the LambdaFunctionRecommendations field's value.
+func (s *GetLambdaFunctionRecommendationsOutput) SetLambdaFunctionRecommendations(v []*LambdaFunctionRecommendation) *GetLambdaFunctionRecommendationsOutput {
+	s.LambdaFunctionRecommendations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetLambdaFunctionRecommendationsOutput) SetNextToken(v string) *GetLambdaFunctionRecommendationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Describes an error experienced when getting recommendations.
 //
 // For example, an error is returned if you request recommendations for an unsupported
@@ -2952,6 +3169,350 @@ func (s *JobFilter) SetValues(v []*string) *JobFilter {
 	return s
 }
 
+// Describes a projected utilization metric of an AWS Lambda function recommendation
+// option.
+type LambdaFunctionMemoryProjectedMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the projected utilization metric.
+	Name *string `locationName:"name" type:"string" enum:"LambdaFunctionMemoryMetricName"`
+
+	// The statistic of the projected utilization metric.
+	Statistic *string `locationName:"statistic" type:"string" enum:"LambdaFunctionMemoryMetricStatistic"`
+
+	// The values of the projected utilization metrics.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionMemoryProjectedMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionMemoryProjectedMetric) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LambdaFunctionMemoryProjectedMetric) SetName(v string) *LambdaFunctionMemoryProjectedMetric {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *LambdaFunctionMemoryProjectedMetric) SetStatistic(v string) *LambdaFunctionMemoryProjectedMetric {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *LambdaFunctionMemoryProjectedMetric) SetValue(v float64) *LambdaFunctionMemoryProjectedMetric {
+	s.Value = &v
+	return s
+}
+
+// Describes a recommendation option for an AWS Lambda function.
+type LambdaFunctionMemoryRecommendationOption struct {
+	_ struct{} `type:"structure"`
+
+	// The memory size, in MB, of the function recommendation option.
+	MemorySize *int64 `locationName:"memorySize" type:"integer"`
+
+	// An array of objects that describe the projected utilization metrics of the
+	// function recommendation option.
+	ProjectedUtilizationMetrics []*LambdaFunctionMemoryProjectedMetric `locationName:"projectedUtilizationMetrics" type:"list"`
+
+	// The rank of the function recommendation option.
+	//
+	// The top recommendation option is ranked as 1.
+	Rank *int64 `locationName:"rank" type:"integer"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionMemoryRecommendationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionMemoryRecommendationOption) GoString() string {
+	return s.String()
+}
+
+// SetMemorySize sets the MemorySize field's value.
+func (s *LambdaFunctionMemoryRecommendationOption) SetMemorySize(v int64) *LambdaFunctionMemoryRecommendationOption {
+	s.MemorySize = &v
+	return s
+}
+
+// SetProjectedUtilizationMetrics sets the ProjectedUtilizationMetrics field's value.
+func (s *LambdaFunctionMemoryRecommendationOption) SetProjectedUtilizationMetrics(v []*LambdaFunctionMemoryProjectedMetric) *LambdaFunctionMemoryRecommendationOption {
+	s.ProjectedUtilizationMetrics = v
+	return s
+}
+
+// SetRank sets the Rank field's value.
+func (s *LambdaFunctionMemoryRecommendationOption) SetRank(v int64) *LambdaFunctionMemoryRecommendationOption {
+	s.Rank = &v
+	return s
+}
+
+// Describes an AWS Lambda function recommendation.
+type LambdaFunctionRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of the function.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The amount of memory, in MB, that's allocated to the current function.
+	CurrentMemorySize *int64 `locationName:"currentMemorySize" type:"integer"`
+
+	// The finding classification for the function.
+	//
+	// Findings for functions include:
+	//
+	//    * Optimized — The function is correctly provisioned to run your workload
+	//    based on its current configuration and its utilization history. This finding
+	//    classification does not include finding reason codes.
+	//
+	//    * NotOptimized — The function is performing at a higher level (over-provisioned)
+	//    or at a lower level (under-provisioned) than required for your workload
+	//    because its current configuration is not optimal. Over-provisioned resources
+	//    might lead to unnecessary infrastructure cost, and under-provisioned resources
+	//    might lead to poor application performance. This finding classification
+	//    can include the MemoryUnderprovisioned and MemoryUnderprovisioned finding
+	//    reason codes.
+	//
+	//    * Unavailable — Compute Optimizer was unable to generate a recommendation
+	//    for the function. This could be because the function has not accumulated
+	//    sufficient metric data, or the function does not qualify for a recommendation.
+	//    This finding classification can include the InsufficientData and Inconclusive
+	//    finding reason codes. Functions with a finding of unavailable are not
+	//    returned unless you specify the filter parameter with a value of Unavailable
+	//    in your GetLambdaFunctionRecommendations request.
+	Finding *string `locationName:"finding" type:"string" enum:"LambdaFunctionRecommendationFinding"`
+
+	// The reason for the finding classification of the function.
+	//
+	// Functions that have a finding classification of Optimized don't have a finding
+	// reason code.
+	//
+	// Reason codes include:
+	//
+	//    * MemoryOverprovisioned — The function is over-provisioned when its
+	//    memory configuration can be sized down while still meeting the performance
+	//    requirements of your workload. An over-provisioned function might lead
+	//    to unnecessary infrastructure cost. This finding reason code is part of
+	//    the NotOptimized finding classification.
+	//
+	//    * MemoryUnderprovisioned — The function is under-provisioned when its
+	//    memory configuration doesn't meet the performance requirements of the
+	//    workload. An under-provisioned function might lead to poor application
+	//    performance. This finding reason code is part of the NotOptimized finding
+	//    classification.
+	//
+	//    * InsufficientData — The function does not have sufficient metric data
+	//    for Compute Optimizer to generate a recommendation. For more information,
+	//    see the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+	//    in the AWS Compute Optimizer User Guide. This finding reason code is part
+	//    of the Unavailable finding classification.
+	//
+	//    * Inconclusive — The function does not qualify for a recommendation,
+	//    or there was an internal error. This finding reason code is part of the
+	//    Unavailable finding classification.
+	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the current function.
+	FunctionArn *string `locationName:"functionArn" type:"string"`
+
+	// The version number of the current function.
+	FunctionVersion *string `locationName:"functionVersion" type:"string"`
+
+	// The time stamp of when the function recommendation was last refreshed.
+	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
+
+	// The number of days for which utilization metrics were analyzed for the function.
+	LookbackPeriodInDays *float64 `locationName:"lookbackPeriodInDays" type:"double"`
+
+	// An array of objects that describe the memory configuration recommendation
+	// options for the function.
+	MemorySizeRecommendationOptions []*LambdaFunctionMemoryRecommendationOption `locationName:"memorySizeRecommendationOptions" type:"list"`
+
+	// The number of times your function code was executed during the look-back
+	// period.
+	NumberOfInvocations *int64 `locationName:"numberOfInvocations" type:"long"`
+
+	// An array of objects that describe the utilization metrics of the function.
+	UtilizationMetrics []*LambdaFunctionUtilizationMetric `locationName:"utilizationMetrics" type:"list"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *LambdaFunctionRecommendation) SetAccountId(v string) *LambdaFunctionRecommendation {
+	s.AccountId = &v
+	return s
+}
+
+// SetCurrentMemorySize sets the CurrentMemorySize field's value.
+func (s *LambdaFunctionRecommendation) SetCurrentMemorySize(v int64) *LambdaFunctionRecommendation {
+	s.CurrentMemorySize = &v
+	return s
+}
+
+// SetFinding sets the Finding field's value.
+func (s *LambdaFunctionRecommendation) SetFinding(v string) *LambdaFunctionRecommendation {
+	s.Finding = &v
+	return s
+}
+
+// SetFindingReasonCodes sets the FindingReasonCodes field's value.
+func (s *LambdaFunctionRecommendation) SetFindingReasonCodes(v []*string) *LambdaFunctionRecommendation {
+	s.FindingReasonCodes = v
+	return s
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *LambdaFunctionRecommendation) SetFunctionArn(v string) *LambdaFunctionRecommendation {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionVersion sets the FunctionVersion field's value.
+func (s *LambdaFunctionRecommendation) SetFunctionVersion(v string) *LambdaFunctionRecommendation {
+	s.FunctionVersion = &v
+	return s
+}
+
+// SetLastRefreshTimestamp sets the LastRefreshTimestamp field's value.
+func (s *LambdaFunctionRecommendation) SetLastRefreshTimestamp(v time.Time) *LambdaFunctionRecommendation {
+	s.LastRefreshTimestamp = &v
+	return s
+}
+
+// SetLookbackPeriodInDays sets the LookbackPeriodInDays field's value.
+func (s *LambdaFunctionRecommendation) SetLookbackPeriodInDays(v float64) *LambdaFunctionRecommendation {
+	s.LookbackPeriodInDays = &v
+	return s
+}
+
+// SetMemorySizeRecommendationOptions sets the MemorySizeRecommendationOptions field's value.
+func (s *LambdaFunctionRecommendation) SetMemorySizeRecommendationOptions(v []*LambdaFunctionMemoryRecommendationOption) *LambdaFunctionRecommendation {
+	s.MemorySizeRecommendationOptions = v
+	return s
+}
+
+// SetNumberOfInvocations sets the NumberOfInvocations field's value.
+func (s *LambdaFunctionRecommendation) SetNumberOfInvocations(v int64) *LambdaFunctionRecommendation {
+	s.NumberOfInvocations = &v
+	return s
+}
+
+// SetUtilizationMetrics sets the UtilizationMetrics field's value.
+func (s *LambdaFunctionRecommendation) SetUtilizationMetrics(v []*LambdaFunctionUtilizationMetric) *LambdaFunctionRecommendation {
+	s.UtilizationMetrics = v
+	return s
+}
+
+// Describes a filter that returns a more specific list of AWS Lambda function
+// recommendations.
+type LambdaFunctionRecommendationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	//
+	// Specify Finding to return recommendations with a specific finding classification
+	// (e.g., NotOptimized).
+	//
+	// Specify FindingReasonCode to return recommendations with a specific finding
+	// reason code (e.g., MemoryUnderprovisioned).
+	Name *string `locationName:"name" type:"string" enum:"LambdaFunctionRecommendationFilterName"`
+
+	// The value of the filter.
+	//
+	// The valid values for this parameter are as follows, depending on what you
+	// specify for the name parameter:
+	//
+	//    * Specify Optimized, NotOptimized, or Unavailable if you specified the
+	//    name parameter as Finding.
+	//
+	//    * Specify MemoryOverprovisioned, MemoryUnderprovisioned, InsufficientData,
+	//    or Inconclusive if you specified the name parameter as FindingReasonCode.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionRecommendationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionRecommendationFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LambdaFunctionRecommendationFilter) SetName(v string) *LambdaFunctionRecommendationFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *LambdaFunctionRecommendationFilter) SetValues(v []*string) *LambdaFunctionRecommendationFilter {
+	s.Values = v
+	return s
+}
+
+// Describes a utilization metric of an AWS Lambda function.
+type LambdaFunctionUtilizationMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the utilization metric.
+	Name *string `locationName:"name" type:"string" enum:"LambdaFunctionMetricName"`
+
+	// The statistic of the utilization metric.
+	Statistic *string `locationName:"statistic" type:"string" enum:"LambdaFunctionMetricStatistic"`
+
+	// The value of the utilization metric.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionUtilizationMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionUtilizationMetric) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LambdaFunctionUtilizationMetric) SetName(v string) *LambdaFunctionUtilizationMetric {
+	s.Name = &v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *LambdaFunctionUtilizationMetric) SetStatistic(v string) *LambdaFunctionUtilizationMetric {
+	s.Statistic = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *LambdaFunctionUtilizationMetric) SetValue(v float64) *LambdaFunctionUtilizationMetric {
+	s.Value = &v
+	return s
+}
+
 // The request exceeds a limit of the service.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -3190,6 +3751,39 @@ func (s *ProjectedMetric) SetTimestamps(v []*time.Time) *ProjectedMetric {
 // SetValues sets the Values field's value.
 func (s *ProjectedMetric) SetValues(v []*float64) *ProjectedMetric {
 	s.Values = v
+	return s
+}
+
+// A summary of a finding reason code.
+type ReasonCodeSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the finding reason code.
+	Name *string `locationName:"name" type:"string" enum:"FindingReasonCode"`
+
+	// The value of the finding reason code summary.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation
+func (s ReasonCodeSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReasonCodeSummary) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ReasonCodeSummary) SetName(v string) *ReasonCodeSummary {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ReasonCodeSummary) SetValue(v float64) *ReasonCodeSummary {
+	s.Value = &v
 	return s
 }
 
@@ -3619,6 +4213,9 @@ type Summary struct {
 	// The finding classification of the recommendation.
 	Name *string `locationName:"name" type:"string" enum:"Finding"`
 
+	// An array of objects that summarize a finding reason code.
+	ReasonCodeSummaries []*ReasonCodeSummary `locationName:"reasonCodeSummaries" type:"list"`
+
 	// The value of the recommendation summary.
 	Value *float64 `locationName:"value" type:"double"`
 }
@@ -3636,6 +4233,12 @@ func (s Summary) GoString() string {
 // SetName sets the Name field's value.
 func (s *Summary) SetName(v string) *Summary {
 	s.Name = &v
+	return s
+}
+
+// SetReasonCodeSummaries sets the ReasonCodeSummaries field's value.
+func (s *Summary) SetReasonCodeSummaries(v []*ReasonCodeSummary) *Summary {
+	s.ReasonCodeSummaries = v
 	return s
 }
 
@@ -4492,6 +5095,22 @@ func Finding_Values() []string {
 }
 
 const (
+	// FindingReasonCodeMemoryOverprovisioned is a FindingReasonCode enum value
+	FindingReasonCodeMemoryOverprovisioned = "MemoryOverprovisioned"
+
+	// FindingReasonCodeMemoryUnderprovisioned is a FindingReasonCode enum value
+	FindingReasonCodeMemoryUnderprovisioned = "MemoryUnderprovisioned"
+)
+
+// FindingReasonCode_Values returns all elements of the FindingReasonCode enum
+func FindingReasonCode_Values() []string {
+	return []string{
+		FindingReasonCodeMemoryOverprovisioned,
+		FindingReasonCodeMemoryUnderprovisioned,
+	}
+}
+
+const (
 	// JobFilterNameResourceType is a JobFilterName enum value
 	JobFilterNameResourceType = "ResourceType"
 
@@ -4528,6 +5147,130 @@ func JobStatus_Values() []string {
 		JobStatusInProgress,
 		JobStatusComplete,
 		JobStatusFailed,
+	}
+}
+
+const (
+	// LambdaFunctionMemoryMetricNameDuration is a LambdaFunctionMemoryMetricName enum value
+	LambdaFunctionMemoryMetricNameDuration = "Duration"
+)
+
+// LambdaFunctionMemoryMetricName_Values returns all elements of the LambdaFunctionMemoryMetricName enum
+func LambdaFunctionMemoryMetricName_Values() []string {
+	return []string{
+		LambdaFunctionMemoryMetricNameDuration,
+	}
+}
+
+const (
+	// LambdaFunctionMemoryMetricStatisticLowerBound is a LambdaFunctionMemoryMetricStatistic enum value
+	LambdaFunctionMemoryMetricStatisticLowerBound = "LowerBound"
+
+	// LambdaFunctionMemoryMetricStatisticUpperBound is a LambdaFunctionMemoryMetricStatistic enum value
+	LambdaFunctionMemoryMetricStatisticUpperBound = "UpperBound"
+
+	// LambdaFunctionMemoryMetricStatisticExpected is a LambdaFunctionMemoryMetricStatistic enum value
+	LambdaFunctionMemoryMetricStatisticExpected = "Expected"
+)
+
+// LambdaFunctionMemoryMetricStatistic_Values returns all elements of the LambdaFunctionMemoryMetricStatistic enum
+func LambdaFunctionMemoryMetricStatistic_Values() []string {
+	return []string{
+		LambdaFunctionMemoryMetricStatisticLowerBound,
+		LambdaFunctionMemoryMetricStatisticUpperBound,
+		LambdaFunctionMemoryMetricStatisticExpected,
+	}
+}
+
+const (
+	// LambdaFunctionMetricNameDuration is a LambdaFunctionMetricName enum value
+	LambdaFunctionMetricNameDuration = "Duration"
+
+	// LambdaFunctionMetricNameMemory is a LambdaFunctionMetricName enum value
+	LambdaFunctionMetricNameMemory = "Memory"
+)
+
+// LambdaFunctionMetricName_Values returns all elements of the LambdaFunctionMetricName enum
+func LambdaFunctionMetricName_Values() []string {
+	return []string{
+		LambdaFunctionMetricNameDuration,
+		LambdaFunctionMetricNameMemory,
+	}
+}
+
+const (
+	// LambdaFunctionMetricStatisticMaximum is a LambdaFunctionMetricStatistic enum value
+	LambdaFunctionMetricStatisticMaximum = "Maximum"
+
+	// LambdaFunctionMetricStatisticAverage is a LambdaFunctionMetricStatistic enum value
+	LambdaFunctionMetricStatisticAverage = "Average"
+)
+
+// LambdaFunctionMetricStatistic_Values returns all elements of the LambdaFunctionMetricStatistic enum
+func LambdaFunctionMetricStatistic_Values() []string {
+	return []string{
+		LambdaFunctionMetricStatisticMaximum,
+		LambdaFunctionMetricStatisticAverage,
+	}
+}
+
+const (
+	// LambdaFunctionRecommendationFilterNameFinding is a LambdaFunctionRecommendationFilterName enum value
+	LambdaFunctionRecommendationFilterNameFinding = "Finding"
+
+	// LambdaFunctionRecommendationFilterNameFindingReasonCode is a LambdaFunctionRecommendationFilterName enum value
+	LambdaFunctionRecommendationFilterNameFindingReasonCode = "FindingReasonCode"
+)
+
+// LambdaFunctionRecommendationFilterName_Values returns all elements of the LambdaFunctionRecommendationFilterName enum
+func LambdaFunctionRecommendationFilterName_Values() []string {
+	return []string{
+		LambdaFunctionRecommendationFilterNameFinding,
+		LambdaFunctionRecommendationFilterNameFindingReasonCode,
+	}
+}
+
+const (
+	// LambdaFunctionRecommendationFindingOptimized is a LambdaFunctionRecommendationFinding enum value
+	LambdaFunctionRecommendationFindingOptimized = "Optimized"
+
+	// LambdaFunctionRecommendationFindingNotOptimized is a LambdaFunctionRecommendationFinding enum value
+	LambdaFunctionRecommendationFindingNotOptimized = "NotOptimized"
+
+	// LambdaFunctionRecommendationFindingUnavailable is a LambdaFunctionRecommendationFinding enum value
+	LambdaFunctionRecommendationFindingUnavailable = "Unavailable"
+)
+
+// LambdaFunctionRecommendationFinding_Values returns all elements of the LambdaFunctionRecommendationFinding enum
+func LambdaFunctionRecommendationFinding_Values() []string {
+	return []string{
+		LambdaFunctionRecommendationFindingOptimized,
+		LambdaFunctionRecommendationFindingNotOptimized,
+		LambdaFunctionRecommendationFindingUnavailable,
+	}
+}
+
+const (
+	// LambdaFunctionRecommendationFindingReasonCodeMemoryOverprovisioned is a LambdaFunctionRecommendationFindingReasonCode enum value
+	LambdaFunctionRecommendationFindingReasonCodeMemoryOverprovisioned = "MemoryOverprovisioned"
+
+	// LambdaFunctionRecommendationFindingReasonCodeMemoryUnderprovisioned is a LambdaFunctionRecommendationFindingReasonCode enum value
+	LambdaFunctionRecommendationFindingReasonCodeMemoryUnderprovisioned = "MemoryUnderprovisioned"
+
+	// LambdaFunctionRecommendationFindingReasonCodeInsufficientData is a LambdaFunctionRecommendationFindingReasonCode enum value
+	LambdaFunctionRecommendationFindingReasonCodeInsufficientData = "InsufficientData"
+
+	// LambdaFunctionRecommendationFindingReasonCodeInconclusive is a LambdaFunctionRecommendationFindingReasonCode enum value
+	LambdaFunctionRecommendationFindingReasonCodeInconclusive = "Inconclusive"
+)
+
+// LambdaFunctionRecommendationFindingReasonCode_Values returns all elements of the LambdaFunctionRecommendationFindingReasonCode enum
+func LambdaFunctionRecommendationFindingReasonCode_Values() []string {
+	return []string{
+		LambdaFunctionRecommendationFindingReasonCodeMemoryOverprovisioned,
+		LambdaFunctionRecommendationFindingReasonCodeMemoryUnderprovisioned,
+		LambdaFunctionRecommendationFindingReasonCodeInsufficientData,
+		LambdaFunctionRecommendationFindingReasonCodeInconclusive,
 	}
 }
 
@@ -4588,6 +5331,9 @@ const (
 
 	// RecommendationSourceTypeEbsVolume is a RecommendationSourceType enum value
 	RecommendationSourceTypeEbsVolume = "EbsVolume"
+
+	// RecommendationSourceTypeLambdaFunction is a RecommendationSourceType enum value
+	RecommendationSourceTypeLambdaFunction = "LambdaFunction"
 )
 
 // RecommendationSourceType_Values returns all elements of the RecommendationSourceType enum
@@ -4596,6 +5342,7 @@ func RecommendationSourceType_Values() []string {
 		RecommendationSourceTypeEc2instance,
 		RecommendationSourceTypeAutoScalingGroup,
 		RecommendationSourceTypeEbsVolume,
+		RecommendationSourceTypeLambdaFunction,
 	}
 }
 

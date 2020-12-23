@@ -9056,11 +9056,23 @@
       },
       "waf-regional" : {
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "waf-regional-fips.us-gov-east-1.amazonaws.com"
+          },
           "fips-us-gov-west-1" : {
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
             "hostname" : "waf-regional-fips.us-gov-west-1.amazonaws.com"
+          },
+          "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "waf-regional.us-gov-east-1.amazonaws.com"
           },
           "us-gov-west-1" : {
             "credentialScope" : {
