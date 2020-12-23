@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCreateGroup = "CreateGroup"
@@ -56,7 +57,17 @@ func (c *ResourceGroups) CreateGroupRequest(input *CreateGroupInput) (req *reque
 // CreateGroup API operation for AWS Resource Groups.
 //
 // Creates a resource group with the specified name and description. You can
-// optionally include a resource query, or a service configuration.
+// optionally include a resource query, or a service configuration. For more
+// information about constructing a resource query, see Create a tag-based group
+// in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
+// For more information about service configurations, see Service configurations
+// for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:CreateGroup
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -151,6 +162,12 @@ func (c *ResourceGroups) DeleteGroupRequest(input *DeleteGroupInput) (req *reque
 // Deletes the specified resource group. Deleting a resource group does not
 // delete any resources that are members of the group; it only deletes the group
 // structure.
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:DeleteGroup
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -247,6 +264,12 @@ func (c *ResourceGroups) GetGroupRequest(input *GetGroupInput) (req *request.Req
 //
 // Returns information about a specified resource group.
 //
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:GetGroup
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -341,13 +364,14 @@ func (c *ResourceGroups) GetGroupConfigurationRequest(input *GetGroupConfigurati
 // GetGroupConfiguration API operation for AWS Resource Groups.
 //
 // Returns the service configuration associated with the specified resource
-// group. AWS Resource Groups supports configurations for the following resource
-// group types:
+// group. For details about the service configuration syntax, see Service configurations
+// for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 //
-//    * AWS::EC2::CapacityReservationPool - Amazon EC2 capacity reservation
-//    pools. For more information, see Working with capacity reservation groups
-//    (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group)
-//    in the EC2 Users Guide.
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:GetGroupConfiguration
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -443,6 +467,14 @@ func (c *ResourceGroups) GetGroupQueryRequest(input *GetGroupQueryInput) (req *r
 // GetGroupQuery API operation for AWS Resource Groups.
 //
 // Retrieves the resource query associated with the specified resource group.
+// For more information about resource queries, see Create a tag-based group
+// in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:GetGroupQuery
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -540,6 +572,12 @@ func (c *ResourceGroups) GetTagsRequest(input *GetTagsInput) (req *request.Reque
 // Returns a list of tags that are associated with a resource group, specified
 // by an ARN.
 //
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:GetTags
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -634,6 +672,12 @@ func (c *ResourceGroups) GroupResourcesRequest(input *GroupResourcesInput) (req 
 // GroupResources API operation for AWS Resource Groups.
 //
 // Adds the specified resources to the specified group.
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:GroupResources
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -736,6 +780,12 @@ func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInpu
 //
 // Returns a list of ARNs of the resources that are members of a specified resource
 // group.
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:ListGroupResources
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -894,6 +944,12 @@ func (c *ResourceGroups) ListGroupsRequest(input *ListGroupsInput) (req *request
 //
 // Returns a list of existing resource groups in your account.
 //
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:ListGroups
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -992,6 +1048,110 @@ func (c *ResourceGroups) ListGroupsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opPutGroupConfiguration = "PutGroupConfiguration"
+
+// PutGroupConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutGroupConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutGroupConfiguration for more information on using the PutGroupConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutGroupConfigurationRequest method.
+//    req, resp := client.PutGroupConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/PutGroupConfiguration
+func (c *ResourceGroups) PutGroupConfigurationRequest(input *PutGroupConfigurationInput) (req *request.Request, output *PutGroupConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutGroupConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/put-group-configuration",
+	}
+
+	if input == nil {
+		input = &PutGroupConfigurationInput{}
+	}
+
+	output = &PutGroupConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutGroupConfiguration API operation for AWS Resource Groups.
+//
+// Attaches a service configuration to the specified group. This occurs asynchronously,
+// and can take time to complete. You can use GetGroupConfiguration to check
+// the status of the update.
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:PutGroupConfiguration
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Resource Groups's
+// API operation PutGroupConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The request includes one or more parameters that violate validation rules.
+//
+//   * ForbiddenException
+//   The caller isn't authorized to make the request. Check permissions.
+//
+//   * NotFoundException
+//   One or more of the specified resources don't exist.
+//
+//   * MethodNotAllowedException
+//   The request uses an HTTP method that isn't allowed for the specified resource.
+//
+//   * TooManyRequestsException
+//   You've exceeded throttling limits by making too many requests in a period
+//   of time.
+//
+//   * InternalServerErrorException
+//   An internal error occurred while processing the request. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/resource-groups-2017-11-27/PutGroupConfiguration
+func (c *ResourceGroups) PutGroupConfiguration(input *PutGroupConfigurationInput) (*PutGroupConfigurationOutput, error) {
+	req, out := c.PutGroupConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutGroupConfigurationWithContext is the same as PutGroupConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutGroupConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ResourceGroups) PutGroupConfigurationWithContext(ctx aws.Context, input *PutGroupConfigurationInput, opts ...request.Option) (*PutGroupConfigurationOutput, error) {
+	req, out := c.PutGroupConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSearchResources = "SearchResources"
 
 // SearchResourcesRequest generates a "aws/request.Request" representing the
@@ -1045,6 +1205,12 @@ func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (re
 // Returns a list of AWS resource identifiers that matches the specified query.
 // The query uses the same format as a resource query in a CreateGroup or UpdateGroupQuery
 // operation.
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:SearchResources
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1200,6 +1366,12 @@ func (c *ResourceGroups) TagRequest(input *TagInput) (req *request.Request, outp
 // and administration services. Tags are not intended to be used for private
 // or sensitive data.
 //
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:Tag
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1295,6 +1467,12 @@ func (c *ResourceGroups) UngroupResourcesRequest(input *UngroupResourcesInput) (
 //
 // Removes the specified resources from the specified group.
 //
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:UngroupResources
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1389,6 +1567,12 @@ func (c *ResourceGroups) UntagRequest(input *UntagInput) (req *request.Request, 
 // Untag API operation for AWS Resource Groups.
 //
 // Deletes tags from a specified resource group.
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:Untag
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1486,6 +1670,12 @@ func (c *ResourceGroups) UpdateGroupRequest(input *UpdateGroupInput) (req *reque
 // Updates the description for an existing group. You cannot update the name
 // of a resource group.
 //
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:UpdateGroup
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1579,7 +1769,14 @@ func (c *ResourceGroups) UpdateGroupQueryRequest(input *UpdateGroupQueryInput) (
 
 // UpdateGroupQuery API operation for AWS Resource Groups.
 //
-// Updates the resource query of a group.
+// Updates the resource query of a group. For more information about resource
+// queries, see Create a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
+//
+// Minimum permissions
+//
+// To run this command, you must have the following permissions:
+//
+//    * resource-groups:UpdateGroupQuery
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1691,9 +1888,11 @@ type CreateGroupInput struct {
 
 	// A configuration associates the resource group with an AWS service and specifies
 	// how the service can interact with the resources in the group. A configuration
-	// is an array of GroupConfigurationItem elements.
+	// is an array of GroupConfigurationItem elements. For details about the syntax
+	// of service configurations, see Service configurations for resource groups
+	// (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 	//
-	// You can specify either a Configuration or a ResourceQuery in a group, but
+	// A resource group can contain either a Configuration or a ResourceQuery, but
 	// not both.
 	Configuration []*GroupConfigurationItem `type:"list"`
 
@@ -1711,9 +1910,11 @@ type CreateGroupInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The resource query that determines which AWS resources are members of this
-	// group.
+	// group. For more information about resource queries, see Create a tag-based
+	// group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
 	//
-	// You can specify either a ResourceQuery or a Configuration, but not both.
+	// A resource group can contain either a ResourceQuery or a Configuration, but
+	// not both.
 	ResourceQuery *ResourceQuery `type:"structure"`
 
 	// The tags to add to the group. A tag is key-value pair string.
@@ -1797,17 +1998,13 @@ type CreateGroupOutput struct {
 	// The description of the resource group.
 	Group *Group `type:"structure"`
 
-	// The service configuration associated with the resource group. AWS Resource
-	// Groups supports adding service configurations for the following resource
-	// group types:
-	//
-	//    * AWS::EC2::CapacityReservationPool - Amazon EC2 capacity reservation
-	//    pools. For more information, see Working with capacity reservation groups
-	//    (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group)
-	//    in the EC2 Users Guide.
+	// The service configuration associated with the resource group. For details
+	// about the syntax of a service configuration, see Service configurations for
+	// resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 	GroupConfiguration *GroupConfiguration `type:"structure"`
 
-	// The resource query associated with the group.
+	// The resource query associated with the group. For more information about
+	// resource queries, see Create a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
 	ResourceQuery *ResourceQuery `type:"structure"`
 
 	// The tags associated with the group.
@@ -1854,7 +2051,7 @@ type DeleteGroupInput struct {
 	// The name or the ARN of the resource group to delete.
 	Group *string `min:"1" type:"string"`
 
-	// Don't use this parameter. Use Group instead.
+	// Deprecated - don't use this parameter. Use Group instead.
 	//
 	// Deprecated: This field is deprecated, use Group instead.
 	GroupName *string `min:"1" deprecated:"true" type:"string"`
@@ -2058,7 +2255,9 @@ func (s *GetGroupConfigurationInput) SetGroup(v string) *GetGroupConfigurationIn
 type GetGroupConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration associated with the specified group.
+	// The service configuration associated with the specified group. For details
+	// about the service configuration syntax, see Service configurations for resource
+	// groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 	GroupConfiguration *GroupConfiguration `type:"structure"`
 }
 
@@ -2084,7 +2283,7 @@ type GetGroupInput struct {
 	// The name or the ARN of the resource group to retrieve.
 	Group *string `min:"1" type:"string"`
 
-	// Don't use this parameter. Use Group instead.
+	// Deprecated - don't use this parameter. Use Group instead.
 	//
 	// Deprecated: This field is deprecated, use Group instead.
 	GroupName *string `min:"1" deprecated:"true" type:"string"`
@@ -2204,7 +2403,8 @@ func (s *GetGroupQueryInput) SetGroupName(v string) *GetGroupQueryInput {
 type GetGroupQueryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resource query associated with the specified group.
+	// The resource query associated with the specified group. For more information
+	// about resource queries, see Create a tag-based group in Resource Groups (https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-query.html#gettingstarted-query-cli-tag).
 	GroupQuery *GroupQuery `type:"structure"`
 }
 
@@ -2303,7 +2503,8 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 //    * ResourceQuery - Use a resource query to specify a set of tag keys and
 //    values. All resources in the same AWS Region and AWS account that have
 //    those keys with the same values are included in the group. You can add
-//    a resource query when you create the group.
+//    a resource query when you create the group, or later by using the PutGroupConfiguration
+//    operation.
 //
 //    * GroupConfiguration - Use a service configuration to associate the group
 //    with an AWS service. The configuration specifies which resource types
@@ -2356,7 +2557,9 @@ func (s *Group) SetName(v string) *Group {
 // A service configuration associated with a resource group. The configuration
 // options are determined by the AWS service that defines the Type, and specifies
 // which resources can be included in the group. You can add a service configuration
-// when you create the group.
+// when you create the group by using CreateGroup, or later by using the PutGroupConfiguration
+// operation. For details about group service configuration syntax, see Service
+// configurations for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 type GroupConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2408,25 +2611,20 @@ func (s *GroupConfiguration) SetStatus(v string) *GroupConfiguration {
 	return s
 }
 
-// An item in a group configuration. A group configuration can have one or more
-// items.
+// An item in a group configuration. A group service configuration can have
+// one or more items. For details about group service configuration syntax,
+// see Service configurations for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 type GroupConfigurationItem struct {
 	_ struct{} `type:"structure"`
 
-	// A collection of parameters for this group configuration item.
+	// A collection of parameters for this group configuration item. For the list
+	// of parameters that you can use with each configuration item type, see Supported
+	// resource types and parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
 	Parameters []*GroupConfigurationParameter `type:"list"`
 
 	// Specifies the type of group configuration item. Each item must have a unique
-	// value for type.
-	//
-	// You can specify the following string values:
-	//
-	//    * AWS::EC2::CapacityReservationPool For more information about EC2 capacity
-	//    reservation groups, see Working with capacity reservation groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group)
-	//    in the EC2 Users Guide.
-	//
-	//    * AWS::ResourceGroups::Generic - Supports parameters that configure the
-	//    behavior of resource groups of any type.
+	// value for type. For the list of types that you can specify for a configuration
+	// item, see Supported resource types and parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true"`
@@ -2477,33 +2675,21 @@ func (s *GroupConfigurationItem) SetType(v string) *GroupConfigurationItem {
 	return s
 }
 
-// A parameter for a group configuration item.
+// A parameter for a group configuration item. For details about group service
+// configuration syntax, see Service configurations for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
 type GroupConfigurationParameter struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the group configuration parameter.
-	//
-	// You can specify the following string values:
-	//
-	//    * For configuration item type AWS::ResourceGroups::Generic: allowed-resource-types
-	//    Specifies the types of resources that you can add to this group by using
-	//    the GroupResources operation.
-	//
-	//    * For configuration item type AWS::EC2::CapacityReservationPool: None
-	//    - This configuration item type doesn't support any parameters. For more
-	//    information about EC2 capacity reservation groups, see Working with capacity
-	//    reservation groups (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/capacity-reservations-using.html#create-cr-group)
-	//    in the EC2 Users Guide.
+	// The name of the group configuration parameter. For the list of parameters
+	// that you can use with each configuration item type, see Supported resource
+	// types and parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The values of for this parameter.
-	//
-	// You can specify the following string value:
-	//
-	//    * For item type allowed-resource-types: the only supported parameter value
-	//    is AWS::EC2::CapacityReservation.
+	// The value or values to be used for the specified parameter. For the list
+	// of values you can use with each parameter, see Supported resource types and
+	// parameters (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html#about-slg-types).
 	Values []*string `type:"list"`
 }
 
@@ -2737,11 +2923,19 @@ func (s *GroupResourcesInput) SetResourceArns(v []*string) *GroupResourcesInput 
 type GroupResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARNs of the resources that failed to be added to the group by this operation.
+	// A list of ARNs of any resources that failed to be added to the group by this
+	// operation.
 	Failed []*FailedResource `type:"list"`
 
-	// The ARNs of the resources that were successfully added to the group by this
-	// operation.
+	// A list of ARNs of any resources that are still in the process of being added
+	// to the group by this operation. These pending additions continue asynchronously.
+	// You can check the status of pending additions by using the ListGroupResources
+	// operation, and checking the Resources array in the response and the Status
+	// field of each object in that array.
+	Pending []*PendingResource `type:"list"`
+
+	// A list of ARNs of resources that were successfully added to the group by
+	// this operation.
 	Succeeded []*string `min:"1" type:"list"`
 }
 
@@ -2758,6 +2952,12 @@ func (s GroupResourcesOutput) GoString() string {
 // SetFailed sets the Failed field's value.
 func (s *GroupResourcesOutput) SetFailed(v []*FailedResource) *GroupResourcesOutput {
 	s.Failed = v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *GroupResourcesOutput) SetPending(v []*PendingResource) *GroupResourcesOutput {
+	s.Pending = v
 	return s
 }
 
@@ -2854,7 +3054,8 @@ type ListGroupResourcesInput struct {
 	// The name or the ARN of the resource group
 	Group *string `min:"1" type:"string"`
 
-	// Don't use this parameter. Use Group instead.
+	//
+	//  Deprecated - don't use this parameter. Use the Group request field instead.
 	//
 	// Deprecated: This field is deprecated, use Group instead.
 	GroupName *string `min:"1" deprecated:"true" type:"string"`
@@ -2946,6 +3147,43 @@ func (s *ListGroupResourcesInput) SetNextToken(v string) *ListGroupResourcesInpu
 	return s
 }
 
+// A structure returned by the ListGroupResources operation that contains identity
+// and group membership status information for one of the resources in the group.
+type ListGroupResourcesItem struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the ARN of a resource and its resource type.
+	Identifier *ResourceIdentifier `type:"structure"`
+
+	// A structure that contains the status of this resource's membership in the
+	// group.
+	//
+	// This field is present in the response only if the group is of type AWS::EC2::HostManagement.
+	Status *ResourceStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListGroupResourcesItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupResourcesItem) GoString() string {
+	return s.String()
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ListGroupResourcesItem) SetIdentifier(v *ResourceIdentifier) *ListGroupResourcesItem {
+	s.Identifier = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListGroupResourcesItem) SetStatus(v *ResourceStatus) *ListGroupResourcesItem {
+	s.Status = v
+	return s
+}
+
 type ListGroupResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2960,9 +3198,16 @@ type ListGroupResourcesOutput struct {
 	// and CLOUDFORMATION_STACK_NOT_EXISTING.
 	QueryErrors []*QueryError `type:"list"`
 
-	// The ARNs and resource types of resources that are members of the group that
-	// you specified.
-	ResourceIdentifiers []*ResourceIdentifier `type:"list"`
+	//
+	//  Deprecated - don't use this parameter. Use the Resources response field
+	//  instead.
+	//
+	// Deprecated: This field is deprecated, use Resources instead.
+	ResourceIdentifiers []*ResourceIdentifier `deprecated:"true" type:"list"`
+
+	// An array of resources from which you can determine each resource's identity,
+	// type, and group membership status.
+	Resources []*ListGroupResourcesItem `type:"list"`
 }
 
 // String returns the string representation
@@ -2993,6 +3238,12 @@ func (s *ListGroupResourcesOutput) SetResourceIdentifiers(v []*ResourceIdentifie
 	return s
 }
 
+// SetResources sets the Resources field's value.
+func (s *ListGroupResourcesOutput) SetResources(v []*ListGroupResourcesItem) *ListGroupResourcesOutput {
+	s.Resources = v
+	return s
+}
+
 type ListGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3005,7 +3256,7 @@ type ListGroupsInput struct {
 	//
 	//    * configuration-type - Filter the results to include only those groups
 	//    that have the specified configuration types attached. The current supported
-	//    values are: AWS:EC2::CapacityReservationPool
+	//    values are: AWS:EC2::CapacityReservationPool AWS:EC2::HostManagement
 	Filters []*GroupFilter `type:"list"`
 
 	// The total number of results that you want included on each page of the response.
@@ -3084,8 +3335,9 @@ type ListGroupsOutput struct {
 	// both the Name and the GroupArn.
 	GroupIdentifiers []*GroupIdentifier `type:"list"`
 
-	// This output element is deprecated and shouldn't be used. Refer to GroupIdentifiers
-	// instead.
+	//
+	//  Deprecated - don't use this field. Use the GroupIdentifiers response field
+	//  instead.
 	//
 	// Deprecated: This field is deprecated, use GroupIdentifiers instead.
 	Groups []*Group `deprecated:"true" type:"list"`
@@ -3237,6 +3489,111 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A structure that identifies a resource that is currently pending addition
+// to the group as a member. Adding a resource to a resource group happens asynchronously
+// as a background task and this one isn't completed yet.
+type PendingResource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) of the resource that's in a pending state.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s PendingResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PendingResource) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *PendingResource) SetResourceArn(v string) *PendingResource {
+	s.ResourceArn = &v
+	return s
+}
+
+type PutGroupConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new configuration to associate with the specified group. A configuration
+	// associates the resource group with an AWS service and specifies how the service
+	// can interact with the resources in the group. A configuration is an array
+	// of GroupConfigurationItem elements.
+	//
+	// For information about the syntax of a service configuration, see Service
+	// configurations for resource groups (https://docs.aws.amazon.com/ARG/latest/APIReference/about-slg.html).
+	//
+	// A resource group can contain either a Configuration or a ResourceQuery, but
+	// not both.
+	Configuration []*GroupConfigurationItem `type:"list"`
+
+	// The name or ARN of the resource group with the configuration that you want
+	// to update.
+	Group *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutGroupConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutGroupConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutGroupConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutGroupConfigurationInput"}
+	if s.Group != nil && len(*s.Group) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Group", 1))
+	}
+	if s.Configuration != nil {
+		for i, v := range s.Configuration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Configuration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *PutGroupConfigurationInput) SetConfiguration(v []*GroupConfigurationItem) *PutGroupConfigurationInput {
+	s.Configuration = v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *PutGroupConfigurationInput) SetGroup(v string) *PutGroupConfigurationInput {
+	s.Group = &v
+	return s
+}
+
+type PutGroupConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutGroupConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutGroupConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 // A two-part error structure that can occur in ListGroupResources or SearchResources
 // operations on CloudFormation stack-based queries. The error occurs if the
 // CloudFormation stack on which the query is based either does not exist, or
@@ -3336,7 +3693,7 @@ func (s *ResourceFilter) SetValues(v []*string) *ResourceFilter {
 	return s
 }
 
-// The ARN of a resource, and its resource type.
+// A structure that contains the ARN of a resource and its resource type.
 type ResourceIdentifier struct {
 	_ struct{} `type:"structure"`
 
@@ -3503,6 +3860,33 @@ func (s *ResourceQuery) SetQuery(v string) *ResourceQuery {
 // SetType sets the Type field's value.
 func (s *ResourceQuery) SetType(v string) *ResourceQuery {
 	s.Type = &v
+	return s
+}
+
+// A structure that identifies the current group membership status for a resource.
+// Adding a resource to a resource group is performed asynchronously as a background
+// task. A PENDING status indicates, for this resource, that the process isn't
+// completed yet.
+type ResourceStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The current status.
+	Name *string `type:"string" enum:"ResourceStatusValue"`
+}
+
+// String returns the string representation
+func (s ResourceStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceStatus) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ResourceStatus) SetName(v string) *ResourceStatus {
+	s.Name = &v
 	return s
 }
 
@@ -3892,10 +4276,19 @@ func (s *UngroupResourcesInput) SetResourceArns(v []*string) *UngroupResourcesIn
 type UngroupResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The resources that failed to be removed from the group.
+	// A list of any resources that failed to be removed from the group by this
+	// operation.
 	Failed []*FailedResource `type:"list"`
 
-	// The ARNs of the resources that were successfully removed from the group.
+	// A list of any resources that are still in the process of being removed from
+	// the group by this operation. These pending removals continue asynchronously.
+	// You can check the status of pending removals by using the ListGroupResources
+	// operation. After the resource is successfully removed, it no longer appears
+	// in the response.
+	Pending []*PendingResource `type:"list"`
+
+	// A list of resources that were successfully removed from the group by this
+	// operation.
 	Succeeded []*string `min:"1" type:"list"`
 }
 
@@ -3912,6 +4305,12 @@ func (s UngroupResourcesOutput) GoString() string {
 // SetFailed sets the Failed field's value.
 func (s *UngroupResourcesOutput) SetFailed(v []*FailedResource) *UngroupResourcesOutput {
 	s.Failed = v
+	return s
+}
+
+// SetPending sets the Pending field's value.
+func (s *UngroupResourcesOutput) SetPending(v []*PendingResource) *UngroupResourcesOutput {
+	s.Pending = v
 	return s
 }
 
@@ -4106,6 +4505,9 @@ type UpdateGroupQueryInput struct {
 	// The resource query to determine which AWS resources are members of this resource
 	// group.
 	//
+	// A resource group can contain either a Configuration or a ResourceQuery, but
+	// not both.
+	//
 	// ResourceQuery is a required field
 	ResourceQuery *ResourceQuery `type:"structure" required:"true"`
 }
@@ -4262,5 +4664,17 @@ const (
 func ResourceFilterName_Values() []string {
 	return []string{
 		ResourceFilterNameResourceType,
+	}
+}
+
+const (
+	// ResourceStatusValuePending is a ResourceStatusValue enum value
+	ResourceStatusValuePending = "PENDING"
+)
+
+// ResourceStatusValue_Values returns all elements of the ResourceStatusValue enum
+func ResourceStatusValue_Values() []string {
+	return []string{
+		ResourceStatusValuePending,
 	}
 }

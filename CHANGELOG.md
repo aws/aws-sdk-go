@@ -1,3 +1,12 @@
+Release v1.36.15 (2020-12-23)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * AWS DMS launches support for AWS Secrets Manager to manage Oracle ASM Database credentials
+* `service/resource-groups`: Updates service API, documentation, and paginators
+
 Release v1.36.14 (2020-12-22)
 ===
 

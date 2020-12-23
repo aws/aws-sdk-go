@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Compute Optimizer is a service that analyzes the configuration and utilization metrics of your AWS compute resources, such as EC2 instances, Auto Scaling groups, and Amazon EBS volumes. It reports whether your resources are optimal, and generates optimization recommendations to reduce the cost and improve the performance of your workloads. Compute Optimizer also provides recent utilization metric data, as well as projected utilization metric data for the recommendations, which you can use to evaluate which recommendation provides the best price-performance trade-off. The analysis of your usage patterns can help you decide when to move or resize your running resources, and still meet your performance and capacity requirements. For more information about Compute Optimizer, including the required permissions to use the service, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/\">AWS Compute Optimizer User Guide</a>.</p>",
+  "service": "<p>AWS Compute Optimizer is a service that analyzes the configuration and utilization metrics of your AWS compute resources, such as EC2 instances, Auto Scaling groups, AWS Lambda functions, and Amazon EBS volumes. It reports whether your resources are optimal, and generates optimization recommendations to reduce the cost and improve the performance of your workloads. Compute Optimizer also provides recent utilization metric data, as well as projected utilization metric data for the recommendations, which you can use to evaluate which recommendation provides the best price-performance trade-off. The analysis of your usage patterns can help you decide when to move or resize your running resources, and still meet your performance and capacity requirements. For more information about Compute Optimizer, including the required permissions to use the service, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/\">AWS Compute Optimizer User Guide</a>.</p>",
   "operations": {
     "DescribeRecommendationExportJobs": "<p>Describes recommendation export jobs created in the last seven days.</p> <p>Use the <code>ExportAutoScalingGroupRecommendations</code> or <code>ExportEC2InstanceRecommendations</code> actions to request an export of your recommendations. Then use the <code>DescribeRecommendationExportJobs</code> action to view your export jobs.</p>",
     "ExportAutoScalingGroupRecommendations": "<p>Exports optimization recommendations for Auto Scaling groups.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Auto Scaling group export job in progress per AWS Region.</p>",
@@ -10,6 +10,7 @@
     "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetEC2RecommendationProjectedMetrics": "<p>Returns the projected utilization metrics of Amazon EC2 instance recommendations.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run this action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
     "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is the management account of an organization, this action also confirms the enrollment status of member accounts within the organization.</p>",
+    "GetLambdaFunctionRecommendations": "<p>Returns AWS Lambda function recommendations.</p> <p>AWS Compute Optimizer generates recommendations for functions that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>For example, it returns the number of Amazon EC2 instances in an account that are under-provisioned, over-provisioned, or optimized. It also returns the number of Auto Scaling groups in an account that are not optimized, or optimized.</p>",
     "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a management account of an organization, this action can also be used to enroll member accounts within the organization.</p>"
   },
@@ -25,6 +26,7 @@
         "AccountIds$member": null,
         "AutoScalingGroupRecommendation$accountId": "<p>The AWS account ID of the Auto Scaling group.</p>",
         "InstanceRecommendation$accountId": "<p>The AWS account ID of the instance.</p>",
+        "LambdaFunctionRecommendation$accountId": "<p>The AWS account ID of the function.</p>",
         "RecommendationSummary$accountId": "<p>The AWS account ID of the recommendation summary.</p>",
         "VolumeRecommendation$accountId": "<p>The AWS account ID of the volume.</p>"
       }
@@ -37,6 +39,7 @@
         "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEBSVolumeRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return volume recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
+        "GetLambdaFunctionRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to return function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return function recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetRecommendationSummariesRequest$accountIds": "<p>The IDs of the AWS accounts for which to return recommendation summaries.</p> <p>If your account is the management account of an organization, use this parameter to specify the member accounts for which you want to return recommendation summaries.</p> <p>Only one account ID can be specified per request.</p>"
       }
     },
@@ -285,7 +288,8 @@
       "refs": {
         "EBSFilter$values": "<p>The value of the filter.</p> <p>The valid values are <code>Optimized</code>, or <code>NotOptimized</code>.</p>",
         "Filter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter and the resource type that you wish to filter results for:</p> <ul> <li> <p>Specify <code>Optimized</code> or <code>NotOptimized</code> if you specified the <code>name</code> parameter as <code>Finding</code> and you want to filter results for Auto Scaling groups.</p> </li> <li> <p>Specify <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code> if you specified the <code>name</code> parameter as <code>Finding</code> and you want to filter results for EC2 instances.</p> </li> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specified the <code>name</code> parameter as <code>RecommendationSourceType</code>.</p> </li> </ul>",
-        "JobFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specified the <code>name</code> parameter as <code>ResourceType</code>. There is no filter for EBS volumes because volume recommendations cannot be exported at this time.</p> </li> <li> <p>Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code> if you specified the <code>name</code> parameter as <code>JobStatus</code>.</p> </li> </ul>"
+        "JobFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Ec2Instance</code> or <code>AutoScalingGroup</code> if you specified the <code>name</code> parameter as <code>ResourceType</code>. There is no filter for EBS volumes because volume recommendations cannot be exported at this time.</p> </li> <li> <p>Specify <code>Queued</code>, <code>InProgress</code>, <code>Complete</code>, or <code>Failed</code> if you specified the <code>name</code> parameter as <code>JobStatus</code>.</p> </li> </ul>",
+        "LambdaFunctionRecommendationFilter$values": "<p>The value of the filter.</p> <p>The valid values for this parameter are as follows, depending on what you specify for the <code>name</code> parameter:</p> <ul> <li> <p>Specify <code>Optimized</code>, <code>NotOptimized</code>, or <code>Unavailable</code> if you specified the <code>name</code> parameter as <code>Finding</code>.</p> </li> <li> <p>Specify <code>MemoryOverprovisioned</code>, <code>MemoryUnderprovisioned</code>, <code>InsufficientData</code>, or <code>Inconclusive</code> if you specified the <code>name</code> parameter as <code>FindingReasonCode</code>.</p> </li> </ul>"
       }
     },
     "Filters": {
@@ -303,6 +307,31 @@
         "AutoScalingGroupRecommendation$finding": "<p>The finding classification for the Auto Scaling group.</p> <p>Findings for Auto Scaling groups include:</p> <ul> <li> <p> <b> <code>NotOptimized</code> </b>—An Auto Scaling group is considered not optimized when AWS Compute Optimizer identifies a recommendation that can provide better performance for your workload.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An Auto Scaling group is considered optimized when Compute Optimizer determines that the group is correctly provisioned to run your workload based on the chosen instance type. For optimized resources, Compute Optimizer might recommend a new generation instance type.</p> </li> </ul>",
         "InstanceRecommendation$finding": "<p>The finding classification for the instance.</p> <p>Findings for instances include:</p> <ul> <li> <p> <b> <code>Underprovisioned</code> </b>—An instance is considered under-provisioned when at least one specification of your instance, such as CPU, memory, or network, does not meet the performance requirements of your workload. Under-provisioned instances may lead to poor application performance.</p> </li> <li> <p> <b> <code>Overprovisioned</code> </b>—An instance is considered over-provisioned when at least one specification of your instance, such as CPU, memory, or network, can be sized down while still meeting the performance requirements of your workload, and no specification is under-provisioned. Over-provisioned instances may lead to unnecessary infrastructure cost.</p> </li> <li> <p> <b> <code>Optimized</code> </b>—An instance is considered optimized when all specifications of your instance, such as CPU, memory, and network, meet the performance requirements of your workload and is not over provisioned. An optimized instance runs your workloads with optimal performance and infrastructure cost. For optimized resources, AWS Compute Optimizer might recommend a new generation instance type.</p> </li> </ul>",
         "Summary$name": "<p>The finding classification of the recommendation.</p>"
+      }
+    },
+    "FindingReasonCode": {
+      "base": null,
+      "refs": {
+        "ReasonCodeSummary$name": "<p>The name of the finding reason code.</p>"
+      }
+    },
+    "FunctionArn": {
+      "base": null,
+      "refs": {
+        "FunctionArns$member": null,
+        "LambdaFunctionRecommendation$functionArn": "<p>The Amazon Resource Name (ARN) of the current function.</p>"
+      }
+    },
+    "FunctionArns": {
+      "base": null,
+      "refs": {
+        "GetLambdaFunctionRecommendationsRequest$functionArns": "<p>The Amazon Resource Name (ARN) of the functions for which to return recommendations.</p> <p>You can specify a qualified or unqualified ARN. If you specify an unqualified ARN without a function version suffix, Compute Optimizer will return recommendations for the latest (<code>$LATEST</code>) version of the function. If you specify a qualified ARN with a version suffix, Compute Optimizer will return recommendations for the specified function version. For more information about using function versions, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#versioning-versions-using\">Using versions</a> in the <i>AWS Lambda Developer Guide</i>.</p>"
+      }
+    },
+    "FunctionVersion": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendation$functionVersion": "<p>The version number of the current function.</p>"
       }
     },
     "GetAutoScalingGroupRecommendationsRequest": {
@@ -351,6 +380,16 @@
       }
     },
     "GetEnrollmentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLambdaFunctionRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLambdaFunctionRecommendationsResponse": {
       "base": null,
       "refs": {
       }
@@ -487,11 +526,120 @@
         "RecommendationExportJob$status": "<p>The status of the export job.</p>"
       }
     },
+    "LambdaFunctionMemoryMetricName": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionMemoryProjectedMetric$name": "<p>The name of the projected utilization metric.</p>"
+      }
+    },
+    "LambdaFunctionMemoryMetricStatistic": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionMemoryProjectedMetric$statistic": "<p>The statistic of the projected utilization metric.</p>"
+      }
+    },
+    "LambdaFunctionMemoryProjectedMetric": {
+      "base": "<p>Describes a projected utilization metric of an AWS Lambda function recommendation option.</p>",
+      "refs": {
+        "LambdaFunctionMemoryProjectedMetrics$member": null
+      }
+    },
+    "LambdaFunctionMemoryProjectedMetrics": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionMemoryRecommendationOption$projectedUtilizationMetrics": "<p>An array of objects that describe the projected utilization metrics of the function recommendation option.</p>"
+      }
+    },
+    "LambdaFunctionMemoryRecommendationOption": {
+      "base": "<p>Describes a recommendation option for an AWS Lambda function.</p>",
+      "refs": {
+        "LambdaFunctionMemoryRecommendationOptions$member": null
+      }
+    },
+    "LambdaFunctionMemoryRecommendationOptions": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendation$memorySizeRecommendationOptions": "<p>An array of objects that describe the memory configuration recommendation options for the function.</p>"
+      }
+    },
+    "LambdaFunctionMetricName": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionUtilizationMetric$name": "<p>The name of the utilization metric.</p>"
+      }
+    },
+    "LambdaFunctionMetricStatistic": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionUtilizationMetric$statistic": "<p>The statistic of the utilization metric.</p>"
+      }
+    },
+    "LambdaFunctionRecommendation": {
+      "base": "<p>Describes an AWS Lambda function recommendation.</p>",
+      "refs": {
+        "LambdaFunctionRecommendations$member": null
+      }
+    },
+    "LambdaFunctionRecommendationFilter": {
+      "base": "<p>Describes a filter that returns a more specific list of AWS Lambda function recommendations.</p>",
+      "refs": {
+        "LambdaFunctionRecommendationFilters$member": null
+      }
+    },
+    "LambdaFunctionRecommendationFilterName": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendationFilter$name": "<p>The name of the filter.</p> <p>Specify <code>Finding</code> to return recommendations with a specific finding classification (e.g., <code>NotOptimized</code>).</p> <p>Specify <code>FindingReasonCode</code> to return recommendations with a specific finding reason code (e.g., <code>MemoryUnderprovisioned</code>).</p>"
+      }
+    },
+    "LambdaFunctionRecommendationFilters": {
+      "base": null,
+      "refs": {
+        "GetLambdaFunctionRecommendationsRequest$filters": "<p>An array of objects that describe a filter that returns a more specific list of function recommendations.</p>"
+      }
+    },
+    "LambdaFunctionRecommendationFinding": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendation$finding": "<p>The finding classification for the function.</p> <p>Findings for functions include:</p> <ul> <li> <p> <b> <code>Optimized</code> </b> — The function is correctly provisioned to run your workload based on its current configuration and its utilization history. This finding classification does not include finding reason codes.</p> </li> <li> <p> <b> <code>NotOptimized</code> </b> — The function is performing at a higher level (over-provisioned) or at a lower level (under-provisioned) than required for your workload because its current configuration is not optimal. Over-provisioned resources might lead to unnecessary infrastructure cost, and under-provisioned resources might lead to poor application performance. This finding classification can include the <code>MemoryUnderprovisioned</code> and <code>MemoryUnderprovisioned</code> finding reason codes.</p> </li> <li> <p> <b> <code>Unavailable</code> </b> — Compute Optimizer was unable to generate a recommendation for the function. This could be because the function has not accumulated sufficient metric data, or the function does not qualify for a recommendation. This finding classification can include the <code>InsufficientData</code> and <code>Inconclusive</code> finding reason codes.</p> <note> <p>Functions with a finding of unavailable are not returned unless you specify the <code>filter</code> parameter with a value of <code>Unavailable</code> in your <code>GetLambdaFunctionRecommendations</code> request.</p> </note> </li> </ul>"
+      }
+    },
+    "LambdaFunctionRecommendationFindingReasonCode": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendationFindingReasonCodes$member": null
+      }
+    },
+    "LambdaFunctionRecommendationFindingReasonCodes": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendation$findingReasonCodes": "<p>The reason for the finding classification of the function.</p> <note> <p>Functions that have a finding classification of <code>Optimized</code> don't have a finding reason code.</p> </note> <p>Reason codes include:</p> <ul> <li> <p> <b> <code>MemoryOverprovisioned</code> </b> — The function is over-provisioned when its memory configuration can be sized down while still meeting the performance requirements of your workload. An over-provisioned function might lead to unnecessary infrastructure cost. This finding reason code is part of the <code>NotOptimized</code> finding classification.</p> </li> <li> <p> <b> <code>MemoryUnderprovisioned</code> </b> — The function is under-provisioned when its memory configuration doesn't meet the performance requirements of the workload. An under-provisioned function might lead to poor application performance. This finding reason code is part of the <code>NotOptimized</code> finding classification.</p> </li> <li> <p> <b> <code>InsufficientData</code> </b> — The function does not have sufficient metric data for Compute Optimizer to generate a recommendation. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>. This finding reason code is part of the <code>Unavailable</code> finding classification.</p> </li> <li> <p> <b> <code>Inconclusive</code> </b> — The function does not qualify for a recommendation, or there was an internal error. This finding reason code is part of the <code>Unavailable</code> finding classification.</p> </li> </ul>"
+      }
+    },
+    "LambdaFunctionRecommendations": {
+      "base": null,
+      "refs": {
+        "GetLambdaFunctionRecommendationsResponse$lambdaFunctionRecommendations": "<p>An array of objects that describe function recommendations.</p>"
+      }
+    },
+    "LambdaFunctionUtilizationMetric": {
+      "base": "<p>Describes a utilization metric of an AWS Lambda function.</p>",
+      "refs": {
+        "LambdaFunctionUtilizationMetrics$member": null
+      }
+    },
+    "LambdaFunctionUtilizationMetrics": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendation$utilizationMetrics": "<p>An array of objects that describe the utilization metrics of the function.</p>"
+      }
+    },
     "LastRefreshTimestamp": {
       "base": null,
       "refs": {
         "AutoScalingGroupRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the Auto Scaling group recommendation was last refreshed.</p>",
         "InstanceRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the instance recommendation was last refreshed.</p>",
+        "LambdaFunctionRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the function recommendation was last refreshed.</p>",
         "VolumeRecommendation$lastRefreshTimestamp": "<p>The time stamp of when the volume recommendation was last refreshed.</p>"
       }
     },
@@ -511,6 +659,7 @@
       "refs": {
         "AutoScalingGroupRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the Auto Scaling group.</p>",
         "InstanceRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the instance.</p>",
+        "LambdaFunctionRecommendation$lookbackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the function.</p>",
         "VolumeRecommendation$lookBackPeriodInDays": "<p>The number of days for which utilization metrics were analyzed for the volume.</p>"
       }
     },
@@ -521,6 +670,7 @@
         "GetAutoScalingGroupRecommendationsRequest$maxResults": "<p>The maximum number of Auto Scaling group recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
         "GetEBSVolumeRecommendationsRequest$maxResults": "<p>The maximum number of volume recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
         "GetEC2InstanceRecommendationsRequest$maxResults": "<p>The maximum number of instance recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
+        "GetLambdaFunctionRecommendationsRequest$maxResults": "<p>The maximum number of function recommendations to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>",
         "GetRecommendationSummariesRequest$maxResults": "<p>The maximum number of recommendation summaries to return with a single request.</p> <p>To retrieve the remaining results, make another request with the returned <code>NextToken</code> value.</p>"
       }
     },
@@ -534,6 +684,13 @@
       "base": null,
       "refs": {
         "GetEnrollmentStatusResponse$memberAccountsEnrolled": "<p>Confirms the enrollment status of member accounts within the organization, if the account is a management account of an organization.</p>"
+      }
+    },
+    "MemorySize": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionMemoryRecommendationOption$memorySize": "<p>The memory size, in MB, of the function recommendation option.</p>",
+        "LambdaFunctionRecommendation$currentMemorySize": "<p>The amount of memory, in MB, that's allocated to the current function.</p>"
       }
     },
     "Message": {
@@ -567,6 +724,8 @@
       "base": null,
       "refs": {
         "EBSUtilizationMetric$value": "<p>The value of the utilization metric.</p>",
+        "LambdaFunctionMemoryProjectedMetric$value": "<p>The values of the projected utilization metrics.</p>",
+        "LambdaFunctionUtilizationMetric$value": "<p>The value of the utilization metric.</p>",
         "MetricValues$member": null,
         "UtilizationMetric$value": "<p>The value of the utilization metric.</p>"
       }
@@ -599,8 +758,16 @@
         "GetEBSVolumeRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of volume recommendations.</p> <p>This value is null when there are no more pages of volume recommendations to return.</p>",
         "GetEC2InstanceRecommendationsRequest$nextToken": "<p>The token to advance to the next page of instance recommendations.</p>",
         "GetEC2InstanceRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of instance recommendations.</p> <p>This value is null when there are no more pages of instance recommendations to return.</p>",
+        "GetLambdaFunctionRecommendationsRequest$nextToken": "<p>The token to advance to the next page of function recommendations.</p>",
+        "GetLambdaFunctionRecommendationsResponse$nextToken": "<p>The token to use to advance to the next page of function recommendations.</p> <p>This value is null when there are no more pages of function recommendations to return.</p>",
         "GetRecommendationSummariesRequest$nextToken": "<p>The token to advance to the next page of recommendation summaries.</p>",
         "GetRecommendationSummariesResponse$nextToken": "<p>The token to use to advance to the next page of recommendation summaries.</p> <p>This value is null when there are no more pages of recommendation summaries to return.</p>"
+      }
+    },
+    "NumberOfInvocations": {
+      "base": null,
+      "refs": {
+        "LambdaFunctionRecommendation$numberOfInvocations": "<p>The number of times your function code was executed during the look-back period.</p>"
       }
     },
     "OptInRequiredException": {
@@ -646,8 +813,21 @@
       "refs": {
         "AutoScalingGroupRecommendationOption$rank": "<p>The rank of the Auto Scaling group recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "InstanceRecommendationOption$rank": "<p>The rank of the instance recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
+        "LambdaFunctionMemoryRecommendationOption$rank": "<p>The rank of the function recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>",
         "RecommendedOptionProjectedMetric$rank": "<p>The rank of the recommendation option projected metric.</p> <p>The top recommendation option is ranked as <code>1</code>.</p> <p>The projected metric rank correlates to the recommendation option rank. For example, the projected metric ranked as <code>1</code> is related to the recommendation option that is also ranked as <code>1</code> in the same response.</p>",
         "VolumeRecommendationOption$rank": "<p>The rank of the volume recommendation option.</p> <p>The top recommendation option is ranked as <code>1</code>.</p>"
+      }
+    },
+    "ReasonCodeSummaries": {
+      "base": null,
+      "refs": {
+        "Summary$reasonCodeSummaries": "<p>An array of objects that summarize a finding reason code.</p>"
+      }
+    },
+    "ReasonCodeSummary": {
+      "base": "<p>A summary of a finding reason code.</p>",
+      "refs": {
+        "ReasonCodeSummaries$member": null
       }
     },
     "RecommendationExportJob": {
@@ -784,6 +964,7 @@
     "SummaryValue": {
       "base": null,
       "refs": {
+        "ReasonCodeSummary$value": "<p>The value of the finding reason code summary.</p>",
         "Summary$value": "<p>The value of the recommendation summary.</p>"
       }
     },

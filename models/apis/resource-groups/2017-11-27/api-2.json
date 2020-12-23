@@ -164,6 +164,24 @@
         {"shape":"InternalServerErrorException"}
       ]
     },
+    "PutGroupConfiguration":{
+      "name":"PutGroupConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/put-group-configuration",
+        "responseCode":202
+      },
+      "input":{"shape":"PutGroupConfigurationInput"},
+      "output":{"shape":"PutGroupConfigurationOutput"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"MethodNotAllowedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerErrorException"}
+      ]
+    },
     "SearchResources":{
       "name":"SearchResources",
       "http":{
@@ -463,15 +481,15 @@
     },
     "GroupConfigurationParameterName":{
       "type":"string",
-      "max":40,
+      "max":80,
       "min":1,
       "pattern":"[a-z-]+"
     },
     "GroupConfigurationParameterValue":{
       "type":"string",
-      "max":40,
+      "max":256,
       "min":1,
-      "pattern":"[a-zA-Z0-9:]+"
+      "pattern":"[a-zA-Z0-9:_-]+"
     },
     "GroupConfigurationParameterValueList":{
       "type":"list",
@@ -575,7 +593,8 @@
       "type":"structure",
       "members":{
         "Succeeded":{"shape":"ResourceArnList"},
-        "Failed":{"shape":"FailedResourceList"}
+        "Failed":{"shape":"FailedResourceList"},
+        "Pending":{"shape":"PendingResourceList"}
       }
     },
     "GroupString":{
@@ -606,10 +625,26 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListGroupResourcesItem":{
+      "type":"structure",
+      "members":{
+        "Identifier":{"shape":"ResourceIdentifier"},
+        "Status":{"shape":"ResourceStatus"}
+      }
+    },
+    "ListGroupResourcesItemList":{
+      "type":"list",
+      "member":{"shape":"ListGroupResourcesItem"}
+    },
     "ListGroupResourcesOutput":{
       "type":"structure",
       "members":{
-        "ResourceIdentifiers":{"shape":"ResourceIdentifierList"},
+        "Resources":{"shape":"ListGroupResourcesItemList"},
+        "ResourceIdentifiers":{
+          "shape":"ResourceIdentifierList",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use Resources instead."
+        },
         "NextToken":{"shape":"NextToken"},
         "QueryErrors":{"shape":"QueryErrorList"}
       }
@@ -668,6 +703,28 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "PendingResource":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "PendingResourceList":{
+      "type":"list",
+      "member":{"shape":"PendingResource"}
+    },
+    "PutGroupConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "Group":{"shape":"GroupString"},
+        "Configuration":{"shape":"GroupConfigurationList"}
+      }
+    },
+    "PutGroupConfigurationOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "Query":{
       "type":"string",
@@ -766,6 +823,16 @@
         "Query":{"shape":"Query"}
       }
     },
+    "ResourceStatus":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ResourceStatusValue"}
+      }
+    },
+    "ResourceStatusValue":{
+      "type":"string",
+      "enum":["PENDING"]
+    },
     "ResourceType":{
       "type":"string",
       "pattern":"AWS::[a-zA-Z0-9]+::\\w+"
@@ -861,7 +928,8 @@
       "type":"structure",
       "members":{
         "Succeeded":{"shape":"ResourceArnList"},
-        "Failed":{"shape":"FailedResourceList"}
+        "Failed":{"shape":"FailedResourceList"},
+        "Pending":{"shape":"PendingResourceList"}
       }
     },
     "UntagInput":{
