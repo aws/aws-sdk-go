@@ -33,6 +33,12 @@ const (
 	// The specified bucket does not exist.
 	ErrCodeNoSuchBucket = "NoSuchBucket"
 
+	// ErrCodeBucketNotFound for service response error code
+	// "NotFound".
+	//
+	// The specified bucket does not exist
+	ErrCodeBucketNotFound = "NotFound"
+
 	// ErrCodeNoSuchKey for service response error code
 	// "NoSuchKey".
 	//
