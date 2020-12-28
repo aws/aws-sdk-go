@@ -1,3 +1,10 @@
+Release v1.36.16 (2020-12-28)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service documentation
+  * Amazon CloudFront has deprecated the CreateStreamingDistribution and CreateStreamingDistributionWithTags APIs as part of discontinuing support for Real-Time Messaging Protocol (RTMP) distributions.
+
 Release v1.36.15 (2020-12-23)
 ===
 
