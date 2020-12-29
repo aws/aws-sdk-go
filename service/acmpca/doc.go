@@ -3,7 +3,6 @@
 // Package acmpca provides the client and types for making API
 // requests to AWS Certificate Manager Private Certificate Authority.
 //
-//
 // This is the ACM Private CA API Reference. It provides descriptions, syntax,
 // and usage examples for each of the actions and data types involved in creating
 // and managing private certificate authorities (CA) for your organization.

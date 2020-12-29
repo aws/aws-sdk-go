@@ -8034,22 +8034,39 @@ type CreateIntegrationInput struct {
 	// A string with a length between [1-64].
 	PayloadFormatVersion *string `locationName:"payloadFormatVersion" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
 	// script. The key is typically a SelectionKey which is chosen based on evaluating
 	// a selection expression.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
+
+	// Supported only for HTTP APIs. You use response parameters to transform the
+	// HTTP response from a backend integration before returning the response to
+	// clients.
+	ResponseParameters map[string]map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// An expression used to extract information at runtime. See Selection Expressions
 	// (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions)
@@ -8181,6 +8198,12 @@ func (s *CreateIntegrationInput) SetRequestTemplates(v map[string]*string) *Crea
 	return s
 }
 
+// SetResponseParameters sets the ResponseParameters field's value.
+func (s *CreateIntegrationInput) SetResponseParameters(v map[string]map[string]*string) *CreateIntegrationInput {
+	s.ResponseParameters = v
+	return s
+}
+
 // SetTemplateSelectionExpression sets the TemplateSelectionExpression field's value.
 func (s *CreateIntegrationInput) SetTemplateSelectionExpression(v string) *CreateIntegrationInput {
 	s.TemplateSelectionExpression = &v
@@ -8247,22 +8270,39 @@ type CreateIntegrationOutput struct {
 	// A string with a length between [1-64].
 	PayloadFormatVersion *string `locationName:"payloadFormatVersion" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
 	// script. The key is typically a SelectionKey which is chosen based on evaluating
 	// a selection expression.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
+
+	// Supported only for HTTP APIs. You use response parameters to transform the
+	// HTTP response from a backend integration before returning the response to
+	// clients.
+	ResponseParameters map[string]map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// An expression used to extract information at runtime. See Selection Expressions
 	// (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions)
@@ -8384,6 +8424,12 @@ func (s *CreateIntegrationOutput) SetRequestTemplates(v map[string]*string) *Cre
 	return s
 }
 
+// SetResponseParameters sets the ResponseParameters field's value.
+func (s *CreateIntegrationOutput) SetResponseParameters(v map[string]map[string]*string) *CreateIntegrationOutput {
+	s.ResponseParameters = v
+	return s
+}
+
 // SetTemplateSelectionExpression sets the TemplateSelectionExpression field's value.
 func (s *CreateIntegrationOutput) SetTemplateSelectionExpression(v string) *CreateIntegrationOutput {
 	s.TemplateSelectionExpression = &v
@@ -8424,16 +8470,28 @@ type CreateIntegrationResponseInput struct {
 	// IntegrationResponseKey is a required field
 	IntegrationResponseKey *string `locationName:"integrationResponseKey" type:"string" required:"true"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	ResponseParameters map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
@@ -8541,16 +8599,28 @@ type CreateIntegrationResponseOutput struct {
 	// type.
 	IntegrationResponseKey *string `locationName:"integrationResponseKey" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	ResponseParameters map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
@@ -12291,22 +12361,39 @@ type GetIntegrationOutput struct {
 	// A string with a length between [1-64].
 	PayloadFormatVersion *string `locationName:"payloadFormatVersion" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
 	// script. The key is typically a SelectionKey which is chosen based on evaluating
 	// a selection expression.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
+
+	// Supported only for HTTP APIs. You use response parameters to transform the
+	// HTTP response from a backend integration before returning the response to
+	// clients.
+	ResponseParameters map[string]map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// An expression used to extract information at runtime. See Selection Expressions
 	// (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions)
@@ -12428,6 +12515,12 @@ func (s *GetIntegrationOutput) SetRequestTemplates(v map[string]*string) *GetInt
 	return s
 }
 
+// SetResponseParameters sets the ResponseParameters field's value.
+func (s *GetIntegrationOutput) SetResponseParameters(v map[string]map[string]*string) *GetIntegrationOutput {
+	s.ResponseParameters = v
+	return s
+}
+
 // SetTemplateSelectionExpression sets the TemplateSelectionExpression field's value.
 func (s *GetIntegrationOutput) SetTemplateSelectionExpression(v string) *GetIntegrationOutput {
 	s.TemplateSelectionExpression = &v
@@ -12532,16 +12625,28 @@ type GetIntegrationResponseOutput struct {
 	// type.
 	IntegrationResponseKey *string `locationName:"integrationResponseKey" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	ResponseParameters map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
@@ -14457,11 +14562,19 @@ type Integration struct {
 	// path, or header; and {name} must be a valid and unique method request parameter
 	// name.
 	//
-	// For HTTP APIs, request parameters are a key-value map specifying parameters
-	// that are passed to AWS_PROXY integrations with a specified integrationSubtype.
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
 	// You can provide static values, or map request data, stage variables, or context
 	// variables that are evaluated at runtime. To learn more, see Working with
 	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API itegrations, without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to backend integrations. The key should follow the pattern
+	// <action>:<header|querystring|path>.<location>. The action can be append,
+	// overwrite or remove. For values, you can provide static values, or map request
+	// data, stage variables, or context variables that are evaluated at runtime.
+	// To learn more, see Transforming API requests and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
 	// Represents a map of Velocity templates that are applied on the request payload
@@ -14469,6 +14582,17 @@ type Integration struct {
 	// type value is the key in this map, and the template (as a String) is the
 	// value. Supported only for WebSocket APIs.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
+
+	// Supported only for HTTP APIs. You use response parameters to transform the
+	// HTTP response from a backend integration before returning the response to
+	// clients. Specify a key-value map from a selection key to response parameters.
+	// The selection key must be a valid HTTP status code within the range of 200-599.
+	// Response parameters are a key-value map. The key must match pattern <action>:<header>.<location>
+	// or overwrite.statuscode. The action can be append, overwrite or remove. The
+	// value can be a static value, or map to response data, stage variables, or
+	// context variables that are evaluated at runtime. To learn more, see Transforming
+	// API requests and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
+	ResponseParameters map[string]map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// The template selection expression for the integration. Supported only for
 	// WebSocket APIs.
@@ -14588,6 +14712,12 @@ func (s *Integration) SetRequestParameters(v map[string]*string) *Integration {
 // SetRequestTemplates sets the RequestTemplates field's value.
 func (s *Integration) SetRequestTemplates(v map[string]*string) *Integration {
 	s.RequestTemplates = v
+	return s
+}
+
+// SetResponseParameters sets the ResponseParameters field's value.
+func (s *Integration) SetResponseParameters(v map[string]map[string]*string) *Integration {
+	s.ResponseParameters = v
 	return s
 }
 
@@ -14812,7 +14942,7 @@ type MutualTlsAuthentication struct {
 	_ struct{} `type:"structure"`
 
 	// An Amazon S3 URL that specifies the truststore for mutual TLS authentication,
-	// for example, s3://bucket-name/key-name. The truststore can contain certificates
+	// for example, s3://bucket-name/key-name . The truststore can contain certificates
 	// from public or private certificate authorities. To update the truststore,
 	// upload a new version to S3, and then update your custom domain name to use
 	// the new version. To update the truststore, you must have permissions to access
@@ -14865,7 +14995,7 @@ type MutualTlsAuthenticationInput struct {
 	_ struct{} `type:"structure"`
 
 	// An Amazon S3 URL that specifies the truststore for mutual TLS authentication,
-	// for example, s3://bucket-name/key-name. The truststore can contain certificates
+	// for example, s3://bucket-name/key-name . The truststore can contain certificates
 	// from public or private certificate authorities. To update the truststore,
 	// upload a new version to S3, and then update your custom domain name to use
 	// the new version. To update the truststore, you must have permissions to access
@@ -16978,22 +17108,39 @@ type UpdateIntegrationInput struct {
 	// A string with a length between [1-64].
 	PayloadFormatVersion *string `locationName:"payloadFormatVersion" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
 	// script. The key is typically a SelectionKey which is chosen based on evaluating
 	// a selection expression.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
+
+	// Supported only for HTTP APIs. You use response parameters to transform the
+	// HTTP response from a backend integration before returning the response to
+	// clients.
+	ResponseParameters map[string]map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// An expression used to extract information at runtime. See Selection Expressions
 	// (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions)
@@ -17134,6 +17281,12 @@ func (s *UpdateIntegrationInput) SetRequestTemplates(v map[string]*string) *Upda
 	return s
 }
 
+// SetResponseParameters sets the ResponseParameters field's value.
+func (s *UpdateIntegrationInput) SetResponseParameters(v map[string]map[string]*string) *UpdateIntegrationInput {
+	s.ResponseParameters = v
+	return s
+}
+
 // SetTemplateSelectionExpression sets the TemplateSelectionExpression field's value.
 func (s *UpdateIntegrationInput) SetTemplateSelectionExpression(v string) *UpdateIntegrationInput {
 	s.TemplateSelectionExpression = &v
@@ -17200,22 +17353,39 @@ type UpdateIntegrationOutput struct {
 	// A string with a length between [1-64].
 	PayloadFormatVersion *string `locationName:"payloadFormatVersion" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	RequestParameters map[string]*string `locationName:"requestParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
 	// script. The key is typically a SelectionKey which is chosen based on evaluating
 	// a selection expression.
 	RequestTemplates map[string]*string `locationName:"requestTemplates" type:"map"`
+
+	// Supported only for HTTP APIs. You use response parameters to transform the
+	// HTTP response from a backend integration before returning the response to
+	// clients.
+	ResponseParameters map[string]map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// An expression used to extract information at runtime. See Selection Expressions
 	// (https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions)
@@ -17337,6 +17507,12 @@ func (s *UpdateIntegrationOutput) SetRequestTemplates(v map[string]*string) *Upd
 	return s
 }
 
+// SetResponseParameters sets the ResponseParameters field's value.
+func (s *UpdateIntegrationOutput) SetResponseParameters(v map[string]map[string]*string) *UpdateIntegrationOutput {
+	s.ResponseParameters = v
+	return s
+}
+
 // SetTemplateSelectionExpression sets the TemplateSelectionExpression field's value.
 func (s *UpdateIntegrationOutput) SetTemplateSelectionExpression(v string) *UpdateIntegrationOutput {
 	s.TemplateSelectionExpression = &v
@@ -17378,16 +17554,28 @@ type UpdateIntegrationResponseInput struct {
 	// type.
 	IntegrationResponseKey *string `locationName:"integrationResponseKey" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	ResponseParameters map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
@@ -17504,16 +17692,28 @@ type UpdateIntegrationResponseOutput struct {
 	// type.
 	IntegrationResponseKey *string `locationName:"integrationResponseKey" type:"string"`
 
-	// A key-value map specifying response parameters that are passed to the method
-	// response from the backend. The key is a method response header parameter
-	// name and the mapped value is an integration response header value, a static
-	// value enclosed within a pair of single quotes, or a JSON expression from
-	// the integration response body. The mapping key must match the pattern of
-	// method.response.header.{name}, where name is a valid and unique header name.
-	// The mapped non-static value must match the pattern of integration.response.header.{name}
-	// or integration.response.body.{JSON-expression}, where name is a valid and
-	// unique response header name and JSON-expression is a valid JSON expression
-	// without the $ prefix.
+	// For WebSocket APIs, a key-value map specifying request parameters that are
+	// passed from the method request to the backend. The key is an integration
+	// request parameter name and the associated value is a method request parameter
+	// value or static value that must be enclosed within single quotes and pre-encoded
+	// as required by the backend. The method request parameter value must match
+	// the pattern of method.request.{location}.{name} , where {location} is querystring,
+	// path, or header; and {name} must be a valid and unique method request parameter
+	// name.
+	//
+	// For HTTP API integrations with a specified integrationSubtype, request parameters
+	// are a key-value map specifying parameters that are passed to AWS_PROXY integrations.
+	// You can provide static values, or map request data, stage variables, or context
+	// variables that are evaluated at runtime. To learn more, see Working with
+	// AWS service integrations for HTTP APIs (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-aws-services.html).
+	//
+	// For HTTP API integrations without a specified integrationSubtype request
+	// parameters are a key-value map specifying how to transform HTTP requests
+	// before sending them to the backend. The key should follow the pattern <action>:<header|querystring|path>.<location>
+	// where action can be append, overwrite or remove. For values, you can provide
+	// static values, or map request data, stage variables, or context variables
+	// that are evaluated at runtime. To learn more, see Transforming API requests
+	// and responses (https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-parameter-mapping.html).
 	ResponseParameters map[string]*string `locationName:"responseParameters" type:"map"`
 
 	// A mapping of identifier keys to templates. The value is an actual template
