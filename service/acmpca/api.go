@@ -90,7 +90,7 @@ func (c *ACMPCA) CreateCertificateAuthorityRequest(input *CreateCertificateAutho
 //   * InvalidPolicyException
 //   The resource policy is invalid or is missing a required statement. For general
 //   information about IAM policy and statement structure, see Overview of JSON
-//   Policies (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
+//   Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
 //
 //   * InvalidTagException
 //   The tag associated with the CA is not valid. The invalid argument is contained
@@ -296,7 +296,7 @@ func (c *ACMPCA) CreatePermissionRequest(input *CreatePermissionInput) (req *req
 //    then permissions cannot be used to enable automatic renewals. Instead,
 //    the ACM certificate owner must set up a resource-based policy to enable
 //    cross-account issuance and renewals. For more information, see Using a
-//    Resource Based Policy with ACM Private CA (acm-pca/latest/userguide/pca-rbp.html).
+//    Resource Based Policy with ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-rbp.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -533,7 +533,7 @@ func (c *ACMPCA) DeletePermissionRequest(input *DeletePermissionInput) (req *req
 //    then permissions cannot be used to enable automatic renewals. Instead,
 //    the ACM certificate owner must set up a resource-based policy to enable
 //    cross-account issuance and renewals. For more information, see Using a
-//    Resource Based Policy with ACM Private CA (acm-pca/latest/userguide/pca-rbp.html).
+//    Resource Based Policy with ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-rbp.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -641,7 +641,7 @@ func (c *ACMPCA) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Req
 //    * A policy grants access on a private CA to an AWS customer account, to
 //    AWS Organizations, or to an AWS Organizations unit. Policies are under
 //    the control of a CA administrator. For more information, see Using a Resource
-//    Based Policy with ACM Private CA (acm-pca/latest/userguide/pca-rbp.html).
+//    Based Policy with ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-rbp.html).
 //
 //    * A policy permits a user of AWS Certificate Manager (ACM) to issue ACM
 //    certificates signed by a CA in another account.
@@ -653,8 +653,7 @@ func (c *ACMPCA) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Req
 //    Role with ACM (https://docs.aws.amazon.com/acm/latest/userguide/acm-slr.html).
 //
 //    * Updates made in AWS Resource Manager (RAM) are reflected in policies.
-//    For more information, see Using AWS Resource Access Manager (RAM) with
-//    ACM Private CA (acm-pca/latest/userguide/pca-ram.html).
+//    For more information, see Attach a Policy for Cross-Account Access (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-ram.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1241,14 +1240,14 @@ func (c *ACMPCA) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, 
 // ResourceNotFoundException.
 //
 // The policy can be attached or updated with PutPolicy (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_PutPolicy.html)
-// and removed with DeletePolicy (acm-pca/latest/APIReference/API_DeletePolicy.html).
+// and removed with DeletePolicy (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DeletePolicy.html).
 //
 // About Policies
 //
 //    * A policy grants access on a private CA to an AWS customer account, to
 //    AWS Organizations, or to an AWS Organizations unit. Policies are under
 //    the control of a CA administrator. For more information, see Using a Resource
-//    Based Policy with ACM Private CA (acm-pca/latest/userguide/pca-rbp.html).
+//    Based Policy with ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-rbp.html).
 //
 //    * A policy permits a user of AWS Certificate Manager (ACM) to issue ACM
 //    certificates signed by a CA in another account.
@@ -1260,8 +1259,7 @@ func (c *ACMPCA) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, 
 //    Role with ACM (https://docs.aws.amazon.com/acm/latest/userguide/acm-slr.html).
 //
 //    * Updates made in AWS Resource Manager (RAM) are reflected in policies.
-//    For more information, see Using AWS Resource Access Manager (RAM) with
-//    ACM Private CA (acm-pca/latest/userguide/pca-ram.html).
+//    For more information, see Attach a Policy for Cross-Account Access (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-ram.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1369,21 +1367,29 @@ func (c *ACMPCA) ImportCertificateAuthorityCertificateRequest(input *ImportCerti
 // Create a certificate chain and copy the signed certificate and the certificate
 // chain to your working directory.
 //
-// The following requirements apply when you import a CA certificate.
+// ACM Private CA supports three scenarios for installing a CA certificate:
 //
-//    * You cannot import a non-self-signed certificate for use as a root CA.
+//    * Installing a certificate for a root CA hosted by ACM Private CA.
 //
-//    * You cannot import a self-signed certificate for use as a subordinate
-//    CA.
+//    * Installing a subordinate CA certificate whose parent authority is hosted
+//    by ACM Private CA.
+//
+//    * Installing a subordinate CA certificate whose parent authority is externally
+//    hosted.
+//
+// The following addtitional requirements apply when you import a CA certificate.
+//
+//    * Only a self-signed certificate can be imported as a root CA.
+//
+//    * A self-signed certificate cannot be imported as a subordinate CA.
 //
 //    * Your certificate chain must not include the private CA certificate that
 //    you are importing.
 //
-//    * Your ACM Private CA-hosted or on-premises CA certificate must be the
-//    last certificate in your chain. The subordinate certificate, if any, that
-//    your root CA signed must be next to last. The subordinate certificate
-//    signed by the preceding subordinate CA must come next, and so on until
-//    your chain is built.
+//    * Your root CA must be the last certificate in your chain. The subordinate
+//    certificate, if any, that your root CA signed must be next to last. The
+//    subordinate certificate signed by the preceding subordinate CA must come
+//    next, and so on until your chain is built.
 //
 //    * The chain must be PEM-encoded.
 //
@@ -1810,7 +1816,7 @@ func (c *ACMPCA) ListPermissionsRequest(input *ListPermissionsInput) (req *reque
 //    then permissions cannot be used to enable automatic renewals. Instead,
 //    the ACM certificate owner must set up a resource-based policy to enable
 //    cross-account issuance and renewals. For more information, see Using a
-//    Resource Based Policy with ACM Private CA (acm-pca/latest/userguide/pca-rbp.html).
+//    Resource Based Policy with ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-rbp.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2108,8 +2114,9 @@ func (c *ACMPCA) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, 
 //
 // Attaches a resource-based policy to a private CA.
 //
-// A policy can also be applied by sharing (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-ram.html)
-// a private CA through AWS Resource Access Manager (RAM).
+// A policy can also be applied by sharing a private CA through AWS Resource
+// Access Manager (RAM). For more information, see Attach a Policy for Cross-Account
+// Access (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-ram.html).
 //
 // The policy can be displayed with GetPolicy (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_GetPolicy.html)
 // and removed with DeletePolicy (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_DeletePolicy.html).
@@ -2119,7 +2126,7 @@ func (c *ACMPCA) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, 
 //    * A policy grants access on a private CA to an AWS customer account, to
 //    AWS Organizations, or to an AWS Organizations unit. Policies are under
 //    the control of a CA administrator. For more information, see Using a Resource
-//    Based Policy with ACM Private CA (acm-pca/latest/userguide/pca-rbp.html).
+//    Based Policy with ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-rbp.html).
 //
 //    * A policy permits a user of AWS Certificate Manager (ACM) to issue ACM
 //    certificates signed by a CA in another account.
@@ -2131,8 +2138,7 @@ func (c *ACMPCA) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, 
 //    Role with ACM (https://docs.aws.amazon.com/acm/latest/userguide/acm-slr.html).
 //
 //    * Updates made in AWS Resource Manager (RAM) are reflected in policies.
-//    For more information, see Using AWS Resource Access Manager (RAM) with
-//    ACM Private CA (acm-pca/latest/userguide/pca-ram.html).
+//    For more information, see Attach a Policy for Cross-Account Access (https://docs.aws.amazon.com/acm-pca/latest/userguide/pca-ram.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2154,7 +2160,7 @@ func (c *ACMPCA) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, 
 //   * InvalidPolicyException
 //   The resource policy is invalid or is missing a required statement. For general
 //   information about IAM policy and statement structure, see Overview of JSON
-//   Policies (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
+//   Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
 //
 //   * LockoutPreventedException
 //   The current action was prevented because it would lock the caller out from
@@ -2699,7 +2705,7 @@ func (c *ACMPCA) UpdateCertificateAuthorityRequest(input *UpdateCertificateAutho
 //   * InvalidPolicyException
 //   The resource policy is invalid or is missing a required statement. For general
 //   information about IAM policy and statement structure, see Overview of JSON
-//   Policies (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
+//   Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/acm-pca-2017-08-22/UpdateCertificateAuthority
 func (c *ACMPCA) UpdateCertificateAuthority(input *UpdateCertificateAuthorityInput) (*UpdateCertificateAuthorityOutput, error) {
@@ -2735,7 +2741,11 @@ func (c *ACMPCA) UpdateCertificateAuthorityWithContext(ctx aws.Context, input *U
 type ASN1Subject struct {
 	_ struct{} `type:"structure"`
 
-	// Fully qualified domain name (FQDN) associated with the certificate subject.
+	// For CA and end-entity certificates in a private PKI, the common name (CN)
+	// can be any string within the length limit.
+	//
+	// Note: In publicly trusted certificates, the common name must be a fully qualified
+	// domain name (FQDN) associated with the certificate subject.
 	CommonName *string `type:"string"`
 
 	// Two-digit code that specifies the country in which the certificate subject
@@ -2892,6 +2902,101 @@ func (s *ASN1Subject) SetSurname(v string) *ASN1Subject {
 // SetTitle sets the Title field's value.
 func (s *ASN1Subject) SetTitle(v string) *ASN1Subject {
 	s.Title = &v
+	return s
+}
+
+// Provides access information used by the authorityInfoAccess and subjectInfoAccess
+// extensions described in RFC 5280 (https://tools.ietf.org/html/rfc5280).
+type AccessDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The location of AccessDescription information.
+	//
+	// AccessLocation is a required field
+	AccessLocation *GeneralName `type:"structure" required:"true"`
+
+	// The type and format of AccessDescription information.
+	//
+	// AccessMethod is a required field
+	AccessMethod *AccessMethod `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AccessDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDescription) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AccessDescription) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AccessDescription"}
+	if s.AccessLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessLocation"))
+	}
+	if s.AccessMethod == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessMethod"))
+	}
+	if s.AccessLocation != nil {
+		if err := s.AccessLocation.Validate(); err != nil {
+			invalidParams.AddNested("AccessLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessLocation sets the AccessLocation field's value.
+func (s *AccessDescription) SetAccessLocation(v *GeneralName) *AccessDescription {
+	s.AccessLocation = v
+	return s
+}
+
+// SetAccessMethod sets the AccessMethod field's value.
+func (s *AccessDescription) SetAccessMethod(v *AccessMethod) *AccessDescription {
+	s.AccessMethod = v
+	return s
+}
+
+// Describes the type and format of extension access. Only one of CustomObjectIdentifier
+// or AccessMethodType may be provided. Providing both results in InvalidArgsException.
+type AccessMethod struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the AccessMethod.
+	AccessMethodType *string `type:"string" enum:"AccessMethodType"`
+
+	// An object identifier (OID) specifying the AccessMethod. The OID must satisfy
+	// the regular expression shown below. For more information, see NIST's definition
+	// of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).
+	CustomObjectIdentifier *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AccessMethod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessMethod) GoString() string {
+	return s.String()
+}
+
+// SetAccessMethodType sets the AccessMethodType field's value.
+func (s *AccessMethod) SetAccessMethodType(v string) *AccessMethod {
+	s.AccessMethodType = &v
+	return s
+}
+
+// SetCustomObjectIdentifier sets the CustomObjectIdentifier field's value.
+func (s *AccessMethod) SetCustomObjectIdentifier(v string) *AccessMethod {
+	s.CustomObjectIdentifier = &v
 	return s
 }
 
@@ -3052,6 +3157,10 @@ func (s *CertificateAuthority) SetType(v string) *CertificateAuthority {
 type CertificateAuthorityConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies information to be added to the extension section of the certificate
+	// signing request (CSR).
+	CsrExtensions *CsrExtensions `type:"structure"`
+
 	// Type of the public key algorithm and size, in bits, of the key pair that
 	// your CA creates when it issues a certificate. When you create a subordinate
 	// CA, you must use a key algorithm supported by the parent CA.
@@ -3096,6 +3205,11 @@ func (s *CertificateAuthorityConfiguration) Validate() error {
 	if s.Subject == nil {
 		invalidParams.Add(request.NewErrParamRequired("Subject"))
 	}
+	if s.CsrExtensions != nil {
+		if err := s.CsrExtensions.Validate(); err != nil {
+			invalidParams.AddNested("CsrExtensions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Subject != nil {
 		if err := s.Subject.Validate(); err != nil {
 			invalidParams.AddNested("Subject", err.(request.ErrInvalidParams))
@@ -3106,6 +3220,12 @@ func (s *CertificateAuthorityConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCsrExtensions sets the CsrExtensions field's value.
+func (s *CertificateAuthorityConfiguration) SetCsrExtensions(v *CsrExtensions) *CertificateAuthorityConfiguration {
+	s.CsrExtensions = v
+	return s
 }
 
 // SetKeyAlgorithm sets the KeyAlgorithm field's value.
@@ -3664,7 +3784,7 @@ type CrlConfiguration struct {
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// Number of days until a certificate expires.
+	// Validity period of the CRL in days.
 	ExpirationInDays *int64 `min:"1" type:"integer"`
 
 	// Name of the S3 bucket that contains the CRL. If you do not provide a value
@@ -3726,6 +3846,64 @@ func (s *CrlConfiguration) SetExpirationInDays(v int64) *CrlConfiguration {
 // SetS3BucketName sets the S3BucketName field's value.
 func (s *CrlConfiguration) SetS3BucketName(v string) *CrlConfiguration {
 	s.S3BucketName = &v
+	return s
+}
+
+// Describes the certificate extensions to be added to the certificate signing
+// request (CSR).
+type CsrExtensions struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the purpose of the certificate and of the key contained in the
+	// certificate.
+	KeyUsage *KeyUsage `type:"structure"`
+
+	// For CA certificates, provides a path to additional information pertaining
+	// to the CA, such as revocation and policy. For more information, see Subject
+	// Information Access (https://tools.ietf.org/html/rfc5280#section-4.2.2.2)
+	// in RFC 5280.
+	SubjectInformationAccess []*AccessDescription `type:"list"`
+}
+
+// String returns the string representation
+func (s CsrExtensions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CsrExtensions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CsrExtensions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CsrExtensions"}
+	if s.SubjectInformationAccess != nil {
+		for i, v := range s.SubjectInformationAccess {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SubjectInformationAccess", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyUsage sets the KeyUsage field's value.
+func (s *CsrExtensions) SetKeyUsage(v *KeyUsage) *CsrExtensions {
+	s.KeyUsage = v
+	return s
+}
+
+// SetSubjectInformationAccess sets the SubjectInformationAccess field's value.
+func (s *CsrExtensions) SetSubjectInformationAccess(v []*AccessDescription) *CsrExtensions {
+	s.SubjectInformationAccess = v
 	return s
 }
 
@@ -4126,6 +4304,179 @@ func (s *DescribeCertificateAuthorityOutput) SetCertificateAuthority(v *Certific
 	return s
 }
 
+// Describes an Electronic Data Interchange (EDI) entity as described in as
+// defined in Subject Alternative Name (https://tools.ietf.org/html/rfc5280)
+// in RFC 5280.
+type EdiPartyName struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name assigner.
+	NameAssigner *string `type:"string"`
+
+	// Specifies the party name.
+	//
+	// PartyName is a required field
+	PartyName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s EdiPartyName) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdiPartyName) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EdiPartyName) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EdiPartyName"}
+	if s.PartyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartyName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNameAssigner sets the NameAssigner field's value.
+func (s *EdiPartyName) SetNameAssigner(v string) *EdiPartyName {
+	s.NameAssigner = &v
+	return s
+}
+
+// SetPartyName sets the PartyName field's value.
+func (s *EdiPartyName) SetPartyName(v string) *EdiPartyName {
+	s.PartyName = &v
+	return s
+}
+
+// Describes an ASN.1 X.400 GeneralName as defined in RFC 5280 (https://tools.ietf.org/html/rfc5280).
+// Only one of the following naming options should be providied. Providing more
+// than one option results in an InvalidArgsException error.
+type GeneralName struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about the certificate subject. The certificate can be
+	// one issued by your private certificate authority (CA) or it can be your private
+	// CA certificate. The Subject field in the certificate identifies the entity
+	// that owns or controls the public key in the certificate. The entity can be
+	// a user, computer, device, or service. The Subject must contain an X.500 distinguished
+	// name (DN). A DN is a sequence of relative distinguished names (RDNs). The
+	// RDNs are separated by commas in the certificate. The DN must be unique for
+	// each entity, but your private CA can issue more than one certificate with
+	// the same DN to the same entity.
+	DirectoryName *ASN1Subject `type:"structure"`
+
+	// Represents GeneralName as a DNS name.
+	DnsName *string `type:"string"`
+
+	// Represents GeneralName as an EdiPartyName object.
+	EdiPartyName *EdiPartyName `type:"structure"`
+
+	// Represents GeneralName as an IPv4 or IPv6 address.
+	IpAddress *string `type:"string"`
+
+	// Represents GeneralName using an OtherName object.
+	OtherName *OtherName `type:"structure"`
+
+	// Represents GeneralName as an object identifier (OID).
+	RegisteredId *string `type:"string"`
+
+	// Represents GeneralName as an RFC 822 (https://tools.ietf.org/html/rfc822)
+	// email address.
+	Rfc822Name *string `type:"string"`
+
+	// Represents GeneralName as a URI.
+	UniformResourceIdentifier *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GeneralName) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GeneralName) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GeneralName) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GeneralName"}
+	if s.DirectoryName != nil {
+		if err := s.DirectoryName.Validate(); err != nil {
+			invalidParams.AddNested("DirectoryName", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EdiPartyName != nil {
+		if err := s.EdiPartyName.Validate(); err != nil {
+			invalidParams.AddNested("EdiPartyName", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OtherName != nil {
+		if err := s.OtherName.Validate(); err != nil {
+			invalidParams.AddNested("OtherName", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryName sets the DirectoryName field's value.
+func (s *GeneralName) SetDirectoryName(v *ASN1Subject) *GeneralName {
+	s.DirectoryName = v
+	return s
+}
+
+// SetDnsName sets the DnsName field's value.
+func (s *GeneralName) SetDnsName(v string) *GeneralName {
+	s.DnsName = &v
+	return s
+}
+
+// SetEdiPartyName sets the EdiPartyName field's value.
+func (s *GeneralName) SetEdiPartyName(v *EdiPartyName) *GeneralName {
+	s.EdiPartyName = v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *GeneralName) SetIpAddress(v string) *GeneralName {
+	s.IpAddress = &v
+	return s
+}
+
+// SetOtherName sets the OtherName field's value.
+func (s *GeneralName) SetOtherName(v *OtherName) *GeneralName {
+	s.OtherName = v
+	return s
+}
+
+// SetRegisteredId sets the RegisteredId field's value.
+func (s *GeneralName) SetRegisteredId(v string) *GeneralName {
+	s.RegisteredId = &v
+	return s
+}
+
+// SetRfc822Name sets the Rfc822Name field's value.
+func (s *GeneralName) SetRfc822Name(v string) *GeneralName {
+	s.Rfc822Name = &v
+	return s
+}
+
+// SetUniformResourceIdentifier sets the UniformResourceIdentifier field's value.
+func (s *GeneralName) SetUniformResourceIdentifier(v string) *GeneralName {
+	s.UniformResourceIdentifier = &v
+	return s
+}
+
 type GetCertificateAuthorityCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4176,9 +4527,9 @@ type GetCertificateAuthorityCertificateOutput struct {
 	Certificate *string `type:"string"`
 
 	// Base64-encoded certificate chain that includes any intermediate certificates
-	// and chains up to root on-premises certificate that you used to sign your
-	// private CA certificate. The chain does not include your private CA certificate.
-	// If this is a root CA, the value will be null.
+	// and chains up to root certificate that you used to sign your private CA certificate.
+	// The chain does not include your private CA certificate. If this is a root
+	// CA, the value will be null.
 	CertificateChain *string `type:"string"`
 }
 
@@ -4344,8 +4695,8 @@ type GetCertificateOutput struct {
 	// The base64 PEM-encoded certificate specified by the CertificateArn parameter.
 	Certificate *string `type:"string"`
 
-	// The base64 PEM-encoded certificate chain that chains up to the on-premises
-	// root CA certificate that you used to sign your private CA certificate.
+	// The base64 PEM-encoded certificate chain that chains up to the root CA certificate
+	// that you used to sign your private CA certificate.
 	CertificateChain *string `type:"string"`
 }
 
@@ -4704,7 +5055,7 @@ func (s *InvalidNextTokenException) RequestID() string {
 
 // The resource policy is invalid or is missing a required statement. For general
 // information about IAM policy and statement structure, see Overview of JSON
-// Policies (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
+// Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
 type InvalidPolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5146,6 +5497,103 @@ func (s IssueCertificateOutput) GoString() string {
 // SetCertificateArn sets the CertificateArn field's value.
 func (s *IssueCertificateOutput) SetCertificateArn(v string) *IssueCertificateOutput {
 	s.CertificateArn = &v
+	return s
+}
+
+// Defines one or more purposes for which the key contained in the certificate
+// can be used. Default value for each option is false.
+type KeyUsage struct {
+	_ struct{} `type:"structure"`
+
+	// Key can be used to sign CRLs.
+	CRLSign *bool `type:"boolean"`
+
+	// Key can be used to decipher data.
+	DataEncipherment *bool `type:"boolean"`
+
+	// Key can be used only to decipher data.
+	DecipherOnly *bool `type:"boolean"`
+
+	// Key can be used for digital signing.
+	DigitalSignature *bool `type:"boolean"`
+
+	// Key can be used only to encipher data.
+	EncipherOnly *bool `type:"boolean"`
+
+	// Key can be used in a key-agreement protocol.
+	KeyAgreement *bool `type:"boolean"`
+
+	// Key can be used to sign certificates.
+	KeyCertSign *bool `type:"boolean"`
+
+	// Key can be used to encipher data.
+	KeyEncipherment *bool `type:"boolean"`
+
+	// Key can be used for non-repudiation.
+	NonRepudiation *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s KeyUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KeyUsage) GoString() string {
+	return s.String()
+}
+
+// SetCRLSign sets the CRLSign field's value.
+func (s *KeyUsage) SetCRLSign(v bool) *KeyUsage {
+	s.CRLSign = &v
+	return s
+}
+
+// SetDataEncipherment sets the DataEncipherment field's value.
+func (s *KeyUsage) SetDataEncipherment(v bool) *KeyUsage {
+	s.DataEncipherment = &v
+	return s
+}
+
+// SetDecipherOnly sets the DecipherOnly field's value.
+func (s *KeyUsage) SetDecipherOnly(v bool) *KeyUsage {
+	s.DecipherOnly = &v
+	return s
+}
+
+// SetDigitalSignature sets the DigitalSignature field's value.
+func (s *KeyUsage) SetDigitalSignature(v bool) *KeyUsage {
+	s.DigitalSignature = &v
+	return s
+}
+
+// SetEncipherOnly sets the EncipherOnly field's value.
+func (s *KeyUsage) SetEncipherOnly(v bool) *KeyUsage {
+	s.EncipherOnly = &v
+	return s
+}
+
+// SetKeyAgreement sets the KeyAgreement field's value.
+func (s *KeyUsage) SetKeyAgreement(v bool) *KeyUsage {
+	s.KeyAgreement = &v
+	return s
+}
+
+// SetKeyCertSign sets the KeyCertSign field's value.
+func (s *KeyUsage) SetKeyCertSign(v bool) *KeyUsage {
+	s.KeyCertSign = &v
+	return s
+}
+
+// SetKeyEncipherment sets the KeyEncipherment field's value.
+func (s *KeyUsage) SetKeyEncipherment(v bool) *KeyUsage {
+	s.KeyEncipherment = &v
+	return s
+}
+
+// SetNonRepudiation sets the NonRepudiation field's value.
+func (s *KeyUsage) SetNonRepudiation(v bool) *KeyUsage {
+	s.NonRepudiation = &v
 	return s
 }
 
@@ -5686,6 +6134,61 @@ func (s *MalformedCertificateException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *MalformedCertificateException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Defines a custom ASN.1 X.400 GeneralName using an object identifier (OID)
+// and value. The OID must satisfy the regular expression shown below. For more
+// information, see NIST's definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).
+type OtherName struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies an OID.
+	//
+	// TypeId is a required field
+	TypeId *string `type:"string" required:"true"`
+
+	// Specifies an OID value.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OtherName) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OtherName) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OtherName) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OtherName"}
+	if s.TypeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TypeId"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTypeId sets the TypeId field's value.
+func (s *OtherName) SetTypeId(v string) *OtherName {
+	s.TypeId = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *OtherName) SetValue(v string) *OtherName {
+	s.Value = &v
+	return s
 }
 
 // Permissions designate which private CA actions can be performed by an AWS
@@ -6734,6 +7237,10 @@ type Validity struct {
 	//
 	//    * Output expiration date: 01/10/2020 12:34:54 UTC
 	//
+	// The minimum validity duration for a certificate using relative time (DAYS)
+	// is one day. The minimum validity for a certificate using absolute time (ABSOLUTE
+	// or END_DATE) is one second.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ValidityPeriodType"`
 
@@ -6782,6 +7289,26 @@ func (s *Validity) SetType(v string) *Validity {
 func (s *Validity) SetValue(v int64) *Validity {
 	s.Value = &v
 	return s
+}
+
+const (
+	// AccessMethodTypeCaRepository is a AccessMethodType enum value
+	AccessMethodTypeCaRepository = "CA_REPOSITORY"
+
+	// AccessMethodTypeResourcePkiManifest is a AccessMethodType enum value
+	AccessMethodTypeResourcePkiManifest = "RESOURCE_PKI_MANIFEST"
+
+	// AccessMethodTypeResourcePkiNotify is a AccessMethodType enum value
+	AccessMethodTypeResourcePkiNotify = "RESOURCE_PKI_NOTIFY"
+)
+
+// AccessMethodType_Values returns all elements of the AccessMethodType enum
+func AccessMethodType_Values() []string {
+	return []string{
+		AccessMethodTypeCaRepository,
+		AccessMethodTypeResourcePkiManifest,
+		AccessMethodTypeResourcePkiNotify,
+	}
 }
 
 const (

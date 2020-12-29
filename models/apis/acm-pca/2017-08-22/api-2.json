@@ -401,6 +401,37 @@
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
+    "AccessDescription":{
+      "type":"structure",
+      "required":[
+        "AccessMethod",
+        "AccessLocation"
+      ],
+      "members":{
+        "AccessMethod":{"shape":"AccessMethod"},
+        "AccessLocation":{"shape":"GeneralName"}
+      },
+      "box":true
+    },
+    "AccessDescriptionList":{
+      "type":"list",
+      "member":{"shape":"AccessDescription"}
+    },
+    "AccessMethod":{
+      "type":"structure",
+      "members":{
+        "CustomObjectIdentifier":{"shape":"CustomObjectIdentifier"},
+        "AccessMethodType":{"shape":"AccessMethodType"}
+      }
+    },
+    "AccessMethodType":{
+      "type":"string",
+      "enum":[
+        "CA_REPOSITORY",
+        "RESOURCE_PKI_MANIFEST",
+        "RESOURCE_PKI_NOTIFY"
+      ]
+    },
     "AccountId":{
       "type":"string",
       "max":12,
@@ -481,7 +512,8 @@
       "members":{
         "KeyAlgorithm":{"shape":"KeyAlgorithm"},
         "SigningAlgorithm":{"shape":"SigningAlgorithm"},
-        "Subject":{"shape":"ASN1Subject"}
+        "Subject":{"shape":"ASN1Subject"},
+        "CsrExtensions":{"shape":"CsrExtensions"}
       }
     },
     "CertificateAuthorityStatus":{
@@ -611,6 +643,19 @@
       "min":1
     },
     "CsrBody":{"type":"string"},
+    "CsrExtensions":{
+      "type":"structure",
+      "members":{
+        "KeyUsage":{"shape":"KeyUsage"},
+        "SubjectInformationAccess":{"shape":"AccessDescriptionList"}
+      }
+    },
+    "CustomObjectIdentifier":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "pattern":"^([0-2])\\.([0-9]|([0-3][0-9]))((\\.([0-9]+)){0,126})$"
+    },
     "DeleteCertificateAuthorityRequest":{
       "type":"structure",
       "required":["CertificateAuthorityArn"],
@@ -671,6 +716,14 @@
         "CertificateAuthority":{"shape":"CertificateAuthority"}
       }
     },
+    "EdiPartyName":{
+      "type":"structure",
+      "required":["PartyName"],
+      "members":{
+        "PartyName":{"shape":"String256"},
+        "NameAssigner":{"shape":"String256"}
+      }
+    },
     "FailureReason":{
       "type":"string",
       "enum":[
@@ -678,6 +731,19 @@
         "UNSUPPORTED_ALGORITHM",
         "OTHER"
       ]
+    },
+    "GeneralName":{
+      "type":"structure",
+      "members":{
+        "OtherName":{"shape":"OtherName"},
+        "Rfc822Name":{"shape":"String256"},
+        "DnsName":{"shape":"String253"},
+        "DirectoryName":{"shape":"ASN1Subject"},
+        "EdiPartyName":{"shape":"EdiPartyName"},
+        "UniformResourceIdentifier":{"shape":"String253"},
+        "IpAddress":{"shape":"String39"},
+        "RegisteredId":{"shape":"CustomObjectIdentifier"}
+      }
     },
     "GetCertificateAuthorityCertificateRequest":{
       "type":"structure",
@@ -841,6 +907,20 @@
         "EC_secp384r1"
       ]
     },
+    "KeyUsage":{
+      "type":"structure",
+      "members":{
+        "DigitalSignature":{"shape":"Boolean"},
+        "NonRepudiation":{"shape":"Boolean"},
+        "KeyEncipherment":{"shape":"Boolean"},
+        "DataEncipherment":{"shape":"Boolean"},
+        "KeyAgreement":{"shape":"Boolean"},
+        "KeyCertSign":{"shape":"Boolean"},
+        "CRLSign":{"shape":"Boolean"},
+        "EncipherOnly":{"shape":"Boolean"},
+        "DecipherOnly":{"shape":"Boolean"}
+      }
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -925,6 +1005,17 @@
       "type":"string",
       "max":500,
       "min":1
+    },
+    "OtherName":{
+      "type":"structure",
+      "required":[
+        "TypeId",
+        "Value"
+      ],
+      "members":{
+        "TypeId":{"shape":"CustomObjectIdentifier"},
+        "Value":{"shape":"String256"}
+      }
     },
     "PermanentDeletionTimeInDays":{
       "type":"integer",
@@ -1085,9 +1176,19 @@
       "max":253,
       "min":0
     },
+    "String256":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "String3":{
       "type":"string",
       "max":3,
+      "min":0
+    },
+    "String39":{
+      "type":"string",
+      "max":39,
       "min":0
     },
     "String3To255":{

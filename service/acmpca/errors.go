@@ -45,7 +45,7 @@ const (
 	//
 	// The resource policy is invalid or is missing a required statement. For general
 	// information about IAM policy and statement structure, see Overview of JSON
-	// Policies (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
+	// Policies (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json).
 	ErrCodeInvalidPolicyException = "InvalidPolicyException"
 
 	// ErrCodeInvalidRequestException for service response error code

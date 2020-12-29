@@ -2349,6 +2349,10 @@
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
         },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
+        },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
           "locationName" : "requestTemplates"
@@ -2423,6 +2427,10 @@
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
+        },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
         },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
@@ -2505,6 +2513,10 @@
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
+        },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
         },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
@@ -4139,6 +4151,10 @@
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
         },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
+        },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
           "locationName" : "requestTemplates"
@@ -4969,6 +4985,10 @@
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
         },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
+        },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
           "locationName" : "requestTemplates"
@@ -4994,6 +5014,15 @@
       },
       "value" : {
         "shape" : "StringWithLengthBetween1And512"
+      }
+    },
+    "ResponseParameters" : {
+      "type" : "map",
+      "key" : {
+        "shape" : "__string"
+      },
+      "value" : {
+        "shape" : "IntegrationParameters"
       }
     },
     "IntegrationResponse" : {
@@ -6253,6 +6282,10 @@
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
         },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
+        },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
           "locationName" : "requestTemplates"
@@ -6331,6 +6364,10 @@
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
+        },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
         },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
@@ -6413,6 +6450,10 @@
         "RequestParameters" : {
           "shape" : "IntegrationParameters",
           "locationName" : "requestParameters"
+        },
+        "ResponseParameters" : {
+          "shape" : "ResponseParameters",
+          "locationName" : "responseParameters"
         },
         "RequestTemplates" : {
           "shape" : "TemplateMap",
