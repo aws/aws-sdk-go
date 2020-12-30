@@ -6521,7 +6521,7 @@ func (s *BucketCountBySharedAccessType) SetUnknown(v int64) *BucketCountByShared
 	return s
 }
 
-// Specifies the operator to use in an attribute-based condition that filters
+// Specifies the operator to use in a property-based condition that filters
 // the results of a query for information about S3 buckets.
 type BucketCriteriaAdditionalProperties struct {
 	_ struct{} `type:"structure"`
@@ -7869,7 +7869,9 @@ func (s CreateSampleFindingsOutput) GoString() string {
 }
 
 // Specifies the operator to use in a property-based condition that filters
-// the results of a query for findings.
+// the results of a query for findings. For detailed information and examples
+// of each operator, see Fundamentals of filtering findings (https://docs.aws.amazon.com/macie/latest/user/findings-filter-basics.html)
+// in the Amazon Macie User Guide.
 type CriterionAdditionalProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -8429,7 +8431,7 @@ func (s DeleteMemberOutput) GoString() string {
 type DescribeBucketsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies, as a map, one or more attribute-based conditions that filter the
+	// Specifies, as a map, one or more property-based conditions that filter the
 	// results of a query for information about S3 buckets.
 	Criteria map[string]*BucketCriteriaAdditionalProperties `locationName:"criteria" type:"map"`
 
@@ -8599,11 +8601,13 @@ type DescribeClassificationJobOutput struct {
 	// or member account.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// Provides information about when a classification job was paused and when
-	// it will expire and be cancelled if it isn't resumed. This object is present
-	// only if a job's current status (jobStatus) is USER_PAUSED. The information
-	// in this object applies only to a job that was paused while it had a status
-	// of RUNNING.
+	// Provides information about when a classification job was paused. For a one-time
+	// job, this object also specifies when the job will expire and be cancelled
+	// if it isn't resumed. For a recurring job, this object also specifies when
+	// the paused job run will expire and be cancelled if it isn't resumed. This
+	// object is present only if a job's current status (jobStatus) is USER_PAUSED.
+	// The information in this object applies only to a job that was paused while
+	// it had a status of RUNNING.
 	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
@@ -9389,8 +9393,12 @@ func (s *FindingActor) SetUserIdentity(v *UserIdentity) *FindingActor {
 type FindingCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a condition that defines a property, operator, and value to use
-	// to filter the results of a query for findings.
+	// Specifies a condition that defines a property, operator, and one or more
+	// values to filter the results of a query for findings. The number of values
+	// depends on the property and operator specified by the condition. For information
+	// about defining filter conditions, see Fundamentals of filtering findings
+	// (https://docs.aws.amazon.com/macie/latest/user/findings-filter-basics.html)
+	// in the Amazon Macie User Guide.
 	Criterion map[string]*CriterionAdditionalProperties `locationName:"criterion" type:"map"`
 }
 
@@ -11084,11 +11092,13 @@ type JobSummary struct {
 
 	Name *string `locationName:"name" type:"string"`
 
-	// Provides information about when a classification job was paused and when
-	// it will expire and be cancelled if it isn't resumed. This object is present
-	// only if a job's current status (jobStatus) is USER_PAUSED. The information
-	// in this object applies only to a job that was paused while it had a status
-	// of RUNNING.
+	// Provides information about when a classification job was paused. For a one-time
+	// job, this object also specifies when the job will expire and be cancelled
+	// if it isn't resumed. For a recurring job, this object also specifies when
+	// the paused job run will expire and be cancelled if it isn't resumed. This
+	// object is present only if a job's current status (jobStatus) is USER_PAUSED.
+	// The information in this object applies only to a job that was paused while
+	// it had a status of RUNNING.
 	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
@@ -13794,7 +13804,10 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Changes the status of a classification job.
+// Changes the status of a classification job. For more information about pausing,
+// resuming, or cancelling jobs, see Managing and monitoring sensitive data
+// discovery jobs (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html)
+// in the Amazon Macie User Guide.
 type UpdateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14495,11 +14508,13 @@ func (s *UserIdentityRoot) SetPrincipalId(v string) *UserIdentityRoot {
 	return s
 }
 
-// Provides information about when a classification job was paused and when
-// it will expire and be cancelled if it isn't resumed. This object is present
-// only if a job's current status (jobStatus) is USER_PAUSED. The information
-// in this object applies only to a job that was paused while it had a status
-// of RUNNING.
+// Provides information about when a classification job was paused. For a one-time
+// job, this object also specifies when the job will expire and be cancelled
+// if it isn't resumed. For a recurring job, this object also specifies when
+// the paused job run will expire and be cancelled if it isn't resumed. This
+// object is present only if a job's current status (jobStatus) is USER_PAUSED.
+// The information in this object applies only to a job that was paused while
+// it had a status of RUNNING.
 type UserPausedDetails struct {
 	_ struct{} `type:"structure"`
 

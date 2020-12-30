@@ -1,3 +1,11 @@
+Release v1.36.18 (2020-12-30)
+===
+
+### Service Client Updates
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/macie2`: Updates service documentation
+
 Release v1.36.17 (2020-12-29)
 ===
 
