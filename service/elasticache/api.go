@@ -1093,7 +1093,7 @@ func (c *ElastiCache) CreateGlobalReplicationGroupRequest(input *CreateGlobalRep
 // cross-region replication. Using Global Datastore for Redis, you can create
 // cross-region read replica clusters for ElastiCache for Redis to enable low-latency
 // reads and disaster recovery across regions. For more information, see Replication
-// Across Regions Using Global Datastore (/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores.html).
+// Across Regions Using Global Datastore (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html).
 //
 //    * The GlobalReplicationGroupIdSuffix is the name of the Global Datastore.
 //
@@ -10638,7 +10638,7 @@ func (s *CreateSnapshotOutput) SetSnapshot(v *Snapshot) *CreateSnapshotOutput {
 type CreateUserGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
@@ -10705,7 +10705,7 @@ type CreateUserGroupOutput struct {
 	// The Amazon Resource Name (ARN) of the user group.
 	ARN *string `type:"string"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// A list of updates being applied to the user groups.
@@ -10779,21 +10779,21 @@ func (s *CreateUserGroupOutput) SetUserIds(v []*string) *CreateUserGroupOutput {
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Access permissions string used for this user account.
+	// Access permissions string used for this user.
 	//
 	// AccessString is a required field
 	AccessString *string `type:"string" required:"true"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// Indicates a password is not required for this user account.
+	// Indicates a password is not required for this user.
 	NoPasswordRequired *bool `type:"boolean"`
 
-	// Passwords used for this user account. You can create up to two passwords
-	// for each user.
+	// Passwords used for this user. You can create up to two passwords for each
+	// user.
 	Passwords []*string `min:"1" type:"list"`
 
 	// The ID of the user.
@@ -10887,16 +10887,16 @@ func (s *CreateUserInput) SetUserName(v string) *CreateUserInput {
 type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the user account.
+	// The Amazon Resource Name (ARN) of the user.
 	ARN *string `type:"string"`
 
-	// Access permissions string used for this user account.
+	// Access permissions string used for this user.
 	AccessString *string `type:"string"`
 
 	// Denotes whether the user requires a password to authenticate.
 	Authentication *Authentication `type:"structure"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
@@ -11766,7 +11766,7 @@ type DeleteUserGroupOutput struct {
 	// The Amazon Resource Name (ARN) of the user group.
 	ARN *string `type:"string"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// A list of updates being applied to the user groups.
@@ -11881,16 +11881,16 @@ func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
 type DeleteUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the user account.
+	// The Amazon Resource Name (ARN) of the user.
 	ARN *string `type:"string"`
 
-	// Access permissions string used for this user account.
+	// Access permissions string used for this user.
 	AccessString *string `type:"string"`
 
 	// Denotes whether the user requires a password to authenticate.
 	Authentication *Authentication `type:"structure"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
@@ -15006,7 +15006,7 @@ type ModifyCacheClusterInput struct {
 	//
 	//    * Set
 	//
-	// For more information, see Authenticating Users with Redis AUTH (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
+	// For more information, see Authenticating Users with Redis AUTH (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
 	AuthTokenUpdateStrategy *string `type:"string" enum:"AuthTokenUpdateStrategyType"`
 
 	// This parameter is currently disabled.
@@ -15655,7 +15655,7 @@ type ModifyReplicationGroupInput struct {
 	//
 	//    * Set
 	//
-	// For more information, see Authenticating Users with Redis AUTH (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
+	// For more information, see Authenticating Users with Redis AUTH (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
 	AuthTokenUpdateStrategy *string `type:"string" enum:"AuthTokenUpdateStrategyType"`
 
 	// This parameter is currently disabled.
@@ -16202,7 +16202,7 @@ type ModifyUserGroupOutput struct {
 	// The Amazon Resource Name (ARN) of the user group.
 	ARN *string `type:"string"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// A list of updates being applied to the user groups.
@@ -16276,16 +16276,16 @@ func (s *ModifyUserGroupOutput) SetUserIds(v []*string) *ModifyUserGroupOutput {
 type ModifyUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// Access permissions string used for this user account.
+	// Access permissions string used for this user.
 	AccessString *string `type:"string"`
 
 	// Adds additional user permissions to the access string.
 	AppendAccessString *string `type:"string"`
 
-	// Indicates no password is required for the user account.
+	// Indicates no password is required for the user.
 	NoPasswordRequired *bool `type:"boolean"`
 
-	// The passwords belonging to the user account. You are allowed up to two.
+	// The passwords belonging to the user. You are allowed up to two.
 	Passwords []*string `min:"1" type:"list"`
 
 	// The ID of the user.
@@ -16356,16 +16356,16 @@ func (s *ModifyUserInput) SetUserId(v string) *ModifyUserInput {
 type ModifyUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the user account.
+	// The Amazon Resource Name (ARN) of the user.
 	ARN *string `type:"string"`
 
-	// Access permissions string used for this user account.
+	// Access permissions string used for this user.
 	AccessString *string `type:"string"`
 
 	// Denotes whether the user requires a password to authenticate.
 	Authentication *Authentication `type:"structure"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
@@ -16530,7 +16530,7 @@ type NodeGroupConfiguration struct {
 	// launched.
 	PrimaryAvailabilityZone *string `type:"string"`
 
-	// The output ARN of the primary node.
+	// The outpost ARN of the primary node.
 	PrimaryOutpostArn *string `type:"string"`
 
 	// A list of Availability Zones to be used for the read replicas. The number
@@ -19567,16 +19567,16 @@ func (s *UpdateAction) SetUpdateActionStatusModifiedDate(v time.Time) *UpdateAct
 type User struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the user account.
+	// The Amazon Resource Name (ARN) of the user.
 	ARN *string `type:"string"`
 
-	// Access permissions string used for this user account.
+	// Access permissions string used for this user.
 	AccessString *string `type:"string"`
 
 	// Denotes whether the user requires a password to authenticate.
 	Authentication *Authentication `type:"structure"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
@@ -19656,7 +19656,7 @@ type UserGroup struct {
 	// The Amazon Resource Name (ARN) of the user group.
 	ARN *string `type:"string"`
 
-	// Must be Redis.
+	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
 	// A list of updates being applied to the user groups.
@@ -19734,7 +19734,7 @@ type UserGroupPendingChanges struct {
 	// The list of user IDs to add.
 	UserIdsToAdd []*string `type:"list"`
 
-	// The list of user group IDs ro remove.
+	// The list of user IDs to remove.
 	UserIdsToRemove []*string `type:"list"`
 }
 

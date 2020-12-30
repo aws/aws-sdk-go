@@ -157,13 +157,13 @@
       }
     },
     "BucketCriteria" : {
-      "base" : "<p>Specifies, as a map, one or more attribute-based conditions that filter the results of a query for information about S3 buckets.</p>",
+      "base" : "<p>Specifies, as a map, one or more property-based conditions that filter the results of a query for information about S3 buckets.</p>",
       "refs" : {
         "DescribeBucketsRequest$Criteria" : "<p>The criteria to use to filter the query results.</p>"
       }
     },
     "BucketCriteriaAdditionalProperties" : {
-      "base" : "<p>Specifies the operator to use in an attribute-based condition that filters the results of a query for information about S3 buckets.</p>",
+      "base" : "<p>Specifies the operator to use in a property-based condition that filters the results of a query for information about S3 buckets.</p>",
       "refs" : {
         "BucketCriteria$member" : null
       }
@@ -292,13 +292,13 @@
       "refs" : { }
     },
     "Criterion" : {
-      "base" : "<p>Specifies a condition that defines a property, operator, and value to use to filter the results of a query for findings.</p>",
+      "base" : "<p>Specifies a condition that defines a property, operator, and one or more values to filter the results of a query for findings. The number of values depends on the property and operator specified by the condition. For information about defining filter conditions, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/findings-filter-basics.html\">Fundamentals of filtering findings</a> in the <i>Amazon Macie User Guide</i>.</p>",
       "refs" : {
-        "FindingCriteria$Criterion" : "<p>A condition that specifies the property, operator, and value to use to filter the results.</p>"
+        "FindingCriteria$Criterion" : "<p>A condition that specifies the property, operator, and one or more values to use to filter the results.</p>"
       }
     },
     "CriterionAdditionalProperties" : {
-      "base" : "<p>Specifies the operator to use in a property-based condition that filters the results of a query for findings.</p>",
+      "base" : "<p>Specifies the operator to use in a property-based condition that filters the results of a query for findings. For detailed information and examples of each operator, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/findings-filter-basics.html\">Fundamentals of filtering findings</a> in the <i>Amazon Macie User Guide</i>.</p>",
       "refs" : {
         "Criterion$member" : null
       }
@@ -686,9 +686,9 @@
     "JobStatus" : {
       "base" : "<p>The status of a classification job. Possible values are:</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job while it had a status of RUNNING and you didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume the job within 30 days of pausing it, the job expires and is cancelled. To check the job's expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
-        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job while it had a status of RUNNING and you didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume the job within 30 days of pausing it, the job expires and is cancelled. To check the job's expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
-        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. You can't resume a job after you cancel it. This value is valid only if the job's current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job's current status is USER_PAUSED. If you specify this value, Amazon Macie immediately resumes processing from the point where you paused the job. Otherwise, Macie resumes the job according to the schedule and other configuration settings for the job.</p></li> <li><p>USER_PAUSED - Pauses the job. This value is valid only if the job's current status is IDLE or RUNNING. If you specify this value and the job's current status is RUNNING, Macie immediately begins to pause all processing tasks for the job.</p> <p>If you pause a job when its status is RUNNING and you don't resume the job within 30 days, the job expires and Macie cancels it. You can't resume a job after it's cancelled.</p></li></ul>"
+        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job or, if it's a one-time job, you paused the job and didn't resume it within 30 days.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume it within 30 days of pausing it, the job or job run will expire and be cancelled, depending on the job's type. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
+        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job or, if it's a one-time job, you paused the job and didn't resume it within 30 days.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume it within 30 days of pausing it, the job or job run will expire and be cancelled, depending on the job's type. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
+        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. This value is valid only if the job's current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p> <p>If you specify this value and the job's current status is RUNNING, Amazon Macie immediately begins to stop all processing tasks for the job. You can't resume or restart a job after you cancel it.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job's current status is USER_PAUSED.</p> <p>If you paused the job while it was actively running and you specify this value less than 30 days after you paused the job, Macie immediately resumes processing from the point where you paused the job. Otherwise, Macie resumes the job according to the schedule and other settings for the job.</p></li> <li><p>USER_PAUSED - Pauses the job temporarily. This value is valid only if the job's current status is IDLE or RUNNING. If you specify this value and the job's current status is RUNNING, Macie immediately begins to pause all processing tasks for the job.</p> <p>If you pause a one-time job and you don't resume it within 30 days, the job expires and Macie cancels the job. If you pause a recurring job when its status is RUNNING and you don't resume it within 30 days, the job run expires and Macie cancels the run. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>"
       }
     },
     "JobSummary" : {
@@ -1154,7 +1154,7 @@
       "refs" : { }
     },
     "UpdateClassificationJobRequest" : {
-      "base" : "<p>Changes the status of a classification job.</p>",
+      "base" : "<p>Changes the status of a classification job. For more information about pausing, resuming, or cancelling jobs, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html\">Managing and monitoring sensitive data discovery jobs</a> in the <i>Amazon Macie User Guide</i>.</p>",
       "refs" : { }
     },
     "UpdateFindingsFilterRequest" : {
@@ -1251,10 +1251,10 @@
       }
     },
     "UserPausedDetails" : {
-      "base" : "<p>Provides information about when a classification job was paused and when it will expire and be cancelled if it isn't resumed. This object is present only if a job's current status (jobStatus) is USER_PAUSED. The information in this object applies only to a job that was paused while it had a status of RUNNING.</p>",
+      "base" : "<p>Provides information about when a classification job was paused. For a one-time job, this object also specifies when the job will expire and be cancelled if it isn't resumed. For a recurring job, this object also specifies when the paused job run will expire and be cancelled if it isn't resumed. This object is present only if a job's current status (jobStatus) is USER_PAUSED. The information in this object applies only to a job that was paused while it had a status of RUNNING.</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job will expire and be cancelled if it isn't resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>",
-        "JobSummary$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job will expire and be cancelled if it isn't resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>"
+        "DescribeClassificationJobResponse$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job or job run will expire and be cancelled if it isn't resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>",
+        "JobSummary$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job or job run will expire and be cancelled if it isn't resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>"
       }
     },
     "ValidationException" : {
@@ -1462,15 +1462,15 @@
       "refs" : {
         "BatchGetCustomDataIdentifiersRequest$Ids" : "<p>An array of strings that lists the unique identifiers for the custom data identifiers to retrieve information about.</p>",
         "BatchGetCustomDataIdentifiersResponse$NotFoundIdentifierIds" : "<p>An array of identifiers, one for each identifier that was specified in the request, but doesn't correlate to an existing custom data identifier.</p>",
-        "BucketCriteriaAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified attribute value for buckets.</p>",
-        "BucketCriteriaAdditionalProperties$Neq" : "<p>A not equal to condition to apply to a specified attribute value for buckets.</p>",
+        "BucketCriteriaAdditionalProperties$Eq" : "<p>The value for the property matches (equals) the specified value. If you specify multiple values, Macie uses OR logic to join the values.</p>",
+        "BucketCriteriaAdditionalProperties$Neq" : "<p>The value for the property doesn't match (doesn't equal) the specified value. If you specify multiple values, Amazon Macie uses OR logic to join the values.</p>",
         "CreateClassificationJobRequest$CustomDataIdentifierIds" : "<p>The custom data identifiers to use for data analysis and classification.</p>",
         "CreateCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
         "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
         "CreateInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account to send the invitation to.</p>",
-        "CriterionAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified property value for findings.</p>",
-        "CriterionAdditionalProperties$EqExactMatch" : "<p>A condition that requires an array field to exactly match the specified property values. You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
-        "CriterionAdditionalProperties$Neq" : "<p>A not equal to condition to apply to a specified property value for findings.</p>",
+        "CriterionAdditionalProperties$Eq" : "<p>The value for the property matches (equals) the specified value. If you specify multiple values, Macie uses OR logic to join the values.</p>",
+        "CriterionAdditionalProperties$EqExactMatch" : "<p>The value for the property exclusively matches (equals an exact match for) all the specified values. If you specify multiple values, Amazon Macie uses AND logic to join the values.</p> <p>You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
+        "CriterionAdditionalProperties$Neq" : "<p>The value for the property doesn't match (doesn't equal) the specified value. If you specify multiple values, Macie uses OR logic to join the values.</p>",
         "DeclineInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to decline.</p>",
         "DeleteInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to delete.</p>",
         "DescribeClassificationJobResponse$CustomDataIdentifierIds" : "<p>The custom data identifiers that the job uses to analyze data.</p>",
@@ -1494,17 +1494,17 @@
         "BucketCountByEffectivePermission$PubliclyReadable" : "<p>The total number of buckets that allow the general public to have read access to the bucket.</p>",
         "BucketCountByEffectivePermission$PubliclyWritable" : "<p>The total number of buckets that allow the general public to have write access to the bucket.</p>",
         "BucketCountByEffectivePermission$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate permissions settings for. Macie can't determine whether these buckets are publicly accessible.</p>",
-        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) to encrypt objects. These buckets use AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.</p>",
-        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3 managed key to encrypt objects. These buckets use Amazon S3 managed (SSE-S3) encryption.</p>",
+        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) by default to encrypt objects. These buckets use AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.</p>",
+        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3 managed key by default to encrypt objects. These buckets use Amazon S3 managed (SSE-S3) encryption.</p>",
         "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt objects by default. Default encryption is disabled for these buckets.</p>",
         "BucketCountBySharedAccessType$External" : "<p>The total number of buckets that are shared with an AWS account that isn't part of the same Amazon Macie organization.</p>",
         "BucketCountBySharedAccessType$Internal" : "<p>The total number of buckets that are shared with an AWS account that's part of the same Amazon Macie organization.</p>",
         "BucketCountBySharedAccessType$NotShared" : "<p>The total number of buckets that aren't shared with other AWS accounts.</p>",
         "BucketCountBySharedAccessType$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate shared access settings for. Macie can't determine whether these buckets are shared with other AWS accounts.</p>",
-        "BucketCriteriaAdditionalProperties$Gt" : "<p>A greater than condition to apply to a specified attribute value for buckets.</p>",
-        "BucketCriteriaAdditionalProperties$Gte" : "<p>A greater than or equal to condition to apply to a specified attribute value for buckets.</p>",
-        "BucketCriteriaAdditionalProperties$Lt" : "<p>A less than condition to apply to a specified attribute value for buckets.</p>",
-        "BucketCriteriaAdditionalProperties$Lte" : "<p>A less than or equal to condition to apply to a specified attribute value for buckets.</p>",
+        "BucketCriteriaAdditionalProperties$Gt" : "<p>The value for the property is greater than the specified value.</p>",
+        "BucketCriteriaAdditionalProperties$Gte" : "<p>The value for the property is greater than or equal to the specified value.</p>",
+        "BucketCriteriaAdditionalProperties$Lt" : "<p>The value for the property is less than the specified value.</p>",
+        "BucketCriteriaAdditionalProperties$Lte" : "<p>The value for the property is less than or equal to the specified value.</p>",
         "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
@@ -1513,10 +1513,10 @@
         "Cell$Column" : "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, this value correlates to the alphabetical character(s) for a column identifier. For example, 1 for column A, 2 for column B, and so on.</p>",
         "Cell$Row" : "<p>The row number of the row that contains the data.</p>",
         "ClassificationResult$SizeClassified" : "<p>The total size, in bytes, of the data that the finding applies to.</p>",
-        "CriterionAdditionalProperties$Gt" : "<p>A greater than condition to apply to a specified property value for findings.</p>",
-        "CriterionAdditionalProperties$Gte" : "<p>A greater than or equal to condition to apply to a specified property value for findings.</p>",
-        "CriterionAdditionalProperties$Lt" : "<p>A less than condition to apply to a specified property value for findings.</p>",
-        "CriterionAdditionalProperties$Lte" : "<p>A less than or equal to condition to apply to a specified property value for findings.</p>",
+        "CriterionAdditionalProperties$Gt" : "<p>The value for the property is greater than the specified value.</p>",
+        "CriterionAdditionalProperties$Gte" : "<p>The value for the property is greater than or equal to the specified value.</p>",
+        "CriterionAdditionalProperties$Lt" : "<p>The value for the property is less than the specified value.</p>",
+        "CriterionAdditionalProperties$Lte" : "<p>The value for the property is less than or equal to the specified value.</p>",
         "CustomDataIdentifiers$TotalCount" : "<p>The total number of occurrences of the data that was detected by the custom data identifiers and produced the finding.</p>",
         "CustomDetection$Count" : "<p>The total number of occurrences of the sensitive data that the custom data identifier detected.</p>",
         "DefaultDetection$Count" : "<p>The total number of occurrences of the type of sensitive data that was detected.</p>",
@@ -1569,12 +1569,12 @@
         "BatchGetCustomDataIdentifierSummary$Description" : "<p>The custom description of the custom data identifier.</p>",
         "BatchGetCustomDataIdentifierSummary$Id" : "<p>The unique identifier for the custom data identifier.</p>",
         "BatchGetCustomDataIdentifierSummary$Name" : "<p>The custom name of the custom data identifier.</p>",
-        "BucketCriteriaAdditionalProperties$Prefix" : "<p>The prefix of the buckets to include in the results.</p>",
+        "BucketCriteriaAdditionalProperties$Prefix" : "<p>The name of the bucket begins with the specified value.</p>",
         "BucketMetadata$AccountId" : "<p>The unique identifier for the AWS account that owns the bucket.</p>",
         "BucketMetadata$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "BucketMetadata$BucketName" : "<p>The name of the bucket.</p>",
         "BucketMetadata$Region" : "<p>The AWS Region that hosts the bucket.</p>",
-        "BucketSortCriteria$AttributeName" : "<p>The name of the attribute to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName or accountId.</p>",
+        "BucketSortCriteria$AttributeName" : "<p>The name of the property to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName or accountId.</p>",
         "Cell$CellReference" : "<p>The location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel workbook. This value is null for CSV and TSV files.</p>",
         "Cell$ColumnName" : "<p>The name of the column that contains the data, if available.</p>",
         "ClassificationDetails$DetailedResultsLocation" : "<p>The path to the folder or file (in Amazon S3) that contains the corresponding sensitive data discovery result for the finding. If a finding applies to a large archive or compressed file, this value is the path to a folder. Otherwise, this value is the path to a file.</p>",
@@ -1728,7 +1728,7 @@
         "UserIdentityRoot$AccountId" : "<p>The unique identifier for the AWS account.</p>",
         "UserIdentityRoot$Arn" : "<p>The Amazon Resource Name (ARN) of the principal that performed the action. The last section of the ARN contains the name of the user or role that performed the action.</p>",
         "UserIdentityRoot$PrincipalId" : "<p>The unique identifier for the entity that performed the action.</p>",
-        "UserPausedDetails$JobImminentExpirationHealthEventArn" : "<p>The Amazon Resource Name (ARN) of the AWS Health event that Amazon Macie sent to notify you of the job's pending expiration and cancellation. This value is null if a job has been paused for less than 23 days.</p>",
+        "UserPausedDetails$JobImminentExpirationHealthEventArn" : "<p>The Amazon Resource Name (ARN) of the AWS Health event that Amazon Macie sent to notify you of the job or job run's pending expiration and cancellation. This value is null if a job has been paused for less than 23 days.</p>",
         "ValidationException$Message" : "<p>The explanation of the error that occurred.</p>",
         "__listOf__string$member" : null
       }
@@ -1761,7 +1761,7 @@
         "S3Object$LastModified" : "<p>The date and time, in UTC and extended ISO 8601 format, when the object was last modified.</p>",
         "SessionContextAttributes$CreationDate" : "<p>The date and time, in UTC and ISO 8601 format, when the credentials were issued.</p>",
         "UsageRecord$FreeTrialStartDate" : "<p>The date and time, in UTC and extended ISO 8601 format, when the free trial started for the account.</p>",
-        "UserPausedDetails$JobExpiresAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job will expire and be cancelled if you don't resume it first. If you don't resume a job within 30 days of pausing it, the job expires and Amazon Macie cancels it.</p>",
+        "UserPausedDetails$JobExpiresAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job or job run will expire and be cancelled if you don't resume it first.</p>",
         "UserPausedDetails$JobPausedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when you paused the job.</p>"
       }
     }

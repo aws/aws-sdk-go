@@ -12,7 +12,7 @@
     "CreateCacheParameterGroup": "<p>Creates a new Amazon ElastiCache cache parameter group. An ElastiCache cache parameter group is a collection of parameters and their values that are applied to all of the nodes in any cluster or replication group using the CacheParameterGroup.</p> <p>A newly created CacheParameterGroup is an exact duplicate of the default parameter group for the CacheParameterGroupFamily. To customize the newly created CacheParameterGroup you can change the values of specific parameters. For more information, see:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyCacheParameterGroup.html\">ModifyCacheParameterGroup</a> in the ElastiCache API Reference.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ParameterGroups.html\">Parameters and Parameter Groups</a> in the ElastiCache User Guide.</p> </li> </ul>",
     "CreateCacheSecurityGroup": "<p>Creates a new cache security group. Use a cache security group to control access to one or more clusters.</p> <p>Cache security groups are only used when you are creating a cluster outside of an Amazon Virtual Private Cloud (Amazon VPC). If you are creating a cluster inside of a VPC, use a cache subnet group instead. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_CreateCacheSubnetGroup.html\">CreateCacheSubnetGroup</a>.</p>",
     "CreateCacheSubnetGroup": "<p>Creates a new cache subnet group.</p> <p>Use this parameter only when you are creating a cluster in an Amazon Virtual Private Cloud (Amazon VPC).</p>",
-    "CreateGlobalReplicationGroup": "<p>Global Datastore for Redis offers fully managed, fast, reliable and secure cross-region replication. Using Global Datastore for Redis, you can create cross-region read replica clusters for ElastiCache for Redis to enable low-latency reads and disaster recovery across regions. For more information, see <a href=\"/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores.html\">Replication Across Regions Using Global Datastore</a>. </p> <ul> <li> <p>The <b>GlobalReplicationGroupIdSuffix</b> is the name of the Global Datastore.</p> </li> <li> <p>The <b>PrimaryReplicationGroupId</b> represents the name of the primary cluster that accepts writes and will replicate updates to the secondary cluster.</p> </li> </ul>",
+    "CreateGlobalReplicationGroup": "<p>Global Datastore for Redis offers fully managed, fast, reliable and secure cross-region replication. Using Global Datastore for Redis, you can create cross-region read replica clusters for ElastiCache for Redis to enable low-latency reads and disaster recovery across regions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html\">Replication Across Regions Using Global Datastore</a>. </p> <ul> <li> <p>The <b>GlobalReplicationGroupIdSuffix</b> is the name of the Global Datastore.</p> </li> <li> <p>The <b>PrimaryReplicationGroupId</b> represents the name of the primary cluster that accepts writes and will replicate updates to the secondary cluster.</p> </li> </ul>",
     "CreateReplicationGroup": "<p>Creates a Redis (cluster mode disabled) or a Redis (cluster mode enabled) replication group.</p> <p>This API can be used to create a standalone regional replication group or a secondary replication group associated with a Global Datastore.</p> <p>A Redis (cluster mode disabled) replication group is a collection of clusters, where one of the clusters is a read/write primary and the others are read-only replicas. Writes to the primary are asynchronously propagated to the replicas.</p> <p>A Redis (cluster mode enabled) replication group is a collection of 1 to 90 node groups (shards). Each node group (shard) has one read/write primary node and up to 5 read-only replica nodes. Writes to the primary are asynchronously propagated to the replicas. Redis (cluster mode enabled) replication groups partition the data across node groups (shards).</p> <p>When a Redis (cluster mode disabled) replication group has been successfully created, you can add one or more read replicas to it, up to a total of 5 read replicas. If you need to increase or decrease the number of node groups (console: shards), you can avail yourself of ElastiCache for Redis' scaling. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Scaling.html\">Scaling ElastiCache for Redis Clusters</a> in the <i>ElastiCache User Guide</i>.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
     "CreateSnapshot": "<p>Creates a copy of an entire cluster or replication group at a specific moment in time.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
     "CreateUser": "<p>For Redis engine version 6.x onwards: Creates a Redis user. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html\">Using Role Based Access Control (RBAC)</a>.</p>",
@@ -84,8 +84,8 @@
     "AccessString": {
       "base": null,
       "refs": {
-        "CreateUserMessage$AccessString": "<p>Access permissions string used for this user account.</p>",
-        "ModifyUserMessage$AccessString": "<p>Access permissions string used for this user account.</p>",
+        "CreateUserMessage$AccessString": "<p>Access permissions string used for this user.</p>",
+        "ModifyUserMessage$AccessString": "<p>Access permissions string used for this user.</p>",
         "ModifyUserMessage$AppendAccessString": "<p>Adds additional user permissions to the access string.</p>"
       }
     },
@@ -120,8 +120,8 @@
     "AuthTokenUpdateStrategyType": {
       "base": null,
       "refs": {
-        "ModifyCacheClusterMessage$AuthTokenUpdateStrategy": "<p>Specifies the strategy to use to update the AUTH token. This parameter must be specified with the <code>auth-token</code> parameter. Possible values:</p> <ul> <li> <p>Rotate</p> </li> <li> <p>Set</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html\">Authenticating Users with Redis AUTH</a> </p>",
-        "ModifyReplicationGroupMessage$AuthTokenUpdateStrategy": "<p>Specifies the strategy to use to update the AUTH token. This parameter must be specified with the <code>auth-token</code> parameter. Possible values:</p> <ul> <li> <p>Rotate</p> </li> <li> <p>Set</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html\">Authenticating Users with Redis AUTH</a> </p>"
+        "ModifyCacheClusterMessage$AuthTokenUpdateStrategy": "<p>Specifies the strategy to use to update the AUTH token. This parameter must be specified with the <code>auth-token</code> parameter. Possible values:</p> <ul> <li> <p>Rotate</p> </li> <li> <p>Set</p> </li> </ul> <p> For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html\">Authenticating Users with Redis AUTH</a> </p>",
+        "ModifyReplicationGroupMessage$AuthTokenUpdateStrategy": "<p>Specifies the strategy to use to update the AUTH token. This parameter must be specified with the <code>auth-token</code> parameter. Possible values:</p> <ul> <li> <p>Rotate</p> </li> <li> <p>Set</p> </li> </ul> <p> For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html\">Authenticating Users with Redis AUTH</a> </p>"
       }
     },
     "Authentication": {
@@ -230,7 +230,7 @@
         "CreateReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "CreateReplicationGroupMessage$TransitEncryptionEnabled": "<p>A flag that enables in-transit encryption when set to <code>true</code>.</p> <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after the cluster is created. To enable in-transit encryption on a cluster you must set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p>This parameter is valid only if the <code>Engine</code> parameter is <code>redis</code>, the <code>EngineVersion</code> parameter is <code>3.2.6</code>, <code>4.x</code> or later, and the cluster is being created in an Amazon VPC.</p> <p>If you enable in-transit encryption, you must also specify a value for <code>CacheSubnetGroup</code>.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p> <important> <p>For HIPAA compliance, you must specify <code>TransitEncryptionEnabled</code> as <code>true</code>, an <code>AuthToken</code>, and a <code>CacheSubnetGroup</code>.</p> </important>",
         "CreateReplicationGroupMessage$AtRestEncryptionEnabled": "<p>A flag that enables encryption at rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the replication group is created. To enable encryption at rest on a replication group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create the replication group. </p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>",
-        "CreateUserMessage$NoPasswordRequired": "<p>Indicates a password is not required for this user account.</p>",
+        "CreateUserMessage$NoPasswordRequired": "<p>Indicates a password is not required for this user.</p>",
         "DeleteReplicationGroupMessage$RetainPrimaryCluster": "<p>If set to <code>true</code>, all of the read replicas are deleted, but the primary node is retained.</p>",
         "DescribeCacheClustersMessage$ShowCacheNodeInfo": "<p>An optional flag that can be included in the <code>DescribeCacheCluster</code> request to retrieve information about the individual cache nodes.</p>",
         "DescribeCacheClustersMessage$ShowCacheClustersNotInReplicationGroups": "<p>An optional flag that can be included in the <code>DescribeCacheCluster</code> request to show only nodes (API/CLI: clusters) that are not members of a replication group. In practice, this mean Memcached and single node Redis clusters.</p>",
@@ -247,7 +247,7 @@
         "ModifyReplicationGroupMessage$MultiAZEnabled": "<p>A flag indicating if you have Multi-AZ enabled to enhance fault tolerance. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html\">Minimizing Downtime: Multi-AZ</a>.</p>",
         "ModifyReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "ModifyReplicationGroupMessage$RemoveUserGroups": "<p>Removes the user groups that can access this replication group.</p>",
-        "ModifyUserMessage$NoPasswordRequired": "<p>Indicates no password is required for the user account.</p>",
+        "ModifyUserMessage$NoPasswordRequired": "<p>Indicates no password is required for the user.</p>",
         "ReplicationGroup$ClusterEnabled": "<p>A flag indicating whether or not this replication group is cluster enabled; i.e., whether its data can be partitioned across multiple shards (API/CLI: node groups).</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
         "ReplicationGroup$AuthTokenEnabled": "<p>A flag that enables using an <code>AuthToken</code> (password) when issuing Redis commands.</p> <p>Default: <code>false</code> </p>",
         "ReplicationGroup$TransitEncryptionEnabled": "<p>A flag that enables in-transit encryption when set to <code>true</code>.</p> <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after the cluster is created. To enable in-transit encryption on a cluster you must set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>",
@@ -917,11 +917,11 @@
     "EngineType": {
       "base": null,
       "refs": {
-        "CreateUserGroupMessage$Engine": "<p>Must be Redis. </p>",
-        "CreateUserMessage$Engine": "<p>Must be Redis. </p>",
+        "CreateUserGroupMessage$Engine": "<p>The current supported value is Redis. </p>",
+        "CreateUserMessage$Engine": "<p>The current supported value is Redis. </p>",
         "DescribeUsersMessage$Engine": "<p>The Redis engine. </p>",
-        "User$Engine": "<p>Must be Redis. </p>",
-        "UserGroup$Engine": "<p>Must be Redis. </p>"
+        "User$Engine": "<p>The current supported value is Redis.</p>",
+        "UserGroup$Engine": "<p>The current supported value is Redis. </p>"
       }
     },
     "Event": {
@@ -1469,8 +1469,8 @@
     "PasswordListInput": {
       "base": null,
       "refs": {
-        "CreateUserMessage$Passwords": "<p>Passwords used for this user account. You can create up to two passwords for each user.</p>",
-        "ModifyUserMessage$Passwords": "<p>The passwords belonging to the user account. You are allowed up to two.</p>"
+        "CreateUserMessage$Passwords": "<p>Passwords used for this user. You can create up to two passwords for each user.</p>",
+        "ModifyUserMessage$Passwords": "<p>The passwords belonging to the user. You are allowed up to two.</p>"
       }
     },
     "PendingAutomaticFailoverStatus": {
@@ -2147,7 +2147,7 @@
         "NodeGroup$Slots": "<p>The keyspace for this node group (shard).</p>",
         "NodeGroupConfiguration$Slots": "<p>A string that specifies the keyspace for a particular node group. Keyspaces range from 0 to 16,383. The string is in the format <code>startkey-endkey</code>.</p> <p>Example: <code>\"0-3999\"</code> </p>",
         "NodeGroupConfiguration$PrimaryAvailabilityZone": "<p>The Availability Zone where the primary node of this node group (shard) is launched.</p>",
-        "NodeGroupConfiguration$PrimaryOutpostArn": "<p>The output ARN of the primary node.</p>",
+        "NodeGroupConfiguration$PrimaryOutpostArn": "<p>The outpost ARN of the primary node.</p>",
         "NodeGroupMember$CacheClusterId": "<p>The ID of the cluster to which the node belongs.</p>",
         "NodeGroupMember$CacheNodeId": "<p>The ID of the node within its cluster. A node ID is a numeric identifier (0001, 0002, etc.).</p>",
         "NodeGroupMember$PreferredAvailabilityZone": "<p>The name of the Availability Zone in which the node is located.</p>",
@@ -2271,8 +2271,8 @@
         "User$UserId": "<p>The ID of the user.</p>",
         "User$UserName": "<p>The username of the user.</p>",
         "User$Status": "<p>Indicates the user status. Can be \"active\", \"modifying\" or \"deleting\".</p>",
-        "User$AccessString": "<p>Access permissions string used for this user account.</p>",
-        "User$ARN": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
+        "User$AccessString": "<p>Access permissions string used for this user.</p>",
+        "User$ARN": "<p>The Amazon Resource Name (ARN) of the user.</p>",
         "UserGroup$UserGroupId": "<p>The ID of the user group.</p>",
         "UserGroup$Status": "<p>Indicates user group status. Can be \"creating\", \"active\", \"modifying\", \"deleting\".</p>",
         "UserGroup$ARN": "<p>The Amazon Resource Name (ARN) of the user group.</p>"
@@ -2542,7 +2542,7 @@
       "base": null,
       "refs": {
         "UserGroup$UserIds": "<p>The list of user IDs that belong to the user group.</p>",
-        "UserGroupPendingChanges$UserIdsToRemove": "<p>The list of user group IDs ro remove.</p>",
+        "UserGroupPendingChanges$UserIdsToRemove": "<p>The list of user IDs to remove.</p>",
         "UserGroupPendingChanges$UserIdsToAdd": "<p>The list of user IDs to add.</p>"
       }
     },
