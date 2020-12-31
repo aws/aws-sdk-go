@@ -234,12 +234,6 @@
         "UpdateProductInput$AddTags": "<p>The tags to add to the product.</p>"
       }
     },
-    "AllowedValue": {
-      "base": null,
-      "refs": {
-        "AllowedValues$member": null
-      }
-    },
     "AllowedValues": {
       "base": null,
       "refs": {
@@ -2871,6 +2865,18 @@
       "base": null,
       "refs": {
         "ProvisionedProductPlanDetails$StatusMessage": "<p>The status message.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "AllowedValues$member": null,
+        "ParameterConstraints$AllowedPattern": "<p>A regular expression that represents the patterns that allow for <code>String</code> types. The pattern must match the entire parameter value provided.</p>",
+        "ParameterConstraints$ConstraintDescription": "<p>A string that explains a constraint when the constraint is violated. For example, without a constraint description, a parameter that has an allowed pattern of <code>[A-Za-z0-9]+</code> displays the following error message when the user specifies an invalid value:</p> <p> <code>Malformed input-Parameter MyParameter must match pattern [A-Za-z0-9]+</code> </p> <p>By adding a constraint description, such as must only contain letters (uppercase and lowercase) and numbers, you can display the following customized error message:</p> <p> <code>Malformed input-Parameter MyParameter must only contain uppercase and lowercase letters and numbers.</code> </p>",
+        "ParameterConstraints$MaxLength": "<p>An integer value that determines the largest number of characters you want to allow for <code>String</code> types. </p>",
+        "ParameterConstraints$MinLength": "<p>An integer value that determines the smallest number of characters you want to allow for <code>String</code> types.</p>",
+        "ParameterConstraints$MaxValue": "<p>A numeric value that determines the largest numeric value you want to allow for <code>Number</code> types.</p>",
+        "ParameterConstraints$MinValue": "<p>A numeric value that determines the smallest numeric value you want to allow for <code>Number</code> types. </p>"
       }
     },
     "SuccessfulShares": {
