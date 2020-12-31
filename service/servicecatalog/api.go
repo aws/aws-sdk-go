@@ -16931,8 +16931,43 @@ func (s *OrganizationNode) SetValue(v string) *OrganizationNode {
 type ParameterConstraints struct {
 	_ struct{} `type:"structure"`
 
+	// A regular expression that represents the patterns that allow for String types.
+	// The pattern must match the entire parameter value provided.
+	AllowedPattern *string `type:"string"`
+
 	// The values that the administrator has allowed for the parameter.
 	AllowedValues []*string `type:"list"`
+
+	// A string that explains a constraint when the constraint is violated. For
+	// example, without a constraint description, a parameter that has an allowed
+	// pattern of [A-Za-z0-9]+ displays the following error message when the user
+	// specifies an invalid value:
+	//
+	// Malformed input-Parameter MyParameter must match pattern [A-Za-z0-9]+
+	//
+	// By adding a constraint description, such as must only contain letters (uppercase
+	// and lowercase) and numbers, you can display the following customized error
+	// message:
+	//
+	// Malformed input-Parameter MyParameter must only contain uppercase and lowercase
+	// letters and numbers.
+	ConstraintDescription *string `type:"string"`
+
+	// An integer value that determines the largest number of characters you want
+	// to allow for String types.
+	MaxLength *string `type:"string"`
+
+	// A numeric value that determines the largest numeric value you want to allow
+	// for Number types.
+	MaxValue *string `type:"string"`
+
+	// An integer value that determines the smallest number of characters you want
+	// to allow for String types.
+	MinLength *string `type:"string"`
+
+	// A numeric value that determines the smallest numeric value you want to allow
+	// for Number types.
+	MinValue *string `type:"string"`
 }
 
 // String returns the string representation
@@ -16945,9 +16980,45 @@ func (s ParameterConstraints) GoString() string {
 	return s.String()
 }
 
+// SetAllowedPattern sets the AllowedPattern field's value.
+func (s *ParameterConstraints) SetAllowedPattern(v string) *ParameterConstraints {
+	s.AllowedPattern = &v
+	return s
+}
+
 // SetAllowedValues sets the AllowedValues field's value.
 func (s *ParameterConstraints) SetAllowedValues(v []*string) *ParameterConstraints {
 	s.AllowedValues = v
+	return s
+}
+
+// SetConstraintDescription sets the ConstraintDescription field's value.
+func (s *ParameterConstraints) SetConstraintDescription(v string) *ParameterConstraints {
+	s.ConstraintDescription = &v
+	return s
+}
+
+// SetMaxLength sets the MaxLength field's value.
+func (s *ParameterConstraints) SetMaxLength(v string) *ParameterConstraints {
+	s.MaxLength = &v
+	return s
+}
+
+// SetMaxValue sets the MaxValue field's value.
+func (s *ParameterConstraints) SetMaxValue(v string) *ParameterConstraints {
+	s.MaxValue = &v
+	return s
+}
+
+// SetMinLength sets the MinLength field's value.
+func (s *ParameterConstraints) SetMinLength(v string) *ParameterConstraints {
+	s.MinLength = &v
+	return s
+}
+
+// SetMinValue sets the MinValue field's value.
+func (s *ParameterConstraints) SetMinValue(v string) *ParameterConstraints {
+	s.MinValue = &v
 	return s
 }
 

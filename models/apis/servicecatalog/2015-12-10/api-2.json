@@ -1230,10 +1230,9 @@
       "member":{"shape":"Tag"},
       "max":20
     },
-    "AllowedValue":{"type":"string"},
     "AllowedValues":{
       "type":"list",
-      "member":{"shape":"AllowedValue"}
+      "member":{"shape":"String"}
     },
     "ApproximateCount":{"type":"integer"},
     "AssociateBudgetWithResourceInput":{
@@ -2818,7 +2817,13 @@
     "ParameterConstraints":{
       "type":"structure",
       "members":{
-        "AllowedValues":{"shape":"AllowedValues"}
+        "AllowedValues":{"shape":"AllowedValues"},
+        "AllowedPattern":{"shape":"String"},
+        "ConstraintDescription":{"shape":"String"},
+        "MaxLength":{"shape":"String"},
+        "MinLength":{"shape":"String"},
+        "MaxValue":{"shape":"String"},
+        "MinValue":{"shape":"String"}
       }
     },
     "ParameterKey":{
@@ -3870,6 +3875,7 @@
       "type":"string",
       "pattern":"[\\u0009\\u000a\\u000d\\u0020-\\uD7FF\\uE000-\\uFFFD]*"
     },
+    "String":{"type":"string"},
     "SuccessfulShares":{
       "type":"list",
       "member":{"shape":"AccountId"}
