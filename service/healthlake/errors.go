@@ -17,7 +17,7 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// The datastore is in a transition state and the user requested action can
+	// The Data Store is in a transition state and the user requested action can
 	// not be performed.
 	ErrCodeConflictException = "ConflictException"
 
@@ -30,7 +30,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The requested datastore was not found.
+	// The requested Data Store was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeThrottlingException for service response error code

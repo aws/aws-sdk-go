@@ -56,7 +56,7 @@ func (c *HealthLake) CreateFHIRDatastoreRequest(input *CreateFHIRDatastoreInput)
 
 // CreateFHIRDatastore API operation for Amazon HealthLake.
 //
-// Creates a datastore that can ingest and export FHIR data.
+// Creates a Data Store that can ingest and export FHIR formatted data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -142,7 +142,7 @@ func (c *HealthLake) DeleteFHIRDatastoreRequest(input *DeleteFHIRDatastoreInput)
 
 // DeleteFHIRDatastore API operation for Amazon HealthLake.
 //
-// Deletes a datastore.
+// Deletes a Data Store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -156,14 +156,14 @@ func (c *HealthLake) DeleteFHIRDatastoreRequest(input *DeleteFHIRDatastoreInput)
 //   Access is denied. Your account is not authorized to perform this operation.
 //
 //   * ConflictException
-//   The datastore is in a transition state and the user requested action can
+//   The Data Store is in a transition state and the user requested action can
 //   not be performed.
 //
 //   * ValidationException
 //   The user input parameter was invalid.
 //
 //   * ResourceNotFoundException
-//   The requested datastore was not found.
+//   The requested Data Store was not found.
 //
 //   * ThrottlingException
 //   The user has exceeded their maximum number of allowed calls to the given
@@ -238,9 +238,9 @@ func (c *HealthLake) DescribeFHIRDatastoreRequest(input *DescribeFHIRDatastoreIn
 
 // DescribeFHIRDatastore API operation for Amazon HealthLake.
 //
-// Gets the properties associated with the FHIR datastore, including the datastore
-// ID, datastore ARN, datastore name, datastore status, created at, datastore
-// type version, and datastore endpoint.
+// Gets the properties associated with the FHIR Data Store, including the Data
+// Store ID, Data Store ARN, Data Store name, Data Store status, created at,
+// Data Store type version, and Data Store endpoint.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -254,7 +254,7 @@ func (c *HealthLake) DescribeFHIRDatastoreRequest(input *DescribeFHIRDatastoreIn
 //   The user input parameter was invalid.
 //
 //   * ResourceNotFoundException
-//   The requested datastore was not found.
+//   The requested Data Store was not found.
 //
 //   * ThrottlingException
 //   The user has exceeded their maximum number of allowed calls to the given
@@ -280,6 +280,96 @@ func (c *HealthLake) DescribeFHIRDatastore(input *DescribeFHIRDatastoreInput) (*
 // for more information on using Contexts.
 func (c *HealthLake) DescribeFHIRDatastoreWithContext(ctx aws.Context, input *DescribeFHIRDatastoreInput, opts ...request.Option) (*DescribeFHIRDatastoreOutput, error) {
 	req, out := c.DescribeFHIRDatastoreRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFHIRExportJob = "DescribeFHIRExportJob"
+
+// DescribeFHIRExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFHIRExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFHIRExportJob for more information on using the DescribeFHIRExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFHIRExportJobRequest method.
+//    req, resp := client.DescribeFHIRExportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/DescribeFHIRExportJob
+func (c *HealthLake) DescribeFHIRExportJobRequest(input *DescribeFHIRExportJobInput) (req *request.Request, output *DescribeFHIRExportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFHIRExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeFHIRExportJobInput{}
+	}
+
+	output = &DescribeFHIRExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFHIRExportJob API operation for Amazon HealthLake.
+//
+// Displays the properties of a FHIR export job, including the ID, ARN, name,
+// and the status of the job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation DescribeFHIRExportJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+//   * ThrottlingException
+//   The user has exceeded their maximum number of allowed calls to the given
+//   API.
+//
+//   * InternalServerException
+//   Unknown error occurs in the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/DescribeFHIRExportJob
+func (c *HealthLake) DescribeFHIRExportJob(input *DescribeFHIRExportJobInput) (*DescribeFHIRExportJobOutput, error) {
+	req, out := c.DescribeFHIRExportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFHIRExportJobWithContext is the same as DescribeFHIRExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFHIRExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) DescribeFHIRExportJobWithContext(ctx aws.Context, input *DescribeFHIRExportJobInput, opts ...request.Option) (*DescribeFHIRExportJobOutput, error) {
+	req, out := c.DescribeFHIRExportJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -330,7 +420,7 @@ func (c *HealthLake) DescribeFHIRImportJobRequest(input *DescribeFHIRImportJobIn
 // DescribeFHIRImportJob API operation for Amazon HealthLake.
 //
 // Displays the properties of a FHIR import job, including the ID, ARN, name,
-// and the status of the datastore.
+// and the status of the job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -344,7 +434,7 @@ func (c *HealthLake) DescribeFHIRImportJobRequest(input *DescribeFHIRImportJobIn
 //   The user input parameter was invalid.
 //
 //   * ResourceNotFoundException
-//   The requested datastore was not found.
+//   The requested Data Store was not found.
 //
 //   * ThrottlingException
 //   The user has exceeded their maximum number of allowed calls to the given
@@ -425,8 +515,8 @@ func (c *HealthLake) ListFHIRDatastoresRequest(input *ListFHIRDatastoresInput) (
 
 // ListFHIRDatastores API operation for Amazon HealthLake.
 //
-// Lists all FHIR datastores that are in the user’s account, regardless of
-// datastore status.
+// Lists all FHIR Data Stores that are in the user’s account, regardless of
+// Data Store status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -520,6 +610,98 @@ func (c *HealthLake) ListFHIRDatastoresPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opStartFHIRExportJob = "StartFHIRExportJob"
+
+// StartFHIRExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartFHIRExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartFHIRExportJob for more information on using the StartFHIRExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartFHIRExportJobRequest method.
+//    req, resp := client.StartFHIRExportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/StartFHIRExportJob
+func (c *HealthLake) StartFHIRExportJobRequest(input *StartFHIRExportJobInput) (req *request.Request, output *StartFHIRExportJobOutput) {
+	op := &request.Operation{
+		Name:       opStartFHIRExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartFHIRExportJobInput{}
+	}
+
+	output = &StartFHIRExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartFHIRExportJob API operation for Amazon HealthLake.
+//
+// Begins a FHIR export job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation StartFHIRExportJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ThrottlingException
+//   The user has exceeded their maximum number of allowed calls to the given
+//   API.
+//
+//   * AccessDeniedException
+//   Access is denied. Your account is not authorized to perform this operation.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+//   * InternalServerException
+//   Unknown error occurs in the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/StartFHIRExportJob
+func (c *HealthLake) StartFHIRExportJob(input *StartFHIRExportJobInput) (*StartFHIRExportJobOutput, error) {
+	req, out := c.StartFHIRExportJobRequest(input)
+	return out, req.Send()
+}
+
+// StartFHIRExportJobWithContext is the same as StartFHIRExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartFHIRExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) StartFHIRExportJobWithContext(ctx aws.Context, input *StartFHIRExportJobInput, opts ...request.Option) (*StartFHIRExportJobOutput, error) {
+	req, out := c.StartFHIRExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartFHIRImportJob = "StartFHIRImportJob"
 
 // StartFHIRImportJobRequest generates a "aws/request.Request" representing the
@@ -585,7 +767,7 @@ func (c *HealthLake) StartFHIRImportJobRequest(input *StartFHIRImportJobInput) (
 //   Access is denied. Your account is not authorized to perform this operation.
 //
 //   * ResourceNotFoundException
-//   The requested datastore was not found.
+//   The requested Data Store was not found.
 //
 //   * InternalServerException
 //   Unknown error occurs in the service.
@@ -668,7 +850,7 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The datastore is in a transition state and the user requested action can
+// The Data Store is in a transition state and the user requested action can
 // not be performed.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -731,15 +913,15 @@ type CreateFHIRDatastoreInput struct {
 	// Optional user provided token used for ensuring idempotency.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The user generated name for the datastore.
+	// The user generated name for the Data Store.
 	DatastoreName *string `min:"1" type:"string"`
 
-	// The FHIR version of the datastore. The only supported version is R4.
+	// The FHIR version of the Data Store. The only supported version is R4.
 	//
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
 
-	// Optional parameter to preload data upon creation of the datastore. Currently,
+	// Optional parameter to preload data upon creation of the Data Store. Currently,
 	// the only supported preloaded data is synthetic data generated from Synthea.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
 }
@@ -805,26 +987,26 @@ func (s *CreateFHIRDatastoreInput) SetPreloadDataConfig(v *PreloadDataConfig) *C
 type CreateFHIRDatastoreOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The datastore ARN is generated during the creation of the datastore and can
-	// be found in the output from the initial datastore creation call.
+	// The datastore ARN is generated during the creation of the Data Store and
+	// can be found in the output from the initial Data Store creation call.
 	//
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the created datastore. For preview, only US-east-1 endpoints
-	// are supported.
+	// The AWS endpoint for the created Data Store. For preview, only US-east-1
+	// endpoints are supported.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `min:"1" type:"string" required:"true"`
 
-	// The AWS-generated datastore id. This id is in the output from the initial
-	// datastore creation call.
+	// The AWS-generated Data Store id. This id is in the output from the initial
+	// Data Store creation call.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
 
-	// The status of the FHIR datastore. Possible statuses are ‘CREATING’, ‘ACTIVE’,
-	// ‘DELETING’, ‘DELETED’.
+	// The status of the FHIR Data Store. Possible statuses are ‘CREATING’,
+	// ‘ACTIVE’, ‘DELETING’, ‘DELETED’.
 	//
 	// DatastoreStatus is a required field
 	DatastoreStatus *string `type:"string" required:"true" enum:"DatastoreStatus"`
@@ -864,22 +1046,22 @@ func (s *CreateFHIRDatastoreOutput) SetDatastoreStatus(v string) *CreateFHIRData
 	return s
 }
 
-// The filters applied to datastore query.
+// The filters applied to Data Store query.
 type DatastoreFilter struct {
 	_ struct{} `type:"structure"`
 
-	// A filter that allows the user to set cutoff dates for records. All datastores
+	// A filter that allows the user to set cutoff dates for records. All Data Stores
 	// created after the specified date will be included in the results.
 	CreatedAfter *time.Time `type:"timestamp"`
 
-	// A filter that allows the user to set cutoff dates for records. All datastores
+	// A filter that allows the user to set cutoff dates for records. All Data Stores
 	// created before the specified date will be included in the results.
 	CreatedBefore *time.Time `type:"timestamp"`
 
-	// Allows the user to filter datastore results by name.
+	// Allows the user to filter Data Store results by name.
 	DatastoreName *string `min:"1" type:"string"`
 
-	// Allows the user to filter datastore results by status.
+	// Allows the user to filter Data Store results by status.
 	DatastoreStatus *string `type:"string" enum:"DatastoreStatus"`
 }
 
@@ -930,34 +1112,34 @@ func (s *DatastoreFilter) SetDatastoreStatus(v string) *DatastoreFilter {
 	return s
 }
 
-// Displays the properties of the datastore, including the ID, Arn, name, and
-// the status of the datastore.
+// Displays the properties of the Data Store, including the ID, Arn, name, and
+// the status of the Data Store.
 type DatastoreProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The time that a datastore was created.
+	// The time that a Data Store was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name used in the creation of the datastore.
+	// The Amazon Resource Name used in the creation of the Data Store.
 	//
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the datastore. Each datastore will have it's own endpoint
-	// with datastore ID in the endpoint URL.
+	// The AWS endpoint for the Data Store. Each Data Store will have it's own endpoint
+	// with Data Store ID in the endpoint URL.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `type:"string" required:"true"`
 
-	// The AWS-generated ID number for the datastore.
+	// The AWS-generated ID number for the Data Store.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
 
-	// The user-generated name for the datastore.
+	// The user-generated name for the Data Store.
 	DatastoreName *string `min:"1" type:"string"`
 
-	// The status of the datastore. Possible statuses are 'CREATING', 'ACTIVE',
+	// The status of the Data Store. Possible statuses are 'CREATING', 'ACTIVE',
 	// 'DELETING', or 'DELETED'.
 	//
 	// DatastoreStatus is a required field
@@ -968,8 +1150,8 @@ type DatastoreProperties struct {
 	// DatastoreTypeVersion is a required field
 	DatastoreTypeVersion *string `type:"string" required:"true" enum:"FHIRVersion"`
 
-	// The preloaded data configuration for the datastore. Only data preloaded from
-	// Synthea is supported.
+	// The preloaded data configuration for the Data Store. Only data preloaded
+	// from Synthea is supported.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
 }
 
@@ -1034,7 +1216,7 @@ func (s *DatastoreProperties) SetPreloadDataConfig(v *PreloadDataConfig) *Datast
 type DeleteFHIRDatastoreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated ID for the datastore to be deleted.
+	// The AWS-generated ID for the Data Store to be deleted.
 	DatastoreId *string `min:"1" type:"string"`
 }
 
@@ -1075,17 +1257,17 @@ type DeleteFHIRDatastoreOutput struct {
 	// DatastoreArn is a required field
 	DatastoreArn *string `type:"string" required:"true"`
 
-	// The AWS endpoint for the datastore the user has requested to be deleted.
+	// The AWS endpoint for the Data Store the user has requested to be deleted.
 	//
 	// DatastoreEndpoint is a required field
 	DatastoreEndpoint *string `min:"1" type:"string" required:"true"`
 
-	// The AWS-generated ID for the datastore to be deleted.
+	// The AWS-generated ID for the Data Store to be deleted.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
 
-	// The status of the datastore that the user has requested to be deleted.
+	// The status of the Data Store that the user has requested to be deleted.
 	//
 	// DatastoreStatus is a required field
 	DatastoreStatus *string `type:"string" required:"true" enum:"DatastoreStatus"`
@@ -1128,7 +1310,7 @@ func (s *DeleteFHIRDatastoreOutput) SetDatastoreStatus(v string) *DeleteFHIRData
 type DescribeFHIRDatastoreInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated datastore id. This is part of the ‘CreateFHIRDatastore’
+	// The AWS-generated Data Store id. This is part of the ‘CreateFHIRDatastore’
 	// output.
 	DatastoreId *string `min:"1" type:"string"`
 }
@@ -1165,9 +1347,9 @@ func (s *DescribeFHIRDatastoreInput) SetDatastoreId(v string) *DescribeFHIRDatas
 type DescribeFHIRDatastoreOutput struct {
 	_ struct{} `type:"structure"`
 
-	// All properties associated with a datastore, including the datastore ID, datastore
-	// ARN, datastore name, datastore status, created at, datastore type version,
-	// and datastore endpoint.
+	// All properties associated with a Data Store, including the Data Store ID,
+	// Data Store ARN, Data Store name, Data Store status, created at, Data Store
+	// type version, and Data Store endpoint.
 	//
 	// DatastoreProperties is a required field
 	DatastoreProperties *DatastoreProperties `type:"structure" required:"true"`
@@ -1189,10 +1371,95 @@ func (s *DescribeFHIRDatastoreOutput) SetDatastoreProperties(v *DatastorePropert
 	return s
 }
 
+type DescribeFHIRExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS generated ID for the Data Store from which files are being exported
+	// from for an export job.
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
+
+	// The AWS generated ID for an export job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFHIRExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFHIRExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFHIRExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFHIRExportJobInput"}
+	if s.DatastoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatastoreId"))
+	}
+	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatastoreId sets the DatastoreId field's value.
+func (s *DescribeFHIRExportJobInput) SetDatastoreId(v string) *DescribeFHIRExportJobInput {
+	s.DatastoreId = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribeFHIRExportJobInput) SetJobId(v string) *DescribeFHIRExportJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DescribeFHIRExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Displays the properties of the export job, including the ID, Arn, Name, and
+	// the status of the job.
+	//
+	// ExportJobProperties is a required field
+	ExportJobProperties *ExportJobProperties `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFHIRExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFHIRExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportJobProperties sets the ExportJobProperties field's value.
+func (s *DescribeFHIRExportJobOutput) SetExportJobProperties(v *ExportJobProperties) *DescribeFHIRExportJobOutput {
+	s.ExportJobProperties = v
+	return s
+}
+
 type DescribeFHIRImportJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated ID of the datastore.
+	// The AWS-generated ID of the Data Store.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -1251,7 +1518,7 @@ type DescribeFHIRImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The properties of the Import job request, including the ID, ARN, name, and
-	// the status of the datastore.
+	// the status of the job.
 	//
 	// ImportJobProperties is a required field
 	ImportJobProperties *ImportJobProperties `type:"structure" required:"true"`
@@ -1273,8 +1540,117 @@ func (s *DescribeFHIRImportJobOutput) SetImportJobProperties(v *ImportJobPropert
 	return s
 }
 
+// The properties of a FHIR export job, including the ID, ARN, name, and the
+// status of the job.
+type ExportJobProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name used during the initiation of the job.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// The AWS generated ID for the Data Store from which files are being exported
+	// for an export job.
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
+
+	// The time an export job completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The AWS generated ID for an export job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The user generated name for an export job.
+	JobName *string `min:"1" type:"string"`
+
+	// The status of a FHIR export job. Possible statuses are SUBMITTED, IN_PROGRESS,
+	// COMPLETED, or FAILED.
+	//
+	// JobStatus is a required field
+	JobStatus *string `type:"string" required:"true" enum:"JobStatus"`
+
+	// An explanation of any errors that may have occurred during the export job.
+	Message *string `min:"1" type:"string"`
+
+	// The output data configuration that was supplied when the export job was created.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// The time an export job was initiated.
+	//
+	// SubmitTime is a required field
+	SubmitTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportJobProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportJobProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *ExportJobProperties) SetDataAccessRoleArn(v string) *ExportJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetDatastoreId sets the DatastoreId field's value.
+func (s *ExportJobProperties) SetDatastoreId(v string) *ExportJobProperties {
+	s.DatastoreId = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *ExportJobProperties) SetEndTime(v time.Time) *ExportJobProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportJobProperties) SetJobId(v string) *ExportJobProperties {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ExportJobProperties) SetJobName(v string) *ExportJobProperties {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *ExportJobProperties) SetJobStatus(v string) *ExportJobProperties {
+	s.JobStatus = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ExportJobProperties) SetMessage(v string) *ExportJobProperties {
+	s.Message = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *ExportJobProperties) SetOutputDataConfig(v *OutputDataConfig) *ExportJobProperties {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetSubmitTime sets the SubmitTime field's value.
+func (s *ExportJobProperties) SetSubmitTime(v time.Time) *ExportJobProperties {
+	s.SubmitTime = &v
+	return s
+}
+
 // Displays the properties of the import job, including the ID, Arn, Name, and
-// the status of the datastore.
+// the status of the Data Store.
 type ImportJobProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -1467,14 +1843,14 @@ func (s *InternalServerException) RequestID() string {
 type ListFHIRDatastoresInput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists all filters associated with a FHIR datastore request.
+	// Lists all filters associated with a FHIR Data Store request.
 	Filter *DatastoreFilter `type:"structure"`
 
-	// The maximum number of datastores returned in a single page of a ListFHIRDatastoresRequest
+	// The maximum number of Data Stores returned in a single page of a ListFHIRDatastoresRequest
 	// call.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Fetches the next page of datastores when results are paginated.
+	// Fetches the next page of Data Stores when results are paginated.
 	NextToken *string `type:"string"`
 }
 
@@ -1527,7 +1903,7 @@ func (s *ListFHIRDatastoresInput) SetNextToken(v string) *ListFHIRDatastoresInpu
 type ListFHIRDatastoresOutput struct {
 	_ struct{} `type:"structure"`
 
-	// All properties associated with the listed datastores.
+	// All properties associated with the listed Data Stores.
 	//
 	// DatastorePropertiesList is a required field
 	DatastorePropertiesList []*DatastoreProperties `type:"list" required:"true"`
@@ -1558,7 +1934,32 @@ func (s *ListFHIRDatastoresOutput) SetNextToken(v string) *ListFHIRDatastoresOut
 	return s
 }
 
-// The input properties for the preloaded datastore. Only data preloaded from
+// The output data configuration that was supplied when the export job was created.
+type OutputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The S3Uri is the user specified S3 location to which data will be exported
+	// from a FHIR Data Store.
+	S3Uri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OutputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutputDataConfig) GoString() string {
+	return s.String()
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// The input properties for the preloaded Data Store. Only data preloaded from
 // Synthea is supported.
 type PreloadDataConfig struct {
 	_ struct{} `type:"structure"`
@@ -1598,7 +1999,7 @@ func (s *PreloadDataConfig) SetPreloadDataType(v string) *PreloadDataConfig {
 	return s
 }
 
-// The requested datastore was not found.
+// The requested Data Store was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1654,6 +2055,150 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type StartFHIRExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional user provided token used for ensuring idempotency.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name used during the initiation of the job.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The AWS generated ID for the Data Store from which files are being exported
+	// for an export job.
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
+
+	// The user generated name for an export job.
+	JobName *string `min:"1" type:"string"`
+
+	// The output data configuration that was supplied when the export job was created.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartFHIRExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartFHIRExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartFHIRExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartFHIRExportJobInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.DatastoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatastoreId"))
+	}
+	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartFHIRExportJobInput) SetClientToken(v string) *StartFHIRExportJobInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *StartFHIRExportJobInput) SetDataAccessRoleArn(v string) *StartFHIRExportJobInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetDatastoreId sets the DatastoreId field's value.
+func (s *StartFHIRExportJobInput) SetDatastoreId(v string) *StartFHIRExportJobInput {
+	s.DatastoreId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartFHIRExportJobInput) SetJobName(v string) *StartFHIRExportJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *StartFHIRExportJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartFHIRExportJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+type StartFHIRExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS generated ID for the Data Store from which files are being exported
+	// for an export job.
+	DatastoreId *string `min:"1" type:"string"`
+
+	// The AWS generated ID for an export job.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The status of a FHIR export job. Possible statuses are SUBMITTED, IN_PROGRESS,
+	// COMPLETED, or FAILED.
+	//
+	// JobStatus is a required field
+	JobStatus *string `type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s StartFHIRExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartFHIRExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatastoreId sets the DatastoreId field's value.
+func (s *StartFHIRExportJobOutput) SetDatastoreId(v string) *StartFHIRExportJobOutput {
+	s.DatastoreId = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartFHIRExportJobOutput) SetJobId(v string) *StartFHIRExportJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StartFHIRExportJobOutput) SetJobStatus(v string) *StartFHIRExportJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
 type StartFHIRImportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1665,7 +2210,7 @@ type StartFHIRImportJobInput struct {
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
 
-	// The AWS-generated datastore ID.
+	// The AWS-generated Data Store ID.
 	//
 	// DatastoreId is a required field
 	DatastoreId *string `min:"1" type:"string" required:"true"`
@@ -1753,7 +2298,7 @@ func (s *StartFHIRImportJobInput) SetJobName(v string) *StartFHIRImportJobInput 
 type StartFHIRImportJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS-generated datastore ID.
+	// The AWS-generated Data Store ID.
 	DatastoreId *string `min:"1" type:"string"`
 
 	// The AWS-generated job ID.
