@@ -60,6 +60,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeFHIRExportJob":{
+      "name":"DescribeFHIRExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFHIRExportJobRequest"},
+      "output":{"shape":"DescribeFHIRExportJobResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeFHIRImportJob":{
       "name":"DescribeFHIRImportJob",
       "http":{
@@ -86,6 +101,22 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartFHIRExportJob":{
+      "name":"StartFHIRExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartFHIRExportJobRequest"},
+      "output":{"shape":"StartFHIRExportJobResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -253,6 +284,24 @@
         "DatastoreProperties":{"shape":"DatastoreProperties"}
       }
     },
+    "DescribeFHIRExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "DatastoreId",
+        "JobId"
+      ],
+      "members":{
+        "DatastoreId":{"shape":"DatastoreId"},
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribeFHIRExportJobResponse":{
+      "type":"structure",
+      "required":["ExportJobProperties"],
+      "members":{
+        "ExportJobProperties":{"shape":"ExportJobProperties"}
+      }
+    },
     "DescribeFHIRImportJobRequest":{
       "type":"structure",
       "required":[
@@ -269,6 +318,27 @@
       "required":["ImportJobProperties"],
       "members":{
         "ImportJobProperties":{"shape":"ImportJobProperties"}
+      }
+    },
+    "ExportJobProperties":{
+      "type":"structure",
+      "required":[
+        "JobId",
+        "JobStatus",
+        "SubmitTime",
+        "DatastoreId",
+        "OutputDataConfig"
+      ],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "SubmitTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "DatastoreId":{"shape":"DatastoreId"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Message":{"shape":"Message"}
       }
     },
     "FHIRVersion":{
@@ -370,6 +440,13 @@
       "max":8192,
       "pattern":"\\p{ASCII}{0,8192}"
     },
+    "OutputDataConfig":{
+      "type":"structure",
+      "members":{
+        "S3Uri":{"shape":"S3Uri"}
+      },
+      "union":true
+    },
     "PreloadDataConfig":{
       "type":"structure",
       "required":["PreloadDataType"],
@@ -392,6 +469,37 @@
       "type":"string",
       "max":1024,
       "pattern":"s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?"
+    },
+    "StartFHIRExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "OutputDataConfig",
+        "DatastoreId",
+        "DataAccessRoleArn",
+        "ClientToken"
+      ],
+      "members":{
+        "JobName":{"shape":"JobName"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "DatastoreId":{"shape":"DatastoreId"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "ClientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartFHIRExportJobResponse":{
+      "type":"structure",
+      "required":[
+        "JobId",
+        "JobStatus"
+      ],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobStatus":{"shape":"JobStatus"},
+        "DatastoreId":{"shape":"DatastoreId"}
+      }
     },
     "StartFHIRImportJobRequest":{
       "type":"structure",

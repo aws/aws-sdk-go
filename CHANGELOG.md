@@ -1,3 +1,11 @@
+Release v1.36.20 (2021-01-04)
+===
+
+### Service Client Updates
+* `service/cloudsearch`: Updates service API
+  * This release adds support for new Amazon CloudSearch instances.
+* `service/healthlake`: Updates service API and documentation
+
 Release v1.36.19 (2020-12-31)
 ===
 

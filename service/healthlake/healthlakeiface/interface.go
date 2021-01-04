@@ -72,6 +72,10 @@ type HealthLakeAPI interface {
 	DescribeFHIRDatastoreWithContext(aws.Context, *healthlake.DescribeFHIRDatastoreInput, ...request.Option) (*healthlake.DescribeFHIRDatastoreOutput, error)
 	DescribeFHIRDatastoreRequest(*healthlake.DescribeFHIRDatastoreInput) (*request.Request, *healthlake.DescribeFHIRDatastoreOutput)
 
+	DescribeFHIRExportJob(*healthlake.DescribeFHIRExportJobInput) (*healthlake.DescribeFHIRExportJobOutput, error)
+	DescribeFHIRExportJobWithContext(aws.Context, *healthlake.DescribeFHIRExportJobInput, ...request.Option) (*healthlake.DescribeFHIRExportJobOutput, error)
+	DescribeFHIRExportJobRequest(*healthlake.DescribeFHIRExportJobInput) (*request.Request, *healthlake.DescribeFHIRExportJobOutput)
+
 	DescribeFHIRImportJob(*healthlake.DescribeFHIRImportJobInput) (*healthlake.DescribeFHIRImportJobOutput, error)
 	DescribeFHIRImportJobWithContext(aws.Context, *healthlake.DescribeFHIRImportJobInput, ...request.Option) (*healthlake.DescribeFHIRImportJobOutput, error)
 	DescribeFHIRImportJobRequest(*healthlake.DescribeFHIRImportJobInput) (*request.Request, *healthlake.DescribeFHIRImportJobOutput)
@@ -82,6 +86,10 @@ type HealthLakeAPI interface {
 
 	ListFHIRDatastoresPages(*healthlake.ListFHIRDatastoresInput, func(*healthlake.ListFHIRDatastoresOutput, bool) bool) error
 	ListFHIRDatastoresPagesWithContext(aws.Context, *healthlake.ListFHIRDatastoresInput, func(*healthlake.ListFHIRDatastoresOutput, bool) bool, ...request.Option) error
+
+	StartFHIRExportJob(*healthlake.StartFHIRExportJobInput) (*healthlake.StartFHIRExportJobOutput, error)
+	StartFHIRExportJobWithContext(aws.Context, *healthlake.StartFHIRExportJobInput, ...request.Option) (*healthlake.StartFHIRExportJobOutput, error)
+	StartFHIRExportJobRequest(*healthlake.StartFHIRExportJobInput) (*request.Request, *healthlake.StartFHIRExportJobOutput)
 
 	StartFHIRImportJob(*healthlake.StartFHIRImportJobInput) (*healthlake.StartFHIRImportJobOutput, error)
 	StartFHIRImportJobWithContext(aws.Context, *healthlake.StartFHIRImportJobInput, ...request.Option) (*healthlake.StartFHIRImportJobOutput, error)
