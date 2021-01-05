@@ -1057,6 +1057,101 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opGetCostCategories = "GetCostCategories"
+
+// GetCostCategoriesRequest generates a "aws/request.Request" representing the
+// client's request for the GetCostCategories operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCostCategories for more information on using the GetCostCategories
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCostCategoriesRequest method.
+//    req, resp := client.GetCostCategoriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostCategories
+func (c *CostExplorer) GetCostCategoriesRequest(input *GetCostCategoriesInput) (req *request.Request, output *GetCostCategoriesOutput) {
+	op := &request.Operation{
+		Name:       opGetCostCategories,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCostCategoriesInput{}
+	}
+
+	output = &GetCostCategoriesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCostCategories API operation for AWS Cost Explorer Service.
+//
+// Retrieves an array of Cost Category names and values incurred cost.
+//
+// If some Cost Category names and values are not associated with any cost,
+// they will not be returned by this API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cost Explorer Service's
+// API operation GetCostCategories for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   You made too many calls in a short period of time. Try again later.
+//
+//   * BillExpirationException
+//   The requested report expired. Update the date interval and try again.
+//
+//   * DataUnavailableException
+//   The requested data is unavailable.
+//
+//   * InvalidNextTokenException
+//   The pagination token is invalid. Try again without a pagination token.
+//
+//   * RequestChangedException
+//   Your request parameters changed between pages. Try again with the old parameters
+//   or without a pagination token.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ce-2017-10-25/GetCostCategories
+func (c *CostExplorer) GetCostCategories(input *GetCostCategoriesInput) (*GetCostCategoriesOutput, error) {
+	req, out := c.GetCostCategoriesRequest(input)
+	return out, req.Send()
+}
+
+// GetCostCategoriesWithContext is the same as GetCostCategories with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCostCategories for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CostExplorer) GetCostCategoriesWithContext(ctx aws.Context, input *GetCostCategoriesInput, opts ...request.Option) (*GetCostCategoriesOutput, error) {
+	req, out := c.GetCostCategoriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCostForecast = "GetCostForecast"
 
 // GetCostForecastRequest generates a "aws/request.Request" representing the
@@ -2973,10 +3068,13 @@ type AnomalyMonitor struct {
 	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
-	// For GetRightsizingRecommendation action, a combination of OR and NOT is not
-	// supported. OR is not supported between different dimensions, or dimensions
+	// For the GetRightsizingRecommendation action, a combination of OR and NOT
+	// is not supported. OR is not supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	//
+	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
 	MonitorSpecification *Expression `type:"structure"`
 
 	// The possible type values.
@@ -3574,6 +3672,14 @@ func (s *CostCategoryRule) SetValue(v string) *CostCategoryRule {
 }
 
 // The Cost Categories values used for filtering the costs.
+//
+// If Values and Key are not specified, the ABSENT MatchOption is applied to
+// all Cost Categories. That is, filtering on resources that are not mapped
+// to any Cost Categories.
+//
+// If Values is provided and Key is not specified, the ABSENT MatchOption is
+// applied to the Cost Categories Key only. That is, filtering on resources
+// without the given Cost Categories key.
 type CostCategoryValues struct {
 	_ struct{} `type:"structure"`
 
@@ -3581,8 +3687,8 @@ type CostCategoryValues struct {
 	Key *string `min:"1" type:"string"`
 
 	// The match options that you can use to filter your results. MatchOptions is
-	// only applicable for only applicable for actions related to cost category.
-	// The default values for MatchOptions is EQUALS and CASE_SENSITIVE.
+	// only applicable for actions related to cost category. The default values
+	// for MatchOptions is EQUALS and CASE_SENSITIVE.
 	MatchOptions []*string `type:"list"`
 
 	// The specific value of the Cost Category.
@@ -4275,20 +4381,21 @@ func (s *DataUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The time period that you want the usage and costs for.
+// The time period of the request.
 type DateInterval struct {
 	_ struct{} `type:"structure"`
 
-	// The end of the time period that you want the usage and costs for. The end
-	// date is exclusive. For example, if end is 2017-05-01, AWS retrieves cost
-	// and usage data from the start date up to, but not including, 2017-05-01.
+	// The end of the time period. The end date is exclusive. For example, if end
+	// is 2017-05-01, AWS retrieves cost and usage data from the start date up to,
+	// but not including, 2017-05-01.
 	//
 	// End is a required field
 	End *string `type:"string" required:"true"`
 
-	// The beginning of the time period that you want the usage and costs for. The
-	// start date is inclusive. For example, if start is 2017-01-01, AWS retrieves
-	// cost and usage data starting at 2017-01-01 up to the end date.
+	// The beginning of the time period. The start date is inclusive. For example,
+	// if start is 2017-01-01, AWS retrieves cost and usage data starting at 2017-01-01
+	// up to the end date. The start date must be equal to or no later than the
+	// current date to avoid a validation error.
 	//
 	// Start is a required field
 	Start *string `type:"string" required:"true"`
@@ -5139,10 +5246,13 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
 //    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 //
-// For GetRightsizingRecommendation action, a combination of OR and NOT is not
-// supported. OR is not supported between different dimensions, or dimensions
+// For the GetRightsizingRecommendation action, a combination of OR and NOT
+// is not supported. OR is not supported between different dimensions, or dimensions
 // and tags. NOT operators aren't supported. Dimensions are also limited to
 // LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+//
+// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
 type Expression struct {
 	_ struct{} `type:"structure"`
 
@@ -5727,6 +5837,10 @@ func (s *GetCostAndUsageInput) SetTimePeriod(v *DateInterval) *GetCostAndUsageIn
 type GetCostAndUsageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The attributes that apply to a specific dimension value. For example, if
+	// the value is a linked account, the attribute is that account name.
+	DimensionValueAttributes []*DimensionValuesWithAttributes `type:"list"`
+
 	// The groups that are specified by the Filter or GroupBy parameters in the
 	// request.
 	GroupDefinitions []*GroupDefinition `type:"list"`
@@ -5748,6 +5862,12 @@ func (s GetCostAndUsageOutput) String() string {
 // GoString returns the string representation
 func (s GetCostAndUsageOutput) GoString() string {
 	return s.String()
+}
+
+// SetDimensionValueAttributes sets the DimensionValueAttributes field's value.
+func (s *GetCostAndUsageOutput) SetDimensionValueAttributes(v []*DimensionValuesWithAttributes) *GetCostAndUsageOutput {
+	s.DimensionValueAttributes = v
+	return s
 }
 
 // SetGroupDefinitions sets the GroupDefinitions field's value.
@@ -5901,6 +6021,10 @@ func (s *GetCostAndUsageWithResourcesInput) SetTimePeriod(v *DateInterval) *GetC
 type GetCostAndUsageWithResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The attributes that apply to a specific dimension value. For example, if
+	// the value is a linked account, the attribute is that account name.
+	DimensionValueAttributes []*DimensionValuesWithAttributes `type:"list"`
+
 	// The groups that are specified by the Filter or GroupBy parameters in the
 	// request.
 	GroupDefinitions []*GroupDefinition `type:"list"`
@@ -5924,6 +6048,12 @@ func (s GetCostAndUsageWithResourcesOutput) GoString() string {
 	return s.String()
 }
 
+// SetDimensionValueAttributes sets the DimensionValueAttributes field's value.
+func (s *GetCostAndUsageWithResourcesOutput) SetDimensionValueAttributes(v []*DimensionValuesWithAttributes) *GetCostAndUsageWithResourcesOutput {
+	s.DimensionValueAttributes = v
+	return s
+}
+
 // SetGroupDefinitions sets the GroupDefinitions field's value.
 func (s *GetCostAndUsageWithResourcesOutput) SetGroupDefinitions(v []*GroupDefinition) *GetCostAndUsageWithResourcesOutput {
 	s.GroupDefinitions = v
@@ -5939,6 +6069,257 @@ func (s *GetCostAndUsageWithResourcesOutput) SetNextPageToken(v string) *GetCost
 // SetResultsByTime sets the ResultsByTime field's value.
 func (s *GetCostAndUsageWithResourcesOutput) SetResultsByTime(v []*ResultByTime) *GetCostAndUsageWithResourcesOutput {
 	s.ResultsByTime = v
+	return s
+}
+
+type GetCostCategoriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the Cost Category.
+	CostCategoryName *string `min:"1" type:"string"`
+
+	// Use Expression to filter by cost or by usage. There are two patterns:
+	//
+	//    * Simple dimension values - You can set the dimension name and values
+	//    for the filters that you plan to use. For example, you can filter for
+	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+	//    the Region is a full name (for example, REGION==US East (N. Virginia).
+	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+	//    are OR'd together to retrieve cost or usage data. You can create Expression
+	//    and DimensionValues objects using either with* methods or set* methods
+	//    in multiple lines.
+	//
+	//    * Compound dimension values with logical operations - You can use multiple
+	//    Expression types and the logical operators AND/OR/NOT to create a list
+	//    of one or more Expression objects. This allows you to filter on more advanced
+	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
+	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
+	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
+	//    Expression can have only one operator, the service returns an error if
+	//    more than one is specified. The following example shows an Expression
+	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
+	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//
+	// For the GetRightsizingRecommendation action, a combination of OR and NOT
+	// is not supported. OR is not supported between different dimensions, or dimensions
+	// and tags. NOT operators aren't supported. Dimensions are also limited to
+	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	//
+	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	Filter *Expression `type:"structure"`
+
+	// This field is only used when SortBy is provided in the request.
+	//
+	// The maximum number of objects that to be returned for this request. If MaxResults
+	// is not specified with SortBy, the request will return 1000 results as the
+	// default value for this parameter.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the number of objects that are still available for retrieval exceeds the
+	// limit, AWS returns a NextPageToken value in the response. To retrieve the
+	// next batch of objects, provide the NextPageToken from the prior call in your
+	// next request.
+	NextPageToken *string `type:"string"`
+
+	// The value that you want to search the filter values for.
+	//
+	// If you do not specify a CostCategoryName, SearchString will be used to filter
+	// Cost Category names that match the SearchString pattern. If you do specifiy
+	// a CostCategoryName, SearchString will be used to filter Cost Category values
+	// that match the SearchString pattern.
+	SearchString *string `type:"string"`
+
+	// The value by which you want to sort the data.
+	//
+	// The key represents cost and usage metrics. The following values are supported:
+	//
+	//    * BlendedCost
+	//
+	//    * UnblendedCost
+	//
+	//    * AmortizedCost
+	//
+	//    * NetAmortizedCost
+	//
+	//    * NetUnblendedCost
+	//
+	//    * UsageQuantity
+	//
+	//    * NormalizedUsageAmount
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	//
+	// When using SortBy, NextPageToken and SearchString are not supported.
+	SortBy []*SortDefinition `type:"list"`
+
+	// The time period of the request.
+	//
+	// TimePeriod is a required field
+	TimePeriod *DateInterval `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCostCategoriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCostCategoriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCostCategoriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCostCategoriesInput"}
+	if s.CostCategoryName != nil && len(*s.CostCategoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CostCategoryName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TimePeriod == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortBy != nil {
+		for i, v := range s.SortBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortBy", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TimePeriod != nil {
+		if err := s.TimePeriod.Validate(); err != nil {
+			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCostCategoryName sets the CostCategoryName field's value.
+func (s *GetCostCategoriesInput) SetCostCategoryName(v string) *GetCostCategoriesInput {
+	s.CostCategoryName = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetCostCategoriesInput) SetFilter(v *Expression) *GetCostCategoriesInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetCostCategoriesInput) SetMaxResults(v int64) *GetCostCategoriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetCostCategoriesInput) SetNextPageToken(v string) *GetCostCategoriesInput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetSearchString sets the SearchString field's value.
+func (s *GetCostCategoriesInput) SetSearchString(v string) *GetCostCategoriesInput {
+	s.SearchString = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetCostCategoriesInput) SetSortBy(v []*SortDefinition) *GetCostCategoriesInput {
+	s.SortBy = v
+	return s
+}
+
+// SetTimePeriod sets the TimePeriod field's value.
+func (s *GetCostCategoriesInput) SetTimePeriod(v *DateInterval) *GetCostCategoriesInput {
+	s.TimePeriod = v
+	return s
+}
+
+type GetCostCategoriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The names of the Cost Categories.
+	CostCategoryNames []*string `type:"list"`
+
+	// The Cost Category values.
+	//
+	// CostCategoryValues are not returned if CostCategoryName is not specified
+	// in the request.
+	CostCategoryValues []*string `type:"list"`
+
+	// If the number of objects that are still available for retrieval exceeds the
+	// limit, AWS returns a NextPageToken value in the response. To retrieve the
+	// next batch of objects, provide the marker from the prior call in your next
+	// request.
+	NextPageToken *string `type:"string"`
+
+	// The number of objects returned.
+	//
+	// ReturnSize is a required field
+	ReturnSize *int64 `type:"integer" required:"true"`
+
+	// The total number of objects.
+	//
+	// TotalSize is a required field
+	TotalSize *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCostCategoriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCostCategoriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCostCategoryNames sets the CostCategoryNames field's value.
+func (s *GetCostCategoriesOutput) SetCostCategoryNames(v []*string) *GetCostCategoriesOutput {
+	s.CostCategoryNames = v
+	return s
+}
+
+// SetCostCategoryValues sets the CostCategoryValues field's value.
+func (s *GetCostCategoriesOutput) SetCostCategoryValues(v []*string) *GetCostCategoriesOutput {
+	s.CostCategoryValues = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetCostCategoriesOutput) SetNextPageToken(v string) *GetCostCategoriesOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetReturnSize sets the ReturnSize field's value.
+func (s *GetCostCategoriesOutput) SetReturnSize(v int64) *GetCostCategoriesOutput {
+	s.ReturnSize = &v
+	return s
+}
+
+// SetTotalSize sets the TotalSize field's value.
+func (s *GetCostCategoriesOutput) SetTotalSize(v int64) *GetCostCategoriesOutput {
+	s.TotalSize = &v
 	return s
 }
 
@@ -6205,6 +6586,47 @@ type GetDimensionValuesInput struct {
 	// Dimension is a required field
 	Dimension *string `type:"string" required:"true" enum:"Dimension"`
 
+	// Use Expression to filter by cost or by usage. There are two patterns:
+	//
+	//    * Simple dimension values - You can set the dimension name and values
+	//    for the filters that you plan to use. For example, you can filter for
+	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+	//    the Region is a full name (for example, REGION==US East (N. Virginia).
+	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+	//    are OR'd together to retrieve cost or usage data. You can create Expression
+	//    and DimensionValues objects using either with* methods or set* methods
+	//    in multiple lines.
+	//
+	//    * Compound dimension values with logical operations - You can use multiple
+	//    Expression types and the logical operators AND/OR/NOT to create a list
+	//    of one or more Expression objects. This allows you to filter on more advanced
+	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
+	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
+	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
+	//    Expression can have only one operator, the service returns an error if
+	//    more than one is specified. The following example shows an Expression
+	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
+	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//
+	// For the GetRightsizingRecommendation action, a combination of OR and NOT
+	// is not supported. OR is not supported between different dimensions, or dimensions
+	// and tags. NOT operators aren't supported. Dimensions are also limited to
+	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	//
+	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	Filter *Expression `type:"structure"`
+
+	// This field is only used when SortBy is provided in the request. The maximum
+	// number of objects that to be returned for this request. If MaxResults is
+	// not specified with SortBy, the request will return 1000 results as the default
+	// value for this parameter.
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The token to retrieve the next set of results. AWS provides the token when
 	// the response from a previous call has more results than the maximum page
 	// size.
@@ -6212,6 +6634,30 @@ type GetDimensionValuesInput struct {
 
 	// The value that you want to search the filter values for.
 	SearchString *string `type:"string"`
+
+	// The value by which you want to sort the data.
+	//
+	// The key represents cost and usage metrics. The following values are supported:
+	//
+	//    * BlendedCost
+	//
+	//    * UnblendedCost
+	//
+	//    * AmortizedCost
+	//
+	//    * NetAmortizedCost
+	//
+	//    * NetUnblendedCost
+	//
+	//    * UsageQuantity
+	//
+	//    * NormalizedUsageAmount
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	//
+	// When you specify a SortBy paramater, the context must be COST_AND_USAGE.
+	// Further, when using SortBy, NextPageToken and SearchString are not supported.
+	SortBy []*SortDefinition `type:"list"`
 
 	// The start and end dates for retrieving the dimension values. The start date
 	// is inclusive, but the end date is exclusive. For example, if start is 2017-01-01
@@ -6238,8 +6684,26 @@ func (s *GetDimensionValuesInput) Validate() error {
 	if s.Dimension == nil {
 		invalidParams.Add(request.NewErrParamRequired("Dimension"))
 	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortBy != nil {
+		for i, v := range s.SortBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortBy", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
@@ -6265,6 +6729,18 @@ func (s *GetDimensionValuesInput) SetDimension(v string) *GetDimensionValuesInpu
 	return s
 }
 
+// SetFilter sets the Filter field's value.
+func (s *GetDimensionValuesInput) SetFilter(v *Expression) *GetDimensionValuesInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetDimensionValuesInput) SetMaxResults(v int64) *GetDimensionValuesInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetNextPageToken sets the NextPageToken field's value.
 func (s *GetDimensionValuesInput) SetNextPageToken(v string) *GetDimensionValuesInput {
 	s.NextPageToken = &v
@@ -6274,6 +6750,12 @@ func (s *GetDimensionValuesInput) SetNextPageToken(v string) *GetDimensionValues
 // SetSearchString sets the SearchString field's value.
 func (s *GetDimensionValuesInput) SetSearchString(v string) *GetDimensionValuesInput {
 	s.SearchString = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetDimensionValuesInput) SetSortBy(v []*SortDefinition) *GetDimensionValuesInput {
+	s.SortBy = v
 	return s
 }
 
@@ -6507,6 +6989,11 @@ type GetReservationCoverageInput struct {
 	//    * TENANCY
 	GroupBy []*GroupDefinition `type:"list"`
 
+	// The maximum number of objects that you returned for this request. If more
+	// objects are available, in the response, AWS provides a NextPageToken value
+	// that you can use in a subsequent call to get the next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The measurement that you want your reservation coverage reported in.
 	//
 	// Valid values are Hour, Unit, and Cost. You can use multiple values in a request.
@@ -6516,6 +7003,33 @@ type GetReservationCoverageInput struct {
 	// the response from a previous call has more results than the maximum page
 	// size.
 	NextPageToken *string `type:"string"`
+
+	// The value by which you want to sort the data.
+	//
+	// The following values are supported for Key:
+	//
+	//    * OnDemandCost
+	//
+	//    * CoverageHoursPercentage
+	//
+	//    * OnDemandHours
+	//
+	//    * ReservedHours
+	//
+	//    * TotalRunningHours
+	//
+	//    * CoverageNormalizedUnitsPercentage
+	//
+	//    * OnDemandNormalizedUnits
+	//
+	//    * ReservedNormalizedUnits
+	//
+	//    * TotalRunningNormalizedUnits
+	//
+	//    * Time
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	SortBy *SortDefinition `type:"structure"`
 
 	// The start and end dates of the period that you want to retrieve data about
 	// reservation coverage for. You can retrieve data for a maximum of 13 months:
@@ -6541,12 +7055,20 @@ func (s GetReservationCoverageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetReservationCoverageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetReservationCoverageInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
 	if s.Filter != nil {
 		if err := s.Filter.Validate(); err != nil {
 			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TimePeriod != nil {
@@ -6579,6 +7101,12 @@ func (s *GetReservationCoverageInput) SetGroupBy(v []*GroupDefinition) *GetReser
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetReservationCoverageInput) SetMaxResults(v int64) *GetReservationCoverageInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetMetrics sets the Metrics field's value.
 func (s *GetReservationCoverageInput) SetMetrics(v []*string) *GetReservationCoverageInput {
 	s.Metrics = v
@@ -6588,6 +7116,12 @@ func (s *GetReservationCoverageInput) SetMetrics(v []*string) *GetReservationCov
 // SetNextPageToken sets the NextPageToken field's value.
 func (s *GetReservationCoverageInput) SetNextPageToken(v string) *GetReservationCoverageInput {
 	s.NextPageToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetReservationCoverageInput) SetSortBy(v *SortDefinition) *GetReservationCoverageInput {
+	s.SortBy = v
 	return s
 }
 
@@ -6654,6 +7188,41 @@ type GetReservationPurchaseRecommendationInput struct {
 	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
+	// Use Expression to filter by cost or by usage. There are two patterns:
+	//
+	//    * Simple dimension values - You can set the dimension name and values
+	//    for the filters that you plan to use. For example, you can filter for
+	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+	//    the Region is a full name (for example, REGION==US East (N. Virginia).
+	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+	//    are OR'd together to retrieve cost or usage data. You can create Expression
+	//    and DimensionValues objects using either with* methods or set* methods
+	//    in multiple lines.
+	//
+	//    * Compound dimension values with logical operations - You can use multiple
+	//    Expression types and the logical operators AND/OR/NOT to create a list
+	//    of one or more Expression objects. This allows you to filter on more advanced
+	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
+	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
+	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
+	//    Expression can have only one operator, the service returns an error if
+	//    more than one is specified. The following example shows an Expression
+	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
+	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//
+	// For the GetRightsizingRecommendation action, a combination of OR and NOT
+	// is not supported. OR is not supported between different dimensions, or dimensions
+	// and tags. NOT operators aren't supported. Dimensions are also limited to
+	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	//
+	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	Filter *Expression `type:"structure"`
+
 	// The number of previous days that you want AWS to consider when it calculates
 	// your recommendations.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
@@ -6698,6 +7267,11 @@ func (s *GetReservationPurchaseRecommendationInput) Validate() error {
 	if s.Service == nil {
 		invalidParams.Add(request.NewErrParamRequired("Service"))
 	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6714,6 +7288,12 @@ func (s *GetReservationPurchaseRecommendationInput) SetAccountId(v string) *GetR
 // SetAccountScope sets the AccountScope field's value.
 func (s *GetReservationPurchaseRecommendationInput) SetAccountScope(v string) *GetReservationPurchaseRecommendationInput {
 	s.AccountScope = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *GetReservationPurchaseRecommendationInput) SetFilter(v *Expression) *GetReservationPurchaseRecommendationInput {
+	s.Filter = v
 	return s
 }
 
@@ -6845,10 +7425,56 @@ type GetReservationUtilizationInput struct {
 	// Groups only by SUBSCRIPTION_ID. Metadata is included.
 	GroupBy []*GroupDefinition `type:"list"`
 
+	// The maximum number of objects that you returned for this request. If more
+	// objects are available, in the response, AWS provides a NextPageToken value
+	// that you can use in a subsequent call to get the next batch of objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The token to retrieve the next set of results. AWS provides the token when
 	// the response from a previous call has more results than the maximum page
 	// size.
 	NextPageToken *string `type:"string"`
+
+	// The value by which you want to sort the data.
+	//
+	// The following values are supported for Key:
+	//
+	//    * UtilizationPercentage
+	//
+	//    * UtilizationPercentageInUnits
+	//
+	//    * PurchasedHours
+	//
+	//    * PurchasedUnits
+	//
+	//    * TotalActualHours
+	//
+	//    * TotalActualUnits
+	//
+	//    * UnusedHours
+	//
+	//    * UnusedUnits
+	//
+	//    * OnDemandCostOfRIHoursUsed
+	//
+	//    * NetRISavings
+	//
+	//    * TotalPotentialRISavings
+	//
+	//    * AmortizedUpfrontFee
+	//
+	//    * AmortizedRecurringFee
+	//
+	//    * TotalAmortizedFee
+	//
+	//    * RICostForUnusedHours
+	//
+	//    * RealizedSavings
+	//
+	//    * UnrealizedSavings
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	SortBy *SortDefinition `type:"structure"`
 
 	// Sets the start and end dates for retrieving RI utilization. The start date
 	// is inclusive, but the end date is exclusive. For example, if start is 2017-01-01
@@ -6872,12 +7498,20 @@ func (s GetReservationUtilizationInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetReservationUtilizationInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetReservationUtilizationInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
 	}
 	if s.Filter != nil {
 		if err := s.Filter.Validate(); err != nil {
 			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TimePeriod != nil {
@@ -6910,9 +7544,21 @@ func (s *GetReservationUtilizationInput) SetGroupBy(v []*GroupDefinition) *GetRe
 	return s
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetReservationUtilizationInput) SetMaxResults(v int64) *GetReservationUtilizationInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetNextPageToken sets the NextPageToken field's value.
 func (s *GetReservationUtilizationInput) SetNextPageToken(v string) *GetReservationUtilizationInput {
 	s.NextPageToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetReservationUtilizationInput) SetSortBy(v *SortDefinition) *GetReservationUtilizationInput {
+	s.SortBy = v
 	return s
 }
 
@@ -7003,10 +7649,13 @@ type GetRightsizingRecommendationInput struct {
 	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
-	// For GetRightsizingRecommendation action, a combination of OR and NOT is not
-	// supported. OR is not supported between different dimensions, or dimensions
+	// For the GetRightsizingRecommendation action, a combination of OR and NOT
+	// is not supported. OR is not supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	//
+	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
 	Filter *Expression `type:"structure"`
 
 	// The pagination token that indicates the next set of results that you want
@@ -7193,6 +7842,27 @@ type GetSavingsPlansCoverageInput struct {
 	// maximum page size.
 	NextToken *string `type:"string"`
 
+	// The value by which you want to sort the data.
+	//
+	// The following values are supported for Key:
+	//
+	//    * SpendCoveredBySavingsPlan
+	//
+	//    * OnDemandCost
+	//
+	//    * CoveragePercentage
+	//
+	//    * TotalCost
+	//
+	//    * InstanceFamily
+	//
+	//    * Region
+	//
+	//    * Service
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	SortBy *SortDefinition `type:"structure"`
+
 	// The time period that you want the usage and costs for. The Start date must
 	// be within 13 months. The End date must be after the Start date, and before
 	// the current date. Future dates can't be used as an End date.
@@ -7223,6 +7893,11 @@ func (s *GetSavingsPlansCoverageInput) Validate() error {
 	if s.Filter != nil {
 		if err := s.Filter.Validate(); err != nil {
 			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TimePeriod != nil {
@@ -7270,6 +7945,12 @@ func (s *GetSavingsPlansCoverageInput) SetMetrics(v []*string) *GetSavingsPlansC
 // SetNextToken sets the NextToken field's value.
 func (s *GetSavingsPlansCoverageInput) SetNextToken(v string) *GetSavingsPlansCoverageInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetSavingsPlansCoverageInput) SetSortBy(v *SortDefinition) *GetSavingsPlansCoverageInput {
+	s.SortBy = v
 	return s
 }
 
@@ -7498,6 +8179,9 @@ func (s *GetSavingsPlansPurchaseRecommendationOutput) SetSavingsPlansPurchaseRec
 type GetSavingsPlansUtilizationDetailsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The data type.
+	DataType []*string `type:"list"`
+
 	// Filters Savings Plans utilization coverage data for active Savings Plans
 	// dimensions. You can filter data with the following dimensions:
 	//
@@ -7523,6 +8207,27 @@ type GetSavingsPlansUtilizationDetailsInput struct {
 	// the token when the response from a previous call has more results than the
 	// maximum page size.
 	NextToken *string `type:"string"`
+
+	// The value by which you want to sort the data.
+	//
+	// The following values are supported for Key:
+	//
+	//    * UtilizationPercentage
+	//
+	//    * TotalCommitment
+	//
+	//    * UsedCommitment
+	//
+	//    * UnusedCommitment
+	//
+	//    * NetSavings
+	//
+	//    * AmortizedRecurringCommitment
+	//
+	//    * AmortizedUpfrontCommitment
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	SortBy *SortDefinition `type:"structure"`
 
 	// The time period that you want the usage and costs for. The Start date must
 	// be within 13 months. The End date must be after the Start date, and before
@@ -7556,6 +8261,11 @@ func (s *GetSavingsPlansUtilizationDetailsInput) Validate() error {
 			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -7566,6 +8276,12 @@ func (s *GetSavingsPlansUtilizationDetailsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataType sets the DataType field's value.
+func (s *GetSavingsPlansUtilizationDetailsInput) SetDataType(v []*string) *GetSavingsPlansUtilizationDetailsInput {
+	s.DataType = v
+	return s
 }
 
 // SetFilter sets the Filter field's value.
@@ -7583,6 +8299,12 @@ func (s *GetSavingsPlansUtilizationDetailsInput) SetMaxResults(v int64) *GetSavi
 // SetNextToken sets the NextToken field's value.
 func (s *GetSavingsPlansUtilizationDetailsInput) SetNextToken(v string) *GetSavingsPlansUtilizationDetailsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetSavingsPlansUtilizationDetailsInput) SetSortBy(v *SortDefinition) *GetSavingsPlansUtilizationDetailsInput {
+	s.SortBy = v
 	return s
 }
 
@@ -7606,7 +8328,7 @@ type GetSavingsPlansUtilizationDetailsOutput struct {
 	// SavingsPlansUtilizationDetails is a required field
 	SavingsPlansUtilizationDetails []*SavingsPlansUtilizationDetail `type:"list" required:"true"`
 
-	// The time period that you want the usage and costs for.
+	// The time period of the request.
 	//
 	// TimePeriod is a required field
 	TimePeriod *DateInterval `type:"structure" required:"true"`
@@ -7678,6 +8400,23 @@ type GetSavingsPlansUtilizationInput struct {
 	// granularities.
 	Granularity *string `type:"string" enum:"Granularity"`
 
+	// The value by which you want to sort the data.
+	//
+	// The following values are supported for Key:
+	//
+	//    * UtilizationPercentage
+	//
+	//    * TotalCommitment
+	//
+	//    * UsedCommitment
+	//
+	//    * UnusedCommitment
+	//
+	//    * NetSavings
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	SortBy *SortDefinition `type:"structure"`
+
 	// The time period that you want the usage and costs for. The Start date must
 	// be within 13 months. The End date must be after the Start date, and before
 	// the current date. Future dates can't be used as an End date.
@@ -7707,6 +8446,11 @@ func (s *GetSavingsPlansUtilizationInput) Validate() error {
 			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
 			invalidParams.AddNested("TimePeriod", err.(request.ErrInvalidParams))
@@ -7728,6 +8472,12 @@ func (s *GetSavingsPlansUtilizationInput) SetFilter(v *Expression) *GetSavingsPl
 // SetGranularity sets the Granularity field's value.
 func (s *GetSavingsPlansUtilizationInput) SetGranularity(v string) *GetSavingsPlansUtilizationInput {
 	s.Granularity = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetSavingsPlansUtilizationInput) SetSortBy(v *SortDefinition) *GetSavingsPlansUtilizationInput {
+	s.SortBy = v
 	return s
 }
 
@@ -7776,6 +8526,47 @@ func (s *GetSavingsPlansUtilizationOutput) SetTotal(v *SavingsPlansUtilizationAg
 type GetTagsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Use Expression to filter by cost or by usage. There are two patterns:
+	//
+	//    * Simple dimension values - You can set the dimension name and values
+	//    for the filters that you plan to use. For example, you can filter for
+	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+	//    the Region is a full name (for example, REGION==US East (N. Virginia).
+	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+	//    are OR'd together to retrieve cost or usage data. You can create Expression
+	//    and DimensionValues objects using either with* methods or set* methods
+	//    in multiple lines.
+	//
+	//    * Compound dimension values with logical operations - You can use multiple
+	//    Expression types and the logical operators AND/OR/NOT to create a list
+	//    of one or more Expression objects. This allows you to filter on more advanced
+	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
+	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
+	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
+	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
+	//    Expression can have only one operator, the service returns an error if
+	//    more than one is specified. The following example shows an Expression
+	//    object that creates an error. { "And": [ ... ], "DimensionValues": { "Dimension":
+	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
+	//
+	// For the GetRightsizingRecommendation action, a combination of OR and NOT
+	// is not supported. OR is not supported between different dimensions, or dimensions
+	// and tags. NOT operators aren't supported. Dimensions are also limited to
+	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
+	//
+	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
+	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	Filter *Expression `type:"structure"`
+
+	// This field is only used when SortBy is provided in the request. The maximum
+	// number of objects that to be returned for this request. If MaxResults is
+	// not specified with SortBy, the request will return 1000 results as the default
+	// value for this parameter.
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The token to retrieve the next set of results. AWS provides the token when
 	// the response from a previous call has more results than the maximum page
 	// size.
@@ -7783,6 +8574,29 @@ type GetTagsInput struct {
 
 	// The value that you want to search for.
 	SearchString *string `type:"string"`
+
+	// The value by which you want to sort the data.
+	//
+	// The key represents cost and usage metrics. The following values are supported:
+	//
+	//    * BlendedCost
+	//
+	//    * UnblendedCost
+	//
+	//    * AmortizedCost
+	//
+	//    * NetAmortizedCost
+	//
+	//    * NetUnblendedCost
+	//
+	//    * UsageQuantity
+	//
+	//    * NormalizedUsageAmount
+	//
+	// Supported values for SortOrder are ASCENDING or DESCENDING.
+	//
+	// When using SortBy, NextPageToken and SearchString are not supported.
+	SortBy []*SortDefinition `type:"list"`
 
 	// The key of the tag that you want to return values for.
 	TagKey *string `type:"string"`
@@ -7809,8 +8623,26 @@ func (s GetTagsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetTagsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetTagsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SortBy != nil {
+		for i, v := range s.SortBy {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SortBy", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.TimePeriod != nil {
 		if err := s.TimePeriod.Validate(); err != nil {
@@ -7824,6 +8656,18 @@ func (s *GetTagsInput) Validate() error {
 	return nil
 }
 
+// SetFilter sets the Filter field's value.
+func (s *GetTagsInput) SetFilter(v *Expression) *GetTagsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetTagsInput) SetMaxResults(v int64) *GetTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetNextPageToken sets the NextPageToken field's value.
 func (s *GetTagsInput) SetNextPageToken(v string) *GetTagsInput {
 	s.NextPageToken = &v
@@ -7833,6 +8677,12 @@ func (s *GetTagsInput) SetNextPageToken(v string) *GetTagsInput {
 // SetSearchString sets the SearchString field's value.
 func (s *GetTagsInput) SetSearchString(v string) *GetTagsInput {
 	s.SearchString = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *GetTagsInput) SetSortBy(v []*SortDefinition) *GetTagsInput {
+	s.SortBy = v
 	return s
 }
 
@@ -8798,6 +9648,12 @@ type ReservationAggregates struct {
 	// 11, 2017.
 	PurchasedUnits *string `type:"string"`
 
+	// The cost of unused hours for your reservation.
+	RICostForUnusedHours *string `type:"string"`
+
+	// The realized savings due to purchasing and using a reservation.
+	RealizedSavings *string `type:"string"`
+
 	// The total number of reservation hours that you used.
 	TotalActualHours *string `type:"string"`
 
@@ -8811,6 +9667,9 @@ type ReservationAggregates struct {
 
 	// How much you could save if you use your entire reservation.
 	TotalPotentialRISavings *string `type:"string"`
+
+	// The unrealized savings due to purchasing and using a reservation.
+	UnrealizedSavings *string `type:"string"`
 
 	// The number of reservation hours that you didn't use.
 	UnusedHours *string `type:"string"`
@@ -8875,6 +9734,18 @@ func (s *ReservationAggregates) SetPurchasedUnits(v string) *ReservationAggregat
 	return s
 }
 
+// SetRICostForUnusedHours sets the RICostForUnusedHours field's value.
+func (s *ReservationAggregates) SetRICostForUnusedHours(v string) *ReservationAggregates {
+	s.RICostForUnusedHours = &v
+	return s
+}
+
+// SetRealizedSavings sets the RealizedSavings field's value.
+func (s *ReservationAggregates) SetRealizedSavings(v string) *ReservationAggregates {
+	s.RealizedSavings = &v
+	return s
+}
+
 // SetTotalActualHours sets the TotalActualHours field's value.
 func (s *ReservationAggregates) SetTotalActualHours(v string) *ReservationAggregates {
 	s.TotalActualHours = &v
@@ -8896,6 +9767,12 @@ func (s *ReservationAggregates) SetTotalAmortizedFee(v string) *ReservationAggre
 // SetTotalPotentialRISavings sets the TotalPotentialRISavings field's value.
 func (s *ReservationAggregates) SetTotalPotentialRISavings(v string) *ReservationAggregates {
 	s.TotalPotentialRISavings = &v
+	return s
+}
+
+// SetUnrealizedSavings sets the UnrealizedSavings field's value.
+func (s *ReservationAggregates) SetUnrealizedSavings(v string) *ReservationAggregates {
+	s.UnrealizedSavings = &v
 	return s
 }
 
@@ -9854,7 +10731,7 @@ type SavingsPlansCoverage struct {
 	// The amount of Savings Plans eligible usage that the Savings Plans covered.
 	Coverage *SavingsPlansCoverageData `type:"structure"`
 
-	// The time period that you want the usage and costs for.
+	// The time period of the request.
 	TimePeriod *DateInterval `type:"structure"`
 }
 
@@ -10557,7 +11434,7 @@ type SavingsPlansUtilizationByTime struct {
 	// Plans when considering the utilization rate.
 	Savings *SavingsPlansSavings `type:"structure"`
 
-	// The time period that you want the usage and costs for.
+	// The time period of the request.
 	//
 	// TimePeriod is a required field
 	TimePeriod *DateInterval `type:"structure" required:"true"`
@@ -10752,6 +11629,54 @@ func (s *ServiceSpecification) SetEC2Specification(v *EC2Specification) *Service
 	return s
 }
 
+// The details of how to sort the data.
+type SortDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The key by which to sort the data.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true"`
+
+	// The order in which to sort the data.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s SortDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SortDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SortDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SortDefinition"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *SortDefinition) SetKey(v string) *SortDefinition {
+	s.Key = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *SortDefinition) SetSortOrder(v string) *SortDefinition {
+	s.SortOrder = &v
+	return s
+}
+
 // The recipient of AnomalySubscription notifications.
 type Subscriber struct {
 	_ struct{} `type:"structure"`
@@ -10808,6 +11733,13 @@ func (s *Subscriber) SetType(v string) *Subscriber {
 }
 
 // The values that are available for a tag.
+//
+// If Values and Key are not specified, the ABSENT MatchOption is applied to
+// all tags. That is, filtering on resources with no tags.
+//
+// If Values is provided and Key is not specified, the ABSENT MatchOption is
+// applied to the tag Key only. That is, filtering on resources without the
+// given tag key.
 type TagValues struct {
 	_ struct{} `type:"structure"`
 
@@ -11735,6 +12667,12 @@ const (
 
 	// DimensionPaymentOption is a Dimension enum value
 	DimensionPaymentOption = "PAYMENT_OPTION"
+
+	// DimensionAgreementEndDateTimeAfter is a Dimension enum value
+	DimensionAgreementEndDateTimeAfter = "AGREEMENT_END_DATE_TIME_AFTER"
+
+	// DimensionAgreementEndDateTimeBefore is a Dimension enum value
+	DimensionAgreementEndDateTimeBefore = "AGREEMENT_END_DATE_TIME_BEFORE"
 )
 
 // Dimension_Values returns all elements of the Dimension enum
@@ -11769,6 +12707,8 @@ func Dimension_Values() []string {
 		DimensionSavingsPlansType,
 		DimensionSavingsPlanArn,
 		DimensionPaymentOption,
+		DimensionAgreementEndDateTimeAfter,
+		DimensionAgreementEndDateTimeBefore,
 	}
 }
 
@@ -11836,6 +12776,9 @@ const (
 	// MatchOptionEquals is a MatchOption enum value
 	MatchOptionEquals = "EQUALS"
 
+	// MatchOptionAbsent is a MatchOption enum value
+	MatchOptionAbsent = "ABSENT"
+
 	// MatchOptionStartsWith is a MatchOption enum value
 	MatchOptionStartsWith = "STARTS_WITH"
 
@@ -11856,6 +12799,7 @@ const (
 func MatchOption_Values() []string {
 	return []string{
 		MatchOptionEquals,
+		MatchOptionAbsent,
 		MatchOptionStartsWith,
 		MatchOptionEndsWith,
 		MatchOptionContains,
@@ -12037,6 +12981,46 @@ func RightsizingType_Values() []string {
 	return []string{
 		RightsizingTypeTerminate,
 		RightsizingTypeModify,
+	}
+}
+
+const (
+	// SavingsPlansDataTypeAttributes is a SavingsPlansDataType enum value
+	SavingsPlansDataTypeAttributes = "ATTRIBUTES"
+
+	// SavingsPlansDataTypeUtilization is a SavingsPlansDataType enum value
+	SavingsPlansDataTypeUtilization = "UTILIZATION"
+
+	// SavingsPlansDataTypeAmortizedCommitment is a SavingsPlansDataType enum value
+	SavingsPlansDataTypeAmortizedCommitment = "AMORTIZED_COMMITMENT"
+
+	// SavingsPlansDataTypeSavings is a SavingsPlansDataType enum value
+	SavingsPlansDataTypeSavings = "SAVINGS"
+)
+
+// SavingsPlansDataType_Values returns all elements of the SavingsPlansDataType enum
+func SavingsPlansDataType_Values() []string {
+	return []string{
+		SavingsPlansDataTypeAttributes,
+		SavingsPlansDataTypeUtilization,
+		SavingsPlansDataTypeAmortizedCommitment,
+		SavingsPlansDataTypeSavings,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 
