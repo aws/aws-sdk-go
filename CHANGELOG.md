@@ -1,3 +1,10 @@
+Release v1.36.21 (2021-01-05)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service documentation
+* `service/ce`: Updates service API and documentation
+
 Release v1.36.20 (2021-01-04)
 ===
 
