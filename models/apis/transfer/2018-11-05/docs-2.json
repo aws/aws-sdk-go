@@ -156,6 +156,14 @@
         "DescribeUserResponse$User": "<p>An array containing the properties of the user account for the <code>ServerID</code> value that you specified.</p>"
       }
     },
+    "Domain": {
+      "base": null,
+      "refs": {
+        "CreateServerRequest$Domain": null,
+        "DescribedServer$Domain": null,
+        "ListedServer$Domain": null
+      }
+    },
     "EndpointDetails": {
       "base": "<p>The virtual private cloud (VPC) endpoint settings that are configured for your file transfer protocol-enabled server. With a VPC endpoint, you can restrict access to your server and resources only within your VPC. To control incoming internet traffic, invoke the <code>UpdateServer</code> API and attach an Elastic IP to your server's endpoint.</p>",
       "refs": {
@@ -389,6 +397,22 @@
         "UpdateUserRequest$Policy": "<p>Allows you to supply a scope-down policy for your user so you can use the same IAM role across multiple users. The policy scopes down user access to portions of your Amazon S3 bucket. Variables you can use inside this policy include <code>${Transfer:UserName}</code>, <code>${Transfer:HomeDirectory}</code>, and <code>${Transfer:HomeBucket}</code>.</p> <note> <p>For scope-down policies, AWS Transfer Family stores the policy as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy. You save the policy as a JSON blob and pass it in the <code>Policy</code> argument.</p> <p>For an example of a scope-down policy, see <a href=\"https://docs.aws.amazon.com/transfer/latest/userguide/users.html#users-policies-scope-down\">Creating a scope-down policy</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html\">AssumeRole</a> in the <i>AWS Security Token Service API Reference</i>.</p> </note>"
       }
     },
+    "PosixId": {
+      "base": null,
+      "refs": {
+        "PosixProfile$Uid": null,
+        "PosixProfile$Gid": null,
+        "SecondaryGids$member": null
+      }
+    },
+    "PosixProfile": {
+      "base": null,
+      "refs": {
+        "CreateUserRequest$PosixProfile": null,
+        "DescribedUser$PosixProfile": null,
+        "UpdateUserRequest$PosixProfile": null
+      }
+    },
     "Protocol": {
       "base": null,
       "refs": {
@@ -451,6 +475,12 @@
         "ListedServer$LoggingRole": "<p>Specifies the AWS Identity and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch logging.</p>",
         "ListedUser$Role": "<p>Specifies the role that is in use by this user. A <i>role</i> is an AWS Identity and Access Management (IAM) entity that, in this case, allows a file transfer protocol-enabled server to act on a user's behalf. It allows the server to inherit the trust relationship that enables that user to perform file operations to their Amazon S3 bucket.</p>",
         "UpdateUserRequest$Role": "<p>The IAM role that controls your users' access to your Amazon S3 bucket. The policies attached to this role will determine the level of access you want to provide your users when transferring files into and out of your Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.</p>"
+      }
+    },
+    "SecondaryGids": {
+      "base": null,
+      "refs": {
+        "PosixProfile$SecondaryGids": null
       }
     },
     "SecurityGroupId": {

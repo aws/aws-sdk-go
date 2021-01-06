@@ -2333,6 +2333,8 @@ type CreateServerInput struct {
 	// FQDN or IP address specified and information about the issuer.
 	Certificate *string `type:"string"`
 
+	Domain *string `type:"string" enum:"Domain"`
+
 	// The virtual private cloud (VPC) endpoint settings that are configured for
 	// your server. When you host your endpoint within your VPC, you can make it
 	// accessible only to resources within your VPC, or you can attach Elastic IPs
@@ -2464,6 +2466,12 @@ func (s *CreateServerInput) Validate() error {
 // SetCertificate sets the Certificate field's value.
 func (s *CreateServerInput) SetCertificate(v string) *CreateServerInput {
 	s.Certificate = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateServerInput) SetDomain(v string) *CreateServerInput {
+	s.Domain = &v
 	return s
 }
 
@@ -2601,6 +2609,8 @@ type CreateUserInput struct {
 	// in the AWS Security Token Service API Reference.
 	Policy *string `type:"string"`
 
+	PosixProfile *PosixProfile `type:"structure"`
+
 	// The IAM role that controls your users' access to your Amazon S3 bucket. The
 	// policies attached to this role will determine the level of access you want
 	// to provide your users when transferring files into and out of your Amazon
@@ -2682,6 +2692,11 @@ func (s *CreateUserInput) Validate() error {
 			}
 		}
 	}
+	if s.PosixProfile != nil {
+		if err := s.PosixProfile.Validate(); err != nil {
+			invalidParams.AddNested("PosixProfile", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -2720,6 +2735,12 @@ func (s *CreateUserInput) SetHomeDirectoryType(v string) *CreateUserInput {
 // SetPolicy sets the Policy field's value.
 func (s *CreateUserInput) SetPolicy(v string) *CreateUserInput {
 	s.Policy = &v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *CreateUserInput) SetPosixProfile(v *PosixProfile) *CreateUserInput {
+	s.PosixProfile = v
 	return s
 }
 
@@ -3324,6 +3345,8 @@ type DescribedServer struct {
 	// when Protocols is set to FTPS.
 	Certificate *string `type:"string"`
 
+	Domain *string `type:"string" enum:"Domain"`
+
 	// Specifies the virtual private cloud (VPC) endpoint settings that you configured
 	// for your server.
 	EndpointDetails *EndpointDetails `type:"structure"`
@@ -3410,6 +3433,12 @@ func (s *DescribedServer) SetArn(v string) *DescribedServer {
 // SetCertificate sets the Certificate field's value.
 func (s *DescribedServer) SetCertificate(v string) *DescribedServer {
 	s.Certificate = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DescribedServer) SetDomain(v string) *DescribedServer {
+	s.Domain = &v
 	return s
 }
 
@@ -3524,6 +3553,8 @@ type DescribedUser struct {
 	// Specifies the name of the policy in use for the described user.
 	Policy *string `type:"string"`
 
+	PosixProfile *PosixProfile `type:"structure"`
+
 	// Specifies the IAM role that controls your users' access to your Amazon S3
 	// bucket. The policies attached to this role will determine the level of access
 	// you want to provide your users when transferring files into and out of your
@@ -3583,6 +3614,12 @@ func (s *DescribedUser) SetHomeDirectoryType(v string) *DescribedUser {
 // SetPolicy sets the Policy field's value.
 func (s *DescribedUser) SetPolicy(v string) *DescribedUser {
 	s.Policy = &v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *DescribedUser) SetPosixProfile(v *PosixProfile) *DescribedUser {
+	s.PosixProfile = v
 	return s
 }
 
@@ -4512,6 +4549,8 @@ type ListedServer struct {
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
+	Domain *string `type:"string" enum:"Domain"`
+
 	// Specifies the type of VPC endpoint that your server is connected to. If your
 	// server is connected to a VPC endpoint, your server isn't accessible over
 	// the public internet.
@@ -4559,6 +4598,12 @@ func (s ListedServer) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ListedServer) SetArn(v string) *ListedServer {
 	s.Arn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ListedServer) SetDomain(v string) *ListedServer {
+	s.Domain = &v
 	return s
 }
 
@@ -4677,6 +4722,62 @@ func (s *ListedUser) SetSshPublicKeyCount(v int64) *ListedUser {
 // SetUserName sets the UserName field's value.
 func (s *ListedUser) SetUserName(v string) *ListedUser {
 	s.UserName = &v
+	return s
+}
+
+type PosixProfile struct {
+	_ struct{} `type:"structure"`
+
+	// Gid is a required field
+	Gid *int64 `type:"long" required:"true"`
+
+	SecondaryGids []*int64 `type:"list"`
+
+	// Uid is a required field
+	Uid *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s PosixProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PosixProfile) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PosixProfile) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PosixProfile"}
+	if s.Gid == nil {
+		invalidParams.Add(request.NewErrParamRequired("Gid"))
+	}
+	if s.Uid == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uid"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGid sets the Gid field's value.
+func (s *PosixProfile) SetGid(v int64) *PosixProfile {
+	s.Gid = &v
+	return s
+}
+
+// SetSecondaryGids sets the SecondaryGids field's value.
+func (s *PosixProfile) SetSecondaryGids(v []*int64) *PosixProfile {
+	s.SecondaryGids = v
+	return s
+}
+
+// SetUid sets the Uid field's value.
+func (s *PosixProfile) SetUid(v int64) *PosixProfile {
+	s.Uid = &v
 	return s
 }
 
@@ -5731,6 +5832,8 @@ type UpdateUserInput struct {
 	// in the AWS Security Token Service API Reference.
 	Policy *string `type:"string"`
 
+	PosixProfile *PosixProfile `type:"structure"`
+
 	// The IAM role that controls your users' access to your Amazon S3 bucket. The
 	// policies attached to this role will determine the level of access you want
 	// to provide your users when transferring files into and out of your Amazon
@@ -5796,6 +5899,11 @@ func (s *UpdateUserInput) Validate() error {
 			}
 		}
 	}
+	if s.PosixProfile != nil {
+		if err := s.PosixProfile.Validate(); err != nil {
+			invalidParams.AddNested("PosixProfile", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5824,6 +5932,12 @@ func (s *UpdateUserInput) SetHomeDirectoryType(v string) *UpdateUserInput {
 // SetPolicy sets the Policy field's value.
 func (s *UpdateUserInput) SetPolicy(v string) *UpdateUserInput {
 	s.Policy = &v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *UpdateUserInput) SetPosixProfile(v *PosixProfile) *UpdateUserInput {
+	s.PosixProfile = v
 	return s
 }
 
@@ -5883,6 +5997,22 @@ func (s *UpdateUserOutput) SetServerId(v string) *UpdateUserOutput {
 func (s *UpdateUserOutput) SetUserName(v string) *UpdateUserOutput {
 	s.UserName = &v
 	return s
+}
+
+const (
+	// DomainS3 is a Domain enum value
+	DomainS3 = "S3"
+
+	// DomainEfs is a Domain enum value
+	DomainEfs = "EFS"
+)
+
+// Domain_Values returns all elements of the Domain enum
+func Domain_Values() []string {
+	return []string{
+		DomainS3,
+		DomainEfs,
+	}
 }
 
 const (
