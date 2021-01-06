@@ -1,3 +1,13 @@
+Release v1.36.22 (2021-01-06)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * This update increases the number of instance types that can be added to the overrides within an mixed instances group configuration.
+* `service/autoscaling-plans`: Updates service documentation
+* `service/transfer`: Updates service API and documentation
+  * This release adds support for Amazon EFS, so customers can transfer files over SFTP, FTPS and FTP in and out of Amazon S3 as well as Amazon EFS.
+
 Release v1.36.21 (2021-01-05)
 ===
 
