@@ -9562,6 +9562,9 @@ type PipelineExecution struct {
 
 	// The status of the pipeline execution.
 	//
+	//    * Cancelled: The pipeline’s definition was updated before the pipeline
+	//    execution could be completed.
+	//
 	//    * InProgress: The pipeline execution is currently running.
 	//
 	//    * Stopped: The pipeline execution was manually stopped. For more information,
@@ -9581,6 +9584,9 @@ type PipelineExecution struct {
 	//
 	//    * Failed: The pipeline execution was not completed successfully.
 	Status *string `locationName:"status" type:"string" enum:"PipelineExecutionStatus"`
+
+	// A summary that contains a description of the pipeline execution status.
+	StatusSummary *string `locationName:"statusSummary" type:"string"`
 }
 
 // String returns the string representation
@@ -9620,6 +9626,12 @@ func (s *PipelineExecution) SetPipelineVersion(v int64) *PipelineExecution {
 // SetStatus sets the Status field's value.
 func (s *PipelineExecution) SetStatus(v string) *PipelineExecution {
 	s.Status = &v
+	return s
+}
+
+// SetStatusSummary sets the StatusSummary field's value.
+func (s *PipelineExecution) SetStatusSummary(v string) *PipelineExecution {
+	s.StatusSummary = &v
 	return s
 }
 
@@ -11493,6 +11505,9 @@ type StageExecution struct {
 	// The status of the stage, or for a completed stage, the last status of the
 	// stage.
 	//
+	// A status of cancelled means that the pipeline’s definition was updated
+	// before the stage execution could be completed.
+	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"StageExecutionStatus"`
 }
@@ -13059,6 +13074,9 @@ func JobStatus_Values() []string {
 }
 
 const (
+	// PipelineExecutionStatusCancelled is a PipelineExecutionStatus enum value
+	PipelineExecutionStatusCancelled = "Cancelled"
+
 	// PipelineExecutionStatusInProgress is a PipelineExecutionStatus enum value
 	PipelineExecutionStatusInProgress = "InProgress"
 
@@ -13081,6 +13099,7 @@ const (
 // PipelineExecutionStatus_Values returns all elements of the PipelineExecutionStatus enum
 func PipelineExecutionStatus_Values() []string {
 	return []string{
+		PipelineExecutionStatusCancelled,
 		PipelineExecutionStatusInProgress,
 		PipelineExecutionStatusStopped,
 		PipelineExecutionStatusStopping,
@@ -13091,6 +13110,9 @@ func PipelineExecutionStatus_Values() []string {
 }
 
 const (
+	// StageExecutionStatusCancelled is a StageExecutionStatus enum value
+	StageExecutionStatusCancelled = "Cancelled"
+
 	// StageExecutionStatusInProgress is a StageExecutionStatus enum value
 	StageExecutionStatusInProgress = "InProgress"
 
@@ -13110,6 +13132,7 @@ const (
 // StageExecutionStatus_Values returns all elements of the StageExecutionStatus enum
 func StageExecutionStatus_Values() []string {
 	return []string{
+		StageExecutionStatusCancelled,
 		StageExecutionStatusInProgress,
 		StageExecutionStatusFailed,
 		StageExecutionStatusStopped,
