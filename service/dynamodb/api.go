@@ -1801,7 +1801,7 @@ type discovererDescribeEndpoints struct {
 func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 	input := &DescribeEndpointsInput{}
 
-	resp, err := d.Client.DescribeEndpoints(input)
+	resp, err := d.Client.DescribeEndpointsWithContext(d.req.Context(), input)
 	if err != nil {
 		return crr.Endpoint{}, err
 	}

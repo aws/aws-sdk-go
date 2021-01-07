@@ -97,7 +97,7 @@ func (d *discovererDescribeEndpoints) Discover() (crr.Endpoint, error) {
 		Operation: d.Params["op"],
 	}
 
-	resp, err := d.Client.DescribeEndpoints(input)
+	resp, err := d.Client.DescribeEndpointsWithContext(d.req.Context(), input)
 	if err != nil {
 		return crr.Endpoint{}, err
 	}
