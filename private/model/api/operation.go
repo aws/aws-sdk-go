@@ -481,7 +481,7 @@ func (d *discoverer{{ .ExportedName }}) Discover() (crr.Endpoint, error) {
 		{{ end -}}
 	}
 
-	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}WithContext(d.req.Context(), input)
+	resp, err := d.Client.{{ .API.EndpointDiscoveryOp.Name }}(input)
 	if err != nil {
 		return crr.Endpoint{}, err
 	}
