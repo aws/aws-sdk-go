@@ -61,7 +61,7 @@ func TestValueAtPathSuccess(t *testing.T) {
 }
 
 func TestValueAtPathFailure(t *testing.T) {
-	var nilStruct []Struct
+	var nilListOfStruct []Struct
 	var testCases = []struct {
 		expect      []interface{}
 		errContains string
@@ -76,7 +76,7 @@ func TestValueAtPathFailure(t *testing.T) {
 		{nil, "", data, "B.B.C.Z"},
 		{nil, "", data, "z[-1].C"},
 		{nil, "", nil, "A.B.C"},
-		{[]interface{}{nilStruct}, "", Struct{}, "A"},
+		{[]interface{}{nilListOfStruct}, "", Struct{}, "A"},
 		{nil, "", data, "A[0].B.C"},
 		{nil, "", data, "D"},
 	}
