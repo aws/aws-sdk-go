@@ -62,7 +62,6 @@ func TestValueAtPathSuccess(t *testing.T) {
 
 func TestValueAtPathFailure(t *testing.T) {
 	var nilStruct []Struct
-	nilStruct = nil
 	var testCases = []struct {
 		expect      []interface{}
 		errContains string
