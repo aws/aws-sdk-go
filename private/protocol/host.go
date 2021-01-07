@@ -90,6 +90,7 @@ func ValidHostLabel(label string) bool {
 	return true
 }
 
+// ValidPortNumber return if the port is valid RFC 3986 port
 func ValidPortNumber(port string) bool {
 	i, err := strconv.Atoi(port)
 	if err != nil {
