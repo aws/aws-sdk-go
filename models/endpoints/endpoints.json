@@ -3393,6 +3393,11 @@
           }
         }
       },
+      "iotfleethub" : {
+        "endpoints" : {
+          "us-east-1" : { }
+        }
+      },
       "iotsecuredtunneling" : {
         "endpoints" : {
           "ap-east-1" : { },

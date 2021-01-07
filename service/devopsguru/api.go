@@ -2607,9 +2607,9 @@ func (s *CloudWatchMetricsDetail) SetUnit(v string) *CloudWatchMetricsDetail {
 
 // The dimension of a Amazon CloudWatch metric that is used when DevOps Guru
 // analyzes the resources in your account for operational problems and anomalous
-// behaviour. A dimension is a name/value pair that is part of the identity
-// of a metric. A metric can have up to 10 dimensions. For more information,
-// see Dimensions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension)
+// behavior. A dimension is a name/value pair that is part of the identity of
+// a metric. A metric can have up to 10 dimensions. For more information, see
+// Dimensions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension)
 // in the Amazon CloudWatch User Guide.
 type CloudWatchMetricsDimension struct {
 	_ struct{} `type:"structure"`
@@ -2743,6 +2743,12 @@ type DescribeAccountHealthOutput struct {
 	//
 	// OpenReactiveInsights is a required field
 	OpenReactiveInsights *int64 `type:"integer" required:"true"`
+
+	// The number of Amazon DevOps Guru resource analysis hours billed to the current
+	// AWS account in the last hour.
+	//
+	// ResourceHours is a required field
+	ResourceHours *int64 `type:"long" required:"true"`
 }
 
 // String returns the string representation
@@ -2770,6 +2776,12 @@ func (s *DescribeAccountHealthOutput) SetOpenProactiveInsights(v int64) *Describ
 // SetOpenReactiveInsights sets the OpenReactiveInsights field's value.
 func (s *DescribeAccountHealthOutput) SetOpenReactiveInsights(v int64) *DescribeAccountHealthOutput {
 	s.OpenReactiveInsights = &v
+	return s
+}
+
+// SetResourceHours sets the ResourceHours field's value.
+func (s *DescribeAccountHealthOutput) SetResourceHours(v int64) *DescribeAccountHealthOutput {
+	s.ResourceHours = &v
 	return s
 }
 

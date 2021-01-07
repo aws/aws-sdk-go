@@ -476,12 +476,14 @@
       "required":[
         "OpenReactiveInsights",
         "OpenProactiveInsights",
-        "MetricsAnalyzed"
+        "MetricsAnalyzed",
+        "ResourceHours"
       ],
       "members":{
         "OpenReactiveInsights":{"shape":"NumOpenReactiveInsights"},
         "OpenProactiveInsights":{"shape":"NumOpenProactiveInsights"},
-        "MetricsAnalyzed":{"shape":"NumMetricsAnalyzed"}
+        "MetricsAnalyzed":{"shape":"NumMetricsAnalyzed"},
+        "ResourceHours":{"shape":"ResourceHours"}
       }
     },
     "DescribeAccountOverviewRequest":{
@@ -1245,6 +1247,7 @@
       "type":"string",
       "enum":["AWS_CLOUD_FORMATION"]
     },
+    "ResourceHours":{"type":"long"},
     "ResourceIdString":{"type":"string"},
     "ResourceIdType":{"type":"string"},
     "ResourceNotFoundException":{
