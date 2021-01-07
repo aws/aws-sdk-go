@@ -1,6 +1,7 @@
 package awsutil_test
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -47,6 +48,7 @@ func TestValueAtPathSuccess(t *testing.T) {
 			Struct{A: []Struct{{C: "1"}, {C: "1"}, {C: "1"}, {C: "1"}, {C: "1"}}},
 			Struct{A: []Struct{{C: "2"}, {C: "2"}, {C: "2"}, {C: "2"}, {C: "2"}}},
 		}, data2, "A"},
+		{[]interface{}{[]Struct{}}, Struct{A: []Struct{}}, "A"},
 	}
 	for i, c := range testCases {
 		v, err := awsutil.ValuesAtPath(c.data, c.path)
@@ -60,6 +62,8 @@ func TestValueAtPathSuccess(t *testing.T) {
 }
 
 func TestValueAtPathFailure(t *testing.T) {
+	var nilStruct []Struct
+	nilStruct = nil
 	var testCases = []struct {
 		expect      []interface{}
 		errContains string
@@ -74,7 +78,7 @@ func TestValueAtPathFailure(t *testing.T) {
 		{nil, "", data, "B.B.C.Z"},
 		{nil, "", data, "z[-1].C"},
 		{nil, "", nil, "A.B.C"},
-		{[]interface{}{}, "", Struct{}, "A"},
+		{[]interface{}{nilStruct}, "", Struct{}, "A"},
 		{nil, "", data, "A[0].B.C"},
 		{nil, "", data, "D"},
 	}
