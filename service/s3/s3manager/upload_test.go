@@ -99,8 +99,10 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 		case *s3.CompleteMultipartUploadOutput:
 			data.Location = aws.String("https://location")
 			data.VersionId = aws.String("VERSION-ID")
+			data.ETag = aws.String("ETAG")
 		case *s3.PutObjectOutput:
 			data.VersionId = aws.String("VERSION-ID")
+			data.ETag = aws.String("ETAG")
 		}
 	})
 
@@ -145,6 +147,10 @@ func TestUploadOrderMulti(t *testing.T) {
 
 	if "VERSION-ID" != *resp.VersionID {
 		t.Errorf("Expected %q, but received %q", "VERSION-ID", *resp.VersionID)
+	}
+
+	if "ETAG" != *resp.ETag {
+		t.Errorf("Expected %q, but received %q", "ETAG", *resp.ETag)
 	}
 
 	// Validate input values
@@ -318,6 +324,10 @@ func TestUploadOrderSingle(t *testing.T) {
 
 	if e := "VERSION-ID"; e != *resp.VersionID {
 		t.Errorf("Expected %q, but received %q", e, *resp.VersionID)
+	}
+
+	if "ETAG" != *resp.ETag {
+		t.Errorf("Expected %q, but received %q", "ETAG", *resp.ETag)
 	}
 
 	if len(resp.UploadID) > 0 {
