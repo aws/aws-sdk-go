@@ -1,3 +1,12 @@
+Release v1.36.24 (2021-01-11)
+===
+
+### Service Client Updates
+* `service/kms`: Updates service API and documentation
+  * Adds support for filtering grants by grant ID and grantee principal in ListGrants requests to AWS KMS.
+* `service/rds`: Updates service API and documentation
+  * This releases adds support for Major Version Upgrades on Aurora MySQL Global Clusters. Customers will be able to upgrade their whole Aurora MySQL Global Cluster to a new major engine version.
+
 Release v1.36.23 (2021-01-07)
 ===
 

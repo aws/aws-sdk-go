@@ -476,6 +476,11 @@
           }
         }
       },
+      "api.fleethub.iot" : {
+        "endpoints" : {
+          "us-east-1" : { }
+        }
+      },
       "api.mediatailor" : {
         "endpoints" : {
           "ap-northeast-1" : { },
@@ -3391,11 +3396,6 @@
             },
             "hostname" : "data.iotevents.us-west-2.amazonaws.com"
           }
-        }
-      },
-      "iotfleethub" : {
-        "endpoints" : {
-          "us-east-1" : { }
         }
       },
       "iotsecuredtunneling" : {

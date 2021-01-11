@@ -11410,6 +11410,12 @@ func (c *RDS) ModifyGlobalClusterRequest(input *ModifyGlobalClusterInput) (req *
 //   The global cluster is in an invalid state and can't perform the requested
 //   operation.
 //
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyGlobalCluster
 func (c *RDS) ModifyGlobalCluster(input *ModifyGlobalClusterInput) (*ModifyGlobalClusterOutput, error) {
 	req, out := c.ModifyGlobalClusterRequest(input)
@@ -15820,14 +15826,14 @@ func (s *CloudwatchLogsExportConfiguration) SetEnableLogTypes(v []*string) *Clou
 type ClusterPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
-	// The DBClusterIdentifier for the DB cluster.
+	// The DBClusterIdentifier value for the DB cluster.
 	DBClusterIdentifier *string `type:"string"`
 
 	// The database engine version.
 	EngineVersion *string `type:"string"`
 
-	// Whether mapping of AWS Identity and Access Management (IAM) accounts to database
-	// accounts is enabled.
+	// A value that indicates whether mapping of AWS Identity and Access Management
+	// (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
 	// The master credentials for the DB cluster.
@@ -18345,7 +18351,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Oracle
 	//
-	// Possible values are alert, audit, listener, and trace.
+	// Possible values are alert, audit, listener, trace, and oemagent.
 	//
 	// PostgreSQL
 	//
@@ -18458,7 +18464,7 @@ type CreateDBInstanceInput struct {
 	//
 	// PostgreSQL
 	//
-	// See Supported PostgreSQL Database Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.DBVersions)
+	// See Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
 	// in the Amazon RDS User Guide.
 	EngineVersion *string `type:"string"`
 
@@ -18620,8 +18626,8 @@ type CreateDBInstanceInput struct {
 	// The name of the NCHAR character set for the Oracle DB instance.
 	NcharCharacterSetName *string `type:"string"`
 
-	// Indicates that the DB instance should be associated with the specified option
-	// group.
+	// A value that indicates that the DB instance should be associated with the
+	// specified option group.
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// can't be removed from an option group. Also, that option group can't be removed
@@ -21016,8 +21022,9 @@ type DBCluster struct {
 	// Specifies whether the DB cluster has instances in multiple Availability Zones.
 	MultiAZ *bool `type:"boolean"`
 
-	// Specifies that changes to the DB cluster are pending. This element is only
-	// included when changes are pending. Specific changes are identified by subelements.
+	// A value that specifies that changes to the DB cluster are pending. This element
+	// is only included when changes are pending. Specific changes are identified
+	// by subelements.
 	PendingModifiedValues *ClusterPendingModifiedValues `type:"structure"`
 
 	// Specifies the progress of the operation as a percentage.
@@ -22289,7 +22296,7 @@ type DBInstance struct {
 	// instance.
 	AssociatedRoles []*DBInstanceRole `locationNameList:"DBInstanceRole" type:"list"`
 
-	// Indicates that minor version patches are applied automatically.
+	// A value that indicates that minor version patches are applied automatically.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// Specifies the name of the Availability Zone the DB instance is located in.
@@ -22482,8 +22489,9 @@ type DBInstance struct {
 	// Provides the list of option group memberships for this DB instance.
 	OptionGroupMemberships []*OptionGroupMembership `locationNameList:"OptionGroupMembership" type:"list"`
 
-	// Specifies that changes to the DB instance are pending. This element is only
-	// included when changes are pending. Specific changes are identified by subelements.
+	// A value that specifies that changes to the DB instance are pending. This
+	// element is only included when changes are pending. Specific changes are identified
+	// by subelements.
 	PendingModifiedValues *PendingModifiedValues `type:"structure"`
 
 	// True if Performance Insights is enabled for the DB instance, and otherwise
@@ -33742,8 +33750,9 @@ type ModifyDBInstanceInput struct {
 	// new engine version must be specified. The new DB parameter group can be the
 	// default for that DB parameter group family.
 	//
-	// For information about valid engine versions, see CreateDBInstance, or call
-	// DescribeDBEngineVersions.
+	// If you specify only a major version, Amazon RDS will update the DB instance
+	// to the default minor version if the current minor version is lower. For information
+	// about valid engine versions, see CreateDBInstance, or call DescribeDBEngineVersions.
 	EngineVersion *string `type:"string"`
 
 	// The new Provisioned IOPS (I/O operations per second) value for the RDS instance.
@@ -33867,13 +33876,13 @@ type ModifyDBInstanceInput struct {
 	// Example: mydbinstance
 	NewDBInstanceIdentifier *string `type:"string"`
 
-	// Indicates that the DB instance should be associated with the specified option
-	// group. Changing this parameter doesn't result in an outage except in the
-	// following case and the change is applied during the next maintenance window
-	// unless the ApplyImmediately parameter is enabled for this request. If the
-	// parameter change results in an option group that enables OEM, this change
-	// can cause a brief (sub-second) period during which new connections are rejected
-	// but existing connections are not interrupted.
+	// A value that indicates the DB instance should be associated with the specified
+	// option group. Changing this parameter doesn't result in an outage except
+	// in the following case and the change is applied during the next maintenance
+	// window unless the ApplyImmediately parameter is enabled for this request.
+	// If the parameter change results in an option group that enables OEM, this
+	// change can cause a brief (sub-second) period during which new connections
+	// are rejected but existing connections are not interrupted.
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// can't be removed from an option group, and that option group can't be removed
@@ -35067,10 +35076,44 @@ func (s *ModifyEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 type ModifyGlobalClusterInput struct {
 	_ struct{} `type:"structure"`
 
+	// A value that indicates whether major version upgrades are allowed.
+	//
+	// Constraints: You must allow major version upgrades when specifying a value
+	// for the EngineVersion parameter that is a different major version than the
+	// DB cluster's current version.
+	//
+	// If you upgrade the major version of a global database, the cluster and DB
+	// instance parameter groups are set to the default parameter groups for the
+	// new version. Apply any custom parameter groups after completing the upgrade.
+	AllowMajorVersionUpgrade *bool `type:"boolean"`
+
 	// Indicates if the global database cluster has deletion protection enabled.
 	// The global database cluster can't be deleted when deletion protection is
 	// enabled.
 	DeletionProtection *bool `type:"boolean"`
+
+	// The version number of the database engine to which you want to upgrade. Changing
+	// this parameter results in an outage. The change is applied during the next
+	// maintenance window unless ApplyImmediately is enabled.
+	//
+	// To list all of the available engine versions for aurora (for MySQL 5.6-compatible
+	// Aurora), use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine aurora --query '*[]|[?SupportsGlobalDatabases
+	// == `true`].[EngineVersion]'
+	//
+	// To list all of the available engine versions for aurora-mysql (for MySQL
+	// 5.7-compatible Aurora), use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine aurora-mysql --query '*[]|[?SupportsGlobalDatabases
+	// == `true`].[EngineVersion]'
+	//
+	// To list all of the available engine versions for aurora-postgresql, use the
+	// following command:
+	//
+	// aws rds describe-db-engine-versions --engine aurora-postgresql --query '*[]|[?SupportsGlobalDatabases
+	// == `true`].[EngineVersion]'
+	EngineVersion *string `type:"string"`
 
 	// The DB cluster identifier for the global cluster being modified. This parameter
 	// isn't case-sensitive.
@@ -35105,9 +35148,21 @@ func (s ModifyGlobalClusterInput) GoString() string {
 	return s.String()
 }
 
+// SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
+func (s *ModifyGlobalClusterInput) SetAllowMajorVersionUpgrade(v bool) *ModifyGlobalClusterInput {
+	s.AllowMajorVersionUpgrade = &v
+	return s
+}
+
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *ModifyGlobalClusterInput) SetDeletionProtection(v bool) *ModifyGlobalClusterInput {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyGlobalClusterInput) SetEngineVersion(v string) *ModifyGlobalClusterInput {
+	s.EngineVersion = &v
 	return s
 }
 
@@ -36487,7 +36542,7 @@ func (s *PendingMaintenanceAction) SetOptInStatus(v string) *PendingMaintenanceA
 	return s
 }
 
-// This data type is used as a response element in the ModifyDBInstance action
+// This data type is used as a response element in the ModifyDBInstance operation
 // and contains changes that will be applied during the next maintenance window.
 type PendingModifiedValues struct {
 	_ struct{} `type:"structure"`
@@ -36528,7 +36583,8 @@ type PendingModifiedValues struct {
 	// The master credentials for the DB instance.
 	MasterUserPassword *string `type:"string"`
 
-	// Indicates that the Single-AZ DB instance will change to a Multi-AZ deployment.
+	// A value that indicates that the Single-AZ DB instance will change to a Multi-AZ
+	// deployment.
 	MultiAZ *bool `type:"boolean"`
 
 	// A list of the log types whose configuration is still pending. In other words,
