@@ -525,6 +525,7 @@
         {"shape":"NotFoundException"},
         {"shape":"DependencyTimeoutException"},
         {"shape":"InvalidMarkerException"},
+        {"shape":"InvalidGrantIdException"},
         {"shape":"InvalidArnException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"}
@@ -1757,7 +1758,9 @@
       "members":{
         "Limit":{"shape":"LimitType"},
         "Marker":{"shape":"MarkerType"},
-        "KeyId":{"shape":"KeyIdType"}
+        "KeyId":{"shape":"KeyIdType"},
+        "GrantId":{"shape":"GrantIdType"},
+        "GranteePrincipal":{"shape":"PrincipalIdType"}
       }
     },
     "ListGrantsResponse":{
