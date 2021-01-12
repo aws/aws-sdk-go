@@ -5796,6 +5796,9 @@ func (s *AssessmentFramework) SetMetadata(v *FrameworkMetadata) *AssessmentFrame
 type AssessmentFrameworkMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the framework.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
 	// The compliance type that the new custom framework supports, such as CIS or
 	// HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
@@ -5836,6 +5839,12 @@ func (s AssessmentFrameworkMetadata) String() string {
 // GoString returns the string representation
 func (s AssessmentFrameworkMetadata) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssessmentFrameworkMetadata) SetArn(v string) *AssessmentFrameworkMetadata {
+	s.Arn = &v
+	return s
 }
 
 // SetComplianceType sets the ComplianceType field's value.
@@ -6931,7 +6940,7 @@ type BatchImportEvidenceToAssessmentControlError struct {
 	// The error code returned by the BatchImportEvidenceToAssessmentControl API.
 	ErrorCode *string `locationName:"errorCode" min:"3" type:"string"`
 
-	// The error message returned by the BatchImportEvidenceToAssessmentControlError
+	// The error message returned by the BatchImportEvidenceToAssessmentControl
 	// API.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
@@ -7169,7 +7178,8 @@ type Control struct {
 	// The data mapping sources for the specified control.
 	ControlMappingSources []*ControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list"`
 
-	// The data mapping sources for the specified control.
+	// The data source that determines from where AWS Audit Manager collects evidence
+	// for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
 	// Specifies when the control was created.
@@ -7687,6 +7697,9 @@ type CreateAssessmentFrameworkInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The tags associated with the framework.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -7755,6 +7768,12 @@ func (s *CreateAssessmentFrameworkInput) SetDescription(v string) *CreateAssessm
 // SetName sets the Name field's value.
 func (s *CreateAssessmentFrameworkInput) SetName(v string) *CreateAssessmentFrameworkInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAssessmentFrameworkInput) SetTags(v map[string]*string) *CreateAssessmentFrameworkInput {
+	s.Tags = v
 	return s
 }
 
@@ -8045,8 +8064,7 @@ type CreateControlInput struct {
 	// The title of the action plan for remediating the control.
 	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
 
-	// The data source that determines from where AWS Audit Manager collects evidence
-	// for the control.
+	// The data mapping sources for the specified control.
 	//
 	// ControlMappingSources is a required field
 	ControlMappingSources []*CreateControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list" required:"true"`
@@ -9139,6 +9157,9 @@ type Framework struct {
 	// The name of the specified framework.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// The tags associated with the framework.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// The framework type, such as custom or standard.
 	Type *string `locationName:"type" type:"string" enum:"FrameworkType"`
 }
@@ -9222,6 +9243,12 @@ func (s *Framework) SetLogo(v string) *Framework {
 // SetName sets the Name field's value.
 func (s *Framework) SetName(v string) *Framework {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Framework) SetTags(v map[string]*string) *Framework {
+	s.Tags = v
 	return s
 }
 
@@ -12639,8 +12666,7 @@ type UpdateControlInput struct {
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
 
-	// The data source that determines from where AWS Audit Manager collects evidence
-	// for the control.
+	// The data mapping sources for the specified control.
 	//
 	// ControlMappingSources is a required field
 	ControlMappingSources []*ControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list" required:"true"`

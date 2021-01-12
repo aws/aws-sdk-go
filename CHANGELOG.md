@@ -1,3 +1,17 @@
+Release v1.36.25 (2021-01-12)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * Adds support for the Smart Card Redirection feature
+* `service/auditmanager`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/lightsail`: Updates service API and documentation
+  * This release adds IPv6 support for Amazon Lightsail instances, container services, CDN distributions, and load balancers.
+* `service/ssm`: Updates service API and documentation
+  * AWS Systems Manager adds pagination support for DescribeDocumentPermission API
+
 Release v1.36.24 (2021-01-11)
 ===
 

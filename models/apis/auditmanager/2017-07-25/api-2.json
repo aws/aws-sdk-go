@@ -942,6 +942,7 @@
     "AssessmentFrameworkMetadata":{
       "type":"structure",
       "members":{
+        "arn":{"shape":"AuditManagerArn"},
         "id":{"shape":"UUID"},
         "type":{"shape":"FrameworkType"},
         "name":{"shape":"FrameworkName"},
@@ -1459,7 +1460,8 @@
         "name":{"shape":"FrameworkName"},
         "description":{"shape":"FrameworkDescription"},
         "complianceType":{"shape":"ComplianceType"},
-        "controlSets":{"shape":"CreateAssessmentFrameworkControlSets"}
+        "controlSets":{"shape":"CreateAssessmentFrameworkControlSets"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateAssessmentFrameworkResponse":{
@@ -1836,7 +1838,8 @@
         "createdAt":{"shape":"Timestamp"},
         "lastUpdatedAt":{"shape":"Timestamp"},
         "createdBy":{"shape":"CreatedBy"},
-        "lastUpdatedBy":{"shape":"LastUpdatedBy"}
+        "lastUpdatedBy":{"shape":"LastUpdatedBy"},
+        "tags":{"shape":"TagMap"}
       }
     },
     "FrameworkDescription":{
