@@ -5164,6 +5164,8 @@ type CreateFleetInput struct {
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
 	//
+	//    * stream.standard.small
+	//
 	//    * stream.standard.medium
 	//
 	//    * stream.standard.large
@@ -5484,6 +5486,8 @@ type CreateImageBuilderInput struct {
 
 	// The instance type to use when launching the image builder. The following
 	// instance types are available:
+	//
+	//    * stream.standard.small
 	//
 	//    * stream.standard.medium
 	//
@@ -6032,7 +6036,9 @@ type CreateStreamingURLInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the application to launch after the session starts. This is the
-	// name that you specified as Name in the Image Assistant.
+	// name that you specified as Name in the Image Assistant. If your fleet is
+	// enabled for the Desktop stream view, you can also choose to launch directly
+	// to the operating system desktop. To do so, specify Desktop.
 	ApplicationId *string `min:"1" type:"string"`
 
 	// The name of the fleet.
@@ -8227,6 +8233,8 @@ type Fleet struct {
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
 	//
+	//    * stream.standard.small
+	//
 	//    * stream.standard.medium
 	//
 	//    * stream.standard.large
@@ -8705,6 +8713,8 @@ type ImageBuilder struct {
 
 	// The instance type for the image builder. The following instance types are
 	// available:
+	//
+	//    * stream.standard.small
 	//
 	//    * stream.standard.medium
 	//
@@ -11004,6 +11014,8 @@ type UpdateFleetInput struct {
 	// The instance type to use when launching fleet instances. The following instance
 	// types are available:
 	//
+	//    * stream.standard.small
+	//
 	//    * stream.standard.medium
 	//
 	//    * stream.standard.large
@@ -11955,6 +11967,12 @@ const (
 
 	// ActionPrintingToLocalDevice is a Action enum value
 	ActionPrintingToLocalDevice = "PRINTING_TO_LOCAL_DEVICE"
+
+	// ActionDomainPasswordSignin is a Action enum value
+	ActionDomainPasswordSignin = "DOMAIN_PASSWORD_SIGNIN"
+
+	// ActionDomainSmartCardSignin is a Action enum value
+	ActionDomainSmartCardSignin = "DOMAIN_SMART_CARD_SIGNIN"
 )
 
 // Action_Values returns all elements of the Action enum
@@ -11965,6 +11983,8 @@ func Action_Values() []string {
 		ActionFileUpload,
 		ActionFileDownload,
 		ActionPrintingToLocalDevice,
+		ActionDomainPasswordSignin,
+		ActionDomainSmartCardSignin,
 	}
 }
 
@@ -12062,6 +12082,12 @@ const (
 	// FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction is a FleetErrorCode enum value
 	FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction = "IAM_SERVICE_ROLE_MISSING_DESCRIBE_SECURITY_GROUPS_ACTION"
 
+	// FleetErrorCodeFleetStopped is a FleetErrorCode enum value
+	FleetErrorCodeFleetStopped = "FLEET_STOPPED"
+
+	// FleetErrorCodeFleetInstanceProvisioningFailure is a FleetErrorCode enum value
+	FleetErrorCodeFleetInstanceProvisioningFailure = "FLEET_INSTANCE_PROVISIONING_FAILURE"
+
 	// FleetErrorCodeDomainJoinErrorFileNotFound is a FleetErrorCode enum value
 	FleetErrorCodeDomainJoinErrorFileNotFound = "DOMAIN_JOIN_ERROR_FILE_NOT_FOUND"
 
@@ -12118,6 +12144,8 @@ func FleetErrorCode_Values() []string {
 		FleetErrorCodeSecurityGroupsNotFound,
 		FleetErrorCodeIgwNotAttached,
 		FleetErrorCodeIamServiceRoleMissingDescribeSecurityGroupsAction,
+		FleetErrorCodeFleetStopped,
+		FleetErrorCodeFleetInstanceProvisioningFailure,
 		FleetErrorCodeDomainJoinErrorFileNotFound,
 		FleetErrorCodeDomainJoinErrorAccessDenied,
 		FleetErrorCodeDomainJoinErrorLogonFailure,
@@ -12248,6 +12276,12 @@ const (
 
 	// ImageStateDeleting is a ImageState enum value
 	ImageStateDeleting = "DELETING"
+
+	// ImageStateCreating is a ImageState enum value
+	ImageStateCreating = "CREATING"
+
+	// ImageStateImporting is a ImageState enum value
+	ImageStateImporting = "IMPORTING"
 )
 
 // ImageState_Values returns all elements of the ImageState enum
@@ -12258,6 +12292,8 @@ func ImageState_Values() []string {
 		ImageStateFailed,
 		ImageStateCopying,
 		ImageStateDeleting,
+		ImageStateCreating,
+		ImageStateImporting,
 	}
 }
 
