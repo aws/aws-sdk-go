@@ -920,6 +920,8 @@ func ExampleKMS_ListGrants_shared00() {
 				fmt.Println(kms.ErrCodeDependencyTimeoutException, aerr.Error())
 			case kms.ErrCodeInvalidMarkerException:
 				fmt.Println(kms.ErrCodeInvalidMarkerException, aerr.Error())
+			case kms.ErrCodeInvalidGrantIdException:
+				fmt.Println(kms.ErrCodeInvalidGrantIdException, aerr.Error())
 			case kms.ErrCodeInvalidArnException:
 				fmt.Println(kms.ErrCodeInvalidArnException, aerr.Error())
 			case kms.ErrCodeInternalException:

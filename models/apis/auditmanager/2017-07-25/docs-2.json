@@ -344,6 +344,7 @@
       "refs": {
         "Assessment$arn": "<p> The Amazon Resource Name (ARN) of the assessment. </p>",
         "AssessmentFramework$arn": "<p> The Amazon Resource Name (ARN) of the specified framework. </p>",
+        "AssessmentFrameworkMetadata$arn": "<p> The Amazon Resource Name (ARN) of the framework. </p>",
         "Control$arn": "<p> The Amazon Resource Name (ARN) of the specified control. </p>",
         "ControlMetadata$arn": "<p> The Amazon Resource Name (ARN) of the specified control. </p>",
         "Framework$arn": "<p> The Amazon Resource Name (ARN) of the specified framework. </p>",
@@ -516,7 +517,7 @@
       "base": null,
       "refs": {
         "Control$controlMappingSources": "<p> The data mapping sources for the specified control. </p>",
-        "UpdateControlRequest$controlMappingSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>"
+        "UpdateControlRequest$controlMappingSources": "<p> The data mapping sources for the specified control. </p>"
       }
     },
     "ControlMetadata": {
@@ -601,7 +602,7 @@
     "ControlSources": {
       "base": null,
       "refs": {
-        "Control$controlSources": "<p> The data mapping sources for the specified control. </p>",
+        "Control$controlSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
         "ControlMetadata$controlSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
         "Framework$controlSources": "<p> The sources from which AWS Audit Manager collects evidence for the control. </p>"
       }
@@ -696,7 +697,7 @@
     "CreateControlMappingSources": {
       "base": null,
       "refs": {
-        "CreateControlRequest$controlMappingSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>"
+        "CreateControlRequest$controlMappingSources": "<p> The data mapping sources for the specified control. </p>"
       }
     },
     "CreateControlRequest": {
@@ -869,7 +870,7 @@
         "AssessmentReportEvidenceError$errorMessage": "<p> The error message returned by the <code>AssessmentReportEvidence</code> API. </p>",
         "BatchCreateDelegationByAssessmentError$errorMessage": "<p> The error message returned by the <code>BatchCreateDelegationByAssessment</code> API. </p>",
         "BatchDeleteDelegationByAssessmentError$errorMessage": "<p> The error message returned by the <code>BatchDeleteDelegationByAssessment</code> API. </p>",
-        "BatchImportEvidenceToAssessmentControlError$errorMessage": "<p> The error message returned by the <code>BatchImportEvidenceToAssessmentControlError</code> API. </p>"
+        "BatchImportEvidenceToAssessmentControlError$errorMessage": "<p> The error message returned by the <code>BatchImportEvidenceToAssessmentControl</code> API. </p>"
       }
     },
     "EventName": {
@@ -1549,8 +1550,10 @@
       "refs": {
         "Assessment$tags": "<p> The tags associated with the assessment. </p>",
         "Control$tags": "<p> The tags associated with the control. </p>",
+        "CreateAssessmentFrameworkRequest$tags": "<p> The tags associated with the framework. </p>",
         "CreateAssessmentRequest$tags": "<p> The tags associated with the assessment. </p>",
         "CreateControlRequest$tags": "<p> The tags associated with the control. </p>",
+        "Framework$tags": "<p> The tags associated with the framework. </p>",
         "ListTagsForResourceResponse$tags": "<p> The list of tags returned by the <code>ListTagsForResource</code> API. </p>",
         "TagResourceRequest$tags": "<p> The tags to be associated with the resource. </p>"
       }

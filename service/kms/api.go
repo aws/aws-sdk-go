@@ -4613,6 +4613,9 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, o
 //
 // Gets a list of all grants for the specified customer master key (CMK).
 //
+// You must specify the CMK in all requests. You can filter the grant list by
+// grant ID or grantee principal.
+//
 // The GranteePrincipal field in the ListGrants response usually contains the
 // user or role designated as the grantee principal in the grant. However, when
 // the grantee principal in the grant is an AWS service, the GranteePrincipal
@@ -4654,6 +4657,9 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, o
 //   * InvalidMarkerException
 //   The request was rejected because the marker that specifies where pagination
 //   should next begin is not valid.
+//
+//   * InvalidGrantIdException
+//   The request was rejected because the specified GrantId is not valid.
 //
 //   * InvalidArnException
 //   The request was rejected because a specified ARN, or an ARN in a key policy,
@@ -7143,15 +7149,11 @@ type AliasListEntry struct {
 	// String that contains the alias. This value begins with alias/.
 	AliasName *string `min:"1" type:"string"`
 
-	// Date and time that the alias was most recently created in the account and
-	// Region. Formatted as Unix time.
 	CreationDate *time.Time `type:"timestamp"`
 
-	// Date and time that the alias was most recently associated with a CMK in the
-	// account and Region. Formatted as Unix time.
 	LastUpdatedDate *time.Time `type:"timestamp"`
 
-	// String that contains the key identifier of the CMK associated with the alias.
+	// String that contains the key identifier referred to by the alias.
 	TargetKeyId *string `min:"1" type:"string"`
 }
 
@@ -8109,7 +8111,7 @@ type CreateGrantOutput struct {
 
 	// The unique identifier for the grant.
 	//
-	// You can use the GrantId in a subsequent RetireGrant or RevokeGrant operation.
+	// You can use the GrantId in a ListGrants, RetireGrant, or RevokeGrant operation.
 	GrantId *string `min:"1" type:"string"`
 
 	// The grant token.
@@ -12869,7 +12871,16 @@ func (s *ListAliasesOutput) SetTruncated(v bool) *ListAliasesOutput {
 type ListGrantsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier for the customer master key (CMK).
+	// Returns only the grant with the specified grant ID. The grant ID uniquely
+	// identifies the grant.
+	GrantId *string `min:"1" type:"string"`
+
+	// Returns only grants where the specified principal is the grantee principal
+	// for the grant.
+	GranteePrincipal *string `min:"1" type:"string"`
+
+	// Returns only grants for the specified customer master key (CMK). This parameter
+	// is required.
 	//
 	// Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To specify
 	// a CMK in a different AWS account, you must use the key ARN.
@@ -12912,6 +12923,12 @@ func (s ListGrantsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListGrantsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListGrantsInput"}
+	if s.GrantId != nil && len(*s.GrantId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrantId", 1))
+	}
+	if s.GranteePrincipal != nil && len(*s.GranteePrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GranteePrincipal", 1))
+	}
 	if s.KeyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("KeyId"))
 	}
@@ -12929,6 +12946,18 @@ func (s *ListGrantsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetGrantId sets the GrantId field's value.
+func (s *ListGrantsInput) SetGrantId(v string) *ListGrantsInput {
+	s.GrantId = &v
+	return s
+}
+
+// SetGranteePrincipal sets the GranteePrincipal field's value.
+func (s *ListGrantsInput) SetGranteePrincipal(v string) *ListGrantsInput {
+	s.GranteePrincipal = &v
+	return s
 }
 
 // SetKeyId sets the KeyId field's value.

@@ -1713,7 +1713,9 @@
       },
       "errors":[
         {"shape":"GlobalClusterNotFoundFault"},
-        {"shape":"InvalidGlobalClusterStateFault"}
+        {"shape":"InvalidGlobalClusterStateFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
     "ModifyOptionGroup":{
@@ -6224,7 +6226,9 @@
       "members":{
         "GlobalClusterIdentifier":{"shape":"String"},
         "NewGlobalClusterIdentifier":{"shape":"String"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "EngineVersion":{"shape":"String"},
+        "AllowMajorVersionUpgrade":{"shape":"BooleanOptional"}
       }
     },
     "ModifyGlobalClusterResult":{

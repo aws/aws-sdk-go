@@ -524,7 +524,9 @@
       "errors":[
         {"shape":"InternalServerError"},
         {"shape":"InvalidDocument"},
-        {"shape":"InvalidPermissionType"}
+        {"shape":"InvalidNextToken"},
+        {"shape":"InvalidPermissionType"},
+        {"shape":"InvalidDocumentOperation"}
       ]
     },
     "DescribeEffectiveInstanceAssociations":{
@@ -3762,14 +3764,20 @@
       ],
       "members":{
         "Name":{"shape":"DocumentName"},
-        "PermissionType":{"shape":"DocumentPermissionType"}
+        "PermissionType":{"shape":"DocumentPermissionType"},
+        "MaxResults":{
+          "shape":"DocumentPermissionMaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "DescribeDocumentPermissionResponse":{
       "type":"structure",
       "members":{
         "AccountIds":{"shape":"AccountIdList"},
-        "AccountSharingInfoList":{"shape":"AccountSharingInfoList"}
+        "AccountSharingInfoList":{"shape":"AccountSharingInfoList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "DescribeDocumentRequest":{
@@ -4455,6 +4463,11 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "DocumentPermissionMaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":1
     },
     "DocumentPermissionType":{
       "type":"string",

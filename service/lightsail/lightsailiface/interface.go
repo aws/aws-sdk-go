@@ -564,6 +564,10 @@ type LightsailAPI interface {
 	SendContactMethodVerificationWithContext(aws.Context, *lightsail.SendContactMethodVerificationInput, ...request.Option) (*lightsail.SendContactMethodVerificationOutput, error)
 	SendContactMethodVerificationRequest(*lightsail.SendContactMethodVerificationInput) (*request.Request, *lightsail.SendContactMethodVerificationOutput)
 
+	SetIpAddressType(*lightsail.SetIpAddressTypeInput) (*lightsail.SetIpAddressTypeOutput, error)
+	SetIpAddressTypeWithContext(aws.Context, *lightsail.SetIpAddressTypeInput, ...request.Option) (*lightsail.SetIpAddressTypeOutput, error)
+	SetIpAddressTypeRequest(*lightsail.SetIpAddressTypeInput) (*request.Request, *lightsail.SetIpAddressTypeOutput)
+
 	StartInstance(*lightsail.StartInstanceInput) (*lightsail.StartInstanceOutput, error)
 	StartInstanceWithContext(aws.Context, *lightsail.StartInstanceInput, ...request.Option) (*lightsail.StartInstanceOutput, error)
 	StartInstanceRequest(*lightsail.StartInstanceInput) (*request.Request, *lightsail.StartInstanceOutput)
