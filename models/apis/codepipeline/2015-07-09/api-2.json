@@ -1770,6 +1770,7 @@
         "pipelineVersion":{"shape":"PipelineVersion"},
         "pipelineExecutionId":{"shape":"PipelineExecutionId"},
         "status":{"shape":"PipelineExecutionStatus"},
+        "statusSummary":{"shape":"PipelineExecutionStatusSummary"},
         "artifactRevisions":{"shape":"ArtifactRevisionList"}
       }
     },
@@ -1793,6 +1794,7 @@
     "PipelineExecutionStatus":{
       "type":"string",
       "enum":[
+        "Cancelled",
         "InProgress",
         "Stopped",
         "Stopping",
@@ -1801,6 +1803,7 @@
         "Failed"
       ]
     },
+    "PipelineExecutionStatusSummary":{"type":"string"},
     "PipelineExecutionSummary":{
       "type":"structure",
       "members":{
@@ -2167,6 +2170,7 @@
     "StageExecutionStatus":{
       "type":"string",
       "enum":[
+        "Cancelled",
         "InProgress",
         "Failed",
         "Stopped",

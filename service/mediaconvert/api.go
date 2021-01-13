@@ -4128,14 +4128,20 @@ func (s *AvailBlanking) SetAvailBlankingImage(v string) *AvailBlanking {
 // Required when you set your output video codec to AVC-Intra. For more information
 // about the AVC-I settings, see the relevant specification. For detailed information
 // about SD and HD in AVC-I, see https://ieeexplore.ieee.org/document/7290936.
+// For information about 4K/2K in AVC-I, see https://pro-av.panasonic.net/en/avc-ultra/AVC-ULTRAoverview.pdf.
 type AvcIntraSettings struct {
 	_ struct{} `type:"structure"`
 
 	// Specify the AVC-Intra class of your output. The AVC-Intra class selection
 	// determines the output video bit rate depending on the frame rate of the output.
 	// Outputs with higher class values have higher bitrates and improved image
-	// quality.
+	// quality. Note that for Class 4K/2K, MediaConvert supports only 4:2:2 chroma
+	// subsampling.
 	AvcIntraClass *string `locationName:"avcIntraClass" type:"string" enum:"AvcIntraClass"`
+
+	// Optional when you set AVC-Intra class (avcIntraClass) to Class 4K/2K (CLASS_4K_2K).
+	// When you set AVC-Intra class to a different value, this object isn't allowed.
+	AvcIntraUhdSettings *AvcIntraUhdSettings `locationName:"avcIntraUhdSettings" type:"structure"`
 
 	// If you are using the console, use the Framerate setting to specify the frame
 	// rate for this output. If you want to keep the same frame rate as the input
@@ -4192,6 +4198,21 @@ type AvcIntraSettings struct {
 	// choose.
 	InterlaceMode *string `locationName:"interlaceMode" type:"string" enum:"AvcIntraInterlaceMode"`
 
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+	// case, each progressive frame from the input corresponds to an interlaced
+	// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+	// for all other output frame rates. With basic interlacing, MediaConvert performs
+	// any frame rate conversion first and then interlaces the frames. When you
+	// choose Optimized interlacing and you set your output frame rate to a value
+	// that isn't suitable for optimized interlacing, MediaConvert automatically
+	// falls back to basic interlacing. Required settings: To use optimized interlacing,
+	// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+	// use optimized interlacing for hard telecine outputs. You must also set Interlace
+	// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"AvcIntraScanTypeConversionMode"`
+
 	// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
 	// second (fps). Enable slow PAL to create a 25 fps output. When you enable
 	// slow PAL, MediaConvert relabels the video frames to 25 fps and resamples
@@ -4243,6 +4264,12 @@ func (s *AvcIntraSettings) SetAvcIntraClass(v string) *AvcIntraSettings {
 	return s
 }
 
+// SetAvcIntraUhdSettings sets the AvcIntraUhdSettings field's value.
+func (s *AvcIntraSettings) SetAvcIntraUhdSettings(v *AvcIntraUhdSettings) *AvcIntraSettings {
+	s.AvcIntraUhdSettings = v
+	return s
+}
+
 // SetFramerateControl sets the FramerateControl field's value.
 func (s *AvcIntraSettings) SetFramerateControl(v string) *AvcIntraSettings {
 	s.FramerateControl = &v
@@ -4273,6 +4300,12 @@ func (s *AvcIntraSettings) SetInterlaceMode(v string) *AvcIntraSettings {
 	return s
 }
 
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *AvcIntraSettings) SetScanTypeConversionMode(v string) *AvcIntraSettings {
+	s.ScanTypeConversionMode = &v
+	return s
+}
+
 // SetSlowPal sets the SlowPal field's value.
 func (s *AvcIntraSettings) SetSlowPal(v string) *AvcIntraSettings {
 	s.SlowPal = &v
@@ -4282,6 +4315,36 @@ func (s *AvcIntraSettings) SetSlowPal(v string) *AvcIntraSettings {
 // SetTelecine sets the Telecine field's value.
 func (s *AvcIntraSettings) SetTelecine(v string) *AvcIntraSettings {
 	s.Telecine = &v
+	return s
+}
+
+// Optional when you set AVC-Intra class (avcIntraClass) to Class 4K/2K (CLASS_4K_2K).
+// When you set AVC-Intra class to a different value, this object isn't allowed.
+type AvcIntraUhdSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. Use Quality tuning level (qualityTuningLevel) to choose how many
+	// transcoding passes MediaConvert does with your video. When you choose Multi-pass
+	// (MULTI_PASS), your video quality is better and your output bitrate is more
+	// accurate. That is, the actual bitrate of your output is closer to the target
+	// bitrate defined in the specification. When you choose Single-pass (SINGLE_PASS),
+	// your encoding time is faster. The default behavior is Single-pass (SINGLE_PASS).
+	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"AvcIntraUhdQualityTuningLevel"`
+}
+
+// String returns the string representation
+func (s AvcIntraUhdSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AvcIntraUhdSettings) GoString() string {
+	return s.String()
+}
+
+// SetQualityTuningLevel sets the QualityTuningLevel field's value.
+func (s *AvcIntraUhdSettings) SetQualityTuningLevel(v string) *AvcIntraUhdSettings {
+	s.QualityTuningLevel = &v
 	return s
 }
 
@@ -5198,13 +5261,22 @@ func (s *CaptionSourceSettings) SetTrackSourceSettings(v *TrackSourceSettings) *
 }
 
 // Channel mapping (ChannelMapping) contains the group of fields that hold the
-// remixing value for each channel. Units are in dB. Acceptable values are within
+// remixing value for each channel, in dB. Specify remix values to indicate
+// how much of the content from your input audio channel you want in your output
+// audio channels. Each instance of the InputChannels or InputChannelsFineTune
+// array specifies these values for one output channel. Use one instance of
+// this array for each output channel. In the console, each array corresponds
+// to a column in the graphical depiction of the mapping matrix. The rows of
+// the graphical matrix correspond to input channels. Valid values are within
 // the range from -60 (mute) through 6. A setting of 0 passes the input channel
-// unchanged to the output channel (no attenuation or amplification).
+// unchanged to the output channel (no attenuation or amplification). Use InputChannels
+// or InputChannelsFineTune to specify your remix values. Don't use both.
 type ChannelMapping struct {
 	_ struct{} `type:"structure"`
 
-	// List of output channels
+	// In your JSON job specification, include one child of OutputChannels for each
+	// audio channel that you want in your output. Each child should contain one
+	// instance of InputChannels or InputChannelsFineTune.
 	OutputChannels []*OutputChannelMapping `locationName:"outputChannels" type:"list"`
 }
 
@@ -5659,6 +5731,15 @@ type CmfcSettings struct {
 	// between audio and video duration will depend on your output audio codec.
 	AudioDuration *string `locationName:"audioDuration" type:"string" enum:"CmfcAudioDuration"`
 
+	// Choose Include (INCLUDE) to have MediaConvert generate an HLS child manifest
+	// that lists only the I-frames for this rendition, in addition to your regular
+	// manifest for this rendition. You might use this manifest as part of a workflow
+	// that creates preview functions for your video. MediaConvert adds both the
+	// I-frame only child manifest and the regular child manifest to the parent
+	// manifest. When you don't need the I-frame only child manifest, keep the default
+	// value Exclude (EXCLUDE).
+	IFrameOnlyManifest *string `locationName:"iFrameOnlyManifest" type:"string" enum:"CmfcIFrameOnlyManifest"`
+
 	// Use this setting only when you specify SCTE-35 markers from ESAM. Choose
 	// INSERT to put SCTE-35 markers in this output at the insertion points that
 	// you specify in an ESAM XML document. Provide the document in the setting
@@ -5685,6 +5766,12 @@ func (s CmfcSettings) GoString() string {
 // SetAudioDuration sets the AudioDuration field's value.
 func (s *CmfcSettings) SetAudioDuration(v string) *CmfcSettings {
 	s.AudioDuration = &v
+	return s
+}
+
+// SetIFrameOnlyManifest sets the IFrameOnlyManifest field's value.
+func (s *CmfcSettings) SetIFrameOnlyManifest(v string) *CmfcSettings {
+	s.IFrameOnlyManifest = &v
 	return s
 }
 
@@ -9464,6 +9551,21 @@ type H264Settings struct {
 	// Places a PPS header on each encoded picture, even if repeated.
 	RepeatPps *string `locationName:"repeatPps" type:"string" enum:"H264RepeatPps"`
 
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+	// case, each progressive frame from the input corresponds to an interlaced
+	// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+	// for all other output frame rates. With basic interlacing, MediaConvert performs
+	// any frame rate conversion first and then interlaces the frames. When you
+	// choose Optimized interlacing and you set your output frame rate to a value
+	// that isn't suitable for optimized interlacing, MediaConvert automatically
+	// falls back to basic interlacing. Required settings: To use optimized interlacing,
+	// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+	// use optimized interlacing for hard telecine outputs. You must also set Interlace
+	// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"H264ScanTypeConversionMode"`
+
 	// Enable this setting to insert I-frames at scene changes that the service
 	// automatically detects. This improves video quality and is enabled by default.
 	// If this output uses QVBR, choose Transition detection (TRANSITION_DETECTION)
@@ -9792,6 +9894,12 @@ func (s *H264Settings) SetRepeatPps(v string) *H264Settings {
 	return s
 }
 
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *H264Settings) SetScanTypeConversionMode(v string) *H264Settings {
+	s.ScanTypeConversionMode = &v
+	return s
+}
+
 // SetSceneChangeDetect sets the SceneChangeDetect field's value.
 func (s *H264Settings) SetSceneChangeDetect(v string) *H264Settings {
 	s.SceneChangeDetect = &v
@@ -10110,6 +10218,21 @@ type H265Settings struct {
 	// selects best strength based on content
 	SampleAdaptiveOffsetFilterMode *string `locationName:"sampleAdaptiveOffsetFilterMode" type:"string" enum:"H265SampleAdaptiveOffsetFilterMode"`
 
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+	// case, each progressive frame from the input corresponds to an interlaced
+	// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+	// for all other output frame rates. With basic interlacing, MediaConvert performs
+	// any frame rate conversion first and then interlaces the frames. When you
+	// choose Optimized interlacing and you set your output frame rate to a value
+	// that isn't suitable for optimized interlacing, MediaConvert automatically
+	// falls back to basic interlacing. Required settings: To use optimized interlacing,
+	// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+	// use optimized interlacing for hard telecine outputs. You must also set Interlace
+	// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"H265ScanTypeConversionMode"`
+
 	// Enable this setting to insert I-frames at scene changes that the service
 	// automatically detects. This improves video quality and is enabled by default.
 	// If this output uses QVBR, choose Transition detection (TRANSITION_DETECTION)
@@ -10424,6 +10547,12 @@ func (s *H265Settings) SetRateControlMode(v string) *H265Settings {
 // SetSampleAdaptiveOffsetFilterMode sets the SampleAdaptiveOffsetFilterMode field's value.
 func (s *H265Settings) SetSampleAdaptiveOffsetFilterMode(v string) *H265Settings {
 	s.SampleAdaptiveOffsetFilterMode = &v
+	return s
+}
+
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *H265Settings) SetScanTypeConversionMode(v string) *H265Settings {
+	s.ScanTypeConversionMode = &v
 	return s
 }
 
@@ -11236,8 +11365,13 @@ type HlsSettings struct {
 	// DEFAULT=NO, AUTOSELECT=NO
 	AudioTrackType *string `locationName:"audioTrackType" type:"string" enum:"HlsAudioTrackType"`
 
-	// When set to INCLUDE, writes I-Frame Only Manifest in addition to the HLS
-	// manifest
+	// Choose Include (INCLUDE) to have MediaConvert generate a child manifest that
+	// lists only the I-frames for this rendition, in addition to your regular manifest
+	// for this rendition. You might use this manifest as part of a workflow that
+	// creates preview functions for your video. MediaConvert adds both the I-frame
+	// only child manifest and the regular child manifest to the parent manifest.
+	// When you don't need the I-frame only child manifest, keep the default value
+	// Exclude (EXCLUDE).
 	IFrameOnlyManifest *string `locationName:"iFrameOnlyManifest" type:"string" enum:"HlsIFrameOnlyManifest"`
 
 	// Use this setting to add an identifying string to the filename of each segment.
@@ -15281,9 +15415,24 @@ type Mpeg2Settings struct {
 	// is faster, lower quality, single-pass encoding.
 	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"Mpeg2QualityTuningLevel"`
 
-	// Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate
+	// Use Rate control mode (Mpeg2RateControlMode) to specify whether the bitrate
 	// is variable (vbr) or constant (cbr).
 	RateControlMode *string `locationName:"rateControlMode" type:"string" enum:"Mpeg2RateControlMode"`
+
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+	// case, each progressive frame from the input corresponds to an interlaced
+	// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+	// for all other output frame rates. With basic interlacing, MediaConvert performs
+	// any frame rate conversion first and then interlaces the frames. When you
+	// choose Optimized interlacing and you set your output frame rate to a value
+	// that isn't suitable for optimized interlacing, MediaConvert automatically
+	// falls back to basic interlacing. Required settings: To use optimized interlacing,
+	// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+	// use optimized interlacing for hard telecine outputs. You must also set Interlace
+	// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"Mpeg2ScanTypeConversionMode"`
 
 	// Enable this setting to insert I-frames at scene changes that the service
 	// automatically detects. This improves video quality and is enabled by default.
@@ -15537,6 +15686,12 @@ func (s *Mpeg2Settings) SetQualityTuningLevel(v string) *Mpeg2Settings {
 // SetRateControlMode sets the RateControlMode field's value.
 func (s *Mpeg2Settings) SetRateControlMode(v string) *Mpeg2Settings {
 	s.RateControlMode = &v
+	return s
+}
+
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *Mpeg2Settings) SetScanTypeConversionMode(v string) *Mpeg2Settings {
+	s.ScanTypeConversionMode = &v
 	return s
 }
 
@@ -16521,7 +16676,7 @@ type Output struct {
 	// Specific settings for this type of output.
 	OutputSettings *OutputSettings `locationName:"outputSettings" type:"structure"`
 
-	// Use Preset (Preset) to specifiy a preset for your transcoding settings. Provide
+	// Use Preset (Preset) to specify a preset for your transcoding settings. Provide
 	// the system or custom preset name. You can specify either Preset (Preset)
 	// or Container settings (ContainerSettings), but not both.
 	Preset *string `locationName:"preset" type:"string"`
@@ -16638,8 +16793,14 @@ func (s *Output) SetVideoDescription(v *VideoDescription) *Output {
 type OutputChannelMapping struct {
 	_ struct{} `type:"structure"`
 
-	// List of input channels
+	// Use this setting to specify your remix values when they are integers, such
+	// as -10, 0, or 4.
 	InputChannels []*int64 `locationName:"inputChannels" type:"list"`
+
+	// Use this setting to specify your remix values when they have a decimal component,
+	// such as -10.312, 0.08, or 4.9. MediaConvert rounds your remixing values to
+	// the nearest thousandth.
+	InputChannelsFineTune []*float64 `locationName:"inputChannelsFineTune" type:"list"`
 }
 
 // String returns the string representation
@@ -16655,6 +16816,12 @@ func (s OutputChannelMapping) GoString() string {
 // SetInputChannels sets the InputChannels field's value.
 func (s *OutputChannelMapping) SetInputChannels(v []*int64) *OutputChannelMapping {
 	s.InputChannels = v
+	return s
+}
+
+// SetInputChannelsFineTune sets the InputChannelsFineTune field's value.
+func (s *OutputChannelMapping) SetInputChannelsFineTune(v []*float64) *OutputChannelMapping {
+	s.InputChannelsFineTune = v
 	return s
 }
 
@@ -17178,7 +17345,7 @@ func (s *PresetSettings) SetVideoDescription(v *VideoDescription) *PresetSetting
 type ProresSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec
+	// Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
 	// to use for this output.
 	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"ProresCodecProfile"`
 
@@ -17261,6 +17428,21 @@ type ProresSettings struct {
 	// widescreen, you would specify the ratio 40:33. In this example, the value
 	// for parNumerator is 40.
 	ParNumerator *int64 `locationName:"parNumerator" min:"1" type:"integer"`
+
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+	// case, each progressive frame from the input corresponds to an interlaced
+	// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+	// for all other output frame rates. With basic interlacing, MediaConvert performs
+	// any frame rate conversion first and then interlaces the frames. When you
+	// choose Optimized interlacing and you set your output frame rate to a value
+	// that isn't suitable for optimized interlacing, MediaConvert automatically
+	// falls back to basic interlacing. Required settings: To use optimized interlacing,
+	// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+	// use optimized interlacing for hard telecine outputs. You must also set Interlace
+	// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"ProresScanTypeConversionMode"`
 
 	// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
 	// second (fps). Enable slow PAL to create a 25 fps output. When you enable
@@ -17364,6 +17546,12 @@ func (s *ProresSettings) SetParDenominator(v int64) *ProresSettings {
 // SetParNumerator sets the ParNumerator field's value.
 func (s *ProresSettings) SetParNumerator(v int64) *ProresSettings {
 	s.ParNumerator = &v
+	return s
+}
+
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *ProresSettings) SetScanTypeConversionMode(v string) *ProresSettings {
+	s.ScanTypeConversionMode = &v
 	return s
 }
 
@@ -17628,18 +17816,31 @@ type RemixSettings struct {
 	_ struct{} `type:"structure"`
 
 	// Channel mapping (ChannelMapping) contains the group of fields that hold the
-	// remixing value for each channel. Units are in dB. Acceptable values are within
+	// remixing value for each channel, in dB. Specify remix values to indicate
+	// how much of the content from your input audio channel you want in your output
+	// audio channels. Each instance of the InputChannels or InputChannelsFineTune
+	// array specifies these values for one output channel. Use one instance of
+	// this array for each output channel. In the console, each array corresponds
+	// to a column in the graphical depiction of the mapping matrix. The rows of
+	// the graphical matrix correspond to input channels. Valid values are within
 	// the range from -60 (mute) through 6. A setting of 0 passes the input channel
-	// unchanged to the output channel (no attenuation or amplification).
+	// unchanged to the output channel (no attenuation or amplification). Use InputChannels
+	// or InputChannelsFineTune to specify your remix values. Don't use both.
 	ChannelMapping *ChannelMapping `locationName:"channelMapping" type:"structure"`
 
 	// Specify the number of audio channels from your input that you want to use
 	// in your output. With remixing, you might combine or split the data in these
 	// channels, so the number of channels in your final output might be different.
+	// If you are doing both input channel mapping and output channel mapping, the
+	// number of output channels in your input mapping must be the same as the number
+	// of input channels in your output mapping.
 	ChannelsIn *int64 `locationName:"channelsIn" min:"1" type:"integer"`
 
 	// Specify the number of channels in this output after remixing. Valid values:
-	// 1, 2, 4, 6, 8... 64. (1 and even numbers to 64.)
+	// 1, 2, 4, 6, 8... 64. (1 and even numbers to 64.) If you are doing both input
+	// channel mapping and output channel mapping, the number of output channels
+	// in your input mapping must be the same as the number of input channels in
+	// your output mapping.
 	ChannelsOut *int64 `locationName:"channelsOut" min:"1" type:"integer"`
 }
 
@@ -19209,6 +19410,21 @@ type Vc3Settings struct {
 	// a value, MediaConvert will create a progressive output.
 	InterlaceMode *string `locationName:"interlaceMode" type:"string" enum:"Vc3InterlaceMode"`
 
+	// Use this setting for interlaced outputs, when your output frame rate is half
+	// of your input frame rate. In this situation, choose Optimized interlacing
+	// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+	// case, each progressive frame from the input corresponds to an interlaced
+	// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+	// for all other output frame rates. With basic interlacing, MediaConvert performs
+	// any frame rate conversion first and then interlaces the frames. When you
+	// choose Optimized interlacing and you set your output frame rate to a value
+	// that isn't suitable for optimized interlacing, MediaConvert automatically
+	// falls back to basic interlacing. Required settings: To use optimized interlacing,
+	// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+	// use optimized interlacing for hard telecine outputs. You must also set Interlace
+	// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+	ScanTypeConversionMode *string `locationName:"scanTypeConversionMode" type:"string" enum:"Vc3ScanTypeConversionMode"`
+
 	// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
 	// second (fps). Enable slow PAL to create a 25 fps output by relabeling the
 	// video frames and resampling your audio. Note that enabling this setting will
@@ -19293,6 +19509,12 @@ func (s *Vc3Settings) SetInterlaceMode(v string) *Vc3Settings {
 	return s
 }
 
+// SetScanTypeConversionMode sets the ScanTypeConversionMode field's value.
+func (s *Vc3Settings) SetScanTypeConversionMode(v string) *Vc3Settings {
+	s.ScanTypeConversionMode = &v
+	return s
+}
+
 // SetSlowPal sets the SlowPal field's value.
 func (s *Vc3Settings) SetSlowPal(v string) *Vc3Settings {
 	s.SlowPal = &v
@@ -19329,6 +19551,7 @@ type VideoCodecSettings struct {
 	// Required when you set your output video codec to AVC-Intra. For more information
 	// about the AVC-I settings, see the relevant specification. For detailed information
 	// about SD and HD in AVC-I, see https://ieeexplore.ieee.org/document/7290936.
+	// For information about 4K/2K in AVC-I, see https://pro-av.panasonic.net/en/avc-ultra/AVC-ULTRAoverview.pdf.
 	AvcIntraSettings *AvcIntraSettings `locationName:"avcIntraSettings" type:"structure"`
 
 	// Specifies the video codec. This must be equal to one of the enum values defined
@@ -21489,7 +21712,8 @@ func Av1SpatialAdaptiveQuantization_Values() []string {
 // Specify the AVC-Intra class of your output. The AVC-Intra class selection
 // determines the output video bit rate depending on the frame rate of the output.
 // Outputs with higher class values have higher bitrates and improved image
-// quality.
+// quality. Note that for Class 4K/2K, MediaConvert supports only 4:2:2 chroma
+// subsampling.
 const (
 	// AvcIntraClassClass50 is a AvcIntraClass enum value
 	AvcIntraClassClass50 = "CLASS_50"
@@ -21499,6 +21723,9 @@ const (
 
 	// AvcIntraClassClass200 is a AvcIntraClass enum value
 	AvcIntraClassClass200 = "CLASS_200"
+
+	// AvcIntraClassClass4k2k is a AvcIntraClass enum value
+	AvcIntraClassClass4k2k = "CLASS_4K_2K"
 )
 
 // AvcIntraClass_Values returns all elements of the AvcIntraClass enum
@@ -21507,6 +21734,7 @@ func AvcIntraClass_Values() []string {
 		AvcIntraClassClass50,
 		AvcIntraClassClass100,
 		AvcIntraClassClass200,
+		AvcIntraClassClass4k2k,
 	}
 }
 
@@ -21607,6 +21835,35 @@ func AvcIntraInterlaceMode_Values() []string {
 	}
 }
 
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+// case, each progressive frame from the input corresponds to an interlaced
+// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+// for all other output frame rates. With basic interlacing, MediaConvert performs
+// any frame rate conversion first and then interlaces the frames. When you
+// choose Optimized interlacing and you set your output frame rate to a value
+// that isn't suitable for optimized interlacing, MediaConvert automatically
+// falls back to basic interlacing. Required settings: To use optimized interlacing,
+// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+// use optimized interlacing for hard telecine outputs. You must also set Interlace
+// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+const (
+	// AvcIntraScanTypeConversionModeInterlaced is a AvcIntraScanTypeConversionMode enum value
+	AvcIntraScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// AvcIntraScanTypeConversionModeInterlacedOptimize is a AvcIntraScanTypeConversionMode enum value
+	AvcIntraScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// AvcIntraScanTypeConversionMode_Values returns all elements of the AvcIntraScanTypeConversionMode enum
+func AvcIntraScanTypeConversionMode_Values() []string {
+	return []string{
+		AvcIntraScanTypeConversionModeInterlaced,
+		AvcIntraScanTypeConversionModeInterlacedOptimize,
+	}
+}
+
 // Ignore this setting unless your input frame rate is 23.976 or 24 frames per
 // second (fps). Enable slow PAL to create a 25 fps output. When you enable
 // slow PAL, MediaConvert relabels the video frames to 25 fps and resamples
@@ -21650,6 +21907,28 @@ func AvcIntraTelecine_Values() []string {
 	return []string{
 		AvcIntraTelecineNone,
 		AvcIntraTelecineHard,
+	}
+}
+
+// Optional. Use Quality tuning level (qualityTuningLevel) to choose how many
+// transcoding passes MediaConvert does with your video. When you choose Multi-pass
+// (MULTI_PASS), your video quality is better and your output bitrate is more
+// accurate. That is, the actual bitrate of your output is closer to the target
+// bitrate defined in the specification. When you choose Single-pass (SINGLE_PASS),
+// your encoding time is faster. The default behavior is Single-pass (SINGLE_PASS).
+const (
+	// AvcIntraUhdQualityTuningLevelSinglePass is a AvcIntraUhdQualityTuningLevel enum value
+	AvcIntraUhdQualityTuningLevelSinglePass = "SINGLE_PASS"
+
+	// AvcIntraUhdQualityTuningLevelMultiPass is a AvcIntraUhdQualityTuningLevel enum value
+	AvcIntraUhdQualityTuningLevelMultiPass = "MULTI_PASS"
+)
+
+// AvcIntraUhdQualityTuningLevel_Values returns all elements of the AvcIntraUhdQualityTuningLevel enum
+func AvcIntraUhdQualityTuningLevel_Values() []string {
+	return []string{
+		AvcIntraUhdQualityTuningLevelSinglePass,
+		AvcIntraUhdQualityTuningLevelMultiPass,
 	}
 }
 
@@ -22228,6 +22507,29 @@ func CmfcAudioDuration_Values() []string {
 	return []string{
 		CmfcAudioDurationDefaultCodecDuration,
 		CmfcAudioDurationMatchVideoDuration,
+	}
+}
+
+// Choose Include (INCLUDE) to have MediaConvert generate an HLS child manifest
+// that lists only the I-frames for this rendition, in addition to your regular
+// manifest for this rendition. You might use this manifest as part of a workflow
+// that creates preview functions for your video. MediaConvert adds both the
+// I-frame only child manifest and the regular child manifest to the parent
+// manifest. When you don't need the I-frame only child manifest, keep the default
+// value Exclude (EXCLUDE).
+const (
+	// CmfcIFrameOnlyManifestInclude is a CmfcIFrameOnlyManifest enum value
+	CmfcIFrameOnlyManifestInclude = "INCLUDE"
+
+	// CmfcIFrameOnlyManifestExclude is a CmfcIFrameOnlyManifest enum value
+	CmfcIFrameOnlyManifestExclude = "EXCLUDE"
+)
+
+// CmfcIFrameOnlyManifest_Values returns all elements of the CmfcIFrameOnlyManifest enum
+func CmfcIFrameOnlyManifest_Values() []string {
+	return []string{
+		CmfcIFrameOnlyManifestInclude,
+		CmfcIFrameOnlyManifestExclude,
 	}
 }
 
@@ -23979,6 +24281,35 @@ func H264RepeatPps_Values() []string {
 	}
 }
 
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+// case, each progressive frame from the input corresponds to an interlaced
+// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+// for all other output frame rates. With basic interlacing, MediaConvert performs
+// any frame rate conversion first and then interlaces the frames. When you
+// choose Optimized interlacing and you set your output frame rate to a value
+// that isn't suitable for optimized interlacing, MediaConvert automatically
+// falls back to basic interlacing. Required settings: To use optimized interlacing,
+// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+// use optimized interlacing for hard telecine outputs. You must also set Interlace
+// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+const (
+	// H264ScanTypeConversionModeInterlaced is a H264ScanTypeConversionMode enum value
+	H264ScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// H264ScanTypeConversionModeInterlacedOptimize is a H264ScanTypeConversionMode enum value
+	H264ScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// H264ScanTypeConversionMode_Values returns all elements of the H264ScanTypeConversionMode enum
+func H264ScanTypeConversionMode_Values() []string {
+	return []string{
+		H264ScanTypeConversionModeInterlaced,
+		H264ScanTypeConversionModeInterlacedOptimize,
+	}
+}
+
 // Enable this setting to insert I-frames at scene changes that the service
 // automatically detects. This improves video quality and is enabled by default.
 // If this output uses QVBR, choose Transition detection (TRANSITION_DETECTION)
@@ -24595,6 +24926,35 @@ func H265SampleAdaptiveOffsetFilterMode_Values() []string {
 	}
 }
 
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+// case, each progressive frame from the input corresponds to an interlaced
+// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+// for all other output frame rates. With basic interlacing, MediaConvert performs
+// any frame rate conversion first and then interlaces the frames. When you
+// choose Optimized interlacing and you set your output frame rate to a value
+// that isn't suitable for optimized interlacing, MediaConvert automatically
+// falls back to basic interlacing. Required settings: To use optimized interlacing,
+// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+// use optimized interlacing for hard telecine outputs. You must also set Interlace
+// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+const (
+	// H265ScanTypeConversionModeInterlaced is a H265ScanTypeConversionMode enum value
+	H265ScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// H265ScanTypeConversionModeInterlacedOptimize is a H265ScanTypeConversionMode enum value
+	H265ScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// H265ScanTypeConversionMode_Values returns all elements of the H265ScanTypeConversionMode enum
+func H265ScanTypeConversionMode_Values() []string {
+	return []string{
+		H265ScanTypeConversionModeInterlaced,
+		H265ScanTypeConversionModeInterlacedOptimize,
+	}
+}
+
 // Enable this setting to insert I-frames at scene changes that the service
 // automatically detects. This improves video quality and is enabled by default.
 // If this output uses QVBR, choose Transition detection (TRANSITION_DETECTION)
@@ -25011,8 +25371,13 @@ func HlsEncryptionType_Values() []string {
 	}
 }
 
-// When set to INCLUDE, writes I-Frame Only Manifest in addition to the HLS
-// manifest
+// Choose Include (INCLUDE) to have MediaConvert generate a child manifest that
+// lists only the I-frames for this rendition, in addition to your regular manifest
+// for this rendition. You might use this manifest as part of a workflow that
+// creates preview functions for your video. MediaConvert adds both the I-frame
+// only child manifest and the regular child manifest to the parent manifest.
+// When you don't need the I-frame only child manifest, keep the default value
+// Exclude (EXCLUDE).
 const (
 	// HlsIFrameOnlyManifestInclude is a HlsIFrameOnlyManifest enum value
 	HlsIFrameOnlyManifestInclude = "INCLUDE"
@@ -27234,7 +27599,7 @@ func Mpeg2QualityTuningLevel_Values() []string {
 	}
 }
 
-// Use Rate control mode (Mpeg2RateControlMode) to specifiy whether the bitrate
+// Use Rate control mode (Mpeg2RateControlMode) to specify whether the bitrate
 // is variable (vbr) or constant (cbr).
 const (
 	// Mpeg2RateControlModeVbr is a Mpeg2RateControlMode enum value
@@ -27249,6 +27614,35 @@ func Mpeg2RateControlMode_Values() []string {
 	return []string{
 		Mpeg2RateControlModeVbr,
 		Mpeg2RateControlModeCbr,
+	}
+}
+
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+// case, each progressive frame from the input corresponds to an interlaced
+// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+// for all other output frame rates. With basic interlacing, MediaConvert performs
+// any frame rate conversion first and then interlaces the frames. When you
+// choose Optimized interlacing and you set your output frame rate to a value
+// that isn't suitable for optimized interlacing, MediaConvert automatically
+// falls back to basic interlacing. Required settings: To use optimized interlacing,
+// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+// use optimized interlacing for hard telecine outputs. You must also set Interlace
+// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+const (
+	// Mpeg2ScanTypeConversionModeInterlaced is a Mpeg2ScanTypeConversionMode enum value
+	Mpeg2ScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// Mpeg2ScanTypeConversionModeInterlacedOptimize is a Mpeg2ScanTypeConversionMode enum value
+	Mpeg2ScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// Mpeg2ScanTypeConversionMode_Values returns all elements of the Mpeg2ScanTypeConversionMode enum
+func Mpeg2ScanTypeConversionMode_Values() []string {
+	return []string{
+		Mpeg2ScanTypeConversionModeInterlaced,
+		Mpeg2ScanTypeConversionModeInterlacedOptimize,
 	}
 }
 
@@ -27745,7 +28139,7 @@ func PricingPlan_Values() []string {
 	}
 }
 
-// Use Profile (ProResCodecProfile) to specifiy the type of Apple ProRes codec
+// Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
 // to use for this output.
 const (
 	// ProresCodecProfileAppleProres422 is a ProresCodecProfile enum value
@@ -27888,6 +28282,35 @@ func ProresParControl_Values() []string {
 	return []string{
 		ProresParControlInitializeFromSource,
 		ProresParControlSpecified,
+	}
+}
+
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+// case, each progressive frame from the input corresponds to an interlaced
+// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+// for all other output frame rates. With basic interlacing, MediaConvert performs
+// any frame rate conversion first and then interlaces the frames. When you
+// choose Optimized interlacing and you set your output frame rate to a value
+// that isn't suitable for optimized interlacing, MediaConvert automatically
+// falls back to basic interlacing. Required settings: To use optimized interlacing,
+// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+// use optimized interlacing for hard telecine outputs. You must also set Interlace
+// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+const (
+	// ProresScanTypeConversionModeInterlaced is a ProresScanTypeConversionMode enum value
+	ProresScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// ProresScanTypeConversionModeInterlacedOptimize is a ProresScanTypeConversionMode enum value
+	ProresScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// ProresScanTypeConversionMode_Values returns all elements of the ProresScanTypeConversionMode enum
+func ProresScanTypeConversionMode_Values() []string {
+	return []string{
+		ProresScanTypeConversionModeInterlaced,
+		ProresScanTypeConversionModeInterlacedOptimize,
 	}
 }
 
@@ -28496,6 +28919,35 @@ func Vc3InterlaceMode_Values() []string {
 	return []string{
 		Vc3InterlaceModeInterlaced,
 		Vc3InterlaceModeProgressive,
+	}
+}
+
+// Use this setting for interlaced outputs, when your output frame rate is half
+// of your input frame rate. In this situation, choose Optimized interlacing
+// (INTERLACED_OPTIMIZE) to create a better quality interlaced output. In this
+// case, each progressive frame from the input corresponds to an interlaced
+// field in the output. Keep the default value, Basic interlacing (INTERLACED),
+// for all other output frame rates. With basic interlacing, MediaConvert performs
+// any frame rate conversion first and then interlaces the frames. When you
+// choose Optimized interlacing and you set your output frame rate to a value
+// that isn't suitable for optimized interlacing, MediaConvert automatically
+// falls back to basic interlacing. Required settings: To use optimized interlacing,
+// you must set Telecine (telecine) to None (NONE) or Soft (SOFT). You can't
+// use optimized interlacing for hard telecine outputs. You must also set Interlace
+// mode (interlaceMode) to a value other than Progressive (PROGRESSIVE).
+const (
+	// Vc3ScanTypeConversionModeInterlaced is a Vc3ScanTypeConversionMode enum value
+	Vc3ScanTypeConversionModeInterlaced = "INTERLACED"
+
+	// Vc3ScanTypeConversionModeInterlacedOptimize is a Vc3ScanTypeConversionMode enum value
+	Vc3ScanTypeConversionModeInterlacedOptimize = "INTERLACED_OPTIMIZE"
+)
+
+// Vc3ScanTypeConversionMode_Values returns all elements of the Vc3ScanTypeConversionMode enum
+func Vc3ScanTypeConversionMode_Values() []string {
+	return []string{
+		Vc3ScanTypeConversionModeInterlaced,
+		Vc3ScanTypeConversionModeInterlacedOptimize,
 	}
 }
 

@@ -133,7 +133,7 @@
       }
     },
     "CloudWatchMetricsDimension": {
-      "base": "<p> The dimension of a Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behaviour. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
+      "base": "<p> The dimension of a Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
       "refs": {
         "CloudWatchMetricsDimensions$member": null
       }
@@ -936,6 +936,12 @@
       "refs": {
         "DescribeResourceCollectionHealthRequest$ResourceCollectionType": "<p> An AWS resource collection type. This type specifies how analyzed AWS resources are defined. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>",
         "GetResourceCollectionRequest$ResourceCollectionType": "<p> The type of AWS resource collections to return. The one valid value is <code>CLOUD_FORMATION</code> for AWS CloudFormation stacks. </p>"
+      }
+    },
+    "ResourceHours": {
+      "base": null,
+      "refs": {
+        "DescribeAccountHealthResponse$ResourceHours": "<p>The number of Amazon DevOps Guru resource analysis hours billed to the current AWS account in the last hour. </p>"
       }
     },
     "ResourceIdString": {

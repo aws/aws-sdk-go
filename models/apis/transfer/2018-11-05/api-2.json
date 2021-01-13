@@ -359,6 +359,7 @@
       "type":"structure",
       "members":{
         "Certificate":{"shape":"Certificate"},
+        "Domain":{"shape":"Domain"},
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
         "HostKey":{"shape":"HostKey"},
@@ -389,6 +390,7 @@
         "HomeDirectoryType":{"shape":"HomeDirectoryType"},
         "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
         "Policy":{"shape":"Policy"},
+        "PosixProfile":{"shape":"PosixProfile"},
         "Role":{"shape":"Role"},
         "ServerId":{"shape":"ServerId"},
         "SshPublicKeyBody":{"shape":"SshPublicKeyBody"},
@@ -507,6 +509,7 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "Certificate":{"shape":"Certificate"},
+        "Domain":{"shape":"Domain"},
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
         "HostKeyFingerprint":{"shape":"HostKeyFingerprint"},
@@ -530,11 +533,19 @@
         "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
         "HomeDirectoryType":{"shape":"HomeDirectoryType"},
         "Policy":{"shape":"Policy"},
+        "PosixProfile":{"shape":"PosixProfile"},
         "Role":{"shape":"Role"},
         "SshPublicKeys":{"shape":"SshPublicKeys"},
         "Tags":{"shape":"Tags"},
         "UserName":{"shape":"UserName"}
       }
+    },
+    "Domain":{
+      "type":"string",
+      "enum":[
+        "S3",
+        "EFS"
+      ]
     },
     "EndpointDetails":{
       "type":"structure",
@@ -728,6 +739,7 @@
       "required":["Arn"],
       "members":{
         "Arn":{"shape":"Arn"},
+        "Domain":{"shape":"Domain"},
         "IdentityProviderType":{"shape":"IdentityProviderType"},
         "EndpointType":{"shape":"EndpointType"},
         "LoggingRole":{"shape":"Role"},
@@ -786,6 +798,23 @@
       "type":"string",
       "max":2048
     },
+    "PosixId":{
+      "type":"long",
+      "max":4294967295,
+      "min":0
+    },
+    "PosixProfile":{
+      "type":"structure",
+      "required":[
+        "Uid",
+        "Gid"
+      ],
+      "members":{
+        "Uid":{"shape":"PosixId"},
+        "Gid":{"shape":"PosixId"},
+        "SecondaryGids":{"shape":"SecondaryGids"}
+      }
+    },
     "Protocol":{
       "type":"string",
       "enum":[
@@ -837,6 +866,12 @@
       "max":2048,
       "min":20,
       "pattern":"arn:.*role/.*"
+    },
+    "SecondaryGids":{
+      "type":"list",
+      "member":{"shape":"PosixId"},
+      "max":16,
+      "min":0
     },
     "SecurityGroupId":{
       "type":"string",
@@ -1067,6 +1102,7 @@
         "HomeDirectoryType":{"shape":"HomeDirectoryType"},
         "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
         "Policy":{"shape":"Policy"},
+        "PosixProfile":{"shape":"PosixProfile"},
         "Role":{"shape":"Role"},
         "ServerId":{"shape":"ServerId"},
         "UserName":{"shape":"UserName"}

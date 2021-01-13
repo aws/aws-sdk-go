@@ -6903,6 +6903,21 @@ const (
 
 	// PartitionInstanceTypeSearchM32xlarge is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearchM32xlarge = "search.m3.2xlarge"
+
+	// PartitionInstanceTypeSearchSmall is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchSmall = "search.small"
+
+	// PartitionInstanceTypeSearchMedium is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchMedium = "search.medium"
+
+	// PartitionInstanceTypeSearchLarge is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchLarge = "search.large"
+
+	// PartitionInstanceTypeSearchXlarge is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchXlarge = "search.xlarge"
+
+	// PartitionInstanceTypeSearch2xlarge is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearch2xlarge = "search.2xlarge"
 )
 
 // PartitionInstanceType_Values returns all elements of the PartitionInstanceType enum
@@ -6916,6 +6931,11 @@ func PartitionInstanceType_Values() []string {
 		PartitionInstanceTypeSearchM3Large,
 		PartitionInstanceTypeSearchM3Xlarge,
 		PartitionInstanceTypeSearchM32xlarge,
+		PartitionInstanceTypeSearchSmall,
+		PartitionInstanceTypeSearchMedium,
+		PartitionInstanceTypeSearchLarge,
+		PartitionInstanceTypeSearchXlarge,
+		PartitionInstanceTypeSearch2xlarge,
 	}
 }
 

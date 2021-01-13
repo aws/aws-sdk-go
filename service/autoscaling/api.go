@@ -727,6 +727,9 @@ func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGrou
 
 // CreateAutoScalingGroup API operation for Auto Scaling.
 //
+// We strongly recommend using a launch template when calling this operation
+// to ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.
+//
 // Creates an Auto Scaling group with the specified name and attributes.
 //
 // If you exceed your maximum limit of Auto Scaling groups, the call fails.
@@ -5600,6 +5603,9 @@ func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGrou
 
 // UpdateAutoScalingGroup API operation for Auto Scaling.
 //
+// We strongly recommend that all Auto Scaling groups use launch templates to
+// ensure full functionality for Amazon EC2 Auto Scaling and Amazon EC2.
+//
 // Updates the configuration for the specified Auto Scaling group.
 //
 // To update an Auto Scaling group, specify the name of the group and the parameter
@@ -6572,8 +6578,8 @@ type CreateAutoScalingGroupInput struct {
 	// or InstanceId).
 	LaunchConfigurationName *string `min:"1" type:"string"`
 
-	// Parameters used to specify the launch template (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-launchtemplate.html)
-	// and version to use to launch instances.
+	// Parameters used to specify the launch template and version to use to launch
+	// instances.
 	//
 	// Conditional: You must specify either a launch template (LaunchTemplate or
 	// MixedInstancesPolicy) or a launch configuration (LaunchConfigurationName
@@ -7089,9 +7095,12 @@ type CreateLaunchConfigurationInput struct {
 	// running instances is higher than the current Spot price.
 	SpotPrice *string `min:"1" type:"string"`
 
-	// The Base64-encoded user data to make available to the launched EC2 instances.
-	// For more information, see Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
-	// in the Amazon EC2 User Guide for Linux Instances.
+	// The user data to make available to the launched EC2 instances. For more information,
+	// see Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+	// (Linux) and Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html)
+	// (Windows). If you are using a command line tool, base64-encoding is performed
+	// for you, and you can load the text from a file. Otherwise, you must provide
+	// base64-encoded text. User data is limited to 16 KB.
 	UserData *string `type:"string"`
 }
 
@@ -10651,7 +10660,8 @@ type Instance struct {
 	LaunchTemplate *LaunchTemplateSpecification `type:"structure"`
 
 	// A description of the current lifecycle state. The Quarantined state is not
-	// used.
+	// used. For information about lifecycle states, see Instance lifecycle (https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html)
+	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// LifecycleState is a required field
 	LifecycleState *string `type:"string" required:"true" enum:"LifecycleState"`
@@ -10770,7 +10780,13 @@ type InstanceDetails struct {
 	// The launch template for the instance.
 	LaunchTemplate *LaunchTemplateSpecification `type:"structure"`
 
-	// The lifecycle state for the instance.
+	// The lifecycle state for the instance. The Quarantined state is not used.
+	// For information about lifecycle states, see Instance lifecycle (https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroupLifecycle.html)
+	// in the Amazon EC2 Auto Scaling User Guide.
+	//
+	// Valid Values: Pending | Pending:Wait | Pending:Proceed | Quarantined | InService
+	// | Terminating | Terminating:Wait | Terminating:Proceed | Terminated | Detaching
+	// | Detached | EnteringStandby | Standby
 	//
 	// LifecycleState is a required field
 	LifecycleState *string `min:"1" type:"string" required:"true"`
@@ -10875,8 +10891,6 @@ type InstanceMetadataOptions struct {
 	// larger the number, the further instance metadata requests can travel.
 	//
 	// Default: 1
-	//
-	// Possible values: Integers from 1 to 64
 	HttpPutResponseHopLimit *int64 `min:"1" type:"integer"`
 
 	// The state of token usage for your instance metadata requests. If the parameter
@@ -11294,9 +11308,12 @@ type LaunchConfiguration struct {
 	// in the Amazon EC2 Auto Scaling User Guide.
 	SpotPrice *string `min:"1" type:"string"`
 
-	// The Base64-encoded user data to make available to the launched EC2 instances.
-	// For more information, see Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
-	// in the Amazon EC2 User Guide for Linux Instances.
+	// The user data to make available to the launched EC2 instances. For more information,
+	// see Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
+	// (Linux) and Instance metadata and user data (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html)
+	// (Windows). If you are using a command line tool, base64-encoding is performed
+	// for you, and you can load the text from a file. Otherwise, you must provide
+	// base64-encoded text. User data is limited to 16 KB.
 	UserData *string `type:"string"`
 }
 
@@ -11498,8 +11515,10 @@ func (s *LaunchTemplate) SetOverrides(v []*LaunchTemplateOverrides) *LaunchTempl
 }
 
 // Describes an override for a launch template. The maximum number of instance
-// types that can be associated with an Auto Scaling group is 20. For more information,
-// see Configuring overrides (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-override-options.html)
+// types that can be associated with an Auto Scaling group is 40. The maximum
+// number of distinct launch templates you can define for an Auto Scaling group
+// is 20. For more information about configuring overrides, see Configuring
+// overrides (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-override-options.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 type LaunchTemplateOverrides struct {
 	_ struct{} `type:"structure"`

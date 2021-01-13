@@ -3635,9 +3635,16 @@ func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissio
 //   * InvalidDocument
 //   The specified document does not exist.
 //
+//   * InvalidNextToken
+//   The specified token is not valid.
+//
 //   * InvalidPermissionType
 //   The permission type is not supported. Share is the only supported permission
 //   type.
+//
+//   * InvalidDocumentOperation
+//   You attempted to delete a document while it is still shared. You must stop
+//   sharing the document before you can delete it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DescribeDocumentPermission
 func (c *SSM) DescribeDocumentPermission(input *DescribeDocumentPermissionInput) (*DescribeDocumentPermissionOutput, error) {
@@ -14405,7 +14412,7 @@ func (c *SSM) UpdateMaintenanceWindowTaskRequest(input *UpdateMaintenanceWindowT
 // One or more targets must be specified for maintenance window Run Command-type
 // tasks. Depending on the task, targets are optional for other maintenance
 // window task types (Automation, AWS Lambda, and AWS Step Functions). For more
-// information about running tasks that do not specify targets, see see Registering
+// information about running tasks that do not specify targets, see Registering
 // maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
 // in the AWS Systems Manager User Guide.
 //
@@ -17389,9 +17396,7 @@ func (s *AutomationExecution) SetTargets(v []*Target) *AutomationExecution {
 type AutomationExecutionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// One or more keys to limit the results. Valid filter keys include the following:
-	// DocumentNamePrefix, ExecutionStatus, ExecutionId, ParentExecutionId, CurrentAction,
-	// StartTimeBefore, StartTimeAfter, TargetResourceGroup.
+	// One or more keys to limit the results.
 	//
 	// Key is a required field
 	Key *string `type:"string" required:"true" enum:"AutomationExecutionFilterKey"`
@@ -23234,10 +23239,19 @@ func (s *DescribeDocumentOutput) SetDocument(v *DocumentDescription) *DescribeDo
 type DescribeDocumentPermissionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
 	// The name of the document for which you are the owner.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a previous call.)
+	NextToken *string `type:"string"`
 
 	// The permission type for the document. The permission type can be Share.
 	//
@@ -23258,6 +23272,9 @@ func (s DescribeDocumentPermissionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeDocumentPermissionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeDocumentPermissionInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -23271,9 +23288,21 @@ func (s *DescribeDocumentPermissionInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeDocumentPermissionInput) SetMaxResults(v int64) *DescribeDocumentPermissionInput {
+	s.MaxResults = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DescribeDocumentPermissionInput) SetName(v string) *DescribeDocumentPermissionInput {
 	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDocumentPermissionInput) SetNextToken(v string) *DescribeDocumentPermissionInput {
+	s.NextToken = &v
 	return s
 }
 
@@ -23293,6 +23322,10 @@ type DescribeDocumentPermissionOutput struct {
 	// A list of AWS accounts where the current document is shared and the version
 	// shared with each account.
 	AccountSharingInfoList []*AccountSharingInfo `type:"list"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `type:"string"`
 }
 
 // String returns the string representation
@@ -23314,6 +23347,12 @@ func (s *DescribeDocumentPermissionOutput) SetAccountIds(v []*string) *DescribeD
 // SetAccountSharingInfoList sets the AccountSharingInfoList field's value.
 func (s *DescribeDocumentPermissionOutput) SetAccountSharingInfoList(v []*AccountSharingInfo) *DescribeDocumentPermissionOutput {
 	s.AccountSharingInfoList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDocumentPermissionOutput) SetNextToken(v string) *DescribeDocumentPermissionOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -30284,9 +30323,11 @@ type GetParametersByPathInput struct {
 	// Name, Path, and Tier.
 	ParameterFilters []*ParameterStringFilter `type:"list"`
 
-	// The hierarchy for the parameter. Hierarchies start with a forward slash (/)
-	// and end with the parameter name. A parameter name hierarchy can have a maximum
-	// of 15 levels. Here is an example of a hierarchy: /Finance/Prod/IAD/WinServ2016/license33
+	// The hierarchy for the parameter. Hierarchies start with a forward slash (/).
+	// The hierachy is the parameter name except the last part of the parameter.
+	// For the API call to succeeed, the last part of the parameter name cannot
+	// be in the path. A parameter name hierarchy can have a maximum of 15 levels.
+	// Here is an example of a hierarchy: /Finance/Prod/IAD/WinServ2016/license33
 	//
 	// Path is a required field
 	Path *string `min:"1" type:"string" required:"true"`
@@ -42434,11 +42475,14 @@ type PatchSource struct {
 	//
 	// [main]
 	//
-	// cachedir=/var/cache/yum/$basesearch$releasever
+	// name=MyCustomRepository
 	//
-	// keepcache=0
+	// baseurl=https://my-custom-repository
 	//
-	// debuglevel=2
+	// enabled=1
+	//
+	// For information about other options available for your yum repository configuration,
+	// see dnf.conf(5) (https://man7.org/linux/man-pages/man5/dnf.conf.5.html).
 	//
 	// Configuration is a required field
 	Configuration *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -43688,7 +43732,7 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// One or more targets must be specified for maintenance window Run Command-type
 	// tasks. Depending on the task, targets are optional for other maintenance
 	// window task types (Automation, AWS Lambda, and AWS Step Functions). For more
-	// information about running tasks that do not specify targets, see see Registering
+	// information about running tasks that do not specify targets, see Registering
 	// maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
 	// in the AWS Systems Manager User Guide.
 	//
@@ -45750,8 +45794,11 @@ type SendCommandInput struct {
 	// Sha1 hashes have been deprecated.
 	DocumentHashType *string `type:"string" enum:"DocumentHashType"`
 
-	// Required. The name of the Systems Manager document to run. This can be a
-	// public document or a custom document.
+	// The name of the Systems Manager document to run. This can be a public document
+	// or a custom document. To run a shared document belonging to another account,
+	// specify the document ARN. For more information about how to use shared documents,
+	// see Using shared SSM documents (https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-using-shared.html)
+	// in the AWS Systems Manager User Guide.
 	//
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
@@ -46519,7 +46566,11 @@ type StartAutomationExecutionInput struct {
 	// enforces the UUID format, and can't be reused.
 	ClientToken *string `min:"36" type:"string"`
 
-	// The name of the Automation document to use for this execution.
+	// The name of the Systems Manager document to run. This can be a public document
+	// or a custom document. To run a shared document belonging to another account,
+	// specify the document ARN. For more information about how to use shared documents,
+	// see Using shared SSM documents (https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-using-shared.html)
+	// in the AWS Systems Manager User Guide.
 	//
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
@@ -47576,7 +47627,7 @@ func (s *Tag) SetValue(v string) *Tag {
 // One or more targets must be specified for maintenance window Run Command-type
 // tasks. Depending on the task, targets are optional for other maintenance
 // window task types (Automation, AWS Lambda, and AWS Step Functions). For more
-// information about running tasks that do not specify targets, see see Registering
+// information about running tasks that do not specify targets, see Registering
 // maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
 // in the AWS Systems Manager User Guide.
 //
@@ -49776,7 +49827,7 @@ type UpdateMaintenanceWindowTaskInput struct {
 	// One or more targets must be specified for maintenance window Run Command-type
 	// tasks. Depending on the task, targets are optional for other maintenance
 	// window task types (Automation, AWS Lambda, and AWS Step Functions). For more
-	// information about running tasks that do not specify targets, see see Registering
+	// information about running tasks that do not specify targets, see Registering
 	// maintenance window tasks without targets (https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html)
 	// in the AWS Systems Manager User Guide.
 	Targets []*Target `type:"list"`

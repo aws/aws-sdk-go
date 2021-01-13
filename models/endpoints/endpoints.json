@@ -476,6 +476,11 @@
           }
         }
       },
+      "api.fleethub.iot" : {
+        "endpoints" : {
+          "us-east-1" : { }
+        }
+      },
       "api.mediatailor" : {
         "endpoints" : {
           "ap-northeast-1" : { },

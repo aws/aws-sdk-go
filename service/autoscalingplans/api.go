@@ -672,10 +672,16 @@ type CreateScalingPlanInput struct {
 	// A CloudFormation stack or set of tags. You can create one scaling plan per
 	// application source.
 	//
+	// For more information, see ApplicationSource (https://docs.aws.amazon.com/autoscaling/plans/APIReference/API_ApplicationSource.html)
+	// in the AWS Auto Scaling API Reference.
+	//
 	// ApplicationSource is a required field
 	ApplicationSource *ApplicationSource `type:"structure" required:"true"`
 
 	// The scaling instructions.
+	//
+	// For more information, see ScalingInstruction (https://docs.aws.amazon.com/autoscaling/plans/APIReference/API_ScalingInstruction.html)
+	// in the AWS Auto Scaling API Reference.
 	//
 	// ScalingInstructions is a required field
 	ScalingInstructions []*ScalingInstruction `type:"list" required:"true"`
@@ -755,9 +761,8 @@ func (s *CreateScalingPlanInput) SetScalingPlanName(v string) *CreateScalingPlan
 type CreateScalingPlanOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The version number of the scaling plan. This value is always 1.
-	//
-	// Currently, you cannot specify multiple scaling plan versions.
+	// The version number of the scaling plan. This value is always 1. Currently,
+	// you cannot have multiple scaling plan versions.
 	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
@@ -784,8 +789,7 @@ func (s *CreateScalingPlanOutput) SetScalingPlanVersion(v int64) *CreateScalingP
 //
 // For predictive scaling to work with a customized load metric specification,
 // AWS Auto Scaling needs access to the Sum and Average statistics that CloudWatch
-// computes from metric data. Statistics are calculations used to aggregate
-// data over specified time periods.
+// computes from metric data.
 //
 // When you choose a load metric, make sure that the required Sum and Average
 // statistics for your metric are available in CloudWatch and that they provide
@@ -797,9 +801,20 @@ func (s *CreateScalingPlanOutput) SetScalingPlanVersion(v int64) *CreateScalingP
 // group, then the Average statistic for the specified metric must represent
 // the average request count processed by each instance of the group.
 //
+// If you publish your own metrics, you can aggregate the data points at a given
+// interval and then publish the aggregated data points to CloudWatch. Before
+// AWS Auto Scaling generates the forecast, it sums up all the metric data points
+// that occurred within each hour to match the granularity period that is used
+// in the forecast (60 minutes).
+//
 // For information about terminology, available metrics, or how to publish new
 // metrics, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
 // in the Amazon CloudWatch User Guide.
+//
+// After creating your scaling plan, you can use the AWS Auto Scaling console
+// to visualize forecasts for the specified metric. For more information, see
+// View Scaling Information for a Resource (https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-create-scaling-plan.html#gs-view-resource)
+// in the AWS Auto Scaling User Guide.
 type CustomizedLoadMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -819,7 +834,7 @@ type CustomizedLoadMetricSpecification struct {
 	// Namespace is a required field
 	Namespace *string `type:"string" required:"true"`
 
-	// The statistic of the metric. Currently, the value must always be Sum.
+	// The statistic of the metric. The only valid value is Sum.
 	//
 	// Statistic is a required field
 	Statistic *string `type:"string" required:"true" enum:"MetricStatistic"`
@@ -913,7 +928,9 @@ func (s *CustomizedLoadMetricSpecification) SetUnit(v string) *CustomizedLoadMet
 //    number of capacity units. That is, the value of the metric should decrease
 //    when capacity increases.
 //
-// For more information about CloudWatch, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+// For information about terminology, available metrics, or how to publish new
+// metrics, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html)
+// in the Amazon CloudWatch User Guide.
 type CustomizedScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -1052,7 +1069,8 @@ type DeleteScalingPlanInput struct {
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
-	// The version number of the scaling plan.
+	// The version number of the scaling plan. Currently, the only valid value is
+	// 1.
 	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
@@ -1128,7 +1146,8 @@ type DescribeScalingPlanResourcesInput struct {
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
-	// The version number of the scaling plan.
+	// The version number of the scaling plan. Currently, the only valid value is
+	// 1.
 	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
@@ -1238,8 +1257,11 @@ type DescribeScalingPlansInput struct {
 	// you cannot specify scaling plan names.
 	ScalingPlanNames []*string `type:"list"`
 
-	// The version number of the scaling plan. If you specify a scaling plan version,
-	// you must also specify a scaling plan name.
+	// The version number of the scaling plan. Currently, the only valid value is
+	// 1.
+	//
+	// If you specify a scaling plan version, you must also specify a scaling plan
+	// name.
 	ScalingPlanVersion *int64 `type:"long"`
 }
 
@@ -1366,31 +1388,14 @@ type GetScalingPlanResourceForecastDataInput struct {
 	// ForecastDataType is a required field
 	ForecastDataType *string `type:"string" required:"true" enum:"ForecastDataType"`
 
-	// The ID of the resource. This string consists of the resource type and unique
-	// identifier.
-	//
-	//    * Auto Scaling group - The resource type is autoScalingGroup and the unique
-	//    identifier is the name of the Auto Scaling group. Example: autoScalingGroup/my-asg.
-	//
-	//    * ECS service - The resource type is service and the unique identifier
-	//    is the cluster name and service name. Example: service/default/sample-webapp.
-	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
-	//
-	//    * DynamoDB table - The resource type is table and the unique identifier
-	//    is the resource ID. Example: table/my-table.
-	//
-	//    * DynamoDB global secondary index - The resource type is index and the
-	//    unique identifier is the resource ID. Example: table/my-table/index/my-table-index.
-	//
-	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
-	//    is the cluster name. Example: cluster:my-db-cluster.
+	// The ID of the resource. This string consists of a prefix (autoScalingGroup)
+	// followed by the name of a specified Auto Scaling group (my-asg). Example:
+	// autoScalingGroup/my-asg.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// The scalable dimension for the resource.
+	// The scalable dimension for the resource. The only valid value is autoscaling:autoScalingGroup:DesiredCapacity.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -1400,12 +1405,13 @@ type GetScalingPlanResourceForecastDataInput struct {
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
-	// The version number of the scaling plan.
+	// The version number of the scaling plan. Currently, the only valid value is
+	// 1.
 	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`
 
-	// The namespace of the AWS service.
+	// The namespace of the AWS service. The only valid value is autoscaling.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -1816,6 +1822,11 @@ func (s *ObjectNotFoundException) RequestID() string {
 }
 
 // Represents a predefined metric that can be used for predictive scaling.
+//
+// After creating your scaling plan, you can use the AWS Auto Scaling console
+// to visualize forecasts for the specified metric. For more information, see
+// View Scaling Information for a Resource (https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-create-scaling-plan.html#gs-view-resource)
+// in the AWS Auto Scaling User Guide.
 type PredefinedLoadMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -1825,18 +1836,28 @@ type PredefinedLoadMetricSpecification struct {
 	PredefinedLoadMetricType *string `type:"string" required:"true" enum:"LoadMetricType"`
 
 	// Identifies the resource associated with the metric type. You can't specify
-	// a resource label unless the metric type is ALBRequestCountPerTarget and there
-	// is a target group for an Application Load Balancer attached to the Auto Scaling
-	// group.
+	// a resource label unless the metric type is ALBTargetGroupRequestCount and
+	// there is a target group for an Application Load Balancer attached to the
+	// Auto Scaling group.
 	//
-	// The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
+	// You create the resource label by appending the final portion of the load
+	// balancer ARN and the final portion of the target group ARN into a single
+	// value, separated by a forward slash (/). The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
 	// where:
 	//
 	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
-	//    the load balancer ARN.
+	//    the load balancer ARN
 	//
 	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
 	//    of the target group ARN.
+	//
+	// This is an example: app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
+	//
+	// To find the ARN for an Application Load Balancer, use the DescribeLoadBalancers
+	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
+	// API operation. To find the ARN for the target group, use the DescribeTargetGroups
+	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html)
+	// API operation.
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
@@ -1894,14 +1915,24 @@ type PredefinedScalingMetricSpecification struct {
 	// is a target group for an Application Load Balancer attached to the Auto Scaling
 	// group, Spot Fleet request, or ECS service.
 	//
-	// The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
+	// You create the resource label by appending the final portion of the load
+	// balancer ARN and the final portion of the target group ARN into a single
+	// value, separated by a forward slash (/). The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
 	// where:
 	//
 	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
-	//    the load balancer ARN.
+	//    the load balancer ARN
 	//
 	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
 	//    of the target group ARN.
+	//
+	// This is an example: app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
+	//
+	// To find the ARN for an Application Load Balancer, use the DescribeLoadBalancers
+	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
+	// API operation. To find the ARN for the target group, use the DescribeTargetGroups
+	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeTargetGroups.html)
+	// API operation.
 	ResourceLabel *string `min:"1" type:"string"`
 }
 
@@ -1943,12 +1974,8 @@ func (s *PredefinedScalingMetricSpecification) SetResourceLabel(v string) *Prede
 	return s
 }
 
-// Describes a scaling instruction for a scalable resource.
-//
-// The scaling instruction is used in combination with a scaling plan, which
-// is a set of instructions for configuring dynamic scaling and predictive scaling
-// for the scalable resources in your application. Each scaling instruction
-// applies to one resource.
+// Describes a scaling instruction for a scalable resource in a scaling plan.
+// Each scaling instruction applies to one resource.
 //
 // AWS Auto Scaling creates target tracking scaling policies based on the scaling
 // instructions. Target tracking scaling policies adjust the capacity of your
@@ -1966,9 +1993,9 @@ func (s *PredefinedScalingMetricSpecification) SetResourceLabel(v string) *Prede
 //
 // We recommend waiting a minimum of 24 hours after creating an Auto Scaling
 // group to configure predictive scaling. At minimum, there must be 24 hours
-// of historical data to generate a forecast.
-//
-// For more information, see Getting Started with AWS Auto Scaling (https://docs.aws.amazon.com/autoscaling/plans/userguide/auto-scaling-getting-started.html).
+// of historical data to generate a forecast. For more information, see Best
+// Practices for AWS Auto Scaling (https://docs.aws.amazon.com/autoscaling/plans/userguide/gs-best-practices.html)
+// in the AWS Auto Scaling User Guide.
 type ScalingInstruction struct {
 	_ struct{} `type:"structure"`
 
@@ -2126,15 +2153,8 @@ type ScalingInstruction struct {
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
 
-	// The structure that defines new target tracking configurations (up to 10).
-	// Each of these structures includes a specific scaling metric and a target
-	// value for the metric, along with various parameters to use with dynamic scaling.
-	//
-	// With predictive scaling and dynamic scaling, the resource scales based on
-	// the target tracking configuration that provides the largest capacity for
-	// both scale in and scale out.
-	//
-	// Condition: The scaling metric must be unique across target tracking configurations.
+	// The target tracking configurations (up to 10). Each of these structures must
+	// specify a unique scaling metric and a target value for the metric.
 	//
 	// TargetTrackingConfigurations is a required field
 	TargetTrackingConfigurations []*TargetTrackingConfiguration `type:"list" required:"true"`
@@ -2289,7 +2309,8 @@ func (s *ScalingInstruction) SetTargetTrackingConfigurations(v []*TargetTracking
 type ScalingPlan struct {
 	_ struct{} `type:"structure"`
 
-	// The application source.
+	// A CloudFormation stack or a set of tags. You can create one scaling plan
+	// per application source.
 	//
 	// ApplicationSource is a required field
 	ApplicationSource *ApplicationSource `type:"structure" required:"true"`
@@ -2671,29 +2692,32 @@ type TargetTrackingConfiguration struct {
 	// metric.
 	PredefinedScalingMetricSpecification *PredefinedScalingMetricSpecification `type:"structure"`
 
-	// The amount of time, in seconds, after a scale in activity completes before
-	// another scale in activity can start. This value is not used if the scalable
+	// The amount of time, in seconds, after a scale-in activity completes before
+	// another scale-in activity can start. This property is not used if the scalable
 	// resource is an Auto Scaling group.
 	//
-	// The cooldown period is used to block subsequent scale in requests until it
-	// has expired. The intention is to scale in conservatively to protect your
-	// application's availability. However, if another alarm triggers a scale-out
-	// policy during the cooldown period after a scale-in, AWS Auto Scaling scales
-	// out your scalable target immediately.
+	// With the scale-in cooldown period, the intention is to scale in conservatively
+	// to protect your application’s availability, so scale-in activities are
+	// blocked until the cooldown period has expired. However, if another alarm
+	// triggers a scale-out activity during the scale-in cooldown period, Auto Scaling
+	// scales out the target immediately. In this case, the scale-in cooldown period
+	// stops and doesn't complete.
 	ScaleInCooldown *int64 `type:"integer"`
 
-	// The amount of time, in seconds, after a scale-out activity completes before
-	// another scale-out activity can start. This value is not used if the scalable
-	// resource is an Auto Scaling group.
+	// The amount of time, in seconds, to wait for a previous scale-out activity
+	// to take effect. This property is not used if the scalable resource is an
+	// Auto Scaling group.
 	//
-	// While the cooldown period is in effect, the capacity that has been added
-	// by the previous scale-out event that initiated the cooldown is calculated
-	// as part of the desired capacity for the next scale out. The intention is
-	// to continuously (but not excessively) scale out.
+	// With the scale-out cooldown period, the intention is to continuously (but
+	// not excessively) scale out. After Auto Scaling successfully scales out using
+	// a target tracking scaling policy, it starts to calculate the cooldown time.
+	// The scaling policy won't increase the desired capacity again unless either
+	// a larger scale out is triggered or the cooldown period ends.
 	ScaleOutCooldown *int64 `type:"integer"`
 
-	// The target value for the metric. The range is 8.515920e-109 to 1.174271e+108
-	// (Base 10) or 2e-360 to 2e360 (Base 2).
+	// The target value for the metric. Although this property accepts numbers of
+	// type Double, it won't accept values that are either too small or too large.
+	// Values must be in the range of -2^360 to 2^360.
 	//
 	// TargetValue is a required field
 	TargetValue *float64 `type:"double" required:"true"`
@@ -2778,9 +2802,15 @@ type UpdateScalingPlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// A CloudFormation stack or set of tags.
+	//
+	// For more information, see ApplicationSource (https://docs.aws.amazon.com/autoscaling/plans/APIReference/API_ApplicationSource.html)
+	// in the AWS Auto Scaling API Reference.
 	ApplicationSource *ApplicationSource `type:"structure"`
 
 	// The scaling instructions.
+	//
+	// For more information, see ScalingInstruction (https://docs.aws.amazon.com/autoscaling/plans/APIReference/API_ScalingInstruction.html)
+	// in the AWS Auto Scaling API Reference.
 	ScalingInstructions []*ScalingInstruction `type:"list"`
 
 	// The name of the scaling plan.
@@ -2788,7 +2818,8 @@ type UpdateScalingPlanInput struct {
 	// ScalingPlanName is a required field
 	ScalingPlanName *string `min:"1" type:"string" required:"true"`
 
-	// The version number of the scaling plan.
+	// The version number of the scaling plan. The only valid value is 1. Currently,
+	// you cannot have multiple scaling plan versions.
 	//
 	// ScalingPlanVersion is a required field
 	ScalingPlanVersion *int64 `type:"long" required:"true"`

@@ -3832,10 +3832,11 @@ type PutScheduledActionInput struct {
 	// For rate expressions, value is a positive integer and unit is minute | minutes
 	// | hour | hours | day | days.
 	//
-	// For more information about cron expressions, see Cron Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
-	// in the Amazon CloudWatch Events User Guide.
+	// For cron expressions, fields is a cron expression. The supported cron format
+	// consists of six fields separated by white spaces: [Minutes] [Hours] [Day_of_Month]
+	// [Month] [Day_of_Week] [Year].
 	//
-	// For examples of using these expressions, see Scheduled Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)
+	// For more information and examples, see Scheduled Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)
 	// in the Application Auto Scaling User Guide.
 	Schedule *string `min:"1" type:"string"`
 
@@ -3963,9 +3964,8 @@ type RegisterScalableTargetInput struct {
 
 	// The maximum value that you plan to scale out to. When a scaling policy is
 	// in effect, Application Auto Scaling can scale out (expand) as needed to the
-	// maximum capacity limit in response to changing demand.
-	//
-	// This parameter is required if you are registering a scalable target.
+	// maximum capacity limit in response to changing demand. This property is required
+	// when registering a new scalable target.
 	//
 	// Although you can specify a large maximum capacity, note that service quotas
 	// may impose lower limits. Each service has its own default quotas for the
@@ -3978,13 +3978,13 @@ type RegisterScalableTargetInput struct {
 
 	// The minimum value that you plan to scale in to. When a scaling policy is
 	// in effect, Application Auto Scaling can scale in (contract) as needed to
-	// the minimum capacity limit in response to changing demand.
+	// the minimum capacity limit in response to changing demand. This property
+	// is required when registering a new scalable target.
 	//
-	// This parameter is required if you are registering a scalable target. For
-	// certain resources, the minimum value allowed is 0. This includes Lambda provisioned
-	// concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR clusters,
-	// and custom resources. For all other resources, the minimum value allowed
-	// is 1.
+	// For certain resources, the minimum value allowed is 0. This includes Lambda
+	// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
+	// clusters, and custom resources. For all other resources, the minimum value
+	// allowed is 1.
 	MinCapacity *int64 `type:"integer"`
 
 	// The identifier of the resource that is associated with the scalable target.
@@ -5066,10 +5066,11 @@ type ScheduledAction struct {
 	// For rate expressions, value is a positive integer and unit is minute | minutes
 	// | hour | hours | day | days.
 	//
-	// For more information about cron expressions, see Cron Expressions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions)
-	// in the Amazon CloudWatch Events User Guide.
+	// For cron expressions, fields is a cron expression. The supported cron format
+	// consists of six fields separated by white spaces: [Minutes] [Hours] [Day_of_Month]
+	// [Month] [Day_of_Week] [Year].
 	//
-	// For examples of using these expressions, see Scheduled Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)
+	// For more information and examples, see Scheduled Scaling (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-scheduled-scaling.html)
 	// in the Application Auto Scaling User Guide.
 	//
 	// Schedule is a required field
@@ -5565,8 +5566,12 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	//    * Amazon MSK cluster storage
 	ScaleOutCooldown *int64 `type:"integer"`
 
-	// The target value for the metric. The range is 8.515920e-109 to 1.174271e+108
-	// (Base 10) or 2e-360 to 2e360 (Base 2).
+	// The target value for the metric. Although this property accepts numbers of
+	// type Double, it won't accept values that are either too small or too large.
+	// Values must be in the range of -2^360 to 2^360. The value must be a valid
+	// number based on the choice of metric. For example, if the metric is CPU utilization,
+	// then the target value is a percent value that represents how much of the
+	// CPU can be used before scaling out.
 	//
 	// TargetValue is a required field
 	TargetValue *float64 `type:"double" required:"true"`

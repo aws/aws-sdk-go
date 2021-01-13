@@ -1586,7 +1586,8 @@
       "enum": [
         "CLASS_50",
         "CLASS_100",
-        "CLASS_200"
+        "CLASS_200",
+        "CLASS_4K_2K"
       ]
     },
     "AvcIntraFramerateControl": {
@@ -1614,12 +1615,23 @@
         "FOLLOW_BOTTOM_FIELD"
       ]
     },
+    "AvcIntraScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
     "AvcIntraSettings": {
       "type": "structure",
       "members": {
         "AvcIntraClass": {
           "shape": "AvcIntraClass",
           "locationName": "avcIntraClass"
+        },
+        "AvcIntraUhdSettings": {
+          "shape": "AvcIntraUhdSettings",
+          "locationName": "avcIntraUhdSettings"
         },
         "FramerateControl": {
           "shape": "AvcIntraFramerateControl",
@@ -1640,6 +1652,10 @@
         "InterlaceMode": {
           "shape": "AvcIntraInterlaceMode",
           "locationName": "interlaceMode"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "AvcIntraScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
         },
         "SlowPal": {
           "shape": "AvcIntraSlowPal",
@@ -1664,6 +1680,22 @@
         "NONE",
         "HARD"
       ]
+    },
+    "AvcIntraUhdQualityTuningLevel": {
+      "type": "string",
+      "enum": [
+        "SINGLE_PASS",
+        "MULTI_PASS"
+      ]
+    },
+    "AvcIntraUhdSettings": {
+      "type": "structure",
+      "members": {
+        "QualityTuningLevel": {
+          "shape": "AvcIntraUhdQualityTuningLevel",
+          "locationName": "qualityTuningLevel"
+        }
+      }
     },
     "BadRequestException": {
       "type": "structure",
@@ -2240,6 +2272,13 @@
         "MATCH_VIDEO_DURATION"
       ]
     },
+    "CmfcIFrameOnlyManifest": {
+      "type": "string",
+      "enum": [
+        "INCLUDE",
+        "EXCLUDE"
+      ]
+    },
     "CmfcScte35Esam": {
       "type": "string",
       "enum": [
@@ -2260,6 +2299,10 @@
         "AudioDuration": {
           "shape": "CmfcAudioDuration",
           "locationName": "audioDuration"
+        },
+        "IFrameOnlyManifest": {
+          "shape": "CmfcIFrameOnlyManifest",
+          "locationName": "iFrameOnlyManifest"
         },
         "Scte35Esam": {
           "shape": "CmfcScte35Esam",
@@ -3929,6 +3972,13 @@
         "ENABLED"
       ]
     },
+    "H264ScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
     "H264SceneChangeDetect": {
       "type": "string",
       "enum": [
@@ -4059,6 +4109,10 @@
         "RepeatPps": {
           "shape": "H264RepeatPps",
           "locationName": "repeatPps"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "H264ScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
         },
         "SceneChangeDetect": {
           "shape": "H264SceneChangeDetect",
@@ -4292,6 +4346,13 @@
         "OFF"
       ]
     },
+    "H265ScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
     "H265SceneChangeDetect": {
       "type": "string",
       "enum": [
@@ -4418,6 +4479,10 @@
         "SampleAdaptiveOffsetFilterMode": {
           "shape": "H265SampleAdaptiveOffsetFilterMode",
           "locationName": "sampleAdaptiveOffsetFilterMode"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "H265ScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
         },
         "SceneChangeDetect": {
           "shape": "H265SceneChangeDetect",
@@ -6709,6 +6774,13 @@
         "CBR"
       ]
     },
+    "Mpeg2ScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
     "Mpeg2SceneChangeDetect": {
       "type": "string",
       "enum": [
@@ -6814,6 +6886,10 @@
         "RateControlMode": {
           "shape": "Mpeg2RateControlMode",
           "locationName": "rateControlMode"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "Mpeg2ScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
         },
         "SceneChangeDetect": {
           "shape": "Mpeg2SceneChangeDetect",
@@ -7252,6 +7328,10 @@
         "InputChannels": {
           "shape": "__listOf__integerMinNegative60Max6",
           "locationName": "inputChannels"
+        },
+        "InputChannelsFineTune": {
+          "shape": "__listOf__doubleMinNegative60Max6",
+          "locationName": "inputChannelsFineTune"
         }
       }
     },
@@ -7486,6 +7566,13 @@
         "SPECIFIED"
       ]
     },
+    "ProresScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
     "ProresSettings": {
       "type": "structure",
       "members": {
@@ -7524,6 +7611,10 @@
         "ParNumerator": {
           "shape": "__integerMin1Max2147483647",
           "locationName": "parNumerator"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "ProresScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
         },
         "SlowPal": {
           "shape": "ProresSlowPal",
@@ -8293,6 +8384,13 @@
         "PROGRESSIVE"
       ]
     },
+    "Vc3ScanTypeConversionMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "INTERLACED_OPTIMIZE"
+      ]
+    },
     "Vc3Settings": {
       "type": "structure",
       "members": {
@@ -8315,6 +8413,10 @@
         "InterlaceMode": {
           "shape": "Vc3InterlaceMode",
           "locationName": "interlaceMode"
+        },
+        "ScanTypeConversionMode": {
+          "shape": "Vc3ScanTypeConversionMode",
+          "locationName": "scanTypeConversionMode"
         },
         "SlowPal": {
           "shape": "Vc3SlowPal",
@@ -8817,6 +8919,9 @@
       "type": "double"
     },
     "__doubleMinNegative60Max3": {
+      "type": "double"
+    },
+    "__doubleMinNegative60Max6": {
       "type": "double"
     },
     "__doubleMinNegative60MaxNegative1": {
@@ -9413,6 +9518,12 @@
       "type": "list",
       "member": {
         "shape": "TeletextPageType"
+      }
+    },
+    "__listOf__doubleMinNegative60Max6": {
+      "type": "list",
+      "member": {
+        "shape": "__doubleMinNegative60Max6"
       }
     },
     "__listOf__integerMin1Max2147483647": {
