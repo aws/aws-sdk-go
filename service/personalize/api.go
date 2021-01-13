@@ -161,12 +161,18 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 // Transactions per second (TPS) is the throughput and unit of billing for Amazon
 // Personalize. The minimum provisioned TPS (minProvisionedTPS) specifies the
 // baseline throughput provisioned by Amazon Personalize, and thus, the minimum
-// billing charge. If your TPS increases beyond minProvisionedTPS, Amazon Personalize
-// auto-scales the provisioned capacity up and down, but never below minProvisionedTPS,
-// to maintain a 70% utilization. There's a short time delay while the capacity
-// is increased that might cause loss of transactions. It's recommended to start
-// with a low minProvisionedTPS, track your usage using Amazon CloudWatch metrics,
-// and then increase the minProvisionedTPS as necessary.
+// billing charge.
+//
+// If your TPS increases beyond minProvisionedTPS, Amazon Personalize auto-scales
+// the provisioned capacity up and down, but never below minProvisionedTPS.
+// There's a short time delay while the capacity is increased that might cause
+// loss of transactions.
+//
+// The actual TPS used is calculated as the average requests/second within a
+// 5-minute window. You pay for maximum of either the minimum provisioned TPS
+// or the actual TPS. We recommend starting with a low minProvisionedTPS, track
+// your usage using Amazon CloudWatch metrics, and then increase the minProvisionedTPS
+// as necessary.
 //
 // Status
 //
@@ -538,7 +544,8 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // Amazon Personalize makes a copy of your data and processes it in an internal
 // AWS system.
 //
-// The dataset import job replaces any previous data in the dataset.
+// The dataset import job replaces any existing data in the dataset that you
+// imported in bulk.
 //
 // Status
 //
@@ -650,21 +657,18 @@ func (c *Personalize) CreateEventTrackerRequest(input *CreateEventTrackerInput) 
 
 // CreateEventTracker API operation for Amazon Personalize.
 //
-// Creates an event tracker that you use when sending event data to the specified
+// Creates an event tracker that you use when adding event data to a specified
 // dataset group using the PutEvents (https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)
 // API.
-//
-// When Amazon Personalize creates an event tracker, it also creates an event-interactions
-// dataset in the dataset group associated with the event tracker. The event-interactions
-// dataset stores the event data from the PutEvents call. The contents of this
-// dataset are not available to the user.
 //
 // Only one event tracker can be associated with a dataset group. You will get
 // an error if you call CreateEventTracker using the same dataset group as an
 // existing event tracker.
 //
-// When you send event data you include your tracking ID. The tracking ID identifies
-// the customer and authorizes the customer to send the data.
+// When you create an event tracker, the response includes a tracking ID, which
+// you pass as a parameter when you use the PutEvents (https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html)
+// operation. Amazon Personalize then appends the event data to the Interactions
+// dataset of the dataset group you specify in your event tracker.
 //
 // The event tracker can be in one of the following states:
 //
@@ -773,8 +777,7 @@ func (c *Personalize) CreateFilterRequest(input *CreateFilterInput) (req *reques
 
 // CreateFilter API operation for Amazon Personalize.
 //
-// Creates a recommendation filter. For more information, see Using Filters
-// with Amazon Personalize (https://docs.aws.amazon.com/personalize/latest/dg/filters.html).
+// Creates a recommendation filter. For more information, see filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -978,6 +981,9 @@ func (c *Personalize) CreateSolutionRequest(input *CreateSolutionInput) (req *re
 // Alternatively, you can specify performAutoML and Amazon Personalize will
 // analyze your data and select the optimum USER_PERSONALIZATION recipe for
 // you.
+//
+// Amazon Personalize doesn't support configuring the hpoObjective for solution
+// hyperparameter optimization at this time.
 //
 // Status
 //
@@ -4919,8 +4925,10 @@ func (s *BatchInferenceJob) SetStatus(v string) *BatchInferenceJob {
 type BatchInferenceJobConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A string to string map specifying the inference hyperparameters you wish
-	// to use for hyperparameter optimization. See customizing-solution-config-hpo.
+	// A string to string map specifying the exploration configuration hyperparameters,
+	// including explorationWeight and explorationItemAgeCutOff, you want to use
+	// to configure the amount of item exploration Amazon Personalize uses when
+	// recommending items. See native-recipe-new-item-USER_PERSONALIZATION.
 	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
 }
 
@@ -5236,8 +5244,12 @@ func (s *Campaign) SetStatus(v string) *Campaign {
 type CampaignConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A string to string map specifying the inference hyperparameters you wish
-	// to use for hyperparameter optimization. See customizing-solution-config-hpo.
+	// A string to string map specifying the exploration configuration hyperparameters,
+	// including explorationWeight and explorationItemAgeCutOff, you want to use
+	// to configure the amount of item exploration Amazon Personalize uses when
+	// recommending items. Provide itemExplorationConfig data only if your solution
+	// uses the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// recipe.
 	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
 }
 
@@ -6180,14 +6192,9 @@ type CreateFilterInput struct {
 	// DatasetGroupArn is a required field
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
 
-	// The filter expression that designates the interaction types that the filter
-	// will filter out. A filter expression must follow the following format:
-	//
-	// EXCLUDE itemId WHERE INTERACTIONS.event_type in ("EVENT_TYPE")
-	//
-	// Where "EVENT_TYPE" is the type of event to filter out. To filter out all
-	// items with any interactions history, set "*" as the EVENT_TYPE. For more
-	// information, see Using Filters with Amazon Personalize (https://docs.aws.amazon.com/personalize/latest/dg/filters.html).
+	// The filter expression defines which items are included or excluded from recommendations.
+	// Filter expression must follow specific format rules. For information about
+	// filter expression structure and syntax, see filter-expressions.
 	//
 	// FilterExpression is a required field
 	FilterExpression *string `locationName:"filterExpression" min:"1" type:"string" required:"true" sensitive:"true"`
@@ -6364,6 +6371,9 @@ type CreateSolutionInput struct {
 	// When your have multiple event types (using an EVENT_TYPE schema field), this
 	// parameter specifies which event type (for example, 'click' or 'like') is
 	// used for training the model.
+	//
+	// If you do not provide an eventType, Amazon Personalize will use all interactions
+	// for training with equal weight regardless of type.
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The name for the solution.
@@ -6395,6 +6405,8 @@ type CreateSolutionInput struct {
 	// The configuration to use with the solution. When performAutoML is set to
 	// true, Amazon Personalize only evaluates the autoMLConfig section of the solution
 	// configuration.
+	//
+	// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 	SolutionConfig *SolutionConfig `locationName:"solutionConfig" type:"structure"`
 }
 
@@ -6515,7 +6527,9 @@ type CreateSolutionVersionInput struct {
 	//
 	// The UPDATE option can only be used when you already have an active solution
 	// version created from the input solution using the FULL option and the input
-	// solution was trained with the native-recipe-hrnn-coldstart recipe.
+	// solution was trained with the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// recipe or the HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
+	// recipe.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
 }
 
@@ -8872,12 +8886,8 @@ type Filter struct {
 	FilterArn *string `locationName:"filterArn" type:"string"`
 
 	// Specifies the type of item interactions to filter out of recommendation results.
-	// The filter expression must follow the following format:
-	//
-	// EXCLUDE itemId WHERE INTERACTIONS.event_type in ("EVENT_TYPE")
-	//
-	// Where "EVENT_TYPE" is the type of event to filter out. For more information,
-	// see Using Filters with Amazon Personalize (https://docs.aws.amazon.com/personalize/latest/dg/filters.html).
+	// The filter expression must follow specific format rules. For information
+	// about filter expression structure and syntax, see filter-expressions.
 	FilterExpression *string `locationName:"filterExpression" min:"1" type:"string" sensitive:"true"`
 
 	// The time at which the filter was last updated.
@@ -9096,9 +9106,7 @@ func (s *GetSolutionMetricsOutput) SetSolutionVersionArn(v string) *GetSolutionM
 	return s
 }
 
-// Describes the properties for hyperparameter optimization (HPO). For use with
-// the bring-your-own-recipe feature. Do not use for Amazon Personalize native
-// recipes.
+// Describes the properties for hyperparameter optimization (HPO).
 type HPOConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9106,6 +9114,8 @@ type HPOConfig struct {
 	AlgorithmHyperParameterRanges *HyperParameterRanges `locationName:"algorithmHyperParameterRanges" type:"structure"`
 
 	// The metric to optimize during HPO.
+	//
+	// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 	HpoObjective *HPOObjective `locationName:"hpoObjective" type:"structure"`
 
 	// Describes the resource configuration for HPO.
@@ -9156,6 +9166,8 @@ func (s *HPOConfig) SetHpoResourceConfig(v *HPOResourceConfig) *HPOConfig {
 }
 
 // The metric to optimize during hyperparameter optimization (HPO).
+//
+// Amazon Personalize doesn't support configuring the hpoObjective at this time.
 type HPOObjective struct {
 	_ struct{} `type:"structure"`
 
@@ -10873,7 +10885,8 @@ type Solution struct {
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
 
 	// The event type (for example, 'click' or 'like') that is used for training
-	// the model.
+	// the model. If no eventType is provided, Amazon Personalize uses all interactions
+	// for training with equal weight regardless of type.
 	EventType *string `locationName:"eventType" type:"string"`
 
 	// The date and time (in Unix time) that the solution was last updated.
@@ -11207,15 +11220,18 @@ type SolutionVersion struct {
 	// trains a model.
 	TrainingHours *float64 `locationName:"trainingHours" type:"double"`
 
-	// The scope of training used to create the solution version. The FULL option
-	// trains the solution version based on the entirety of the input solution's
-	// training data, while the UPDATE option processes only the training data that
-	// has changed since the creation of the last solution version. Choose UPDATE
-	// when you want to start recommending items added to the dataset without retraining
-	// the model.
+	// The scope of training to be performed when creating the solution version.
+	// The FULL option trains the solution version based on the entirety of the
+	// input solution's training data, while the UPDATE option processes only the
+	// data that has changed in comparison to the input solution. Choose UPDATE
+	// when you want to incrementally update your solution version instead of creating
+	// an entirely new one.
 	//
-	// The UPDATE option can only be used after you've created a solution version
-	// with the FULL option and the training solution uses the native-recipe-hrnn-coldstart.
+	// The UPDATE option can only be used when you already have an active solution
+	// version created from the input solution using the FULL option and the input
+	// solution was trained with the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// recipe or the HRNN-Coldstart (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-hrnn-coldstart.html)
+	// recipe.
 	TrainingMode *string `locationName:"trainingMode" type:"string" enum:"TrainingMode"`
 
 	// If hyperparameter optimization was performed, contains the hyperparameter

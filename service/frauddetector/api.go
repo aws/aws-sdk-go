@@ -915,8 +915,7 @@ func (c *FraudDetector) DeleteEntityTypeRequest(input *DeleteEntityTypeInput) (r
 // You cannot delete an entity type that is included in an event type.
 //
 // When you delete an entity type, Amazon Fraud Detector permanently deletes
-// that entity type from the evaluation history, and the data is no longer stored
-// in Amazon Fraud Detector.
+// that entity type and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1021,8 +1020,7 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 // Deletes the specified event.
 //
 // When you delete an event, Amazon Fraud Detector permanently deletes that
-// event from the evaluation history, and the event data is no longer stored
-// in Amazon Fraud Detector.
+// event and the event data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1118,8 +1116,7 @@ func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req
 // You cannot delete an event type that is used in a detector or a model.
 //
 // When you delete an entity type, Amazon Fraud Detector permanently deletes
-// that entity type from the evaluation history, and the data is no longer stored
-// in Amazon Fraud Detector.
+// that entity type and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1339,8 +1336,7 @@ func (c *FraudDetector) DeleteLabelRequest(input *DeleteLabelInput) (req *reques
 // the relevant event ID.
 //
 // When you delete a label, Amazon Fraud Detector permanently deletes that label
-// from the evaluation history, and the data is no longer stored in Amazon Fraud
-// Detector.
+// and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1443,8 +1439,7 @@ func (c *FraudDetector) DeleteModelRequest(input *DeleteModelInput) (req *reques
 // that they are not associated with a detector version.
 //
 // When you delete a model, Amazon Fraud Detector permanently deletes that model
-// from the evaluation history, and the data is no longer stored in Amazon Fraud
-// Detector.
+// and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1552,8 +1547,7 @@ func (c *FraudDetector) DeleteModelVersionRequest(input *DeleteModelVersionInput
 // that they are not associated with a detector version.
 //
 // When you delete a model version, Amazon Fraud Detector permanently deletes
-// that model version from the evaluation history, and the data is no longer
-// stored in Amazon Fraud Detector.
+// that model version and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1660,8 +1654,7 @@ func (c *FraudDetector) DeleteOutcomeRequest(input *DeleteOutcomeInput) (req *re
 // You cannot delete an outcome that is used in a rule version.
 //
 // When you delete an outcome, Amazon Fraud Detector permanently deletes that
-// outcome from the evaluation history, and the data is no longer stored in
-// Amazon Fraud Detector.
+// outcome and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1770,8 +1763,7 @@ func (c *FraudDetector) DeleteRuleRequest(input *DeleteRuleInput) (req *request.
 // INACTIVE detector version.
 //
 // When you delete a rule, Amazon Fraud Detector permanently deletes that rule
-// from the evaluation history, and the data is no longer stored in Amazon Fraud
-// Detector.
+// and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1886,8 +1878,7 @@ func (c *FraudDetector) DeleteVariableRequest(input *DeleteVariableInput) (req *
 // variables manually.
 //
 // When you delete a variable, Amazon Fraud Detector permanently deletes that
-// variable from the evaluation history, and the data is no longer stored in
-// Amazon Fraud Detector.
+// variable and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13526,6 +13517,9 @@ const (
 
 	// ModelVersionStatusInactive is a ModelVersionStatus enum value
 	ModelVersionStatusInactive = "INACTIVE"
+
+	// ModelVersionStatusTrainingCancelled is a ModelVersionStatus enum value
+	ModelVersionStatusTrainingCancelled = "TRAINING_CANCELLED"
 )
 
 // ModelVersionStatus_Values returns all elements of the ModelVersionStatus enum
@@ -13533,6 +13527,7 @@ func ModelVersionStatus_Values() []string {
 	return []string{
 		ModelVersionStatusActive,
 		ModelVersionStatusInactive,
+		ModelVersionStatusTrainingCancelled,
 	}
 }
 
