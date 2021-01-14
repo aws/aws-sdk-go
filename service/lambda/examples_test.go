@@ -326,7 +326,13 @@ func ExampleLambda_CreateFunction_shared00() {
 			ImageUri:    aws.String("123456789012.dkr.ecr.us-west-2.amazonaws.com/lambda-test:v0.0.1"),
 		},
 		Description: aws.String("Process container image from ECR."),
+		Environment: &lambda.Environment{
+			Variables: map[string]*string{
+				"PREFIX": aws.String("inbound"),
+			},
+		},
 		FunctionName: aws.String("my-function"),
+		KMSKeyArn:    aws.String("arn:aws:kms:us-west-2:123456789012:key/b0844d6c-xmpl-4463-97a4-d49f50839966"),
 		MemorySize:   aws.Int64(256),
 		Publish:      aws.Bool(true),
 		Role:         aws.String("arn:aws:iam::123456789012:role/lambda-role"),
