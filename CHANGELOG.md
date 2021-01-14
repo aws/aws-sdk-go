@@ -1,3 +1,15 @@
+Release v1.36.27 (2021-01-14)
+===
+
+### Service Client Updates
+* `service/cognito-identity`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * Customers can create segments using 5 new filters. Filters can check for the presence of a substring in attributes and can perform time-based comparisons formatted as ISO_INSTANT datetimes.
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 Batch Operations now supports restoring objects from the S3 Intelligent-Tiering Archive Access and Deep Archive Access tiers.
+* `service/sagemaker`: Updates service API and documentation
+  * This feature allows customers to enable/disable model caching on Multi-Model endpoints.
+
 Release v1.36.26 (2021-01-13)
 ===
 

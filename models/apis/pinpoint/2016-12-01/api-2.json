@@ -4810,7 +4810,12 @@
       "type": "string",
       "enum": [
         "INCLUSIVE",
-        "EXCLUSIVE"
+        "EXCLUSIVE",
+        "CONTAINS",
+        "BEFORE",
+        "AFTER",
+        "BETWEEN",
+        "ON"
       ]
     },
     "AttributesResource": {

@@ -861,7 +861,7 @@ func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req
 // returned by GetId. You can optionally add additional logins for the identity.
 // Supplying multiple logins creates an implicit link.
 //
-// The OpenId token is valid for 10 minutes.
+// The OpenID token is valid for 10 minutes.
 //
 // This is a public API. You do not need any credentials to call this API.
 //
@@ -1029,6 +1029,99 @@ func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentity(input *GetOpenIdTok
 // for more information on using Contexts.
 func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityWithContext(ctx aws.Context, input *GetOpenIdTokenForDeveloperIdentityInput, opts ...request.Option) (*GetOpenIdTokenForDeveloperIdentityOutput, error) {
 	req, out := c.GetOpenIdTokenForDeveloperIdentityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPrincipalTagAttributeMap = "GetPrincipalTagAttributeMap"
+
+// GetPrincipalTagAttributeMapRequest generates a "aws/request.Request" representing the
+// client's request for the GetPrincipalTagAttributeMap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPrincipalTagAttributeMap for more information on using the GetPrincipalTagAttributeMap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPrincipalTagAttributeMapRequest method.
+//    req, resp := client.GetPrincipalTagAttributeMapRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetPrincipalTagAttributeMap
+func (c *CognitoIdentity) GetPrincipalTagAttributeMapRequest(input *GetPrincipalTagAttributeMapInput) (req *request.Request, output *GetPrincipalTagAttributeMapOutput) {
+	op := &request.Operation{
+		Name:       opGetPrincipalTagAttributeMap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetPrincipalTagAttributeMapInput{}
+	}
+
+	output = &GetPrincipalTagAttributeMapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPrincipalTagAttributeMap API operation for Amazon Cognito Identity.
+//
+// Use GetPrincipalTagAttributeMap to list all mappings between PrincipalTags
+// and user attributes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity's
+// API operation GetPrincipalTagAttributeMap for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   Thrown for missing or bad input parameter(s).
+//
+//   * ResourceNotFoundException
+//   Thrown when the requested resource (for example, a dataset or record) does
+//   not exist.
+//
+//   * NotAuthorizedException
+//   Thrown when a user is not authorized to access the requested resource.
+//
+//   * TooManyRequestsException
+//   Thrown when a request is throttled.
+//
+//   * InternalErrorException
+//   Thrown when the service encounters an error during processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/GetPrincipalTagAttributeMap
+func (c *CognitoIdentity) GetPrincipalTagAttributeMap(input *GetPrincipalTagAttributeMapInput) (*GetPrincipalTagAttributeMapOutput, error) {
+	req, out := c.GetPrincipalTagAttributeMapRequest(input)
+	return out, req.Send()
+}
+
+// GetPrincipalTagAttributeMapWithContext is the same as GetPrincipalTagAttributeMap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPrincipalTagAttributeMap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CognitoIdentity) GetPrincipalTagAttributeMapWithContext(ctx aws.Context, input *GetPrincipalTagAttributeMapInput, opts ...request.Option) (*GetPrincipalTagAttributeMapOutput, error) {
+	req, out := c.GetPrincipalTagAttributeMapRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1701,6 +1794,99 @@ func (c *CognitoIdentity) SetIdentityPoolRolesWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opSetPrincipalTagAttributeMap = "SetPrincipalTagAttributeMap"
+
+// SetPrincipalTagAttributeMapRequest generates a "aws/request.Request" representing the
+// client's request for the SetPrincipalTagAttributeMap operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SetPrincipalTagAttributeMap for more information on using the SetPrincipalTagAttributeMap
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SetPrincipalTagAttributeMapRequest method.
+//    req, resp := client.SetPrincipalTagAttributeMapRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetPrincipalTagAttributeMap
+func (c *CognitoIdentity) SetPrincipalTagAttributeMapRequest(input *SetPrincipalTagAttributeMapInput) (req *request.Request, output *SetPrincipalTagAttributeMapOutput) {
+	op := &request.Operation{
+		Name:       opSetPrincipalTagAttributeMap,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SetPrincipalTagAttributeMapInput{}
+	}
+
+	output = &SetPrincipalTagAttributeMapOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SetPrincipalTagAttributeMap API operation for Amazon Cognito Identity.
+//
+// You can use this operation to use default (username and clientID) attribute
+// or custom attribute mappings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity's
+// API operation SetPrincipalTagAttributeMap for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   Thrown for missing or bad input parameter(s).
+//
+//   * ResourceNotFoundException
+//   Thrown when the requested resource (for example, a dataset or record) does
+//   not exist.
+//
+//   * NotAuthorizedException
+//   Thrown when a user is not authorized to access the requested resource.
+//
+//   * TooManyRequestsException
+//   Thrown when a request is throttled.
+//
+//   * InternalErrorException
+//   Thrown when the service encounters an error during processing the request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-identity-2014-06-30/SetPrincipalTagAttributeMap
+func (c *CognitoIdentity) SetPrincipalTagAttributeMap(input *SetPrincipalTagAttributeMapInput) (*SetPrincipalTagAttributeMapOutput, error) {
+	req, out := c.SetPrincipalTagAttributeMapRequest(input)
+	return out, req.Send()
+}
+
+// SetPrincipalTagAttributeMapWithContext is the same as SetPrincipalTagAttributeMap with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SetPrincipalTagAttributeMap for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CognitoIdentity) SetPrincipalTagAttributeMapWithContext(ctx aws.Context, input *SetPrincipalTagAttributeMapInput, opts ...request.Option) (*SetPrincipalTagAttributeMapOutput, error) {
+	req, out := c.SetPrincipalTagAttributeMapRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1746,9 +1932,9 @@ func (c *CognitoIdentity) TagResourceRequest(input *TagResourceInput) (req *requ
 
 // TagResource API operation for Amazon Cognito Identity.
 //
-// Assigns a set of tags to an Amazon Cognito identity pool. A tag is a label
-// that you can use to categorize and manage identity pools in different ways,
-// such as by purpose, owner, environment, or other criteria.
+// Assigns a set of tags to the specified Amazon Cognito identity pool. A tag
+// is a label that you can use to categorize and manage identity pools in different
+// ways, such as by purpose, owner, environment, or other criteria.
 //
 // Each tag consists of a key and value, both of which you define. A key is
 // a general category for more specific values. For example, if you have two
@@ -2064,8 +2250,8 @@ func (c *CognitoIdentity) UntagResourceRequest(input *UntagResourceInput) (req *
 
 // UntagResource API operation for Amazon Cognito Identity.
 //
-// Removes the specified tags from an Amazon Cognito identity pool. You can
-// use this action up to 5 times per second, per account
+// Removes the specified tags from the specified Amazon Cognito identity pool.
+// You can use this action up to 5 times per second, per account
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2310,7 +2496,7 @@ type CreateIdentityPoolInput struct {
 	// by purpose, owner, environment, or other criteria.
 	IdentityPoolTags map[string]*string `type:"map"`
 
-	// A list of OpendID Connect provider ARNs.
+	// The Amazon Resource Names (ARN) of the OpenID Connect providers.
 	OpenIdConnectProviderARNs []*string `type:"list"`
 
 	// An array of Amazon Resource Names (ARNs) of the SAML provider for your identity
@@ -2813,8 +2999,8 @@ type GetCredentialsForIdentityInput struct {
 	// identity.
 	//
 	// The Logins parameter is required when using identities associated with external
-	// identity providers such as FaceBook. For examples of Logins maps, see the
-	// code examples in the External Identity Providers (http://docs.aws.amazon.com/cognito/latest/developerguide/external-identity-providers.html)
+	// identity providers such as Facebook. For examples of Logins maps, see the
+	// code examples in the External Identity Providers (https://docs.aws.amazon.com/cognito/latest/developerguide/external-identity-providers.html)
 	// section of the Amazon Cognito Developer Guide.
 	Logins map[string]*string `type:"map"`
 }
@@ -3112,6 +3298,9 @@ type GetOpenIdTokenForDeveloperIdentityInput struct {
 	// Logins is a required field
 	Logins map[string]*string `type:"map" required:"true"`
 
+	// Use this operation to configure attribute mappings for custom providers.
+	PrincipalTags map[string]*string `type:"map"`
+
 	// The expiration time of the token, in seconds. You can specify a custom expiration
 	// time for the token so that you can cache it. If you don't provide an expiration
 	// time, the token is valid for 15 minutes. You can exchange the token with
@@ -3179,6 +3368,12 @@ func (s *GetOpenIdTokenForDeveloperIdentityInput) SetLogins(v map[string]*string
 	return s
 }
 
+// SetPrincipalTags sets the PrincipalTags field's value.
+func (s *GetOpenIdTokenForDeveloperIdentityInput) SetPrincipalTags(v map[string]*string) *GetOpenIdTokenForDeveloperIdentityInput {
+	s.PrincipalTags = v
+	return s
+}
+
 // SetTokenDuration sets the TokenDuration field's value.
 func (s *GetOpenIdTokenForDeveloperIdentityInput) SetTokenDuration(v int64) *GetOpenIdTokenForDeveloperIdentityInput {
 	s.TokenDuration = &v
@@ -3230,7 +3425,7 @@ type GetOpenIdTokenInput struct {
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// When using graph.facebook.com and www.amazon.com, supply the access_token
 	// returned from the provider's authflow. For accounts.google.com, an Amazon
-	// Cognito user pool provider, or any other OpenId Connect provider, always
+	// Cognito user pool provider, or any other OpenID Connect provider, always
 	// include the id_token.
 	Logins map[string]*string `type:"map"`
 }
@@ -3304,6 +3499,117 @@ func (s *GetOpenIdTokenOutput) SetIdentityId(v string) *GetOpenIdTokenOutput {
 // SetToken sets the Token field's value.
 func (s *GetOpenIdTokenOutput) SetToken(v string) *GetOpenIdTokenOutput {
 	s.Token = &v
+	return s
+}
+
+type GetPrincipalTagAttributeMapInput struct {
+	_ struct{} `type:"structure"`
+
+	// You can use this operation to get the ID of the Identity Pool you setup attribute
+	// mappings for.
+	//
+	// IdentityPoolId is a required field
+	IdentityPoolId *string `min:"1" type:"string" required:"true"`
+
+	// You can use this operation to get the provider name.
+	//
+	// IdentityProviderName is a required field
+	IdentityProviderName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPrincipalTagAttributeMapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPrincipalTagAttributeMapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPrincipalTagAttributeMapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPrincipalTagAttributeMapInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+	if s.IdentityProviderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityProviderName"))
+	}
+	if s.IdentityProviderName != nil && len(*s.IdentityProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityProviderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetPrincipalTagAttributeMapInput) SetIdentityPoolId(v string) *GetPrincipalTagAttributeMapInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetIdentityProviderName sets the IdentityProviderName field's value.
+func (s *GetPrincipalTagAttributeMapInput) SetIdentityProviderName(v string) *GetPrincipalTagAttributeMapInput {
+	s.IdentityProviderName = &v
+	return s
+}
+
+type GetPrincipalTagAttributeMapOutput struct {
+	_ struct{} `type:"structure"`
+
+	// You can use this operation to get the ID of the Identity Pool you setup attribute
+	// mappings for.
+	IdentityPoolId *string `min:"1" type:"string"`
+
+	// You can use this operation to get the provider name.
+	IdentityProviderName *string `min:"1" type:"string"`
+
+	// You can use this operation to add principal tags. The PrincipalTagsoperation
+	// enables you to reference user attributes in your IAM permissions policy.
+	PrincipalTags map[string]*string `type:"map"`
+
+	// You can use this operation to list
+	UseDefaults *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s GetPrincipalTagAttributeMapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPrincipalTagAttributeMapOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *GetPrincipalTagAttributeMapOutput) SetIdentityPoolId(v string) *GetPrincipalTagAttributeMapOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetIdentityProviderName sets the IdentityProviderName field's value.
+func (s *GetPrincipalTagAttributeMapOutput) SetIdentityProviderName(v string) *GetPrincipalTagAttributeMapOutput {
+	s.IdentityProviderName = &v
+	return s
+}
+
+// SetPrincipalTags sets the PrincipalTags field's value.
+func (s *GetPrincipalTagAttributeMapOutput) SetPrincipalTags(v map[string]*string) *GetPrincipalTagAttributeMapOutput {
+	s.PrincipalTags = v
+	return s
+}
+
+// SetUseDefaults sets the UseDefaults field's value.
+func (s *GetPrincipalTagAttributeMapOutput) SetUseDefaults(v bool) *GetPrincipalTagAttributeMapOutput {
+	s.UseDefaults = &v
 	return s
 }
 
@@ -3393,7 +3699,7 @@ type IdentityPool struct {
 	// such as by purpose, owner, environment, or other criteria.
 	IdentityPoolTags map[string]*string `type:"map"`
 
-	// A list of OpendID Connect provider ARNs.
+	// The ARNs of the OpenID Connect providers.
 	OpenIdConnectProviderARNs []*string `type:"list"`
 
 	// An array of Amazon Resource Names (ARNs) of the SAML provider for your identity
@@ -4785,7 +5091,7 @@ type SetIdentityPoolRolesInput struct {
 
 	// How users for a specific identity provider are to mapped to roles. This is
 	// a string to RoleMapping object map. The string identifies the identity provider,
-	// for example, "graph.facebook.com" or "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+	// for example, "graph.facebook.com" or "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
 	//
 	// Up to 25 rules can be specified per identity provider.
 	RoleMappings map[string]*RoleMapping `type:"map"`
@@ -4869,10 +5175,139 @@ func (s SetIdentityPoolRolesOutput) GoString() string {
 	return s.String()
 }
 
+type SetPrincipalTagAttributeMapInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Identity Pool you want to set attribute mappings for.
+	//
+	// IdentityPoolId is a required field
+	IdentityPoolId *string `min:"1" type:"string" required:"true"`
+
+	// The provider name you want to use for attribute mappings.
+	//
+	// IdentityProviderName is a required field
+	IdentityProviderName *string `min:"1" type:"string" required:"true"`
+
+	// You can use this operation to add principal tags.
+	PrincipalTags map[string]*string `type:"map"`
+
+	// You can use this operation to use default (username and clientID) attribute
+	// mappings.
+	UseDefaults *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s SetPrincipalTagAttributeMapInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetPrincipalTagAttributeMapInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SetPrincipalTagAttributeMapInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SetPrincipalTagAttributeMapInput"}
+	if s.IdentityPoolId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityPoolId"))
+	}
+	if s.IdentityPoolId != nil && len(*s.IdentityPoolId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityPoolId", 1))
+	}
+	if s.IdentityProviderName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentityProviderName"))
+	}
+	if s.IdentityProviderName != nil && len(*s.IdentityProviderName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityProviderName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SetPrincipalTagAttributeMapInput) SetIdentityPoolId(v string) *SetPrincipalTagAttributeMapInput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetIdentityProviderName sets the IdentityProviderName field's value.
+func (s *SetPrincipalTagAttributeMapInput) SetIdentityProviderName(v string) *SetPrincipalTagAttributeMapInput {
+	s.IdentityProviderName = &v
+	return s
+}
+
+// SetPrincipalTags sets the PrincipalTags field's value.
+func (s *SetPrincipalTagAttributeMapInput) SetPrincipalTags(v map[string]*string) *SetPrincipalTagAttributeMapInput {
+	s.PrincipalTags = v
+	return s
+}
+
+// SetUseDefaults sets the UseDefaults field's value.
+func (s *SetPrincipalTagAttributeMapInput) SetUseDefaults(v bool) *SetPrincipalTagAttributeMapInput {
+	s.UseDefaults = &v
+	return s
+}
+
+type SetPrincipalTagAttributeMapOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Identity Pool you want to set attribute mappings for.
+	IdentityPoolId *string `min:"1" type:"string"`
+
+	// The provider name you want to use for attribute mappings.
+	IdentityProviderName *string `min:"1" type:"string"`
+
+	// You can use this operation to add principal tags. The PrincipalTagsoperation
+	// enables you to reference user attributes in your IAM permissions policy.
+	PrincipalTags map[string]*string `type:"map"`
+
+	// You can use this operation to select default (username and clientID) attribute
+	// mappings.
+	UseDefaults *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s SetPrincipalTagAttributeMapOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SetPrincipalTagAttributeMapOutput) GoString() string {
+	return s.String()
+}
+
+// SetIdentityPoolId sets the IdentityPoolId field's value.
+func (s *SetPrincipalTagAttributeMapOutput) SetIdentityPoolId(v string) *SetPrincipalTagAttributeMapOutput {
+	s.IdentityPoolId = &v
+	return s
+}
+
+// SetIdentityProviderName sets the IdentityProviderName field's value.
+func (s *SetPrincipalTagAttributeMapOutput) SetIdentityProviderName(v string) *SetPrincipalTagAttributeMapOutput {
+	s.IdentityProviderName = &v
+	return s
+}
+
+// SetPrincipalTags sets the PrincipalTags field's value.
+func (s *SetPrincipalTagAttributeMapOutput) SetPrincipalTags(v map[string]*string) *SetPrincipalTagAttributeMapOutput {
+	s.PrincipalTags = v
+	return s
+}
+
+// SetUseDefaults sets the UseDefaults field's value.
+func (s *SetPrincipalTagAttributeMapOutput) SetUseDefaults(v bool) *SetPrincipalTagAttributeMapOutput {
+	s.UseDefaults = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the identity pool to assign the tags to.
+	// The Amazon Resource Name (ARN) of the identity pool.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`
@@ -5223,8 +5658,7 @@ func (s *UnprocessedIdentityId) SetIdentityId(v string) *UnprocessedIdentityId {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the identity pool that the tags are assigned
-	// to.
+	// The Amazon Resource Name (ARN) of the identity pool.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"20" type:"string" required:"true"`

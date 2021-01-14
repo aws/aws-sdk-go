@@ -100,6 +100,10 @@ type CognitoIdentityAPI interface {
 	GetOpenIdTokenForDeveloperIdentityWithContext(aws.Context, *cognitoidentity.GetOpenIdTokenForDeveloperIdentityInput, ...request.Option) (*cognitoidentity.GetOpenIdTokenForDeveloperIdentityOutput, error)
 	GetOpenIdTokenForDeveloperIdentityRequest(*cognitoidentity.GetOpenIdTokenForDeveloperIdentityInput) (*request.Request, *cognitoidentity.GetOpenIdTokenForDeveloperIdentityOutput)
 
+	GetPrincipalTagAttributeMap(*cognitoidentity.GetPrincipalTagAttributeMapInput) (*cognitoidentity.GetPrincipalTagAttributeMapOutput, error)
+	GetPrincipalTagAttributeMapWithContext(aws.Context, *cognitoidentity.GetPrincipalTagAttributeMapInput, ...request.Option) (*cognitoidentity.GetPrincipalTagAttributeMapOutput, error)
+	GetPrincipalTagAttributeMapRequest(*cognitoidentity.GetPrincipalTagAttributeMapInput) (*request.Request, *cognitoidentity.GetPrincipalTagAttributeMapOutput)
+
 	ListIdentities(*cognitoidentity.ListIdentitiesInput) (*cognitoidentity.ListIdentitiesOutput, error)
 	ListIdentitiesWithContext(aws.Context, *cognitoidentity.ListIdentitiesInput, ...request.Option) (*cognitoidentity.ListIdentitiesOutput, error)
 	ListIdentitiesRequest(*cognitoidentity.ListIdentitiesInput) (*request.Request, *cognitoidentity.ListIdentitiesOutput)
@@ -126,6 +130,10 @@ type CognitoIdentityAPI interface {
 	SetIdentityPoolRoles(*cognitoidentity.SetIdentityPoolRolesInput) (*cognitoidentity.SetIdentityPoolRolesOutput, error)
 	SetIdentityPoolRolesWithContext(aws.Context, *cognitoidentity.SetIdentityPoolRolesInput, ...request.Option) (*cognitoidentity.SetIdentityPoolRolesOutput, error)
 	SetIdentityPoolRolesRequest(*cognitoidentity.SetIdentityPoolRolesInput) (*request.Request, *cognitoidentity.SetIdentityPoolRolesOutput)
+
+	SetPrincipalTagAttributeMap(*cognitoidentity.SetPrincipalTagAttributeMapInput) (*cognitoidentity.SetPrincipalTagAttributeMapOutput, error)
+	SetPrincipalTagAttributeMapWithContext(aws.Context, *cognitoidentity.SetPrincipalTagAttributeMapInput, ...request.Option) (*cognitoidentity.SetPrincipalTagAttributeMapOutput, error)
+	SetPrincipalTagAttributeMapRequest(*cognitoidentity.SetPrincipalTagAttributeMapInput) (*request.Request, *cognitoidentity.SetPrincipalTagAttributeMapOutput)
 
 	TagResource(*cognitoidentity.TagResourceInput) (*cognitoidentity.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *cognitoidentity.TagResourceInput, ...request.Option) (*cognitoidentity.TagResourceOutput, error)

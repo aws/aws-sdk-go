@@ -1216,12 +1216,12 @@ func (c *S3Control) DeleteStorageLensConfigurationRequest(input *DeleteStorageLe
 // DeleteStorageLensConfiguration API operation for AWS S3 Control.
 //
 // Deletes the Amazon S3 Storage Lens configuration. For more information about
-// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:DeleteStorageLensConfiguration
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1300,12 +1300,12 @@ func (c *S3Control) DeleteStorageLensConfigurationTaggingRequest(input *DeleteSt
 // DeleteStorageLensConfigurationTagging API operation for AWS S3 Control.
 //
 // Deletes the Amazon S3 Storage Lens configuration tags. For more information
-// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:DeleteStorageLensConfigurationTagging
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2374,12 +2374,12 @@ func (c *S3Control) GetStorageLensConfigurationRequest(input *GetStorageLensConf
 // GetStorageLensConfiguration API operation for AWS S3 Control.
 //
 // Gets the Amazon S3 Storage Lens configuration. For more information, see
-// Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:GetStorageLensConfiguration
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2457,12 +2457,12 @@ func (c *S3Control) GetStorageLensConfigurationTaggingRequest(input *GetStorageL
 // GetStorageLensConfigurationTagging API operation for AWS S3 Control.
 //
 // Gets the tags of Amazon S3 Storage Lens configuration. For more information
-// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:GetStorageLensConfigurationTagging
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2994,12 +2994,12 @@ func (c *S3Control) ListStorageLensConfigurationsRequest(input *ListStorageLensC
 // ListStorageLensConfigurations API operation for AWS S3 Control.
 //
 // Gets a list of Amazon S3 Storage Lens configurations. For more information
-// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:ListStorageLensConfigurations
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3756,12 +3756,12 @@ func (c *S3Control) PutStorageLensConfigurationRequest(input *PutStorageLensConf
 // PutStorageLensConfiguration API operation for AWS S3 Control.
 //
 // Puts an Amazon S3 Storage Lens configuration. For more information about
-// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:PutStorageLensConfiguration
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3841,12 +3841,12 @@ func (c *S3Control) PutStorageLensConfigurationTaggingRequest(input *PutStorageL
 //
 // Put or replace tags on an existing Amazon S3 Storage Lens configuration.
 // For more information about S3 Storage Lens, see Working with Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:PutStorageLensConfigurationTagging
 // action. For more information, see Setting permissions to use Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens_iam_permissions.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4740,7 +4740,7 @@ type CreateJobInput struct {
 	// Manifest is a required field
 	Manifest *JobManifest `type:"structure" required:"true"`
 
-	// The operation that you want this job to perform on each object listed in
+	// The operation that you want this job to perform on every object listed in
 	// the manifest. For more information about the available operations, see Operations
 	// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -4760,7 +4760,7 @@ type CreateJobInput struct {
 
 	// The Amazon Resource Name (ARN) for the AWS Identity and Access Management
 	// (IAM) role that Batch Operations will use to run this job's operation on
-	// each object in the manifest.
+	// every object in the manifest.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
@@ -7703,7 +7703,7 @@ type JobListDescriptor struct {
 	// The ID for the specified job.
 	JobId *string `min:"5" type:"string"`
 
-	// The operation that the specified job is configured to run on each object
+	// The operation that the specified job is configured to run on every object
 	// listed in the manifest.
 	Operation *string `type:"string" enum:"OperationName"`
 
@@ -7965,44 +7965,44 @@ func (s *JobManifestSpec) SetFormat(v string) *JobManifestSpec {
 	return s
 }
 
-// The operation that you want this job to perform on each object listed in
+// The operation that you want this job to perform on every object listed in
 // the manifest. For more information about the available operations, see Operations
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html)
 // in the Amazon Simple Storage Service Developer Guide.
 type JobOperation struct {
 	_ struct{} `type:"structure"`
 
-	// Directs the specified job to invoke an AWS Lambda function on each object
+	// Directs the specified job to invoke an AWS Lambda function on every object
 	// in the manifest.
 	LambdaInvoke *LambdaInvokeOperation `type:"structure"`
 
-	// Directs the specified job to run an Initiate Glacier Restore call on each
+	// Directs the specified job to initiate restore requests for every archived
 	// object in the manifest.
 	S3InitiateRestoreObject *S3InitiateRestoreObjectOperation `type:"structure"`
 
-	// Directs the specified job to run a PUT Object acl call on each object in
+	// Directs the specified job to run a PUT Object acl call on every object in
 	// the manifest.
 	S3PutObjectAcl *S3SetObjectAclOperation `type:"structure"`
 
-	// Directs the specified job to run a PUT Copy object call on each object in
+	// Directs the specified job to run a PUT Copy object call on every object in
 	// the manifest.
 	S3PutObjectCopy *S3CopyObjectOperation `type:"structure"`
 
 	// Contains the configuration for an S3 Object Lock legal hold operation that
-	// an S3 Batch Operations job passes each object through to the underlying PutObjectLegalHold
+	// an S3 Batch Operations job passes every object to the underlying PutObjectLegalHold
 	// API. For more information, see Using S3 Object Lock legal hold with S3 Batch
 	// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	S3PutObjectLegalHold *S3SetObjectLegalHoldOperation `type:"structure"`
 
 	// Contains the configuration parameters for the Object Lock retention action
-	// for an S3 Batch Operations job. Batch Operations passes each value through
-	// to the underlying PutObjectRetention API. For more information, see Using
-	// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+	// for an S3 Batch Operations job. Batch Operations passes every object to the
+	// underlying PutObjectRetention API. For more information, see Using S3 Object
+	// Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	S3PutObjectRetention *S3SetObjectRetentionOperation `type:"structure"`
 
-	// Directs the specified job to run a PUT Object tagging call on each object
+	// Directs the specified job to run a PUT Object tagging call on every object
 	// in the manifest.
 	S3PutObjectTagging *S3SetObjectTaggingOperation `type:"structure"`
 }
@@ -8228,7 +8228,7 @@ type LambdaInvokeOperation struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the AWS Lambda function that the specified
-	// job will invoke for each object in the manifest.
+	// job will invoke on every object in the manifest.
 	FunctionArn *string `min:"1" type:"string"`
 }
 
@@ -10682,9 +10682,9 @@ func (s *S3BucketDestination) SetPrefix(v string) *S3BucketDestination {
 }
 
 // Contains the configuration parameters for a PUT Copy object operation. S3
-// Batch Operations passes each value through to the underlying PUT Copy object
-// API. For more information about the parameters for this operation, see PUT
-// Object - Copy (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html).
+// Batch Operations passes every object to the underlying PUT Copy object API.
+// For more information about the parameters for this operation, see PUT Object
+// - Copy (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html).
 type S3CopyObjectOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -10986,15 +10986,33 @@ func (s *S3Grantee) SetTypeIdentifier(v string) *S3Grantee {
 	return s
 }
 
-// Contains the configuration parameters for an Initiate Glacier Restore job.
-// S3 Batch Operations passes each value through to the underlying POST Object
-// restore API. For more information about the parameters for this operation,
-// see RestoreObject (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html#RESTObjectPOSTrestore-restore-request).
+// Contains the configuration parameters for an S3 Initiate Restore Object job.
+// S3 Batch Operations passes every object to the underlying POST Object restore
+// API. For more information about the parameters for this operation, see RestoreObject
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html#RESTObjectPOSTrestore-restore-request).
 type S3InitiateRestoreObjectOperation struct {
 	_ struct{} `type:"structure"`
 
+	// This argument specifies how long the S3 Glacier or S3 Glacier Deep Archive
+	// object remains available in Amazon S3. S3 Initiate Restore Object jobs that
+	// target S3 Glacier and S3 Glacier Deep Archive objects require ExpirationInDays
+	// set to 1 or greater.
+	//
+	// Conversely, do not set ExpirationInDays when creating S3 Initiate Restore
+	// Object jobs that target S3 Intelligent-Tiering Archive Access and Deep Archive
+	// Access tier objects. Objects in S3 Intelligent-Tiering archive access tiers
+	// are not subject to restore expiry, so specifying ExpirationInDays results
+	// in restore request failure.
+	//
+	// S3 Batch Operations jobs can operate either on S3 Glacier and S3 Glacier
+	// Deep Archive storage class objects or on S3 Intelligent-Tiering Archive Access
+	// and Deep Archive Access storage tier objects, but not both types in the same
+	// job. If you need to restore objects of both types you must create separate
+	// Batch Operations jobs.
 	ExpirationInDays *int64 `type:"integer"`
 
+	// S3 Batch Operations supports STANDARD and BULK retrieval tiers, but not the
+	// EXPEDITED retrieval tier.
 	GlacierJobTier *string `type:"string" enum:"S3GlacierJobTier"`
 }
 
@@ -11278,9 +11296,9 @@ func (s *S3Retention) SetRetainUntilDate(v time.Time) *S3Retention {
 }
 
 // Contains the configuration parameters for a Set Object ACL operation. S3
-// Batch Operations passes each value through to the underlying PUT Object acl
-// API. For more information about the parameters for this operation, see PUT
-// Object acl (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
+// Batch Operations passes every object to the underlying PUT Object acl API.
+// For more information about the parameters for this operation, see PUT Object
+// acl (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
 type S3SetObjectAclOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -11319,7 +11337,7 @@ func (s *S3SetObjectAclOperation) SetAccessControlPolicy(v *S3AccessControlPolic
 }
 
 // Contains the configuration for an S3 Object Lock legal hold operation that
-// an S3 Batch Operations job passes each object through to the underlying PutObjectLegalHold
+// an S3 Batch Operations job passes every object to the underlying PutObjectLegalHold
 // API. For more information, see Using S3 Object Lock legal hold with S3 Batch
 // Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
 // in the Amazon Simple Storage Service Developer Guide.
@@ -11368,9 +11386,9 @@ func (s *S3SetObjectLegalHoldOperation) SetLegalHold(v *S3ObjectLockLegalHold) *
 }
 
 // Contains the configuration parameters for the Object Lock retention action
-// for an S3 Batch Operations job. Batch Operations passes each value through
-// to the underlying PutObjectRetention API. For more information, see Using
-// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+// for an S3 Batch Operations job. Batch Operations passes every object to the
+// underlying PutObjectRetention API. For more information, see Using S3 Object
+// Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
 // in the Amazon Simple Storage Service Developer Guide.
 type S3SetObjectRetentionOperation struct {
 	_ struct{} `type:"structure"`
@@ -11424,9 +11442,9 @@ func (s *S3SetObjectRetentionOperation) SetRetention(v *S3Retention) *S3SetObjec
 }
 
 // Contains the configuration parameters for a Set Object Tagging operation.
-// S3 Batch Operations passes each value through to the underlying PUT Object
-// tagging API. For more information about the parameters for this operation,
-// see PUT Object tagging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html).
+// S3 Batch Operations passes every object to the underlying PUT Object tagging
+// API. For more information about the parameters for this operation, see PUT
+// Object tagging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html).
 type S3SetObjectTaggingOperation struct {
 	_ struct{} `type:"structure"`
 
