@@ -13323,9 +13323,6 @@ func (s *ApplicationsResponse) SetNextToken(v string) *ApplicationsResponse {
 type AttributeDimension struct {
 	_ struct{} `type:"structure"`
 
-	// The type of segment dimension to use. Valid values are: INCLUSIVE, endpoints
-	// that match the criteria are included in the segment; and, EXCLUSIVE, endpoints
-	// that match the criteria are excluded from the segment.
 	AttributeType *string `type:"string" enum:"AttributeType"`
 
 	// The criteria values to use for the segment dimension. Depending on the value
@@ -35171,6 +35168,21 @@ const (
 
 	// AttributeTypeExclusive is a AttributeType enum value
 	AttributeTypeExclusive = "EXCLUSIVE"
+
+	// AttributeTypeContains is a AttributeType enum value
+	AttributeTypeContains = "CONTAINS"
+
+	// AttributeTypeBefore is a AttributeType enum value
+	AttributeTypeBefore = "BEFORE"
+
+	// AttributeTypeAfter is a AttributeType enum value
+	AttributeTypeAfter = "AFTER"
+
+	// AttributeTypeBetween is a AttributeType enum value
+	AttributeTypeBetween = "BETWEEN"
+
+	// AttributeTypeOn is a AttributeType enum value
+	AttributeTypeOn = "ON"
 )
 
 // AttributeType_Values returns all elements of the AttributeType enum
@@ -35178,6 +35190,11 @@ func AttributeType_Values() []string {
 	return []string{
 		AttributeTypeInclusive,
 		AttributeTypeExclusive,
+		AttributeTypeContains,
+		AttributeTypeBefore,
+		AttributeTypeAfter,
+		AttributeTypeBetween,
+		AttributeTypeOn,
 	}
 }
 

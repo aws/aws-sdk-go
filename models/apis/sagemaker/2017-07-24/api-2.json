@@ -3914,7 +3914,8 @@
         "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
         "Environment":{"shape":"EnvironmentMap"},
-        "ModelPackageName":{"shape":"VersionedArnOrName"}
+        "ModelPackageName":{"shape":"VersionedArnOrName"},
+        "MultiModelConfig":{"shape":"MultiModelConfig"}
       }
     },
     "ContainerDefinitionList":{
@@ -10360,6 +10361,13 @@
         "GroundTruthS3Input":{"shape":"MonitoringGroundTruthS3Input"}
       }
     },
+    "ModelCacheSetting":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "ModelClientConfig":{
       "type":"structure",
       "members":{
@@ -11033,6 +11041,12 @@
       "type":"string",
       "max":1024,
       "pattern":"^\\/.*"
+    },
+    "MultiModelConfig":{
+      "type":"structure",
+      "members":{
+        "ModelCacheSetting":{"shape":"ModelCacheSetting"}
+      }
     },
     "NameContains":{
       "type":"string",

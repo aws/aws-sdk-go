@@ -184,6 +184,22 @@
         {"shape":"DeveloperUserAlreadyRegisteredException"}
       ]
     },
+    "GetPrincipalTagAttributeMap":{
+      "name":"GetPrincipalTagAttributeMap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPrincipalTagAttributeMapInput"},
+      "output":{"shape":"GetPrincipalTagAttributeMapResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
+      ]
+    },
     "ListIdentities":{
       "name":"ListIdentities",
       "http":{
@@ -281,6 +297,22 @@
         {"shape":"TooManyRequestsException"},
         {"shape":"InternalErrorException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "SetPrincipalTagAttributeMap":{
+      "name":"SetPrincipalTagAttributeMap",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetPrincipalTagAttributeMapInput"},
+      "output":{"shape":"SetPrincipalTagAttributeMapResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "TagResource":{
@@ -590,6 +622,7 @@
         "IdentityPoolId":{"shape":"IdentityPoolId"},
         "IdentityId":{"shape":"IdentityId"},
         "Logins":{"shape":"LoginsMap"},
+        "PrincipalTags":{"shape":"PrincipalTags"},
         "TokenDuration":{"shape":"TokenDuration"}
       }
     },
@@ -613,6 +646,26 @@
       "members":{
         "IdentityId":{"shape":"IdentityId"},
         "Token":{"shape":"OIDCToken"}
+      }
+    },
+    "GetPrincipalTagAttributeMapInput":{
+      "type":"structure",
+      "required":[
+        "IdentityPoolId",
+        "IdentityProviderName"
+      ],
+      "members":{
+        "IdentityPoolId":{"shape":"IdentityPoolId"},
+        "IdentityProviderName":{"shape":"IdentityProviderName"}
+      }
+    },
+    "GetPrincipalTagAttributeMapResponse":{
+      "type":"structure",
+      "members":{
+        "IdentityPoolId":{"shape":"IdentityPoolId"},
+        "IdentityProviderName":{"shape":"IdentityProviderName"},
+        "UseDefaults":{"shape":"UseDefaults"},
+        "PrincipalTags":{"shape":"PrincipalTags"}
       }
     },
     "HideDisabled":{"type":"boolean"},
@@ -892,6 +945,22 @@
       "min":1,
       "pattern":"[\\S]+"
     },
+    "PrincipalTagID":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "PrincipalTagValue":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "PrincipalTags":{
+      "type":"map",
+      "key":{"shape":"PrincipalTagID"},
+      "value":{"shape":"PrincipalTagValue"},
+      "max":50
+    },
     "QueryLimit":{
       "type":"integer",
       "max":60,
@@ -968,6 +1037,28 @@
         "IdentityPoolId":{"shape":"IdentityPoolId"},
         "Roles":{"shape":"RolesMap"},
         "RoleMappings":{"shape":"RoleMappingMap"}
+      }
+    },
+    "SetPrincipalTagAttributeMapInput":{
+      "type":"structure",
+      "required":[
+        "IdentityPoolId",
+        "IdentityProviderName"
+      ],
+      "members":{
+        "IdentityPoolId":{"shape":"IdentityPoolId"},
+        "IdentityProviderName":{"shape":"IdentityProviderName"},
+        "UseDefaults":{"shape":"UseDefaults"},
+        "PrincipalTags":{"shape":"PrincipalTags"}
+      }
+    },
+    "SetPrincipalTagAttributeMapResponse":{
+      "type":"structure",
+      "members":{
+        "IdentityPoolId":{"shape":"IdentityPoolId"},
+        "IdentityProviderName":{"shape":"IdentityProviderName"},
+        "UseDefaults":{"shape":"UseDefaults"},
+        "PrincipalTags":{"shape":"PrincipalTags"}
       }
     },
     "String":{"type":"string"},
@@ -1064,6 +1155,7 @@
       "type":"structure",
       "members":{
       }
-    }
+    },
+    "UseDefaults":{"type":"boolean"}
   }
 }

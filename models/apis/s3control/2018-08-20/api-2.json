@@ -2464,7 +2464,10 @@
     "S3InitiateRestoreObjectOperation":{
       "type":"structure",
       "members":{
-        "ExpirationInDays":{"shape":"S3ExpirationInDays"},
+        "ExpirationInDays":{
+          "shape":"S3ExpirationInDays",
+          "box":true
+        },
         "GlacierJobTier":{"shape":"S3GlacierJobTier"}
       }
     },
