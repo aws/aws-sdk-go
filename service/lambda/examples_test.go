@@ -315,6 +315,66 @@ func ExampleLambda_CreateFunction_shared00() {
 	fmt.Println(result)
 }
 
+// To create a function
+//
+// The following example creates a function with a ECR container image as a deployment package and
+// enables X-Ray tracing and environment variable encryption.
+func ExampleLambda_CreateFunction_shared00() {
+	svc := lambda.New(session.New())
+	input := &lambda.CreateFunctionInput{
+		Code: &lambda.FunctionCode{
+			ImageUri:    aws.String("123456789012.dkr.ecr.us-west-2.amazonaws.com/lambda-test:v0.0.1"),
+		},
+		Description: aws.String("Process container image from ECR."),
+		FunctionName: aws.String("my-function"),
+		MemorySize:   aws.Int64(256),
+		Publish:      aws.Bool(true),
+		Role:         aws.String("arn:aws:iam::123456789012:role/lambda-role"),
+		Tags: map[string]*string{
+			"DEPARTMENT": aws.String("Assets"),
+		},
+		Timeout: aws.Int64(15),
+		TracingConfig: &lambda.TracingConfig{
+			Mode: aws.String("Active"),
+		},
+	}
+
+	result, err := svc.CreateFunction(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case lambda.ErrCodeServiceException:
+				fmt.Println(lambda.ErrCodeServiceException, aerr.Error())
+			case lambda.ErrCodeInvalidParameterValueException:
+				fmt.Println(lambda.ErrCodeInvalidParameterValueException, aerr.Error())
+			case lambda.ErrCodeResourceNotFoundException:
+				fmt.Println(lambda.ErrCodeResourceNotFoundException, aerr.Error())
+			case lambda.ErrCodeResourceConflictException:
+				fmt.Println(lambda.ErrCodeResourceConflictException, aerr.Error())
+			case lambda.ErrCodeTooManyRequestsException:
+				fmt.Println(lambda.ErrCodeTooManyRequestsException, aerr.Error())
+			case lambda.ErrCodeCodeStorageExceededException:
+				fmt.Println(lambda.ErrCodeCodeStorageExceededException, aerr.Error())
+			case lambda.ErrCodeCodeVerificationFailedException:
+				fmt.Println(lambda.ErrCodeCodeVerificationFailedException, aerr.Error())
+			case lambda.ErrCodeInvalidCodeSignatureException:
+				fmt.Println(lambda.ErrCodeInvalidCodeSignatureException, aerr.Error())
+			case lambda.ErrCodeCodeSigningConfigNotFoundException:
+				fmt.Println(lambda.ErrCodeCodeSigningConfigNotFoundException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To delete a Lambda function alias
 //
 // The following example deletes an alias named BLUE from a function named my-function
