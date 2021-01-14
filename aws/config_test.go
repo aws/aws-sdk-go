@@ -49,17 +49,22 @@ func TestCopyReturnsNewInstance(t *testing.T) {
 var mergeTestZeroValueConfig = Config{}
 
 var mergeTestConfig = Config{
-	Credentials:             testCredentials,
-	Endpoint:                String("MergeTestEndpoint"),
-	Region:                  String("MERGE_TEST_AWS_REGION"),
-	DisableSSL:              Bool(true),
-	HTTPClient:              http.DefaultClient,
-	LogLevel:                LogLevel(LogDebug),
-	Logger:                  NewDefaultLogger(),
-	MaxRetries:              Int(10),
-	DisableParamValidation:  Bool(true),
-	DisableComputeChecksums: Bool(true),
-	S3ForcePathStyle:        Bool(true),
+	Credentials:                    testCredentials,
+	Endpoint:                       String("MergeTestEndpoint"),
+	Region:                         String("MERGE_TEST_AWS_REGION"),
+	DisableSSL:                     Bool(true),
+	HTTPClient:                     http.DefaultClient,
+	LogLevel:                       LogLevel(LogDebug),
+	Logger:                         NewDefaultLogger(),
+	MaxRetries:                     Int(10),
+	DisableParamValidation:         Bool(true),
+	DisableComputeChecksums:        Bool(true),
+	DisableEndpointHostPrefix:      Bool(true),
+	EnableEndpointDiscovery:        Bool(true),
+	EnforceShouldRetryCheck:        Bool(true),
+	DisableRestProtocolURICleaning: Bool(true),
+	S3ForcePathStyle:               Bool(true),
+	LowerCaseHeaderMaps:            Bool(true),
 }
 
 var mergeTests = []struct {
