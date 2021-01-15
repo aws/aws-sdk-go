@@ -1,3 +1,10 @@
+Release v1.36.28 (2021-01-15)
+===
+
+### Service Client Updates
+* `service/sns`: Updates service documentation
+  * Documentation updates for Amazon SNS.
+
 Release v1.36.27 (2021-01-14)
 ===
 
