@@ -319,7 +319,7 @@ func ExampleLambda_CreateFunction_shared00() {
 //
 // The following example creates a function with a ECR container image as a deployment package and
 // enables X-Ray tracing and environment variable encryption.
-func ExampleLambda_CreateFunction_shared00() {
+func ExampleLambda_CreateFunction_shared01() {
 	svc := lambda.New(session.New())
 	input := &lambda.CreateFunctionInput{
 		Code: &lambda.FunctionCode{
