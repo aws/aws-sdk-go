@@ -2865,6 +2865,9 @@ func (c *SNS) SetSMSAttributesRequest(input *SetSMSAttributesInput) (req *reques
 // information, see Publishing to a mobile phone (https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html)
 // in the Amazon SNS Developer Guide.
 //
+// To use this operation, you must grant the Amazon SNS service principal (sns.amazonaws.com)
+// permission to perform the s3:ListBucket action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4590,6 +4593,17 @@ type GetSubscriptionAttributesOutput struct {
 	//    * SubscriptionArn – The subscription's ARN.
 	//
 	//    * TopicArn – The topic ARN that the subscription is associated with.
+	//
+	// The following attribute applies only to Amazon Kinesis Data Firehose delivery
+	// stream subscriptions:
+	//
+	//    * SubscriptionRoleArn – The ARN of the IAM role that has the following:
+	//    Permission to write to the Kinesis Data Firehose delivery stream Amazon
+	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
+	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
+	//    more information, see Fanout to Kinesis Data Firehose delivery streams
+	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html)
+	//    in the Amazon SNS Developer Guide.
 	Attributes map[string]*string `type:"map"`
 }
 
@@ -5991,6 +6005,17 @@ type SetSubscriptionAttributesInput struct {
 	//    endpoint becomes unavailable) are held in the dead-letter queue for further
 	//    analysis or reprocessing.
 	//
+	// The following attribute applies only to Amazon Kinesis Data Firehose delivery
+	// stream subscriptions:
+	//
+	//    * SubscriptionRoleArn – The ARN of the IAM role that has the following:
+	//    Permission to write to the Kinesis Data Firehose delivery stream Amazon
+	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
+	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
+	//    more information, see Fanout to Kinesis Data Firehose delivery streams
+	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html)
+	//    in the Amazon SNS Developer Guide.
+	//
 	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
 
@@ -6194,33 +6219,46 @@ type SubscribeInput struct {
 	//    or server errors (for example, when the service that powers the subscribed
 	//    endpoint becomes unavailable) are held in the dead-letter queue for further
 	//    analysis or reprocessing.
+	//
+	// The following attribute applies only to Amazon Kinesis Data Firehose delivery
+	// stream subscriptions:
+	//
+	//    * SubscriptionRoleArn – The ARN of the IAM role that has the following:
+	//    Permission to write to the Kinesis Data Firehose delivery stream Amazon
+	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
+	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
+	//    more information, see Fanout to Kinesis Data Firehose delivery streams
+	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html)
+	//    in the Amazon SNS Developer Guide.
 	Attributes map[string]*string `type:"map"`
 
 	// The endpoint that you want to receive notifications. Endpoints vary by protocol:
 	//
 	//    * For the http protocol, the (public) endpoint is a URL beginning with
-	//    http://
+	//    http://.
 	//
 	//    * For the https protocol, the (public) endpoint is a URL beginning with
-	//    https://
+	//    https://.
 	//
-	//    * For the email protocol, the endpoint is an email address
+	//    * For the email protocol, the endpoint is an email address.
 	//
-	//    * For the email-json protocol, the endpoint is an email address
+	//    * For the email-json protocol, the endpoint is an email address.
 	//
 	//    * For the sms protocol, the endpoint is a phone number of an SMS-enabled
-	//    device
+	//    device.
 	//
-	//    * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue
+	//    * For the sqs protocol, the endpoint is the ARN of an Amazon SQS queue.
 	//
 	//    * For the application protocol, the endpoint is the EndpointArn of a mobile
 	//    app and device.
 	//
-	//    * For the lambda protocol, the endpoint is the ARN of an Amazon Lambda
-	//    function.
+	//    * For the lambda protocol, the endpoint is the ARN of an AWS Lambda function.
+	//
+	//    * For the firehose protocol, the endpoint is the ARN of an Amazon Kinesis
+	//    Data Firehose delivery stream.
 	Endpoint *string `type:"string"`
 
-	// The protocol you want to use. Supported protocols include:
+	// The protocol that you want to use. Supported protocols include:
 	//
 	//    * http – delivery of JSON-encoded message via HTTP POST
 	//
@@ -6235,9 +6273,12 @@ type SubscribeInput struct {
 	//    * sqs – delivery of JSON-encoded message to an Amazon SQS queue
 	//
 	//    * application – delivery of JSON-encoded message to an EndpointArn for
-	//    a mobile app and device.
+	//    a mobile app and device
 	//
-	//    * lambda – delivery of JSON-encoded message to an Amazon Lambda function.
+	//    * lambda – delivery of JSON-encoded message to an AWS Lambda function
+	//
+	//    * firehose – delivery of JSON-encoded message to an Amazon Kinesis Data
+	//    Firehose delivery stream.
 	//
 	// Protocol is a required field
 	Protocol *string `type:"string" required:"true"`
