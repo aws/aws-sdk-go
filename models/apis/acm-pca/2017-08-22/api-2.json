@@ -452,6 +452,13 @@
         "ListPermissions"
       ]
     },
+    "ApiPassthrough":{
+      "type":"structure",
+      "members":{
+        "Extensions":{"shape":"Extensions"},
+        "Subject":{"shape":"ASN1Subject"}
+      }
+    },
     "Arn":{
       "type":"string",
       "max":200,
@@ -553,6 +560,12 @@
         "message":{"shape":"String"}
       },
       "exception":true
+    },
+    "CertificatePolicyList":{
+      "type":"list",
+      "member":{"shape":"PolicyInformation"},
+      "max":20,
+      "min":1
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -724,6 +737,42 @@
         "NameAssigner":{"shape":"String256"}
       }
     },
+    "ExtendedKeyUsage":{
+      "type":"structure",
+      "members":{
+        "ExtendedKeyUsageType":{"shape":"ExtendedKeyUsageType"},
+        "ExtendedKeyUsageObjectIdentifier":{"shape":"CustomObjectIdentifier"}
+      }
+    },
+    "ExtendedKeyUsageList":{
+      "type":"list",
+      "member":{"shape":"ExtendedKeyUsage"},
+      "max":20,
+      "min":1
+    },
+    "ExtendedKeyUsageType":{
+      "type":"string",
+      "enum":[
+        "SERVER_AUTH",
+        "CLIENT_AUTH",
+        "CODE_SIGNING",
+        "EMAIL_PROTECTION",
+        "TIME_STAMPING",
+        "OCSP_SIGNING",
+        "SMART_CARD_LOGIN",
+        "DOCUMENT_SIGNING",
+        "CERTIFICATE_TRANSPARENCY"
+      ]
+    },
+    "Extensions":{
+      "type":"structure",
+      "members":{
+        "CertificatePolicies":{"shape":"CertificatePolicyList"},
+        "ExtendedKeyUsage":{"shape":"ExtendedKeyUsageList"},
+        "KeyUsage":{"shape":"KeyUsage"},
+        "SubjectAlternativeNames":{"shape":"GeneralNameList"}
+      }
+    },
     "FailureReason":{
       "type":"string",
       "enum":[
@@ -744,6 +793,12 @@
         "IpAddress":{"shape":"String39"},
         "RegisteredId":{"shape":"CustomObjectIdentifier"}
       }
+    },
+    "GeneralNameList":{
+      "type":"list",
+      "member":{"shape":"GeneralName"},
+      "max":20,
+      "min":1
     },
     "GetCertificateAuthorityCertificateRequest":{
       "type":"structure",
@@ -884,11 +939,13 @@
         "Validity"
       ],
       "members":{
+        "ApiPassthrough":{"shape":"ApiPassthrough"},
         "CertificateAuthorityArn":{"shape":"Arn"},
         "Csr":{"shape":"CsrBlob"},
         "SigningAlgorithm":{"shape":"SigningAlgorithm"},
         "TemplateArn":{"shape":"Arn"},
         "Validity":{"shape":"Validity"},
+        "ValidityNotBefore":{"shape":"Validity"},
         "IdempotencyToken":{"shape":"IdempotencyToken"}
       }
     },
@@ -1045,6 +1102,35 @@
       "member":{"shape":"Permission"},
       "min":0
     },
+    "PolicyInformation":{
+      "type":"structure",
+      "required":["CertPolicyId"],
+      "members":{
+        "CertPolicyId":{"shape":"CustomObjectIdentifier"},
+        "PolicyQualifiers":{"shape":"PolicyQualifierInfoList"}
+      }
+    },
+    "PolicyQualifierId":{
+      "type":"string",
+      "enum":["CPS"]
+    },
+    "PolicyQualifierInfo":{
+      "type":"structure",
+      "required":[
+        "PolicyQualifierId",
+        "Qualifier"
+      ],
+      "members":{
+        "PolicyQualifierId":{"shape":"PolicyQualifierId"},
+        "Qualifier":{"shape":"Qualifier"}
+      }
+    },
+    "PolicyQualifierInfoList":{
+      "type":"list",
+      "member":{"shape":"PolicyQualifierInfo"},
+      "max":20,
+      "min":1
+    },
     "PositiveLong":{
       "type":"long",
       "min":1
@@ -1064,6 +1150,13 @@
       "members":{
         "ResourceArn":{"shape":"Arn"},
         "Policy":{"shape":"AWSPolicy"}
+      }
+    },
+    "Qualifier":{
+      "type":"structure",
+      "required":["CpsUri"],
+      "members":{
+        "CpsUri":{"shape":"String256"}
       }
     },
     "RequestAlreadyProcessedException":{

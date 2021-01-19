@@ -768,7 +768,7 @@ func (c *ACMPCA) DescribeCertificateAuthorityRequest(input *DescribeCertificateA
 //    * EXPIRED - Your private CA certificate has expired.
 //
 //    * FAILED - Your private CA has failed. Your CA can fail because of problems
-//    such a network outage or backend AWS failure or other errors. A failed
+//    such a network outage or back-end AWS failure or other errors. A failed
 //    CA can never return to the pending state. You must create a new CA.
 //
 //    * DELETED - Your private CA is within the restoration period, after which
@@ -1355,8 +1355,7 @@ func (c *ACMPCA) ImportCertificateAuthorityCertificateRequest(input *ImportCerti
 // must in place:
 //
 // In ACM Private CA, call the CreateCertificateAuthority (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreateCertificateAuthority.html)
-// action to create the private CA that that you plan to back with the imported
-// certificate.
+// action to create the private CA that you plan to back with the imported certificate.
 //
 // Call the GetCertificateAuthorityCsr (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_GetCertificateAuthorityCsr.html)
 // action to generate a certificate signing request (CSR).
@@ -1377,7 +1376,7 @@ func (c *ACMPCA) ImportCertificateAuthorityCertificateRequest(input *ImportCerti
 //    * Installing a subordinate CA certificate whose parent authority is externally
 //    hosted.
 //
-// The following addtitional requirements apply when you import a CA certificate.
+// The following additional requirements apply when you import a CA certificate.
 //
 //    * Only a self-signed certificate can be imported as a root CA.
 //
@@ -2729,15 +2728,12 @@ func (c *ACMPCA) UpdateCertificateAuthorityWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
-// Contains information about the certificate subject. The certificate can be
-// one issued by your private certificate authority (CA) or it can be your private
-// CA certificate. The Subject field in the certificate identifies the entity
-// that owns or controls the public key in the certificate. The entity can be
-// a user, computer, device, or service. The Subject must contain an X.500 distinguished
-// name (DN). A DN is a sequence of relative distinguished names (RDNs). The
-// RDNs are separated by commas in the certificate. The DN must be unique for
-// each entity, but your private CA can issue more than one certificate with
-// the same DN to the same entity.
+// Contains information about the certificate subject. The Subject field in
+// the certificate identifies the entity that owns or controls the public key
+// in the certificate. The entity can be a user, computer, device, or service.
+// The Subject must contain an X.500 distinguished name (DN). A DN is a sequence
+// of relative distinguished names (RDNs). The RDNs are separated by commas
+// in the certificate.
 type ASN1Subject struct {
 	_ struct{} `type:"structure"`
 
@@ -2764,7 +2760,7 @@ type ASN1Subject struct {
 
 	// Concatenation that typically contains the first letter of the GivenName,
 	// the first letter of the middle name if one exists, and the first letter of
-	// the SurName.
+	// the Surname.
 	Initials *string `type:"string"`
 
 	// The locality (such as a city or town) in which the certificate subject is
@@ -2997,6 +2993,70 @@ func (s *AccessMethod) SetAccessMethodType(v string) *AccessMethod {
 // SetCustomObjectIdentifier sets the CustomObjectIdentifier field's value.
 func (s *AccessMethod) SetCustomObjectIdentifier(v string) *AccessMethod {
 	s.CustomObjectIdentifier = &v
+	return s
+}
+
+// Contains X.509 certificate information to be placed in an issued certificate.
+// An APIPassthrough or APICSRPassthrough template variant must be selected,
+// or else this parameter is ignored.
+//
+// If conflicting or duplicate certificate information is supplied from other
+// sources, ACM Private CA applies order of operation rules (xxxxx) to determine
+// what information is used.
+type ApiPassthrough struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies X.509 extension information for a certificate.
+	Extensions *Extensions `type:"structure"`
+
+	// Contains information about the certificate subject. The Subject field in
+	// the certificate identifies the entity that owns or controls the public key
+	// in the certificate. The entity can be a user, computer, device, or service.
+	// The Subject must contain an X.500 distinguished name (DN). A DN is a sequence
+	// of relative distinguished names (RDNs). The RDNs are separated by commas
+	// in the certificate.
+	Subject *ASN1Subject `type:"structure"`
+}
+
+// String returns the string representation
+func (s ApiPassthrough) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApiPassthrough) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApiPassthrough) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApiPassthrough"}
+	if s.Extensions != nil {
+		if err := s.Extensions.Validate(); err != nil {
+			invalidParams.AddNested("Extensions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Subject != nil {
+		if err := s.Subject.Validate(); err != nil {
+			invalidParams.AddNested("Subject", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExtensions sets the Extensions field's value.
+func (s *ApiPassthrough) SetExtensions(v *Extensions) *ApiPassthrough {
+	s.Extensions = v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *ApiPassthrough) SetSubject(v *ASN1Subject) *ApiPassthrough {
+	s.Subject = v
 	return s
 }
 
@@ -3479,12 +3539,13 @@ type CreateCertificateAuthorityInput struct {
 	// CertificateAuthorityType is a required field
 	CertificateAuthorityType *string `type:"string" required:"true" enum:"CertificateAuthorityType"`
 
-	// Alphanumeric string that can be used to distinguish between calls to CreateCertificateAuthority.
-	// For a given token, ACM Private CA creates exactly one CA. If you issue a
-	// subsequent call using the same token, ACM Private CA returns the ARN of the
-	// existing CA and takes no further action. If you change the idempotency token
-	// across multiple calls, ACM Private CA creates a unique CA for each unique
-	// token.
+	// Custom string that can be used to distinguish between calls to the CreateCertificateAuthority
+	// action. Idempotency tokens for CreateCertificateAuthority time out after
+	// five minutes. Therefore, if you call CreateCertificateAuthority multiple
+	// times with the same idempotency token within five minutes, ACM Private CA
+	// recognizes that you are requesting only certificate authority and will issue
+	// only one. If you change the idempotency token for each call, PCA recognizes
+	// that you are requesting multiple certificate authorities.
 	IdempotencyToken *string `min:"1" type:"string"`
 
 	// Contains a Boolean value that you can use to enable a certification revocation
@@ -4354,21 +4415,153 @@ func (s *EdiPartyName) SetPartyName(v string) *EdiPartyName {
 	return s
 }
 
+// Specifies additional purposes for which the certified public key may be used
+// other than basic purposes indicated in the KeyUsage extension.
+type ExtendedKeyUsage struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a custom ExtendedKeyUsage with an object identifier (OID).
+	ExtendedKeyUsageObjectIdentifier *string `type:"string"`
+
+	// Specifies a standard ExtendedKeyUsage as defined as in RFC 5280 (https://tools.ietf.org/html/rfc5280#section-4.2.1.12).
+	ExtendedKeyUsageType *string `type:"string" enum:"ExtendedKeyUsageType"`
+}
+
+// String returns the string representation
+func (s ExtendedKeyUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExtendedKeyUsage) GoString() string {
+	return s.String()
+}
+
+// SetExtendedKeyUsageObjectIdentifier sets the ExtendedKeyUsageObjectIdentifier field's value.
+func (s *ExtendedKeyUsage) SetExtendedKeyUsageObjectIdentifier(v string) *ExtendedKeyUsage {
+	s.ExtendedKeyUsageObjectIdentifier = &v
+	return s
+}
+
+// SetExtendedKeyUsageType sets the ExtendedKeyUsageType field's value.
+func (s *ExtendedKeyUsage) SetExtendedKeyUsageType(v string) *ExtendedKeyUsage {
+	s.ExtendedKeyUsageType = &v
+	return s
+}
+
+// Contains X.509 extension information for a certificate.
+type Extensions struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a sequence of one or more policy information terms, each of which
+	// consists of an object identifier (OID) and optional qualifiers. For more
+	// information, see NIST's definition of Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).
+	//
+	// In an end-entity certificate, these terms indicate the policy under which
+	// the certificate was issued and the purposes for which it may be used. In
+	// a CA certificate, these terms limit the set of policies for certification
+	// paths that include this certificate.
+	CertificatePolicies []*PolicyInformation `min:"1" type:"list"`
+
+	// Specifies additional purposes for which the certified public key may be used
+	// other than basic purposes indicated in the KeyUsage extension.
+	ExtendedKeyUsage []*ExtendedKeyUsage `min:"1" type:"list"`
+
+	// Defines one or more purposes for which the key contained in the certificate
+	// can be used. Default value for each option is false.
+	KeyUsage *KeyUsage `type:"structure"`
+
+	// The subject alternative name extension allows identities to be bound to the
+	// subject of the certificate. These identities may be included in addition
+	// to or in place of the identity in the subject field of the certificate.
+	SubjectAlternativeNames []*GeneralName `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s Extensions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Extensions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Extensions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Extensions"}
+	if s.CertificatePolicies != nil && len(s.CertificatePolicies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificatePolicies", 1))
+	}
+	if s.ExtendedKeyUsage != nil && len(s.ExtendedKeyUsage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExtendedKeyUsage", 1))
+	}
+	if s.SubjectAlternativeNames != nil && len(s.SubjectAlternativeNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubjectAlternativeNames", 1))
+	}
+	if s.CertificatePolicies != nil {
+		for i, v := range s.CertificatePolicies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CertificatePolicies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SubjectAlternativeNames != nil {
+		for i, v := range s.SubjectAlternativeNames {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SubjectAlternativeNames", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificatePolicies sets the CertificatePolicies field's value.
+func (s *Extensions) SetCertificatePolicies(v []*PolicyInformation) *Extensions {
+	s.CertificatePolicies = v
+	return s
+}
+
+// SetExtendedKeyUsage sets the ExtendedKeyUsage field's value.
+func (s *Extensions) SetExtendedKeyUsage(v []*ExtendedKeyUsage) *Extensions {
+	s.ExtendedKeyUsage = v
+	return s
+}
+
+// SetKeyUsage sets the KeyUsage field's value.
+func (s *Extensions) SetKeyUsage(v *KeyUsage) *Extensions {
+	s.KeyUsage = v
+	return s
+}
+
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *Extensions) SetSubjectAlternativeNames(v []*GeneralName) *Extensions {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
 // Describes an ASN.1 X.400 GeneralName as defined in RFC 5280 (https://tools.ietf.org/html/rfc5280).
-// Only one of the following naming options should be providied. Providing more
+// Only one of the following naming options should be provided. Providing more
 // than one option results in an InvalidArgsException error.
 type GeneralName struct {
 	_ struct{} `type:"structure"`
 
-	// Contains information about the certificate subject. The certificate can be
-	// one issued by your private certificate authority (CA) or it can be your private
-	// CA certificate. The Subject field in the certificate identifies the entity
-	// that owns or controls the public key in the certificate. The entity can be
-	// a user, computer, device, or service. The Subject must contain an X.500 distinguished
-	// name (DN). A DN is a sequence of relative distinguished names (RDNs). The
-	// RDNs are separated by commas in the certificate. The DN must be unique for
-	// each entity, but your private CA can issue more than one certificate with
-	// the same DN to the same entity.
+	// Contains information about the certificate subject. The Subject field in
+	// the certificate identifies the entity that owns or controls the public key
+	// in the certificate. The entity can be a user, computer, device, or service.
+	// The Subject must contain an X.500 distinguished name (DN). A DN is a sequence
+	// of relative distinguished names (RDNs). The RDNs are separated by commas
+	// in the certificate.
 	DirectoryName *ASN1Subject `type:"structure"`
 
 	// Represents GeneralName as a DNS name.
@@ -5283,6 +5476,16 @@ func (s *InvalidTagException) RequestID() string {
 type IssueCertificateInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies X.509 certificate information to be included in the issued certificate.
+	// An APIPassthrough or APICSRPassthrough template variant must be selected,
+	// or else this parameter is ignored. For more information about using these
+	// templates, see Understanding Certificate Templates (https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html).
+	//
+	// If conflicting or duplicate certificate information is supplied during certificate
+	// issuance, ACM Private CA applies order of operation rules (xxxxx) to determine
+	// what information is used.
+	ApiPassthrough *ApiPassthrough `type:"structure"`
+
 	// The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority
 	// (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_CreateCertificateAuthority.html).
 	// This must be of the form:
@@ -5293,15 +5496,15 @@ type IssueCertificateInput struct {
 	CertificateAuthorityArn *string `min:"5" type:"string" required:"true"`
 
 	// The certificate signing request (CSR) for the certificate you want to issue.
-	// You can use the following OpenSSL command to create the CSR and a 2048 bit
-	// RSA private key.
+	// As an example, you can use the following OpenSSL command to create the CSR
+	// and a 2048 bit RSA private key.
 	//
 	// openssl req -new -newkey rsa:2048 -days 365 -keyout private/test_cert_priv_key.pem
 	// -out csr/test_cert_.csr
 	//
-	// If you have a configuration file, you can use the following OpenSSL command.
-	// The usr_cert block in the configuration file contains your X509 version 3
-	// extensions.
+	// If you have a configuration file, you can then use the following OpenSSL
+	// command. The usr_cert block in the configuration file contains your X509
+	// version 3 extensions.
 	//
 	// openssl req -new -config openssl_rsa.cnf -extensions usr_cert -newkey rsa:2048
 	// -days -365 -keyout private/test_cert_priv_key.pem -out csr/test_cert_.csr
@@ -5314,19 +5517,20 @@ type IssueCertificateInput struct {
 	// Csr is a required field
 	Csr []byte `min:"1" type:"blob" required:"true"`
 
-	// Custom string that can be used to distinguish between calls to the IssueCertificate
-	// action. Idempotency tokens time out after one hour. Therefore, if you call
-	// IssueCertificate multiple times with the same idempotency token within 5
-	// minutes, ACM Private CA recognizes that you are requesting only one certificate
-	// and will issue only one. If you change the idempotency token for each call,
-	// PCA recognizes that you are requesting multiple certificates.
+	// Alphanumeric string that can be used to distinguish between calls to the
+	// IssueCertificate action. Idempotency tokens for IssueCertificate time out
+	// after one minute. Therefore, if you call IssueCertificate multiple times
+	// with the same idempotency token within one minute, ACM Private CA recognizes
+	// that you are requesting only one certificate and will issue only one. If
+	// you change the idempotency token for each call, PCA recognizes that you are
+	// requesting multiple certificates.
 	IdempotencyToken *string `min:"1" type:"string"`
 
 	// The name of the algorithm that will be used to sign the certificate to be
 	// issued.
 	//
 	// This parameter should not be confused with the SigningAlgorithm parameter
-	// used to sign a CSR.
+	// used to sign a CSR in the CreateCertificateAuthority action.
 	//
 	// SigningAlgorithm is a required field
 	SigningAlgorithm *string `type:"string" required:"true" enum:"SigningAlgorithm"`
@@ -5340,53 +5544,44 @@ type IssueCertificateInput struct {
 	// Note: The CA depth configured on a subordinate CA certificate must not exceed
 	// the limit set by its parents in the CA hierarchy.
 	//
-	// The following service-owned TemplateArn values are supported by ACM Private
-	// CA:
-	//
-	//    * arn:aws:acm-pca:::template/CodeSigningCertificate/V1
-	//
-	//    * arn:aws:acm-pca:::template/CodeSigningCertificate_CSRPassthrough/V1
-	//
-	//    * arn:aws:acm-pca:::template/EndEntityCertificate/V1
-	//
-	//    * arn:aws:acm-pca:::template/EndEntityCertificate_CSRPassthrough/V1
-	//
-	//    * arn:aws:acm-pca:::template/EndEntityClientAuthCertificate/V1
-	//
-	//    * arn:aws:acm-pca:::template/EndEntityClientAuthCertificate_CSRPassthrough/V1
-	//
-	//    * arn:aws:acm-pca:::template/EndEntityServerAuthCertificate/V1
-	//
-	//    * arn:aws:acm-pca:::template/EndEntityServerAuthCertificate_CSRPassthrough/V1
-	//
-	//    * arn:aws:acm-pca:::template/OCSPSigningCertificate/V1
-	//
-	//    * arn:aws:acm-pca:::template/OCSPSigningCertificate_CSRPassthrough/V1
-	//
-	//    * arn:aws:acm-pca:::template/RootCACertificate/V1
-	//
-	//    * arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen0/V1
-	//
-	//    * arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen1/V1
-	//
-	//    * arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen2/V1
-	//
-	//    * arn:aws:acm-pca:::template/SubordinateCACertificate_PathLen3/V1
-	//
-	// For more information, see Using Templates (https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html).
+	// For a list of TemplateArn values supported by ACM Private CA, see Understanding
+	// Certificate Templates (https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html).
 	TemplateArn *string `min:"5" type:"string"`
 
-	// Information describing the validity period of the certificate.
+	// Information describing the end of the validity period of the certificate.
+	// This parameter sets the “Not After” date for the certificate.
 	//
-	// When issuing a certificate, ACM Private CA sets the "Not Before" date in
-	// the validity field to date and time minus 60 minutes. This is intended to
-	// compensate for time inconsistencies across systems of 60 minutes or less.
+	// Certificate validity is the period of time during which a certificate is
+	// valid. Validity can be expressed as an explicit date and time when the certificate
+	// expires, or as a span of time after issuance, stated in days, months, or
+	// years. For more information, see Validity (https://tools.ietf.org/html/rfc5280#section-4.1.2.5)
+	// in RFC 5280.
 	//
-	// The validity period configured on a certificate must not exceed the limit
-	// set by its parents in the CA hierarchy.
+	// This value is unaffected when ValidityNotBefore is also specified. For example,
+	// if Validity is set to 20 days in the future, the certificate will expire
+	// 20 days from issuance time regardless of the ValidityNotBefore value.
+	//
+	// The end of the validity period configured on a certificate must not exceed
+	// the limit set on its parents in the CA hierarchy.
 	//
 	// Validity is a required field
 	Validity *Validity `type:"structure" required:"true"`
+
+	// Information describing the start of the validity period of the certificate.
+	// This parameter sets the “Not Before" date for the certificate.
+	//
+	// By default, when issuing a certificate, ACM Private CA sets the "Not Before"
+	// date to the issuance time minus 60 minutes. This compensates for clock inconsistencies
+	// across computer systems. The ValidityNotBefore parameter can be used to customize
+	// the “Not Before” value.
+	//
+	// Unlike the Validity parameter, the ValidityNotBefore parameter is optional.
+	//
+	// The ValidityNotBefore value is expressed as an explicit date and time, using
+	// the Validity type value ABSOLUTE. For more information, see Validity (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_Validity.html)
+	// in this API reference and Validity (https://tools.ietf.org/html/rfc5280#section-4.1.2.5)
+	// in RFC 5280.
+	ValidityNotBefore *Validity `type:"structure"`
 }
 
 // String returns the string representation
@@ -5426,9 +5621,19 @@ func (s *IssueCertificateInput) Validate() error {
 	if s.Validity == nil {
 		invalidParams.Add(request.NewErrParamRequired("Validity"))
 	}
+	if s.ApiPassthrough != nil {
+		if err := s.ApiPassthrough.Validate(); err != nil {
+			invalidParams.AddNested("ApiPassthrough", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Validity != nil {
 		if err := s.Validity.Validate(); err != nil {
 			invalidParams.AddNested("Validity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ValidityNotBefore != nil {
+		if err := s.ValidityNotBefore.Validate(); err != nil {
+			invalidParams.AddNested("ValidityNotBefore", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -5436,6 +5641,12 @@ func (s *IssueCertificateInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetApiPassthrough sets the ApiPassthrough field's value.
+func (s *IssueCertificateInput) SetApiPassthrough(v *ApiPassthrough) *IssueCertificateInput {
+	s.ApiPassthrough = v
+	return s
 }
 
 // SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
@@ -5471,6 +5682,12 @@ func (s *IssueCertificateInput) SetTemplateArn(v string) *IssueCertificateInput 
 // SetValidity sets the Validity field's value.
 func (s *IssueCertificateInput) SetValidity(v *Validity) *IssueCertificateInput {
 	s.Validity = v
+	return s
+}
+
+// SetValidityNotBefore sets the ValidityNotBefore field's value.
+func (s *IssueCertificateInput) SetValidityNotBefore(v *Validity) *IssueCertificateInput {
+	s.ValidityNotBefore = v
 	return s
 }
 
@@ -6325,10 +6542,134 @@ func (s *PermissionAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Defines the X.509 CertificatePolicies extension.
+type PolicyInformation struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the object identifier (OID) of the certificate policy under which
+	// the certificate was issued. For more information, see NIST's definition of
+	// Object Identifier (OID) (https://csrc.nist.gov/glossary/term/Object_Identifier).
+	//
+	// CertPolicyId is a required field
+	CertPolicyId *string `type:"string" required:"true"`
+
+	// Modifies the given CertPolicyId with a qualifier. ACM Private CA supports
+	// the certification practice statement (CPS) qualifier.
+	PolicyQualifiers []*PolicyQualifierInfo `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s PolicyInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PolicyInformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PolicyInformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PolicyInformation"}
+	if s.CertPolicyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CertPolicyId"))
+	}
+	if s.PolicyQualifiers != nil && len(s.PolicyQualifiers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PolicyQualifiers", 1))
+	}
+	if s.PolicyQualifiers != nil {
+		for i, v := range s.PolicyQualifiers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PolicyQualifiers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertPolicyId sets the CertPolicyId field's value.
+func (s *PolicyInformation) SetCertPolicyId(v string) *PolicyInformation {
+	s.CertPolicyId = &v
+	return s
+}
+
+// SetPolicyQualifiers sets the PolicyQualifiers field's value.
+func (s *PolicyInformation) SetPolicyQualifiers(v []*PolicyQualifierInfo) *PolicyInformation {
+	s.PolicyQualifiers = v
+	return s
+}
+
+// Modifies the CertPolicyId of a PolicyInformation object with a qualifier.
+// ACM Private CA supports the certification practice statement (CPS) qualifier.
+type PolicyQualifierInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the qualifier modifying a CertPolicyId.
+	//
+	// PolicyQualifierId is a required field
+	PolicyQualifierId *string `type:"string" required:"true" enum:"PolicyQualifierId"`
+
+	// Defines the qualifier type. ACM Private CA supports the use of a URI for
+	// a CPS qualifier in this field.
+	//
+	// Qualifier is a required field
+	Qualifier *Qualifier `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PolicyQualifierInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PolicyQualifierInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PolicyQualifierInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PolicyQualifierInfo"}
+	if s.PolicyQualifierId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyQualifierId"))
+	}
+	if s.Qualifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Qualifier"))
+	}
+	if s.Qualifier != nil {
+		if err := s.Qualifier.Validate(); err != nil {
+			invalidParams.AddNested("Qualifier", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicyQualifierId sets the PolicyQualifierId field's value.
+func (s *PolicyQualifierInfo) SetPolicyQualifierId(v string) *PolicyQualifierInfo {
+	s.PolicyQualifierId = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *PolicyQualifierInfo) SetQualifier(v *Qualifier) *PolicyQualifierInfo {
+	s.Qualifier = v
+	return s
+}
+
 type PutPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The path and filename of a JSON-formatted IAM policy to attach to the specified
+	// The path and file name of a JSON-formatted IAM policy to attach to the specified
 	// private CA resource. If this policy does not contain all required statements
 	// or if it includes any statement that is not allowed, the PutPolicy action
 	// returns an InvalidPolicyException. For information about IAM policy and statement
@@ -6402,6 +6743,48 @@ func (s PutPolicyOutput) String() string {
 // GoString returns the string representation
 func (s PutPolicyOutput) GoString() string {
 	return s.String()
+}
+
+// Defines a PolicyInformation qualifier. ACM Private CA supports the certification
+// practice statement (CPS) qualifier (https://tools.ietf.org/html/rfc5280#section-4.2.1.4)
+// defined in RFC 5280.
+type Qualifier struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a pointer to a certification practice statement (CPS) published
+	// by the CA.
+	//
+	// CpsUri is a required field
+	CpsUri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Qualifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Qualifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Qualifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Qualifier"}
+	if s.CpsUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("CpsUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCpsUri sets the CpsUri field's value.
+func (s *Qualifier) SetCpsUri(v string) *Qualifier {
+	s.CpsUri = &v
+	return s
 }
 
 // Your request has already been completed.
@@ -7197,13 +7580,16 @@ func (s UpdateCertificateAuthorityOutput) GoString() string {
 }
 
 // Validity specifies the period of time during which a certificate is valid.
-// Validity can be expressed as an explicit date and time when the certificate
-// expires, or as a span of time after issuance, stated in days, months, or
-// years. For more information, see Validity (https://tools.ietf.org/html/rfc5280#section-4.1.2.5)
+// Validity can be expressed as an explicit date and time when the validity
+// of a certificate starts or expires, or as a span of time after issuance,
+// stated in days, months, or years. For more information, see Validity (https://tools.ietf.org/html/rfc5280#section-4.1.2.5)
 // in RFC 5280.
 //
-// You can issue a certificate by calling the IssueCertificate (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_IssueCertificate.html)
-// action.
+// ACM Private CA API consumes the Validity data type differently in two distinct
+// parameters of the IssueCertificate action. The required parameter IssueCertificate:Validity
+// specifies the end of a certificate's validity period. The optional parameter
+// IssueCertificate:ValidityNotBefore specifies a customized starting time for
+// the validity period.
 type Validity struct {
 	_ struct{} `type:"structure"`
 
@@ -7221,8 +7607,8 @@ type Validity struct {
 	//
 	//    * Output expiration date/time: 12/31/2049 23:59:59
 	//
-	// ABSOLUTE: The specific date and time when the certificate will expire, expressed
-	// in seconds since the Unix Epoch.
+	// ABSOLUTE: The specific date and time when the validity of a certificate will
+	// start or expire, expressed in seconds since the Unix Epoch.
 	//
 	//    * Sample input value: 2524608000
 	//
@@ -7420,6 +7806,50 @@ func CertificateAuthorityType_Values() []string {
 }
 
 const (
+	// ExtendedKeyUsageTypeServerAuth is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeServerAuth = "SERVER_AUTH"
+
+	// ExtendedKeyUsageTypeClientAuth is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeClientAuth = "CLIENT_AUTH"
+
+	// ExtendedKeyUsageTypeCodeSigning is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeCodeSigning = "CODE_SIGNING"
+
+	// ExtendedKeyUsageTypeEmailProtection is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeEmailProtection = "EMAIL_PROTECTION"
+
+	// ExtendedKeyUsageTypeTimeStamping is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeTimeStamping = "TIME_STAMPING"
+
+	// ExtendedKeyUsageTypeOcspSigning is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeOcspSigning = "OCSP_SIGNING"
+
+	// ExtendedKeyUsageTypeSmartCardLogin is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeSmartCardLogin = "SMART_CARD_LOGIN"
+
+	// ExtendedKeyUsageTypeDocumentSigning is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeDocumentSigning = "DOCUMENT_SIGNING"
+
+	// ExtendedKeyUsageTypeCertificateTransparency is a ExtendedKeyUsageType enum value
+	ExtendedKeyUsageTypeCertificateTransparency = "CERTIFICATE_TRANSPARENCY"
+)
+
+// ExtendedKeyUsageType_Values returns all elements of the ExtendedKeyUsageType enum
+func ExtendedKeyUsageType_Values() []string {
+	return []string{
+		ExtendedKeyUsageTypeServerAuth,
+		ExtendedKeyUsageTypeClientAuth,
+		ExtendedKeyUsageTypeCodeSigning,
+		ExtendedKeyUsageTypeEmailProtection,
+		ExtendedKeyUsageTypeTimeStamping,
+		ExtendedKeyUsageTypeOcspSigning,
+		ExtendedKeyUsageTypeSmartCardLogin,
+		ExtendedKeyUsageTypeDocumentSigning,
+		ExtendedKeyUsageTypeCertificateTransparency,
+	}
+}
+
+const (
 	// FailureReasonRequestTimedOut is a FailureReason enum value
 	FailureReasonRequestTimedOut = "REQUEST_TIMED_OUT"
 
@@ -7460,6 +7890,18 @@ func KeyAlgorithm_Values() []string {
 		KeyAlgorithmRsa4096,
 		KeyAlgorithmEcPrime256v1,
 		KeyAlgorithmEcSecp384r1,
+	}
+}
+
+const (
+	// PolicyQualifierIdCps is a PolicyQualifierId enum value
+	PolicyQualifierIdCps = "CPS"
+)
+
+// PolicyQualifierId_Values returns all elements of the PolicyQualifierId enum
+func PolicyQualifierId_Values() []string {
+	return []string{
+		PolicyQualifierIdCps,
 	}
 }
 
