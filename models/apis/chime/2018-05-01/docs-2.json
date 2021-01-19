@@ -1,31 +1,31 @@
 {
   "version": "2.0",
-  "service": "<p>The Amazon Chime API (application programming interface) is designed for developers to perform key tasks, such as creating and managing Amazon Chime accounts, users, and Voice Connectors. This guide provides detailed information about the Amazon Chime API, including operations, types, inputs and outputs, and error codes. It also includes some server-side API actions to use with the Amazon Chime SDK. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p> <p>You can use an AWS SDK, the AWS Command Line Interface (AWS CLI), or the REST API to make API calls. We recommend using an AWS SDK or the AWS CLI. Each API operation includes links to information about using it with a language-specific AWS SDK or the AWS CLI.</p> <dl> <dt>Using an AWS SDK</dt> <dd> <p>You don't need to write code to calculate a signature for request authentication. The SDK clients authenticate your requests by using access keys that you provide. For more information about AWS SDKs, see the <a href=\"http://aws.amazon.com/developer/\">AWS Developer Center</a>.</p> </dd> <dt>Using the AWS CLI</dt> <dd> <p>Use your access keys with the AWS CLI to make API calls. For information about setting up the AWS CLI, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/installing.html\">Installing the AWS Command Line Interface</a> in the <i>AWS Command Line Interface User Guide</i>. For a list of available Amazon Chime commands, see the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/chime/index.html\">Amazon Chime commands</a> in the <i>AWS CLI Command Reference</i>.</p> </dd> <dt>Using REST</dt> <dd> <p>If you use REST to make API calls, you must authenticate your request by providing a signature. Amazon Chime supports Signature Version 4. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4 Signing Process</a> in the <i>Amazon Web Services General Reference</i>.</p> <p>When making REST API calls, use the service name <code>chime</code> and REST endpoint <code>https://service.chime.aws.amazon.com</code>.</p> </dd> </dl> <p>Administrative permissions are controlled using AWS Identity and Access Management (IAM). For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/security-iam.html\">Identity and Access Management for Amazon Chime</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+  "service": "<p>The Amazon Chime API (application programming interface) is designed for developers to perform key tasks, such as creating and managing Amazon Chime accounts, users, and Voice Connectors. This guide provides detailed information about the Amazon Chime API, including operations, types, inputs and outputs, and error codes. It also includes some server-side API actions to use with the Amazon Chime SDK. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\"> Using the Amazon Chime SDK </a> in the <i>Amazon Chime Developer Guide</i>.</p> <p>You can use an AWS SDK, the AWS Command Line Interface (AWS CLI), or the REST API to make API calls. We recommend using an AWS SDK or the AWS CLI. Each API operation includes links to information about using it with a language-specific AWS SDK or the AWS CLI.</p> <dl> <dt>Using an AWS SDK</dt> <dd> <p> You don't need to write code to calculate a signature for request authentication. The SDK clients authenticate your requests by using access keys that you provide. For more information about AWS SDKs, see the <a href=\"http://aws.amazon.com/developer/\">AWS Developer Center</a>. </p> </dd> <dt>Using the AWS CLI</dt> <dd> <p>Use your access keys with the AWS CLI to make API calls. For information about setting up the AWS CLI, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/installing.html\">Installing the AWS Command Line Interface</a> in the <i>AWS Command Line Interface User Guide</i>. For a list of available Amazon Chime commands, see the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/chime/index.html\">Amazon Chime commands</a> in the <i>AWS CLI Command Reference</i>. </p> </dd> <dt>Using REST APIs</dt> <dd> <p>If you use REST to make API calls, you must authenticate your request by providing a signature. Amazon Chime supports signature version 4. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4 Signing Process</a> in the <i>Amazon Web Services General Reference</i>.</p> <p>When making REST API calls, use the service name <code>chime</code> and REST endpoint <code>https://service.chime.aws.amazon.com</code>.</p> </dd> </dl> <p>Administrative permissions are controlled using AWS Identity and Access Management (IAM). For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/security-iam.html\">Identity and Access Management for Amazon Chime</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
   "operations": {
     "AssociatePhoneNumberWithUser": "<p>Associates a phone number with the specified Amazon Chime user.</p>",
     "AssociatePhoneNumbersWithVoiceConnector": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector.</p>",
     "AssociatePhoneNumbersWithVoiceConnectorGroup": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector group.</p>",
     "AssociateSigninDelegateGroupsWithAccount": "<p>Associates the specified sign-in delegate groups with the specified Amazon Chime account.</p>",
-    "BatchCreateAttendee": "<p>Creates up to 100 new attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
-    "BatchCreateRoomMembership": "<p>Adds up to 50 members to a chat room in an Amazon Chime Enterprise account. Members can be either users or bots. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
-    "BatchDeletePhoneNumber": "<p>Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted.</p> <p>Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
-    "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are disassociated from the account, but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action. </p> <p>To sign out users without suspending them, use the <a>LogoutUser</a> action.</p>",
-    "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored.</p>",
-    "BatchUpdatePhoneNumber": "<p>Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update either the product type or the calling name.</p> <p>For product types, choose from Amazon Chime Business Calling and Amazon Chime Voice Connector. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
-    "BatchUpdateUser": "<p>Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
+    "BatchCreateAttendee": "<p> Creates up to 100 new attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
+    "BatchCreateRoomMembership": "<p>Adds up to 50 members to a chat room in an Amazon Chime Enterprise account. Members can be users or bots. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
+    "BatchDeletePhoneNumber": "<p> Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted. </p> <p> Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently. </p>",
+    "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are disassociated from the account,but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action.</p> <p> To sign out users without suspending them, use the <a>LogoutUser</a> action. </p>",
+    "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p> Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored. </p>",
+    "BatchUpdatePhoneNumber": "<p> Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code> . For example, you can update either the product type or the calling name. </p> <p>For product types, choose from Amazon Chime Business Calling and Amazon Chime Voice Connector. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
+    "BatchUpdateUser": "<p> Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
-    "CreateAppInstance": "<p>Creates an Amazon Chime Messaging SDK <code>AppInstance</code> under an AWS Account. Only Messaging SDK customers use this API. <code>CreateAppInstance</code> supports <code>idempotency</code> behavior as described in the AWS API Standard.</p>",
-    "CreateAppInstanceAdmin": "<p>Promotes an <code>AppInstanceUser</code> to an <code>AppInstanceAdmin</code>. The promoted user can perform the following actions. </p> <ul> <li> <p> <code>ChannelModerator</code> actions across all channels in the app instance.</p> </li> <li> <p> <code>DeleteChannelMessage</code> actions.</p> </li> </ul> <p>Only an <code>AppInstanceUser</code> can be promoted to an <code>AppInstanceAdmin</code> role.</p>",
+    "CreateAppInstance": "<p>Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an AWS account. Only SDK messaging customers use this API. <code>CreateAppInstance</code> supports idempotency behavior as described in the AWS API Standard.</p>",
+    "CreateAppInstanceAdmin": "<p>Promotes an <code>AppInstanceUser</code> to an <code>AppInstanceAdmin</code>. The promoted user can perform the following actions. </p> <ul> <li> <p> <code>ChannelModerator</code> actions across all channels in the <code>AppInstance</code>.</p> </li> <li> <p> <code>DeleteChannelMessage</code> actions.</p> </li> </ul> <p>Only an <code>AppInstanceUser</code> can be promoted to an <code>AppInstanceAdmin</code> role.</p>",
     "CreateAppInstanceUser": "<p>Creates a user under an Amazon Chime <code>AppInstance</code>. The request consists of a unique <code>appInstanceUserId</code> and <code>Name</code> for that user.</p>",
-    "CreateAttendee": "<p>Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateAttendee": "<p> Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
-    "CreateChannel": "<p>Creates a channel to which you can add users and send messages.</p> <p> <b>Restriction</b>: You can't change a channel's privacy.</p>",
-    "CreateChannelBan": "<p>Permanently bans a member from a channel. Moderators can't add banned members to a channel. To undo a ban, you first have to <code>DeleteChannelBan</code>, and then <code>CreateChannelMembership</code>. Bans are cleaned up when you delete users or channels. </p> <p>If you ban a user who is already part of a channel, that user is automatically kicked from the channel.</p>",
-    "CreateChannelMembership": "<p>Adds a user to a channel. The <code>InvitedBy</code> response field is derived from the request header. A channel member can:</p> <ul> <li> <p>List messages</p> </li> <li> <p>Send messages</p> </li> <li> <p>Receive messages</p> </li> <li> <p>Edit their own messages</p> </li> <li> <p>Leave the channel</p> </li> </ul> <p>Privacy settings impact this action as follows:</p> <ul> <li> <p>Public Channels: You do not need to be a member to list messages, but you must be a member to send messages.</p> </li> <li> <p>Private Channels: You must be a member to list or send messages.</p> </li> </ul>",
-    "CreateChannelModerator": "<p>Creates a new <code>ChannelModerator</code>. A channel moderator can:</p> <ul> <li> <p>Add and remove other members of the channel.</p> </li> <li> <p>Add and remove other moderators of the channel.</p> </li> <li> <p>Add and remove user bans for the channel.</p> </li> <li> <p>Redact messages in the channel.</p> </li> <li> <p>List messages in the channel.</p> </li> </ul>",
-    "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
-    "CreateMeetingDialOut": "<p>Uses the join token and call metadata in a meeting request (From number, To number, and so forth) to initiate an outbound call to a public switched telephone network (PSTN) and joins them into Chime meeting. Also ensures that the From number belongs to the customer.</p> <p>To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code> API with the corresponding SIP media application ID.</p>",
-    "CreateMeetingWithAttendees": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateChannel": "<p>Creates a channel to which you can add users and send messages.</p> <p> <b>Restriction</b>: You can't change a channel's privacy.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelBan": "<p>Permanently bans a member from a channel. Moderators can't add banned members to a channel. To undo a ban, you first have to <code>DeleteChannelBan</code>, and then <code>CreateChannelMembership</code>. Bans are cleaned up when you delete users or channels.</p> <p>If you ban a user who is already part of a channel, that user is automatically kicked from the channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelMembership": "<p>Adds a user to a channel. The <code>InvitedBy</code> response field is derived from the request header. A channel member can:</p> <ul> <li> <p>List messages</p> </li> <li> <p>Send messages</p> </li> <li> <p>Receive messages</p> </li> <li> <p>Edit their own messages</p> </li> <li> <p>Leave the channel</p> </li> </ul> <p>Privacy settings impact this action as follows:</p> <ul> <li> <p>Public Channels: You do not need to be a member to list messages, but you must be a member to send messages.</p> </li> <li> <p>Private Channels: You must be a member to list or send messages.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelModerator": "<p>Creates a new <code>ChannelModerator</code>. A channel moderator can:</p> <ul> <li> <p>Add and remove other members of the channel.</p> </li> <li> <p>Add and remove other moderators of the channel.</p> </li> <li> <p>Add and remove user bans for the channel.</p> </li> <li> <p>Redact messages in the channel.</p> </li> <li> <p>List messages in the channel.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateMeeting": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
+    "CreateMeetingDialOut": "<p>Uses the join token and call metadata in a meeting request (From number, To number, and so forth) to initiate an outbound call to a public switched telephone network (PSTN) and join them into a Chime meeting. Also ensures that the From number belongs to the customer.</p> <p>To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code> action with the corresponding SIP media application ID.</p>",
+    "CreateMeetingWithAttendees": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session on the specified Amazon Chime Voice Connector for the specified participant phone numbers.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
@@ -34,22 +34,22 @@
     "CreateSipMediaApplicationCall": "<p>Creates an outbound call to a phone number from the phone number specified in the request, and it invokes the endpoint of the specified <code>sipMediaApplicationId</code>.</p>",
     "CreateSipRule": "<p>Creates a SIP rule which can be used to run a SIP media application as a target for a specific trigger type.</p>",
     "CreateUser": "<p>Creates a user under the specified Amazon Chime account.</p>",
-    "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. You can choose to create an Amazon Chime Voice Connector in a specific AWS Region.</p> <p>Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked.</p>",
+    "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. You can choose to create an Amazon Chime Voice Connector in a specific AWS Region.</p> <p> Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked. </p>",
     "CreateVoiceConnectorGroup": "<p>Creates an Amazon Chime Voice Connector group under the administrator's AWS account. You can associate Amazon Chime Voice Connectors with the Amazon Chime Voice Connector group by including <code>VoiceConnectorItems</code> in the request.</p> <p>You can include Amazon Chime Voice Connectors from different AWS Regions in your group. This creates a fault tolerant mechanism for fallback in case of availability events.</p>",
-    "DeleteAccount": "<p>Deletes the specified Amazon Chime account. You must suspend all users before deleting a <code>Team</code> account. You can use the <a>BatchSuspendUser</a> action to do so.</p> <p>For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you must release the claimed domains for your Amazon Chime account before deletion. As soon as you release the domain, all users under that account are suspended.</p> <p>Deleted accounts appear in your <code>Disabled</code> accounts list for 90 days. To restore a deleted account from your <code>Disabled</code> accounts list, you must contact AWS Support.</p> <p>After 90 days, deleted accounts are permanently removed from your <code>Disabled</code> accounts list.</p>",
+    "DeleteAccount": "<p>Deletes the specified Amazon Chime account. You must suspend all users before deleting <code>Team</code> account. You can use the <a>BatchSuspendUser</a> action to dodo.</p> <p>For <code>EnterpriseLWA</code> and <code>EnterpriseAD</code> accounts, you must release the claimed domains for your Amazon Chime account before deletion. As soon as you release the domain, all users under that account are suspended.</p> <p>Deleted accounts appear in your <code>Disabled</code> accounts list for 90 days. To restore deleted account from your <code>Disabled</code> accounts list, you must contact AWS Support.</p> <p> After 90 days, deleted accounts are permanently removed from your <code>Disabled</code> accounts list. </p>",
     "DeleteAppInstance": "<p>Deletes an <code>AppInstance</code> and all associated data asynchronously.</p>",
     "DeleteAppInstanceAdmin": "<p>Demotes an <code>AppInstanceAdmin</code> to an <code>AppInstanceUser</code>. This action does not delete the user.</p>",
-    "DeleteAppInstanceStreamingConfigurations": "<p>Deletes the streaming configurations of an app instance.</p>",
+    "DeleteAppInstanceStreamingConfigurations": "<p>Deletes the streaming configurations of an <code>AppInstance</code>.</p>",
     "DeleteAppInstanceUser": "<p>Deletes an <code>AppInstanceUser</code>.</p>",
-    "DeleteAttendee": "<p>Deletes an attendee from the specified Amazon Chime SDK meeting and deletes their <code>JoinToken</code>. Attendees are automatically deleted when a Amazon Chime SDK meeting is deleted. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
-    "DeleteChannel": "<p>Immediately makes a channel and its memberships inaccessible and marks them for deletion. This is an irreversible process.</p>",
-    "DeleteChannelBan": "<p>Removes a user from a channel's ban list.</p>",
-    "DeleteChannelMembership": "<p>Removes a member from a channel.</p>",
-    "DeleteChannelMessage": "<p>Deletes a channel message. Only admins can perform this action. Deletion makes messages inaccessible immediately. A background process deletes any revisions created by <code>UpdateChannelMessage</code>.</p>",
-    "DeleteChannelModerator": "<p>Deletes a channel moderator.</p>",
+    "DeleteAttendee": "<p> Deletes an attendee from the specified Amazon Chime SDK meeting and deletes their <code>JoinToken</code> . Attendees are automatically deleted when a Amazon Chime SDK meeting is deleted. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
+    "DeleteChannel": "<p>Immediately makes a channel and its memberships inaccessible and marks them for deletion. This is an irreversible process.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelBan": "<p>Removes a user from a channel's ban list.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelMembership": "<p>Removes a member from a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelMessage": "<p>Deletes a channel message. Only admins can perform this action. Deletion makes messages inaccessible immediately. A background process deletes any revisions created by <code>UpdateChannelMessage</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelModerator": "<p>Deletes a channel moderator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
-    "DeleteMeeting": "<p>Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted, its attendees are also deleted and clients can no longer join it. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
-    "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletion queue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
+    "DeleteMeeting": "<p>Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted, its attendees are also deleted, clients connected to the meeting are disconnected, and clients can no longer join the meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletionqueue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p> Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently. </p>",
     "DeleteProxySession": "<p>Deletes the specified proxy session from the specified Amazon Chime Voice Connector.</p>",
     "DeleteRoom": "<p>Deletes a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteRoomMembership": "<p>Removes a member from a chat room in an Amazon Chime Enterprise account.</p>",
@@ -57,7 +57,7 @@
     "DeleteSipRule": "<p>Deletes a SIP rule. You must disable a SIP rule before you can delete it.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers associated with the Amazon Chime Voice Connector must be disassociated from it before it can be deleted.</p>",
     "DeleteVoiceConnectorEmergencyCallingConfiguration": "<p>Deletes the emergency calling configuration details from the specified Amazon Chime Voice Connector.</p>",
-    "DeleteVoiceConnectorGroup": "<p>Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted.</p>",
+    "DeleteVoiceConnectorGroup": "<p> Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted. </p>",
     "DeleteVoiceConnectorOrigination": "<p>Deletes the origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to deleting the origination settings.</p> </note>",
     "DeleteVoiceConnectorProxy": "<p>Deletes the proxy configuration from the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorStreamingConfiguration": "<p>Deletes the streaming configuration for the specified Amazon Chime Voice Connector.</p>",
@@ -65,65 +65,65 @@
     "DeleteVoiceConnectorTerminationCredentials": "<p>Deletes the specified SIP credentials used by your equipment to authenticate during call termination.</p>",
     "DescribeAppInstance": "<p>Returns the full details of an <code>AppInstance</code>.</p>",
     "DescribeAppInstanceAdmin": "<p>Returns the full details of an <code>AppInstanceAdmin</code>.</p>",
-    "DescribeAppInstanceUser": "<p>Returns the full details of an <code>AppInstanceUser</code>.</p>",
-    "DescribeChannel": "<p>Returns the full details of a channel in an Amazon Chime app instance.</p>",
-    "DescribeChannelBan": "<p>Returns the full details of a channel ban.</p>",
-    "DescribeChannelMembership": "<p>Returns the full details of a user's channel membership.</p>",
-    "DescribeChannelMembershipForAppInstanceUser": "<p>Returns the details of a channel based on the membership of the <code>AppInstanceUser</code> specified.</p>",
-    "DescribeChannelModeratedByAppInstanceUser": "<p>Returns the full details of a channel moderated by the specified <code>AppInstanceUser</code>.</p>",
-    "DescribeChannelModerator": "<p>Returns the full details of a single ChannelModerator.</p>",
+    "DescribeAppInstanceUser": "<p> Returns the full details of an <code>AppInstanceUser</code> . </p>",
+    "DescribeChannel": "<p>Returns the full details of a channel in an Amazon Chime <code>AppInstance</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelBan": "<p>Returns the full details of a channel ban.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelMembership": "<p>Returns the full details of a user's channel membership.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelMembershipForAppInstanceUser": "<p> Returns the details of a channel based on the membership of the specified <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelModeratedByAppInstanceUser": "<p>Returns the full details of a channel moderated by the specified <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelModerator": "<p>Returns the full details of a single ChannelModerator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DisassociatePhoneNumberFromUser": "<p>Disassociates the primary provisioned phone number from the specified Amazon Chime user.</p>",
     "DisassociatePhoneNumbersFromVoiceConnector": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector.</p>",
     "DisassociatePhoneNumbersFromVoiceConnectorGroup": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector group.</p>",
     "DisassociateSigninDelegateGroupsFromAccount": "<p>Disassociates the specified sign-in delegate groups from the specified Amazon Chime account.</p>",
     "GetAccount": "<p>Retrieves details for the specified Amazon Chime account, such as account type and supported licenses.</p>",
-    "GetAccountSettings": "<p>Retrieves account settings for the specified Amazon Chime account ID, such as remote control and dial out settings. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
-    "GetAppInstanceRetentionSettings": "<p>Gets the retention settings for an app instance.</p>",
-    "GetAppInstanceStreamingConfigurations": "<p>Gets the streaming settings for an app instance.</p>",
-    "GetAttendee": "<p>Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "GetAccountSettings": "<p>Retrieves account settings for the specified Amazon Chime account ID, such as remote control and dialout settings. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "GetAppInstanceRetentionSettings": "<p>Gets the retention settings for an <code>AppInstance</code>.</p>",
+    "GetAppInstanceStreamingConfigurations": "<p>Gets the streaming settings for an <code>AppInstance</code>.</p>",
+    "GetAttendee": "<p> Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "GetBot": "<p>Retrieves details for the specified bot, such as bot email address, bot type, status, and display name.</p>",
-    "GetChannelMessage": "<p>Gets the full details of a channel message.</p>",
-    "GetEventsConfiguration": "<p>Gets details for an events configuration that allows a bot to receive outgoing events, such as an HTTPS endpoint or Lambda function ARN. </p>",
+    "GetChannelMessage": "<p>Gets the full details of a channel message.</p> <note> <p>The x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "GetEventsConfiguration": "<p>Gets details for an events configuration that allows a bot to receive outgoing events, such as an HTTPS endpoint or Lambda function ARN.</p>",
     "GetGlobalSettings": "<p>Retrieves global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
-    "GetMeeting": "<p>Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
-    "GetMessagingSessionEndpoint": "<p>The endpoint for the messaging session.</p>",
+    "GetMeeting": "<p> Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
+    "GetMessagingSessionEndpoint": "<p>The details of the endpoint for the messaging session.</p>",
     "GetPhoneNumber": "<p>Retrieves details for the specified phone number ID, such as associations, capabilities, and product type.</p>",
-    "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
+    "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as the order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
     "GetProxySession": "<p>Gets the specified proxy session details for the specified Amazon Chime Voice Connector.</p>",
-    "GetRetentionSettings": "<p>Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "GetRetentionSettings": "<p> Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i> . </p>",
     "GetRoom": "<p>Retrieves room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "GetSipMediaApplication": "<p>Retrieves the information for a SIP media application, including name, AWS Region, and endpoints.</p>",
     "GetSipMediaApplicationLoggingConfiguration": "<p>Returns the logging configuration for the specified SIP media application.</p>",
     "GetSipRule": "<p>Retrieves the details of a SIP rule, such as the rule ID, name, triggers, and target endpoints.</p>",
-    "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
+    "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type,and personal meeting PIN.</p> <p> To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address. </p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
-    "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps, name, outbound host, and encryption requirements.</p>",
+    "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps,name, outbound host, and encryption requirements.</p>",
     "GetVoiceConnectorEmergencyCallingConfiguration": "<p>Gets the emergency calling configuration details for the specified Amazon Chime Voice Connector.</p>",
-    "GetVoiceConnectorGroup": "<p>Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps, name, and associated <code>VoiceConnectorItems</code>.</p>",
-    "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch.</p>",
+    "GetVoiceConnectorGroup": "<p> Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated <code>VoiceConnectorItems</code> . </p>",
+    "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorProxy": "<p>Gets the proxy configuration details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorStreamingConfiguration": "<p>Retrieves the streaming configuration details for the specified Amazon Chime Voice Connector. Shows whether media streaming is enabled for sending to Amazon Kinesis. It also shows the retention period, in hours, for the Amazon Kinesis data.</p>",
     "GetVoiceConnectorTermination": "<p>Retrieves termination setting details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorTerminationHealth": "<p>Retrieves information about the last time a SIP <code>OPTIONS</code> ping was received from your SIP infrastructure for the specified Amazon Chime Voice Connector.</p>",
-    "InviteUsers": "<p>Sends email to a maximum of 50 users, inviting them to the specified Amazon Chime <code>Team</code> account. Only <code>Team</code> account types are currently supported for this action. </p>",
-    "ListAccounts": "<p>Lists the Amazon Chime accounts under the administrator's AWS account. You can filter accounts by account name prefix. To find out which Amazon Chime account a user belongs to, you can filter by the user's email address, which returns one account result.</p>",
-    "ListAppInstanceAdmins": "<p>Returns a list of the administrators in the app instance.</p>",
-    "ListAppInstanceUsers": "<p>List all <code>AppInstanceUsers</code> created under a single app instance.</p>",
-    "ListAppInstances": "<p>Lists all Amazon Chime app instances created under a single AWS account.</p>",
+    "InviteUsers": "<p>Sends email to a maximum of 50 users, inviting them to the specified Amazon Chime <code>Team</code> account. Only <code>Team</code> account types are currently supported for this action.</p>",
+    "ListAccounts": "<p>Lists the Amazon Chime accounts under the administrator's AWS account. You can filter accounts by account name prefix. To find out which Amazon Chime account a user belongs to, toucan filter by the user's email address, which returns one account result.</p>",
+    "ListAppInstanceAdmins": "<p>Returns a list of the administrators in the <code>AppInstance</code>.</p>",
+    "ListAppInstanceUsers": "<p> List all <code>AppInstanceUsers</code> created under a single <code>AppInstance</code>. </p>",
+    "ListAppInstances": "<p>Lists all Amazon Chime <code>AppInstance</code>s created under a single AWS account.</p>",
     "ListAttendeeTags": "<p>Lists the tags applied to an Amazon Chime SDK attendee resource.</p>",
-    "ListAttendees": "<p>Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "ListAttendees": "<p> Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "ListBots": "<p>Lists the bots associated with the administrator's Amazon Chime Enterprise account ID.</p>",
-    "ListChannelBans": "<p>Lists all the users banned from a particular channel.</p>",
-    "ListChannelMemberships": "<p>Lists all channel memberships in a channel.</p>",
-    "ListChannelMembershipsForAppInstanceUser": "<p>Lists all channels that a particular <code>AppInstanceUser</code> is a part of. Only an <code>AppInstanceAdmin</code> can call the API with a user ARN that is not their own.</p>",
-    "ListChannelMessages": "<p>List all the messages in a channel. Returns a paginated list of <code>ChannelMessages</code>. Sorted in descending order by default, based on the creation timestamp.</p> <note> <p>Redacted messages appear in the results as empty, since they are only redacted, not deleted. Deleted messages do not appear in the results. This action always returns the latest version of an edited message.</p> </note>",
-    "ListChannelModerators": "<p>Lists all the moderators for a channel.</p>",
-    "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul>",
-    "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an app instance user.</p>",
+    "ListChannelBans": "<p>Lists all the users banned from a particular channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMemberships": "<p>Lists all channel memberships in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMembershipsForAppInstanceUser": "<p> Lists all channels that a particular <code>AppInstanceUser</code> is a part of. Only an <code>AppInstanceAdmin</code> can call the API with a user ARN that is not their own. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMessages": "<p>List all the messages in a channel. Returns a paginated list of <code>ChannelMessages</code>. By default, sorted by creation timestamp in descending order .</p> <note> <p>Redacted messages appear in the results as empty, since they are only redacted, not deleted. Deleted messages do not appear in the results. This action always returns the latest version of an edited message.</p> <p>Also, the x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelModerators": "<p>Lists all the moderators for a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p> Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account </p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListMeetingTags": "<p>Lists the tags applied to an Amazon Chime SDK meeting resource.</p>",
-    "ListMeetings": "<p>Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "ListMeetings": "<p> Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, Amazon Chime Voice Connector, or Amazon Chime Voice Connector group.</p>",
     "ListProxySessions": "<p>Lists the proxy sessions for the specified Amazon Chime Voice Connector.</p>",
@@ -137,26 +137,26 @@
     "ListVoiceConnectorTerminationCredentials": "<p>Lists the SIP credentials for the specified Amazon Chime Voice Connector.</p>",
     "ListVoiceConnectors": "<p>Lists the Amazon Chime Voice Connectors for the administrator's AWS account.</p>",
     "LogoutUser": "<p>Logs out the specified user from all of the devices they are currently logged into.</p>",
-    "PutAppInstanceRetentionSettings": "<p>Sets the amount of time in days that a given app instance retains data.</p>",
-    "PutAppInstanceStreamingConfigurations": "<p>The data streaming configurations of an app instance.</p>",
+    "PutAppInstanceRetentionSettings": "<p>Sets the amount of time in days that a given <code>AppInstance</code> retains data.</p>",
+    "PutAppInstanceStreamingConfigurations": "<p>The data streaming configurations of an <code>AppInstance</code>.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
-    "PutRetentionSettings": "<p>Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "PutRetentionSettings": "<p> Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i> . </p> <p> To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i> . </p>",
     "PutSipMediaApplicationLoggingConfiguration": "<p>Updates the logging configuration for the specified SIP media application.</p>",
     "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Puts emergency calling configuration details to the specified Amazon Chime Voice Connector, such as emergency phone numbers and calling countries. Origination and termination settings must be enabled for the Amazon Chime Voice Connector before emergency calling can be configured.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off origination settings.</p> </note>",
     "PutVoiceConnectorProxy": "<p>Puts the specified proxy configuration to the specified Amazon Chime Voice Connector.</p>",
-    "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Amazon Kinesis. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
+    "PutVoiceConnectorStreamingConfiguration": "<p>Adds a streaming configuration for the specified Amazon Chime Voice Connector. The streaming configuration specifies whether media streaming is enabled for sending to Indonesians. It also sets the retention period, in hours, for the Amazon Kinesis data.</p>",
     "PutVoiceConnectorTermination": "<p>Adds termination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off termination settings.</p> </note>",
     "PutVoiceConnectorTerminationCredentials": "<p>Adds termination SIP credentials for the specified Amazon Chime Voice Connector.</p>",
-    "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p>",
+    "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "RedactConversationMessage": "<p>Redacts the specified message from the specified Amazon Chime conversation.</p>",
     "RedactRoomMessage": "<p>Redacts the specified message from the specified Amazon Chime channel.</p>",
     "RegenerateSecurityToken": "<p>Regenerates the security token for a bot.</p>",
     "ResetPersonalPIN": "<p>Resets the personal meeting PIN for the specified user on an Amazon Chime account. Returns the <a>User</a> object with the updated personal meeting PIN.</p>",
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches phone numbers that can be ordered.</p>",
-    "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p> <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
+    "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
     "TagAttendee": "<p>Applies the specified tags to the specified Amazon Chime SDK attendee.</p>",
     "TagMeeting": "<p>Applies the specified tags to the specified Amazon Chime SDK meeting.</p>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK meeting resource.</p>",
@@ -166,23 +166,23 @@
     "UpdateAccount": "<p>Updates account details for the specified Amazon Chime account. Currently, only account name updates are supported for this action.</p>",
     "UpdateAccountSettings": "<p>Updates the settings for the specified Amazon Chime account. You can update settings for remote control of shared screens, or for the dial-out option. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "UpdateAppInstance": "<p>Updates <code>AppInstance</code> metadata.</p>",
-    "UpdateAppInstanceUser": "<p>Updates the details for an <code>AppInstanceUser</code>. You can update names and metadata.</p>",
+    "UpdateAppInstanceUser": "<p>Updates the details of an <code>AppInstanceUser</code>. You can update names and metadata.</p>",
     "UpdateBot": "<p>Updates the status of the specified bot, such as starting or stopping the bot from running in your Amazon Chime Enterprise account.</p>",
-    "UpdateChannel": "<p>Update a channel's attributes.</p> <p> <b>Restriction</b>: You can't change a channel's privacy.</p>",
-    "UpdateChannelMessage": "<p>Updates the content of a message.</p>",
-    "UpdateChannelReadMarker": "<p>Sets the timestamp to the point when a user last read messages in a channel.</p>",
+    "UpdateChannel": "<p>Update a channel's attributes.</p> <p> <b>Restriction</b>: You can't change a channel's privacy. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "UpdateChannelMessage": "<p>Updates the content of a message.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "UpdateChannelReadMarker": "<p>The details of the time when a user last read messages in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "UpdateGlobalSettings": "<p>Updates global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
     "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to update.</p>",
     "UpdateProxySession": "<p>Updates the specified proxy session details, such as voice or SMS capabilities.</p>",
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "UpdateRoomMembership": "<p>Updates room membership details, such as the member role, for a room in an Amazon Chime Enterprise account. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
-    "UpdateSipMediaApplication": "<p>Updates the details for the specified SIP media application.</p>",
-    "UpdateSipRule": "<p>Updates the details for the specified SIP rule.</p>",
-    "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
+    "UpdateSipMediaApplication": "<p>Updates the details of the specified SIP media application.</p>",
+    "UpdateSipRule": "<p>Updates the details of the specified SIP rule.</p>",
+    "UpdateUser": "<p> Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>",
-    "UpdateVoiceConnectorGroup": "<p>Updates details for the specified Amazon Chime Voice Connector group, such as the name and Amazon Chime Voice Connector priority ranking.</p>"
+    "UpdateVoiceConnectorGroup": "<p>Updates details of the specified Amazon Chime Voice Connector group, such as the name and Amazon Chime Voice Connector priority ranking.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -194,15 +194,15 @@
       "base": "<p>The Amazon Chime account details. An AWS account can have multiple Amazon Chime accounts.</p>",
       "refs": {
         "AccountList$member": null,
-        "CreateAccountResponse$Account": null,
-        "GetAccountResponse$Account": null,
-        "UpdateAccountResponse$Account": null
+        "CreateAccountResponse$Account": "<p>The Amazon Chime account details.</p>",
+        "GetAccountResponse$Account": "<p>The Amazon Chime account details.</p>",
+        "UpdateAccountResponse$Account": "<p>The updated Amazon Chime account details.</p>"
       }
     },
     "AccountList": {
       "base": null,
       "refs": {
-        "ListAccountsResponse$Accounts": "<p>The list of accounts.</p>"
+        "ListAccountsResponse$Accounts": "<p>List of Amazon Chime accounts and account details.</p>"
       }
     },
     "AccountName": {
@@ -241,15 +241,15 @@
       }
     },
     "AppInstance": {
-      "base": "<p>An instance of a Chime messaging application.</p>",
+      "base": "<p>The details of an <code>AppInstance</code>, an instance of an Amazon Chime SDK messaging application.</p>",
       "refs": {
-        "DescribeAppInstanceResponse$AppInstance": "<p>The ARN, metadata, created and last-updated timestamps, and the name of the app instance. All timestamps use epoch milliseconds.</p>"
+        "DescribeAppInstanceResponse$AppInstance": "<p>The ARN, metadata, created and last-updated timestamps, and the name of the <code>AppInstance</code>. All timestamps use epoch milliseconds.</p>"
       }
     },
     "AppInstanceAdmin": {
-      "base": "<p>Promotes a user to the administrator role for the duration of an app instance.</p>",
+      "base": "<p>The details of an <code>AppInstanceAdmin</code>.</p>",
       "refs": {
-        "DescribeAppInstanceAdminResponse$AppInstanceAdmin": "<p>The ARN and name of the app instance user, the ARN of the app instance, and the created and last-updated timestamps. All timestamps use epoch milliseconds.</p>"
+        "DescribeAppInstanceAdminResponse$AppInstanceAdmin": "<p>The ARN and name of the <code>AppInstanceUser</code>, the ARN of the <code>AppInstance</code>, and the created and last-updated timestamps. All timestamps use epoch milliseconds.</p>"
       }
     },
     "AppInstanceAdminList": {
@@ -259,7 +259,7 @@
       }
     },
     "AppInstanceAdminSummary": {
-      "base": "<p>The identity and metadata of an administrator.</p>",
+      "base": "<p>Summary of the details of an <code>AppInstanceAdmin</code>.</p>",
       "refs": {
         "AppInstanceAdminList$member": null
       }
@@ -267,25 +267,25 @@
     "AppInstanceDataType": {
       "base": null,
       "refs": {
-        "AppInstanceStreamingConfiguration$AppInstanceDataType": "<p>The data type of the app instance.</p>"
+        "AppInstanceStreamingConfiguration$AppInstanceDataType": "<p>The type of data to be streamed.</p>"
       }
     },
     "AppInstanceList": {
       "base": null,
       "refs": {
-        "ListAppInstancesResponse$AppInstances": "<p>The information for each app instance.</p>"
+        "ListAppInstancesResponse$AppInstances": "<p>The information for each <code>AppInstance</code>.</p>"
       }
     },
     "AppInstanceRetentionSettings": {
-      "base": "<p>The length of time in days to retain messages.</p>",
+      "base": "<p>The details of the data-retention settings for an <code>AppInstance</code>.</p>",
       "refs": {
-        "GetAppInstanceRetentionSettingsResponse$AppInstanceRetentionSettings": "<p>The retention settings for the app instance.</p>",
+        "GetAppInstanceRetentionSettingsResponse$AppInstanceRetentionSettings": "<p>The retention settings for the <code>AppInstance</code>.</p>",
         "PutAppInstanceRetentionSettingsRequest$AppInstanceRetentionSettings": "<p>The time in days to retain data. Data type: number.</p>",
         "PutAppInstanceRetentionSettingsResponse$AppInstanceRetentionSettings": "<p>The time in days to retain data. Data type: number.</p>"
       }
     },
     "AppInstanceStreamingConfiguration": {
-      "base": "<p>The streaming configuration of an app instance.</p>",
+      "base": "<p>The details of the streaming configuration of an <code>AppInstance</code>.</p>",
       "refs": {
         "AppInstanceStreamingConfigurationList$member": null
       }
@@ -294,36 +294,36 @@
       "base": null,
       "refs": {
         "GetAppInstanceStreamingConfigurationsResponse$AppInstanceStreamingConfigurations": "<p>The streaming settings.</p>",
-        "PutAppInstanceStreamingConfigurationsRequest$AppInstanceStreamingConfigurations": "<p>The streaming configurations set for an app instance.</p>",
-        "PutAppInstanceStreamingConfigurationsResponse$AppInstanceStreamingConfigurations": "<p>The streaming configurations of an app instance.</p>"
+        "PutAppInstanceStreamingConfigurationsRequest$AppInstanceStreamingConfigurations": "<p>The streaming configurations set for an <code>AppInstance</code>.</p>",
+        "PutAppInstanceStreamingConfigurationsResponse$AppInstanceStreamingConfigurations": "<p>The streaming configurations of an <code>AppInstance</code>.</p>"
       }
     },
     "AppInstanceSummary": {
-      "base": "<p>The summary data for an app instance.</p>",
+      "base": "<p>Summary of the data for an <code>AppInstance</code>.</p>",
       "refs": {
         "AppInstanceList$member": null
       }
     },
     "AppInstanceUser": {
-      "base": "<p>The app instance user.</p>",
+      "base": "<p>The details of an <code>AppInstanceUser</code>.</p>",
       "refs": {
-        "DescribeAppInstanceUserResponse$AppInstanceUser": "<p>The name of the app instance user.</p>"
+        "DescribeAppInstanceUserResponse$AppInstanceUser": "<p>The name of the <code>AppInstanceUser</code>.</p>"
       }
     },
     "AppInstanceUserList": {
       "base": null,
       "refs": {
-        "ListAppInstanceUsersResponse$AppInstanceUsers": "<p>The information for each of the requested app instance users.</p>"
+        "ListAppInstanceUsersResponse$AppInstanceUsers": "<p>The information for each requested <code>AppInstanceUser</code>.</p>"
       }
     },
     "AppInstanceUserMembershipSummary": {
-      "base": "<p>Lists the channels to which app instance users belong.</p>",
+      "base": "<p>Summary of the membership details of an <code>AppInstanceUser</code>.</p>",
       "refs": {
-        "ChannelMembershipForAppInstanceUserSummary$AppInstanceUserMembershipSummary": "<p>Returns the channel membership data for an app instance.</p>"
+        "ChannelMembershipForAppInstanceUserSummary$AppInstanceUserMembershipSummary": "<p>Returns the channel membership data for an <code>AppInstance</code>.</p>"
       }
     },
     "AppInstanceUserSummary": {
-      "base": "<p>The app instance user summary data .</p>",
+      "base": "<p>Summary of the details of an <code>AppInstanceUser</code>.</p>",
       "refs": {
         "AppInstanceUserList$member": null
       }
@@ -386,7 +386,7 @@
       }
     },
     "Attendee": {
-      "base": "<p>An Amazon Chime SDK meeting attendee. Includes a unique <code>AttendeeId</code> and <code>JoinToken</code>. The <code>JoinToken</code> allows a client to authenticate and join as the specified attendee. The <code>JoinToken</code> expires when the meeting ends or when <a>DeleteAttendee</a> is called. After that, the attendee is unable to join the meeting.</p> <p>We recommend securely transferring each <code>JoinToken</code> from your server application to the client so that no other client has access to the token except for the one authorized to represent the attendee.</p>",
+      "base": "<p> An Amazon Chime SDK meeting attendee. Includes a unique <code>AttendeeId</code> and <code>JoinToken</code> . The <code>JoinToken</code> allows a client to authenticate and join as the specified attendee. The <code>JoinToken</code> expires when the meeting ends or when <a>DeleteAttendee</a> is called. After that, the attendee is unable to join the meeting. </p> <p>We recommend securely transferring each <code>JoinToken</code> from your server application to the client so that no other client has access to the token except for the one authorized to represent the attendee.</p>",
       "refs": {
         "AttendeeList$member": null,
         "CreateAttendeeResponse$Attendee": "<p>The attendee information, including attendee ID and join token.</p>",
@@ -509,7 +509,7 @@
         "Proxy$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "PutVoiceConnectorProxyRequest$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "SipMediaApplicationLoggingConfiguration$EnableSipMediaApplicationMessageLogs": "<p>Enables application message logs for the SIP media application.</p>",
-        "SipRule$Disabled": "<p>Indicates if the SIP rule is enabled or disabled. You must disable a rule before you can delete it.</p>",
+        "SipRule$Disabled": "<p>Indicates whether the SIP rule is enabled or disabled. You must disable a rule before you can delete it.</p>",
         "StreamingConfiguration$Disabled": "<p>When true, media streaming to Amazon Kinesis is turned off.</p>",
         "TelephonySettings$InboundCalling": "<p>Allows or denies inbound calling.</p>",
         "TelephonySettings$OutboundCalling": "<p>Allows or denies outbound calling.</p>",
@@ -591,19 +591,19 @@
       }
     },
     "Channel": {
-      "base": "<p>Creates a channel.</p>",
+      "base": "<p>The details of a channel.</p>",
       "refs": {
         "DescribeChannelResponse$Channel": "<p>The channel details.</p>"
       }
     },
     "ChannelBan": {
-      "base": "<p>Bans a user from a channel.</p>",
+      "base": "<p>The details of a channel ban.</p>",
       "refs": {
         "DescribeChannelBanResponse$ChannelBan": "<p>The the details of the ban.</p>"
       }
     },
     "ChannelBanSummary": {
-      "base": "<p>The summary data for the channel ban.</p>",
+      "base": "<p>Summary of the details of a <code>ChannelBan</code>.</p>",
       "refs": {
         "ChannelBanSummaryList$member": null
       }
@@ -615,13 +615,13 @@
       }
     },
     "ChannelMembership": {
-      "base": "<p>Creates a channel member.</p>",
+      "base": "<p>The details of a channel member.</p>",
       "refs": {
         "DescribeChannelMembershipResponse$ChannelMembership": "<p>The details of the membership.</p>"
       }
     },
     "ChannelMembershipForAppInstanceUserSummary": {
-      "base": "<p>Returns the channel membership summary data for an app instance.</p>",
+      "base": "<p>Summary of the channel membership details of an <code>AppInstanceUser</code>.</p>",
       "refs": {
         "ChannelMembershipForAppInstanceUserSummaryList$member": null,
         "DescribeChannelMembershipForAppInstanceUserResponse$ChannelMembership": "<p>The channel to which a user belongs.</p>"
@@ -634,7 +634,7 @@
       }
     },
     "ChannelMembershipSummary": {
-      "base": "<p>The summary data of a channel membership.</p>",
+      "base": "<p>Summary of the details of a <code>ChannelMembership</code>.</p>",
       "refs": {
         "ChannelMembershipSummaryList$member": null
       }
@@ -648,14 +648,14 @@
     "ChannelMembershipType": {
       "base": null,
       "refs": {
-        "AppInstanceUserMembershipSummary$Type": "<p>The type of channel summary, </p>",
+        "AppInstanceUserMembershipSummary$Type": "<p>The type of <code>ChannelMembership</code>.</p>",
         "ChannelMembership$Type": "<p>The membership type set for the channel member.</p>",
         "CreateChannelMembershipRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned. This is only supported by moderators.</p>",
         "ListChannelMembershipsRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned.</p>"
       }
     },
     "ChannelMessage": {
-      "base": "<p>Creates a message in a channel.</p>",
+      "base": "<p>The details of a message in a channel.</p>",
       "refs": {
         "GetChannelMessageResponse$ChannelMessage": "<p>The details of and content in the message.</p>"
       }
@@ -663,12 +663,12 @@
     "ChannelMessagePersistenceType": {
       "base": null,
       "refs": {
-        "ChannelMessage$Persistence": null,
+        "ChannelMessage$Persistence": "<p>The persistence setting for a channel message.</p>",
         "SendChannelMessageRequest$Persistence": "<p>Boolean that controls whether the message is persisted on the back end. Required.</p>"
       }
     },
     "ChannelMessageSummary": {
-      "base": "<p>A summary of the messages in a channel.</p>",
+      "base": "<p>Summary of the messages in a <code>Channel</code>.</p>",
       "refs": {
         "ChannelMessageSummaryList$member": null
       }
@@ -676,14 +676,14 @@
     "ChannelMessageSummaryList": {
       "base": null,
       "refs": {
-        "ListChannelMessagesResponse$ChannelMessages": "<p>The information about and content of each requested message.</p>"
+        "ListChannelMessagesResponse$ChannelMessages": "<p>The information about, and content of, each requested message.</p>"
       }
     },
     "ChannelMessageType": {
       "base": null,
       "refs": {
         "ChannelMessage$Type": "<p>The message type.</p>",
-        "ChannelMessageSummary$Type": "<p>The type of message summary.</p>",
+        "ChannelMessageSummary$Type": "<p>The type of message.</p>",
         "SendChannelMessageRequest$Type": "<p>The type of message, <code>STANDARD</code> or <code>CONTROL</code>.</p>"
       }
     },
@@ -691,13 +691,13 @@
       "base": null,
       "refs": {
         "Channel$Mode": "<p>The mode of the channel.</p>",
-        "ChannelSummary$Mode": "<p>The summary mode of the channel.</p>",
+        "ChannelSummary$Mode": "<p>The mode of the channel.</p>",
         "CreateChannelRequest$Mode": "<p>The channel mode: <code>UNRESTRICTED</code> or <code>RESTRICTED</code>. Administrators, moderators, and channel members can add themselves and other members to unrestricted channels. Only administrators and moderators can add members to restricted channels.</p>",
         "UpdateChannelRequest$Mode": "<p>The mode of the update request.</p>"
       }
     },
     "ChannelModeratedByAppInstanceUserSummary": {
-      "base": "<p>Returns the summary data for a moderated channel.</p>",
+      "base": "<p>Summary of the details of a moderated channel.</p>",
       "refs": {
         "ChannelModeratedByAppInstanceUserSummaryList$member": null,
         "DescribeChannelModeratedByAppInstanceUserResponse$Channel": "<p>The moderated channel.</p>"
@@ -710,13 +710,13 @@
       }
     },
     "ChannelModerator": {
-      "base": "<p>Creates a moderator on a channel.</p>",
+      "base": "<p>The details of a channel moderator.</p>",
       "refs": {
         "DescribeChannelModeratorResponse$ChannelModerator": "<p>The details of the channel moderator.</p>"
       }
     },
     "ChannelModeratorSummary": {
-      "base": "<p>Summary data of the moderators in a channel.</p>",
+      "base": "<p>Summary of the details of a <code>ChannelModerator</code>.</p>",
       "refs": {
         "ChannelModeratorSummaryList$member": null
       }
@@ -730,20 +730,20 @@
     "ChannelPrivacy": {
       "base": null,
       "refs": {
-        "Channel$Privacy": "<p>The channel's privacy setting, <code>PUBLIC</code> or <code>HIDDEN</code>.</p>",
-        "ChannelSummary$Privacy": "<p>The privacy setting of the channel being summarized, <code>PUBLIC</code> or <code>HIDDEN</code>.</p>",
-        "CreateChannelRequest$Privacy": "<p>The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>. Private channels aren't discoverable by users outside the channel. Public channels are discoverable by anyone in the app instance.</p>",
-        "ListChannelsRequest$Privacy": "<p>The privacy setting. <code>PUBLIC</code> retrieves all the public channels. <code>PRIVATE</code> retrieves private channels. Only an app instance administrator can retrieve private channels.</p>"
+        "Channel$Privacy": "<p>The channel's privacy setting.</p>",
+        "ChannelSummary$Privacy": "<p>The privacy setting of the channel.</p>",
+        "CreateChannelRequest$Privacy": "<p>The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>. Private channels aren't discoverable by users outside the channel. Public channels are discoverable by anyone in the <code>AppInstance</code>.</p>",
+        "ListChannelsRequest$Privacy": "<p> The privacy setting. <code>PUBLIC</code> retrieves all the public channels. <code>PRIVATE</code> retrieves private channels. Only an <code>AppInstanceAdmin</code> can retrieve private channels. </p>"
       }
     },
     "ChannelRetentionSettings": {
-      "base": "<p>The retention settings for a channel.</p>",
+      "base": "<p>The details of the retention settings for a channel.</p>",
       "refs": {
-        "AppInstanceRetentionSettings$ChannelRetentionSettings": "<p>The length of time in days to retain a channel.</p>"
+        "AppInstanceRetentionSettings$ChannelRetentionSettings": "<p>The length of time in days to retain the messages in a channel.</p>"
       }
     },
     "ChannelSummary": {
-      "base": "<p>The summary data for a channel.</p>",
+      "base": "<p>Summary of the details of a <code>Channel</code>.</p>",
       "refs": {
         "ChannelMembershipForAppInstanceUserSummary$ChannelSummary": null,
         "ChannelModeratedByAppInstanceUserSummary$ChannelSummary": null,
@@ -759,104 +759,132 @@
     "ChimeArn": {
       "base": null,
       "refs": {
-        "AppInstance$AppInstanceArn": "<p>The ARN of the messaging instance. </p>",
-        "AppInstanceAdmin$AppInstanceArn": "<p>The ARN of the app instance administrator.</p>",
-        "AppInstanceSummary$AppInstanceArn": "<p>The app instance ARN.</p>",
-        "AppInstanceUser$AppInstanceUserArn": "<p>The ARN of the app instance user.</p>",
-        "AppInstanceUserSummary$AppInstanceUserArn": "<p>The ARN of the app instance user.</p>",
+        "AppInstance$AppInstanceArn": "<p>The ARN of the messaging instance.</p>",
+        "AppInstanceAdmin$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code> for which the user is an administrator.</p>",
+        "AppInstanceSummary$AppInstanceArn": "<p>The <code>AppInstance</code> ARN.</p>",
+        "AppInstanceUser$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "AppInstanceUserSummary$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
         "Channel$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelBan$ChannelArn": "<p>The ARN of the channel from which a member is being banned.</p>",
         "ChannelMembership$ChannelArn": "<p>The ARN of the member's channel.</p>",
         "ChannelMessage$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelModerator$ChannelArn": "<p>The ARN of the moderator's channel.</p>",
-        "ChannelSummary$ChannelArn": "<p>The ARN of the channel summary.</p>",
-        "CreateAppInstanceAdminRequest$AppInstanceAdminArn": "<p>The ARN of the administrator of the current app instance.</p>",
-        "CreateAppInstanceAdminRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "CreateAppInstanceAdminResponse$AppInstanceArn": "<p>The ARN of the of the admin for the app instance.</p>",
-        "CreateAppInstanceResponse$AppInstanceArn": "<p>The Amazon Resource Number (ARN) of the app instance.</p>",
-        "CreateAppInstanceUserRequest$AppInstanceArn": "<p>The ARN of the app instance request.</p>",
+        "ChannelSummary$ChannelArn": "<p>The ARN of the channel.</p>",
+        "CreateAppInstanceAdminRequest$AppInstanceAdminArn": "<p>The ARN of the administrator of the current <code>AppInstance</code>.</p>",
+        "CreateAppInstanceAdminRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "CreateAppInstanceAdminResponse$AppInstanceArn": "<p>The ARN of the of the admin for the <code>AppInstance</code>.</p>",
+        "CreateAppInstanceResponse$AppInstanceArn": "<p>The Amazon Resource Number (ARN) of the <code>AppInstance</code>.</p>",
+        "CreateAppInstanceUserRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code> request.</p>",
         "CreateAppInstanceUserResponse$AppInstanceUserArn": "<p>The user's ARN.</p>",
         "CreateChannelBanRequest$ChannelArn": "<p>The ARN of the ban request.</p>",
         "CreateChannelBanRequest$MemberArn": "<p>The ARN of the member being banned.</p>",
+        "CreateChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "CreateChannelBanResponse$ChannelArn": "<p>The ARN of the response to the ban request.</p>",
         "CreateChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
         "CreateChannelMembershipRequest$MemberArn": "<p>The ARN of the member you want to add to the channel.</p>",
+        "CreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "CreateChannelMembershipResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "CreateChannelModeratorRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "CreateChannelModeratorRequest$ChannelModeratorArn": "<p>The ARN of the moderator.</p>",
+        "CreateChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "CreateChannelModeratorResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "CreateChannelRequest$AppInstanceArn": "<p>The ARN of the channel request.</p>",
+        "CreateChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "CreateChannelResponse$ChannelArn": "<p>The ARN of the channel.</p>",
-        "DeleteAppInstanceAdminRequest$AppInstanceAdminArn": "<p>The ARN of the app instance's administrator.</p>",
-        "DeleteAppInstanceAdminRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "DeleteAppInstanceRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
+        "DeleteAppInstanceAdminRequest$AppInstanceAdminArn": "<p>The ARN of the <code>AppInstance</code>'s administrator.</p>",
+        "DeleteAppInstanceAdminRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "DeleteAppInstanceRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "DeleteAppInstanceStreamingConfigurationsRequest$AppInstanceArn": "<p>The ARN of the streaming configurations being deleted.</p>",
         "DeleteAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user request being deleted.</p>",
-        "DeleteChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the app instance user was banned.</p>",
-        "DeleteChannelBanRequest$MemberArn": "<p>The ARN of the app instance user that you want to reinstate.</p>",
+        "DeleteChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the <code>AppInstanceUser</code> was banned.</p>",
+        "DeleteChannelBanRequest$MemberArn": "<p>The ARN of the <code>AppInstanceUser</code> that you want to reinstate.</p>",
+        "DeleteChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DeleteChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel from which you want to remove the user.</p>",
         "DeleteChannelMembershipRequest$MemberArn": "<p>The ARN of the member that you're removing from the channel.</p>",
+        "DeleteChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DeleteChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DeleteChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DeleteChannelModeratorRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "DeleteChannelModeratorRequest$ChannelModeratorArn": "<p>The ARN of the moderator being deleted.</p>",
+        "DeleteChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DeleteChannelRequest$ChannelArn": "<p>The ARN of the channel being deleted.</p>",
-        "DescribeAppInstanceAdminRequest$AppInstanceAdminArn": "<p>The ARN of the app instance administrator.</p>",
-        "DescribeAppInstanceAdminRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "DescribeAppInstanceRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "DescribeAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the app instance user.</p>",
+        "DeleteChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeAppInstanceAdminRequest$AppInstanceAdminArn": "<p>The ARN of the <code>AppInstanceAdmin</code>.</p>",
+        "DescribeAppInstanceAdminRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "DescribeAppInstanceRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "DescribeAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
         "DescribeChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the user is banned.</p>",
         "DescribeChannelBanRequest$MemberArn": "<p>The ARN of the member being banned.</p>",
+        "DescribeChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DescribeChannelMembershipForAppInstanceUserRequest$ChannelArn": "<p>The ARN of the channel to which the user belongs.</p>",
         "DescribeChannelMembershipForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user in a channel.</p>",
+        "DescribeChannelMembershipForAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DescribeChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "DescribeChannelMembershipRequest$MemberArn": "<p>The ARN of the member.</p>",
+        "DescribeChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DescribeChannelModeratedByAppInstanceUserRequest$ChannelArn": "<p>The ARN of the moderated channel.</p>",
-        "DescribeChannelModeratedByAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the app instance user in the moderated channel.</p>",
+        "DescribeChannelModeratedByAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code> in the moderated channel.</p>",
+        "DescribeChannelModeratedByAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DescribeChannelModeratorRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "DescribeChannelModeratorRequest$ChannelModeratorArn": "<p>The ARN of the channel moderator.</p>",
+        "DescribeChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DescribeChannelRequest$ChannelArn": "<p>The ARN of the channel.</p>",
-        "GetAppInstanceRetentionSettingsRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "GetAppInstanceStreamingConfigurationsRequest$AppInstanceArn": "<p>The ARN of the app instance. </p>",
+        "DescribeChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "GetAppInstanceRetentionSettingsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "GetAppInstanceStreamingConfigurationsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "GetChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "GetChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "Identity$Arn": "<p>The ARN in an Identity.</p>",
-        "ListAppInstanceAdminsRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "ListAppInstanceAdminsResponse$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "ListAppInstanceUsersRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "ListAppInstanceUsersResponse$AppInstanceArn": "<p>The ARN of the app instance.</p>",
+        "ListAppInstanceAdminsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "ListAppInstanceAdminsResponse$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "ListAppInstanceUsersRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "ListAppInstanceUsersResponse$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "ListChannelBansRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelBansRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelBansResponse$ChannelArn": "<p>The ARN of the channel.</p>",
-        "ListChannelMembershipsForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the app instance users</p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>s</p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelMembershipsRequest$ChannelArn": "<p>The maximum number of channel memberships that you want returned.</p>",
+        "ListChannelMembershipsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelMembershipsResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "ListChannelMessagesRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelMessagesRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelMessagesResponse$ChannelArn": "<p>The ARN of the channel containing the requested messages.</p>",
         "ListChannelModeratorsRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelModeratorsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelModeratorsResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user in the moderated channel.</p>",
-        "ListChannelsRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "PutAppInstanceRetentionSettingsRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "PutAppInstanceStreamingConfigurationsRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
+        "ListChannelsModeratedByAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "ListChannelsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "PutAppInstanceRetentionSettingsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "PutAppInstanceStreamingConfigurationsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "RedactChannelMessageRequest$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
+        "RedactChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "RedactChannelMessageResponse$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
         "SendChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "SendChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "SendChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
-        "UpdateAppInstanceRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "UpdateAppInstanceResponse$AppInstanceArn": "<p>The ARN of the app instance.</p>",
-        "UpdateAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the app instance user.</p>",
-        "UpdateAppInstanceUserResponse$AppInstanceUserArn": "<p>The ARN of the app instance user.</p>",
+        "UpdateAppInstanceRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "UpdateAppInstanceResponse$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "UpdateAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "UpdateAppInstanceUserResponse$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
         "UpdateChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "UpdateChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "UpdateChannelReadMarkerRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelReadMarkerRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "UpdateChannelReadMarkerResponse$ChannelArn": "<p>The ARN of the channel.</p>",
         "UpdateChannelRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "UpdateChannelResponse$ChannelArn": "<p>The ARN of the channel.</p>"
       }
     },
     "ClientRequestToken": {
       "base": null,
       "refs": {
-        "CreateAppInstanceRequest$ClientRequestToken": "<p>The <code>ClientRequestToken</code> of the app instance.</p>",
-        "CreateAppInstanceUserRequest$ClientRequestToken": "<p>The token assigned to the user requesting an app instance.</p>",
+        "CreateAppInstanceRequest$ClientRequestToken": "<p>The <code>ClientRequestToken</code> of the <code>AppInstance</code>.</p>",
+        "CreateAppInstanceUserRequest$ClientRequestToken": "<p>The token assigned to the user requesting an <code>AppInstance</code>.</p>",
         "CreateChannelRequest$ClientRequestToken": "<p>The client token for the request. An <code>Idempotency</code> token.</p>",
         "CreateMeetingRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
         "CreateMeetingWithAttendeesRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
@@ -873,12 +901,12 @@
       "base": null,
       "refs": {
         "ChannelMessage$Content": "<p>The message content.</p>",
-        "ChannelMessageSummary$Content": "<p>The content of the message summary.</p>",
+        "ChannelMessageSummary$Content": "<p>The content of the message.</p>",
         "UpdateChannelMessageRequest$Content": "<p>The content of the message being updated.</p>"
       }
     },
     "ConversationRetentionSettings": {
-      "base": "<p>The retention settings that determine how long to retain chat conversation messages for an Amazon Chime Enterprise account.</p>",
+      "base": "<p>The retention settings that determine how long to retain conversation messages for an Amazon Chime Enterprise account.</p>",
       "refs": {
         "RetentionSettings$ConversationRetentionSettings": "<p>The chat conversation retention settings.</p>"
       }
@@ -1464,7 +1492,7 @@
         "CreateMeetingDialOutRequest$FromPhoneNumber": "<p>Phone number used as the caller ID when the remote party receives a call.</p>",
         "CreateMeetingDialOutRequest$ToPhoneNumber": "<p>Phone number called when inviting someone to a meeting.</p>",
         "CreateSipMediaApplicationCallRequest$FromPhoneNumber": "<p>The phone number that a user calls from.</p>",
-        "CreateSipMediaApplicationCallRequest$ToPhoneNumber": "<p>The phone number that the user dials in order to connect to a meeting</p>",
+        "CreateSipMediaApplicationCallRequest$ToPhoneNumber": "<p>The phone number that the user dials in order to connect to a meeting.</p>",
         "DNISEmergencyCallingConfiguration$EmergencyPhoneNumber": "<p>The DNIS phone number to route emergency calls to, in E.164 format.</p>",
         "DNISEmergencyCallingConfiguration$TestPhoneNumber": "<p>The DNIS phone number to route test emergency calls to, in E.164 format.</p>",
         "E164PhoneNumberList$member": null,
@@ -1551,10 +1579,10 @@
     "ExternalUserIdType": {
       "base": null,
       "refs": {
-        "Attendee$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
-        "CreateAttendeeError$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
-        "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
-        "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p> <p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
+        "Attendee$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.</p>",
+        "CreateAttendeeError$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.</p>",
+        "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.</p>",
+        "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.</p>",
         "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>",
         "CreateMeetingWithAttendeesRequest$MeetingHostId": "<p>Reserved.</p>"
       }
@@ -1567,7 +1595,7 @@
     "FunctionArn": {
       "base": null,
       "refs": {
-        "SipMediaApplicationEndpoint$LambdaArn": "<p>Valid Amazon Resource Name (ARN) of the Lambda function of the same AWS Region where the SIP media application is created.</p>"
+        "SipMediaApplicationEndpoint$LambdaArn": "<p>Valid Amazon Resource Name (ARN) of the Lambda function. The function must be created in the same AWS Region as the SIP media application.</p>"
       }
     },
     "GeoMatchLevel": {
@@ -1890,7 +1918,7 @@
         "Attendee$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
         "BatchCreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "CreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
-        "CreateMeetingDialOutRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p> <p>Type: String</p> <p>Pattern: [a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}</p> <p>Required: No</p>",
+        "CreateMeetingDialOutRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "CreateMeetingDialOutResponse$TransactionId": "<p>Unique ID that tracks API calls.</p>",
         "DeleteAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "DeleteAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
@@ -1915,23 +1943,23 @@
       }
     },
     "Identity": {
-      "base": "<p>The ARN and name of a user.</p>",
+      "base": "<p>The details of a user.</p>",
       "refs": {
-        "AppInstanceAdmin$Admin": "<p>The name and metadata of the app instance administrator.</p>",
-        "AppInstanceAdminSummary$Admin": "<p>The name and metadata of the app instance administrator.</p>",
-        "Channel$CreatedBy": "<p>The administrator who created the channel.</p>",
+        "AppInstanceAdmin$Admin": "<p>The <code>AppInstanceAdmin</code> data.</p>",
+        "AppInstanceAdminSummary$Admin": "<p>The details of the <code>AppInstanceAdmin</code>.</p>",
+        "Channel$CreatedBy": "<p>The <code>AppInstanceUser</code> who created the channel.</p>",
         "ChannelBan$Member": "<p>The member being banned from the channel.</p>",
-        "ChannelBan$CreatedBy": "<p>The parameter of the action.</p>",
+        "ChannelBan$CreatedBy": "<p>The <code>AppInstanceUser</code> who created the ban.</p>",
         "ChannelBanSummary$Member": "<p>The member being banned from a channel.</p>",
-        "ChannelMembership$InvitedBy": "<p>The identifier of the member who invited another member. Taken from the message header.</p>",
+        "ChannelMembership$InvitedBy": "<p>The identifier of the member who invited another member.</p>",
         "ChannelMembership$Member": "<p>The data of the channel member.</p>",
         "ChannelMembershipSummary$Member": "<p>A member's summary data.</p>",
         "ChannelMessage$Sender": "<p>The message sender.</p>",
-        "ChannelMessageSummary$Sender": "<p>The sender of the message summary.</p>",
+        "ChannelMessageSummary$Sender": "<p>The message sender.</p>",
         "ChannelModerator$Moderator": "<p>The moderator's data.</p>",
-        "ChannelModerator$CreatedBy": "<p>The member who created the moderator.</p>",
+        "ChannelModerator$CreatedBy": "<p>The <code>AppInstanceUser</code> who created the moderator.</p>",
         "ChannelModeratorSummary$Moderator": "<p>The data for a moderator.</p>",
-        "CreateAppInstanceAdminResponse$AppInstanceAdmin": "<p>The name and ARN of the admin for the app instance.</p>",
+        "CreateAppInstanceAdminResponse$AppInstanceAdmin": "<p>The name and ARN of the admin for the <code>AppInstance</code>.</p>",
         "CreateChannelBanResponse$Member": "<p>The <code>ChannelArn</code> and <code>BannedIdentity</code> of the member in the ban response.</p>",
         "CreateChannelMembershipResponse$Member": "<p>The ARN and metadata of the member being added.</p>",
         "CreateChannelModeratorResponse$ChannelModerator": "<p>The ARNs of the channel and the moderator.</p>"
@@ -1985,33 +2013,33 @@
         "PhoneNumber$UpdatedTimestamp": "<p>The updated phone number timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$DeletionTimestamp": "<p>The deleted phone number timestamp, in ISO 8601 format.</p>",
         "PhoneNumberAssociation$AssociatedTimestamp": "<p>The timestamp of the phone number association, in ISO 8601 format.</p>",
-        "PhoneNumberOrder$CreatedTimestamp": "<p>The phone number order creation timestamp, in ISO 8601 format.</p>",
-        "PhoneNumberOrder$UpdatedTimestamp": "<p>The updated phone number order timestamp, in ISO 8601 format.</p>",
-        "ProxySession$CreatedTimestamp": "<p>The created timestamp, in ISO 8601 format.</p>",
-        "ProxySession$UpdatedTimestamp": "<p>The updated timestamp, in ISO 8601 format.</p>",
-        "ProxySession$EndedTimestamp": "<p>The ended timestamp, in ISO 8601 format.</p>",
+        "PhoneNumberOrder$CreatedTimestamp": "<p>The phone number order creation time stamp, in ISO 8601 format.</p>",
+        "PhoneNumberOrder$UpdatedTimestamp": "<p>The updated phone number order time stamp, in ISO 8601 format.</p>",
+        "ProxySession$CreatedTimestamp": "<p>The created time stamp, in ISO 8601 format.</p>",
+        "ProxySession$UpdatedTimestamp": "<p>The updated time stamp, in ISO 8601 format.</p>",
+        "ProxySession$EndedTimestamp": "<p>The ended time stamp, in ISO 8601 format.</p>",
         "PutRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are permanently deleted, in ISO 8601 format.</p>",
         "Room$CreatedTimestamp": "<p>The room creation timestamp, in ISO 8601 format.</p>",
         "Room$UpdatedTimestamp": "<p>The room update timestamp, in ISO 8601 format.</p>",
         "RoomMembership$UpdatedTimestamp": "<p>The room membership update timestamp, in ISO 8601 format.</p>",
         "SipMediaApplication$CreatedTimestamp": "<p>The SIP media application creation timestamp, in ISO 8601 format.</p>",
         "SipMediaApplication$UpdatedTimestamp": "<p>The SIP media application updated timestamp, in ISO 8601 format.</p>",
-        "SipRule$CreatedTimestamp": "<p>The SIP rule created timestamp, in ISO 8601 format.</p>",
-        "SipRule$UpdatedTimestamp": "<p>The SIP rule updated timestamp, in ISO 8601 format.</p>",
+        "SipRule$CreatedTimestamp": "<p>The time at which the SIP rule was created, in ISO 8601 format.</p>",
+        "SipRule$UpdatedTimestamp": "<p>The time at which the SIP rule was last updated, in ISO 8601 format.</p>",
         "TerminationHealth$Timestamp": "<p>The timestamp, in ISO 8601 format.</p>",
         "User$RegisteredOn": "<p>Date and time when the user is registered, in ISO 8601 format.</p>",
         "User$InvitedOn": "<p>Date and time when the user is invited to the Amazon Chime account, in ISO 8601 format.</p>",
         "VoiceConnector$CreatedTimestamp": "<p>The Amazon Chime Voice Connector creation timestamp, in ISO 8601 format.</p>",
         "VoiceConnector$UpdatedTimestamp": "<p>The updated Amazon Chime Voice Connector timestamp, in ISO 8601 format.</p>",
-        "VoiceConnectorGroup$CreatedTimestamp": "<p>The Amazon Chime Voice Connector group creation timestamp, in ISO 8601 format.</p>",
-        "VoiceConnectorGroup$UpdatedTimestamp": "<p>The updated Amazon Chime Voice Connector group timestamp, in ISO 8601 format.</p>"
+        "VoiceConnectorGroup$CreatedTimestamp": "<p>The Amazon Chime Voice Connector group creation time stamp, in ISO 8601 format.</p>",
+        "VoiceConnectorGroup$UpdatedTimestamp": "<p>The updated Amazon Chime Voice Connector group time stamp, in ISO 8601 format.</p>"
       }
     },
     "JoinTokenString": {
       "base": null,
       "refs": {
         "Attendee$JoinToken": "<p>The join token used by the Amazon Chime SDK attendee.</p>",
-        "CreateMeetingDialOutRequest$JoinToken": "<p>Token used by the Amazon Chime SDK attendee. Call the <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.html\"> CreateAttendee API</a> to get a join token. </p>"
+        "CreateMeetingDialOutRequest$JoinToken": "<p>Token used by the Amazon Chime SDK attendee. Call the <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.htmlCreateAttendee\">CreateAttendee</a> action to get a join token.</p>"
       }
     },
     "License": {
@@ -2333,9 +2361,9 @@
       "refs": {
         "ListAppInstanceAdminsRequest$MaxResults": "<p>The maximum number of administrators that you want to return.</p>",
         "ListAppInstanceUsersRequest$MaxResults": "<p>The maximum number of requests that you want returned.</p>",
-        "ListAppInstancesRequest$MaxResults": "<p>The maximum number of app instances that you want to return.</p>",
+        "ListAppInstancesRequest$MaxResults": "<p>The maximum number of <code>AppInstance</code>s that you want to return.</p>",
         "ListChannelBansRequest$MaxResults": "<p>The maximum number of bans that you want returned.</p>",
-        "ListChannelMembershipsForAppInstanceUserRequest$MaxResults": "<p>The maximum number of users that you want returned. </p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$MaxResults": "<p>The maximum number of users that you want returned.</p>",
         "ListChannelMembershipsRequest$MaxResults": "<p>The maximum number of channel memberships that you want returned.</p>",
         "ListChannelMessagesRequest$MaxResults": "<p>The maximum number of messages that you want returned.</p>",
         "ListChannelModeratorsRequest$MaxResults": "<p>The maximum number of moderators that you want returned.</p>",
@@ -2352,7 +2380,7 @@
     "Meeting": {
       "base": "<p>A meeting created using the Amazon Chime SDK.</p>",
       "refs": {
-        "CreateMeetingResponse$Meeting": "<p>The meeting information, including the meeting ID and <code>MediaPlacement</code>.</p>",
+        "CreateMeetingResponse$Meeting": "<p> The meeting information, including the meeting ID and <code>MediaPlacement</code> . </p>",
         "CreateMeetingWithAttendeesResponse$Meeting": null,
         "GetMeetingResponse$Meeting": "<p>The Amazon Chime SDK meeting information.</p>",
         "MeetingList$member": null
@@ -2365,7 +2393,7 @@
       }
     },
     "MeetingNotificationConfiguration": {
-      "base": "<p>The configuration for resource targets to receive notifications when Amazon Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports resource targets located in the US East (N. Virginia) AWS Region (<code>us-east-1</code>).</p>",
+      "base": "<p> The resource target configurations for receiving Amazon Chime SDK meeting and attendee event notifications. The Amazon Chime SDK supports resource targets located in the US East (N. Virginia) AWS Region (<code>us-east-1</code>). </p>",
       "refs": {
         "CreateMeetingRequest$NotificationsConfiguration": "<p>The configuration for resource targets to receive notifications when meeting and attendee events occur.</p>",
         "CreateMeetingWithAttendeesRequest$NotificationsConfiguration": null
@@ -2425,18 +2453,18 @@
       "base": null,
       "refs": {
         "ChannelMessage$MessageId": "<p>The ID of a message.</p>",
-        "ChannelMessageSummary$MessageId": "<p>The ID of the message summary.</p>",
+        "ChannelMessageSummary$MessageId": "<p>The ID of the message.</p>",
         "DeleteChannelMessageRequest$MessageId": "<p>The ID of the message being deleted.</p>",
         "GetChannelMessageRequest$MessageId": "<p>The ID of the message.</p>",
         "RedactChannelMessageRequest$MessageId": "<p>The ID of the message being redacted.</p>",
         "RedactChannelMessageResponse$MessageId": "<p>The ID of the message being redacted.</p>",
-        "SendChannelMessageResponse$MessageId": "<p>The ID string assigned to each message. </p>",
+        "SendChannelMessageResponse$MessageId": "<p>The ID string assigned to each message.</p>",
         "UpdateChannelMessageRequest$MessageId": "<p>The ID string of the message being updated.</p>",
         "UpdateChannelMessageResponse$MessageId": "<p>The ID string of the message being updated.</p>"
       }
     },
     "MessagingSessionEndpoint": {
-      "base": "<p>The endpoint of a meeting session.</p>",
+      "base": "<p>The websocket endpoint used to connect to Amazon Chime SDK messaging.</p>",
       "refs": {
         "GetMessagingSessionEndpointResponse$Endpoint": "<p>The endpoint returned in the response.</p>"
       }
@@ -2444,22 +2472,22 @@
     "Metadata": {
       "base": null,
       "refs": {
-        "AppInstance$Metadata": "<p>The metadata of an app instance.</p>",
-        "AppInstanceSummary$Metadata": "<p>The metadata of the app instance summary.</p>",
-        "AppInstanceUser$Metadata": "<p>The metadata of the app instance user.</p>",
-        "AppInstanceUserSummary$Metadata": "<p>The metadata in an app instance user summary.</p>",
-        "Channel$Metadata": "<p>The metadata of the channel.</p>",
+        "AppInstance$Metadata": "<p>The metadata of an <code>AppInstance</code>.</p>",
+        "AppInstanceSummary$Metadata": "<p>The metadata of the <code>AppInstance</code>.</p>",
+        "AppInstanceUser$Metadata": "<p>The metadata of the <code>AppInstanceUser</code>.</p>",
+        "AppInstanceUserSummary$Metadata": "<p>The metadata of the <code>AppInstanceUser</code>.</p>",
+        "Channel$Metadata": "<p>The channel's metadata.</p>",
         "ChannelMessage$Metadata": "<p>The message metadata.</p>",
-        "ChannelMessageSummary$Metadata": "<p>The metadata of the message summary.</p>",
-        "ChannelSummary$Metadata": "<p>The metadata of the channel summary.</p>",
-        "CreateAppInstanceRequest$Metadata": "<p>The metadata of the app instance. Limited to a 1KB string in UTF-8.</p>",
+        "ChannelMessageSummary$Metadata": "<p>The metadata of the message.</p>",
+        "ChannelSummary$Metadata": "<p>The metadata of the channel.</p>",
+        "CreateAppInstanceRequest$Metadata": "<p>The metadata of the <code>AppInstance</code>. Limited to a 1KB string in UTF-8.</p>",
         "CreateAppInstanceUserRequest$Metadata": "<p>The request's metadata. Limited to a 1KB string in UTF-8.</p>",
         "CreateChannelRequest$Metadata": "<p>The metadata of the creation request. Limited to 1KB and UTF-8.</p>",
-        "SendChannelMessageRequest$Metadata": "<p>The optional metadata for each message. </p>",
+        "SendChannelMessageRequest$Metadata": "<p>The optional metadata for each message.</p>",
         "UpdateAppInstanceRequest$Metadata": "<p>The metadata that you want to change.</p>",
-        "UpdateAppInstanceUserRequest$Metadata": "<p>The metadata of the app instance user.</p>",
+        "UpdateAppInstanceUserRequest$Metadata": "<p>The metadata of the <code>AppInstanceUser</code>.</p>",
         "UpdateChannelMessageRequest$Metadata": "<p>The metadata of the message being updated.</p>",
-        "UpdateChannelRequest$Metadata": "<p>The metadata of the channel.</p>"
+        "UpdateChannelRequest$Metadata": "<p>The metadata for the update request.</p>"
       }
     },
     "NextToken": {
@@ -2469,13 +2497,13 @@
         "ListAppInstanceAdminsResponse$NextToken": "<p>The token returned from previous API requests until the number of administrators is reached.</p>",
         "ListAppInstanceUsersRequest$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
         "ListAppInstanceUsersResponse$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
-        "ListAppInstancesRequest$NextToken": "<p>The token passed by previous API requests until you reach the maximum number of app instances.</p>",
-        "ListAppInstancesResponse$NextToken": "<p>The token passed by previous API requests until the maximum number of app instances is reached.</p>",
+        "ListAppInstancesRequest$NextToken": "<p>The token passed by previous API requests until you reach the maximum number of <code>AppInstance</code>s.</p>",
+        "ListAppInstancesResponse$NextToken": "<p>The token passed by previous API requests until the maximum number of <code>AppInstance</code>s is reached.</p>",
         "ListChannelBansRequest$NextToken": "<p>The token passed by previous API calls until all requested bans are returned.</p>",
         "ListChannelBansResponse$NextToken": "<p>The token passed by previous API calls until all requested bans are returned.</p>",
         "ListChannelMembershipsForAppInstanceUserRequest$NextToken": "<p>The token returned from previous API requests until the number of channel memberships is reached.</p>",
         "ListChannelMembershipsForAppInstanceUserResponse$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
-        "ListChannelMembershipsRequest$NextToken": "<p>The token passed by previous API calls until all requested channel memberships are returned..</p>",
+        "ListChannelMembershipsRequest$NextToken": "<p>The token passed by previous API calls until all requested channel memberships are returned.</p>",
         "ListChannelMembershipsResponse$NextToken": "<p>The token passed by previous API calls until all requested channel memberships are returned.</p>",
         "ListChannelMessagesRequest$NextToken": "<p>The token passed by previous API calls until all requested messages are returned.</p>",
         "ListChannelMessagesResponse$NextToken": "<p>The token passed by previous API calls until all requested messages are returned.</p>",
@@ -2507,11 +2535,11 @@
     "NonEmptyResourceName": {
       "base": null,
       "refs": {
-        "AppInstance$Name": "<p>The name of an app instance.</p>",
-        "AppInstanceSummary$Name": "<p>The name of the app instance summary.</p>",
+        "AppInstance$Name": "<p>The name of an <code>AppInstance</code>.</p>",
+        "AppInstanceSummary$Name": "<p>The name of the <code>AppInstance</code>.</p>",
         "Channel$Name": "<p>The name of the channel.</p>",
-        "ChannelSummary$Name": "<p>The parameter of the action.</p>",
-        "CreateAppInstanceRequest$Name": "<p>The name of the app instance.</p>",
+        "ChannelSummary$Name": "<p>The name of the channel.</p>",
+        "CreateAppInstanceRequest$Name": "<p>The name of the <code>AppInstance</code>.</p>",
         "CreateChannelRequest$Name": "<p>The name of the channel.</p>",
         "UpdateAppInstanceRequest$Name": "<p>The name that you want to change.</p>",
         "UpdateChannelRequest$Name": "<p>The name of the channel.</p>"
@@ -2535,7 +2563,7 @@
         "CreateRoomMembershipRequest$MemberId": "<p>The Amazon Chime member ID (user ID or bot ID).</p>",
         "CreateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "CreateSipMediaApplicationCallRequest$SipMediaApplicationId": "<p>The ID of the SIP media application.</p>",
-        "CreateSipRuleRequest$TriggerValue": "<p>If <code>TriggerType</code> is <code>RequestUriHostname</code> then the value can be the outbound host name of an Amazon Chime Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code> then the value can be a customer-owned phone number in E164 format. <code>SipRule</code> is triggered if the SIP application requests a host name, or a If <code>TriggerType</code> is <code>RequestUriHostname</code>, then the value can be the outbound hostname of an Amazon Chime Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code>, then the value can be a customer-owned phone number in E164 format. <code>SipRule</code> is triggered if the SIP application requests a host name, or a <code>ToPhoneNumber</code> value matches the incoming SIP request.</p>",
+        "CreateSipRuleRequest$TriggerValue": "<p>If <code>TriggerType</code> is <code>RequestUriHostname</code>, the value can be the outbound host name of an Amazon Chime Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code>, the value can be a customer-owned phone number in the E164 format. The <code>SipMediaApplication</code> specified in the <code>SipRule</code> is triggered if the request URI in an incoming SIP request matches the <code>RequestUriHostname</code>, or if the <code>To</code> header in the incoming SIP request matches the <code>ToPhoneNumber</code> value.</p>",
         "CreateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -2566,7 +2594,7 @@
         "GetRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$RoomId": "<p>The room ID.</p>",
-        "GetSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": "<p>The ID of the SIP media application.</p>",
+        "GetSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "GetSipMediaApplicationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "GetSipRuleRequest$SipRuleId": "<p>The SIP rule ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -2597,7 +2625,7 @@
         "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
         "PutRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
-        "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": "<p>The ID of the specified SIP media application</p>",
+        "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "PutVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -2677,8 +2705,8 @@
     "NonNullableBoolean": {
       "base": null,
       "refs": {
-        "ChannelMessage$Redacted": "<p>Hides the content of a message. The message still exists on the back end, but this action only returns metadata.</p>",
-        "ChannelMessageSummary$Redacted": "<p>Redacts the content of a message summary.</p>"
+        "ChannelMessage$Redacted": "<p>Hides the content of a message.</p>",
+        "ChannelMessageSummary$Redacted": "<p>Indicates whether a message was redacted.</p>"
       }
     },
     "NotFoundException": {
@@ -2769,7 +2797,7 @@
     "OriginationRouteWeight": {
       "base": null,
       "refs": {
-        "OriginationRoute$Weight": "<p>The weight associated with the host. If hosts are equal in priority, calls are distributed among them based on their relative weight.</p>"
+        "OriginationRoute$Weight": "<p>The weight associated with the host. If hosts are equal in priority, calls are redistributed among them based on their relative weight.</p>"
       }
     },
     "Participant": {
@@ -3165,13 +3193,13 @@
     "RetentionDays": {
       "base": null,
       "refs": {
-        "ChannelRetentionSettings$RetentionDays": "<p>The time in days to retain a channel.</p>",
-        "ConversationRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat conversation messages.</p>",
-        "RoomRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat room messages.</p>"
+        "ChannelRetentionSettings$RetentionDays": "<p>The time in days to retain the messages in a channel.</p>",
+        "ConversationRetentionSettings$RetentionDays": "<p>The number of days for which to retain conversation messages.</p>",
+        "RoomRetentionSettings$RetentionDays": "<p>The number of days for which to retain chat-room messages.</p>"
       }
     },
     "RetentionSettings": {
-      "base": "<p>The retention settings for an Amazon Chime Enterprise account that determine how long to retain items such as chat room messages and chat conversation messages.</p>",
+      "base": "<p>The retention settings for an Amazon Chime Enterprise account that determine how long to retain items such as chat-room messages and chat-conversation messages.</p>",
       "refs": {
         "GetRetentionSettingsResponse$RetentionSettings": "<p>The retention settings.</p>",
         "PutRetentionSettingsRequest$RetentionSettings": "<p>The retention settings.</p>",
@@ -3217,7 +3245,7 @@
       }
     },
     "RoomRetentionSettings": {
-      "base": "<p>The retention settings that determine how long to retain chat room messages for an Amazon Chime Enterprise account.</p>",
+      "base": "<p>The retention settings that determine how long to retain chat-room messages for an Amazon Chime Enterprise account.</p>",
       "refs": {
         "RetentionSettings$RoomRetentionSettings": "<p>The chat room retention settings.</p>"
       }
@@ -3303,9 +3331,9 @@
       }
     },
     "SipMediaApplication": {
-      "base": "<p>The SIP media application details, including name and endpoints. An AWS account can have multiple SIP media applications.</p>",
+      "base": "<p>The details of the SIP media application, including name and endpoints. An AWS account can have multiple SIP media applications.</p>",
       "refs": {
-        "CreateSipMediaApplicationResponse$SipMediaApplication": "<p>The Sip media application details.</p>",
+        "CreateSipMediaApplicationResponse$SipMediaApplication": "<p>The SIP media application details.</p>",
         "GetSipMediaApplicationResponse$SipMediaApplication": "<p>The SIP media application details.</p>",
         "SipMediaApplicationList$member": null,
         "UpdateSipMediaApplicationResponse$SipMediaApplication": "<p>The updated SIP media application details.</p>"
@@ -3318,7 +3346,7 @@
       }
     },
     "SipMediaApplicationEndpoint": {
-      "base": "<p>Endpoints to specify as part of a SIP media application.</p>",
+      "base": "<p>The endpoint assigned to the SIP media application.</p>",
       "refs": {
         "SipMediaApplicationEndpointList$member": null
       }
@@ -3342,7 +3370,7 @@
       "refs": {
         "GetSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": "<p>The actual logging configuration.</p>",
         "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationLoggingConfiguration": "<p>The actual logging configuration.</p>",
-        "PutSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": "<p>The actual logging configuration.</p>"
+        "PutSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": null
       }
     },
     "SipMediaApplicationName": {
@@ -3377,7 +3405,7 @@
       }
     },
     "SipRuleTargetApplication": {
-      "base": "<p>Target SIP media application along with other details like priority and AWS Region to be specified in the SIP rule. Only one SIP rule per AWS Region can be provided.</p>",
+      "base": "<p>Target SIP media application and other details, such as priority and AWS Region, to be specified in the SIP rule. Only one SIP rule per AWS Region can be provided.</p>",
       "refs": {
         "SipRuleTargetApplicationList$member": null
       }
@@ -3386,15 +3414,15 @@
       "base": null,
       "refs": {
         "CreateSipRuleRequest$TargetApplications": "<p>List of SIP media applications with priority and AWS Region. Only one SIP application per AWS Region can be used.</p>",
-        "SipRule$TargetApplications": "<p>List of SIP media applications with priority and AWS Region. You can only use one SIP application per AWS Region and priority combination.</p>",
+        "SipRule$TargetApplications": "<p>Target SIP media application and other details, such as priority and AWS Region, to be specified in the SIP rule. Only one SIP rule per AWS Region can be provided.</p>",
         "UpdateSipRuleRequest$TargetApplications": "<p>The new value of the list of target applications.</p>"
       }
     },
     "SipRuleTriggerType": {
       "base": null,
       "refs": {
-        "CreateSipRuleRequest$TriggerType": "<p>The type of trigger whose value is assigned to the SIP rule in <code>TriggerValue</code>. Allowed trigger values are <code>RequestUriHostname</code> and <code>ToPhoneNumber</code>.</p>",
-        "SipRule$TriggerType": "<p>The type of trigger whose value is assigned to the SIP rule in <code>TriggerValue</code>.</p>"
+        "CreateSipRuleRequest$TriggerType": "<p>The type of trigger assigned to the SIP rule in <code>TriggerValue</code>, currently <code>RequestUriHostname</code> or <code>ToPhoneNumber</code>.</p>",
+        "SipRule$TriggerType": "<p>The type of trigger assigned to the SIP rule in <code>TriggerValue</code>, currently <code>RequestUriHostname</code> or <code>ToPhoneNumber</code>.</p>"
       }
     },
     "SortOrder": {
@@ -3439,9 +3467,9 @@
         "ConflictException$Message": null,
         "CreateAttendeeError$ErrorCode": "<p>The error code.</p>",
         "CreateAttendeeError$ErrorMessage": "<p>The error message.</p>",
-        "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>, <code>ap-northeast-2</code>, <code>ap-south-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
-        "CreateMeetingWithAttendeesRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>, <code>ap-northeast-2</code>, <code>ap-south-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
-        "CreateSipMediaApplicationRequest$AwsRegion": "<p>AWS Region assigned to the SIP media application.</p>",
+        "CreateMeetingRequest$MediaRegion": "<p> The Region in which to create the meeting. Default: <code>us-east-1</code>. </p> <p> Available values: <code>af-south-1</code> , <code>ap-northeast-1</code> , <code>ap-northeast-2</code> , <code>ap-south-1</code> , <code>ap-southeast-1</code> , <code>ap-southeast-2</code> , <code>ca-central-1</code> , <code>eu-central-1</code> , <code>eu-north-1</code> , <code>eu-south-1</code> , <code>eu-west-1</code> , <code>eu-west-2</code> , <code>eu-west-3</code> , <code>sa-east-1</code> , <code>us-east-1</code> , <code>us-east-2</code> , <code>us-west-1</code> , <code>us-west-2</code> . </p>",
+        "CreateMeetingWithAttendeesRequest$MediaRegion": "<p> The Region in which to create the meeting. Default: <code>us-east-1</code> . </p> <p> Available values: <code>af-south-1</code> , <code>ap-northeast-1</code> , <code>ap-northeast-2</code> , <code>ap-south-1</code> , <code>ap-southeast-1</code> , <code>ap-southeast-2</code> , <code>ca-central-1</code> , <code>eu-central-1</code> , <code>eu-north-1</code> , <code>eu-south-1</code> , <code>eu-west-1</code> , <code>eu-west-2</code> , <code>eu-west-3</code> , <code>sa-east-1</code> , <code>us-east-1</code> , <code>us-east-2</code> , <code>us-west-1</code> , <code>us-west-2</code> . </p>",
+        "CreateSipMediaApplicationRequest$AwsRegion": "<p>The AWS Region assigned to the SIP media application.</p>",
         "CreateUserRequest$Username": "<p>The user name.</p>",
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -3453,7 +3481,7 @@
         "GetUserSettingsRequest$UserId": "<p>The user ID.</p>",
         "Invite$InviteId": "<p>The invite ID.</p>",
         "ListAccountsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
-        "ListAccountsResponse$NextToken": "<p>The account's user token.</p>",
+        "ListAccountsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListAttendeesRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListAttendeesResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListBotsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
@@ -3476,7 +3504,7 @@
         "ListVoiceConnectorGroupsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListVoiceConnectorsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
-        "Meeting$MediaRegion": "<p>The Region in which to create the meeting. Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>, <code>ap-northeast-2</code>, <code>ap-south-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "Meeting$MediaRegion": "<p> The Region in which you create the meeting. Available values: <code>af-south-1</code> , <code>ap-northeast-1</code> , <code>ap-northeast-2</code> , <code>ap-south-1</code> , <code>ap-southeast-1</code> , <code>ap-southeast-2</code> , <code>ca-central-1</code> , <code>eu-central-1</code> , <code>eu-north-1</code> , <code>eu-south-1</code> , <code>eu-west-1</code> , <code>eu-west-2</code> , <code>eu-west-3</code> , <code>sa-east-1</code> , <code>us-east-1</code> , <code>us-east-2</code> , <code>us-west-1</code> , <code>us-west-2</code> . </p>",
         "MemberError$ErrorMessage": "<p>The error message.</p>",
         "NonEmptyStringList$member": null,
         "NotFoundException$Message": null,
@@ -3493,7 +3521,7 @@
         "ServiceFailureException$Message": null,
         "ServiceUnavailableException$Message": null,
         "SipMediaApplication$AwsRegion": "<p>The AWS Region in which the SIP media application is created.</p>",
-        "SipRuleTargetApplication$AwsRegion": "<p>AWS Region of target application.</p>",
+        "SipRuleTargetApplication$AwsRegion": "<p>The AWS Region of the target application.</p>",
         "StringList$member": null,
         "TerminationHealth$Source": "<p>The source IP address.</p>",
         "ThrottledClientException$Message": null,
@@ -3554,7 +3582,9 @@
     "TagList": {
       "base": null,
       "refs": {
-        "CreateChannelRequest$Tags": null,
+        "CreateAppInstanceRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>",
+        "CreateAppInstanceUserRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>",
+        "CreateChannelRequest$Tags": "<p>The tags for the creation request.</p>",
         "ListAttendeeTagsResponse$Tags": "<p>A list of tag key-value pairs.</p>",
         "ListMeetingTagsResponse$Tags": "<p>A list of tag key-value pairs.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tag-key value pairs.</p>",
@@ -3605,28 +3635,28 @@
     "Timestamp": {
       "base": null,
       "refs": {
-        "AppInstance$CreatedTimestamp": "<p>The time at which an app instance was created. In epoch milliseconds.</p>",
-        "AppInstance$LastUpdatedTimestamp": "<p>The time an app instance was last updated. In epoch milliseconds.</p>",
+        "AppInstance$CreatedTimestamp": "<p>The time at which an <code>AppInstance</code> was created. In epoch milliseconds.</p>",
+        "AppInstance$LastUpdatedTimestamp": "<p>The time an <code>AppInstance</code> was last updated. In epoch milliseconds.</p>",
         "AppInstanceAdmin$CreatedTimestamp": "<p>The time at which an administrator was created.</p>",
-        "AppInstanceUser$CreatedTimestamp": "<p>The time at which the app instance user was created.</p>",
-        "AppInstanceUser$LastUpdatedTimestamp": "<p>The time at which the app instance user was last updated.</p>",
-        "AppInstanceUserMembershipSummary$ReadMarkerTimestamp": "<p>The time at which a summary was last read.</p>",
-        "Channel$CreatedTimestamp": "<p>The time at which the administrator created the channel.</p>",
-        "Channel$LastMessageTimestamp": "<p>The time at which a member sent the last message in a session.</p>",
+        "AppInstanceUser$CreatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> was created.</p>",
+        "AppInstanceUser$LastUpdatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> was last updated.</p>",
+        "AppInstanceUserMembershipSummary$ReadMarkerTimestamp": "<p>The time at which a message was last read.</p>",
+        "Channel$CreatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> created the channel.</p>",
+        "Channel$LastMessageTimestamp": "<p>The time at which a member sent the last message in the channel.</p>",
         "Channel$LastUpdatedTimestamp": "<p>The time at which a channel was last updated.</p>",
         "ChannelBan$CreatedTimestamp": "<p>The time at which the ban was created.</p>",
-        "ChannelMembership$CreatedTimestamp": "<p>The time at which the channel membership was created. </p>",
+        "ChannelMembership$CreatedTimestamp": "<p>The time at which the channel membership was created.</p>",
         "ChannelMembership$LastUpdatedTimestamp": "<p>The time at which a channel membership was last updated.</p>",
         "ChannelMessage$CreatedTimestamp": "<p>The time at which the message was created.</p>",
         "ChannelMessage$LastEditedTimestamp": "<p>The time at which a message was edited.</p>",
         "ChannelMessage$LastUpdatedTimestamp": "<p>The time at which a message was updated.</p>",
         "ChannelMessageSummary$CreatedTimestamp": "<p>The time at which the message summary was created.</p>",
-        "ChannelMessageSummary$LastUpdatedTimestamp": null,
-        "ChannelMessageSummary$LastEditedTimestamp": null,
+        "ChannelMessageSummary$LastUpdatedTimestamp": "<p>The time at which a message was last updated.</p>",
+        "ChannelMessageSummary$LastEditedTimestamp": "<p>The time at which a message was last edited.</p>",
         "ChannelModerator$CreatedTimestamp": "<p>The time at which the moderator was created.</p>",
         "ChannelSummary$LastMessageTimestamp": "<p>The time at which the last message in a channel was sent.</p>",
         "GetAppInstanceRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are retained, in Epoch Seconds.</p>",
-        "ListChannelMessagesRequest$NotBefore": "<p>The initial or starting time stamp for your requested messages. </p>",
+        "ListChannelMessagesRequest$NotBefore": "<p>The initial or starting time stamp for your requested messages.</p>",
         "ListChannelMessagesRequest$NotAfter": "<p>The final or ending time stamp for your requested messages.</p>",
         "PutAppInstanceRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The time at which the API deletes data.</p>"
       }
@@ -3753,7 +3783,7 @@
       }
     },
     "UpdatePhoneNumberRequestItem": {
-      "base": "<p>The phone number ID, product type, or calling name fields to update, used with the <a>BatchUpdatePhoneNumber</a> and <a>UpdatePhoneNumber</a> actions.</p>",
+      "base": "<p> The phone number ID, product type, or calling name fields to update, used with the <a>BatchUpdatePhoneNumber</a> and <a>UpdatePhoneNumber</a> actions. </p>",
       "refs": {
         "UpdatePhoneNumberRequestItemList$member": null
       }
@@ -3830,7 +3860,7 @@
       }
     },
     "UpdateUserRequestItem": {
-      "base": "<p>The user ID and user fields to update, used with the <a>BatchUpdateUser</a> action.</p>",
+      "base": "<p> The user ID and user fields to update, used with the <a>BatchUpdateUser</a> action. </p>",
       "refs": {
         "UpdateUserRequestItemList$member": null
       }
@@ -3886,7 +3916,7 @@
     "UrlType": {
       "base": null,
       "refs": {
-        "MessagingSessionEndpoint$Url": "<p>The URL of a meeting session endpoint.</p>"
+        "MessagingSessionEndpoint$Url": "<p>The endpoint to which you establish a websocket connection.</p>"
       }
     },
     "User": {
@@ -3922,7 +3952,7 @@
     "UserId": {
       "base": null,
       "refs": {
-        "CreateAppInstanceUserRequest$AppInstanceUserId": "<p>The user ID of the app instance.</p>"
+        "CreateAppInstanceUserRequest$AppInstanceUserId": "<p>The user ID of the <code>AppInstance</code>.</p>"
       }
     },
     "UserIdList": {
@@ -3941,10 +3971,10 @@
     "UserName": {
       "base": null,
       "refs": {
-        "AppInstanceUser$Name": "<p>The name of the app instance user.</p>",
-        "AppInstanceUserSummary$Name": "<p>The name in an app instance user summary.</p>",
+        "AppInstanceUser$Name": "<p>The name of the <code>AppInstanceUser</code>.</p>",
+        "AppInstanceUserSummary$Name": "<p>The name of an <code>AppInstanceUser</code>.</p>",
         "CreateAppInstanceUserRequest$Name": "<p>The user's name.</p>",
-        "UpdateAppInstanceUserRequest$Name": "<p>The name of the app instance user.</p>"
+        "UpdateAppInstanceUserRequest$Name": "<p>The name of the <code>AppInstanceUser</code>.</p>"
       }
     },
     "UserSettings": {
@@ -3977,8 +4007,8 @@
     "VoiceConnectorAwsRegion": {
       "base": null,
       "refs": {
-        "CreateVoiceConnectorRequest$AwsRegion": "<p>The AWS Region in which the Amazon Chime Voice Connector is created. Default value: <code>us-east-1</code>.</p>",
-        "VoiceConnector$AwsRegion": "<p>The AWS Region in which the Amazon Chime Voice Connector is created. Default: <code>us-east-1</code>.</p>"
+        "CreateVoiceConnectorRequest$AwsRegion": "<p> The AWS Region in which the Amazon Chime Voice Connector is created. Default value: <code>us-east-1</code> . </p>",
+        "VoiceConnector$AwsRegion": "<p> The AWS Region in which the Amazon Chime Voice Connector is created. Default: <code>us-east-1</code>. </p>"
       }
     },
     "VoiceConnectorGroup": {
@@ -4005,7 +4035,7 @@
       }
     },
     "VoiceConnectorItem": {
-      "base": "<p>For Amazon Chime Voice Connector groups, the Amazon Chime Voice Connectors to which to route inbound calls. Includes priority configuration settings. Limit: 3 <code>VoiceConnectorItems</code> per Amazon Chime Voice Connector group.</p>",
+      "base": "<p> For Amazon Chime Voice Connector groups, the Amazon Chime Voice Connectors to which to route inbound calls. Includes priority configuration settings. Limit: 3 <code>VoiceConnectorItems</code> per Amazon Chime Voice Connector group. </p>",
       "refs": {
         "VoiceConnectorItemList$member": null
       }
@@ -4014,14 +4044,14 @@
       "base": null,
       "refs": {
         "CreateVoiceConnectorGroupRequest$VoiceConnectorItems": "<p>The Amazon Chime Voice Connectors to route inbound calls to.</p>",
-        "UpdateVoiceConnectorGroupRequest$VoiceConnectorItems": "<p>The <code>VoiceConnectorItems</code> to associate with the group.</p>",
+        "UpdateVoiceConnectorGroupRequest$VoiceConnectorItems": "<p> The <code>VoiceConnectorItems</code> to associate with the group. </p>",
         "VoiceConnectorGroup$VoiceConnectorItems": "<p>The Amazon Chime Voice Connectors to which to route inbound calls.</p>"
       }
     },
     "VoiceConnectorItemPriority": {
       "base": null,
       "refs": {
-        "VoiceConnectorItem$Priority": "<p>The priority associated with the Amazon Chime Voice Connector, with 1 being the highest priority. Higher priority Amazon Chime Voice Connectors are attempted first. </p>"
+        "VoiceConnectorItem$Priority": "<p>The priority associated with the Amazon Chime Voice Connector, with 1 being the highest priority. Higher priority Amazon Chime Voice Connectors are attempted first.</p>"
       }
     },
     "VoiceConnectorList": {

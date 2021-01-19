@@ -2958,7 +2958,10 @@
         "inferenceAccelerators":{"shape":"InferenceAccelerators"},
         "pidMode":{"shape":"PidMode"},
         "ipcMode":{"shape":"IpcMode"},
-        "proxyConfiguration":{"shape":"ProxyConfiguration"}
+        "proxyConfiguration":{"shape":"ProxyConfiguration"},
+        "registeredAt":{"shape":"Timestamp"},
+        "deregisteredAt":{"shape":"Timestamp"},
+        "registeredBy":{"shape":"String"}
       }
     },
     "TaskDefinitionFamilyStatus":{

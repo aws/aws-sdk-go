@@ -737,7 +737,6 @@
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
         {"shape":"ForbiddenException"},
-        {"shape":"ResourceLimitExceededException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -2061,7 +2060,6 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
-        {"shape":"ResourceLimitExceededException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -2364,6 +2362,7 @@
         {"shape":"UnauthorizedClientException"},
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
@@ -4232,7 +4231,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateAppInstanceResponse":{
@@ -4257,7 +4257,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateAppInstanceUserResponse":{
@@ -4342,7 +4343,12 @@
           "location":"uri",
           "locationName":"channelArn"
         },
-        "MemberArn":{"shape":"ChimeArn"}
+        "MemberArn":{"shape":"ChimeArn"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "CreateChannelBanResponse":{
@@ -4366,7 +4372,12 @@
           "locationName":"channelArn"
         },
         "MemberArn":{"shape":"ChimeArn"},
-        "Type":{"shape":"ChannelMembershipType"}
+        "Type":{"shape":"ChannelMembershipType"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "CreateChannelMembershipResponse":{
@@ -4388,7 +4399,12 @@
           "location":"uri",
           "locationName":"channelArn"
         },
-        "ChannelModeratorArn":{"shape":"ChimeArn"}
+        "ChannelModeratorArn":{"shape":"ChimeArn"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "CreateChannelModeratorResponse":{
@@ -4415,7 +4431,12 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "CreateChannelResponse":{
@@ -4427,10 +4448,10 @@
     "CreateMeetingDialOutRequest":{
       "type":"structure",
       "required":[
+        "MeetingId",
         "FromPhoneNumber",
         "ToPhoneNumber",
-        "JoinToken",
-        "MeetingId"
+        "JoinToken"
       ],
       "members":{
         "MeetingId":{
@@ -4600,7 +4621,11 @@
     },
     "CreateSipMediaApplicationCallRequest":{
       "type":"structure",
-      "required":["SipMediaApplicationId"],
+      "required":[
+        "FromPhoneNumber",
+        "ToPhoneNumber",
+        "SipMediaApplicationId"
+      ],
       "members":{
         "FromPhoneNumber":{"shape":"E164PhoneNumber"},
         "ToPhoneNumber":{"shape":"E164PhoneNumber"},
@@ -4621,6 +4646,7 @@
       "type":"structure",
       "required":[
         "AwsRegion",
+        "Name",
         "Endpoints"
       ],
       "members":{
@@ -4843,6 +4869,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"memberArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -4862,6 +4893,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"memberArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -4881,6 +4917,11 @@
           "shape":"MessageId",
           "location":"uri",
           "locationName":"messageId"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -4900,6 +4941,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"channelModeratorArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -4911,6 +4957,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"channelArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5207,6 +5258,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"memberArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5232,6 +5288,11 @@
           "shape":"ChimeArn",
           "location":"querystring",
           "locationName":"app-instance-user-arn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5257,6 +5318,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"memberArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5282,6 +5348,11 @@
           "shape":"ChimeArn",
           "location":"querystring",
           "locationName":"app-instance-user-arn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5307,6 +5378,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"channelModeratorArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5324,6 +5400,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"channelArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -5655,6 +5736,11 @@
           "shape":"MessageId",
           "location":"uri",
           "locationName":"messageId"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6377,6 +6463,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6405,6 +6496,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6438,6 +6534,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6482,6 +6583,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6511,6 +6617,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6539,6 +6650,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -6572,6 +6688,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next-token"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -7105,7 +7226,6 @@
     },
     "NonEmptyContent":{
       "type":"string",
-      "max":4096,
       "min":1,
       "pattern":"[\\s\\S]*",
       "sensitive":true
@@ -7680,6 +7800,11 @@
           "shape":"MessageId",
           "location":"uri",
           "locationName":"messageId"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -7968,6 +8093,11 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -8464,7 +8594,12 @@
           "locationName":"messageId"
         },
         "Content":{"shape":"Content"},
-        "Metadata":{"shape":"Metadata"}
+        "Metadata":{"shape":"Metadata"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "UpdateChannelMessageResponse":{
@@ -8482,6 +8617,11 @@
           "shape":"ChimeArn",
           "location":"uri",
           "locationName":"channelArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
         }
       }
     },
@@ -8506,7 +8646,12 @@
         },
         "Name":{"shape":"NonEmptyResourceName"},
         "Mode":{"shape":"ChannelMode"},
-        "Metadata":{"shape":"Metadata"}
+        "Metadata":{"shape":"Metadata"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "UpdateChannelResponse":{

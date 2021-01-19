@@ -7393,9 +7393,6 @@ type ContainerDefinition struct {
 	// to use unique variable names. For more information, see Specifying Environment
 	// Variables (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html)
 	// in the Amazon Elastic Container Service Developer Guide.
-	//
-	// This field is not valid for containers in tasks using the Fargate launch
-	// type.
 	EnvironmentFiles []*EnvironmentFile `locationName:"environmentFiles" type:"list"`
 
 	// If the essential parameter of a container is marked as true, and that container
@@ -18684,6 +18681,9 @@ type TaskDefinition struct {
 	//    (30 GB) in increments of 1024 (1 GB)
 	Cpu *string `locationName:"cpu" type:"string"`
 
+	// The Unix timestamp for when the task definition was deregistered.
+	DeregisteredAt *time.Time `locationName:"deregisteredAt" type:"timestamp"`
+
 	// The Amazon Resource Name (ARN) of the task execution role that grants the
 	// Amazon ECS container agent permission to make AWS API calls on your behalf.
 	// The task execution IAM role is required depending on the requirements of
@@ -18837,6 +18837,12 @@ type TaskDefinition struct {
 	// in the Amazon Elastic Container Service Developer Guide.
 	ProxyConfiguration *ProxyConfiguration `locationName:"proxyConfiguration" type:"structure"`
 
+	// The Unix timestamp for when the task definition was registered.
+	RegisteredAt *time.Time `locationName:"registeredAt" type:"timestamp"`
+
+	// The principal that registered the task definition.
+	RegisteredBy *string `locationName:"registeredBy" type:"string"`
+
 	// The container instance attributes required by your task. This field is not
 	// valid if you are using the Fargate launch type for your task.
 	RequiresAttributes []*Attribute `locationName:"requiresAttributes" type:"list"`
@@ -18911,6 +18917,12 @@ func (s *TaskDefinition) SetCpu(v string) *TaskDefinition {
 	return s
 }
 
+// SetDeregisteredAt sets the DeregisteredAt field's value.
+func (s *TaskDefinition) SetDeregisteredAt(v time.Time) *TaskDefinition {
+	s.DeregisteredAt = &v
+	return s
+}
+
 // SetExecutionRoleArn sets the ExecutionRoleArn field's value.
 func (s *TaskDefinition) SetExecutionRoleArn(v string) *TaskDefinition {
 	s.ExecutionRoleArn = &v
@@ -18962,6 +18974,18 @@ func (s *TaskDefinition) SetPlacementConstraints(v []*TaskDefinitionPlacementCon
 // SetProxyConfiguration sets the ProxyConfiguration field's value.
 func (s *TaskDefinition) SetProxyConfiguration(v *ProxyConfiguration) *TaskDefinition {
 	s.ProxyConfiguration = v
+	return s
+}
+
+// SetRegisteredAt sets the RegisteredAt field's value.
+func (s *TaskDefinition) SetRegisteredAt(v time.Time) *TaskDefinition {
+	s.RegisteredAt = &v
+	return s
+}
+
+// SetRegisteredBy sets the RegisteredBy field's value.
+func (s *TaskDefinition) SetRegisteredBy(v string) *TaskDefinition {
+	s.RegisteredBy = &v
 	return s
 }
 
@@ -19763,13 +19787,13 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateCapacityProviderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the capacity provider to update.
+	// An object representing the parameters to update for the Auto Scaling group
+	// capacity provider.
 	//
 	// AutoScalingGroupProvider is a required field
 	AutoScalingGroupProvider *AutoScalingGroupProviderUpdate `locationName:"autoScalingGroupProvider" type:"structure" required:"true"`
 
-	// An object representing the parameters to update for the Auto Scaling group
-	// capacity provider.
+	// The name of the capacity provider to update.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`

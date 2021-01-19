@@ -1,3 +1,13 @@
+Release v1.36.29 (2021-01-19)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * Add support for specifying ChimeBearer header as part of the request for Amazon Chime SDK messaging APIs. Documentation updates.
+* `service/ecs`: Updates service API and documentation
+  * This release adds support to include task definition metadata information such as registeredAt, deregisteredAt, registeredBy as part of DescribeTaskDefinition API.
+
 Release v1.36.28 (2021-01-15)
 ===
 

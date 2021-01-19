@@ -562,8 +562,8 @@ func (c *Chime) BatchCreateRoomMembershipRequest(input *BatchCreateRoomMembershi
 // BatchCreateRoomMembership API operation for Amazon Chime.
 //
 // Adds up to 50 members to a chat room in an Amazon Chime Enterprise account.
-// Members can be either users or bots. The member role designates whether the
-// member is a chat room administrator or a general chat room member.
+// Members can be users or bots. The member role designates whether the member
+// is a chat room administrator or a general chat room member.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -766,7 +766,7 @@ func (c *Chime) BatchSuspendUserRequest(input *BatchSuspendUserInput) (req *requ
 // Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 // in the Amazon Chime Administration Guide.
 //
-// Users suspended from a Team account are disassociated from the account, but
+// Users suspended from a Team account are disassociated from the account,but
 // they can continue to use Amazon Chime as free users. To remove the suspension
 // from suspended Team account users, invite them to the Team account again.
 // You can use the InviteUsers action to do so.
@@ -977,7 +977,7 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // BatchUpdatePhoneNumber API operation for Amazon Chime.
 //
 // Updates phone number product types or calling names. You can update one attribute
-// at a time for each UpdatePhoneNumberRequestItem. For example, you can update
+// at a time for each UpdatePhoneNumberRequestItem . For example, you can update
 // either the product type or the calling name.
 //
 // For product types, choose from Amazon Chime Business Calling and Amazon Chime
@@ -1284,8 +1284,8 @@ func (c *Chime) CreateAppInstanceRequest(input *CreateAppInstanceInput) (req *re
 
 // CreateAppInstance API operation for Amazon Chime.
 //
-// Creates an Amazon Chime Messaging SDK AppInstance under an AWS Account. Only
-// Messaging SDK customers use this API. CreateAppInstance supports idempotency
+// Creates an Amazon Chime SDK messaging AppInstance under an AWS account. Only
+// SDK messaging customers use this API. CreateAppInstance supports idempotency
 // behavior as described in the AWS API Standard.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1392,7 +1392,7 @@ func (c *Chime) CreateAppInstanceAdminRequest(input *CreateAppInstanceAdminInput
 // Promotes an AppInstanceUser to an AppInstanceAdmin. The promoted user can
 // perform the following actions.
 //
-//    * ChannelModerator actions across all channels in the app instance.
+//    * ChannelModerator actions across all channels in the AppInstance.
 //
 //    * DeleteChannelMessage actions.
 //
@@ -1809,6 +1809,9 @@ func (c *Chime) CreateChannelRequest(input *CreateChannelInput) (req *request.Re
 //
 // Restriction: You can't change a channel's privacy.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1916,6 +1919,9 @@ func (c *Chime) CreateChannelBanRequest(input *CreateChannelBanInput) (req *requ
 //
 // If you ban a user who is already part of a channel, that user is automatically
 // kicked from the channel.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2038,6 +2044,9 @@ func (c *Chime) CreateChannelMembershipRequest(input *CreateChannelMembershipInp
 //
 //    * Private Channels: You must be a member to list or send messages.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2151,6 +2160,9 @@ func (c *Chime) CreateChannelModeratorRequest(input *CreateChannelModeratorInput
 //
 //    * List messages in the channel.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2253,9 +2265,9 @@ func (c *Chime) CreateMeetingRequest(input *CreateMeetingInput) (req *request.Re
 // Creates a new Amazon Chime SDK meeting in the specified media Region with
 // no initial attendees. For more information about specifying media Regions,
 // see Amazon Chime SDK Media Regions (https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html)
-// in the Amazon Chime Developer Guide. For more information about the Amazon
+// in the Amazon Chime Developer Guide . For more information about the Amazon
 // Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide.
+// in the Amazon Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2354,12 +2366,12 @@ func (c *Chime) CreateMeetingDialOutRequest(input *CreateMeetingDialOutInput) (r
 //
 // Uses the join token and call metadata in a meeting request (From number,
 // To number, and so forth) to initiate an outbound call to a public switched
-// telephone network (PSTN) and joins them into Chime meeting. Also ensures
+// telephone network (PSTN) and join them into a Chime meeting. Also ensures
 // that the From number belongs to the customer.
 //
 // To play welcome audio or implement an interactive voice response (IVR), use
-// the CreateSipMediaApplicationCall API with the corresponding SIP media application
-// ID.
+// the CreateSipMediaApplicationCall action with the corresponding SIP media
+// application ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2459,9 +2471,9 @@ func (c *Chime) CreateMeetingWithAttendeesRequest(input *CreateMeetingWithAttend
 // Creates a new Amazon Chime SDK meeting in the specified media Region, with
 // attendees. For more information about specifying media Regions, see Amazon
 // Chime SDK Media Regions (https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html)
-// in the Amazon Chime Developer Guide. For more information about the Amazon
+// in the Amazon Chime Developer Guide . For more information about the Amazon
 // Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide.
+// in the Amazon Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3588,15 +3600,14 @@ func (c *Chime) DeleteAccountRequest(input *DeleteAccountInput) (req *request.Re
 // DeleteAccount API operation for Amazon Chime.
 //
 // Deletes the specified Amazon Chime account. You must suspend all users before
-// deleting a Team account. You can use the BatchSuspendUser action to do so.
+// deleting Team account. You can use the BatchSuspendUser action to dodo.
 //
 // For EnterpriseLWA and EnterpriseAD accounts, you must release the claimed
 // domains for your Amazon Chime account before deletion. As soon as you release
 // the domain, all users under that account are suspended.
 //
 // Deleted accounts appear in your Disabled accounts list for 90 days. To restore
-// a deleted account from your Disabled accounts list, you must contact AWS
-// Support.
+// deleted account from your Disabled accounts list, you must contact AWS Support.
 //
 // After 90 days, deleted accounts are permanently removed from your Disabled
 // accounts list.
@@ -3821,9 +3832,6 @@ func (c *Chime) DeleteAppInstanceAdminRequest(input *DeleteAppInstanceAdminInput
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
 //
-//   * ResourceLimitExceededException
-//   The request exceeds the resource limit.
-//
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
@@ -3903,7 +3911,7 @@ func (c *Chime) DeleteAppInstanceStreamingConfigurationsRequest(input *DeleteApp
 
 // DeleteAppInstanceStreamingConfigurations API operation for Amazon Chime.
 //
-// Deletes the streaming configurations of an app instance.
+// Deletes the streaming configurations of an AppInstance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4099,10 +4107,10 @@ func (c *Chime) DeleteAttendeeRequest(input *DeleteAttendeeInput) (req *request.
 // DeleteAttendee API operation for Amazon Chime.
 //
 // Deletes an attendee from the specified Amazon Chime SDK meeting and deletes
-// their JoinToken. Attendees are automatically deleted when a Amazon Chime
+// their JoinToken . Attendees are automatically deleted when a Amazon Chime
 // SDK meeting is deleted. For more information about the Amazon Chime SDK,
 // see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide.
+// in the Amazon Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4205,6 +4213,9 @@ func (c *Chime) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Re
 // Immediately makes a channel and its memberships inaccessible and marks them
 // for deletion. This is an irreversible process.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4302,6 +4313,9 @@ func (c *Chime) DeleteChannelBanRequest(input *DeleteChannelBanInput) (req *requ
 //
 // Removes a user from a channel's ban list.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4398,6 +4412,9 @@ func (c *Chime) DeleteChannelMembershipRequest(input *DeleteChannelMembershipInp
 // DeleteChannelMembership API operation for Amazon Chime.
 //
 // Removes a member from a channel.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4498,6 +4515,9 @@ func (c *Chime) DeleteChannelMessageRequest(input *DeleteChannelMessageInput) (r
 // makes messages inaccessible immediately. A background process deletes any
 // revisions created by UpdateChannelMessage.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4594,6 +4614,9 @@ func (c *Chime) DeleteChannelModeratorRequest(input *DeleteChannelModeratorInput
 // DeleteChannelModerator API operation for Amazon Chime.
 //
 // Deletes a channel moderator.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4784,8 +4807,9 @@ func (c *Chime) DeleteMeetingRequest(input *DeleteMeetingInput) (req *request.Re
 // DeleteMeeting API operation for Amazon Chime.
 //
 // Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted,
-// its attendees are also deleted and clients can no longer join it. For more
-// information about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// its attendees are also deleted, clients connected to the meeting are disconnected,
+// and clients can no longer join the meeting. For more information about the
+// Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
 // in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4884,9 +4908,9 @@ func (c *Chime) DeletePhoneNumberRequest(input *DeletePhoneNumberInput) (req *re
 
 // DeletePhoneNumber API operation for Amazon Chime.
 //
-// Moves the specified phone number into the Deletion queue. A phone number
-// must be disassociated from any users or Amazon Chime Voice Connectors before
-// it can be deleted.
+// Moves the specified phone number into the Deletionqueue. A phone number must
+// be disassociated from any users or Amazon Chime Voice Connectors before it
+// can be deleted.
 //
 // Deleted phone numbers remain in the Deletion queue for 7 days before they
 // are deleted permanently.
@@ -6484,7 +6508,7 @@ func (c *Chime) DescribeAppInstanceUserRequest(input *DescribeAppInstanceUserInp
 
 // DescribeAppInstanceUser API operation for Amazon Chime.
 //
-// Returns the full details of an AppInstanceUser.
+// Returns the full details of an AppInstanceUser .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6580,7 +6604,10 @@ func (c *Chime) DescribeChannelRequest(input *DescribeChannelInput) (req *reques
 
 // DescribeChannel API operation for Amazon Chime.
 //
-// Returns the full details of a channel in an Amazon Chime app instance.
+// Returns the full details of a channel in an Amazon Chime AppInstance.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6677,6 +6704,9 @@ func (c *Chime) DescribeChannelBanRequest(input *DescribeChannelBanInput) (req *
 // DescribeChannelBan API operation for Amazon Chime.
 //
 // Returns the full details of a channel ban.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6777,6 +6807,9 @@ func (c *Chime) DescribeChannelMembershipRequest(input *DescribeChannelMembershi
 //
 // Returns the full details of a user's channel membership.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6874,8 +6907,11 @@ func (c *Chime) DescribeChannelMembershipForAppInstanceUserRequest(input *Descri
 
 // DescribeChannelMembershipForAppInstanceUser API operation for Amazon Chime.
 //
-// Returns the details of a channel based on the membership of the AppInstanceUser
-// specified.
+// Returns the details of a channel based on the membership of the specified
+// AppInstanceUser.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6973,6 +7009,9 @@ func (c *Chime) DescribeChannelModeratedByAppInstanceUserRequest(input *Describe
 //
 // Returns the full details of a channel moderated by the specified AppInstanceUser.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7068,6 +7107,9 @@ func (c *Chime) DescribeChannelModeratorRequest(input *DescribeChannelModeratorI
 // DescribeChannelModerator API operation for Amazon Chime.
 //
 // Returns the full details of a single ChannelModerator.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7657,7 +7699,7 @@ func (c *Chime) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *
 // GetAccountSettings API operation for Amazon Chime.
 //
 // Retrieves account settings for the specified Amazon Chime account ID, such
-// as remote control and dial out settings. For more information about these
+// as remote control and dialout settings. For more information about these
 // settings, see Use the Policies Page (https://docs.aws.amazon.com/chime/latest/ag/policies.html)
 // in the Amazon Chime Administration Guide.
 //
@@ -7758,7 +7800,7 @@ func (c *Chime) GetAppInstanceRetentionSettingsRequest(input *GetAppInstanceRete
 
 // GetAppInstanceRetentionSettings API operation for Amazon Chime.
 //
-// Gets the retention settings for an app instance.
+// Gets the retention settings for an AppInstance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7855,7 +7897,7 @@ func (c *Chime) GetAppInstanceStreamingConfigurationsRequest(input *GetAppInstan
 
 // GetAppInstanceStreamingConfigurations API operation for Amazon Chime.
 //
-// Gets the streaming settings for an app instance.
+// Gets the streaming settings for an AppInstance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7955,7 +7997,7 @@ func (c *Chime) GetAttendeeRequest(input *GetAttendeeInput) (req *request.Reques
 // Gets the Amazon Chime SDK attendee details for a specified meeting ID and
 // attendee ID. For more information about the Amazon Chime SDK, see Using the
 // Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide.
+// in the Amazon Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8153,6 +8195,9 @@ func (c *Chime) GetChannelMessageRequest(input *GetChannelMessageInput) (req *re
 // GetChannelMessage API operation for Amazon Chime.
 //
 // Gets the full details of a channel message.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8445,7 +8490,7 @@ func (c *Chime) GetMeetingRequest(input *GetMeetingInput) (req *request.Request,
 // Gets the Amazon Chime SDK meeting details for the specified meeting ID. For
 // more information about the Amazon Chime SDK, see Using the Amazon Chime SDK
 // (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html) in the Amazon
-// Chime Developer Guide.
+// Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8544,7 +8589,7 @@ func (c *Chime) GetMessagingSessionEndpointRequest(input *GetMessagingSessionEnd
 
 // GetMessagingSessionEndpoint API operation for Amazon Chime.
 //
-// The endpoint for the messaging session.
+// The details of the endpoint for the messaging session.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8733,8 +8778,9 @@ func (c *Chime) GetPhoneNumberOrderRequest(input *GetPhoneNumberOrderInput) (req
 
 // GetPhoneNumberOrder API operation for Amazon Chime.
 //
-// Retrieves details for the specified phone number order, such as order creation
-// timestamp, phone numbers in E.164 format, product type, and order status.
+// Retrieves details for the specified phone number order, such as the order
+// creation timestamp, phone numbers in E.164 format, product type, and order
+// status.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9027,7 +9073,7 @@ func (c *Chime) GetRetentionSettingsRequest(input *GetRetentionSettingsInput) (r
 // Gets the retention settings for the specified Amazon Chime Enterprise account.
 // For more information about retention settings, see Managing Chat Retention
 // Policies (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html)
-// in the Amazon Chime Administration Guide.
+// in the Amazon Chime Administration Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9516,7 +9562,7 @@ func (c *Chime) GetUserRequest(input *GetUserInput) (req *request.Request, outpu
 // GetUser API operation for Amazon Chime.
 //
 // Retrieves details for the specified user ID, such as primary email address,
-// license type, and personal meeting PIN.
+// license type,and personal meeting PIN.
 //
 // To retrieve user details with an email address instead of a user ID, use
 // the ListUsers action, and then filter by email address.
@@ -9715,7 +9761,7 @@ func (c *Chime) GetVoiceConnectorRequest(input *GetVoiceConnectorInput) (req *re
 // GetVoiceConnector API operation for Amazon Chime.
 //
 // Retrieves details for the specified Amazon Chime Voice Connector, such as
-// timestamps, name, outbound host, and encryption requirements.
+// timestamps,name, outbound host, and encryption requirements.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9911,7 +9957,7 @@ func (c *Chime) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGroupInput
 // GetVoiceConnectorGroup API operation for Amazon Chime.
 //
 // Retrieves details for the specified Amazon Chime Voice Connector group, such
-// as timestamps, name, and associated VoiceConnectorItems.
+// as timestamps,name, and associated VoiceConnectorItems .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10010,7 +10056,7 @@ func (c *Chime) GetVoiceConnectorLoggingConfigurationRequest(input *GetVoiceConn
 //
 // Retrieves the logging configuration details for the specified Amazon Chime
 // Voice Connector. Shows whether SIP message logs are enabled for sending to
-// Amazon CloudWatch.
+// Amazon CloudWatch Logs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10706,7 +10752,7 @@ func (c *Chime) ListAccountsRequest(input *ListAccountsInput) (req *request.Requ
 //
 // Lists the Amazon Chime accounts under the administrator's AWS account. You
 // can filter accounts by account name prefix. To find out which Amazon Chime
-// account a user belongs to, you can filter by the user's email address, which
+// account a user belongs to, toucan filter by the user's email address, which
 // returns one account result.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10864,7 +10910,7 @@ func (c *Chime) ListAppInstanceAdminsRequest(input *ListAppInstanceAdminsInput) 
 
 // ListAppInstanceAdmins API operation for Amazon Chime.
 //
-// Returns a list of the administrators in the app instance.
+// Returns a list of the administrators in the AppInstance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10879,9 +10925,6 @@ func (c *Chime) ListAppInstanceAdminsRequest(input *ListAppInstanceAdminsInput) 
 //
 //   * ForbiddenException
 //   The client is permanently forbidden from making the request.
-//
-//   * ResourceLimitExceededException
-//   The request exceeds the resource limit.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -11021,7 +11064,7 @@ func (c *Chime) ListAppInstanceUsersRequest(input *ListAppInstanceUsersInput) (r
 
 // ListAppInstanceUsers API operation for Amazon Chime.
 //
-// List all AppInstanceUsers created under a single app instance.
+// List all AppInstanceUsers created under a single AppInstance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11175,7 +11218,7 @@ func (c *Chime) ListAppInstancesRequest(input *ListAppInstancesInput) (req *requ
 
 // ListAppInstances API operation for Amazon Chime.
 //
-// Lists all Amazon Chime app instances created under a single AWS account.
+// Lists all Amazon Chime AppInstances created under a single AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11426,7 +11469,7 @@ func (c *Chime) ListAttendeesRequest(input *ListAttendeesInput) (req *request.Re
 //
 // Lists the attendees for the specified Amazon Chime SDK meeting. For more
 // information about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide.
+// in the Amazon Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11741,6 +11784,9 @@ func (c *Chime) ListChannelBansRequest(input *ListChannelBansInput) (req *reques
 //
 // Lists all the users banned from a particular channel.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11894,6 +11940,9 @@ func (c *Chime) ListChannelMembershipsRequest(input *ListChannelMembershipsInput
 // ListChannelMemberships API operation for Amazon Chime.
 //
 // Lists all channel memberships in a channel.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12050,6 +12099,9 @@ func (c *Chime) ListChannelMembershipsForAppInstanceUserRequest(input *ListChann
 // Lists all channels that a particular AppInstanceUser is a part of. Only an
 // AppInstanceAdmin can call the API with a user ARN that is not their own.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12203,11 +12255,14 @@ func (c *Chime) ListChannelMessagesRequest(input *ListChannelMessagesInput) (req
 // ListChannelMessages API operation for Amazon Chime.
 //
 // List all the messages in a channel. Returns a paginated list of ChannelMessages.
-// Sorted in descending order by default, based on the creation timestamp.
+// By default, sorted by creation timestamp in descending order .
 //
 // Redacted messages appear in the results as empty, since they are only redacted,
 // not deleted. Deleted messages do not appear in the results. This action always
 // returns the latest version of an edited message.
+//
+// Also, the x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12362,6 +12417,9 @@ func (c *Chime) ListChannelModeratorsRequest(input *ListChannelModeratorsInput) 
 // ListChannelModerators API operation for Amazon Chime.
 //
 // Lists all the moderators for a channel.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12525,6 +12583,9 @@ func (c *Chime) ListChannelsRequest(input *ListChannelsInput) (req *request.Requ
 //    * Only an AppInstanceAdmin can set privacy = PRIVATE to list the private
 //    channels in an account.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12677,7 +12738,10 @@ func (c *Chime) ListChannelsModeratedByAppInstanceUserRequest(input *ListChannel
 
 // ListChannelsModeratedByAppInstanceUser API operation for Amazon Chime.
 //
-// A list of the channels moderated by an app instance user.
+// A list of the channels moderated by an AppInstanceUser.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12928,7 +12992,7 @@ func (c *Chime) ListMeetingsRequest(input *ListMeetingsInput) (req *request.Requ
 //
 // Lists up to 100 active Amazon Chime SDK meetings. For more information about
 // the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide.
+// in the Amazon Chime Developer Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13251,6 +13315,9 @@ func (c *Chime) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *requ
 //
 //   * BadRequestException
 //   The input parameters don't match the service's restrictions.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -14905,7 +14972,7 @@ func (c *Chime) PutAppInstanceRetentionSettingsRequest(input *PutAppInstanceRete
 
 // PutAppInstanceRetentionSettings API operation for Amazon Chime.
 //
-// Sets the amount of time in days that a given app instance retains data.
+// Sets the amount of time in days that a given AppInstance retains data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15006,7 +15073,7 @@ func (c *Chime) PutAppInstanceStreamingConfigurationsRequest(input *PutAppInstan
 
 // PutAppInstanceStreamingConfigurations API operation for Amazon Chime.
 //
-// The data streaming configurations of an app instance.
+// The data streaming configurations of an AppInstance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15206,13 +15273,13 @@ func (c *Chime) PutRetentionSettingsRequest(input *PutRetentionSettingsInput) (r
 // We recommend using AWS CloudTrail to monitor usage of this API for your account.
 // For more information, see Logging Amazon Chime API Calls with AWS CloudTrail
 // (https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html) in the Amazon
-// Chime Administration Guide.
+// Chime Administration Guide .
 //
 // To turn off existing retention settings, remove the number of days from the
 // corresponding RetentionDays field in the RetentionSettings object. For more
 // information about retention settings, see Managing Chat Retention Policies
 // (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html) in the
-// Amazon Chime Administration Guide.
+// Amazon Chime Administration Guide .
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15812,7 +15879,7 @@ func (c *Chime) PutVoiceConnectorStreamingConfigurationRequest(input *PutVoiceCo
 //
 // Adds a streaming configuration for the specified Amazon Chime Voice Connector.
 // The streaming configuration specifies whether media streaming is enabled
-// for sending to Amazon Kinesis. It also sets the retention period, in hours,
+// for sending to Indonesians. It also sets the retention period, in hours,
 // for the Amazon Kinesis data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -16115,6 +16182,9 @@ func (c *Chime) RedactChannelMessageRequest(input *RedactChannelMessageInput) (r
 //
 // Redacts message content, but not metadata. The message exists in the back
 // end, but the action returns null content, and the state shows as redacted.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16800,8 +16870,11 @@ func (c *Chime) SendChannelMessageRequest(input *SendChannelMessageInput) (req *
 //
 // Sends a message to a particular channel that the member is a part of.
 //
-// STANDARD messages can contain 4KB of data and the 1KB of metadata. CONTROL
-// messages can contain 30 bytes of data and no metadata.
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
+// Also, STANDARD messages can contain 4KB of data and the 1KB of metadata.
+// CONTROL messages can contain 30 bytes of data and no metadata.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17792,7 +17865,7 @@ func (c *Chime) UpdateAppInstanceUserRequest(input *UpdateAppInstanceUserInput) 
 
 // UpdateAppInstanceUser API operation for Amazon Chime.
 //
-// Updates the details for an AppInstanceUser. You can update names and metadata.
+// Updates the details of an AppInstanceUser. You can update names and metadata.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17994,6 +18067,9 @@ func (c *Chime) UpdateChannelRequest(input *UpdateChannelInput) (req *request.Re
 //
 // Restriction: You can't change a channel's privacy.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18094,6 +18170,9 @@ func (c *Chime) UpdateChannelMessageRequest(input *UpdateChannelMessageInput) (r
 //
 // Updates the content of a message.
 //
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18192,7 +18271,10 @@ func (c *Chime) UpdateChannelReadMarkerRequest(input *UpdateChannelReadMarkerInp
 
 // UpdateChannelReadMarker API operation for Amazon Chime.
 //
-// Sets the timestamp to the point when a user last read messages in a channel.
+// The details of the time when a user last read messages in a channel.
+//
+// The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
+// of the user that makes the API call as the value in the header.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18886,7 +18968,7 @@ func (c *Chime) UpdateSipMediaApplicationRequest(input *UpdateSipMediaApplicatio
 
 // UpdateSipMediaApplication API operation for Amazon Chime.
 //
-// Updates the details for the specified SIP media application.
+// Updates the details of the specified SIP media application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18987,7 +19069,7 @@ func (c *Chime) UpdateSipRuleRequest(input *UpdateSipRuleInput) (req *request.Re
 
 // UpdateSipRule API operation for Amazon Chime.
 //
-// Updates the details for the specified SIP rule.
+// Updates the details of the specified SIP rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19384,7 +19466,7 @@ func (c *Chime) UpdateVoiceConnectorGroupRequest(input *UpdateVoiceConnectorGrou
 
 // UpdateVoiceConnectorGroup API operation for Amazon Chime.
 //
-// Updates details for the specified Amazon Chime Voice Connector group, such
+// Updates details of the specified Amazon Chime Voice Connector group, such
 // as the name and Amazon Chime Voice Connector priority ranking.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -19669,23 +19751,24 @@ func (s *AlexaForBusinessMetadata) SetIsAlexaForBusinessEnabled(v bool) *AlexaFo
 	return s
 }
 
-// An instance of a Chime messaging application.
+// The details of an AppInstance, an instance of an Amazon Chime SDK messaging
+// application.
 type AppInstance struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the messaging instance.
 	AppInstanceArn *string `min:"5" type:"string"`
 
-	// The time at which an app instance was created. In epoch milliseconds.
+	// The time at which an AppInstance was created. In epoch milliseconds.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The time an app instance was last updated. In epoch milliseconds.
+	// The time an AppInstance was last updated. In epoch milliseconds.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
-	// The metadata of an app instance.
+	// The metadata of an AppInstance.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The name of an app instance.
+	// The name of an AppInstance.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -19729,14 +19812,14 @@ func (s *AppInstance) SetName(v string) *AppInstance {
 	return s
 }
 
-// Promotes a user to the administrator role for the duration of an app instance.
+// The details of an AppInstanceAdmin.
 type AppInstanceAdmin struct {
 	_ struct{} `type:"structure"`
 
-	// The name and metadata of the app instance administrator.
+	// The AppInstanceAdmin data.
 	Admin *Identity `type:"structure"`
 
-	// The ARN of the app instance administrator.
+	// The ARN of the AppInstance for which the user is an administrator.
 	AppInstanceArn *string `min:"5" type:"string"`
 
 	// The time at which an administrator was created.
@@ -19771,11 +19854,11 @@ func (s *AppInstanceAdmin) SetCreatedTimestamp(v time.Time) *AppInstanceAdmin {
 	return s
 }
 
-// The identity and metadata of an administrator.
+// Summary of the details of an AppInstanceAdmin.
 type AppInstanceAdminSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The name and metadata of the app instance administrator.
+	// The details of the AppInstanceAdmin.
 	Admin *Identity `type:"structure"`
 }
 
@@ -19795,11 +19878,11 @@ func (s *AppInstanceAdminSummary) SetAdmin(v *Identity) *AppInstanceAdminSummary
 	return s
 }
 
-// The length of time in days to retain messages.
+// The details of the data-retention settings for an AppInstance.
 type AppInstanceRetentionSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The length of time in days to retain a channel.
+	// The length of time in days to retain the messages in a channel.
 	ChannelRetentionSettings *ChannelRetentionSettings `type:"structure"`
 }
 
@@ -19834,11 +19917,11 @@ func (s *AppInstanceRetentionSettings) SetChannelRetentionSettings(v *ChannelRet
 	return s
 }
 
-// The streaming configuration of an app instance.
+// The details of the streaming configuration of an AppInstance.
 type AppInstanceStreamingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The data type of the app instance.
+	// The type of data to be streamed.
 	//
 	// AppInstanceDataType is a required field
 	AppInstanceDataType *string `type:"string" required:"true" enum:"AppInstanceDataType"`
@@ -19890,17 +19973,17 @@ func (s *AppInstanceStreamingConfiguration) SetResourceArn(v string) *AppInstanc
 	return s
 }
 
-// The summary data for an app instance.
+// Summary of the data for an AppInstance.
 type AppInstanceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The app instance ARN.
+	// The AppInstance ARN.
 	AppInstanceArn *string `min:"5" type:"string"`
 
-	// The metadata of the app instance summary.
+	// The metadata of the AppInstance.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The name of the app instance summary.
+	// The name of the AppInstance.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -19932,23 +20015,23 @@ func (s *AppInstanceSummary) SetName(v string) *AppInstanceSummary {
 	return s
 }
 
-// The app instance user.
+// The details of an AppInstanceUser.
 type AppInstanceUser struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance user.
+	// The ARN of the AppInstanceUser.
 	AppInstanceUserArn *string `min:"5" type:"string"`
 
-	// The time at which the app instance user was created.
+	// The time at which the AppInstanceUser was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The time at which the app instance user was last updated.
+	// The time at which the AppInstanceUser was last updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
-	// The metadata of the app instance user.
+	// The metadata of the AppInstanceUser.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The name of the app instance user.
+	// The name of the AppInstanceUser.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -19992,14 +20075,14 @@ func (s *AppInstanceUser) SetName(v string) *AppInstanceUser {
 	return s
 }
 
-// Lists the channels to which app instance users belong.
+// Summary of the membership details of an AppInstanceUser.
 type AppInstanceUserMembershipSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The time at which a summary was last read.
+	// The time at which a message was last read.
 	ReadMarkerTimestamp *time.Time `type:"timestamp"`
 
-	// The type of channel summary,
+	// The type of ChannelMembership.
 	Type *string `type:"string" enum:"ChannelMembershipType"`
 }
 
@@ -20025,17 +20108,17 @@ func (s *AppInstanceUserMembershipSummary) SetType(v string) *AppInstanceUserMem
 	return s
 }
 
-// The app instance user summary data .
+// Summary of the details of an AppInstanceUser.
 type AppInstanceUserSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance user.
+	// The ARN of the AppInstanceUser.
 	AppInstanceUserArn *string `min:"5" type:"string"`
 
-	// The metadata in an app instance user summary.
+	// The metadata of the AppInstanceUser.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The name in an app instance user summary.
+	// The name of an AppInstanceUser.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 }
 
@@ -20405,10 +20488,10 @@ func (s AssociateSigninDelegateGroupsWithAccountOutput) GoString() string {
 	return s.String()
 }
 
-// An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken.
-// The JoinToken allows a client to authenticate and join as the specified attendee.
-// The JoinToken expires when the meeting ends or when DeleteAttendee is called.
-// After that, the attendee is unable to join the meeting.
+// An Amazon Chime SDK meeting attendee. Includes a unique AttendeeId and JoinToken
+// . The JoinToken allows a client to authenticate and join as the specified
+// attendee. The JoinToken expires when the meeting ends or when DeleteAttendee
+// is called. After that, the attendee is unable to join the meeting.
 //
 // We recommend securely transferring each JoinToken from your server application
 // to the client so that no other client has access to the token except for
@@ -20420,8 +20503,7 @@ type Attendee struct {
 	AttendeeId *string `type:"string"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
-	// to an identity managed by a builder application. If you create an attendee
-	// with the same external user id, the service returns the existing record.
+	// to an identity managed by a builder application.
 	ExternalUserId *string `min:"2" type:"string" sensitive:"true"`
 
 	// The join token used by the Amazon Chime SDK attendee.
@@ -21221,26 +21303,26 @@ func (s *BusinessCallingSettings) SetCdrBucket(v string) *BusinessCallingSetting
 	return s
 }
 
-// Creates a channel.
+// The details of a channel.
 type Channel struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The administrator who created the channel.
+	// The AppInstanceUser who created the channel.
 	CreatedBy *Identity `type:"structure"`
 
-	// The time at which the administrator created the channel.
+	// The time at which the AppInstanceUser created the channel.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The time at which a member sent the last message in a session.
+	// The time at which a member sent the last message in the channel.
 	LastMessageTimestamp *time.Time `type:"timestamp"`
 
 	// The time at which a channel was last updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
-	// The metadata of the channel.
+	// The channel's metadata.
 	Metadata *string `type:"string" sensitive:"true"`
 
 	// The mode of the channel.
@@ -21249,7 +21331,7 @@ type Channel struct {
 	// The name of the channel.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 
-	// The channel's privacy setting, PUBLIC or HIDDEN.
+	// The channel's privacy setting.
 	Privacy *string `type:"string" enum:"ChannelPrivacy"`
 }
 
@@ -21317,14 +21399,14 @@ func (s *Channel) SetPrivacy(v string) *Channel {
 	return s
 }
 
-// Bans a user from a channel.
+// The details of a channel ban.
 type ChannelBan struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the channel from which a member is being banned.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The parameter of the action.
+	// The AppInstanceUser who created the ban.
 	CreatedBy *Identity `type:"structure"`
 
 	// The time at which the ban was created.
@@ -21368,7 +21450,7 @@ func (s *ChannelBan) SetMember(v *Identity) *ChannelBan {
 	return s
 }
 
-// The summary data for the channel ban.
+// Summary of the details of a ChannelBan.
 type ChannelBanSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -21392,7 +21474,7 @@ func (s *ChannelBanSummary) SetMember(v *Identity) *ChannelBanSummary {
 	return s
 }
 
-// Creates a channel member.
+// The details of a channel member.
 type ChannelMembership struct {
 	_ struct{} `type:"structure"`
 
@@ -21402,8 +21484,7 @@ type ChannelMembership struct {
 	// The time at which the channel membership was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
-	// The identifier of the member who invited another member. Taken from the message
-	// header.
+	// The identifier of the member who invited another member.
 	InvitedBy *Identity `type:"structure"`
 
 	// The time at which a channel membership was last updated.
@@ -21462,14 +21543,14 @@ func (s *ChannelMembership) SetType(v string) *ChannelMembership {
 	return s
 }
 
-// Returns the channel membership summary data for an app instance.
+// Summary of the channel membership details of an AppInstanceUser.
 type ChannelMembershipForAppInstanceUserSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the channel membership data for an app instance.
+	// Returns the channel membership data for an AppInstance.
 	AppInstanceUserMembershipSummary *AppInstanceUserMembershipSummary `type:"structure"`
 
-	// The summary data for a channel.
+	// Summary of the details of a Channel.
 	ChannelSummary *ChannelSummary `type:"structure"`
 }
 
@@ -21495,7 +21576,7 @@ func (s *ChannelMembershipForAppInstanceUserSummary) SetChannelSummary(v *Channe
 	return s
 }
 
-// The summary data of a channel membership.
+// Summary of the details of a ChannelMembership.
 type ChannelMembershipSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -21519,7 +21600,7 @@ func (s *ChannelMembershipSummary) SetMember(v *Identity) *ChannelMembershipSumm
 	return s
 }
 
-// Creates a message in a channel.
+// The details of a message in a channel.
 type ChannelMessage struct {
 	_ struct{} `type:"structure"`
 
@@ -21544,10 +21625,10 @@ type ChannelMessage struct {
 	// The message metadata.
 	Metadata *string `type:"string" sensitive:"true"`
 
+	// The persistence setting for a channel message.
 	Persistence *string `type:"string" enum:"ChannelMessagePersistenceType"`
 
-	// Hides the content of a message. The message still exists on the back end,
-	// but this action only returns metadata.
+	// Hides the content of a message.
 	Redacted *bool `type:"boolean"`
 
 	// The message sender.
@@ -21633,33 +21714,35 @@ func (s *ChannelMessage) SetType(v string) *ChannelMessage {
 	return s
 }
 
-// A summary of the messages in a channel.
+// Summary of the messages in a Channel.
 type ChannelMessageSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The content of the message summary.
+	// The content of the message.
 	Content *string `type:"string" sensitive:"true"`
 
 	// The time at which the message summary was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
+	// The time at which a message was last edited.
 	LastEditedTimestamp *time.Time `type:"timestamp"`
 
+	// The time at which a message was last updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
-	// The ID of the message summary.
+	// The ID of the message.
 	MessageId *string `min:"1" type:"string"`
 
-	// The metadata of the message summary.
+	// The metadata of the message.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// Redacts the content of a message summary.
+	// Indicates whether a message was redacted.
 	Redacted *bool `type:"boolean"`
 
-	// The sender of the message summary.
+	// The message sender.
 	Sender *Identity `type:"structure"`
 
-	// The type of message summary.
+	// The type of message.
 	Type *string `type:"string" enum:"ChannelMessageType"`
 }
 
@@ -21727,11 +21810,11 @@ func (s *ChannelMessageSummary) SetType(v string) *ChannelMessageSummary {
 	return s
 }
 
-// Returns the summary data for a moderated channel.
+// Summary of the details of a moderated channel.
 type ChannelModeratedByAppInstanceUserSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The summary data for a channel.
+	// Summary of the details of a Channel.
 	ChannelSummary *ChannelSummary `type:"structure"`
 }
 
@@ -21751,14 +21834,14 @@ func (s *ChannelModeratedByAppInstanceUserSummary) SetChannelSummary(v *ChannelS
 	return s
 }
 
-// Creates a moderator on a channel.
+// The details of a channel moderator.
 type ChannelModerator struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the moderator's channel.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The member who created the moderator.
+	// The AppInstanceUser who created the moderator.
 	CreatedBy *Identity `type:"structure"`
 
 	// The time at which the moderator was created.
@@ -21802,7 +21885,7 @@ func (s *ChannelModerator) SetModerator(v *Identity) *ChannelModerator {
 	return s
 }
 
-// Summary data of the moderators in a channel.
+// Summary of the details of a ChannelModerator.
 type ChannelModeratorSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -21826,11 +21909,11 @@ func (s *ChannelModeratorSummary) SetModerator(v *Identity) *ChannelModeratorSum
 	return s
 }
 
-// The retention settings for a channel.
+// The details of the retention settings for a channel.
 type ChannelRetentionSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The time in days to retain a channel.
+	// The time in days to retain the messages in a channel.
 	RetentionDays *int64 `min:"1" type:"integer"`
 }
 
@@ -21863,26 +21946,26 @@ func (s *ChannelRetentionSettings) SetRetentionDays(v int64) *ChannelRetentionSe
 	return s
 }
 
-// The summary data for a channel.
+// Summary of the details of a Channel.
 type ChannelSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the channel summary.
+	// The ARN of the channel.
 	ChannelArn *string `min:"5" type:"string"`
 
 	// The time at which the last message in a channel was sent.
 	LastMessageTimestamp *time.Time `type:"timestamp"`
 
-	// The metadata of the channel summary.
+	// The metadata of the channel.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The summary mode of the channel.
+	// The mode of the channel.
 	Mode *string `type:"string" enum:"ChannelMode"`
 
-	// The parameter of the action.
+	// The name of the channel.
 	Name *string `min:"1" type:"string" sensitive:"true"`
 
-	// The privacy setting of the channel being summarized, PUBLIC or HIDDEN.
+	// The privacy setting of the channel.
 	Privacy *string `type:"string" enum:"ChannelPrivacy"`
 }
 
@@ -21991,12 +22074,12 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The retention settings that determine how long to retain chat conversation
-// messages for an Amazon Chime Enterprise account.
+// The retention settings that determine how long to retain conversation messages
+// for an Amazon Chime Enterprise account.
 type ConversationRetentionSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The number of days for which to retain chat conversation messages.
+	// The number of days for which to retain conversation messages.
 	RetentionDays *int64 `min:"1" type:"integer"`
 }
 
@@ -22073,8 +22156,7 @@ func (s *CreateAccountInput) SetName(v string) *CreateAccountInput {
 type CreateAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime account details. An AWS account can have multiple Amazon
-	// Chime accounts.
+	// The Amazon Chime account details.
 	Account *Account `type:"structure"`
 }
 
@@ -22097,12 +22179,12 @@ func (s *CreateAccountOutput) SetAccount(v *Account) *CreateAccountOutput {
 type CreateAppInstanceAdminInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the administrator of the current app instance.
+	// The ARN of the administrator of the current AppInstance.
 	//
 	// AppInstanceAdminArn is a required field
 	AppInstanceAdminArn *string `min:"5" type:"string" required:"true"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -22155,10 +22237,10 @@ func (s *CreateAppInstanceAdminInput) SetAppInstanceArn(v string) *CreateAppInst
 type CreateAppInstanceAdminOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name and ARN of the admin for the app instance.
+	// The name and ARN of the admin for the AppInstance.
 	AppInstanceAdmin *Identity `type:"structure"`
 
-	// The ARN of the of the admin for the app instance.
+	// The ARN of the of the admin for the AppInstance.
 	AppInstanceArn *string `min:"5" type:"string"`
 }
 
@@ -22187,16 +22269,19 @@ func (s *CreateAppInstanceAdminOutput) SetAppInstanceArn(v string) *CreateAppIns
 type CreateAppInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ClientRequestToken of the app instance.
+	// The ClientRequestToken of the AppInstance.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
-	// The metadata of the app instance. Limited to a 1KB string in UTF-8.
+	// The metadata of the AppInstance. Limited to a 1KB string in UTF-8.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The name of the app instance.
+	// The name of the AppInstance.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Tags assigned to the AppInstanceUser.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -22220,6 +22305,19 @@ func (s *CreateAppInstanceInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -22246,10 +22344,16 @@ func (s *CreateAppInstanceInput) SetName(v string) *CreateAppInstanceInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateAppInstanceInput) SetTags(v []*Tag) *CreateAppInstanceInput {
+	s.Tags = v
+	return s
+}
+
 type CreateAppInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the app instance.
+	// The Amazon Resource Number (ARN) of the AppInstance.
 	AppInstanceArn *string `min:"5" type:"string"`
 }
 
@@ -22272,17 +22376,17 @@ func (s *CreateAppInstanceOutput) SetAppInstanceArn(v string) *CreateAppInstance
 type CreateAppInstanceUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance request.
+	// The ARN of the AppInstance request.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `min:"5" type:"string" required:"true"`
 
-	// The user ID of the app instance.
+	// The user ID of the AppInstance.
 	//
 	// AppInstanceUserId is a required field
 	AppInstanceUserId *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The token assigned to the user requesting an app instance.
+	// The token assigned to the user requesting an AppInstance.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
 	// The request's metadata. Limited to a 1KB string in UTF-8.
@@ -22292,6 +22396,9 @@ type CreateAppInstanceUserInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Tags assigned to the AppInstanceUser.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -22328,6 +22435,19 @@ func (s *CreateAppInstanceUserInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -22362,6 +22482,12 @@ func (s *CreateAppInstanceUserInput) SetMetadata(v string) *CreateAppInstanceUse
 // SetName sets the Name field's value.
 func (s *CreateAppInstanceUserInput) SetName(v string) *CreateAppInstanceUserInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAppInstanceUserInput) SetTags(v []*Tag) *CreateAppInstanceUserInput {
+	s.Tags = v
 	return s
 }
 
@@ -22401,8 +22527,7 @@ type CreateAttendeeError struct {
 	ErrorMessage *string `type:"string"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
-	// to an identity managed by a builder application. If you create an attendee
-	// with the same external user id, the service returns the existing record.
+	// to an identity managed by a builder application.
 	ExternalUserId *string `min:"2" type:"string" sensitive:"true"`
 }
 
@@ -22438,8 +22563,7 @@ type CreateAttendeeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
-	// to an identity managed by a builder application. If you create an attendee
-	// with the same external user id, the service returns the existing record.
+	// to an identity managed by a builder application.
 	//
 	// ExternalUserId is a required field
 	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
@@ -22545,11 +22669,7 @@ type CreateAttendeeRequestItem struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
-	// to an identity managed by a builder application. If you create an attendee
-	// with the same external user id, the service returns the existing record.
-	//
-	// The Amazon Chime SDK external user ID. Links the attendee to an identity
-	// managed by a builder application.
+	// to an identity managed by a builder application.
 	//
 	// ExternalUserId is a required field
 	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
@@ -22704,6 +22824,9 @@ type CreateChannelBanInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ARN of the member being banned.
 	//
 	// MemberArn is a required field
@@ -22729,6 +22852,9 @@ func (s *CreateChannelBanInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MemberArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
 	}
@@ -22745,6 +22871,12 @@ func (s *CreateChannelBanInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *CreateChannelBanInput) SetChannelArn(v string) *CreateChannelBanInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *CreateChannelBanInput) SetChimeBearer(v string) *CreateChannelBanInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -22794,6 +22926,9 @@ type CreateChannelInput struct {
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The client token for the request. An Idempotency token.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
@@ -22813,9 +22948,10 @@ type CreateChannelInput struct {
 
 	// The channel's privacy level: PUBLIC or PRIVATE. Private channels aren't discoverable
 	// by users outside the channel. Public channels are discoverable by anyone
-	// in the app instance.
+	// in the AppInstance.
 	Privacy *string `type:"string" enum:"ChannelPrivacy"`
 
+	// The tags for the creation request.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -22837,6 +22973,9 @@ func (s *CreateChannelInput) Validate() error {
 	}
 	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
+	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
 	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
@@ -22870,6 +23009,12 @@ func (s *CreateChannelInput) Validate() error {
 // SetAppInstanceArn sets the AppInstanceArn field's value.
 func (s *CreateChannelInput) SetAppInstanceArn(v string) *CreateChannelInput {
 	s.AppInstanceArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *CreateChannelInput) SetChimeBearer(v string) *CreateChannelInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -22917,6 +23062,9 @@ type CreateChannelMembershipInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ARN of the member you want to add to the channel.
 	//
 	// MemberArn is a required field
@@ -22950,6 +23098,9 @@ func (s *CreateChannelMembershipInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MemberArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
 	}
@@ -22969,6 +23120,12 @@ func (s *CreateChannelMembershipInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *CreateChannelMembershipInput) SetChannelArn(v string) *CreateChannelMembershipInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *CreateChannelMembershipInput) SetChimeBearer(v string) *CreateChannelMembershipInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -23028,6 +23185,9 @@ type CreateChannelModeratorInput struct {
 	//
 	// ChannelModeratorArn is a required field
 	ChannelModeratorArn *string `min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -23055,6 +23215,9 @@ func (s *CreateChannelModeratorInput) Validate() error {
 	if s.ChannelModeratorArn != nil && len(*s.ChannelModeratorArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelModeratorArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -23071,6 +23234,12 @@ func (s *CreateChannelModeratorInput) SetChannelArn(v string) *CreateChannelMode
 // SetChannelModeratorArn sets the ChannelModeratorArn field's value.
 func (s *CreateChannelModeratorInput) SetChannelModeratorArn(v string) *CreateChannelModeratorInput {
 	s.ChannelModeratorArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *CreateChannelModeratorInput) SetChimeBearer(v string) *CreateChannelModeratorInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -23137,20 +23306,13 @@ type CreateMeetingDialOutInput struct {
 	// FromPhoneNumber is a required field
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
-	// Token used by the Amazon Chime SDK attendee. Call the CreateAttendee API
-	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.html)
-	// to get a join token.
+	// Token used by the Amazon Chime SDK attendee. Call the CreateAttendee (https://docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.htmlCreateAttendee)
+	// action to get a join token.
 	//
 	// JoinToken is a required field
 	JoinToken *string `min:"2" type:"string" required:"true" sensitive:"true"`
 
 	// The Amazon Chime SDK meeting ID.
-	//
-	// Type: String
-	//
-	// Pattern: [a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}
-	//
-	// Required: No
 	//
 	// MeetingId is a required field
 	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
@@ -23258,10 +23420,10 @@ type CreateMeetingInput struct {
 
 	// The Region in which to create the meeting. Default: us-east-1.
 	//
-	// Available values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1,
-	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1,
-	// eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1,
-	// us-west-2.
+	// Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1
+	// , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1
+	// , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1
+	// , us-east-2 , us-west-1 , us-west-2 .
 	MediaRegion *string `type:"string"`
 
 	// Reserved.
@@ -23361,7 +23523,7 @@ func (s *CreateMeetingInput) SetTags(v []*Tag) *CreateMeetingInput {
 type CreateMeetingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The meeting information, including the meeting ID and MediaPlacement.
+	// The meeting information, including the meeting ID and MediaPlacement .
 	Meeting *Meeting `type:"structure"`
 }
 
@@ -23394,20 +23556,20 @@ type CreateMeetingWithAttendeesInput struct {
 	// The external meeting ID.
 	ExternalMeetingId *string `min:"2" type:"string" sensitive:"true"`
 
-	// The Region in which to create the meeting. Default: us-east-1.
+	// The Region in which to create the meeting. Default: us-east-1 .
 	//
-	// Available values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1,
-	// ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1,
-	// eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1,
-	// us-west-2.
+	// Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1
+	// , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1
+	// , eu-south-1 , eu-west-1 , eu-west-2 , eu-west-3 , sa-east-1 , us-east-1
+	// , us-east-2 , us-west-1 , us-west-2 .
 	MediaRegion *string `type:"string"`
 
 	// Reserved.
 	MeetingHostId *string `min:"2" type:"string" sensitive:"true"`
 
-	// The configuration for resource targets to receive notifications when Amazon
-	// Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports
-	// resource targets located in the US East (N. Virginia) AWS Region (us-east-1).
+	// The resource target configurations for receiving Amazon Chime SDK meeting
+	// and attendee event notifications. The Amazon Chime SDK supports resource
+	// targets located in the US East (N. Virginia) AWS Region (us-east-1).
 	NotificationsConfiguration *MeetingNotificationConfiguration `type:"structure"`
 
 	// The tag key-value pairs.
@@ -23981,15 +24143,19 @@ type CreateSipMediaApplicationCallInput struct {
 	_ struct{} `type:"structure"`
 
 	// The phone number that a user calls from.
-	FromPhoneNumber *string `type:"string" sensitive:"true"`
+	//
+	// FromPhoneNumber is a required field
+	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
 	// The ID of the SIP media application.
 	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 
-	// The phone number that the user dials in order to connect to a meeting
-	ToPhoneNumber *string `type:"string" sensitive:"true"`
+	// The phone number that the user dials in order to connect to a meeting.
+	//
+	// ToPhoneNumber is a required field
+	ToPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -24005,11 +24171,17 @@ func (s CreateSipMediaApplicationCallInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateSipMediaApplicationCallInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateSipMediaApplicationCallInput"}
+	if s.FromPhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromPhoneNumber"))
+	}
 	if s.SipMediaApplicationId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
 	}
 	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+	if s.ToPhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToPhoneNumber"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -24062,7 +24234,7 @@ func (s *CreateSipMediaApplicationCallOutput) SetSipMediaApplicationCall(v *SipM
 type CreateSipMediaApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// AWS Region assigned to the SIP media application.
+	// The AWS Region assigned to the SIP media application.
 	//
 	// AwsRegion is a required field
 	AwsRegion *string `type:"string" required:"true"`
@@ -24074,7 +24246,9 @@ type CreateSipMediaApplicationInput struct {
 	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list" required:"true"`
 
 	// The SIP media application name.
-	Name *string `min:"1" type:"string"`
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -24098,6 +24272,9 @@ func (s *CreateSipMediaApplicationInput) Validate() error {
 	}
 	if s.Endpoints != nil && len(s.Endpoints) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Endpoints", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -24130,7 +24307,7 @@ func (s *CreateSipMediaApplicationInput) SetName(v string) *CreateSipMediaApplic
 type CreateSipMediaApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Sip media application details.
+	// The SIP media application details.
 	SipMediaApplication *SipMediaApplication `type:"structure"`
 }
 
@@ -24168,21 +24345,18 @@ type CreateSipRuleInput struct {
 	// TargetApplications is a required field
 	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list" required:"true"`
 
-	// The type of trigger whose value is assigned to the SIP rule in TriggerValue.
-	// Allowed trigger values are RequestUriHostname and ToPhoneNumber.
+	// The type of trigger assigned to the SIP rule in TriggerValue, currently RequestUriHostname
+	// or ToPhoneNumber.
 	//
 	// TriggerType is a required field
 	TriggerType *string `type:"string" required:"true" enum:"SipRuleTriggerType"`
 
-	// If TriggerType is RequestUriHostname then the value can be the outbound host
-	// name of an Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber
-	// then the value can be a customer-owned phone number in E164 format. SipRule
-	// is triggered if the SIP application requests a host name, or a If TriggerType
-	// is RequestUriHostname, then the value can be the outbound hostname of an
-	// Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber, then the value
-	// can be a customer-owned phone number in E164 format. SipRule is triggered
-	// if the SIP application requests a host name, or a ToPhoneNumber value matches
-	// the incoming SIP request.
+	// If TriggerType is RequestUriHostname, the value can be the outbound host
+	// name of an Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber,
+	// the value can be a customer-owned phone number in the E164 format. The SipMediaApplication
+	// specified in the SipRule is triggered if the request URI in an incoming SIP
+	// request matches the RequestUriHostname, or if the To header in the incoming
+	// SIP request matches the ToPhoneNumber value.
 	//
 	// TriggerValue is a required field
 	TriggerValue *string `type:"string" required:"true"`
@@ -24468,7 +24642,7 @@ type CreateVoiceConnectorInput struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS Region in which the Amazon Chime Voice Connector is created. Default
-	// value: us-east-1.
+	// value: us-east-1 .
 	AwsRegion *string `type:"string" enum:"VoiceConnectorAwsRegion"`
 
 	// The name of the Amazon Chime Voice Connector.
@@ -24711,12 +24885,12 @@ func (s DeleteAccountOutput) GoString() string {
 type DeleteAppInstanceAdminInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance's administrator.
+	// The ARN of the AppInstance's administrator.
 	//
 	// AppInstanceAdminArn is a required field
 	AppInstanceAdminArn *string `location:"uri" locationName:"appInstanceAdminArn" min:"5" type:"string" required:"true"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -24783,7 +24957,7 @@ func (s DeleteAppInstanceAdminOutput) GoString() string {
 type DeleteAppInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -25020,12 +25194,15 @@ func (s DeleteAttendeeOutput) GoString() string {
 type DeleteChannelBanInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the channel from which the app instance user was banned.
+	// The ARN of the channel from which the AppInstanceUser was banned.
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
-	// The ARN of the app instance user that you want to reinstate.
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
+	// The ARN of the AppInstanceUser that you want to reinstate.
 	//
 	// MemberArn is a required field
 	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
@@ -25050,6 +25227,9 @@ func (s *DeleteChannelBanInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MemberArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
 	}
@@ -25066,6 +25246,12 @@ func (s *DeleteChannelBanInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DeleteChannelBanInput) SetChannelArn(v string) *DeleteChannelBanInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DeleteChannelBanInput) SetChimeBearer(v string) *DeleteChannelBanInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -25096,6 +25282,9 @@ type DeleteChannelInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -25117,6 +25306,9 @@ func (s *DeleteChannelInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -25130,6 +25322,12 @@ func (s *DeleteChannelInput) SetChannelArn(v string) *DeleteChannelInput {
 	return s
 }
 
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DeleteChannelInput) SetChimeBearer(v string) *DeleteChannelInput {
+	s.ChimeBearer = &v
+	return s
+}
+
 type DeleteChannelMembershipInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25137,6 +25335,9 @@ type DeleteChannelMembershipInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 
 	// The ARN of the member that you're removing from the channel.
 	//
@@ -25163,6 +25364,9 @@ func (s *DeleteChannelMembershipInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MemberArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
 	}
@@ -25179,6 +25383,12 @@ func (s *DeleteChannelMembershipInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DeleteChannelMembershipInput) SetChannelArn(v string) *DeleteChannelMembershipInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DeleteChannelMembershipInput) SetChimeBearer(v string) *DeleteChannelMembershipInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -25210,6 +25420,9 @@ type DeleteChannelMessageInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ID of the message being deleted.
 	//
 	// MessageId is a required field
@@ -25235,6 +25448,9 @@ func (s *DeleteChannelMessageInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MessageId == nil {
 		invalidParams.Add(request.NewErrParamRequired("MessageId"))
 	}
@@ -25251,6 +25467,12 @@ func (s *DeleteChannelMessageInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DeleteChannelMessageInput) SetChannelArn(v string) *DeleteChannelMessageInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DeleteChannelMessageInput) SetChimeBearer(v string) *DeleteChannelMessageInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -25286,6 +25508,9 @@ type DeleteChannelModeratorInput struct {
 	//
 	// ChannelModeratorArn is a required field
 	ChannelModeratorArn *string `location:"uri" locationName:"channelModeratorArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -25313,6 +25538,9 @@ func (s *DeleteChannelModeratorInput) Validate() error {
 	if s.ChannelModeratorArn != nil && len(*s.ChannelModeratorArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelModeratorArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -25329,6 +25557,12 @@ func (s *DeleteChannelModeratorInput) SetChannelArn(v string) *DeleteChannelMode
 // SetChannelModeratorArn sets the ChannelModeratorArn field's value.
 func (s *DeleteChannelModeratorInput) SetChannelModeratorArn(v string) *DeleteChannelModeratorInput {
 	s.ChannelModeratorArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DeleteChannelModeratorInput) SetChimeBearer(v string) *DeleteChannelModeratorInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -26343,12 +26577,12 @@ func (s DeleteVoiceConnectorTerminationOutput) GoString() string {
 type DescribeAppInstanceAdminInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance administrator.
+	// The ARN of the AppInstanceAdmin.
 	//
 	// AppInstanceAdminArn is a required field
 	AppInstanceAdminArn *string `location:"uri" locationName:"appInstanceAdminArn" min:"5" type:"string" required:"true"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -26401,7 +26635,7 @@ func (s *DescribeAppInstanceAdminInput) SetAppInstanceArn(v string) *DescribeApp
 type DescribeAppInstanceAdminOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN and name of the app instance user, the ARN of the app instance, and
+	// The ARN and name of the AppInstanceUser, the ARN of the AppInstance, and
 	// the created and last-updated timestamps. All timestamps use epoch milliseconds.
 	AppInstanceAdmin *AppInstanceAdmin `type:"structure"`
 }
@@ -26425,7 +26659,7 @@ func (s *DescribeAppInstanceAdminOutput) SetAppInstanceAdmin(v *AppInstanceAdmin
 type DescribeAppInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -26467,7 +26701,7 @@ type DescribeAppInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN, metadata, created and last-updated timestamps, and the name of the
-	// app instance. All timestamps use epoch milliseconds.
+	// AppInstance. All timestamps use epoch milliseconds.
 	AppInstance *AppInstance `type:"structure"`
 }
 
@@ -26490,7 +26724,7 @@ func (s *DescribeAppInstanceOutput) SetAppInstance(v *AppInstance) *DescribeAppI
 type DescribeAppInstanceUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance user.
+	// The ARN of the AppInstanceUser.
 	//
 	// AppInstanceUserArn is a required field
 	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
@@ -26531,7 +26765,7 @@ func (s *DescribeAppInstanceUserInput) SetAppInstanceUserArn(v string) *Describe
 type DescribeAppInstanceUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the app instance user.
+	// The name of the AppInstanceUser.
 	AppInstanceUser *AppInstanceUser `type:"structure"`
 }
 
@@ -26559,6 +26793,9 @@ type DescribeChannelBanInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ARN of the member being banned.
 	//
 	// MemberArn is a required field
@@ -26584,6 +26821,9 @@ func (s *DescribeChannelBanInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MemberArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
 	}
@@ -26600,6 +26840,12 @@ func (s *DescribeChannelBanInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DescribeChannelBanInput) SetChannelArn(v string) *DescribeChannelBanInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DescribeChannelBanInput) SetChimeBearer(v string) *DescribeChannelBanInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -26639,6 +26885,9 @@ type DescribeChannelInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -26660,6 +26909,9 @@ func (s *DescribeChannelInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -26670,6 +26922,12 @@ func (s *DescribeChannelInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DescribeChannelInput) SetChannelArn(v string) *DescribeChannelInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DescribeChannelInput) SetChimeBearer(v string) *DescribeChannelInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -26685,6 +26943,9 @@ type DescribeChannelMembershipForAppInstanceUserInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -26712,6 +26973,9 @@ func (s *DescribeChannelMembershipForAppInstanceUserInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -26728,6 +26992,12 @@ func (s *DescribeChannelMembershipForAppInstanceUserInput) SetAppInstanceUserArn
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DescribeChannelMembershipForAppInstanceUserInput) SetChannelArn(v string) *DescribeChannelMembershipForAppInstanceUserInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DescribeChannelMembershipForAppInstanceUserInput) SetChimeBearer(v string) *DescribeChannelMembershipForAppInstanceUserInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -26762,6 +27032,9 @@ type DescribeChannelMembershipInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ARN of the member.
 	//
 	// MemberArn is a required field
@@ -26787,6 +27060,9 @@ func (s *DescribeChannelMembershipInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MemberArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
 	}
@@ -26803,6 +27079,12 @@ func (s *DescribeChannelMembershipInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DescribeChannelMembershipInput) SetChannelArn(v string) *DescribeChannelMembershipInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DescribeChannelMembershipInput) SetChimeBearer(v string) *DescribeChannelMembershipInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -26838,7 +27120,7 @@ func (s *DescribeChannelMembershipOutput) SetChannelMembership(v *ChannelMembers
 type DescribeChannelModeratedByAppInstanceUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance user in the moderated channel.
+	// The ARN of the AppInstanceUser in the moderated channel.
 	//
 	// AppInstanceUserArn is a required field
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string" required:"true"`
@@ -26847,6 +27129,9 @@ type DescribeChannelModeratedByAppInstanceUserInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -26874,6 +27159,9 @@ func (s *DescribeChannelModeratedByAppInstanceUserInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -26890,6 +27178,12 @@ func (s *DescribeChannelModeratedByAppInstanceUserInput) SetAppInstanceUserArn(v
 // SetChannelArn sets the ChannelArn field's value.
 func (s *DescribeChannelModeratedByAppInstanceUserInput) SetChannelArn(v string) *DescribeChannelModeratedByAppInstanceUserInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DescribeChannelModeratedByAppInstanceUserInput) SetChimeBearer(v string) *DescribeChannelModeratedByAppInstanceUserInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -26928,6 +27222,9 @@ type DescribeChannelModeratorInput struct {
 	//
 	// ChannelModeratorArn is a required field
 	ChannelModeratorArn *string `location:"uri" locationName:"channelModeratorArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -26955,6 +27252,9 @@ func (s *DescribeChannelModeratorInput) Validate() error {
 	if s.ChannelModeratorArn != nil && len(*s.ChannelModeratorArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelModeratorArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -26971,6 +27271,12 @@ func (s *DescribeChannelModeratorInput) SetChannelArn(v string) *DescribeChannel
 // SetChannelModeratorArn sets the ChannelModeratorArn field's value.
 func (s *DescribeChannelModeratorInput) SetChannelModeratorArn(v string) *DescribeChannelModeratorInput {
 	s.ChannelModeratorArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *DescribeChannelModeratorInput) SetChimeBearer(v string) *DescribeChannelModeratorInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -27568,8 +27874,7 @@ func (s *GetAccountInput) SetAccountId(v string) *GetAccountInput {
 type GetAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime account details. An AWS account can have multiple Amazon
-	// Chime accounts.
+	// The Amazon Chime account details.
 	Account *Account `type:"structure"`
 }
 
@@ -27656,7 +27961,7 @@ func (s *GetAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *GetAc
 type GetAppInstanceRetentionSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -27697,7 +28002,7 @@ func (s *GetAppInstanceRetentionSettingsInput) SetAppInstanceArn(v string) *GetA
 type GetAppInstanceRetentionSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The retention settings for the app instance.
+	// The retention settings for the AppInstance.
 	AppInstanceRetentionSettings *AppInstanceRetentionSettings `type:"structure"`
 
 	// The timestamp representing the time at which the specified items are retained,
@@ -27730,7 +28035,7 @@ func (s *GetAppInstanceRetentionSettingsOutput) SetInitiateDeletionTimestamp(v t
 type GetAppInstanceStreamingConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -27961,6 +28266,9 @@ type GetChannelMessageInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ID of the message.
 	//
 	// MessageId is a required field
@@ -27986,6 +28294,9 @@ func (s *GetChannelMessageInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MessageId == nil {
 		invalidParams.Add(request.NewErrParamRequired("MessageId"))
 	}
@@ -28002,6 +28313,12 @@ func (s *GetChannelMessageInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *GetChannelMessageInput) SetChannelArn(v string) *GetChannelMessageInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *GetChannelMessageInput) SetChimeBearer(v string) *GetChannelMessageInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -28716,7 +29033,7 @@ func (s *GetSipMediaApplicationInput) SetSipMediaApplicationId(v string) *GetSip
 type GetSipMediaApplicationLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the SIP media application.
+	// The SIP media application ID.
 	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
@@ -29602,7 +29919,7 @@ func (s *GetVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Get
 	return s
 }
 
-// The ARN and name of a user.
+// The details of a user.
 type Identity struct {
 	_ struct{} `type:"structure"`
 
@@ -29843,10 +30160,10 @@ func (s *ListAccountsInput) SetUserEmail(v string) *ListAccountsInput {
 type ListAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of accounts.
+	// List of Amazon Chime accounts and account details.
 	Accounts []*Account `type:"list"`
 
-	// The account's user token.
+	// The token to use to retrieve the next page of results.
 	NextToken *string `type:"string"`
 }
 
@@ -29875,7 +30192,7 @@ func (s *ListAccountsOutput) SetNextToken(v string) *ListAccountsOutput {
 type ListAppInstanceAdminsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -29941,7 +30258,7 @@ type ListAppInstanceAdminsOutput struct {
 	// The information for each administrator.
 	AppInstanceAdmins []*AppInstanceAdminSummary `type:"list"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	AppInstanceArn *string `min:"5" type:"string"`
 
 	// The token returned from previous API requests until the number of administrators
@@ -29980,7 +30297,7 @@ func (s *ListAppInstanceAdminsOutput) SetNextToken(v string) *ListAppInstanceAdm
 type ListAppInstanceUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"querystring" locationName:"app-instance-arn" min:"5" type:"string" required:"true"`
@@ -30042,10 +30359,10 @@ func (s *ListAppInstanceUsersInput) SetNextToken(v string) *ListAppInstanceUsers
 type ListAppInstanceUsersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	AppInstanceArn *string `min:"5" type:"string"`
 
-	// The information for each of the requested app instance users.
+	// The information for each requested AppInstanceUser.
 	AppInstanceUsers []*AppInstanceUserSummary `type:"list"`
 
 	// The token passed by previous API calls until all requested users are returned.
@@ -30083,11 +30400,11 @@ func (s *ListAppInstanceUsersOutput) SetNextToken(v string) *ListAppInstanceUser
 type ListAppInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of app instances that you want to return.
+	// The maximum number of AppInstances that you want to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
 	// The token passed by previous API requests until you reach the maximum number
-	// of app instances.
+	// of AppInstances.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
 }
 
@@ -30129,11 +30446,11 @@ func (s *ListAppInstancesInput) SetNextToken(v string) *ListAppInstancesInput {
 type ListAppInstancesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The information for each app instance.
+	// The information for each AppInstance.
 	AppInstances []*AppInstanceSummary `type:"list"`
 
-	// The token passed by previous API requests until the maximum number of app
-	// instances is reached.
+	// The token passed by previous API requests until the maximum number of AppInstances
+	// is reached.
 	NextToken *string `type:"string" sensitive:"true"`
 }
 
@@ -30437,6 +30754,9 @@ type ListChannelBansInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The maximum number of bans that you want returned.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
@@ -30463,6 +30783,9 @@ func (s *ListChannelBansInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -30476,6 +30799,12 @@ func (s *ListChannelBansInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *ListChannelBansInput) SetChannelArn(v string) *ListChannelBansInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelBansInput) SetChimeBearer(v string) *ListChannelBansInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -30535,8 +30864,11 @@ func (s *ListChannelBansOutput) SetNextToken(v string) *ListChannelBansOutput {
 type ListChannelMembershipsForAppInstanceUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance users
+	// The ARN of the AppInstanceUsers
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 
 	// The maximum number of users that you want returned.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -30562,6 +30894,9 @@ func (s *ListChannelMembershipsForAppInstanceUserInput) Validate() error {
 	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -30575,6 +30910,12 @@ func (s *ListChannelMembershipsForAppInstanceUserInput) Validate() error {
 // SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
 func (s *ListChannelMembershipsForAppInstanceUserInput) SetAppInstanceUserArn(v string) *ListChannelMembershipsForAppInstanceUserInput {
 	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelMembershipsForAppInstanceUserInput) SetChimeBearer(v string) *ListChannelMembershipsForAppInstanceUserInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -30630,11 +30971,14 @@ type ListChannelMembershipsInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The maximum number of channel memberships that you want returned.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
 	// The token passed by previous API calls until all requested channel memberships
-	// are returned..
+	// are returned.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
 
 	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
@@ -30663,6 +31007,9 @@ func (s *ListChannelMembershipsInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -30676,6 +31023,12 @@ func (s *ListChannelMembershipsInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *ListChannelMembershipsInput) SetChannelArn(v string) *ListChannelMembershipsInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelMembershipsInput) SetChimeBearer(v string) *ListChannelMembershipsInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -30747,6 +31100,9 @@ type ListChannelMessagesInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The maximum number of messages that you want returned.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
@@ -30783,6 +31139,9 @@ func (s *ListChannelMessagesInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -30796,6 +31155,12 @@ func (s *ListChannelMessagesInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *ListChannelMessagesInput) SetChannelArn(v string) *ListChannelMessagesInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelMessagesInput) SetChimeBearer(v string) *ListChannelMessagesInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -30835,7 +31200,7 @@ type ListChannelMessagesOutput struct {
 	// The ARN of the channel containing the requested messages.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The information about and content of each requested message.
+	// The information about, and content of, each requested message.
 	ChannelMessages []*ChannelMessageSummary `type:"list"`
 
 	// The token passed by previous API calls until all requested messages are returned.
@@ -30878,6 +31243,9 @@ type ListChannelModeratorsInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The maximum number of moderators that you want returned.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
@@ -30905,6 +31273,9 @@ func (s *ListChannelModeratorsInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -30918,6 +31289,12 @@ func (s *ListChannelModeratorsInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *ListChannelModeratorsInput) SetChannelArn(v string) *ListChannelModeratorsInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelModeratorsInput) SetChimeBearer(v string) *ListChannelModeratorsInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -30978,10 +31355,13 @@ func (s *ListChannelModeratorsOutput) SetNextToken(v string) *ListChannelModerat
 type ListChannelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"querystring" locationName:"app-instance-arn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 
 	// The maximum number of channels that you want to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -30990,8 +31370,7 @@ type ListChannelsInput struct {
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
 
 	// The privacy setting. PUBLIC retrieves all the public channels. PRIVATE retrieves
-	// private channels. Only an app instance administrator can retrieve private
-	// channels.
+	// private channels. Only an AppInstanceAdmin can retrieve private channels.
 	Privacy *string `location:"querystring" locationName:"privacy" type:"string" enum:"ChannelPrivacy"`
 }
 
@@ -31014,6 +31393,9 @@ func (s *ListChannelsInput) Validate() error {
 	if s.AppInstanceArn != nil && len(*s.AppInstanceArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("AppInstanceArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -31027,6 +31409,12 @@ func (s *ListChannelsInput) Validate() error {
 // SetAppInstanceArn sets the AppInstanceArn field's value.
 func (s *ListChannelsInput) SetAppInstanceArn(v string) *ListChannelsInput {
 	s.AppInstanceArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelsInput) SetChimeBearer(v string) *ListChannelsInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -31054,6 +31442,9 @@ type ListChannelsModeratedByAppInstanceUserInput struct {
 	// The ARN of the user in the moderated channel.
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The maximum number of channels in the request.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
@@ -31078,6 +31469,9 @@ func (s *ListChannelsModeratedByAppInstanceUserInput) Validate() error {
 	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -31091,6 +31485,12 @@ func (s *ListChannelsModeratedByAppInstanceUserInput) Validate() error {
 // SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
 func (s *ListChannelsModeratedByAppInstanceUserInput) SetAppInstanceUserArn(v string) *ListChannelsModeratedByAppInstanceUserInput {
 	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *ListChannelsModeratedByAppInstanceUserInput) SetChimeBearer(v string) *ListChannelsModeratedByAppInstanceUserInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -32564,10 +32964,10 @@ type Meeting struct {
 	// The media placement for the meeting.
 	MediaPlacement *MediaPlacement `type:"structure"`
 
-	// The Region in which to create the meeting. Available values: af-south-1,
-	// ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2,
-	// ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2,
-	// eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
+	// The Region in which you create the meeting. Available values: af-south-1
+	// , ap-northeast-1 , ap-northeast-2 , ap-south-1 , ap-southeast-1 , ap-southeast-2
+	// , ca-central-1 , eu-central-1 , eu-north-1 , eu-south-1 , eu-west-1 , eu-west-2
+	// , eu-west-3 , sa-east-1 , us-east-1 , us-east-2 , us-west-1 , us-west-2 .
 	MediaRegion *string `type:"string"`
 
 	// The Amazon Chime SDK meeting ID.
@@ -32608,9 +33008,9 @@ func (s *Meeting) SetMeetingId(v string) *Meeting {
 	return s
 }
 
-// The configuration for resource targets to receive notifications when Amazon
-// Chime SDK meeting and attendee events occur. The Amazon Chime SDK supports
-// resource targets located in the US East (N. Virginia) AWS Region (us-east-1).
+// The resource target configurations for receiving Amazon Chime SDK meeting
+// and attendee event notifications. The Amazon Chime SDK supports resource
+// targets located in the US East (N. Virginia) AWS Region (us-east-1).
 type MeetingNotificationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -32794,11 +33194,11 @@ func (s *MembershipItem) SetRole(v string) *MembershipItem {
 	return s
 }
 
-// The endpoint of a meeting session.
+// The websocket endpoint used to connect to Amazon Chime SDK messaging.
 type MessagingSessionEndpoint struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of a meeting session endpoint.
+	// The endpoint to which you establish a websocket connection.
 	Url *string `type:"string"`
 }
 
@@ -32986,7 +33386,7 @@ type OriginationRoute struct {
 	Protocol *string `type:"string" enum:"OriginationRouteProtocol"`
 
 	// The weight associated with the host. If hosts are equal in priority, calls
-	// are distributed among them based on their relative weight.
+	// are redistributed among them based on their relative weight.
 	Weight *int64 `min:"1" type:"integer"`
 }
 
@@ -33367,7 +33767,7 @@ func (s *PhoneNumberError) SetPhoneNumberId(v string) *PhoneNumberError {
 type PhoneNumberOrder struct {
 	_ struct{} `type:"structure"`
 
-	// The phone number order creation timestamp, in ISO 8601 format.
+	// The phone number order creation time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The ordered phone number details, such as the phone number in E.164 format
@@ -33383,7 +33783,7 @@ type PhoneNumberOrder struct {
 	// The status of the phone number order.
 	Status *string `type:"string" enum:"PhoneNumberOrderStatus"`
 
-	// The updated phone number order timestamp, in ISO 8601 format.
+	// The updated phone number order time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -33492,10 +33892,10 @@ type ProxySession struct {
 	// The proxy session capabilities.
 	Capabilities []*string `type:"list"`
 
-	// The created timestamp, in ISO 8601 format.
+	// The created time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The ended timestamp, in ISO 8601 format.
+	// The ended time stamp, in ISO 8601 format.
 	EndedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The number of minutes allowed for the proxy session.
@@ -33524,7 +33924,7 @@ type ProxySession struct {
 	// The status of the proxy session.
 	Status *string `type:"string" enum:"ProxySessionStatus"`
 
-	// The updated timestamp, in ISO 8601 format.
+	// The updated time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The Amazon Chime voice connector ID.
@@ -33622,7 +34022,7 @@ func (s *ProxySession) SetVoiceConnectorId(v string) *ProxySession {
 type PutAppInstanceRetentionSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -33714,12 +34114,12 @@ func (s *PutAppInstanceRetentionSettingsOutput) SetInitiateDeletionTimestamp(v t
 type PutAppInstanceStreamingConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
 
-	// The streaming configurations set for an app instance.
+	// The streaming configurations set for an AppInstance.
 	//
 	// AppInstanceStreamingConfigurations is a required field
 	AppInstanceStreamingConfigurations []*AppInstanceStreamingConfiguration `min:"1" type:"list" required:"true"`
@@ -33782,7 +34182,7 @@ func (s *PutAppInstanceStreamingConfigurationsInput) SetAppInstanceStreamingConf
 type PutAppInstanceStreamingConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The streaming configurations of an app instance.
+	// The streaming configurations of an AppInstance.
 	AppInstanceStreamingConfigurations []*AppInstanceStreamingConfiguration `min:"1" type:"list"`
 }
 
@@ -33998,7 +34398,7 @@ func (s *PutRetentionSettingsOutput) SetRetentionSettings(v *RetentionSettings) 
 type PutSipMediaApplicationLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the specified SIP media application
+	// The SIP media application ID.
 	//
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
@@ -34048,7 +34448,7 @@ func (s *PutSipMediaApplicationLoggingConfigurationInput) SetSipMediaApplication
 type PutSipMediaApplicationLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The actual logging configuration.
+	// Logging configuration of the SIP media application.
 	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
 }
 
@@ -34664,6 +35064,9 @@ type RedactChannelMessageInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The ID of the message being redacted.
 	//
 	// MessageId is a required field
@@ -34689,6 +35092,9 @@ func (s *RedactChannelMessageInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MessageId == nil {
 		invalidParams.Add(request.NewErrParamRequired("MessageId"))
 	}
@@ -34705,6 +35111,12 @@ func (s *RedactChannelMessageInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *RedactChannelMessageInput) SetChannelArn(v string) *RedactChannelMessageInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *RedactChannelMessageInput) SetChimeBearer(v string) *RedactChannelMessageInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -35210,7 +35622,7 @@ func (s *RestorePhoneNumberOutput) SetPhoneNumber(v *PhoneNumber) *RestorePhoneN
 }
 
 // The retention settings for an Amazon Chime Enterprise account that determine
-// how long to retain items such as chat room messages and chat conversation
+// how long to retain items such as chat-room messages and chat-conversation
 // messages.
 type RetentionSettings struct {
 	_ struct{} `type:"structure"`
@@ -35393,12 +35805,12 @@ func (s *RoomMembership) SetUpdatedTimestamp(v time.Time) *RoomMembership {
 	return s
 }
 
-// The retention settings that determine how long to retain chat room messages
+// The retention settings that determine how long to retain chat-room messages
 // for an Amazon Chime Enterprise account.
 type RoomRetentionSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The number of days for which to retain chat room messages.
+	// The number of days for which to retain chat-room messages.
 	RetentionDays *int64 `min:"1" type:"integer"`
 }
 
@@ -35555,6 +35967,9 @@ type SendChannelMessageInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
 	// The Idempotency token for each client request.
 	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
 
@@ -35596,6 +36011,9 @@ func (s *SendChannelMessageInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
 	}
@@ -35621,6 +36039,12 @@ func (s *SendChannelMessageInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *SendChannelMessageInput) SetChannelArn(v string) *SendChannelMessageInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *SendChannelMessageInput) SetChimeBearer(v string) *SendChannelMessageInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -35827,8 +36251,8 @@ func (s *SigninDelegateGroup) SetGroupName(v string) *SigninDelegateGroup {
 	return s
 }
 
-// The SIP media application details, including name and endpoints. An AWS account
-// can have multiple SIP media applications.
+// The details of the SIP media application, including name and endpoints. An
+// AWS account can have multiple SIP media applications.
 type SipMediaApplication struct {
 	_ struct{} `type:"structure"`
 
@@ -35922,12 +36346,12 @@ func (s *SipMediaApplicationCall) SetTransactionId(v string) *SipMediaApplicatio
 	return s
 }
 
-// Endpoints to specify as part of a SIP media application.
+// The endpoint assigned to the SIP media application.
 type SipMediaApplicationEndpoint struct {
 	_ struct{} `type:"structure"`
 
-	// Valid Amazon Resource Name (ARN) of the Lambda function of the same AWS Region
-	// where the SIP media application is created.
+	// Valid Amazon Resource Name (ARN) of the Lambda function. The function must
+	// be created in the same AWS Region as the SIP media application.
 	LambdaArn *string `type:"string" sensitive:"true"`
 }
 
@@ -35976,11 +36400,11 @@ func (s *SipMediaApplicationLoggingConfiguration) SetEnableSipMediaApplicationMe
 type SipRule struct {
 	_ struct{} `type:"structure"`
 
-	// The SIP rule created timestamp, in ISO 8601 format.
+	// The time at which the SIP rule was created, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Indicates if the SIP rule is enabled or disabled. You must disable a rule
-	// before you can delete it.
+	// Indicates whether the SIP rule is enabled or disabled. You must disable a
+	// rule before you can delete it.
 	Disabled *bool `type:"boolean"`
 
 	// The name of the SIP rule.
@@ -35989,11 +36413,13 @@ type SipRule struct {
 	// The SIP rule ID.
 	SipRuleId *string `type:"string"`
 
-	// List of SIP media applications with priority and AWS Region. You can only
-	// use one SIP application per AWS Region and priority combination.
+	// Target SIP media application and other details, such as priority and AWS
+	// Region, to be specified in the SIP rule. Only one SIP rule per AWS Region
+	// can be provided.
 	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list"`
 
-	// The type of trigger whose value is assigned to the SIP rule in TriggerValue.
+	// The type of trigger assigned to the SIP rule in TriggerValue, currently RequestUriHostname
+	// or ToPhoneNumber.
 	TriggerType *string `type:"string" enum:"SipRuleTriggerType"`
 
 	// If TriggerType is RequestUriHostname, then the value can be the outbound
@@ -36003,7 +36429,7 @@ type SipRule struct {
 	// in the incoming SIP request.
 	TriggerValue *string `type:"string"`
 
-	// The SIP rule updated timestamp, in ISO 8601 format.
+	// The time at which the SIP rule was last updated, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -36065,13 +36491,13 @@ func (s *SipRule) SetUpdatedTimestamp(v time.Time) *SipRule {
 	return s
 }
 
-// Target SIP media application along with other details like priority and AWS
-// Region to be specified in the SIP rule. Only one SIP rule per AWS Region
+// Target SIP media application and other details, such as priority and AWS
+// Region, to be specified in the SIP rule. Only one SIP rule per AWS Region
 // can be provided.
 type SipRuleTargetApplication struct {
 	_ struct{} `type:"structure"`
 
-	// AWS Region of target application.
+	// The AWS Region of the target application.
 	AwsRegion *string `type:"string"`
 
 	// Priority of the SIP media application in the target list.
@@ -37196,8 +37622,7 @@ func (s *UpdateAccountInput) SetName(v string) *UpdateAccountInput {
 type UpdateAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime account details. An AWS account can have multiple Amazon
-	// Chime accounts.
+	// The updated Amazon Chime account details.
 	Account *Account `type:"structure"`
 }
 
@@ -37289,7 +37714,7 @@ func (s UpdateAccountSettingsOutput) GoString() string {
 type UpdateAppInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	//
 	// AppInstanceArn is a required field
 	AppInstanceArn *string `location:"uri" locationName:"appInstanceArn" min:"5" type:"string" required:"true"`
@@ -37356,7 +37781,7 @@ func (s *UpdateAppInstanceInput) SetName(v string) *UpdateAppInstanceInput {
 type UpdateAppInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance.
+	// The ARN of the AppInstance.
 	AppInstanceArn *string `min:"5" type:"string"`
 }
 
@@ -37379,15 +37804,15 @@ func (s *UpdateAppInstanceOutput) SetAppInstanceArn(v string) *UpdateAppInstance
 type UpdateAppInstanceUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance user.
+	// The ARN of the AppInstanceUser.
 	//
 	// AppInstanceUserArn is a required field
 	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true"`
 
-	// The metadata of the app instance user.
+	// The metadata of the AppInstanceUser.
 	Metadata *string `type:"string" sensitive:"true"`
 
-	// The name of the app instance user.
+	// The name of the AppInstanceUser.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -37446,7 +37871,7 @@ func (s *UpdateAppInstanceUserInput) SetName(v string) *UpdateAppInstanceUserInp
 type UpdateAppInstanceUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the app instance user.
+	// The ARN of the AppInstanceUser.
 	AppInstanceUserArn *string `min:"5" type:"string"`
 }
 
@@ -37564,7 +37989,10 @@ type UpdateChannelInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
-	// The metadata of the channel.
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
+	// The metadata for the update request.
 	Metadata *string `type:"string" sensitive:"true"`
 
 	// The mode of the update request.
@@ -37597,6 +38025,9 @@ func (s *UpdateChannelInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.Mode == nil {
 		invalidParams.Add(request.NewErrParamRequired("Mode"))
 	}
@@ -37616,6 +38047,12 @@ func (s *UpdateChannelInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *UpdateChannelInput) SetChannelArn(v string) *UpdateChannelInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *UpdateChannelInput) SetChimeBearer(v string) *UpdateChannelInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -37644,6 +38081,9 @@ type UpdateChannelMessageInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 
 	// The content of the message being updated.
 	Content *string `type:"string" sensitive:"true"`
@@ -37676,6 +38116,9 @@ func (s *UpdateChannelMessageInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 	if s.MessageId == nil {
 		invalidParams.Add(request.NewErrParamRequired("MessageId"))
 	}
@@ -37692,6 +38135,12 @@ func (s *UpdateChannelMessageInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *UpdateChannelMessageInput) SetChannelArn(v string) *UpdateChannelMessageInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *UpdateChannelMessageInput) SetChimeBearer(v string) *UpdateChannelMessageInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -37775,6 +38224,9 @@ type UpdateChannelReadMarkerInput struct {
 	//
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
 }
 
 // String returns the string representation
@@ -37796,6 +38248,9 @@ func (s *UpdateChannelReadMarkerInput) Validate() error {
 	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
 	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -37806,6 +38261,12 @@ func (s *UpdateChannelReadMarkerInput) Validate() error {
 // SetChannelArn sets the ChannelArn field's value.
 func (s *UpdateChannelReadMarkerInput) SetChannelArn(v string) *UpdateChannelReadMarkerInput {
 	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *UpdateChannelReadMarkerInput) SetChimeBearer(v string) *UpdateChannelReadMarkerInput {
+	s.ChimeBearer = &v
 	return s
 }
 
@@ -39371,13 +39832,13 @@ func (s *VoiceConnector) SetVoiceConnectorId(v string) *VoiceConnector {
 type VoiceConnectorGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime Voice Connector group creation timestamp, in ISO 8601 format.
+	// The Amazon Chime Voice Connector group creation time stamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the Amazon Chime Voice Connector group.
 	Name *string `min:"1" type:"string"`
 
-	// The updated Amazon Chime Voice Connector group timestamp, in ISO 8601 format.
+	// The updated Amazon Chime Voice Connector group time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The Amazon Chime Voice Connector group ID.
