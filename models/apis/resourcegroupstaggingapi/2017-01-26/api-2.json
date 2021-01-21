@@ -230,7 +230,8 @@
         "TagsPerPage":{"shape":"TagsPerPage"},
         "ResourceTypeFilters":{"shape":"ResourceTypeFilterList"},
         "IncludeComplianceDetails":{"shape":"IncludeComplianceDetails"},
-        "ExcludeCompliantResources":{"shape":"ExcludeCompliantResources"}
+        "ExcludeCompliantResources":{"shape":"ExcludeCompliantResources"},
+        "ResourceARNList":{"shape":"ResourceARNListForGet"}
       }
     },
     "GetResourcesOutput":{
@@ -334,7 +335,13 @@
       "min":1,
       "pattern":"[\\s\\S]*"
     },
-    "ResourceARNList":{
+    "ResourceARNListForGet":{
+      "type":"list",
+      "member":{"shape":"ResourceARN"},
+      "max":100,
+      "min":1
+    },
+    "ResourceARNListForTagUntag":{
       "type":"list",
       "member":{"shape":"ResourceARN"},
       "max":20,
@@ -457,7 +464,7 @@
         "Tags"
       ],
       "members":{
-        "ResourceARNList":{"shape":"ResourceARNList"},
+        "ResourceARNList":{"shape":"ResourceARNListForTagUntag"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -518,7 +525,7 @@
         "TagKeys"
       ],
       "members":{
-        "ResourceARNList":{"shape":"ResourceARNList"},
+        "ResourceARNList":{"shape":"ResourceARNListForTagUntag"},
         "TagKeys":{"shape":"TagKeyListForUntag"}
       }
     },

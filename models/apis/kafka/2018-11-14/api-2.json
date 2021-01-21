@@ -741,6 +741,43 @@
         }
       ]
     },
+    "UpdateBrokerType": {
+      "name": "UpdateBrokerType",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/clusters/{clusterArn}/nodes/type",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateBrokerTypeRequest"
+      },
+      "output": {
+        "shape": "UpdateBrokerTypeResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "UpdateBrokerStorage": {
       "name": "UpdateBrokerStorage",
       "http": {
@@ -2209,6 +2246,10 @@
         "LoggingInfo": {
           "shape": "LoggingInfo",
           "locationName": "loggingInfo"
+        },
+        "InstanceType": {
+          "shape": "__stringMin5Max32",
+          "locationName": "instanceType"
         }
       }
     },
@@ -2417,6 +2458,42 @@
         "TagKeys",
         "ResourceArn"
       ]
+    },
+    "UpdateBrokerTypeRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "TargetInstanceType": {
+          "shape": "__string",
+          "locationName": "targetInstanceType"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "CurrentVersion",
+        "TargetInstanceType"
+      ]
+    },
+    "UpdateBrokerTypeResponse": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "locationName": "clusterArn"
+        },
+        "ClusterOperationArn": {
+          "shape": "__string",
+          "locationName": "clusterOperationArn"
+        }
+      }
     },
     "UpdateBrokerCountRequest": {
       "type": "structure",
