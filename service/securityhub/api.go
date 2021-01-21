@@ -5555,6 +5555,242 @@ func (s *AccountDetails) SetEmail(v string) *AccountDetails {
 	return s
 }
 
+// Provides details about one of the following actions that were detected for
+// the finding:
+//
+//    * A remote IP address issued an AWS API call
+//
+//    * A DNS request was received
+//
+//    * A remote IP address attempted to connect to an EC2 instance
+//
+//    * A remote IP address attempted a port probe on an EC2 instance
+type Action struct {
+	_ struct{} `type:"structure"`
+
+	// The type of action that was detected. The possible action types are:
+	//
+	//    * NETWORK_CONNECTION
+	//
+	//    * AWS_API_CALL
+	//
+	//    * DNS_REQUEST
+	//
+	//    * PORT_PROBE
+	ActionType *string `type:"string"`
+
+	// Included if ActionType is AWS_API_CALL. Provides details about the API call
+	// that was detected.
+	AwsApiCallAction *AwsApiCallAction `type:"structure"`
+
+	// Included if ActionType is DNS_REQUEST. Provides details about the DNS request
+	// that was detected.
+	DnsRequestAction *DnsRequestAction `type:"structure"`
+
+	// Included if ActionType is NETWORK_CONNECTION. Provides details about the
+	// network connection that was detected.
+	NetworkConnectionAction *NetworkConnectionAction `type:"structure"`
+
+	// Included if ActionType is PORT_PROBE. Provides details about the port probe
+	// that was detected.
+	PortProbeAction *PortProbeAction `type:"structure"`
+}
+
+// String returns the string representation
+func (s Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Action) GoString() string {
+	return s.String()
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *Action) SetActionType(v string) *Action {
+	s.ActionType = &v
+	return s
+}
+
+// SetAwsApiCallAction sets the AwsApiCallAction field's value.
+func (s *Action) SetAwsApiCallAction(v *AwsApiCallAction) *Action {
+	s.AwsApiCallAction = v
+	return s
+}
+
+// SetDnsRequestAction sets the DnsRequestAction field's value.
+func (s *Action) SetDnsRequestAction(v *DnsRequestAction) *Action {
+	s.DnsRequestAction = v
+	return s
+}
+
+// SetNetworkConnectionAction sets the NetworkConnectionAction field's value.
+func (s *Action) SetNetworkConnectionAction(v *NetworkConnectionAction) *Action {
+	s.NetworkConnectionAction = v
+	return s
+}
+
+// SetPortProbeAction sets the PortProbeAction field's value.
+func (s *Action) SetPortProbeAction(v *PortProbeAction) *Action {
+	s.PortProbeAction = v
+	return s
+}
+
+// Provides information about the IP address where the scanned port is located.
+type ActionLocalIpDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address.
+	IpAddressV4 *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ActionLocalIpDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionLocalIpDetails) GoString() string {
+	return s.String()
+}
+
+// SetIpAddressV4 sets the IpAddressV4 field's value.
+func (s *ActionLocalIpDetails) SetIpAddressV4(v string) *ActionLocalIpDetails {
+	s.IpAddressV4 = &v
+	return s
+}
+
+// For NetworkConnectionAction and PortProbeDetails, LocalPortDetails provides
+// information about the local port that was involved in the action.
+type ActionLocalPortDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of the port.
+	Port *int64 `type:"integer"`
+
+	// The port name of the local connection.
+	PortName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ActionLocalPortDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionLocalPortDetails) GoString() string {
+	return s.String()
+}
+
+// SetPort sets the Port field's value.
+func (s *ActionLocalPortDetails) SetPort(v int64) *ActionLocalPortDetails {
+	s.Port = &v
+	return s
+}
+
+// SetPortName sets the PortName field's value.
+func (s *ActionLocalPortDetails) SetPortName(v string) *ActionLocalPortDetails {
+	s.PortName = &v
+	return s
+}
+
+// For AwsApiAction, NetworkConnectionAction, and PortProbeAction, RemoteIpDetails
+// provides information about the remote IP address that was involved in the
+// action.
+type ActionRemoteIpDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The city where the remote IP address is located.
+	City *City `type:"structure"`
+
+	// The country where the remote IP address is located.
+	Country *Country `type:"structure"`
+
+	// The coordinates of the location of the remote IP address.
+	GeoLocation *GeoLocation `type:"structure"`
+
+	// The IP address.
+	IpAddressV4 *string `type:"string"`
+
+	// The internet service provider (ISP) organization associated with the remote
+	// IP address.
+	Organization *IpOrganizationDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActionRemoteIpDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionRemoteIpDetails) GoString() string {
+	return s.String()
+}
+
+// SetCity sets the City field's value.
+func (s *ActionRemoteIpDetails) SetCity(v *City) *ActionRemoteIpDetails {
+	s.City = v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *ActionRemoteIpDetails) SetCountry(v *Country) *ActionRemoteIpDetails {
+	s.Country = v
+	return s
+}
+
+// SetGeoLocation sets the GeoLocation field's value.
+func (s *ActionRemoteIpDetails) SetGeoLocation(v *GeoLocation) *ActionRemoteIpDetails {
+	s.GeoLocation = v
+	return s
+}
+
+// SetIpAddressV4 sets the IpAddressV4 field's value.
+func (s *ActionRemoteIpDetails) SetIpAddressV4(v string) *ActionRemoteIpDetails {
+	s.IpAddressV4 = &v
+	return s
+}
+
+// SetOrganization sets the Organization field's value.
+func (s *ActionRemoteIpDetails) SetOrganization(v *IpOrganizationDetails) *ActionRemoteIpDetails {
+	s.Organization = v
+	return s
+}
+
+// Provides information about the remote port that was involved in an attempted
+// network connection.
+type ActionRemotePortDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of the port.
+	Port *int64 `type:"integer"`
+
+	// The port name of the remote connection.
+	PortName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ActionRemotePortDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionRemotePortDetails) GoString() string {
+	return s.String()
+}
+
+// SetPort sets the Port field's value.
+func (s *ActionRemotePortDetails) SetPort(v int64) *ActionRemotePortDetails {
+	s.Port = &v
+	return s
+}
+
+// SetPortName sets the PortName field's value.
+func (s *ActionRemotePortDetails) SetPortName(v string) *ActionRemotePortDetails {
+	s.PortName = &v
+	return s
+}
+
 // An ActionTarget object.
 type ActionTarget struct {
 	_ struct{} `type:"structure"`
@@ -5668,6 +5904,124 @@ func (s *AvailabilityZone) SetSubnetId(v string) *AvailabilityZone {
 // SetZoneName sets the ZoneName field's value.
 func (s *AvailabilityZone) SetZoneName(v string) *AvailabilityZone {
 	s.ZoneName = &v
+	return s
+}
+
+// Provided if ActionType is AWS_API_CALL. It provides details about the API
+// call that was detected.
+type AwsApiCallAction struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the resources that were affected by the API call.
+	AffectedResources map[string]*string `type:"map"`
+
+	// The name of the API method that was issued.
+	Api *string `type:"string"`
+
+	// Indicates whether the API call originated from a remote IP address (remoteip)
+	// or from a DNS domain (domain).
+	CallerType *string `type:"string"`
+
+	// Provided if CallerType is domain. Provides information about the DNS domain
+	// that the API call originated from.
+	DomainDetails *AwsApiCallActionDomainDetails `type:"structure"`
+
+	// An ISO8601-formatted timestamp that indicates when the API call was first
+	// observed.
+	FirstSeen *string `type:"string"`
+
+	// An ISO8601-formatted timestamp that indicates when the API call was most
+	// recently observed.
+	LastSeen *string `type:"string"`
+
+	// Provided if CallerType is remoteIp. Provides information about the remote
+	// IP address that the API call originated from.
+	RemoteIpDetails *ActionRemoteIpDetails `type:"structure"`
+
+	// The name of the AWS service that the API method belongs to.
+	ServiceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiCallAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiCallAction) GoString() string {
+	return s.String()
+}
+
+// SetAffectedResources sets the AffectedResources field's value.
+func (s *AwsApiCallAction) SetAffectedResources(v map[string]*string) *AwsApiCallAction {
+	s.AffectedResources = v
+	return s
+}
+
+// SetApi sets the Api field's value.
+func (s *AwsApiCallAction) SetApi(v string) *AwsApiCallAction {
+	s.Api = &v
+	return s
+}
+
+// SetCallerType sets the CallerType field's value.
+func (s *AwsApiCallAction) SetCallerType(v string) *AwsApiCallAction {
+	s.CallerType = &v
+	return s
+}
+
+// SetDomainDetails sets the DomainDetails field's value.
+func (s *AwsApiCallAction) SetDomainDetails(v *AwsApiCallActionDomainDetails) *AwsApiCallAction {
+	s.DomainDetails = v
+	return s
+}
+
+// SetFirstSeen sets the FirstSeen field's value.
+func (s *AwsApiCallAction) SetFirstSeen(v string) *AwsApiCallAction {
+	s.FirstSeen = &v
+	return s
+}
+
+// SetLastSeen sets the LastSeen field's value.
+func (s *AwsApiCallAction) SetLastSeen(v string) *AwsApiCallAction {
+	s.LastSeen = &v
+	return s
+}
+
+// SetRemoteIpDetails sets the RemoteIpDetails field's value.
+func (s *AwsApiCallAction) SetRemoteIpDetails(v *ActionRemoteIpDetails) *AwsApiCallAction {
+	s.RemoteIpDetails = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *AwsApiCallAction) SetServiceName(v string) *AwsApiCallAction {
+	s.ServiceName = &v
+	return s
+}
+
+// Provided if CallerType is domain. It provides information about the DNS domain
+// that issued the API call.
+type AwsApiCallActionDomainDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the DNS domain that issued the API call.
+	Domain *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiCallActionDomainDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiCallActionDomainDetails) GoString() string {
+	return s.String()
+}
+
+// SetDomain sets the Domain field's value.
+func (s *AwsApiCallActionDomainDetails) SetDomain(v string) *AwsApiCallActionDomainDetails {
+	s.Domain = &v
 	return s
 }
 
@@ -9319,8 +9673,20 @@ type AwsEc2NetworkInterfaceDetails struct {
 	// The network interface attachment.
 	Attachment *AwsEc2NetworkInterfaceAttachment `type:"structure"`
 
+	// The IPv6 addresses associated with the network interface.
+	IpV6Addresses []*AwsEc2NetworkInterfaceIpV6AddressDetail `type:"list"`
+
 	// The ID of the network interface.
 	NetworkInterfaceId *string `type:"string"`
+
+	// The private IPv4 addresses associated with the network interface.
+	PrivateIpAddresses []*AwsEc2NetworkInterfacePrivateIpAddressDetail `type:"list"`
+
+	// The public DNS name of the network interface.
+	PublicDnsName *string `type:"string"`
+
+	// The address of the Elastic IP address bound to the network interface.
+	PublicIp *string `type:"string"`
 
 	// Security groups for the network interface.
 	SecurityGroups []*AwsEc2NetworkInterfaceSecurityGroup `type:"list"`
@@ -9345,9 +9711,33 @@ func (s *AwsEc2NetworkInterfaceDetails) SetAttachment(v *AwsEc2NetworkInterfaceA
 	return s
 }
 
+// SetIpV6Addresses sets the IpV6Addresses field's value.
+func (s *AwsEc2NetworkInterfaceDetails) SetIpV6Addresses(v []*AwsEc2NetworkInterfaceIpV6AddressDetail) *AwsEc2NetworkInterfaceDetails {
+	s.IpV6Addresses = v
+	return s
+}
+
 // SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
 func (s *AwsEc2NetworkInterfaceDetails) SetNetworkInterfaceId(v string) *AwsEc2NetworkInterfaceDetails {
 	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddresses sets the PrivateIpAddresses field's value.
+func (s *AwsEc2NetworkInterfaceDetails) SetPrivateIpAddresses(v []*AwsEc2NetworkInterfacePrivateIpAddressDetail) *AwsEc2NetworkInterfaceDetails {
+	s.PrivateIpAddresses = v
+	return s
+}
+
+// SetPublicDnsName sets the PublicDnsName field's value.
+func (s *AwsEc2NetworkInterfaceDetails) SetPublicDnsName(v string) *AwsEc2NetworkInterfaceDetails {
+	s.PublicDnsName = &v
+	return s
+}
+
+// SetPublicIp sets the PublicIp field's value.
+func (s *AwsEc2NetworkInterfaceDetails) SetPublicIp(v string) *AwsEc2NetworkInterfaceDetails {
+	s.PublicIp = &v
 	return s
 }
 
@@ -9360,6 +9750,65 @@ func (s *AwsEc2NetworkInterfaceDetails) SetSecurityGroups(v []*AwsEc2NetworkInte
 // SetSourceDestCheck sets the SourceDestCheck field's value.
 func (s *AwsEc2NetworkInterfaceDetails) SetSourceDestCheck(v bool) *AwsEc2NetworkInterfaceDetails {
 	s.SourceDestCheck = &v
+	return s
+}
+
+// Provides information about an IPV6 address that is associated with the network
+// interface.
+type AwsEc2NetworkInterfaceIpV6AddressDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The IPV6 address.
+	IpV6Address *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2NetworkInterfaceIpV6AddressDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2NetworkInterfaceIpV6AddressDetail) GoString() string {
+	return s.String()
+}
+
+// SetIpV6Address sets the IpV6Address field's value.
+func (s *AwsEc2NetworkInterfaceIpV6AddressDetail) SetIpV6Address(v string) *AwsEc2NetworkInterfaceIpV6AddressDetail {
+	s.IpV6Address = &v
+	return s
+}
+
+// Provides information about a private IPv4 address that is with the network
+// interface.
+type AwsEc2NetworkInterfacePrivateIpAddressDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The private DNS name for the IP address.
+	PrivateDnsName *string `type:"string"`
+
+	// The IP address.
+	PrivateIpAddress *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2NetworkInterfacePrivateIpAddressDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2NetworkInterfacePrivateIpAddressDetail) GoString() string {
+	return s.String()
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *AwsEc2NetworkInterfacePrivateIpAddressDetail) SetPrivateDnsName(v string) *AwsEc2NetworkInterfacePrivateIpAddressDetail {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *AwsEc2NetworkInterfacePrivateIpAddressDetail) SetPrivateIpAddress(v string) *AwsEc2NetworkInterfacePrivateIpAddressDetail {
+	s.PrivateIpAddress = &v
 	return s
 }
 
@@ -13149,6 +13598,7 @@ type AwsRdsDbClusterSnapshotDetails struct {
 	// The identifier of the DB cluster snapshot.
 	DbClusterSnapshotIdentifier *string `type:"string"`
 
+	// The name of the database engine that you want to use for this DB instance.
 	Engine *string `type:"string"`
 
 	// The version of the database engine to use.
@@ -14087,11 +14537,14 @@ func (s *AwsRdsDbInstanceVpcSecurityGroup) SetVpcSecurityGroupId(v string) *AwsR
 	return s
 }
 
+// An option group membership.
 type AwsRdsDbOptionGroupMembership struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the option group.
 	OptionGroupName *string `type:"string"`
 
+	// The status of the option group membership.
 	Status *string `type:"string"`
 }
 
@@ -14117,11 +14570,14 @@ func (s *AwsRdsDbOptionGroupMembership) SetStatus(v string) *AwsRdsDbOptionGroup
 	return s
 }
 
+// Provides information about a parameter group for a DB instance.
 type AwsRdsDbParameterGroup struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the parameter group.
 	DbParameterGroupName *string `type:"string"`
 
+	// The status of parameter updates.
 	ParameterApplyStatus *string `type:"string"`
 }
 
@@ -14147,38 +14603,54 @@ func (s *AwsRdsDbParameterGroup) SetParameterApplyStatus(v string) *AwsRdsDbPara
 	return s
 }
 
+// Changes to a DB instance that are currently pending.
 type AwsRdsDbPendingModifiedValues struct {
 	_ struct{} `type:"structure"`
 
+	// The new value of the allocated storage for the DB instance.
 	AllocatedStorage *int64 `type:"integer"`
 
+	// The new backup retention period for the DB instance.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// The new CA certificate identifier for the DB instance.
 	CaCertificateIdentifier *string `type:"string"`
 
+	// The new DB instance class for the DB instance.
 	DbInstanceClass *string `type:"string"`
 
+	// The new DB instance identifier for the DB instance.
 	DbInstanceIdentifier *string `type:"string"`
 
+	// The name of the new subnet group for the DB instance.
 	DbSubnetGroupName *string `type:"string"`
 
+	// The new engine version for the DB instance.
 	EngineVersion *string `type:"string"`
 
+	// The new provisioned IOPS value for the DB instance.
 	Iops *int64 `type:"integer"`
 
+	// The new license model value for the DB instance.
 	LicenseModel *string `type:"string"`
 
+	// The new master user password for the DB instance.
 	MasterUserPassword *string `type:"string"`
 
+	// Indicates that a single Availability Zone DB instance is changing to a multiple
+	// Availability Zone deployment.
 	MultiAZ *bool `type:"boolean"`
 
-	// Identifies the log types to enable and disable.
+	// A list of log types that are being enabled or disabled.
 	PendingCloudWatchLogsExports *AwsRdsPendingCloudWatchLogsExports `type:"structure"`
 
+	// The new port for the DB instance.
 	Port *int64 `type:"integer"`
 
+	// Processor features that are being updated.
 	ProcessorFeatures []*AwsRdsDbProcessorFeature `type:"list"`
 
+	// The new storage type for the DB instance.
 	StorageType *string `type:"string"`
 }
 
@@ -14282,11 +14754,14 @@ func (s *AwsRdsDbPendingModifiedValues) SetStorageType(v string) *AwsRdsDbPendin
 	return s
 }
 
+// A processor feature.
 type AwsRdsDbProcessorFeature struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the processor feature.
 	Name *string `type:"string"`
 
+	// The value of the processor feature.
 	Value *string `type:"string"`
 }
 
@@ -14312,61 +14787,94 @@ func (s *AwsRdsDbProcessorFeature) SetValue(v string) *AwsRdsDbProcessorFeature 
 	return s
 }
 
+// Provides details about an Amazon RDS DB cluster snapshot.
 type AwsRdsDbSnapshotDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of storage (in gigabytes) to be initially allocated for the database
+	// instance.
 	AllocatedStorage *int64 `type:"integer"`
 
+	// Specifies the name of the Availability Zone in which the DB instance was
+	// located at the time of the DB snapshot.
 	AvailabilityZone *string `type:"string"`
 
+	// A name for the DB instance.
 	DbInstanceIdentifier *string `type:"string"`
 
+	// The name or ARN of the DB snapshot that is used to restore the DB instance.
 	DbSnapshotIdentifier *string `type:"string"`
 
+	// The identifier for the source DB instance.
 	DbiResourceId *string `type:"string"`
 
+	// Whether the DB snapshot is encrypted.
 	Encrypted *bool `type:"boolean"`
 
+	// The name of the database engine to use for this DB instance.
 	Engine *string `type:"string"`
 
+	// The version of the database engine.
 	EngineVersion *string `type:"string"`
 
+	// Whether mapping of IAM accounts to database accounts is enabled.
 	IamDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
+	// Specifies the time in Coordinated Universal Time (UTC) when the DB instance,
+	// from which the snapshot was taken, was created.
 	InstanceCreateTime *string `type:"string"`
 
+	// The provisioned IOPS (I/O operations per second) value of the DB instance
+	// at the time of the snapshot.
 	Iops *int64 `type:"integer"`
 
+	// If Encrypted is true, the AWS KMS key identifier for the encrypted DB snapshot.
 	KmsKeyId *string `type:"string"`
 
+	// License model information for the restored DB instance.
 	LicenseModel *string `type:"string"`
 
+	// The master user name for the DB snapshot.
 	MasterUsername *string `type:"string"`
 
+	// The option group name for the DB snapshot.
 	OptionGroupName *string `type:"string"`
 
+	// The percentage of the estimated data that has been transferred.
 	PercentProgress *int64 `type:"integer"`
 
+	// The port that the database engine was listening on at the time of the snapshot.
 	Port *int64 `type:"integer"`
 
+	// The number of CPU cores and the number of threads per core for the DB instance
+	// class of the DB instance.
 	ProcessorFeatures []*AwsRdsDbProcessorFeature `type:"list"`
 
+	// When the snapshot was taken in Coordinated Universal Time (UTC).
 	SnapshotCreateTime *string `type:"string"`
 
+	// The type of the DB snapshot.
 	SnapshotType *string `type:"string"`
 
+	// The DB snapshot ARN that the DB snapshot was copied from.
 	SourceDbSnapshotIdentifier *string `type:"string"`
 
+	// The AWS Region that the DB snapshot was created in or copied from.
 	SourceRegion *string `type:"string"`
 
+	// The status of this DB snapshot.
 	Status *string `type:"string"`
 
+	// The storage type associated with the DB snapshot.
 	StorageType *string `type:"string"`
 
+	// The ARN from the key store with which to associate the instance for TDE encryption.
 	TdeCredentialArn *string `type:"string"`
 
+	// The time zone of the DB snapshot.
 	Timezone *string `type:"string"`
 
+	// The VPC ID associated with the DB snapshot.
 	VpcId *string `type:"string"`
 }
 
@@ -16261,6 +16769,9 @@ func (s *AwsSecretsManagerSecretRotationRules) SetAutomaticallyAfterDays(v int64
 type AwsSecurityFinding struct {
 	_ struct{} `type:"structure"`
 
+	// Provides details about an action that was detected for the finding.
+	Action *Action `type:"structure"`
+
 	// The AWS account ID that a finding is generated in.
 	//
 	// AwsAccountId is a required field
@@ -16543,6 +17054,12 @@ func (s *AwsSecurityFinding) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *AwsSecurityFinding) SetAction(v *Action) *AwsSecurityFinding {
+	s.Action = v
+	return s
 }
 
 // SetAwsAccountId sets the AwsAccountId field's value.
@@ -17039,7 +17556,11 @@ type AwsSecurityFindingFilters struct {
 
 	// The status of the investigation into a finding. Allowed values are the following.
 	//
-	//    * NEW - The initial state of a finding, before it is reviewed.
+	//    * NEW - The initial state of a finding, before it is reviewed. Security
+	//    Hub also resets the workflow status from NOTIFIED or RESOLVED to NEW in
+	//    the following cases: The record state changes from ARCHIVED to ACTIVE.
+	//    The compliance status changes from PASSED to either WARNING, FAILED, or
+	//    NOT_AVAILABLE.
 	//
 	//    * NOTIFIED - Indicates that the resource owner has been notified about
 	//    the security issue. Used when the initial reviewer is not the resource
@@ -17762,6 +18283,250 @@ func (s *AwsSqsQueueDetails) SetQueueName(v string) *AwsSqsQueueDetails {
 	return s
 }
 
+// Provides the details about the compliance status for a patch.
+type AwsSsmComplianceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The type of resource for which the compliance was determined. For AwsSsmPatchCompliance,
+	// ComplianceType is Patch.
+	ComplianceType *string `type:"string"`
+
+	// For the patches that are compliant, the number that have a severity of CRITICAL.
+	CompliantCriticalCount *int64 `type:"integer"`
+
+	// For the patches that are compliant, the number that have a severity of HIGH.
+	CompliantHighCount *int64 `type:"integer"`
+
+	// For the patches that are compliant, the number that have a severity of INFORMATIONAL.
+	CompliantInformationalCount *int64 `type:"integer"`
+
+	// For the patches that are compliant, the number that have a severity of LOW.
+	CompliantLowCount *int64 `type:"integer"`
+
+	// For the patches that are compliant, the number that have a severity of MEDIUM.
+	CompliantMediumCount *int64 `type:"integer"`
+
+	// For the patches that are compliant, the number that have a severity of UNSPECIFIED.
+	CompliantUnspecifiedCount *int64 `type:"integer"`
+
+	// The type of execution that was used determine compliance.
+	ExecutionType *string `type:"string"`
+
+	// For the patch items that are noncompliant, the number of items that have
+	// a severity of CRITICAL.
+	NonCompliantCriticalCount *int64 `type:"integer"`
+
+	// For the patches that are noncompliant, the number that have a severity of
+	// HIGH.
+	NonCompliantHighCount *int64 `type:"integer"`
+
+	// For the patches that are noncompliant, the number that have a severity of
+	// INFORMATIONAL.
+	NonCompliantInformationalCount *int64 `type:"integer"`
+
+	// For the patches that are noncompliant, the number that have a severity of
+	// LOW.
+	NonCompliantLowCount *int64 `type:"integer"`
+
+	// For the patches that are noncompliant, the number that have a severity of
+	// MEDIUM.
+	NonCompliantMediumCount *int64 `type:"integer"`
+
+	// For the patches that are noncompliant, the number that have a severity of
+	// UNSPECIFIED.
+	NonCompliantUnspecifiedCount *int64 `type:"integer"`
+
+	// The highest severity for the patches.
+	OverallSeverity *string `type:"string"`
+
+	// The identifier of the patch baseline. The patch baseline lists the patches
+	// that are approved for installation.
+	PatchBaselineId *string `type:"string"`
+
+	// The identifier of the patch group for which compliance was determined. A
+	// patch group uses tags to group EC2 instances that should have the same patch
+	// compliance.
+	PatchGroup *string `type:"string"`
+
+	// The current patch compliance status.
+	//
+	// The possible status values are:
+	//
+	//    * COMPLIANT
+	//
+	//    * NON_COMPLIANT
+	//
+	//    * UNSPECIFIED_DATA
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsSsmComplianceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsSsmComplianceSummary) GoString() string {
+	return s.String()
+}
+
+// SetComplianceType sets the ComplianceType field's value.
+func (s *AwsSsmComplianceSummary) SetComplianceType(v string) *AwsSsmComplianceSummary {
+	s.ComplianceType = &v
+	return s
+}
+
+// SetCompliantCriticalCount sets the CompliantCriticalCount field's value.
+func (s *AwsSsmComplianceSummary) SetCompliantCriticalCount(v int64) *AwsSsmComplianceSummary {
+	s.CompliantCriticalCount = &v
+	return s
+}
+
+// SetCompliantHighCount sets the CompliantHighCount field's value.
+func (s *AwsSsmComplianceSummary) SetCompliantHighCount(v int64) *AwsSsmComplianceSummary {
+	s.CompliantHighCount = &v
+	return s
+}
+
+// SetCompliantInformationalCount sets the CompliantInformationalCount field's value.
+func (s *AwsSsmComplianceSummary) SetCompliantInformationalCount(v int64) *AwsSsmComplianceSummary {
+	s.CompliantInformationalCount = &v
+	return s
+}
+
+// SetCompliantLowCount sets the CompliantLowCount field's value.
+func (s *AwsSsmComplianceSummary) SetCompliantLowCount(v int64) *AwsSsmComplianceSummary {
+	s.CompliantLowCount = &v
+	return s
+}
+
+// SetCompliantMediumCount sets the CompliantMediumCount field's value.
+func (s *AwsSsmComplianceSummary) SetCompliantMediumCount(v int64) *AwsSsmComplianceSummary {
+	s.CompliantMediumCount = &v
+	return s
+}
+
+// SetCompliantUnspecifiedCount sets the CompliantUnspecifiedCount field's value.
+func (s *AwsSsmComplianceSummary) SetCompliantUnspecifiedCount(v int64) *AwsSsmComplianceSummary {
+	s.CompliantUnspecifiedCount = &v
+	return s
+}
+
+// SetExecutionType sets the ExecutionType field's value.
+func (s *AwsSsmComplianceSummary) SetExecutionType(v string) *AwsSsmComplianceSummary {
+	s.ExecutionType = &v
+	return s
+}
+
+// SetNonCompliantCriticalCount sets the NonCompliantCriticalCount field's value.
+func (s *AwsSsmComplianceSummary) SetNonCompliantCriticalCount(v int64) *AwsSsmComplianceSummary {
+	s.NonCompliantCriticalCount = &v
+	return s
+}
+
+// SetNonCompliantHighCount sets the NonCompliantHighCount field's value.
+func (s *AwsSsmComplianceSummary) SetNonCompliantHighCount(v int64) *AwsSsmComplianceSummary {
+	s.NonCompliantHighCount = &v
+	return s
+}
+
+// SetNonCompliantInformationalCount sets the NonCompliantInformationalCount field's value.
+func (s *AwsSsmComplianceSummary) SetNonCompliantInformationalCount(v int64) *AwsSsmComplianceSummary {
+	s.NonCompliantInformationalCount = &v
+	return s
+}
+
+// SetNonCompliantLowCount sets the NonCompliantLowCount field's value.
+func (s *AwsSsmComplianceSummary) SetNonCompliantLowCount(v int64) *AwsSsmComplianceSummary {
+	s.NonCompliantLowCount = &v
+	return s
+}
+
+// SetNonCompliantMediumCount sets the NonCompliantMediumCount field's value.
+func (s *AwsSsmComplianceSummary) SetNonCompliantMediumCount(v int64) *AwsSsmComplianceSummary {
+	s.NonCompliantMediumCount = &v
+	return s
+}
+
+// SetNonCompliantUnspecifiedCount sets the NonCompliantUnspecifiedCount field's value.
+func (s *AwsSsmComplianceSummary) SetNonCompliantUnspecifiedCount(v int64) *AwsSsmComplianceSummary {
+	s.NonCompliantUnspecifiedCount = &v
+	return s
+}
+
+// SetOverallSeverity sets the OverallSeverity field's value.
+func (s *AwsSsmComplianceSummary) SetOverallSeverity(v string) *AwsSsmComplianceSummary {
+	s.OverallSeverity = &v
+	return s
+}
+
+// SetPatchBaselineId sets the PatchBaselineId field's value.
+func (s *AwsSsmComplianceSummary) SetPatchBaselineId(v string) *AwsSsmComplianceSummary {
+	s.PatchBaselineId = &v
+	return s
+}
+
+// SetPatchGroup sets the PatchGroup field's value.
+func (s *AwsSsmComplianceSummary) SetPatchGroup(v string) *AwsSsmComplianceSummary {
+	s.PatchGroup = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsSsmComplianceSummary) SetStatus(v string) *AwsSsmComplianceSummary {
+	s.Status = &v
+	return s
+}
+
+// Provides details about the compliance for a patch.
+type AwsSsmPatch struct {
+	_ struct{} `type:"structure"`
+
+	// The compliance status details for the patch.
+	ComplianceSummary *AwsSsmComplianceSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsSsmPatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsSsmPatch) GoString() string {
+	return s.String()
+}
+
+// SetComplianceSummary sets the ComplianceSummary field's value.
+func (s *AwsSsmPatch) SetComplianceSummary(v *AwsSsmComplianceSummary) *AwsSsmPatch {
+	s.ComplianceSummary = v
+	return s
+}
+
+// Provides information about the state of a patch on an instance based on the
+// patch baseline that was used to patch the instance.
+type AwsSsmPatchComplianceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the status of a patch.
+	Patch *AwsSsmPatch `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsSsmPatchComplianceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsSsmPatchComplianceDetails) GoString() string {
+	return s.String()
+}
+
+// SetPatch sets the Patch field's value.
+func (s *AwsSsmPatchComplianceDetails) SetPatch(v *AwsSsmPatch) *AwsSsmPatchComplianceDetails {
+	s.Patch = v
+	return s
+}
+
 // Details about a WAF WebACL.
 type AwsWafWebAclDetails struct {
 	_ struct{} `type:"structure"`
@@ -18451,6 +19216,30 @@ func (s *CidrBlockAssociation) SetCidrBlockState(v string) *CidrBlockAssociation
 	return s
 }
 
+// Information about a city.
+type City struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the city.
+	CityName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s City) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s City) GoString() string {
+	return s.String()
+}
+
+// SetCityName sets the CityName field's value.
+func (s *City) SetCityName(v string) *City {
+	s.CityName = &v
+	return s
+}
+
 // Contains finding details that are specific to control-based findings. Only
 // returned for findings generated from controls.
 type Compliance struct {
@@ -18581,6 +19370,39 @@ func (s *ContainerDetails) SetLaunchedAt(v string) *ContainerDetails {
 // SetName sets the Name field's value.
 func (s *ContainerDetails) SetName(v string) *ContainerDetails {
 	s.Name = &v
+	return s
+}
+
+// Information about a country.
+type Country struct {
+	_ struct{} `type:"structure"`
+
+	// The 2-letter ISO 3166 country code for the country.
+	CountryCode *string `type:"string"`
+
+	// The name of the country.
+	CountryName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Country) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Country) GoString() string {
+	return s.String()
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *Country) SetCountryCode(v string) *Country {
+	s.CountryCode = &v
+	return s
+}
+
+// SetCountryName sets the CountryName field's value.
+func (s *Country) SetCountryName(v string) *Country {
+	s.CountryName = &v
 	return s
 }
 
@@ -19970,6 +20792,49 @@ func (s DisassociateMembersOutput) GoString() string {
 	return s.String()
 }
 
+// Provided if ActionType is DNS_REQUEST. It provides details about the DNS
+// request that was detected.
+type DnsRequestAction struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the DNS request was blocked.
+	Blocked *bool `type:"boolean"`
+
+	// The DNS domain that is associated with the DNS request.
+	Domain *string `type:"string"`
+
+	// The protocol that was used for the DNS request.
+	Protocol *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DnsRequestAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DnsRequestAction) GoString() string {
+	return s.String()
+}
+
+// SetBlocked sets the Blocked field's value.
+func (s *DnsRequestAction) SetBlocked(v bool) *DnsRequestAction {
+	s.Blocked = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DnsRequestAction) SetDomain(v string) *DnsRequestAction {
+	s.Domain = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *DnsRequestAction) SetProtocol(v string) *DnsRequestAction {
+	s.Protocol = &v
+	return s
+}
+
 type EnableImportFindingsForProductInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20144,6 +21009,39 @@ func (s EnableSecurityHubOutput) String() string {
 // GoString returns the string representation
 func (s EnableSecurityHubOutput) GoString() string {
 	return s.String()
+}
+
+// Provides the latitude and longitude coordinates of a location.
+type GeoLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The latitude of the location.
+	Lat *float64 `type:"double"`
+
+	// The longitude of the location.
+	Lon *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s GeoLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GeoLocation) GoString() string {
+	return s.String()
+}
+
+// SetLat sets the Lat field's value.
+func (s *GeoLocation) SetLat(v float64) *GeoLocation {
+	s.Lat = &v
+	return s
+}
+
+// SetLon sets the Lon field's value.
+func (s *GeoLocation) SetLon(v float64) *GeoLocation {
+	s.Lon = &v
+	return s
 }
 
 type GetEnabledStandardsInput struct {
@@ -21173,6 +22071,57 @@ func (s *IpFilter) SetCidr(v string) *IpFilter {
 	return s
 }
 
+// Provides information about an internet provider.
+type IpOrganizationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Autonomous System Number (ASN) of the internet provider
+	Asn *int64 `type:"integer"`
+
+	// The name of the organization that registered the ASN.
+	AsnOrg *string `type:"string"`
+
+	// The ISP information for the internet provider.
+	Isp *string `type:"string"`
+
+	// The name of the internet provider.
+	Org *string `type:"string"`
+}
+
+// String returns the string representation
+func (s IpOrganizationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IpOrganizationDetails) GoString() string {
+	return s.String()
+}
+
+// SetAsn sets the Asn field's value.
+func (s *IpOrganizationDetails) SetAsn(v int64) *IpOrganizationDetails {
+	s.Asn = &v
+	return s
+}
+
+// SetAsnOrg sets the AsnOrg field's value.
+func (s *IpOrganizationDetails) SetAsnOrg(v string) *IpOrganizationDetails {
+	s.AsnOrg = &v
+	return s
+}
+
+// SetIsp sets the Isp field's value.
+func (s *IpOrganizationDetails) SetIsp(v string) *IpOrganizationDetails {
+	s.Isp = &v
+	return s
+}
+
+// SetOrg sets the Org field's value.
+func (s *IpOrganizationDetails) SetOrg(v string) *IpOrganizationDetails {
+	s.Org = &v
+	return s
+}
+
 // An IPV6 CIDR block association.
 type Ipv6CidrBlockAssociation struct {
 	_ struct{} `type:"structure"`
@@ -22086,6 +23035,77 @@ func (s *Network) SetSourcePort(v int64) *Network {
 	return s
 }
 
+// Provided if ActionType is NETWORK_CONNECTION. It provides details about the
+// attempted network connection that was detected.
+type NetworkConnectionAction struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the network connection attempt was blocked.
+	Blocked *bool `type:"boolean"`
+
+	// The direction of the network connection request (IN or OUT).
+	ConnectionDirection *string `type:"string"`
+
+	// Information about the port on the EC2 instance.
+	LocalPortDetails *ActionLocalPortDetails `type:"structure"`
+
+	// The protocol used to make the network connection request.
+	Protocol *string `type:"string"`
+
+	// Information about the remote IP address that issued the network connection
+	// request.
+	RemoteIpDetails *ActionRemoteIpDetails `type:"structure"`
+
+	// Information about the port on the remote IP address.
+	RemotePortDetails *ActionRemotePortDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkConnectionAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkConnectionAction) GoString() string {
+	return s.String()
+}
+
+// SetBlocked sets the Blocked field's value.
+func (s *NetworkConnectionAction) SetBlocked(v bool) *NetworkConnectionAction {
+	s.Blocked = &v
+	return s
+}
+
+// SetConnectionDirection sets the ConnectionDirection field's value.
+func (s *NetworkConnectionAction) SetConnectionDirection(v string) *NetworkConnectionAction {
+	s.ConnectionDirection = &v
+	return s
+}
+
+// SetLocalPortDetails sets the LocalPortDetails field's value.
+func (s *NetworkConnectionAction) SetLocalPortDetails(v *ActionLocalPortDetails) *NetworkConnectionAction {
+	s.LocalPortDetails = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *NetworkConnectionAction) SetProtocol(v string) *NetworkConnectionAction {
+	s.Protocol = &v
+	return s
+}
+
+// SetRemoteIpDetails sets the RemoteIpDetails field's value.
+func (s *NetworkConnectionAction) SetRemoteIpDetails(v *ActionRemoteIpDetails) *NetworkConnectionAction {
+	s.RemoteIpDetails = v
+	return s
+}
+
+// SetRemotePortDetails sets the RemotePortDetails field's value.
+func (s *NetworkConnectionAction) SetRemotePortDetails(v *ActionRemotePortDetails) *NetworkConnectionAction {
+	s.RemotePortDetails = v
+	return s
+}
+
 // Details about a network path component that occurs before or after the current
 // component.
 type NetworkHeader struct {
@@ -22527,6 +23547,84 @@ func (s *PatchSummary) SetRebootOption(v string) *PatchSummary {
 	return s
 }
 
+// Provided if ActionType is PORT_PROBE. It provides details about the attempted
+// port probe that was detected.
+type PortProbeAction struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the port probe was blocked.
+	Blocked *bool `type:"boolean"`
+
+	// Information about the ports affected by the port probe.
+	PortProbeDetails []*PortProbeDetail `type:"list"`
+}
+
+// String returns the string representation
+func (s PortProbeAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PortProbeAction) GoString() string {
+	return s.String()
+}
+
+// SetBlocked sets the Blocked field's value.
+func (s *PortProbeAction) SetBlocked(v bool) *PortProbeAction {
+	s.Blocked = &v
+	return s
+}
+
+// SetPortProbeDetails sets the PortProbeDetails field's value.
+func (s *PortProbeAction) SetPortProbeDetails(v []*PortProbeDetail) *PortProbeAction {
+	s.PortProbeDetails = v
+	return s
+}
+
+// A port scan that was part of the port probe. For each scan, PortProbeDetails
+// provides information about the local IP address and port that were scanned,
+// and the remote IP address that the scan originated from.
+type PortProbeDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about the IP address where the scanned port is located.
+	LocalIpDetails *ActionLocalIpDetails `type:"structure"`
+
+	// Provides information about the port that was scanned.
+	LocalPortDetails *ActionLocalPortDetails `type:"structure"`
+
+	// Provides information about the remote IP address that performed the scan.
+	RemoteIpDetails *ActionRemoteIpDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s PortProbeDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PortProbeDetail) GoString() string {
+	return s.String()
+}
+
+// SetLocalIpDetails sets the LocalIpDetails field's value.
+func (s *PortProbeDetail) SetLocalIpDetails(v *ActionLocalIpDetails) *PortProbeDetail {
+	s.LocalIpDetails = v
+	return s
+}
+
+// SetLocalPortDetails sets the LocalPortDetails field's value.
+func (s *PortProbeDetail) SetLocalPortDetails(v *ActionLocalPortDetails) *PortProbeDetail {
+	s.LocalPortDetails = v
+	return s
+}
+
+// SetRemoteIpDetails sets the RemoteIpDetails field's value.
+func (s *PortProbeDetail) SetRemoteIpDetails(v *ActionRemoteIpDetails) *PortProbeDetail {
+	s.RemoteIpDetails = v
+	return s
+}
+
 // A range of ports.
 type PortRange struct {
 	_ struct{} `type:"structure"`
@@ -22873,6 +23971,8 @@ type Resource struct {
 	// The canonical AWS external Region name where this resource is located.
 	Region *string `type:"string"`
 
+	// Identifies the role of the resource in the finding. A resource is either
+	// the actor or target of the finding activity,
 	ResourceRole *string `type:"string"`
 
 	// A list of AWS tags associated with a resource at the time the finding was
@@ -23035,22 +24135,22 @@ func (s *ResourceConflictException) RequestID() string {
 type ResourceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// contains information about a REST API in version 1 of Amazon API Gateway.
+	// Provides information about a REST API in version 1 of Amazon API Gateway.
 	AwsApiGatewayRestApi *AwsApiGatewayRestApiDetails `type:"structure"`
 
 	// Provides information about a version 1 Amazon API Gateway stage.
 	AwsApiGatewayStage *AwsApiGatewayStageDetails `type:"structure"`
 
-	// Contains information about a version 2 API in Amazon API Gateway.
+	// Provides information about a version 2 API in Amazon API Gateway.
 	AwsApiGatewayV2Api *AwsApiGatewayV2ApiDetails `type:"structure"`
 
-	// Contains information about a version 2 stage for Amazon API Gateway.
+	// Provides information about a version 2 stage for Amazon API Gateway.
 	AwsApiGatewayV2Stage *AwsApiGatewayV2StageDetails `type:"structure"`
 
 	// Details for an autoscaling group.
 	AwsAutoScalingAutoScalingGroup *AwsAutoScalingAutoScalingGroupDetails `type:"structure"`
 
-	// Provides details about an AWS Certificate Manager certificate.
+	// Provides details about an AWS Certificate Manager (ACM) certificate.
 	AwsCertificateManagerCertificate *AwsCertificateManagerCertificateDetails `type:"structure"`
 
 	// Details about a CloudFront distribution.
@@ -23086,7 +24186,7 @@ type ResourceDetails struct {
 	// Details for an Elasticsearch domain.
 	AwsElasticsearchDomain *AwsElasticsearchDomainDetails `type:"structure"`
 
-	// Contains details about a Classic Load Balancer.
+	// contains details about a Classic Load Balancer.
 	AwsElbLoadBalancer *AwsElbLoadBalancerDetails `type:"structure"`
 
 	// Details about a load balancer.
@@ -23128,7 +24228,7 @@ type ResourceDetails struct {
 	// Details about an Amazon RDS database snapshot.
 	AwsRdsDbSnapshot *AwsRdsDbSnapshotDetails `type:"structure"`
 
-	// Details about an Amazon Redshift cluster.
+	// Contains details about an Amazon Redshift cluster.
 	AwsRedshiftCluster *AwsRedshiftClusterDetails `type:"structure"`
 
 	// Details about an Amazon S3 bucket related to a finding.
@@ -23145,6 +24245,10 @@ type ResourceDetails struct {
 
 	// Details about an SQS queue.
 	AwsSqsQueue *AwsSqsQueueDetails `type:"structure"`
+
+	// Provides information about the state of a patch on an instance based on the
+	// patch baseline that was used to patch the instance.
+	AwsSsmPatchCompliance *AwsSsmPatchComplianceDetails `type:"structure"`
 
 	// Details for a WAF WebACL.
 	AwsWafWebAcl *AwsWafWebAclDetails `type:"structure"`
@@ -23409,6 +24513,12 @@ func (s *ResourceDetails) SetAwsSnsTopic(v *AwsSnsTopicDetails) *ResourceDetails
 // SetAwsSqsQueue sets the AwsSqsQueue field's value.
 func (s *ResourceDetails) SetAwsSqsQueue(v *AwsSqsQueueDetails) *ResourceDetails {
 	s.AwsSqsQueue = v
+	return s
+}
+
+// SetAwsSsmPatchCompliance sets the AwsSsmPatchCompliance field's value.
+func (s *ResourceDetails) SetAwsSsmPatchCompliance(v *AwsSsmPatchComplianceDetails) *ResourceDetails {
+	s.AwsSsmPatchCompliance = v
 	return s
 }
 
@@ -23964,7 +25074,20 @@ type StandardsSubscription struct {
 	// StandardsInput is a required field
 	StandardsInput map[string]*string `type:"map" required:"true"`
 
-	// The status of the standards subscription.
+	// The status of the standard subscription.
+	//
+	// The status values are as follows:
+	//
+	//    * PENDING - Standard is in the process of being enabled.
+	//
+	//    * READY - Standard is enabled.
+	//
+	//    * INCOMPLETE - Standard could not be enabled completely. Some controls
+	//    may not be available.
+	//
+	//    * DELETING - Standard is in the process of being disabled.
+	//
+	//    * FAILED - Standard could not be disabled.
 	//
 	// StandardsStatus is a required field
 	StandardsStatus *string `type:"string" required:"true" enum:"StandardsStatus"`
@@ -25081,7 +26204,10 @@ type Workflow struct {
 	// The status of the investigation into the finding. The allowed values are
 	// the following.
 	//
-	//    * NEW - The initial state of a finding, before it is reviewed.
+	//    * NEW - The initial state of a finding, before it is reviewed. Security
+	//    Hub also resets the workflow status from NOTIFIED or RESOLVED to NEW in
+	//    the following cases: RecordState changes from ARCHIVED to ACTIVE. ComplianceStatus
+	//    changes from PASSED to either WARNING, FAILED, or NOT_AVAILABLE.
 	//
 	//    * NOTIFIED - Indicates that you notified the resource owner about the
 	//    security issue. Used when the initial reviewer is not the resource owner,
@@ -25118,7 +26244,10 @@ type WorkflowUpdate struct {
 	// The status of the investigation into the finding. The allowed values are
 	// the following.
 	//
-	//    * NEW - The initial state of a finding, before it is reviewed.
+	//    * NEW - The initial state of a finding, before it is reviewed. Security
+	//    Hub also resets WorkFlowStatus from NOTIFIED or RESOLVED to NEW in the
+	//    following cases: The record state changes from ARCHIVED to ACTIVE. The
+	//    compliance status changes from PASSED to either WARNING, FAILED, or NOT_AVAILABLE.
 	//
 	//    * NOTIFIED - Indicates that you notified the resource owner about the
 	//    security issue. Used when the initial reviewer is not the resource owner,

@@ -1,3 +1,12 @@
+Release v1.36.30 (2021-01-21)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/resourcegroupstaggingapi`: Updates service API and documentation
+  * This release adds a new parameter ResourceARNList to Resource Groups Tagging api GetResources api to allow customers retrieve tag data for specific resources.
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.36.29 (2021-01-19)
 ===
 

@@ -99,6 +99,39 @@
         "InviteMembersRequest$AccountIds": "<p>The list of account IDs of the AWS accounts to invite to Security Hub as members. </p>"
       }
     },
+    "Action": {
+      "base": "<p>Provides details about one of the following actions that were detected for the finding:</p> <ul> <li> <p>A remote IP address issued an AWS API call</p> </li> <li> <p>A DNS request was received</p> </li> <li> <p>A remote IP address attempted to connect to an EC2 instance</p> </li> <li> <p>A remote IP address attempted a port probe on an EC2 instance</p> </li> </ul>",
+      "refs": {
+        "AwsSecurityFinding$Action": "<p>Provides details about an action that was detected for the finding.</p>"
+      }
+    },
+    "ActionLocalIpDetails": {
+      "base": "<p>Provides information about the IP address where the scanned port is located.</p>",
+      "refs": {
+        "PortProbeDetail$LocalIpDetails": "<p>Provides information about the IP address where the scanned port is located.</p>"
+      }
+    },
+    "ActionLocalPortDetails": {
+      "base": "<p>For <code>NetworkConnectionAction</code> and <code>PortProbeDetails</code>, <code>LocalPortDetails</code> provides information about the local port that was involved in the action.</p>",
+      "refs": {
+        "NetworkConnectionAction$LocalPortDetails": "<p>Information about the port on the EC2 instance.</p>",
+        "PortProbeDetail$LocalPortDetails": "<p>Provides information about the port that was scanned.</p>"
+      }
+    },
+    "ActionRemoteIpDetails": {
+      "base": "<p>For <code>AwsApiAction</code>, <code>NetworkConnectionAction</code>, and <code>PortProbeAction</code>, <code>RemoteIpDetails</code> provides information about the remote IP address that was involved in the action.</p>",
+      "refs": {
+        "AwsApiCallAction$RemoteIpDetails": "<p>Provided if <code>CallerType</code> is <code>remoteIp</code>. Provides information about the remote IP address that the API call originated from.</p>",
+        "NetworkConnectionAction$RemoteIpDetails": "<p>Information about the remote IP address that issued the network connection request.</p>",
+        "PortProbeDetail$RemoteIpDetails": "<p>Provides information about the remote IP address that performed the scan.</p>"
+      }
+    },
+    "ActionRemotePortDetails": {
+      "base": "<p>Provides information about the remote port that was involved in an attempted network connection.</p>",
+      "refs": {
+        "NetworkConnectionAction$RemotePortDetails": "<p>Information about the port on the remote IP address.</p>"
+      }
+    },
     "ActionTarget": {
       "base": "<p>An <code>ActionTarget</code> object.</p>",
       "refs": {
@@ -154,6 +187,18 @@
         "AwsElbv2LoadBalancerDetails$AvailabilityZones": "<p>The Availability Zones for the load balancer.</p>"
       }
     },
+    "AwsApiCallAction": {
+      "base": "<p>Provided if <code>ActionType</code> is <code>AWS_API_CALL</code>. It provides details about the API call that was detected.</p>",
+      "refs": {
+        "Action$AwsApiCallAction": "<p>Included if <code>ActionType</code> is <code>AWS_API_CALL</code>. Provides details about the API call that was detected. </p>"
+      }
+    },
+    "AwsApiCallActionDomainDetails": {
+      "base": "<p>Provided if <code>CallerType</code> is <code>domain</code>. It provides information about the DNS domain that issued the API call.</p>",
+      "refs": {
+        "AwsApiCallAction$DomainDetails": "<p>Provided if <code>CallerType</code> is <code>domain</code>. Provides information about the DNS domain that the API call originated from.</p>"
+      }
+    },
     "AwsApiGatewayAccessLogSettings": {
       "base": "<p>Contains information about settings for logging access for the stage.</p>",
       "refs": {
@@ -188,19 +233,19 @@
     "AwsApiGatewayRestApiDetails": {
       "base": "<p>contains information about a REST API in version 1 of Amazon API Gateway.</p>",
       "refs": {
-        "ResourceDetails$AwsApiGatewayRestApi": "<p/>"
+        "ResourceDetails$AwsApiGatewayRestApi": "<p>Provides information about a REST API in version 1 of Amazon API Gateway.</p>"
       }
     },
     "AwsApiGatewayStageDetails": {
       "base": "<p>Provides information about a version 1 Amazon API Gateway stage.</p>",
       "refs": {
-        "ResourceDetails$AwsApiGatewayStage": "<p/>"
+        "ResourceDetails$AwsApiGatewayStage": "<p>Provides information about a version 1 Amazon API Gateway stage.</p>"
       }
     },
     "AwsApiGatewayV2ApiDetails": {
       "base": "<p>Contains information about a version 2 API in Amazon API Gateway.</p>",
       "refs": {
-        "ResourceDetails$AwsApiGatewayV2Api": "<p/>"
+        "ResourceDetails$AwsApiGatewayV2Api": "<p>Provides information about a version 2 API in Amazon API Gateway.</p>"
       }
     },
     "AwsApiGatewayV2RouteSettings": {
@@ -213,7 +258,7 @@
     "AwsApiGatewayV2StageDetails": {
       "base": "<p>Contains information about a version 2 stage for Amazon API Gateway.</p>",
       "refs": {
-        "ResourceDetails$AwsApiGatewayV2Stage": "<p/>"
+        "ResourceDetails$AwsApiGatewayV2Stage": "<p>Provides information about a version 2 stage for Amazon API Gateway.</p>"
       }
     },
     "AwsAutoScalingAutoScalingGroupDetails": {
@@ -225,7 +270,7 @@
     "AwsCertificateManagerCertificateDetails": {
       "base": "<p>Provides details about an AWS Certificate Manager certificate.</p>",
       "refs": {
-        "ResourceDetails$AwsCertificateManagerCertificate": "<p/>"
+        "ResourceDetails$AwsCertificateManagerCertificate": "<p>Provides details about an AWS Certificate Manager (ACM) certificate.</p>"
       }
     },
     "AwsCertificateManagerCertificateDomainValidationOption": {
@@ -382,7 +427,7 @@
     "AwsCloudTrailTrailDetails": {
       "base": "<p>Provides details about a CloudTrail trail.</p>",
       "refs": {
-        "ResourceDetails$AwsCloudTrailTrail": "<p/>"
+        "ResourceDetails$AwsCloudTrailTrail": "<p>Provides details about a CloudTrail trail.</p>"
       }
     },
     "AwsCodeBuildProjectDetails": {
@@ -568,6 +613,30 @@
       "base": "<p>Details about the network interface</p>",
       "refs": {
         "ResourceDetails$AwsEc2NetworkInterface": "<p>Details for an Amazon EC2 network interface.</p>"
+      }
+    },
+    "AwsEc2NetworkInterfaceIpV6AddressDetail": {
+      "base": "<p>Provides information about an IPV6 address that is associated with the network interface.</p>",
+      "refs": {
+        "AwsEc2NetworkInterfaceIpV6AddressList$member": null
+      }
+    },
+    "AwsEc2NetworkInterfaceIpV6AddressList": {
+      "base": null,
+      "refs": {
+        "AwsEc2NetworkInterfaceDetails$IpV6Addresses": "<p>The IPv6 addresses associated with the network interface.</p>"
+      }
+    },
+    "AwsEc2NetworkInterfacePrivateIpAddressDetail": {
+      "base": "<p>Provides information about a private IPv4 address that is with the network interface.</p>",
+      "refs": {
+        "AwsEc2NetworkInterfacePrivateIpAddressList$member": null
+      }
+    },
+    "AwsEc2NetworkInterfacePrivateIpAddressList": {
+      "base": null,
+      "refs": {
+        "AwsEc2NetworkInterfaceDetails$PrivateIpAddresses": "<p>The private IPv4 addresses associated with the network interface.</p>"
       }
     },
     "AwsEc2NetworkInterfaceSecurityGroup": {
@@ -772,7 +841,7 @@
     "AwsElbLoadBalancerDetails": {
       "base": "<p>Contains details about a Classic Load Balancer.</p>",
       "refs": {
-        "ResourceDetails$AwsElbLoadBalancer": "<p/>"
+        "ResourceDetails$AwsElbLoadBalancer": "<p>contains details about a Classic Load Balancer.</p>"
       }
     },
     "AwsElbLoadBalancerHealthCheck": {
@@ -876,7 +945,7 @@
     "AwsIamGroupDetails": {
       "base": "<p>Contains details about an IAM group.</p>",
       "refs": {
-        "ResourceDetails$AwsIamGroup": "<p/>"
+        "ResourceDetails$AwsIamGroup": "<p>Contains details about an IAM group.</p>"
       }
     },
     "AwsIamGroupPolicy": {
@@ -1155,7 +1224,7 @@
       }
     },
     "AwsRdsDbOptionGroupMembership": {
-      "base": "<p/>",
+      "base": "<p>An option group membership.</p>",
       "refs": {
         "AwsRdsDbOptionGroupMemberships$member": null
       }
@@ -1167,7 +1236,7 @@
       }
     },
     "AwsRdsDbParameterGroup": {
-      "base": "<p/>",
+      "base": "<p>Provides information about a parameter group for a DB instance.</p>",
       "refs": {
         "AwsRdsDbParameterGroups$member": null
       }
@@ -1179,13 +1248,13 @@
       }
     },
     "AwsRdsDbPendingModifiedValues": {
-      "base": "<p/>",
+      "base": "<p>Changes to a DB instance that are currently pending.</p>",
       "refs": {
         "AwsRdsDbInstanceDetails$PendingModifiedValues": "<p>Changes to the DB instance that are currently pending.</p>"
       }
     },
     "AwsRdsDbProcessorFeature": {
-      "base": "<p/>",
+      "base": "<p>A processor feature.</p>",
       "refs": {
         "AwsRdsDbProcessorFeatures$member": null
       }
@@ -1194,12 +1263,12 @@
       "base": null,
       "refs": {
         "AwsRdsDbInstanceDetails$ProcessorFeatures": "<p>The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.</p>",
-        "AwsRdsDbPendingModifiedValues$ProcessorFeatures": "<p/>",
-        "AwsRdsDbSnapshotDetails$ProcessorFeatures": "<p/>"
+        "AwsRdsDbPendingModifiedValues$ProcessorFeatures": "<p>Processor features that are being updated.</p>",
+        "AwsRdsDbSnapshotDetails$ProcessorFeatures": "<p>The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.</p>"
       }
     },
     "AwsRdsDbSnapshotDetails": {
-      "base": "<p/>",
+      "base": "<p>Provides details about an Amazon RDS DB cluster snapshot.</p>",
       "refs": {
         "ResourceDetails$AwsRdsDbSnapshot": "<p>Details about an Amazon RDS database snapshot.</p>"
       }
@@ -1243,7 +1312,7 @@
     "AwsRdsPendingCloudWatchLogsExports": {
       "base": "<p>Identifies the log types to enable and disable.</p>",
       "refs": {
-        "AwsRdsDbPendingModifiedValues$PendingCloudWatchLogsExports": "<p/>"
+        "AwsRdsDbPendingModifiedValues$PendingCloudWatchLogsExports": "<p>A list of log types that are being enabled or disabled.</p>"
       }
     },
     "AwsRedshiftClusterClusterNode": {
@@ -1315,7 +1384,7 @@
     "AwsRedshiftClusterDetails": {
       "base": "<p>Details about an Amazon Redshift cluster.</p>",
       "refs": {
-        "ResourceDetails$AwsRedshiftCluster": "<p/>"
+        "ResourceDetails$AwsRedshiftCluster": "<p>Contains details about an Amazon Redshift cluster.</p>"
       }
     },
     "AwsRedshiftClusterElasticIpStatus": {
@@ -1487,6 +1556,24 @@
         "ResourceDetails$AwsSqsQueue": "<p>Details about an SQS queue.</p>"
       }
     },
+    "AwsSsmComplianceSummary": {
+      "base": "<p>Provides the details about the compliance status for a patch.</p>",
+      "refs": {
+        "AwsSsmPatch$ComplianceSummary": "<p>The compliance status details for the patch.</p>"
+      }
+    },
+    "AwsSsmPatch": {
+      "base": "<p>Provides details about the compliance for a patch.</p>",
+      "refs": {
+        "AwsSsmPatchComplianceDetails$Patch": "<p>Information about the status of a patch.</p>"
+      }
+    },
+    "AwsSsmPatchComplianceDetails": {
+      "base": "<p>Provides information about the state of a patch on an instance based on the patch baseline that was used to patch the instance.</p>",
+      "refs": {
+        "ResourceDetails$AwsSsmPatchCompliance": "<p>Provides information about the state of a patch on an instance based on the patch baseline that was used to patch the instance.</p>"
+      }
+    },
     "AwsWafWebAclDetails": {
       "base": "<p>Details about a WAF WebACL.</p>",
       "refs": {
@@ -1615,9 +1702,9 @@
         "AwsRdsDbInstanceDetails$AutoMinorVersionUpgrade": "<p>Indicates whether minor version patches are applied automatically.</p>",
         "AwsRdsDbInstanceDetails$CopyTagsToSnapshot": "<p>Whether to copy resource tags to snapshots of the DB instance.</p>",
         "AwsRdsDbInstanceDetails$PerformanceInsightsEnabled": "<p>Indicates whether Performance Insights is enabled for the DB instance.</p>",
-        "AwsRdsDbPendingModifiedValues$MultiAZ": "<p/>",
-        "AwsRdsDbSnapshotDetails$Encrypted": "<p/>",
-        "AwsRdsDbSnapshotDetails$IamDatabaseAuthenticationEnabled": "<p/>",
+        "AwsRdsDbPendingModifiedValues$MultiAZ": "<p>Indicates that a single Availability Zone DB instance is changing to a multiple Availability Zone deployment.</p>",
+        "AwsRdsDbSnapshotDetails$Encrypted": "<p>Whether the DB snapshot is encrypted.</p>",
+        "AwsRdsDbSnapshotDetails$IamDatabaseAuthenticationEnabled": "<p>Whether mapping of IAM accounts to database accounts is enabled.</p>",
         "AwsRdsDbStatusInfo$Normal": "<p>Whether the read replica instance is operating normally.</p>",
         "AwsRedshiftClusterDetails$AllowVersionUpgrade": "<p>Indicates whether major version upgrades are applied automatically to the cluster during the maintenance window.</p>",
         "AwsRedshiftClusterDetails$Encrypted": "<p>Indicates whether the data in the cluster is encrypted at rest.</p>",
@@ -1632,8 +1719,11 @@
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>If set to <code>true</code>, then Security Hub is enabled for new accounts. If set to false, then new accounts are not added automatically.</p>",
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account.</p>",
+        "DnsRequestAction$Blocked": "<p>Indicates whether the DNS request was blocked.</p>",
         "EnableSecurityHubRequest$EnableDefaultStandards": "<p>Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it is set to <code>true</code>. To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p>",
         "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the master account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
+        "NetworkConnectionAction$Blocked": "<p>Indicates whether the network connection attempt was blocked.</p>",
+        "PortProbeAction$Blocked": "<p>Indicates whether the port probe was blocked.</p>",
         "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>By default, this is <code>false</code>, and new accounts are not added automatically.</p> <p>To automatically enable Security Hub for new accounts, set this to <code>true</code>.</p>",
         "UpdateSecurityHubConfigurationRequest$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>By default, this is set to <code>true</code>, and new controls are enabled automatically. To not automatically enable new controls, set this to <code>false</code>. </p>"
@@ -1655,6 +1745,12 @@
       "base": null,
       "refs": {
         "AwsEc2VpcDetails$CidrBlockAssociationSet": "<p>Information about the IPv4 CIDR blocks associated with the VPC.</p>"
+      }
+    },
+    "City": {
+      "base": "<p>Information about a city.</p>",
+      "refs": {
+        "ActionRemoteIpDetails$City": "<p>The city where the remote IP address is located.</p>"
       }
     },
     "Compliance": {
@@ -1680,6 +1776,12 @@
       "refs": {
         "StandardsControl$ControlStatus": "<p>The current status of the security standard control. Indicates whether the control is enabled or disabled. Security Hub does not check against disabled controls.</p>",
         "UpdateStandardsControlRequest$ControlStatus": "<p>The updated status of the security standard control.</p>"
+      }
+    },
+    "Country": {
+      "base": "<p>Information about a country.</p>",
+      "refs": {
+        "ActionRemoteIpDetails$Country": "<p>The country where the remote IP address is located.</p>"
       }
     },
     "CreateActionTargetRequest": {
@@ -1925,6 +2027,12 @@
       "refs": {
       }
     },
+    "DnsRequestAction": {
+      "base": "<p>Provided if <code>ActionType</code> is <code>DNS_REQUEST</code>. It provides details about the DNS request that was detected.</p>",
+      "refs": {
+        "Action$DnsRequestAction": "<p>Included if <code>ActionType</code> is <code>DNS_REQUEST</code>. Provides details about the DNS request that was detected. </p>"
+      }
+    },
     "Double": {
       "base": null,
       "refs": {
@@ -1934,6 +2042,8 @@
         "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the CMK was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsRedshiftClusterRestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
+        "GeoLocation$Lon": "<p>The longitude of the location.</p>",
+        "GeoLocation$Lat": "<p>The latitude of the location.</p>",
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Eq": "<p>The equal-to condition to be applied to a single field when querying for findings.</p>",
@@ -1974,6 +2084,7 @@
     "FieldMap": {
       "base": null,
       "refs": {
+        "AwsApiCallAction$AffectedResources": "<p>Identifies the resources that were affected by the API call.</p>",
         "AwsApiGatewayCanarySettings$StageVariableOverrides": "<p>Stage variables that are overridden in the canary release deployment. The variables include new stage variables that are introduced in the canary.</p> <p>Each variable is represented as a string-to-string map between the stage variable name and the variable value.</p>",
         "AwsApiGatewayStageDetails$Variables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
         "AwsApiGatewayV2StageDetails$StageVariables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
@@ -1984,6 +2095,12 @@
         "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
         "Resource$Tags": "<p>A list of AWS tags associated with a resource at the time the finding was processed.</p>",
         "ResourceDetails$Other": "<p>Details about a resource that are not available in a type-specific details object. Use the <code>Other</code> object in the following cases.</p> <ul> <li> <p>The type-specific object does not contain all of the fields that you want to populate. In this case, first use the type-specific object to populate those fields. Use the <code>Other</code> object to populate the fields that are missing from the type-specific object.</p> </li> <li> <p>The resource type does not have a corresponding object. This includes resources for which the type is <code>Other</code>. </p> </li> </ul>"
+      }
+    },
+    "GeoLocation": {
+      "base": "<p>Provides the latitude and longitude coordinates of a location.</p>",
+      "refs": {
+        "ActionRemoteIpDetails$GeoLocation": "<p>The coordinates of the location of the remote IP address.</p>"
       }
     },
     "GetEnabledStandardsRequest": {
@@ -2101,6 +2218,8 @@
     "Integer": {
       "base": null,
       "refs": {
+        "ActionLocalPortDetails$Port": "<p>The number of the port.</p>",
+        "ActionRemotePortDetails$Port": "<p>The number of the port.</p>",
         "AwsApiGatewayMethodSettings$ThrottlingBurstLimit": "<p>The throttling burst limit for the method.</p>",
         "AwsApiGatewayMethodSettings$CacheTtlInSeconds": "<p>Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response is cached.</p>",
         "AwsApiGatewayRestApiDetails$MinimumCompressionSize": "<p>The minimum size in bytes of a payload before compression is enabled.</p> <p>If <code>null</code>, then compression is disabled.</p> <p>If 0, then all payloads are compressed.</p>",
@@ -2152,14 +2271,14 @@
         "AwsRdsDbInstanceDetails$PerformanceInsightsRetentionPeriod": "<p>The number of days to retain Performance Insights data.</p>",
         "AwsRdsDbInstanceDetails$MaxAllocatedStorage": "<p>The upper limit to which Amazon RDS can automatically scale the storage of the DB instance.</p>",
         "AwsRdsDbInstanceEndpoint$Port": "<p>Specifies the port that the database engine is listening on.</p>",
-        "AwsRdsDbPendingModifiedValues$AllocatedStorage": "<p/>",
-        "AwsRdsDbPendingModifiedValues$Port": "<p/>",
-        "AwsRdsDbPendingModifiedValues$BackupRetentionPeriod": "<p/>",
-        "AwsRdsDbPendingModifiedValues$Iops": "<p/>",
-        "AwsRdsDbSnapshotDetails$AllocatedStorage": "<p/>",
-        "AwsRdsDbSnapshotDetails$Port": "<p/>",
-        "AwsRdsDbSnapshotDetails$Iops": "<p/>",
-        "AwsRdsDbSnapshotDetails$PercentProgress": "<p/>",
+        "AwsRdsDbPendingModifiedValues$AllocatedStorage": "<p>The new value of the allocated storage for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$Port": "<p>The new port for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$BackupRetentionPeriod": "<p>The new backup retention period for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$Iops": "<p>The new provisioned IOPS value for the DB instance.</p>",
+        "AwsRdsDbSnapshotDetails$AllocatedStorage": "<p>The amount of storage (in gigabytes) to be initially allocated for the database instance.</p>",
+        "AwsRdsDbSnapshotDetails$Port": "<p>The port that the database engine was listening on at the time of the snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$Iops": "<p>The provisioned IOPS (I/O operations per second) value of the DB instance at the time of the snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$PercentProgress": "<p>The percentage of the estimated data that has been transferred.</p>",
         "AwsRedshiftClusterClusterSnapshotCopyStatus$ManualSnapshotRetentionPeriod": "<p>The number of days that manual snapshots are retained in the destination region after they are copied from a source region.</p> <p>If the value is -1, then the manual snapshot is retained indefinitely.</p> <p>Valid values: Either -1 or an integer between 1 and 3,653</p>",
         "AwsRedshiftClusterClusterSnapshotCopyStatus$RetentionPeriod": "<p>The number of days to retain automated snapshots in the destination Region after they are copied from a source Region.</p>",
         "AwsRedshiftClusterDetails$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automatic cluster snapshots are retained.</p>",
@@ -2172,12 +2291,25 @@
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
         "AwsSqsQueueDetails$KmsDataKeyReusePeriodSeconds": "<p>The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again.</p>",
+        "AwsSsmComplianceSummary$CompliantCriticalCount": "<p>For the patches that are compliant, the number that have a severity of <code>CRITICAL</code>.</p>",
+        "AwsSsmComplianceSummary$CompliantHighCount": "<p>For the patches that are compliant, the number that have a severity of <code>HIGH</code>.</p>",
+        "AwsSsmComplianceSummary$CompliantMediumCount": "<p>For the patches that are compliant, the number that have a severity of <code>MEDIUM</code>.</p>",
+        "AwsSsmComplianceSummary$NonCompliantCriticalCount": "<p>For the patch items that are noncompliant, the number of items that have a severity of <code>CRITICAL</code>.</p>",
+        "AwsSsmComplianceSummary$CompliantInformationalCount": "<p>For the patches that are compliant, the number that have a severity of <code>INFORMATIONAL</code>.</p>",
+        "AwsSsmComplianceSummary$NonCompliantInformationalCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>INFORMATIONAL</code>.</p>",
+        "AwsSsmComplianceSummary$CompliantUnspecifiedCount": "<p>For the patches that are compliant, the number that have a severity of <code>UNSPECIFIED</code>.</p>",
+        "AwsSsmComplianceSummary$NonCompliantLowCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>LOW</code>.</p>",
+        "AwsSsmComplianceSummary$NonCompliantHighCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>HIGH</code>.</p>",
+        "AwsSsmComplianceSummary$CompliantLowCount": "<p>For the patches that are compliant, the number that have a severity of <code>LOW</code>.</p>",
+        "AwsSsmComplianceSummary$NonCompliantMediumCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>MEDIUM</code>.</p>",
+        "AwsSsmComplianceSummary$NonCompliantUnspecifiedCount": "<p>For the patches that are noncompliant, the number that have a severity of <code>UNSPECIFIED</code>.</p>",
         "AwsWafWebAclRule$Priority": "<p>Specifies the order in which the rules in a WebACL are evaluated. Rules with a lower value for <code>Priority</code> are evaluated before rules with a higher value. The value must be a unique integer. If you add multiple rules to a WebACL, the values do not need to be consecutive.</p>",
         "BatchImportFindingsResponse$FailedCount": "<p>The number of findings that failed to import.</p>",
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of all membership invitations sent to this Security Hub member account, not including the currently accepted invitation.</p>",
         "InsightResultValue$Count": "<p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>",
+        "IpOrganizationDetails$Asn": "<p>The Autonomous System Number (ASN) of the internet provider</p>",
         "Network$SourcePort": "<p>The source port of network-related information about a finding.</p>",
         "Network$DestinationPort": "<p>The destination port of network-related information about a finding.</p>",
         "PatchSummary$InstalledCount": "<p>The number of patches from the compliance standard that were installed successfully.</p>",
@@ -2258,6 +2390,12 @@
         "AwsSecurityFindingFilters$NetworkDestinationIpV6": "<p>The destination IPv6 address of network-related information about a finding.</p>",
         "AwsSecurityFindingFilters$ResourceAwsEc2InstanceIpV4Addresses": "<p>The IPv4 addresses associated with the instance.</p>",
         "AwsSecurityFindingFilters$ResourceAwsEc2InstanceIpV6Addresses": "<p>The IPv6 addresses associated with the instance.</p>"
+      }
+    },
+    "IpOrganizationDetails": {
+      "base": "<p>Provides information about an internet provider.</p>",
+      "refs": {
+        "ActionRemoteIpDetails$Organization": "<p>The internet service provider (ISP) organization associated with the remote IP address.</p>"
       }
     },
     "Ipv6CidrBlockAssociation": {
@@ -2432,6 +2570,12 @@
         "AwsSecurityFinding$Network": "<p>The details of network-related information about a finding.</p>"
       }
     },
+    "NetworkConnectionAction": {
+      "base": "<p>Provided if <code>ActionType</code> is <code>NETWORK_CONNECTION</code>. It provides details about the attempted network connection that was detected.</p>",
+      "refs": {
+        "Action$NetworkConnectionAction": "<p>Included if <code>ActionType</code> is <code>NETWORK_CONNECTION</code>. Provides details about the network connection that was detected.</p>"
+      }
+    },
     "NetworkDirection": {
       "base": null,
       "refs": {
@@ -2498,6 +2642,11 @@
         "AccessDeniedException$Code": null,
         "AccountDetails$Email": "<p>The email of an AWS account.</p>",
         "AccountIdList$member": null,
+        "Action$ActionType": "<p>The type of action that was detected. The possible action types are:</p> <ul> <li> <p> <code>NETWORK_CONNECTION</code> </p> </li> <li> <p> <code>AWS_API_CALL</code> </p> </li> <li> <p> <code>DNS_REQUEST</code> </p> </li> <li> <p> <code>PORT_PROBE</code> </p> </li> </ul>",
+        "ActionLocalIpDetails$IpAddressV4": "<p>The IP address.</p>",
+        "ActionLocalPortDetails$PortName": "<p>The port name of the local connection.</p>",
+        "ActionRemoteIpDetails$IpAddressV4": "<p>The IP address.</p>",
+        "ActionRemotePortDetails$PortName": "<p>The port name of the remote connection.</p>",
         "ActionTarget$ActionTargetArn": "<p>The ARN for the target action.</p>",
         "ActionTarget$Name": "<p>The name of the action target.</p>",
         "ActionTarget$Description": "<p>The description of the target action.</p>",
@@ -2505,6 +2654,12 @@
         "ArnList$member": null,
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
+        "AwsApiCallAction$Api": "<p>The name of the API method that was issued.</p>",
+        "AwsApiCallAction$ServiceName": "<p>The name of the AWS service that the API method belongs to.</p>",
+        "AwsApiCallAction$CallerType": "<p>Indicates whether the API call originated from a remote IP address (<code>remoteip</code>) or from a DNS domain (<code>domain</code>).</p>",
+        "AwsApiCallAction$FirstSeen": "<p>An ISO8601-formatted timestamp that indicates when the API call was first observed.</p>",
+        "AwsApiCallAction$LastSeen": "<p>An ISO8601-formatted timestamp that indicates when the API call was most recently observed.</p>",
+        "AwsApiCallActionDomainDetails$Domain": "<p>The name of the DNS domain that issued the API call.</p>",
         "AwsApiGatewayAccessLogSettings$Format": "<p>A single-line format of the access logs of data, as specified by selected <code>$context</code> variables. The format must include at least <code>$context.requestId</code>.</p>",
         "AwsApiGatewayAccessLogSettings$DestinationArn": "<p>The ARN of the CloudWatch Logs log group that receives the access logs.</p>",
         "AwsApiGatewayCanarySettings$DeploymentId": "<p>The deployment identifier for the canary deployment.</p>",
@@ -2669,6 +2824,11 @@
         "AwsEc2NetworkInterfaceAttachment$InstanceOwnerId": "<p>The AWS account ID of the owner of the instance.</p>",
         "AwsEc2NetworkInterfaceAttachment$Status": "<p>The attachment state.</p> <p>Valid values: <code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code> </p>",
         "AwsEc2NetworkInterfaceDetails$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "AwsEc2NetworkInterfaceDetails$PublicDnsName": "<p>The public DNS name of the network interface.</p>",
+        "AwsEc2NetworkInterfaceDetails$PublicIp": "<p>The address of the Elastic IP address bound to the network interface.</p>",
+        "AwsEc2NetworkInterfaceIpV6AddressDetail$IpV6Address": "<p>The IPV6 address.</p>",
+        "AwsEc2NetworkInterfacePrivateIpAddressDetail$PrivateIpAddress": "<p>The IP address.</p>",
+        "AwsEc2NetworkInterfacePrivateIpAddressDetail$PrivateDnsName": "<p>The private DNS name for the IP address.</p>",
         "AwsEc2NetworkInterfaceSecurityGroup$GroupName": "<p>The name of the security group.</p>",
         "AwsEc2NetworkInterfaceSecurityGroup$GroupId": "<p>The ID of the security group.</p>",
         "AwsEc2SecurityGroupDetails$GroupName": "<p>The name of the security group.</p>",
@@ -2831,7 +2991,7 @@
         "AwsRdsDbClusterOptionGroupMembership$DbClusterOptionGroupName": "<p>The name of the DB cluster option group.</p>",
         "AwsRdsDbClusterOptionGroupMembership$Status": "<p>The status of the DB cluster option group.</p>",
         "AwsRdsDbClusterSnapshotDetails$SnapshotCreateTime": "<p>Indicates when the snapshot was taken.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
-        "AwsRdsDbClusterSnapshotDetails$Engine": "<p/>",
+        "AwsRdsDbClusterSnapshotDetails$Engine": "<p>The name of the database engine that you want to use for this DB instance.</p>",
         "AwsRdsDbClusterSnapshotDetails$Status": "<p>The status of this DB cluster snapshot.</p>",
         "AwsRdsDbClusterSnapshotDetails$VpcId": "<p>The VPC ID that is associated with the DB cluster snapshot.</p>",
         "AwsRdsDbClusterSnapshotDetails$ClusterCreateTime": "<p>Indicates when the DB cluster was created, in Universal Coordinated Time (UTC).</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -2879,40 +3039,40 @@
         "AwsRdsDbInstanceEndpoint$HostedZoneId": "<p>Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.</p>",
         "AwsRdsDbInstanceVpcSecurityGroup$VpcSecurityGroupId": "<p>The name of the VPC security group.</p>",
         "AwsRdsDbInstanceVpcSecurityGroup$Status": "<p>The status of the VPC security group.</p>",
-        "AwsRdsDbOptionGroupMembership$OptionGroupName": "<p/>",
-        "AwsRdsDbOptionGroupMembership$Status": "<p/>",
-        "AwsRdsDbParameterGroup$DbParameterGroupName": "<p/>",
-        "AwsRdsDbParameterGroup$ParameterApplyStatus": "<p/>",
-        "AwsRdsDbPendingModifiedValues$DbInstanceClass": "<p/>",
-        "AwsRdsDbPendingModifiedValues$MasterUserPassword": "<p/>",
-        "AwsRdsDbPendingModifiedValues$EngineVersion": "<p/>",
-        "AwsRdsDbPendingModifiedValues$LicenseModel": "<p/>",
-        "AwsRdsDbPendingModifiedValues$DbInstanceIdentifier": "<p/>",
-        "AwsRdsDbPendingModifiedValues$StorageType": "<p/>",
-        "AwsRdsDbPendingModifiedValues$CaCertificateIdentifier": "<p/>",
-        "AwsRdsDbPendingModifiedValues$DbSubnetGroupName": "<p/>",
-        "AwsRdsDbProcessorFeature$Name": "<p/>",
-        "AwsRdsDbProcessorFeature$Value": "<p/>",
-        "AwsRdsDbSnapshotDetails$DbSnapshotIdentifier": "<p/>",
-        "AwsRdsDbSnapshotDetails$DbInstanceIdentifier": "<p/>",
-        "AwsRdsDbSnapshotDetails$SnapshotCreateTime": "<p/>",
-        "AwsRdsDbSnapshotDetails$Engine": "<p/>",
-        "AwsRdsDbSnapshotDetails$Status": "<p/>",
-        "AwsRdsDbSnapshotDetails$AvailabilityZone": "<p/>",
-        "AwsRdsDbSnapshotDetails$VpcId": "<p/>",
-        "AwsRdsDbSnapshotDetails$InstanceCreateTime": "<p/>",
-        "AwsRdsDbSnapshotDetails$MasterUsername": "<p/>",
-        "AwsRdsDbSnapshotDetails$EngineVersion": "<p/>",
-        "AwsRdsDbSnapshotDetails$LicenseModel": "<p/>",
-        "AwsRdsDbSnapshotDetails$SnapshotType": "<p/>",
-        "AwsRdsDbSnapshotDetails$OptionGroupName": "<p/>",
-        "AwsRdsDbSnapshotDetails$SourceRegion": "<p/>",
-        "AwsRdsDbSnapshotDetails$SourceDbSnapshotIdentifier": "<p/>",
-        "AwsRdsDbSnapshotDetails$StorageType": "<p/>",
-        "AwsRdsDbSnapshotDetails$TdeCredentialArn": "<p/>",
-        "AwsRdsDbSnapshotDetails$KmsKeyId": "<p/>",
-        "AwsRdsDbSnapshotDetails$Timezone": "<p/>",
-        "AwsRdsDbSnapshotDetails$DbiResourceId": "<p/>",
+        "AwsRdsDbOptionGroupMembership$OptionGroupName": "<p>The name of the option group.</p>",
+        "AwsRdsDbOptionGroupMembership$Status": "<p>The status of the option group membership.</p>",
+        "AwsRdsDbParameterGroup$DbParameterGroupName": "<p>The name of the parameter group.</p>",
+        "AwsRdsDbParameterGroup$ParameterApplyStatus": "<p>The status of parameter updates.</p>",
+        "AwsRdsDbPendingModifiedValues$DbInstanceClass": "<p>The new DB instance class for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$MasterUserPassword": "<p>The new master user password for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$EngineVersion": "<p>The new engine version for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$LicenseModel": "<p>The new license model value for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$DbInstanceIdentifier": "<p>The new DB instance identifier for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$StorageType": "<p>The new storage type for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$CaCertificateIdentifier": "<p>The new CA certificate identifier for the DB instance.</p>",
+        "AwsRdsDbPendingModifiedValues$DbSubnetGroupName": "<p>The name of the new subnet group for the DB instance.</p>",
+        "AwsRdsDbProcessorFeature$Name": "<p>The name of the processor feature.</p>",
+        "AwsRdsDbProcessorFeature$Value": "<p>The value of the processor feature.</p>",
+        "AwsRdsDbSnapshotDetails$DbSnapshotIdentifier": "<p>The name or ARN of the DB snapshot that is used to restore the DB instance.</p>",
+        "AwsRdsDbSnapshotDetails$DbInstanceIdentifier": "<p>A name for the DB instance.</p>",
+        "AwsRdsDbSnapshotDetails$SnapshotCreateTime": "<p>When the snapshot was taken in Coordinated Universal Time (UTC).</p>",
+        "AwsRdsDbSnapshotDetails$Engine": "<p>The name of the database engine to use for this DB instance.</p>",
+        "AwsRdsDbSnapshotDetails$Status": "<p>The status of this DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$AvailabilityZone": "<p>Specifies the name of the Availability Zone in which the DB instance was located at the time of the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$VpcId": "<p>The VPC ID associated with the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$InstanceCreateTime": "<p>Specifies the time in Coordinated Universal Time (UTC) when the DB instance, from which the snapshot was taken, was created.</p>",
+        "AwsRdsDbSnapshotDetails$MasterUsername": "<p>The master user name for the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$EngineVersion": "<p>The version of the database engine.</p>",
+        "AwsRdsDbSnapshotDetails$LicenseModel": "<p>License model information for the restored DB instance.</p>",
+        "AwsRdsDbSnapshotDetails$SnapshotType": "<p>The type of the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$OptionGroupName": "<p>The option group name for the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$SourceRegion": "<p>The AWS Region that the DB snapshot was created in or copied from.</p>",
+        "AwsRdsDbSnapshotDetails$SourceDbSnapshotIdentifier": "<p>The DB snapshot ARN that the DB snapshot was copied from.</p>",
+        "AwsRdsDbSnapshotDetails$StorageType": "<p>The storage type associated with the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$TdeCredentialArn": "<p>The ARN from the key store with which to associate the instance for TDE encryption.</p>",
+        "AwsRdsDbSnapshotDetails$KmsKeyId": "<p>If <code>Encrypted</code> is <code>true</code>, the AWS KMS key identifier for the encrypted DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$Timezone": "<p>The time zone of the DB snapshot.</p>",
+        "AwsRdsDbSnapshotDetails$DbiResourceId": "<p>The identifier for the source DB instance.</p>",
         "AwsRdsDbStatusInfo$StatusType": "<p>The type of status. For a read replica, the status type is read replication.</p>",
         "AwsRdsDbStatusInfo$Status": "<p>The status of the read replica instance.</p>",
         "AwsRdsDbStatusInfo$Message": "<p>If the read replica is currently in an error state, provides the error details.</p>",
@@ -3017,6 +3177,12 @@
         "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an AWS managed customer master key (CMK) for Amazon SQS or a custom CMK.</p>",
         "AwsSqsQueueDetails$QueueName": "<p>The name of the new queue.</p>",
         "AwsSqsQueueDetails$DeadLetterTargetArn": "<p>The Amazon Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves messages after the value of <code>maxReceiveCount</code> is exceeded. </p>",
+        "AwsSsmComplianceSummary$Status": "<p>The current patch compliance status.</p> <p>The possible status values are:</p> <ul> <li> <p> <code>COMPLIANT</code> </p> </li> <li> <p> <code>NON_COMPLIANT</code> </p> </li> <li> <p> <code>UNSPECIFIED_DATA</code> </p> </li> </ul>",
+        "AwsSsmComplianceSummary$ExecutionType": "<p>The type of execution that was used determine compliance.</p>",
+        "AwsSsmComplianceSummary$ComplianceType": "<p>The type of resource for which the compliance was determined. For <code>AwsSsmPatchCompliance</code>, <code>ComplianceType</code> is <code>Patch</code>. </p>",
+        "AwsSsmComplianceSummary$PatchBaselineId": "<p>The identifier of the patch baseline. The patch baseline lists the patches that are approved for installation.</p>",
+        "AwsSsmComplianceSummary$OverallSeverity": "<p>The highest severity for the patches.</p>",
+        "AwsSsmComplianceSummary$PatchGroup": "<p>The identifier of the patch group for which compliance was determined. A patch group uses tags to group EC2 instances that should have the same patch compliance.</p>",
         "AwsWafWebAclDetails$Name": "<p>A friendly name or description of the WebACL. You can't change the name of a WebACL after you create it.</p>",
         "AwsWafWebAclDetails$DefaultAction": "<p>The action to perform if none of the rules contained in the WebACL match.</p>",
         "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a WebACL.</p>",
@@ -3028,10 +3194,13 @@
         "CidrBlockAssociation$AssociationId": "<p>The association ID for the IPv4 CIDR block.</p>",
         "CidrBlockAssociation$CidrBlock": "<p>The IPv4 CIDR block.</p>",
         "CidrBlockAssociation$CidrBlockState": "<p>Information about the state of the IPv4 CIDR block.</p>",
+        "City$CityName": "<p>The name of the city.</p>",
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
         "ContainerDetails$ImageId": "<p>The identifier of the image related to a finding.</p>",
         "ContainerDetails$ImageName": "<p>The name of the image related to a finding.</p>",
         "ContainerDetails$LaunchedAt": "<p>Indicates when the container started.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "Country$CountryCode": "<p>The 2-letter ISO 3166 country code for the country.</p>",
+        "Country$CountryName": "<p>The name of the country.</p>",
         "CreateActionTargetRequest$Name": "<p>The name of the custom action target.</p>",
         "CreateActionTargetRequest$Description": "<p>The description for the custom action target.</p>",
         "CreateActionTargetRequest$Id": "<p>The ID for the custom action target.</p>",
@@ -3053,6 +3222,8 @@
         "DescribeStandardsControlsRequest$StandardsSubscriptionArn": "<p>The ARN of a resource that represents your subscription to a supported standard. To get the subscription ARNs of the standards you have enabled, use the <code> <a>GetEnabledStandards</a> </code> operation.</p>",
         "DisableImportFindingsForProductRequest$ProductSubscriptionArn": "<p>The ARN of the integrated product to disable the integration for.</p>",
         "DisableOrganizationAdminAccountRequest$AdminAccountId": "<p>The AWS account identifier of the Security Hub administrator account.</p>",
+        "DnsRequestAction$Domain": "<p>The DNS domain that is associated with the DNS request.</p>",
+        "DnsRequestAction$Protocol": "<p>The protocol that was used for the DNS request.</p>",
         "EnableImportFindingsForProductRequest$ProductArn": "<p>The ARN of the product to enable the integration for.</p>",
         "EnableImportFindingsForProductResponse$ProductSubscriptionArn": "<p>The ARN of your subscription to the product to enable integrations for.</p>",
         "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The AWS account identifier of the account to designate as the Security Hub administrator account.</p>",
@@ -3077,6 +3248,9 @@
         "Invitation$InvitationId": "<p>The ID of the invitation sent to the member account.</p>",
         "Invitation$MemberStatus": "<p>The current status of the association between the member and master accounts.</p>",
         "IpFilter$Cidr": "<p>A finding's CIDR value.</p>",
+        "IpOrganizationDetails$AsnOrg": "<p>The name of the organization that registered the ASN.</p>",
+        "IpOrganizationDetails$Isp": "<p>The ISP information for the internet provider.</p>",
+        "IpOrganizationDetails$Org": "<p>The name of the internet provider.</p>",
         "Ipv6CidrBlockAssociation$AssociationId": "<p>The association ID for the IPv6 CIDR block.</p>",
         "Ipv6CidrBlockAssociation$Ipv6CidrBlock": "<p>The IPv6 CIDR block.</p>",
         "Ipv6CidrBlockAssociation$CidrBlockState": "<p>Information about the state of the CIDR block.</p>",
@@ -3102,6 +3276,8 @@
         "Network$DestinationIpV4": "<p>The destination IPv4 address of network-related information about a finding.</p>",
         "Network$DestinationIpV6": "<p>The destination IPv6 address of network-related information about a finding.</p>",
         "Network$DestinationDomain": "<p>The destination domain of network-related information about a finding.</p>",
+        "NetworkConnectionAction$ConnectionDirection": "<p>The direction of the network connection request (<code>IN</code> or <code>OUT</code>).</p>",
+        "NetworkConnectionAction$Protocol": "<p>The protocol used to make the network connection request.</p>",
         "NetworkHeader$Protocol": "<p>The protocol used for the component.</p>",
         "NetworkPathComponent$ComponentId": "<p>The identifier of a component in the network path.</p>",
         "NetworkPathComponent$ComponentType": "<p>The type of component.</p>",
@@ -3136,7 +3312,7 @@
         "Resource$Type": "<p>The type of the resource that details are provided for. If possible, set <code>Type</code> to one of the supported resource types. For example, if the resource is an EC2 instance, then set <code>Type</code> to <code>AwsEc2Instance</code>.</p> <p>If the resource does not match any of the provided types, then set <code>Type</code> to <code>Other</code>. </p>",
         "Resource$Id": "<p>The canonical identifier for the given resource type.</p>",
         "Resource$Region": "<p>The canonical AWS external Region name where this resource is located.</p>",
-        "Resource$ResourceRole": "<p/>",
+        "Resource$ResourceRole": "<p>Identifies the role of the resource in the finding. A resource is either the actor or target of the finding activity,</p>",
         "ResourceConflictException$Message": null,
         "ResourceConflictException$Code": null,
         "ResourceNotFoundException$Message": null,
@@ -3254,6 +3430,24 @@
       "base": "<p>Provides an overview of the patch compliance status for an instance against a selected compliance standard.</p>",
       "refs": {
         "AwsSecurityFinding$PatchSummary": "<p>Provides an overview of the patch compliance status for an instance against a selected compliance standard.</p>"
+      }
+    },
+    "PortProbeAction": {
+      "base": "<p>Provided if <code>ActionType</code> is <code>PORT_PROBE</code>. It provides details about the attempted port probe that was detected.</p>",
+      "refs": {
+        "Action$PortProbeAction": "<p>Included if <code>ActionType</code> is <code>PORT_PROBE</code>. Provides details about the port probe that was detected. </p>"
+      }
+    },
+    "PortProbeDetail": {
+      "base": "<p>A port scan that was part of the port probe. For each scan, PortProbeDetails provides information about the local IP address and port that were scanned, and the remote IP address that the scan originated from.</p>",
+      "refs": {
+        "PortProbeDetailList$member": null
+      }
+    },
+    "PortProbeDetailList": {
+      "base": null,
+      "refs": {
+        "PortProbeAction$PortProbeDetails": "<p>Information about the ports affected by the port probe.</p>"
       }
     },
     "PortRange": {
@@ -3495,7 +3689,7 @@
     "StandardsStatus": {
       "base": null,
       "refs": {
-        "StandardsSubscription$StandardsStatus": "<p>The status of the standards subscription.</p>"
+        "StandardsSubscription$StandardsStatus": "<p>The status of the standard subscription.</p> <p>The status values are as follows:</p> <ul> <li> <p> <code>PENDING</code> - Standard is in the process of being enabled.</p> </li> <li> <p> <code>READY</code> - Standard is enabled.</p> </li> <li> <p> <code>INCOMPLETE</code> - Standard could not be enabled completely. Some controls may not be available.</p> </li> <li> <p> <code>DELETING</code> - Standard is in the process of being disabled.</p> </li> <li> <p> <code>FAILED</code> - Standard could not be disabled.</p> </li> </ul>"
       }
     },
     "StandardsSubscription": {
@@ -3606,7 +3800,7 @@
         "AwsSecurityFindingFilters$ComplianceStatus": "<p>Exclusive to findings that are generated as the result of a check run against a specific rule in a supported standard, such as CIS AWS Foundations. Contains security standard-related finding details.</p>",
         "AwsSecurityFindingFilters$VerificationState": "<p>The veracity of a finding.</p>",
         "AwsSecurityFindingFilters$WorkflowState": "<p>The workflow state of a finding.</p> <p>Note that this field is deprecated. To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.</p>",
-        "AwsSecurityFindingFilters$WorkflowStatus": "<p>The status of the investigation into a finding. Allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that the resource owner has been notified about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
+        "AwsSecurityFindingFilters$WorkflowStatus": "<p>The status of the investigation into a finding. Allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets the workflow status from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p>The record state changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p>The compliance status changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that the resource owner has been notified about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
         "AwsSecurityFindingFilters$RecordState": "<p>The updated record state for the finding.</p>",
         "AwsSecurityFindingFilters$RelatedFindingsProductArn": "<p>The ARN of the solution that generated a related finding.</p>",
         "AwsSecurityFindingFilters$RelatedFindingsId": "<p>The solution-generated identifier for a related finding.</p>",
@@ -3859,8 +4053,8 @@
     "WorkflowStatus": {
       "base": null,
       "refs": {
-        "Workflow$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
-        "WorkflowUpdate$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> </ul>"
+        "Workflow$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets the workflow status from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p> <code>RecordState</code> changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p> <code>ComplianceStatus</code> changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
+        "WorkflowUpdate$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets <code>WorkFlowStatus</code> from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p>The record state changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p>The compliance status changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> </ul>"
       }
     },
     "WorkflowUpdate": {

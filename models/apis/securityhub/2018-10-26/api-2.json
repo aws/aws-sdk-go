@@ -793,6 +793,46 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "Action":{
+      "type":"structure",
+      "members":{
+        "ActionType":{"shape":"NonEmptyString"},
+        "NetworkConnectionAction":{"shape":"NetworkConnectionAction"},
+        "AwsApiCallAction":{"shape":"AwsApiCallAction"},
+        "DnsRequestAction":{"shape":"DnsRequestAction"},
+        "PortProbeAction":{"shape":"PortProbeAction"}
+      }
+    },
+    "ActionLocalIpDetails":{
+      "type":"structure",
+      "members":{
+        "IpAddressV4":{"shape":"NonEmptyString"}
+      }
+    },
+    "ActionLocalPortDetails":{
+      "type":"structure",
+      "members":{
+        "Port":{"shape":"Integer"},
+        "PortName":{"shape":"NonEmptyString"}
+      }
+    },
+    "ActionRemoteIpDetails":{
+      "type":"structure",
+      "members":{
+        "IpAddressV4":{"shape":"NonEmptyString"},
+        "Organization":{"shape":"IpOrganizationDetails"},
+        "Country":{"shape":"Country"},
+        "City":{"shape":"City"},
+        "GeoLocation":{"shape":"GeoLocation"}
+      }
+    },
+    "ActionRemotePortDetails":{
+      "type":"structure",
+      "members":{
+        "Port":{"shape":"Integer"},
+        "PortName":{"shape":"NonEmptyString"}
+      }
+    },
     "ActionTarget":{
       "type":"structure",
       "required":[
@@ -847,6 +887,25 @@
     "AvailabilityZones":{
       "type":"list",
       "member":{"shape":"AvailabilityZone"}
+    },
+    "AwsApiCallAction":{
+      "type":"structure",
+      "members":{
+        "Api":{"shape":"NonEmptyString"},
+        "ServiceName":{"shape":"NonEmptyString"},
+        "CallerType":{"shape":"NonEmptyString"},
+        "RemoteIpDetails":{"shape":"ActionRemoteIpDetails"},
+        "DomainDetails":{"shape":"AwsApiCallActionDomainDetails"},
+        "AffectedResources":{"shape":"FieldMap"},
+        "FirstSeen":{"shape":"NonEmptyString"},
+        "LastSeen":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsApiCallActionDomainDetails":{
+      "type":"structure",
+      "members":{
+        "Domain":{"shape":"NonEmptyString"}
+      }
     },
     "AwsApiGatewayAccessLogSettings":{
       "type":"structure",
@@ -1450,8 +1509,33 @@
         "Attachment":{"shape":"AwsEc2NetworkInterfaceAttachment"},
         "NetworkInterfaceId":{"shape":"NonEmptyString"},
         "SecurityGroups":{"shape":"AwsEc2NetworkInterfaceSecurityGroupList"},
-        "SourceDestCheck":{"shape":"Boolean"}
+        "SourceDestCheck":{"shape":"Boolean"},
+        "IpV6Addresses":{"shape":"AwsEc2NetworkInterfaceIpV6AddressList"},
+        "PrivateIpAddresses":{"shape":"AwsEc2NetworkInterfacePrivateIpAddressList"},
+        "PublicDnsName":{"shape":"NonEmptyString"},
+        "PublicIp":{"shape":"NonEmptyString"}
       }
+    },
+    "AwsEc2NetworkInterfaceIpV6AddressDetail":{
+      "type":"structure",
+      "members":{
+        "IpV6Address":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2NetworkInterfaceIpV6AddressList":{
+      "type":"list",
+      "member":{"shape":"AwsEc2NetworkInterfaceIpV6AddressDetail"}
+    },
+    "AwsEc2NetworkInterfacePrivateIpAddressDetail":{
+      "type":"structure",
+      "members":{
+        "PrivateIpAddress":{"shape":"NonEmptyString"},
+        "PrivateDnsName":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2NetworkInterfacePrivateIpAddressList":{
+      "type":"list",
+      "member":{"shape":"AwsEc2NetworkInterfacePrivateIpAddressDetail"}
     },
     "AwsEc2NetworkInterfaceSecurityGroup":{
       "type":"structure",
@@ -2721,7 +2805,8 @@
         "RelatedFindings":{"shape":"RelatedFindingList"},
         "Note":{"shape":"Note"},
         "Vulnerabilities":{"shape":"VulnerabilityList"},
-        "PatchSummary":{"shape":"PatchSummary"}
+        "PatchSummary":{"shape":"PatchSummary"},
+        "Action":{"shape":"Action"}
       }
     },
     "AwsSecurityFindingFilters":{
@@ -2861,6 +2946,41 @@
         "DeadLetterTargetArn":{"shape":"NonEmptyString"}
       }
     },
+    "AwsSsmComplianceSummary":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"NonEmptyString"},
+        "CompliantCriticalCount":{"shape":"Integer"},
+        "CompliantHighCount":{"shape":"Integer"},
+        "CompliantMediumCount":{"shape":"Integer"},
+        "ExecutionType":{"shape":"NonEmptyString"},
+        "NonCompliantCriticalCount":{"shape":"Integer"},
+        "CompliantInformationalCount":{"shape":"Integer"},
+        "NonCompliantInformationalCount":{"shape":"Integer"},
+        "CompliantUnspecifiedCount":{"shape":"Integer"},
+        "NonCompliantLowCount":{"shape":"Integer"},
+        "NonCompliantHighCount":{"shape":"Integer"},
+        "CompliantLowCount":{"shape":"Integer"},
+        "ComplianceType":{"shape":"NonEmptyString"},
+        "PatchBaselineId":{"shape":"NonEmptyString"},
+        "OverallSeverity":{"shape":"NonEmptyString"},
+        "NonCompliantMediumCount":{"shape":"Integer"},
+        "NonCompliantUnspecifiedCount":{"shape":"Integer"},
+        "PatchGroup":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsSsmPatch":{
+      "type":"structure",
+      "members":{
+        "ComplianceSummary":{"shape":"AwsSsmComplianceSummary"}
+      }
+    },
+    "AwsSsmPatchComplianceDetails":{
+      "type":"structure",
+      "members":{
+        "Patch":{"shape":"AwsSsmPatch"}
+      }
+    },
     "AwsWafWebAclDetails":{
       "type":"structure",
       "members":{
@@ -2991,6 +3111,12 @@
       "type":"list",
       "member":{"shape":"CidrBlockAssociation"}
     },
+    "City":{
+      "type":"structure",
+      "members":{
+        "CityName":{"shape":"NonEmptyString"}
+      }
+    },
     "Compliance":{
       "type":"structure",
       "members":{
@@ -3023,6 +3149,13 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "Country":{
+      "type":"structure",
+      "members":{
+        "CountryCode":{"shape":"NonEmptyString"},
+        "CountryName":{"shape":"NonEmptyString"}
+      }
     },
     "CreateActionTargetRequest":{
       "type":"structure",
@@ -3371,6 +3504,14 @@
       "members":{
       }
     },
+    "DnsRequestAction":{
+      "type":"structure",
+      "members":{
+        "Domain":{"shape":"NonEmptyString"},
+        "Protocol":{"shape":"NonEmptyString"},
+        "Blocked":{"shape":"Boolean"}
+      }
+    },
     "Double":{"type":"double"},
     "EnableImportFindingsForProductRequest":{
       "type":"structure",
@@ -3413,6 +3554,13 @@
       "type":"map",
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
+    },
+    "GeoLocation":{
+      "type":"structure",
+      "members":{
+        "Lon":{"shape":"Double"},
+        "Lat":{"shape":"Double"}
+      }
     },
     "GetEnabledStandardsRequest":{
       "type":"structure",
@@ -3654,6 +3802,15 @@
     "IpFilterList":{
       "type":"list",
       "member":{"shape":"IpFilter"}
+    },
+    "IpOrganizationDetails":{
+      "type":"structure",
+      "members":{
+        "Asn":{"shape":"Integer"},
+        "AsnOrg":{"shape":"NonEmptyString"},
+        "Isp":{"shape":"NonEmptyString"},
+        "Org":{"shape":"NonEmptyString"}
+      }
     },
     "Ipv6CidrBlockAssociation":{
       "type":"structure",
@@ -3902,6 +4059,17 @@
         "DestinationDomain":{"shape":"NonEmptyString"}
       }
     },
+    "NetworkConnectionAction":{
+      "type":"structure",
+      "members":{
+        "ConnectionDirection":{"shape":"NonEmptyString"},
+        "RemoteIpDetails":{"shape":"ActionRemoteIpDetails"},
+        "RemotePortDetails":{"shape":"ActionRemotePortDetails"},
+        "LocalPortDetails":{"shape":"ActionLocalPortDetails"},
+        "Protocol":{"shape":"NonEmptyString"},
+        "Blocked":{"shape":"Boolean"}
+      }
+    },
     "NetworkDirection":{
       "type":"string",
       "enum":[
@@ -4006,6 +4174,25 @@
         "RebootOption":{"shape":"NonEmptyString"},
         "Operation":{"shape":"NonEmptyString"}
       }
+    },
+    "PortProbeAction":{
+      "type":"structure",
+      "members":{
+        "PortProbeDetails":{"shape":"PortProbeDetailList"},
+        "Blocked":{"shape":"Boolean"}
+      }
+    },
+    "PortProbeDetail":{
+      "type":"structure",
+      "members":{
+        "LocalPortDetails":{"shape":"ActionLocalPortDetails"},
+        "LocalIpDetails":{"shape":"ActionLocalIpDetails"},
+        "RemoteIpDetails":{"shape":"ActionRemoteIpDetails"}
+      }
+    },
+    "PortProbeDetailList":{
+      "type":"list",
+      "member":{"shape":"PortProbeDetail"}
     },
     "PortRange":{
       "type":"structure",
@@ -4151,6 +4338,7 @@
         "AwsApiGatewayStage":{"shape":"AwsApiGatewayStageDetails"},
         "AwsApiGatewayRestApi":{"shape":"AwsApiGatewayRestApiDetails"},
         "AwsCloudTrailTrail":{"shape":"AwsCloudTrailTrailDetails"},
+        "AwsSsmPatchCompliance":{"shape":"AwsSsmPatchComplianceDetails"},
         "AwsCertificateManagerCertificate":{"shape":"AwsCertificateManagerCertificateDetails"},
         "AwsRedshiftCluster":{"shape":"AwsRedshiftClusterDetails"},
         "AwsElbLoadBalancer":{"shape":"AwsElbLoadBalancerDetails"},
