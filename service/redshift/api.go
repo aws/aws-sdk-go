@@ -19095,7 +19095,7 @@ type Endpoint struct {
 	Port *int64 `type:"integer"`
 
 	// Describes a connection endpoint.
-	VpcEndpoints []*SpartaProxyVpcEndpoint `locationNameList:"SpartaProxyVpcEndpoint" type:"list"`
+	VpcEndpoints []*VpcEndpoint `locationNameList:"VpcEndpoint" type:"list"`
 }
 
 // String returns the string representation
@@ -19121,7 +19121,7 @@ func (s *Endpoint) SetPort(v int64) *Endpoint {
 }
 
 // SetVpcEndpoints sets the VpcEndpoints field's value.
-func (s *Endpoint) SetVpcEndpoints(v []*SpartaProxyVpcEndpoint) *Endpoint {
+func (s *Endpoint) SetVpcEndpoints(v []*VpcEndpoint) *Endpoint {
 	s.VpcEndpoints = v
 	return s
 }
@@ -24826,32 +24826,6 @@ func (s *SnapshotSortingEntity) SetSortOrder(v string) *SnapshotSortingEntity {
 	return s
 }
 
-// The connection endpoint for connecting an Amazon Redshift cluster through
-// the proxy.
-type SpartaProxyVpcEndpoint struct {
-	_ struct{} `type:"structure"`
-
-	// The connection endpoint ID for connecting an Amazon Redshift cluster through
-	// the proxy.
-	VpcEndpointId *string `type:"string"`
-}
-
-// String returns the string representation
-func (s SpartaProxyVpcEndpoint) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s SpartaProxyVpcEndpoint) GoString() string {
-	return s.String()
-}
-
-// SetVpcEndpointId sets the VpcEndpointId field's value.
-func (s *SpartaProxyVpcEndpoint) SetVpcEndpointId(v string) *SpartaProxyVpcEndpoint {
-	s.VpcEndpointId = &v
-	return s
-}
-
 // Describes a subnet.
 type Subnet struct {
 	_ struct{} `type:"structure"`
@@ -25322,6 +25296,32 @@ func (s *UsageLimit) SetTags(v []*Tag) *UsageLimit {
 // SetUsageLimitId sets the UsageLimitId field's value.
 func (s *UsageLimit) SetUsageLimitId(v string) *UsageLimit {
 	s.UsageLimitId = &v
+	return s
+}
+
+// The connection endpoint for connecting an Amazon Redshift cluster through
+// the proxy.
+type VpcEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The connection endpoint ID for connecting an Amazon Redshift cluster through
+	// the proxy.
+	VpcEndpointId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s VpcEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *VpcEndpoint) SetVpcEndpointId(v string) *VpcEndpoint {
+	s.VpcEndpointId = &v
 	return s
 }
 

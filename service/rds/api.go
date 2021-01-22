@@ -16068,13 +16068,6 @@ type CopyDBClusterParameterGroupInput struct {
 	//
 	//    * Must specify a valid DB cluster parameter group.
 	//
-	//    * If the source DB cluster parameter group is in the same AWS Region as
-	//    the copy, specify a valid DB parameter group identifier, for example my-db-cluster-param-group,
-	//    or a valid ARN.
-	//
-	//    * If the source DB parameter group is in a different AWS Region than the
-	//    copy, specify a valid DB cluster parameter group ARN, for example arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
-	//
 	// SourceDBClusterParameterGroupIdentifier is a required field
 	SourceDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
 
@@ -16412,9 +16405,6 @@ type CopyDBParameterGroupInput struct {
 	// Constraints:
 	//
 	//    * Must specify a valid DB parameter group.
-	//
-	//    * Must specify a valid DB parameter group identifier, for example my-db-param-group,
-	//    or a valid ARN.
 	//
 	// SourceDBParameterGroupIdentifier is a required field
 	SourceDBParameterGroupIdentifier *string `type:"string" required:"true"`
@@ -17359,7 +17349,7 @@ type CreateDBClusterInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The DB engine mode of the DB cluster, either provisioned serverless, parallelquery,
+	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
 	// global, or multimaster.
 	//
 	// The parallelquery engine mode isn't required for Aurora MySQL version 1.23
@@ -18240,7 +18230,8 @@ type CreateDBInstanceInput struct {
 	// PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
-	// parameter isn't specified, no database is created in the DB instance.
+	// parameter isn't specified, a database named postgres is created in the DB
+	// instance.
 	//
 	// Constraints:
 	//
@@ -18267,17 +18258,33 @@ type CreateDBInstanceInput struct {
 	//
 	// Not applicable. Must be null.
 	//
-	// Amazon Aurora
+	// Amazon Aurora MySQL
 	//
-	// The name of the database to create when the primary instance of the DB cluster
-	// is created. If this parameter isn't specified, no database is created in
-	// the DB instance.
+	// The name of the database to create when the primary DB instance of the Aurora
+	// MySQL DB cluster is created. If this parameter isn't specified for an Aurora
+	// MySQL DB cluster, no database is created in the DB cluster.
 	//
 	// Constraints:
 	//
-	//    * Must contain 1 to 64 letters or numbers.
+	//    * It must contain 1 to 64 alphanumeric characters.
 	//
-	//    * Can't be a word reserved by the specified database engine
+	//    * It can't be a word reserved by the database engine.
+	//
+	// Amazon Aurora PostgreSQL
+	//
+	// The name of the database to create when the primary DB instance of the Aurora
+	// PostgreSQL DB cluster is created. If this parameter isn't specified for an
+	// Aurora PostgreSQL DB cluster, a database named postgres is created in the
+	// DB cluster.
+	//
+	// Constraints:
+	//
+	//    * It must contain 1 to 63 alphanumeric characters.
+	//
+	//    * It must begin with a letter or an underscore. Subsequent characters
+	//    can be letters, underscores, or digits (0 to 9).
+	//
+	//    * It can't be a word reserved by the database engine.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -18596,6 +18603,11 @@ type CreateDBInstanceInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -19312,6 +19324,11 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -20651,6 +20668,30 @@ type CreateOptionGroupInput struct {
 
 	// Specifies the name of the engine that this option group should be associated
 	// with.
+	//
+	// Valid Values:
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -27013,6 +27054,36 @@ type DescribeDBEngineVersionsInput struct {
 	DefaultOnly *bool `type:"boolean"`
 
 	// The database engine to return.
+	//
+	// Valid Values:
+	//
+	//    * aurora (for MySQL 5.6-compatible Aurora)
+	//
+	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//
+	//    * aurora-postgresql
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	Engine *string `type:"string"`
 
 	// The database engine version to return.
@@ -29798,6 +29869,30 @@ type DescribeOptionGroupOptionsInput struct {
 
 	// A required parameter. Options available for the given engine name are described.
 	//
+	// Valid Values:
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
+	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
 
@@ -29925,6 +30020,30 @@ type DescribeOptionGroupsInput struct {
 
 	// Filters the list of option groups to only include groups associated with
 	// a specific database engine.
+	//
+	// Valid Values:
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	EngineName *string `type:"string"`
 
 	// This parameter isn't currently supported.
@@ -30070,6 +30189,36 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	DBInstanceClass *string `type:"string"`
 
 	// The name of the engine to retrieve DB instance options for.
+	//
+	// Valid Values:
+	//
+	//    * aurora (for MySQL 5.6-compatible Aurora)
+	//
+	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//
+	//    * aurora-postgresql
+	//
+	//    * mariadb
+	//
+	//    * mysql
+	//
+	//    * oracle-ee
+	//
+	//    * oracle-se2
+	//
+	//    * oracle-se1
+	//
+	//    * oracle-se
+	//
+	//    * postgres
+	//
+	//    * sqlserver-ee
+	//
+	//    * sqlserver-se
+	//
+	//    * sqlserver-ex
+	//
+	//    * sqlserver-web
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
@@ -33831,6 +33980,11 @@ type ModifyDBInstanceInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -40015,6 +40169,11 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
@@ -40666,6 +40825,11 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The upper limit to which Amazon RDS can automatically scale the storage of
 	// the DB instance.
+	//
+	// For more information about this setting, including limitations that apply
+	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
+	// in the Amazon RDS User Guide.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.

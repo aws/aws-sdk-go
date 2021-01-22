@@ -2326,18 +2326,6 @@
         "Event$SourceType": "<p>The source type for this event.</p>"
       }
     },
-    "SpartaProxyVpcEndpoint": {
-      "base": "<p>The connection endpoint for connecting an Amazon Redshift cluster through the proxy.</p>",
-      "refs": {
-        "SpartaProxyVpcEndpointList$member": null
-      }
-    },
-    "SpartaProxyVpcEndpointList": {
-      "base": null,
-      "refs": {
-        "Endpoint$VpcEndpoints": "<p>Describes a connection endpoint.</p>"
-      }
-    },
     "String": {
       "base": null,
       "refs": {
@@ -2766,7 +2754,6 @@
         "SnapshotSchedule$ScheduleIdentifier": "<p>A unique identifier for the schedule.</p>",
         "SnapshotSchedule$ScheduleDescription": "<p>The description of the schedule.</p>",
         "SourceIdsList$member": null,
-        "SpartaProxyVpcEndpoint$VpcEndpointId": "<p>The connection endpoint ID for connecting an Amazon Redshift cluster through the proxy.</p>",
         "Subnet$SubnetIdentifier": "<p>The identifier of the subnet.</p>",
         "Subnet$SubnetStatus": "<p>The status of the subnet.</p>",
         "SubnetIdentifierList$member": null,
@@ -2797,6 +2784,7 @@
         "UsageLimit$ClusterIdentifier": "<p>The identifier of the cluster with a usage limit.</p>",
         "UsageLimitList$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "ValueStringList$member": null,
+        "VpcEndpoint$VpcEndpointId": "<p>The connection endpoint ID for connecting an Amazon Redshift cluster through the proxy.</p>",
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
         "VpcSecurityGroupMembership$Status": "<p>The status of the VPC security group.</p>"
@@ -3140,6 +3128,18 @@
       "refs": {
         "NodeConfigurationOptionsFilter$Values": "<p>List of values. Compare Name using Operator to Values. If filter Name is NumberOfNodes, then values can range from 0 to 200. If filter Name is EstimatedDiskUtilizationPercent, then values can range from 0 to 100. For example, filter NumberOfNodes (name) GT (operator) 3 (values).</p>",
         "ScheduledActionFilter$Values": "<p>List of values. Compare if the value (of type defined by <code>Name</code>) equals an item in the list of scheduled actions. </p>"
+      }
+    },
+    "VpcEndpoint": {
+      "base": "<p>The connection endpoint for connecting an Amazon Redshift cluster through the proxy.</p>",
+      "refs": {
+        "VpcEndpointsList$member": null
+      }
+    },
+    "VpcEndpointsList": {
+      "base": null,
+      "refs": {
+        "Endpoint$VpcEndpoints": "<p>Describes a connection endpoint.</p>"
       }
     },
     "VpcSecurityGroupIdList": {

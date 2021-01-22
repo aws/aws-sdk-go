@@ -3190,7 +3190,7 @@
       "members":{
         "Address":{"shape":"String"},
         "Port":{"shape":"Integer"},
-        "VpcEndpoints":{"shape":"SpartaProxyVpcEndpointList"}
+        "VpcEndpoints":{"shape":"VpcEndpointsList"}
       }
     },
     "Event":{
@@ -5120,19 +5120,6 @@
         "scheduled-action"
       ]
     },
-    "SpartaProxyVpcEndpoint":{
-      "type":"structure",
-      "members":{
-        "VpcEndpointId":{"shape":"String"}
-      }
-    },
-    "SpartaProxyVpcEndpointList":{
-      "type":"list",
-      "member":{
-        "shape":"SpartaProxyVpcEndpoint",
-        "locationName":"SpartaProxyVpcEndpoint"
-      }
-    },
     "String":{
       "type":"string",
       "max":2147483647
@@ -5527,6 +5514,19 @@
       "member":{
         "shape":"String",
         "locationName":"item"
+      }
+    },
+    "VpcEndpoint":{
+      "type":"structure",
+      "members":{
+        "VpcEndpointId":{"shape":"String"}
+      }
+    },
+    "VpcEndpointsList":{
+      "type":"list",
+      "member":{
+        "shape":"VpcEndpoint",
+        "locationName":"VpcEndpoint"
       }
     },
     "VpcSecurityGroupIdList":{

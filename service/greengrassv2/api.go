@@ -292,7 +292,7 @@ func (c *GreengrassV2) CreateDeploymentRequest(input *CreateDeploymentInput) (re
 // of an existing deployment. This operation returns the revision number of
 // the new deployment when you create it.
 //
-// For more information, see the Create deployments (https://docs.aws.amazon.com/greengrass/v2/latest/developerguide/create-deployments.html)
+// For more information, see the Create deployments (https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html)
 // in the AWS IoT Greengrass V2 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -783,9 +783,9 @@ func (c *GreengrassV2) GetComponentVersionArtifactRequest(input *GetComponentVer
 
 // GetComponentVersionArtifact API operation for AWS IoT Greengrass V2.
 //
-// Gets the pre-signed URL to a component artifact in an S3 bucket. Core devices
-// can call this operation to identify the URL that they can use to download
-// an artifact to install.
+// Gets the pre-signed URL to download a public component artifact. Core devices
+// call this operation to identify the URL that they can use to download an
+// artifact to install.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2077,7 +2077,7 @@ func (c *GreengrassV2) ResolveComponentCandidatesRequest(input *ResolveComponent
 //
 // To use this operation, you must use the data plane API endpoint and authenticate
 // with an AWS IoT device certificate. For more information, see AWS IoT Greengrass
-// endpoints and quotas (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/general/latest/gr/greengrass.html).
+// endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/greengrass.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3114,7 +3114,7 @@ type CreateComponentVersionInput struct {
 	LambdaFunction *LambdaFunctionRecipeSource `locationName:"lambdaFunction" type:"structure"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -3259,7 +3259,7 @@ type CreateDeploymentInput struct {
 	IotJobConfiguration *DeploymentIoTJobConfiguration `locationName:"iotJobConfiguration" type:"structure"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
@@ -3605,7 +3605,7 @@ type DeploymentComponentUpdatePolicy struct {
 	//    (https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-subscribetocomponentupdates)
 	//    IPC operation to receive these notifications. Then, components can respond
 	//    with the DeferComponentUpdate (https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-defercomponentupdate)
-	//    IPC operation. For more information, see the Create deployments (https://docs.aws.amazon.com/greengrass/v2/latest/developerguide/create-deployments.html)
+	//    IPC operation. For more information, see Create deployments (https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html)
 	//    in the AWS IoT Greengrass V2 Developer Guide.
 	//
 	//    * SKIP_NOTIFY_COMPONENTS – The deployment doesn't notify components
@@ -3650,7 +3650,7 @@ func (s *DeploymentComponentUpdatePolicy) SetTimeoutInSeconds(v int64) *Deployme
 // IPC operation to receive notifications when a deployment specifies a configuration
 // update. Then, components can respond with the SendConfigurationValidityReport
 // (https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-sendconfigurationvalidityreport)
-// IPC operation. For more information, see the Create deployments (https://docs.aws.amazon.com/greengrass/v2/latest/developerguide/create-deployments.html)
+// IPC operation. For more information, see Create deployments (https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html)
 // in the AWS IoT Greengrass V2 Developer Guide.
 type DeploymentConfigurationValidationPolicy struct {
 	_ struct{} `type:"structure"`
@@ -3864,7 +3864,7 @@ type DescribeComponentOutput struct {
 	Status *CloudComponentStatus `locationName:"status" type:"structure"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -4125,7 +4125,7 @@ type GetComponentOutput struct {
 	RecipeOutputFormat *string `locationName:"recipeOutputFormat" type:"string" required:"true" enum:"RecipeOutputFormat"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -4162,12 +4162,18 @@ type GetComponentVersionArtifactInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the component version.
+	// of the component version. Specify the ARN of a public component version.
 	//
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
 
 	// The name of the artifact.
+	//
+	// You can use the GetComponent (https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetComponent.html)
+	// operation to download the component recipe, which includes the URI of the
+	// artifact. The artifact name is the section of the URI after the scheme. For
+	// example, in the artifact URI greengrass:SomeArtifact.zip, the artifact name
+	// is SomeArtifact.zip.
 	//
 	// ArtifactName is a required field
 	ArtifactName *string `location:"uri" locationName:"artifactName" min:"1" type:"string" required:"true"`
@@ -4220,7 +4226,7 @@ func (s *GetComponentVersionArtifactInput) SetArtifactName(v string) *GetCompone
 type GetComponentVersionArtifactOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The URL to the artifact.
+	// The URL of the artifact.
 	//
 	// PreSignedUrl is a required field
 	PreSignedUrl *string `locationName:"preSignedUrl" min:"1" type:"string" required:"true"`
@@ -4316,7 +4322,7 @@ type GetCoreDeviceOutput struct {
 	Status *string `locationName:"status" type:"string" enum:"CoreDeviceStatus"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -4461,7 +4467,7 @@ type GetDeploymentOutput struct {
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
@@ -6300,7 +6306,7 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -6617,7 +6623,7 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/tag-resources.html)
+	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
 	// in the AWS IoT Greengrass V2 Developer Guide.
 	//
 	// Tags is a required field
