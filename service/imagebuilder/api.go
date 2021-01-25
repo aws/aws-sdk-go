@@ -14699,6 +14699,9 @@ const (
 
 	// EbsVolumeTypeGp2 is a EbsVolumeType enum value
 	EbsVolumeTypeGp2 = "gp2"
+	
+	// EbsVolumeTypeGp3 is a EbsVolumeType enum value
+	EbsVolumeTypeGp3 = "gp3"
 
 	// EbsVolumeTypeSc1 is a EbsVolumeType enum value
 	EbsVolumeTypeSc1 = "sc1"
@@ -14714,6 +14717,7 @@ func EbsVolumeType_Values() []string {
 		EbsVolumeTypeIo1,
 		EbsVolumeTypeIo2,
 		EbsVolumeTypeGp2,
+		EbsVolumeTypeGp3,
 		EbsVolumeTypeSc1,
 		EbsVolumeTypeSt1,
 	}
