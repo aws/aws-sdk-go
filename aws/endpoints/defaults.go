@@ -770,6 +770,7 @@ var awsPartition = partition{
 		"appmesh": service{
 
 			Endpoints: endpoints{
+				"af-south-1":     endpoint{},
 				"ap-east-1":      endpoint{},
 				"ap-northeast-1": endpoint{},
 				"ap-northeast-2": endpoint{},
@@ -8698,7 +8699,12 @@ var awsusgovPartition = partition{
 						Region: "us-gov-east-1",
 					},
 				},
-				"us-gov-east-1": endpoint{},
+				"us-gov-east-1": endpoint{
+					Hostname: "greengrass.us-gov-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-east-1",
+					},
+				},
 				"us-gov-west-1": endpoint{
 					Hostname: "greengrass.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
