@@ -1,3 +1,9 @@
+Release v1.36.32 (2021-01-26)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service documentation
+
 Release v1.36.31 (2021-01-22)
 ===
 

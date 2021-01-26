@@ -1193,7 +1193,8 @@ func (c *Backup) DescribeGlobalSettingsRequest(input *DescribeGlobalSettingsInpu
 
 // DescribeGlobalSettings API operation for AWS Backup.
 //
-// The current feature settings for the AWS Account.
+// Describes the global settings of the AWS account, including whether it is
+// opted in to cross-account backup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5025,7 +5026,7 @@ func (c *Backup) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsInput) (
 
 // UpdateGlobalSettings API operation for AWS Backup.
 //
-// Updates the current global settings for the AWS Account. Use the DescribeGlobalSettings
+// Updates the current global settings for the AWS account. Use the DescribeGlobalSettings
 // API to determine the current settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5127,6 +5128,8 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 // 90 days greater than the “transition to cold after days” setting. The
 // “transition to cold after days” setting cannot be changed after a backup
 // has been transitioned to cold.
+//
+// Only Amazon EFS file system backups can be transitioned to cold storage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5285,8 +5288,11 @@ type AdvancedBackupSetting struct {
 	// Windows Backup (https://docs.aws.amazon.com/aws-backup/latest/devguide/windows-backups.html).
 	BackupOptions map[string]*string `type:"map"`
 
-	// The type of AWS resource to be backed up. For VSS Windows backups, the only
-	// supported resource type is Amazon EC2.
+	// Specifies an object containing resource type and backup options. The only
+	// supported resource type is Amazon EC2 instances with Windows VSS. For an
+	// CloudFormation example, see the sample CloudFormation template to enable
+	// Windows VSS (https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.html)
+	// in the AWS Backup User Guide.
 	//
 	// Valid values: EC2.
 	ResourceType *string `type:"string"`
@@ -5392,6 +5398,8 @@ func (s *AlreadyExistsException) RequestID() string {
 // 90 days greater than the “transition to cold after days” setting. The
 // “transition to cold after days” setting cannot be changed after a backup
 // has been transitioned to cold.
+//
+// Only Amazon EFS file system backups can be transitioned to cold storage.
 type CalculatedLifecycle struct {
 	_ struct{} `type:"structure"`
 
@@ -5514,6 +5522,8 @@ type CopyAction struct {
 	// setting must be 90 days greater than the “transition to cold after days”
 	// setting. The “transition to cold after days” setting cannot be changed
 	// after a backup has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 }
 
@@ -5971,8 +5981,8 @@ type CreateBackupVaultInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the AWS Region where they are created. They consist of letters, numbers,
+	// and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -7040,7 +7050,7 @@ type DescribeGlobalSettingsOutput struct {
 	// A list of resources along with the opt-in preferences for the account.
 	GlobalSettings map[string]*string `type:"map"`
 
-	// The date and time that the global settings was last updated. This update
+	// The date and time that the global settings were last updated. This update
 	// is in Unix format and Coordinated Universal Time (UTC). The value of LastUpdateTime
 	// is accurate to milliseconds. For example, the value 1516925490.087 represents
 	// Friday, January 26, 2018 12:11:30.087 AM.
@@ -7282,6 +7292,8 @@ type DescribeRecoveryPointOutput struct {
 	// must be 90 days greater than the “transition to cold after days” setting.
 	// The “transition to cold after days” setting cannot be changed after a
 	// backup has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An ARN that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.
@@ -8453,6 +8465,8 @@ type GetSupportedResourceTypesOutput struct {
 	//
 	//    * RDS for Amazon Relational Database Service
 	//
+	//    * Aurora for Amazon Aurora
+	//
 	//    * Storage Gateway for AWS Storage Gateway
 	ResourceTypes []*string `type:"list"`
 }
@@ -8661,8 +8675,10 @@ type Job struct {
 	// Friday, January 26, 2018 12:11:30.087 AM.
 	ExpectedCompletionDate *time.Time `type:"timestamp"`
 
-	// Specifies the IAM role ARN used to create the target recovery point; for
-	// example, arn:aws:iam::123456789012:role/S3Access.
+	// Specifies the IAM role ARN used to create the target recovery point. IAM
+	// roles other than the default role must include either AWSBackup or AwsBackup
+	// in the role name. For example, arn:aws:iam::123456789012:role/AWSBackupRDSAccess.
+	// Role names without those strings lack permissions to perform backup jobs.
 	IamRoleArn *string `type:"string"`
 
 	// Contains an estimated percentage complete of a job at the time the job status
@@ -8836,6 +8852,8 @@ func (s *Job) SetStatusMessage(v string) *Job {
 // setting must be 90 days greater than the “transition to cold after days”
 // setting. The “transition to cold after days” setting cannot be changed
 // after a backup has been transitioned to cold.
+//
+// Only Amazon EFS file system backups can be transitioned to cold storage.
 type Lifecycle struct {
 	_ struct{} `type:"structure"`
 
@@ -8938,6 +8956,9 @@ type ListBackupJobsInput struct {
 
 	// The account ID to list the jobs from. Returns only backup jobs associated
 	// with the specified account ID.
+	//
+	// If used from an AWS Organizations management account, passing * returns all
+	// jobs across the organization.
 	ByAccountId *string `location:"querystring" locationName:"accountId" type:"string"`
 
 	// Returns only backup jobs that will be stored in the specified backup vault.
@@ -8967,6 +8988,8 @@ type ListBackupJobsInput struct {
 	//    * EFS for Amazon Elastic File System
 	//
 	//    * RDS for Amazon Relational Database Service
+	//
+	//    * Aurora for Amazon Aurora
 	//
 	//    * Storage Gateway for AWS Storage Gateway
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
@@ -9593,6 +9616,8 @@ type ListCopyJobsInput struct {
 	//    * EFS for Amazon Elastic File System
 	//
 	//    * RDS for Amazon Relational Database Service
+	//
+	//    * Aurora for Amazon Aurora
 	//
 	//    * Storage Gateway for AWS Storage Gateway
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
@@ -10882,6 +10907,8 @@ type RecoveryPointByBackupVault struct {
 	// 90 days greater than the “transition to cold after days” setting. The
 	// “transition to cold after days” setting cannot be changed after a backup
 	// has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a recovery point;
@@ -11379,6 +11406,8 @@ type Rule struct {
 	// 90 days greater than the “transition to cold after days” setting. The
 	// “transition to cold after days” setting cannot be changed after a backup
 	// has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An array of key-value pair strings that are assigned to resources that are
@@ -11499,6 +11528,8 @@ type RuleInput struct {
 	// 90 days greater than the “transition to cold after days” setting. The
 	// “transition to cold after days” setting cannot be changed after a backup
 	// has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// To help organize your resources, you can assign your own metadata to the
@@ -11622,7 +11653,8 @@ type Selection struct {
 
 	// An array of conditions used to specify a set of resources to assign to a
 	// backup plan; for example, "StringEquals": {"ec2:ResourceTag/Department":
-	// "accounting".
+	// "accounting". Assigns the backup plan to every resource with at least one
+	// matching tag.
 	ListOfTags []*Condition `type:"list"`
 
 	// An array of strings that contain Amazon Resource Names (ARNs) of resources
@@ -11850,8 +11882,11 @@ type StartBackupJobInput struct {
 	// BackupVaultName is a required field
 	BackupVaultName *string `type:"string" required:"true"`
 
-	// A value in minutes after a backup job is successfully started before it must
-	// be completed or it will be canceled by AWS Backup. This value is optional.
+	// A value in minutes during which a successfully started backup must complete,
+	// or else AWS Backup will cancel the job. This value is optional. This value
+	// begins counting down from when the backup was scheduled. It does not add
+	// additional time for StartWindowMinutes, or if the backup started later than
+	// scheduled.
 	CompleteWindowMinutes *int64 `type:"long"`
 
 	// Specifies the IAM role ARN used to create the target recovery point; for
@@ -11873,6 +11908,8 @@ type StartBackupJobInput struct {
 	// 90 days greater than the “transition to cold after days” setting. The
 	// “transition to cold after days” setting cannot be changed after a backup
 	// has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// To help organize your resources, you can assign your own metadata to the
@@ -11886,7 +11923,8 @@ type StartBackupJobInput struct {
 	ResourceArn *string `type:"string" required:"true"`
 
 	// A value in minutes after a backup is scheduled before a job will be canceled
-	// if it doesn't start successfully. This value is optional.
+	// if it doesn't start successfully. This value is optional, and the default
+	// is 8 hours.
 	StartWindowMinutes *int64 `type:"long"`
 }
 
@@ -11979,7 +12017,7 @@ type StartBackupJobOutput struct {
 	// Uniquely identifies a request to AWS Backup to back up a resource.
 	BackupJobId *string `type:"string"`
 
-	// The date and time that a backup job is started, in Unix format and Coordinated
+	// The date and time that a backup job is created, in Unix format and Coordinated
 	// Universal Time (UTC). The value of CreationDate is accurate to milliseconds.
 	// For example, the value 1516925490.087 represents Friday, January 26, 2018
 	// 12:11:30.087 AM.
@@ -12044,6 +12082,8 @@ type StartCopyJobInput struct {
 	// setting must be 90 days greater than the “transition to cold after days”
 	// setting. The “transition to cold after days” setting cannot be changed
 	// after a backup has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An ARN that uniquely identifies a recovery point to use for the copy job;
@@ -12135,7 +12175,7 @@ type StartCopyJobOutput struct {
 	// Uniquely identifies a copy job.
 	CopyJobId *string `type:"string"`
 
-	// The date and time that a copy job is started, in Unix format and Coordinated
+	// The date and time that a copy job is created, in Unix format and Coordinated
 	// Universal Time (UTC). The value of CreationDate is accurate to milliseconds.
 	// For example, the value 1516925490.087 represents Friday, January 26, 2018
 	// 12:11:30.087 AM.
@@ -12207,9 +12247,10 @@ type StartRestoreJobInput struct {
 	//    * newFileSystem: A Boolean value that, if true, specifies that the recovery
 	//    point is restored to a new Amazon EFS file system.
 	//
-	//    * ItemsToRestore : A serialized list of up to five strings where each
-	//    string is a file path. Use ItemsToRestore to restore specific files or
-	//    directories rather than the entire file system. This parameter is optional.
+	//    * ItemsToRestore : An array of one to five strings where each string is
+	//    a file path. Use ItemsToRestore to restore specific files or directories
+	//    rather than the entire file system. This parameter is optional. For example,
+	//    "itemsToRestore":"[\"/my.test\"]".
 	//
 	// Metadata is a required field
 	Metadata map[string]*string `type:"map" required:"true" sensitive:"true"`
@@ -12230,6 +12271,8 @@ type StartRestoreJobInput struct {
 	//    * EFS for Amazon Elastic File System
 	//
 	//    * RDS for Amazon Relational Database Service
+	//
+	//    * Aurora for Amazon Aurora
 	//
 	//    * Storage Gateway for AWS Storage Gateway
 	ResourceType *string `type:"string"`
@@ -12773,6 +12816,8 @@ type UpdateRecoveryPointLifecycleOutput struct {
 	// 90 days greater than the “transition to cold after days” setting. The
 	// “transition to cold after days” setting cannot be changed after a backup
 	// has been transitioned to cold.
+	//
+	// Only Amazon EFS file system backups can be transitioned to cold storage.
 	Lifecycle *Lifecycle `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a recovery point;
