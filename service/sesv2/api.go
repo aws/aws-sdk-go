@@ -765,6 +765,15 @@ func (c *SESV2) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req
 // identifies the public key that you want to use for DKIM authentication) and
 // a private key.
 //
+// When you verify a domain, this operation provides a set of DKIM tokens, which
+// you can convert into CNAME tokens. You add these CNAME tokens to the DNS
+// configuration for your domain. Your domain is verified when Amazon SES detects
+// these records in the DNS configuration for your domain. For some DNS providers,
+// it can take 72 hours or more to complete the domain verification process.
+//
+// Additionally, you can associate an existing configuration set with the email
+// identity that you're verifying.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -787,6 +796,9 @@ func (c *SESV2) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req
 //
 //   * ConcurrentModificationException
 //   The resource is being modified by another operation or thread.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateEmailIdentity
 func (c *SESV2) CreateEmailIdentity(input *CreateEmailIdentityInput) (*CreateEmailIdentityOutput, error) {
@@ -6352,6 +6364,92 @@ func (c *SESV2) PutDeliverabilityDashboardOptionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opPutEmailIdentityConfigurationSetAttributes = "PutEmailIdentityConfigurationSetAttributes"
+
+// PutEmailIdentityConfigurationSetAttributesRequest generates a "aws/request.Request" representing the
+// client's request for the PutEmailIdentityConfigurationSetAttributes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutEmailIdentityConfigurationSetAttributes for more information on using the PutEmailIdentityConfigurationSetAttributes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutEmailIdentityConfigurationSetAttributesRequest method.
+//    req, resp := client.PutEmailIdentityConfigurationSetAttributesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityConfigurationSetAttributes
+func (c *SESV2) PutEmailIdentityConfigurationSetAttributesRequest(input *PutEmailIdentityConfigurationSetAttributesInput) (req *request.Request, output *PutEmailIdentityConfigurationSetAttributesOutput) {
+	op := &request.Operation{
+		Name:       opPutEmailIdentityConfigurationSetAttributes,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/identities/{EmailIdentity}/configuration-set",
+	}
+
+	if input == nil {
+		input = &PutEmailIdentityConfigurationSetAttributesInput{}
+	}
+
+	output = &PutEmailIdentityConfigurationSetAttributesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutEmailIdentityConfigurationSetAttributes API operation for Amazon Simple Email Service.
+//
+// Used to associate a configuration set with an email identity.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation PutEmailIdentityConfigurationSetAttributes for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/PutEmailIdentityConfigurationSetAttributes
+func (c *SESV2) PutEmailIdentityConfigurationSetAttributes(input *PutEmailIdentityConfigurationSetAttributesInput) (*PutEmailIdentityConfigurationSetAttributesOutput, error) {
+	req, out := c.PutEmailIdentityConfigurationSetAttributesRequest(input)
+	return out, req.Send()
+}
+
+// PutEmailIdentityConfigurationSetAttributesWithContext is the same as PutEmailIdentityConfigurationSetAttributes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutEmailIdentityConfigurationSetAttributes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) PutEmailIdentityConfigurationSetAttributesWithContext(ctx aws.Context, input *PutEmailIdentityConfigurationSetAttributesInput, opts ...request.Option) (*PutEmailIdentityConfigurationSetAttributesOutput, error) {
+	req, out := c.PutEmailIdentityConfigurationSetAttributesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutEmailIdentityDkimAttributes = "PutEmailIdentityDkimAttributes"
 
 // PutEmailIdentityDkimAttributesRequest generates a "aws/request.Request" representing the
@@ -9745,6 +9843,11 @@ func (s *CreateDeliverabilityTestReportOutput) SetReportId(v string) *CreateDeli
 type CreateEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration set to use by default when sending from this identity.
+	// Note that any configuration set defined in the email sending request takes
+	// precedence.
+	ConfigurationSetName *string `type:"string"`
+
 	// If your request includes this object, Amazon SES configures the identity
 	// to use Bring Your Own DKIM (BYODKIM) for DKIM authentication purposes, as
 	// opposed to the default method, Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
@@ -9802,6 +9905,12 @@ func (s *CreateEmailIdentityInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *CreateEmailIdentityInput) SetConfigurationSetName(v string) *CreateEmailIdentityInput {
+	s.ConfigurationSetName = &v
+	return s
 }
 
 // SetDkimSigningAttributes sets the DkimSigningAttributes field's value.
@@ -13303,6 +13412,9 @@ func (s *GetEmailIdentityInput) SetEmailIdentity(v string) *GetEmailIdentityInpu
 type GetEmailIdentityOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration set used by default when sending from this identity.
+	ConfigurationSetName *string `type:"string"`
+
 	// An object that contains information about the DKIM attributes for the identity.
 	DkimAttributes *DkimAttributes `type:"structure"`
 
@@ -13346,6 +13458,12 @@ func (s GetEmailIdentityOutput) String() string {
 // GoString returns the string representation
 func (s GetEmailIdentityOutput) GoString() string {
 	return s.String()
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *GetEmailIdentityOutput) SetConfigurationSetName(v string) *GetEmailIdentityOutput {
+	s.ConfigurationSetName = &v
+	return s
 }
 
 // SetDkimAttributes sets the DkimAttributes field's value.
@@ -16678,6 +16796,74 @@ func (s PutDeliverabilityDashboardOptionOutput) String() string {
 
 // GoString returns the string representation
 func (s PutDeliverabilityDashboardOptionOutput) GoString() string {
+	return s.String()
+}
+
+// A request to associate a configuration set with an email identity.
+type PutEmailIdentityConfigurationSetAttributesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration set that you want to associate with an email identity.
+	ConfigurationSetName *string `type:"string"`
+
+	// The email address or domain that you want to associate with a configuration
+	// set.
+	//
+	// EmailIdentity is a required field
+	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutEmailIdentityConfigurationSetAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEmailIdentityConfigurationSetAttributesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutEmailIdentityConfigurationSetAttributesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutEmailIdentityConfigurationSetAttributesInput"}
+	if s.EmailIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailIdentity"))
+	}
+	if s.EmailIdentity != nil && len(*s.EmailIdentity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailIdentity", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationSetName sets the ConfigurationSetName field's value.
+func (s *PutEmailIdentityConfigurationSetAttributesInput) SetConfigurationSetName(v string) *PutEmailIdentityConfigurationSetAttributesInput {
+	s.ConfigurationSetName = &v
+	return s
+}
+
+// SetEmailIdentity sets the EmailIdentity field's value.
+func (s *PutEmailIdentityConfigurationSetAttributesInput) SetEmailIdentity(v string) *PutEmailIdentityConfigurationSetAttributesInput {
+	s.EmailIdentity = &v
+	return s
+}
+
+// If the action is successful, the service sends back an HTTP 200 response
+// with an empty HTTP body.
+type PutEmailIdentityConfigurationSetAttributesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEmailIdentityConfigurationSetAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEmailIdentityConfigurationSetAttributesOutput) GoString() string {
 	return s.String()
 }
 

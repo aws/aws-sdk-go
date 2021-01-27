@@ -2982,6 +2982,7 @@
         "ApplyImmediately":{"shape":"Boolean"},
         "CacheNodeType":{"shape":"String"},
         "EngineVersion":{"shape":"String"},
+        "CacheParameterGroupName":{"shape":"String"},
         "GlobalReplicationGroupDescription":{"shape":"String"},
         "AutomaticFailoverEnabled":{"shape":"BooleanOptional"}
       }

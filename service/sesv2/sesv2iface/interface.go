@@ -348,6 +348,10 @@ type SESV2API interface {
 	PutDeliverabilityDashboardOptionWithContext(aws.Context, *sesv2.PutDeliverabilityDashboardOptionInput, ...request.Option) (*sesv2.PutDeliverabilityDashboardOptionOutput, error)
 	PutDeliverabilityDashboardOptionRequest(*sesv2.PutDeliverabilityDashboardOptionInput) (*request.Request, *sesv2.PutDeliverabilityDashboardOptionOutput)
 
+	PutEmailIdentityConfigurationSetAttributes(*sesv2.PutEmailIdentityConfigurationSetAttributesInput) (*sesv2.PutEmailIdentityConfigurationSetAttributesOutput, error)
+	PutEmailIdentityConfigurationSetAttributesWithContext(aws.Context, *sesv2.PutEmailIdentityConfigurationSetAttributesInput, ...request.Option) (*sesv2.PutEmailIdentityConfigurationSetAttributesOutput, error)
+	PutEmailIdentityConfigurationSetAttributesRequest(*sesv2.PutEmailIdentityConfigurationSetAttributesInput) (*request.Request, *sesv2.PutEmailIdentityConfigurationSetAttributesOutput)
+
 	PutEmailIdentityDkimAttributes(*sesv2.PutEmailIdentityDkimAttributesInput) (*sesv2.PutEmailIdentityDkimAttributesOutput, error)
 	PutEmailIdentityDkimAttributesWithContext(aws.Context, *sesv2.PutEmailIdentityDkimAttributesInput, ...request.Option) (*sesv2.PutEmailIdentityDkimAttributesOutput, error)
 	PutEmailIdentityDkimAttributesRequest(*sesv2.PutEmailIdentityDkimAttributesInput) (*request.Request, *sesv2.PutEmailIdentityDkimAttributesOutput)

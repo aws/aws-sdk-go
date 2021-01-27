@@ -709,7 +709,8 @@
       "refs": {
         "CreateElasticsearchDomainRequest$EncryptionAtRestOptions": "<p>Specifies the Encryption At Rest Options.</p>",
         "ElasticsearchDomainStatus$EncryptionAtRestOptions": "<p> Specifies the status of the <code>EncryptionAtRestOptions</code>.</p>",
-        "EncryptionAtRestOptionsStatus$Options": "<p> Specifies the Encryption At Rest options for the specified Elasticsearch domain.</p>"
+        "EncryptionAtRestOptionsStatus$Options": "<p> Specifies the Encryption At Rest options for the specified Elasticsearch domain.</p>",
+        "UpdateElasticsearchDomainConfigRequest$EncryptionAtRestOptions": "<p>Specifies the Encryption At Rest Options.</p>"
       }
     },
     "EncryptionAtRestOptionsStatus": {
@@ -1106,7 +1107,8 @@
       "refs": {
         "CreateElasticsearchDomainRequest$NodeToNodeEncryptionOptions": "<p>Specifies the NodeToNodeEncryptionOptions.</p>",
         "ElasticsearchDomainStatus$NodeToNodeEncryptionOptions": "<p>Specifies the status of the <code>NodeToNodeEncryptionOptions</code>.</p>",
-        "NodeToNodeEncryptionOptionsStatus$Options": "<p>Specifies the node-to-node encryption options for the specified Elasticsearch domain.</p>"
+        "NodeToNodeEncryptionOptionsStatus$Options": "<p>Specifies the node-to-node encryption options for the specified Elasticsearch domain.</p>",
+        "UpdateElasticsearchDomainConfigRequest$NodeToNodeEncryptionOptions": "<p>Specifies the NodeToNodeEncryptionOptions.</p>"
       }
     },
     "NodeToNodeEncryptionOptionsStatus": {

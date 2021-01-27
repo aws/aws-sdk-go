@@ -1199,11 +1199,23 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // where one of the clusters is a read/write primary and the others are read-only
 // replicas. Writes to the primary are asynchronously propagated to the replicas.
 //
-// A Redis (cluster mode enabled) replication group is a collection of 1 to
-// 90 node groups (shards). Each node group (shard) has one read/write primary
-// node and up to 5 read-only replica nodes. Writes to the primary are asynchronously
-// propagated to the replicas. Redis (cluster mode enabled) replication groups
-// partition the data across node groups (shards).
+// A Redis cluster-mode enabled cluster is comprised of from 1 to 90 shards
+// (API/CLI: node groups). Each shard has a primary node and up to 5 read-only
+// replica nodes. The configuration can range from 90 shards and 0 replicas
+// to 15 shards and 5 replicas, which is the maximum number or replicas allowed.
+//
+// The node or shard limit can be increased to a maximum of 500 per cluster
+// if the Redis engine version is 5.0.6 or higher. For example, you can choose
+// to configure a 500 node cluster that ranges between 83 shards (one primary
+// and 5 replicas per shard) and 500 shards (single primary and no replicas).
+// Make sure there are enough available IP addresses to accommodate the increase.
+// Common pitfalls include the subnets in the subnet group have too small a
+// CIDR range or the subnets are shared and heavily used by other clusters.
+// For more information, see Creating a Subnet Group (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SubnetGroups.Creating.html).
+// For versions below 5.0.6, the limit is 250 per cluster.
+//
+// To request a limit increase, see AWS Service Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// and choose the limit type Nodes per cluster per instance type.
 //
 // When a Redis (cluster mode disabled) replication group has been successfully
 // created, you can add one or more read replicas to it, up to a total of 5
@@ -2661,8 +2673,8 @@ func (c *ElastiCache) DeleteUserGroupRequest(input *DeleteUserGroupInput) (req *
 
 // DeleteUserGroup API operation for Amazon ElastiCache.
 //
-// For Redis engine version 6.x onwards: Deletes a ser group. The user group
-// must first be disassociated from the replcation group before it can be deleted.
+// For Redis engine version 6.x onwards: Deletes a user group. The user group
+// must first be disassociated from the replication group before it can be deleted.
 // For more information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5464,7 +5476,7 @@ func (c *ElastiCache) IncreaseReplicaCountRequest(input *IncreaseReplicaCountInp
 
 // IncreaseReplicaCount API operation for Amazon ElastiCache.
 //
-// Dynamically increases the number of replics in a Redis (cluster mode disabled)
+// Dynamically increases the number of replicas in a Redis (cluster mode disabled)
 // replication group or the number of replica nodes in one or more node groups
 // (shards) of a Redis (cluster mode enabled) replication group. This operation
 // is performed with no cluster down time.
@@ -6600,7 +6612,11 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 
 // PurchaseReservedCacheNodesOffering API operation for Amazon ElastiCache.
 //
-// Allows you to purchase a reserved cache node offering.
+// Allows you to purchase a reserved cache node offering. Reserved nodes are
+// not eligible for cancellation and are non-refundable. For more information,
+// see Managing Costs with Reserved Nodes (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/reserved-nodes.html)
+// for Redis or Managing Costs with Reserved Nodes (https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/reserved-nodes.html)
+// for Memcached.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7831,9 +7847,9 @@ type CacheCluster struct {
 	// library.
 	ClientDownloadLandingPage *string `type:"string"`
 
-	// Represents a Memcached cluster endpoint which, if Automatic Discovery is
-	// enabled on the cluster, can be used by an application to connect to any node
-	// in the cluster. The configuration endpoint will always have .cfg in it.
+	// Represents a Memcached cluster endpoint which can be used by an application
+	// to connect to any node in the cluster. The configuration endpoint will always
+	// have .cfg in it.
 	//
 	// Example: mem-3.9dvc4r.cfg.usw2.cache.amazonaws.com:11211
 	ConfigurationEndpoint *Endpoint `type:"structure"`
@@ -10053,9 +10069,6 @@ type CreateReplicationGroupInput struct {
 	// The name of the parameter group to associate with this replication group.
 	// If this argument is omitted, the default cache parameter group for the specified
 	// engine is used.
-	//
-	// If you are restoring to an engine version that is different than the original,
-	// you must specify the default version of that version. For example, CacheParameterGroupName=default.redis4.0.
 	//
 	// If you are running Redis version 3.2.4 or later, only one node group (shard),
 	// and want to use a default parameter group, we recommend that you specify
@@ -15510,6 +15523,10 @@ type ModifyGlobalReplicationGroupInput struct {
 	// A valid cache node type that you want to scale this Global Datastore to.
 	CacheNodeType *string `type:"string"`
 
+	// The name of the cache parameter group to use with the Global datastore. It
+	// must be compatible with the major engine version used by the Global datastore.
+	CacheParameterGroupName *string `type:"string"`
+
 	// The upgraded version of the cache engine to be run on the clusters in the
 	// Global Datastore.
 	EngineVersion *string `type:"string"`
@@ -15564,6 +15581,12 @@ func (s *ModifyGlobalReplicationGroupInput) SetAutomaticFailoverEnabled(v bool) 
 // SetCacheNodeType sets the CacheNodeType field's value.
 func (s *ModifyGlobalReplicationGroupInput) SetCacheNodeType(v string) *ModifyGlobalReplicationGroupInput {
 	s.CacheNodeType = &v
+	return s
+}
+
+// SetCacheParameterGroupName sets the CacheParameterGroupName field's value.
+func (s *ModifyGlobalReplicationGroupInput) SetCacheParameterGroupName(v string) *ModifyGlobalReplicationGroupInput {
+	s.CacheParameterGroupName = &v
 	return s
 }
 

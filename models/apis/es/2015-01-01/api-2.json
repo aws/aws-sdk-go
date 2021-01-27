@@ -2371,7 +2371,9 @@
         "AccessPolicies":{"shape":"PolicyDocument"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
-        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"}
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
+        "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"}
       }
     },
     "UpdateElasticsearchDomainConfigResponse":{
