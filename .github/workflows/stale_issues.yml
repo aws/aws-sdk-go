@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Stale issue job
     steps:
-    - uses: aws-actions/stale-issue-cleanup@v2
+    - uses: aws-actions/stale-issue-cleanup@v4
       with:
         # Setting messages to an empty string will cause the automation to skip
         # that category
@@ -40,6 +40,6 @@ jobs:
         minimum-upvotes-to-exempt: 10
 
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        # loglevel: DEBUG
+        loglevel: DEBUG
         # Set dry-run to true to not perform label or close actions.
-        # dry-run: true
+        dry-run: true
