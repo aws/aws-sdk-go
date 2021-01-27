@@ -106,3 +106,37 @@ s3_us_east_1_regional_endpoint = regional
 
 [valid_arn_region]
 s3_use_arn_region=true
+
+[profile sso_creds]
+sso_account_id = 012345678901
+sso_region = us-west-2
+sso_role_name = TestRole
+sso_start_url = https://127.0.0.1/start
+
+[profile source_sso_creds]
+role_arn = source_sso_creds_arn
+source_profile = sso_creds
+
+[profile invalid_sso_creds]
+sso_account_id = 012345678901
+
+[profile sso_and_static]
+aws_access_key_id = sso_and_static_akid
+aws_secret_access_key = sso_and_static_secret
+aws_session_token = sso_and_static_token
+sso_account_id = 012345678901
+sso_region = us-west-2
+sso_role_name = TestRole
+sso_start_url = https://THIS_SHOULD_NOT_BE_IN_TESTDATA_CACHE/start
+
+[profile sso_and_assume]
+sso_account_id = 012345678901
+sso_region = us-west-2
+sso_role_name = TestRole
+sso_start_url = https://127.0.0.1/start
+role_arn = sso_with_assume_role_arn
+source_profile = multiple_assume_role_with_credential_source
+
+[profile source_sso_and_assume]
+role_arn = source_sso_and_assume_arn
+source_profile = sso_and_assume

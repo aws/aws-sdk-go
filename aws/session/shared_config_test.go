@@ -192,6 +192,56 @@ func TestLoadSharedConfig(t *testing.T) {
 				S3UsEast1RegionalEndpoint: endpoints.RegionalS3UsEast1Endpoint,
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso_creds",
+			Expected: sharedConfig{
+				SSOAccountID: "012345678901",
+				SSORegion:    "us-west-2",
+				SSORoleName:  "TestRole",
+				SSOStartURL:  "https://127.0.0.1/start",
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "source_sso_creds",
+			Expected: sharedConfig{
+				RoleARN:           "source_sso_creds_arn",
+				SourceProfileName: "sso_creds",
+				SourceProfile: &sharedConfig{
+					SSOAccountID: "012345678901",
+					SSORegion:    "us-west-2",
+					SSORoleName:  "TestRole",
+					SSOStartURL:  "https://127.0.0.1/start",
+				},
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "invalid_sso_creds",
+			Err:       fmt.Errorf("profile \"invalid_sso_creds\" is configured to use SSO but is missing required configuration: sso_region, sso_role_name, sso_start_url"),
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso_and_static",
+			Expected: sharedConfig{
+				Creds: credentials.Value{
+					AccessKeyID:     "sso_and_static_akid",
+					SecretAccessKey: "sso_and_static_secret",
+					SessionToken:    "sso_and_static_token",
+					ProviderName:    fmt.Sprintf("SharedConfigCredentials: %s", testConfigFilename),
+				},
+				SSOAccountID: "012345678901",
+				SSORegion:    "us-west-2",
+				SSORoleName:  "TestRole",
+				SSOStartURL:  "https://THIS_SHOULD_NOT_BE_IN_TESTDATA_CACHE/start",
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "source_sso_and_assume",
+			Err:       fmt.Errorf("only one credential type may be specified per profile"),
+		},
 	}
 
 	for i, c := range cases {
