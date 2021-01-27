@@ -4113,7 +4113,19 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "us-east-1" : { },
-          "us-west-2" : { }
+          "us-east-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "models-fips.lex.us-east-1.amazonaws.com"
+          },
+          "us-west-2" : { },
+          "us-west-2-fips" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "models-fips.lex.us-west-2.amazonaws.com"
+          }
         }
       },
       "monitoring" : {
@@ -5006,7 +5018,19 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "us-east-1" : { },
-          "us-west-2" : { }
+          "us-east-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "runtime-fips.lex.us-east-1.amazonaws.com"
+          },
+          "us-west-2" : { },
+          "us-west-2-fips" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "runtime-fips.lex.us-west-2.amazonaws.com"
+          }
         }
       },
       "runtime.sagemaker" : {

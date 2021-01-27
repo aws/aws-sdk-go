@@ -141,7 +141,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "CreateEmailIdentityPolicy":{
@@ -912,6 +913,20 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "PutEmailIdentityConfigurationSetAttributes":{
+      "name":"PutEmailIdentityConfigurationSetAttributes",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/identities/{EmailIdentity}/configuration-set"
+      },
+      "input":{"shape":"PutEmailIdentityConfigurationSetAttributesRequest"},
+      "output":{"shape":"PutEmailIdentityConfigurationSetAttributesResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "PutEmailIdentityDkimAttributes":{
       "name":"PutEmailIdentityDkimAttributes",
       "http":{
@@ -1573,7 +1588,8 @@
       "members":{
         "EmailIdentity":{"shape":"Identity"},
         "Tags":{"shape":"TagList"},
-        "DkimSigningAttributes":{"shape":"DkimSigningAttributes"}
+        "DkimSigningAttributes":{"shape":"DkimSigningAttributes"},
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
       }
     },
     "CreateEmailIdentityResponse":{
@@ -2445,7 +2461,8 @@
         "DkimAttributes":{"shape":"DkimAttributes"},
         "MailFromAttributes":{"shape":"MailFromAttributes"},
         "Policies":{"shape":"PolicyMap"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
       }
     },
     "GetEmailTemplateRequest":{
@@ -3299,6 +3316,23 @@
       }
     },
     "PutDeliverabilityDashboardOptionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutEmailIdentityConfigurationSetAttributesRequest":{
+      "type":"structure",
+      "required":["EmailIdentity"],
+      "members":{
+        "EmailIdentity":{
+          "shape":"Identity",
+          "location":"uri",
+          "locationName":"EmailIdentity"
+        },
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+      }
+    },
+    "PutEmailIdentityConfigurationSetAttributesResponse":{
       "type":"structure",
       "members":{
       }

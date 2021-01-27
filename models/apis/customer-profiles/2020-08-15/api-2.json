@@ -620,7 +620,10 @@
     },
     "DeleteIntegrationRequest":{
       "type":"structure",
-      "required":["DomainName"],
+      "required":[
+        "DomainName",
+        "Uri"
+      ],
       "members":{
         "DomainName":{
           "shape":"name",
@@ -805,7 +808,10 @@
     },
     "GetIntegrationRequest":{
       "type":"structure",
-      "required":["DomainName"],
+      "required":[
+        "DomainName",
+        "Uri"
+      ],
       "members":{
         "DomainName":{
           "shape":"name",

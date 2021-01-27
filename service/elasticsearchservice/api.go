@@ -11033,9 +11033,15 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// The type and number of instances to instantiate for the domain cluster.
 	ElasticsearchClusterConfig *ElasticsearchClusterConfig `type:"structure"`
 
+	// Specifies the Encryption At Rest Options.
+	EncryptionAtRestOptions *EncryptionAtRestOptions `type:"structure"`
+
 	// Map of LogType and LogPublishingOption, each containing options to publish
 	// a given type of Elasticsearch log.
 	LogPublishingOptions map[string]*LogPublishingOption `type:"map"`
+
+	// Specifies the NodeToNodeEncryptionOptions.
+	NodeToNodeEncryptionOptions *NodeToNodeEncryptionOptions `type:"structure"`
 
 	// Option to set the time, in UTC format, for the daily automated snapshot.
 	// Default value is 0 hours.
@@ -11079,6 +11085,11 @@ func (s *UpdateElasticsearchDomainConfigInput) Validate() error {
 	if s.DomainEndpointOptions != nil {
 		if err := s.DomainEndpointOptions.Validate(); err != nil {
 			invalidParams.AddNested("DomainEndpointOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EncryptionAtRestOptions != nil {
+		if err := s.EncryptionAtRestOptions.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionAtRestOptions", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -11136,9 +11147,21 @@ func (s *UpdateElasticsearchDomainConfigInput) SetElasticsearchClusterConfig(v *
 	return s
 }
 
+// SetEncryptionAtRestOptions sets the EncryptionAtRestOptions field's value.
+func (s *UpdateElasticsearchDomainConfigInput) SetEncryptionAtRestOptions(v *EncryptionAtRestOptions) *UpdateElasticsearchDomainConfigInput {
+	s.EncryptionAtRestOptions = v
+	return s
+}
+
 // SetLogPublishingOptions sets the LogPublishingOptions field's value.
 func (s *UpdateElasticsearchDomainConfigInput) SetLogPublishingOptions(v map[string]*LogPublishingOption) *UpdateElasticsearchDomainConfigInput {
 	s.LogPublishingOptions = v
+	return s
+}
+
+// SetNodeToNodeEncryptionOptions sets the NodeToNodeEncryptionOptions field's value.
+func (s *UpdateElasticsearchDomainConfigInput) SetNodeToNodeEncryptionOptions(v *NodeToNodeEncryptionOptions) *UpdateElasticsearchDomainConfigInput {
+	s.NodeToNodeEncryptionOptions = v
 	return s
 }
 

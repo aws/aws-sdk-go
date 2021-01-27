@@ -3563,7 +3563,9 @@ type DeleteIntegrationInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
 	// The URI of the S3 bucket or any other type of data source.
-	Uri *string `min:"1" type:"string"`
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3584,6 +3586,9 @@ func (s *DeleteIntegrationInput) Validate() error {
 	}
 	if s.DomainName != nil && len(*s.DomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
 	}
 	if s.Uri != nil && len(*s.Uri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
@@ -4213,7 +4218,9 @@ type GetIntegrationInput struct {
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
 	// The URI of the S3 bucket or any other type of data source.
-	Uri *string `min:"1" type:"string"`
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -4234,6 +4241,9 @@ func (s *GetIntegrationInput) Validate() error {
 	}
 	if s.DomainName != nil && len(*s.DomainName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
 	}
 	if s.Uri != nil && len(*s.Uri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))

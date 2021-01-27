@@ -1,3 +1,17 @@
+Release v1.36.33 (2021-01-27)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/customer-profiles`: Updates service API
+* `service/elasticache`: Updates service API and documentation
+  * Add support to pass ParameterGroup name as part updating Engine Version of Global Datastore.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service adds support for node-to-node encryption and encryption at rest for existing domains running Elasticsearch version 6.7 and above
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.36.32 (2021-01-26)
 ===
 

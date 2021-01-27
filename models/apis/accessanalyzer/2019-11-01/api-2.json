@@ -1002,7 +1002,8 @@
         "AWS::SQS::Queue",
         "AWS::Lambda::Function",
         "AWS::Lambda::LayerVersion",
-        "AWS::KMS::Key"
+        "AWS::KMS::Key",
+        "AWS::SecretsManager::Secret"
       ]
     },
     "ServiceQuotaExceededException":{

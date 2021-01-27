@@ -1478,9 +1478,8 @@ func (c *Lightsail) CreateContainerServiceRegistryLoginRequest(input *CreateCont
 // a new set of log in credentials.
 //
 // You can only push container images to the container service registry of your
-// Lightsail account. You cannot pull container images perform any other container
-// image management actions on the container service registry of your Lightsail
-// account.
+// Lightsail account. You cannot pull container images or perform any other
+// container image management actions on the container service registry.
 //
 // After you push your container images to the container image registry of your
 // Lightsail account, use the RegisterContainerImage action to register the
@@ -1489,7 +1488,7 @@ func (c *Lightsail) CreateContainerServiceRegistryLoginRequest(input *CreateCont
 // This action is not required if you install and use the Lightsail Control
 // (lightsailctl) plugin to push container images to your Lightsail container
 // service. For more information, see Pushing and managing container images
-// on your Amazon Lightsail container services (amazon-lightsail-pushing-container-images)
+// on your Amazon Lightsail container services (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-pushing-container-images)
 // in the Lightsail Dev Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -16900,7 +16899,7 @@ type Certificate struct {
 	//    request was reported as an unsafe domain by VirusTotal (https://www.virustotal.com/gui/home/url).
 	//    To correct the problem, search for your domain name on the VirusTotal
 	//    (https://www.virustotal.com/gui/home/url) website. If your domain is reported
-	//    as suspicious, see Google Help for Hacked Websites (https://www.google.com/webmasters/hacked/?hl=en)
+	//    as suspicious, see Google Help for Hacked Websites (https://developers.google.com/web/fundamentals/security/hacked)
 	//    to learn what you can do. If you believe that the result is a false positive,
 	//    notify the organization that is reporting the domain. VirusTotal is an
 	//    aggregate of several antivirus and URL scanners and cannot remove your
