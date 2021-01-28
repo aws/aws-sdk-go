@@ -59,6 +59,33 @@ func (c *GlueDataBrew) BatchDeleteRecipeVersionRequest(input *BatchDeleteRecipeV
 //
 // Deletes one or more versions of a recipe at a time.
 //
+// The entire request will be rejected if:
+//
+//    * The recipe does not exist.
+//
+//    * There is an invalid version identifier in the list of versions.
+//
+//    * The verision list is empty.
+//
+//    * The version list size exceeds 50.
+//
+//    * The verison list contains duplicate entries.
+//
+// The request will complete successfully, but with partial failures, if:
+//
+//    * A version does not exist.
+//
+//    * A version is being used by a job.
+//
+//    * You specify LATEST_WORKING, but it's being used by a project.
+//
+//    * The version fails to be deleted.
+//
+// The LATEST_WORKING version will only be deleted if the recipe has no other
+// versions. If you try to delete LATEST_WORKING while other versions exist
+// (or if they can't be deleted), then LATEST_WORKING will be listed as partial
+// failure in the response.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -142,7 +169,7 @@ func (c *GlueDataBrew) CreateDatasetRequest(input *CreateDatasetInput) (req *req
 
 // CreateDataset API operation for AWS Glue DataBrew.
 //
-// Creates a new AWS Glue DataBrew dataset for this AWS account.
+// Creates a new DataBrew dataset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -230,8 +257,7 @@ func (c *GlueDataBrew) CreateProfileJobRequest(input *CreateProfileJobInput) (re
 
 // CreateProfileJob API operation for AWS Glue DataBrew.
 //
-// Creates a new job to profile an AWS Glue DataBrew dataset that exists in
-// the current AWS account.
+// Creates a new job to analyze a dataset and create its data profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -241,6 +267,18 @@ func (c *GlueDataBrew) CreateProfileJobRequest(input *CreateProfileJobInput) (re
 // API operation CreateProfileJob for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   Access to the specified resource was denied.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
+//
 //   * ValidationException
 //   The input parameters for this request failed validation.
 //
@@ -310,7 +348,7 @@ func (c *GlueDataBrew) CreateProjectRequest(input *CreateProjectInput) (req *req
 
 // CreateProject API operation for AWS Glue DataBrew.
 //
-// Creates a new AWS Glue DataBrew project in the current AWS account.
+// Creates a new DataBrew project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -398,7 +436,7 @@ func (c *GlueDataBrew) CreateRecipeRequest(input *CreateRecipeInput) (req *reque
 
 // CreateRecipe API operation for AWS Glue DataBrew.
 //
-// Creates a new AWS Glue DataBrew recipe for the current AWS account.
+// Creates a new DataBrew recipe.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -483,9 +521,8 @@ func (c *GlueDataBrew) CreateRecipeJobRequest(input *CreateRecipeJobInput) (req 
 
 // CreateRecipeJob API operation for AWS Glue DataBrew.
 //
-// Creates a new job for an existing AWS Glue DataBrew recipe in the current
-// AWS account. You can create a standalone job using either a project, or a
-// combination of a recipe and a dataset.
+// Creates a new job to transform input data, using steps defined in an existing
+// AWS Glue DataBrew recipe
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -495,6 +532,18 @@ func (c *GlueDataBrew) CreateRecipeJobRequest(input *CreateRecipeJobInput) (req 
 // API operation CreateRecipeJob for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   Access to the specified resource was denied.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
+//
 //   * ValidationException
 //   The input parameters for this request failed validation.
 //
@@ -564,8 +613,8 @@ func (c *GlueDataBrew) CreateScheduleRequest(input *CreateScheduleInput) (req *r
 
 // CreateSchedule API operation for AWS Glue DataBrew.
 //
-// Creates a new schedule for one or more AWS Glue DataBrew jobs. Jobs can be
-// run at a specific date and time, or at regular intervals.
+// Creates a new schedule for one or more DataBrew jobs. Jobs can be run at
+// a specific date and time, or at regular intervals.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -575,6 +624,12 @@ func (c *GlueDataBrew) CreateScheduleRequest(input *CreateScheduleInput) (req *r
 // API operation CreateSchedule for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
+//
 //   * ValidationException
 //   The input parameters for this request failed validation.
 //
@@ -644,7 +699,7 @@ func (c *GlueDataBrew) DeleteDatasetRequest(input *DeleteDatasetInput) (req *req
 
 // DeleteDataset API operation for AWS Glue DataBrew.
 //
-// Deletes a dataset from AWS Glue DataBrew.
+// Deletes a dataset from DataBrew.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -654,6 +709,9 @@ func (c *GlueDataBrew) DeleteDatasetRequest(input *DeleteDatasetInput) (req *req
 // API operation DeleteDataset for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
 //
@@ -726,8 +784,7 @@ func (c *GlueDataBrew) DeleteJobRequest(input *DeleteJobInput) (req *request.Req
 
 // DeleteJob API operation for AWS Glue DataBrew.
 //
-// Deletes the specified AWS Glue DataBrew job from the current AWS account.
-// The job can be for a recipe or for a profile.
+// Deletes the specified DataBrew job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -737,6 +794,9 @@ func (c *GlueDataBrew) DeleteJobRequest(input *DeleteJobInput) (req *request.Req
 // API operation DeleteJob for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
 //
@@ -809,7 +869,7 @@ func (c *GlueDataBrew) DeleteProjectRequest(input *DeleteProjectInput) (req *req
 
 // DeleteProject API operation for AWS Glue DataBrew.
 //
-// Deletes an existing AWS Glue DataBrew project from the current AWS account.
+// Deletes an existing DataBrew project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -819,6 +879,9 @@ func (c *GlueDataBrew) DeleteProjectRequest(input *DeleteProjectInput) (req *req
 // API operation DeleteProject for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
 //
@@ -891,7 +954,7 @@ func (c *GlueDataBrew) DeleteRecipeVersionRequest(input *DeleteRecipeVersionInpu
 
 // DeleteRecipeVersion API operation for AWS Glue DataBrew.
 //
-// Deletes a single version of an AWS Glue DataBrew recipe.
+// Deletes a single version of a DataBrew recipe.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -901,6 +964,9 @@ func (c *GlueDataBrew) DeleteRecipeVersionRequest(input *DeleteRecipeVersionInpu
 // API operation DeleteRecipeVersion for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
 //
@@ -973,7 +1039,7 @@ func (c *GlueDataBrew) DeleteScheduleRequest(input *DeleteScheduleInput) (req *r
 
 // DeleteSchedule API operation for AWS Glue DataBrew.
 //
-// Deletes the specified AWS Glue DataBrew schedule from the current AWS account.
+// Deletes the specified DataBrew schedule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1055,8 +1121,7 @@ func (c *GlueDataBrew) DescribeDatasetRequest(input *DescribeDatasetInput) (req 
 
 // DescribeDataset API operation for AWS Glue DataBrew.
 //
-// Returns the definition of a specific AWS Glue DataBrew dataset that is in
-// the current AWS account.
+// Returns the definition of a specific DataBrew dataset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1138,8 +1203,7 @@ func (c *GlueDataBrew) DescribeJobRequest(input *DescribeJobInput) (req *request
 
 // DescribeJob API operation for AWS Glue DataBrew.
 //
-// Returns the definition of a specific AWS Glue DataBrew job that is in the
-// current AWS account.
+// Returns the definition of a specific DataBrew job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1221,8 +1285,7 @@ func (c *GlueDataBrew) DescribeProjectRequest(input *DescribeProjectInput) (req 
 
 // DescribeProject API operation for AWS Glue DataBrew.
 //
-// Returns the definition of a specific AWS Glue DataBrew project that is in
-// the current AWS account.
+// Returns the definition of a specific DataBrew project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1304,8 +1367,8 @@ func (c *GlueDataBrew) DescribeRecipeRequest(input *DescribeRecipeInput) (req *r
 
 // DescribeRecipe API operation for AWS Glue DataBrew.
 //
-// Returns the definition of a specific AWS Glue DataBrew recipe that is in
-// the current AWS account.
+// Returns the definition of a specific DataBrew recipe corresponding to a particular
+// version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1387,8 +1450,7 @@ func (c *GlueDataBrew) DescribeScheduleRequest(input *DescribeScheduleInput) (re
 
 // DescribeSchedule API operation for AWS Glue DataBrew.
 //
-// Returns the definition of a specific AWS Glue DataBrew schedule that is in
-// the current AWS account.
+// Returns the definition of a specific DataBrew schedule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1476,7 +1538,7 @@ func (c *GlueDataBrew) ListDatasetsRequest(input *ListDatasetsInput) (req *reque
 
 // ListDatasets API operation for AWS Glue DataBrew.
 //
-// Lists all of the AWS Glue DataBrew datasets for the current AWS account.
+// Lists all of the DataBrew datasets.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1613,8 +1675,7 @@ func (c *GlueDataBrew) ListJobRunsRequest(input *ListJobRunsInput) (req *request
 
 // ListJobRuns API operation for AWS Glue DataBrew.
 //
-// Lists all of the previous runs of a particular AWS Glue DataBrew job in the
-// current AWS account.
+// Lists all of the previous runs of a particular DataBrew job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1754,7 +1815,7 @@ func (c *GlueDataBrew) ListJobsRequest(input *ListJobsInput) (req *request.Reque
 
 // ListJobs API operation for AWS Glue DataBrew.
 //
-// Lists the AWS Glue DataBrew jobs in the current AWS account.
+// Lists all of the DataBrew jobs that are defined.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1891,7 +1952,7 @@ func (c *GlueDataBrew) ListProjectsRequest(input *ListProjectsInput) (req *reque
 
 // ListProjects API operation for AWS Glue DataBrew.
 //
-// Lists all of the DataBrew projects in the current AWS account.
+// Lists all of the DataBrew projects that are defined.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2028,8 +2089,7 @@ func (c *GlueDataBrew) ListRecipeVersionsRequest(input *ListRecipeVersionsInput)
 
 // ListRecipeVersions API operation for AWS Glue DataBrew.
 //
-// Lists all of the versions of a particular AWS Glue DataBrew recipe in the
-// current AWS account.
+// Lists the versions of a particular DataBrew recipe, except for LATEST_WORKING.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2166,7 +2226,7 @@ func (c *GlueDataBrew) ListRecipesRequest(input *ListRecipesInput) (req *request
 
 // ListRecipes API operation for AWS Glue DataBrew.
 //
-// Lists all of the AWS Glue DataBrew recipes in the current AWS account.
+// Lists all of the DataBrew recipes that are defined.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2303,7 +2363,7 @@ func (c *GlueDataBrew) ListSchedulesRequest(input *ListSchedulesInput) (req *req
 
 // ListSchedules API operation for AWS Glue DataBrew.
 //
-// Lists the AWS Glue DataBrew schedules in the current AWS account.
+// Lists the DataBrew schedules that are defined.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2434,7 +2494,7 @@ func (c *GlueDataBrew) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for AWS Glue DataBrew.
 //
-// Lists all the tags for an AWS Glue DataBrew resource.
+// Lists all the tags for a DataBrew resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2519,8 +2579,7 @@ func (c *GlueDataBrew) PublishRecipeRequest(input *PublishRecipeInput) (req *req
 
 // PublishRecipe API operation for AWS Glue DataBrew.
 //
-// Publishes a new major version of an AWS Glue DataBrew recipe that exists
-// in the current AWS account.
+// Publishes a new version of a DataBrew recipe.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2535,6 +2594,9 @@ func (c *GlueDataBrew) PublishRecipeRequest(input *PublishRecipeInput) (req *req
 //
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/PublishRecipe
 func (c *GlueDataBrew) PublishRecipe(input *PublishRecipeInput) (*PublishRecipeOutput, error) {
@@ -2602,8 +2664,8 @@ func (c *GlueDataBrew) SendProjectSessionActionRequest(input *SendProjectSession
 
 // SendProjectSessionAction API operation for AWS Glue DataBrew.
 //
-// Performs a recipe step within an interactive AWS Glue DataBrew session that's
-// currently open.
+// Performs a recipe step within an interactive DataBrew session that's currently
+// open.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2688,7 +2750,7 @@ func (c *GlueDataBrew) StartJobRunRequest(input *StartJobRunInput) (req *request
 
 // StartJobRun API operation for AWS Glue DataBrew.
 //
-// Runs an AWS Glue DataBrew job that exists in the current AWS account.
+// Runs a DataBrew job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2698,8 +2760,14 @@ func (c *GlueDataBrew) StartJobRunRequest(input *StartJobRunInput) (req *request
 // API operation StartJobRun for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
 //
 //   * ValidationException
 //   The input parameters for this request failed validation.
@@ -2770,7 +2838,7 @@ func (c *GlueDataBrew) StartProjectSessionRequest(input *StartProjectSessionInpu
 
 // StartProjectSession API operation for AWS Glue DataBrew.
 //
-// Creates an interactive session, enabling you to manipulate an AWS Glue DataBrew
+// Creates an interactive session, enabling you to manipulate data in a DataBrew
 // project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2781,8 +2849,14 @@ func (c *GlueDataBrew) StartProjectSessionRequest(input *StartProjectSessionInpu
 // API operation StartProjectSession for usage and error information.
 //
 // Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
 //
 //   * ValidationException
 //   The input parameters for this request failed validation.
@@ -2853,7 +2927,7 @@ func (c *GlueDataBrew) StopJobRunRequest(input *StopJobRunInput) (req *request.R
 
 // StopJobRun API operation for AWS Glue DataBrew.
 //
-// Stops the specified job from running in the current AWS account.
+// Stops a particular run of a job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2936,8 +3010,8 @@ func (c *GlueDataBrew) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for AWS Glue DataBrew.
 //
-// Adds metadata tags to an AWS Glue DataBrew resource, such as a dataset, job,
-// project, or recipe.
+// Adds metadata tags to a DataBrew resource, such as a dataset, project, recipe,
+// job, or schedule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3023,7 +3097,7 @@ func (c *GlueDataBrew) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for AWS Glue DataBrew.
 //
-// Removes metadata tags from an AWS Glue DataBrew resource.
+// Removes metadata tags from a DataBrew resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3108,8 +3182,7 @@ func (c *GlueDataBrew) UpdateDatasetRequest(input *UpdateDatasetInput) (req *req
 
 // UpdateDataset API operation for AWS Glue DataBrew.
 //
-// Modifies the definition of an existing AWS Glue DataBrew dataset in the current
-// AWS account.
+// Modifies the definition of an existing DataBrew dataset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3119,6 +3192,9 @@ func (c *GlueDataBrew) UpdateDatasetRequest(input *UpdateDatasetInput) (req *req
 // API operation UpdateDataset for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   Access to the specified resource was denied.
+//
 //   * ResourceNotFoundException
 //   One or more resources can't be found.
 //
@@ -3191,8 +3267,7 @@ func (c *GlueDataBrew) UpdateProfileJobRequest(input *UpdateProfileJobInput) (re
 
 // UpdateProfileJob API operation for AWS Glue DataBrew.
 //
-// Modifies the definition of an existing AWS Glue DataBrew job in the current
-// AWS account.
+// Modifies the definition of an existing profile job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3202,6 +3277,12 @@ func (c *GlueDataBrew) UpdateProfileJobRequest(input *UpdateProfileJobInput) (re
 // API operation UpdateProfileJob for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   Access to the specified resource was denied.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
 //   * ValidationException
 //   The input parameters for this request failed validation.
 //
@@ -3271,8 +3352,7 @@ func (c *GlueDataBrew) UpdateProjectRequest(input *UpdateProjectInput) (req *req
 
 // UpdateProject API operation for AWS Glue DataBrew.
 //
-// Modifies the definition of an existing AWS Glue DataBrew project in the current
-// AWS account.
+// Modifies the definition of an existing DataBrew project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3354,8 +3434,7 @@ func (c *GlueDataBrew) UpdateRecipeRequest(input *UpdateRecipeInput) (req *reque
 
 // UpdateRecipe API operation for AWS Glue DataBrew.
 //
-// Modifies the definition of the latest working version of an AWS Glue DataBrew
-// recipe in the current AWS account.
+// Modifies the definition of the LATEST_WORKING version of a DataBrew recipe.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3437,8 +3516,7 @@ func (c *GlueDataBrew) UpdateRecipeJobRequest(input *UpdateRecipeJobInput) (req 
 
 // UpdateRecipeJob API operation for AWS Glue DataBrew.
 //
-// Modifies the definition of an existing AWS Glue DataBrew recipe job in the
-// current AWS account.
+// Modifies the definition of an existing DataBrew recipe job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3448,6 +3526,12 @@ func (c *GlueDataBrew) UpdateRecipeJobRequest(input *UpdateRecipeJobInput) (req 
 // API operation UpdateRecipeJob for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   Access to the specified resource was denied.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
 //   * ValidationException
 //   The input parameters for this request failed validation.
 //
@@ -3517,8 +3601,7 @@ func (c *GlueDataBrew) UpdateScheduleRequest(input *UpdateScheduleInput) (req *r
 
 // UpdateSchedule API operation for AWS Glue DataBrew.
 //
-// Modifies the definition of an existing AWS Glue DataBrew schedule in the
-// current AWS account.
+// Modifies the definition of an existing DataBrew schedule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3528,6 +3611,12 @@ func (c *GlueDataBrew) UpdateScheduleRequest(input *UpdateScheduleInput) (req *r
 // API operation UpdateSchedule for usage and error information.
 //
 // Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
+//
 //   * ValidationException
 //   The input parameters for this request failed validation.
 //
@@ -3612,12 +3701,14 @@ func (s *AccessDeniedException) RequestID() string {
 type BatchDeleteRecipeVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the recipe to be modified.
+	// The name of the recipe whose versions are to be deleted.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// An array of version identifiers to be deleted.
+	// An array of version identifiers, for the recipe versions to be deleted. You
+	// can specify numeric versions (X.Y) or LATEST_WORKING. LATEST_PUBLISHED is
+	// not supported.
 	//
 	// RecipeVersions is a required field
 	RecipeVersions []*string `min:"1" type:"list" required:"true"`
@@ -3670,7 +3761,7 @@ func (s *BatchDeleteRecipeVersionInput) SetRecipeVersions(v []*string) *BatchDel
 type BatchDeleteRecipeVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Errors, if any, that were encountered when deleting the recipe versions.
+	// Errors, if any, that occurred while attempting to delete the recipe versions.
 	Errors []*RecipeVersionErrorDetail `type:"list"`
 
 	// The name of the recipe that was modified.
@@ -3713,13 +3804,13 @@ type ConditionExpression struct {
 	_ struct{} `type:"structure"`
 
 	// A specific condition to apply to a recipe action. For more information, see
-	// Recipe structure (https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html)
+	// Recipe structure (https://docs.aws.amazon.com/databrew/latest/dg/recipes.html#recipes.structure)
 	// in the AWS Glue DataBrew Developer Guide.
 	//
 	// Condition is a required field
 	Condition *string `min:"1" type:"string" required:"true"`
 
-	// A column to apply this condition to, within an AWS Glue DataBrew dataset.
+	// A column to apply this condition to.
 	//
 	// TargetColumn is a required field
 	TargetColumn *string `min:"1" type:"string" required:"true"`
@@ -3837,16 +3928,17 @@ func (s *ConflictException) RequestID() string {
 type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Options that define how Microsoft Excel input is to be interpreted by DataBrew.
+	// Options that define the structure of either Csv, Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how AWS Glue DataBrew can find data, in either the AWS Glue
-	// Data Catalog or Amazon S3.
+	// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
+	// or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
 
-	// The name of the dataset to be created.
+	// The name of the dataset to be created. Valid characters are alphanumeric
+	// (A-Z, a-z, 0-9), hyphen (-), period (.), and space.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -3966,9 +4058,8 @@ type CreateProfileJobInput struct {
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
-	// A value that enables or disables Amazon CloudWatch logging for the current
-	// AWS account. If logging is enabled, CloudWatch writes one log stream for
-	// each job run.
+	// Enables or disables Amazon CloudWatch logging for the job. If logging is
+	// enabled, CloudWatch writes one log stream for each job run.
 	LogSubscription *string `type:"string" enum:"LogSubscription"`
 
 	// The maximum number of nodes that DataBrew can use when the job processes
@@ -3978,7 +4069,8 @@ type CreateProfileJobInput struct {
 	// The maximum number of times to retry the job after a job run fails.
 	MaxRetries *int64 `type:"integer"`
 
-	// The name of the job to be created.
+	// The name of the job to be created. Valid characters are alphanumeric (A-Z,
+	// a-z, 0-9), hyphen (-), period (.), and space.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -3990,7 +4082,7 @@ type CreateProfileJobInput struct {
 	OutputLocation *S3Location `type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed for this request.
+	// (IAM) role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -4149,12 +4241,13 @@ func (s *CreateProfileJobOutput) SetName(v string) *CreateProfileJobOutput {
 type CreateProjectInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the dataset to associate this project with.
+	// The name of an existing dataset to associate this project with.
 	//
 	// DatasetName is a required field
 	DatasetName *string `min:"1" type:"string" required:"true"`
 
-	// A unique name for the new project.
+	// A unique name for the new project. Valid characters are alphanumeric (A-Z,
+	// a-z, 0-9), hyphen (-), period (.), and space.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4170,8 +4263,8 @@ type CreateProjectInput struct {
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
 
-	// Represents the sample size and sampling type for AWS Glue DataBrew to use
-	// for interactive data analysis.
+	// Represents the sample size and sampling type for DataBrew to use for interactive
+	// data analysis.
 	Sample *Sample `type:"structure"`
 
 	// Metadata tags to apply to this project.
@@ -4297,7 +4390,8 @@ type CreateRecipeInput struct {
 	// A description for the recipe.
 	Description *string `type:"string"`
 
-	// A unique name for the recipe.
+	// A unique name for the recipe. Valid characters are alphanumeric (A-Z, a-z,
+	// 0-9), hyphen (-), period (.), and space.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4396,9 +4490,8 @@ type CreateRecipeJobInput struct {
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
-	// A value that enables or disables Amazon CloudWatch logging for the current
-	// AWS account. If logging is enabled, CloudWatch writes one log stream for
-	// each job run.
+	// Enables or disables Amazon CloudWatch logging for the job. If logging is
+	// enabled, CloudWatch writes one log stream for each job run.
 	LogSubscription *string `type:"string" enum:"LogSubscription"`
 
 	// The maximum number of nodes that DataBrew can consume when the job processes
@@ -4408,7 +4501,8 @@ type CreateRecipeJobInput struct {
 	// The maximum number of times to retry the job after a job run fails.
 	MaxRetries *int64 `type:"integer"`
 
-	// A unique name for the job.
+	// A unique name for the job. Valid characters are alphanumeric (A-Z, a-z, 0-9),
+	// hyphen (-), period (.), and space.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4422,16 +4516,16 @@ type CreateRecipeJobInput struct {
 	// a dataset to associate with the recipe.
 	ProjectName *string `min:"1" type:"string"`
 
-	// Represents all of the attributes of an AWS Glue DataBrew recipe.
+	// Represents the name and version of a DataBrew recipe.
 	RecipeReference *RecipeReference `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed for this request.
+	// (IAM) role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
 
-	// Metadata tags to apply to this job dataset.
+	// Metadata tags to apply to this job.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The job's timeout in minutes. A job that attempts to run longer than this
@@ -4635,8 +4729,9 @@ func (s *CreateRecipeOutput) SetName(v string) *CreateRecipeOutput {
 type CreateScheduleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The date or dates and time or times, in cron format, when the jobs are to
-	// be run.
+	// The date or dates and time or times when the jobs are to be run. For more
+	// information, see Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
+	// in the AWS Glue DataBrew Developer Guide.
 	//
 	// CronExpression is a required field
 	CronExpression *string `min:"1" type:"string" required:"true"`
@@ -4644,7 +4739,8 @@ type CreateScheduleInput struct {
 	// The name or names of one or more jobs to be run.
 	JobNames []*string `type:"list"`
 
-	// A unique name for the schedule.
+	// A unique name for the schedule. Valid characters are alphanumeric (A-Z, a-z,
+	// 0-9), hyphen (-), period (.), and space.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4737,8 +4833,83 @@ func (s *CreateScheduleOutput) SetName(v string) *CreateScheduleOutput {
 	return s
 }
 
+// Options that define how DataBrew will read a Csv file when creating a dataset
+// from that file.
+type CsvOptions struct {
+	_ struct{} `type:"structure"`
+
+	// A single character that specifies the delimiter being used in the Csv file.
+	Delimiter *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CsvOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CsvOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CsvOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CsvOptions"}
+	if s.Delimiter != nil && len(*s.Delimiter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Delimiter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDelimiter sets the Delimiter field's value.
+func (s *CsvOptions) SetDelimiter(v string) *CsvOptions {
+	s.Delimiter = &v
+	return s
+}
+
+// Options that define how DataBrew will write a Csv file a.
+type CsvOutputOptions struct {
+	_ struct{} `type:"structure"`
+
+	// A single character that specifies the delimiter used to create Csv job output.
+	Delimiter *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CsvOutputOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CsvOutputOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CsvOutputOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CsvOutputOptions"}
+	if s.Delimiter != nil && len(*s.Delimiter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Delimiter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDelimiter sets the Delimiter field's value.
+func (s *CsvOutputOptions) SetDelimiter(v string) *CsvOutputOptions {
+	s.Delimiter = &v
+	return s
+}
+
 // Represents how metadata stored in the AWS Glue Data Catalog is defined in
-// an AWS Glue DataBrew dataset.
+// a DataBrew dataset.
 type DataCatalogInputDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -4825,7 +4996,7 @@ func (s *DataCatalogInputDefinition) SetTempDirectory(v *S3Location) *DataCatalo
 	return s
 }
 
-// Represents a dataset that can be processed by AWS Glue DataBrew.
+// Represents a dataset that can be processed by DataBrew.
 type Dataset struct {
 	_ struct{} `type:"structure"`
 
@@ -4835,7 +5006,7 @@ type Dataset struct {
 	// The date and time that the dataset was created.
 	CreateDate *time.Time `type:"timestamp"`
 
-	// The identifier (the user name) of the user who created the dataset.
+	// The Amazon Resource Name (ARN) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
 	// Options that define how DataBrew interprets the data in the dataset.
@@ -4847,7 +5018,7 @@ type Dataset struct {
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
 
-	// The identifier (the user name) of the user who last modified the dataset.
+	// The Amazon Resource Name (ARN) of the user who last modified the dataset.
 	LastModifiedBy *string `type:"string"`
 
 	// The last modification date and time of the dataset.
@@ -5146,12 +5317,13 @@ func (s *DeleteProjectOutput) SetName(v string) *DeleteProjectOutput {
 type DeleteRecipeVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the recipe to be deleted.
+	// The name of the recipe.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The version of the recipe to be deleted.
+	// The version of the recipe to be deleted. You can specify a numeric versions
+	// (X.Y) or LATEST_WORKING. LATEST_PUBLISHED is not supported.
 	//
 	// RecipeVersion is a required field
 	RecipeVersion *string `location:"uri" locationName:"recipeVersion" min:"1" type:"string" required:"true"`
@@ -5353,11 +5525,11 @@ type DescribeDatasetOutput struct {
 	// The identifier (user name) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
-	// Options that define how Microsoft Excel input is to be interpreted by DataBrew.
+	// Options that define the structure of either Csv, Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how AWS Glue DataBrew can find data, in either the AWS Glue
-	// Data Catalog or Amazon S3.
+	// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
+	// or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
@@ -5525,11 +5697,10 @@ type DescribeJobOutput struct {
 	// The date and time that the job was last modified.
 	LastModifiedDate *time.Time `type:"timestamp"`
 
-	// A value that indicates whether Amazon CloudWatch logging is enabled for this
-	// job.
+	// Indicates whether Amazon CloudWatch logging is enabled for this job.
 	LogSubscription *string `type:"string" enum:"LogSubscription"`
 
-	// The maximum number of nodes that AWS Glue DataBrew can consume when the job
+	// The maximum number of compute nodes that DataBrew can consume when the job
 	// processes data.
 	MaxCapacity *int64 `type:"integer"`
 
@@ -5547,14 +5718,14 @@ type DescribeJobOutput struct {
 	// The DataBrew project associated with this job.
 	ProjectName *string `min:"1" type:"string"`
 
-	// Represents all of the attributes of an AWS Glue DataBrew recipe.
+	// Represents the name and version of a DataBrew recipe.
 	RecipeReference *RecipeReference `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the job.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role that was assumed
-	// for this request.
+	// The ARN of the AWS Identity and Access Management (IAM) role to be assumed
+	// when DataBrew runs the job.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Metadata tags associated with this job.
@@ -5773,12 +5944,12 @@ type DescribeProjectOutput struct {
 	// The Amazon Resource Name (ARN) of the project.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role that was assumed
-	// for this request.
+	// The ARN of the AWS Identity and Access Management (IAM) role to be assumed
+	// when DataBrew runs the job.
 	RoleArn *string `min:"20" type:"string"`
 
-	// Represents the sample size and sampling type for AWS Glue DataBrew to use
-	// for interactive data analysis.
+	// Represents the sample size and sampling type for DataBrew to use for interactive
+	// data analysis.
 	Sample *Sample `type:"structure"`
 
 	// Describes the current state of the session:
@@ -6126,8 +6297,9 @@ type DescribeScheduleOutput struct {
 	// The identifier (user name) of the user who created the schedule.
 	CreatedBy *string `type:"string"`
 
-	// The date or dates and time or times, in cron format, when the jobs are to
-	// be run for the schedule.
+	// The date or dates and time or times when the jobs are to be run for the schedule.
+	// For more information, see Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
+	// in the AWS Glue DataBrew Developer Guide.
 	CronExpression *string `min:"1" type:"string"`
 
 	// The name or names of one or more jobs to be run by using the schedule.
@@ -6267,9 +6439,12 @@ func (s *ExcelOptions) SetSheetNames(v []*string) *ExcelOptions {
 	return s
 }
 
-// Options that define how Microsoft Excel input is to be interpreted by DataBrew.
+// Options that define the structure of either Csv, Excel, or JSON input.
 type FormatOptions struct {
 	_ struct{} `type:"structure"`
+
+	// Options that define how Csv input is to be interpreted by DataBrew.
+	Csv *CsvOptions `type:"structure"`
 
 	// Options that define how Excel input is to be interpreted by DataBrew.
 	Excel *ExcelOptions `type:"structure"`
@@ -6291,6 +6466,11 @@ func (s FormatOptions) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FormatOptions) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FormatOptions"}
+	if s.Csv != nil {
+		if err := s.Csv.Validate(); err != nil {
+			invalidParams.AddNested("Csv", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Excel != nil {
 		if err := s.Excel.Validate(); err != nil {
 			invalidParams.AddNested("Excel", err.(request.ErrInvalidParams))
@@ -6301,6 +6481,12 @@ func (s *FormatOptions) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCsv sets the Csv field's value.
+func (s *FormatOptions) SetCsv(v *CsvOptions) *FormatOptions {
+	s.Csv = v
+	return s
 }
 
 // SetExcel sets the Excel field's value.
@@ -6315,8 +6501,8 @@ func (s *FormatOptions) SetJson(v *JsonOptions) *FormatOptions {
 	return s
 }
 
-// Information on how AWS Glue DataBrew can find data, in either the AWS Glue
-// Data Catalog or Amazon S3.
+// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
+// or Amazon S3.
 type Input struct {
 	_ struct{} `type:"structure"`
 
@@ -6425,7 +6611,7 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Represents all of the attributes of an AWS Glue DataBrew job.
+// Represents all of the attributes of a DataBrew job.
 type Job struct {
 	_ struct{} `type:"structure"`
 
@@ -6435,14 +6621,15 @@ type Job struct {
 	// The date and time that the job was created.
 	CreateDate *time.Time `type:"timestamp"`
 
-	// The identifier (the user name) of the user who created the job.
+	// The Amazon Resource Name (ARN) of the user who created the job.
 	CreatedBy *string `type:"string"`
 
 	// A dataset that the job is to process.
 	DatasetName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of an encryption key that is used to protect
-	// a job.
+	// the job output. For more information, see Encrypting data written by DataBrew
+	// jobs (https://docs.aws.amazon.com/databrew/latest/dg/encryption-security-configuration.html)
 	EncryptionKeyArn *string `min:"20" type:"string"`
 
 	// The encryption mode for the job, which can be one of the following:
@@ -6452,7 +6639,7 @@ type Job struct {
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
-	// The identifier (the user name) of the user who last modified the job.
+	// The Amazon Resource Name (ARN) of the user who last modified the job.
 	LastModifiedBy *string `type:"string"`
 
 	// The modification date and time of the job.
@@ -6634,7 +6821,7 @@ func (s *Job) SetType(v string) *Job {
 	return s
 }
 
-// Represents one run of an AWS Glue DataBrew job.
+// Represents one run of a DataBrew job.
 type JobRun struct {
 	_ struct{} `type:"structure"`
 
@@ -6673,7 +6860,7 @@ type JobRun struct {
 	// The unique identifier of the job run.
 	RunId *string `min:"1" type:"string"`
 
-	// The identifier (the user name) of the user who initiated the job run.
+	// The Amazon Resource Name (ARN) of the user who initiated the job run.
 	StartedBy *string `type:"string"`
 
 	// The date and time when the job run began.
@@ -6808,9 +6995,7 @@ type ListDatasetsInput struct {
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To get the next set of pages, pass in
-	// the NextToken value from the response object of the previous page call.
+	// The token returned by a previous call to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -6855,14 +7040,13 @@ func (s *ListDatasetsInput) SetNextToken(v string) *ListDatasetsInput {
 type ListDatasetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of datasets that are defined in the current AWS account.
+	// A list of datasets that are defined.
 	//
 	// Datasets is a required field
 	Datasets []*Dataset `type:"list" required:"true"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To obtain the next set of pages, pass
-	// in the NextToken from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6899,9 +7083,7 @@ type ListJobRunsInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// A token generated by AWS Glue DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To get the next set of pages, pass in
-	// the NextToken value from the response object of the previous page call.
+	// The token returned by a previous call to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -6963,9 +7145,8 @@ type ListJobRunsOutput struct {
 	// JobRuns is a required field
 	JobRuns []*JobRun `type:"list" required:"true"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To obtain the next set of pages, pass
-	// in the NextToken from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -7070,14 +7251,13 @@ func (s *ListJobsInput) SetProjectName(v string) *ListJobsInput {
 type ListJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of jobs that are defined in the current AWS account.
+	// A list of jobs that are defined.
 	//
 	// Jobs is a required field
 	Jobs []*Job `type:"list" required:"true"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To obtain the next set of pages, pass
-	// in the NextToken from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -7109,7 +7289,7 @@ type ListProjectsInput struct {
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A pagination token that can be used in a subsequent request.
+	// The token returned by a previous call to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -7154,12 +7334,11 @@ func (s *ListProjectsInput) SetNextToken(v string) *ListProjectsInput {
 type ListProjectsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To get the next set of pages, pass in
-	// the NextToken value from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 
-	// A list of projects that are defined in the current AWS account.
+	// A list of projects that are defined .
 	//
 	// Projects is a required field
 	Projects []*Project `type:"list" required:"true"`
@@ -7198,7 +7377,7 @@ type ListRecipeVersionsInput struct {
 	// Name is a required field
 	Name *string `location:"querystring" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// A pagination token that can be used in a subsequent request.
+	// The token returned by a previous call to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -7255,9 +7434,8 @@ func (s *ListRecipeVersionsInput) SetNextToken(v string) *ListRecipeVersionsInpu
 type ListRecipeVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To get the next set of pages, pass in
-	// the NextToken value from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 
 	// A list of versions for the specified recipe.
@@ -7294,11 +7472,14 @@ type ListRecipesInput struct {
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A pagination token that can be used in a subsequent request.
+	// The token returned by a previous call to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// A version identifier. Using this parameter indicates to return only those
-	// recipes that have this version identifier.
+	// Return only those recipes with a version identifier of LATEST_WORKING or
+	// LATEST_PUBLISHED. If RecipeVersion is omitted, ListRecipes returns all of
+	// the LATEST_PUBLISHED recipe versions.
+	//
+	// Valid values: LATEST_WORKING | LATEST_PUBLISHED
 	RecipeVersion *string `location:"querystring" locationName:"recipeVersion" min:"1" type:"string"`
 }
 
@@ -7352,12 +7533,11 @@ func (s *ListRecipesInput) SetRecipeVersion(v string) *ListRecipesInput {
 type ListRecipesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To get the next set of pages, pass in
-	// the NextToken value from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 
-	// A list of recipes that are defined in the current AWS account.
+	// A list of recipes that are defined.
 	//
 	// Recipes is a required field
 	Recipes []*Recipe `type:"list" required:"true"`
@@ -7394,7 +7574,7 @@ type ListSchedulesInput struct {
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A pagination token that can be used in a subsequent request.
+	// The token returned by a previous call to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -7448,12 +7628,11 @@ func (s *ListSchedulesInput) SetNextToken(v string) *ListSchedulesInput {
 type ListSchedulesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token generated by DataBrew that specifies where to continue pagination
-	// if a previous request was truncated. To get the next set of pages, pass in
-	// the NextToken value from the response object of the previous page call.
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
 	NextToken *string `min:"1" type:"string"`
 
-	// A list of schedules in the current AWS account.
+	// A list of schedules that are defined.
 	//
 	// Schedules is a required field
 	Schedules []*Schedule `type:"list" required:"true"`
@@ -7546,7 +7725,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Represents individual output from a particular job run.
+// Parameters that specify how and where DataBrew will write the output generated
+// by recipe jobs or profile jobs.
 type Output struct {
 	_ struct{} `type:"structure"`
 
@@ -7555,6 +7735,9 @@ type Output struct {
 
 	// The data format of the output of the job.
 	Format *string `type:"string" enum:"OutputFormat"`
+
+	// Options that define how DataBrew formats job output files.
+	FormatOptions *OutputFormatOptions `type:"structure"`
 
 	// The location in Amazon S3 where the job writes its output.
 	//
@@ -7585,6 +7768,11 @@ func (s *Output) Validate() error {
 	if s.Location == nil {
 		invalidParams.Add(request.NewErrParamRequired("Location"))
 	}
+	if s.FormatOptions != nil {
+		if err := s.FormatOptions.Validate(); err != nil {
+			invalidParams.AddNested("FormatOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Location != nil {
 		if err := s.Location.Validate(); err != nil {
 			invalidParams.AddNested("Location", err.(request.ErrInvalidParams))
@@ -7609,6 +7797,12 @@ func (s *Output) SetFormat(v string) *Output {
 	return s
 }
 
+// SetFormatOptions sets the FormatOptions field's value.
+func (s *Output) SetFormatOptions(v *OutputFormatOptions) *Output {
+	s.FormatOptions = v
+	return s
+}
+
 // SetLocation sets the Location field's value.
 func (s *Output) SetLocation(v *S3Location) *Output {
 	s.Location = v
@@ -7627,7 +7821,46 @@ func (s *Output) SetPartitionColumns(v []*string) *Output {
 	return s
 }
 
-// Represents all of the attributes of an AWS Glue DataBrew project.
+// Options that define the structure of Csv job output.
+type OutputFormatOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Options that define how DataBrew writes Csv output.
+	Csv *CsvOutputOptions `type:"structure"`
+}
+
+// String returns the string representation
+func (s OutputFormatOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutputFormatOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OutputFormatOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OutputFormatOptions"}
+	if s.Csv != nil {
+		if err := s.Csv.Validate(); err != nil {
+			invalidParams.AddNested("Csv", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCsv sets the Csv field's value.
+func (s *OutputFormatOptions) SetCsv(v *CsvOutputOptions) *OutputFormatOptions {
+	s.Csv = v
+	return s
+}
+
+// Represents all of the attributes of a DataBrew project.
 type Project struct {
 	_ struct{} `type:"structure"`
 
@@ -7637,13 +7870,13 @@ type Project struct {
 	// The date and time that the project was created.
 	CreateDate *time.Time `type:"timestamp"`
 
-	// The identifier (the user name) of the user who crated the project.
+	// The Amazon Resource Name (ARN) of the user who crated the project.
 	CreatedBy *string `type:"string"`
 
 	// The dataset that the project is to act upon.
 	DatasetName *string `min:"1" type:"string"`
 
-	// The identifier (user name) of the user who last modified the project.
+	// The Amazon Resource Name (ARN) of the user who last modified the project.
 	LastModifiedBy *string `type:"string"`
 
 	// The last modification date and time for the project.
@@ -7657,7 +7890,7 @@ type Project struct {
 	// The date and time when the project was opened.
 	OpenDate *time.Time `type:"timestamp"`
 
-	// The identifier (the user name) of the user that opened the project for use.
+	// The Amazon Resource Name (ARN) of the user that opened the project for use.
 	OpenedBy *string `type:"string"`
 
 	// The name of a recipe that will be developed during a project session.
@@ -7850,20 +8083,20 @@ func (s *PublishRecipeOutput) SetName(v string) *PublishRecipeOutput {
 	return s
 }
 
-// Represents one or more actions to be performed on an AWS Glue DataBrew dataset.
+// Represents one or more actions to be performed on a DataBrew dataset.
 type Recipe struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time that the recipe was created.
 	CreateDate *time.Time `type:"timestamp"`
 
-	// The identifier (the user name) of the user who created the recipe.
+	// The Amazon Resource Name (ARN) of the user who created the recipe.
 	CreatedBy *string `type:"string"`
 
 	// The description of the recipe.
 	Description *string `type:"string"`
 
-	// The identifier (user name) of the user who last modified the recipe.
+	// The Amazon Resource Name (ARN) of the user who last modified the recipe.
 	LastModifiedBy *string `type:"string"`
 
 	// The last modification date and time of the recipe.
@@ -7877,13 +8110,22 @@ type Recipe struct {
 	// The name of the project that the recipe is associated with.
 	ProjectName *string `min:"1" type:"string"`
 
-	// The identifier (the user name) of the user who published the recipe.
+	// The Amazon Resource Name (ARN) of the user who published the recipe.
 	PublishedBy *string `type:"string"`
 
 	// The date and time when the recipe was published.
 	PublishedDate *time.Time `type:"timestamp"`
 
-	// The identifier for the version for the recipe.
+	// The identifier for the version for the recipe. Must be one of the following:
+	//
+	//    * Numeric version (X.Y) - X and Y stand for major and minor version numbers.
+	//    The maximum length of each is 6 digits, and neither can be negative values.
+	//    Both X and Y are required, and "0.0" is not a valid version.
+	//
+	//    * LATEST_WORKING - the most recent valid version being developed in a
+	//    DataBrew project.
+	//
+	//    * LATEST_PUBLISHED - the most recent published version.
 	RecipeVersion *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the recipe.
@@ -7985,9 +8227,9 @@ func (s *Recipe) SetTags(v map[string]*string) *Recipe {
 }
 
 // Represents a transformation and associated parameters that are used to apply
-// a change to an AWS Glue DataBrew dataset. For more information, see Recipe
-// structure (https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html)
-// and ecipe actions reference (https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html) .
+// a change to a DataBrew dataset. For more information, see Recipe structure
+// (https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html) and
+// Recipe actions reference (https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html).
 type RecipeAction struct {
 	_ struct{} `type:"structure"`
 
@@ -8038,7 +8280,7 @@ func (s *RecipeAction) SetParameters(v map[string]*string) *RecipeAction {
 	return s
 }
 
-// Represents all of the attributes of an AWS Glue DataBrew recipe.
+// Represents the name and version of a DataBrew recipe.
 type RecipeReference struct {
 	_ struct{} `type:"structure"`
 
@@ -8092,7 +8334,7 @@ func (s *RecipeReference) SetRecipeVersion(v string) *RecipeReference {
 	return s
 }
 
-// Represents a single step to be performed in an AWS Glue DataBrew recipe.
+// Represents a single step from a DataBrew recipe to be performed.
 type RecipeStep struct {
 	_ struct{} `type:"structure"`
 
@@ -8313,8 +8555,8 @@ func (s *S3Location) SetKey(v string) *S3Location {
 	return s
 }
 
-// Represents the sample size and sampling type for AWS Glue DataBrew to use
-// for interactive data analysis.
+// Represents the sample size and sampling type for DataBrew to use for interactive
+// data analysis.
 type Sample struct {
 	_ struct{} `type:"structure"`
 
@@ -8375,16 +8617,18 @@ type Schedule struct {
 	// The date and time that the schedule was created.
 	CreateDate *time.Time `type:"timestamp"`
 
-	// The identifier (the user name) of the user who created the schedule.
+	// The Amazon Resource Name (ARN) of the user who created the schedule.
 	CreatedBy *string `type:"string"`
 
-	// The date(s) and time(s), in cron format, when the job will run.
+	// The date(s) and time(s) when the job will run. For more information, see
+	// Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
+	// in the AWS Glue DataBrew Developer Guide.
 	CronExpression *string `min:"1" type:"string"`
 
 	// A list of jobs to be run, according to the schedule.
 	JobNames []*string `type:"list"`
 
-	// The identifier (the user name) of the user who last modified the schedule.
+	// The Amazon Resource Name (ARN) of the user who last modified the schedule.
 	LastModifiedBy *string `type:"string"`
 
 	// The date and time when the schedule was last modified.
@@ -8484,11 +8728,10 @@ type SendProjectSessionActionInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// Returns the result of the recipe step, without applying it. The result isn't
-	// added to the view frame stack.
+	// If true, the result of the recipe step will be returned, but not applied.
 	Preview *bool `type:"boolean"`
 
-	// Represents a single step to be performed in an AWS Glue DataBrew recipe.
+	// Represents a single step from a DataBrew recipe to be performed.
 	RecipeStep *RecipeStep `type:"structure"`
 
 	// The index from which to preview a step. This index is used to preview the
@@ -8496,8 +8739,7 @@ type SendProjectSessionActionInput struct {
 	// frame is from earlier in the view frame stack.
 	StepIndex *int64 `type:"integer"`
 
-	// Represents the data being being transformed during an AWS Glue DataBrew project
-	// session.
+	// Represents the data being being transformed during an action.
 	ViewFrame *ViewFrame `type:"structure"`
 }
 
@@ -8986,7 +9228,7 @@ func (s TagResourceOutput) GoString() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// An DataBrew resource from which you want to remove a tag or tags. The value
+	// A DataBrew resource from which you want to remove a tag or tags. The value
 	// for this parameter is an Amazon Resource Name (ARN).
 	//
 	// ResourceArn is a required field
@@ -9059,11 +9301,11 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Options that define how Microsoft Excel input is to be interpreted by DataBrew.
+	// Options that define the structure of either Csv, Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how AWS Glue DataBrew can find data, in either the AWS Glue
-	// Data Catalog or Amazon S3.
+	// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
+	// or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
@@ -9170,12 +9412,11 @@ type UpdateProfileJobInput struct {
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
-	// A value that enables or disables Amazon CloudWatch logging for the current
-	// AWS account. If logging is enabled, CloudWatch writes one log stream for
-	// each job run.
+	// Enables or disables Amazon CloudWatch logging for the job. If logging is
+	// enabled, CloudWatch writes one log stream for each job run.
 	LogSubscription *string `type:"string" enum:"LogSubscription"`
 
-	// The maximum number of nodes that DataBrew can use when the job processes
+	// The maximum number of compute nodes that DataBrew can use when the job processes
 	// data.
 	MaxCapacity *int64 `type:"integer"`
 
@@ -9194,7 +9435,7 @@ type UpdateProfileJobInput struct {
 	OutputLocation *S3Location `type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed for this request.
+	// (IAM) role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -9339,8 +9580,8 @@ type UpdateProjectInput struct {
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
 
-	// Represents the sample size and sampling type for AWS Glue DataBrew to use
-	// for interactive data analysis.
+	// Represents the sample size and sampling type for DataBrew to use for interactive
+	// data analysis.
 	Sample *Sample `type:"structure"`
 }
 
@@ -9517,9 +9758,8 @@ type UpdateRecipeJobInput struct {
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
-	// A value that enables or disables Amazon CloudWatch logging for the current
-	// AWS account. If logging is enabled, CloudWatch writes one log stream for
-	// each job run.
+	// Enables or disables Amazon CloudWatch logging for the job. If logging is
+	// enabled, CloudWatch writes one log stream for each job run.
 	LogSubscription *string `type:"string" enum:"LogSubscription"`
 
 	// The maximum number of nodes that DataBrew can consume when the job processes
@@ -9540,7 +9780,7 @@ type UpdateRecipeJobInput struct {
 	Outputs []*Output `min:"1" type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed for this request.
+	// (IAM) role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -9708,8 +9948,9 @@ func (s *UpdateRecipeOutput) SetName(v string) *UpdateRecipeOutput {
 type UpdateScheduleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The date or dates and time or times, in cron format, when the jobs are to
-	// be run.
+	// The date or dates and time or times when the jobs are to be run. For more
+	// information, see Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
+	// in the AWS Glue DataBrew Developer Guide.
 	//
 	// CronExpression is a required field
 	CronExpression *string `min:"1" type:"string" required:"true"`
@@ -9854,8 +10095,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Represents the data being being transformed during an AWS Glue DataBrew project
-// session.
+// Represents the data being being transformed during an action.
 type ViewFrame struct {
 	_ struct{} `type:"structure"`
 

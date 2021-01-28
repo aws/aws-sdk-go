@@ -1056,9 +1056,11 @@
         "EndTime":{"shape":"Timestamp"},
         "NextToken":{"shape":"NextToken"},
         "ScanBy":{"shape":"ScanBy"},
-        "MaxDatapoints":{"shape":"GetMetricDataMaxDatapoints"}
+        "MaxDatapoints":{"shape":"GetMetricDataMaxDatapoints"},
+        "LabelOptions":{"shape":"LabelOptions"}
       }
     },
+    "GetMetricDataLabelTimezone":{"type":"string"},
     "GetMetricDataMaxDatapoints":{"type":"integer"},
     "GetMetricDataOutput":{
       "type":"structure",
@@ -1316,6 +1318,12 @@
       },
       "exception":true,
       "synthetic":true
+    },
+    "LabelOptions":{
+      "type":"structure",
+      "members":{
+        "Timezone":{"shape":"GetMetricDataLabelTimezone"}
+      }
     },
     "LastModified":{"type":"timestamp"},
     "LimitExceededException":{

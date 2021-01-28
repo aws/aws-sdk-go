@@ -11958,7 +11958,7 @@ type LaunchConfig struct {
 	// Boolean indicating whether a streaming session will be configured for the
 	// application. If True, AWS RoboMaker will configure a connection so you can
 	// interact with your application as it is running in the simulation. You must
-	// configure and luanch the component. It must have a graphical user interface.
+	// configure and launch the component. It must have a graphical user interface.
 	StreamUI *bool `locationName:"streamUI" type:"boolean"`
 }
 
@@ -14153,6 +14153,16 @@ type RobotApplicationConfig struct {
 	//
 	// LaunchConfig is a required field
 	LaunchConfig *LaunchConfig `locationName:"launchConfig" type:"structure" required:"true"`
+
+	// The upload configurations for the robot application.
+	UploadConfigurations []*UploadConfiguration `locationName:"uploadConfigurations" type:"list"`
+
+	// A Boolean indicating whether to use default upload configurations. By default,
+	// .ros and .gazebo files are uploaded when the application terminates and all
+	// ROS topics will be recorded.
+	//
+	// If you set this value, you must specify an outputLocation.
+	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" type:"boolean"`
 }
 
 // String returns the string representation
@@ -14185,6 +14195,16 @@ func (s *RobotApplicationConfig) Validate() error {
 			invalidParams.AddNested("LaunchConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.UploadConfigurations != nil {
+		for i, v := range s.UploadConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UploadConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14207,6 +14227,18 @@ func (s *RobotApplicationConfig) SetApplicationVersion(v string) *RobotApplicati
 // SetLaunchConfig sets the LaunchConfig field's value.
 func (s *RobotApplicationConfig) SetLaunchConfig(v *LaunchConfig) *RobotApplicationConfig {
 	s.LaunchConfig = v
+	return s
+}
+
+// SetUploadConfigurations sets the UploadConfigurations field's value.
+func (s *RobotApplicationConfig) SetUploadConfigurations(v []*UploadConfiguration) *RobotApplicationConfig {
+	s.UploadConfigurations = v
+	return s
+}
+
+// SetUseDefaultUploadConfigurations sets the UseDefaultUploadConfigurations field's value.
+func (s *RobotApplicationConfig) SetUseDefaultUploadConfigurations(v bool) *RobotApplicationConfig {
+	s.UseDefaultUploadConfigurations = &v
 	return s
 }
 
@@ -14556,6 +14588,16 @@ type SimulationApplicationConfig struct {
 	// LaunchConfig is a required field
 	LaunchConfig *LaunchConfig `locationName:"launchConfig" type:"structure" required:"true"`
 
+	// Information about upload configurations for the simulation application.
+	UploadConfigurations []*UploadConfiguration `locationName:"uploadConfigurations" type:"list"`
+
+	// A Boolean indicating whether to use default upload configurations. By default,
+	// .ros and .gazebo files are uploaded when the application terminates and all
+	// ROS topics will be recorded.
+	//
+	// If you set this value, you must specify an outputLocation.
+	UseDefaultUploadConfigurations *bool `locationName:"useDefaultUploadConfigurations" type:"boolean"`
+
 	// A list of world configurations.
 	WorldConfigs []*WorldConfig `locationName:"worldConfigs" type:"list"`
 }
@@ -14590,6 +14632,16 @@ func (s *SimulationApplicationConfig) Validate() error {
 			invalidParams.AddNested("LaunchConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.UploadConfigurations != nil {
+		for i, v := range s.UploadConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UploadConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.WorldConfigs != nil {
 		for i, v := range s.WorldConfigs {
 			if v == nil {
@@ -14622,6 +14674,18 @@ func (s *SimulationApplicationConfig) SetApplicationVersion(v string) *Simulatio
 // SetLaunchConfig sets the LaunchConfig field's value.
 func (s *SimulationApplicationConfig) SetLaunchConfig(v *LaunchConfig) *SimulationApplicationConfig {
 	s.LaunchConfig = v
+	return s
+}
+
+// SetUploadConfigurations sets the UploadConfigurations field's value.
+func (s *SimulationApplicationConfig) SetUploadConfigurations(v []*UploadConfiguration) *SimulationApplicationConfig {
+	s.UploadConfigurations = v
+	return s
+}
+
+// SetUseDefaultUploadConfigurations sets the UseDefaultUploadConfigurations field's value.
+func (s *SimulationApplicationConfig) SetUseDefaultUploadConfigurations(v bool) *SimulationApplicationConfig {
+	s.UseDefaultUploadConfigurations = &v
 	return s
 }
 
@@ -15097,7 +15161,8 @@ type SimulationJobRequest struct {
 	// job request.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// Boolean indicating whether to use default simulation tool applications.
+	// A Boolean indicating whether to use default applications in the simulation
+	// job. Default applications include Gazebo, rqt, rviz and terminal access.
 	UseDefaultApplications *bool `locationName:"useDefaultApplications" type:"boolean"`
 
 	// If your simulation job accesses resources in a VPC, you provide this parameter
@@ -16748,6 +16813,102 @@ func (s *UpdateWorldTemplateOutput) SetName(v string) *UpdateWorldTemplateOutput
 	return s
 }
 
+// Provides upload configuration information. Files are uploaded from the simulation
+// job to a location you specify.
+type UploadConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A prefix that specifies where files will be uploaded in Amazon S3. It is
+	// appended to the simulation output location to determine the final path.
+	//
+	// For example, if your simulation output location is s3://my-bucket and your
+	// upload configuration name is robot-test, your files will be uploaded to s3://my-bucket/<simid>/<runid>/robot-test.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Specifies the path of the file(s) to upload. Standard Unix glob matching
+	// rules are accepted, with the addition of ** as a super asterisk. For example,
+	// specifying /var/log/**.log causes all .log files in the /var/log directory
+	// tree to be collected. For more examples, see Glob Library (https://github.com/gobwas/glob).
+	//
+	// Path is a required field
+	Path *string `locationName:"path" min:"1" type:"string" required:"true"`
+
+	// Specifies how to upload the files:
+	//
+	// UPLOAD_ON_TERMINATE
+	//
+	// Matching files are uploaded once the simulation enters the TERMINATING state.
+	// Matching files are not uploaded until all of your code (including tools)
+	// have stopped.
+	//
+	// If there is a problem uploading a file, the upload is retried. If problems
+	// persist, no further upload attempts will be made.
+	//
+	// UPLOAD_ROLLING_AUTO_REMOVE
+	//
+	// Matching files are uploaded as they are created. They are deleted after they
+	// are uploaded. The specified path is checked every 5 seconds. A final check
+	// is made when all of your code (including tools) have stopped.
+	//
+	// UploadBehavior is a required field
+	UploadBehavior *string `locationName:"uploadBehavior" type:"string" required:"true" enum:"UploadBehavior"`
+}
+
+// String returns the string representation
+func (s UploadConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UploadConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UploadConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UploadConfiguration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("Path"))
+	}
+	if s.Path != nil && len(*s.Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
+	}
+	if s.UploadBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("UploadBehavior"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *UploadConfiguration) SetName(v string) *UploadConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *UploadConfiguration) SetPath(v string) *UploadConfiguration {
+	s.Path = &v
+	return s
+}
+
+// SetUploadBehavior sets the UploadBehavior field's value.
+func (s *UploadConfiguration) SetUploadBehavior(v string) *UploadConfiguration {
+	s.UploadBehavior = &v
+	return s
+}
+
 // If your simulation job accesses resources in a VPC, you provide this parameter
 // identifying the list of security group IDs and subnet IDs. These must belong
 // to the same VPC. You must provide at least one security group and two subnet
@@ -17653,6 +17814,9 @@ const (
 
 	// SimulationJobErrorCodeWrongRegionSimulationApplication is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeWrongRegionSimulationApplication = "WrongRegionSimulationApplication"
+
+	// SimulationJobErrorCodeUploadContentMismatchError is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeUploadContentMismatchError = "UploadContentMismatchError"
 )
 
 // SimulationJobErrorCode_Values returns all elements of the SimulationJobErrorCode enum
@@ -17685,6 +17849,7 @@ func SimulationJobErrorCode_Values() []string {
 		SimulationJobErrorCodeWrongRegionS3output,
 		SimulationJobErrorCodeWrongRegionRobotApplication,
 		SimulationJobErrorCodeWrongRegionSimulationApplication,
+		SimulationJobErrorCodeUploadContentMismatchError,
 	}
 }
 
@@ -17749,6 +17914,22 @@ func SimulationSoftwareSuiteType_Values() []string {
 	return []string{
 		SimulationSoftwareSuiteTypeGazebo,
 		SimulationSoftwareSuiteTypeRosbagPlay,
+	}
+}
+
+const (
+	// UploadBehaviorUploadOnTerminate is a UploadBehavior enum value
+	UploadBehaviorUploadOnTerminate = "UPLOAD_ON_TERMINATE"
+
+	// UploadBehaviorUploadRollingAutoRemove is a UploadBehavior enum value
+	UploadBehaviorUploadRollingAutoRemove = "UPLOAD_ROLLING_AUTO_REMOVE"
+)
+
+// UploadBehavior_Values returns all elements of the UploadBehavior enum
+func UploadBehavior_Values() []string {
+	return []string{
+		UploadBehaviorUploadOnTerminate,
+		UploadBehaviorUploadRollingAutoRemove,
 	}
 }
 
