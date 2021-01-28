@@ -49,8 +49,8 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// A requested resource does not exist on the network. It may have been deleted
-	// or referenced inaccurately.
+	// A requested resource does not exist. It may have been deleted or referenced
+	// inaccurately.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeResourceNotReadyException for service response error code
@@ -68,6 +68,10 @@ const (
 	// such that your service limit for EC2 instances is exceeded. Request a limit
 	// increase or delete unused resources if possible.
 	ErrCodeThrottlingException = "ThrottlingException"
+
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	ErrCodeTooManyTagsException = "TooManyTagsException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -80,4 +84,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,
 	"ResourceNotReadyException":      newErrorResourceNotReadyException,
 	"ThrottlingException":            newErrorThrottlingException,
+	"TooManyTagsException":           newErrorTooManyTagsException,
 }

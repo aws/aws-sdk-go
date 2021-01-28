@@ -232,7 +232,7 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "LaunchConfig$streamUI": "<p>Boolean indicating whether a streaming session will be configured for the application. If <code>True</code>, AWS RoboMaker will configure a connection so you can interact with your application as it is running in the simulation. You must configure and luanch the component. It must have a graphical user interface. </p>",
+        "LaunchConfig$streamUI": "<p>Boolean indicating whether a streaming session will be configured for the application. If <code>True</code>, AWS RoboMaker will configure a connection so you can interact with your application as it is running in the simulation. You must configure and launch the component. It must have a graphical user interface. </p>",
         "PortMapping$enableOnPublicIp": "<p>A Boolean indicating whether to enable this port mapping on public IP.</p>",
         "VPCConfig$assignPublicIp": "<p>A boolean indicating whether to assign a public IP address.</p>",
         "VPCConfigResponse$assignPublicIp": "<p>A boolean indicating if a public IP was assigned.</p>"
@@ -242,7 +242,9 @@
       "base": null,
       "refs": {
         "LoggingConfig$recordAllRosTopics": "<p>A boolean indicating whether to record all ROS topics.</p>",
-        "SimulationJobRequest$useDefaultApplications": "<p>Boolean indicating whether to use default simulation tool applications.</p>"
+        "RobotApplicationConfig$useDefaultUploadConfigurations": "<p>A Boolean indicating whether to use default upload configurations. By default, <code>.ros</code> and <code>.gazebo</code> files are uploaded when the application terminates and all ROS topics will be recorded.</p> <p>If you set this value, you must specify an <code>outputLocation</code>. </p>",
+        "SimulationApplicationConfig$useDefaultUploadConfigurations": "<p>A Boolean indicating whether to use default upload configurations. By default, <code>.ros</code> and <code>.gazebo</code> files are uploaded when the application terminates and all ROS topics will be recorded.</p> <p>If you set this value, you must specify an <code>outputLocation</code>. </p>",
+        "SimulationJobRequest$useDefaultApplications": "<p>A Boolean indicating whether to use default applications in the simulation job. Default applications include Gazebo, rqt, rviz and terminal access. </p>"
       }
     },
     "CancelDeploymentJobRequest": {
@@ -1227,7 +1229,8 @@
         "SimulationJob$name": "<p>The name of the simulation job.</p>",
         "SimulationJobSummary$name": "<p>The name of the simulation job.</p>",
         "UpdateRobotApplicationResponse$name": "<p>The name of the robot application.</p>",
-        "UpdateSimulationApplicationResponse$name": "<p>The name of the simulation application.</p>"
+        "UpdateSimulationApplicationResponse$name": "<p>The name of the simulation application.</p>",
+        "UploadConfiguration$name": "<p>A prefix that specifies where files will be uploaded in Amazon S3. It is appended to the simulation output location to determine the final path. </p> <p> For example, if your simulation output location is <code>s3://my-bucket</code> and your upload configuration name is <code>robot-test</code>, your files will be uploaded to <code>s3://my-bucket/&lt;simid&gt;/&lt;runid&gt;/robot-test</code>. </p>"
       }
     },
     "NetworkInterface": {
@@ -1294,7 +1297,8 @@
       "base": null,
       "refs": {
         "DeploymentLaunchConfig$preLaunchFile": "<p>The deployment pre-launch file. This file will be executed prior to the launch file.</p>",
-        "DeploymentLaunchConfig$postLaunchFile": "<p>The deployment post-launch file. This file will be executed after the launch file.</p>"
+        "DeploymentLaunchConfig$postLaunchFile": "<p>The deployment post-launch file. This file will be executed after the launch file.</p>",
+        "UploadConfiguration$path": "<p> Specifies the path of the file(s) to upload. Standard Unix glob matching rules are accepted, with the addition of <code>**</code> as a <i>super asterisk</i>. For example, specifying <code>/var/log/**.log</code> causes all .log files in the <code>/var/log</code> directory tree to be collected. For more examples, see <a href=\"https://github.com/gobwas/glob\">Glob Library</a>. </p>"
       }
     },
     "PercentDone": {
@@ -1939,6 +1943,25 @@
     "UpdateWorldTemplateResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UploadBehavior": {
+      "base": null,
+      "refs": {
+        "UploadConfiguration$uploadBehavior": "<p>Specifies how to upload the files:</p> <dl> <dt>UPLOAD_ON_TERMINATE</dt> <dd> <p>Matching files are uploaded once the simulation enters the <code>TERMINATING</code> state. Matching files are not uploaded until all of your code (including tools) have stopped. </p> <p>If there is a problem uploading a file, the upload is retried. If problems persist, no further upload attempts will be made.</p> </dd> <dt>UPLOAD_ROLLING_AUTO_REMOVE</dt> <dd> <p>Matching files are uploaded as they are created. They are deleted after they are uploaded. The specified path is checked every 5 seconds. A final check is made when all of your code (including tools) have stopped. </p> </dd> </dl>"
+      }
+    },
+    "UploadConfiguration": {
+      "base": "<p>Provides upload configuration information. Files are uploaded from the simulation job to a location you specify. </p>",
+      "refs": {
+        "UploadConfigurations$member": null
+      }
+    },
+    "UploadConfigurations": {
+      "base": null,
+      "refs": {
+        "RobotApplicationConfig$uploadConfigurations": "<p>The upload configurations for the robot application.</p>",
+        "SimulationApplicationConfig$uploadConfigurations": "<p>Information about upload configurations for the simulation application.</p>"
       }
     },
     "VPCConfig": {

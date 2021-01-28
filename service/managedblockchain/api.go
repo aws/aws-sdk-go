@@ -77,8 +77,8 @@ func (c *ManagedBlockchain) CreateMemberRequest(input *CreateMemberInput) (req *
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ResourceAlreadyExistsException
 //   A resource request is issued for a resource that already exists.
@@ -101,6 +101,8 @@ func (c *ManagedBlockchain) CreateMemberRequest(input *CreateMemberInput) (req *
 //   * InternalServiceErrorException
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
+//
+//   * TooManyTagsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateMember
 func (c *ManagedBlockchain) CreateMember(input *CreateMemberInput) (*CreateMemberOutput, error) {
@@ -205,6 +207,8 @@ func (c *ManagedBlockchain) CreateNetworkRequest(input *CreateNetworkInput) (req
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
 //
+//   * TooManyTagsException
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateNetwork
 func (c *ManagedBlockchain) CreateNetwork(input *CreateNetworkInput) (*CreateNetworkOutput, error) {
 	req, out := c.CreateNetworkRequest(input)
@@ -275,6 +279,8 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 //
 // Applies to Hyperledger Fabric and Ethereum.
 //
+// Ethereum on Managed Blockchain is in preview release and is subject to change.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -291,8 +297,8 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ResourceAlreadyExistsException
 //   A resource request is issued for a resource that already exists.
@@ -315,6 +321,8 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 //   * InternalServiceErrorException
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
+//
+//   * TooManyTagsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateNode
 func (c *ManagedBlockchain) CreateNode(input *CreateNodeInput) (*CreateNodeOutput, error) {
@@ -404,8 +412,8 @@ func (c *ManagedBlockchain) CreateProposalRequest(input *CreateProposalInput) (r
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ResourceNotReadyException
 //   The requested resource exists but is not in a status that can complete the
@@ -420,6 +428,8 @@ func (c *ManagedBlockchain) CreateProposalRequest(input *CreateProposalInput) (r
 //   * InternalServiceErrorException
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
+//
+//   * TooManyTagsException
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/CreateProposal
 func (c *ManagedBlockchain) CreateProposal(input *CreateProposalInput) (*CreateProposalOutput, error) {
@@ -514,8 +524,8 @@ func (c *ManagedBlockchain) DeleteMemberRequest(input *DeleteMemberInput) (req *
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ResourceNotReadyException
 //   The requested resource exists but is not in a status that can complete the
@@ -619,8 +629,8 @@ func (c *ManagedBlockchain) DeleteNodeRequest(input *DeleteNodeInput) (req *requ
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ResourceNotReadyException
 //   The requested resource exists but is not in a status that can complete the
@@ -722,8 +732,8 @@ func (c *ManagedBlockchain) GetMemberRequest(input *GetMemberInput) (req *reques
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -821,8 +831,8 @@ func (c *ManagedBlockchain) GetNetworkRequest(input *GetNetworkInput) (req *requ
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -920,8 +930,8 @@ func (c *ManagedBlockchain) GetNodeRequest(input *GetNodeInput) (req *request.Re
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -1019,8 +1029,8 @@ func (c *ManagedBlockchain) GetProposalRequest(input *GetProposalInput) (req *re
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -1124,8 +1134,8 @@ func (c *ManagedBlockchain) ListInvitationsRequest(input *ListInvitationsInput) 
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -1896,8 +1906,8 @@ func (c *ManagedBlockchain) ListProposalsRequest(input *ListProposalsInput) (req
 //   correctly.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
@@ -1986,6 +1996,104 @@ func (c *ManagedBlockchain) ListProposalsPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/ListTagsForResource
+func (c *ManagedBlockchain) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Managed Blockchain.
+//
+// Returns a list of tags for the specified resource. Each tag consists of a
+// key and optional value.
+//
+// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceErrorException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * InvalidRequestException
+//   The action or operation requested is invalid. Verify that the action is typed
+//   correctly.
+//
+//   * ResourceNotFoundException
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
+//
+//   * ResourceNotReadyException
+//   The requested resource exists but is not in a status that can complete the
+//   operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/ListTagsForResource
+func (c *ManagedBlockchain) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRejectInvitation = "RejectInvitation"
 
 // RejectInvitationRequest generates a "aws/request.Request" representing the
@@ -2055,8 +2163,8 @@ func (c *ManagedBlockchain) RejectInvitationRequest(input *RejectInvitationInput
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -2085,6 +2193,211 @@ func (c *ManagedBlockchain) RejectInvitation(input *RejectInvitationInput) (*Rej
 // for more information on using Contexts.
 func (c *ManagedBlockchain) RejectInvitationWithContext(ctx aws.Context, input *RejectInvitationInput, opts ...request.Option) (*RejectInvitationOutput, error) {
 	req, out := c.RejectInvitationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/TagResource
+func (c *ManagedBlockchain) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Managed Blockchain.
+//
+// Adds or overwrites the specified tags for the specified Amazon Managed Blockchain
+// resource. Each tag consists of a key and optional value.
+//
+// When you specify a tag key that already exists, the tag value is overwritten
+// with the new value. Use UntagResource to remove tag keys.
+//
+// A resource can have up to 50 tags. If you try to create more than 50 tags
+// for a resource, your request fails and returns an error.
+//
+// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceErrorException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * InvalidRequestException
+//   The action or operation requested is invalid. Verify that the action is typed
+//   correctly.
+//
+//   * ResourceNotFoundException
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
+//
+//   * TooManyTagsException
+//
+//   * ResourceNotReadyException
+//   The requested resource exists but is not in a status that can complete the
+//   operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/TagResource
+func (c *ManagedBlockchain) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/UntagResource
+func (c *ManagedBlockchain) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Managed Blockchain.
+//
+// Removes the specified tags from the Amazon Managed Blockchain resource.
+//
+// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Managed Blockchain's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceErrorException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * InvalidRequestException
+//   The action or operation requested is invalid. Verify that the action is typed
+//   correctly.
+//
+//   * ResourceNotFoundException
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
+//
+//   * ResourceNotReadyException
+//   The requested resource exists but is not in a status that can complete the
+//   operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/managedblockchain-2018-09-24/UntagResource
+func (c *ManagedBlockchain) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ManagedBlockchain) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2155,8 +2468,8 @@ func (c *ManagedBlockchain) UpdateMemberRequest(input *UpdateMemberInput) (req *
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -2255,8 +2568,8 @@ func (c *ManagedBlockchain) UpdateNodeRequest(input *UpdateNodeInput) (req *requ
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -2359,8 +2672,8 @@ func (c *ManagedBlockchain) VoteOnProposalRequest(input *VoteOnProposalInput) (r
 //   You do not have sufficient access to perform this action.
 //
 //   * ResourceNotFoundException
-//   A requested resource does not exist on the network. It may have been deleted
-//   or referenced inaccurately.
+//   A requested resource does not exist. It may have been deleted or referenced
+//   inaccurately.
 //
 //   * ThrottlingException
 //   The request or operation could not be performed because a service is throttling
@@ -2673,6 +2986,17 @@ type CreateNetworkInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// Tags to assign to the network. Each tag consists of a key and optional value.
+	//
+	// When specifying tags during creation, you can specify multiple key-value
+	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
+
 	// The voting rules used by the network to determine if a proposal is approved.
 	//
 	// VotingPolicy is a required field
@@ -2780,6 +3104,12 @@ func (s *CreateNetworkInput) SetName(v string) *CreateNetworkInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateNetworkInput) SetTags(v map[string]*string) *CreateNetworkInput {
+	s.Tags = v
+	return s
+}
+
 // SetVotingPolicy sets the VotingPolicy field's value.
 func (s *CreateNetworkInput) SetVotingPolicy(v *VotingPolicy) *CreateNetworkInput {
 	s.VotingPolicy = v
@@ -2850,6 +3180,17 @@ type CreateNodeInput struct {
 	//
 	// NodeConfiguration is a required field
 	NodeConfiguration *NodeConfiguration `type:"structure" required:"true"`
+
+	// Tags to assign to the node. Each tag consists of a key and optional value.
+	//
+	// When specifying tags during creation, you can specify multiple key-value
+	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -2916,6 +3257,12 @@ func (s *CreateNodeInput) SetNodeConfiguration(v *NodeConfiguration) *CreateNode
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateNodeInput) SetTags(v map[string]*string) *CreateNodeInput {
+	s.Tags = v
+	return s
+}
+
 type CreateNodeOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2971,6 +3318,19 @@ type CreateProposalInput struct {
 	//
 	// NetworkId is a required field
 	NetworkId *string `location:"uri" locationName:"networkId" min:"1" type:"string" required:"true"`
+
+	// Tags to assign to the proposal. Each tag consists of a key and optional value.
+	//
+	// When specifying tags during creation, you can specify multiple key-value
+	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	// If the proposal is for a network invitation, the invitation inherits the
+	// tags added to the proposal.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -3043,6 +3403,12 @@ func (s *CreateProposalInput) SetMemberId(v string) *CreateProposalInput {
 // SetNetworkId sets the NetworkId field's value.
 func (s *CreateProposalInput) SetNetworkId(v string) *CreateProposalInput {
 	s.NetworkId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateProposalInput) SetTags(v map[string]*string) *CreateProposalInput {
+	s.Tags = v
 	return s
 }
 
@@ -3731,6 +4097,11 @@ func (s *InvalidRequestException) RequestID() string {
 type Invitation struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the invitation. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The date and time that the invitation was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -3772,6 +4143,12 @@ func (s Invitation) String() string {
 // GoString returns the string representation
 func (s Invitation) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Invitation) SetArn(v string) *Invitation {
+	s.Arn = &v
+	return s
 }
 
 // SetCreationDate sets the CreationDate field's value.
@@ -4481,6 +4858,72 @@ func (s *ListProposalsOutput) SetProposals(v []*ProposalSummary) *ListProposalsO
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags assigned to the resource.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // A configuration for logging events.
 type LogConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -4535,6 +4978,11 @@ func (s *LogConfigurations) SetCloudwatch(v *LogConfiguration) *LogConfiguration
 type Member struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the member. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The date and time that the member was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -4576,6 +5024,11 @@ type Member struct {
 	//    member deleted it, or the member is being deleted as the result of an
 	//    APPROVED PROPOSAL to remove the member.
 	Status *string `type:"string" enum:"MemberStatus"`
+
+	// Tags assigned to the member. Tags consist of a key and optional value. For
+	// more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -4586,6 +5039,12 @@ func (s Member) String() string {
 // GoString returns the string representation
 func (s Member) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Member) SetArn(v string) *Member {
+	s.Arn = &v
+	return s
 }
 
 // SetCreationDate sets the CreationDate field's value.
@@ -4636,6 +5095,12 @@ func (s *Member) SetStatus(v string) *Member {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *Member) SetTags(v map[string]*string) *Member {
+	s.Tags = v
+	return s
+}
+
 // Configuration properties of the member.
 //
 // Applies only to Hyperledger Fabric.
@@ -4658,6 +5123,14 @@ type MemberConfiguration struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// Tags assigned to the member. Tags consist of a key and optional value. For
+	// more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	//
+	// When specifying tags during creation, you can specify multiple key-value
+	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -4715,6 +5188,12 @@ func (s *MemberConfiguration) SetLogPublishingConfiguration(v *MemberLogPublishi
 // SetName sets the Name field's value.
 func (s *MemberConfiguration) SetName(v string) *MemberConfiguration {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *MemberConfiguration) SetTags(v map[string]*string) *MemberConfiguration {
+	s.Tags = v
 	return s
 }
 
@@ -4942,6 +5421,11 @@ func (s *MemberLogPublishingConfiguration) SetFabric(v *MemberFabricLogPublishin
 type MemberSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the member. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The date and time that the member was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -4989,6 +5473,12 @@ func (s MemberSummary) GoString() string {
 	return s.String()
 }
 
+// SetArn sets the Arn field's value.
+func (s *MemberSummary) SetArn(v string) *MemberSummary {
+	s.Arn = &v
+	return s
+}
+
 // SetCreationDate sets the CreationDate field's value.
 func (s *MemberSummary) SetCreationDate(v time.Time) *MemberSummary {
 	s.CreationDate = &v
@@ -5029,6 +5519,11 @@ func (s *MemberSummary) SetStatus(v string) *MemberSummary {
 type Network struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the network. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The date and time that the network was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -5053,6 +5548,14 @@ type Network struct {
 	// The current status of the network.
 	Status *string `type:"string" enum:"NetworkStatus"`
 
+	// Tags assigned to the network. Each tag consists of a key and optional value.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
+
 	// The voting rules for the network to decide if a proposal is accepted.
 	VotingPolicy *VotingPolicy `type:"structure"`
 
@@ -5070,6 +5573,12 @@ func (s Network) String() string {
 // GoString returns the string representation
 func (s Network) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Network) SetArn(v string) *Network {
+	s.Arn = &v
+	return s
 }
 
 // SetCreationDate sets the CreationDate field's value.
@@ -5120,6 +5629,12 @@ func (s *Network) SetStatus(v string) *Network {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *Network) SetTags(v map[string]*string) *Network {
+	s.Tags = v
+	return s
+}
+
 // SetVotingPolicy sets the VotingPolicy field's value.
 func (s *Network) SetVotingPolicy(v *VotingPolicy) *Network {
 	s.VotingPolicy = v
@@ -5132,7 +5647,8 @@ func (s *Network) SetVpcEndpointServiceName(v string) *Network {
 	return s
 }
 
-// Attributes of Ethereum for a network.
+// Attributes of Ethereum for a network. Ethereum on Managed Blockchain is in
+// preview release and is subject to change.
 type NetworkEthereumAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -5243,7 +5759,8 @@ type NetworkFrameworkAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Attributes of an Ethereum network for Managed Blockchain resources participating
-	// in an Ethereum network.
+	// in an Ethereum network. Ethereum on Managed Blockchain is in preview release
+	// and is subject to change.
 	Ethereum *NetworkEthereumAttributes `type:"structure"`
 
 	// Attributes of Hyperledger Fabric for a Managed Blockchain network that uses
@@ -5318,6 +5835,11 @@ func (s *NetworkFrameworkConfiguration) SetFabric(v *NetworkFabricConfiguration)
 type NetworkSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the network. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The date and time that the network was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -5348,6 +5870,12 @@ func (s NetworkSummary) String() string {
 // GoString returns the string representation
 func (s NetworkSummary) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *NetworkSummary) SetArn(v string) *NetworkSummary {
+	s.Arn = &v
+	return s
 }
 
 // SetCreationDate sets the CreationDate field's value.
@@ -5396,7 +5924,13 @@ func (s *NetworkSummary) SetStatus(v string) *NetworkSummary {
 type Node struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone in which the node exists.
+	// The Amazon Resource Name (ARN) of the node. For more information about ARNs
+	// and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
+	// The Availability Zone in which the node exists. Required for Ethereum nodes.
+	// Ethereum on Managed Blockchain is in preview release and is subject to change.
 	AvailabilityZone *string `type:"string"`
 
 	// The date and time that the node was created.
@@ -5430,6 +5964,14 @@ type Node struct {
 
 	// The status of the node.
 	Status *string `type:"string" enum:"NodeStatus"`
+
+	// Tags assigned to the node. Each tag consists of a key and optional value.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -5440,6 +5982,12 @@ func (s Node) String() string {
 // GoString returns the string representation
 func (s Node) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Node) SetArn(v string) *Node {
+	s.Arn = &v
+	return s
 }
 
 // SetAvailabilityZone sets the AvailabilityZone field's value.
@@ -5502,11 +6050,18 @@ func (s *Node) SetStatus(v string) *Node {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *Node) SetTags(v map[string]*string) *Node {
+	s.Tags = v
+	return s
+}
+
 // Configuration properties of a node.
 type NodeConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Availability Zone in which the node exists.
+	// The Availability Zone in which the node exists. Required for Ethereum nodes.
+	// Ethereum on Managed Blockchain is in preview release and is subject to change.
 	AvailabilityZone *string `type:"string"`
 
 	// The Amazon Managed Blockchain instance type for the node.
@@ -5573,7 +6128,8 @@ func (s *NodeConfiguration) SetStateDB(v string) *NodeConfiguration {
 	return s
 }
 
-// Attributes of an Ethereum node.
+// Attributes of an Ethereum node. Ethereum on Managed Blockchain is in preview
+// release and is subject to change.
 type NodeEthereumAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -5694,7 +6250,8 @@ type NodeFrameworkAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Attributes of Ethereum for a node on a Managed Blockchain network that uses
-	// Ethereum.
+	// Ethereum. Ethereum on Managed Blockchain is in preview release and is subject
+	// to change.
 	Ethereum *NodeEthereumAttributes `type:"structure"`
 
 	// Attributes of Hyperledger Fabric for a peer node on a Managed Blockchain
@@ -5755,6 +6312,11 @@ func (s *NodeLogPublishingConfiguration) SetFabric(v *NodeFabricLogPublishingCon
 type NodeSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the node. For more information about ARNs
+	// and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The Availability Zone in which the node exists.
 	AvailabilityZone *string `type:"string"`
 
@@ -5779,6 +6341,12 @@ func (s NodeSummary) String() string {
 // GoString returns the string representation
 func (s NodeSummary) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *NodeSummary) SetArn(v string) *NodeSummary {
+	s.Arn = &v
+	return s
 }
 
 // SetAvailabilityZone sets the AvailabilityZone field's value.
@@ -5819,6 +6387,11 @@ type Proposal struct {
 
 	// The actions to perform on the network if the proposal is APPROVED.
 	Actions *ProposalActions `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the proposal. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
 
 	// The date and time that the proposal was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -5874,6 +6447,14 @@ type Proposal struct {
 	//    are successful.
 	Status *string `type:"string" enum:"ProposalStatus"`
 
+	// Tags assigned to the proposal. Each tag consists of a key and optional value.
+	//
+	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
+	// (https://docs.aws.amazon.com/managed-blockchain/latest/hyperledger-fabric-dev/tagging-resources.html)
+	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
+	Tags map[string]*string `type:"map"`
+
 	// The current total of YES votes cast on the proposal by members.
 	YesVoteCount *int64 `type:"integer"`
 }
@@ -5891,6 +6472,12 @@ func (s Proposal) GoString() string {
 // SetActions sets the Actions field's value.
 func (s *Proposal) SetActions(v *ProposalActions) *Proposal {
 	s.Actions = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *Proposal) SetArn(v string) *Proposal {
+	s.Arn = &v
 	return s
 }
 
@@ -5951,6 +6538,12 @@ func (s *Proposal) SetProposedByMemberName(v string) *Proposal {
 // SetStatus sets the Status field's value.
 func (s *Proposal) SetStatus(v string) *Proposal {
 	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Proposal) SetTags(v map[string]*string) *Proposal {
+	s.Tags = v
 	return s
 }
 
@@ -6034,6 +6627,11 @@ func (s *ProposalActions) SetRemovals(v []*RemoveAction) *ProposalActions {
 type ProposalSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the proposal. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	Arn *string `min:"1" type:"string"`
+
 	// The date and time that the proposal was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -6085,6 +6683,12 @@ func (s ProposalSummary) String() string {
 // GoString returns the string representation
 func (s ProposalSummary) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ProposalSummary) SetArn(v string) *ProposalSummary {
+	s.Arn = &v
+	return s
 }
 
 // SetCreationDate sets the CreationDate field's value.
@@ -6344,13 +6948,17 @@ func (s *ResourceLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A requested resource does not exist on the network. It may have been deleted
-// or referenced inaccurately.
+// A requested resource does not exist. It may have been deleted or referenced
+// inaccurately.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"Message" type:"string"`
+
+	// A requested resource does not exist. It may have been deleted or referenced
+	// inaccurately.
+	ResourceName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -6388,7 +6996,7 @@ func (s *ResourceNotFoundException) OrigErr() error {
 }
 
 func (s *ResourceNotFoundException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -6458,6 +7066,79 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// The tags to assign to the specified resource. Tag values can be empty, for
+	// example, "MyTagKey" : "". You can specify multiple key-value pairs in a single
+	// request, with an overall maximum of 50 added to each resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The request or operation could not be performed because a service is throttling
 // requests. The most common source of throttling errors is launching EC2 instances
 // such that your service limit for EC2 instances is exceeded. Request a limit
@@ -6515,6 +7196,134 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type TooManyTagsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	ResourceName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TooManyTagsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TooManyTagsException) GoString() string {
+	return s.String()
+}
+
+func newErrorTooManyTagsException(v protocol.ResponseMetadata) error {
+	return &TooManyTagsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TooManyTagsException) Code() string {
+	return "TooManyTagsException"
+}
+
+// Message returns the exception's message.
+func (s *TooManyTagsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TooManyTagsException) OrigErr() error {
+	return nil
+}
+
+func (s *TooManyTagsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TooManyTagsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TooManyTagsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource. For more information about
+	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the AWS General Reference.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// The tag keys.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateMemberInput struct {

@@ -3232,6 +3232,8 @@ type Answer struct {
 	Risk *string `type:"string" enum:"Risk"`
 
 	// List of selected choice IDs in a question answer.
+	//
+	// The values entered replace the previously selected choices.
 	SelectedChoices []*string `type:"list"`
 }
 
@@ -3336,6 +3338,8 @@ type AnswerSummary struct {
 	Risk *string `type:"string" enum:"Risk"`
 
 	// List of selected choice IDs in a question answer.
+	//
+	// The values entered replace the previously selected choices.
 	SelectedChoices []*string `type:"list"`
 }
 
@@ -7096,6 +7100,8 @@ type UpdateAnswerInput struct {
 	QuestionId *string `location:"uri" locationName:"QuestionId" min:"1" type:"string" required:"true"`
 
 	// List of selected choice IDs in a question answer.
+	//
+	// The values entered replace the previously selected choices.
 	SelectedChoices []*string `type:"list"`
 
 	// The ID assigned to the workload. This ID is unique within an AWS Region.
