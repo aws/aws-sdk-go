@@ -5996,9 +5996,9 @@ type AccountLevelPermissions struct {
 
 	// Provides information about the block public access settings for an S3 bucket.
 	// These settings can apply to a bucket at the account level or bucket level.
-	// For detailed information about each setting, see Using Amazon S3 block public
-	// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html)
-	// in the Amazon Simple Storage Service Developer Guide.
+	// For detailed information about each setting, see Blocking public access to
+	// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 }
 
@@ -6336,9 +6336,9 @@ func (s *BatchGetCustomDataIdentifiersOutput) SetNotFoundIdentifierIds(v []*stri
 
 // Provides information about the block public access settings for an S3 bucket.
 // These settings can apply to a bucket at the account level or bucket level.
-// For detailed information about each setting, see Using Amazon S3 block public
-// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html)
-// in the Amazon Simple Storage Service Developer Guide.
+// For detailed information about each setting, see Blocking public access to
+// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+// in the Amazon Simple Storage Service User Guide.
 type BlockPublicAccess struct {
 	_ struct{} `type:"structure"`
 
@@ -6604,9 +6604,9 @@ type BucketLevelPermissions struct {
 
 	// Provides information about the block public access settings for an S3 bucket.
 	// These settings can apply to a bucket at the account level or bucket level.
-	// For detailed information about each setting, see Using Amazon S3 block public
-	// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html)
-	// in the Amazon Simple Storage Service Developer Guide.
+	// For detailed information about each setting, see Blocking public access to
+	// your Amazon S3 storage (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html)
+	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 
 	// Provides information about the permissions settings of a bucket policy for
@@ -7329,6 +7329,11 @@ func (s *CreateClassificationJobInput) Validate() error {
 	}
 	if s.S3JobDefinition == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3JobDefinition"))
+	}
+	if s.S3JobDefinition != nil {
+		if err := s.S3JobDefinition.Validate(); err != nil {
+			invalidParams.AddNested("S3JobDefinition", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12645,9 +12650,11 @@ func (s *S3Bucket) SetTags(v []*KeyValuePair) *S3Bucket {
 type S3BucketDefinitionForJob struct {
 	_ struct{} `type:"structure"`
 
-	AccountId *string `locationName:"accountId" type:"string"`
+	// AccountId is a required field
+	AccountId *string `locationName:"accountId" type:"string" required:"true"`
 
-	Buckets []*string `locationName:"buckets" type:"list"`
+	// Buckets is a required field
+	Buckets []*string `locationName:"buckets" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -12658,6 +12665,22 @@ func (s S3BucketDefinitionForJob) String() string {
 // GoString returns the string representation
 func (s S3BucketDefinitionForJob) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketDefinitionForJob) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketDefinitionForJob"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.Buckets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Buckets"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAccountId sets the AccountId field's value.
@@ -12783,6 +12806,26 @@ func (s S3JobDefinition) String() string {
 // GoString returns the string representation
 func (s S3JobDefinition) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3JobDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3JobDefinition"}
+	if s.BucketDefinitions != nil {
+		for i, v := range s.BucketDefinitions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BucketDefinitions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetBucketDefinitions sets the BucketDefinitions field's value.
@@ -14992,6 +15035,9 @@ const (
 
 	// JobComparatorContains is a JobComparator enum value
 	JobComparatorContains = "CONTAINS"
+
+	// JobComparatorStartsWith is a JobComparator enum value
+	JobComparatorStartsWith = "STARTS_WITH"
 )
 
 // JobComparator_Values returns all elements of the JobComparator enum
@@ -15004,6 +15050,7 @@ func JobComparator_Values() []string {
 		JobComparatorLte,
 		JobComparatorNe,
 		JobComparatorContains,
+		JobComparatorStartsWith,
 	}
 }
 
@@ -15226,6 +15273,9 @@ const (
 
 	// ScopeFilterKeyTag is a ScopeFilterKey enum value
 	ScopeFilterKeyTag = "TAG"
+
+	// ScopeFilterKeyObjectKey is a ScopeFilterKey enum value
+	ScopeFilterKeyObjectKey = "OBJECT_KEY"
 )
 
 // ScopeFilterKey_Values returns all elements of the ScopeFilterKey enum
@@ -15236,6 +15286,7 @@ func ScopeFilterKey_Values() []string {
 		ScopeFilterKeyObjectLastModifiedDate,
 		ScopeFilterKeyObjectSize,
 		ScopeFilterKeyTag,
+		ScopeFilterKeyObjectKey,
 	}
 }
 

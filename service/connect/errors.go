@@ -35,7 +35,7 @@ const (
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
-	// Request processing failed due to an error or failure with the service.
+	// Request processing failed because of an error or failure with the service.
 	ErrCodeInternalServiceException = "InternalServiceException"
 
 	// ErrCodeInvalidContactFlowException for service response error code

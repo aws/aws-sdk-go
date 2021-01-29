@@ -76,6 +76,10 @@ type ConnectAPI interface {
 	AssociateLexBotWithContext(aws.Context, *connect.AssociateLexBotInput, ...request.Option) (*connect.AssociateLexBotOutput, error)
 	AssociateLexBotRequest(*connect.AssociateLexBotInput) (*request.Request, *connect.AssociateLexBotOutput)
 
+	AssociateQueueQuickConnects(*connect.AssociateQueueQuickConnectsInput) (*connect.AssociateQueueQuickConnectsOutput, error)
+	AssociateQueueQuickConnectsWithContext(aws.Context, *connect.AssociateQueueQuickConnectsInput, ...request.Option) (*connect.AssociateQueueQuickConnectsOutput, error)
+	AssociateQueueQuickConnectsRequest(*connect.AssociateQueueQuickConnectsInput) (*request.Request, *connect.AssociateQueueQuickConnectsOutput)
+
 	AssociateRoutingProfileQueues(*connect.AssociateRoutingProfileQueuesInput) (*connect.AssociateRoutingProfileQueuesOutput, error)
 	AssociateRoutingProfileQueuesWithContext(aws.Context, *connect.AssociateRoutingProfileQueuesInput, ...request.Option) (*connect.AssociateRoutingProfileQueuesOutput, error)
 	AssociateRoutingProfileQueuesRequest(*connect.AssociateRoutingProfileQueuesInput) (*request.Request, *connect.AssociateRoutingProfileQueuesOutput)
@@ -95,6 +99,10 @@ type ConnectAPI interface {
 	CreateIntegrationAssociation(*connect.CreateIntegrationAssociationInput) (*connect.CreateIntegrationAssociationOutput, error)
 	CreateIntegrationAssociationWithContext(aws.Context, *connect.CreateIntegrationAssociationInput, ...request.Option) (*connect.CreateIntegrationAssociationOutput, error)
 	CreateIntegrationAssociationRequest(*connect.CreateIntegrationAssociationInput) (*request.Request, *connect.CreateIntegrationAssociationOutput)
+
+	CreateQueue(*connect.CreateQueueInput) (*connect.CreateQueueOutput, error)
+	CreateQueueWithContext(aws.Context, *connect.CreateQueueInput, ...request.Option) (*connect.CreateQueueOutput, error)
+	CreateQueueRequest(*connect.CreateQueueInput) (*request.Request, *connect.CreateQueueOutput)
 
 	CreateQuickConnect(*connect.CreateQuickConnectInput) (*connect.CreateQuickConnectOutput, error)
 	CreateQuickConnectWithContext(aws.Context, *connect.CreateQuickConnectInput, ...request.Option) (*connect.CreateQuickConnectOutput, error)
@@ -144,6 +152,10 @@ type ConnectAPI interface {
 	DescribeContactFlowWithContext(aws.Context, *connect.DescribeContactFlowInput, ...request.Option) (*connect.DescribeContactFlowOutput, error)
 	DescribeContactFlowRequest(*connect.DescribeContactFlowInput) (*request.Request, *connect.DescribeContactFlowOutput)
 
+	DescribeHoursOfOperation(*connect.DescribeHoursOfOperationInput) (*connect.DescribeHoursOfOperationOutput, error)
+	DescribeHoursOfOperationWithContext(aws.Context, *connect.DescribeHoursOfOperationInput, ...request.Option) (*connect.DescribeHoursOfOperationOutput, error)
+	DescribeHoursOfOperationRequest(*connect.DescribeHoursOfOperationInput) (*request.Request, *connect.DescribeHoursOfOperationOutput)
+
 	DescribeInstance(*connect.DescribeInstanceInput) (*connect.DescribeInstanceOutput, error)
 	DescribeInstanceWithContext(aws.Context, *connect.DescribeInstanceInput, ...request.Option) (*connect.DescribeInstanceOutput, error)
 	DescribeInstanceRequest(*connect.DescribeInstanceInput) (*request.Request, *connect.DescribeInstanceOutput)
@@ -155,6 +167,10 @@ type ConnectAPI interface {
 	DescribeInstanceStorageConfig(*connect.DescribeInstanceStorageConfigInput) (*connect.DescribeInstanceStorageConfigOutput, error)
 	DescribeInstanceStorageConfigWithContext(aws.Context, *connect.DescribeInstanceStorageConfigInput, ...request.Option) (*connect.DescribeInstanceStorageConfigOutput, error)
 	DescribeInstanceStorageConfigRequest(*connect.DescribeInstanceStorageConfigInput) (*request.Request, *connect.DescribeInstanceStorageConfigOutput)
+
+	DescribeQueue(*connect.DescribeQueueInput) (*connect.DescribeQueueOutput, error)
+	DescribeQueueWithContext(aws.Context, *connect.DescribeQueueInput, ...request.Option) (*connect.DescribeQueueOutput, error)
+	DescribeQueueRequest(*connect.DescribeQueueInput) (*request.Request, *connect.DescribeQueueOutput)
 
 	DescribeQuickConnect(*connect.DescribeQuickConnectInput) (*connect.DescribeQuickConnectOutput, error)
 	DescribeQuickConnectWithContext(aws.Context, *connect.DescribeQuickConnectInput, ...request.Option) (*connect.DescribeQuickConnectOutput, error)
@@ -191,6 +207,10 @@ type ConnectAPI interface {
 	DisassociateLexBot(*connect.DisassociateLexBotInput) (*connect.DisassociateLexBotOutput, error)
 	DisassociateLexBotWithContext(aws.Context, *connect.DisassociateLexBotInput, ...request.Option) (*connect.DisassociateLexBotOutput, error)
 	DisassociateLexBotRequest(*connect.DisassociateLexBotInput) (*request.Request, *connect.DisassociateLexBotOutput)
+
+	DisassociateQueueQuickConnects(*connect.DisassociateQueueQuickConnectsInput) (*connect.DisassociateQueueQuickConnectsOutput, error)
+	DisassociateQueueQuickConnectsWithContext(aws.Context, *connect.DisassociateQueueQuickConnectsInput, ...request.Option) (*connect.DisassociateQueueQuickConnectsOutput, error)
+	DisassociateQueueQuickConnectsRequest(*connect.DisassociateQueueQuickConnectsInput) (*request.Request, *connect.DisassociateQueueQuickConnectsOutput)
 
 	DisassociateRoutingProfileQueues(*connect.DisassociateRoutingProfileQueuesInput) (*connect.DisassociateRoutingProfileQueuesOutput, error)
 	DisassociateRoutingProfileQueuesWithContext(aws.Context, *connect.DisassociateRoutingProfileQueuesInput, ...request.Option) (*connect.DisassociateRoutingProfileQueuesOutput, error)
@@ -298,6 +318,13 @@ type ConnectAPI interface {
 
 	ListPromptsPages(*connect.ListPromptsInput, func(*connect.ListPromptsOutput, bool) bool) error
 	ListPromptsPagesWithContext(aws.Context, *connect.ListPromptsInput, func(*connect.ListPromptsOutput, bool) bool, ...request.Option) error
+
+	ListQueueQuickConnects(*connect.ListQueueQuickConnectsInput) (*connect.ListQueueQuickConnectsOutput, error)
+	ListQueueQuickConnectsWithContext(aws.Context, *connect.ListQueueQuickConnectsInput, ...request.Option) (*connect.ListQueueQuickConnectsOutput, error)
+	ListQueueQuickConnectsRequest(*connect.ListQueueQuickConnectsInput) (*request.Request, *connect.ListQueueQuickConnectsOutput)
+
+	ListQueueQuickConnectsPages(*connect.ListQueueQuickConnectsInput, func(*connect.ListQueueQuickConnectsOutput, bool) bool) error
+	ListQueueQuickConnectsPagesWithContext(aws.Context, *connect.ListQueueQuickConnectsInput, func(*connect.ListQueueQuickConnectsOutput, bool) bool, ...request.Option) error
 
 	ListQueues(*connect.ListQueuesInput) (*connect.ListQueuesOutput, error)
 	ListQueuesWithContext(aws.Context, *connect.ListQueuesInput, ...request.Option) (*connect.ListQueuesOutput, error)
@@ -425,6 +452,26 @@ type ConnectAPI interface {
 	UpdateInstanceStorageConfig(*connect.UpdateInstanceStorageConfigInput) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigWithContext(aws.Context, *connect.UpdateInstanceStorageConfigInput, ...request.Option) (*connect.UpdateInstanceStorageConfigOutput, error)
 	UpdateInstanceStorageConfigRequest(*connect.UpdateInstanceStorageConfigInput) (*request.Request, *connect.UpdateInstanceStorageConfigOutput)
+
+	UpdateQueueHoursOfOperation(*connect.UpdateQueueHoursOfOperationInput) (*connect.UpdateQueueHoursOfOperationOutput, error)
+	UpdateQueueHoursOfOperationWithContext(aws.Context, *connect.UpdateQueueHoursOfOperationInput, ...request.Option) (*connect.UpdateQueueHoursOfOperationOutput, error)
+	UpdateQueueHoursOfOperationRequest(*connect.UpdateQueueHoursOfOperationInput) (*request.Request, *connect.UpdateQueueHoursOfOperationOutput)
+
+	UpdateQueueMaxContacts(*connect.UpdateQueueMaxContactsInput) (*connect.UpdateQueueMaxContactsOutput, error)
+	UpdateQueueMaxContactsWithContext(aws.Context, *connect.UpdateQueueMaxContactsInput, ...request.Option) (*connect.UpdateQueueMaxContactsOutput, error)
+	UpdateQueueMaxContactsRequest(*connect.UpdateQueueMaxContactsInput) (*request.Request, *connect.UpdateQueueMaxContactsOutput)
+
+	UpdateQueueName(*connect.UpdateQueueNameInput) (*connect.UpdateQueueNameOutput, error)
+	UpdateQueueNameWithContext(aws.Context, *connect.UpdateQueueNameInput, ...request.Option) (*connect.UpdateQueueNameOutput, error)
+	UpdateQueueNameRequest(*connect.UpdateQueueNameInput) (*request.Request, *connect.UpdateQueueNameOutput)
+
+	UpdateQueueOutboundCallerConfig(*connect.UpdateQueueOutboundCallerConfigInput) (*connect.UpdateQueueOutboundCallerConfigOutput, error)
+	UpdateQueueOutboundCallerConfigWithContext(aws.Context, *connect.UpdateQueueOutboundCallerConfigInput, ...request.Option) (*connect.UpdateQueueOutboundCallerConfigOutput, error)
+	UpdateQueueOutboundCallerConfigRequest(*connect.UpdateQueueOutboundCallerConfigInput) (*request.Request, *connect.UpdateQueueOutboundCallerConfigOutput)
+
+	UpdateQueueStatus(*connect.UpdateQueueStatusInput) (*connect.UpdateQueueStatusOutput, error)
+	UpdateQueueStatusWithContext(aws.Context, *connect.UpdateQueueStatusInput, ...request.Option) (*connect.UpdateQueueStatusOutput, error)
+	UpdateQueueStatusRequest(*connect.UpdateQueueStatusInput) (*request.Request, *connect.UpdateQueueStatusOutput)
 
 	UpdateQuickConnectConfig(*connect.UpdateQuickConnectConfigInput) (*connect.UpdateQuickConnectConfigOutput, error)
 	UpdateQuickConnectConfigWithContext(aws.Context, *connect.UpdateQuickConnectConfigInput, ...request.Option) (*connect.UpdateQuickConnectConfigOutput, error)

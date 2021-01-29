@@ -81,6 +81,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "AssociateQueueQuickConnects":{
+      "name":"AssociateQueueQuickConnects",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/associate-quick-connects"
+      },
+      "input":{"shape":"AssociateQueueQuickConnectsRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "AssociateRoutingProfileQueues":{
       "name":"AssociateRoutingProfileQueues",
       "http":{
@@ -163,6 +179,24 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateQueue":{
+      "name":"CreateQueue",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/queues/{InstanceId}"
+      },
+      "input":{"shape":"CreateQueueRequest"},
+      "output":{"shape":"CreateQueueResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"DuplicateResourceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "CreateQuickConnect":{
@@ -357,6 +391,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DescribeHoursOfOperation":{
+      "name":"DescribeHoursOfOperation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/hours-of-operations/{InstanceId}/{HoursOfOperationId}"
+      },
+      "input":{"shape":"DescribeHoursOfOperationRequest"},
+      "output":{"shape":"DescribeHoursOfOperationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "DescribeInstance":{
       "name":"DescribeInstance",
       "http":{
@@ -401,6 +451,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "DescribeQueue":{
+      "name":"DescribeQueue",
+      "http":{
+        "method":"GET",
+        "requestUri":"/queues/{InstanceId}/{QueueId}"
+      },
+      "input":{"shape":"DescribeQueueRequest"},
+      "output":{"shape":"DescribeQueueResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DescribeQuickConnect":{
@@ -541,6 +607,21 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "DisassociateQueueQuickConnects":{
+      "name":"DisassociateQueueQuickConnects",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/disassociate-quick-connects"
+      },
+      "input":{"shape":"DisassociateQueueQuickConnectsRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DisassociateRoutingProfileQueues":{
@@ -800,6 +881,22 @@
       },
       "input":{"shape":"ListPromptsRequest"},
       "output":{"shape":"ListPromptsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListQueueQuickConnects":{
+      "name":"ListQueueQuickConnects",
+      "http":{
+        "method":"GET",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/quick-connects"
+      },
+      "input":{"shape":"ListQueueQuickConnectsRequest"},
+      "output":{"shape":"ListQueueQuickConnectsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
@@ -1198,6 +1295,82 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateQueueHoursOfOperation":{
+      "name":"UpdateQueueHoursOfOperation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/hours-of-operation"
+      },
+      "input":{"shape":"UpdateQueueHoursOfOperationRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateQueueMaxContacts":{
+      "name":"UpdateQueueMaxContacts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/max-contacts"
+      },
+      "input":{"shape":"UpdateQueueMaxContactsRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateQueueName":{
+      "name":"UpdateQueueName",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/name"
+      },
+      "input":{"shape":"UpdateQueueNameRequest"},
+      "errors":[
+        {"shape":"DuplicateResourceException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateQueueOutboundCallerConfig":{
+      "name":"UpdateQueueOutboundCallerConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/outbound-caller-config"
+      },
+      "input":{"shape":"UpdateQueueOutboundCallerConfigRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateQueueStatus":{
+      "name":"UpdateQueueStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/queues/{InstanceId}/{QueueId}/status"
+      },
+      "input":{"shape":"UpdateQueueStatusRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateQuickConnectConfig":{
       "name":"UpdateQuickConnectConfig",
       "http":{
@@ -1486,6 +1659,27 @@
         "LexBot":{"shape":"LexBot"}
       }
     },
+    "AssociateQueueQuickConnectsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId",
+        "QuickConnectIds"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "QuickConnectIds":{"shape":"QuickConnectsList"}
+      }
+    },
     "AssociateRoutingProfileQueuesRequest":{
       "type":"structure",
       "required":[
@@ -1580,7 +1774,7 @@
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
-      "max":3
+      "max":1
     },
     "ChatContent":{
       "type":"string",
@@ -1606,6 +1800,16 @@
     "ClientToken":{
       "type":"string",
       "max":500
+    },
+    "CommonDescriptionLength250":{
+      "type":"string",
+      "max":250,
+      "min":0
+    },
+    "CommonNameLength127":{
+      "type":"string",
+      "max":127,
+      "min":1
     },
     "Comparison":{
       "type":"string",
@@ -1775,6 +1979,38 @@
       "members":{
         "IntegrationAssociationId":{"shape":"IntegrationAssociationId"},
         "IntegrationAssociationArn":{"shape":"ARN"}
+      }
+    },
+    "CreateQueueRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "Name",
+        "HoursOfOperationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "Name":{"shape":"CommonNameLength127"},
+        "Description":{"shape":"QueueDescription"},
+        "OutboundCallerConfig":{"shape":"OutboundCallerConfig"},
+        "HoursOfOperationId":{"shape":"HoursOfOperationId"},
+        "MaxContacts":{
+          "shape":"QueueMaxContacts",
+          "box":true
+        },
+        "QuickConnectIds":{"shape":"QuickConnectsList"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateQueueResponse":{
+      "type":"structure",
+      "members":{
+        "QueueArn":{"shape":"ARN"},
+        "QueueId":{"shape":"QueueId"}
       }
     },
     "CreateQuickConnectRequest":{
@@ -2122,6 +2358,31 @@
         "ContactFlow":{"shape":"ContactFlow"}
       }
     },
+    "DescribeHoursOfOperationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "HoursOfOperationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "HoursOfOperationId":{
+          "shape":"HoursOfOperationId",
+          "location":"uri",
+          "locationName":"HoursOfOperationId"
+        }
+      }
+    },
+    "DescribeHoursOfOperationResponse":{
+      "type":"structure",
+      "members":{
+        "HoursOfOperation":{"shape":"HoursOfOperation"}
+      }
+    },
     "DescribeInstanceAttributeRequest":{
       "type":"structure",
       "required":[
@@ -2193,6 +2454,31 @@
       "type":"structure",
       "members":{
         "StorageConfig":{"shape":"InstanceStorageConfig"}
+      }
+    },
+    "DescribeQueueRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        }
+      }
+    },
+    "DescribeQueueResponse":{
+      "type":"structure",
+      "members":{
+        "Queue":{"shape":"Queue"}
       }
     },
     "DescribeQuickConnectRequest":{
@@ -2440,6 +2726,27 @@
           "location":"querystring",
           "locationName":"lexRegion"
         }
+      }
+    },
+    "DisassociateQueueQuickConnectsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId",
+        "QuickConnectIds"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "QuickConnectIds":{"shape":"QuickConnectsList"}
       }
     },
     "DisassociateRoutingProfileQueuesRequest":{
@@ -2793,6 +3100,47 @@
       "max":87600,
       "min":0
     },
+    "Hours24Format":{
+      "type":"integer",
+      "max":23,
+      "min":0
+    },
+    "HoursOfOperation":{
+      "type":"structure",
+      "members":{
+        "HoursOfOperationId":{"shape":"HoursOfOperationId"},
+        "HoursOfOperationArn":{"shape":"ARN"},
+        "Name":{"shape":"CommonNameLength127"},
+        "Description":{"shape":"CommonDescriptionLength250"},
+        "TimeZone":{"shape":"TimeZone"},
+        "Config":{"shape":"HoursOfOperationConfigList"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "HoursOfOperationConfig":{
+      "type":"structure",
+      "members":{
+        "Day":{"shape":"HoursOfOperationDays"},
+        "StartTime":{"shape":"HoursOfOperationTimeSlice"},
+        "EndTime":{"shape":"HoursOfOperationTimeSlice"}
+      }
+    },
+    "HoursOfOperationConfigList":{
+      "type":"list",
+      "member":{"shape":"HoursOfOperationConfig"}
+    },
+    "HoursOfOperationDays":{
+      "type":"string",
+      "enum":[
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
     "HoursOfOperationId":{"type":"string"},
     "HoursOfOperationName":{"type":"string"},
     "HoursOfOperationSummary":{
@@ -2806,6 +3154,13 @@
     "HoursOfOperationSummaryList":{
       "type":"list",
       "member":{"shape":"HoursOfOperationSummary"}
+    },
+    "HoursOfOperationTimeSlice":{
+      "type":"structure",
+      "members":{
+        "Hours":{"shape":"Hours24Format"},
+        "Minutes":{"shape":"MinutesLimit60"}
+      }
     },
     "InboundCallsEnabled":{"type":"boolean"},
     "Instance":{
@@ -3350,6 +3705,43 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListQueueQuickConnectsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListQueueQuickConnectsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "QuickConnectSummaryList":{"shape":"QuickConnectSummaryList"}
+      }
+    },
     "ListQueuesRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -3699,6 +4091,11 @@
       }
     },
     "Message":{"type":"string"},
+    "MinutesLimit60":{
+      "type":"integer",
+      "max":59,
+      "min":0
+    },
     "Name":{
       "type":"string",
       "max":512,
@@ -3712,6 +4109,19 @@
     "OriginsList":{
       "type":"list",
       "member":{"shape":"Origin"}
+    },
+    "OutboundCallerConfig":{
+      "type":"structure",
+      "members":{
+        "OutboundCallerIdName":{"shape":"OutboundCallerIdName"},
+        "OutboundCallerIdNumberId":{"shape":"PhoneNumberId"},
+        "OutboundFlowId":{"shape":"ContactFlowId"}
+      }
+    },
+    "OutboundCallerIdName":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "OutboundCallsEnabled":{"type":"boolean"},
     "OutboundContactNotPermittedException":{
@@ -4086,7 +4496,33 @@
       "type":"list",
       "member":{"shape":"PromptSummary"}
     },
+    "Queue":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"CommonNameLength127"},
+        "QueueArn":{"shape":"ARN"},
+        "QueueId":{"shape":"QueueId"},
+        "Description":{"shape":"QueueDescription"},
+        "OutboundCallerConfig":{"shape":"OutboundCallerConfig"},
+        "HoursOfOperationId":{"shape":"HoursOfOperationId"},
+        "MaxContacts":{
+          "shape":"QueueMaxContacts",
+          "box":true
+        },
+        "Status":{"shape":"QueueStatus"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "QueueDescription":{
+      "type":"string",
+      "max":250,
+      "min":1
+    },
     "QueueId":{"type":"string"},
+    "QueueMaxContacts":{
+      "type":"integer",
+      "min":0
+    },
     "QueueName":{
       "type":"string",
       "max":256,
@@ -4109,6 +4545,13 @@
         "Id":{"shape":"QueueId"},
         "Arn":{"shape":"ARN"}
       }
+    },
+    "QueueStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "QueueSummary":{
       "type":"structure",
@@ -4198,6 +4641,12 @@
       "type":"list",
       "member":{"shape":"QuickConnectType"},
       "max":3
+    },
+    "QuickConnectsList":{
+      "type":"list",
+      "member":{"shape":"QuickConnectId"},
+      "max":50,
+      "min":1
     },
     "Reference":{
       "type":"structure",
@@ -4675,6 +5124,7 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "TimeZone":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
     "URI":{
       "type":"string",
@@ -4814,6 +5264,114 @@
           "locationName":"resourceType"
         },
         "StorageConfig":{"shape":"InstanceStorageConfig"}
+      }
+    },
+    "UpdateQueueHoursOfOperationRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId",
+        "HoursOfOperationId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "HoursOfOperationId":{"shape":"HoursOfOperationId"}
+      }
+    },
+    "UpdateQueueMaxContactsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId",
+        "MaxContacts"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "MaxContacts":{
+          "shape":"QueueMaxContacts",
+          "box":true
+        }
+      }
+    },
+    "UpdateQueueNameRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "Name":{"shape":"CommonNameLength127"},
+        "Description":{"shape":"QueueDescription"}
+      }
+    },
+    "UpdateQueueOutboundCallerConfigRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId",
+        "OutboundCallerConfig"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "OutboundCallerConfig":{"shape":"OutboundCallerConfig"}
+      }
+    },
+    "UpdateQueueStatusRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "QueueId",
+        "Status"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "QueueId":{
+          "shape":"QueueId",
+          "location":"uri",
+          "locationName":"QueueId"
+        },
+        "Status":{"shape":"QueueStatus"}
       }
     },
     "UpdateQuickConnectConfigRequest":{

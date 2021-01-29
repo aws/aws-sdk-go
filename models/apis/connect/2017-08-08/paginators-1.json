@@ -76,6 +76,12 @@
       "output_token": "NextToken",
       "result_key": "PromptSummaryList"
     },
+    "ListQueueQuickConnects": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "QuickConnectSummaryList"
+    },
     "ListQueues": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
