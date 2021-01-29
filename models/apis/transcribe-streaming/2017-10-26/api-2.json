@@ -166,12 +166,31 @@
       "type":"structure",
       "members":{
         "Transcript":{"shape":"String"},
-        "Items":{"shape":"MedicalItemList"}
+        "Items":{"shape":"MedicalItemList"},
+        "Entities":{"shape":"MedicalEntityList"}
       }
     },
     "MedicalAlternativeList":{
       "type":"list",
       "member":{"shape":"MedicalAlternative"}
+    },
+    "MedicalContentIdentificationType":{
+      "type":"string",
+      "enum":["PHI"]
+    },
+    "MedicalEntity":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"Double"},
+        "EndTime":{"shape":"Double"},
+        "Category":{"shape":"String"},
+        "Content":{"shape":"String"},
+        "Confidence":{"shape":"Confidence"}
+      }
+    },
+    "MedicalEntityList":{
+      "type":"list",
+      "member":{"shape":"MedicalEntity"}
     },
     "MedicalItem":{
       "type":"structure",
@@ -334,6 +353,11 @@
           "shape":"NumberOfChannels",
           "location":"header",
           "locationName":"x-amzn-transcribe-number-of-channels"
+        },
+        "ContentIdentificationType":{
+          "shape":"MedicalContentIdentificationType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-identification-type"
         }
       },
       "payload":"AudioStream"
@@ -396,6 +420,11 @@
           "shape":"NumberOfChannels",
           "location":"header",
           "locationName":"x-amzn-transcribe-number-of-channels"
+        },
+        "ContentIdentificationType":{
+          "shape":"MedicalContentIdentificationType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-identification-type"
         }
       },
       "payload":"TranscriptResultStream"

@@ -77,7 +77,7 @@ func (c *Connect) AssociateApprovedOriginRequest(input *AssociateApprovedOriginI
 //   A resource already has that name.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -166,7 +166,7 @@ func (c *Connect) AssociateInstanceStorageConfigRequest(input *AssociateInstance
 //
 // This API does not create a resource that doesn't exist. It only associates
 // it to the instance. Ensure that the resource being specified in the storage
-// configuration, like an Amazon S3 bucket, exists when being used for association.
+// configuration, like an S3 bucket, exists when being used for association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -183,7 +183,7 @@ func (c *Connect) AssociateInstanceStorageConfigRequest(input *AssociateInstance
 //   A resource already has that name.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -281,7 +281,7 @@ func (c *Connect) AssociateLambdaFunctionRequest(input *AssociateLambdaFunctionI
 //   A resource already has that name.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -382,7 +382,7 @@ func (c *Connect) AssociateLexBotRequest(input *AssociateLexBotInput) (req *requ
 //   A resource already has that name.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -413,6 +413,103 @@ func (c *Connect) AssociateLexBot(input *AssociateLexBotInput) (*AssociateLexBot
 // for more information on using Contexts.
 func (c *Connect) AssociateLexBotWithContext(ctx aws.Context, input *AssociateLexBotInput, opts ...request.Option) (*AssociateLexBotOutput, error) {
 	req, out := c.AssociateLexBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateQueueQuickConnects = "AssociateQueueQuickConnects"
+
+// AssociateQueueQuickConnectsRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateQueueQuickConnects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateQueueQuickConnects for more information on using the AssociateQueueQuickConnects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateQueueQuickConnectsRequest method.
+//    req, resp := client.AssociateQueueQuickConnectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateQueueQuickConnects
+func (c *Connect) AssociateQueueQuickConnectsRequest(input *AssociateQueueQuickConnectsInput) (req *request.Request, output *AssociateQueueQuickConnectsOutput) {
+	op := &request.Operation{
+		Name:       opAssociateQueueQuickConnects,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/associate-quick-connects",
+	}
+
+	if input == nil {
+		input = &AssociateQueueQuickConnectsInput{}
+	}
+
+	output = &AssociateQueueQuickConnectsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateQueueQuickConnects API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Associates a set of quick connects with a queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateQueueQuickConnects for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateQueueQuickConnects
+func (c *Connect) AssociateQueueQuickConnects(input *AssociateQueueQuickConnectsInput) (*AssociateQueueQuickConnectsOutput, error) {
+	req, out := c.AssociateQueueQuickConnectsRequest(input)
+	return out, req.Send()
+}
+
+// AssociateQueueQuickConnectsWithContext is the same as AssociateQueueQuickConnects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateQueueQuickConnects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateQueueQuickConnectsWithContext(ctx aws.Context, input *AssociateQueueQuickConnectsInput, opts ...request.Option) (*AssociateQueueQuickConnectsOutput, error) {
+	req, out := c.AssociateQueueQuickConnectsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -486,7 +583,7 @@ func (c *Connect) AssociateRoutingProfileQueuesRequest(input *AssociateRoutingPr
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateRoutingProfileQueues
 func (c *Connect) AssociateRoutingProfileQueues(input *AssociateRoutingProfileQueuesInput) (*AssociateRoutingProfileQueuesOutput, error) {
@@ -573,7 +670,7 @@ func (c *Connect) AssociateSecurityKeyRequest(input *AssociateSecurityKeyInput) 
 //   A resource already has that name.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -688,7 +785,7 @@ func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlow
 func (c *Connect) CreateContactFlow(input *CreateContactFlowInput) (*CreateContactFlowOutput, error) {
@@ -759,8 +856,9 @@ func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *reques
 // This API is in preview release for Amazon Connect and is subject to change.
 //
 // Initiates an Amazon Connect instance with all the supported channels enabled.
-// It does not attach any storage (such as Amazon S3, or Kinesis) or allow for
-// any configurations on features such as Contact Lens for Amazon Connect.
+// It does not attach any storage, such as Amazon Simple Storage Service (Amazon
+// S3) or Amazon Kinesis. It also does not allow for any configurations on features,
+// such as Contact Lens for Amazon Connect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -783,7 +881,7 @@ func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *reques
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateInstance
 func (c *Connect) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOutput, error) {
@@ -870,7 +968,7 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -895,6 +993,105 @@ func (c *Connect) CreateIntegrationAssociation(input *CreateIntegrationAssociati
 // for more information on using Contexts.
 func (c *Connect) CreateIntegrationAssociationWithContext(ctx aws.Context, input *CreateIntegrationAssociationInput, opts ...request.Option) (*CreateIntegrationAssociationOutput, error) {
 	req, out := c.CreateIntegrationAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateQueue = "CreateQueue"
+
+// CreateQueueRequest generates a "aws/request.Request" representing the
+// client's request for the CreateQueue operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateQueue for more information on using the CreateQueue
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateQueueRequest method.
+//    req, resp := client.CreateQueueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQueue
+func (c *Connect) CreateQueueRequest(input *CreateQueueInput) (req *request.Request, output *CreateQueueOutput) {
+	op := &request.Operation{
+		Name:       opCreateQueue,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/queues/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateQueueInput{}
+	}
+
+	output = &CreateQueueOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateQueue API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates a new queue for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateQueue for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQueue
+func (c *Connect) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
+	req, out := c.CreateQueueRequest(input)
+	return out, req.Send()
+}
+
+// CreateQueueWithContext is the same as CreateQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateQueueWithContext(ctx aws.Context, input *CreateQueueInput, opts ...request.Option) (*CreateQueueOutput, error) {
+	req, out := c.CreateQueueRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -975,7 +1172,7 @@ func (c *Connect) CreateQuickConnectRequest(input *CreateQuickConnectInput) (req
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateQuickConnect
 func (c *Connect) CreateQuickConnect(input *CreateQuickConnectInput) (*CreateQuickConnectOutput, error) {
@@ -1072,7 +1269,7 @@ func (c *Connect) CreateRoutingProfileRequest(input *CreateRoutingProfileInput) 
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRoutingProfile
 func (c *Connect) CreateRoutingProfile(input *CreateRoutingProfileInput) (*CreateRoutingProfileOutput, error) {
@@ -1159,7 +1356,7 @@ func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -1266,7 +1463,7 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUser
 func (c *Connect) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
@@ -1363,7 +1560,7 @@ func (c *Connect) CreateUserHierarchyGroupRequest(input *CreateUserHierarchyGrou
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUserHierarchyGroup
 func (c *Connect) CreateUserHierarchyGroup(input *CreateUserHierarchyGroupInput) (*CreateUserHierarchyGroupOutput, error) {
@@ -1448,7 +1645,7 @@ func (c *Connect) DeleteInstanceRequest(input *DeleteInstanceInput) (req *reques
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -1537,7 +1734,7 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -1637,7 +1834,7 @@ func (c *Connect) DeleteQuickConnectRequest(input *DeleteQuickConnectInput) (req
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteQuickConnect
 func (c *Connect) DeleteQuickConnect(input *DeleteQuickConnectInput) (*DeleteQuickConnectOutput, error) {
@@ -1722,7 +1919,7 @@ func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -1824,7 +2021,7 @@ func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Reques
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUser
 func (c *Connect) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -1920,7 +2117,7 @@ func (c *Connect) DeleteUserHierarchyGroupRequest(input *DeleteUserHierarchyGrou
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUserHierarchyGroup
 func (c *Connect) DeleteUserHierarchyGroup(input *DeleteUserHierarchyGroupInput) (*DeleteUserHierarchyGroupOutput, error) {
@@ -2017,7 +2214,7 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlow
 func (c *Connect) DescribeContactFlow(input *DescribeContactFlowInput) (*DescribeContactFlowOutput, error) {
@@ -2036,6 +2233,99 @@ func (c *Connect) DescribeContactFlow(input *DescribeContactFlowInput) (*Describ
 // for more information on using Contexts.
 func (c *Connect) DescribeContactFlowWithContext(ctx aws.Context, input *DescribeContactFlowInput, opts ...request.Option) (*DescribeContactFlowOutput, error) {
 	req, out := c.DescribeContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeHoursOfOperation = "DescribeHoursOfOperation"
+
+// DescribeHoursOfOperationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeHoursOfOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeHoursOfOperation for more information on using the DescribeHoursOfOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeHoursOfOperationRequest method.
+//    req, resp := client.DescribeHoursOfOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeHoursOfOperation
+func (c *Connect) DescribeHoursOfOperationRequest(input *DescribeHoursOfOperationInput) (req *request.Request, output *DescribeHoursOfOperationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeHoursOfOperation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+	}
+
+	if input == nil {
+		input = &DescribeHoursOfOperationInput{}
+	}
+
+	output = &DescribeHoursOfOperationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Describes the hours of operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeHoursOfOperation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeHoursOfOperation
+func (c *Connect) DescribeHoursOfOperation(input *DescribeHoursOfOperationInput) (*DescribeHoursOfOperationOutput, error) {
+	req, out := c.DescribeHoursOfOperationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeHoursOfOperationWithContext is the same as DescribeHoursOfOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeHoursOfOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeHoursOfOperationWithContext(ctx aws.Context, input *DescribeHoursOfOperationInput, opts ...request.Option) (*DescribeHoursOfOperationOutput, error) {
+	req, out := c.DescribeHoursOfOperationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2088,7 +2378,7 @@ func (c *Connect) DescribeInstanceRequest(input *DescribeInstanceInput) (req *re
 // This API is in preview release for Amazon Connect and is subject to change.
 //
 // Returns the current state of the specified instance identifier. It tracks
-// the instance while it is being created and returns an error status if applicable.
+// the instance while it is being created and returns an error status, if applicable.
 //
 // If an instance is not created successfully, the instance status reason field
 // returns details relevant to the reason. The instance in a failed state is
@@ -2109,7 +2399,7 @@ func (c *Connect) DescribeInstanceRequest(input *DescribeInstanceInput) (req *re
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeInstance
 func (c *Connect) DescribeInstance(input *DescribeInstanceInput) (*DescribeInstanceOutput, error) {
@@ -2193,7 +2483,7 @@ func (c *Connect) DescribeInstanceAttributeRequest(input *DescribeInstanceAttrib
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -2287,7 +2577,7 @@ func (c *Connect) DescribeInstanceStorageConfigRequest(input *DescribeInstanceSt
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -2315,6 +2605,99 @@ func (c *Connect) DescribeInstanceStorageConfig(input *DescribeInstanceStorageCo
 // for more information on using Contexts.
 func (c *Connect) DescribeInstanceStorageConfigWithContext(ctx aws.Context, input *DescribeInstanceStorageConfigInput, opts ...request.Option) (*DescribeInstanceStorageConfigOutput, error) {
 	req, out := c.DescribeInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeQueue = "DescribeQueue"
+
+// DescribeQueueRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeQueue operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeQueue for more information on using the DescribeQueue
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeQueueRequest method.
+//    req, resp := client.DescribeQueueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQueue
+func (c *Connect) DescribeQueueRequest(input *DescribeQueueInput) (req *request.Request, output *DescribeQueueOutput) {
+	op := &request.Operation{
+		Name:       opDescribeQueue,
+		HTTPMethod: "GET",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}",
+	}
+
+	if input == nil {
+		input = &DescribeQueueInput{}
+	}
+
+	output = &DescribeQueueOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeQueue API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Describes the specified queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeQueue for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQueue
+func (c *Connect) DescribeQueue(input *DescribeQueueInput) (*DescribeQueueOutput, error) {
+	req, out := c.DescribeQueueRequest(input)
+	return out, req.Send()
+}
+
+// DescribeQueueWithContext is the same as DescribeQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeQueueWithContext(ctx aws.Context, input *DescribeQueueInput, opts ...request.Option) (*DescribeQueueOutput, error) {
+	req, out := c.DescribeQueueRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2389,7 +2772,7 @@ func (c *Connect) DescribeQuickConnectRequest(input *DescribeQuickConnectInput) 
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeQuickConnect
 func (c *Connect) DescribeQuickConnect(input *DescribeQuickConnectInput) (*DescribeQuickConnectOutput, error) {
@@ -2480,7 +2863,7 @@ func (c *Connect) DescribeRoutingProfileRequest(input *DescribeRoutingProfileInp
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRoutingProfile
 func (c *Connect) DescribeRoutingProfile(input *DescribeRoutingProfileInput) (*DescribeRoutingProfileOutput, error) {
@@ -2573,7 +2956,7 @@ func (c *Connect) DescribeUserRequest(input *DescribeUserInput) (req *request.Re
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUser
 func (c *Connect) DescribeUser(input *DescribeUserInput) (*DescribeUserOutput, error) {
@@ -2664,7 +3047,7 @@ func (c *Connect) DescribeUserHierarchyGroupRequest(input *DescribeUserHierarchy
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyGroup
 func (c *Connect) DescribeUserHierarchyGroup(input *DescribeUserHierarchyGroupInput) (*DescribeUserHierarchyGroupOutput, error) {
@@ -2755,7 +3138,7 @@ func (c *Connect) DescribeUserHierarchyStructureRequest(input *DescribeUserHiera
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeUserHierarchyStructure
 func (c *Connect) DescribeUserHierarchyStructure(input *DescribeUserHierarchyStructureInput) (*DescribeUserHierarchyStructureOutput, error) {
@@ -2840,7 +3223,7 @@ func (c *Connect) DisassociateApprovedOriginRequest(input *DisassociateApprovedO
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -2935,7 +3318,7 @@ func (c *Connect) DisassociateInstanceStorageConfigRequest(input *DisassociateIn
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -3015,7 +3398,7 @@ func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFun
 //
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// Remove the Lambda function from the drop-down options available in the relevant
+// Remove the Lambda function from the dropdown options available in the relevant
 // contact flow blocks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3030,7 +3413,7 @@ func (c *Connect) DisassociateLambdaFunctionRequest(input *DisassociateLambdaFun
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -3125,7 +3508,7 @@ func (c *Connect) DisassociateLexBotRequest(input *DisassociateLexBotInput) (req
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -3153,6 +3536,100 @@ func (c *Connect) DisassociateLexBot(input *DisassociateLexBotInput) (*Disassoci
 // for more information on using Contexts.
 func (c *Connect) DisassociateLexBotWithContext(ctx aws.Context, input *DisassociateLexBotInput, opts ...request.Option) (*DisassociateLexBotOutput, error) {
 	req, out := c.DisassociateLexBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateQueueQuickConnects = "DisassociateQueueQuickConnects"
+
+// DisassociateQueueQuickConnectsRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateQueueQuickConnects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateQueueQuickConnects for more information on using the DisassociateQueueQuickConnects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateQueueQuickConnectsRequest method.
+//    req, resp := client.DisassociateQueueQuickConnectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateQueueQuickConnects
+func (c *Connect) DisassociateQueueQuickConnectsRequest(input *DisassociateQueueQuickConnectsInput) (req *request.Request, output *DisassociateQueueQuickConnectsOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateQueueQuickConnects,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/disassociate-quick-connects",
+	}
+
+	if input == nil {
+		input = &DisassociateQueueQuickConnectsInput{}
+	}
+
+	output = &DisassociateQueueQuickConnectsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateQueueQuickConnects API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Disassociates a set of quick connects from a queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateQueueQuickConnects for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateQueueQuickConnects
+func (c *Connect) DisassociateQueueQuickConnects(input *DisassociateQueueQuickConnectsInput) (*DisassociateQueueQuickConnectsOutput, error) {
+	req, out := c.DisassociateQueueQuickConnectsRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateQueueQuickConnectsWithContext is the same as DisassociateQueueQuickConnects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateQueueQuickConnects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateQueueQuickConnectsWithContext(ctx aws.Context, input *DisassociateQueueQuickConnectsInput, opts ...request.Option) (*DisassociateQueueQuickConnectsOutput, error) {
+	req, out := c.DisassociateQueueQuickConnectsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3226,7 +3703,7 @@ func (c *Connect) DisassociateRoutingProfileQueuesRequest(input *DisassociateRou
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateRoutingProfileQueues
 func (c *Connect) DisassociateRoutingProfileQueues(input *DisassociateRoutingProfileQueuesInput) (*DisassociateRoutingProfileQueuesOutput, error) {
@@ -3311,7 +3788,7 @@ func (c *Connect) DisassociateSecurityKeyRequest(input *DisassociateSecurityKeyI
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -3405,7 +3882,7 @@ func (c *Connect) GetContactAttributesRequest(input *GetContactAttributesInput) 
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/GetContactAttributes
 func (c *Connect) GetContactAttributes(input *GetContactAttributesInput) (*GetContactAttributesOutput, error) {
@@ -3499,7 +3976,7 @@ func (c *Connect) GetCurrentMetricDataRequest(input *GetCurrentMetricDataInput) 
 //   One or more of the specified parameters are not valid.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * ThrottlingException
 //   The throttling limit has been exceeded.
@@ -3648,7 +4125,7 @@ func (c *Connect) GetFederationTokenRequest(input *GetFederationTokenInput) (req
 //   No user with the specified credentials was found in the Amazon Connect instance.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * DuplicateResourceException
 //   A resource with the specified name already exists.
@@ -3746,7 +4223,7 @@ func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.
 //   One or more of the specified parameters are not valid.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * ThrottlingException
 //   The throttling limit has been exceeded.
@@ -3894,7 +4371,7 @@ func (c *Connect) ListApprovedOriginsRequest(input *ListApprovedOriginsInput) (r
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -4059,7 +4536,7 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlows
 func (c *Connect) ListContactFlows(input *ListContactFlowsInput) (*ListContactFlowsOutput, error) {
@@ -4213,7 +4690,7 @@ func (c *Connect) ListHoursOfOperationsRequest(input *ListHoursOfOperationsInput
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListHoursOfOperations
 func (c *Connect) ListHoursOfOperations(input *ListHoursOfOperationsInput) (*ListHoursOfOperationsOutput, error) {
@@ -4355,7 +4832,7 @@ func (c *Connect) ListInstanceAttributesRequest(input *ListInstanceAttributesInp
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -4507,7 +4984,7 @@ func (c *Connect) ListInstanceStorageConfigsRequest(input *ListInstanceStorageCo
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -4661,7 +5138,7 @@ func (c *Connect) ListInstancesRequest(input *ListInstancesInput) (req *request.
 //   The request is not valid.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListInstances
 func (c *Connect) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, error) {
@@ -4804,7 +5281,7 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -4938,8 +5415,8 @@ func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (r
 //
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// Returns a paginated list of all the Lambda functions that show up in the
-// drop-down options in the relevant contact flow blocks.
+// Returns a paginated list of all Lambda functions that display in the dropdown
+// options in the relevant contact flow blocks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4953,7 +5430,7 @@ func (c *Connect) ListLambdaFunctionsRequest(input *ListLambdaFunctionsInput) (r
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -5105,7 +5582,7 @@ func (c *Connect) ListLexBotsRequest(input *ListLexBotsInput) (req *request.Requ
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -5268,7 +5745,7 @@ func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *re
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPhoneNumbers
 func (c *Connect) ListPhoneNumbers(input *ListPhoneNumbersInput) (*ListPhoneNumbersOutput, error) {
@@ -5417,7 +5894,7 @@ func (c *Connect) ListPromptsRequest(input *ListPromptsInput) (req *request.Requ
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPrompts
 func (c *Connect) ListPrompts(input *ListPromptsInput) (*ListPromptsOutput, error) {
@@ -5486,6 +5963,157 @@ func (c *Connect) ListPromptsPagesWithContext(ctx aws.Context, input *ListPrompt
 
 	for p.Next() {
 		if !fn(p.Page().(*ListPromptsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListQueueQuickConnects = "ListQueueQuickConnects"
+
+// ListQueueQuickConnectsRequest generates a "aws/request.Request" representing the
+// client's request for the ListQueueQuickConnects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListQueueQuickConnects for more information on using the ListQueueQuickConnects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListQueueQuickConnectsRequest method.
+//    req, resp := client.ListQueueQuickConnectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueueQuickConnects
+func (c *Connect) ListQueueQuickConnectsRequest(input *ListQueueQuickConnectsInput) (req *request.Request, output *ListQueueQuickConnectsOutput) {
+	op := &request.Operation{
+		Name:       opListQueueQuickConnects,
+		HTTPMethod: "GET",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/quick-connects",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListQueueQuickConnectsInput{}
+	}
+
+	output = &ListQueueQuickConnectsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListQueueQuickConnects API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Lists the quick connects associated with a queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListQueueQuickConnects for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueueQuickConnects
+func (c *Connect) ListQueueQuickConnects(input *ListQueueQuickConnectsInput) (*ListQueueQuickConnectsOutput, error) {
+	req, out := c.ListQueueQuickConnectsRequest(input)
+	return out, req.Send()
+}
+
+// ListQueueQuickConnectsWithContext is the same as ListQueueQuickConnects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListQueueQuickConnects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListQueueQuickConnectsWithContext(ctx aws.Context, input *ListQueueQuickConnectsInput, opts ...request.Option) (*ListQueueQuickConnectsOutput, error) {
+	req, out := c.ListQueueQuickConnectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListQueueQuickConnectsPages iterates over the pages of a ListQueueQuickConnects operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListQueueQuickConnects method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListQueueQuickConnects operation.
+//    pageNum := 0
+//    err := client.ListQueueQuickConnectsPages(params,
+//        func(page *connect.ListQueueQuickConnectsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListQueueQuickConnectsPages(input *ListQueueQuickConnectsInput, fn func(*ListQueueQuickConnectsOutput, bool) bool) error {
+	return c.ListQueueQuickConnectsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListQueueQuickConnectsPagesWithContext same as ListQueueQuickConnectsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListQueueQuickConnectsPagesWithContext(ctx aws.Context, input *ListQueueQuickConnectsInput, fn func(*ListQueueQuickConnectsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListQueueQuickConnectsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListQueueQuickConnectsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListQueueQuickConnectsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5569,7 +6197,7 @@ func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Reques
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQueues
 func (c *Connect) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
@@ -5721,7 +6349,7 @@ func (c *Connect) ListQuickConnectsRequest(input *ListQuickConnectsInput) (req *
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListQuickConnects
 func (c *Connect) ListQuickConnects(input *ListQuickConnectsInput) (*ListQuickConnectsOutput, error) {
@@ -5847,7 +6475,7 @@ func (c *Connect) ListRoutingProfileQueuesRequest(input *ListRoutingProfileQueue
 
 // ListRoutingProfileQueues API operation for Amazon Connect Service.
 //
-// List the queues associated with a routing profile.
+// Lists the queues associated with a routing profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5870,7 +6498,7 @@ func (c *Connect) ListRoutingProfileQueuesRequest(input *ListRoutingProfileQueue
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfileQueues
 func (c *Connect) ListRoutingProfileQueues(input *ListRoutingProfileQueuesInput) (*ListRoutingProfileQueuesOutput, error) {
@@ -6024,7 +6652,7 @@ func (c *Connect) ListRoutingProfilesRequest(input *ListRoutingProfilesInput) (r
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfiles
 func (c *Connect) ListRoutingProfiles(input *ListRoutingProfilesInput) (*ListRoutingProfilesOutput, error) {
@@ -6166,7 +6794,7 @@ func (c *Connect) ListSecurityKeysRequest(input *ListSecurityKeysInput) (req *re
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -6328,7 +6956,7 @@ func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) 
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfiles
 func (c *Connect) ListSecurityProfiles(input *ListSecurityProfilesInput) (*ListSecurityProfilesOutput, error) {
@@ -6469,7 +7097,7 @@ func (c *Connect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //   One or more of the specified parameters are not valid.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * ResourceNotFoundException
 //   The specified resource was not found.
@@ -6551,7 +7179,7 @@ func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Re
 //
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// List the use cases.
+// Lists the use cases.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6565,7 +7193,7 @@ func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Re
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -6725,7 +7353,7 @@ func (c *Connect) ListUserHierarchyGroupsRequest(input *ListUserHierarchyGroupsI
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUserHierarchyGroups
 func (c *Connect) ListUserHierarchyGroups(input *ListUserHierarchyGroupsInput) (*ListUserHierarchyGroupsOutput, error) {
@@ -6875,7 +7503,7 @@ func (c *Connect) ListUsersRequest(input *ListUsersInput) (req *request.Request,
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListUsers
 func (c *Connect) ListUsers(input *ListUsersInput) (*ListUsersOutput, error) {
@@ -7016,7 +7644,7 @@ func (c *Connect) ResumeContactRecordingRequest(input *ResumeContactRecordingInp
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ResumeContactRecording
 func (c *Connect) ResumeContactRecording(input *ResumeContactRecordingInput) (*ResumeContactRecordingOutput, error) {
@@ -7089,9 +7717,9 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // API in the Amazon Connect Participant Service.
 //
-// When a new chat contact is successfully created, clients need to subscribe
-// to the participant’s connection for the created chat within 5 minutes.
-// This is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
+// When a new chat contact is successfully created, clients must subscribe to
+// the participant’s connection for the created chat within 5 minutes. This
+// is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // with WEBSOCKET and CONNECTION_CREDENTIALS.
 //
 // A 429 error occurs in two situations:
@@ -7102,7 +7730,7 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 //    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 //    is exceeded. Active chat throttling returns a LimitExceededException.
 //
-// For more information about how chat works, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
+// For more information about chat, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7123,7 +7751,7 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * LimitExceededException
 //   The allowed limit for the resource has been exceeded.
@@ -7195,7 +7823,7 @@ func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput
 
 // StartContactRecording API operation for Amazon Connect Service.
 //
-// This API starts recording the contact when the agent joins the call. StartContactRecording
+// Starts recording the contact when the agent joins the call. StartContactRecording
 // is a one-time action. For example, if you use StopContactRecording to stop
 // recording an ongoing call, you can't use StartContactRecording to restart
 // it. For scenarios where the recording has started and you want to suspend
@@ -7226,7 +7854,7 @@ func (c *Connect) StartContactRecordingRequest(input *StartContactRecordingInput
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactRecording
 func (c *Connect) StartContactRecording(input *StartContactRecordingInput) (*StartContactRecordingOutput, error) {
@@ -7294,15 +7922,15 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 
 // StartOutboundVoiceContact API operation for Amazon Connect Service.
 //
-// This API places an outbound call to a contact, and then initiates the contact
-// flow. It performs the actions in the contact flow that's specified (in ContactFlowId).
+// Places an outbound call to a contact, and then initiates the contact flow.
+// It performs the actions in the contact flow that's specified (in ContactFlowId).
 //
-// Agents are not involved in initiating the outbound API (that is, dialing
-// the contact). If the contact flow places an outbound call to a contact, and
-// then puts the contact in queue, that's when the call is routed to the agent,
-// like any other inbound case.
+// Agents do not initiate the outbound API, which means that they do not dial
+// the contact. If the contact flow places an outbound call to a contact, and
+// then puts the contact in queue, the call is then routed to the agent, like
+// any other inbound case.
 //
-// There is a 60 second dialing timeout for this operation. If the call is not
+// There is a 60-second dialing timeout for this operation. If the call is not
 // connected after 60 seconds, it fails.
 //
 // UK numbers with a 447 prefix are not allowed by default. Before you can dial
@@ -7328,7 +7956,7 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * LimitExceededException
 //   The allowed limit for the resource has been exceeded.
@@ -7431,7 +8059,7 @@ func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *re
 //   The service quota has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartTaskContact
 func (c *Connect) StartTaskContact(input *StartTaskContactInput) (*StartTaskContactOutput, error) {
@@ -7523,7 +8151,7 @@ func (c *Connect) StopContactRequest(input *StopContactInput) (req *request.Requ
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContact
 func (c *Connect) StopContact(input *StopContactInput) (*StopContactOutput, error) {
@@ -7592,7 +8220,7 @@ func (c *Connect) StopContactRecordingRequest(input *StopContactRecordingInput) 
 
 // StopContactRecording API operation for Amazon Connect Service.
 //
-// When a contact is being recorded, this API stops recording the call. StopContactRecording
+// Stops recording a call when a contact is being recorded. StopContactRecording
 // is a one-time action. If you use StopContactRecording to stop recording an
 // ongoing call, you can't use StartContactRecording to restart it. For scenarios
 // where the recording has started and you want to suspend it for sensitive
@@ -7616,7 +8244,7 @@ func (c *Connect) StopContactRecordingRequest(input *StopContactRecordingInput) 
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactRecording
 func (c *Connect) StopContactRecording(input *StopContactRecordingInput) (*StopContactRecordingOutput, error) {
@@ -7710,7 +8338,7 @@ func (c *Connect) SuspendContactRecordingRequest(input *SuspendContactRecordingI
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/SuspendContactRecording
 func (c *Connect) SuspendContactRecording(input *SuspendContactRecordingInput) (*SuspendContactRecordingOutput, error) {
@@ -7781,7 +8409,7 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //
 // Adds the specified tags to the specified resource.
 //
-// The supported resource types are users, routing profiles, quick connects,
+// The supported resource types are users, routing profiles, queues, quick connects,
 // and contact flows.
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
@@ -7803,7 +8431,7 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //   One or more of the specified parameters are not valid.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * ResourceNotFoundException
 //   The specified resource was not found.
@@ -7895,7 +8523,7 @@ func (c *Connect) UntagResourceRequest(input *UntagResourceInput) (req *request.
 //   One or more of the specified parameters are not valid.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * ResourceNotFoundException
 //   The specified resource was not found.
@@ -7973,23 +8601,23 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 // Creates or updates the contact attributes associated with the specified contact.
 //
 // You can add or update attributes for both ongoing and completed contacts.
-// For example, you can update the customer's name or the reason the customer
-// called while the call is active, or add notes about steps that the agent
-// took during the call that are displayed to the next agent that takes the
+// For example, while the call is active, you can update the customer's name
+// or the reason the customer called. You can add notes about steps that the
+// agent took during the call that display to the next agent that takes the
 // call. You can also update attributes for a contact using data from your CRM
 // application and save the data with the contact in Amazon Connect. You could
-// also flag calls for additional analysis, such as legal review or identifying
+// also flag calls for additional analysis, such as legal review or to identify
 // abusive callers.
 //
 // Contact attributes are available in Amazon Connect for 24 months, and are
 // then deleted.
 //
 // Important: You cannot use the operation to update attributes for contacts
-// that occurred prior to the release of the API, September 12, 2018. You can
-// update attributes only for contacts that started after the release of the
-// API. If you attempt to update attributes for a contact that occurred prior
-// to the release of the API, a 400 error is returned. This applies also to
-// queued callbacks that were initiated prior to the release of the API but
+// that occurred prior to the release of the API, which was September 12, 2018.
+// You can update attributes only for contacts that started after the release
+// of the API. If you attempt to update attributes for a contact that occurred
+// prior to the release of the API, a 400 error is returned. This applies also
+// to queued callbacks that were initiated prior to the release of the API but
 // are still active in your instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8010,7 +8638,7 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactAttributes
 func (c *Connect) UpdateContactAttributes(input *UpdateContactAttributesInput) (*UpdateContactAttributesOutput, error) {
@@ -8108,7 +8736,7 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowContent
 func (c *Connect) UpdateContactFlowContent(input *UpdateContactFlowContentInput) (*UpdateContactFlowContentOutput, error) {
@@ -8206,7 +8834,7 @@ func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowName
 func (c *Connect) UpdateContactFlowName(input *UpdateContactFlowNameInput) (*UpdateContactFlowNameOutput, error) {
@@ -8291,7 +8919,7 @@ func (c *Connect) UpdateInstanceAttributeRequest(input *UpdateInstanceAttributeI
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -8385,7 +9013,7 @@ func (c *Connect) UpdateInstanceStorageConfigRequest(input *UpdateInstanceStorag
 //   The specified resource was not found.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 //   * InvalidRequestException
 //   The request is not valid.
@@ -8413,6 +9041,482 @@ func (c *Connect) UpdateInstanceStorageConfig(input *UpdateInstanceStorageConfig
 // for more information on using Contexts.
 func (c *Connect) UpdateInstanceStorageConfigWithContext(ctx aws.Context, input *UpdateInstanceStorageConfigInput, opts ...request.Option) (*UpdateInstanceStorageConfigOutput, error) {
 	req, out := c.UpdateInstanceStorageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQueueHoursOfOperation = "UpdateQueueHoursOfOperation"
+
+// UpdateQueueHoursOfOperationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQueueHoursOfOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQueueHoursOfOperation for more information on using the UpdateQueueHoursOfOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQueueHoursOfOperationRequest method.
+//    req, resp := client.UpdateQueueHoursOfOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueHoursOfOperation
+func (c *Connect) UpdateQueueHoursOfOperationRequest(input *UpdateQueueHoursOfOperationInput) (req *request.Request, output *UpdateQueueHoursOfOperationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQueueHoursOfOperation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/hours-of-operation",
+	}
+
+	if input == nil {
+		input = &UpdateQueueHoursOfOperationInput{}
+	}
+
+	output = &UpdateQueueHoursOfOperationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQueueHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the hours of operation for the specified queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQueueHoursOfOperation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueHoursOfOperation
+func (c *Connect) UpdateQueueHoursOfOperation(input *UpdateQueueHoursOfOperationInput) (*UpdateQueueHoursOfOperationOutput, error) {
+	req, out := c.UpdateQueueHoursOfOperationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQueueHoursOfOperationWithContext is the same as UpdateQueueHoursOfOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQueueHoursOfOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQueueHoursOfOperationWithContext(ctx aws.Context, input *UpdateQueueHoursOfOperationInput, opts ...request.Option) (*UpdateQueueHoursOfOperationOutput, error) {
+	req, out := c.UpdateQueueHoursOfOperationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQueueMaxContacts = "UpdateQueueMaxContacts"
+
+// UpdateQueueMaxContactsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQueueMaxContacts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQueueMaxContacts for more information on using the UpdateQueueMaxContacts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQueueMaxContactsRequest method.
+//    req, resp := client.UpdateQueueMaxContactsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueMaxContacts
+func (c *Connect) UpdateQueueMaxContactsRequest(input *UpdateQueueMaxContactsInput) (req *request.Request, output *UpdateQueueMaxContactsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQueueMaxContacts,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/max-contacts",
+	}
+
+	if input == nil {
+		input = &UpdateQueueMaxContactsInput{}
+	}
+
+	output = &UpdateQueueMaxContactsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQueueMaxContacts API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the maximum number of contacts allowed in a queue before it is considered
+// full.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQueueMaxContacts for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueMaxContacts
+func (c *Connect) UpdateQueueMaxContacts(input *UpdateQueueMaxContactsInput) (*UpdateQueueMaxContactsOutput, error) {
+	req, out := c.UpdateQueueMaxContactsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQueueMaxContactsWithContext is the same as UpdateQueueMaxContacts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQueueMaxContacts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQueueMaxContactsWithContext(ctx aws.Context, input *UpdateQueueMaxContactsInput, opts ...request.Option) (*UpdateQueueMaxContactsOutput, error) {
+	req, out := c.UpdateQueueMaxContactsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQueueName = "UpdateQueueName"
+
+// UpdateQueueNameRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQueueName operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQueueName for more information on using the UpdateQueueName
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQueueNameRequest method.
+//    req, resp := client.UpdateQueueNameRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueName
+func (c *Connect) UpdateQueueNameRequest(input *UpdateQueueNameInput) (req *request.Request, output *UpdateQueueNameOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQueueName,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/name",
+	}
+
+	if input == nil {
+		input = &UpdateQueueNameInput{}
+	}
+
+	output = &UpdateQueueNameOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQueueName API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the name and description of a queue. At least Name or Description
+// must be provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQueueName for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueName
+func (c *Connect) UpdateQueueName(input *UpdateQueueNameInput) (*UpdateQueueNameOutput, error) {
+	req, out := c.UpdateQueueNameRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQueueNameWithContext is the same as UpdateQueueName with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQueueName for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQueueNameWithContext(ctx aws.Context, input *UpdateQueueNameInput, opts ...request.Option) (*UpdateQueueNameOutput, error) {
+	req, out := c.UpdateQueueNameRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQueueOutboundCallerConfig = "UpdateQueueOutboundCallerConfig"
+
+// UpdateQueueOutboundCallerConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQueueOutboundCallerConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQueueOutboundCallerConfig for more information on using the UpdateQueueOutboundCallerConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQueueOutboundCallerConfigRequest method.
+//    req, resp := client.UpdateQueueOutboundCallerConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueOutboundCallerConfig
+func (c *Connect) UpdateQueueOutboundCallerConfigRequest(input *UpdateQueueOutboundCallerConfigInput) (req *request.Request, output *UpdateQueueOutboundCallerConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQueueOutboundCallerConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/outbound-caller-config",
+	}
+
+	if input == nil {
+		input = &UpdateQueueOutboundCallerConfigInput{}
+	}
+
+	output = &UpdateQueueOutboundCallerConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQueueOutboundCallerConfig API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the outbound caller ID name, number, and outbound whisper flow for
+// a specified queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQueueOutboundCallerConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueOutboundCallerConfig
+func (c *Connect) UpdateQueueOutboundCallerConfig(input *UpdateQueueOutboundCallerConfigInput) (*UpdateQueueOutboundCallerConfigOutput, error) {
+	req, out := c.UpdateQueueOutboundCallerConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQueueOutboundCallerConfigWithContext is the same as UpdateQueueOutboundCallerConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQueueOutboundCallerConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQueueOutboundCallerConfigWithContext(ctx aws.Context, input *UpdateQueueOutboundCallerConfigInput, opts ...request.Option) (*UpdateQueueOutboundCallerConfigOutput, error) {
+	req, out := c.UpdateQueueOutboundCallerConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQueueStatus = "UpdateQueueStatus"
+
+// UpdateQueueStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQueueStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQueueStatus for more information on using the UpdateQueueStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQueueStatusRequest method.
+//    req, resp := client.UpdateQueueStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueStatus
+func (c *Connect) UpdateQueueStatusRequest(input *UpdateQueueStatusInput) (req *request.Request, output *UpdateQueueStatusOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQueueStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/queues/{InstanceId}/{QueueId}/status",
+	}
+
+	if input == nil {
+		input = &UpdateQueueStatusInput{}
+	}
+
+	output = &UpdateQueueStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQueueStatus API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the status of the queue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateQueueStatus for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQueueStatus
+func (c *Connect) UpdateQueueStatus(input *UpdateQueueStatusInput) (*UpdateQueueStatusOutput, error) {
+	req, out := c.UpdateQueueStatusRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQueueStatusWithContext is the same as UpdateQueueStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQueueStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateQueueStatusWithContext(ctx aws.Context, input *UpdateQueueStatusInput, opts ...request.Option) (*UpdateQueueStatusOutput, error) {
+	req, out := c.UpdateQueueStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8488,7 +9592,7 @@ func (c *Connect) UpdateQuickConnectConfigRequest(input *UpdateQuickConnectConfi
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectConfig
 func (c *Connect) UpdateQuickConnectConfig(input *UpdateQuickConnectConfigInput) (*UpdateQuickConnectConfigOutput, error) {
@@ -8583,7 +9687,7 @@ func (c *Connect) UpdateQuickConnectNameRequest(input *UpdateQuickConnectNameInp
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateQuickConnectName
 func (c *Connect) UpdateQuickConnectName(input *UpdateQuickConnectNameInput) (*UpdateQuickConnectNameOutput, error) {
@@ -8676,7 +9780,7 @@ func (c *Connect) UpdateRoutingProfileConcurrencyRequest(input *UpdateRoutingPro
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileConcurrency
 func (c *Connect) UpdateRoutingProfileConcurrency(input *UpdateRoutingProfileConcurrencyInput) (*UpdateRoutingProfileConcurrencyOutput, error) {
@@ -8768,7 +9872,7 @@ func (c *Connect) UpdateRoutingProfileDefaultOutboundQueueRequest(input *UpdateR
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileDefaultOutboundQueue
 func (c *Connect) UpdateRoutingProfileDefaultOutboundQueue(input *UpdateRoutingProfileDefaultOutboundQueueInput) (*UpdateRoutingProfileDefaultOutboundQueueOutput, error) {
@@ -8864,7 +9968,7 @@ func (c *Connect) UpdateRoutingProfileNameRequest(input *UpdateRoutingProfileNam
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileName
 func (c *Connect) UpdateRoutingProfileName(input *UpdateRoutingProfileNameInput) (*UpdateRoutingProfileNameOutput, error) {
@@ -8956,7 +10060,7 @@ func (c *Connect) UpdateRoutingProfileQueuesRequest(input *UpdateRoutingProfileQ
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileQueues
 func (c *Connect) UpdateRoutingProfileQueues(input *UpdateRoutingProfileQueuesInput) (*UpdateRoutingProfileQueuesOutput, error) {
@@ -9048,7 +10152,7 @@ func (c *Connect) UpdateUserHierarchyRequest(input *UpdateUserHierarchyInput) (r
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchy
 func (c *Connect) UpdateUserHierarchy(input *UpdateUserHierarchyInput) (*UpdateUserHierarchyOutput, error) {
@@ -9143,7 +10247,7 @@ func (c *Connect) UpdateUserHierarchyGroupNameRequest(input *UpdateUserHierarchy
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyGroupName
 func (c *Connect) UpdateUserHierarchyGroupName(input *UpdateUserHierarchyGroupNameInput) (*UpdateUserHierarchyGroupNameOutput, error) {
@@ -9239,7 +10343,7 @@ func (c *Connect) UpdateUserHierarchyStructureRequest(input *UpdateUserHierarchy
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyStructure
 func (c *Connect) UpdateUserHierarchyStructure(input *UpdateUserHierarchyStructureInput) (*UpdateUserHierarchyStructureOutput, error) {
@@ -9310,12 +10414,12 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 //
 // Updates the identity information for the specified user.
 //
-// Someone with the ability to invoke UpdateUserIndentityInfo can change the
-// login credentials of other users by changing their email address. This poses
-// a security risk to your organization. They can change the email address of
-// a user to the attacker's email address, and then reset the password through
-// email. We strongly recommend limiting who has the ability to invoke UpdateUserIndentityInfo.
-// For more information, see Best Practices for Security Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html)
+// We strongly recommend limiting who has the ability to invoke UpdateUserIdentityInfo.
+// Someone with that ability can change the login credentials of other users
+// by changing their email address. This poses a security risk to your organization.
+// They can change the email address of a user to the attacker's email address,
+// and then reset the password through email. For more information, see Best
+// Practices for Security Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9339,7 +10443,7 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserIdentityInfo
 func (c *Connect) UpdateUserIdentityInfo(input *UpdateUserIdentityInfoInput) (*UpdateUserIdentityInfoOutput, error) {
@@ -9431,7 +10535,7 @@ func (c *Connect) UpdateUserPhoneConfigRequest(input *UpdateUserPhoneConfigInput
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserPhoneConfig
 func (c *Connect) UpdateUserPhoneConfig(input *UpdateUserPhoneConfigInput) (*UpdateUserPhoneConfigOutput, error) {
@@ -9523,7 +10627,7 @@ func (c *Connect) UpdateUserRoutingProfileRequest(input *UpdateUserRoutingProfil
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserRoutingProfile
 func (c *Connect) UpdateUserRoutingProfile(input *UpdateUserRoutingProfileInput) (*UpdateUserRoutingProfileOutput, error) {
@@ -9615,7 +10719,7 @@ func (c *Connect) UpdateUserSecurityProfilesRequest(input *UpdateUserSecurityPro
 //   The throttling limit has been exceeded.
 //
 //   * InternalServiceException
-//   Request processing failed due to an error or failure with the service.
+//   Request processing failed because of an error or failure with the service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserSecurityProfiles
 func (c *Connect) UpdateUserSecurityProfiles(input *UpdateUserSecurityProfilesInput) (*UpdateUserSecurityProfilesOutput, error) {
@@ -9948,6 +11052,95 @@ func (s AssociateLexBotOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateQueueQuickConnectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+
+	// The quick connects to associate with this queue.
+	//
+	// QuickConnectIds is a required field
+	QuickConnectIds []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateQueueQuickConnectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateQueueQuickConnectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateQueueQuickConnectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateQueueQuickConnectsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+	if s.QuickConnectIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectIds"))
+	}
+	if s.QuickConnectIds != nil && len(s.QuickConnectIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateQueueQuickConnectsInput) SetInstanceId(v string) *AssociateQueueQuickConnectsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *AssociateQueueQuickConnectsInput) SetQueueId(v string) *AssociateQueueQuickConnectsInput {
+	s.QueueId = &v
+	return s
+}
+
+// SetQuickConnectIds sets the QuickConnectIds field's value.
+func (s *AssociateQueueQuickConnectsInput) SetQuickConnectIds(v []*string) *AssociateQueueQuickConnectsInput {
+	s.QuickConnectIds = v
+	return s
+}
+
+type AssociateQueueQuickConnectsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateQueueQuickConnectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateQueueQuickConnectsOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10171,7 +11364,7 @@ type ChatMessage struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// The type of the content. Supported types are text/plain.
+	// The type of the content. Supported types are text and plain.
 	//
 	// ContentType is a required field
 	ContentType *string `min:"1" type:"string" required:"true"`
@@ -10623,7 +11816,7 @@ type CreateInstanceInput struct {
 	// IdentityManagementType is a required field
 	IdentityManagementType *string `type:"string" required:"true" enum:"DirectoryType"`
 
-	// Whether your contact center handles incoming contacts.
+	// Your contact center handles incoming contacts.
 	//
 	// InboundCallsEnabled is a required field
 	InboundCallsEnabled *bool `type:"boolean" required:"true"`
@@ -10631,7 +11824,7 @@ type CreateInstanceInput struct {
 	// The name for your instance.
 	InstanceAlias *string `min:"1" type:"string" sensitive:"true"`
 
-	// Whether your contact center allows outbound calls.
+	// Your contact center allows outbound calls.
 	//
 	// OutboundCallsEnabled is a required field
 	OutboundCallsEnabled *bool `type:"boolean" required:"true"`
@@ -10889,6 +12082,170 @@ func (s *CreateIntegrationAssociationOutput) SetIntegrationAssociationId(v strin
 	return s
 }
 
+type CreateQueueInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the queue.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier for the hours of operation.
+	//
+	// HoursOfOperationId is a required field
+	HoursOfOperationId *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of contacts that can be in the queue before it is considered
+	// full.
+	MaxContacts *int64 `type:"integer"`
+
+	// The name of the queue.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The outbound caller ID name, number, and outbound whisper flow.
+	OutboundCallerConfig *OutboundCallerConfig `type:"structure"`
+
+	// The quick connects available to agents who are working the queue.
+	QuickConnectIds []*string `min:"1" type:"list"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateQueueInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateQueueInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateQueueInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateQueueInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.HoursOfOperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HoursOfOperationId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.QuickConnectIds != nil && len(s.QuickConnectIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectIds", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.OutboundCallerConfig != nil {
+		if err := s.OutboundCallerConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutboundCallerConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateQueueInput) SetDescription(v string) *CreateQueueInput {
+	s.Description = &v
+	return s
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *CreateQueueInput) SetHoursOfOperationId(v string) *CreateQueueInput {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateQueueInput) SetInstanceId(v string) *CreateQueueInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxContacts sets the MaxContacts field's value.
+func (s *CreateQueueInput) SetMaxContacts(v int64) *CreateQueueInput {
+	s.MaxContacts = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateQueueInput) SetName(v string) *CreateQueueInput {
+	s.Name = &v
+	return s
+}
+
+// SetOutboundCallerConfig sets the OutboundCallerConfig field's value.
+func (s *CreateQueueInput) SetOutboundCallerConfig(v *OutboundCallerConfig) *CreateQueueInput {
+	s.OutboundCallerConfig = v
+	return s
+}
+
+// SetQuickConnectIds sets the QuickConnectIds field's value.
+func (s *CreateQueueInput) SetQuickConnectIds(v []*string) *CreateQueueInput {
+	s.QuickConnectIds = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateQueueInput) SetTags(v map[string]*string) *CreateQueueInput {
+	s.Tags = v
+	return s
+}
+
+type CreateQueueOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the queue.
+	QueueArn *string `type:"string"`
+
+	// The identifier for the queue.
+	QueueId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateQueueOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateQueueOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueueArn sets the QueueArn field's value.
+func (s *CreateQueueOutput) SetQueueArn(v string) *CreateQueueOutput {
+	s.QueueArn = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *CreateQueueOutput) SetQueueId(v string) *CreateQueueOutput {
+	s.QueueId = &v
+	return s
+}
+
 type CreateQuickConnectInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11037,8 +12394,8 @@ type CreateRoutingProfileInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The channels agents can handle in the Contact Control Panel (CCP) for this
-	// routing profile.
+	// The channels that agents can handle in the Contact Control Panel (CCP) for
+	// this routing profile.
 	//
 	// MediaConcurrencies is a required field
 	MediaConcurrencies []*MediaConcurrency `type:"list" required:"true"`
@@ -11049,7 +12406,7 @@ type CreateRoutingProfileInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// The inbound queues associated with the routing profile. If no queue is added,
-	// the agent can only make outbound calls.
+	// the agent can make only outbound calls.
 	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list"`
 
 	// One or more tags.
@@ -12275,6 +13632,87 @@ func (s *DescribeContactFlowOutput) SetContactFlow(v *ContactFlow) *DescribeCont
 	return s
 }
 
+type DescribeHoursOfOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the hours of operation.
+	//
+	// HoursOfOperationId is a required field
+	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeHoursOfOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeHoursOfOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeHoursOfOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeHoursOfOperationInput"}
+	if s.HoursOfOperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HoursOfOperationId"))
+	}
+	if s.HoursOfOperationId != nil && len(*s.HoursOfOperationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HoursOfOperationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *DescribeHoursOfOperationInput) SetHoursOfOperationId(v string) *DescribeHoursOfOperationInput {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeHoursOfOperationInput) SetInstanceId(v string) *DescribeHoursOfOperationInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeHoursOfOperationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The hours of operation.
+	HoursOfOperation *HoursOfOperation `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeHoursOfOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeHoursOfOperationOutput) GoString() string {
+	return s.String()
+}
+
+// SetHoursOfOperation sets the HoursOfOperation field's value.
+func (s *DescribeHoursOfOperationOutput) SetHoursOfOperation(v *HoursOfOperation) *DescribeHoursOfOperationOutput {
+	s.HoursOfOperation = v
+	return s
+}
+
 type DescribeInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12513,6 +13951,87 @@ func (s DescribeInstanceStorageConfigOutput) GoString() string {
 // SetStorageConfig sets the StorageConfig field's value.
 func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorageConfig) *DescribeInstanceStorageConfigOutput {
 	s.StorageConfig = v
+	return s
+}
+
+type DescribeQueueInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeQueueInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQueueInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeQueueInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeQueueInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeQueueInput) SetInstanceId(v string) *DescribeQueueInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *DescribeQueueInput) SetQueueId(v string) *DescribeQueueInput {
+	s.QueueId = &v
+	return s
+}
+
+type DescribeQueueOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the queue.
+	Queue *Queue `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeQueueOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQueueOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueue sets the Queue field's value.
+func (s *DescribeQueueOutput) SetQueue(v *Queue) *DescribeQueueOutput {
+	s.Queue = v
 	return s
 }
 
@@ -12909,7 +14428,7 @@ type DestinationNotAllowedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message.
+	// The message about the outbound calls.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -13302,6 +14821,95 @@ func (s DisassociateLexBotOutput) String() string {
 
 // GoString returns the string representation
 func (s DisassociateLexBotOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateQueueQuickConnectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+
+	// The quick connects to disassociate from the queue.
+	//
+	// QuickConnectIds is a required field
+	QuickConnectIds []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateQueueQuickConnectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateQueueQuickConnectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateQueueQuickConnectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateQueueQuickConnectsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+	if s.QuickConnectIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("QuickConnectIds"))
+	}
+	if s.QuickConnectIds != nil && len(s.QuickConnectIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QuickConnectIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateQueueQuickConnectsInput) SetInstanceId(v string) *DisassociateQueueQuickConnectsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *DisassociateQueueQuickConnectsInput) SetQueueId(v string) *DisassociateQueueQuickConnectsInput {
+	s.QueueId = &v
+	return s
+}
+
+// SetQuickConnectIds sets the QuickConnectIds field's value.
+func (s *DisassociateQueueQuickConnectsInput) SetQuickConnectIds(v []*string) *DisassociateQueueQuickConnectsInput {
+	s.QuickConnectIds = v
+	return s
+}
+
+type DisassociateQueueQuickConnectsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateQueueQuickConnectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateQueueQuickConnectsOutput) GoString() string {
 	return s.String()
 }
 
@@ -13832,7 +15440,7 @@ type GetCurrentMetricDataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -14226,7 +15834,7 @@ type GetMetricDataInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -14893,6 +16501,126 @@ func (s *HistoricalMetricResult) SetDimensions(v *Dimensions) *HistoricalMetricR
 	return s
 }
 
+// Information about of the hours of operation.
+type HoursOfOperation struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information for the hours of operation.
+	Config []*HoursOfOperationConfig `type:"list"`
+
+	// The description for the hours of operation.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the hours of operation.
+	HoursOfOperationArn *string `type:"string"`
+
+	// The identifier for the hours of operation.
+	HoursOfOperationId *string `type:"string"`
+
+	// The name for the hours of operation.
+	Name *string `min:"1" type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The time zone for the hours of operation.
+	TimeZone *string `type:"string"`
+}
+
+// String returns the string representation
+func (s HoursOfOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoursOfOperation) GoString() string {
+	return s.String()
+}
+
+// SetConfig sets the Config field's value.
+func (s *HoursOfOperation) SetConfig(v []*HoursOfOperationConfig) *HoursOfOperation {
+	s.Config = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *HoursOfOperation) SetDescription(v string) *HoursOfOperation {
+	s.Description = &v
+	return s
+}
+
+// SetHoursOfOperationArn sets the HoursOfOperationArn field's value.
+func (s *HoursOfOperation) SetHoursOfOperationArn(v string) *HoursOfOperation {
+	s.HoursOfOperationArn = &v
+	return s
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *HoursOfOperation) SetHoursOfOperationId(v string) *HoursOfOperation {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *HoursOfOperation) SetName(v string) *HoursOfOperation {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *HoursOfOperation) SetTags(v map[string]*string) *HoursOfOperation {
+	s.Tags = v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *HoursOfOperation) SetTimeZone(v string) *HoursOfOperation {
+	s.TimeZone = &v
+	return s
+}
+
+// Contains information about the hours of operation.
+type HoursOfOperationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The day that the hours of operation applies to.
+	Day *string `type:"string" enum:"HoursOfOperationDays"`
+
+	// The end time that your contact center is closes.
+	EndTime *HoursOfOperationTimeSlice `type:"structure"`
+
+	// The start time that your contact center is open.
+	StartTime *HoursOfOperationTimeSlice `type:"structure"`
+}
+
+// String returns the string representation
+func (s HoursOfOperationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoursOfOperationConfig) GoString() string {
+	return s.String()
+}
+
+// SetDay sets the Day field's value.
+func (s *HoursOfOperationConfig) SetDay(v string) *HoursOfOperationConfig {
+	s.Day = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *HoursOfOperationConfig) SetEndTime(v *HoursOfOperationTimeSlice) *HoursOfOperationConfig {
+	s.EndTime = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *HoursOfOperationConfig) SetStartTime(v *HoursOfOperationTimeSlice) *HoursOfOperationConfig {
+	s.StartTime = v
+	return s
+}
+
 // Contains summary information about hours of operation for a contact center.
 type HoursOfOperationSummary struct {
 	_ struct{} `type:"structure"`
@@ -14932,6 +16660,39 @@ func (s *HoursOfOperationSummary) SetId(v string) *HoursOfOperationSummary {
 // SetName sets the Name field's value.
 func (s *HoursOfOperationSummary) SetName(v string) *HoursOfOperationSummary {
 	s.Name = &v
+	return s
+}
+
+// The start time or end time for an hours of operation.
+type HoursOfOperationTimeSlice struct {
+	_ struct{} `type:"structure"`
+
+	// The hours.
+	Hours *int64 `type:"integer"`
+
+	// The minutes.
+	Minutes *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s HoursOfOperationTimeSlice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoursOfOperationTimeSlice) GoString() string {
+	return s.String()
+}
+
+// SetHours sets the Hours field's value.
+func (s *HoursOfOperationTimeSlice) SetHours(v int64) *HoursOfOperationTimeSlice {
+	s.Hours = &v
+	return s
+}
+
+// SetMinutes sets the Minutes field's value.
+func (s *HoursOfOperationTimeSlice) SetMinutes(v int64) *HoursOfOperationTimeSlice {
+	s.Minutes = &v
 	return s
 }
 
@@ -15081,7 +16842,7 @@ type InstanceStorageConfig struct {
 	// The configuration of the Kinesis video stream.
 	KinesisVideoStreamConfig *KinesisVideoStreamConfig `type:"structure"`
 
-	// The S3 configuration.
+	// The S3 bucket configuration.
 	S3Config *S3Config `type:"structure"`
 
 	// A valid storage type.
@@ -15355,7 +17116,7 @@ func (s *IntegrationAssociationSummary) SetSourceType(v string) *IntegrationAsso
 	return s
 }
 
-// Request processing failed due to an error or failure with the service.
+// Request processing failed because of an error or failure with the service.
 type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15476,7 +17237,7 @@ type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message.
+	// The message about the parameters.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -15533,7 +17294,7 @@ type InvalidRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message.
+	// The message about the request.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -15585,7 +17346,7 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Configuration information of a Kinesis Firehose delivery stream.
+// Configuration information of a Kinesis Data Firehose delivery stream.
 type KinesisFirehoseConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -15745,7 +17506,7 @@ func (s *KinesisVideoStreamConfig) SetRetentionPeriodHours(v int64) *KinesisVide
 type LexBot struct {
 	_ struct{} `type:"structure"`
 
-	// The Region the Amazon Lex bot was created in.
+	// The Region that the Amazon Lex bot was created in.
 	LexRegion *string `type:"string"`
 
 	// The name of the Amazon Lex bot.
@@ -15779,7 +17540,7 @@ type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message.
+	// The message about the limit.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -15839,7 +17600,7 @@ type ListApprovedOriginsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -15937,7 +17698,7 @@ type ListContactFlowsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16038,7 +17799,7 @@ type ListHoursOfOperationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16133,7 +17894,7 @@ type ListInstanceAttributesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16228,7 +17989,7 @@ type ListInstanceStorageConfigsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16332,7 +18093,7 @@ func (s *ListInstanceStorageConfigsOutput) SetStorageConfigs(v []*InstanceStorag
 type ListInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16415,7 +18176,7 @@ type ListIntegrationAssociationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16510,7 +18271,7 @@ type ListLambdaFunctionsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16605,7 +18366,7 @@ type ListLexBotsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16663,7 +18424,7 @@ func (s *ListLexBotsInput) SetNextToken(v string) *ListLexBotsInput {
 type ListLexBotsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The the names and regions of the Amazon Lex bots associated with the specified
+	// The names and Regions of the Amazon Lex bots associated with the specified
 	// instance.
 	LexBots []*LexBot `type:"list"`
 
@@ -16701,7 +18462,7 @@ type ListPhoneNumbersInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -16901,6 +18662,118 @@ func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPrompt
 	return s
 }
 
+type ListQueueQuickConnectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListQueueQuickConnectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListQueueQuickConnectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListQueueQuickConnectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListQueueQuickConnectsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListQueueQuickConnectsInput) SetInstanceId(v string) *ListQueueQuickConnectsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListQueueQuickConnectsInput) SetMaxResults(v int64) *ListQueueQuickConnectsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQueueQuickConnectsInput) SetNextToken(v string) *ListQueueQuickConnectsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *ListQueueQuickConnectsInput) SetQueueId(v string) *ListQueueQuickConnectsInput {
+	s.QueueId = &v
+	return s
+}
+
+type ListQueueQuickConnectsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Information about the quick connects.
+	QuickConnectSummaryList []*QuickConnectSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListQueueQuickConnectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListQueueQuickConnectsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQueueQuickConnectsOutput) SetNextToken(v string) *ListQueueQuickConnectsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQuickConnectSummaryList sets the QuickConnectSummaryList field's value.
+func (s *ListQueueQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSummary) *ListQueueQuickConnectsOutput {
+	s.QuickConnectSummaryList = v
+	return s
+}
+
 type ListQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16909,7 +18782,7 @@ type ListQueuesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17013,7 +18886,7 @@ type ListQuickConnectsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17119,7 +18992,7 @@ type ListRoutingProfileQueuesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17231,7 +19104,7 @@ type ListRoutingProfilesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17326,7 +19199,7 @@ type ListSecurityKeysInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17421,7 +19294,7 @@ type ListSecurityProfilesInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17587,7 +19460,7 @@ type ListUseCasesInput struct {
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17694,7 +19567,7 @@ type ListUserHierarchyGroupsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17789,7 +19662,7 @@ type ListUsersInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximimum number of results to return per page.
+	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
@@ -17933,12 +19806,67 @@ func (s *MediaConcurrency) SetConcurrency(v int64) *MediaConcurrency {
 	return s
 }
 
+// The outbound caller ID name, number, and outbound whisper flow.
+type OutboundCallerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The caller ID name.
+	OutboundCallerIdName *string `min:"1" type:"string"`
+
+	// The caller ID number.
+	OutboundCallerIdNumberId *string `type:"string"`
+
+	// The outbound whisper flow to be used during an outbound call.
+	OutboundFlowId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OutboundCallerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutboundCallerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OutboundCallerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OutboundCallerConfig"}
+	if s.OutboundCallerIdName != nil && len(*s.OutboundCallerIdName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutboundCallerIdName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOutboundCallerIdName sets the OutboundCallerIdName field's value.
+func (s *OutboundCallerConfig) SetOutboundCallerIdName(v string) *OutboundCallerConfig {
+	s.OutboundCallerIdName = &v
+	return s
+}
+
+// SetOutboundCallerIdNumberId sets the OutboundCallerIdNumberId field's value.
+func (s *OutboundCallerConfig) SetOutboundCallerIdNumberId(v string) *OutboundCallerConfig {
+	s.OutboundCallerIdNumberId = &v
+	return s
+}
+
+// SetOutboundFlowId sets the OutboundFlowId field's value.
+func (s *OutboundCallerConfig) SetOutboundFlowId(v string) *OutboundCallerConfig {
+	s.OutboundFlowId = &v
+	return s
+}
+
 // The contact is not permitted.
 type OutboundContactNotPermittedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message.
+	// The message about the contact.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -18197,6 +20125,103 @@ func (s *PromptSummary) SetName(v string) *PromptSummary {
 	return s
 }
 
+// Contains information about a queue.
+type Queue struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the queue.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier for the hours of operation.
+	HoursOfOperationId *string `type:"string"`
+
+	// The maximum number of contacts that can be in the queue before it is considered
+	// full.
+	MaxContacts *int64 `type:"integer"`
+
+	// The name of the queue.
+	Name *string `min:"1" type:"string"`
+
+	// The outbound caller ID name, number, and outbound whisper flow.
+	OutboundCallerConfig *OutboundCallerConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the queue.
+	QueueArn *string `type:"string"`
+
+	// The identifier for the queue.
+	QueueId *string `type:"string"`
+
+	// The status of the queue.
+	Status *string `type:"string" enum:"QueueStatus"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s Queue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Queue) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *Queue) SetDescription(v string) *Queue {
+	s.Description = &v
+	return s
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *Queue) SetHoursOfOperationId(v string) *Queue {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetMaxContacts sets the MaxContacts field's value.
+func (s *Queue) SetMaxContacts(v int64) *Queue {
+	s.MaxContacts = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Queue) SetName(v string) *Queue {
+	s.Name = &v
+	return s
+}
+
+// SetOutboundCallerConfig sets the OutboundCallerConfig field's value.
+func (s *Queue) SetOutboundCallerConfig(v *OutboundCallerConfig) *Queue {
+	s.OutboundCallerConfig = v
+	return s
+}
+
+// SetQueueArn sets the QueueArn field's value.
+func (s *Queue) SetQueueArn(v string) *Queue {
+	s.QueueArn = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *Queue) SetQueueId(v string) *Queue {
+	s.QueueId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Queue) SetStatus(v string) *Queue {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Queue) SetTags(v map[string]*string) *Queue {
+	s.Tags = v
+	return s
+}
+
 // Contains information about a queue for a quick connect. The contact flow
 // must be of type Transfer to Queue.
 type QueueQuickConnectConfig struct {
@@ -18207,7 +20232,7 @@ type QueueQuickConnectConfig struct {
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
 
-	// The identifier of the queue.
+	// The identifier for the queue.
 	//
 	// QueueId is a required field
 	QueueId *string `type:"string" required:"true"`
@@ -18491,13 +20516,13 @@ func (s *QuickConnectConfig) SetUserConfig(v *UserQuickConnectConfig) *QuickConn
 type QuickConnectSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the quick connect.
 	Arn *string `type:"string"`
 
 	// The identifier for the quick connect.
 	Id *string `type:"string"`
 
-	// The name.
+	// The name of the quick connect.
 	Name *string `min:"1" type:"string"`
 
 	// The type of quick connect. In the Amazon Connect console, when you create
@@ -18550,8 +20575,7 @@ type Reference struct {
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ReferenceType"`
 
-	// A formatted URL that will be shown to an agent in the Contact Control Panel
-	// (CCP)
+	// A formatted URL that displays to an agent in the Contact Control Panel (CCP)
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -18718,7 +20742,7 @@ type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message.
+	// The message about the resource.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -19056,7 +21080,7 @@ type RoutingProfileQueueConfigSummary struct {
 	// QueueArn is a required field
 	QueueArn *string `type:"string" required:"true"`
 
-	// The identifier of the queue.
+	// The identifier for the queue.
 	//
 	// QueueId is a required field
 	QueueId *string `type:"string" required:"true"`
@@ -19123,7 +21147,7 @@ type RoutingProfileQueueReference struct {
 	// Channel is a required field
 	Channel *string `type:"string" required:"true" enum:"Channel"`
 
-	// The identifier of the queue.
+	// The identifier for the queue.
 	//
 	// QueueId is a required field
 	QueueId *string `type:"string" required:"true"`
@@ -19209,7 +21233,7 @@ func (s *RoutingProfileSummary) SetName(v string) *RoutingProfileSummary {
 	return s
 }
 
-// Information about the S3 storage type.
+// Information about the Amazon Simple Storage Service (Amazon S3) storage type.
 type S3Config struct {
 	_ struct{} `type:"structure"`
 
@@ -19223,7 +21247,7 @@ type S3Config struct {
 	// BucketPrefix is a required field
 	BucketPrefix *string `min:"1" type:"string" required:"true"`
 
-	// The S3 encryption configuration.
+	// The Amazon S3 encryption configuration.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 }
 
@@ -19427,7 +21451,7 @@ type StartChatContactInput struct {
 	_ struct{} `type:"structure"`
 
 	// A custom key-value pair using an attribute map. The attributes are standard
-	// Amazon Connect attributes, and can be accessed in contact flows just like
+	// Amazon Connect attributes. They can be accessed in contact flows just like
 	// any other contact attributes.
 	//
 	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
@@ -19604,7 +21628,7 @@ type StartContactRecordingInput struct {
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
 
-	// Who is being recorded.
+	// The person being recorded.
 	//
 	// VoiceRecordingConfiguration is a required field
 	VoiceRecordingConfiguration *VoiceRecordingConfiguration `type:"structure" required:"true"`
@@ -20952,6 +22976,452 @@ func (s UpdateInstanceStorageConfigOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateQueueHoursOfOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the hours of operation.
+	//
+	// HoursOfOperationId is a required field
+	HoursOfOperationId *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateQueueHoursOfOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueHoursOfOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQueueHoursOfOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQueueHoursOfOperationInput"}
+	if s.HoursOfOperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HoursOfOperationId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *UpdateQueueHoursOfOperationInput) SetHoursOfOperationId(v string) *UpdateQueueHoursOfOperationInput {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQueueHoursOfOperationInput) SetInstanceId(v string) *UpdateQueueHoursOfOperationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *UpdateQueueHoursOfOperationInput) SetQueueId(v string) *UpdateQueueHoursOfOperationInput {
+	s.QueueId = &v
+	return s
+}
+
+type UpdateQueueHoursOfOperationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQueueHoursOfOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueHoursOfOperationOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQueueMaxContactsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of contacts that can be in the queue before it is considered
+	// full.
+	//
+	// MaxContacts is a required field
+	MaxContacts *int64 `type:"integer" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateQueueMaxContactsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueMaxContactsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQueueMaxContactsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQueueMaxContactsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxContacts == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxContacts"))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQueueMaxContactsInput) SetInstanceId(v string) *UpdateQueueMaxContactsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxContacts sets the MaxContacts field's value.
+func (s *UpdateQueueMaxContactsInput) SetMaxContacts(v int64) *UpdateQueueMaxContactsInput {
+	s.MaxContacts = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *UpdateQueueMaxContactsInput) SetQueueId(v string) *UpdateQueueMaxContactsInput {
+	s.QueueId = &v
+	return s
+}
+
+type UpdateQueueMaxContactsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQueueMaxContactsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueMaxContactsOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQueueNameInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the queue.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the queue.
+	Name *string `min:"1" type:"string"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateQueueNameInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueNameInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQueueNameInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQueueNameInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateQueueNameInput) SetDescription(v string) *UpdateQueueNameInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQueueNameInput) SetInstanceId(v string) *UpdateQueueNameInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateQueueNameInput) SetName(v string) *UpdateQueueNameInput {
+	s.Name = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *UpdateQueueNameInput) SetQueueId(v string) *UpdateQueueNameInput {
+	s.QueueId = &v
+	return s
+}
+
+type UpdateQueueNameOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQueueNameOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueNameOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQueueOutboundCallerConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The outbound caller ID name, number, and outbound whisper flow.
+	//
+	// OutboundCallerConfig is a required field
+	OutboundCallerConfig *OutboundCallerConfig `type:"structure" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateQueueOutboundCallerConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueOutboundCallerConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQueueOutboundCallerConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQueueOutboundCallerConfigInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.OutboundCallerConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutboundCallerConfig"))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+	if s.OutboundCallerConfig != nil {
+		if err := s.OutboundCallerConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutboundCallerConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQueueOutboundCallerConfigInput) SetInstanceId(v string) *UpdateQueueOutboundCallerConfigInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetOutboundCallerConfig sets the OutboundCallerConfig field's value.
+func (s *UpdateQueueOutboundCallerConfigInput) SetOutboundCallerConfig(v *OutboundCallerConfig) *UpdateQueueOutboundCallerConfigInput {
+	s.OutboundCallerConfig = v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *UpdateQueueOutboundCallerConfigInput) SetQueueId(v string) *UpdateQueueOutboundCallerConfigInput {
+	s.QueueId = &v
+	return s
+}
+
+type UpdateQueueOutboundCallerConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQueueOutboundCallerConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueOutboundCallerConfigOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQueueStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `location:"uri" locationName:"QueueId" type:"string" required:"true"`
+
+	// The status of the queue.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"QueueStatus"`
+}
+
+// String returns the string representation
+func (s UpdateQueueStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQueueStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQueueStatusInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+	if s.QueueId != nil && len(*s.QueueId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueId", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateQueueStatusInput) SetInstanceId(v string) *UpdateQueueStatusInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *UpdateQueueStatusInput) SetQueueId(v string) *UpdateQueueStatusInput {
+	s.QueueId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateQueueStatusInput) SetStatus(v string) *UpdateQueueStatusInput {
+	s.Status = &v
+	return s
+}
+
+type UpdateQueueStatusOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQueueStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQueueStatusOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateQuickConnectConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21144,7 +23614,7 @@ type UpdateRoutingProfileConcurrencyInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The channels agents can handle in the Contact Control Panel (CCP).
+	// The channels that agents can handle in the Contact Control Panel (CCP).
 	//
 	// MediaConcurrencies is a required field
 	MediaConcurrencies []*MediaConcurrency `type:"list" required:"true"`
@@ -22858,6 +25328,42 @@ func HistoricalMetricName_Values() []string {
 }
 
 const (
+	// HoursOfOperationDaysSunday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysSunday = "SUNDAY"
+
+	// HoursOfOperationDaysMonday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysMonday = "MONDAY"
+
+	// HoursOfOperationDaysTuesday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysTuesday = "TUESDAY"
+
+	// HoursOfOperationDaysWednesday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysWednesday = "WEDNESDAY"
+
+	// HoursOfOperationDaysThursday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysThursday = "THURSDAY"
+
+	// HoursOfOperationDaysFriday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysFriday = "FRIDAY"
+
+	// HoursOfOperationDaysSaturday is a HoursOfOperationDays enum value
+	HoursOfOperationDaysSaturday = "SATURDAY"
+)
+
+// HoursOfOperationDays_Values returns all elements of the HoursOfOperationDays enum
+func HoursOfOperationDays_Values() []string {
+	return []string{
+		HoursOfOperationDaysSunday,
+		HoursOfOperationDaysMonday,
+		HoursOfOperationDaysTuesday,
+		HoursOfOperationDaysWednesday,
+		HoursOfOperationDaysThursday,
+		HoursOfOperationDaysFriday,
+		HoursOfOperationDaysSaturday,
+	}
+}
+
+const (
 	// InstanceAttributeTypeInboundCalls is a InstanceAttributeType enum value
 	InstanceAttributeTypeInboundCalls = "INBOUND_CALLS"
 
@@ -23942,6 +26448,22 @@ func PhoneType_Values() []string {
 	return []string{
 		PhoneTypeSoftPhone,
 		PhoneTypeDeskPhone,
+	}
+}
+
+const (
+	// QueueStatusEnabled is a QueueStatus enum value
+	QueueStatusEnabled = "ENABLED"
+
+	// QueueStatusDisabled is a QueueStatus enum value
+	QueueStatusDisabled = "DISABLED"
+)
+
+// QueueStatus_Values returns all elements of the QueueStatus enum
+func QueueStatus_Values() []string {
+	return []string{
+		QueueStatusEnabled,
+		QueueStatusDisabled,
 	}
 }
 

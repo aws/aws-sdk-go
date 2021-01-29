@@ -3482,6 +3482,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -3588,6 +3592,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -3661,6 +3669,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -3716,6 +3728,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -4134,6 +4150,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -4481,6 +4501,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -10943,6 +10967,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -11169,6 +11197,10 @@
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
+        },
+        "Vpc": {
+          "shape": "VpcOutputSettings",
+          "locationName": "vpc"
         }
       }
     },
@@ -12195,6 +12227,26 @@
           "locationName": "videoSelectorProgramId"
         }
       }
+    },
+    "VpcOutputSettings": {
+      "type": "structure",
+      "members": {
+        "PublicAddressAllocationIds": {
+          "shape": "__listOf__string",
+          "locationName": "publicAddressAllocationIds"
+        },
+        "SecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroupIds"
+        },
+        "SubnetIds": {
+          "shape": "__listOf__string",
+          "locationName": "subnetIds"
+        }
+      },
+      "required": [
+        "SubnetIds"
+      ]
     },
     "WavCodingMode": {
       "type": "string",

@@ -8689,6 +8689,9 @@ type Channel struct {
 
 	// A collection of key-value pairs.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Settings for VPC output
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -8797,6 +8800,12 @@ func (s *Channel) SetTags(v map[string]*string) *Channel {
 	return s
 }
 
+// SetVpc sets the Vpc field's value.
+func (s *Channel) SetVpc(v *VpcOutputSettings) *Channel {
+	s.Vpc = v
+	return s
+}
+
 type ChannelEgressEndpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -8866,6 +8875,9 @@ type ChannelSummary struct {
 
 	// A collection of key-value pairs.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Settings for VPC output
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -8959,6 +8971,12 @@ func (s *ChannelSummary) SetState(v string) *ChannelSummary {
 // SetTags sets the Tags field's value.
 func (s *ChannelSummary) SetTags(v map[string]*string) *ChannelSummary {
 	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *ChannelSummary) SetVpc(v *VpcOutputSettings) *ChannelSummary {
+	s.Vpc = v
 	return s
 }
 
@@ -9062,6 +9080,10 @@ type CreateChannelInput struct {
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The properties for a private VPC OutputWhen this property is specified, the
+	// output egress addresses will be created in a user specified VPC
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -9100,6 +9122,11 @@ func (s *CreateChannelInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputAttachments", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.Vpc != nil {
+		if err := s.Vpc.Validate(); err != nil {
+			invalidParams.AddNested("Vpc", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -9178,6 +9205,12 @@ func (s *CreateChannelInput) SetRoleArn(v string) *CreateChannelInput {
 // SetTags sets the Tags field's value.
 func (s *CreateChannelInput) SetTags(v map[string]*string) *CreateChannelInput {
 	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *CreateChannelInput) SetVpc(v *VpcOutputSettings) *CreateChannelInput {
+	s.Vpc = v
 	return s
 }
 
@@ -9744,6 +9777,10 @@ type DeleteChannelOutput struct {
 	State *string `locationName:"state" type:"string" enum:"ChannelState"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The properties for a private VPC OutputWhen this property is specified, the
+	// output egress addresses will be created in a user specified VPC
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -9849,6 +9886,12 @@ func (s *DeleteChannelOutput) SetState(v string) *DeleteChannelOutput {
 // SetTags sets the Tags field's value.
 func (s *DeleteChannelOutput) SetTags(v map[string]*string) *DeleteChannelOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *DeleteChannelOutput) SetVpc(v *VpcOutputSettings) *DeleteChannelOutput {
+	s.Vpc = v
 	return s
 }
 
@@ -10599,6 +10642,10 @@ type DescribeChannelOutput struct {
 	State *string `locationName:"state" type:"string" enum:"ChannelState"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The properties for a private VPC OutputWhen this property is specified, the
+	// output egress addresses will be created in a user specified VPC
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -10704,6 +10751,12 @@ func (s *DescribeChannelOutput) SetState(v string) *DescribeChannelOutput {
 // SetTags sets the Tags field's value.
 func (s *DescribeChannelOutput) SetTags(v map[string]*string) *DescribeChannelOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *DescribeChannelOutput) SetVpc(v *VpcOutputSettings) *DescribeChannelOutput {
+	s.Vpc = v
 	return s
 }
 
@@ -23704,6 +23757,10 @@ type StartChannelOutput struct {
 	State *string `locationName:"state" type:"string" enum:"ChannelState"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The properties for a private VPC OutputWhen this property is specified, the
+	// output egress addresses will be created in a user specified VPC
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -23809,6 +23866,12 @@ func (s *StartChannelOutput) SetState(v string) *StartChannelOutput {
 // SetTags sets the Tags field's value.
 func (s *StartChannelOutput) SetTags(v map[string]*string) *StartChannelOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *StartChannelOutput) SetVpc(v *VpcOutputSettings) *StartChannelOutput {
+	s.Vpc = v
 	return s
 }
 
@@ -24291,6 +24354,10 @@ type StopChannelOutput struct {
 	State *string `locationName:"state" type:"string" enum:"ChannelState"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The properties for a private VPC OutputWhen this property is specified, the
+	// output egress addresses will be created in a user specified VPC
+	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -24396,6 +24463,12 @@ func (s *StopChannelOutput) SetState(v string) *StopChannelOutput {
 // SetTags sets the Tags field's value.
 func (s *StopChannelOutput) SetTags(v map[string]*string) *StopChannelOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVpc sets the Vpc field's value.
+func (s *StopChannelOutput) SetVpc(v *VpcOutputSettings) *StopChannelOutput {
+	s.Vpc = v
 	return s
 }
 
@@ -26432,6 +26505,69 @@ func (s *VideoSelectorSettings) SetVideoSelectorPid(v *VideoSelectorPid) *VideoS
 // SetVideoSelectorProgramId sets the VideoSelectorProgramId field's value.
 func (s *VideoSelectorSettings) SetVideoSelectorProgramId(v *VideoSelectorProgramId) *VideoSelectorSettings {
 	s.VideoSelectorProgramId = v
+	return s
+}
+
+// The properties for a private VPC OutputWhen this property is specified, the
+// output egress addresses will be created in a user specified VPC
+type VpcOutputSettings struct {
+	_ struct{} `type:"structure"`
+
+	// List of public address allocation ids to associate with ENIs that will be
+	// created in Output VPC.Must specify one for SINGLE_PIPELINE, two for STANDARD
+	// channels
+	PublicAddressAllocationIds []*string `locationName:"publicAddressAllocationIds" type:"list"`
+
+	// A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC
+	// network interfaces.If none are specified then the VPC default security group
+	// will be used
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
+
+	// A list of VPC subnet IDs from the same VPC.If STANDARD channel, subnet IDs
+	// must be mapped to two unique availability zones (AZ).
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcOutputSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcOutputSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcOutputSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcOutputSettings"}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPublicAddressAllocationIds sets the PublicAddressAllocationIds field's value.
+func (s *VpcOutputSettings) SetPublicAddressAllocationIds(v []*string) *VpcOutputSettings {
+	s.PublicAddressAllocationIds = v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcOutputSettings) SetSecurityGroupIds(v []*string) *VpcOutputSettings {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcOutputSettings) SetSubnetIds(v []*string) *VpcOutputSettings {
+	s.SubnetIds = v
 	return s
 }
 

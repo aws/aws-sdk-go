@@ -3991,7 +3991,8 @@
         "LT",
         "LTE",
         "NE",
-        "CONTAINS"
+        "CONTAINS",
+        "STARTS_WITH"
       ]
     },
     "JobDetails": {
@@ -4767,7 +4768,11 @@
           "shape": "__listOf__string",
           "locationName": "buckets"
         }
-      }
+      },
+      "required": [
+        "accountId",
+        "buckets"
+      ]
     },
     "S3BucketOwner": {
       "type": "structure",
@@ -4876,7 +4881,8 @@
         "OBJECT_EXTENSION",
         "OBJECT_LAST_MODIFIED_DATE",
         "OBJECT_SIZE",
-        "TAG"
+        "TAG",
+        "OBJECT_KEY"
       ]
     },
     "Scoping": {

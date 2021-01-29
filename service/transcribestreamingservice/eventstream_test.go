@@ -228,6 +228,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 					{
 						Alternatives: []*MedicalAlternative{
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -257,6 +280,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 								Transcript: aws.String("string value goes here"),
 							},
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -286,6 +332,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 								Transcript: aws.String("string value goes here"),
 							},
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -324,6 +393,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 					{
 						Alternatives: []*MedicalAlternative{
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -353,6 +445,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 								Transcript: aws.String("string value goes here"),
 							},
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -382,6 +497,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 								Transcript: aws.String("string value goes here"),
 							},
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -420,6 +558,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 					{
 						Alternatives: []*MedicalAlternative{
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -449,6 +610,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 								Transcript: aws.String("string value goes here"),
 							},
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),
@@ -478,6 +662,29 @@ func mockStartMedicalStreamTranscriptionReadEvents() (
 								Transcript: aws.String("string value goes here"),
 							},
 							{
+								Entities: []*MedicalEntity{
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+									{
+										Category:   aws.String("string value goes here"),
+										Confidence: aws.Float64(123.45),
+										Content:    aws.String("string value goes here"),
+										EndTime:    aws.Float64(123.45),
+										StartTime:  aws.Float64(123.45),
+									},
+								},
 								Items: []*MedicalItem{
 									{
 										Confidence: aws.Float64(123.45),

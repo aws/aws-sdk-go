@@ -9407,6 +9407,16 @@
           "us-iso-east-1" : { }
         }
       },
+      "medialive" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "mediapackage" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
       "monitoring" : {
         "endpoints" : {
           "us-iso-east-1" : { }

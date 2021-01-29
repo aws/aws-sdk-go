@@ -794,6 +794,7 @@ type AudioEvent struct {
 	_ struct{} `type:"structure" payload:"AudioChunk"`
 
 	// An audio blob that contains the next part of the audio that you want to transcribe.
+	// The maximum audio chunk size is 32 KB.
 	//
 	// AudioChunk is automatically base64 encoded/decoded by the SDK.
 	AudioChunk []byte `type:"blob"`
@@ -1331,6 +1332,10 @@ func (s *LimitExceededException) RequestID() string {
 type MedicalAlternative struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the medical entities identified as personal health information in
+	// the transcription output.
+	Entities []*MedicalEntity `type:"list"`
+
 	// A list of objects that contains words and punctuation marks that represents
 	// one or more interpretations of the input audio.
 	Items []*MedicalItem `type:"list"`
@@ -1349,6 +1354,12 @@ func (s MedicalAlternative) GoString() string {
 	return s.String()
 }
 
+// SetEntities sets the Entities field's value.
+func (s *MedicalAlternative) SetEntities(v []*MedicalEntity) *MedicalAlternative {
+	s.Entities = v
+	return s
+}
+
 // SetItems sets the Items field's value.
 func (s *MedicalAlternative) SetItems(v []*MedicalItem) *MedicalAlternative {
 	s.Items = v
@@ -1358,6 +1369,70 @@ func (s *MedicalAlternative) SetItems(v []*MedicalItem) *MedicalAlternative {
 // SetTranscript sets the Transcript field's value.
 func (s *MedicalAlternative) SetTranscript(v string) *MedicalAlternative {
 	s.Transcript = &v
+	return s
+}
+
+// The medical entity identified as personal health information.
+type MedicalEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The type of personal health information of the medical entity.
+	Category *string `type:"string"`
+
+	// A value between zero and one that Amazon Transcribe Medical assigned to the
+	// personal health information that it identified in the source audio. Larger
+	// values indicate that Amazon Transcribe Medical has higher confidence in the
+	// personal health information that it identified.
+	Confidence *float64 `type:"double"`
+
+	// The word or words in the transcription output that have been identified as
+	// a medical entity.
+	Content *string `type:"string"`
+
+	// The end time of the speech that was identified as a medical entity.
+	EndTime *float64 `type:"double"`
+
+	// The start time of the speech that was identified as a medical entity.
+	StartTime *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s MedicalEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MedicalEntity) GoString() string {
+	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *MedicalEntity) SetCategory(v string) *MedicalEntity {
+	s.Category = &v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *MedicalEntity) SetConfidence(v float64) *MedicalEntity {
+	s.Confidence = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *MedicalEntity) SetContent(v string) *MedicalEntity {
+	s.Content = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *MedicalEntity) SetEndTime(v float64) *MedicalEntity {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *MedicalEntity) SetStartTime(v float64) *MedicalEntity {
+	s.StartTime = &v
 	return s
 }
 
@@ -1937,6 +2012,10 @@ func (s *ServiceUnavailableException) RequestID() string {
 type StartMedicalStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
+	// Set this field to PHI to identify personal health information in the transcription
+	// output.
+	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"MedicalContentIdentificationType"`
+
 	// When true, instructs Amazon Transcribe Medical to process each audio channel
 	// separately and then merge the transcription output of each channel into a
 	// single transcription.
@@ -2040,6 +2119,12 @@ func (s *StartMedicalStreamTranscriptionInput) Validate() error {
 	return nil
 }
 
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *StartMedicalStreamTranscriptionInput) SetContentIdentificationType(v string) *StartMedicalStreamTranscriptionInput {
+	s.ContentIdentificationType = &v
+	return s
+}
+
 // SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
 func (s *StartMedicalStreamTranscriptionInput) SetEnableChannelIdentification(v bool) *StartMedicalStreamTranscriptionInput {
 	s.EnableChannelIdentification = &v
@@ -2105,6 +2190,10 @@ type StartMedicalStreamTranscriptionOutput struct {
 
 	eventStream *StartMedicalStreamTranscriptionEventStream
 
+	// If the value is PHI, indicates that you've configured your stream to identify
+	// personal health information.
+	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"MedicalContentIdentificationType"`
+
 	// Shows whether channel identification has been enabled in the stream.
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
@@ -2150,6 +2239,12 @@ func (s StartMedicalStreamTranscriptionOutput) String() string {
 // GoString returns the string representation
 func (s StartMedicalStreamTranscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *StartMedicalStreamTranscriptionOutput) SetContentIdentificationType(v string) *StartMedicalStreamTranscriptionOutput {
+	s.ContentIdentificationType = &v
+	return s
 }
 
 // SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
@@ -2830,6 +2925,18 @@ func MediaEncoding_Values() []string {
 		MediaEncodingPcm,
 		MediaEncodingOggOpus,
 		MediaEncodingFlac,
+	}
+}
+
+const (
+	// MedicalContentIdentificationTypePhi is a MedicalContentIdentificationType enum value
+	MedicalContentIdentificationTypePhi = "PHI"
+)
+
+// MedicalContentIdentificationType_Values returns all elements of the MedicalContentIdentificationType enum
+func MedicalContentIdentificationType_Values() []string {
+	return []string{
+		MedicalContentIdentificationTypePhi,
 	}
 }
 

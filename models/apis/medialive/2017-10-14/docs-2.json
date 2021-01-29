@@ -3149,6 +3149,14 @@
         "VideoSelector$SelectorSettings": "The video selector settings."
       }
     },
+    "VpcOutputSettings": {
+      "base": "The properties for a private VPC Output\nWhen this property is specified, the output egress addresses will be created in a user specified VPC\n",
+      "refs": {
+        "Channel$Vpc": "Settings for VPC output",
+        "ChannelSummary$Vpc": "Settings for VPC output",
+        "CreateChannel$Vpc": "Settings for VPC output"
+      }
+    },
     "WavCodingMode": {
       "base": "Wav Coding Mode",
       "refs": {
@@ -4014,7 +4022,10 @@
         "MultiplexSummary$AvailabilityZones": "A list of availability zones for the multiplex.",
         "Output$AudioDescriptionNames": "The names of the AudioDescriptions used as audio sources for this output.",
         "Output$CaptionDescriptionNames": "The names of the CaptionDescriptions used as caption sources for this output.",
-        "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input."
+        "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
+        "VpcOutputSettings$PublicAddressAllocationIds": "List of public address allocation ids to associate with ENIs that will be created in Output VPC.\nMust specify one for SINGLE_PIPELINE, two for STANDARD channels\n",
+        "VpcOutputSettings$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC network interfaces.\nIf none are specified then the VPC default security group will be used\n",
+        "VpcOutputSettings$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).\n"
       }
     },
     "__longMin0Max1099511627775": {
