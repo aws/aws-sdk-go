@@ -1,4 +1,4 @@
-// +build integration
+// +build go1.7,integration
 
 package lexmodelsv2
 
