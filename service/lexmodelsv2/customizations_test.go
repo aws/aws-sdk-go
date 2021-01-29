@@ -1,3 +1,5 @@
+// +build go1.7
+
 package lexmodelsv2
 
 import (
