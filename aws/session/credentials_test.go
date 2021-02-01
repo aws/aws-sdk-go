@@ -259,6 +259,22 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 				"assume_sso_and_static_arn",
 			},
 		},
+		{
+			name:          "invalid sso configuration",
+			profile:       "sso_invalid",
+			expectedError: fmt.Errorf("profile \"sso_invalid\" is configured to use SSO but is missing required configuration: sso_region, sso_start_url"),
+		},
+		{
+			name:              "environment credentials with invalid sso",
+			profile:           "sso_invalid",
+			expectedAccessKey: "access_key",
+			expectedSecretKey: "secret_key",
+			init: func() (func(), error) {
+				os.Setenv("AWS_ACCESS_KEY", "access_key")
+				os.Setenv("AWS_SECRET_KEY", "secret_key")
+				return func() {}, nil
+			},
+		},
 	}
 
 	for i, c := range cases {
@@ -308,8 +324,15 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 				Handlers:        handlers,
 				EC2IMDSEndpoint: c.sessOptEC2IMDSEndpoint,
 			})
-			if e, a := c.expectedError, err; e != a {
-				t.Fatalf("expected %v, but received %v", e, a)
+
+			if c.expectedError != nil {
+				var errStr string
+				if err != nil {
+					errStr = err.Error()
+				}
+				if e, a := c.expectedError.Error(), errStr; !strings.Contains(a, e) {
+					t.Fatalf("expected %v, but received %v", e, a)
+				}
 			}
 
 			if c.expectedError != nil {
