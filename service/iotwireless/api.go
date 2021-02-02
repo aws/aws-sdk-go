@@ -7728,6 +7728,10 @@ type GetWirelessGatewayCertificateOutput struct {
 
 	// The ID of the certificate associated with the wireless gateway.
 	IotCertificateId *string `min:"1" type:"string"`
+
+	// The ID of the certificate associated with the wireless gateway and used for
+	// LoRaWANNetworkServer endpoint.
+	LoRaWANNetworkServerCertificateId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -7743,6 +7747,12 @@ func (s GetWirelessGatewayCertificateOutput) GoString() string {
 // SetIotCertificateId sets the IotCertificateId field's value.
 func (s *GetWirelessGatewayCertificateOutput) SetIotCertificateId(v string) *GetWirelessGatewayCertificateOutput {
 	s.IotCertificateId = &v
+	return s
+}
+
+// SetLoRaWANNetworkServerCertificateId sets the LoRaWANNetworkServerCertificateId field's value.
+func (s *GetWirelessGatewayCertificateOutput) SetLoRaWANNetworkServerCertificateId(v string) *GetWirelessGatewayCertificateOutput {
+	s.LoRaWANNetworkServerCertificateId = &v
 	return s
 }
 
@@ -9906,8 +9916,7 @@ type SendDataToWirelessDeviceInput struct {
 	PayloadData *string `type:"string" required:"true"`
 
 	// The transmit mode to use to send data to the wireless device. Can be: 0 for
-	// UM (unacknowledge mode), 1 for AM (acknowledge mode), or 2 for (TM) transparent
-	// mode.
+	// UM (unacknowledge mode) or 1 for AM (acknowledge mode).
 	//
 	// TransmitMode is a required field
 	TransmitMode *int64 `type:"integer" required:"true"`
@@ -10179,7 +10188,7 @@ type SidewalkAccountInfoWithFingerprint struct {
 	// The Sidewalk Amazon ID.
 	AmazonId *string `type:"string"`
 
-	// Fingerprint for Sidewalk application server private key.
+	// The fingerprint of the Sidewalk application server private key.
 	Fingerprint *string `min:"64" type:"string" sensitive:"true"`
 }
 
@@ -11378,12 +11387,16 @@ func (s *WirelessMetadata) SetSidewalk(v *SidewalkSendDataToDevice) *WirelessMet
 const (
 	// ExpressionTypeRuleName is a ExpressionType enum value
 	ExpressionTypeRuleName = "RuleName"
+
+	// ExpressionTypeMqttTopic is a ExpressionType enum value
+	ExpressionTypeMqttTopic = "MqttTopic"
 )
 
 // ExpressionType_Values returns all elements of the ExpressionType enum
 func ExpressionType_Values() []string {
 	return []string{
 		ExpressionTypeRuleName,
+		ExpressionTypeMqttTopic,
 	}
 }
 

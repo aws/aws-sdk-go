@@ -136,7 +136,8 @@
         "doubleValues":{"shape":"DoubleArray"},
         "longValues":{"shape":"LongArray"},
         "stringValues":{"shape":"StringArray"}
-      }
+      },
+      "union":true
     },
     "ArrayValueList":{
       "type":"list",
@@ -267,8 +268,8 @@
     "DecimalReturnType":{
       "type":"string",
       "enum":[
-        "DOUBLE_OR_LONG",
-        "STRING"
+        "STRING",
+        "DOUBLE_OR_LONG"
       ]
     },
     "DoubleArray":{
@@ -336,7 +337,8 @@
         "isNull":{"shape":"BoxedBoolean"},
         "longValue":{"shape":"BoxedLong"},
         "stringValue":{"shape":"String"}
-      }
+      },
+      "union":true
     },
     "FieldList":{
       "type":"list",
@@ -517,10 +519,12 @@
     "TypeHint":{
       "type":"string",
       "enum":[
+        "JSON",
+        "UUID",
+        "TIMESTAMP",
         "DATE",
-        "DECIMAL",
         "TIME",
-        "TIMESTAMP"
+        "DECIMAL"
       ]
     },
     "UpdateResult":{
@@ -546,7 +550,8 @@
         "realValue":{"shape":"BoxedFloat"},
         "stringValue":{"shape":"String"},
         "structValue":{"shape":"StructValue"}
-      }
+      },
+      "union":true
     }
   }
 }

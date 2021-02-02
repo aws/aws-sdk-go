@@ -65,7 +65,10 @@ func (c *LookoutForVision) CreateDatasetRequest(input *CreateDatasetInput) (req 
 //
 // To have a project with separate training and test datasets, call CreateDataset
 // twice. On the first call, specify train for the value of DatasetType. On
-// the second call, specify test for the value of DatasetType. of dataset with
+// the second call, specify test for the value of DatasetType.
+//
+// This operation requires permissions to perform the lookoutvision:CreateDataset
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -181,6 +184,10 @@ func (c *LookoutForVision) CreateModelRequest(input *CreateModelInput) (req *req
 // After training completes, the evaluation metrics are stored at the location
 // specified in OutputConfig.
 //
+// This operation requires permissions to perform the lookoutvision:CreateModel
+// operation. If you want to tag your model, you also require permission to
+// the lookoutvision:TagResource operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -282,6 +289,9 @@ func (c *LookoutForVision) CreateProjectRequest(input *CreateProjectInput) (req 
 //
 // Creates an empty Amazon Lookout for Vision project. After you create the
 // project, add a dataset by calling CreateDataset.
+//
+// This operation requires permissions to perform the lookoutvision:CreateProject
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -400,6 +410,9 @@ func (c *LookoutForVision) DeleteDatasetRequest(input *DeleteDatasetInput) (req 
 // It might take a while to delete the dataset. To check the current status,
 // check the Status field in the response from a call to DescribeDataset.
 //
+// This operation requires permissions to perform the lookoutvision:DeleteDataset
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -496,6 +509,9 @@ func (c *LookoutForVision) DeleteModelRequest(input *DeleteModelInput) (req *req
 //
 // Deletes an Amazon Lookout for Vision model. You can't delete a running model.
 // To stop a running model, use the StopModel operation.
+//
+// This operation requires permissions to perform the lookoutvision:DeleteModel
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -596,8 +612,12 @@ func (c *LookoutForVision) DeleteProjectRequest(input *DeleteProjectInput) (req 
 // To delete a project, you must first delete each version of the model associated
 // with the project. To delete a model use the DeleteModel operation.
 //
-// The training and test datasets are deleted automatically for you. The images
-// referenced by the training and test datasets aren't deleted.
+// You also have to delete the dataset(s) associated with the model. For more
+// information, see DeleteDataset. The images referenced by the training and
+// test datasets aren't deleted.
+//
+// This operation requires permissions to perform the lookoutvision:DeleteProject
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -695,6 +715,9 @@ func (c *LookoutForVision) DescribeDatasetRequest(input *DescribeDatasetInput) (
 //
 // Describe an Amazon Lookout for Vision dataset.
 //
+// This operation requires permissions to perform the lookoutvision:DescribeDataset
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -791,6 +814,9 @@ func (c *LookoutForVision) DescribeModelRequest(input *DescribeModelInput) (req 
 //
 // Describes a version of an Amazon Lookout for Vision model.
 //
+// This operation requires permissions to perform the lookoutvision:DescribeModel
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -886,6 +912,9 @@ func (c *LookoutForVision) DescribeProjectRequest(input *DescribeProjectInput) (
 // DescribeProject API operation for Amazon Lookout for Vision.
 //
 // Describes an Amazon Lookout for Vision project.
+//
+// This operation requires permissions to perform the lookoutvision:DescribeProject
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -992,6 +1021,9 @@ func (c *LookoutForVision) DetectAnomaliesRequest(input *DetectAnomaliesInput) (
 // model uses. If you are not using a model, use the StopModel operation to
 // stop your model.
 //
+// This operation requires permissions to perform the lookoutvision:DetectAnomalies
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1095,6 +1127,9 @@ func (c *LookoutForVision) ListDatasetEntriesRequest(input *ListDatasetEntriesIn
 // Lists the JSON Lines within a dataset. An Amazon Lookout for Vision JSON
 // Line contains the anomaly information for a single image, including the image
 // location and the assigned label.
+//
+// This operation requires permissions to perform the lookoutvision:ListDatasetEntries
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1250,6 +1285,9 @@ func (c *LookoutForVision) ListModelsRequest(input *ListModelsInput) (req *reque
 //
 // Lists the versions of a model in an Amazon Lookout for Vision project.
 //
+// This operation requires permissions to perform the lookoutvision:ListModels
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1404,6 +1442,9 @@ func (c *LookoutForVision) ListProjectsRequest(input *ListProjectsInput) (req *r
 //
 // Lists the Amazon Lookout for Vision projects in your AWS account.
 //
+// This operation requires permissions to perform the lookoutvision:ListProjects
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1506,6 +1547,106 @@ func (c *LookoutForVision) ListProjectsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/ListTagsForResource
+func (c *LookoutForVision) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-11-20/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Lookout for Vision.
+//
+// Returns a list of tags attached to the specified Amazon Lookout for Vision
+// model.
+//
+// This operation requires permissions to perform the lookoutvision:ListTagsForResource
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Vision's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerException
+//   Amazon Lookout for Vision experienced a service issue. Try your call again.
+//
+//   * ValidationException
+//   An input validation error occured. For example, invalid characters in a project
+//   name, or if a pagination token is invalid.
+//
+//   * ConflictException
+//   The update or deletion of a resource caused an inconsistent state.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ThrottlingException
+//   Amazon Lookout for Vision is temporarily unable to process the request. Try
+//   your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/ListTagsForResource
+func (c *LookoutForVision) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartModel = "StartModel"
 
 // StartModelRequest generates a "aws/request.Request" representing the
@@ -1559,6 +1700,9 @@ func (c *LookoutForVision) StartModelRequest(input *StartModelInput) (req *reque
 //
 // You are charged for the amount of time that the model is running. To stop
 // a running model, call StopModel.
+//
+// This operation requires permissions to perform the lookoutvision:StartModel
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1662,6 +1806,9 @@ func (c *LookoutForVision) StopModelRequest(input *StopModelInput) (req *request
 // Stops a running model. The operation might take a while to complete. To check
 // the current status, call DescribeModel.
 //
+// This operation requires permissions to perform the lookoutvision:StopModel
+// operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1707,6 +1854,215 @@ func (c *LookoutForVision) StopModel(input *StopModelInput) (*StopModelOutput, e
 // for more information on using Contexts.
 func (c *LookoutForVision) StopModelWithContext(ctx aws.Context, input *StopModelInput, opts ...request.Option) (*StopModelOutput, error) {
 	req, out := c.StopModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/TagResource
+func (c *LookoutForVision) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-11-20/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Lookout for Vision.
+//
+// Adds one or more key-value tags to an Amazon Lookout for Vision model. For
+// more information, see Tagging a model in the Amazon Lookout for Vision Developer
+// Guide.
+//
+// This operation requires permissions to perform the lookoutvision:TagResource
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Vision's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerException
+//   Amazon Lookout for Vision experienced a service issue. Try your call again.
+//
+//   * ValidationException
+//   An input validation error occured. For example, invalid characters in a project
+//   name, or if a pagination token is invalid.
+//
+//   * ConflictException
+//   The update or deletion of a resource caused an inconsistent state.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ThrottlingException
+//   Amazon Lookout for Vision is temporarily unable to process the request. Try
+//   your call again.
+//
+//   * ServiceQuotaExceededException
+//   A service quota was exceeded the allowed limit. For more information, see
+//   Limits in Amazon Lookout for Vision in the Amazon Lookout for Vision Developer
+//   Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/TagResource
+func (c *LookoutForVision) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/UntagResource
+func (c *LookoutForVision) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-11-20/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Lookout for Vision.
+//
+// Removes one or more tags from an Amazon Lookout for Vision model. For more
+// information, see Tagging a model in the Amazon Lookout for Vision Developer
+// Guide.
+//
+// This operation requires permissions to perform the lookoutvision:UntagResource
+// operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lookout for Vision's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerException
+//   Amazon Lookout for Vision experienced a service issue. Try your call again.
+//
+//   * ValidationException
+//   An input validation error occured. For example, invalid characters in a project
+//   name, or if a pagination token is invalid.
+//
+//   * ConflictException
+//   The update or deletion of a resource caused an inconsistent state.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ThrottlingException
+//   Amazon Lookout for Vision is temporarily unable to process the request. Try
+//   your call again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lookoutvision-2020-11-20/UntagResource
+func (c *LookoutForVision) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LookoutForVision) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1762,6 +2118,9 @@ func (c *LookoutForVision) UpdateDatasetEntriesRequest(input *UpdateDatasetEntri
 //
 // Updating a dataset might take a while to complete. To check the current status,
 // call DescribeDataset and check the Status field in the response.
+//
+// This operation requires permissions to perform the lookoutvision:UpdateDatasetEntries
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2073,7 +2432,7 @@ type CreateModelInput struct {
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the version of the model.
-	Description *ModelDescription `type:"structure"`
+	Description *string `min:"1" type:"string"`
 
 	// The identifier of the AWS Key Management Service (AWS KMS) customer master
 	// key (CMK) to use for encypting the model. If this parameter is not specified,
@@ -2089,6 +2448,9 @@ type CreateModelInput struct {
 	//
 	// ProjectName is a required field
 	ProjectName *string `location:"uri" locationName:"projectName" min:"1" type:"string" required:"true"`
+
+	// A set of tags (key-value pairs) that you want to attach to the model.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -2107,6 +2469,9 @@ func (s *CreateModelInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
 	}
@@ -2119,14 +2484,19 @@ func (s *CreateModelInput) Validate() error {
 	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
 	}
-	if s.Description != nil {
-		if err := s.Description.Validate(); err != nil {
-			invalidParams.AddNested("Description", err.(request.ErrInvalidParams))
-		}
-	}
 	if s.OutputConfig != nil {
 		if err := s.OutputConfig.Validate(); err != nil {
 			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -2143,8 +2513,8 @@ func (s *CreateModelInput) SetClientToken(v string) *CreateModelInput {
 }
 
 // SetDescription sets the Description field's value.
-func (s *CreateModelInput) SetDescription(v *ModelDescription) *CreateModelInput {
-	s.Description = v
+func (s *CreateModelInput) SetDescription(v string) *CreateModelInput {
+	s.Description = &v
 	return s
 }
 
@@ -2163,6 +2533,12 @@ func (s *CreateModelInput) SetOutputConfig(v *OutputConfig) *CreateModelInput {
 // SetProjectName sets the ProjectName field's value.
 func (s *CreateModelInput) SetProjectName(v string) *CreateModelInput {
 	s.ProjectName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateModelInput) SetTags(v []*Tag) *CreateModelInput {
+	s.Tags = v
 	return s
 }
 
@@ -2202,7 +2578,7 @@ type CreateProjectInput struct {
 	// token is active for 8 hours.
 	ClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
-	// S nsme for the project.
+	// The name for the project.
 	//
 	// ProjectName is a required field
 	ProjectName *string `min:"1" type:"string" required:"true"`
@@ -3708,6 +4084,70 @@ func (s *ListProjectsOutput) SetProjects(v []*ProjectMetadata) *ListProjectsOutp
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model for which you want to list tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of tag keys and values attached to the specified model.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // Describes an Amazon Lookout for Vision model.
 type ModelDescription struct {
 	_ struct{} `type:"structure"`
@@ -3759,40 +4199,6 @@ func (s ModelDescription) String() string {
 // GoString returns the string representation
 func (s ModelDescription) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ModelDescription) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ModelDescription"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
-	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
-	}
-	if s.ModelVersion != nil && len(*s.ModelVersion) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ModelVersion", 1))
-	}
-	if s.EvaluationManifest != nil {
-		if err := s.EvaluationManifest.Validate(); err != nil {
-			invalidParams.AddNested("EvaluationManifest", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.EvaluationResult != nil {
-		if err := s.EvaluationResult.Validate(); err != nil {
-			invalidParams.AddNested("EvaluationResult", err.(request.ErrInvalidParams))
-		}
-	}
-	if s.OutputConfig != nil {
-		if err := s.OutputConfig.Validate(); err != nil {
-			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
-		}
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetCreationTimestamp sets the CreationTimestamp field's value.
@@ -3883,7 +4289,8 @@ type ModelMetadata struct {
 	// The version of the model.
 	ModelVersion *string `min:"1" type:"string"`
 
-	// Performance metrics for the model. Created during training.
+	// Performance metrics for the model. Not available until training has successfully
+	// completed.
 	Performance *ModelPerformance `type:"structure"`
 
 	// The status of the model.
@@ -4054,28 +4461,6 @@ func (s OutputS3Object) String() string {
 // GoString returns the string representation
 func (s OutputS3Object) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *OutputS3Object) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "OutputS3Object"}
-	if s.Bucket == nil {
-		invalidParams.Add(request.NewErrParamRequired("Bucket"))
-	}
-	if s.Bucket != nil && len(*s.Bucket) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
-	}
-	if s.Key == nil {
-		invalidParams.Add(request.NewErrParamRequired("Key"))
-	}
-	if s.Key != nil && len(*s.Key) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetBucket sets the Bucket field's value.
@@ -4595,6 +4980,142 @@ func (s *StopModelOutput) SetStatus(v string) *StopModelOutput {
 	return s
 }
 
+// A key and value pair that is attached to the specified Amazon Lookout for
+// Vision model.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key of the tag that is attached to the specified model.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value of the tag that is attached to the specified model.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model to assign the tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// The key-value tags to assign to the model.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Amazon Lookout for Vision is temporarily unable to process the request. Try
 // your call again.
 type ThrottlingException struct {
@@ -4659,6 +5180,76 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model from which you want to remove
+	// tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// A list of the keys of the tags that you want to remove.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateDatasetEntriesInput struct {

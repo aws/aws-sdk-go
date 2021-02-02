@@ -965,6 +965,12 @@
         "OutputGroupSettings$FrameCaptureGroupSettings": null
       }
     },
+    "FrameCaptureHlsSettings": {
+      "base": "Frame Capture Hls Settings",
+      "refs": {
+        "HlsSettings$FrameCaptureHlsSettings": null
+      }
+    },
     "FrameCaptureIntervalUnit": {
       "base": "Frame Capture Interval Unit",
       "refs": {

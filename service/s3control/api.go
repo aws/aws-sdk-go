@@ -300,13 +300,13 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 
 // CreateJob API operation for AWS S3 Control.
 //
-// S3 Batch Operations performs large-scale Batch Operations on Amazon S3 objects.
-// Batch Operations can run a single operation or action on lists of Amazon
-// S3 objects that you specify. For more information, see S3 Batch Operations
+// You can use S3 Batch Operations to perform large-scale batch operations on
+// Amazon S3 objects. Batch Operations can run a single operation on lists of
+// Amazon S3 objects that you specify. For more information, see S3 Batch Operations
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html) in
 // the Amazon Simple Storage Service Developer Guide.
 //
-// This operation creates an S3 Batch Operations job.
+// This operation creates a S3 Batch Operations job.
 //
 // Related actions include:
 //
@@ -317,6 +317,8 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 //    * UpdateJobPriority (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html)
 //
 //    * UpdateJobStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html)
+//
+//    * JobOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_JobOperation.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1216,7 +1218,8 @@ func (c *S3Control) DeleteStorageLensConfigurationRequest(input *DeleteStorageLe
 // DeleteStorageLensConfiguration API operation for AWS S3 Control.
 //
 // Deletes the Amazon S3 Storage Lens configuration. For more information about
-// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// S3 Storage Lens, see Assessing your storage activity and usage with Amazon
+// S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:DeleteStorageLensConfiguration
@@ -1300,7 +1303,8 @@ func (c *S3Control) DeleteStorageLensConfigurationTaggingRequest(input *DeleteSt
 // DeleteStorageLensConfigurationTagging API operation for AWS S3 Control.
 //
 // Deletes the Amazon S3 Storage Lens configuration tags. For more information
-// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// about S3 Storage Lens, see Assessing your storage activity and usage with
+// Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:DeleteStorageLensConfigurationTagging
@@ -2374,7 +2378,7 @@ func (c *S3Control) GetStorageLensConfigurationRequest(input *GetStorageLensConf
 // GetStorageLensConfiguration API operation for AWS S3 Control.
 //
 // Gets the Amazon S3 Storage Lens configuration. For more information, see
-// Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// Assessing your storage activity and usage with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:GetStorageLensConfiguration
@@ -2457,7 +2461,8 @@ func (c *S3Control) GetStorageLensConfigurationTaggingRequest(input *GetStorageL
 // GetStorageLensConfigurationTagging API operation for AWS S3 Control.
 //
 // Gets the tags of Amazon S3 Storage Lens configuration. For more information
-// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// about S3 Storage Lens, see Assessing your storage activity and usage with
+// Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:GetStorageLensConfigurationTagging
@@ -2994,7 +2999,8 @@ func (c *S3Control) ListStorageLensConfigurationsRequest(input *ListStorageLensC
 // ListStorageLensConfigurations API operation for AWS S3 Control.
 //
 // Gets a list of Amazon S3 Storage Lens configurations. For more information
-// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// about S3 Storage Lens, see Assessing your storage activity and usage with
+// Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:ListStorageLensConfigurations
@@ -3840,8 +3846,8 @@ func (c *S3Control) PutStorageLensConfigurationTaggingRequest(input *PutStorageL
 // PutStorageLensConfigurationTagging API operation for AWS S3 Control.
 //
 // Put or replace tags on an existing Amazon S3 Storage Lens configuration.
-// For more information about S3 Storage Lens, see Working with Amazon S3 Storage
-// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// For more information about S3 Storage Lens, see Assessing your storage activity
+// and usage with Amazon S3 Storage Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // To use this action, you must have permission to perform the s3:PutStorageLensConfigurationTagging
@@ -7855,6 +7861,10 @@ type JobManifestLocation struct {
 
 	// The Amazon Resource Name (ARN) for a manifest object.
 	//
+	// Replacement must be made for object keys containing special characters (such
+	// as carriage returns) when using XML requests. For more information, see XML
+	// related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
+	//
 	// ObjectArn is a required field
 	ObjectArn *string `min:"1" type:"string" required:"true"`
 
@@ -7976,6 +7986,10 @@ type JobOperation struct {
 	// in the manifest.
 	LambdaInvoke *LambdaInvokeOperation `type:"structure"`
 
+	// Directs the specified job to execute a DELETE Object tagging call on every
+	// object in the manifest.
+	S3DeleteObjectTagging *S3DeleteObjectTaggingOperation `type:"structure"`
+
 	// Directs the specified job to initiate restore requests for every archived
 	// object in the manifest.
 	S3InitiateRestoreObject *S3InitiateRestoreObjectOperation `type:"structure"`
@@ -8060,6 +8074,12 @@ func (s *JobOperation) Validate() error {
 // SetLambdaInvoke sets the LambdaInvoke field's value.
 func (s *JobOperation) SetLambdaInvoke(v *LambdaInvokeOperation) *JobOperation {
 	s.LambdaInvoke = v
+	return s
+}
+
+// SetS3DeleteObjectTagging sets the S3DeleteObjectTagging field's value.
+func (s *JobOperation) SetS3DeleteObjectTagging(v *S3DeleteObjectTaggingOperation) *JobOperation {
+	s.S3DeleteObjectTagging = v
 	return s
 }
 
@@ -8537,6 +8557,10 @@ type LifecycleRuleFilter struct {
 	And *LifecycleRuleAndOperator `type:"structure"`
 
 	// Prefix identifying one or more objects to which the rule applies.
+	//
+	// Replacement must be made for object keys containing special characters (such
+	// as carriage returns) when using XML requests. For more information, see XML
+	// related object key constraints (https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html#object-key-xml-related-constraints).
 	Prefix *string `type:"string"`
 
 	Tag *S3Tag `type:"structure"`
@@ -10887,6 +10911,23 @@ func (s *S3CopyObjectOperation) SetUnModifiedSinceConstraint(v time.Time) *S3Cop
 	return s
 }
 
+// Contains no configuration parameters because the DELETE Object tagging API
+// only accepts the bucket name and key name as parameters, which are defined
+// in the job's manifest.
+type S3DeleteObjectTaggingOperation struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s S3DeleteObjectTaggingOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3DeleteObjectTaggingOperation) GoString() string {
+	return s.String()
+}
+
 type S3Grant struct {
 	_ struct{} `type:"structure"`
 
@@ -11839,6 +11880,8 @@ type StorageLensDataExport struct {
 	// A container for the bucket where the S3 Storage Lens metrics export will
 	// be located.
 	//
+	// This bucket must be located in the same Region as the storage lens configuration.
+	//
 	// S3BucketDestination is a required field
 	S3BucketDestination *S3BucketDestination `type:"structure" required:"true"`
 }
@@ -12619,6 +12662,9 @@ const (
 	// OperationNameS3putObjectTagging is a OperationName enum value
 	OperationNameS3putObjectTagging = "S3PutObjectTagging"
 
+	// OperationNameS3deleteObjectTagging is a OperationName enum value
+	OperationNameS3deleteObjectTagging = "S3DeleteObjectTagging"
+
 	// OperationNameS3initiateRestoreObject is a OperationName enum value
 	OperationNameS3initiateRestoreObject = "S3InitiateRestoreObject"
 
@@ -12636,6 +12682,7 @@ func OperationName_Values() []string {
 		OperationNameS3putObjectCopy,
 		OperationNameS3putObjectAcl,
 		OperationNameS3putObjectTagging,
+		OperationNameS3deleteObjectTagging,
 		OperationNameS3initiateRestoreObject,
 		OperationNameS3putObjectLegalHold,
 		OperationNameS3putObjectRetention,

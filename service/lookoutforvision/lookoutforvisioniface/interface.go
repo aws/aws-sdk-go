@@ -121,6 +121,10 @@ type LookoutForVisionAPI interface {
 	ListProjectsPages(*lookoutforvision.ListProjectsInput, func(*lookoutforvision.ListProjectsOutput, bool) bool) error
 	ListProjectsPagesWithContext(aws.Context, *lookoutforvision.ListProjectsInput, func(*lookoutforvision.ListProjectsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*lookoutforvision.ListTagsForResourceInput) (*lookoutforvision.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *lookoutforvision.ListTagsForResourceInput, ...request.Option) (*lookoutforvision.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*lookoutforvision.ListTagsForResourceInput) (*request.Request, *lookoutforvision.ListTagsForResourceOutput)
+
 	StartModel(*lookoutforvision.StartModelInput) (*lookoutforvision.StartModelOutput, error)
 	StartModelWithContext(aws.Context, *lookoutforvision.StartModelInput, ...request.Option) (*lookoutforvision.StartModelOutput, error)
 	StartModelRequest(*lookoutforvision.StartModelInput) (*request.Request, *lookoutforvision.StartModelOutput)
@@ -128,6 +132,14 @@ type LookoutForVisionAPI interface {
 	StopModel(*lookoutforvision.StopModelInput) (*lookoutforvision.StopModelOutput, error)
 	StopModelWithContext(aws.Context, *lookoutforvision.StopModelInput, ...request.Option) (*lookoutforvision.StopModelOutput, error)
 	StopModelRequest(*lookoutforvision.StopModelInput) (*request.Request, *lookoutforvision.StopModelOutput)
+
+	TagResource(*lookoutforvision.TagResourceInput) (*lookoutforvision.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *lookoutforvision.TagResourceInput, ...request.Option) (*lookoutforvision.TagResourceOutput, error)
+	TagResourceRequest(*lookoutforvision.TagResourceInput) (*request.Request, *lookoutforvision.TagResourceOutput)
+
+	UntagResource(*lookoutforvision.UntagResourceInput) (*lookoutforvision.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *lookoutforvision.UntagResourceInput, ...request.Option) (*lookoutforvision.UntagResourceOutput, error)
+	UntagResourceRequest(*lookoutforvision.UntagResourceInput) (*request.Request, *lookoutforvision.UntagResourceOutput)
 
 	UpdateDatasetEntries(*lookoutforvision.UpdateDatasetEntriesInput) (*lookoutforvision.UpdateDatasetEntriesOutput, error)
 	UpdateDatasetEntriesWithContext(aws.Context, *lookoutforvision.UpdateDatasetEntriesInput, ...request.Option) (*lookoutforvision.UpdateDatasetEntriesOutput, error)

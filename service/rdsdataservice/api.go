@@ -1357,6 +1357,8 @@ type ExecuteStatementInput struct {
 	ResultSetOptions *ResultSetOptions `locationName:"resultSetOptions" type:"structure"`
 
 	// The name of the database schema.
+	//
+	// Currently, the schema parameter isn't supported.
 	Schema *string `locationName:"schema" type:"string"`
 
 	// The name or ARN of the secret that enables access to the DB cluster.
@@ -2062,21 +2064,26 @@ type SqlParameter struct {
 	// The name of the parameter.
 	Name *string `locationName:"name" type:"string"`
 
-	// A hint that specifies the correct object type for data type mapping.
+	// A hint that specifies the correct object type for data type mapping. Possible
+	// values are as follows:
 	//
-	// Values:
+	//    * DATE - The corresponding String parameter value is sent as an object
+	//    of DATE type to the database. The accepted format is YYYY-MM-DD.
 	//
 	//    * DECIMAL - The corresponding String parameter value is sent as an object
 	//    of DECIMAL type to the database.
 	//
-	//    * TIMESTAMP - The corresponding String parameter value is sent as an object
-	//    of TIMESTAMP type to the database. The accepted format is YYYY-MM-DD HH:MM:SS[.FFF].
+	//    * JSON - The corresponding String parameter value is sent as an object
+	//    of JSON type to the database.
 	//
 	//    * TIME - The corresponding String parameter value is sent as an object
 	//    of TIME type to the database. The accepted format is HH:MM:SS[.FFF].
 	//
-	//    * DATE - The corresponding String parameter value is sent as an object
-	//    of DATE type to the database. The accepted format is YYYY-MM-DD.
+	//    * TIMESTAMP - The corresponding String parameter value is sent as an object
+	//    of TIMESTAMP type to the database. The accepted format is YYYY-MM-DD HH:MM:SS[.FFF].
+	//
+	//    * UUID - The corresponding String parameter value is sent as an object
+	//    of UUID type to the database.
 	TypeHint *string `locationName:"typeHint" type:"string" enum:"TypeHint"`
 
 	// The value of the parameter.
@@ -2364,41 +2371,49 @@ func (s *Value) SetStructValue(v *StructValue) *Value {
 }
 
 const (
-	// DecimalReturnTypeDoubleOrLong is a DecimalReturnType enum value
-	DecimalReturnTypeDoubleOrLong = "DOUBLE_OR_LONG"
-
 	// DecimalReturnTypeString is a DecimalReturnType enum value
 	DecimalReturnTypeString = "STRING"
+
+	// DecimalReturnTypeDoubleOrLong is a DecimalReturnType enum value
+	DecimalReturnTypeDoubleOrLong = "DOUBLE_OR_LONG"
 )
 
 // DecimalReturnType_Values returns all elements of the DecimalReturnType enum
 func DecimalReturnType_Values() []string {
 	return []string{
-		DecimalReturnTypeDoubleOrLong,
 		DecimalReturnTypeString,
+		DecimalReturnTypeDoubleOrLong,
 	}
 }
 
 const (
+	// TypeHintJson is a TypeHint enum value
+	TypeHintJson = "JSON"
+
+	// TypeHintUuid is a TypeHint enum value
+	TypeHintUuid = "UUID"
+
+	// TypeHintTimestamp is a TypeHint enum value
+	TypeHintTimestamp = "TIMESTAMP"
+
 	// TypeHintDate is a TypeHint enum value
 	TypeHintDate = "DATE"
-
-	// TypeHintDecimal is a TypeHint enum value
-	TypeHintDecimal = "DECIMAL"
 
 	// TypeHintTime is a TypeHint enum value
 	TypeHintTime = "TIME"
 
-	// TypeHintTimestamp is a TypeHint enum value
-	TypeHintTimestamp = "TIMESTAMP"
+	// TypeHintDecimal is a TypeHint enum value
+	TypeHintDecimal = "DECIMAL"
 )
 
 // TypeHint_Values returns all elements of the TypeHint enum
 func TypeHint_Values() []string {
 	return []string{
-		TypeHintDate,
-		TypeHintDecimal,
-		TypeHintTime,
+		TypeHintJson,
+		TypeHintUuid,
 		TypeHintTimestamp,
+		TypeHintDate,
+		TypeHintTime,
+		TypeHintDecimal,
 	}
 }
