@@ -861,6 +861,7 @@
       "type":"structure",
       "required":["validation"],
       "members":{
+        "certificate":{"shape":"ClientTlsCertificate"},
         "enforce":{
           "shape":"Boolean",
           "box":true
@@ -868,6 +869,14 @@
         "ports":{"shape":"PortSet"},
         "validation":{"shape":"TlsValidationContext"}
       }
+    },
+    "ClientTlsCertificate":{
+      "type":"structure",
+      "members":{
+        "file":{"shape":"ListenerTlsFileCertificate"},
+        "sds":{"shape":"ListenerTlsSdsCertificate"}
+      },
+      "union":true
     },
     "ConflictException":{
       "type":"structure",
@@ -2382,7 +2391,8 @@
       ],
       "members":{
         "certificate":{"shape":"ListenerTlsCertificate"},
-        "mode":{"shape":"ListenerTlsMode"}
+        "mode":{"shape":"ListenerTlsMode"},
+        "validation":{"shape":"ListenerTlsValidationContext"}
       }
     },
     "ListenerTlsAcmCertificate":{
@@ -2396,7 +2406,8 @@
       "type":"structure",
       "members":{
         "acm":{"shape":"ListenerTlsAcmCertificate"},
-        "file":{"shape":"ListenerTlsFileCertificate"}
+        "file":{"shape":"ListenerTlsFileCertificate"},
+        "sds":{"shape":"ListenerTlsSdsCertificate"}
       },
       "union":true
     },
@@ -2418,6 +2429,29 @@
         "PERMISSIVE",
         "DISABLED"
       ]
+    },
+    "ListenerTlsSdsCertificate":{
+      "type":"structure",
+      "required":["secretName"],
+      "members":{
+        "secretName":{"shape":"SdsSecretName"}
+      }
+    },
+    "ListenerTlsValidationContext":{
+      "type":"structure",
+      "required":["trust"],
+      "members":{
+        "subjectAlternativeNames":{"shape":"SubjectAlternativeNames"},
+        "trust":{"shape":"ListenerTlsValidationContextTrust"}
+      }
+    },
+    "ListenerTlsValidationContextTrust":{
+      "type":"structure",
+      "members":{
+        "file":{"shape":"TlsValidationContextFileTrust"},
+        "sds":{"shape":"TlsValidationContextSdsTrust"}
+      },
+      "union":true
     },
     "Listeners":{
       "type":"list",
@@ -2715,6 +2749,7 @@
         "DELETED"
       ]
     },
+    "SdsSecretName":{"type":"string"},
     "ServiceDiscovery":{
       "type":"structure",
       "members":{
@@ -2735,6 +2770,29 @@
       "retryable":{"throttling":false}
     },
     "String":{"type":"string"},
+    "SubjectAlternativeName":{
+      "type":"string",
+      "max":254,
+      "min":1
+    },
+    "SubjectAlternativeNameList":{
+      "type":"list",
+      "member":{"shape":"SubjectAlternativeName"}
+    },
+    "SubjectAlternativeNameMatchers":{
+      "type":"structure",
+      "required":["exact"],
+      "members":{
+        "exact":{"shape":"SubjectAlternativeNameList"}
+      }
+    },
+    "SubjectAlternativeNames":{
+      "type":"structure",
+      "required":["match"],
+      "members":{
+        "match":{"shape":"SubjectAlternativeNameMatchers"}
+      }
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -2830,6 +2888,7 @@
       "type":"structure",
       "required":["trust"],
       "members":{
+        "subjectAlternativeNames":{"shape":"SubjectAlternativeNames"},
         "trust":{"shape":"TlsValidationContextTrust"}
       }
     },
@@ -2847,11 +2906,19 @@
         "certificateChain":{"shape":"FilePath"}
       }
     },
+    "TlsValidationContextSdsTrust":{
+      "type":"structure",
+      "required":["secretName"],
+      "members":{
+        "secretName":{"shape":"SdsSecretName"}
+      }
+    },
     "TlsValidationContextTrust":{
       "type":"structure",
       "members":{
         "acm":{"shape":"TlsValidationContextAcmTrust"},
-        "file":{"shape":"TlsValidationContextFileTrust"}
+        "file":{"shape":"TlsValidationContextFileTrust"},
+        "sds":{"shape":"TlsValidationContextSdsTrust"}
       },
       "union":true
     },
@@ -3191,6 +3258,7 @@
       "type":"structure",
       "required":["validation"],
       "members":{
+        "certificate":{"shape":"VirtualGatewayClientTlsCertificate"},
         "enforce":{
           "shape":"Boolean",
           "box":true
@@ -3198,6 +3266,14 @@
         "ports":{"shape":"PortSet"},
         "validation":{"shape":"VirtualGatewayTlsValidationContext"}
       }
+    },
+    "VirtualGatewayClientTlsCertificate":{
+      "type":"structure",
+      "members":{
+        "file":{"shape":"VirtualGatewayListenerTlsFileCertificate"},
+        "sds":{"shape":"VirtualGatewayListenerTlsSdsCertificate"}
+      },
+      "union":true
     },
     "VirtualGatewayConnectionPool":{
       "type":"structure",
@@ -3315,7 +3391,8 @@
       ],
       "members":{
         "certificate":{"shape":"VirtualGatewayListenerTlsCertificate"},
-        "mode":{"shape":"VirtualGatewayListenerTlsMode"}
+        "mode":{"shape":"VirtualGatewayListenerTlsMode"},
+        "validation":{"shape":"VirtualGatewayListenerTlsValidationContext"}
       }
     },
     "VirtualGatewayListenerTlsAcmCertificate":{
@@ -3329,7 +3406,8 @@
       "type":"structure",
       "members":{
         "acm":{"shape":"VirtualGatewayListenerTlsAcmCertificate"},
-        "file":{"shape":"VirtualGatewayListenerTlsFileCertificate"}
+        "file":{"shape":"VirtualGatewayListenerTlsFileCertificate"},
+        "sds":{"shape":"VirtualGatewayListenerTlsSdsCertificate"}
       },
       "union":true
     },
@@ -3351,6 +3429,29 @@
         "PERMISSIVE",
         "DISABLED"
       ]
+    },
+    "VirtualGatewayListenerTlsSdsCertificate":{
+      "type":"structure",
+      "required":["secretName"],
+      "members":{
+        "secretName":{"shape":"VirtualGatewaySdsSecretName"}
+      }
+    },
+    "VirtualGatewayListenerTlsValidationContext":{
+      "type":"structure",
+      "required":["trust"],
+      "members":{
+        "subjectAlternativeNames":{"shape":"SubjectAlternativeNames"},
+        "trust":{"shape":"VirtualGatewayListenerTlsValidationContextTrust"}
+      }
+    },
+    "VirtualGatewayListenerTlsValidationContextTrust":{
+      "type":"structure",
+      "members":{
+        "file":{"shape":"VirtualGatewayTlsValidationContextFileTrust"},
+        "sds":{"shape":"VirtualGatewayTlsValidationContextSdsTrust"}
+      },
+      "union":true
     },
     "VirtualGatewayListeners":{
       "type":"list",
@@ -3406,6 +3507,7 @@
         "virtualGatewayName":{"shape":"ResourceName"}
       }
     },
+    "VirtualGatewaySdsSecretName":{"type":"string"},
     "VirtualGatewaySpec":{
       "type":"structure",
       "required":["listeners"],
@@ -3434,6 +3536,7 @@
       "type":"structure",
       "required":["trust"],
       "members":{
+        "subjectAlternativeNames":{"shape":"SubjectAlternativeNames"},
         "trust":{"shape":"VirtualGatewayTlsValidationContextTrust"}
       }
     },
@@ -3451,11 +3554,19 @@
         "certificateChain":{"shape":"FilePath"}
       }
     },
+    "VirtualGatewayTlsValidationContextSdsTrust":{
+      "type":"structure",
+      "required":["secretName"],
+      "members":{
+        "secretName":{"shape":"VirtualGatewaySdsSecretName"}
+      }
+    },
     "VirtualGatewayTlsValidationContextTrust":{
       "type":"structure",
       "members":{
         "acm":{"shape":"VirtualGatewayTlsValidationContextAcmTrust"},
-        "file":{"shape":"VirtualGatewayTlsValidationContextFileTrust"}
+        "file":{"shape":"VirtualGatewayTlsValidationContextFileTrust"},
+        "sds":{"shape":"VirtualGatewayTlsValidationContextSdsTrust"}
       },
       "union":true
     },

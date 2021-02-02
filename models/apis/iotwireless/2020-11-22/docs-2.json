@@ -600,7 +600,7 @@
     "Fingerprint": {
       "base": null,
       "refs": {
-        "SidewalkAccountInfoWithFingerprint$Fingerprint": "<p>Fingerprint for Sidewalk application server private key.</p>"
+        "SidewalkAccountInfoWithFingerprint$Fingerprint": "<p>The fingerprint of the Sidewalk application server private key.</p>"
       }
     },
     "GatewayEui": {
@@ -783,7 +783,8 @@
       "refs": {
         "AssociateWirelessGatewayWithCertificateRequest$IotCertificateId": "<p>The ID of the certificate to associate with the wireless gateway.</p>",
         "AssociateWirelessGatewayWithCertificateResponse$IotCertificateId": "<p>The ID of the certificate associated with the wireless gateway.</p>",
-        "GetWirelessGatewayCertificateResponse$IotCertificateId": "<p>The ID of the certificate associated with the wireless gateway.</p>"
+        "GetWirelessGatewayCertificateResponse$IotCertificateId": "<p>The ID of the certificate associated with the wireless gateway.</p>",
+        "GetWirelessGatewayCertificateResponse$LoRaWANNetworkServerCertificateId": "<p>The ID of the certificate associated with the wireless gateway and used for LoRaWANNetworkServer endpoint.</p>"
       }
     },
     "JoinEui": {
@@ -1466,7 +1467,7 @@
     "TransmitMode": {
       "base": null,
       "refs": {
-        "SendDataToWirelessDeviceRequest$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode), <code>1</code> for AM (acknowledge mode), or <code>2</code> for (TM) transparent mode.</p>"
+        "SendDataToWirelessDeviceRequest$TransmitMode": "<p>The transmit mode to use to send data to the wireless device. Can be: <code>0</code> for UM (unacknowledge mode) or <code>1</code> for AM (acknowledge mode).</p>"
       }
     },
     "UlBucketSize": {

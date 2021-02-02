@@ -5751,6 +5751,11 @@
         "Destination"
       ]
     },
+    "FrameCaptureHlsSettings": {
+      "type": "structure",
+      "members": {
+      }
+    },
     "FrameCaptureIntervalUnit": {
       "type": "string",
       "enum": [
@@ -5778,10 +5783,7 @@
           "shape": "FrameCaptureIntervalUnit",
           "locationName": "captureIntervalUnits"
         }
-      },
-      "required": [
-        "CaptureInterval"
-      ]
+      }
     },
     "GatewayTimeoutException": {
       "type": "structure",
@@ -6990,6 +6992,10 @@
         "Fmp4HlsSettings": {
           "shape": "Fmp4HlsSettings",
           "locationName": "fmp4HlsSettings"
+        },
+        "FrameCaptureHlsSettings": {
+          "shape": "FrameCaptureHlsSettings",
+          "locationName": "frameCaptureHlsSettings"
         },
         "StandardHlsSettings": {
           "shape": "StandardHlsSettings",

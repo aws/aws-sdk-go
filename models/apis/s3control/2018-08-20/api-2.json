@@ -1628,6 +1628,10 @@
           "shape":"S3SetObjectTaggingOperation",
           "box":true
         },
+        "S3DeleteObjectTagging":{
+          "shape":"S3DeleteObjectTaggingOperation",
+          "box":true
+        },
         "S3InitiateRestoreObject":{
           "shape":"S3InitiateRestoreObjectOperation",
           "box":true
@@ -2025,6 +2029,7 @@
         "S3PutObjectCopy",
         "S3PutObjectAcl",
         "S3PutObjectTagging",
+        "S3DeleteObjectTagging",
         "S3InitiateRestoreObject",
         "S3PutObjectLegalHold",
         "S3PutObjectRetention"
@@ -2418,6 +2423,11 @@
         "ObjectLockLegalHoldStatus":{"shape":"S3ObjectLockLegalHoldStatus"},
         "ObjectLockMode":{"shape":"S3ObjectLockMode"},
         "ObjectLockRetainUntilDate":{"shape":"TimeStamp"}
+      }
+    },
+    "S3DeleteObjectTaggingOperation":{
+      "type":"structure",
+      "members":{
       }
     },
     "S3ExpirationInDays":{

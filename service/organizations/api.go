@@ -3485,7 +3485,7 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 // You can run this action only for AWS services that support this feature.
 // For a current list of services that support it, see the column Supports Delegated
 // Administrator in the table at AWS Services that you can use with AWS Organizations
-// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html)
+// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html)
 // in the AWS Organizations User Guide.
 //
 // This operation can be called only from the organization's management account.
@@ -5540,18 +5540,46 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 // can still perform operations in older accounts until the service completes
 // its clean-up from AWS Organizations.
 //
-// We recommend that you disable integration between AWS Organizations and the
-// specified AWS service by using the console or commands that are provided
-// by the specified service. Doing so ensures that the other service is aware
-// that it can clean up any resources that are required only for the integration.
-// How the service cleans up its resources in the organization's accounts depends
-// on that service. For more information, see the documentation for the other
-// AWS service.
+// We strongly recommend that you don't use this command to disable integration
+// between AWS Organizations and the specified AWS service. Instead, use the
+// console or commands that are provided by the specified service. This lets
+// the trusted service perform any required initialization when enabling trusted
+// access, such as creating any required resources and any required clean up
+// of resources when disabling trusted access.
+//
+// For information about how to disable trusted service access to your organization
+// using the trusted service, see the Learn more link under the Supports Trusted
+// Access column at AWS services that you can use with AWS Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html).
+// on this page.
+//
+// If you disable access by using this command, it causes the following actions
+// to occur:
+//
+//    * The service can no longer create a service-linked role in the accounts
+//    in your organization. This means that the service can't perform operations
+//    on your behalf on any new accounts in your organization. The service can
+//    still perform operations in older accounts until the service completes
+//    its clean-up from AWS Organizations.
+//
+//    * The service can no longer perform tasks in the member accounts in the
+//    organization, unless those operations are explicitly permitted by the
+//    IAM policies that are attached to your roles. This includes any data aggregation
+//    from the member accounts to the management account, or to a delegated
+//    administrator account, where relevant.
+//
+//    * Some services detect this and clean up any remaining data or resources
+//    related to the integration, while other services stop accessing the organization
+//    but leave any historical data and configuration in place to support a
+//    possible re-enabling of the integration.
+//
+// Using the other service's console or commands to disable the integration
+// ensures that the other service is aware that it can clean up any resources
+// that are required only for the integration. How the service cleans up its
+// resources in the organization's accounts depends on that service. For more
+// information, see the documentation for the other AWS service.
 //
 // After you perform the DisableAWSServiceAccess operation, the specified service
-// can no longer perform operations in your organization's accounts unless the
-// operations are explicitly permitted by the IAM policies that are attached
-// to your roles.
+// can no longer perform operations in your organization's accounts
 //
 // For more information about integrating other services with AWS Organizations,
 // including the list of services that work with Organizations, see Integrating
@@ -7591,6 +7619,11 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //    isn't attached to an organization. Follow the steps at To leave an organization
 //    when all required account information has not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //    in the AWS Organizations User Guide.
+//
+//    * The account that you want to leave must not be a delegated administrator
+//    account for any AWS service enabled for your organization. If the account
+//    is a delegated administrator, you must first change the delegated administrator
+//    account to another account that is remaining in the organization.
 //
 //    * You can leave an organization only after you enable IAM user access
 //    to billing in your account. For more information, see Activating Access
@@ -12480,7 +12513,7 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 // You can run this action only for AWS services that support this feature.
 // For a current list of services that support it, see the column Supports Delegated
 // Administrator in the table at AWS Services that you can use with AWS Organizations
-// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html)
+// (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services_list.html)
 // in the AWS Organizations User Guide.
 //
 // This operation can be called only from the organization's management account.
@@ -12837,6 +12870,11 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //    sign in as the member account and follow the steps at To leave an organization
 //    when all required account information has not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //    in the AWS Organizations User Guide.
+//
+//    * The account that you want to leave must not be a delegated administrator
+//    account for any AWS service enabled for your organization. If the account
+//    is a delegated administrator, you must first change the delegated administrator
+//    account to another account that is remaining in the organization.
 //
 //    * After the account leaves the organization, all tags that were attached
 //    to the account object in the organization are deleted. AWS accounts outside
@@ -14569,8 +14607,8 @@ type Account struct {
 	// The Amazon Resource Name (ARN) of the account.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	// The email address associated with the AWS account.
@@ -18141,8 +18179,8 @@ type Handshake struct {
 	// The Amazon Resource Name (ARN) of a handshake.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	// The date and time that the handshake expires. If the recipient of the handshake
@@ -20934,8 +20972,8 @@ type Organization struct {
 	// The Amazon Resource Name (ARN) of an organization.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	//
@@ -20964,8 +21002,8 @@ type Organization struct {
 	// account for the organization.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	MasterAccountArn *string `type:"string"`
 
 	// The email address that is associated with the AWS account that is designated
@@ -21098,8 +21136,8 @@ type OrganizationalUnit struct {
 	// The Amazon Resource Name (ARN) of this OU.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	// The unique identifier (ID) associated with this OU.
@@ -21629,8 +21667,8 @@ type PolicySummary struct {
 	// The Amazon Resource Name (ARN) of the policy.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	// A boolean value that indicates whether the specified policy is an AWS managed
@@ -21713,8 +21751,8 @@ type PolicyTargetSummary struct {
 	// The Amazon Resource Name (ARN) of the policy target.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	// The friendly name of the policy target.
@@ -22126,8 +22164,8 @@ type Root struct {
 	// The Amazon Resource Name (ARN) of the root.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
-	// by Organizations (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions.html#orgs-permissions-arns)
-	// in the AWS Organizations User Guide.
+	// by Organizations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsorganizations.html#awsorganizations-resources-for-iam-policies)
+	// in the AWS Service Authorization Reference.
 	Arn *string `type:"string"`
 
 	// The unique identifier (ID) for the root.

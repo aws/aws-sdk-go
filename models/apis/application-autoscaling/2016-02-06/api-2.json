@@ -505,6 +505,7 @@
       "members":{
         "ServiceNamespace":{"shape":"ServiceNamespace"},
         "Schedule":{"shape":"ResourceIdMaxLen1600"},
+        "Timezone":{"shape":"ResourceIdMaxLen1600"},
         "ScheduledActionName":{"shape":"ScheduledActionName"},
         "ResourceId":{"shape":"ResourceIdMaxLen1600"},
         "ScalableDimension":{"shape":"ScalableDimension"},
@@ -553,7 +554,8 @@
     },
     "ResourceIdsMaxLen1600":{
       "type":"list",
-      "member":{"shape":"ResourceIdMaxLen1600"}
+      "member":{"shape":"ResourceIdMaxLen1600"},
+      "max":50
     },
     "ResourceLabel":{
       "type":"string",
@@ -701,6 +703,7 @@
         "ScheduledActionARN":{"shape":"ResourceIdMaxLen1600"},
         "ServiceNamespace":{"shape":"ServiceNamespace"},
         "Schedule":{"shape":"ResourceIdMaxLen1600"},
+        "Timezone":{"shape":"ResourceIdMaxLen1600"},
         "ResourceId":{"shape":"ResourceIdMaxLen1600"},
         "ScalableDimension":{"shape":"ScalableDimension"},
         "StartTime":{"shape":"TimestampType"},

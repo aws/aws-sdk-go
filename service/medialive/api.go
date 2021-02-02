@@ -13473,6 +13473,21 @@ func (s *FrameCaptureGroupSettings) SetDestination(v *OutputLocationRef) *FrameC
 	return s
 }
 
+// Frame Capture Hls Settings
+type FrameCaptureHlsSettings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s FrameCaptureHlsSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FrameCaptureHlsSettings) GoString() string {
+	return s.String()
+}
+
 // Frame Capture Output Settings
 type FrameCaptureOutputSettings struct {
 	_ struct{} `type:"structure"`
@@ -13504,9 +13519,7 @@ type FrameCaptureSettings struct {
 
 	// The frequency at which to capture frames for inclusion in the output. May
 	// be specified in either seconds or milliseconds, as specified by captureIntervalUnits.
-	//
-	// CaptureInterval is a required field
-	CaptureInterval *int64 `locationName:"captureInterval" min:"1" type:"integer" required:"true"`
+	CaptureInterval *int64 `locationName:"captureInterval" min:"1" type:"integer"`
 
 	// Unit for the frame capture interval.
 	CaptureIntervalUnits *string `locationName:"captureIntervalUnits" type:"string" enum:"FrameCaptureIntervalUnit"`
@@ -13525,9 +13538,6 @@ func (s FrameCaptureSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FrameCaptureSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FrameCaptureSettings"}
-	if s.CaptureInterval == nil {
-		invalidParams.Add(request.NewErrParamRequired("CaptureInterval"))
-	}
 	if s.CaptureInterval != nil && *s.CaptureInterval < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CaptureInterval", 1))
 	}
@@ -15710,6 +15720,9 @@ type HlsSettings struct {
 	// Fmp4 Hls Settings
 	Fmp4HlsSettings *Fmp4HlsSettings `locationName:"fmp4HlsSettings" type:"structure"`
 
+	// Frame Capture Hls Settings
+	FrameCaptureHlsSettings *FrameCaptureHlsSettings `locationName:"frameCaptureHlsSettings" type:"structure"`
+
 	// Standard Hls Settings
 	StandardHlsSettings *StandardHlsSettings `locationName:"standardHlsSettings" type:"structure"`
 }
@@ -15753,6 +15766,12 @@ func (s *HlsSettings) SetAudioOnlyHlsSettings(v *AudioOnlyHlsSettings) *HlsSetti
 // SetFmp4HlsSettings sets the Fmp4HlsSettings field's value.
 func (s *HlsSettings) SetFmp4HlsSettings(v *Fmp4HlsSettings) *HlsSettings {
 	s.Fmp4HlsSettings = v
+	return s
+}
+
+// SetFrameCaptureHlsSettings sets the FrameCaptureHlsSettings field's value.
+func (s *HlsSettings) SetFrameCaptureHlsSettings(v *FrameCaptureHlsSettings) *HlsSettings {
+	s.FrameCaptureHlsSettings = v
 	return s
 }
 

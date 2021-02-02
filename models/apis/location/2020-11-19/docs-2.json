@@ -771,7 +771,7 @@
     "MapStyle": {
       "base": null,
       "refs": {
-        "MapConfiguration$Style": "<p>Specifies the map style selected from an available data provider.</p> <p>Valid styles: <code>VectorEsriLightGrayCanvas</code>, <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>, <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>, <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code> </p> <note> <p>When using HERE as your data provider, and selecting the Style <code>VectorHereBerlin</code>, you may not use HERE Maps for Asset Management. See the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service. </p> </note>"
+        "MapConfiguration$Style": "<p>Specifies the map style selected from an available data provider.</p> <p>Valid styles: <code>VectorEsriStreets</code>, <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>, <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.</p> <note> <p>When using HERE as your data provider, and selecting the Style <code>VectorHereBerlin</code>, you may not use HERE Maps for Asset Management. See the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service. </p> </note>"
       }
     },
     "Place": {

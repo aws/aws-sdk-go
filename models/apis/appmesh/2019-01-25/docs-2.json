@@ -208,6 +208,12 @@
         "ClientPolicy$tls": "<p>A reference to an object that represents a Transport Layer Security (TLS) client policy.</p>"
       }
     },
+    "ClientTlsCertificate": {
+      "base": "<p>An object that represents the client's certificate.</p>",
+      "refs": {
+        "ClientPolicyTls$certificate": "<p>A reference to an object that represents a client's TLS certificate.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>The request contains a client token that was used for a previous update resource call with different specifications. Try the request again with a new client token.</p>",
       "refs": {
@@ -929,12 +935,13 @@
     "ListenerTlsCertificate": {
       "base": "<p>An object that represents a listener's Transport Layer Security (TLS) certificate.</p>",
       "refs": {
-        "ListenerTls$certificate": "<p>A reference to an object that represents a listener's TLS certificate.</p>"
+        "ListenerTls$certificate": "<p>A reference to an object that represents a listener's Transport Layer Security (TLS) certificate.</p>"
       }
     },
     "ListenerTlsFileCertificate": {
       "base": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites\">Transport Layer Security (TLS)</a>.</p>",
       "refs": {
+        "ClientTlsCertificate$file": null,
         "ListenerTlsCertificate$file": "<p>A reference to an object that represents a local file certificate.</p>"
       }
     },
@@ -942,6 +949,25 @@
       "base": null,
       "refs": {
         "ListenerTls$mode": "<p>Specify one of the following modes.</p> <ul> <li> <p> <b/>STRICT – Listener only accepts connections with TLS enabled. </p> </li> <li> <p> <b/>PERMISSIVE – Listener accepts connections with or without TLS enabled.</p> </li> <li> <p> <b/>DISABLED – Listener only accepts connections without TLS. </p> </li> </ul>"
+      }
+    },
+    "ListenerTlsSdsCertificate": {
+      "base": "<p>An object that represents the listener's Secret Discovery Service certificate. The proxy must be configured with a local SDS provider via a Unix Domain Socket. See App Mesh <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">TLS documentation</a> for more info.</p>",
+      "refs": {
+        "ClientTlsCertificate$sds": "<p>A reference to an object that represents a client's TLS Secret Discovery Service certificate.</p>",
+        "ListenerTlsCertificate$sds": "<p>A reference to an object that represents a listener's Secret Discovery Service certificate.</p>"
+      }
+    },
+    "ListenerTlsValidationContext": {
+      "base": "<p>An object that represents a listener's Transport Layer Security (TLS) validation context.</p>",
+      "refs": {
+        "ListenerTls$validation": "<p>A reference to an object that represents a listener's Transport Layer Security (TLS) validation context.</p>"
+      }
+    },
+    "ListenerTlsValidationContextTrust": {
+      "base": "<p>An object that represents a listener's Transport Layer Security (TLS) validation context trust.</p>",
+      "refs": {
+        "ListenerTlsValidationContext$trust": "<p>A reference to where to retrieve the trust chain when validating a peer’s Transport Layer Security (TLS) certificate.</p>"
       }
     },
     "Listeners": {
@@ -1281,6 +1307,13 @@
         "RouteStatus$status": "<p>The current status for the route.</p>"
       }
     },
+    "SdsSecretName": {
+      "base": null,
+      "refs": {
+        "ListenerTlsSdsCertificate$secretName": "<p>A reference to an object that represents the name of the secret requested from the Secret Discovery Service provider representing Transport Layer Security (TLS) materials like a certificate or certificate chain.</p>",
+        "TlsValidationContextSdsTrust$secretName": "<p>A reference to an object that represents the name of the secret for a Transport Layer Security (TLS) Secret Discovery Service validation context trust.</p>"
+      }
+    },
     "ServiceDiscovery": {
       "base": "<p>An object that represents the service discovery information for a virtual node.</p>",
       "refs": {
@@ -1354,6 +1387,33 @@
         "UpdateVirtualRouterInput$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Up to 36 letters, numbers, hyphens, and underscores are allowed.</p>",
         "UpdateVirtualServiceInput$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Up to 36 letters, numbers, hyphens, and underscores are allowed.</p>",
         "VirtualGatewayHealthCheckPolicy$path": "<p>The destination path for the health check request. This value is only used if the specified protocol is HTTP or HTTP/2. For any other protocol, this value is ignored.</p>"
+      }
+    },
+    "SubjectAlternativeName": {
+      "base": null,
+      "refs": {
+        "SubjectAlternativeNameList$member": null
+      }
+    },
+    "SubjectAlternativeNameList": {
+      "base": null,
+      "refs": {
+        "SubjectAlternativeNameMatchers$exact": "<p>The values sent must match the specified values exactly.</p>"
+      }
+    },
+    "SubjectAlternativeNameMatchers": {
+      "base": "<p>An object that represents the methods by which a subject alternative name on a peer Transport Layer Security (TLS) certificate can be matched.</p>",
+      "refs": {
+        "SubjectAlternativeNames$match": "<p>An object that represents the criteria for determining a SANs match.</p>"
+      }
+    },
+    "SubjectAlternativeNames": {
+      "base": "<p>An object that represents the subject alternative names secured by the certificate.</p>",
+      "refs": {
+        "ListenerTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a listener's Transport Layer Security (TLS) validation context.</p>",
+        "TlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a Transport Layer Security (TLS) validation context.</p>",
+        "VirtualGatewayListenerTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a virtual gateway listener's Transport Layer Security (TLS) validation context.</p>",
+        "VirtualGatewayTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a virtual gateway's listener's Transport Layer Security (TLS) validation context.</p>"
       }
     },
     "TagKey": {
@@ -1465,27 +1525,35 @@
       }
     },
     "TlsValidationContext": {
-      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context.</p>",
+      "base": "<p>An object that represents how the proxy will validate its peer during Transport Layer Security (TLS) negotiation.</p>",
       "refs": {
         "ClientPolicyTls$validation": "<p>A reference to an object that represents a TLS validation context.</p>"
       }
     },
     "TlsValidationContextAcmTrust": {
-      "base": "<p>An object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
       "refs": {
-        "TlsValidationContextTrust$acm": "<p>A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate.</p>"
+        "TlsValidationContextTrust$acm": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>"
       }
     },
     "TlsValidationContextFileTrust": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
       "refs": {
-        "TlsValidationContextTrust$file": "<p>An object that represents a TLS validation context trust for a local file.</p>"
+        "ListenerTlsValidationContextTrust$file": null,
+        "TlsValidationContextTrust$file": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>"
+      }
+    },
+    "TlsValidationContextSdsTrust": {
+      "base": "<p>An object that represents a Transport Layer Security (TLS) Secret Discovery Service validation context trust. The proxy must be configured with a local SDS provider via a Unix Domain Socket. See App Mesh <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">TLS documentation</a> for more info.</p>",
+      "refs": {
+        "ListenerTlsValidationContextTrust$sds": "<p>A reference to an object that represents a listener's Transport Layer Security (TLS) Secret Discovery Service validation context trust.</p>",
+        "TlsValidationContextTrust$sds": "<p>A reference to an object that represents a Transport Layer Security (TLS) Secret Discovery Service validation context trust.</p>"
       }
     },
     "TlsValidationContextTrust": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust.</p>",
       "refs": {
-        "TlsValidationContext$trust": "<p>A reference to an object that represents a TLS validation context trust.</p>"
+        "TlsValidationContext$trust": "<p>A reference to where to retrieve the trust chain when validating a peer’s Transport Layer Security (TLS) certificate.</p>"
       }
     },
     "TooManyRequestsException": {
@@ -1608,6 +1676,12 @@
         "VirtualGatewayClientPolicy$tls": "<p>A reference to an object that represents a Transport Layer Security (TLS) client policy.</p>"
       }
     },
+    "VirtualGatewayClientTlsCertificate": {
+      "base": "<p>An object that represents the virtual gateway's client's Transport Layer Security (TLS) certificate.</p>",
+      "refs": {
+        "VirtualGatewayClientPolicyTls$certificate": "<p>A reference to an object that represents a virtual gateway's client's Transport Layer Security (TLS) certificate.</p>"
+      }
+    },
     "VirtualGatewayConnectionPool": {
       "base": "<p>An object that represents the type of virtual gateway connection pool.</p> <p>Only one protocol is used at a time and should be the same protocol as the one chosen under port mapping.</p> <p>If not present the default value for <code>maxPendingRequests</code> is <code>2147483647</code>.</p>",
       "refs": {
@@ -1705,6 +1779,7 @@
     "VirtualGatewayListenerTlsFileCertificate": {
       "base": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites\">Transport Layer Security (TLS)</a>.</p>",
       "refs": {
+        "VirtualGatewayClientTlsCertificate$file": null,
         "VirtualGatewayListenerTlsCertificate$file": "<p>A reference to an object that represents a local file certificate.</p>"
       }
     },
@@ -1712,6 +1787,25 @@
       "base": null,
       "refs": {
         "VirtualGatewayListenerTls$mode": "<p>Specify one of the following modes.</p> <ul> <li> <p> <b/>STRICT – Listener only accepts connections with TLS enabled. </p> </li> <li> <p> <b/>PERMISSIVE – Listener accepts connections with or without TLS enabled.</p> </li> <li> <p> <b/>DISABLED – Listener only accepts connections without TLS. </p> </li> </ul>"
+      }
+    },
+    "VirtualGatewayListenerTlsSdsCertificate": {
+      "base": "<p>An object that represents the virtual gateway's listener's Secret Discovery Service certificate.The proxy must be configured with a local SDS provider via a Unix Domain Socket. See App Mesh <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">TLS documentation</a> for more info. </p>",
+      "refs": {
+        "VirtualGatewayClientTlsCertificate$sds": "<p>A reference to an object that represents a virtual gateway's client's Secret Discovery Service certificate.</p>",
+        "VirtualGatewayListenerTlsCertificate$sds": "<p>A reference to an object that represents a virtual gateway's listener's Secret Discovery Service certificate.</p>"
+      }
+    },
+    "VirtualGatewayListenerTlsValidationContext": {
+      "base": "<p>An object that represents a virtual gateway's listener's Transport Layer Security (TLS) validation context.</p>",
+      "refs": {
+        "VirtualGatewayListenerTls$validation": "<p>A reference to an object that represents a virtual gateway's listener's Transport Layer Security (TLS) validation context.</p>"
+      }
+    },
+    "VirtualGatewayListenerTlsValidationContextTrust": {
+      "base": "<p>An object that represents a virtual gateway's listener's Transport Layer Security (TLS) validation context trust.</p>",
+      "refs": {
+        "VirtualGatewayListenerTlsValidationContext$trust": "<p>A reference to where to retrieve the trust chain when validating a peer’s Transport Layer Security (TLS) certificate.</p>"
       }
     },
     "VirtualGatewayListeners": {
@@ -1745,6 +1839,13 @@
         "VirtualGatewayList$member": null
       }
     },
+    "VirtualGatewaySdsSecretName": {
+      "base": null,
+      "refs": {
+        "VirtualGatewayListenerTlsSdsCertificate$secretName": "<p>A reference to an object that represents the name of the secret secret requested from the Secret Discovery Service provider representing Transport Layer Security (TLS) materials like a certificate or certificate chain.</p>",
+        "VirtualGatewayTlsValidationContextSdsTrust$secretName": "<p>A reference to an object that represents the name of the secret for a virtual gateway's Transport Layer Security (TLS) Secret Discovery Service validation context trust.</p>"
+      }
+    },
     "VirtualGatewaySpec": {
       "base": "<p>An object that represents the specification of a service mesh resource.</p>",
       "refs": {
@@ -1768,25 +1869,33 @@
     "VirtualGatewayTlsValidationContext": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context.</p>",
       "refs": {
-        "VirtualGatewayClientPolicyTls$validation": "<p>A reference to an object that represents a TLS validation context.</p>"
+        "VirtualGatewayClientPolicyTls$validation": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context.</p>"
       }
     },
     "VirtualGatewayTlsValidationContextAcmTrust": {
-      "base": "<p>An object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
       "refs": {
-        "VirtualGatewayTlsValidationContextTrust$acm": "<p>A reference to an object that represents a TLS validation context trust for an AWS Certicate Manager (ACM) certificate.</p>"
+        "VirtualGatewayTlsValidationContextTrust$acm": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>"
       }
     },
     "VirtualGatewayTlsValidationContextFileTrust": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
       "refs": {
-        "VirtualGatewayTlsValidationContextTrust$file": "<p>An object that represents a TLS validation context trust for a local file.</p>"
+        "VirtualGatewayListenerTlsValidationContextTrust$file": null,
+        "VirtualGatewayTlsValidationContextTrust$file": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>"
+      }
+    },
+    "VirtualGatewayTlsValidationContextSdsTrust": {
+      "base": "<p>An object that represents a virtual gateway's listener's Transport Layer Security (TLS) Secret Discovery Service validation context trust. The proxy must be configured with a local SDS provider via a Unix Domain Socket. See App Mesh <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">TLS documentation</a> for more info.</p>",
+      "refs": {
+        "VirtualGatewayListenerTlsValidationContextTrust$sds": "<p>A reference to an object that represents a virtual gateway's listener's Transport Layer Security (TLS) Secret Discovery Service validation context trust.</p>",
+        "VirtualGatewayTlsValidationContextTrust$sds": "<p>A reference to an object that represents a virtual gateway's Transport Layer Security (TLS) Secret Discovery Service validation context trust.</p>"
       }
     },
     "VirtualGatewayTlsValidationContextTrust": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust.</p>",
       "refs": {
-        "VirtualGatewayTlsValidationContext$trust": "<p>A reference to an object that represents a TLS validation context trust.</p>"
+        "VirtualGatewayTlsValidationContext$trust": "<p>A reference to where to retrieve the trust chain when validating a peer’s Transport Layer Security (TLS) certificate.</p>"
       }
     },
     "VirtualNodeConnectionPool": {

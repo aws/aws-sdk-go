@@ -4786,6 +4786,9 @@ func (s *ClientPolicy) SetTls(v *ClientPolicyTls) *ClientPolicy {
 type ClientPolicyTls struct {
 	_ struct{} `type:"structure"`
 
+	// A reference to an object that represents a client's TLS certificate.
+	Certificate *ClientTlsCertificate `locationName:"certificate" type:"structure"`
+
 	// Whether the policy is enforced. The default is True, if a value isn't specified.
 	Enforce *bool `locationName:"enforce" type:"boolean"`
 
@@ -4814,6 +4817,11 @@ func (s *ClientPolicyTls) Validate() error {
 	if s.Validation == nil {
 		invalidParams.Add(request.NewErrParamRequired("Validation"))
 	}
+	if s.Certificate != nil {
+		if err := s.Certificate.Validate(); err != nil {
+			invalidParams.AddNested("Certificate", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Validation != nil {
 		if err := s.Validation.Validate(); err != nil {
 			invalidParams.AddNested("Validation", err.(request.ErrInvalidParams))
@@ -4824,6 +4832,12 @@ func (s *ClientPolicyTls) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *ClientPolicyTls) SetCertificate(v *ClientTlsCertificate) *ClientPolicyTls {
+	s.Certificate = v
+	return s
 }
 
 // SetEnforce sets the Enforce field's value.
@@ -4841,6 +4855,62 @@ func (s *ClientPolicyTls) SetPorts(v []*int64) *ClientPolicyTls {
 // SetValidation sets the Validation field's value.
 func (s *ClientPolicyTls) SetValidation(v *TlsValidationContext) *ClientPolicyTls {
 	s.Validation = v
+	return s
+}
+
+// An object that represents the client's certificate.
+type ClientTlsCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// An object that represents a local file certificate. The certificate must
+	// meet specific requirements and you must have proxy authorization enabled.
+	// For more information, see Transport Layer Security (TLS) (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites).
+	File *ListenerTlsFileCertificate `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a client's TLS Secret Discovery
+	// Service certificate.
+	Sds *ListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
+}
+
+// String returns the string representation
+func (s ClientTlsCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClientTlsCertificate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClientTlsCertificate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClientTlsCertificate"}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFile sets the File field's value.
+func (s *ClientTlsCertificate) SetFile(v *ListenerTlsFileCertificate) *ClientTlsCertificate {
+	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *ClientTlsCertificate) SetSds(v *ListenerTlsSdsCertificate) *ClientTlsCertificate {
+	s.Sds = v
 	return s
 }
 
@@ -10612,7 +10682,8 @@ func (s *ListenerTimeout) SetTcp(v *TcpTimeout) *ListenerTimeout {
 type ListenerTls struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents a listener's TLS certificate.
+	// A reference to an object that represents a listener's Transport Layer Security
+	// (TLS) certificate.
 	//
 	// Certificate is a required field
 	Certificate *ListenerTlsCertificate `locationName:"certificate" type:"structure" required:"true"`
@@ -10627,6 +10698,10 @@ type ListenerTls struct {
 	//
 	// Mode is a required field
 	Mode *string `locationName:"mode" type:"string" required:"true" enum:"ListenerTlsMode"`
+
+	// A reference to an object that represents a listener's Transport Layer Security
+	// (TLS) validation context.
+	Validation *ListenerTlsValidationContext `locationName:"validation" type:"structure"`
 }
 
 // String returns the string representation
@@ -10653,6 +10728,11 @@ func (s *ListenerTls) Validate() error {
 			invalidParams.AddNested("Certificate", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Validation != nil {
+		if err := s.Validation.Validate(); err != nil {
+			invalidParams.AddNested("Validation", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10669,6 +10749,12 @@ func (s *ListenerTls) SetCertificate(v *ListenerTlsCertificate) *ListenerTls {
 // SetMode sets the Mode field's value.
 func (s *ListenerTls) SetMode(v string) *ListenerTls {
 	s.Mode = &v
+	return s
+}
+
+// SetValidation sets the Validation field's value.
+func (s *ListenerTls) SetValidation(v *ListenerTlsValidationContext) *ListenerTls {
+	s.Validation = v
 	return s
 }
 
@@ -10722,6 +10808,10 @@ type ListenerTlsCertificate struct {
 
 	// A reference to an object that represents a local file certificate.
 	File *ListenerTlsFileCertificate `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a listener's Secret Discovery Service
+	// certificate.
+	Sds *ListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
 }
 
 // String returns the string representation
@@ -10747,6 +10837,11 @@ func (s *ListenerTlsCertificate) Validate() error {
 			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10763,6 +10858,12 @@ func (s *ListenerTlsCertificate) SetAcm(v *ListenerTlsAcmCertificate) *ListenerT
 // SetFile sets the File field's value.
 func (s *ListenerTlsCertificate) SetFile(v *ListenerTlsFileCertificate) *ListenerTlsCertificate {
 	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *ListenerTlsCertificate) SetSds(v *ListenerTlsSdsCertificate) *ListenerTlsCertificate {
+	s.Sds = v
 	return s
 }
 
@@ -10825,6 +10926,167 @@ func (s *ListenerTlsFileCertificate) SetCertificateChain(v string) *ListenerTlsF
 // SetPrivateKey sets the PrivateKey field's value.
 func (s *ListenerTlsFileCertificate) SetPrivateKey(v string) *ListenerTlsFileCertificate {
 	s.PrivateKey = &v
+	return s
+}
+
+// An object that represents the listener's Secret Discovery Service certificate.
+// The proxy must be configured with a local SDS provider via a Unix Domain
+// Socket. See App Mesh TLS documentation (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html)
+// for more info.
+type ListenerTlsSdsCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to an object that represents the name of the secret requested
+	// from the Secret Discovery Service provider representing Transport Layer Security
+	// (TLS) materials like a certificate or certificate chain.
+	//
+	// SecretName is a required field
+	SecretName *string `locationName:"secretName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListenerTlsSdsCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListenerTlsSdsCertificate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListenerTlsSdsCertificate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListenerTlsSdsCertificate"}
+	if s.SecretName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecretName sets the SecretName field's value.
+func (s *ListenerTlsSdsCertificate) SetSecretName(v string) *ListenerTlsSdsCertificate {
+	s.SecretName = &v
+	return s
+}
+
+// An object that represents a listener's Transport Layer Security (TLS) validation
+// context.
+type ListenerTlsValidationContext struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to an object that represents the SANs for a listener's Transport
+	// Layer Security (TLS) validation context.
+	SubjectAlternativeNames *SubjectAlternativeNames `locationName:"subjectAlternativeNames" type:"structure"`
+
+	// A reference to where to retrieve the trust chain when validating a peer’s
+	// Transport Layer Security (TLS) certificate.
+	//
+	// Trust is a required field
+	Trust *ListenerTlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ListenerTlsValidationContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListenerTlsValidationContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListenerTlsValidationContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListenerTlsValidationContext"}
+	if s.Trust == nil {
+		invalidParams.Add(request.NewErrParamRequired("Trust"))
+	}
+	if s.SubjectAlternativeNames != nil {
+		if err := s.SubjectAlternativeNames.Validate(); err != nil {
+			invalidParams.AddNested("SubjectAlternativeNames", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Trust != nil {
+		if err := s.Trust.Validate(); err != nil {
+			invalidParams.AddNested("Trust", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *ListenerTlsValidationContext) SetSubjectAlternativeNames(v *SubjectAlternativeNames) *ListenerTlsValidationContext {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
+// SetTrust sets the Trust field's value.
+func (s *ListenerTlsValidationContext) SetTrust(v *ListenerTlsValidationContextTrust) *ListenerTlsValidationContext {
+	s.Trust = v
+	return s
+}
+
+// An object that represents a listener's Transport Layer Security (TLS) validation
+// context trust.
+type ListenerTlsValidationContextTrust struct {
+	_ struct{} `type:"structure"`
+
+	// An object that represents a Transport Layer Security (TLS) validation context
+	// trust for a local file.
+	File *TlsValidationContextFileTrust `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a listener's Transport Layer Security
+	// (TLS) Secret Discovery Service validation context trust.
+	Sds *TlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
+}
+
+// String returns the string representation
+func (s ListenerTlsValidationContextTrust) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListenerTlsValidationContextTrust) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListenerTlsValidationContextTrust) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListenerTlsValidationContextTrust"}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFile sets the File field's value.
+func (s *ListenerTlsValidationContextTrust) SetFile(v *TlsValidationContextFileTrust) *ListenerTlsValidationContextTrust {
+	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *ListenerTlsValidationContextTrust) SetSds(v *TlsValidationContextSdsTrust) *ListenerTlsValidationContextTrust {
+	s.Sds = v
 	return s
 }
 
@@ -11926,6 +12188,90 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that represents the methods by which a subject alternative name
+// on a peer Transport Layer Security (TLS) certificate can be matched.
+type SubjectAlternativeNameMatchers struct {
+	_ struct{} `type:"structure"`
+
+	// The values sent must match the specified values exactly.
+	//
+	// Exact is a required field
+	Exact []*string `locationName:"exact" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s SubjectAlternativeNameMatchers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubjectAlternativeNameMatchers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubjectAlternativeNameMatchers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubjectAlternativeNameMatchers"}
+	if s.Exact == nil {
+		invalidParams.Add(request.NewErrParamRequired("Exact"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExact sets the Exact field's value.
+func (s *SubjectAlternativeNameMatchers) SetExact(v []*string) *SubjectAlternativeNameMatchers {
+	s.Exact = v
+	return s
+}
+
+// An object that represents the subject alternative names secured by the certificate.
+type SubjectAlternativeNames struct {
+	_ struct{} `type:"structure"`
+
+	// An object that represents the criteria for determining a SANs match.
+	//
+	// Match is a required field
+	Match *SubjectAlternativeNameMatchers `locationName:"match" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SubjectAlternativeNames) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubjectAlternativeNames) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SubjectAlternativeNames) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SubjectAlternativeNames"}
+	if s.Match == nil {
+		invalidParams.Add(request.NewErrParamRequired("Match"))
+	}
+	if s.Match != nil {
+		if err := s.Match.Validate(); err != nil {
+			invalidParams.AddNested("Match", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatch sets the Match field's value.
+func (s *SubjectAlternativeNames) SetMatch(v *SubjectAlternativeNameMatchers) *SubjectAlternativeNames {
+	s.Match = v
+	return s
+}
+
 // Optional metadata that you apply to a resource to assist with categorization
 // and organization. Each tag consists of a key and an optional value, both
 // of which you define. Tag keys can have a maximum character length of 128
@@ -12196,11 +12542,17 @@ func (s *TcpTimeout) SetIdle(v *Duration) *TcpTimeout {
 	return s
 }
 
-// An object that represents a Transport Layer Security (TLS) validation context.
+// An object that represents how the proxy will validate its peer during Transport
+// Layer Security (TLS) negotiation.
 type TlsValidationContext struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents a TLS validation context trust.
+	// A reference to an object that represents the SANs for a Transport Layer Security
+	// (TLS) validation context.
+	SubjectAlternativeNames *SubjectAlternativeNames `locationName:"subjectAlternativeNames" type:"structure"`
+
+	// A reference to where to retrieve the trust chain when validating a peer’s
+	// Transport Layer Security (TLS) certificate.
 	//
 	// Trust is a required field
 	Trust *TlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
@@ -12222,6 +12574,11 @@ func (s *TlsValidationContext) Validate() error {
 	if s.Trust == nil {
 		invalidParams.Add(request.NewErrParamRequired("Trust"))
 	}
+	if s.SubjectAlternativeNames != nil {
+		if err := s.SubjectAlternativeNames.Validate(); err != nil {
+			invalidParams.AddNested("SubjectAlternativeNames", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Trust != nil {
 		if err := s.Trust.Validate(); err != nil {
 			invalidParams.AddNested("Trust", err.(request.ErrInvalidParams))
@@ -12234,14 +12591,20 @@ func (s *TlsValidationContext) Validate() error {
 	return nil
 }
 
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *TlsValidationContext) SetSubjectAlternativeNames(v *SubjectAlternativeNames) *TlsValidationContext {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
 // SetTrust sets the Trust field's value.
 func (s *TlsValidationContext) SetTrust(v *TlsValidationContextTrust) *TlsValidationContext {
 	s.Trust = v
 	return s
 }
 
-// An object that represents a TLS validation context trust for an AWS Certicate
-// Manager (ACM) certificate.
+// An object that represents a Transport Layer Security (TLS) validation context
+// trust for an AWS Certicate Manager (ACM) certificate.
 type TlsValidationContextAcmTrust struct {
 	_ struct{} `type:"structure"`
 
@@ -12327,17 +12690,65 @@ func (s *TlsValidationContextFileTrust) SetCertificateChain(v string) *TlsValida
 	return s
 }
 
+// An object that represents a Transport Layer Security (TLS) Secret Discovery
+// Service validation context trust. The proxy must be configured with a local
+// SDS provider via a Unix Domain Socket. See App Mesh TLS documentation (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html)
+// for more info.
+type TlsValidationContextSdsTrust struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to an object that represents the name of the secret for a Transport
+	// Layer Security (TLS) Secret Discovery Service validation context trust.
+	//
+	// SecretName is a required field
+	SecretName *string `locationName:"secretName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s TlsValidationContextSdsTrust) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TlsValidationContextSdsTrust) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TlsValidationContextSdsTrust) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TlsValidationContextSdsTrust"}
+	if s.SecretName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecretName sets the SecretName field's value.
+func (s *TlsValidationContextSdsTrust) SetSecretName(v string) *TlsValidationContextSdsTrust {
+	s.SecretName = &v
+	return s
+}
+
 // An object that represents a Transport Layer Security (TLS) validation context
 // trust.
 type TlsValidationContextTrust struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents a TLS validation context trust for
-	// an AWS Certicate Manager (ACM) certificate.
+	// A reference to an object that represents a Transport Layer Security (TLS)
+	// validation context trust for an AWS Certicate Manager (ACM) certificate.
 	Acm *TlsValidationContextAcmTrust `locationName:"acm" type:"structure"`
 
-	// An object that represents a TLS validation context trust for a local file.
+	// An object that represents a Transport Layer Security (TLS) validation context
+	// trust for a local file.
 	File *TlsValidationContextFileTrust `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a Transport Layer Security (TLS)
+	// Secret Discovery Service validation context trust.
+	Sds *TlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
 }
 
 // String returns the string representation
@@ -12363,6 +12774,11 @@ func (s *TlsValidationContextTrust) Validate() error {
 			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12379,6 +12795,12 @@ func (s *TlsValidationContextTrust) SetAcm(v *TlsValidationContextAcmTrust) *Tls
 // SetFile sets the File field's value.
 func (s *TlsValidationContextTrust) SetFile(v *TlsValidationContextFileTrust) *TlsValidationContextTrust {
 	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *TlsValidationContextTrust) SetSds(v *TlsValidationContextSdsTrust) *TlsValidationContextTrust {
+	s.Sds = v
 	return s
 }
 
@@ -13577,13 +13999,18 @@ func (s *VirtualGatewayClientPolicy) SetTls(v *VirtualGatewayClientPolicyTls) *V
 type VirtualGatewayClientPolicyTls struct {
 	_ struct{} `type:"structure"`
 
+	// A reference to an object that represents a virtual gateway's client's Transport
+	// Layer Security (TLS) certificate.
+	Certificate *VirtualGatewayClientTlsCertificate `locationName:"certificate" type:"structure"`
+
 	// Whether the policy is enforced. The default is True, if a value isn't specified.
 	Enforce *bool `locationName:"enforce" type:"boolean"`
 
 	// One or more ports that the policy is enforced for.
 	Ports []*int64 `locationName:"ports" type:"list"`
 
-	// A reference to an object that represents a TLS validation context.
+	// A reference to an object that represents a Transport Layer Security (TLS)
+	// validation context.
 	//
 	// Validation is a required field
 	Validation *VirtualGatewayTlsValidationContext `locationName:"validation" type:"structure" required:"true"`
@@ -13605,6 +14032,11 @@ func (s *VirtualGatewayClientPolicyTls) Validate() error {
 	if s.Validation == nil {
 		invalidParams.Add(request.NewErrParamRequired("Validation"))
 	}
+	if s.Certificate != nil {
+		if err := s.Certificate.Validate(); err != nil {
+			invalidParams.AddNested("Certificate", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Validation != nil {
 		if err := s.Validation.Validate(); err != nil {
 			invalidParams.AddNested("Validation", err.(request.ErrInvalidParams))
@@ -13615,6 +14047,12 @@ func (s *VirtualGatewayClientPolicyTls) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *VirtualGatewayClientPolicyTls) SetCertificate(v *VirtualGatewayClientTlsCertificate) *VirtualGatewayClientPolicyTls {
+	s.Certificate = v
+	return s
 }
 
 // SetEnforce sets the Enforce field's value.
@@ -13632,6 +14070,63 @@ func (s *VirtualGatewayClientPolicyTls) SetPorts(v []*int64) *VirtualGatewayClie
 // SetValidation sets the Validation field's value.
 func (s *VirtualGatewayClientPolicyTls) SetValidation(v *VirtualGatewayTlsValidationContext) *VirtualGatewayClientPolicyTls {
 	s.Validation = v
+	return s
+}
+
+// An object that represents the virtual gateway's client's Transport Layer
+// Security (TLS) certificate.
+type VirtualGatewayClientTlsCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// An object that represents a local file certificate. The certificate must
+	// meet specific requirements and you must have proxy authorization enabled.
+	// For more information, see Transport Layer Security (TLS) (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites).
+	File *VirtualGatewayListenerTlsFileCertificate `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a virtual gateway's client's Secret
+	// Discovery Service certificate.
+	Sds *VirtualGatewayListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
+}
+
+// String returns the string representation
+func (s VirtualGatewayClientTlsCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VirtualGatewayClientTlsCertificate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VirtualGatewayClientTlsCertificate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VirtualGatewayClientTlsCertificate"}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFile sets the File field's value.
+func (s *VirtualGatewayClientTlsCertificate) SetFile(v *VirtualGatewayListenerTlsFileCertificate) *VirtualGatewayClientTlsCertificate {
+	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *VirtualGatewayClientTlsCertificate) SetSds(v *VirtualGatewayListenerTlsSdsCertificate) *VirtualGatewayClientTlsCertificate {
+	s.Sds = v
 	return s
 }
 
@@ -14208,6 +14703,10 @@ type VirtualGatewayListenerTls struct {
 	//
 	// Mode is a required field
 	Mode *string `locationName:"mode" type:"string" required:"true" enum:"VirtualGatewayListenerTlsMode"`
+
+	// A reference to an object that represents a virtual gateway's listener's Transport
+	// Layer Security (TLS) validation context.
+	Validation *VirtualGatewayListenerTlsValidationContext `locationName:"validation" type:"structure"`
 }
 
 // String returns the string representation
@@ -14234,6 +14733,11 @@ func (s *VirtualGatewayListenerTls) Validate() error {
 			invalidParams.AddNested("Certificate", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Validation != nil {
+		if err := s.Validation.Validate(); err != nil {
+			invalidParams.AddNested("Validation", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14250,6 +14754,12 @@ func (s *VirtualGatewayListenerTls) SetCertificate(v *VirtualGatewayListenerTlsC
 // SetMode sets the Mode field's value.
 func (s *VirtualGatewayListenerTls) SetMode(v string) *VirtualGatewayListenerTls {
 	s.Mode = &v
+	return s
+}
+
+// SetValidation sets the Validation field's value.
+func (s *VirtualGatewayListenerTls) SetValidation(v *VirtualGatewayListenerTlsValidationContext) *VirtualGatewayListenerTls {
+	s.Validation = v
 	return s
 }
 
@@ -14303,6 +14813,10 @@ type VirtualGatewayListenerTlsCertificate struct {
 
 	// A reference to an object that represents a local file certificate.
 	File *VirtualGatewayListenerTlsFileCertificate `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a virtual gateway's listener's Secret
+	// Discovery Service certificate.
+	Sds *VirtualGatewayListenerTlsSdsCertificate `locationName:"sds" type:"structure"`
 }
 
 // String returns the string representation
@@ -14328,6 +14842,11 @@ func (s *VirtualGatewayListenerTlsCertificate) Validate() error {
 			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14344,6 +14863,12 @@ func (s *VirtualGatewayListenerTlsCertificate) SetAcm(v *VirtualGatewayListenerT
 // SetFile sets the File field's value.
 func (s *VirtualGatewayListenerTlsCertificate) SetFile(v *VirtualGatewayListenerTlsFileCertificate) *VirtualGatewayListenerTlsCertificate {
 	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *VirtualGatewayListenerTlsCertificate) SetSds(v *VirtualGatewayListenerTlsSdsCertificate) *VirtualGatewayListenerTlsCertificate {
+	s.Sds = v
 	return s
 }
 
@@ -14406,6 +14931,167 @@ func (s *VirtualGatewayListenerTlsFileCertificate) SetCertificateChain(v string)
 // SetPrivateKey sets the PrivateKey field's value.
 func (s *VirtualGatewayListenerTlsFileCertificate) SetPrivateKey(v string) *VirtualGatewayListenerTlsFileCertificate {
 	s.PrivateKey = &v
+	return s
+}
+
+// An object that represents the virtual gateway's listener's Secret Discovery
+// Service certificate.The proxy must be configured with a local SDS provider
+// via a Unix Domain Socket. See App Mesh TLS documentation (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html)
+// for more info.
+type VirtualGatewayListenerTlsSdsCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to an object that represents the name of the secret secret requested
+	// from the Secret Discovery Service provider representing Transport Layer Security
+	// (TLS) materials like a certificate or certificate chain.
+	//
+	// SecretName is a required field
+	SecretName *string `locationName:"secretName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VirtualGatewayListenerTlsSdsCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VirtualGatewayListenerTlsSdsCertificate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VirtualGatewayListenerTlsSdsCertificate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VirtualGatewayListenerTlsSdsCertificate"}
+	if s.SecretName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecretName sets the SecretName field's value.
+func (s *VirtualGatewayListenerTlsSdsCertificate) SetSecretName(v string) *VirtualGatewayListenerTlsSdsCertificate {
+	s.SecretName = &v
+	return s
+}
+
+// An object that represents a virtual gateway's listener's Transport Layer
+// Security (TLS) validation context.
+type VirtualGatewayListenerTlsValidationContext struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to an object that represents the SANs for a virtual gateway listener's
+	// Transport Layer Security (TLS) validation context.
+	SubjectAlternativeNames *SubjectAlternativeNames `locationName:"subjectAlternativeNames" type:"structure"`
+
+	// A reference to where to retrieve the trust chain when validating a peer’s
+	// Transport Layer Security (TLS) certificate.
+	//
+	// Trust is a required field
+	Trust *VirtualGatewayListenerTlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s VirtualGatewayListenerTlsValidationContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VirtualGatewayListenerTlsValidationContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VirtualGatewayListenerTlsValidationContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VirtualGatewayListenerTlsValidationContext"}
+	if s.Trust == nil {
+		invalidParams.Add(request.NewErrParamRequired("Trust"))
+	}
+	if s.SubjectAlternativeNames != nil {
+		if err := s.SubjectAlternativeNames.Validate(); err != nil {
+			invalidParams.AddNested("SubjectAlternativeNames", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Trust != nil {
+		if err := s.Trust.Validate(); err != nil {
+			invalidParams.AddNested("Trust", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *VirtualGatewayListenerTlsValidationContext) SetSubjectAlternativeNames(v *SubjectAlternativeNames) *VirtualGatewayListenerTlsValidationContext {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
+// SetTrust sets the Trust field's value.
+func (s *VirtualGatewayListenerTlsValidationContext) SetTrust(v *VirtualGatewayListenerTlsValidationContextTrust) *VirtualGatewayListenerTlsValidationContext {
+	s.Trust = v
+	return s
+}
+
+// An object that represents a virtual gateway's listener's Transport Layer
+// Security (TLS) validation context trust.
+type VirtualGatewayListenerTlsValidationContextTrust struct {
+	_ struct{} `type:"structure"`
+
+	// An object that represents a Transport Layer Security (TLS) validation context
+	// trust for a local file.
+	File *VirtualGatewayTlsValidationContextFileTrust `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a virtual gateway's listener's Transport
+	// Layer Security (TLS) Secret Discovery Service validation context trust.
+	Sds *VirtualGatewayTlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
+}
+
+// String returns the string representation
+func (s VirtualGatewayListenerTlsValidationContextTrust) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VirtualGatewayListenerTlsValidationContextTrust) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VirtualGatewayListenerTlsValidationContextTrust) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VirtualGatewayListenerTlsValidationContextTrust"}
+	if s.File != nil {
+		if err := s.File.Validate(); err != nil {
+			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFile sets the File field's value.
+func (s *VirtualGatewayListenerTlsValidationContextTrust) SetFile(v *VirtualGatewayTlsValidationContextFileTrust) *VirtualGatewayListenerTlsValidationContextTrust {
+	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *VirtualGatewayListenerTlsValidationContextTrust) SetSds(v *VirtualGatewayTlsValidationContextSdsTrust) *VirtualGatewayListenerTlsValidationContextTrust {
+	s.Sds = v
 	return s
 }
 
@@ -14722,7 +15408,12 @@ func (s *VirtualGatewayStatus) SetStatus(v string) *VirtualGatewayStatus {
 type VirtualGatewayTlsValidationContext struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents a TLS validation context trust.
+	// A reference to an object that represents the SANs for a virtual gateway's
+	// listener's Transport Layer Security (TLS) validation context.
+	SubjectAlternativeNames *SubjectAlternativeNames `locationName:"subjectAlternativeNames" type:"structure"`
+
+	// A reference to where to retrieve the trust chain when validating a peer’s
+	// Transport Layer Security (TLS) certificate.
 	//
 	// Trust is a required field
 	Trust *VirtualGatewayTlsValidationContextTrust `locationName:"trust" type:"structure" required:"true"`
@@ -14744,6 +15435,11 @@ func (s *VirtualGatewayTlsValidationContext) Validate() error {
 	if s.Trust == nil {
 		invalidParams.Add(request.NewErrParamRequired("Trust"))
 	}
+	if s.SubjectAlternativeNames != nil {
+		if err := s.SubjectAlternativeNames.Validate(); err != nil {
+			invalidParams.AddNested("SubjectAlternativeNames", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Trust != nil {
 		if err := s.Trust.Validate(); err != nil {
 			invalidParams.AddNested("Trust", err.(request.ErrInvalidParams))
@@ -14756,14 +15452,20 @@ func (s *VirtualGatewayTlsValidationContext) Validate() error {
 	return nil
 }
 
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *VirtualGatewayTlsValidationContext) SetSubjectAlternativeNames(v *SubjectAlternativeNames) *VirtualGatewayTlsValidationContext {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
 // SetTrust sets the Trust field's value.
 func (s *VirtualGatewayTlsValidationContext) SetTrust(v *VirtualGatewayTlsValidationContextTrust) *VirtualGatewayTlsValidationContext {
 	s.Trust = v
 	return s
 }
 
-// An object that represents a TLS validation context trust for an AWS Certicate
-// Manager (ACM) certificate.
+// An object that represents a Transport Layer Security (TLS) validation context
+// trust for an AWS Certicate Manager (ACM) certificate.
 type VirtualGatewayTlsValidationContextAcmTrust struct {
 	_ struct{} `type:"structure"`
 
@@ -14849,17 +15551,67 @@ func (s *VirtualGatewayTlsValidationContextFileTrust) SetCertificateChain(v stri
 	return s
 }
 
+// An object that represents a virtual gateway's listener's Transport Layer
+// Security (TLS) Secret Discovery Service validation context trust. The proxy
+// must be configured with a local SDS provider via a Unix Domain Socket. See
+// App Mesh TLS documentation (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html)
+// for more info.
+type VirtualGatewayTlsValidationContextSdsTrust struct {
+	_ struct{} `type:"structure"`
+
+	// A reference to an object that represents the name of the secret for a virtual
+	// gateway's Transport Layer Security (TLS) Secret Discovery Service validation
+	// context trust.
+	//
+	// SecretName is a required field
+	SecretName *string `locationName:"secretName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VirtualGatewayTlsValidationContextSdsTrust) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VirtualGatewayTlsValidationContextSdsTrust) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VirtualGatewayTlsValidationContextSdsTrust) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VirtualGatewayTlsValidationContextSdsTrust"}
+	if s.SecretName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecretName sets the SecretName field's value.
+func (s *VirtualGatewayTlsValidationContextSdsTrust) SetSecretName(v string) *VirtualGatewayTlsValidationContextSdsTrust {
+	s.SecretName = &v
+	return s
+}
+
 // An object that represents a Transport Layer Security (TLS) validation context
 // trust.
 type VirtualGatewayTlsValidationContextTrust struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents a TLS validation context trust for
-	// an AWS Certicate Manager (ACM) certificate.
+	// A reference to an object that represents a Transport Layer Security (TLS)
+	// validation context trust for an AWS Certicate Manager (ACM) certificate.
 	Acm *VirtualGatewayTlsValidationContextAcmTrust `locationName:"acm" type:"structure"`
 
-	// An object that represents a TLS validation context trust for a local file.
+	// An object that represents a Transport Layer Security (TLS) validation context
+	// trust for a local file.
 	File *VirtualGatewayTlsValidationContextFileTrust `locationName:"file" type:"structure"`
+
+	// A reference to an object that represents a virtual gateway's Transport Layer
+	// Security (TLS) Secret Discovery Service validation context trust.
+	Sds *VirtualGatewayTlsValidationContextSdsTrust `locationName:"sds" type:"structure"`
 }
 
 // String returns the string representation
@@ -14885,6 +15637,11 @@ func (s *VirtualGatewayTlsValidationContextTrust) Validate() error {
 			invalidParams.AddNested("File", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Sds != nil {
+		if err := s.Sds.Validate(); err != nil {
+			invalidParams.AddNested("Sds", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -14901,6 +15658,12 @@ func (s *VirtualGatewayTlsValidationContextTrust) SetAcm(v *VirtualGatewayTlsVal
 // SetFile sets the File field's value.
 func (s *VirtualGatewayTlsValidationContextTrust) SetFile(v *VirtualGatewayTlsValidationContextFileTrust) *VirtualGatewayTlsValidationContextTrust {
 	s.File = v
+	return s
+}
+
+// SetSds sets the Sds field's value.
+func (s *VirtualGatewayTlsValidationContextTrust) SetSds(v *VirtualGatewayTlsValidationContextSdsTrust) *VirtualGatewayTlsValidationContextTrust {
+	s.Sds = v
 	return s
 }
 
