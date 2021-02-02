@@ -94,6 +94,10 @@ func supressSmokeTest(a *API) error {
 
 // Customizes the API generation to replace values specific to S3.
 func s3Customizations(a *API) error {
+
+	// back-fill signing name as 's3'
+	a.Metadata.SigningName = "s3"
+
 	var strExpires *Shape
 
 	var keepContentMD5Ref = map[string]struct{}{

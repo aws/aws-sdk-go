@@ -20,11 +20,107 @@ func TestEndpoint(t *testing.T) {
 	cases := map[string]struct {
 		bucket                string
 		config                *aws.Config
+		req                   func(svc *S3) *request.Request
 		expectedEndpoint      string
 		expectedSigningName   string
 		expectedSigningRegion string
 		expectedErr           string
 	}{
+		"standard custom endpoint url": {
+			bucket: "bucketname",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("beta.example.com"),
+			},
+			expectedEndpoint:      "https://bucketname.beta.example.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"AccessPoint with custom endpoint url": {
+			bucket: "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("beta.example.com"),
+			},
+			expectedEndpoint:      "https://myendpoint-123456789012.beta.example.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Outpost AccessPoint with custom endpoint url": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("beta.example.com"),
+			},
+			expectedEndpoint:      "https://myaccesspoint-123456789012.op-01234567890123456.beta.example.com",
+			expectedSigningName:   "s3-outposts",
+			expectedSigningRegion: "us-west-2",
+		},
+		"ListBucket with custom endpoint url": {
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("bucket.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com"),
+			},
+			req: func(svc *S3) *request.Request {
+				req, _ := svc.ListBucketsRequest(&ListBucketsInput{})
+				return req
+			},
+			expectedEndpoint:      "https://bucket.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Path-style addressing with custom endpoint url": {
+			bucket: "bucketname",
+			config: &aws.Config{
+				Region:           aws.String("us-west-2"),
+				Endpoint:         aws.String("bucket.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com"),
+				S3ForcePathStyle: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://bucket.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Virtual host addressing with custom endpoint url": {
+			bucket: "bucketname",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("bucket.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com"),
+			},
+			expectedEndpoint:      "https://bucketname.bucket.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Access-point with custom endpoint url and use_arn_region set": {
+			bucket: "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
+			config: &aws.Config{
+				Region:         aws.String("eu-west-1"),
+				Endpoint:       aws.String("accesspoint.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myendpoint-123456789012.accesspoint.vpce-123-abc.s3.us-west-2.vpce.amazonaws.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Custom endpoint url with Dualstack": {
+			bucket: "bucketname",
+			config: &aws.Config{
+				Region:       aws.String("us-west-2"),
+				Endpoint:     aws.String("beta.example.com"),
+				UseDualStack: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://bucketname.beta.example.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Outpost with custom endpoint url and Dualstack": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:       aws.String("us-west-2"),
+				Endpoint:     aws.String("beta.example.com"),
+				UseDualStack: aws.Bool(true),
+			},
+			expectedErr: "client configured for S3 Dual-stack but is not supported with resource ARN",
+		},
 		"Outpost AccessPoint with no S3UseARNRegion flag set": {
 			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
@@ -289,7 +385,9 @@ func TestEndpoint(t *testing.T) {
 						return endpoints.ResolvedEndpoint{}, nil
 					}),
 			},
-			expectedErr: "client partition does not match provided ARN partition",
+			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
 		},
 		"Custom Resolver Without PartitionID in Cross-Region Target": {
 			bucket: "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
@@ -319,7 +417,9 @@ func TestEndpoint(t *testing.T) {
 						return endpoints.ResolvedEndpoint{}, nil
 					}),
 			},
-			expectedErr: "client partition does not match provided ARN partition",
+			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
 		},
 		"bucket host-style": {
 			bucket:                "mock-bucket",
@@ -391,10 +491,16 @@ func TestEndpoint(t *testing.T) {
 			sess := unit.Session.Copy(c.config)
 
 			svc := New(sess)
-			req, _ := svc.GetObjectRequest(&GetObjectInput{
-				Bucket: &c.bucket,
-				Key:    aws.String("testkey"),
-			})
+
+			var req *request.Request
+			if c.req == nil {
+				req, _ = svc.ListObjectsRequest(&ListObjectsInput{
+					Bucket: &c.bucket,
+				})
+			} else {
+				req = c.req(svc)
+			}
+
 			req.Handlers.Send.Clear()
 			req.Handlers.Send.PushBack(func(r *request.Request) {
 				defer func() {
@@ -413,7 +519,7 @@ func TestEndpoint(t *testing.T) {
 					t.Errorf("expected %v, got %v", e, a)
 				}
 
-				if e, a := c.expectedSigningName, r.ClientInfo.SigningName; c.config.Endpoint == nil && e != a {
+				if e, a := c.expectedSigningName, r.ClientInfo.SigningName; e != a {
 					t.Errorf("expected %v, got %v", e, a)
 				}
 				if e, a := c.expectedSigningRegion, r.ClientInfo.SigningRegion; e != a {
