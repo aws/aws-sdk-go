@@ -116,6 +116,10 @@ type GlueDataBrewAPI interface {
 	DescribeJobWithContext(aws.Context, *gluedatabrew.DescribeJobInput, ...request.Option) (*gluedatabrew.DescribeJobOutput, error)
 	DescribeJobRequest(*gluedatabrew.DescribeJobInput) (*request.Request, *gluedatabrew.DescribeJobOutput)
 
+	DescribeJobRun(*gluedatabrew.DescribeJobRunInput) (*gluedatabrew.DescribeJobRunOutput, error)
+	DescribeJobRunWithContext(aws.Context, *gluedatabrew.DescribeJobRunInput, ...request.Option) (*gluedatabrew.DescribeJobRunOutput, error)
+	DescribeJobRunRequest(*gluedatabrew.DescribeJobRunInput) (*request.Request, *gluedatabrew.DescribeJobRunOutput)
+
 	DescribeProject(*gluedatabrew.DescribeProjectInput) (*gluedatabrew.DescribeProjectOutput, error)
 	DescribeProjectWithContext(aws.Context, *gluedatabrew.DescribeProjectInput, ...request.Option) (*gluedatabrew.DescribeProjectOutput, error)
 	DescribeProjectRequest(*gluedatabrew.DescribeProjectInput) (*request.Request, *gluedatabrew.DescribeProjectOutput)

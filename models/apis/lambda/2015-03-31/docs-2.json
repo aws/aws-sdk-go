@@ -811,11 +811,11 @@
       }
     },
     "ImageConfig": {
-      "base": "<p>Configuration values that override the container image Dockerfile settings. See <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html\">Container settings</a>. </p>",
+      "base": "<p>Configuration values that override the container image Dockerfile settings. See <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms\">Container settings</a>. </p>",
       "refs": {
-        "CreateFunctionRequest$ImageConfig": "<p>Configuration values that override the container image Dockerfile.</p>",
+        "CreateFunctionRequest$ImageConfig": "<p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html\">Container image configuration values</a> that override the values in the container image Dockerfile.</p>",
         "ImageConfigResponse$ImageConfig": "<p>Configuration values that override the container image Dockerfile.</p>",
-        "UpdateFunctionConfigurationRequest$ImageConfig": "<p>Configuration values that override the container image Dockerfile.</p>"
+        "UpdateFunctionConfigurationRequest$ImageConfig": "<p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html\">Container image configuration values</a> that override the values in the container image Dockerfile.</p>"
       }
     },
     "ImageConfigError": {
@@ -1628,7 +1628,7 @@
     "SourceAccessType": {
       "base": null,
       "refs": {
-        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol or the VPC components for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The ARN of your secret key used for SASL SCRAM-256 authentication of your Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The ARN of your secret key used for SASL SCRAM-512 authentication of your Kafka brokers.</p> </li> </ul>"
+        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol or the VPC components for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your Self-Managed Apache Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your Self-Managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your Self-Managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your Self-Managed Apache Kafka brokers.</p> </li> </ul>"
       }
     },
     "SourceOwner": {
@@ -1929,9 +1929,9 @@
     "TumblingWindowInSeconds": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams) The duration of a processing window in seconds. The range is between 1 second up to 15 minutes.</p>",
-        "EventSourceMappingConfiguration$TumblingWindowInSeconds": "<p>(Streams) The duration of a processing window in seconds. The range is between 1 second up to 15 minutes.</p>",
-        "UpdateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams) The duration of a processing window in seconds. The range is between 1 second up to 15 minutes.</p>"
+        "CreateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds.</p>",
+        "EventSourceMappingConfiguration$TumblingWindowInSeconds": "<p>(Streams) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds.</p>",
+        "UpdateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds.</p>"
       }
     },
     "URI": {

@@ -1759,8 +1759,13 @@ func (c *SecurityHub) DescribeProductsRequest(input *DescribeProductsInput) (req
 
 // DescribeProducts API operation for AWS SecurityHub.
 //
-// Returns information about the available products that you can subscribe to
-// and integrate with Security Hub in order to consolidate findings.
+// Returns information about product integrations in Security Hub.
+//
+// You can optionally provide an integration ARN. If you provide an integration
+// ARN, then the results only include that integration.
+//
+// If you do not provide an integration ARN, then the results include all of
+// the available product integrations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5555,8 +5560,8 @@ func (s *AccountDetails) SetEmail(v string) *AccountDetails {
 	return s
 }
 
-// Provides details about one of the following actions that were detected for
-// the finding:
+// Provides details about one of the following actions that affects or that
+// was taken on a resource:
 //
 //    * A remote IP address issued an AWS API call
 //
@@ -16769,7 +16774,7 @@ func (s *AwsSecretsManagerSecretRotationRules) SetAutomaticallyAfterDays(v int64
 type AwsSecurityFinding struct {
 	_ struct{} `type:"structure"`
 
-	// Provides details about an action that was detected for the finding.
+	// Provides details about an action that affects or that was taken on a resource.
 	Action *Action `type:"structure"`
 
 	// The AWS account ID that a finding is generated in.
@@ -20325,6 +20330,9 @@ type DescribeProductsInput struct {
 	// For subsequent calls to the operation, to continue listing data, set the
 	// value of this parameter to the value returned from the previous response.
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The ARN of the integration to return.
+	ProductArn *string `location:"querystring" locationName:"ProductArn" type:"string"`
 }
 
 // String returns the string representation
@@ -20359,6 +20367,12 @@ func (s *DescribeProductsInput) SetMaxResults(v int64) *DescribeProductsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeProductsInput) SetNextToken(v string) *DescribeProductsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetProductArn sets the ProductArn field's value.
+func (s *DescribeProductsInput) SetProductArn(v string) *DescribeProductsInput {
+	s.ProductArn = &v
 	return s
 }
 

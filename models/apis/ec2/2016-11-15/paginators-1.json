@@ -6,6 +6,12 @@
     "DescribeAddresses": {
       "result_key": "Addresses"
     },
+    "DescribeAddressesAttribute": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Addresses"
+    },
     "DescribeAvailabilityZones": {
       "result_key": "AvailabilityZones"
     },

@@ -467,6 +467,7 @@
       "input":{"shape":"GetServicesInScopeRequest"},
       "output":{"shape":"GetServicesInScopeResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
       ]

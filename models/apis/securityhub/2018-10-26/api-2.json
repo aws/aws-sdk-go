@@ -3383,6 +3383,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
+        },
+        "ProductArn":{
+          "shape":"NonEmptyString",
+          "location":"querystring",
+          "locationName":"ProductArn"
         }
       }
     },

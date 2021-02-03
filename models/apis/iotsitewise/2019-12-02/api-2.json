@@ -195,6 +195,22 @@
       ],
       "endpoint":{"hostPrefix":"monitor."}
     },
+    "CreatePresignedPortalUrl":{
+      "name":"CreatePresignedPortalUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/portals/{portalId}/presigned-url",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePresignedPortalUrlRequest"},
+      "output":{"shape":"CreatePresignedPortalUrlResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"monitor."}
+    },
     "CreateProject":{
       "name":"CreateProject",
       "http":{
@@ -1813,6 +1829,26 @@
         "ssoApplicationId":{"shape":"SSOApplicationId"}
       }
     },
+    "CreatePresignedPortalUrlRequest":{
+      "type":"structure",
+      "required":["portalId"],
+      "members":{
+        "portalId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"portalId"
+        },
+        "sessionDurationSeconds":{"shape":"SessionDurationSeconds"},
+        "state":{"shape":"state"}
+      }
+    },
+    "CreatePresignedPortalUrlResponse":{
+      "type":"structure",
+      "required":["presignedPortalUrl"],
+      "members":{
+        "presignedPortalUrl":{"shape":"Url"}
+      }
+    },
     "CreateProjectRequest":{
       "type":"structure",
       "required":[
@@ -2658,6 +2694,13 @@
         "id":{"shape":"IdentityId"}
       }
     },
+    "IAMRoleIdentity":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"ARN"}
+      }
+    },
     "IAMUserIdentity":{
       "type":"structure",
       "required":["arn"],
@@ -2682,7 +2725,8 @@
       "members":{
         "user":{"shape":"UserIdentity"},
         "group":{"shape":"GroupIdentity"},
-        "iamUser":{"shape":"IAMUserIdentity"}
+        "iamUser":{"shape":"IAMUserIdentity"},
+        "iamRole":{"shape":"IAMRoleIdentity"}
       }
     },
     "IdentityId":{
@@ -3480,6 +3524,11 @@
       "exception":true,
       "fault":true
     },
+    "SessionDurationSeconds":{
+      "type":"integer",
+      "max":43200,
+      "min":900
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -3899,6 +3948,12 @@
         "doubleValue":{"shape":"PropertyValueDoubleValue"},
         "booleanValue":{"shape":"PropertyValueBooleanValue"}
       }
+    },
+    "state":{
+      "type":"string",
+      "max":512,
+      "min":0,
+      "pattern":".+"
     }
   }
 }

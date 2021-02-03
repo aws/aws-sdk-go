@@ -3028,6 +3028,9 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 // API operation GetServicesInScope for usage and error information.
 //
 // Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //

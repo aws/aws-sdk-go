@@ -153,7 +153,7 @@
     "DeleteVpc": "<p>Deletes the specified VPC. You must detach or delete all gateways and resources that are associated with the VPC before you can delete it. For example, you must terminate all instances running in the VPC, delete all security groups associated with the VPC (except the default one), delete all route tables associated with the VPC (except the default one), and so on.</p>",
     "DeleteVpcEndpointConnectionNotifications": "<p>Deletes one or more VPC endpoint connection notifications.</p>",
     "DeleteVpcEndpointServiceConfigurations": "<p>Deletes one or more VPC endpoint service configurations in your account. Before you delete the endpoint service configuration, you must reject any <code>Available</code> or <code>PendingAcceptance</code> interface endpoint connections that are attached to the service.</p>",
-    "DeleteVpcEndpoints": "<p>Deletes one or more specified VPC endpoints. Deleting a gateway endpoint also deletes the endpoint routes in the route tables that were associated with the endpoint. Deleting an interface endpoint or a Gateway Load Balancer endpoint deletes the endpoint network interfaces. Gateway Load Balancer endpoints can only be deleted if the routes that are associated with the endpoint are deleted.</p>",
+    "DeleteVpcEndpoints": "<p>Deletes one or more specified VPC endpoints. You can delete any of the following types of VPC endpoints. </p> <ul> <li> <p>Gateway endpoint,</p> </li> <li> <p>Gateway Load Balancer endpoint,</p> </li> <li> <p>Interface endpoint</p> </li> </ul> <p>The following rules apply when you delete a VPC endpoint:</p> <ul> <li> <p>When you delete a gateway endpoint, we delete the endpoint routes in the route tables that are associated with the endpoint.</p> </li> <li> <p>When you delete a Gateway Load Balancer endpoint, we delete the endpoint network interfaces. </p> <p>You can only delete Gateway Load Balancer endpoints when the routes that are associated with the endpoint are deleted.</p> </li> <li> <p>When you delete an interface endpoint, we delete the endpoint network interfaces.</p> </li> </ul>",
     "DeleteVpcPeeringConnection": "<p>Deletes a VPC peering connection. Either the owner of the requester VPC or the owner of the accepter VPC can delete the VPC peering connection if it's in the <code>active</code> state. The owner of the requester VPC can delete a VPC peering connection in the <code>pending-acceptance</code> state. You cannot delete a VPC peering connection that's in the <code>failed</code> state.</p>",
     "DeleteVpnConnection": "<p>Deletes the specified VPN connection.</p> <p>If you're deleting the VPC and its associated components, we recommend that you detach the virtual private gateway from the VPC and delete the VPC before deleting the VPN connection. If you believe that the tunnel credentials for your VPN connection have been compromised, you can delete the VPN connection and create a new one that has new keys, without needing to delete the VPC or virtual private gateway. If you create a new VPN connection, you must reconfigure the customer gateway device using the new configuration information returned with the new VPN connection ID.</p> <p>For certificate-based authentication, delete all AWS Certificate Manager (ACM) private certificates used for the AWS-side tunnel endpoints for the VPN connection before deleting the VPN connection.</p>",
     "DeleteVpnConnectionRoute": "<p>Deletes the specified static route associated with a VPN connection between an existing virtual private gateway and a VPN customer gateway. The static route allows traffic to be routed from the virtual private gateway to the VPN customer gateway.</p>",
@@ -165,6 +165,7 @@
     "DeregisterTransitGatewayMulticastGroupSources": "<p>Deregisters the specified sources (network interfaces) from the transit gateway multicast group.</p>",
     "DescribeAccountAttributes": "<p>Describes attributes of your AWS account. The following are the supported account attributes:</p> <ul> <li> <p> <code>supported-platforms</code>: Indicates whether your account can launch instances into EC2-Classic and EC2-VPC, or only into EC2-VPC.</p> </li> <li> <p> <code>default-vpc</code>: The ID of the default VPC for your account, or <code>none</code>.</p> </li> <li> <p> <code>max-instances</code>: This attribute is no longer supported. The returned value does not reflect your actual vCPU limit for running On-Demand Instances. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-on-demand-instances.html#ec2-on-demand-instances-limits\">On-Demand Instance Limits</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </li> <li> <p> <code>vpc-max-security-groups-per-interface</code>: The maximum number of security groups that you can assign to a network interface.</p> </li> <li> <p> <code>max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate for use with EC2-Classic. </p> </li> <li> <p> <code>vpc-max-elastic-ips</code>: The maximum number of Elastic IP addresses that you can allocate for use with EC2-VPC.</p> </li> </ul>",
     "DescribeAddresses": "<p>Describes the specified Elastic IP addresses or all of your Elastic IP addresses.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DescribeAddressesAttribute": "<p>Describes the attributes of the specified Elastic IP addresses. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "DescribeAggregateIdFormat": "<p>Describes the longer ID format settings for all resource types in a specific Region. This request is useful for performing a quick audit to determine whether a specific Region is fully opted in for longer IDs (17-character IDs).</p> <p>This request only returns information about resource types that support longer IDs.</p> <p>The following resource types support longer IDs: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>instance</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>reservation</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>snapshot</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p>",
     "DescribeAvailabilityZones": "<p>Describes the Availability Zones, Local Zones, and Wavelength Zones that are available to you. If there is an event impacting a zone, you can use this request to view the state and any provided messages for that zone.</p> <p>For more information about Availability Zones, Local Zones, and Wavelength Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html\">Regions, Zones and Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeBundleTasks": "<p>Describes the specified bundle tasks or all of your bundle tasks.</p> <note> <p>Completed bundle tasks are listed for only a limited time. If your bundle task is no longer in the list, you can still register an AMI from it. Just use <code>RegisterImage</code> with the Amazon S3 bucket name and image manifest name you provided to the bundle task.</p> </note>",
@@ -276,7 +277,7 @@
     "DescribeVpcEndpointConnections": "<p>Describes the VPC endpoint connections to your VPC endpoint services, including any endpoints that are pending your acceptance.</p>",
     "DescribeVpcEndpointServiceConfigurations": "<p>Describes the VPC endpoint service configurations in your account (your services).</p>",
     "DescribeVpcEndpointServicePermissions": "<p>Describes the principals (service consumers) that are permitted to discover your VPC endpoint service.</p>",
-    "DescribeVpcEndpointServices": "<p>Describes available services to which you can create a VPC endpoint.</p> <p>When the service provider and the consumer have different accounts multiple Availability Zones, and the consumer views the VPC endpoint service information, the response only includes the common Availability Zones. For example, when the service provider account uses <code>us-east-1a</code> and <code>us-east-1c</code> and the consumer uses <code>us-east-1a</code> and us-east-1a and us-east-1b, the response includes the VPC endpoint services in the common Availability Zone, <code>us-east-1a</code>.</p>",
+    "DescribeVpcEndpointServices": "<p>Describes available services to which you can create a VPC endpoint.</p> <p>When the service provider and the consumer have different accounts in multiple Availability Zones, and the consumer views the VPC endpoint service information, the response only includes the common Availability Zones. For example, when the service provider account uses <code>us-east-1a</code> and <code>us-east-1c</code> and the consumer uses <code>us-east-1a</code> and <code>us-east-1b</code>, the response includes the VPC endpoint services in the common Availability Zone, <code>us-east-1a</code>.</p>",
     "DescribeVpcEndpoints": "<p>Describes one or more of your VPC endpoints.</p>",
     "DescribeVpcPeeringConnections": "<p>Describes one or more of your VPC peering connections.</p>",
     "DescribeVpcs": "<p>Describes one or more of your VPCs.</p>",
@@ -340,6 +341,7 @@
     "ImportKeyPair": "<p>Imports the public key from an RSA key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which AWS creates the key pair and gives the keys to you (AWS keeps a copy of the public key). With ImportKeyPair, you create the key pair and give AWS just the public key. The private key is never transferred between you and AWS.</p> <p>For more information about key pairs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ImportSnapshot": "<p>Imports a disk into an EBS snapshot.</p>",
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/importing-your-volumes-into-amazon-ebs.html\">Importing Disks to Amazon EBS</a>.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
+    "ModifyAddressAttribute": "<p>Modifies an attribute of the specified Elastic IP address. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "ModifyAvailabilityZoneGroup": "<p>Changes the opt-in status of the Local Zone and Wavelength Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\"> DescribeAvailabilityZones</a> to view the value for <code>GroupName</code>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. Modifying the DNS server resets existing client connections.</p>",
@@ -410,6 +412,7 @@
     "ReportInstanceStatus": "<p>Submits feedback about the status of an instance. The instance must be in the <code>running</code> state. If your experience with the instance differs from the instance status returned by <a>DescribeInstanceStatus</a>, use <a>ReportInstanceStatus</a> to report your experience with the instance. Amazon EC2 collects this information to improve the accuracy of status checks.</p> <p>Use of this action does not change the value returned by <a>DescribeInstanceStatus</a>.</p>",
     "RequestSpotFleet": "<p>Creates a Spot Fleet request.</p> <p>The Spot Fleet request specifies the total target capacity and the On-Demand target capacity. Amazon EC2 calculates the difference between the total capacity and On-Demand capacity, and launches the difference as Spot capacity.</p> <p>You can submit a single request that includes multiple launch specifications that vary by instance type, AMI, Availability Zone, or subnet.</p> <p>By default, the Spot Fleet requests Spot Instances in the Spot Instance pool where the price per unit is the lowest. Each launch specification can include its own instance weighting that reflects the value of the instance type to your application workload.</p> <p>Alternatively, you can specify that the Spot Fleet distribute the target capacity across the Spot pools included in its launch specifications. By ensuring that the Spot Instances in your Spot Fleet are in different Spot pools, you can improve the availability of your fleet.</p> <p>You can specify tags for the Spot Fleet request and instances launched by the fleet. You cannot tag other resource types in a Spot Fleet request because only the <code>spot-fleet-request</code> and <code>instance</code> resource types are supported.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-requests.html\">Spot Fleet requests</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "RequestSpotInstances": "<p>Creates a Spot Instance request.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-requests.html\">Spot Instance requests</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
+    "ResetAddressAttribute": "<p>Resets the attribute of the specified IP address. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "ResetEbsDefaultKmsKeyId": "<p>Resets the default customer master key (CMK) for EBS encryption for your account in this Region to the AWS managed CMK for EBS.</p> <p>After resetting the default CMK to the AWS managed CMK, you can continue to encrypt by a customer managed CMK by specifying it when you create the volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ResetFpgaImageAttribute": "<p>Resets the specified attribute of the specified Amazon FPGA Image (AFI) to its default value. You can only reset the load permission attribute.</p>",
     "ResetImageAttribute": "<p>Resets an attribute of an AMI to its default value.</p> <note> <p>The productCodes attribute can't be reset.</p> </note>",
@@ -575,10 +578,37 @@
         "AddressList$member": null
       }
     },
+    "AddressAttribute": {
+      "base": "<p>The attributes associated with an Elastic IP address.</p>",
+      "refs": {
+        "AddressSet$member": null,
+        "ModifyAddressAttributeResult$Address": "<p>Information about the Elastic IP address.</p>",
+        "ResetAddressAttributeResult$Address": "<p>Information about the IP address.</p>"
+      }
+    },
+    "AddressAttributeName": {
+      "base": null,
+      "refs": {
+        "DescribeAddressesAttributeRequest$Attribute": "<p>The attribute of the IP address.</p>",
+        "ResetAddressAttributeRequest$Attribute": "<p>The attribute of the IP address.</p>"
+      }
+    },
     "AddressList": {
       "base": null,
       "refs": {
         "DescribeAddressesResult$Addresses": "<p>Information about the Elastic IP addresses.</p>"
+      }
+    },
+    "AddressMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeAddressesAttributeRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "AddressSet": {
+      "base": null,
+      "refs": {
+        "DescribeAddressesAttributeResult$Addresses": "<p>Information about the IP addresses.</p>"
       }
     },
     "AdvertiseByoipCidrRequest": {
@@ -620,16 +650,26 @@
     "AllocationId": {
       "base": null,
       "refs": {
+        "AddressAttribute$AllocationId": "<p>[EC2-VPC] The allocation ID.</p>",
         "AllocationIdList$member": null,
+        "AllocationIds$member": null,
         "AssociateAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. This is required for EC2-VPC.</p>",
         "CreateNatGatewayRequest$AllocationId": "<p>The allocation ID of an Elastic IP address to associate with the NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.</p>",
-        "ReleaseAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. Required for EC2-VPC.</p>"
+        "ModifyAddressAttributeRequest$AllocationId": "<p>[EC2-VPC] The allocation ID.</p>",
+        "ReleaseAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. Required for EC2-VPC.</p>",
+        "ResetAddressAttributeRequest$AllocationId": "<p>[EC2-VPC] The allocation ID.</p>"
       }
     },
     "AllocationIdList": {
       "base": null,
       "refs": {
         "DescribeAddressesRequest$AllocationIds": "<p>[EC2-VPC] Information about the allocation IDs.</p>"
+      }
+    },
+    "AllocationIds": {
+      "base": null,
+      "refs": {
+        "DescribeAddressesAttributeRequest$AllocationIds": "<p>[EC2-VPC] The allocation IDs.</p>"
       }
     },
     "AllocationState": {
@@ -1405,7 +1445,7 @@
         "CreateVolumeRequest$MultiAttachEnabled": "<p>Indicates whether to enable Amazon EBS Multi-Attach. If you enable Multi-Attach, you can attach the volume to up to 16 <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Instances built on the Nitro System</a> in the same Availability Zone. This parameter is supported with <code>io1</code> and <code>io2</code> volumes only. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes-multi.html\"> Amazon EBS Multi-Attach</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CreateVpcEndpointConnectionNotificationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVpcEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "CreateVpcEndpointRequest$PrivateDnsEnabled": "<p>(Interface endpoint) Indicates whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the Region (for example, <code>kinesis.us-east-1.amazonaws.com</code>), which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service.</p> <p>To use a private hosted zone, you must set the following VPC attributes to <code>true</code>: <code>enableDnsHostnames</code> and <code>enableDnsSupport</code>. Use <a>ModifyVpcAttribute</a> to set the VPC attributes.</p> <p>Default: <code>true</code> </p>",
+        "CreateVpcEndpointRequest$PrivateDnsEnabled": "<p>(Interface endpoint) Indicates whether to associate a private hosted zone with the specified VPC. The private hosted zone contains a record set for the default public DNS name for the service for the Region (for example, <code>kinesis.us-east-1.amazonaws.com</code>), which resolves to the private IP addresses of the endpoint network interfaces in the VPC. This enables you to make requests to the default public DNS name for the service instead of the public DNS names that are automatically generated by the VPC endpoint service.</p> <p>To use a private hosted zone, you must set the following VPC attributes to <code>true</code>: <code>enableDnsHostnames</code> and <code>enableDnsSupport</code>. Use <a>ModifyVpcAttribute</a> to set the VPC attributes.</p> <important> <p>Private DNS is not supported for Amazon S3 interface endpoints.</p> </important> <p>Default: <code>true</code> for supported endpoints</p>",
         "CreateVpcEndpointServiceConfigurationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateVpcEndpointServiceConfigurationRequest$AcceptanceRequired": "<p>Indicates whether requests from service consumers to create an endpoint to your service must be accepted. To accept a request, use <a>AcceptVpcEndpointConnections</a>.</p>",
         "CreateVpcPeeringConnectionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1480,6 +1520,7 @@
         "DeregisterTransitGatewayMulticastGroupMembersRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DeregisterTransitGatewayMulticastGroupSourcesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeAccountAttributesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeAddressesAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeAddressesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeAggregateIdFormatRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeAggregateIdFormatResult$UseLongIdsAggregated": "<p>Indicates whether all resource types in the Region are configured to use longer IDs. This value is only <code>true</code> if all users are configured to use longer IDs for all resources types in the Region.</p>",
@@ -1709,6 +1750,7 @@
         "LaunchTemplateVersion$DefaultVersion": "<p>Indicates whether the version is the default version.</p>",
         "LaunchTemplatesMonitoring$Enabled": "<p>Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is enabled.</p>",
         "LaunchTemplatesMonitoringRequest$Enabled": "<p>Specify <code>true</code> to enable detailed monitoring. Otherwise, basic monitoring is enabled.</p>",
+        "ModifyAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "ModifyCapacityReservationRequest$Accept": "<p>Reserved. Capacity Reservations you have created are accepted by default.</p>",
@@ -1751,7 +1793,7 @@
         "ModifyVpcEndpointConnectionNotificationResult$ReturnValue": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyVpcEndpointRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpcEndpointRequest$ResetPolicy": "<p>(Gateway endpoint) Specify <code>true</code> to reset the policy document to the default policy. The default policy allows full access to the service.</p>",
-        "ModifyVpcEndpointRequest$PrivateDnsEnabled": "<p>(Interface endpoint) Indicates whether a private hosted zone is associated with the VPC.</p>",
+        "ModifyVpcEndpointRequest$PrivateDnsEnabled": "<p>(Interface endpoint) Indicates whether a private hosted zone is associated with the VPC.</p> <important> <p>Private DNS is not supported for Amazon S3 interface endpoints.</p> </important>",
         "ModifyVpcEndpointResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyVpcEndpointServiceConfigurationRequest$RemovePrivateDnsName": "<p>(Interface endpoint configuration) Removes the private DNS name of the endpoint service.</p>",
@@ -1821,6 +1863,7 @@
         "RequestSpotInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RequestSpotLaunchSpecification$EbsOptimized": "<p>Indicates whether the instance is optimized for EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS Optimized instance.</p> <p>Default: <code>false</code> </p>",
         "ReservedInstancesOffering$Marketplace": "<p>Indicates whether the offering is available through the Reserved Instance Marketplace (resale) or AWS. If it's a Reserved Instance Marketplace offering, this is <code>true</code>.</p>",
+        "ResetAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ResetEbsDefaultKmsKeyIdRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ResetFpgaImageAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ResetFpgaImageAttributeResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
@@ -4184,6 +4227,16 @@
       }
     },
     "DescribeAccountAttributesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAddressesAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAddressesAttributeResult": {
       "base": null,
       "refs": {
       }
@@ -9857,6 +9910,16 @@
         "VpcEndpointConnection$CreationTimestamp": "<p>The date and time that the VPC endpoint was created.</p>"
       }
     },
+    "ModifyAddressAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyAddressAttributeResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyAvailabilityZoneGroupRequest": {
       "base": null,
       "refs": {
@@ -10700,6 +10763,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "DescribeAddressesAttributeRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "DescribeAddressesAttributeResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeByoipCidrsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeClientVpnAuthorizationRulesRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeClientVpnAuthorizationRulesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
@@ -11457,9 +11522,16 @@
         "NatGateway$ProvisionedBandwidth": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>"
       }
     },
+    "PtrUpdateStatus": {
+      "base": "<p>The status of an updated pointer (PTR) record for an Elastic IP address.</p>",
+      "refs": {
+        "AddressAttribute$PtrRecordUpdate": "<p>The updated PTR record for the IP address.</p>"
+      }
+    },
     "PublicIpAddress": {
       "base": null,
       "refs": {
+        "AddressAttribute$PublicIp": "<p>The public IP address.</p>",
         "AllocateAddressRequest$Address": "<p>[EC2-VPC] The Elastic IP address to recover or an IPv4 address from an address pool.</p>"
       }
     },
@@ -12083,6 +12155,16 @@
       "base": null,
       "refs": {
         "ReservedInstancesModification$ReservedInstancesIds": "<p>The IDs of one or more Reserved Instances.</p>"
+      }
+    },
+    "ResetAddressAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResetAddressAttributeResult": {
+      "base": null,
+      "refs": {
       }
     },
     "ResetEbsDefaultKmsKeyIdRequest": {
@@ -13158,6 +13240,7 @@
         "Address$CustomerOwnedIp": "<p>The customer-owned IP address.</p>",
         "Address$CustomerOwnedIpv4Pool": "<p>The ID of the customer-owned address pool.</p>",
         "Address$CarrierIp": "<p>The carrier IP address associated. This option is only available for network interfaces which reside in a subnet in a Wavelength Zone (for example an EC2 instance). </p>",
+        "AddressAttribute$PtrRecord": "<p>The pointer (PTR) record for the IP address.</p>",
         "AdvertiseByoipCidrRequest$Cidr": "<p>The address range, in CIDR notation. This must be the exact range that you provisioned. You can't advertise only a portion of the provisioned range.</p>",
         "AllocateAddressRequest$NetworkBorderGroup": "<p> A unique set of Availability Zones, Local Zones, or Wavelength Zones from which AWS advertises IP addresses. Use this parameter to limit the IP address to this location. IP addresses cannot move between network border groups.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\">DescribeAvailabilityZones</a> to view the network border groups.</p> <note> <p>You cannot use a network border group with EC2 Classic. If you attempt this operation on EC2 classic, you will receive an <code>InvalidParameterCombination</code> error. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html\">Error Codes</a>.</p> </note>",
         "AllocateAddressRequest$CustomerOwnedIpv4Pool": "<p>The ID of a customer-owned address pool. Use this parameter to let Amazon EC2 select an address from the address pool. Alternatively, specify a specific address from the address pool.</p>",
@@ -14099,6 +14182,7 @@
         "ManagedPrefixList$StateMessage": "<p>The state message.</p>",
         "ManagedPrefixList$PrefixListName": "<p>The name of the prefix list.</p>",
         "ManagedPrefixList$OwnerId": "<p>The ID of the owner of the prefix list.</p>",
+        "ModifyAddressAttributeRequest$DomainName": "<p>The domain name to modify for the IP address.</p>",
         "ModifyAvailabilityZoneGroupRequest$GroupName": "<p>The name of the Availability Zone group, Local Zone group, or Wavelength Zone group.</p>",
         "ModifyClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate to be used. The server certificate must be provisioned in AWS Certificate Manager (ACM).</p>",
         "ModifyClientVpnEndpointRequest$Description": "<p>A brief description of the Client VPN endpoint.</p>",
@@ -14251,6 +14335,9 @@
         "ProvisionedBandwidth$Provisioned": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "ProvisionedBandwidth$Requested": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
         "ProvisionedBandwidth$Status": "<p>Reserved. If you need to sustain traffic greater than the <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">documented limits</a>, contact us through the <a href=\"https://console.aws.amazon.com/support/home?\">Support Center</a>.</p>",
+        "PtrUpdateStatus$Value": "<p>The value for the PTR record update.</p>",
+        "PtrUpdateStatus$Status": "<p>The status of the PTR record update.</p>",
+        "PtrUpdateStatus$Reason": "<p>The reason for the PTR record update.</p>",
         "PublicIpStringList$member": null,
         "PublicIpv4Pool$PoolId": "<p>The ID of the address pool.</p>",
         "PublicIpv4Pool$Description": "<p>A description of the address pool.</p>",

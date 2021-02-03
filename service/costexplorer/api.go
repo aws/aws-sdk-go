@@ -6118,6 +6118,8 @@ type GetCostCategoriesInput struct {
 	// The maximum number of objects that to be returned for this request. If MaxResults
 	// is not specified with SortBy, the request will return 1000 results as the
 	// default value for this parameter.
+	//
+	// For GetCostCategories, MaxResults has an upper limit of 1000.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the number of objects that are still available for retrieval exceeds the
@@ -6326,8 +6328,54 @@ func (s *GetCostCategoriesOutput) SetTotalSize(v int64) *GetCostCategoriesOutput
 type GetCostForecastInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters that you want to use to filter your forecast. Cost Explorer API
-	// supports all of the Cost Explorer filters.
+	// The filters that you want to use to filter your forecast. The GetCostForecast
+	// API supports filtering by the following dimensions:
+	//
+	//    * AZ
+	//
+	//    * INSTANCE_TYPE
+	//
+	//    * LINKED_ACCOUNT
+	//
+	//    * LINKED_ACCOUNT_NAME
+	//
+	//    * OPERATION
+	//
+	//    * PURCHASE_TYPE
+	//
+	//    * REGION
+	//
+	//    * SERVICE
+	//
+	//    * USAGE_TYPE
+	//
+	//    * USAGE_TYPE_GROUP
+	//
+	//    * RECORD_TYPE
+	//
+	//    * OPERATING_SYSTEM
+	//
+	//    * TENANCY
+	//
+	//    * SCOPE
+	//
+	//    * PLATFORM
+	//
+	//    * SUBSCRIPTION_ID
+	//
+	//    * LEGAL_ENTITY_NAME
+	//
+	//    * DEPLOYMENT_OPTION
+	//
+	//    * DATABASE_ENGINE
+	//
+	//    * INSTANCE_TYPE_FAMILY
+	//
+	//    * BILLING_ENTITY
+	//
+	//    * RESERVATION_ID
+	//
+	//    * SAVINGS_PLAN_ARN
 	Filter *Expression `type:"structure"`
 
 	// How granular you want the forecast to be. You can get 3 months of DAILY forecasts
@@ -6625,6 +6673,8 @@ type GetDimensionValuesInput struct {
 	// number of objects that to be returned for this request. If MaxResults is
 	// not specified with SortBy, the request will return 1000 results as the default
 	// value for this parameter.
+	//
+	// For GetDimensionValues, MaxResults has an upper limit of 1000.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token to retrieve the next set of results. AWS provides the token when
@@ -8565,6 +8615,8 @@ type GetTagsInput struct {
 	// number of objects that to be returned for this request. If MaxResults is
 	// not specified with SortBy, the request will return 1000 results as the default
 	// value for this parameter.
+	//
+	// For GetTags, MaxResults has an upper limit of 1000.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token to retrieve the next set of results. AWS provides the token when
@@ -8759,8 +8811,54 @@ func (s *GetTagsOutput) SetTotalSize(v int64) *GetTagsOutput {
 type GetUsageForecastInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters that you want to use to filter your forecast. Cost Explorer API
-	// supports all of the Cost Explorer filters.
+	// The filters that you want to use to filter your forecast. The GetUsageForecast
+	// API supports filtering by the following dimensions:
+	//
+	//    * AZ
+	//
+	//    * INSTANCE_TYPE
+	//
+	//    * LINKED_ACCOUNT
+	//
+	//    * LINKED_ACCOUNT_NAME
+	//
+	//    * OPERATION
+	//
+	//    * PURCHASE_TYPE
+	//
+	//    * REGION
+	//
+	//    * SERVICE
+	//
+	//    * USAGE_TYPE
+	//
+	//    * USAGE_TYPE_GROUP
+	//
+	//    * RECORD_TYPE
+	//
+	//    * OPERATING_SYSTEM
+	//
+	//    * TENANCY
+	//
+	//    * SCOPE
+	//
+	//    * PLATFORM
+	//
+	//    * SUBSCRIPTION_ID
+	//
+	//    * LEGAL_ENTITY_NAME
+	//
+	//    * DEPLOYMENT_OPTION
+	//
+	//    * DATABASE_ENGINE
+	//
+	//    * INSTANCE_TYPE_FAMILY
+	//
+	//    * BILLING_ENTITY
+	//
+	//    * RESERVATION_ID
+	//
+	//    * SAVINGS_PLAN_ARN
 	Filter *Expression `type:"structure"`
 
 	// How granular you want the forecast to be. You can get 3 months of DAILY forecasts
