@@ -18,7 +18,7 @@
     "DescribeActionTargets": "<p>Returns a list of the custom action targets in Security Hub in your account.</p>",
     "DescribeHub": "<p>Returns details about the Hub resource in your account, including the <code>HubArn</code> and the time when you enabled Security Hub.</p>",
     "DescribeOrganizationConfiguration": "<p>Returns information about the Organizations configuration for Security Hub. Can only be called from a Security Hub administrator account.</p>",
-    "DescribeProducts": "<p>Returns information about the available products that you can subscribe to and integrate with Security Hub in order to consolidate findings.</p>",
+    "DescribeProducts": "<p>Returns information about product integrations in Security Hub.</p> <p>You can optionally provide an integration ARN. If you provide an integration ARN, then the results only include that integration.</p> <p>If you do not provide an integration ARN, then the results include all of the available product integrations. </p>",
     "DescribeStandards": "<p>Returns a list of the available standards in Security Hub.</p> <p>For each standard, the results include the standard ARN, the name, and a description. </p>",
     "DescribeStandardsControls": "<p>Returns a list of security standards controls.</p> <p>For each control, the results include information about whether it is currently enabled, the severity, and a link to remediation information.</p>",
     "DisableImportFindingsForProduct": "<p>Disables the integration of the specified product with Security Hub. After the integration is disabled, findings from that product are no longer sent to Security Hub.</p>",
@@ -100,9 +100,9 @@
       }
     },
     "Action": {
-      "base": "<p>Provides details about one of the following actions that were detected for the finding:</p> <ul> <li> <p>A remote IP address issued an AWS API call</p> </li> <li> <p>A DNS request was received</p> </li> <li> <p>A remote IP address attempted to connect to an EC2 instance</p> </li> <li> <p>A remote IP address attempted a port probe on an EC2 instance</p> </li> </ul>",
+      "base": "<p>Provides details about one of the following actions that affects or that was taken on a resource:</p> <ul> <li> <p>A remote IP address issued an AWS API call</p> </li> <li> <p>A DNS request was received</p> </li> <li> <p>A remote IP address attempted to connect to an EC2 instance</p> </li> <li> <p>A remote IP address attempted a port probe on an EC2 instance</p> </li> </ul>",
       "refs": {
-        "AwsSecurityFinding$Action": "<p>Provides details about an action that was detected for the finding.</p>"
+        "AwsSecurityFinding$Action": "<p>Provides details about an action that affects or that was taken on a resource.</p>"
       }
     },
     "ActionLocalIpDetails": {
@@ -3219,6 +3219,7 @@
         "DescribeHubRequest$HubArn": "<p>The ARN of the Hub resource to retrieve.</p>",
         "DescribeHubResponse$HubArn": "<p>The ARN of the Hub resource that was retrieved.</p>",
         "DescribeHubResponse$SubscribedAt": "<p>The date and time when Security Hub was enabled in the account.</p>",
+        "DescribeProductsRequest$ProductArn": "<p>The ARN of the integration to return.</p>",
         "DescribeStandardsControlsRequest$StandardsSubscriptionArn": "<p>The ARN of a resource that represents your subscription to a supported standard. To get the subscription ARNs of the standards you have enabled, use the <code> <a>GetEnabledStandards</a> </code> operation.</p>",
         "DisableImportFindingsForProductRequest$ProductSubscriptionArn": "<p>The ARN of the integrated product to disable the integration for.</p>",
         "DisableOrganizationAdminAccountRequest$AdminAccountId": "<p>The AWS account identifier of the Security Hub administrator account.</p>",

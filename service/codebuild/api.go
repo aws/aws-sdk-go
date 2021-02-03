@@ -1650,6 +1650,8 @@ func (c *CodeBuild) GetReportGroupTrendRequest(input *GetReportGroupTrendInput) 
 
 // GetReportGroupTrend API operation for AWS CodeBuild.
 //
+// Analyzes and accumulates test report values for the specified test reports.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2402,8 +2404,8 @@ func (c *CodeBuild) ListBuildsForProjectRequest(input *ListBuildsForProjectInput
 
 // ListBuildsForProject API operation for AWS CodeBuild.
 //
-// Gets a list of build IDs for the specified build project, with each build
-// ID representing a single build.
+// Gets a list of build identifiers for the specified build project, with each
+// build identifier representing a single build.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7958,11 +7960,59 @@ func (s *ExportedEnvironmentVariable) SetValue(v string) *ExportedEnvironmentVar
 type GetReportGroupTrendInput struct {
 	_ struct{} `type:"structure"`
 
+	// The number of reports to analyze. This operation always retrieves the most
+	// recent reports.
+	//
+	// If this parameter is omitted, the most recent 100 reports are analyzed.
 	NumOfReports *int64 `locationName:"numOfReports" min:"1" type:"integer"`
 
+	// The ARN of the report group that contains the reports to analyze.
+	//
 	// ReportGroupArn is a required field
 	ReportGroupArn *string `locationName:"reportGroupArn" min:"1" type:"string" required:"true"`
 
+	// The test report value to accumulate. This must be one of the following values:
+	//
+	// Test reports:
+	//
+	// DURATION
+	//
+	// Accumulate the test run times for the specified reports.
+	//
+	// PASS_RATE
+	//
+	// Accumulate the percentage of tests that passed for the specified test reports.
+	//
+	// TOTAL
+	//
+	// Accumulate the total number of tests for the specified test reports.
+	//
+	// Code coverage reports:
+	//
+	// BRANCH_COVERAGE
+	//
+	// Accumulate the branch coverage percentages for the specified test reports.
+	//
+	// BRANCHES_COVERED
+	//
+	// Accumulate the branches covered values for the specified test reports.
+	//
+	// BRANCHES_MISSED
+	//
+	// Accumulate the branches missed values for the specified test reports.
+	//
+	// LINE_COVERAGE
+	//
+	// Accumulate the line coverage percentages for the specified test reports.
+	//
+	// LINES_COVERED
+	//
+	// Accumulate the lines covered values for the specified test reports.
+	//
+	// LINES_MISSED
+	//
+	// Accumulate the lines not covered values for the specified test reports.
+	//
 	// TrendField is a required field
 	TrendField *string `locationName:"trendField" type:"string" required:"true" enum:"ReportGroupTrendFieldType"`
 }
@@ -8020,8 +8070,10 @@ func (s *GetReportGroupTrendInput) SetTrendField(v string) *GetReportGroupTrendI
 type GetReportGroupTrendOutput struct {
 	_ struct{} `type:"structure"`
 
+	// An array that contains the raw data for each report.
 	RawData []*ReportWithRawData `locationName:"rawData" type:"list"`
 
+	// Contains the accumulated trend data.
 	Stats *ReportGroupTrendStats `locationName:"stats" type:"structure"`
 }
 
@@ -8616,11 +8668,17 @@ type ListBuildsForProjectInput struct {
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"1" type:"string" required:"true"`
 
-	// The order to list build IDs. Valid values include:
+	// The order to list results in. The results are sorted by build number, not
+	// the build identifier.
+	//
+	// Valid values include:
 	//
 	//    * ASCENDING: List the build IDs in ascending order by build ID.
 	//
 	//    * DESCENDING: List the build IDs in descending order by build ID.
+	//
+	// If the project has more than 100 builds, setting the sort order will result
+	// in an error.
 	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrderType"`
 }
 
@@ -10907,6 +10965,12 @@ type ProjectSource struct {
 	// GitHub Enterprise, or Bitbucket. If this is set and you use a different source
 	// provider, an invalidInputException is thrown.
 	//
+	// To be able to report the build status to the source provider, the user associated
+	// with the source provider must have write access to the repo. If the user
+	// does not have write access, the build status cannot be updated. For more
+	// information, see Source provider access (https://docs.aws.amazon.com/codebuild/latest/userguide/access-tokens.html)
+	// in the AWS CodeBuild User Guide.
+	//
 	// The status of a build triggered by a webhook is always reported to your source
 	// provider.
 	ReportBuildStatus *bool `locationName:"reportBuildStatus" type:"boolean"`
@@ -11483,7 +11547,7 @@ func (s *ReportFilter) SetStatus(v string) *ReportFilter {
 type ReportGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of a ReportGroup.
+	// The ARN of the ReportGroup.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The date and time this ReportGroup was created.
@@ -11496,9 +11560,20 @@ type ReportGroup struct {
 	// The date and time this ReportGroup was last modified.
 	LastModified *time.Time `locationName:"lastModified" type:"timestamp"`
 
-	// The name of a ReportGroup.
+	// The name of the ReportGroup.
 	Name *string `locationName:"name" min:"2" type:"string"`
 
+	// The status of the report group. This property is read-only.
+	//
+	// This can be one of the following values:
+	//
+	// ACTIVE
+	//
+	// The report group is active.
+	//
+	// DELETING
+	//
+	// The report group is in the process of being deleted.
 	Status *string `locationName:"status" type:"string" enum:"ReportGroupStatusType"`
 
 	// A list of tag key and value pairs associated with this report group.
@@ -11507,7 +11582,15 @@ type ReportGroup struct {
 	// report group tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The type of the ReportGroup. The one valid value is TEST.
+	// The type of the ReportGroup. This can be one of the following values:
+	//
+	// CODE_COVERAGE
+	//
+	// The report group contains code coverage reports.
+	//
+	// TEST
+	//
+	// The report group contains test reports.
 	Type *string `locationName:"type" type:"string" enum:"ReportType"`
 }
 
@@ -11569,13 +11652,18 @@ func (s *ReportGroup) SetType(v string) *ReportGroup {
 	return s
 }
 
+// Contains trend statistics for a set of reports. The actual values depend
+// on the type of trend being collected. For more information, see .
 type ReportGroupTrendStats struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the average of all values analyzed.
 	Average *string `locationName:"average" type:"string"`
 
+	// Contains the maximum value analyzed.
 	Max *string `locationName:"max" type:"string"`
 
+	// Contains the minimum value analyzed.
 	Min *string `locationName:"min" type:"string"`
 }
 
@@ -11607,11 +11695,14 @@ func (s *ReportGroupTrendStats) SetMin(v string) *ReportGroupTrendStats {
 	return s
 }
 
+// Contains the unmodified data for the report. For more information, see .
 type ReportWithRawData struct {
 	_ struct{} `type:"structure"`
 
+	// The value of the requested data field from the report.
 	Data *string `locationName:"data" type:"string"`
 
+	// The ARN of the report.
 	ReportArn *string `locationName:"reportArn" min:"1" type:"string"`
 }
 
@@ -12830,6 +12921,12 @@ type StartBuildInput struct {
 	// Set to true to report to your source provider the status of a build's start
 	// and completion. If you use this option with a source provider other than
 	// GitHub, GitHub Enterprise, or Bitbucket, an invalidInputException is thrown.
+	//
+	// To be able to report the build status to the source provider, the user associated
+	// with the source provider must have write access to the repo. If the user
+	// does not have write access, the build status cannot be updated. For more
+	// information, see Source provider access (https://docs.aws.amazon.com/codebuild/latest/userguide/access-tokens.html)
+	// in the AWS CodeBuild User Guide.
 	//
 	// The status of a build triggered by a webhook is always reported to your source
 	// provider.

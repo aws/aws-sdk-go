@@ -7369,7 +7369,7 @@ type CreateEventSourceMappingInput struct {
 
 	// An array of the authentication protocol, or the VPC components to secure
 	// your event source.
-	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
+	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
 	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
@@ -7382,8 +7382,8 @@ type CreateEventSourceMappingInput struct {
 	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
 
-	// (Streams) The duration of a processing window in seconds. The range is between
-	// 1 second up to 15 minutes.
+	// (Streams) The duration in seconds of a processing window. The range is between
+	// 1 second up to 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 }
 
@@ -7423,9 +7423,6 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	}
 	if s.Queues != nil && len(s.Queues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
-	}
-	if s.SourceAccessConfigurations != nil && len(s.SourceAccessConfigurations) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SourceAccessConfigurations", 1))
 	}
 	if s.Topics != nil && len(s.Topics) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Topics", 1))
@@ -7609,7 +7606,8 @@ type CreateFunctionInput struct {
 	// Programming Model (https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html).
 	Handler *string `type:"string"`
 
-	// Configuration values that override the container image Dockerfile.
+	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html)
+	// that override the values in the container image Dockerfile.
 	ImageConfig *ImageConfig `type:"structure"`
 
 	// The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt
@@ -9137,7 +9135,7 @@ type EventSourceMappingConfiguration struct {
 
 	// An array of the authentication protocol, or the VPC components to secure
 	// your event source.
-	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
+	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
 	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
@@ -9158,8 +9156,8 @@ type EventSourceMappingConfiguration struct {
 	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
 
-	// (Streams) The duration of a processing window in seconds. The range is between
-	// 1 second up to 15 minutes.
+	// (Streams) The duration in seconds of a processing window. The range is between
+	// 1 second up to 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
@@ -11175,7 +11173,7 @@ func (s *GetProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *GetPr
 }
 
 // Configuration values that override the container image Dockerfile settings.
-// See Container settings (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html).
+// See Container settings (https://docs.aws.amazon.com/lambda/latest/dg/images-create.html#images-parms).
 type ImageConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -15298,16 +15296,16 @@ type SourceAccessConfiguration struct {
 	//    credentials.
 	//
 	//    * VPC_SUBNET - The subnets associated with your VPC. Lambda connects to
-	//    these subnets to fetch data from your Kafka cluster.
+	//    these subnets to fetch data from your Self-Managed Apache Kafka cluster.
 	//
 	//    * VPC_SECURITY_GROUP - The VPC security group used to manage access to
-	//    your Kafka brokers.
+	//    your Self-Managed Apache Kafka brokers.
 	//
-	//    * SASL_SCRAM_256_AUTH - The ARN of your secret key used for SASL SCRAM-256
-	//    authentication of your Kafka brokers.
+	//    * SASL_SCRAM_256_AUTH - The Secrets Manager ARN of your secret key used
+	//    for SASL SCRAM-256 authentication of your Self-Managed Apache Kafka brokers.
 	//
-	//    * SASL_SCRAM_512_AUTH - The ARN of your secret key used for SASL SCRAM-512
-	//    authentication of your Kafka brokers.
+	//    * SASL_SCRAM_512_AUTH - The Secrets Manager ARN of your secret key used
+	//    for SASL SCRAM-512 authentication of your Self-Managed Apache Kafka brokers.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
 	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
@@ -15991,10 +15989,10 @@ type UpdateEventSourceMappingInput struct {
 
 	// An array of the authentication protocol, or the VPC components to secure
 	// your event source.
-	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
+	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
-	// (Streams) The duration of a processing window in seconds. The range is between
-	// 1 second up to 15 minutes.
+	// (Streams) The duration in seconds of a processing window. The range is between
+	// 1 second up to 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
@@ -16033,9 +16031,6 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	}
 	if s.ParallelizationFactor != nil && *s.ParallelizationFactor < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ParallelizationFactor", 1))
-	}
-	if s.SourceAccessConfigurations != nil && len(s.SourceAccessConfigurations) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SourceAccessConfigurations", 1))
 	}
 	if s.UUID == nil {
 		invalidParams.Add(request.NewErrParamRequired("UUID"))
@@ -16318,7 +16313,8 @@ type UpdateFunctionConfigurationInput struct {
 	// Programming Model (https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html).
 	Handler *string `type:"string"`
 
-	// Configuration values that override the container image Dockerfile.
+	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html)
+	// that override the values in the container image Dockerfile.
 	ImageConfig *ImageConfig `type:"structure"`
 
 	// The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt
@@ -16981,6 +16977,9 @@ const (
 	// RuntimeNodejs12X is a Runtime enum value
 	RuntimeNodejs12X = "nodejs12.x"
 
+	// RuntimeNodejs14X is a Runtime enum value
+	RuntimeNodejs14X = "nodejs14.x"
+
 	// RuntimeJava8 is a Runtime enum value
 	RuntimeJava8 = "java8"
 
@@ -17042,6 +17041,7 @@ func Runtime_Values() []string {
 		RuntimeNodejs810,
 		RuntimeNodejs10X,
 		RuntimeNodejs12X,
+		RuntimeNodejs14X,
 		RuntimeJava8,
 		RuntimeJava8Al2,
 		RuntimeJava11,

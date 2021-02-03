@@ -16,6 +16,7 @@
     "DeleteSchedule": "<p>Deletes the specified DataBrew schedule.</p>",
     "DescribeDataset": "<p>Returns the definition of a specific DataBrew dataset.</p>",
     "DescribeJob": "<p>Returns the definition of a specific DataBrew job.</p>",
+    "DescribeJobRun": "<p>Represents one run of a DataBrew job.</p>",
     "DescribeProject": "<p>Returns the definition of a specific DataBrew project.</p>",
     "DescribeRecipe": "<p>Returns the definition of a specific DataBrew recipe corresponding to a particular version.</p>",
     "DescribeSchedule": "<p>Returns the definition of a specific DataBrew schedule.</p>",
@@ -99,6 +100,7 @@
     "Attempt": {
       "base": null,
       "refs": {
+        "DescribeJobRunResponse$Attempt": "<p>The number of times that DataBrew has attempted to run the job.</p>",
         "JobRun$Attempt": "<p>The number of times that DataBrew has attempted to run the job.</p>"
       }
     },
@@ -276,7 +278,7 @@
       }
     },
     "CsvOutputOptions": {
-      "base": "<p>Options that define how DataBrew will write a Csv file a.</p>",
+      "base": "<p>Options that define how DataBrew will write a Csv file.</p>",
       "refs": {
         "OutputFormatOptions$Csv": "<p>Options that define how DataBrew writes Csv output.</p>"
       }
@@ -319,6 +321,7 @@
         "DescribeDatasetRequest$Name": "<p>The name of the dataset to be described.</p>",
         "DescribeDatasetResponse$Name": "<p>The name of the dataset.</p>",
         "DescribeJobResponse$DatasetName": "<p>The dataset that the job acts upon.</p>",
+        "DescribeJobRunResponse$DatasetName": "<p>The name of the dataset for the job to process.</p>",
         "DescribeProjectResponse$DatasetName": "<p>The dataset associated with the project.</p>",
         "Job$DatasetName": "<p>A dataset that the job is to process.</p>",
         "JobRun$DatasetName": "<p>The name of the dataset for the job to process.</p>",
@@ -337,6 +340,8 @@
         "DescribeDatasetResponse$LastModifiedDate": "<p>The date and time that the dataset was last modified.</p>",
         "DescribeJobResponse$CreateDate": "<p>The date and time that the job was created.</p>",
         "DescribeJobResponse$LastModifiedDate": "<p>The date and time that the job was last modified.</p>",
+        "DescribeJobRunResponse$CompletedOn": "<p>The date and time when the job completed processing.</p>",
+        "DescribeJobRunResponse$StartedOn": "<p>The date and time when the job run began.</p>",
         "DescribeProjectResponse$CreateDate": "<p>The date and time that the project was created.</p>",
         "DescribeProjectResponse$LastModifiedDate": "<p>The date and time that the project was last modified.</p>",
         "DescribeProjectResponse$OpenDate": "<p>The date and time when the project was opened. </p>",
@@ -437,6 +442,16 @@
       "refs": {
       }
     },
+    "DescribeJobRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeJobRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeProjectRequest": {
       "base": null,
       "refs": {
@@ -504,6 +519,7 @@
     "ExecutionTime": {
       "base": null,
       "refs": {
+        "DescribeJobRunResponse$ExecutionTime": "<p>The amount of time, in seconds, during which a job run consumed resources.</p>",
         "JobRun$ExecutionTime": "<p>The amount of time, in seconds, during which a job run consumed resources.</p>"
       }
     },
@@ -559,6 +575,8 @@
         "DeleteJobResponse$Name": "<p>The name of the job that you deleted.</p>",
         "DescribeJobRequest$Name": "<p>The name of the job to be described.</p>",
         "DescribeJobResponse$Name": "<p>The name of the job.</p>",
+        "DescribeJobRunRequest$Name": "<p>The name of the job being processed during this run.</p>",
+        "DescribeJobRunResponse$JobName": "<p>The name of the job being processed during this run.</p>",
         "Job$Name": "<p>The unique name of the job.</p>",
         "JobNameList$member": null,
         "JobRun$JobName": "<p>The name of the job being processed during this run.</p>",
@@ -590,12 +608,15 @@
     "JobRunErrorMessage": {
       "base": null,
       "refs": {
+        "DescribeJobRunResponse$ErrorMessage": "<p>A message indicating an error (if any) that was encountered when the job ran.</p>",
         "JobRun$ErrorMessage": "<p>A message indicating an error (if any) that was encountered when the job ran.</p>"
       }
     },
     "JobRunId": {
       "base": null,
       "refs": {
+        "DescribeJobRunRequest$RunId": "<p>The unique identifier of the job run.</p>",
+        "DescribeJobRunResponse$RunId": "<p>The unique identifier of the job run.</p>",
         "JobRun$RunId": "<p>The unique identifier of the job run.</p>",
         "StartJobRunResponse$RunId": "<p>A system-generated identifier for this particular job run.</p>",
         "StopJobRunRequest$RunId": "<p>The ID of the job run to be stopped.</p>",
@@ -611,6 +632,7 @@
     "JobRunState": {
       "base": null,
       "refs": {
+        "DescribeJobRunResponse$State": "<p>The current state of the job run entity itself.</p>",
         "JobRun$State": "<p>The current state of the job run entity itself.</p>"
       }
     },
@@ -731,6 +753,7 @@
     "LogGroupName": {
       "base": null,
       "refs": {
+        "DescribeJobRunResponse$LogGroupName": "<p>The name of an Amazon CloudWatch log group, where the job writes diagnostic messages when it runs.</p>",
         "JobRun$LogGroupName": "<p>The name of an Amazon CloudWatch log group, where the job writes diagnostic messages when it runs.</p>"
       }
     },
@@ -740,6 +763,7 @@
         "CreateProfileJobRequest$LogSubscription": "<p>Enables or disables Amazon CloudWatch logging for the job. If logging is enabled, CloudWatch writes one log stream for each job run.</p>",
         "CreateRecipeJobRequest$LogSubscription": "<p>Enables or disables Amazon CloudWatch logging for the job. If logging is enabled, CloudWatch writes one log stream for each job run.</p>",
         "DescribeJobResponse$LogSubscription": "<p>Indicates whether Amazon CloudWatch logging is enabled for this job.</p>",
+        "DescribeJobRunResponse$LogSubscription": "<p>The current status of Amazon CloudWatch logging for the job run.</p>",
         "Job$LogSubscription": "<p>The current status of Amazon CloudWatch logging for the job.</p>",
         "JobRun$LogSubscription": "<p>The current status of Amazon CloudWatch logging for the job run.</p>",
         "UpdateProfileJobRequest$LogSubscription": "<p>Enables or disables Amazon CloudWatch logging for the job. If logging is enabled, CloudWatch writes one log stream for each job run.</p>",
@@ -852,6 +876,7 @@
       "refs": {
         "CreateRecipeJobRequest$Outputs": "<p>One or more artifacts that represent the output from running the job.</p>",
         "DescribeJobResponse$Outputs": "<p>One or more artifacts that represent the output from running the job.</p>",
+        "DescribeJobRunResponse$Outputs": "<p>One or more output artifacts from a job run.</p>",
         "Job$Outputs": "<p>One or more artifacts that represent output from running the job.</p>",
         "JobRun$Outputs": "<p>One or more output artifacts from a job run.</p>",
         "UpdateRecipeJobRequest$Outputs": "<p>One or more artifacts that represent the output from running the job. </p>"
@@ -1009,6 +1034,7 @@
       "refs": {
         "CreateRecipeJobRequest$RecipeReference": null,
         "DescribeJobResponse$RecipeReference": null,
+        "DescribeJobRunResponse$RecipeReference": null,
         "Job$RecipeReference": "<p>A set of steps that the job runs.</p>",
         "JobRun$RecipeReference": "<p>The set of steps processed by the job.</p>"
       }
@@ -1204,6 +1230,7 @@
     "StartedBy": {
       "base": null,
       "refs": {
+        "DescribeJobRunResponse$StartedBy": "<p>The Amazon Resource Name (ARN) of the user who initiated the job run.</p>",
         "JobRun$StartedBy": "<p>The Amazon Resource Name (ARN) of the user who initiated the job run. </p>"
       }
     },

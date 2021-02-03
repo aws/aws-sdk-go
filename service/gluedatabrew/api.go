@@ -1241,6 +1241,88 @@ func (c *GlueDataBrew) DescribeJobWithContext(ctx aws.Context, input *DescribeJo
 	return out, req.Send()
 }
 
+const opDescribeJobRun = "DescribeJobRun"
+
+// DescribeJobRunRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeJobRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeJobRun for more information on using the DescribeJobRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeJobRunRequest method.
+//    req, resp := client.DescribeJobRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/DescribeJobRun
+func (c *GlueDataBrew) DescribeJobRunRequest(input *DescribeJobRunInput) (req *request.Request, output *DescribeJobRunOutput) {
+	op := &request.Operation{
+		Name:       opDescribeJobRun,
+		HTTPMethod: "GET",
+		HTTPPath:   "/jobs/{name}/jobRun/{runId}",
+	}
+
+	if input == nil {
+		input = &DescribeJobRunInput{}
+	}
+
+	output = &DescribeJobRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeJobRun API operation for AWS Glue DataBrew.
+//
+// Represents one run of a DataBrew job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue DataBrew's
+// API operation DescribeJobRun for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ValidationException
+//   The input parameters for this request failed validation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/DescribeJobRun
+func (c *GlueDataBrew) DescribeJobRun(input *DescribeJobRunInput) (*DescribeJobRunOutput, error) {
+	req, out := c.DescribeJobRunRequest(input)
+	return out, req.Send()
+}
+
+// DescribeJobRunWithContext is the same as DescribeJobRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeJobRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) DescribeJobRunWithContext(ctx aws.Context, input *DescribeJobRunInput, opts ...request.Option) (*DescribeJobRunOutput, error) {
+	req, out := c.DescribeJobRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeProject = "DescribeProject"
 
 // DescribeProjectRequest generates a "aws/request.Request" representing the
@@ -4871,7 +4953,7 @@ func (s *CsvOptions) SetDelimiter(v string) *CsvOptions {
 	return s
 }
 
-// Options that define how DataBrew will write a Csv file a.
+// Options that define how DataBrew will write a Csv file.
 type CsvOutputOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -5865,6 +5947,208 @@ func (s *DescribeJobOutput) SetTimeout(v int64) *DescribeJobOutput {
 // SetType sets the Type field's value.
 func (s *DescribeJobOutput) SetType(v string) *DescribeJobOutput {
 	s.Type = &v
+	return s
+}
+
+type DescribeJobRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job being processed during this run.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the job run.
+	//
+	// RunId is a required field
+	RunId *string `location:"uri" locationName:"runId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeJobRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeJobRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeJobRunInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeJobRunInput) SetName(v string) *DescribeJobRunInput {
+	s.Name = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *DescribeJobRunInput) SetRunId(v string) *DescribeJobRunInput {
+	s.RunId = &v
+	return s
+}
+
+type DescribeJobRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of times that DataBrew has attempted to run the job.
+	Attempt *int64 `type:"integer"`
+
+	// The date and time when the job completed processing.
+	CompletedOn *time.Time `type:"timestamp"`
+
+	// The name of the dataset for the job to process.
+	DatasetName *string `min:"1" type:"string"`
+
+	// A message indicating an error (if any) that was encountered when the job
+	// ran.
+	ErrorMessage *string `type:"string"`
+
+	// The amount of time, in seconds, during which a job run consumed resources.
+	ExecutionTime *int64 `type:"integer"`
+
+	// The name of the job being processed during this run.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The name of an Amazon CloudWatch log group, where the job writes diagnostic
+	// messages when it runs.
+	LogGroupName *string `min:"1" type:"string"`
+
+	// The current status of Amazon CloudWatch logging for the job run.
+	LogSubscription *string `type:"string" enum:"LogSubscription"`
+
+	// One or more output artifacts from a job run.
+	Outputs []*Output `min:"1" type:"list"`
+
+	// Represents the name and version of a DataBrew recipe.
+	RecipeReference *RecipeReference `type:"structure"`
+
+	// The unique identifier of the job run.
+	RunId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the user who initiated the job run.
+	StartedBy *string `type:"string"`
+
+	// The date and time when the job run began.
+	StartedOn *time.Time `type:"timestamp"`
+
+	// The current state of the job run entity itself.
+	State *string `type:"string" enum:"JobRunState"`
+}
+
+// String returns the string representation
+func (s DescribeJobRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttempt sets the Attempt field's value.
+func (s *DescribeJobRunOutput) SetAttempt(v int64) *DescribeJobRunOutput {
+	s.Attempt = &v
+	return s
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *DescribeJobRunOutput) SetCompletedOn(v time.Time) *DescribeJobRunOutput {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetDatasetName sets the DatasetName field's value.
+func (s *DescribeJobRunOutput) SetDatasetName(v string) *DescribeJobRunOutput {
+	s.DatasetName = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *DescribeJobRunOutput) SetErrorMessage(v string) *DescribeJobRunOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetExecutionTime sets the ExecutionTime field's value.
+func (s *DescribeJobRunOutput) SetExecutionTime(v int64) *DescribeJobRunOutput {
+	s.ExecutionTime = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DescribeJobRunOutput) SetJobName(v string) *DescribeJobRunOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *DescribeJobRunOutput) SetLogGroupName(v string) *DescribeJobRunOutput {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLogSubscription sets the LogSubscription field's value.
+func (s *DescribeJobRunOutput) SetLogSubscription(v string) *DescribeJobRunOutput {
+	s.LogSubscription = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *DescribeJobRunOutput) SetOutputs(v []*Output) *DescribeJobRunOutput {
+	s.Outputs = v
+	return s
+}
+
+// SetRecipeReference sets the RecipeReference field's value.
+func (s *DescribeJobRunOutput) SetRecipeReference(v *RecipeReference) *DescribeJobRunOutput {
+	s.RecipeReference = v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *DescribeJobRunOutput) SetRunId(v string) *DescribeJobRunOutput {
+	s.RunId = &v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *DescribeJobRunOutput) SetStartedBy(v string) *DescribeJobRunOutput {
+	s.StartedBy = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *DescribeJobRunOutput) SetStartedOn(v time.Time) *DescribeJobRunOutput {
+	s.StartedOn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *DescribeJobRunOutput) SetState(v string) *DescribeJobRunOutput {
+	s.State = &v
 	return s
 }
 

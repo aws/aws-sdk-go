@@ -649,9 +649,9 @@
           "output": {
           }
         },
-        "description": "The following example displays details for the provisioned concurrency configuration for the BLUE alias of the specified function.",
-        "id": "to-view-a-provisioned-concurrency-configuration-1586490192690",
-        "title": "To view a provisioned concurrency configuration"
+        "description": "The following example returns details for the provisioned concurrency configuration for the BLUE alias of the specified function.",
+        "id": "to-get-a-provisioned-concurrency-configuration-1586490192690",
+        "title": "To get a provisioned concurrency configuration"
       },
       {
         "input": {
@@ -671,9 +671,9 @@
           "output": {
           }
         },
-        "description": "The following example returns details for the provisioned concurrency configuration for the BLUE alias of the specified function.",
-        "id": "to-get-a-provisioned-concurrency-configuration-1586490192690",
-        "title": "To get a provisioned concurrency configuration"
+        "description": "The following example displays details for the provisioned concurrency configuration for the BLUE alias of the specified function.",
+        "id": "to-view-a-provisioned-concurrency-configuration-1586490192690",
+        "title": "To view a provisioned concurrency configuration"
       }
     ],
     "Invoke": [

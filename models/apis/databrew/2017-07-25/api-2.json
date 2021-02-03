@@ -211,6 +211,19 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeJobRun":{
+      "name":"DescribeJobRun",
+      "http":{
+        "method":"GET",
+        "requestUri":"/jobs/{name}/jobRun/{runId}"
+      },
+      "input":{"shape":"DescribeJobRunRequest"},
+      "output":{"shape":"DescribeJobRunResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeProject":{
       "name":"DescribeProject",
       "http":{
@@ -1034,6 +1047,45 @@
         "RoleArn":{"shape":"Arn"},
         "Tags":{"shape":"TagMap"},
         "Timeout":{"shape":"Timeout"}
+      }
+    },
+    "DescribeJobRunRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "RunId"
+      ],
+      "members":{
+        "Name":{
+          "shape":"JobName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "RunId":{
+          "shape":"JobRunId",
+          "location":"uri",
+          "locationName":"runId"
+        }
+      }
+    },
+    "DescribeJobRunResponse":{
+      "type":"structure",
+      "required":["JobName"],
+      "members":{
+        "Attempt":{"shape":"Attempt"},
+        "CompletedOn":{"shape":"Date"},
+        "DatasetName":{"shape":"DatasetName"},
+        "ErrorMessage":{"shape":"JobRunErrorMessage"},
+        "ExecutionTime":{"shape":"ExecutionTime"},
+        "JobName":{"shape":"JobName"},
+        "RunId":{"shape":"JobRunId"},
+        "State":{"shape":"JobRunState"},
+        "LogSubscription":{"shape":"LogSubscription"},
+        "LogGroupName":{"shape":"LogGroupName"},
+        "Outputs":{"shape":"OutputList"},
+        "RecipeReference":{"shape":"RecipeReference"},
+        "StartedBy":{"shape":"StartedBy"},
+        "StartedOn":{"shape":"Date"}
       }
     },
     "DescribeProjectRequest":{

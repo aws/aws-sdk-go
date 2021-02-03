@@ -1449,6 +1449,15 @@
       "input":{"shape":"DescribeAddressesRequest"},
       "output":{"shape":"DescribeAddressesResult"}
     },
+    "DescribeAddressesAttribute":{
+      "name":"DescribeAddressesAttribute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAddressesAttributeRequest"},
+      "output":{"shape":"DescribeAddressesAttributeResult"}
+    },
     "DescribeAggregateIdFormat":{
       "name":"DescribeAggregateIdFormat",
       "http":{
@@ -3016,6 +3025,15 @@
       "input":{"shape":"ImportVolumeRequest"},
       "output":{"shape":"ImportVolumeResult"}
     },
+    "ModifyAddressAttribute":{
+      "name":"ModifyAddressAttribute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyAddressAttributeRequest"},
+      "output":{"shape":"ModifyAddressAttributeResult"}
+    },
     "ModifyAvailabilityZoneGroup":{
       "name":"ModifyAvailabilityZoneGroup",
       "http":{
@@ -3632,6 +3650,15 @@
       "input":{"shape":"RequestSpotInstancesRequest"},
       "output":{"shape":"RequestSpotInstancesResult"}
     },
+    "ResetAddressAttribute":{
+      "name":"ResetAddressAttribute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResetAddressAttributeRequest"},
+      "output":{"shape":"ResetAddressAttributeResult"}
+    },
     "ResetEbsDefaultKmsKeyId":{
       "name":"ResetEbsDefaultKmsKeyId",
       "http":{
@@ -4173,10 +4200,47 @@
         }
       }
     },
+    "AddressAttribute":{
+      "type":"structure",
+      "members":{
+        "PublicIp":{
+          "shape":"PublicIpAddress",
+          "locationName":"publicIp"
+        },
+        "AllocationId":{
+          "shape":"AllocationId",
+          "locationName":"allocationId"
+        },
+        "PtrRecord":{
+          "shape":"String",
+          "locationName":"ptrRecord"
+        },
+        "PtrRecordUpdate":{
+          "shape":"PtrUpdateStatus",
+          "locationName":"ptrRecordUpdate"
+        }
+      }
+    },
+    "AddressAttributeName":{
+      "type":"string",
+      "enum":["domain-name"]
+    },
     "AddressList":{
       "type":"list",
       "member":{
         "shape":"Address",
+        "locationName":"item"
+      }
+    },
+    "AddressMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "AddressSet":{
+      "type":"list",
+      "member":{
+        "shape":"AddressAttribute",
         "locationName":"item"
       }
     },
@@ -4309,6 +4373,13 @@
       "member":{
         "shape":"AllocationId",
         "locationName":"AllocationId"
+      }
+    },
+    "AllocationIds":{
+      "type":"list",
+      "member":{
+        "shape":"AllocationId",
+        "locationName":"item"
       }
     },
     "AllocationState":{
@@ -10328,6 +10399,32 @@
         "AccountAttributes":{
           "shape":"AccountAttributeList",
           "locationName":"accountAttributeSet"
+        }
+      }
+    },
+    "DescribeAddressesAttributeRequest":{
+      "type":"structure",
+      "members":{
+        "AllocationIds":{
+          "shape":"AllocationIds",
+          "locationName":"AllocationId"
+        },
+        "Attribute":{"shape":"AddressAttributeName"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"AddressMaxResults"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeAddressesAttributeResult":{
+      "type":"structure",
+      "members":{
+        "Addresses":{
+          "shape":"AddressSet",
+          "locationName":"addressSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
         }
       }
     },
@@ -21977,6 +22074,24 @@
     },
     "MemorySize":{"type":"long"},
     "MillisecondDateTime":{"type":"timestamp"},
+    "ModifyAddressAttributeRequest":{
+      "type":"structure",
+      "required":["AllocationId"],
+      "members":{
+        "AllocationId":{"shape":"AllocationId"},
+        "DomainName":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifyAddressAttributeResult":{
+      "type":"structure",
+      "members":{
+        "Address":{
+          "shape":"AddressAttribute",
+          "locationName":"address"
+        }
+      }
+    },
     "ModifyAvailabilityZoneGroupRequest":{
       "type":"structure",
       "required":[
@@ -25001,6 +25116,23 @@
         }
       }
     },
+    "PtrUpdateStatus":{
+      "type":"structure",
+      "members":{
+        "Value":{
+          "shape":"String",
+          "locationName":"value"
+        },
+        "Status":{
+          "shape":"String",
+          "locationName":"status"
+        },
+        "Reason":{
+          "shape":"String",
+          "locationName":"reason"
+        }
+      }
+    },
     "PublicIpAddress":{"type":"string"},
     "PublicIpStringList":{
       "type":"list",
@@ -26579,6 +26711,27 @@
       "member":{
         "shape":"ReservedInstancesId",
         "locationName":"item"
+      }
+    },
+    "ResetAddressAttributeRequest":{
+      "type":"structure",
+      "required":[
+        "AllocationId",
+        "Attribute"
+      ],
+      "members":{
+        "AllocationId":{"shape":"AllocationId"},
+        "Attribute":{"shape":"AddressAttributeName"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ResetAddressAttributeResult":{
+      "type":"structure",
+      "members":{
+        "Address":{
+          "shape":"AddressAttribute",
+          "locationName":"address"
+        }
       }
     },
     "ResetEbsDefaultKmsKeyIdRequest":{

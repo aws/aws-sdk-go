@@ -1660,7 +1660,7 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	// The IDs of the AWS accounts for which to export Auto Scaling group recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to export recommendations.
+	// to specify the member account for which you want to export recommendations.
 	//
 	// This parameter cannot be specified together with the include member accounts
 	// parameter. The parameters are mutually exclusive.
@@ -1845,7 +1845,7 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// The IDs of the AWS accounts for which to export instance recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to export recommendations.
+	// to specify the member account for which you want to export recommendations.
 	//
 	// This parameter cannot be specified together with the include member accounts
 	// parameter. The parameters are mutually exclusive.
@@ -2053,11 +2053,11 @@ func (s *Filter) SetValues(v []*string) *Filter {
 type GetAutoScalingGroupRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to return Auto Scaling group recommendations.
+	// The ID of the AWS account for which to return Auto Scaling group recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to return Auto Scaling
-	// group recommendations.
+	// to specify the member account for which you want to return Auto Scaling group
+	// recommendations.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
@@ -2171,10 +2171,10 @@ func (s *GetAutoScalingGroupRecommendationsOutput) SetNextToken(v string) *GetAu
 type GetEBSVolumeRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to return volume recommendations.
+	// The ID of the AWS account for which to return volume recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to return volume recommendations.
+	// to specify the member account for which you want to return volume recommendations.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
@@ -2286,10 +2286,10 @@ func (s *GetEBSVolumeRecommendationsOutput) SetVolumeRecommendations(v []*Volume
 type GetEC2InstanceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to return instance recommendations.
+	// The ID of the AWS account for which to return instance recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to return instance recommendations.
+	// to specify the member account for which you want to return instance recommendations.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
@@ -2578,10 +2578,10 @@ func (s *GetEnrollmentStatusOutput) SetStatusReason(v string) *GetEnrollmentStat
 type GetLambdaFunctionRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to return function recommendations.
+	// The ID of the AWS account for which to return function recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to return function recommendations.
+	// to specify the member account for which you want to return function recommendations.
 	//
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
@@ -2735,10 +2735,10 @@ func (s *GetRecommendationError) SetMessage(v string) *GetRecommendationError {
 type GetRecommendationSummariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to return recommendation summaries.
+	// The ID of the AWS account for which to return recommendation summaries.
 	//
 	// If your account is the management account of an organization, use this parameter
-	// to specify the member accounts for which you want to return recommendation
+	// to specify the member account for which you want to return recommendation
 	// summaries.
 	//
 	// Only one account ID can be specified per request.
@@ -3317,9 +3317,10 @@ type LambdaFunctionRecommendation struct {
 	//    in the AWS Compute Optimizer User Guide. This finding reason code is part
 	//    of the Unavailable finding classification.
 	//
-	//    * Inconclusive — The function does not qualify for a recommendation,
-	//    or there was an internal error. This finding reason code is part of the
-	//    Unavailable finding classification.
+	//    * Inconclusive — The function does not qualify for a recommendation
+	//    because Compute Optimizer cannot generate a recommendation with a high
+	//    degree of confidence. This finding reason code is part of the Unavailable
+	//    finding classification.
 	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the current function.

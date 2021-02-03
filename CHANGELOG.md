@@ -1,3 +1,22 @@
+Release v1.37.3 (2021-02-03)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API
+* `service/ce`: Updates service documentation
+* `service/codebuild`: Updates service documentation
+  * Documentation updates for codebuild
+* `service/compute-optimizer`: Updates service documentation
+* `service/databrew`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * EC2 Public IP now supports API for setting PTR records on Elastic IP address.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/lambda`: Updates service API, documentation, and examples
+  * Support for creating Lambda Functions using 'nodejs14.x'
+* `service/securityhub`: Updates service API and documentation
+* `service/workmail`: Updates service API
+  * Increased maximum length of ipRanges values for Access Control Rules from 10 to 1024.
+
 Release v1.37.2 (2021-02-02)
 ===
 

@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS CodeBuild</fullname> <p>AWS CodeBuild is a fully managed build service in the cloud. AWS CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. AWS CodeBuild eliminates the need to provision, manage, and scale your own build servers. It provides prepackaged build environments for the most popular programming languages and build tools, such as Apache Maven, Gradle, and more. You can also fully customize build environments in AWS CodeBuild to use your own build tools. AWS CodeBuild scales automatically to meet peak build requests. You pay only for the build time you consume. For more information about AWS CodeBuild, see the <i> <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html\">AWS CodeBuild User Guide</a>.</i> </p> <p>AWS CodeBuild supports these operations:</p> <ul> <li> <p> <code>BatchDeleteBuilds</code>: Deletes one or more builds.</p> </li> <li> <p> <code>BatchGetBuilds</code>: Gets information about one or more builds.</p> </li> <li> <p> <code>BatchGetProjects</code>: Gets information about one or more build projects. A <i>build project</i> defines how AWS CodeBuild runs a build. This includes information such as where to get the source code to build, the build environment to use, the build commands to run, and where to store the build output. A <i>build environment</i> is a representation of operating system, programming language runtime, and tools that AWS CodeBuild uses to run a build. You can add tags to build projects to help manage your resources and costs.</p> </li> <li> <p> <code>BatchGetReportGroups</code>: Returns an array of report groups. </p> </li> <li> <p> <code>BatchGetReports</code>: Returns an array of reports. </p> </li> <li> <p> <code>CreateProject</code>: Creates a build project.</p> </li> <li> <p> <code>CreateReportGroup</code>: Creates a report group. A report group contains a collection of reports. </p> </li> <li> <p> <code>CreateWebhook</code>: For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, enables AWS CodeBuild to start rebuilding the source code every time a code change is pushed to the repository.</p> </li> <li> <p> <code>DeleteProject</code>: Deletes a build project.</p> </li> <li> <p> <code>DeleteReport</code>: Deletes a report. </p> </li> <li> <p> <code>DeleteReportGroup</code>: Deletes a report group. </p> </li> <li> <p> <code>DeleteResourcePolicy</code>: Deletes a resource policy that is identified by its resource ARN. </p> </li> <li> <p> <code>DeleteSourceCredentials</code>: Deletes a set of GitHub, GitHub Enterprise, or Bitbucket source credentials.</p> </li> <li> <p> <code>DeleteWebhook</code>: For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, stops AWS CodeBuild from rebuilding the source code every time a code change is pushed to the repository.</p> </li> <li> <p> <code>DescribeTestCases</code>: Returns a list of details about test cases for a report. </p> </li> <li> <p> <code>GetResourcePolicy</code>: Gets a resource policy that is identified by its resource ARN. </p> </li> <li> <p> <code>ImportSourceCredentials</code>: Imports the source repository credentials for an AWS CodeBuild project that has its source code stored in a GitHub, GitHub Enterprise, or Bitbucket repository.</p> </li> <li> <p> <code>InvalidateProjectCache</code>: Resets the cache for a project.</p> </li> <li> <p> <code>ListBuilds</code>: Gets a list of build IDs, with each build ID representing a single build.</p> </li> <li> <p> <code>ListBuildsForProject</code>: Gets a list of build IDs for the specified build project, with each build ID representing a single build.</p> </li> <li> <p> <code>ListCuratedEnvironmentImages</code>: Gets information about Docker images that are managed by AWS CodeBuild.</p> </li> <li> <p> <code>ListProjects</code>: Gets a list of build project names, with each build project name representing a single build project.</p> </li> <li> <p> <code>ListReportGroups</code>: Gets a list ARNs for the report groups in the current AWS account. </p> </li> <li> <p> <code>ListReports</code>: Gets a list ARNs for the reports in the current AWS account. </p> </li> <li> <p> <code>ListReportsForReportGroup</code>: Returns a list of ARNs for the reports that belong to a <code>ReportGroup</code>. </p> </li> <li> <p> <code>ListSharedProjects</code>: Gets a list of ARNs associated with projects shared with the current AWS account or user.</p> </li> <li> <p> <code>ListSharedReportGroups</code>: Gets a list of ARNs associated with report groups shared with the current AWS account or user</p> </li> <li> <p> <code>ListSourceCredentials</code>: Returns a list of <code>SourceCredentialsInfo</code> objects. Each <code>SourceCredentialsInfo</code> object includes the authentication type, token ARN, and type of source provider for one set of credentials.</p> </li> <li> <p> <code>PutResourcePolicy</code>: Stores a resource policy for the ARN of a <code>Project</code> or <code>ReportGroup</code> object. </p> </li> <li> <p> <code>StartBuild</code>: Starts running a build.</p> </li> <li> <p> <code>StopBuild</code>: Attempts to stop running a build.</p> </li> <li> <p> <code>UpdateProject</code>: Changes the settings of an existing build project.</p> </li> <li> <p> <code>UpdateReportGroup</code>: Changes a report group.</p> </li> <li> <p> <code>UpdateWebhook</code>: Changes the settings of an existing webhook.</p> </li> </ul>",
+  "service": "<fullname>AWS CodeBuild</fullname> <p>AWS CodeBuild is a fully managed build service in the cloud. AWS CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. AWS CodeBuild eliminates the need to provision, manage, and scale your own build servers. It provides prepackaged build environments for the most popular programming languages and build tools, such as Apache Maven, Gradle, and more. You can also fully customize build environments in AWS CodeBuild to use your own build tools. AWS CodeBuild scales automatically to meet peak build requests. You pay only for the build time you consume. For more information about AWS CodeBuild, see the <i> <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/welcome.html\">AWS CodeBuild User Guide</a>.</i> </p>",
   "operations": {
     "BatchDeleteBuilds": "<p>Deletes one or more builds.</p>",
     "BatchGetBuildBatches": "<p>Retrieves information about one or more batch builds.</p>",
@@ -20,14 +20,14 @@
     "DeleteWebhook": "<p>For an existing AWS CodeBuild build project that has its source code stored in a GitHub or Bitbucket repository, stops AWS CodeBuild from rebuilding the source code every time a code change is pushed to the repository.</p>",
     "DescribeCodeCoverages": "<p>Retrieves one or more code coverage reports.</p>",
     "DescribeTestCases": "<p> Returns a list of details about test cases for a report. </p>",
-    "GetReportGroupTrend": null,
+    "GetReportGroupTrend": "<p>Analyzes and accumulates test report values for the specified test reports.</p>",
     "GetResourcePolicy": "<p> Gets a resource policy that is identified by its resource ARN. </p>",
     "ImportSourceCredentials": "<p> Imports the source repository credentials for an AWS CodeBuild project that has its source code stored in a GitHub, GitHub Enterprise, or Bitbucket repository. </p>",
     "InvalidateProjectCache": "<p>Resets the cache for a project.</p>",
     "ListBuildBatches": "<p>Retrieves the identifiers of your build batches in the current region.</p>",
     "ListBuildBatchesForProject": "<p>Retrieves the identifiers of the build batches for a specific project.</p>",
     "ListBuilds": "<p>Gets a list of build IDs, with each build ID representing a single build.</p>",
-    "ListBuildsForProject": "<p>Gets a list of build IDs for the specified build project, with each build ID representing a single build.</p>",
+    "ListBuildsForProject": "<p>Gets a list of build identifiers for the specified build project, with each build identifier representing a single build.</p>",
     "ListCuratedEnvironmentImages": "<p>Gets information about Docker images that are managed by AWS CodeBuild.</p>",
     "ListProjects": "<p>Gets a list of build project names, with each build project name representing a single build project.</p>",
     "ListReportGroups": "<p> Gets a list ARNs for the report groups in the current AWS account. </p>",
@@ -875,7 +875,7 @@
         "DescribeCodeCoveragesInput$reportArn": "<p> The ARN of the report for which test cases are returned. </p>",
         "EnvironmentVariable$name": "<p>The name or key of the environment variable.</p>",
         "ExportedEnvironmentVariable$name": "<p> The name of this exported environment variable. </p>",
-        "GetReportGroupTrendInput$reportGroupArn": null,
+        "GetReportGroupTrendInput$reportGroupArn": "<p>The ARN of the report group that contains the reports to analyze.</p>",
         "GetResourcePolicyInput$resourceArn": "<p> The ARN of the resource that is associated with the resource policy. </p>",
         "GetResourcePolicyOutput$policy": "<p> The resource policy for the resource identified by the input ARN parameter. </p>",
         "Identifiers$member": null,
@@ -901,9 +901,9 @@
         "Report$arn": "<p> The ARN of the report run. </p>",
         "Report$reportGroupArn": "<p> The ARN of the report group associated with this report. </p>",
         "ReportArns$member": null,
-        "ReportGroup$arn": "<p> The ARN of a <code>ReportGroup</code>. </p>",
+        "ReportGroup$arn": "<p>The ARN of the <code>ReportGroup</code>. </p>",
         "ReportGroupArns$member": null,
-        "ReportWithRawData$reportArn": null,
+        "ReportWithRawData$reportArn": "<p>The ARN of the report.</p>",
         "RetryBuildBatchInput$id": "<p>Specifies the identifier of the batch build to restart.</p>",
         "RetryBuildInput$id": "<p>Specifies the identifier of the build to restart.</p>",
         "S3ReportExportConfig$bucket": "<p> The name of the S3 bucket where the raw data of a report are exported. </p>",
@@ -955,7 +955,7 @@
       "refs": {
         "DescribeCodeCoveragesInput$maxResults": "<p>The maximum number of results to return.</p>",
         "DescribeTestCasesInput$maxResults": "<p> The maximum number of paginated test cases returned per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>TestCase</code> objects. The default value is 100. </p>",
-        "GetReportGroupTrendInput$numOfReports": null,
+        "GetReportGroupTrendInput$numOfReports": "<p>The number of reports to analyze. This operation always retrieves the most recent reports.</p> <p>If this parameter is omitted, the most recent 100 reports are analyzed.</p>",
         "ListBuildBatchesForProjectInput$maxResults": "<p>The maximum number of results to return.</p>",
         "ListBuildBatchesInput$maxResults": "<p>The maximum number of results to return.</p>",
         "ListReportGroupsInput$maxResults": "<p> The maximum number of paginated report groups returned per response. Use <code>nextToken</code> to iterate pages in the list of returned <code>ReportGroup</code> objects. The default value is 100. </p>",
@@ -1213,7 +1213,7 @@
       "refs": {
         "CreateReportGroupInput$exportConfig": "<p> A <code>ReportExportConfig</code> object that contains information about where the report group test results are exported. </p>",
         "Report$exportConfig": "<p> Information about where the raw data used to generate this report was exported. </p>",
-        "ReportGroup$exportConfig": "<p> Information about the destination where the raw data of this <code>ReportGroup</code> is exported. </p>",
+        "ReportGroup$exportConfig": "<p>Information about the destination where the raw data of this <code>ReportGroup</code> is exported. </p>",
         "UpdateReportGroupInput$exportConfig": "<p> Used to specify an updated export type. Valid values are: </p> <ul> <li> <p> <code>S3</code>: The report results are exported to an S3 bucket. </p> </li> <li> <p> <code>NO_EXPORT</code>: The report results are not exported. </p> </li> </ul>"
       }
     },
@@ -1231,7 +1231,7 @@
       }
     },
     "ReportGroup": {
-      "base": "<p> A series of reports. Each report contains information about the results from running a series of test cases. You specify the test cases for a report group in the buildspec for a build project using one or more paths to the test case files. </p>",
+      "base": "<p>A series of reports. Each report contains information about the results from running a series of test cases. You specify the test cases for a report group in the buildspec for a build project using one or more paths to the test case files. </p>",
       "refs": {
         "CreateReportGroupOutput$reportGroup": "<p> Information about the report group that was created. </p>",
         "ReportGroups$member": null,
@@ -1251,7 +1251,7 @@
       "base": null,
       "refs": {
         "CreateReportGroupInput$name": "<p> The name of the report group. </p>",
-        "ReportGroup$name": "<p> The name of a <code>ReportGroup</code>. </p>"
+        "ReportGroup$name": "<p>The name of the <code>ReportGroup</code>. </p>"
       }
     },
     "ReportGroupSortByType": {
@@ -1263,25 +1263,25 @@
     "ReportGroupStatusType": {
       "base": null,
       "refs": {
-        "ReportGroup$status": null
+        "ReportGroup$status": "<p>The status of the report group. This property is read-only.</p> <p>This can be one of the following values:</p> <dl> <dt>ACTIVE</dt> <dd> <p>The report group is active.</p> </dd> <dt>DELETING</dt> <dd> <p>The report group is in the process of being deleted.</p> </dd> </dl>"
       }
     },
     "ReportGroupTrendFieldType": {
       "base": null,
       "refs": {
-        "GetReportGroupTrendInput$trendField": null
+        "GetReportGroupTrendInput$trendField": "<p>The test report value to accumulate. This must be one of the following values:</p> <dl> <dt>Test reports:</dt> <dd> <dl> <dt>DURATION</dt> <dd> <p>Accumulate the test run times for the specified reports.</p> </dd> <dt>PASS_RATE</dt> <dd> <p>Accumulate the percentage of tests that passed for the specified test reports.</p> </dd> <dt>TOTAL</dt> <dd> <p>Accumulate the total number of tests for the specified test reports.</p> </dd> </dl> </dd> </dl> <dl> <dt>Code coverage reports:</dt> <dd> <dl> <dt>BRANCH_COVERAGE</dt> <dd> <p>Accumulate the branch coverage percentages for the specified test reports.</p> </dd> <dt>BRANCHES_COVERED</dt> <dd> <p>Accumulate the branches covered values for the specified test reports.</p> </dd> <dt>BRANCHES_MISSED</dt> <dd> <p>Accumulate the branches missed values for the specified test reports.</p> </dd> <dt>LINE_COVERAGE</dt> <dd> <p>Accumulate the line coverage percentages for the specified test reports.</p> </dd> <dt>LINES_COVERED</dt> <dd> <p>Accumulate the lines covered values for the specified test reports.</p> </dd> <dt>LINES_MISSED</dt> <dd> <p>Accumulate the lines not covered values for the specified test reports.</p> </dd> </dl> </dd> </dl>"
       }
     },
     "ReportGroupTrendRawDataList": {
       "base": null,
       "refs": {
-        "GetReportGroupTrendOutput$rawData": null
+        "GetReportGroupTrendOutput$rawData": "<p>An array that contains the raw data for each report.</p>"
       }
     },
     "ReportGroupTrendStats": {
-      "base": null,
+      "base": "<p>Contains trend statistics for a set of reports. The actual values depend on the type of trend being collected. For more information, see .</p>",
       "refs": {
-        "GetReportGroupTrendOutput$stats": null
+        "GetReportGroupTrendOutput$stats": "<p>Contains the accumulated trend data.</p>"
       }
     },
     "ReportGroups": {
@@ -1314,11 +1314,11 @@
       "refs": {
         "CreateReportGroupInput$type": "<p> The type of report group. </p>",
         "Report$type": "<p>The type of the report that was run.</p> <dl> <dt>CODE_COVERAGE</dt> <dd> <p>A code coverage report.</p> </dd> <dt>TEST</dt> <dd> <p>A test report.</p> </dd> </dl>",
-        "ReportGroup$type": "<p> The type of the <code>ReportGroup</code>. The one valid value is <code>TEST</code>. </p>"
+        "ReportGroup$type": "<p>The type of the <code>ReportGroup</code>. This can be one of the following values:</p> <dl> <dt>CODE_COVERAGE</dt> <dd> <p>The report group contains code coverage reports.</p> </dd> <dt>TEST</dt> <dd> <p>The report group contains test reports.</p> </dd> </dl>"
       }
     },
     "ReportWithRawData": {
-      "base": null,
+      "base": "<p>Contains the unmodified data for the report. For more information, see .</p>",
       "refs": {
         "ReportGroupTrendRawDataList$member": null
       }
@@ -1423,7 +1423,7 @@
         "DescribeCodeCoveragesInput$sortOrder": "<p>Specifies if the results are sorted in ascending or descending order.</p>",
         "ListBuildBatchesForProjectInput$sortOrder": "<p>Specifies the sort order of the returned items. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the batch build identifiers in ascending order by identifier.</p> </li> <li> <p> <code>DESCENDING</code>: List the batch build identifiers in descending order by identifier.</p> </li> </ul>",
         "ListBuildBatchesInput$sortOrder": "<p>Specifies the sort order of the returned items. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the batch build identifiers in ascending order by identifier.</p> </li> <li> <p> <code>DESCENDING</code>: List the batch build identifiers in descending order by identifier.</p> </li> </ul>",
-        "ListBuildsForProjectInput$sortOrder": "<p>The order to list build IDs. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the build IDs in ascending order by build ID.</p> </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order by build ID.</p> </li> </ul>",
+        "ListBuildsForProjectInput$sortOrder": "<p>The order to list results in. The results are sorted by build number, not the build identifier.</p> <p>Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the build IDs in ascending order by build ID.</p> </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order by build ID.</p> </li> </ul> <p>If the project has more than 100 builds, setting the sort order will result in an error. </p>",
         "ListBuildsInput$sortOrder": "<p>The order to list build IDs. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the build IDs in ascending order by build ID.</p> </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order by build ID.</p> </li> </ul>",
         "ListProjectsInput$sortOrder": "<p>The order in which to list build projects. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List in ascending order.</p> </li> <li> <p> <code>DESCENDING</code>: List in descending order.</p> </li> </ul> <p>Use <code>sortBy</code> to specify the criterion to be used to list build project names.</p>",
         "ListReportGroupsInput$sortOrder": "<p> Used to specify the order to sort the list of returned report groups. Valid values are <code>ASCENDING</code> and <code>DESCENDING</code>. </p>",
@@ -1598,11 +1598,11 @@
         "ProjectSourceVersion$sourceVersion": "<p>The source version for the corresponding source identifier. If specified, must be one of:</p> <ul> <li> <p>For AWS CodeCommit: the commit ID, branch, or Git tag to use.</p> </li> <li> <p>For GitHub: the commit ID, pull request ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a pull request ID is specified, it must use the format <code>pr/pull-request-ID</code> (for example, <code>pr/25</code>). If a branch name is specified, the branch's HEAD commit ID is used. If not specified, the default branch's HEAD commit ID is used.</p> </li> <li> <p>For Bitbucket: the commit ID, branch name, or tag name that corresponds to the version of the source code you want to build. If a branch name is specified, the branch's HEAD commit ID is used. If not specified, the default branch's HEAD commit ID is used.</p> </li> <li> <p>For Amazon Simple Storage Service (Amazon S3): the version ID of the object that represents the build input ZIP file to use.</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html\">Source Version Sample with CodeBuild</a> in the <i>AWS CodeBuild User Guide</i>. </p>",
         "Report$name": "<p> The name of the report that was run. </p>",
         "Report$executionId": "<p> The ARN of the build run that generated this report. </p>",
-        "ReportGroupTrendStats$average": null,
-        "ReportGroupTrendStats$max": null,
-        "ReportGroupTrendStats$min": null,
+        "ReportGroupTrendStats$average": "<p>Contains the average of all values analyzed.</p>",
+        "ReportGroupTrendStats$max": "<p>Contains the maximum value analyzed.</p>",
+        "ReportGroupTrendStats$min": "<p>Contains the minimum value analyzed.</p>",
         "ReportStatusCounts$key": null,
-        "ReportWithRawData$data": null,
+        "ReportWithRawData$data": "<p>The value of the requested data field from the report.</p>",
         "ResolvedArtifact$location": "<p>The location of the artifact.</p>",
         "ResolvedArtifact$identifier": "<p>The identifier of the artifact.</p>",
         "RetryBuildBatchInput$idempotencyToken": "<p>A unique, case sensitive identifier you provide to ensure the idempotency of the <code>RetryBuildBatch</code> request. The token is included in the <code>RetryBuildBatch</code> request and is valid for five minutes. If you repeat the <code>RetryBuildBatch</code> request with the same token, but change a parameter, AWS CodeBuild returns a parameter mismatch error.</p>",
@@ -1651,7 +1651,7 @@
         "CreateProjectInput$tags": "<p>A list of tag key and value pairs associated with this build project.</p> <p>These tags are available for use by AWS services that support AWS CodeBuild build project tags.</p>",
         "CreateReportGroupInput$tags": "<p> A list of tag key and value pairs associated with this report group. </p> <p>These tags are available for use by AWS services that support AWS CodeBuild report group tags.</p>",
         "Project$tags": "<p>A list of tag key and value pairs associated with this build project.</p> <p>These tags are available for use by AWS services that support AWS CodeBuild build project tags.</p>",
-        "ReportGroup$tags": "<p> A list of tag key and value pairs associated with this report group. </p> <p>These tags are available for use by AWS services that support AWS CodeBuild report group tags.</p>",
+        "ReportGroup$tags": "<p>A list of tag key and value pairs associated with this report group. </p> <p>These tags are available for use by AWS services that support AWS CodeBuild report group tags.</p>",
         "UpdateProjectInput$tags": "<p>An updated list of tag key and value pairs associated with this build project.</p> <p>These tags are available for use by AWS services that support AWS CodeBuild build project tags.</p>",
         "UpdateReportGroupInput$tags": "<p> An updated list of tag key and value pairs associated with this report group. </p> <p>These tags are available for use by AWS services that support AWS CodeBuild report group tags.</p>"
       }
@@ -1712,8 +1712,8 @@
         "Project$lastModified": "<p>When the build project's settings were last modified, expressed in Unix time format.</p>",
         "Report$created": "<p> The date and time this report run occurred. </p>",
         "Report$expired": "<p> The date and time a report expires. A report expires 30 days after it is created. An expired report is not available to view in CodeBuild. </p>",
-        "ReportGroup$created": "<p> The date and time this <code>ReportGroup</code> was created. </p>",
-        "ReportGroup$lastModified": "<p> The date and time this <code>ReportGroup</code> was last modified. </p>",
+        "ReportGroup$created": "<p>The date and time this <code>ReportGroup</code> was created. </p>",
+        "ReportGroup$lastModified": "<p>The date and time this <code>ReportGroup</code> was last modified. </p>",
         "TestCase$expired": "<p> The date and time a test case expires. A test case expires 30 days after it is created. An expired test case is not available to view in CodeBuild. </p>",
         "Webhook$lastModifiedSecret": "<p>A timestamp that indicates the last time a repository's secret token was modified. </p>"
       }
@@ -1805,7 +1805,7 @@
         "ProjectArtifacts$encryptionDisabled": "<p> Set to true if you do not want your output artifacts encrypted. This option is valid only if your artifacts type is Amazon Simple Storage Service (Amazon S3). If this is set with another artifacts type, an invalidInputException is thrown. </p>",
         "ProjectBuildBatchConfig$combineArtifacts": "<p>Specifies if the build artifacts for the batch build should be combined into a single artifact location.</p>",
         "ProjectEnvironment$privilegedMode": "<p>Enables running the Docker daemon inside a Docker container. Set to true only if the build project is used to build Docker images. Otherwise, a build that attempts to interact with the Docker daemon fails. The default setting is <code>false</code>.</p> <p>You can initialize the Docker daemon during the install phase of your build by adding one of the following sets of commands to the install phase of your buildspec file:</p> <p>If the operating system's base image is Ubuntu Linux:</p> <p> <code>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&amp;</code> </p> <p> <code>- timeout 15 sh -c \"until docker info; do echo .; sleep 1; done\"</code> </p> <p>If the operating system's base image is Alpine Linux and the previous command does not work, add the <code>-t</code> argument to <code>timeout</code>:</p> <p> <code>- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay&amp;</code> </p> <p> <code>- timeout -t 15 sh -c \"until docker info; do echo .; sleep 1; done\"</code> </p>",
-        "ProjectSource$reportBuildStatus": "<p> Set to true to report the status of a build's start and finish to your source provider. This option is valid only when your source provider is GitHub, GitHub Enterprise, or Bitbucket. If this is set and you use a different source provider, an invalidInputException is thrown. </p> <note> <p> The status of a build triggered by a webhook is always reported to your source provider. </p> </note>",
+        "ProjectSource$reportBuildStatus": "<p> Set to true to report the status of a build's start and finish to your source provider. This option is valid only when your source provider is GitHub, GitHub Enterprise, or Bitbucket. If this is set and you use a different source provider, an <code>invalidInputException</code> is thrown. </p> <p>To be able to report the build status to the source provider, the user associated with the source provider must have write access to the repo. If the user does not have write access, the build status cannot be updated. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/access-tokens.html\">Source provider access</a> in the <i>AWS CodeBuild User Guide</i>.</p> <note> <p> The status of a build triggered by a webhook is always reported to your source provider. </p> </note>",
         "ProjectSource$insecureSsl": "<p>Enable this flag to ignore SSL warnings while connecting to the project source code.</p>",
         "Report$truncated": "<p> A boolean that specifies if this report run is truncated. The list of test cases is truncated after the maximum number of test cases is reached. </p>",
         "S3LogsConfig$encryptionDisabled": "<p> Set to true if you do not want your S3 build log output encrypted. By default S3 build logs are encrypted. </p>",
@@ -1814,7 +1814,7 @@
         "StartBuildBatchInput$reportBuildBatchStatusOverride": "<p>Set to <code>true</code> to report to your source provider the status of a batch build's start and completion. If you use this option with a source provider other than GitHub, GitHub Enterprise, or Bitbucket, an <code>invalidInputException</code> is thrown. </p> <note> <p>The status of a build triggered by a webhook is always reported to your source provider. </p> </note>",
         "StartBuildBatchInput$privilegedModeOverride": "<p>Enable this flag to override privileged mode in the batch build project.</p>",
         "StartBuildInput$insecureSslOverride": "<p>Enable this flag to override the insecure SSL setting that is specified in the build project. The insecure SSL setting determines whether to ignore SSL warnings while connecting to the project source code. This override applies only if the build's source is GitHub Enterprise.</p>",
-        "StartBuildInput$reportBuildStatusOverride": "<p> Set to true to report to your source provider the status of a build's start and completion. If you use this option with a source provider other than GitHub, GitHub Enterprise, or Bitbucket, an invalidInputException is thrown. </p> <note> <p> The status of a build triggered by a webhook is always reported to your source provider. </p> </note>",
+        "StartBuildInput$reportBuildStatusOverride": "<p> Set to true to report to your source provider the status of a build's start and completion. If you use this option with a source provider other than GitHub, GitHub Enterprise, or Bitbucket, an <code>invalidInputException</code> is thrown. </p> <p>To be able to report the build status to the source provider, the user associated with the source provider must have write access to the repo. If the user does not have write access, the build status cannot be updated. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/access-tokens.html\">Source provider access</a> in the <i>AWS CodeBuild User Guide</i>.</p> <note> <p> The status of a build triggered by a webhook is always reported to your source provider. </p> </note>",
         "StartBuildInput$privilegedModeOverride": "<p>Enable this flag to override privileged mode in the build project.</p>",
         "StartBuildInput$debugSessionEnabled": "<p>Specifies if session debugging is enabled for this build. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html\">Viewing a running build in Session Manager</a>.</p>",
         "UpdateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>",
