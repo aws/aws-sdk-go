@@ -2641,7 +2641,7 @@ type Endpoint struct {
 	ConfigurationOverrides *ConfigurationOverrides `locationName:"configurationOverrides" type:"structure"`
 
 	// The date and time when the endpoint was created.
-	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The execution role ARN of the endpoint.
 	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string"`
@@ -2888,7 +2888,7 @@ type JobRun struct {
 	ConfigurationOverrides *ConfigurationOverrides `locationName:"configurationOverrides" type:"structure"`
 
 	// The date and time when the job run was created.
-	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The user who created the job run.
 	CreatedBy *string `locationName:"createdBy" min:"20" type:"string"`
@@ -2900,7 +2900,7 @@ type JobRun struct {
 	FailureReason *string `locationName:"failureReason" type:"string" enum:"FailureReason"`
 
 	// The date and time when the job run has finished.
-	FinishedAt *time.Time `locationName:"finishedAt" type:"timestamp"`
+	FinishedAt *time.Time `locationName:"finishedAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The ID of the job run.
 	Id *string `locationName:"id" min:"1" type:"string"`
@@ -3037,10 +3037,10 @@ type ListJobRunsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time after which the job runs were submitted.
-	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp"`
+	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The date and time before which the job runs were submitted.
-	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp"`
+	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The maximum number of job runs that can be listed.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -3170,10 +3170,10 @@ type ListManagedEndpointsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The date and time after which the endpoints are created.
-	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp"`
+	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The date and time before which the endpoints are created.
-	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp"`
+	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The maximum number of managed endpoints that can be listed.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -3371,10 +3371,10 @@ type ListVirtualClustersInput struct {
 	ContainerProviderType *string `location:"querystring" locationName:"containerProviderType" type:"string" enum:"ContainerProviderType"`
 
 	// The date and time after which the virtual clusters are created.
-	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp"`
+	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The date and time before which the virtual clusters are created.
-	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp"`
+	CreatedBefore *time.Time `location:"querystring" locationName:"createdBefore" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The maximum number of virtual clusters that can be listed.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -4112,7 +4112,7 @@ type VirtualCluster struct {
 	ContainerProvider *ContainerProvider `locationName:"containerProvider" type:"structure"`
 
 	// The date and time when the virtual cluster is created.
-	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The ID of the virtual cluster.
 	Id *string `locationName:"id" min:"1" type:"string"`

@@ -911,6 +911,18 @@ type CreateRule struct {
 	// The interval unit.
 	IntervalUnit *string `type:"string" enum:"IntervalUnitValues"`
 
+	// Specifies the destination for snapshots created by the policy. To create
+	// snapshots in the same Region as the source resource, specify CLOUD. To create
+	// snapshots on the same Outpost as the source resource, specify OUTPOST_LOCAL.
+	// If you omit this parameter, CLOUD is used by default.
+	//
+	// If the policy targets resources in an AWS Region, then you must create snapshots
+	// in the same Region as the source resource.
+	//
+	// If the policy targets resources on an Outpost, then you can create snapshots
+	// on the same Outpost as the source resource, or in the Region of that Outpost.
+	Location *string `type:"string" enum:"LocationValues"`
+
 	// The time, in UTC, to start the operation. The supported format is hh:mm.
 	//
 	// The operation occurs within a one-hour window following the specified time.
@@ -960,6 +972,12 @@ func (s *CreateRule) SetInterval(v int64) *CreateRule {
 // SetIntervalUnit sets the IntervalUnit field's value.
 func (s *CreateRule) SetIntervalUnit(v string) *CreateRule {
 	s.IntervalUnit = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateRule) SetLocation(v string) *CreateRule {
+	s.Location = &v
 	return s
 }
 
@@ -1111,10 +1129,18 @@ type CrossRegionCopyRule struct {
 	// The retention rule.
 	RetainRule *CrossRegionCopyRetainRule `type:"structure"`
 
-	// The target Region.
+	// The Amazon Resource Name (ARN) of the target AWS Outpost for the snapshot
+	// copies.
 	//
-	// TargetRegion is a required field
-	TargetRegion *string `type:"string" required:"true"`
+	// If you specify an ARN, you must omit TargetRegion. You cannot specify a target
+	// Region and a target Outpost in the same rule.
+	Target *string `type:"string"`
+
+	// The target Region for the snapshot copies.
+	//
+	// If you specify a target Region, you must omit Target. You cannot specify
+	// a target Region and a target Outpost in the same rule.
+	TargetRegion *string `type:"string"`
 }
 
 // String returns the string representation
@@ -1132,9 +1158,6 @@ func (s *CrossRegionCopyRule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CrossRegionCopyRule"}
 	if s.Encrypted == nil {
 		invalidParams.Add(request.NewErrParamRequired("Encrypted"))
-	}
-	if s.TargetRegion == nil {
-		invalidParams.Add(request.NewErrParamRequired("TargetRegion"))
 	}
 	if s.RetainRule != nil {
 		if err := s.RetainRule.Validate(); err != nil {
@@ -1169,6 +1192,12 @@ func (s *CrossRegionCopyRule) SetEncrypted(v bool) *CrossRegionCopyRule {
 // SetRetainRule sets the RetainRule field's value.
 func (s *CrossRegionCopyRule) SetRetainRule(v *CrossRegionCopyRetainRule) *CrossRegionCopyRule {
 	s.RetainRule = v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *CrossRegionCopyRule) SetTarget(v string) *CrossRegionCopyRule {
+	s.Target = &v
 	return s
 }
 
@@ -2151,6 +2180,15 @@ type PolicyDetails struct {
 	// The default is EBS_SNAPSHOT_MANAGEMENT.
 	PolicyType *string `type:"string" enum:"PolicyTypeValues"`
 
+	// The location of the resources to backup. If the source resources are located
+	// in an AWS Region, specify CLOUD. If the source resources are located on an
+	// AWS Outpost in your account, specify OUTPOST.
+	//
+	// If you specify OUTPOST, Amazon Data Lifecycle Manager backs up all resources
+	// of the specified type with matching target tags across all of the Outposts
+	// in your account.
+	ResourceLocations []*string `min:"1" type:"list"`
+
 	// The target resource type for snapshot and AMI lifecycle policies. Use VOLUME
 	// to create snapshots of individual volumes or use INSTANCE to create multi-volume
 	// snapshots from the volumes for an instance.
@@ -2189,6 +2227,9 @@ func (s *PolicyDetails) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PolicyDetails"}
 	if s.Actions != nil && len(s.Actions) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Actions", 1))
+	}
+	if s.ResourceLocations != nil && len(s.ResourceLocations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceLocations", 1))
 	}
 	if s.ResourceTypes != nil && len(s.ResourceTypes) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceTypes", 1))
@@ -2262,6 +2303,12 @@ func (s *PolicyDetails) SetParameters(v *Parameters) *PolicyDetails {
 // SetPolicyType sets the PolicyType field's value.
 func (s *PolicyDetails) SetPolicyType(v string) *PolicyDetails {
 	s.PolicyType = &v
+	return s
+}
+
+// SetResourceLocations sets the ResourceLocations field's value.
+func (s *PolicyDetails) SetResourceLocations(v []*string) *PolicyDetails {
+	s.ResourceLocations = v
 	return s
 }
 
@@ -2419,6 +2466,11 @@ type Schedule struct {
 	CreateRule *CreateRule `type:"structure"`
 
 	// The rule for cross-Region snapshot copies.
+	//
+	// You can only specify cross-Region copy rules for policies that create snapshots
+	// in a Region. If the policy creates snapshots on an Outpost, then you cannot
+	// copy the snapshots to a Region or to an Outpost. If the policy creates snapshots
+	// in a Region, then snapshots can be copied to up to three Regions or Outposts.
 	CrossRegionCopyRules []*CrossRegionCopyRule `type:"list"`
 
 	// The rule for enabling fast snapshot restore.
@@ -2989,6 +3041,22 @@ func IntervalUnitValues_Values() []string {
 }
 
 const (
+	// LocationValuesCloud is a LocationValues enum value
+	LocationValuesCloud = "CLOUD"
+
+	// LocationValuesOutpostLocal is a LocationValues enum value
+	LocationValuesOutpostLocal = "OUTPOST_LOCAL"
+)
+
+// LocationValues_Values returns all elements of the LocationValues enum
+func LocationValues_Values() []string {
+	return []string{
+		LocationValuesCloud,
+		LocationValuesOutpostLocal,
+	}
+}
+
+const (
 	// PolicyTypeValuesEbsSnapshotManagement is a PolicyTypeValues enum value
 	PolicyTypeValuesEbsSnapshotManagement = "EBS_SNAPSHOT_MANAGEMENT"
 
@@ -3005,6 +3073,22 @@ func PolicyTypeValues_Values() []string {
 		PolicyTypeValuesEbsSnapshotManagement,
 		PolicyTypeValuesImageManagement,
 		PolicyTypeValuesEventBasedPolicy,
+	}
+}
+
+const (
+	// ResourceLocationValuesCloud is a ResourceLocationValues enum value
+	ResourceLocationValuesCloud = "CLOUD"
+
+	// ResourceLocationValuesOutpost is a ResourceLocationValues enum value
+	ResourceLocationValuesOutpost = "OUTPOST"
+)
+
+// ResourceLocationValues_Values returns all elements of the ResourceLocationValues enum
+func ResourceLocationValues_Values() []string {
+	return []string{
+		ResourceLocationValuesCloud,
+		ResourceLocationValuesOutpost,
 	}
 }
 

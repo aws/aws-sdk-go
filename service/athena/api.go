@@ -843,7 +843,7 @@ func (c *Athena) GetDatabaseRequest(input *GetDatabaseInput) (req *request.Reque
 
 // GetDatabase API operation for Amazon Athena.
 //
-// Returns a database object for the specfied database and data catalog.
+// Returns a database object for the specified database and data catalog.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1681,6 +1681,91 @@ func (c *Athena) ListDatabasesPagesWithContext(ctx aws.Context, input *ListDatab
 	}
 
 	return p.Err()
+}
+
+const opListEngineVersions = "ListEngineVersions"
+
+// ListEngineVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEngineVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEngineVersions for more information on using the ListEngineVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEngineVersionsRequest method.
+//    req, resp := client.ListEngineVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListEngineVersions
+func (c *Athena) ListEngineVersionsRequest(input *ListEngineVersionsInput) (req *request.Request, output *ListEngineVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListEngineVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListEngineVersionsInput{}
+	}
+
+	output = &ListEngineVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEngineVersions API operation for Amazon Athena.
+//
+// Returns a list of engine versions that are available to choose from, including
+// the Auto option.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListEngineVersions for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListEngineVersions
+func (c *Athena) ListEngineVersions(input *ListEngineVersionsInput) (*ListEngineVersionsOutput, error) {
+	req, out := c.ListEngineVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListEngineVersionsWithContext is the same as ListEngineVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEngineVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListEngineVersionsWithContext(ctx aws.Context, input *ListEngineVersionsInput, opts ...request.Option) (*ListEngineVersionsOutput, error) {
+	req, out := c.ListEngineVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListNamedQueries = "ListNamedQueries"
@@ -3282,15 +3367,17 @@ type CreateDataCatalogInput struct {
 	//    Both parameters are required. metadata-function=lambda_arn, record-function=lambda_arn
 	//    If you have a composite Lambda function that processes both metadata and
 	//    data, use the following syntax to specify your Lambda function. function=lambda_arn
-	//
-	//    * The GLUE type has no parameters.
 	Parameters map[string]*string `type:"map"`
 
 	// A list of comma separated tags to add to the data catalog that is created.
 	Tags []*Tag `type:"list"`
 
-	// The type of data catalog to create: LAMBDA for a federated catalog, GLUE
-	// for AWS Glue Catalog, or HIVE for an external hive metastore.
+	// The type of data catalog to create: LAMBDA for a federated catalog or HIVE
+	// for an external hive metastore.
+	//
+	// Do not use the GLUE type. This refers to the AwsDataCatalog that already
+	// exists in your account, of which you can have only one. Specifying the GLUE
+	// type will result in an INVALID_INPUT error.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataCatalogType"`
@@ -3647,12 +3734,11 @@ type DataCatalog struct {
 	//    Both parameters are required. metadata-function=lambda_arn, record-function=lambda_arn
 	//    If you have a composite Lambda function that processes both metadata and
 	//    data, use the following syntax to specify your Lambda function. function=lambda_arn
-	//
-	//    * The GLUE type has no parameters.
 	Parameters map[string]*string `type:"map"`
 
-	// The type of data catalog: LAMBDA for a federated catalog, GLUE for AWS Glue
-	// Catalog, or HIVE for an external hive metastore.
+	// The type of data catalog: LAMBDA for a federated catalog or HIVE for an external
+	// hive metastore. GLUE refers to the AwsDataCatalog that already exists in
+	// your account, of which you can have only one.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataCatalogType"`
@@ -3890,7 +3976,7 @@ type DeleteWorkGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The option to delete the workgroup and its contents even if the workgroup
-	// contains any named queries.
+	// contains any named queries or query executions.
 	RecursiveDeleteOption *bool `type:"boolean"`
 
 	// The unique name of the workgroup to delete.
@@ -4000,6 +4086,61 @@ func (s *EncryptionConfiguration) SetEncryptionOption(v string) *EncryptionConfi
 // SetKmsKey sets the KmsKey field's value.
 func (s *EncryptionConfiguration) SetKmsKey(v string) *EncryptionConfiguration {
 	s.KmsKey = &v
+	return s
+}
+
+// The Athena engine version for running queries.
+type EngineVersion struct {
+	_ struct{} `type:"structure"`
+
+	// Read only. The engine version on which the query runs. If the user requests
+	// a valid engine version other than Auto, the effective engine version is the
+	// same as the engine version that the user requested. If the user requests
+	// Auto, the effective engine version is chosen by Athena. When a request to
+	// update the engine version is made by a CreateWorkGroup or UpdateWorkGroup
+	// operation, the EffectiveEngineVersion field is ignored.
+	EffectiveEngineVersion *string `min:"1" type:"string"`
+
+	// The engine version requested by the user. Possible values are determined
+	// by the output of ListEngineVersions, including Auto. The default is Auto.
+	SelectedEngineVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s EngineVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EngineVersion) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EngineVersion) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EngineVersion"}
+	if s.EffectiveEngineVersion != nil && len(*s.EffectiveEngineVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EffectiveEngineVersion", 1))
+	}
+	if s.SelectedEngineVersion != nil && len(*s.SelectedEngineVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SelectedEngineVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEffectiveEngineVersion sets the EffectiveEngineVersion field's value.
+func (s *EngineVersion) SetEffectiveEngineVersion(v string) *EngineVersion {
+	s.EffectiveEngineVersion = &v
+	return s
+}
+
+// SetSelectedEngineVersion sets the SelectedEngineVersion field's value.
+func (s *EngineVersion) SetSelectedEngineVersion(v string) *EngineVersion {
+	s.SelectedEngineVersion = &v
 	return s
 }
 
@@ -4846,6 +4987,92 @@ func (s *ListDatabasesOutput) SetNextToken(v string) *ListDatabasesOutput {
 	return s
 }
 
+type ListEngineVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of engine versions to return in this request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEngineVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEngineVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEngineVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEngineVersionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEngineVersionsInput) SetMaxResults(v int64) *ListEngineVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEngineVersionsInput) SetNextToken(v string) *ListEngineVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEngineVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of engine versions that are available to choose from.
+	EngineVersions []*EngineVersion `type:"list"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListEngineVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListEngineVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEngineVersions sets the EngineVersions field's value.
+func (s *ListEngineVersionsOutput) SetEngineVersions(v []*EngineVersion) *ListEngineVersionsOutput {
+	s.EngineVersions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEngineVersionsOutput) SetNextToken(v string) *ListEngineVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListNamedQueriesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5321,8 +5548,8 @@ type ListWorkGroupsOutput struct {
 	// call.
 	NextToken *string `min:"1" type:"string"`
 
-	// The list of workgroups, including their names, descriptions, creation times,
-	// and states.
+	// A list of WorkGroupSummary objects that include the names, descriptions,
+	// creation times, and states for each workgroup.
 	WorkGroups []*WorkGroupSummary `type:"list"`
 }
 
@@ -5488,6 +5715,9 @@ func (s *NamedQuery) SetWorkGroup(v string) *NamedQuery {
 type QueryExecution struct {
 	_ struct{} `type:"structure"`
 
+	// The engine version that executed the query.
+	EngineVersion *EngineVersion `type:"structure"`
+
 	// The SQL query statements which the query execution ran.
 	Query *string `min:"1" type:"string"`
 
@@ -5531,6 +5761,12 @@ func (s QueryExecution) String() string {
 // GoString returns the string representation
 func (s QueryExecution) GoString() string {
 	return s.String()
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *QueryExecution) SetEngineVersion(v *EngineVersion) *QueryExecution {
+	s.EngineVersion = v
+	return s
 }
 
 // SetQuery sets the Query field's value.
@@ -6700,12 +6936,14 @@ type UpdateDataCatalogInput struct {
 	//    Both parameters are required. metadata-function=lambda_arn, record-function=lambda_arn
 	//    If you have a composite Lambda function that processes both metadata and
 	//    data, use the following syntax to specify your Lambda function. function=lambda_arn
-	//
-	//    * The GLUE type has no parameters.
 	Parameters map[string]*string `type:"map"`
 
 	// Specifies the type of data catalog to update. Specify LAMBDA for a federated
-	// catalog, GLUE for AWS Glue Catalog, or HIVE for an external hive metastore.
+	// catalog or HIVE for an external hive metastore.
+	//
+	// Do not use the GLUE type. This refers to the AwsDataCatalog that already
+	// exists in your account, of which you can have only one. Specifying the GLUE
+	// type will result in an INVALID_INPUT error.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataCatalogType"`
@@ -6960,6 +7198,11 @@ type WorkGroupConfiguration struct {
 	// Workgroup Settings Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	EnforceWorkGroupConfiguration *bool `type:"boolean"`
 
+	// The engine version that all queries running on the workgroup use. Queries
+	// on the AmazonAthenaPreviewFunctionality workgroup run on the preview engine
+	// regardless of this setting.
+	EngineVersion *EngineVersion `type:"structure"`
+
 	// Indicates that the Amazon CloudWatch metrics are enabled for the workgroup.
 	PublishCloudWatchMetricsEnabled *bool `type:"boolean"`
 
@@ -6998,6 +7241,11 @@ func (s *WorkGroupConfiguration) Validate() error {
 	if s.BytesScannedCutoffPerQuery != nil && *s.BytesScannedCutoffPerQuery < 1e+07 {
 		invalidParams.Add(request.NewErrParamMinValue("BytesScannedCutoffPerQuery", 1e+07))
 	}
+	if s.EngineVersion != nil {
+		if err := s.EngineVersion.Validate(); err != nil {
+			invalidParams.AddNested("EngineVersion", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ResultConfiguration != nil {
 		if err := s.ResultConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ResultConfiguration", err.(request.ErrInvalidParams))
@@ -7019,6 +7267,12 @@ func (s *WorkGroupConfiguration) SetBytesScannedCutoffPerQuery(v int64) *WorkGro
 // SetEnforceWorkGroupConfiguration sets the EnforceWorkGroupConfiguration field's value.
 func (s *WorkGroupConfiguration) SetEnforceWorkGroupConfiguration(v bool) *WorkGroupConfiguration {
 	s.EnforceWorkGroupConfiguration = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *WorkGroupConfiguration) SetEngineVersion(v *EngineVersion) *WorkGroupConfiguration {
+	s.EngineVersion = v
 	return s
 }
 
@@ -7058,6 +7312,12 @@ type WorkGroupConfigurationUpdates struct {
 	// Workgroup Settings Override Client-Side Settings (https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html).
 	EnforceWorkGroupConfiguration *bool `type:"boolean"`
 
+	// The engine version requested when a workgroup is updated. After the update,
+	// all queries on the workgroup run on the requested engine version. If no value
+	// was previously set, the default is Auto. Queries on the AmazonAthenaPreviewFunctionality
+	// workgroup run on the preview engine regardless of this setting.
+	EngineVersion *EngineVersion `type:"structure"`
+
 	// Indicates whether this workgroup enables publishing metrics to Amazon CloudWatch.
 	PublishCloudWatchMetricsEnabled *bool `type:"boolean"`
 
@@ -7095,6 +7355,11 @@ func (s *WorkGroupConfigurationUpdates) Validate() error {
 	if s.BytesScannedCutoffPerQuery != nil && *s.BytesScannedCutoffPerQuery < 1e+07 {
 		invalidParams.Add(request.NewErrParamMinValue("BytesScannedCutoffPerQuery", 1e+07))
 	}
+	if s.EngineVersion != nil {
+		if err := s.EngineVersion.Validate(); err != nil {
+			invalidParams.AddNested("EngineVersion", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ResultConfigurationUpdates != nil {
 		if err := s.ResultConfigurationUpdates.Validate(); err != nil {
 			invalidParams.AddNested("ResultConfigurationUpdates", err.(request.ErrInvalidParams))
@@ -7116,6 +7381,12 @@ func (s *WorkGroupConfigurationUpdates) SetBytesScannedCutoffPerQuery(v int64) *
 // SetEnforceWorkGroupConfiguration sets the EnforceWorkGroupConfiguration field's value.
 func (s *WorkGroupConfigurationUpdates) SetEnforceWorkGroupConfiguration(v bool) *WorkGroupConfigurationUpdates {
 	s.EnforceWorkGroupConfiguration = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *WorkGroupConfigurationUpdates) SetEngineVersion(v *EngineVersion) *WorkGroupConfigurationUpdates {
+	s.EngineVersion = v
 	return s
 }
 
@@ -7154,6 +7425,11 @@ type WorkGroupSummary struct {
 	// The workgroup description.
 	Description *string `type:"string"`
 
+	// The engine version setting for all queries on the workgroup. Queries on the
+	// AmazonAthenaPreviewFunctionality workgroup run on the preview engine regardless
+	// of this setting.
+	EngineVersion *EngineVersion `type:"structure"`
+
 	// The name of the workgroup.
 	Name *string `type:"string"`
 
@@ -7180,6 +7456,12 @@ func (s *WorkGroupSummary) SetCreationTime(v time.Time) *WorkGroupSummary {
 // SetDescription sets the Description field's value.
 func (s *WorkGroupSummary) SetDescription(v string) *WorkGroupSummary {
 	s.Description = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *WorkGroupSummary) SetEngineVersion(v *EngineVersion) *WorkGroupSummary {
+	s.EngineVersion = v
 	return s
 }
 

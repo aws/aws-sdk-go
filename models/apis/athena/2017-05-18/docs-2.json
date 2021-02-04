@@ -11,7 +11,7 @@
     "DeleteNamedQuery": "<p>Deletes the named query if you have access to the workgroup in which the query was saved.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "DeleteWorkGroup": "<p>Deletes the workgroup with the specified name. The primary workgroup cannot be deleted.</p>",
     "GetDataCatalog": "<p>Returns the specified data catalog.</p>",
-    "GetDatabase": "<p>Returns a database object for the specfied database and data catalog.</p>",
+    "GetDatabase": "<p>Returns a database object for the specified database and data catalog.</p>",
     "GetNamedQuery": "<p>Returns information about a single query. Requires that you have access to the workgroup in which the query was saved.</p>",
     "GetQueryExecution": "<p>Returns information about a single execution of a query if you have access to the workgroup in which the query ran. Each time a query executes, information about the query execution is saved with a unique ID.</p>",
     "GetQueryResults": "<p>Streams the results of a single query execution specified by <code>QueryExecutionId</code> from the Athena query results location in Amazon S3. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/querying.html\">Query Results</a> in the <i>Amazon Athena User Guide</i>. This request does not execute the query but returns results. Use <a>StartQueryExecution</a> to run a query.</p> <p>To stream query results successfully, the IAM principal with permission to call <code>GetQueryResults</code> also must have permissions to the Amazon S3 <code>GetObject</code> action for the Athena query results location.</p> <important> <p>IAM principals with permission to the Amazon S3 <code>GetObject</code> action for the query results location are able to retrieve query results from Amazon S3 even if permission to the <code>GetQueryResults</code> action is denied. To restrict user or role access, ensure that Amazon S3 permissions to the Athena query location are denied.</p> </important>",
@@ -19,6 +19,7 @@
     "GetWorkGroup": "<p>Returns information about the workgroup with the specified name.</p>",
     "ListDataCatalogs": "<p>Lists the data catalogs in the current AWS account.</p>",
     "ListDatabases": "<p>Lists the databases in the specified data catalog.</p>",
+    "ListEngineVersions": "<p>Returns a list of engine versions that are available to choose from, including the Auto option.</p>",
     "ListNamedQueries": "<p>Provides a list of available query IDs only for queries saved in the specified workgroup. Requires that you have access to the specified workgroup. If a workgroup is not specified, lists the saved queries for the primary workgroup.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "ListQueryExecutions": "<p>Provides a list of available query execution IDs for the queries in the specified workgroup. If a workgroup is not specified, returns a list of query execution IDs for the primary workgroup. Requires you to have access to the workgroup in which the queries ran.</p> <p>For code samples using the AWS SDK for Java, see <a href=\"http://docs.aws.amazon.com/athena/latest/ug/code-samples.html\">Examples and Code Samples</a> in the <i>Amazon Athena User Guide</i>.</p>",
     "ListTableMetadata": "<p>Lists the metadata for the tables in the specified data catalog database.</p>",
@@ -70,7 +71,7 @@
     "BoxedBoolean": {
       "base": null,
       "refs": {
-        "DeleteWorkGroupInput$RecursiveDeleteOption": "<p>The option to delete the workgroup and its contents even if the workgroup contains any named queries.</p>",
+        "DeleteWorkGroupInput$RecursiveDeleteOption": "<p>The option to delete the workgroup and its contents even if the workgroup contains any named queries or query executions.</p>",
         "ResultConfigurationUpdates$RemoveOutputLocation": "<p>If set to \"true\", indicates that the previously-specified query results location (also known as a client-side setting) for queries in this workgroup should be ignored and set to null. If set to \"false\" or not set, and a value is present in the OutputLocation in ResultConfigurationUpdates (the client-side setting), the OutputLocation in the workgroup's ResultConfiguration will be updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "ResultConfigurationUpdates$RemoveEncryptionConfiguration": "<p>If set to \"true\", indicates that the previously-specified encryption configuration (also known as the client-side setting) for queries in this workgroup should be ignored and set to null. If set to \"false\" or not set, and a value is present in the EncryptionConfiguration in ResultConfigurationUpdates (the client-side setting), the EncryptionConfiguration in the workgroup's ResultConfiguration will be updated with the new value. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
         "WorkGroupConfiguration$EnforceWorkGroupConfiguration": "<p>If set to \"true\", the settings for the workgroup override client-side settings. If set to \"false\", client-side settings are used. For more information, see <a href=\"https://docs.aws.amazon.com/athena/latest/ug/workgroups-settings-override.html\">Workgroup Settings Override Client-Side Settings</a>.</p>",
@@ -193,10 +194,10 @@
     "DataCatalogType": {
       "base": null,
       "refs": {
-        "CreateDataCatalogInput$Type": "<p>The type of data catalog to create: <code>LAMBDA</code> for a federated catalog, <code>GLUE</code> for AWS Glue Catalog, or <code>HIVE</code> for an external hive metastore.</p>",
-        "DataCatalog$Type": "<p>The type of data catalog: <code>LAMBDA</code> for a federated catalog, <code>GLUE</code> for AWS Glue Catalog, or <code>HIVE</code> for an external hive metastore.</p>",
+        "CreateDataCatalogInput$Type": "<p>The type of data catalog to create: <code>LAMBDA</code> for a federated catalog or <code>HIVE</code> for an external hive metastore.</p> <note> <p>Do not use the <code>GLUE</code> type. This refers to the <code>AwsDataCatalog</code> that already exists in your account, of which you can have only one. Specifying the <code>GLUE</code> type will result in an <code>INVALID_INPUT</code> error.</p> </note>",
+        "DataCatalog$Type": "<p>The type of data catalog: <code>LAMBDA</code> for a federated catalog or <code>HIVE</code> for an external hive metastore. <code>GLUE</code> refers to the <code>AwsDataCatalog</code> that already exists in your account, of which you can have only one.</p>",
         "DataCatalogSummary$Type": "<p>The data catalog type.</p>",
-        "UpdateDataCatalogInput$Type": "<p>Specifies the type of data catalog to update. Specify <code>LAMBDA</code> for a federated catalog, <code>GLUE</code> for AWS Glue Catalog, or <code>HIVE</code> for an external hive metastore.</p>"
+        "UpdateDataCatalogInput$Type": "<p>Specifies the type of data catalog to update. Specify <code>LAMBDA</code> for a federated catalog or <code>HIVE</code> for an external hive metastore.</p> <note> <p>Do not use the <code>GLUE</code> type. This refers to the <code>AwsDataCatalog</code> that already exists in your account, of which you can have only one. Specifying the <code>GLUE</code> type will result in an <code>INVALID_INPUT</code> error.</p> </note>"
       }
     },
     "Database": {
@@ -287,6 +288,22 @@
       "base": null,
       "refs": {
         "EncryptionConfiguration$EncryptionOption": "<p>Indicates whether Amazon S3 server-side encryption with Amazon S3-managed keys (<code>SSE-S3</code>), server-side encryption with KMS-managed keys (<code>SSE-KMS</code>), or client-side encryption with KMS-managed keys (CSE-KMS) is used.</p> <p>If a query runs in a workgroup and the workgroup overrides client-side settings, then the workgroup's setting for encryption is used. It specifies whether query results must be encrypted, for all queries that run in this workgroup. </p>"
+      }
+    },
+    "EngineVersion": {
+      "base": "<p>The Athena engine version for running queries.</p>",
+      "refs": {
+        "EngineVersionsList$member": null,
+        "QueryExecution$EngineVersion": "<p>The engine version that executed the query.</p>",
+        "WorkGroupConfiguration$EngineVersion": "<p>The engine version that all queries running on the workgroup use. Queries on the <code>AmazonAthenaPreviewFunctionality</code> workgroup run on the preview engine regardless of this setting.</p>",
+        "WorkGroupConfigurationUpdates$EngineVersion": "<p>The engine version requested when a workgroup is updated. After the update, all queries on the workgroup run on the requested engine version. If no value was previously set, the default is Auto. Queries on the <code>AmazonAthenaPreviewFunctionality</code> workgroup run on the preview engine regardless of this setting.</p>",
+        "WorkGroupSummary$EngineVersion": "<p>The engine version setting for all queries on the workgroup. Queries on the <code>AmazonAthenaPreviewFunctionality</code> workgroup run on the preview engine regardless of this setting.</p>"
+      }
+    },
+    "EngineVersionsList": {
+      "base": null,
+      "refs": {
+        "ListEngineVersionsOutput$EngineVersions": "<p>A list of engine versions that are available to choose from.</p>"
       }
     },
     "ErrorCode": {
@@ -435,6 +452,16 @@
       "refs": {
       }
     },
+    "ListEngineVersionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEngineVersionsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListNamedQueriesInput": {
       "base": null,
       "refs": {
@@ -509,6 +536,12 @@
         "ListDatabasesInput$MaxResults": "<p>Specifies the maximum number of results to return.</p>"
       }
     },
+    "MaxEngineVersionsCount": {
+      "base": null,
+      "refs": {
+        "ListEngineVersionsInput$MaxResults": "<p>The maximum number of engine versions to return in this request.</p>"
+      }
+    },
     "MaxNamedQueriesCount": {
       "base": null,
       "refs": {
@@ -556,6 +589,8 @@
         "Column$Name": "<p>The name of the column.</p>",
         "CreateNamedQueryInput$Name": "<p>The query name.</p>",
         "Database$Name": "<p>The name of the database.</p>",
+        "EngineVersion$SelectedEngineVersion": "<p>The engine version requested by the user. Possible values are determined by the output of <code>ListEngineVersions</code>, including Auto. The default is Auto.</p>",
+        "EngineVersion$EffectiveEngineVersion": "<p>Read only. The engine version on which the query runs. If the user requests a valid engine version other than Auto, the effective engine version is the same as the engine version that the user requested. If the user requests Auto, the effective engine version is chosen by Athena. When a request to update the engine version is made by a <code>CreateWorkGroup</code> or <code>UpdateWorkGroup</code> operation, the <code>EffectiveEngineVersion</code> field is ignored.</p>",
         "GetDatabaseInput$DatabaseName": "<p>The name of the database to return.</p>",
         "GetTableMetadataInput$DatabaseName": "<p>The name of the database that contains the table metadata to return.</p>",
         "GetTableMetadataInput$TableName": "<p>The name of the table for which metadata is returned.</p>",
@@ -598,11 +633,11 @@
     "ParametersMap": {
       "base": null,
       "refs": {
-        "CreateDataCatalogInput$Parameters": "<p>Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> <li> <p>The <code>GLUE</code> type has no parameters.</p> </li> </ul>",
-        "DataCatalog$Parameters": "<p>Specifies the Lambda function or functions to use for the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> <li> <p>The <code>GLUE</code> type has no parameters.</p> </li> </ul>",
+        "CreateDataCatalogInput$Parameters": "<p>Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> </ul>",
+        "DataCatalog$Parameters": "<p>Specifies the Lambda function or functions to use for the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> </ul>",
         "Database$Parameters": "<p>A set of custom key/value pairs.</p>",
         "TableMetadata$Parameters": "<p>A set of custom key/value pairs for table properties.</p>",
-        "UpdateDataCatalogInput$Parameters": "<p>Specifies the Lambda function or functions to use for updating the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> <li> <p>The <code>GLUE</code> type has no parameters.</p> </li> </ul>"
+        "UpdateDataCatalogInput$Parameters": "<p>Specifies the Lambda function or functions to use for updating the data catalog. This is a mapping whose values depend on the catalog type. </p> <ul> <li> <p>For the <code>HIVE</code> data catalog type, use the following syntax. The <code>metadata-function</code> parameter is required. <code>The sdk-version</code> parameter is optional and defaults to the currently supported version.</p> <p> <code>metadata-function=<i>lambda_arn</i>, sdk-version=<i>version_number</i> </code> </p> </li> <li> <p>For the <code>LAMBDA</code> data catalog type, use one of the following sets of required parameters, but not both.</p> <ul> <li> <p>If you have one Lambda function that processes metadata and another for reading the actual data, use the following syntax. Both parameters are required.</p> <p> <code>metadata-function=<i>lambda_arn</i>, record-function=<i>lambda_arn</i> </code> </p> </li> <li> <p> If you have a composite Lambda function that processes both metadata and data, use the following syntax to specify your Lambda function.</p> <p> <code>function=<i>lambda_arn</i> </code> </p> </li> </ul> </li> </ul>"
       }
     },
     "ParametersMapValue": {
@@ -847,6 +882,8 @@
         "ListDataCatalogsOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.</p>",
         "ListDatabasesInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
         "ListDatabasesOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.</p>",
+        "ListEngineVersionsInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
+        "ListEngineVersionsOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
         "ListNamedQueriesInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
         "ListNamedQueriesOutput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
         "ListQueryExecutionsInput$NextToken": "<p>A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the <code>NextToken</code> from the response object of the previous page call.</p>",
@@ -986,7 +1023,7 @@
     "WorkGroupsList": {
       "base": null,
       "refs": {
-        "ListWorkGroupsOutput$WorkGroups": "<p>The list of workgroups, including their names, descriptions, creation times, and states.</p>"
+        "ListWorkGroupsOutput$WorkGroups": "<p>A list of <a>WorkGroupSummary</a> objects that include the names, descriptions, creation times, and states for each workgroup.</p>"
       }
     },
     "datumList": {

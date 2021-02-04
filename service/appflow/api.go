@@ -4168,6 +4168,9 @@ type DescribeConnectorsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
+	//
+	// Locke refers to a new destination known as Amazon Connect Customer Profiles.
+	// At this time, we recommend that you do not use this destination.
 	ConnectorTypes []*string `locationName:"connectorTypes" type:"list"`
 
 	// The pagination token for the next page of data.
@@ -5115,6 +5118,14 @@ func (s *ExecutionDetails) SetMostRecentExecutionTime(v time.Time) *ExecutionDet
 type ExecutionRecord struct {
 	_ struct{} `type:"structure"`
 
+	// The timestamp that indicates the last new or updated record to be transferred
+	// in the flow run.
+	DataPullEndTime *time.Time `locationName:"dataPullEndTime" type:"timestamp"`
+
+	// The timestamp that determines the first new or updated record to be transferred
+	// in the flow run.
+	DataPullStartTime *time.Time `locationName:"dataPullStartTime" type:"timestamp"`
+
 	// Specifies the identifier of the given flow run.
 	ExecutionId *string `locationName:"executionId" type:"string"`
 
@@ -5140,6 +5151,18 @@ func (s ExecutionRecord) String() string {
 // GoString returns the string representation
 func (s ExecutionRecord) GoString() string {
 	return s.String()
+}
+
+// SetDataPullEndTime sets the DataPullEndTime field's value.
+func (s *ExecutionRecord) SetDataPullEndTime(v time.Time) *ExecutionRecord {
+	s.DataPullEndTime = &v
+	return s
+}
+
+// SetDataPullStartTime sets the DataPullStartTime field's value.
+func (s *ExecutionRecord) SetDataPullStartTime(v time.Time) *ExecutionRecord {
+	s.DataPullStartTime = &v
+	return s
 }
 
 // SetExecutionId sets the ExecutionId field's value.
@@ -6988,11 +7011,15 @@ type ScheduledTriggerProperties struct {
 	// ScheduleExpression is a required field
 	ScheduleExpression *string `locationName:"scheduleExpression" type:"string" required:"true"`
 
+	// Specifies the optional offset that is added to the time interval for a schedule-triggered
+	// flow.
+	ScheduleOffset *int64 `locationName:"scheduleOffset" type:"long"`
+
 	// Specifies the scheduled start time for a schedule-triggered flow.
 	ScheduleStartTime *time.Time `locationName:"scheduleStartTime" type:"timestamp"`
 
 	// Specifies the time zone used when referring to the date and time of a scheduled-triggered
-	// flow.
+	// flow, such as America/New_York.
 	Timezone *string `locationName:"timezone" type:"string"`
 }
 
@@ -7034,6 +7061,12 @@ func (s *ScheduledTriggerProperties) SetScheduleEndTime(v time.Time) *ScheduledT
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *ScheduledTriggerProperties) SetScheduleExpression(v string) *ScheduledTriggerProperties {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *ScheduledTriggerProperties) SetScheduleOffset(v int64) *ScheduledTriggerProperties {
+	s.ScheduleOffset = &v
 	return s
 }
 

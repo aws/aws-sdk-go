@@ -372,7 +372,10 @@
         "arn":{"shape":"VirtualClusterArn"}
       }
     },
-    "Date":{"type":"timestamp"},
+    "Date":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "DeleteManagedEndpointRequest":{
       "type":"structure",
       "required":[

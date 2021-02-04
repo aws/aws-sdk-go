@@ -1042,7 +1042,9 @@
         "executionStatus":{"shape":"ExecutionStatus"},
         "executionResult":{"shape":"ExecutionResult"},
         "startedAt":{"shape":"Date"},
-        "lastUpdatedAt":{"shape":"Date"}
+        "lastUpdatedAt":{"shape":"Date"},
+        "dataPullStartTime":{"shape":"Date"},
+        "dataPullEndTime":{"shape":"Date"}
       }
     },
     "ExecutionResult":{
@@ -1721,6 +1723,11 @@
         "ONCE"
       ]
     },
+    "ScheduleOffset":{
+      "type":"long",
+      "max":36000,
+      "min":0
+    },
     "ScheduledTriggerProperties":{
       "type":"structure",
       "required":["scheduleExpression"],
@@ -1729,7 +1736,11 @@
         "dataPullMode":{"shape":"DataPullMode"},
         "scheduleStartTime":{"shape":"Date"},
         "scheduleEndTime":{"shape":"Date"},
-        "timezone":{"shape":"Timezone"}
+        "timezone":{"shape":"Timezone"},
+        "scheduleOffset":{
+          "shape":"ScheduleOffset",
+          "box":true
+        }
       }
     },
     "SchedulingFrequencyTypeList":{

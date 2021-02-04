@@ -125,7 +125,7 @@
     "CrossRegionCopyRules": {
       "base": null,
       "refs": {
-        "Schedule$CrossRegionCopyRules": "<p>The rule for cross-Region snapshot copies.</p>"
+        "Schedule$CrossRegionCopyRules": "<p>The rule for cross-Region snapshot copies.</p> <p>You can only specify cross-Region copy rules for policies that create snapshots in a Region. If the policy creates snapshots on an Outpost, then you cannot copy the snapshots to a Region or to an Outpost. If the policy creates snapshots in a Region, then snapshots can be copied to up to three Regions or Outposts.</p>"
       }
     },
     "DeleteLifecyclePolicyRequest": {
@@ -306,6 +306,12 @@
       "refs": {
       }
     },
+    "LocationValues": {
+      "base": null,
+      "refs": {
+        "CreateRule$Location": "<p>Specifies the destination for snapshots created by the policy. To create snapshots in the same Region as the source resource, specify <code>CLOUD</code>. To create snapshots on the same Outpost as the source resource, specify <code>OUTPOST_LOCAL</code>. If you omit this parameter, <code>CLOUD</code> is used by default.</p> <p>If the policy targets resources in an AWS Region, then you must create snapshots in the same Region as the source resource. </p> <p>If the policy targets resources on an Outpost, then you can create snapshots on the same Outpost as the source resource, or in the Region of that Outpost.</p>"
+      }
+    },
     "NoReboot": {
       "base": null,
       "refs": {
@@ -381,6 +387,18 @@
       "refs": {
         "LifecyclePolicySummary$PolicyType": "<p>The type of policy. <code>EBS_SNAPSHOT_MANAGEMENT</code> indicates that the policy manages the lifecycle of Amazon EBS snapshots. <code>IMAGE_MANAGEMENT</code> indicates that the policy manages the lifecycle of EBS-backed AMIs.</p>",
         "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. Specify <code>EBS_SNAPSHOT_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of Amazon EBS snapshots. Specify <code>IMAGE_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of EBS-backed AMIs. Specify <code>EVENT_BASED_POLICY </code> to create an event-based policy that performs specific actions when a defined event occurs in your AWS account.</p> <p>The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.</p>"
+      }
+    },
+    "ResourceLocationList": {
+      "base": null,
+      "refs": {
+        "PolicyDetails$ResourceLocations": "<p>The location of the resources to backup. If the source resources are located in an AWS Region, specify <code>CLOUD</code>. If the source resources are located on an AWS Outpost in your account, specify <code>OUTPOST</code>. </p> <p>If you specify <code>OUTPOST</code>, Amazon Data Lifecycle Manager backs up all resources of the specified type with matching target tags across all of the Outposts in your account.</p>"
+      }
+    },
+    "ResourceLocationValues": {
+      "base": null,
+      "refs": {
+        "ResourceLocationList$member": null
       }
     },
     "ResourceNotFoundException": {
@@ -549,13 +567,14 @@
     "Target": {
       "base": null,
       "refs": {
-        "CrossRegionCopyAction$Target": "<p>The target Region.</p>"
+        "CrossRegionCopyAction$Target": "<p>The target Region.</p>",
+        "CrossRegionCopyRule$Target": "<p>The Amazon Resource Name (ARN) of the target AWS Outpost for the snapshot copies.</p> <p>If you specify an ARN, you must omit <b>TargetRegion</b>. You cannot specify a target Region and a target Outpost in the same rule.</p>"
       }
     },
     "TargetRegion": {
       "base": null,
       "refs": {
-        "CrossRegionCopyRule$TargetRegion": "<p>The target Region.</p>"
+        "CrossRegionCopyRule$TargetRegion": "<p>The target Region for the snapshot copies.</p> <p>If you specify a target Region, you must omit <b>Target</b>. You cannot specify a target Region and a target Outpost in the same rule.</p>"
       }
     },
     "TargetTagList": {

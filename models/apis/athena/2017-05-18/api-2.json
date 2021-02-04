@@ -239,6 +239,19 @@
         {"shape":"MetadataException"}
       ]
     },
+    "ListEngineVersions":{
+      "name":"ListEngineVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEngineVersionsInput"},
+      "output":{"shape":"ListEngineVersionsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "ListNamedQueries":{
       "name":"ListNamedQueries",
       "http":{
@@ -663,6 +676,19 @@
         "CSE_KMS"
       ]
     },
+    "EngineVersion":{
+      "type":"structure",
+      "members":{
+        "SelectedEngineVersion":{"shape":"NameString"},
+        "EffectiveEngineVersion":{"shape":"NameString"}
+      }
+    },
+    "EngineVersionsList":{
+      "type":"list",
+      "member":{"shape":"EngineVersion"},
+      "max":10,
+      "min":0
+    },
     "ErrorCode":{
       "type":"string",
       "max":256,
@@ -837,6 +863,20 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "ListEngineVersionsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"MaxEngineVersionsCount"}
+      }
+    },
+    "ListEngineVersionsOutput":{
+      "type":"structure",
+      "members":{
+        "EngineVersions":{"shape":"EngineVersionsList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "ListNamedQueriesInput":{
       "type":"structure",
       "members":{
@@ -929,6 +969,12 @@
       "type":"integer",
       "box":true,
       "max":50,
+      "min":1
+    },
+    "MaxEngineVersionsCount":{
+      "type":"integer",
+      "box":true,
+      "max":10,
       "min":1
     },
     "MaxNamedQueriesCount":{
@@ -1024,7 +1070,8 @@
         "QueryExecutionContext":{"shape":"QueryExecutionContext"},
         "Status":{"shape":"QueryExecutionStatus"},
         "Statistics":{"shape":"QueryExecutionStatistics"},
-        "WorkGroup":{"shape":"WorkGroupName"}
+        "WorkGroup":{"shape":"WorkGroupName"},
+        "EngineVersion":{"shape":"EngineVersion"}
       }
     },
     "QueryExecutionContext":{
@@ -1349,7 +1396,8 @@
         "EnforceWorkGroupConfiguration":{"shape":"BoxedBoolean"},
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
         "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
-        "RequesterPaysEnabled":{"shape":"BoxedBoolean"}
+        "RequesterPaysEnabled":{"shape":"BoxedBoolean"},
+        "EngineVersion":{"shape":"EngineVersion"}
       }
     },
     "WorkGroupConfigurationUpdates":{
@@ -1360,7 +1408,8 @@
         "PublishCloudWatchMetricsEnabled":{"shape":"BoxedBoolean"},
         "BytesScannedCutoffPerQuery":{"shape":"BytesScannedCutoffValue"},
         "RemoveBytesScannedCutoffPerQuery":{"shape":"BoxedBoolean"},
-        "RequesterPaysEnabled":{"shape":"BoxedBoolean"}
+        "RequesterPaysEnabled":{"shape":"BoxedBoolean"},
+        "EngineVersion":{"shape":"EngineVersion"}
       }
     },
     "WorkGroupDescriptionString":{
@@ -1385,7 +1434,8 @@
         "Name":{"shape":"WorkGroupName"},
         "State":{"shape":"WorkGroupState"},
         "Description":{"shape":"WorkGroupDescriptionString"},
-        "CreationTime":{"shape":"Date"}
+        "CreationTime":{"shape":"Date"},
+        "EngineVersion":{"shape":"EngineVersion"}
       }
     },
     "WorkGroupsList":{

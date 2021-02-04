@@ -137,6 +137,10 @@ type AthenaAPI interface {
 	ListDatabasesPages(*athena.ListDatabasesInput, func(*athena.ListDatabasesOutput, bool) bool) error
 	ListDatabasesPagesWithContext(aws.Context, *athena.ListDatabasesInput, func(*athena.ListDatabasesOutput, bool) bool, ...request.Option) error
 
+	ListEngineVersions(*athena.ListEngineVersionsInput) (*athena.ListEngineVersionsOutput, error)
+	ListEngineVersionsWithContext(aws.Context, *athena.ListEngineVersionsInput, ...request.Option) (*athena.ListEngineVersionsOutput, error)
+	ListEngineVersionsRequest(*athena.ListEngineVersionsInput) (*request.Request, *athena.ListEngineVersionsOutput)
+
 	ListNamedQueries(*athena.ListNamedQueriesInput) (*athena.ListNamedQueriesOutput, error)
 	ListNamedQueriesWithContext(aws.Context, *athena.ListNamedQueriesInput, ...request.Option) (*athena.ListNamedQueriesOutput, error)
 	ListNamedQueriesRequest(*athena.ListNamedQueriesInput) (*request.Request, *athena.ListNamedQueriesOutput)

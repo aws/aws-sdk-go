@@ -13081,6 +13081,9 @@ type CreateDataSetInput struct {
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
 
+	// The folder that contains fields and nested subfolders for your dataset.
+	FieldFolders map[string]*FieldFolder `type:"map"`
+
 	// Indicates whether you want to import the data into SPICE.
 	//
 	// ImportMode is a required field
@@ -13259,6 +13262,12 @@ func (s *CreateDataSetInput) SetDataSetId(v string) *CreateDataSetInput {
 	return s
 }
 
+// SetFieldFolders sets the FieldFolders field's value.
+func (s *CreateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *CreateDataSetInput {
+	s.FieldFolders = v
+	return s
+}
+
 // SetImportMode sets the ImportMode field's value.
 func (s *CreateDataSetInput) SetImportMode(v string) *CreateDataSetInput {
 	s.ImportMode = &v
@@ -13410,9 +13419,11 @@ type CreateDataSourceInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// The type of the data source. Currently, the supported types for this operation
-	// are: ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO,
-	// REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA. Use ListDataSources
-	// to return a list of all data sources.
+	// are: ATHENA, AURORA, AURORA_POSTGRESQL, AMAZON_ELASTICSEARCH, MARIADB, MYSQL,
+	// POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA.
+	// Use ListDataSources to return a list of all data sources.
+	//
+	// AMAZON_ELASTICSEARCH is for Amazon managed Elasticsearch Service.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataSourceType"`
@@ -15963,6 +15974,9 @@ type DataSet struct {
 	// The ID of the dataset.
 	DataSetId *string `type:"string"`
 
+	// The folder that contains fields and nested subfolders for your dataset.
+	FieldFolders map[string]*FieldFolder `type:"map"`
+
 	// A value that indicates whether you want to import the data into SPICE.
 	ImportMode *string `type:"string" enum:"DataSetImportMode"`
 
@@ -16030,6 +16044,12 @@ func (s *DataSet) SetCreatedTime(v time.Time) *DataSet {
 // SetDataSetId sets the DataSetId field's value.
 func (s *DataSet) SetDataSetId(v string) *DataSet {
 	s.DataSetId = &v
+	return s
+}
+
+// SetFieldFolders sets the FieldFolders field's value.
+func (s *DataSet) SetFieldFolders(v map[string]*FieldFolder) *DataSet {
+	s.FieldFolders = v
 	return s
 }
 
@@ -21186,6 +21206,39 @@ func (s ExportToCSVOption) GoString() string {
 // SetAvailabilityStatus sets the AvailabilityStatus field's value.
 func (s *ExportToCSVOption) SetAvailabilityStatus(v string) *ExportToCSVOption {
 	s.AvailabilityStatus = &v
+	return s
+}
+
+// A FieldFolder element is a folder that contains fields and nested subfolders.
+type FieldFolder struct {
+	_ struct{} `type:"structure"`
+
+	// A folder has a list of columns. A column can only be in one folder.
+	Columns []*string `locationName:"columns" type:"list"`
+
+	// The description for a field folder.
+	Description *string `locationName:"description" type:"string"`
+}
+
+// String returns the string representation
+func (s FieldFolder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FieldFolder) GoString() string {
+	return s.String()
+}
+
+// SetColumns sets the Columns field's value.
+func (s *FieldFolder) SetColumns(v []*string) *FieldFolder {
+	s.Columns = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *FieldFolder) SetDescription(v string) *FieldFolder {
+	s.Description = &v
 	return s
 }
 
@@ -31059,6 +31112,9 @@ type UpdateDataSetInput struct {
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
 
+	// The folder that contains fields and nested subfolders for your dataset.
+	FieldFolders map[string]*FieldFolder `type:"map"`
+
 	// Indicates whether you want to import the data into SPICE.
 	//
 	// ImportMode is a required field
@@ -31204,6 +31260,12 @@ func (s *UpdateDataSetInput) SetColumnLevelPermissionRules(v []*ColumnLevelPermi
 // SetDataSetId sets the DataSetId field's value.
 func (s *UpdateDataSetInput) SetDataSetId(v string) *UpdateDataSetInput {
 	s.DataSetId = &v
+	return s
+}
+
+// SetFieldFolders sets the FieldFolders field's value.
+func (s *UpdateDataSetInput) SetFieldFolders(v map[string]*FieldFolder) *UpdateDataSetInput {
+	s.FieldFolders = v
 	return s
 }
 
