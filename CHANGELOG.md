@@ -1,3 +1,10 @@
+Release v1.37.5 (2021-02-04)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * AWS Outposts now supports EBS local snapshots on Outposts that allows customers to store snapshots of EBS volumes and AMIs locally on S3 on Outposts.
+
 Release v1.37.4 (2021-02-04)
 ===
 
