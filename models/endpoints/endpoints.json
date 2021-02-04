@@ -8761,7 +8761,13 @@
       },
       "runtime.sagemaker" : {
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "runtime.sagemaker.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "s3" : {
@@ -9418,6 +9424,11 @@
         }
       },
       "monitoring" : {
+        "endpoints" : {
+          "us-iso-east-1" : { }
+        }
+      },
+      "outposts" : {
         "endpoints" : {
           "us-iso-east-1" : { }
         }

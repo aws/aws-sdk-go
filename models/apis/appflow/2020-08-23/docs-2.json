@@ -366,7 +366,7 @@
       "base": null,
       "refs": {
         "ConnectorConfiguration$supportedDestinationConnectors": "<p> Lists the connectors that are available for use as destinations. </p>",
-        "DescribeConnectorsRequest$connectorTypes": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>"
+        "DescribeConnectorsRequest$connectorTypes": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p> <note> <p> <i>Locke</i> refers to a new destination known as Amazon Connect Customer Profiles. At this time, we recommend that you do not use this destination. </p> </note>"
       }
     },
     "CreateConnectorProfileRequest": {
@@ -448,6 +448,8 @@
         "ExecutionDetails$mostRecentExecutionTime": "<p> Specifies the time of the most recent flow run. </p>",
         "ExecutionRecord$startedAt": "<p> Specifies the start time of the flow run. </p>",
         "ExecutionRecord$lastUpdatedAt": "<p> Specifies the time of the most recent update. </p>",
+        "ExecutionRecord$dataPullStartTime": "<p> The timestamp that determines the first new or updated record to be transferred in the flow run. </p>",
+        "ExecutionRecord$dataPullEndTime": "<p> The timestamp that indicates the last new or updated record to be transferred in the flow run. </p>",
         "FlowDefinition$createdAt": "<p> Specifies when the flow was created. </p>",
         "FlowDefinition$lastUpdatedAt": "<p> Specifies when the flow was last updated. </p>",
         "ScheduledTriggerProperties$scheduleStartTime": "<p> Specifies the scheduled start time for a schedule-triggered flow. </p>",
@@ -1233,6 +1235,12 @@
         "SchedulingFrequencyTypeList$member": null
       }
     },
+    "ScheduleOffset": {
+      "base": null,
+      "refs": {
+        "ScheduledTriggerProperties$scheduleOffset": "<p> Specifies the optional offset that is added to the time interval for a schedule-triggered flow. </p>"
+      }
+    },
     "ScheduledTriggerProperties": {
       "base": "<p> Specifies the configuration details of a schedule-triggered flow as defined by the user. Currently, these settings only apply to the <code>Scheduled</code> trigger type. </p>",
       "refs": {
@@ -1514,7 +1522,7 @@
     "Timezone": {
       "base": null,
       "refs": {
-        "ScheduledTriggerProperties$timezone": "<p> Specifies the time zone used when referring to the date and time of a scheduled-triggered flow. </p>"
+        "ScheduledTriggerProperties$timezone": "<p> Specifies the time zone used when referring to the date and time of a scheduled-triggered flow, such as <code>America/New_York</code>. </p>"
       }
     },
     "TrendmicroConnectorOperator": {
