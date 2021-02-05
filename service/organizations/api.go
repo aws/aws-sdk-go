@@ -129,6 +129,10 @@ func (c *Organizations) AcceptHandshakeRequest(input *AcceptHandshakeInput) (req
 //      * ORGANIZATION_ALREADY_HAS_ALL_FEATURES: The handshake request is invalid
 //      because the organization has already enabled all features.
 //
+//      * ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION: The handshake
+//      request is invalid because the organization has already started the process
+//      to enable all features.
+//
 //      * ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: The request failed because
 //      the account is from a different marketplace than the accounts in the organization.
 //      For example, accounts with India addresses must be associated with the
@@ -169,6 +173,9 @@ func (c *Organizations) AcceptHandshakeRequest(input *AcceptHandshakeInput) (req
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -513,6 +520,9 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -726,6 +736,9 @@ func (c *Organizations) CancelHandshakeRequest(input *CancelHandshakeInput) (req
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -1111,6 +1124,9 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -1547,6 +1563,9 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -1887,6 +1906,9 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -2225,6 +2247,9 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -2558,6 +2583,9 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -2769,6 +2797,9 @@ func (c *Organizations) DeclineHandshakeRequest(input *DeclineHandshakeInput) (r
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -2948,6 +2979,9 @@ func (c *Organizations) DeleteOrganizationRequest(input *DeleteOrganizationInput
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -3135,6 +3169,9 @@ func (c *Organizations) DeleteOrganizationalUnitRequest(input *DeleteOrganizatio
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -3325,6 +3362,9 @@ func (c *Organizations) DeletePolicyRequest(input *DeletePolicyInput) (req *requ
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -3677,6 +3717,9 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -3862,6 +3905,9 @@ func (c *Organizations) DescribeAccountRequest(input *DescribeAccountInput) (req
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -4042,6 +4088,9 @@ func (c *Organizations) DescribeCreateAccountStatusRequest(input *DescribeCreate
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -4394,6 +4443,9 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -4569,6 +4621,9 @@ func (c *Organizations) DescribeHandshakeRequest(input *DescribeHandshakeInput) 
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -4857,6 +4912,9 @@ func (c *Organizations) DescribeOrganizationalUnitRequest(input *DescribeOrganiz
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -5036,6 +5094,9 @@ func (c *Organizations) DescribePolicyRequest(input *DescribePolicyInput) (req *
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -5377,6 +5438,9 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -5767,6 +5831,9 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -6102,6 +6169,9 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -6458,6 +6528,9 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -6679,6 +6752,10 @@ func (c *Organizations) EnableAllFeaturesRequest(input *EnableAllFeaturesInput) 
 //      * ORGANIZATION_ALREADY_HAS_ALL_FEATURES: The handshake request is invalid
 //      because the organization has already enabled all features.
 //
+//      * ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION: The handshake
+//      request is invalid because the organization has already started the process
+//      to enable all features.
+//
 //      * ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: The request failed because
 //      the account is from a different marketplace than the accounts in the organization.
 //      For example, accounts with India addresses must be associated with the
@@ -6707,6 +6784,9 @@ func (c *Organizations) EnableAllFeaturesRequest(input *EnableAllFeaturesInput) 
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -7039,6 +7119,9 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -7274,6 +7357,10 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      * ORGANIZATION_ALREADY_HAS_ALL_FEATURES: The handshake request is invalid
 //      because the organization has already enabled all features.
 //
+//      * ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION: The handshake
+//      request is invalid because the organization has already started the process
+//      to enable all features.
+//
 //      * ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: The request failed because
 //      the account is from a different marketplace than the accounts in the organization.
 //      For example, accounts with India addresses must be associated with the
@@ -7449,6 +7536,9 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -7818,6 +7908,9 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -8154,6 +8247,9 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -8399,6 +8495,9 @@ func (c *Organizations) ListAccountsRequest(input *ListAccountsInput) (req *requ
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -8642,6 +8741,9 @@ func (c *Organizations) ListAccountsForParentRequest(input *ListAccountsForParen
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -8888,6 +8990,9 @@ func (c *Organizations) ListChildrenRequest(input *ListChildrenInput) (req *requ
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -9131,6 +9236,9 @@ func (c *Organizations) ListCreateAccountStatusRequest(input *ListCreateAccountS
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -9510,6 +9618,9 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -9897,6 +10008,9 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -10143,6 +10257,9 @@ func (c *Organizations) ListHandshakesForAccountRequest(input *ListHandshakesFor
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -10395,6 +10512,9 @@ func (c *Organizations) ListHandshakesForOrganizationRequest(input *ListHandshak
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -10634,6 +10754,9 @@ func (c *Organizations) ListOrganizationalUnitsForParentRequest(input *ListOrgan
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -10886,6 +11009,9 @@ func (c *Organizations) ListParentsRequest(input *ListParentsInput) (req *reques
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -11125,6 +11251,9 @@ func (c *Organizations) ListPoliciesRequest(input *ListPoliciesInput) (req *requ
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -11370,6 +11499,9 @@ func (c *Organizations) ListPoliciesForTargetRequest(input *ListPoliciesForTarge
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -11623,6 +11755,9 @@ func (c *Organizations) ListRootsRequest(input *ListRootsInput) (req *request.Re
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -11871,6 +12006,9 @@ func (c *Organizations) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -12112,6 +12250,9 @@ func (c *Organizations) ListTargetsForPolicyRequest(input *ListTargetsForPolicyI
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -12343,6 +12484,9 @@ func (c *Organizations) MoveAccountRequest(input *MoveAccountInput) (req *reques
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -12705,6 +12849,9 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -13064,6 +13211,9 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -13403,6 +13553,9 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -13737,6 +13890,9 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
 //
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
+//
 //      * INVALID_ENUM: You specified an invalid value.
 //
 //      * INVALID_ENUM_POLICY_TYPE: You specified an invalid policy type string.
@@ -13921,6 +14077,9 @@ func (c *Organizations) UpdateOrganizationalUnitRequest(input *UpdateOrganizatio
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -14249,6 +14408,9 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      can't be modified.
 //
 //      * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//      * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//      for the invited account owner.
 //
 //      * INVALID_ENUM: You specified an invalid value.
 //
@@ -15679,9 +15841,16 @@ type CreateAccountStatus struct {
 	//    * EMAIL_ALREADY_EXISTS: The account could not be created because another
 	//    AWS account with that email address already exists.
 	//
+	//    * FAILED_BUSINESS_VALIDATION: The AWS account that owns your organization
+	//    failed to receive business license validation.
+	//
 	//    * GOVCLOUD_ACCOUNT_ALREADY_EXISTS: The account in the AWS GovCloud (US)
 	//    Region could not be created because this Region already includes an account
 	//    with that email address.
+	//
+	//    * IDENTITY_INVALID_BUSINESS_VALIDATION: The AWS account that owns your
+	//    organization can't complete business license validation because it doesn't
+	//    have valid identity data.
 	//
 	//    * INVALID_ADDRESS: The account could not be created because the address
 	//    you provided is not valid.
@@ -15697,6 +15866,12 @@ type CreateAccountStatus struct {
 	//
 	//    * MISSING_PAYMENT_INSTRUMENT: You must configure the management account
 	//    with a valid payment method, such as a credit card.
+	//
+	//    * PENDING_BUSINESS_VALIDATION: The AWS account that owns your organization
+	//    is still in the process of completing business license validation.
+	//
+	//    * UNKNOWN_BUSINESS_VALIDATION: The AWS account that owns your organization
+	//    has an unknown issue with business license validation.
 	FailureReason *string `type:"string" enum:"CreateAccountFailureReason"`
 
 	// If the account was created successfully, the unique identifier (ID) of the
@@ -18372,6 +18547,10 @@ func (s *HandshakeAlreadyInStateException) RequestID() string {
 //    * ORGANIZATION_ALREADY_HAS_ALL_FEATURES: The handshake request is invalid
 //    because the organization has already enabled all features.
 //
+//    * ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION: The handshake
+//    request is invalid because the organization has already started the process
+//    to enable all features.
+//
 //    * ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: The request failed because
 //    the account is from a different marketplace than the accounts in the organization.
 //    For example, accounts with India addresses must be associated with the
@@ -18729,6 +18908,9 @@ func (s *InvalidHandshakeTransitionException) RequestID() string {
 //    can't be modified.
 //
 //    * INPUT_REQUIRED: You must include a value for all required parameters.
+//
+//    * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+//    for the invited account owner.
 //
 //    * INVALID_ENUM: You specified an invalid value.
 //
@@ -23231,6 +23413,18 @@ const (
 	// CreateAccountFailureReasonMissingBusinessValidation is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonMissingBusinessValidation = "MISSING_BUSINESS_VALIDATION"
 
+	// CreateAccountFailureReasonFailedBusinessValidation is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonFailedBusinessValidation = "FAILED_BUSINESS_VALIDATION"
+
+	// CreateAccountFailureReasonPendingBusinessValidation is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonPendingBusinessValidation = "PENDING_BUSINESS_VALIDATION"
+
+	// CreateAccountFailureReasonInvalidIdentityForBusinessValidation is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonInvalidIdentityForBusinessValidation = "INVALID_IDENTITY_FOR_BUSINESS_VALIDATION"
+
+	// CreateAccountFailureReasonUnknownBusinessValidation is a CreateAccountFailureReason enum value
+	CreateAccountFailureReasonUnknownBusinessValidation = "UNKNOWN_BUSINESS_VALIDATION"
+
 	// CreateAccountFailureReasonMissingPaymentInstrument is a CreateAccountFailureReason enum value
 	CreateAccountFailureReasonMissingPaymentInstrument = "MISSING_PAYMENT_INSTRUMENT"
 )
@@ -23246,6 +23440,10 @@ func CreateAccountFailureReason_Values() []string {
 		CreateAccountFailureReasonInternalFailure,
 		CreateAccountFailureReasonGovcloudAccountAlreadyExists,
 		CreateAccountFailureReasonMissingBusinessValidation,
+		CreateAccountFailureReasonFailedBusinessValidation,
+		CreateAccountFailureReasonPendingBusinessValidation,
+		CreateAccountFailureReasonInvalidIdentityForBusinessValidation,
+		CreateAccountFailureReasonUnknownBusinessValidation,
 		CreateAccountFailureReasonMissingPaymentInstrument,
 	}
 }
@@ -23303,6 +23501,9 @@ const (
 	// HandshakeConstraintViolationExceptionReasonOrganizationAlreadyHasAllFeatures is a HandshakeConstraintViolationExceptionReason enum value
 	HandshakeConstraintViolationExceptionReasonOrganizationAlreadyHasAllFeatures = "ORGANIZATION_ALREADY_HAS_ALL_FEATURES"
 
+	// HandshakeConstraintViolationExceptionReasonOrganizationIsAlreadyPendingAllFeaturesMigration is a HandshakeConstraintViolationExceptionReason enum value
+	HandshakeConstraintViolationExceptionReasonOrganizationIsAlreadyPendingAllFeaturesMigration = "ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION"
+
 	// HandshakeConstraintViolationExceptionReasonInviteDisabledDuringEnableAllFeatures is a HandshakeConstraintViolationExceptionReason enum value
 	HandshakeConstraintViolationExceptionReasonInviteDisabledDuringEnableAllFeatures = "INVITE_DISABLED_DURING_ENABLE_ALL_FEATURES"
 
@@ -23323,6 +23524,7 @@ func HandshakeConstraintViolationExceptionReason_Values() []string {
 		HandshakeConstraintViolationExceptionReasonHandshakeRateLimitExceeded,
 		HandshakeConstraintViolationExceptionReasonAlreadyInAnOrganization,
 		HandshakeConstraintViolationExceptionReasonOrganizationAlreadyHasAllFeatures,
+		HandshakeConstraintViolationExceptionReasonOrganizationIsAlreadyPendingAllFeaturesMigration,
 		HandshakeConstraintViolationExceptionReasonInviteDisabledDuringEnableAllFeatures,
 		HandshakeConstraintViolationExceptionReasonPaymentInstrumentRequired,
 		HandshakeConstraintViolationExceptionReasonOrganizationFromDifferentSellerOfRecord,
@@ -23507,6 +23709,9 @@ const (
 
 	// InvalidInputExceptionReasonTargetNotSupported is a InvalidInputExceptionReason enum value
 	InvalidInputExceptionReasonTargetNotSupported = "TARGET_NOT_SUPPORTED"
+
+	// InvalidInputExceptionReasonInvalidEmailAddressTarget is a InvalidInputExceptionReason enum value
+	InvalidInputExceptionReasonInvalidEmailAddressTarget = "INVALID_EMAIL_ADDRESS_TARGET"
 )
 
 // InvalidInputExceptionReason_Values returns all elements of the InvalidInputExceptionReason enum
@@ -23535,6 +23740,7 @@ func InvalidInputExceptionReason_Values() []string {
 		InvalidInputExceptionReasonInvalidSystemTagsParameter,
 		InvalidInputExceptionReasonDuplicateTagKey,
 		InvalidInputExceptionReasonTargetNotSupported,
+		InvalidInputExceptionReasonInvalidEmailAddressTarget,
 	}
 }
 

@@ -7964,6 +7964,11 @@
           "us-gov-west-1" : { }
         }
       },
+      "connect" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
       "data.iot" : {
         "defaults" : {
           "credentialScope" : {

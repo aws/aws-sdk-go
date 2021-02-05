@@ -1,3 +1,13 @@
+Release v1.37.6 (2021-02-05)
+===
+
+### Service Client Updates
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/macie`: Updates service documentation
+  * Documentation updates for Amazon Macie Classic. We replaced the term "master account" with the term "administrator account." An administrator account is used to centrally manage multiple accounts.
+* `service/organizations`: Updates service API and documentation
+  * Added support for a few additional exception codes for some AWS Organizations APIs.
+
 Release v1.37.5 (2021-02-04)
 ===
 
