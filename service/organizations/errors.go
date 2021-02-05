@@ -328,6 +328,10 @@ const (
 	//    * ORGANIZATION_ALREADY_HAS_ALL_FEATURES: The handshake request is invalid
 	//    because the organization has already enabled all features.
 	//
+	//    * ORGANIZATION_IS_ALREADY_PENDING_ALL_FEATURES_MIGRATION: The handshake
+	//    request is invalid because the organization has already started the process
+	//    to enable all features.
+	//
 	//    * ORGANIZATION_FROM_DIFFERENT_SELLER_OF_RECORD: The request failed because
 	//    the account is from a different marketplace than the accounts in the organization.
 	//    For example, accounts with India addresses must be associated with the
@@ -373,6 +377,9 @@ const (
 	//    can't be modified.
 	//
 	//    * INPUT_REQUIRED: You must include a value for all required parameters.
+	//
+	//    * INVALID_EMAIL_ADDRESS_TARGET: You specified an invalid email address
+	//    for the invited account owner.
 	//
 	//    * INVALID_ENUM: You specified an invalid value.
 	//

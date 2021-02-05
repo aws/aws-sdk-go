@@ -147,9 +147,9 @@ func (c *Macie) AssociateS3ResourcesRequest(input *AssociateS3ResourcesInput) (r
 //
 // Associates specified S3 resources with Amazon Macie Classic for monitoring
 // and data classification. If memberAccountId isn't specified, the action associates
-// specified S3 resources with Macie Classic for the current master account.
-// If memberAccountId is specified, the action associates specified S3 resources
-// with Macie Classic for the specified member account.
+// specified S3 resources with Macie Classic for the current Macie Classic administrator
+// account. If memberAccountId is specified, the action associates specified
+// S3 resources with Macie Classic for the specified member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -325,9 +325,9 @@ func (c *Macie) DisassociateS3ResourcesRequest(input *DisassociateS3ResourcesInp
 //
 // Removes specified S3 resources from being monitored by Amazon Macie Classic.
 // If memberAccountId isn't specified, the action removes specified S3 resources
-// from Macie Classic for the current master account. If memberAccountId is
-// specified, the action removes specified S3 resources from Macie Classic for
-// the specified member account.
+// from Macie Classic for the current Macie Classic administrator account. If
+// memberAccountId is specified, the action removes specified S3 resources from
+// Macie Classic for the specified member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -419,8 +419,8 @@ func (c *Macie) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *
 
 // ListMemberAccounts API operation for Amazon Macie.
 //
-// Lists all Amazon Macie Classic member accounts for the current Amazon Macie
-// Classic master account.
+// Lists all Amazon Macie Classic member accounts for the current Macie Classic
+// administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -562,10 +562,10 @@ func (c *Macie) ListS3ResourcesRequest(input *ListS3ResourcesInput) (req *reques
 // ListS3Resources API operation for Amazon Macie.
 //
 // Lists all the S3 resources associated with Amazon Macie Classic. If memberAccountId
-// isn't specified, the action lists the S3 resources associated with Amazon
-// Macie Classic for the current master account. If memberAccountId is specified,
-// the action lists the S3 resources associated with Amazon Macie Classic for
-// the specified member account.
+// isn't specified, the action lists the S3 resources associated with Macie
+// Classic for the current Macie Classic administrator account. If memberAccountId
+// is specified, the action lists the S3 resources associated with Macie Classic
+// for the specified member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -705,9 +705,10 @@ func (c *Macie) UpdateS3ResourcesRequest(input *UpdateS3ResourcesInput) (req *re
 //
 // Updates the classification types for the specified S3 resources. If memberAccountId
 // isn't specified, the action updates the classification types of the S3 resources
-// associated with Amazon Macie Classic for the current master account. If memberAccountId
-// is specified, the action updates the classification types of the S3 resources
-// associated with Amazon Macie Classic for the specified member account.
+// associated with Amazon Macie Classic for the current Macie Classic administrator
+// account. If memberAccountId is specified, the action updates the classification
+// types of the S3 resources associated with Macie Classic for the specified
+// member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -951,7 +952,7 @@ type ClassificationType struct {
 
 	// A continuous classification of the objects that are added to a specified
 	// S3 bucket. Amazon Macie Classic begins performing continuous classification
-	// after a bucket is successfully associated with Amazon Macie Classic.
+	// after a bucket is successfully associated with Macie Classic.
 	//
 	// Continuous is a required field
 	Continuous *string `locationName:"continuous" type:"string" required:"true" enum:"S3ContinuousClassificationType"`
@@ -1009,7 +1010,7 @@ type ClassificationTypeUpdate struct {
 
 	// A continuous classification of the objects that are added to a specified
 	// S3 bucket. Amazon Macie Classic begins performing continuous classification
-	// after a bucket is successfully associated with Amazon Macie Classic.
+	// after a bucket is successfully associated with Macie Classic.
 	Continuous *string `locationName:"continuous" type:"string" enum:"S3ContinuousClassificationType"`
 
 	// A one-time classification of all of the existing objects in a specified S3
@@ -1101,7 +1102,7 @@ type DisassociateS3ResourcesInput struct {
 	AssociatedS3Resources []*S3Resource `locationName:"associatedS3Resources" type:"list" required:"true"`
 
 	// The ID of the Amazon Macie Classic member account whose resources you want
-	// to remove from being monitored by Amazon Macie Classic.
+	// to remove from being monitored by Macie Classic.
 	MemberAccountId *string `locationName:"memberAccountId" type:"string"`
 }
 
@@ -1442,7 +1443,8 @@ type ListMemberAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of the Amazon Macie Classic member accounts returned by the action.
-	// The current master account is also included in this list.
+	// The current Macie Classic administrator account is also included in this
+	// list.
 	MemberAccounts []*MemberAccount `locationName:"memberAccounts" type:"list"`
 
 	// When a response is generated, if there is more data to be listed, this parameter
