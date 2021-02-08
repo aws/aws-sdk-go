@@ -65,7 +65,8 @@
       "name":"DeleteChannel",
       "http":{
         "method":"POST",
-        "requestUri":"/DeleteChannel"
+        "requestUri":"/DeleteChannel",
+        "responseCode":204
       },
       "input":{"shape":"DeleteChannelRequest"},
       "errors":[
@@ -95,7 +96,8 @@
       "name":"DeleteStreamKey",
       "http":{
         "method":"POST",
-        "requestUri":"/DeleteStreamKey"
+        "requestUri":"/DeleteStreamKey",
+        "responseCode":204
       },
       "input":{"shape":"DeleteStreamKeyRequest"},
       "errors":[
@@ -188,7 +190,8 @@
       "output":{"shape":"ListChannelsResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
       ]
     },
     "ListPlaybackKeyPairs":{
@@ -848,7 +851,10 @@
       "member":{"shape":"StreamSummary"}
     },
     "StreamMetadata":{"type":"string"},
-    "StreamStartTime":{"type":"timestamp"},
+    "StreamStartTime":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "StreamState":{
       "type":"string",
       "enum":[

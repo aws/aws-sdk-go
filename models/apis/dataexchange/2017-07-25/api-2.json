@@ -1142,6 +1142,42 @@
         "RevisionId"
       ]
     },
+    "ExportRevisionsToS3RequestDetails": {
+      "type": "structure",
+      "members": {
+        "DataSetId": {
+          "shape": "Id"
+        },
+        "Encryption": {
+          "shape": "ExportServerSideEncryption"
+        },
+        "RevisionDestinations": {
+          "shape": "ListOfRevisionDestinationEntry"
+        }
+      },
+      "required": [
+        "RevisionDestinations",
+        "DataSetId"
+      ]
+    },
+    "ExportRevisionsToS3ResponseDetails": {
+      "type": "structure",
+      "members": {
+        "DataSetId": {
+          "shape": "Id"
+        },
+        "Encryption": {
+          "shape": "ExportServerSideEncryption"
+        },
+        "RevisionDestinations": {
+          "shape": "ListOfRevisionDestinationEntry"
+        }
+      },
+      "required": [
+        "RevisionDestinations",
+        "DataSetId"
+      ]
+    },
     "ExportServerSideEncryption": {
       "type": "structure",
       "members": {
@@ -1690,6 +1726,12 @@
         "shape": "AssetSourceEntry"
       }
     },
+    "ListOfRevisionDestinationEntry": {
+      "type": "list",
+      "member": {
+        "shape": "RevisionDestinationEntry"
+      }
+    },
     "ListRevisionAssetsRequest": {
       "type": "structure",
       "members": {
@@ -1790,6 +1832,9 @@
         "ExportAssetsToS3": {
           "shape": "ExportAssetsToS3RequestDetails"
         },
+        "ExportRevisionsToS3": {
+          "shape": "ExportRevisionsToS3RequestDetails"
+        },
         "ImportAssetFromSignedUrl": {
           "shape": "ImportAssetFromSignedUrlRequestDetails"
         },
@@ -1837,6 +1882,9 @@
         "ExportAssetsToS3": {
           "shape": "ExportAssetsToS3ResponseDetails"
         },
+        "ExportRevisionsToS3": {
+          "shape": "ExportRevisionsToS3ResponseDetails"
+        },
         "ImportAssetFromSignedUrl": {
           "shape": "ImportAssetFromSignedUrlResponseDetails"
         },
@@ -1844,6 +1892,24 @@
           "shape": "ImportAssetsFromS3ResponseDetails"
         }
       }
+    },
+    "RevisionDestinationEntry": {
+      "type": "structure",
+      "members": {
+        "Bucket": {
+          "shape": "__string"
+        },
+        "KeyPattern": {
+          "shape": "__string"
+        },
+        "RevisionId": {
+          "shape": "Id"
+        }
+      },
+      "required": [
+        "Bucket",
+        "RevisionId"
+      ]
     },
     "RevisionEntry": {
       "type": "structure",
@@ -1991,7 +2057,8 @@
         "IMPORT_ASSETS_FROM_S3",
         "IMPORT_ASSET_FROM_SIGNED_URL",
         "EXPORT_ASSETS_TO_S3",
-        "EXPORT_ASSET_TO_SIGNED_URL"
+        "EXPORT_ASSET_TO_SIGNED_URL",
+        "EXPORT_REVISIONS_TO_S3"
       ]
     },
     "UntagResourceRequest": {
@@ -2266,7 +2333,7 @@
       "type": "string",
       "min": 24,
       "max": 24,
-      "pattern": "/^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/"
+      "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
     }
   }
 }

@@ -2193,7 +2193,8 @@ func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGrou
 //
 // Deletes a cache subnet group.
 //
-// You cannot delete a cache subnet group if it is associated with any clusters.
+// You cannot delete a default cache subnet group or one that is associated
+// with any clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6316,7 +6317,7 @@ func (c *ElastiCache) ModifyReplicationGroupShardConfigurationRequest(input *Mod
 // ModifyReplicationGroupShardConfiguration API operation for Amazon ElastiCache.
 //
 // Modifies a replication group's shards (node groups) by allowing you to add
-// shards, remove shards, or rebalance the keyspaces among exisiting shards.
+// shards, remove shards, or rebalance the keyspaces among existing shards.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9298,28 +9299,6 @@ type CreateCacheClusterInput struct {
 	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
 	// (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid
 	// values for ddd are:
-	//
-	// Specifies the weekly time range during which maintenance on the cluster is
-	// performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi
-	// (24H Clock UTC). The minimum maintenance window is a 60 minute period.
-	//
-	// Valid values for ddd are:
-	//
-	//    * sun
-	//
-	//    * mon
-	//
-	//    * tue
-	//
-	//    * wed
-	//
-	//    * thu
-	//
-	//    * fri
-	//
-	//    * sat
-	//
-	// Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The outpost ARN in which the cache cluster is created.
@@ -10090,7 +10069,7 @@ type CreateReplicationGroupInput struct {
 	CacheSubnetGroupName *string `type:"string"`
 
 	// The name of the cache engine to be used for the clusters in this replication
-	// group.
+	// group. Must be Redis.
 	Engine *string `type:"string"`
 
 	// The version number of the cache engine to be used for the clusters in this

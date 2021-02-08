@@ -89,7 +89,8 @@
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"NotOrganizationMasterAccountException"},
-        {"shape":"InsufficientDependencyServiceAccessPermissionException"}
+        {"shape":"InsufficientDependencyServiceAccessPermissionException"},
+        {"shape":"ConflictException"}
       ],
       "idempotent":true
     },
@@ -276,6 +277,8 @@
         {"shape":"InvalidInsightSelectorsException"},
         {"shape":"InsufficientS3BucketPolicyException"},
         {"shape":"InsufficientEncryptionPolicyException"},
+        {"shape":"S3BucketDoesNotExistException"},
+        {"shape":"KmsException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"OperationNotPermittedException"},
         {"shape":"NotOrganizationMasterAccountException"}
@@ -446,6 +449,12 @@
       "exception":true
     },
     "CloudWatchLogsDeliveryUnavailableException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ConflictException":{
       "type":"structure",
       "members":{
       },

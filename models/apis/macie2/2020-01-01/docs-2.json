@@ -76,7 +76,7 @@
       }
     },
     "AccountLevelPermissions" : {
-      "base" : "<p>Provides information about account-level permissions settings that apply to an S3 bucket.</p>",
+      "base" : "<p>Provides information about the account-level permissions settings that apply to an S3 bucket.</p>",
       "refs" : {
         "BucketPermissionConfiguration$AccountLevelPermissions" : "<p>The account-level permissions settings that apply to the bucket.</p>"
       }
@@ -134,7 +134,7 @@
     "BlockPublicAccess" : {
       "base" : "<p>Provides information about the block public access settings for an S3 bucket. These settings can apply to a bucket at the account level or bucket level. For detailed information about each setting, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html\">Blocking public access to your Amazon S3 storage</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p>",
       "refs" : {
-        "AccountLevelPermissions$BlockPublicAccess" : "<p>The block public access settings for the bucket.</p>",
+        "AccountLevelPermissions$BlockPublicAccess" : "<p>The block public access settings for the AWS account that owns the bucket.</p>",
         "BucketLevelPermissions$BlockPublicAccess" : "<p>The block public access settings for the bucket.</p>"
       }
     },
@@ -145,9 +145,9 @@
       }
     },
     "BucketCountByEncryptionType" : {
-      "base" : "<p>Provides information about the number of S3 buckets that use certain types of server-side encryption or don't encrypt objects by default.</p>",
+      "base" : "<p>Provides information about the number of S3 buckets that use certain types of server-side encryption by default or don't encrypt new objects by default.</p>",
       "refs" : {
-        "GetBucketStatisticsResponse$BucketCountByEncryptionType" : "<p>The total number of buckets, grouped by server-side encryption type. This object also reports the total number of buckets that don't encrypt objects by default.</p>"
+        "GetBucketStatisticsResponse$BucketCountByEncryptionType" : "<p>The total number of buckets, grouped by default server-side encryption type. This object also reports the total number of buckets that don't encrypt new objects by default.</p>"
       }
     },
     "BucketCountBySharedAccessType" : {
@@ -195,8 +195,14 @@
     "BucketPublicAccess" : {
       "base" : "<p>Provides information about the permissions settings that determine whether an S3 bucket is publicly accessible.</p>",
       "refs" : {
-        "BucketMetadata$PublicAccess" : "<p>Specifies whether the bucket is publicly accessible. If this value is true, an access control list (ACL), bucket policy, or block public access settings allow the bucket to be accessed by the general public.</p>",
+        "BucketMetadata$PublicAccess" : "<p>Specifies whether the bucket is publicly accessible due to the combination of permissions settings that apply to the bucket, and provides information about those settings.</p>",
         "S3Bucket$PublicAccess" : "<p>The permissions settings that determine whether the bucket is publicly accessible.</p>"
+      }
+    },
+    "BucketServerSideEncryption" : {
+      "base" : "<p>Provides information about the default server-side encryption settings for an S3 bucket. For detailed information about these settings, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html\">Setting default server-side encryption behavior for Amazon S3 buckets</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p>",
+      "refs" : {
+        "BucketMetadata$ServerSideEncryption" : "<p>Specifies whether the bucket encrypts new objects by default and, if so, the type of server-side encryption that's used.</p>"
       }
     },
     "BucketSortCriteria" : {
@@ -304,7 +310,7 @@
       }
     },
     "Currency" : {
-      "base" : "<p>The type of currency that data for a usage metric is reported in. Possible values are:</p>",
+      "base" : "<p>The type of currency that the data for an Amazon Macie usage metric is reported in. Possible values are:</p>",
       "refs" : {
         "UsageByAccount$Currency" : "<p>The type of currency that the value for the metric (estimatedCost) is reported in.</p>",
         "UsageTotal$Currency" : "<p>The type of currency that the value for the metric (estimatedCost) is reported in.</p>"
@@ -567,15 +573,15 @@
       "refs" : { }
     },
     "GetUsageStatisticsRequest" : {
-      "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a query for quotas and aggregated usage data for one or more accounts.</p>",
+      "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a query for quotas and aggregated usage data for one or more Amazon Macie accounts.</p>",
       "refs" : { }
     },
     "GetUsageStatisticsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved quotas and aggregated usage data for one or more accounts.</p>",
+      "base" : "<p>Provides the results of a query that retrieved quotas and aggregated usage data for one or more Amazon Macie accounts.</p>",
       "refs" : { }
     },
     "GetUsageTotalsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved aggregated usage data for an account during the past 30 days.</p>",
+      "base" : "<p>Provides the results of a query that retrieved aggregated usage data for an Amazon Macie account.</p>",
       "refs" : { }
     },
     "GroupBy" : {
@@ -1011,7 +1017,7 @@
       }
     },
     "ServiceLimit" : {
-      "base" : "<p>Specifies a current quota for an account.</p>",
+      "base" : "<p>Specifies a current quota for an Amazon Macie account.</p>",
       "refs" : {
         "UsageByAccount$ServiceLimit" : "<p>The current value for the quota that corresponds to the metric specified by the type field.</p>"
       }
@@ -1137,6 +1143,20 @@
       "base" : "<p>Provides information about an error that occurred because too many requests were sent during a certain amount of time.</p>",
       "refs" : { }
     },
+    "TimeRange" : {
+      "base" : "<p>An inclusive time period that Amazon Macie usage data applies to. Possible values are:</p>",
+      "refs" : {
+        "GetUsageStatisticsRequest$TimeRange" : "<p>The inclusive time period to query usage data for. Valid values are: MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS, for the preceding 30 days. If you don't specify a value, Amazon Macie provides usage data for the preceding 30 days.</p>",
+        "GetUsageStatisticsResponse$TimeRange" : "<p>The inclusive time period that the usage data applies to. Possible values are: MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS, for the preceding 30 days.</p>",
+        "GetUsageTotalsResponse$TimeRange" : "<p>The inclusive time period that the usage data applies to. Possible values are: MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS, for the preceding 30 days.</p>"
+      }
+    },
+    "Type" : {
+      "base" : null,
+      "refs" : {
+        "BucketServerSideEncryption$Type" : "<p>The type of server-side encryption that's used by default when storing new objects in the bucket. Possible values are:</p> <ul><li><p>AES256 - New objects are encrypted with an Amazon S3 managed key and use Amazon S3 managed encryption (SSE-S3).</p></li> <li><p>aws:kms - New objects are encrypted with an AWS KMS CMK, specified by the kmsMasterKeyId property, and use AWS managed AWS KMS encryption (AWS-KMS) or customer managed AWS KMS encryption (SSE-KMS).</p></li> <li><p>NONE - New objects aren't encrypted by default. Default encryption is disabled for the bucket.</p></li></ul>"
+      }
+    },
     "Unit" : {
       "base" : null,
       "refs" : {
@@ -1178,58 +1198,58 @@
       "refs" : { }
     },
     "UsageByAccount" : {
-      "base" : "<p>Provides data for a specific usage metric and the corresponding quota for an account. The value for the metric is an aggregated value that reports usage during the past 30 days.</p>",
+      "base" : "<p>Provides data for a specific usage metric and the corresponding quota for an Amazon Macie account.</p>",
       "refs" : {
         "__listOfUsageByAccount$member" : null
       }
     },
     "UsageRecord" : {
-      "base" : "<p>Provides quota and aggregated usage data for an account.</p>",
+      "base" : "<p>Provides quota and aggregated usage data for an Amazon Macie account.</p>",
       "refs" : {
         "__listOfUsageRecord$member" : null
       }
     },
     "UsageStatisticsFilter" : {
-      "base" : "<p>Specifies a condition for filtering the results of a query for account quotas and usage data.</p>",
+      "base" : "<p>Specifies a condition for filtering the results of a query for the quotas and usage data that applies to one or more Amazon Macie accounts.</p>",
       "refs" : {
         "__listOfUsageStatisticsFilter$member" : null
       }
     },
     "UsageStatisticsFilterComparator" : {
-      "base" : "<p>The operator to use in a condition that filters the results of a query for account quotas and usage data. Valid values are:</p>",
+      "base" : "<p>The operator to use in a condition that filters the results of a query for Amazon Macie account quotas and usage data. Valid values are:</p>",
       "refs" : {
         "UsageStatisticsFilter$Comparator" : "<p>The operator to use in the condition. If the value for the key property is accountId, this value must be CONTAINS. If the value for the key property is any other supported field, this value can be EQ, GT, GTE, LT, LTE, or NE.</p>"
       }
     },
     "UsageStatisticsFilterKey" : {
-      "base" : "<p>The field to use in a condition that filters the results of a query for account quotas and usage data. Valid values are:</p>",
+      "base" : "<p>The field to use in a condition that filters the results of a query for Amazon Macie account quotas and usage data. Valid values are:</p>",
       "refs" : {
         "UsageStatisticsFilter$Key" : "<p>The field to use in the condition.</p>"
       }
     },
     "UsageStatisticsSortBy" : {
-      "base" : "<p>Specifies criteria for sorting the results of a query for account quotas and usage data.</p>",
+      "base" : "<p>Specifies criteria for sorting the results of a query for Amazon Macie account quotas and usage data.</p>",
       "refs" : {
         "GetUsageStatisticsRequest$SortBy" : "<p>The criteria to use to sort the query results.</p>"
       }
     },
     "UsageStatisticsSortKey" : {
-      "base" : "<p>The field to use to sort the results of a query for account quotas and usage data. Valid values are:</p>",
+      "base" : "<p>The field to use to sort the results of a query for Amazon Macie account quotas and usage data. Valid values are:</p>",
       "refs" : {
         "UsageStatisticsSortBy$Key" : "<p>The field to sort the results by.</p>"
       }
     },
     "UsageTotal" : {
-      "base" : "<p>Provides aggregated data for a usage metric. The value for the metric reports usage data for an account during the past 30 days.</p>",
+      "base" : "<p>Provides aggregated data for an Amazon Macie usage metric. The value for the metric reports estimated usage data for an account for the preceding 30 days or the current calendar month to date, depending on the time period (timeRange) specified in the request.</p>",
       "refs" : {
         "__listOfUsageTotal$member" : null
       }
     },
     "UsageType" : {
-      "base" : "<p>The name of a usage metric for an account. Possible values are:</p>",
+      "base" : "<p>The name of an Amazon Macie usage metric for an account. Possible values are:</p>",
       "refs" : {
-        "UsageByAccount$Type" : "<p>The name of the metric. Possible values are: DATA_INVENTORY_EVALUATION, for monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing sensitive data.</p>",
-        "UsageTotal$Type" : "<p>The name of the metric. Possible values are: DATA_INVENTORY_EVALUATION, for monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing sensitive data.</p>"
+        "UsageByAccount$Type" : "<p>The name of the metric. Possible values are: DATA_INVENTORY_EVALUATION, for monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing S3 objects to detect sensitive data.</p>",
+        "UsageTotal$Type" : "<p>The name of the metric. Possible values are: DATA_INVENTORY_EVALUATION, for monitoring S3 buckets; and, SENSITIVE_DATA_DISCOVERY, for analyzing S3 objects to detect sensitive data.</p>"
       }
     },
     "UserIdentity" : {
@@ -1448,7 +1468,7 @@
     "__listOfUsageStatisticsFilter" : {
       "base" : null,
       "refs" : {
-        "GetUsageStatisticsRequest$FilterBy" : "<p>An array of objects, one for each condition to use to filter the query results. If the array contains more than one object, Amazon Macie uses an AND operator to join the conditions specified by the objects.</p>"
+        "GetUsageStatisticsRequest$FilterBy" : "<p>An array of objects, one for each condition to use to filter the query results. If you specify more than one condition, Amazon Macie uses an AND operator to join the conditions.</p>"
       }
     },
     "__listOfUsageTotal" : {
@@ -1494,9 +1514,9 @@
         "BucketCountByEffectivePermission$PubliclyReadable" : "<p>The total number of buckets that allow the general public to have read access to the bucket.</p>",
         "BucketCountByEffectivePermission$PubliclyWritable" : "<p>The total number of buckets that allow the general public to have write access to the bucket.</p>",
         "BucketCountByEffectivePermission$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate permissions settings for. Macie can't determine whether these buckets are publicly accessible.</p>",
-        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) by default to encrypt objects. These buckets use AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.</p>",
-        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3 managed key by default to encrypt objects. These buckets use Amazon S3 managed (SSE-S3) encryption.</p>",
-        "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt objects by default. Default encryption is disabled for these buckets.</p>",
+        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) to encrypt new objects by default. These buckets use AWS managed AWS KMS encryption (AWS-KMS) or customer managed AWS KMS encryption (SSE-KMS).</p>",
+        "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3 managed key to encrypt new objects by default. These buckets use Amazon S3 managed encryption (SSE-S3).</p>",
+        "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt new objects by default. Default encryption is disabled for these buckets.</p>",
         "BucketCountBySharedAccessType$External" : "<p>The total number of buckets that are shared with an AWS account that isn't part of the same Amazon Macie organization.</p>",
         "BucketCountBySharedAccessType$Internal" : "<p>The total number of buckets that are shared with an AWS account that's part of the same Amazon Macie organization.</p>",
         "BucketCountBySharedAccessType$NotShared" : "<p>The total number of buckets that aren't shared with other AWS accounts.</p>",
@@ -1529,9 +1549,9 @@
         "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
-        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side (SSE-C) encryption.</p>",
-        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS KMS (AWS-KMS) encryption or customer managed AWS KMS (SSE-KMS) encryption.</p>",
-        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3 managed key. The objects use Amazon S3 managed (SSE-S3) encryption.</p>",
+        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side encryption (SSE-C).</p>",
+        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS KMS encryption (AWS-KMS) or customer managed AWS KMS encryption (SSE-KMS).</p>",
+        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3 managed key. The objects use Amazon S3 managed encryption (SSE-S3).</p>",
         "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
         "ObjectLevelStatistics$FileType" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects don't have a file name extension for a supported file or storage format.</p>",
         "ObjectLevelStatistics$StorageClass" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class.</p>",
@@ -1574,6 +1594,7 @@
         "BucketMetadata$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "BucketMetadata$BucketName" : "<p>The name of the bucket.</p>",
         "BucketMetadata$Region" : "<p>The AWS Region that hosts the bucket.</p>",
+        "BucketServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the AWS Key Management Service (AWS KMS) customer master key (CMK) that's used by default to encrypt objects that are added to the bucket. This value is null if the bucket uses an Amazon S3 managed key to encrypt new objects or the bucket doesn't encrypt new objects by default.</p>",
         "BucketSortCriteria$AttributeName" : "<p>The name of the property to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName or accountId.</p>",
         "Cell$CellReference" : "<p>The location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel workbook. This value is null for CSV and TSV files.</p>",
         "Cell$ColumnName" : "<p>The name of the column that contains the data, if available.</p>",
