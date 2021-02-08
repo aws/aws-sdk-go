@@ -1,3 +1,18 @@
+Release v1.37.7 (2021-02-08)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * ConflictException is now thrown when certain operations are called on resources before CloudTrail has time to load the resources. Two new exceptions have been added to the PutInsightSelectors API.
+* `service/dataexchange`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API and documentation
+* `service/ivs`: Updates service API
+* `service/macie2`: Updates service API and documentation
+
 Release v1.37.6 (2021-02-05)
 ===
 

@@ -439,6 +439,12 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.R
 //   an organization trail in a required service. For more information, see Prepare
 //   For Creating a Trail For Your Organization (https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-an-organizational-trail-prepare.html).
 //
+//   * ConflictException
+//   This exception is thrown when the specified resource is not ready for an
+//   operation. This can occur when you try to run an operation on a trail before
+//   CloudTrail has time to fully load the trail. If this exception occurs, wait
+//   a few minutes, and then try the operation again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudtrail-2013-11-01/DeleteTrail
 func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, error) {
 	req, out := c.DeleteTrailRequest(input)
@@ -1926,6 +1932,13 @@ func (c *CloudTrail) PutInsightSelectorsRequest(input *PutInsightSelectorsInput)
 //   This exception is thrown when the policy on the S3 bucket or KMS key is not
 //   sufficient.
 //
+//   * S3BucketDoesNotExistException
+//   This exception is thrown when the specified S3 bucket does not exist.
+//
+//   * KmsException
+//   This exception is thrown when there is an issue with the specified KMS key
+//   and the trail can’t be updated.
+//
 //   * UnsupportedOperationException
 //   This exception is thrown when the requested operation is not supported.
 //
@@ -2857,10 +2870,10 @@ type AdvancedFieldSelector struct {
 	//    value must be Management or Data.
 	//
 	//    * resources.type - This ﬁeld is required. resources.type can only use
-	//    the Equals operator, and the value can be one of the following: AWS::S3::Object
-	//    or AWS::Lambda::Function. You can have only one resources.type ﬁeld
-	//    per selector. To log data events on more than one resource type, add another
-	//    selector.
+	//    the Equals operator, and the value can be one of the following: AWS::S3::Object,
+	//    AWS::Lambda::Function, or AWS::S3Outposts::Object. You can have only one
+	//    resources.type ﬁeld per selector. To log data events on more than one
+	//    resource type, add another selector.
 	//
 	//    * resources.ARN - You can use any operator with resources.ARN, but if
 	//    you use Equals or NotEquals, the value must exactly match the ARN of a
@@ -2870,6 +2883,8 @@ type AdvancedFieldSelector struct {
 	//    intentional; do not exclude it. arn:partition:s3:::bucket_name/ arn:partition:s3:::bucket_name/object_or_file_name/
 	//    When resources.type equals AWS::Lambda::Function, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:partition:lambda:region:account_ID:function:function_name
+	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:partition:s3-outposts:region:>account_ID:object_path
 	//
 	// Field is a required field
 	Field *string `min:"1" type:"string" required:"true"`
@@ -3088,6 +3103,65 @@ func (s *CloudWatchLogsDeliveryUnavailableException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *CloudWatchLogsDeliveryUnavailableException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when the specified resource is not ready for an
+// operation. This can occur when you try to run an operation on a trail before
+// CloudTrail has time to fully load the trail. If this exception occurs, wait
+// a few minutes, and then try the operation again.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -3496,6 +3570,9 @@ type DataResource struct {
 
 	// The resource type in which you want to log data events. You can specify AWS::S3::Object
 	// or AWS::Lambda::Function resources.
+	//
+	// The AWS::S3Outposts::Object resource type is not valid in basic event selectors.
+	// To log data events on this resource type, use advanced event selectors.
 	Type *string `type:"string"`
 
 	// An array of Amazon Resource Name (ARN) strings or partial ARN strings for

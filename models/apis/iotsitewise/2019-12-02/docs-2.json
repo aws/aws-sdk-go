@@ -12,7 +12,6 @@
     "CreateDashboard": "<p>Creates a dashboard in an AWS IoT SiteWise Monitor project.</p>",
     "CreateGateway": "<p>Creates a gateway, which is a virtual or edge device that delivers industrial data streams from local servers to AWS IoT SiteWise. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html\">Ingesting data using a gateway</a> in the <i>AWS IoT SiteWise User Guide</i>.</p>",
     "CreatePortal": "<p>Creates a portal, which can contain projects and dashboards. AWS IoT SiteWise Monitor uses AWS SSO or IAM to authenticate portal users and manage user permissions.</p> <note> <p>Before you can sign in to a new portal, you must add at least one identity to that portal. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins\">Adding or removing portal administrators</a> in the <i>AWS IoT SiteWise User Guide</i>.</p> </note>",
-    "CreatePresignedPortalUrl": null,
     "CreateProject": "<p>Creates a project in the specified portal.</p>",
     "DeleteAccessPolicy": "<p>Deletes an access policy that grants the specified identity access to the specified AWS IoT SiteWise Monitor resource. You can use this operation to revoke access to an AWS IoT SiteWise Monitor resource.</p>",
     "DeleteAsset": "<p>Deletes an asset. This action can't be undone. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html\">Deleting assets and models</a> in the <i>AWS IoT SiteWise User Guide</i>. </p> <note> <p>You can't delete an asset that's associated to another asset. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DisassociateAssets.html\">DisassociateAssets</a>.</p> </note>",
@@ -652,16 +651,6 @@
       "refs": {
       }
     },
-    "CreatePresignedPortalUrlRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "CreatePresignedPortalUrlResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "CreateProjectRequest": {
       "base": null,
       "refs": {
@@ -1100,7 +1089,6 @@
         "CreateDashboardResponse$dashboardId": "<p>The ID of the dashboard.</p>",
         "CreateGatewayResponse$gatewayId": "<p>The ID of the gateway device. You can use this ID when you call other AWS IoT SiteWise APIs.</p>",
         "CreatePortalResponse$portalId": "<p>The ID of the created portal.</p>",
-        "CreatePresignedPortalUrlRequest$portalId": null,
         "CreateProjectRequest$portalId": "<p>The ID of the portal in which to create the project.</p>",
         "CreateProjectResponse$projectId": "<p>The ID of the project.</p>",
         "DashboardSummary$id": "<p>The ID of the dashboard.</p>",
@@ -1790,12 +1778,6 @@
       "refs": {
       }
     },
-    "SessionDurationSeconds": {
-      "base": null,
-      "refs": {
-        "CreatePresignedPortalUrlRequest$sessionDurationSeconds": null
-      }
-    },
     "TagKey": {
       "base": null,
       "refs": {
@@ -2038,7 +2020,6 @@
       "base": null,
       "refs": {
         "CreatePortalResponse$portalStartUrl": "<p>The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to access portals that use AWS SSO for authentication. For portals that use IAM for authentication, you must use the AWS IoT SiteWise console to get a URL that you can use to access the portal.</p>",
-        "CreatePresignedPortalUrlResponse$presignedPortalUrl": null,
         "DescribePortalResponse$portalStartUrl": "<p>The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to access portals that use AWS SSO for authentication. For portals that use IAM for authentication, you must use the AWS IoT SiteWise console to get a URL that you can use to access the portal.</p>",
         "ImageLocation$url": "<p>The URL where the image is available. The URL is valid for 15 minutes so that you can view and download the image</p>",
         "PortalSummary$startUrl": "<p>The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to access portals that use AWS SSO for authentication. For portals that use IAM for authentication, you must use the AWS IoT SiteWise console to get a URL that you can use to access the portal.</p>"
@@ -2066,12 +2047,6 @@
       "base": "<p>Contains an asset property value (of a single type only).</p>",
       "refs": {
         "AssetPropertyValue$value": "<p>The value of the asset property (see <code>Variant</code>).</p>"
-      }
-    },
-    "state": {
-      "base": null,
-      "refs": {
-        "CreatePresignedPortalUrlRequest$state": null
       }
     }
   }

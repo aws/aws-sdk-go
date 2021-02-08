@@ -1082,6 +1082,8 @@ func (c *IVS) ListChannelsRequest(input *ListChannelsInput) (req *request.Reques
 //
 //   * AccessDeniedException
 //
+//   * ConflictException
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListChannels
 func (c *IVS) ListChannels(input *ListChannelsInput) (*ListChannelsOutput, error) {
 	req, out := c.ListChannelsRequest(input)
@@ -4255,7 +4257,7 @@ type Stream struct {
 	PlaybackUrl *string `locationName:"playbackUrl" type:"string"`
 
 	// ISO-8601 formatted timestamp of the stream’s start.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The stream’s state.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
@@ -4414,7 +4416,7 @@ type StreamSummary struct {
 	Health *string `locationName:"health" type:"string" enum:"StreamHealth"`
 
 	// ISO-8601 formatted timestamp of the stream’s start.
-	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The stream’s state.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`

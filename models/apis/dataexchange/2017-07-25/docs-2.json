@@ -111,7 +111,7 @@
       "refs" : { }
     },
     "CreateJobRequest" : {
-      "base" : "<p>The CreateJob request. AWS Data Exchange Jobs are asynchronous import or export operations used to create or copy assets. A data set owner can both import and export as they see fit. Someone with an entitlement to a data set can only export. Jobs are deleted 90 days after they are created. Created jobs must be started with the StartJob operation.</p>",
+      "base" : "<p>The CreateJob request. AWS Data Exchange Jobs are asynchronous import or export operations used to create or copy assets. A data set owner can both import and export assets. A subscriber with an entitlement to a data set can only export. Jobs are deleted 90 days after they are created. Created jobs must be started with the StartJob operation.</p>",
       "refs" : { }
     },
     "CreateRevisionRequest" : {
@@ -168,11 +168,25 @@
         "ResponseDetails$ExportAssetsToS3" : "<p>Details for the export to Amazon S3 response.</p>"
       }
     },
+    "ExportRevisionsToS3RequestDetails" : {
+      "base" : "<p>Details of the operation to be performed by the job.</p>",
+      "refs" : {
+        "RequestDetails$ExportRevisionsToS3" : "<p>Details about the export to Amazon S3 request.</p>"
+      }
+    },
+    "ExportRevisionsToS3ResponseDetails" : {
+      "base" : "<p>Details about the export revisions to Amazon S3 response.</p>",
+      "refs" : {
+        "ResponseDetails$ExportRevisionsToS3" : "<p>Details for the export revisions to Amazon S3 response.</p>"
+      }
+    },
     "ExportServerSideEncryption" : {
       "base" : "<p>Encryption configuration of the export job. Includes the encryption type as well as the AWS KMS key. The KMS key is only necessary if you chose the KMS encryption type.</p>",
       "refs" : {
         "ExportAssetsToS3RequestDetails$Encryption" : "<p>Encryption configuration for the export job.</p>",
-        "ExportAssetsToS3ResponseDetails$Encryption" : "<p>Encryption configuration of the export job.</p>"
+        "ExportAssetsToS3ResponseDetails$Encryption" : "<p>Encryption configuration of the export job.</p>",
+        "ExportRevisionsToS3RequestDetails$Encryption" : "<p>Encryption configuration for the export job.</p>",
+        "ExportRevisionsToS3ResponseDetails$Encryption" : "<p>Encryption configuration of the export job.</p>"
       }
     },
     "Id" : {
@@ -201,6 +215,8 @@
         "ExportAssetsToS3RequestDetails$RevisionId" : "<p>The unique identifier for the revision associated with this export request.</p>",
         "ExportAssetsToS3ResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this export job.</p>",
         "ExportAssetsToS3ResponseDetails$RevisionId" : "<p>The unique identifier for the revision associated with this export response.</p>",
+        "ExportRevisionsToS3RequestDetails$DataSetId" : "<p>The unique identifier for the data set associated with this export job.</p>",
+        "ExportRevisionsToS3ResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this export job.</p>",
         "ImportAssetFromSignedUrlRequestDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
         "ImportAssetFromSignedUrlRequestDetails$RevisionId" : "<p>The unique identifier for the revision associated with this import request.</p>",
         "ImportAssetFromSignedUrlResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
@@ -214,6 +230,7 @@
         "Revision$DataSetId" : "<p>The unique identifier for the data set associated with this revision.</p>",
         "Revision$Id" : "<p>The unique identifier for the revision.</p>",
         "Revision$SourceId" : "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
+        "RevisionDestinationEntry$RevisionId" : "<p>The unique identifier for the revision.</p>",
         "RevisionEntry$DataSetId" : "<p>The unique identifier for the data set associated with this revision.</p>",
         "RevisionEntry$Id" : "<p>The unique identifier for the revision.</p>",
         "RevisionEntry$SourceId" : "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
@@ -319,6 +336,13 @@
       "base" : "<p>The token value retrieved from a previous call to access the next page of results.</p>",
       "refs" : { }
     },
+    "ListOfRevisionDestinationEntry" : {
+      "base" : "<p>The destination where the assets in the revision will be exported.</p>",
+      "refs" : {
+        "ExportRevisionsToS3RequestDetails$RevisionDestinations" : "<p>The destination for the revision.</p>",
+        "ExportRevisionsToS3ResponseDetails$RevisionDestinations" : "<p>The destination in Amazon S3 where the revision is exported.</p>"
+      }
+    },
     "ListOfRevisions" : {
       "base" : "<p>The revision objects listed by the request.</p>",
       "refs" : { }
@@ -385,6 +409,12 @@
     "Revision" : {
       "base" : "<p>A revision is a container for one or more assets.</p>",
       "refs" : { }
+    },
+    "RevisionDestinationEntry" : {
+      "base" : "<p>The destination where the assets in the revision will be exported.</p>",
+      "refs" : {
+        "ListOfRevisionDestinationEntry$member" : null
+      }
     },
     "RevisionEntry" : {
       "base" : "<p>A revision is a container for one or more assets.</p>",
@@ -568,6 +598,8 @@
         "OriginDetails$ProductId" : null,
         "ResourceNotFoundException$Message" : "<p>The resource couldn't be found.</p>",
         "ResourceNotFoundException$ResourceId" : "<p>The unique identifier for the resource that couldn't be found.</p>",
+        "RevisionDestinationEntry$Bucket" : "<p>The S3 bucket that is the destination for the assets in the revision.</p>",
+        "RevisionDestinationEntry$KeyPattern" : "<p>A string representing the pattern for generated names of the individual assets in the revision. For more information about key patterns, see <a href=\"https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns\">Key patterns when exporting revisions</a>.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The request has exceeded the quotas imposed by the service.</p>",
         "ThrottlingException$Message" : "<p>The limit on the number of requests per second was exceeded.</p>",
         "ValidationException$Message" : "<p>The message that informs you about what was invalid about the request.</p>",

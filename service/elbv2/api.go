@@ -8965,8 +8965,8 @@ type TargetGroupAttribute struct {
 	//    The value is true or false. The default is false.
 	//
 	//    * stickiness.type - The type of sticky sessions. The possible values are
-	//    lb_cookie for Application Load Balancers or source_ip for Network Load
-	//    Balancers.
+	//    lb_cookie and app_cookie for Application Load Balancers or source_ip for
+	//    Network Load Balancers.
 	//
 	// The following attributes are supported only if the load balancer is an Application
 	// Load Balancer and the target is an instance or an IP address:
@@ -8980,6 +8980,12 @@ type TargetGroupAttribute struct {
 	//    to the target group. After this time period ends, the target receives
 	//    its full share of traffic. The range is 30-900 seconds (15 minutes). The
 	//    default is 0 seconds (disabled).
+	//
+	//    * stickiness.app_cookie.duration_seconds - The time period, in seconds,
+	//    during which requests from a client should be routed to the same target.
+	//    After this time period expires, the application-based cookie is considered
+	//    stale. The range is 1 second to 1 week (604800 seconds). The default value
+	//    is 1 day (86400 seconds).
 	//
 	//    * stickiness.lb_cookie.duration_seconds - The time period, in seconds,
 	//    during which requests from a client should be routed to the same target.

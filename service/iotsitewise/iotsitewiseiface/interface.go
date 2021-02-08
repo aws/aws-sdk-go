@@ -100,10 +100,6 @@ type IoTSiteWiseAPI interface {
 	CreatePortalWithContext(aws.Context, *iotsitewise.CreatePortalInput, ...request.Option) (*iotsitewise.CreatePortalOutput, error)
 	CreatePortalRequest(*iotsitewise.CreatePortalInput) (*request.Request, *iotsitewise.CreatePortalOutput)
 
-	CreatePresignedPortalUrl(*iotsitewise.CreatePresignedPortalUrlInput) (*iotsitewise.CreatePresignedPortalUrlOutput, error)
-	CreatePresignedPortalUrlWithContext(aws.Context, *iotsitewise.CreatePresignedPortalUrlInput, ...request.Option) (*iotsitewise.CreatePresignedPortalUrlOutput, error)
-	CreatePresignedPortalUrlRequest(*iotsitewise.CreatePresignedPortalUrlInput) (*request.Request, *iotsitewise.CreatePresignedPortalUrlOutput)
-
 	CreateProject(*iotsitewise.CreateProjectInput) (*iotsitewise.CreateProjectOutput, error)
 	CreateProjectWithContext(aws.Context, *iotsitewise.CreateProjectInput, ...request.Option) (*iotsitewise.CreateProjectOutput, error)
 	CreateProjectRequest(*iotsitewise.CreateProjectInput) (*request.Request, *iotsitewise.CreateProjectOutput)

@@ -930,6 +930,7 @@
       "members":{
         "Name":{"shape":"GenericString"},
         "IpAddressType":{"shape":"IpAddressType"},
+        "IpAddresses":{"shape":"IpAddresses"},
         "Enabled":{"shape":"GenericBoolean"},
         "IdempotencyToken":{
           "shape":"IdempotencyToken",

@@ -5989,7 +5989,7 @@ func (s *AccountDetail) SetEmail(v string) *AccountDetail {
 	return s
 }
 
-// Provides information about account-level permissions settings that apply
+// Provides information about the account-level permissions settings that apply
 // to an S3 bucket.
 type AccountLevelPermissions struct {
 	_ struct{} `type:"structure"`
@@ -6434,7 +6434,7 @@ func (s *BucketCountByEffectivePermission) SetUnknown(v int64) *BucketCountByEff
 }
 
 // Provides information about the number of S3 buckets that use certain types
-// of server-side encryption or don't encrypt objects by default.
+// of server-side encryption by default or don't encrypt new objects by default.
 type BucketCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -6683,6 +6683,12 @@ type BucketMetadata struct {
 	// if so, which accounts.
 	ReplicationDetails *ReplicationDetails `locationName:"replicationDetails" type:"structure"`
 
+	// Provides information about the default server-side encryption settings for
+	// an S3 bucket. For detailed information about these settings, see Setting
+	// default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+	// in the Amazon Simple Storage Service User Guide.
+	ServerSideEncryption *BucketServerSideEncryption `locationName:"serverSideEncryption" type:"structure"`
+
 	SharedAccess *string `locationName:"sharedAccess" type:"string" enum:"SharedAccess"`
 
 	SizeInBytes *int64 `locationName:"sizeInBytes" type:"long"`
@@ -6794,6 +6800,12 @@ func (s *BucketMetadata) SetReplicationDetails(v *ReplicationDetails) *BucketMet
 	return s
 }
 
+// SetServerSideEncryption sets the ServerSideEncryption field's value.
+func (s *BucketMetadata) SetServerSideEncryption(v *BucketServerSideEncryption) *BucketMetadata {
+	s.ServerSideEncryption = v
+	return s
+}
+
 // SetSharedAccess sets the SharedAccess field's value.
 func (s *BucketMetadata) SetSharedAccess(v string) *BucketMetadata {
 	s.SharedAccess = &v
@@ -6841,7 +6853,7 @@ func (s *BucketMetadata) SetVersioning(v bool) *BucketMetadata {
 type BucketPermissionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Provides information about account-level permissions settings that apply
+	// Provides information about the account-level permissions settings that apply
 	// to an S3 bucket.
 	AccountLevelPermissions *AccountLevelPermissions `locationName:"accountLevelPermissions" type:"structure"`
 
@@ -6935,6 +6947,40 @@ func (s *BucketPublicAccess) SetEffectivePermission(v string) *BucketPublicAcces
 // SetPermissionConfiguration sets the PermissionConfiguration field's value.
 func (s *BucketPublicAccess) SetPermissionConfiguration(v *BucketPermissionConfiguration) *BucketPublicAccess {
 	s.PermissionConfiguration = v
+	return s
+}
+
+// Provides information about the default server-side encryption settings for
+// an S3 bucket. For detailed information about these settings, see Setting
+// default server-side encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+// in the Amazon Simple Storage Service User Guide.
+type BucketServerSideEncryption struct {
+	_ struct{} `type:"structure"`
+
+	KmsMasterKeyId *string `locationName:"kmsMasterKeyId" type:"string"`
+
+	Type *string `locationName:"type" type:"string" enum:"Type"`
+}
+
+// String returns the string representation
+func (s BucketServerSideEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BucketServerSideEncryption) GoString() string {
+	return s.String()
+}
+
+// SetKmsMasterKeyId sets the KmsMasterKeyId field's value.
+func (s *BucketServerSideEncryption) SetKmsMasterKeyId(v string) *BucketServerSideEncryption {
+	s.KmsMasterKeyId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *BucketServerSideEncryption) SetType(v string) *BucketServerSideEncryption {
+	s.Type = &v
 	return s
 }
 
@@ -9553,7 +9599,7 @@ type GetBucketStatisticsOutput struct {
 	BucketCountByEffectivePermission *BucketCountByEffectivePermission `locationName:"bucketCountByEffectivePermission" type:"structure"`
 
 	// Provides information about the number of S3 buckets that use certain types
-	// of server-side encryption or don't encrypt objects by default.
+	// of server-side encryption by default or don't encrypt new objects by default.
 	BucketCountByEncryptionType *BucketCountByEncryptionType `locationName:"bucketCountByEncryptionType" type:"structure"`
 
 	// Provides information about the number of S3 buckets that are shared with
@@ -10419,7 +10465,8 @@ func (s *GetMemberOutput) SetUpdatedAt(v time.Time) *GetMemberOutput {
 }
 
 // Specifies criteria for filtering, sorting, and paginating the results of
-// a query for quotas and aggregated usage data for one or more accounts.
+// a query for quotas and aggregated usage data for one or more Amazon Macie
+// accounts.
 type GetUsageStatisticsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10429,9 +10476,13 @@ type GetUsageStatisticsInput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Specifies criteria for sorting the results of a query for account quotas
-	// and usage data.
+	// Specifies criteria for sorting the results of a query for Amazon Macie account
+	// quotas and usage data.
 	SortBy *UsageStatisticsSortBy `locationName:"sortBy" type:"structure"`
+
+	// An inclusive time period that Amazon Macie usage data applies to. Possible
+	// values are:
+	TimeRange *string `locationName:"timeRange" type:"string" enum:"TimeRange"`
 }
 
 // String returns the string representation
@@ -10468,14 +10519,24 @@ func (s *GetUsageStatisticsInput) SetSortBy(v *UsageStatisticsSortBy) *GetUsageS
 	return s
 }
 
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageStatisticsInput) SetTimeRange(v string) *GetUsageStatisticsInput {
+	s.TimeRange = &v
+	return s
+}
+
 // Provides the results of a query that retrieved quotas and aggregated usage
-// data for one or more accounts.
+// data for one or more Amazon Macie accounts.
 type GetUsageStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	Records []*UsageRecord `locationName:"records" type:"list"`
+
+	// An inclusive time period that Amazon Macie usage data applies to. Possible
+	// values are:
+	TimeRange *string `locationName:"timeRange" type:"string" enum:"TimeRange"`
 }
 
 // String returns the string representation
@@ -10500,8 +10561,16 @@ func (s *GetUsageStatisticsOutput) SetRecords(v []*UsageRecord) *GetUsageStatist
 	return s
 }
 
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageStatisticsOutput) SetTimeRange(v string) *GetUsageStatisticsOutput {
+	s.TimeRange = &v
+	return s
+}
+
 type GetUsageTotalsInput struct {
 	_ struct{} `type:"structure"`
+
+	TimeRange *string `location:"querystring" locationName:"timeRange" type:"string"`
 }
 
 // String returns the string representation
@@ -10514,10 +10583,20 @@ func (s GetUsageTotalsInput) GoString() string {
 	return s.String()
 }
 
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageTotalsInput) SetTimeRange(v string) *GetUsageTotalsInput {
+	s.TimeRange = &v
+	return s
+}
+
 // Provides the results of a query that retrieved aggregated usage data for
-// an account during the past 30 days.
+// an Amazon Macie account.
 type GetUsageTotalsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// An inclusive time period that Amazon Macie usage data applies to. Possible
+	// values are:
+	TimeRange *string `locationName:"timeRange" type:"string" enum:"TimeRange"`
 
 	UsageTotals []*UsageTotal `locationName:"usageTotals" type:"list"`
 }
@@ -10530,6 +10609,12 @@ func (s GetUsageTotalsOutput) String() string {
 // GoString returns the string representation
 func (s GetUsageTotalsOutput) GoString() string {
 	return s.String()
+}
+
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetUsageTotalsOutput) SetTimeRange(v string) *GetUsageTotalsOutput {
+	s.TimeRange = &v
+	return s
 }
 
 // SetUsageTotals sets the UsageTotals field's value.
@@ -13076,7 +13161,7 @@ func (s *ServerSideEncryption) SetKmsMasterKeyId(v string) *ServerSideEncryption
 	return s
 }
 
-// Specifies a current quota for an account.
+// Specifies a current quota for an Amazon Macie account.
 type ServiceLimit struct {
 	_ struct{} `type:"structure"`
 
@@ -14206,21 +14291,21 @@ func (s UpdateOrganizationConfigurationOutput) GoString() string {
 }
 
 // Provides data for a specific usage metric and the corresponding quota for
-// an account. The value for the metric is an aggregated value that reports
-// usage during the past 30 days.
+// an Amazon Macie account.
 type UsageByAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The type of currency that data for a usage metric is reported in. Possible
-	// values are:
+	// The type of currency that the data for an Amazon Macie usage metric is reported
+	// in. Possible values are:
 	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
 
 	EstimatedCost *string `locationName:"estimatedCost" type:"string"`
 
-	// Specifies a current quota for an account.
+	// Specifies a current quota for an Amazon Macie account.
 	ServiceLimit *ServiceLimit `locationName:"serviceLimit" type:"structure"`
 
-	// The name of a usage metric for an account. Possible values are:
+	// The name of an Amazon Macie usage metric for an account. Possible values
+	// are:
 	Type *string `locationName:"type" type:"string" enum:"UsageType"`
 }
 
@@ -14258,7 +14343,7 @@ func (s *UsageByAccount) SetType(v string) *UsageByAccount {
 	return s
 }
 
-// Provides quota and aggregated usage data for an account.
+// Provides quota and aggregated usage data for an Amazon Macie account.
 type UsageRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -14297,17 +14382,17 @@ func (s *UsageRecord) SetUsage(v []*UsageByAccount) *UsageRecord {
 	return s
 }
 
-// Specifies a condition for filtering the results of a query for account quotas
-// and usage data.
+// Specifies a condition for filtering the results of a query for the quotas
+// and usage data that applies to one or more Amazon Macie accounts.
 type UsageStatisticsFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The operator to use in a condition that filters the results of a query for
-	// account quotas and usage data. Valid values are:
+	// Amazon Macie account quotas and usage data. Valid values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"UsageStatisticsFilterComparator"`
 
-	// The field to use in a condition that filters the results of a query for account
-	// quotas and usage data. Valid values are:
+	// The field to use in a condition that filters the results of a query for Amazon
+	// Macie account quotas and usage data. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsFilterKey"`
 
 	Values []*string `locationName:"values" type:"list"`
@@ -14341,13 +14426,13 @@ func (s *UsageStatisticsFilter) SetValues(v []*string) *UsageStatisticsFilter {
 	return s
 }
 
-// Specifies criteria for sorting the results of a query for account quotas
-// and usage data.
+// Specifies criteria for sorting the results of a query for Amazon Macie account
+// quotas and usage data.
 type UsageStatisticsSortBy struct {
 	_ struct{} `type:"structure"`
 
-	// The field to use to sort the results of a query for account quotas and usage
-	// data. Valid values are:
+	// The field to use to sort the results of a query for Amazon Macie account
+	// quotas and usage data. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"UsageStatisticsSortKey"`
 
 	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
@@ -14375,18 +14460,21 @@ func (s *UsageStatisticsSortBy) SetOrderBy(v string) *UsageStatisticsSortBy {
 	return s
 }
 
-// Provides aggregated data for a usage metric. The value for the metric reports
-// usage data for an account during the past 30 days.
+// Provides aggregated data for an Amazon Macie usage metric. The value for
+// the metric reports estimated usage data for an account for the preceding
+// 30 days or the current calendar month to date, depending on the time period
+// (timeRange) specified in the request.
 type UsageTotal struct {
 	_ struct{} `type:"structure"`
 
-	// The type of currency that data for a usage metric is reported in. Possible
-	// values are:
+	// The type of currency that the data for an Amazon Macie usage metric is reported
+	// in. Possible values are:
 	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
 
 	EstimatedCost *string `locationName:"estimatedCost" type:"string"`
 
-	// The name of a usage metric for an account. Possible values are:
+	// The name of an Amazon Macie usage metric for an account. Possible values
+	// are:
 	Type *string `locationName:"type" type:"string" enum:"UsageType"`
 }
 
@@ -14694,8 +14782,8 @@ func AdminStatus_Values() []string {
 	}
 }
 
-// The type of currency that data for a usage metric is reported in. Possible
-// values are:
+// The type of currency that the data for an Amazon Macie usage metric is reported
+// in. Possible values are:
 const (
 	// CurrencyUsd is a Currency enum value
 	CurrencyUsd = "USD"
@@ -15412,6 +15500,44 @@ func TagTarget_Values() []string {
 	}
 }
 
+// An inclusive time period that Amazon Macie usage data applies to. Possible
+// values are:
+const (
+	// TimeRangeMonthToDate is a TimeRange enum value
+	TimeRangeMonthToDate = "MONTH_TO_DATE"
+
+	// TimeRangePast30Days is a TimeRange enum value
+	TimeRangePast30Days = "PAST_30_DAYS"
+)
+
+// TimeRange_Values returns all elements of the TimeRange enum
+func TimeRange_Values() []string {
+	return []string{
+		TimeRangeMonthToDate,
+		TimeRangePast30Days,
+	}
+}
+
+const (
+	// TypeNone is a Type enum value
+	TypeNone = "NONE"
+
+	// TypeAes256 is a Type enum value
+	TypeAes256 = "AES256"
+
+	// TypeAwsKms is a Type enum value
+	TypeAwsKms = "aws:kms"
+)
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeNone,
+		TypeAes256,
+		TypeAwsKms,
+	}
+}
+
 const (
 	// UnitTerabytes is a Unit enum value
 	UnitTerabytes = "TERABYTES"
@@ -15425,7 +15551,7 @@ func Unit_Values() []string {
 }
 
 // The operator to use in a condition that filters the results of a query for
-// account quotas and usage data. Valid values are:
+// Amazon Macie account quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsFilterComparatorGt is a UsageStatisticsFilterComparator enum value
 	UsageStatisticsFilterComparatorGt = "GT"
@@ -15462,8 +15588,8 @@ func UsageStatisticsFilterComparator_Values() []string {
 	}
 }
 
-// The field to use in a condition that filters the results of a query for account
-// quotas and usage data. Valid values are:
+// The field to use in a condition that filters the results of a query for Amazon
+// Macie account quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsFilterKeyAccountId is a UsageStatisticsFilterKey enum value
 	UsageStatisticsFilterKeyAccountId = "accountId"
@@ -15488,8 +15614,8 @@ func UsageStatisticsFilterKey_Values() []string {
 	}
 }
 
-// The field to use to sort the results of a query for account quotas and usage
-// data. Valid values are:
+// The field to use to sort the results of a query for Amazon Macie account
+// quotas and usage data. Valid values are:
 const (
 	// UsageStatisticsSortKeyAccountId is a UsageStatisticsSortKey enum value
 	UsageStatisticsSortKeyAccountId = "accountId"
@@ -15514,7 +15640,8 @@ func UsageStatisticsSortKey_Values() []string {
 	}
 }
 
-// The name of a usage metric for an account. Possible values are:
+// The name of an Amazon Macie usage metric for an account. Possible values
+// are:
 const (
 	// UsageTypeDataInventoryEvaluation is a UsageType enum value
 	UsageTypeDataInventoryEvaluation = "DATA_INVENTORY_EVALUATION"

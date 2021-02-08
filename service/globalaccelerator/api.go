@@ -464,6 +464,10 @@ func (c *GlobalAccelerator) CreateCustomRoutingAcceleratorRequest(input *CreateC
 // AllowCustomRoutingTraffic (https://docs.aws.amazon.com/global-accelerator/latest/api/API_AllowCustomRoutingTraffic.html)
 // operation.
 //
+// Global Accelerator is a global service that supports endpoints in multiple
+// AWS Regions but you must specify the US West (Oregon) Region to create or
+// update accelerators.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5903,7 +5907,7 @@ type CreateAcceleratorInput struct {
 	// Optionally, if you've added your own IP address pool to Global Accelerator
 	// (BYOIP), you can choose IP addresses from your own pool to use for the accelerator's
 	// static IP addresses when you create an accelerator. You can specify one or
-	// two addresses, separated by a comma. Do not include the /32 suffix.
+	// two addresses, separated by a space. Do not include the /32 suffix.
 	//
 	// Only one IP address from each of your IP address ranges can be used for each
 	// accelerator. If you specify only one IP address from your IP address range,
@@ -6041,6 +6045,23 @@ type CreateCustomRoutingAcceleratorInput struct {
 	// The value for the address type must be IPv4.
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
+	// Optionally, if you've added your own IP address pool to Global Accelerator
+	// (BYOIP), you can choose IP addresses from your own pool to use for the accelerator's
+	// static IP addresses when you create an accelerator. You can specify one or
+	// two addresses, separated by a space. Do not include the /32 suffix.
+	//
+	// Only one IP address from each of your IP address ranges can be used for each
+	// accelerator. If you specify only one IP address from your IP address range,
+	// Global Accelerator assigns a second static IP address for the accelerator
+	// from the AWS IP address pool.
+	//
+	// Note that you can't update IP addresses for an existing accelerator. To change
+	// them, you must create a new accelerator with the new addresses.
+	//
+	// For more information, see Bring your own IP addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
+	// in the AWS Global Accelerator Developer Guide.
+	IpAddresses []*string `type:"list"`
+
 	// The name of a custom routing accelerator. The name can have a maximum of
 	// 64 characters, must contain only alphanumeric characters or hyphens (-),
 	// and must not begin or end with a hyphen.
@@ -6103,6 +6124,12 @@ func (s *CreateCustomRoutingAcceleratorInput) SetIdempotencyToken(v string) *Cre
 // SetIpAddressType sets the IpAddressType field's value.
 func (s *CreateCustomRoutingAcceleratorInput) SetIpAddressType(v string) *CreateCustomRoutingAcceleratorInput {
 	s.IpAddressType = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *CreateCustomRoutingAcceleratorInput) SetIpAddresses(v []*string) *CreateCustomRoutingAcceleratorInput {
+	s.IpAddresses = v
 	return s
 }
 

@@ -2240,6 +2240,10 @@
           "shape": "ReplicationDetails",
           "locationName": "replicationDetails"
         },
+        "serverSideEncryption": {
+          "shape": "BucketServerSideEncryption",
+          "locationName": "serverSideEncryption"
+        },
         "sharedAccess": {
           "shape": "SharedAccess",
           "locationName": "sharedAccess"
@@ -2306,6 +2310,19 @@
         "permissionConfiguration": {
           "shape": "BucketPermissionConfiguration",
           "locationName": "permissionConfiguration"
+        }
+      }
+    },
+    "BucketServerSideEncryption": {
+      "type": "structure",
+      "members": {
+        "kmsMasterKeyId": {
+          "shape": "__string",
+          "locationName": "kmsMasterKeyId"
+        },
+        "type": {
+          "shape": "Type",
+          "locationName": "type"
         }
       }
     },
@@ -3779,6 +3796,10 @@
         "sortBy": {
           "shape": "UsageStatisticsSortBy",
           "locationName": "sortBy"
+        },
+        "timeRange": {
+          "shape": "TimeRange",
+          "locationName": "timeRange"
         }
       }
     },
@@ -3792,16 +3813,30 @@
         "records": {
           "shape": "__listOfUsageRecord",
           "locationName": "records"
+        },
+        "timeRange": {
+          "shape": "TimeRange",
+          "locationName": "timeRange"
         }
       }
     },
     "GetUsageTotalsRequest": {
       "type": "structure",
-      "members": {}
+      "members": {
+        "timeRange": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "timeRange"
+        }
+      }
     },
     "GetUsageTotalsResponse": {
       "type": "structure",
       "members": {
+        "timeRange": {
+          "shape": "TimeRange",
+          "locationName": "timeRange"
+        },
         "usageTotals": {
           "shape": "__listOfUsageTotal",
           "locationName": "usageTotals"
@@ -5230,6 +5265,21 @@
       "error": {
         "httpStatusCode": 429
       }
+    },
+    "TimeRange": {
+      "type": "string",
+      "enum": [
+        "MONTH_TO_DATE",
+        "PAST_30_DAYS"
+      ]
+    },
+    "Type": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "AES256",
+        "aws:kms"
+      ]
     },
     "Unit": {
       "type": "string",
