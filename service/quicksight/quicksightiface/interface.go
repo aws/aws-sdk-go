@@ -370,9 +370,15 @@ type QuickSightAPI interface {
 	ListThemeVersionsWithContext(aws.Context, *quicksight.ListThemeVersionsInput, ...request.Option) (*quicksight.ListThemeVersionsOutput, error)
 	ListThemeVersionsRequest(*quicksight.ListThemeVersionsInput) (*request.Request, *quicksight.ListThemeVersionsOutput)
 
+	ListThemeVersionsPages(*quicksight.ListThemeVersionsInput, func(*quicksight.ListThemeVersionsOutput, bool) bool) error
+	ListThemeVersionsPagesWithContext(aws.Context, *quicksight.ListThemeVersionsInput, func(*quicksight.ListThemeVersionsOutput, bool) bool, ...request.Option) error
+
 	ListThemes(*quicksight.ListThemesInput) (*quicksight.ListThemesOutput, error)
 	ListThemesWithContext(aws.Context, *quicksight.ListThemesInput, ...request.Option) (*quicksight.ListThemesOutput, error)
 	ListThemesRequest(*quicksight.ListThemesInput) (*request.Request, *quicksight.ListThemesOutput)
+
+	ListThemesPages(*quicksight.ListThemesInput, func(*quicksight.ListThemesOutput, bool) bool) error
+	ListThemesPagesWithContext(aws.Context, *quicksight.ListThemesInput, func(*quicksight.ListThemesOutput, bool) bool, ...request.Option) error
 
 	ListUserGroups(*quicksight.ListUserGroupsInput) (*quicksight.ListUserGroupsOutput, error)
 	ListUserGroupsWithContext(aws.Context, *quicksight.ListUserGroupsInput, ...request.Option) (*quicksight.ListUserGroupsOutput, error)

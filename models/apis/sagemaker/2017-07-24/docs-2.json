@@ -4069,6 +4069,12 @@
         "InputConfig$Framework": "<p>Identifies the framework in which the model was trained. For example: TENSORFLOW.</p>"
       }
     },
+    "FrameworkVersion": {
+      "base": null,
+      "refs": {
+        "InputConfig$FrameworkVersion": "<p>Specifies the framework version to use.</p> <p>This API field is only supported for PyTorch framework versions <code>1.4</code>, <code>1.5</code>, and <code>1.6</code> for cloud instance target devices: <code>ml_c4</code>, <code>ml_c5</code>, <code>ml_m4</code>, <code>ml_m5</code>, <code>ml_p2</code>, <code>ml_p3</code>, and <code>ml_g4dn</code>.</p>"
+      }
+    },
     "GenerateCandidateDefinitionsOnly": {
       "base": null,
       "refs": {

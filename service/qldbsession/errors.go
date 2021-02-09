@@ -15,6 +15,12 @@ const (
 	// parameter value or a missing required parameter.
 	ErrCodeBadRequestException = "BadRequestException"
 
+	// ErrCodeCapacityExceededException for service response error code
+	// "CapacityExceededException".
+	//
+	// Returned when the request exceeds the processing capacity of the ledger.
+	ErrCodeCapacityExceededException = "CapacityExceededException"
+
 	// ErrCodeInvalidSessionException for service response error code
 	// "InvalidSessionException".
 	//
@@ -42,9 +48,10 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"BadRequestException":     newErrorBadRequestException,
-	"InvalidSessionException": newErrorInvalidSessionException,
-	"LimitExceededException":  newErrorLimitExceededException,
-	"OccConflictException":    newErrorOccConflictException,
-	"RateExceededException":   newErrorRateExceededException,
+	"BadRequestException":       newErrorBadRequestException,
+	"CapacityExceededException": newErrorCapacityExceededException,
+	"InvalidSessionException":   newErrorInvalidSessionException,
+	"LimitExceededException":    newErrorLimitExceededException,
+	"OccConflictException":      newErrorOccConflictException,
+	"RateExceededException":     newErrorRateExceededException,
 }

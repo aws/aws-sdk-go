@@ -7700,6 +7700,12 @@ func (c *QuickSight) ListThemeVersionsRequest(input *ListThemeVersionsInput) (re
 		Name:       opListThemeVersions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/themes/{ThemeId}/versions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -7773,6 +7779,58 @@ func (c *QuickSight) ListThemeVersionsWithContext(ctx aws.Context, input *ListTh
 	return out, req.Send()
 }
 
+// ListThemeVersionsPages iterates over the pages of a ListThemeVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThemeVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThemeVersions operation.
+//    pageNum := 0
+//    err := client.ListThemeVersionsPages(params,
+//        func(page *quicksight.ListThemeVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *QuickSight) ListThemeVersionsPages(input *ListThemeVersionsInput, fn func(*ListThemeVersionsOutput, bool) bool) error {
+	return c.ListThemeVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListThemeVersionsPagesWithContext same as ListThemeVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListThemeVersionsPagesWithContext(ctx aws.Context, input *ListThemeVersionsInput, fn func(*ListThemeVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListThemeVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListThemeVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListThemeVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListThemes = "ListThemes"
 
 // ListThemesRequest generates a "aws/request.Request" representing the
@@ -7804,6 +7862,12 @@ func (c *QuickSight) ListThemesRequest(input *ListThemesInput) (req *request.Req
 		Name:       opListThemes,
 		HTTPMethod: "GET",
 		HTTPPath:   "/accounts/{AwsAccountId}/themes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -7875,6 +7939,58 @@ func (c *QuickSight) ListThemesWithContext(ctx aws.Context, input *ListThemesInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListThemesPages iterates over the pages of a ListThemes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThemes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThemes operation.
+//    pageNum := 0
+//    err := client.ListThemesPages(params,
+//        func(page *quicksight.ListThemesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *QuickSight) ListThemesPages(input *ListThemesInput, fn func(*ListThemesOutput, bool) bool) error {
+	return c.ListThemesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListThemesPagesWithContext same as ListThemesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListThemesPagesWithContext(ctx aws.Context, input *ListThemesInput, fn func(*ListThemesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListThemesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListThemesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListThemesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListUserGroups = "ListUserGroups"
@@ -13419,11 +13535,9 @@ type CreateDataSourceInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// The type of the data source. Currently, the supported types for this operation
-	// are: ATHENA, AURORA, AURORA_POSTGRESQL, AMAZON_ELASTICSEARCH, MARIADB, MYSQL,
-	// POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA.
-	// Use ListDataSources to return a list of all data sources.
-	//
-	// AMAZON_ELASTICSEARCH is for Amazon managed Elasticsearch Service.
+	// are: ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO,
+	// REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA. Use ListDataSources
+	// to return a list of all data sources.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataSourceType"`
@@ -27327,7 +27441,7 @@ type SearchAnalysesInput struct {
 	// The structure for the search filters that you want to apply to your search.
 	//
 	// Filters is a required field
-	Filters []*AnalysisSearchFilter `type:"list" required:"true"`
+	Filters []*AnalysisSearchFilter `min:"1" type:"list" required:"true"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -27357,6 +27471,9 @@ func (s *SearchAnalysesInput) Validate() error {
 	}
 	if s.Filters == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -27457,7 +27574,7 @@ type SearchDashboardsInput struct {
 	// } ]
 	//
 	// Filters is a required field
-	Filters []*DashboardSearchFilter `type:"list" required:"true"`
+	Filters []*DashboardSearchFilter `min:"1" type:"list" required:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -27487,6 +27604,9 @@ func (s *SearchDashboardsInput) Validate() error {
 	}
 	if s.Filters == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))

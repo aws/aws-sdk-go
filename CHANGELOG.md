@@ -1,3 +1,17 @@
+Release v1.37.8 (2021-02-09)
+===
+
+### Service Client Updates
+* `service/gamelift`: Updates service API
+  * GameLift FleetIQ users can now use AMD instance families in supported Regions. In addition, FlexMatch matchmaking notification now supports SNS FIFO topics.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for WMA audio only ingest, SMPTE-TT text and image caption ingest, and MPEG-2 video in MXF OP1a outputs.
+* `service/qldb-session`: Updates service API and documentation
+* `service/quicksight`: Updates service API, documentation, and paginators
+  * QuickSight now supports Python's paginators for Exploration APIs.
+* `service/sagemaker`: Updates service API and documentation
+  * Add a new optional FrameworkVersion field to Sagemaker Neo CreateCompilationJob API
+
 Release v1.37.7 (2021-02-08)
 ===
 

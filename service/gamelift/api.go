@@ -28380,6 +28380,30 @@ const (
 	// GameServerGroupInstanceTypeC524xlarge is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeC524xlarge = "c5.24xlarge"
 
+	// GameServerGroupInstanceTypeC5aLarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5aLarge = "c5a.large"
+
+	// GameServerGroupInstanceTypeC5aXlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5aXlarge = "c5a.xlarge"
+
+	// GameServerGroupInstanceTypeC5a2xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5a2xlarge = "c5a.2xlarge"
+
+	// GameServerGroupInstanceTypeC5a4xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5a4xlarge = "c5a.4xlarge"
+
+	// GameServerGroupInstanceTypeC5a8xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5a8xlarge = "c5a.8xlarge"
+
+	// GameServerGroupInstanceTypeC5a12xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5a12xlarge = "c5a.12xlarge"
+
+	// GameServerGroupInstanceTypeC5a16xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5a16xlarge = "c5a.16xlarge"
+
+	// GameServerGroupInstanceTypeC5a24xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC5a24xlarge = "c5a.24xlarge"
+
 	// GameServerGroupInstanceTypeR4Large is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeR4Large = "r4.large"
 
@@ -28422,6 +28446,30 @@ const (
 	// GameServerGroupInstanceTypeR524xlarge is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeR524xlarge = "r5.24xlarge"
 
+	// GameServerGroupInstanceTypeR5aLarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5aLarge = "r5a.large"
+
+	// GameServerGroupInstanceTypeR5aXlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5aXlarge = "r5a.xlarge"
+
+	// GameServerGroupInstanceTypeR5a2xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5a2xlarge = "r5a.2xlarge"
+
+	// GameServerGroupInstanceTypeR5a4xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5a4xlarge = "r5a.4xlarge"
+
+	// GameServerGroupInstanceTypeR5a8xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5a8xlarge = "r5a.8xlarge"
+
+	// GameServerGroupInstanceTypeR5a12xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5a12xlarge = "r5a.12xlarge"
+
+	// GameServerGroupInstanceTypeR5a16xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5a16xlarge = "r5a.16xlarge"
+
+	// GameServerGroupInstanceTypeR5a24xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR5a24xlarge = "r5a.24xlarge"
+
 	// GameServerGroupInstanceTypeM4Large is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeM4Large = "m4.large"
 
@@ -28460,6 +28508,30 @@ const (
 
 	// GameServerGroupInstanceTypeM524xlarge is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeM524xlarge = "m5.24xlarge"
+
+	// GameServerGroupInstanceTypeM5aLarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5aLarge = "m5a.large"
+
+	// GameServerGroupInstanceTypeM5aXlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5aXlarge = "m5a.xlarge"
+
+	// GameServerGroupInstanceTypeM5a2xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5a2xlarge = "m5a.2xlarge"
+
+	// GameServerGroupInstanceTypeM5a4xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5a4xlarge = "m5a.4xlarge"
+
+	// GameServerGroupInstanceTypeM5a8xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5a8xlarge = "m5a.8xlarge"
+
+	// GameServerGroupInstanceTypeM5a12xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5a12xlarge = "m5a.12xlarge"
+
+	// GameServerGroupInstanceTypeM5a16xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5a16xlarge = "m5a.16xlarge"
+
+	// GameServerGroupInstanceTypeM5a24xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM5a24xlarge = "m5a.24xlarge"
 )
 
 // GameServerGroupInstanceType_Values returns all elements of the GameServerGroupInstanceType enum
@@ -28478,6 +28550,14 @@ func GameServerGroupInstanceType_Values() []string {
 		GameServerGroupInstanceTypeC512xlarge,
 		GameServerGroupInstanceTypeC518xlarge,
 		GameServerGroupInstanceTypeC524xlarge,
+		GameServerGroupInstanceTypeC5aLarge,
+		GameServerGroupInstanceTypeC5aXlarge,
+		GameServerGroupInstanceTypeC5a2xlarge,
+		GameServerGroupInstanceTypeC5a4xlarge,
+		GameServerGroupInstanceTypeC5a8xlarge,
+		GameServerGroupInstanceTypeC5a12xlarge,
+		GameServerGroupInstanceTypeC5a16xlarge,
+		GameServerGroupInstanceTypeC5a24xlarge,
 		GameServerGroupInstanceTypeR4Large,
 		GameServerGroupInstanceTypeR4Xlarge,
 		GameServerGroupInstanceTypeR42xlarge,
@@ -28492,6 +28572,14 @@ func GameServerGroupInstanceType_Values() []string {
 		GameServerGroupInstanceTypeR512xlarge,
 		GameServerGroupInstanceTypeR516xlarge,
 		GameServerGroupInstanceTypeR524xlarge,
+		GameServerGroupInstanceTypeR5aLarge,
+		GameServerGroupInstanceTypeR5aXlarge,
+		GameServerGroupInstanceTypeR5a2xlarge,
+		GameServerGroupInstanceTypeR5a4xlarge,
+		GameServerGroupInstanceTypeR5a8xlarge,
+		GameServerGroupInstanceTypeR5a12xlarge,
+		GameServerGroupInstanceTypeR5a16xlarge,
+		GameServerGroupInstanceTypeR5a24xlarge,
 		GameServerGroupInstanceTypeM4Large,
 		GameServerGroupInstanceTypeM4Xlarge,
 		GameServerGroupInstanceTypeM42xlarge,
@@ -28505,6 +28593,14 @@ func GameServerGroupInstanceType_Values() []string {
 		GameServerGroupInstanceTypeM512xlarge,
 		GameServerGroupInstanceTypeM516xlarge,
 		GameServerGroupInstanceTypeM524xlarge,
+		GameServerGroupInstanceTypeM5aLarge,
+		GameServerGroupInstanceTypeM5aXlarge,
+		GameServerGroupInstanceTypeM5a2xlarge,
+		GameServerGroupInstanceTypeM5a4xlarge,
+		GameServerGroupInstanceTypeM5a8xlarge,
+		GameServerGroupInstanceTypeM5a12xlarge,
+		GameServerGroupInstanceTypeM5a16xlarge,
+		GameServerGroupInstanceTypeM5a24xlarge,
 	}
 }
 

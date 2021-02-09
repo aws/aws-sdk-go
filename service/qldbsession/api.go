@@ -97,6 +97,9 @@ func (c *QLDBSession) SendCommandRequest(input *SendCommandInput) (req *request.
 //   * LimitExceededException
 //   Returned if a resource limit such as number of active sessions is exceeded.
 //
+//   * CapacityExceededException
+//   Returned when the request exceeds the processing capacity of the ledger.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/qldb-session-2019-07-11/SendCommand
 func (c *QLDBSession) SendCommand(input *SendCommandInput) (*SendCommandOutput, error) {
 	req, out := c.SendCommandRequest(input)
@@ -214,6 +217,62 @@ func (s *BadRequestException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *BadRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Returned when the request exceeds the processing capacity of the ledger.
+type CapacityExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s CapacityExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CapacityExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorCapacityExceededException(v protocol.ResponseMetadata) error {
+	return &CapacityExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *CapacityExceededException) Code() string {
+	return "CapacityExceededException"
+}
+
+// Message returns the exception's message.
+func (s *CapacityExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *CapacityExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *CapacityExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *CapacityExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *CapacityExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -600,10 +659,10 @@ func (s *FetchPageResult) SetTimingInformation(v *TimingInformation) *FetchPageR
 type IOUsage struct {
 	_ struct{} `type:"structure"`
 
-	// The number of read I/O requests that the command performed.
+	// The number of read I/O requests that the command made.
 	ReadIOs *int64 `type:"long"`
 
-	// The number of write I/O requests that the command performed.
+	// The number of write I/O requests that the command made.
 	WriteIOs *int64 `type:"long"`
 }
 
@@ -1223,8 +1282,8 @@ func (s *StartTransactionResult) SetTransactionId(v string) *StartTransactionRes
 type TimingInformation struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of time that was taken for the command to finish processing, measured
-	// in milliseconds.
+	// The amount of time that QLDB spent on processing the command, measured in
+	// milliseconds.
 	ProcessingTimeMilliseconds *int64 `type:"long"`
 }
 

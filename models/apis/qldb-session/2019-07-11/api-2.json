@@ -27,7 +27,8 @@
         {"shape":"InvalidSessionException"},
         {"shape":"OccConflictException"},
         {"shape":"RateExceededException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"CapacityExceededException"}
       ]
     }
   },
@@ -48,6 +49,13 @@
       "members":{
         "Message":{"shape":"ErrorMessage"},
         "Code":{"shape":"ErrorCode"}
+      },
+      "exception":true
+    },
+    "CapacityExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
     },

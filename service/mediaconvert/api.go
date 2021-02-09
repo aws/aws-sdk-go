@@ -22211,6 +22211,9 @@ const (
 	// CaptionSourceTypeSmi is a CaptionSourceType enum value
 	CaptionSourceTypeSmi = "SMI"
 
+	// CaptionSourceTypeSmpteTt is a CaptionSourceType enum value
+	CaptionSourceTypeSmpteTt = "SMPTE_TT"
+
 	// CaptionSourceTypeTeletext is a CaptionSourceType enum value
 	CaptionSourceTypeTeletext = "TELETEXT"
 
@@ -22233,6 +22236,7 @@ func CaptionSourceType_Values() []string {
 		CaptionSourceTypeStl,
 		CaptionSourceTypeSrt,
 		CaptionSourceTypeSmi,
+		CaptionSourceTypeSmpteTt,
 		CaptionSourceTypeTeletext,
 		CaptionSourceTypeNullSource,
 		CaptionSourceTypeImsc,
