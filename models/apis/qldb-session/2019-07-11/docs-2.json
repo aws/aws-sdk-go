@@ -22,6 +22,11 @@
       "refs": {
       }
     },
+    "CapacityExceededException": {
+      "base": "<p>Returned when the request exceeds the processing capacity of the ledger.</p>",
+      "refs": {
+      }
+    },
     "CommitDigest": {
       "base": null,
       "refs": {
@@ -64,6 +69,7 @@
       "base": null,
       "refs": {
         "BadRequestException$Message": null,
+        "CapacityExceededException$Message": null,
         "InvalidSessionException$Message": null,
         "LimitExceededException$Message": null,
         "OccConflictException$Message": null,
@@ -152,7 +158,7 @@
     "ProcessingTimeMilliseconds": {
       "base": null,
       "refs": {
-        "TimingInformation$ProcessingTimeMilliseconds": "<p>The amount of time that was taken for the command to finish processing, measured in milliseconds.</p>"
+        "TimingInformation$ProcessingTimeMilliseconds": "<p>The amount of time that QLDB spent on processing the command, measured in milliseconds.</p>"
       }
     },
     "RateExceededException": {
@@ -163,7 +169,7 @@
     "ReadIOs": {
       "base": null,
       "refs": {
-        "IOUsage$ReadIOs": "<p>The number of read I/O requests that the command performed.</p>"
+        "IOUsage$ReadIOs": "<p>The number of read I/O requests that the command made.</p>"
       }
     },
     "SendCommandRequest": {
@@ -257,7 +263,7 @@
     "WriteIOs": {
       "base": null,
       "refs": {
-        "IOUsage$WriteIOs": "<p>The number of write I/O requests that the command performed.</p>"
+        "IOUsage$WriteIOs": "<p>The number of write I/O requests that the command made.</p>"
       }
     }
   }

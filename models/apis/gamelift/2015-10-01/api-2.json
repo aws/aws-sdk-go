@@ -2795,6 +2795,14 @@
         "c5.12xlarge",
         "c5.18xlarge",
         "c5.24xlarge",
+        "c5a.large",
+        "c5a.xlarge",
+        "c5a.2xlarge",
+        "c5a.4xlarge",
+        "c5a.8xlarge",
+        "c5a.12xlarge",
+        "c5a.16xlarge",
+        "c5a.24xlarge",
         "r4.large",
         "r4.xlarge",
         "r4.2xlarge",
@@ -2809,6 +2817,14 @@
         "r5.12xlarge",
         "r5.16xlarge",
         "r5.24xlarge",
+        "r5a.large",
+        "r5a.xlarge",
+        "r5a.2xlarge",
+        "r5a.4xlarge",
+        "r5a.8xlarge",
+        "r5a.12xlarge",
+        "r5a.16xlarge",
+        "r5a.24xlarge",
         "m4.large",
         "m4.xlarge",
         "m4.2xlarge",
@@ -2821,7 +2837,15 @@
         "m5.8xlarge",
         "m5.12xlarge",
         "m5.16xlarge",
-        "m5.24xlarge"
+        "m5.24xlarge",
+        "m5a.large",
+        "m5a.xlarge",
+        "m5a.2xlarge",
+        "m5a.4xlarge",
+        "m5a.8xlarge",
+        "m5a.12xlarge",
+        "m5a.16xlarge",
+        "m5a.24xlarge"
       ]
     },
     "GameServerGroupName":{
@@ -3985,7 +4009,7 @@
       "type":"string",
       "max":300,
       "min":0,
-      "pattern":"[a-zA-Z0-9:_/-]*"
+      "pattern":"[a-zA-Z0-9:_/-]*(.fifo)?"
     },
     "SortOrder":{
       "type":"string",

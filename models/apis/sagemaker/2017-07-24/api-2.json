@@ -7919,6 +7919,12 @@
         "SKLEARN"
       ]
     },
+    "FrameworkVersion":{
+      "type":"string",
+      "max":10,
+      "min":3,
+      "pattern":"[0-9]\\.[A-Za-z0-9.]+"
+    },
     "GenerateCandidateDefinitionsOnly":{"type":"boolean"},
     "GetDeviceFleetReportRequest":{
       "type":"structure",
@@ -8582,7 +8588,8 @@
       "members":{
         "S3Uri":{"shape":"S3Uri"},
         "DataInputConfig":{"shape":"DataInputConfig"},
-        "Framework":{"shape":"Framework"}
+        "Framework":{"shape":"Framework"},
+        "FrameworkVersion":{"shape":"FrameworkVersion"}
       }
     },
     "InputDataConfig":{

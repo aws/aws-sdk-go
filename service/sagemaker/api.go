@@ -51244,6 +51244,13 @@ type InputConfig struct {
 	// Framework is a required field
 	Framework *string `type:"string" required:"true" enum:"Framework"`
 
+	// Specifies the framework version to use.
+	//
+	// This API field is only supported for PyTorch framework versions 1.4, 1.5,
+	// and 1.6 for cloud instance target devices: ml_c4, ml_c5, ml_m4, ml_m5, ml_p2,
+	// ml_p3, and ml_g4dn.
+	FrameworkVersion *string `min:"3" type:"string"`
+
 	// The S3 path where the model artifacts, which result from model training,
 	// are stored. This path must point to a single gzip compressed tar archive
 	// (.tar.gz suffix).
@@ -51274,6 +51281,9 @@ func (s *InputConfig) Validate() error {
 	if s.Framework == nil {
 		invalidParams.Add(request.NewErrParamRequired("Framework"))
 	}
+	if s.FrameworkVersion != nil && len(*s.FrameworkVersion) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkVersion", 3))
+	}
 	if s.S3Uri == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
 	}
@@ -51293,6 +51303,12 @@ func (s *InputConfig) SetDataInputConfig(v string) *InputConfig {
 // SetFramework sets the Framework field's value.
 func (s *InputConfig) SetFramework(v string) *InputConfig {
 	s.Framework = &v
+	return s
+}
+
+// SetFrameworkVersion sets the FrameworkVersion field's value.
+func (s *InputConfig) SetFrameworkVersion(v string) *InputConfig {
+	s.FrameworkVersion = &v
 	return s
 }
 

@@ -1869,8 +1869,7 @@
     "AnalysisName":{
       "type":"string",
       "max":2048,
-      "min":1,
-      "pattern":"[\\u0020-\\u00FF]+"
+      "min":1
     },
     "AnalysisSearchFilter":{
       "type":"structure",
@@ -1883,7 +1882,8 @@
     "AnalysisSearchFilterList":{
       "type":"list",
       "member":{"shape":"AnalysisSearchFilter"},
-      "max":1
+      "max":1,
+      "min":1
     },
     "AnalysisSourceEntity":{
       "type":"structure",
@@ -2841,8 +2841,7 @@
     "DashboardName":{
       "type":"string",
       "max":2048,
-      "min":1,
-      "pattern":"[\\u0020-\\u00FF]+"
+      "min":1
     },
     "DashboardPublishOptions":{
       "type":"structure",
@@ -2864,7 +2863,8 @@
     "DashboardSearchFilterList":{
       "type":"list",
       "member":{"shape":"DashboardSearchFilter"},
-      "max":1
+      "max":1,
+      "min":1
     },
     "DashboardSourceEntity":{
       "type":"structure",
@@ -6712,8 +6712,7 @@
     "TemplateName":{
       "type":"string",
       "max":2048,
-      "min":1,
-      "pattern":"[\\u0020-\\u00FF]+"
+      "min":1
     },
     "TemplateSourceAnalysis":{
       "type":"structure",
