@@ -706,7 +706,8 @@
         "OutputLocation":{"shape":"S3Location"},
         "RoleArn":{"shape":"Arn"},
         "Tags":{"shape":"TagMap"},
-        "Timeout":{"shape":"Timeout"}
+        "Timeout":{"shape":"Timeout"},
+        "JobSample":{"shape":"JobSample"}
       }
     },
     "CreateProfileJobResponse":{
@@ -1046,7 +1047,8 @@
         "ResourceArn":{"shape":"Arn"},
         "RoleArn":{"shape":"Arn"},
         "Tags":{"shape":"TagMap"},
-        "Timeout":{"shape":"Timeout"}
+        "Timeout":{"shape":"Timeout"},
+        "JobSample":{"shape":"JobSample"}
       }
     },
     "DescribeJobRunRequest":{
@@ -1085,7 +1087,8 @@
         "Outputs":{"shape":"OutputList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "StartedBy":{"shape":"StartedBy"},
-        "StartedOn":{"shape":"Date"}
+        "StartedOn":{"shape":"Date"},
+        "JobSample":{"shape":"JobSample"}
       }
     },
     "DescribeProjectRequest":{
@@ -1254,7 +1257,8 @@
         "ResourceArn":{"shape":"Arn"},
         "RoleArn":{"shape":"Arn"},
         "Timeout":{"shape":"Timeout"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "JobSample":{"shape":"JobSample"}
       }
     },
     "JobList":{
@@ -1287,7 +1291,8 @@
         "Outputs":{"shape":"OutputList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "StartedBy":{"shape":"StartedBy"},
-        "StartedOn":{"shape":"Date"}
+        "StartedOn":{"shape":"Date"},
+        "JobSample":{"shape":"JobSample"}
       }
     },
     "JobRunErrorMessage":{"type":"string"},
@@ -1312,6 +1317,14 @@
         "TIMEOUT"
       ]
     },
+    "JobSample":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"SampleMode"},
+        "Size":{"shape":"JobSize"}
+      }
+    },
+    "JobSize":{"type":"long"},
     "JobType":{
       "type":"string",
       "enum":[
@@ -1626,7 +1639,7 @@
     },
     "ParameterValue":{
       "type":"string",
-      "max":8192,
+      "max":12288,
       "min":1
     },
     "Preview":{"type":"boolean"},
@@ -1790,6 +1803,13 @@
         "Size":{"shape":"SampleSize"},
         "Type":{"shape":"SampleType"}
       }
+    },
+    "SampleMode":{
+      "type":"string",
+      "enum":[
+        "FULL_DATASET",
+        "CUSTOM_ROWS"
+      ]
     },
     "SampleSize":{
       "type":"integer",
@@ -2102,7 +2122,8 @@
         "MaxRetries":{"shape":"MaxRetries"},
         "OutputLocation":{"shape":"S3Location"},
         "RoleArn":{"shape":"Arn"},
-        "Timeout":{"shape":"Timeout"}
+        "Timeout":{"shape":"Timeout"},
+        "JobSample":{"shape":"JobSample"}
       }
     },
     "UpdateProfileJobResponse":{
