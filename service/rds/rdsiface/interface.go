@@ -506,6 +506,10 @@ type RDSAPI interface {
 	FailoverDBClusterWithContext(aws.Context, *rds.FailoverDBClusterInput, ...request.Option) (*rds.FailoverDBClusterOutput, error)
 	FailoverDBClusterRequest(*rds.FailoverDBClusterInput) (*request.Request, *rds.FailoverDBClusterOutput)
 
+	FailoverGlobalCluster(*rds.FailoverGlobalClusterInput) (*rds.FailoverGlobalClusterOutput, error)
+	FailoverGlobalClusterWithContext(aws.Context, *rds.FailoverGlobalClusterInput, ...request.Option) (*rds.FailoverGlobalClusterOutput, error)
+	FailoverGlobalClusterRequest(*rds.FailoverGlobalClusterInput) (*request.Request, *rds.FailoverGlobalClusterOutput)
+
 	ImportInstallationMedia(*rds.ImportInstallationMediaInput) (*rds.ImportInstallationMediaOutput, error)
 	ImportInstallationMediaWithContext(aws.Context, *rds.ImportInstallationMediaInput, ...request.Option) (*rds.ImportInstallationMediaOutput, error)
 	ImportInstallationMediaRequest(*rds.ImportInstallationMediaInput) (*request.Request, *rds.ImportInstallationMediaOutput)

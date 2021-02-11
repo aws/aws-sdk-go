@@ -65,11 +65,11 @@ func (c *GlueDataBrew) BatchDeleteRecipeVersionRequest(input *BatchDeleteRecipeV
 //
 //    * There is an invalid version identifier in the list of versions.
 //
-//    * The verision list is empty.
+//    * The version list is empty.
 //
 //    * The version list size exceeds 50.
 //
-//    * The verison list contains duplicate entries.
+//    * The version list contains duplicate entries.
 //
 // The request will complete successfully, but with partial failures, if:
 //
@@ -4134,11 +4134,16 @@ type CreateProfileJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - para>SSE-KMS - server-side encryption with AWS KMS-managed
-	//    keys.
+	//    * SSE-KMS - SSE-KMS - Server-side encryption with AWS KMS-managed keys.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
+
+	// Sample configuration for profile jobs only. Determines the number of rows
+	// on which the profile job will be executed. If a JobSample value is not provided,
+	// the default value will be used. The default value is CUSTOM_ROWS for the
+	// mode parameter and 20000 for the size parameter.
+	JobSample *JobSample `type:"structure"`
 
 	// Enables or disables Amazon CloudWatch logging for the job. If logging is
 	// enabled, CloudWatch writes one log stream for each job run.
@@ -4244,6 +4249,12 @@ func (s *CreateProfileJobInput) SetEncryptionKeyArn(v string) *CreateProfileJobI
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *CreateProfileJobInput) SetEncryptionMode(v string) *CreateProfileJobInput {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetJobSample sets the JobSample field's value.
+func (s *CreateProfileJobInput) SetJobSample(v *JobSample) *CreateProfileJobInput {
+	s.JobSample = v
 	return s
 }
 
@@ -4567,7 +4578,7 @@ type CreateRecipeJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with AWS KMS-managed keys.
+	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -5768,10 +5779,14 @@ type DescribeJobOutput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with AWS KMS-managed keys.
+	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
+
+	// Sample configuration for profile jobs only. Determines the number of rows
+	// on which the profile job will be executed.
+	JobSample *JobSample `type:"structure"`
 
 	// The identifier (user name) of the user who last modified the job.
 	LastModifiedBy *string `type:"string"`
@@ -5863,6 +5878,12 @@ func (s *DescribeJobOutput) SetEncryptionKeyArn(v string) *DescribeJobOutput {
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *DescribeJobOutput) SetEncryptionMode(v string) *DescribeJobOutput {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetJobSample sets the JobSample field's value.
+func (s *DescribeJobOutput) SetJobSample(v *JobSample) *DescribeJobOutput {
+	s.JobSample = v
 	return s
 }
 
@@ -6024,13 +6045,19 @@ type DescribeJobRunOutput struct {
 	// ran.
 	ErrorMessage *string `type:"string"`
 
-	// The amount of time, in seconds, during which a job run consumed resources.
+	// The amount of time, in seconds, during which the job run consumed resources.
 	ExecutionTime *int64 `type:"integer"`
 
 	// The name of the job being processed during this run.
 	//
 	// JobName is a required field
 	JobName *string `min:"1" type:"string" required:"true"`
+
+	// Sample configuration for profile jobs only. Determines the number of rows
+	// on which the profile job will be executed. If a JobSample value is not provided,
+	// the default value will be used. The default value is CUSTOM_ROWS for the
+	// mode parameter and 20000 for the size parameter.
+	JobSample *JobSample `type:"structure"`
 
 	// The name of an Amazon CloudWatch log group, where the job writes diagnostic
 	// messages when it runs.
@@ -6048,7 +6075,7 @@ type DescribeJobRunOutput struct {
 	// The unique identifier of the job run.
 	RunId *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the user who initiated the job run.
+	// The Amazon Resource Name (ARN) of the user who started the job run.
 	StartedBy *string `type:"string"`
 
 	// The date and time when the job run began.
@@ -6101,6 +6128,12 @@ func (s *DescribeJobRunOutput) SetExecutionTime(v int64) *DescribeJobRunOutput {
 // SetJobName sets the JobName field's value.
 func (s *DescribeJobRunOutput) SetJobName(v string) *DescribeJobRunOutput {
 	s.JobName = &v
+	return s
+}
+
+// SetJobSample sets the JobSample field's value.
+func (s *DescribeJobRunOutput) SetJobSample(v *JobSample) *DescribeJobRunOutput {
+	s.JobSample = v
 	return s
 }
 
@@ -6923,6 +6956,12 @@ type Job struct {
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
+	// Sample configuration for profile jobs only. Determines the number of rows
+	// on which the profile job will be executed. If a JobSample value is not provided,
+	// the default value will be used. The default value is CUSTOM_ROWS for the
+	// mode parameter and 20000 for the size parameter.
+	JobSample *JobSample `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the user who last modified the job.
 	LastModifiedBy *string `type:"string"`
 
@@ -7018,6 +7057,12 @@ func (s *Job) SetEncryptionKeyArn(v string) *Job {
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *Job) SetEncryptionMode(v string) *Job {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetJobSample sets the JobSample field's value.
+func (s *Job) SetJobSample(v *JobSample) *Job {
+	s.JobSample = v
 	return s
 }
 
@@ -7128,6 +7173,12 @@ type JobRun struct {
 	// The name of the job being processed during this run.
 	JobName *string `min:"1" type:"string"`
 
+	// Sample configuration for profile jobs only. Determines the number of rows
+	// on which the profile job will be executed. If a JobSample value is not provided,
+	// the default value will be used. The default value is CUSTOM_ROWS for the
+	// mode parameter and 20000 for the size parameter.
+	JobSample *JobSample `type:"structure"`
+
 	// The name of an Amazon CloudWatch log group, where the job writes diagnostic
 	// messages when it runs.
 	LogGroupName *string `min:"1" type:"string"`
@@ -7200,6 +7251,12 @@ func (s *JobRun) SetJobName(v string) *JobRun {
 	return s
 }
 
+// SetJobSample sets the JobSample field's value.
+func (s *JobRun) SetJobSample(v *JobSample) *JobRun {
+	s.JobSample = v
+	return s
+}
+
 // SetLogGroupName sets the LogGroupName field's value.
 func (s *JobRun) SetLogGroupName(v string) *JobRun {
 	s.LogGroupName = &v
@@ -7245,6 +7302,52 @@ func (s *JobRun) SetStartedOn(v time.Time) *JobRun {
 // SetState sets the State field's value.
 func (s *JobRun) SetState(v string) *JobRun {
 	s.State = &v
+	return s
+}
+
+// Sample configuration for Profile Jobs only. Determines the number of rows
+// on which the Profile job will be executed. If a JobSample value is not provided
+// for profile jobs, the default value will be used. The default value is CUSTOM_ROWS
+// for the mode parameter and 20000 for the size parameter.
+type JobSample struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether the profile job will be executed on the entire dataset
+	// or on a specified number of rows. Must be one of the following:
+	//
+	//    * FULL_DATASET: Profile job will be executed on the entire dataset.
+	//
+	//    * CUSTOM_ROWS: Profile job will be executed on the number of rows specified
+	//    in the Size parameter.
+	Mode *string `type:"string" enum:"SampleMode"`
+
+	// Size parameter is only required when the mode is CUSTOM_ROWS. Profile job
+	// will be executed on the the specified number of rows. The maximum value for
+	// size is Long.MAX_VALUE.
+	//
+	// Long.MAX_VALUE = 9223372036854775807
+	Size *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s JobSample) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobSample) GoString() string {
+	return s.String()
+}
+
+// SetMode sets the Mode field's value.
+func (s *JobSample) SetMode(v string) *JobSample {
+	s.Mode = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *JobSample) SetSize(v int64) *JobSample {
+	s.Size = &v
 	return s
 }
 
@@ -9691,10 +9794,16 @@ type UpdateProfileJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with AWS KMS-managed keys.
+	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
+
+	// Sample configuration for Profile Jobs only. Determines the number of rows
+	// on which the Profile job will be executed. If a JobSample value is not provided
+	// for profile jobs, the default value will be used. The default value is CUSTOM_ROWS
+	// for the mode parameter and 20000 for the size parameter.
+	JobSample *JobSample `type:"structure"`
 
 	// Enables or disables Amazon CloudWatch logging for the job. If logging is
 	// enabled, CloudWatch writes one log stream for each job run.
@@ -9781,6 +9890,12 @@ func (s *UpdateProfileJobInput) SetEncryptionKeyArn(v string) *UpdateProfileJobI
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *UpdateProfileJobInput) SetEncryptionMode(v string) *UpdateProfileJobInput {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetJobSample sets the JobSample field's value.
+func (s *UpdateProfileJobInput) SetJobSample(v *JobSample) *UpdateProfileJobInput {
+	s.JobSample = v
 	return s
 }
 
@@ -10037,7 +10152,7 @@ type UpdateRecipeJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with AWS KMS-managed keys.
+	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -10598,6 +10713,22 @@ func OutputFormat_Values() []string {
 		OutputFormatAvro,
 		OutputFormatOrc,
 		OutputFormatXml,
+	}
+}
+
+const (
+	// SampleModeFullDataset is a SampleMode enum value
+	SampleModeFullDataset = "FULL_DATASET"
+
+	// SampleModeCustomRows is a SampleMode enum value
+	SampleModeCustomRows = "CUSTOM_ROWS"
+)
+
+// SampleMode_Values returns all elements of the SampleMode enum
+func SampleMode_Values() []string {
+	return []string{
+		SampleModeFullDataset,
+		SampleModeCustomRows,
 	}
 }
 

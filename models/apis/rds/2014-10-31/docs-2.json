@@ -88,6 +88,7 @@
     "DescribeValidDBInstanceModifications": "<p>You can call <code>DescribeValidDBInstanceModifications</code> to learn what modifications you can make to your DB instance. You can use this information when you call <code>ModifyDBInstance</code>. </p>",
     "DownloadDBLogFilePortion": "<p>Downloads all or a portion of the specified log file, up to 1 MB in size.</p>",
     "FailoverDBCluster": "<p>Forces a failover for a DB cluster.</p> <p>A failover for a DB cluster promotes one of the Aurora Replicas (read-only instances) in the DB cluster to be the primary instance (the cluster writer).</p> <p>Amazon Aurora will automatically fail over to an Aurora Replica, if one exists, when the primary instance fails. You can force a failover when you want to simulate a failure of a primary instance for testing. Because each instance in a DB cluster has its own endpoint address, you will need to clean up and re-establish any existing connections that use those endpoint addresses when the failover is complete.</p> <p>For more information on Amazon Aurora, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html\"> What Is Amazon Aurora?</a> in the <i>Amazon Aurora User Guide.</i> </p> <note> <p>This action only applies to Aurora DB clusters.</p> </note>",
+    "FailoverGlobalCluster": "<p>Initiates the failover process for an Aurora global database (<a>GlobalCluster</a>).</p> <p>A failover for an Aurora global database promotes one of secondary read-only DB clusters to be the primary DB cluster and demotes the primary DB cluster to being a secondary (read-only) DB cluster. In other words, the role of the current primary DB cluster and the selected (target) DB cluster are switched. The selected secondary DB cluster assumes full read/write capabilities for the Aurora global database.</p> <p>For more information about failing over an Amazon Aurora global database, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.managed-failover\">Managed planned failover for Amazon Aurora global databases</a> in the <i>Amazon Aurora User Guide.</i> </p> <note> <p>This action applies to <a>GlobalCluster</a> (Aurora global databases) only. Use this action only on healthy Aurora global databases with running Aurora DB clusters and no Region-wide outages, to test disaster recovery scenarios or to reconfigure your Aurora global database topology. </p> </note>",
     "ImportInstallationMedia": "<p>Imports the installation media for a DB engine that requires an on-premises customer provided license, such as SQL Server.</p>",
     "ListTagsForResource": "<p>Lists all tags on an Amazon RDS resource.</p> <p>For an overview on tagging an Amazon RDS resource, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html\">Tagging Amazon RDS Resources</a> in the <i>Amazon RDS User Guide</i>.</p>",
     "ModifyCertificates": "<p>Override the system-default Secure Sockets Layer/Transport Layer Security (SSL/TLS) certificate for Amazon RDS for new DB instances temporarily, or remove the override.</p> <p>By using this operation, you can specify an RDS-approved SSL/TLS certificate for new DB instances that is different from the default certificate provided by RDS. You can also use this operation to remove the override, so that new DB instances use the default certificate provided by RDS.</p> <p>You might need to override the default certificate in the following situations:</p> <ul> <li> <p>You already migrated your applications to support the latest certificate authority (CA) certificate, but the new CA certificate is not yet the RDS default CA certificate for the specified AWS Region.</p> </li> <li> <p>RDS has already moved to a new default CA certificate for the specified AWS Region, but you are still in the process of supporting the new CA certificate. In this case, you temporarily need additional time to finish your application changes.</p> </li> </ul> <p>For more information about rotating your SSL/TLS certificate for RDS DB engines, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL-certificate-rotation.html\"> Rotating Your SSL/TLS Certificate</a> in the <i>Amazon RDS User Guide</i>.</p> <p>For more information about rotating your SSL/TLS certificate for Aurora DB engines, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL-certificate-rotation.html\"> Rotating Your SSL/TLS Certificate</a> in the <i>Amazon Aurora User Guide</i>.</p>",
@@ -394,7 +395,7 @@
         "CreateDBClusterMessage$DeletionProtection": "<p>A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.</p>",
         "CreateDBClusterMessage$EnableHttpEndpoint": "<p>A value that indicates whether to enable the HTTP endpoint for an Aurora Serverless DB cluster. By default, the HTTP endpoint is disabled.</p> <p>When enabled, the HTTP endpoint provides a connectionless web service API for running SQL queries on the Aurora Serverless DB cluster. You can also query your database from inside the RDS console with the query editor.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API for Aurora Serverless</a> in the <i>Amazon Aurora User Guide</i>.</p>",
         "CreateDBClusterMessage$CopyTagsToSnapshot": "<p>A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.</p>",
-        "CreateDBClusterMessage$EnableGlobalWriteForwarding": "<p>A value that indicates whether to enable write operations to be forwarded from this cluster to the primary cluster in an Aurora global database. The resulting changes are replicated back to this cluster. This parameter only applies to DB clusters that are secondary clusters in an Aurora global database. By default, Aurora disallows write operations for secondary clusters.</p>",
+        "CreateDBClusterMessage$EnableGlobalWriteForwarding": "<p>A value that indicates whether to enable this DB cluster to forward write operations to the primary cluster of an Aurora global database (<a>GlobalCluster</a>). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database.</p> <p>You can set this value only on Aurora DB clusters that are members of an Aurora global database. With this parameter enabled, a secondary cluster can forward writes to the current primary cluster and the resulting changes are replicated back to this cluster. For the primary DB cluster of an Aurora global database, this value is used immediately if the primary is demoted by the <a>FailoverGlobalCluster</a> API operation, but it does nothing until then. </p>",
         "CreateDBInstanceMessage$MultiAZ": "<p>A value that indicates whether the DB instance is a Multi-AZ deployment. You can't set the <code>AvailabilityZone</code> parameter if the DB instance is a Multi-AZ deployment.</p>",
         "CreateDBInstanceMessage$AutoMinorVersionUpgrade": "<p>A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically.</p>",
         "CreateDBInstanceMessage$PubliclyAccessible": "<p>A value that indicates whether the DB instance is publicly accessible.</p> <p>When the DB instance is publicly accessible, its DNS endpoint resolves to the private IP address from within the DB instance's VPC, and to the public IP address from outside of the DB instance's VPC. Access to the DB instance is ultimately controlled by the security group it uses, and that public access is not permitted if the security group assigned to the DB instance doesn't permit it.</p> <p>When the DB instance isn't publicly accessible, it is an internal DB instance with a DNS name that resolves to a private IP address.</p> <p>Default: The default behavior varies depending on whether <code>DBSubnetGroupName</code> is specified.</p> <p>If <code>DBSubnetGroupName</code> isn't specified, and <code>PubliclyAccessible</code> isn't specified, the following applies:</p> <ul> <li> <p>If the default VPC in the target region doesn’t have an Internet gateway attached to it, the DB instance is private.</p> </li> <li> <p>If the default VPC in the target region has an Internet gateway attached to it, the DB instance is public.</p> </li> </ul> <p>If <code>DBSubnetGroupName</code> is specified, and <code>PubliclyAccessible</code> isn't specified, the following applies:</p> <ul> <li> <p>If the subnets are part of a VPC that doesn’t have an Internet gateway attached to it, the DB instance is private.</p> </li> <li> <p>If the subnets are part of a VPC that has an Internet gateway attached to it, the DB instance is public.</p> </li> </ul>",
@@ -438,7 +439,7 @@
         "ModifyDBClusterMessage$DeletionProtection": "<p>A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. </p>",
         "ModifyDBClusterMessage$EnableHttpEndpoint": "<p>A value that indicates whether to enable the HTTP endpoint for an Aurora Serverless DB cluster. By default, the HTTP endpoint is disabled.</p> <p>When enabled, the HTTP endpoint provides a connectionless web service API for running SQL queries on the Aurora Serverless DB cluster. You can also query your database from inside the RDS console with the query editor.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html\">Using the Data API for Aurora Serverless</a> in the <i>Amazon Aurora User Guide</i>.</p>",
         "ModifyDBClusterMessage$CopyTagsToSnapshot": "<p>A value that indicates whether to copy all tags from the DB cluster to snapshots of the DB cluster. The default is not to copy them.</p>",
-        "ModifyDBClusterMessage$EnableGlobalWriteForwarding": "<p>A value that indicates whether to enable write operations to be forwarded from this cluster to the primary cluster in an Aurora global database. The resulting changes are replicated back to this cluster. This parameter only applies to DB clusters that are secondary clusters in an Aurora global database. By default, Aurora disallows write operations for secondary clusters.</p>",
+        "ModifyDBClusterMessage$EnableGlobalWriteForwarding": "<p>A value that indicates whether to enable this DB cluster to forward write operations to the primary cluster of an Aurora global database (<a>GlobalCluster</a>). By default, write operations are not allowed on Aurora DB clusters that are secondary clusters in an Aurora global database.</p> <p>You can set this value only on Aurora DB clusters that are members of an Aurora global database. With this parameter enabled, a secondary cluster can forward writes to the current primary cluster and the resulting changes are replicated back to this cluster. For the primary DB cluster of an Aurora global database, this value is used immediately if the primary is demoted by the <a>FailoverGlobalCluster</a> API operation, but it does nothing until then. </p>",
         "ModifyDBInstanceMessage$MultiAZ": "<p>A value that indicates whether the DB instance is a Multi-AZ deployment. Changing this parameter doesn't result in an outage and the change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is enabled for this request. </p>",
         "ModifyDBInstanceMessage$AutoMinorVersionUpgrade": "<p> A value that indicates whether minor version upgrades are applied automatically to the DB instance during the maintenance window. Changing this parameter doesn't result in an outage except in the following case and the change is asynchronously applied as soon as possible. An outage results if this parameter is enabled during the maintenance window, and a newer minor version is available, and RDS has enabled auto patching for that engine version. </p>",
         "ModifyDBInstanceMessage$CopyTagsToSnapshot": "<p>A value that indicates whether to copy all tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. Copying tags to snapshots is managed by the DB cluster. Setting this value for an Aurora DB instance has no effect on the DB cluster setting. For more information, see <code>ModifyDBCluster</code>.</p>",
@@ -868,6 +869,12 @@
     "DBClusterEndpointQuotaExceededFault": {
       "base": "<p>The cluster already has the maximum number of custom endpoints.</p>",
       "refs": {
+      }
+    },
+    "DBClusterIdentifier": {
+      "base": null,
+      "refs": {
+        "FailoverGlobalClusterMessage$TargetDbClusterIdentifier": "<p>Identifier of the secondary Aurora DB cluster that you want to promote to primary for the Aurora global database (<a>GlobalCluster</a>.) Use the Amazon Resource Name (ARN) for the identifier so that Aurora can locate the cluster in its AWS Region. </p>"
       }
     },
     "DBClusterList": {
@@ -2049,6 +2056,28 @@
       "refs": {
       }
     },
+    "FailoverGlobalClusterMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "FailoverGlobalClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "FailoverState": {
+      "base": "<p>Contains the state of scheduled or in-process failover operations on an Aurora global database (<a>GlobalCluster</a>). This Data type is empty unless a failover operation is scheduled or is currently underway on the Aurora global database. </p>",
+      "refs": {
+        "GlobalCluster$FailoverState": "<p>A data object containing all properties for the current state of an in-process or pending failover process for this Aurora global database. This object is empty unless the <a>FailoverGlobalCluster</a> API operation has been called on this Aurora global database (<a>GlobalCluster</a>). </p>"
+      }
+    },
+    "FailoverStatus": {
+      "base": null,
+      "refs": {
+        "FailoverState$Status": "<p>The current status of the Aurora global database (<a>GlobalCluster</a>). Possible values are as follows: </p> <ul> <li> <p>pending &#x96; A request to fail over the Aurora global database (<a>GlobalCluster</a>) has been received by the service. The <code>GlobalCluster</code>'s primary DB cluster and the specified secondary DB cluster are being verified before the failover process can start.</p> </li> <li> <p>failing-over &#x96; This status covers the range of Aurora internal operations that take place during the failover process, such as demoting the primary Aurora DB cluster, promoting the secondary Aurora DB, and synchronizing replicas. </p> </li> <li> <p>cancelling &#x96; The request to fail over the Aurora global database (<a>GlobalCluster</a>) was cancelled and the primary Aurora DB cluster and the selected secondary Aurora DB cluster are returning to their previous states. </p> </li> </ul>"
+      }
+    },
     "FeatureNameList": {
       "base": null,
       "refs": {
@@ -2113,6 +2142,7 @@
       "refs": {
         "CreateGlobalClusterResult$GlobalCluster": null,
         "DeleteGlobalClusterResult$GlobalCluster": null,
+        "FailoverGlobalClusterResult$GlobalCluster": null,
         "GlobalClusterList$member": null,
         "ModifyGlobalClusterResult$GlobalCluster": null,
         "RemoveFromGlobalClusterResult$GlobalCluster": null
@@ -2121,6 +2151,12 @@
     "GlobalClusterAlreadyExistsFault": {
       "base": "<p>The <code>GlobalClusterIdentifier</code> already exists. Choose a new global database identifier (unique name) to create a new global database cluster.</p>",
       "refs": {
+      }
+    },
+    "GlobalClusterIdentifier": {
+      "base": null,
+      "refs": {
+        "FailoverGlobalClusterMessage$GlobalClusterIdentifier": "<p>Identifier of the Aurora global database (<a>GlobalCluster</a>) that should be failed over. The identifier is the unique key assigned by the user when the Aurora global database was created. In other words, it's the name of the Aurora global database that you want to fail over. </p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing <a>GlobalCluster</a> (Aurora global database).</p> </li> </ul>"
       }
     },
     "GlobalClusterList": {
@@ -3977,6 +4013,8 @@
         "ExportTasksMessage$Marker": "<p>A pagination token that can be used in a later <code>DescribeExportTasks</code> request. A marker is used for pagination to identify the location to begin output for the next response of <code>DescribeExportTasks</code>.</p>",
         "FailoverDBClusterMessage$DBClusterIdentifier": "<p>A DB cluster identifier to force a failover for. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
         "FailoverDBClusterMessage$TargetDBInstanceIdentifier": "<p>The name of the instance to promote to the primary instance.</p> <p>You must specify the instance identifier for an Aurora Replica in the DB cluster. For example, <code>mydbcluster-replica1</code>.</p>",
+        "FailoverState$FromDbClusterArn": "<p>The Amazon Resource Name (ARN) of the Aurora DB cluster that is currently being demoted, and which is associated with this state. </p>",
+        "FailoverState$ToDbClusterArn": "<p>The Amazon Resource Name (ARN) of the Aurora DB cluster that is currently being promoted, and which is associated with this state.</p>",
         "FeatureNameList$member": null,
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
         "FilterValueList$member": null,
