@@ -192,6 +192,12 @@ const (
 	// The pipeline version was specified in an invalid format or cannot be found.
 	ErrCodePipelineVersionNotFoundException = "PipelineVersionNotFoundException"
 
+	// ErrCodeRequestFailedException for service response error code
+	// "RequestFailedException".
+	//
+	// The request has failed because of an unknown error, exception, or failure.
+	ErrCodeRequestFailedException = "RequestFailedException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -260,6 +266,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"PipelineNameInUseException":                      newErrorPipelineNameInUseException,
 	"PipelineNotFoundException":                       newErrorPipelineNotFoundException,
 	"PipelineVersionNotFoundException":                newErrorPipelineVersionNotFoundException,
+	"RequestFailedException":                          newErrorRequestFailedException,
 	"ResourceNotFoundException":                       newErrorResourceNotFoundException,
 	"StageNotFoundException":                          newErrorStageNotFoundException,
 	"StageNotRetryableException":                      newErrorStageNotRetryableException,

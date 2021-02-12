@@ -412,8 +412,12 @@ func ExampleIAM_CreateInstanceProfile_shared00() {
 			switch aerr.Code() {
 			case iam.ErrCodeEntityAlreadyExistsException:
 				fmt.Println(iam.ErrCodeEntityAlreadyExistsException, aerr.Error())
+			case iam.ErrCodeInvalidInputException:
+				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
 			case iam.ErrCodeLimitExceededException:
 				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
@@ -496,6 +500,8 @@ func ExampleIAM_CreateOpenIDConnectProvider_shared00() {
 				fmt.Println(iam.ErrCodeEntityAlreadyExistsException, aerr.Error())
 			case iam.ErrCodeLimitExceededException:
 				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:
@@ -2346,12 +2352,16 @@ func ExampleIAM_UploadServerCertificate_shared00() {
 			switch aerr.Code() {
 			case iam.ErrCodeLimitExceededException:
 				fmt.Println(iam.ErrCodeLimitExceededException, aerr.Error())
+			case iam.ErrCodeInvalidInputException:
+				fmt.Println(iam.ErrCodeInvalidInputException, aerr.Error())
 			case iam.ErrCodeEntityAlreadyExistsException:
 				fmt.Println(iam.ErrCodeEntityAlreadyExistsException, aerr.Error())
 			case iam.ErrCodeMalformedCertificateException:
 				fmt.Println(iam.ErrCodeMalformedCertificateException, aerr.Error())
 			case iam.ErrCodeKeyPairMismatchException:
 				fmt.Println(iam.ErrCodeKeyPairMismatchException, aerr.Error())
+			case iam.ErrCodeConcurrentModificationException:
+				fmt.Println(iam.ErrCodeConcurrentModificationException, aerr.Error())
 			case iam.ErrCodeServiceFailureException:
 				fmt.Println(iam.ErrCodeServiceFailureException, aerr.Error())
 			default:

@@ -14,6 +14,12 @@ const (
 	// Provide a valid value for the field or parameter.
 	ErrCodeInvalidInputException = "InvalidInputException"
 
+	// ErrCodeResourceInUseException for service response error code
+	// "ResourceInUseException".
+	//
+	// The specified resource is in use.
+	ErrCodeResourceInUseException = "ResourceInUseException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -23,5 +29,6 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidInputException":     newErrorInvalidInputException,
+	"ResourceInUseException":    newErrorResourceInUseException,
 	"ResourceNotFoundException": newErrorResourceNotFoundException,
 }

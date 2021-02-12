@@ -8602,6 +8602,22 @@
           "us-gov-west-1" : { }
         }
       },
+      "models.lex" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "lex"
+          }
+        },
+        "endpoints" : {
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "models-fips.lex.us-gov-west-1.amazonaws.com"
+          }
+        }
+      },
       "monitoring" : {
         "endpoints" : {
           "fips-us-gov-east-1" : {
@@ -8793,6 +8809,22 @@
         "endpoints" : {
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
+        }
+      },
+      "runtime.lex" : {
+        "defaults" : {
+          "credentialScope" : {
+            "service" : "lex"
+          }
+        },
+        "endpoints" : {
+          "us-gov-west-1" : { },
+          "us-gov-west-1-fips" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "runtime-fips.lex.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "runtime.sagemaker" : {

@@ -1956,7 +1956,7 @@ type Graph struct {
 
 	// The date and time that the behavior graph was created. The value is in milliseconds
 	// since the epoch.
-	CreatedTime *time.Time `type:"timestamp"`
+	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
 // String returns the string representation
@@ -2341,7 +2341,7 @@ type MemberDetail struct {
 
 	// The date and time that Detective sent the invitation to the member account.
 	// The value is in milliseconds since the epoch.
-	InvitedTime *time.Time `type:"timestamp"`
+	InvitedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The AWS account identifier of the master account for the behavior graph.
 	MasterId *string `min:"12" type:"string"`
@@ -2358,7 +2358,7 @@ type MemberDetail struct {
 	PercentOfGraphUtilization *float64 `type:"double"`
 
 	// The date and time when the graph utilization percentage was last updated.
-	PercentOfGraphUtilizationUpdatedTime *time.Time `type:"timestamp"`
+	PercentOfGraphUtilizationUpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The current membership status of the member account. The status can have
 	// one of the following values:
@@ -2389,7 +2389,7 @@ type MemberDetail struct {
 
 	// The date and time that the member account was last updated. The value is
 	// in milliseconds since the epoch.
-	UpdatedTime *time.Time `type:"timestamp"`
+	UpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
 // String returns the string representation

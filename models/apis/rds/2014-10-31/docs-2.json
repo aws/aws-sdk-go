@@ -377,7 +377,7 @@
         "SourceRegion$SupportsDBInstanceAutomatedBackupsReplication": "<p>Whether the source AWS Region supports replicating automated backups to the current AWS Region.</p>",
         "StartActivityStreamResponse$ApplyImmediately": "<p>Indicates whether or not the database activity stream will start as soon as possible, regardless of the maintenance window for the database.</p>",
         "UpgradeTarget$AutoUpgrade": "<p>A value that indicates whether the target version is applied to any source DB instances that have <code>AutoMinorVersionUpgrade</code> set to true.</p>",
-        "UpgradeTarget$IsMajorVersionUpgrade": "<p>A value that indicates whether a database engine is upgraded to a major version.</p>",
+        "UpgradeTarget$IsMajorVersionUpgrade": "<p>A value that indicates whether upgrading to the target version requires upgrading the major version of the database engine.</p>",
         "ValidStorageOptions$SupportsStorageAutoscaling": "<p>Whether or not Amazon RDS can automatically scale storage for DB instances that use the new instance class.</p>"
       }
     },
@@ -499,7 +499,9 @@
         "ScalingConfiguration$AutoPause": "<p>A value that indicates whether to allow or disallow automatic pause for an Aurora DB cluster in <code>serverless</code> DB engine mode. A DB cluster can be paused only when it's idle (it has no connections).</p> <note> <p>If a DB cluster is paused for more than seven days, the DB cluster might be backed up with a snapshot. In this case, the DB cluster is restored when there is a request to connect to it. </p> </note>",
         "ScalingConfigurationInfo$AutoPause": "<p>A value that indicates whether automatic pause is allowed for the Aurora DB cluster in <code>serverless</code> DB engine mode.</p> <p>When the value is set to false for an Aurora Serverless DB cluster, the DB cluster automatically resumes.</p>",
         "StartActivityStreamRequest$ApplyImmediately": "<p>Specifies whether or not the database activity stream is to start as soon as possible, regardless of the maintenance window for the database.</p>",
-        "StopActivityStreamRequest$ApplyImmediately": "<p>Specifies whether or not the database activity stream is to stop as soon as possible, regardless of the maintenance window for the database.</p>"
+        "StopActivityStreamRequest$ApplyImmediately": "<p>Specifies whether or not the database activity stream is to stop as soon as possible, regardless of the maintenance window for the database.</p>",
+        "UpgradeTarget$SupportsParallelQuery": "<p>A value that indicates whether you can use Aurora parallel query with the target engine version.</p>",
+        "UpgradeTarget$SupportsGlobalDatabases": "<p>A value that indicates whether you can use Aurora global databases with the target engine version.</p>"
       }
     },
     "CancelExportTaskMessage": {
@@ -1944,7 +1946,8 @@
       "refs": {
         "DBEngineVersion$SupportedEngineModes": "<p>A list of the supported DB engine modes.</p>",
         "OrderableDBInstanceOption$SupportedEngineModes": "<p>A list of the supported DB engine modes.</p>",
-        "Parameter$SupportedEngineModes": "<p>The valid DB engine modes.</p>"
+        "Parameter$SupportedEngineModes": "<p>The valid DB engine modes.</p>",
+        "UpgradeTarget$SupportedEngineModes": "<p>A list of the supported DB engine modes for the target engine version.</p>"
       }
     },
     "Event": {
@@ -3706,10 +3709,11 @@
         "DBClusterRole$FeatureName": "<p>The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see <a>DBEngineVersion</a>. </p>",
         "DBClusterSnapshot$DBClusterSnapshotIdentifier": "<p>Specifies the identifier for the DB cluster snapshot.</p>",
         "DBClusterSnapshot$DBClusterIdentifier": "<p>Specifies the DB cluster identifier of the DB cluster that this DB cluster snapshot was created from.</p>",
-        "DBClusterSnapshot$Engine": "<p>Specifies the name of the database engine.</p>",
+        "DBClusterSnapshot$Engine": "<p>Specifies the name of the database engine for this DB cluster snapshot.</p>",
+        "DBClusterSnapshot$EngineMode": "<p>Provides the engine mode of the database engine for this DB cluster snapshot.</p>",
         "DBClusterSnapshot$Status": "<p>Specifies the status of this DB cluster snapshot.</p>",
         "DBClusterSnapshot$VpcId": "<p>Provides the VPC ID associated with the DB cluster snapshot.</p>",
-        "DBClusterSnapshot$MasterUsername": "<p>Provides the master username for the DB cluster snapshot.</p>",
+        "DBClusterSnapshot$MasterUsername": "<p>Provides the master username for this DB cluster snapshot.</p>",
         "DBClusterSnapshot$EngineVersion": "<p>Provides the version of the database engine for this DB cluster snapshot.</p>",
         "DBClusterSnapshot$LicenseModel": "<p>Provides the license model information for this DB cluster snapshot.</p>",
         "DBClusterSnapshot$SnapshotType": "<p>Provides the type of the DB cluster snapshot.</p>",

@@ -5105,6 +5105,12 @@ type CreateFunctionInput struct {
 
 	// The Function response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
+
+	// Describes a Sync configuration for a resolver.
+	//
+	// Contains information on which Conflict Detection as well as Resolution strategy
+	// should be performed when the resolver is invoked.
+	SyncConfig *SyncConfig `locationName:"syncConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -5193,6 +5199,12 @@ func (s *CreateFunctionInput) SetRequestMappingTemplate(v string) *CreateFunctio
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *CreateFunctionInput) SetResponseMappingTemplate(v string) *CreateFunctionInput {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetSyncConfig sets the SyncConfig field's value.
+func (s *CreateFunctionInput) SetSyncConfig(v *SyncConfig) *CreateFunctionInput {
+	s.SyncConfig = v
 	return s
 }
 
@@ -6530,6 +6542,12 @@ type FunctionConfiguration struct {
 
 	// The Function response mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
+
+	// Describes a Sync configuration for a resolver.
+	//
+	// Contains information on which Conflict Detection as well as Resolution strategy
+	// should be performed when the resolver is invoked.
+	SyncConfig *SyncConfig `locationName:"syncConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -6587,6 +6605,12 @@ func (s *FunctionConfiguration) SetRequestMappingTemplate(v string) *FunctionCon
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *FunctionConfiguration) SetResponseMappingTemplate(v string) *FunctionConfiguration {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetSyncConfig sets the SyncConfig field's value.
+func (s *FunctionConfiguration) SetSyncConfig(v *SyncConfig) *FunctionConfiguration {
+	s.SyncConfig = v
 	return s
 }
 
@@ -9709,6 +9733,12 @@ type UpdateFunctionInput struct {
 
 	// The Function request mapping template.
 	ResponseMappingTemplate *string `locationName:"responseMappingTemplate" min:"1" type:"string"`
+
+	// Describes a Sync configuration for a resolver.
+	//
+	// Contains information on which Conflict Detection as well as Resolution strategy
+	// should be performed when the resolver is invoked.
+	SyncConfig *SyncConfig `locationName:"syncConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -9809,6 +9839,12 @@ func (s *UpdateFunctionInput) SetRequestMappingTemplate(v string) *UpdateFunctio
 // SetResponseMappingTemplate sets the ResponseMappingTemplate field's value.
 func (s *UpdateFunctionInput) SetResponseMappingTemplate(v string) *UpdateFunctionInput {
 	s.ResponseMappingTemplate = &v
+	return s
+}
+
+// SetSyncConfig sets the SyncConfig field's value.
+func (s *UpdateFunctionInput) SetSyncConfig(v *SyncConfig) *UpdateFunctionInput {
+	s.SyncConfig = v
 	return s
 }
 

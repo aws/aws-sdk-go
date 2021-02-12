@@ -58,7 +58,8 @@ func (c *PersonalizeEvents) PutEventsRequest(input *PutEventsInput) (req *reques
 
 // PutEvents API operation for Amazon Personalize Events.
 //
-// Records user interaction event data. For more information see event-record-api.
+// Records user interaction event data. For more information see Recording Events
+// (https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -138,7 +139,8 @@ func (c *PersonalizeEvents) PutItemsRequest(input *PutItemsInput) (req *request.
 
 // PutItems API operation for Amazon Personalize Events.
 //
-// Adds one or more items to an Items dataset. For more information see importing-items.
+// Adds one or more items to an Items dataset. For more information see Importing
+// Items Incrementally (https://docs.aws.amazon.com/personalize/latest/dg/importing-items.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -153,6 +155,9 @@ func (c *PersonalizeEvents) PutItemsRequest(input *PutItemsInput) (req *request.
 //
 //   * ResourceNotFoundException
 //   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-events-2018-03-22/PutItems
 func (c *PersonalizeEvents) PutItems(input *PutItemsInput) (*PutItemsOutput, error) {
@@ -221,7 +226,8 @@ func (c *PersonalizeEvents) PutUsersRequest(input *PutUsersInput) (req *request.
 
 // PutUsers API operation for Amazon Personalize Events.
 //
-// Adds one or more users to a Users dataset. For more information see importing-users.
+// Adds one or more users to a Users dataset. For more information see Importing
+// Users Incrementally (https://docs.aws.amazon.com/personalize/latest/dg/importing-users.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -236,6 +242,9 @@ func (c *PersonalizeEvents) PutUsersRequest(input *PutUsersInput) (req *request.
 //
 //   * ResourceNotFoundException
 //   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-events-2018-03-22/PutUsers
 func (c *PersonalizeEvents) PutUsers(input *PutUsersInput) (*PutUsersOutput, error) {
@@ -458,6 +467,7 @@ func (s *InvalidInputException) RequestID() string {
 }
 
 // Represents item metadata added to an Items dataset using the PutItems API.
+// For more information see Importing Items Incrementally (https://docs.aws.amazon.com/personalize/latest/dg/importing-items.html).
 type Item struct {
 	_ struct{} `type:"structure"`
 
@@ -467,13 +477,13 @@ type Item struct {
 	ItemId *string `locationName:"itemId" min:"1" type:"string" required:"true"`
 
 	// A string map of item-specific metadata. Each element in the map consists
-	// of a key-value pair. For example,
+	// of a key-value pair. For example, {"numberOfRatings": "12"}.
 	//
-	// {"numberOfRatings": "12"}
-	//
-	// The keys use camel case names that match the fields in the Items schema.
-	// In the above example, the numberOfRatings would match the 'NUMBER_OF_RATINGS'
-	// field defined in the Items schema.
+	// The keys use camel case names that match the fields in the schema for the
+	// Items dataset. In the previous example, the numberOfRatings matches the 'NUMBER_OF_RATINGS'
+	// field defined in the Items schema. For categorical string data, to include
+	// multiple categories for a single item, separate each category with a pipe
+	// separator (|). For example, \"Horror|Action\".
 	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue"`
 }
 
@@ -526,7 +536,7 @@ type PutEventsInput struct {
 	// The session ID associated with the user's visit. Your application generates
 	// the sessionId when a user first visits your website or uses your application.
 	// Amazon Personalize uses the sessionId to associate events with the user before
-	// they log in. For more information see event-record-api.
+	// they log in. For more information, see Recording Events (https://docs.aws.amazon.com/personalize/latest/dg/recording-events.html).
 	//
 	// SessionId is a required field
 	SessionId *string `locationName:"sessionId" min:"1" type:"string" required:"true"`
@@ -634,8 +644,8 @@ func (s PutEventsOutput) GoString() string {
 type PutItemsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the Items dataset you are adding the
-	// item or items to.
+	// The Amazon Resource Name (ARN) of the Items dataset you are adding the item
+	// or items to.
 	//
 	// DatasetArn is a required field
 	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
@@ -714,8 +724,8 @@ func (s PutItemsOutput) GoString() string {
 type PutUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the Users dataset you are adding the
-	// user or users to.
+	// The Amazon Resource Name (ARN) of the Users dataset you are adding the user
+	// or users to.
 	//
 	// DatasetArn is a required field
 	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
@@ -791,6 +801,62 @@ func (s PutUsersOutput) GoString() string {
 	return s.String()
 }
 
+// The specified resource is in use.
+type ResourceInUseException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceInUseException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceInUseException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Could not find the specified resource.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -848,17 +914,18 @@ func (s *ResourceNotFoundException) RequestID() string {
 }
 
 // Represents user metadata added to a Users dataset using the PutUsers API.
+// For more information see Importing Users Incrementally (https://docs.aws.amazon.com/personalize/latest/dg/importing-users.html).
 type User struct {
 	_ struct{} `type:"structure"`
 
 	// A string map of user-specific metadata. Each element in the map consists
-	// of a key-value pair. For example,
+	// of a key-value pair. For example, {"numberOfVideosWatched": "45"}.
 	//
-	// {"numberOfVideosWatched": "45"}
-	//
-	// The keys use camel case names that match the fields in the Users schema.
-	// In the above example, the numberOfVideosWatched would match the 'NUMBER_OF_VIDEOS_WATCHED'
-	// field defined in the Users schema.
+	// The keys use camel case names that match the fields in the schema for the
+	// Users dataset. In the previous example, the numberOfVideosWatched matches
+	// the 'NUMBER_OF_VIDEOS_WATCHED' field defined in the Users schema. For categorical
+	// string data, to include multiple categories for a single user, separate each
+	// category with a pipe separator (|). For example, \"Member|Frequent shopper\".
 	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue"`
 
 	// The ID associated with the user.

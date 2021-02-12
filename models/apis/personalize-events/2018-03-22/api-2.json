@@ -32,7 +32,8 @@
       "input":{"shape":"PutItemsRequest"},
       "errors":[
         {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "PutUsers":{
@@ -44,7 +45,8 @@
       "input":{"shape":"PutUsersRequest"},
       "errors":[
         {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
       ]
     }
   },
@@ -126,7 +128,7 @@
     },
     "ItemProperties":{
       "type":"string",
-      "max":1024,
+      "max":4096,
       "min":1
     },
     "PutEventsRequest":{
@@ -170,6 +172,14 @@
       "max":40,
       "min":1
     },
+    "ResourceInUseException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -207,7 +217,7 @@
     },
     "UserProperties":{
       "type":"string",
-      "max":1024,
+      "max":4096,
       "min":1
     }
   }

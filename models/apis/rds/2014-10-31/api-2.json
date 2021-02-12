@@ -3580,6 +3580,7 @@
         "DBClusterIdentifier":{"shape":"String"},
         "SnapshotCreateTime":{"shape":"TStamp"},
         "Engine":{"shape":"String"},
+        "EngineMode":{"shape":"String"},
         "AllocatedStorage":{"shape":"Integer"},
         "Status":{"shape":"String"},
         "Port":{"shape":"Integer"},
@@ -7826,7 +7827,10 @@
         "EngineVersion":{"shape":"String"},
         "Description":{"shape":"String"},
         "AutoUpgrade":{"shape":"Boolean"},
-        "IsMajorVersionUpgrade":{"shape":"Boolean"}
+        "IsMajorVersionUpgrade":{"shape":"Boolean"},
+        "SupportedEngineModes":{"shape":"EngineModeList"},
+        "SupportsParallelQuery":{"shape":"BooleanOptional"},
+        "SupportsGlobalDatabases":{"shape":"BooleanOptional"}
       }
     },
     "UserAuthConfig":{

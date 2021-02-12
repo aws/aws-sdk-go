@@ -21969,8 +21969,11 @@ type DBClusterSnapshot struct {
 	// Specifies the identifier for the DB cluster snapshot.
 	DBClusterSnapshotIdentifier *string `type:"string"`
 
-	// Specifies the name of the database engine.
+	// Specifies the name of the database engine for this DB cluster snapshot.
 	Engine *string `type:"string"`
+
+	// Provides the engine mode of the database engine for this DB cluster snapshot.
+	EngineMode *string `type:"string"`
 
 	// Provides the version of the database engine for this DB cluster snapshot.
 	EngineVersion *string `type:"string"`
@@ -21989,7 +21992,7 @@ type DBClusterSnapshot struct {
 	// Provides the license model information for this DB cluster snapshot.
 	LicenseModel *string `type:"string"`
 
-	// Provides the master username for the DB cluster snapshot.
+	// Provides the master username for this DB cluster snapshot.
 	MasterUsername *string `type:"string"`
 
 	// Specifies the percentage of the estimated data that has been transferred.
@@ -22074,6 +22077,12 @@ func (s *DBClusterSnapshot) SetDBClusterSnapshotIdentifier(v string) *DBClusterS
 // SetEngine sets the Engine field's value.
 func (s *DBClusterSnapshot) SetEngine(v string) *DBClusterSnapshot {
 	s.Engine = &v
+	return s
+}
+
+// SetEngineMode sets the EngineMode field's value.
+func (s *DBClusterSnapshot) SetEngineMode(v string) *DBClusterSnapshot {
+	s.EngineMode = &v
 	return s
 }
 
@@ -43039,8 +43048,20 @@ type UpgradeTarget struct {
 	// The version number of the upgrade target database engine.
 	EngineVersion *string `type:"string"`
 
-	// A value that indicates whether a database engine is upgraded to a major version.
+	// A value that indicates whether upgrading to the target version requires upgrading
+	// the major version of the database engine.
 	IsMajorVersionUpgrade *bool `type:"boolean"`
+
+	// A list of the supported DB engine modes for the target engine version.
+	SupportedEngineModes []*string `type:"list"`
+
+	// A value that indicates whether you can use Aurora global databases with the
+	// target engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with the
+	// target engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -43080,6 +43101,24 @@ func (s *UpgradeTarget) SetEngineVersion(v string) *UpgradeTarget {
 // SetIsMajorVersionUpgrade sets the IsMajorVersionUpgrade field's value.
 func (s *UpgradeTarget) SetIsMajorVersionUpgrade(v bool) *UpgradeTarget {
 	s.IsMajorVersionUpgrade = &v
+	return s
+}
+
+// SetSupportedEngineModes sets the SupportedEngineModes field's value.
+func (s *UpgradeTarget) SetSupportedEngineModes(v []*string) *UpgradeTarget {
+	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *UpgradeTarget) SetSupportsGlobalDatabases(v bool) *UpgradeTarget {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *UpgradeTarget) SetSupportsParallelQuery(v bool) *UpgradeTarget {
+	s.SupportsParallelQuery = &v
 	return s
 }
 
