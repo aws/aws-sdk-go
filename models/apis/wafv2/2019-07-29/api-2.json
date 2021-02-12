@@ -681,6 +681,11 @@
   },
   "shapes":{
     "Action":{"type":"string"},
+    "All":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AllQueryArguments":{
       "type":"structure",
       "members":{
@@ -723,6 +728,14 @@
       "type":"structure",
       "members":{
       }
+    },
+    "BodyParsingFallbackBehavior":{
+      "type":"string",
+      "enum":[
+        "MATCH",
+        "NO_MATCH",
+        "EVALUATE_AS_STRING"
+      ]
     },
     "Boolean":{"type":"boolean"},
     "ByteMatchStatement":{
@@ -1340,7 +1353,8 @@
         "UriPath":{"shape":"UriPath"},
         "QueryString":{"shape":"QueryString"},
         "Body":{"shape":"Body"},
-        "Method":{"shape":"Method"}
+        "Method":{"shape":"Method"},
+        "JsonBody":{"shape":"JsonBody"}
       }
     },
     "FieldToMatchData":{
@@ -1672,6 +1686,44 @@
       }
     },
     "IPString":{"type":"string"},
+    "JsonBody":{
+      "type":"structure",
+      "required":[
+        "MatchPattern",
+        "MatchScope"
+      ],
+      "members":{
+        "MatchPattern":{"shape":"JsonMatchPattern"},
+        "MatchScope":{"shape":"JsonMatchScope"},
+        "InvalidFallbackBehavior":{"shape":"BodyParsingFallbackBehavior"}
+      }
+    },
+    "JsonMatchPattern":{
+      "type":"structure",
+      "members":{
+        "All":{"shape":"All"},
+        "IncludedPaths":{"shape":"JsonPointerPaths"}
+      }
+    },
+    "JsonMatchScope":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "KEY",
+        "VALUE"
+      ]
+    },
+    "JsonPointerPath":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"([/])|([/](([^~])|(~[01]))+)"
+    },
+    "JsonPointerPaths":{
+      "type":"list",
+      "member":{"shape":"JsonPointerPath"},
+      "min":1
+    },
     "ListAvailableManagedRuleGroupsRequest":{
       "type":"structure",
       "required":["Scope"],
@@ -1948,7 +2000,10 @@
         "POSITION",
         "FORWARDED_IP_CONFIG",
         "IP_SET_FORWARDED_IP_CONFIG",
-        "HEADER_NAME"
+        "HEADER_NAME",
+        "JSON_MATCH_PATTERN",
+        "JSON_MATCH_SCOPE",
+        "BODY_PARSING_FALLBACK_BEHAVIOR"
       ]
     },
     "ParameterExceptionParameter":{

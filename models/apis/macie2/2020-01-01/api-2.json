@@ -677,6 +677,43 @@
         }
       ]
     },
+    "DisassociateFromAdministratorAccount": {
+      "name": "DisassociateFromAdministratorAccount",
+      "http": {
+        "method": "POST",
+        "requestUri": "/administrator/disassociate",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DisassociateFromAdministratorAccountRequest"
+      },
+      "output": {
+        "shape": "DisassociateFromAdministratorAccountResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "DisassociateFromMasterAccount": {
       "name": "DisassociateFromMasterAccount",
       "http": {
@@ -800,6 +837,43 @@
       },
       "output": {
         "shape": "EnableOrganizationAdminAccountResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "GetAdministratorAccount": {
+      "name": "GetAdministratorAccount",
+      "http": {
+        "method": "GET",
+        "requestUri": "/administrator",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetAdministratorAccountRequest"
+      },
+      "output": {
+        "shape": "GetAdministratorAccountResponse"
       },
       "errors": [
         {
@@ -1837,6 +1911,10 @@
     "AcceptInvitationRequest": {
       "type": "structure",
       "members": {
+        "administratorAccountId": {
+          "shape": "__string",
+          "locationName": "administratorAccountId"
+        },
         "invitationId": {
           "shape": "__string",
           "locationName": "invitationId"
@@ -1847,7 +1925,6 @@
         }
       },
       "required": [
-        "masterAccount",
         "invitationId"
       ]
     },
@@ -3094,6 +3171,14 @@
       "type": "structure",
       "members": {}
     },
+    "DisassociateFromAdministratorAccountRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "DisassociateFromAdministratorAccountResponse": {
+      "type": "structure",
+      "members": {}
+    },
     "DisassociateFromMasterAccountRequest": {
       "type": "structure",
       "members": {}
@@ -3428,6 +3513,19 @@
         }
       }
     },
+    "GetAdministratorAccountRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "GetAdministratorAccountResponse": {
+      "type": "structure",
+      "members": {
+        "administrator": {
+          "shape": "Invitation",
+          "locationName": "administrator"
+        }
+      }
+    },
     "GetBucketStatisticsRequest": {
       "type": "structure",
       "members": {
@@ -3747,6 +3845,10 @@
         "accountId": {
           "shape": "__string",
           "locationName": "accountId"
+        },
+        "administratorAccountId": {
+          "shape": "__string",
+          "locationName": "administratorAccountId"
         },
         "arn": {
           "shape": "__string",
@@ -4492,6 +4594,10 @@
         "accountId": {
           "shape": "__string",
           "locationName": "accountId"
+        },
+        "administratorAccountId": {
+          "shape": "__string",
+          "locationName": "administratorAccountId"
         },
         "arn": {
           "shape": "__string",

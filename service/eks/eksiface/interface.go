@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Elastic Kubernetes Service.
 //    func myFunc(svc eksiface.EKSAPI) bool {
-//        // Make svc.CreateAddon request
+//        // Make svc.AssociateIdentityProviderConfig request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockEKSClient struct {
 //        eksiface.EKSAPI
 //    }
-//    func (m *mockEKSClient) CreateAddon(input *eks.CreateAddonInput) (*eks.CreateAddonOutput, error) {
+//    func (m *mockEKSClient) AssociateIdentityProviderConfig(input *eks.AssociateIdentityProviderConfigInput) (*eks.AssociateIdentityProviderConfigOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type EKSAPI interface {
+	AssociateIdentityProviderConfig(*eks.AssociateIdentityProviderConfigInput) (*eks.AssociateIdentityProviderConfigOutput, error)
+	AssociateIdentityProviderConfigWithContext(aws.Context, *eks.AssociateIdentityProviderConfigInput, ...request.Option) (*eks.AssociateIdentityProviderConfigOutput, error)
+	AssociateIdentityProviderConfigRequest(*eks.AssociateIdentityProviderConfigInput) (*request.Request, *eks.AssociateIdentityProviderConfigOutput)
+
 	CreateAddon(*eks.CreateAddonInput) (*eks.CreateAddonOutput, error)
 	CreateAddonWithContext(aws.Context, *eks.CreateAddonInput, ...request.Option) (*eks.CreateAddonOutput, error)
 	CreateAddonRequest(*eks.CreateAddonInput) (*request.Request, *eks.CreateAddonOutput)
@@ -111,6 +115,10 @@ type EKSAPI interface {
 	DescribeFargateProfileWithContext(aws.Context, *eks.DescribeFargateProfileInput, ...request.Option) (*eks.DescribeFargateProfileOutput, error)
 	DescribeFargateProfileRequest(*eks.DescribeFargateProfileInput) (*request.Request, *eks.DescribeFargateProfileOutput)
 
+	DescribeIdentityProviderConfig(*eks.DescribeIdentityProviderConfigInput) (*eks.DescribeIdentityProviderConfigOutput, error)
+	DescribeIdentityProviderConfigWithContext(aws.Context, *eks.DescribeIdentityProviderConfigInput, ...request.Option) (*eks.DescribeIdentityProviderConfigOutput, error)
+	DescribeIdentityProviderConfigRequest(*eks.DescribeIdentityProviderConfigInput) (*request.Request, *eks.DescribeIdentityProviderConfigOutput)
+
 	DescribeNodegroup(*eks.DescribeNodegroupInput) (*eks.DescribeNodegroupOutput, error)
 	DescribeNodegroupWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.Option) (*eks.DescribeNodegroupOutput, error)
 	DescribeNodegroupRequest(*eks.DescribeNodegroupInput) (*request.Request, *eks.DescribeNodegroupOutput)
@@ -118,6 +126,10 @@ type EKSAPI interface {
 	DescribeUpdate(*eks.DescribeUpdateInput) (*eks.DescribeUpdateOutput, error)
 	DescribeUpdateWithContext(aws.Context, *eks.DescribeUpdateInput, ...request.Option) (*eks.DescribeUpdateOutput, error)
 	DescribeUpdateRequest(*eks.DescribeUpdateInput) (*request.Request, *eks.DescribeUpdateOutput)
+
+	DisassociateIdentityProviderConfig(*eks.DisassociateIdentityProviderConfigInput) (*eks.DisassociateIdentityProviderConfigOutput, error)
+	DisassociateIdentityProviderConfigWithContext(aws.Context, *eks.DisassociateIdentityProviderConfigInput, ...request.Option) (*eks.DisassociateIdentityProviderConfigOutput, error)
+	DisassociateIdentityProviderConfigRequest(*eks.DisassociateIdentityProviderConfigInput) (*request.Request, *eks.DisassociateIdentityProviderConfigOutput)
 
 	ListAddons(*eks.ListAddonsInput) (*eks.ListAddonsOutput, error)
 	ListAddonsWithContext(aws.Context, *eks.ListAddonsInput, ...request.Option) (*eks.ListAddonsOutput, error)
@@ -139,6 +151,13 @@ type EKSAPI interface {
 
 	ListFargateProfilesPages(*eks.ListFargateProfilesInput, func(*eks.ListFargateProfilesOutput, bool) bool) error
 	ListFargateProfilesPagesWithContext(aws.Context, *eks.ListFargateProfilesInput, func(*eks.ListFargateProfilesOutput, bool) bool, ...request.Option) error
+
+	ListIdentityProviderConfigs(*eks.ListIdentityProviderConfigsInput) (*eks.ListIdentityProviderConfigsOutput, error)
+	ListIdentityProviderConfigsWithContext(aws.Context, *eks.ListIdentityProviderConfigsInput, ...request.Option) (*eks.ListIdentityProviderConfigsOutput, error)
+	ListIdentityProviderConfigsRequest(*eks.ListIdentityProviderConfigsInput) (*request.Request, *eks.ListIdentityProviderConfigsOutput)
+
+	ListIdentityProviderConfigsPages(*eks.ListIdentityProviderConfigsInput, func(*eks.ListIdentityProviderConfigsOutput, bool) bool) error
+	ListIdentityProviderConfigsPagesWithContext(aws.Context, *eks.ListIdentityProviderConfigsInput, func(*eks.ListIdentityProviderConfigsOutput, bool) bool, ...request.Option) error
 
 	ListNodegroups(*eks.ListNodegroupsInput) (*eks.ListNodegroupsOutput, error)
 	ListNodegroupsWithContext(aws.Context, *eks.ListNodegroupsInput, ...request.Option) (*eks.ListNodegroupsOutput, error)

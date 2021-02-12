@@ -100,6 +100,10 @@ type CodePipelineAPI interface {
 	EnableStageTransitionWithContext(aws.Context, *codepipeline.EnableStageTransitionInput, ...request.Option) (*codepipeline.EnableStageTransitionOutput, error)
 	EnableStageTransitionRequest(*codepipeline.EnableStageTransitionInput) (*request.Request, *codepipeline.EnableStageTransitionOutput)
 
+	GetActionType(*codepipeline.GetActionTypeInput) (*codepipeline.GetActionTypeOutput, error)
+	GetActionTypeWithContext(aws.Context, *codepipeline.GetActionTypeInput, ...request.Option) (*codepipeline.GetActionTypeOutput, error)
+	GetActionTypeRequest(*codepipeline.GetActionTypeInput) (*request.Request, *codepipeline.GetActionTypeOutput)
+
 	GetJobDetails(*codepipeline.GetJobDetailsInput) (*codepipeline.GetJobDetailsOutput, error)
 	GetJobDetailsWithContext(aws.Context, *codepipeline.GetJobDetailsInput, ...request.Option) (*codepipeline.GetJobDetailsOutput, error)
 	GetJobDetailsRequest(*codepipeline.GetJobDetailsInput) (*request.Request, *codepipeline.GetJobDetailsOutput)
@@ -221,6 +225,10 @@ type CodePipelineAPI interface {
 	UntagResource(*codepipeline.UntagResourceInput) (*codepipeline.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *codepipeline.UntagResourceInput, ...request.Option) (*codepipeline.UntagResourceOutput, error)
 	UntagResourceRequest(*codepipeline.UntagResourceInput) (*request.Request, *codepipeline.UntagResourceOutput)
+
+	UpdateActionType(*codepipeline.UpdateActionTypeInput) (*codepipeline.UpdateActionTypeOutput, error)
+	UpdateActionTypeWithContext(aws.Context, *codepipeline.UpdateActionTypeInput, ...request.Option) (*codepipeline.UpdateActionTypeOutput, error)
+	UpdateActionTypeRequest(*codepipeline.UpdateActionTypeInput) (*request.Request, *codepipeline.UpdateActionTypeOutput)
 
 	UpdatePipeline(*codepipeline.UpdatePipelineInput) (*codepipeline.UpdatePipelineOutput, error)
 	UpdatePipelineWithContext(aws.Context, *codepipeline.UpdatePipelineInput, ...request.Option) (*codepipeline.UpdatePipelineOutput, error)

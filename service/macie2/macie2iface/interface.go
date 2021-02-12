@@ -135,6 +135,10 @@ type Macie2API interface {
 	DisableOrganizationAdminAccountWithContext(aws.Context, *macie2.DisableOrganizationAdminAccountInput, ...request.Option) (*macie2.DisableOrganizationAdminAccountOutput, error)
 	DisableOrganizationAdminAccountRequest(*macie2.DisableOrganizationAdminAccountInput) (*request.Request, *macie2.DisableOrganizationAdminAccountOutput)
 
+	DisassociateFromAdministratorAccount(*macie2.DisassociateFromAdministratorAccountInput) (*macie2.DisassociateFromAdministratorAccountOutput, error)
+	DisassociateFromAdministratorAccountWithContext(aws.Context, *macie2.DisassociateFromAdministratorAccountInput, ...request.Option) (*macie2.DisassociateFromAdministratorAccountOutput, error)
+	DisassociateFromAdministratorAccountRequest(*macie2.DisassociateFromAdministratorAccountInput) (*request.Request, *macie2.DisassociateFromAdministratorAccountOutput)
+
 	DisassociateFromMasterAccount(*macie2.DisassociateFromMasterAccountInput) (*macie2.DisassociateFromMasterAccountOutput, error)
 	DisassociateFromMasterAccountWithContext(aws.Context, *macie2.DisassociateFromMasterAccountInput, ...request.Option) (*macie2.DisassociateFromMasterAccountOutput, error)
 	DisassociateFromMasterAccountRequest(*macie2.DisassociateFromMasterAccountInput) (*request.Request, *macie2.DisassociateFromMasterAccountOutput)
@@ -150,6 +154,10 @@ type Macie2API interface {
 	EnableOrganizationAdminAccount(*macie2.EnableOrganizationAdminAccountInput) (*macie2.EnableOrganizationAdminAccountOutput, error)
 	EnableOrganizationAdminAccountWithContext(aws.Context, *macie2.EnableOrganizationAdminAccountInput, ...request.Option) (*macie2.EnableOrganizationAdminAccountOutput, error)
 	EnableOrganizationAdminAccountRequest(*macie2.EnableOrganizationAdminAccountInput) (*request.Request, *macie2.EnableOrganizationAdminAccountOutput)
+
+	GetAdministratorAccount(*macie2.GetAdministratorAccountInput) (*macie2.GetAdministratorAccountOutput, error)
+	GetAdministratorAccountWithContext(aws.Context, *macie2.GetAdministratorAccountInput, ...request.Option) (*macie2.GetAdministratorAccountOutput, error)
+	GetAdministratorAccountRequest(*macie2.GetAdministratorAccountInput) (*request.Request, *macie2.GetAdministratorAccountOutput)
 
 	GetBucketStatistics(*macie2.GetBucketStatisticsInput) (*macie2.GetBucketStatisticsOutput, error)
 	GetBucketStatisticsWithContext(aws.Context, *macie2.GetBucketStatisticsInput, ...request.Option) (*macie2.GetBucketStatisticsOutput, error)

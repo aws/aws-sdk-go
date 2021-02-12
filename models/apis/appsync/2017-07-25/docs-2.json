@@ -996,8 +996,11 @@
     "SyncConfig": {
       "base": "<p>Describes a Sync configuration for a resolver.</p> <p>Contains information on which Conflict Detection as well as Resolution strategy should be performed when the resolver is invoked.</p>",
       "refs": {
+        "CreateFunctionRequest$syncConfig": null,
         "CreateResolverRequest$syncConfig": "<p>The <code>SyncConfig</code> for a resolver attached to a versioned datasource.</p>",
+        "FunctionConfiguration$syncConfig": null,
         "Resolver$syncConfig": "<p>The <code>SyncConfig</code> for a resolver attached to a versioned datasource.</p>",
+        "UpdateFunctionRequest$syncConfig": null,
         "UpdateResolverRequest$syncConfig": "<p>The <code>SyncConfig</code> for a resolver attached to a versioned datasource.</p>"
       }
     },

@@ -7,23 +7,25 @@
     "CreateClassificationJob" : " <p>Creates and defines the settings for a classification job.</p>",
     "CreateCustomDataIdentifier" : "<p>Creates and defines the criteria and other settings for a custom data identifier.</p>",
     "CreateFindingsFilter" : "<p>Creates and defines the criteria and other settings for a findings filter.</p>",
-    "CreateInvitations" : " <p>Sends an Amazon Macie membership invitation to one or more accounts.</p>",
-    "CreateMember" : " <p>Associates an account with an Amazon Macie master account.</p>",
+    "CreateInvitations" : "<p>Sends an Amazon Macie membership invitation to one or more accounts.</p>",
+    "CreateMember" : "<p>Associates an account with an Amazon Macie administrator account.</p>",
     "CreateSampleFindings" : " <p>Creates sample findings.</p>",
     "DeclineInvitations" : "<p>Declines Amazon Macie membership invitations that were received from specific accounts.</p>",
     "DeleteCustomDataIdentifier" : "<p>Soft deletes a custom data identifier.</p>",
     "DeleteFindingsFilter" : "<p>Deletes a findings filter.</p>",
     "DeleteInvitations" : "<p>Deletes Amazon Macie membership invitations that were received from specific accounts.</p>",
-    "DeleteMember" : "<p>Deletes the association between an Amazon Macie master account and an account.</p>",
+    "DeleteMember" : "<p>Deletes the association between an Amazon Macie administrator account and an account.</p>",
     "DescribeBuckets" : " <p>Retrieves (queries) statistical data and other information about one or more S3 buckets that Amazon Macie monitors and analyzes.</p>",
     "DescribeClassificationJob" : "<p>Retrieves the status and settings for a classification job.</p>",
     "DescribeOrganizationConfiguration" : "<p>Retrieves the Amazon Macie configuration settings for an AWS organization.</p>",
     "DisableMacie" : "<p>Disables an Amazon Macie account and deletes Macie resources for the account.</p>",
     "DisableOrganizationAdminAccount" : "<p>Disables an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
-    "DisassociateFromMasterAccount" : "<p>Disassociates a member account from its Amazon Macie master account.</p>",
-    "DisassociateMember" : "<p>Disassociates an Amazon Macie master account from a member account.</p>",
+    "DisassociateFromAdministratorAccount" : "<p>Disassociates a member account from its Amazon Macie administrator account.</p>",
+    "DisassociateFromMasterAccount" : "<p>(Deprecated) Disassociates a member account from its Amazon Macie administrator account. This operation has been replaced by the DisassociateFromAdministratorAccount operation.</p>",
+    "DisassociateMember" : "<p>Disassociates an Amazon Macie administrator account from a member account.</p>",
     "EnableMacie" : "<p>Enables Amazon Macie and specifies the configuration settings for a Macie account.</p>",
     "EnableOrganizationAdminAccount" : "<p>Designates an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
+    "GetAdministratorAccount" : "<p>Retrieves information about the Amazon Macie administrator account for an account.</p>",
     "GetBucketStatistics" : " <p>Retrieves (queries) aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes.</p>",
     "GetClassificationExportConfiguration" : "<p>Retrieves the configuration settings for storing data classification results.</p>",
     "GetCustomDataIdentifier" : "<p>Retrieves the criteria and other settings for a custom data identifier.</p>",
@@ -32,8 +34,8 @@
     "GetFindingsFilter" : "<p>Retrieves the criteria and other settings for a findings filter.</p>",
     "GetInvitationsCount" : "<p>Retrieves the count of Amazon Macie membership invitations that were received by an account.</p>",
     "GetMacieSession" : "<p>Retrieves the current status and configuration settings for an Amazon Macie account.</p>",
-    "GetMasterAccount" : "<p>Retrieves information about the Amazon Macie master account for an account.</p>",
-    "GetMember" : "<p>Retrieves information about a member account that's associated with an Amazon Macie master account.</p>",
+    "GetMasterAccount" : "<p>(Deprecated) Retrieves information about the Amazon Macie administrator account for an account. This operation has been replaced by the GetAdministratorAccount operation.</p>",
+    "GetMember" : "<p>Retrieves information about an account that's associated with an Amazon Macie administrator account.</p>",
     "GetUsageStatistics" : "<p>Retrieves (queries) quotas and aggregated usage data for one or more accounts.</p>",
     "GetUsageTotals" : "<p>Retrieves (queries) aggregated usage data for an account.</p>",
     "ListClassificationJobs" : "<p>Retrieves a subset of information about one or more classification jobs.</p>",
@@ -41,7 +43,7 @@
     "ListFindings" : " <p>Retrieves a subset of information about one or more findings.</p>",
     "ListFindingsFilters" : "<p>Retrieves a subset of information about all the findings filters for an account.</p>",
     "ListInvitations" : "<p>Retrieves information about all the Amazon Macie membership invitations that were received by an account.</p>",
-    "ListMembers" : "<p>Retrieves information about the accounts that are associated with an Amazon Macie master account.</p>",
+    "ListMembers" : "<p>Retrieves information about the accounts that are associated with an Amazon Macie administrator account.</p>",
     "ListOrganizationAdminAccounts" : "<p>Retrieves information about the delegated Amazon Macie administrator account for an AWS organization.</p>",
     "ListTagsForResource" : "<p>Retrieves the tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for storing data classification results.</p>",
@@ -51,12 +53,12 @@
     "UpdateClassificationJob" : "<p>Changes the status of a classification job.</p>",
     "UpdateFindingsFilter" : "<p>Updates the criteria and other settings for a findings filter.</p>",
     "UpdateMacieSession" : "<p>Suspends or re-enables an Amazon Macie account, or updates the configuration settings for a Macie account.</p>",
-    "UpdateMemberSession" : " <p>Enables an Amazon Macie master account to suspend or re-enable a member account.</p>",
+    "UpdateMemberSession" : "<p>Enables an Amazon Macie administrator to suspend or re-enable a member account.</p>",
     "UpdateOrganizationConfiguration" : "<p>Updates the Amazon Macie configuration settings for an AWS organization.</p>"
   },
   "shapes" : {
     "AcceptInvitationRequest" : {
-      "base" : "<p>Specifies an Amazon Macie membership invitation to accept.</p>",
+      "base" : "<p>Specifies an Amazon Macie membership invitation to accept. In the request, you have to specify the ID for the AWS account that sent the invitation. Otherwise, a validation error occurs. To specify this ID, we recommend that you use the administratorAccountId property instead of the masterAccount property. The masterAccount property has been deprecated and is retained only for backward compatibility.</p>",
       "refs" : { }
     },
     "AccessControlList" : {
@@ -70,9 +72,9 @@
       "refs" : { }
     },
     "AccountDetail" : {
-      "base" : "<p>Specifies details for an account to associate with an Amazon Macie master account.</p>",
+      "base" : "<p>Specifies details for an account to associate with an Amazon Macie administrator account.</p>",
       "refs" : {
-        "CreateMemberRequest$Account" : "<p>The details for the account to associate with the master account.</p>"
+        "CreateMemberRequest$Account" : "<p>The details for the account to associate with the administrator account.</p>"
       }
     },
     "AccountLevelPermissions" : {
@@ -88,9 +90,9 @@
       }
     },
     "AdminStatus" : {
-      "base" : "<p>The current status of an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
+      "base" : "<p>The current status of an account as the delegated Amazon Macie administrator account for an AWS organization. Possible values are:</p>",
       "refs" : {
-        "AdminAccount$Status" : "<p>The current status of the account as a delegated administrator of Amazon Macie for the organization.</p>"
+        "AdminAccount$Status" : "<p>The current status of the account as the delegated administrator of Amazon Macie for the organization.</p>"
       }
     },
     "ApiCallDetails" : {
@@ -286,11 +288,11 @@
       "refs" : { }
     },
     "CreateMemberRequest" : {
-      "base" : "<p>Specifies an account to associate with an Amazon Macie master account.</p>",
+      "base" : "<p>Specifies an AWS account to associate with an Amazon Macie administrator account.</p>",
       "refs" : { }
     },
     "CreateMemberResponse" : {
-      "base" : "<p>Provides information about a request to associate an account with an Amazon Macie master account.</p>",
+      "base" : "<p>Provides information about a request to associate an account with an Amazon Macie administrator account.</p>",
       "refs" : { }
     },
     "CreateSampleFindingsRequest" : {
@@ -413,7 +415,7 @@
       "refs" : { }
     },
     "EnableMacieRequest" : {
-      "base" : "<p>Enables Amazon Macie and specifies the configuration settings for an Amazon Macie account.</p>",
+      "base" : "<p>Enables Amazon Macie and specifies the configuration settings for a Macie account.</p>",
       "refs" : { }
     },
     "EnableOrganizationAdminAccountRequest" : {
@@ -427,7 +429,7 @@
       }
     },
     "ErrorCode" : {
-      "base" : "<p>The source of an error, issue, or delay. Possible values are:</p>",
+      "base" : "<p>The source of an issue or delay. Possible values are:</p>",
       "refs" : {
         "UnprocessedAccount$ErrorCode" : "<p>The source of the issue or delay in processing the request.</p>"
       }
@@ -482,7 +484,7 @@
       "base" : "<p>The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values are:</p>",
       "refs" : {
         "EnableMacieRequest$FindingPublishingFrequency" : "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).",
-        "GetMacieSessionResponse$FindingPublishingFrequency" : "<p>The frequency with which Amazon Macie publishes updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).</p>",
+        "GetMacieSessionResponse$FindingPublishingFrequency" : "<p>The frequency with which Macie publishes updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).</p>",
         "UpdateMacieSessionRequest$FindingPublishingFrequency" : "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events)."
       }
     },
@@ -519,6 +521,10 @@
       "refs" : {
         "__listOfFindingsFilterListItem$member" : null
       }
+    },
+    "GetAdministratorAccountResponse" : {
+      "base" : "<p>Provides information about the Amazon Macie administrator account for an account. If the accounts are associated by a Macie membership invitation, the response also provides information about that invitation.</p>",
+      "refs" : { }
     },
     "GetBucketStatisticsRequest" : {
       "base" : "<p>Specifies the account that owns the S3 buckets to retrieve aggregated statistical data for.</p>",
@@ -565,11 +571,11 @@
       "refs" : { }
     },
     "GetMasterAccountResponse" : {
-      "base" : "<p>Provides information about the Amazon Macie master account for an account. If the accounts are associated by a Macie membership invitation, the response also provides information about that invitation.</p>",
+      "base" : "<p>(Deprecated) Provides information about the Amazon Macie administrator account for an account. If the accounts are associated by a Macie membership invitation, the response also provides information about that invitation.</p>",
       "refs" : { }
     },
     "GetMemberResponse" : {
-      "base" : "<p>Provides information about an account that's associated with an Amazon Macie master account.</p>",
+      "base" : "<p>Provides information about an account that's associated with an Amazon Macie administrator account.</p>",
       "refs" : { }
     },
     "GetUsageStatisticsRequest" : {
@@ -609,7 +615,8 @@
     "Invitation" : {
       "base" : "<p>Provides information about an Amazon Macie membership invitation that was received by an account.</p>",
       "refs" : {
-        "GetMasterAccountResponse$Master" : "<p>The AWS account ID for the master account. If the accounts are associated by a Macie membership invitation, this object also provides details about the invitation that was sent and accepted to establish the relationship between the accounts.</p>",
+        "GetAdministratorAccountResponse$Administrator" : "<p>The AWS account ID for the administrator account. If the accounts are associated by a Macie membership invitation, this object also provides details about the invitation that was sent to establish the relationship between the accounts.</p>",
+        "GetMasterAccountResponse$Master" : "<p>(Deprecated) The AWS account ID for the administrator account. If the accounts are associated by a Macie membership invitation, this object also provides details about the invitation that was sent to establish the relationship between the accounts.</p>",
         "__listOfInvitation$member" : null
       }
     },
@@ -767,7 +774,7 @@
       "refs" : { }
     },
     "ListInvitationsResponse" : {
-      "base" : "<p>Provides information about all the Amazon Macie membership invitations that were received by an account.</p>",
+      "base" : "<p>Provides information about the Amazon Macie membership invitations that were received by an account.</p>",
       "refs" : { }
     },
     "ListJobsFilterCriteria" : {
@@ -801,7 +808,7 @@
       }
     },
     "ListMembersResponse" : {
-      "base" : "<p>Provides information about the accounts that are associated with an Amazon Macie master account.</p>",
+      "base" : "<p>Provides information about the accounts that are associated with an Amazon Macie administrator account.</p>",
       "refs" : { }
     },
     "ListOrganizationAdminAccountsResponse" : {
@@ -815,14 +822,14 @@
     "MacieStatus" : {
       "base" : "<p>The status of an Amazon Macie account. Valid values are:</p>",
       "refs" : {
-        "EnableMacieRequest$Status" : "<p>Specifies the status for the account. To enable Amazon Macie and start all Amazon Macie activities for the account, set this value to ENABLED.</p>",
-        "GetMacieSessionResponse$Status" : "<p>The current status of the Amazon Macie account. Possible values are: PAUSED, the account is enabled but all Amazon Macie activities are suspended (paused) for the account; and, ENABLED, the account is enabled and all Amazon Macie activities are enabled for the account.</p>",
-        "UpdateMacieSessionRequest$Status" : "<p>Specifies whether to change the status of the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.</p>",
+        "EnableMacieRequest$Status" : "<p>Specifies the status for the account. To enable Amazon Macie and start all Macie activities for the account, set this value to ENABLED.</p>",
+        "GetMacieSessionResponse$Status" : "<p>The current status of the Macie account. Possible values are: PAUSED, the account is enabled but all Macie activities are suspended (paused) for the account; and, ENABLED, the account is enabled and all Macie activities are enabled for the account.</p>",
+        "UpdateMacieSessionRequest$Status" : "<p>Specifies a new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.</p>",
         "UpdateMemberSessionRequest$Status" : "<p>Specifies the new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.</p>"
       }
     },
     "Member" : {
-      "base" : "<p>Provides information about an account that's associated with an Amazon Macie master account.</p>",
+      "base" : "<p>Provides information about an account that's associated with an Amazon Macie administrator account.</p>",
       "refs" : {
         "__listOfMember$member" : null
       }
@@ -919,11 +926,11 @@
       }
     },
     "RelationshipStatus" : {
-      "base" : "<p>The current status of the relationship between an account and an associated Amazon Macie master account (<i>inviter account</i>). Possible values are:</p>",
+      "base" : "<p>The current status of the relationship between an account and an associated Amazon Macie administrator account (<i>inviter account</i>). Possible values are:</p>",
       "refs" : {
-        "GetMemberResponse$RelationshipStatus" : "<p>The current status of the relationship between the account and the master account.</p>",
+        "GetMemberResponse$RelationshipStatus" : "<p>The current status of the relationship between the account and the administrator account.</p>",
         "Invitation$RelationshipStatus" : "<p>The status of the relationship between the account that sent the invitation (<i>inviter account</i>) and the account that received the invitation (<i>invitee account</i>).</p>",
-        "Member$RelationshipStatus" : "<p>The current status of the relationship between the account and the master account.</p>"
+        "Member$RelationshipStatus" : "<p>The current status of the relationship between the account and the administrator account.</p>"
       }
     },
     "ReplicationDetails" : {
@@ -1194,7 +1201,7 @@
       "refs" : { }
     },
     "UpdateOrganizationConfigurationRequest" : {
-      "base" : "<p>Specifies whether Amazon Macie is enabled automatically for accounts that are added to an AWS organization.</p>",
+      "base" : "<p>Specifies whether to enable Amazon Macie automatically for accounts that are added to an AWS organization.</p>",
       "refs" : { }
     },
     "UsageByAccount" : {
@@ -1314,7 +1321,7 @@
         "S3Object$PublicAccess" : "<p>Specifies whether the object is publicly accessible due to the combination of permissions settings that apply to the object.</p>",
         "ServiceLimit$IsServiceLimited" : "<p>Specifies whether the account has met the quota that corresponds to the metric specified by the UsageByAccount.type field in the response.</p>",
         "SessionContextAttributes$MfaAuthenticated" : "<p>Specifies whether the credentials were authenticated with a multi-factor authentication (MFA) device.</p>",
-        "UpdateOrganizationConfigurationRequest$AutoEnable" : "<p>Specifies whether Amazon Macie is enabled automatically for each account, when the account is added to the AWS organization.</p>"
+        "UpdateOrganizationConfigurationRequest$AutoEnable" : "<p>Specifies whether to enable Amazon Macie automatically for each account, when the account is added to the AWS organization.</p>"
       }
     },
     "__double" : {
@@ -1429,7 +1436,7 @@
     "__listOfMember" : {
       "base" : null,
       "refs" : {
-        "ListMembersResponse$Members" : "<p>An array of objects, one for each account that's associated with the master account and meets the criteria specified by the onlyAssociated request parameter.</p>"
+        "ListMembersResponse$Members" : "<p>An array of objects, one for each account that's associated with the administrator account and meets the criteria specified by the onlyAssociated request parameter.</p>"
       }
     },
     "__listOfS3BucketDefinitionForJob" : {
@@ -1570,8 +1577,9 @@
     "__string" : {
       "base" : null,
       "refs" : {
+        "AcceptInvitationRequest$AdministratorAccountId" : "<p>The AWS account ID for the account that sent the invitation.</p>",
         "AcceptInvitationRequest$InvitationId" : "<p>The unique identifier for the invitation to accept.</p>",
-        "AcceptInvitationRequest$MasterAccount" : "<p>The AWS account ID for the account that sent the invitation.</p>",
+        "AcceptInvitationRequest$MasterAccount" : "<p>(Deprecated) The AWS account ID for the account that sent the invitation. This property has been replaced by the administratorAccountId property and is retained only for backward compatibility.</p>",
         "AccessDeniedException$Message" : "<p>The explanation of the error that occurred.</p>",
         "AccountDetail$AccountId" : "<p>The AWS account ID for the account.</p>",
         "AccountDetail$Email" : "<p>The email address for the account.</p>",
@@ -1621,7 +1629,7 @@
         "CreateFindingsFilterResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the filter that was created.</p>",
         "CreateFindingsFilterResponse$Id" : "<p>The unique identifier for the filter that was created.</p>",
         "CreateInvitationsRequest$Message" : "<p>A custom message to include in the invitation. Amazon Macie adds this message to the standard content that it sends for an invitation.</p>",
-        "CreateMemberResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the account that was associated with the master account.</p>",
+        "CreateMemberResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the account that was associated with the administrator account.</p>",
         "CustomDataIdentifierSummary$Arn" : "<p>The Amazon Resource Name (ARN) of the custom data identifier.</p>",
         "CustomDataIdentifierSummary$Description" : "<p>The custom description of the custom data identifier.</p>",
         "CustomDataIdentifierSummary$Id" : "<p>The unique identifier for the custom data identifier.</p>",
@@ -1664,11 +1672,12 @@
         "GetFindingsFilterResponse$Description" : "<p>The custom description of the filter.</p>",
         "GetFindingsFilterResponse$Id" : "<p>The unique identifier for the filter.</p>",
         "GetFindingsFilterResponse$Name" : "<p>The custom name of the filter.</p>",
-        "GetMacieSessionResponse$ServiceRole" : "<p>The Amazon Resource Name (ARN) of the service-linked role that allows Amazon Macie to monitor and analyze data in AWS resources for the account.</p>",
+        "GetMacieSessionResponse$ServiceRole" : "<p>The Amazon Resource Name (ARN) of the service-linked role that allows Macie to monitor and analyze data in AWS resources for the account.</p>",
         "GetMemberResponse$AccountId" : "<p>The AWS account ID for the account.</p>",
+        "GetMemberResponse$AdministratorAccountId" : "<p>The AWS account ID for the administrator account.</p>",
         "GetMemberResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
         "GetMemberResponse$Email" : "<p>The email address for the account.</p>",
-        "GetMemberResponse$MasterAccountId" : "<p>The AWS account ID for the master account.</p>",
+        "GetMemberResponse$MasterAccountId" : "<p>(Deprecated) The AWS account ID for the administrator account. This property has been replaced by the administratorAccountId property and is retained only for backward compatibility.</p>",
         "GetUsageStatisticsRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
         "GetUsageStatisticsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "GroupCount$GroupKey" : "<p>The name of the property that defines the group in the query results, as specified by the groupBy property in the query request.</p>",
@@ -1703,9 +1712,10 @@
         "ListMembersResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "ListOrganizationAdminAccountsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "Member$AccountId" : "<p>The AWS account ID for the account.</p>",
+        "Member$AdministratorAccountId" : "<p>The AWS account ID for the administrator account.</p>",
         "Member$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
         "Member$Email" : "<p>The email address for the account.</p>",
-        "Member$MasterAccountId" : "<p>The AWS account ID for the master account.</p>",
+        "Member$MasterAccountId" : "<p>(Deprecated) The AWS account ID for the administrator account. This property has been replaced by the administratorAccountId property and is retained only for backward compatibility.</p>",
         "Record$JsonPath" : "<p>The path, as a JSONPath expression, to the field in the record that contains the data.</p> <p>If the name of an element exceeds 20 characters, Amazon Macie truncates the name by removing characters from the beginning of the name. If the resulting full path exceeds 250 characters, Macie also truncates the path, starting with the first element in the path, until the path contains 250 or fewer characters.</p>",
         "ResourceNotFoundException$Message" : "<p>The explanation of the error that occurred.</p>",
         "S3Bucket$Arn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
@@ -1770,14 +1780,14 @@
         "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the buckets from Amazon S3.</p>",
         "GetCustomDataIdentifierResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "GetMacieSessionResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the Amazon Macie account was created.</p>",
-        "GetMacieSessionResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the Amazon Macie account.</p>",
+        "GetMacieSessionResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the Macie account.</p>",
         "GetMemberResponse$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when an Amazon Macie membership invitation was last sent to the account. This value is null if a Macie invitation hasn't been sent to the account.</p>",
-        "GetMemberResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the master account.</p>",
+        "GetMemberResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the administrator account.</p>",
         "Invitation$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the invitation was sent.</p>",
         "JobDetails$LastJobRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job (lastJobId) started. If the job is a recurring job, this value indicates when the most recent run started.</p> <p>This value is null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
         "JobSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
         "Member$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when an Amazon Macie membership invitation was last sent to the account. This value is null if a Macie invitation hasn't been sent to the account.</p>",
-        "Member$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the master account.</p>",
+        "Member$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the administrator account.</p>",
         "S3Bucket$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
         "S3Object$LastModified" : "<p>The date and time, in UTC and extended ISO 8601 format, when the object was last modified.</p>",
         "SessionContextAttributes$CreationDate" : "<p>The date and time, in UTC and ISO 8601 format, when the credentials were issued.</p>",

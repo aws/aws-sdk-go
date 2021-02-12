@@ -58,11 +58,6 @@ func (c *WAFV2) AssociateWebACLRequest(input *AssociateWebACLInput) (req *reques
 
 // AssociateWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Associates a Web ACL with a regional application resource, to protect the
 // resource. A regional application can be an Application Load Balancer (ALB),
 // an API Gateway REST API, or an AppSync GraphQL API.
@@ -174,11 +169,6 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 }
 
 // CheckCapacity API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Returns the web ACL capacity unit (WCU) requirements for a specified scope
 // and set of rules. You can use this to check the capacity requirements for
@@ -304,11 +294,6 @@ func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Reques
 
 // CreateIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Creates an IPSet, which you use to identify web requests that originate from
 // specific IP addresses or ranges of IP addresses. For example, if you're receiving
 // a lot of requests from a ranges of IP addresses, you can configure AWS WAF
@@ -433,11 +418,6 @@ func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) 
 
 // CreateRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Creates a RegexPatternSet, which you reference in a RegexPatternSetReferenceStatement,
 // to have AWS WAF inspect a web request component for the specified patterns.
 //
@@ -559,11 +539,6 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 }
 
 // CreateRuleGroup API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Creates a RuleGroup per the specifications provided.
 //
@@ -700,11 +675,6 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 }
 
 // CreateWebACL API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Creates a WebACL per the specifications provided.
 //
@@ -963,11 +933,6 @@ func (c *WAFV2) DeleteIPSetRequest(input *DeleteIPSetInput) (req *request.Reques
 
 // DeleteIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified IPSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1087,11 +1052,6 @@ func (c *WAFV2) DeleteLoggingConfigurationRequest(input *DeleteLoggingConfigurat
 }
 
 // DeleteLoggingConfiguration API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Deletes the LoggingConfiguration from the specified web ACL.
 //
@@ -1304,11 +1264,6 @@ func (c *WAFV2) DeleteRegexPatternSetRequest(input *DeleteRegexPatternSetInput) 
 
 // DeleteRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified RegexPatternSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1429,11 +1384,6 @@ func (c *WAFV2) DeleteRuleGroupRequest(input *DeleteRuleGroupInput) (req *reques
 
 // DeleteRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Deletes the specified RuleGroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1553,11 +1503,6 @@ func (c *WAFV2) DeleteWebACLRequest(input *DeleteWebACLInput) (req *request.Requ
 }
 
 // DeleteWebACL API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Deletes the specified WebACL.
 //
@@ -1681,11 +1626,6 @@ func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupI
 
 // DescribeManagedRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Provides high-level information for a managed rule group, including descriptions
 // of the rules.
 //
@@ -1793,11 +1733,6 @@ func (c *WAFV2) DisassociateWebACLRequest(input *DisassociateWebACLInput) (req *
 }
 
 // DisassociateWebACL API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Disassociates a Web ACL from a regional application resource. A regional
 // application can be an Application Load Balancer (ALB), an API Gateway REST
@@ -1908,11 +1843,6 @@ func (c *WAFV2) GetIPSetRequest(input *GetIPSetInput) (req *request.Request, out
 
 // GetIPSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified IPSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2014,11 +1944,6 @@ func (c *WAFV2) GetLoggingConfigurationRequest(input *GetLoggingConfigurationInp
 }
 
 // GetLoggingConfiguration API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Returns the LoggingConfiguration for the specified web ACL.
 //
@@ -2223,11 +2148,6 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 
 // GetRateBasedStatementManagedKeys API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the keys that are currently blocked by a rate-based rule. The maximum
 // number of managed keys that can be blocked for a single rate-based rule is
 // 10,000. If more than 10,000 addresses exceed the rate limit, those with the
@@ -2333,11 +2253,6 @@ func (c *WAFV2) GetRegexPatternSetRequest(input *GetRegexPatternSetInput) (req *
 
 // GetRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified RegexPatternSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2440,11 +2355,6 @@ func (c *WAFV2) GetRuleGroupRequest(input *GetRuleGroupInput) (req *request.Requ
 
 // GetRuleGroup API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified RuleGroup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2546,11 +2456,6 @@ func (c *WAFV2) GetSampledRequestsRequest(input *GetSampledRequestsInput) (req *
 }
 
 // GetSampledRequests API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Gets detailed information about a specified number of requests--a sample--that
 // AWS WAF randomly selects from among the first 5,000 requests that your AWS
@@ -2661,11 +2566,6 @@ func (c *WAFV2) GetWebACLRequest(input *GetWebACLInput) (req *request.Request, o
 
 // GetWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves the specified WebACL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2767,11 +2667,6 @@ func (c *WAFV2) GetWebACLForResourceRequest(input *GetWebACLForResourceInput) (r
 }
 
 // GetWebACLForResource API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Retrieves the WebACL for the specified resource.
 //
@@ -2878,11 +2773,6 @@ func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManage
 
 // ListAvailableManagedRuleGroups API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of managed rule groups that are available for you to use.
 // This list includes all AWS Managed Rules rule groups and the AWS Marketplace
 // managed rule groups that you're subscribed to.
@@ -2983,11 +2873,6 @@ func (c *WAFV2) ListIPSetsRequest(input *ListIPSetsInput) (req *request.Request,
 
 // ListIPSets API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of IPSetSummary objects for the IP sets that you manage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3085,11 +2970,6 @@ func (c *WAFV2) ListLoggingConfigurationsRequest(input *ListLoggingConfiguration
 }
 
 // ListLoggingConfigurations API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Retrieves an array of your LoggingConfiguration objects.
 //
@@ -3189,11 +3069,6 @@ func (c *WAFV2) ListRegexPatternSetsRequest(input *ListRegexPatternSetsInput) (r
 
 // ListRegexPatternSets API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of RegexPatternSetSummary objects for the regex pattern
 // sets that you manage.
 //
@@ -3292,11 +3167,6 @@ func (c *WAFV2) ListResourcesForWebACLRequest(input *ListResourcesForWebACLInput
 }
 
 // ListResourcesForWebACL API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Retrieves an array of the Amazon Resource Names (ARNs) for the regional resources
 // that are associated with the specified web ACL. If you want the list of AWS
@@ -3402,11 +3272,6 @@ func (c *WAFV2) ListRuleGroupsRequest(input *ListRuleGroupsInput) (req *request.
 
 // ListRuleGroups API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of RuleGroupSummary objects for the rule groups that you
 // manage.
 //
@@ -3505,11 +3370,6 @@ func (c *WAFV2) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 }
 
 // ListTagsForResource API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Retrieves the TagInfoForResource for the specified resource. Tags are key:value
 // pairs that you can use to categorize and manage your resources, for purposes
@@ -3628,11 +3488,6 @@ func (c *WAFV2) ListWebACLsRequest(input *ListWebACLsInput) (req *request.Reques
 
 // ListWebACLs API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Retrieves an array of WebACLSummary objects for the web ACLs that you manage.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3730,11 +3585,6 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 }
 
 // PutLoggingConfiguration API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Enables the specified LoggingConfiguration, to start logging from a web ACL,
 // according to the configuration provided.
@@ -4015,11 +3865,6 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 
 // TagResource API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Associates tags with the specified AWS resource. Tags are key:value pairs
 // that you can use to categorize and manage your resources, for purposes like
 // billing. For example, you might set the tag key to "customer" and the value
@@ -4144,11 +3989,6 @@ func (c *WAFV2) UntagResourceRequest(input *UntagResourceInput) (req *request.Re
 
 // UntagResource API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Disassociates tags from an AWS resource. Tags are key:value pairs that you
 // can associate with AWS resources. For example, the tag key might be "customer"
 // and the tag value might be "companyA." You can specify one or more tags to
@@ -4260,11 +4100,6 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 }
 
 // UpdateIPSet API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Updates the specified IPSet.
 //
@@ -4384,11 +4219,6 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 
 // UpdateRegexPatternSet API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Updates the specified RegexPatternSet.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4506,11 +4336,6 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 }
 
 // UpdateRuleGroup API operation for AWS WAFV2.
-//
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
 //
 // Updates the specified RuleGroup.
 //
@@ -4641,11 +4466,6 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 
 // UpdateWebACL API operation for AWS WAFV2.
 //
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Updates the specified WebACL.
 //
 // A Web ACL defines a collection of rules to use to inspect and control web
@@ -4739,11 +4559,26 @@ func (c *WAFV2) UpdateWebACLWithContext(ctx aws.Context, input *UpdateWebACLInpu
 	return out, req.Send()
 }
 
+// Inspect all of the elements that AWS WAF has parsed and extracted from the
+// web request JSON body that are within the JsonBody MatchScope. This is used
+// with the FieldToMatch option JsonBody.
 //
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
+// This is used only to indicate the web request component for AWS WAF to inspect,
+// in the FieldToMatch specification.
+type All struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s All) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s All) GoString() string {
+	return s.String()
+}
+
 // All query arguments of a web request.
 //
 // This is used only to indicate the web request component for AWS WAF to inspect,
@@ -4762,11 +4597,6 @@ func (s AllQueryArguments) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Specifies that AWS WAF should allow requests.
 //
 // This is used only in the context of other settings, for example to specify
@@ -4785,11 +4615,6 @@ func (s AllowAction) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A logical rule statement used to combine other rule statements with AND logic.
 // You provide more than one Statement within the AndStatement.
 type AndStatement struct {
@@ -4913,11 +4738,6 @@ func (s AssociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Specifies that AWS WAF should block requests.
 //
 // This is used only in the context of other settings, for example to specify
@@ -4936,11 +4756,6 @@ func (s BlockAction) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The body of a web request. This immediately follows the request headers.
 //
 // This is used only to indicate the web request component for AWS WAF to inspect,
@@ -4959,11 +4774,6 @@ func (s Body) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement that defines a string match search for AWS WAF to apply
 // to web requests. The byte match statement provides the bytes to search for,
 // the location in requests that you want AWS WAF to search, and other settings.
@@ -5234,11 +5044,6 @@ func (s *CheckCapacityOutput) SetCapacity(v int64) *CheckCapacityOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Specifies that AWS WAF should count requests.
 //
 // This is used only in the context of other settings, for example to specify
@@ -5285,8 +5090,7 @@ type CreateIPSetInput struct {
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// Specify IPV4 or IPV6.
@@ -5435,8 +5239,7 @@ func (s *CreateIPSetOutput) SetSummary(v *IPSetSummary) *CreateIPSetOutput {
 type CreateRegexPatternSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the set. You cannot change the name after you create the set.
@@ -5603,8 +5406,7 @@ type CreateRuleGroupInput struct {
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the rule group. You cannot change the name of a rule group after
@@ -5788,8 +5590,7 @@ type CreateWebACLInput struct {
 	// DefaultAction is a required field
 	DefaultAction *DefaultAction `type:"structure" required:"true"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the Web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the Web ACL. You cannot change the name of a Web ACL after you
@@ -5961,11 +5762,6 @@ func (s *CreateWebACLOutput) SetSummary(v *WebACLSummary) *CreateWebACLOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // In a WebACL, this is the action that you want AWS WAF to perform when a web
 // request doesn't match any of the rules in the WebACL. The default action
 // must be a terminating action, so count is not allowed.
@@ -6883,11 +6679,6 @@ func (s DisassociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Specifies a single rule to exclude from the rule group. Excluding a rule
 // overrides its action setting for the rule group in the web ACL, setting it
 // to COUNT. This effectively excludes the rule from acting on web requests.
@@ -6932,11 +6723,6 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The part of a web request that you want AWS WAF to inspect. Include the single
 // FieldToMatch type that you want to inspect, with additional specifications
 // as needed, according to the type. You specify a single request component
@@ -6949,10 +6735,10 @@ type FieldToMatch struct {
 	// Inspect all query arguments.
 	AllQueryArguments *AllQueryArguments `type:"structure"`
 
-	// Inspect the request body, which immediately follows the request headers.
-	// This is the part of a request that contains any additional data that you
-	// want to send to your web server as the HTTP request body, such as data from
-	// a form.
+	// Inspect the request body as plain text. The request body immediately follows
+	// the request headers. This is the part of a request that contains any additional
+	// data that you want to send to your web server as the HTTP request body, such
+	// as data from a form.
 	//
 	// Note that only the first 8 KB (8192 bytes) of the request body are forwarded
 	// to AWS WAF for inspection by the underlying host service. If you don't need
@@ -6963,6 +6749,21 @@ type FieldToMatch struct {
 	// support inspecting the entire contents of web requests whose bodies exceed
 	// the 8 KB limit.
 	Body *Body `type:"structure"`
+
+	// Inspect the request body as JSON. The request body immediately follows the
+	// request headers. This is the part of a request that contains any additional
+	// data that you want to send to your web server as the HTTP request body, such
+	// as data from a form.
+	//
+	// Note that only the first 8 KB (8192 bytes) of the request body are forwarded
+	// to AWS WAF for inspection by the underlying host service. If you don't need
+	// to inspect more than 8 KB, you can guarantee that you don't allow additional
+	// bytes in by combining a statement that inspects the body of the web request,
+	// such as ByteMatchStatement or RegexPatternSetReferenceStatement, with a SizeConstraintStatement
+	// that enforces an 8 KB size limit on the body of the request. AWS WAF doesn't
+	// support inspecting the entire contents of web requests whose bodies exceed
+	// the 8 KB limit.
+	JsonBody *JsonBody `type:"structure"`
 
 	// Inspect the HTTP method. The method indicates the type of operation that
 	// the request is asking the origin to perform.
@@ -7002,6 +6803,11 @@ func (s FieldToMatch) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *FieldToMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "FieldToMatch"}
+	if s.JsonBody != nil {
+		if err := s.JsonBody.Validate(); err != nil {
+			invalidParams.AddNested("JsonBody", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SingleHeader != nil {
 		if err := s.SingleHeader.Validate(); err != nil {
 			invalidParams.AddNested("SingleHeader", err.(request.ErrInvalidParams))
@@ -7028,6 +6834,12 @@ func (s *FieldToMatch) SetAllQueryArguments(v *AllQueryArguments) *FieldToMatch 
 // SetBody sets the Body field's value.
 func (s *FieldToMatch) SetBody(v *Body) *FieldToMatch {
 	s.Body = v
+	return s
+}
+
+// SetJsonBody sets the JsonBody field's value.
+func (s *FieldToMatch) SetJsonBody(v *JsonBody) *FieldToMatch {
+	s.JsonBody = v
 	return s
 }
 
@@ -7104,11 +6916,6 @@ type FirewallManagerRuleGroup struct {
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Defines and enables Amazon CloudWatch metrics and web request sample collection.
 	//
 	// VisibilityConfig is a required field
@@ -7160,11 +6967,6 @@ func (s *FirewallManagerRuleGroup) SetVisibilityConfig(v *VisibilityConfig) *Fir
 type FirewallManagerStatement struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// A rule statement used to run the rules that are defined in a managed rule
 	// group. To use this, provide the vendor name and the name of the rule group
 	// in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
@@ -7174,11 +6976,6 @@ type FirewallManagerStatement struct {
 	// within a rule.
 	ManagedRuleGroupStatement *ManagedRuleGroupStatement `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// A rule statement used to run the rules that are defined in a RuleGroup. To
 	// use this, create a rule group with your rules, then provide the ARN of the
 	// rule group in this statement.
@@ -7293,11 +7090,6 @@ func (s *ForwardedIPConfig) SetHeaderName(v string) *ForwardedIPConfig {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to identify web requests based on country of origin.
 type GeoMatchStatement struct {
 	_ struct{} `type:"structure"`
@@ -7443,11 +7235,6 @@ func (s *GetIPSetInput) SetScope(v string) *GetIPSetInput {
 type GetIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Contains one or more IP addresses or blocks of IP addresses specified in
 	// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports any CIDR
 	// range. For information about CIDR notation, see the Wikipedia entry Classless
@@ -7850,11 +7637,6 @@ type GetRegexPatternSetOutput struct {
 	// operation.
 	LockToken *string `min:"1" type:"string"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Contains one or more regular expressions.
 	//
 	// AWS WAF assigns an ARN to each RegexPatternSet that you create. To use a
@@ -7982,11 +7764,6 @@ type GetRuleGroupOutput struct {
 	// operation.
 	LockToken *string `min:"1" type:"string"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// A rule group defines a collection of rules to inspect and control web requests
 	// that you can use in a WebACL. When you create a rule group, you define an
 	// immutable capacity limit. If you update a rule group, you must stay within
@@ -8053,7 +7830,8 @@ type GetSampledRequestsInput struct {
 	// you want GetSampledRequests to return a sample of requests. You must specify
 	// the times in Coordinated Universal Time (UTC) format. UTC format includes
 	// the special designator, Z. For example, "2016-09-27T14:50Z". You can specify
-	// any time range in the previous three hours.
+	// any time range in the previous three hours. If you specify a start time that's
+	// earlier than three hours ago, AWS WAF sets it to three hours ago.
 	//
 	// TimeWindow is a required field
 	TimeWindow *TimeWindow `type:"structure" required:"true"`
@@ -8382,11 +8160,6 @@ func (s *GetWebACLOutput) SetWebACL(v *WebACL) *GetWebACLOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Part of the response from GetSampledRequests. This is a complex type that
 // appears as Headers in the response syntax. HTTPHeader contains the names
 // and values of all of the headers that appear in one of the web requests.
@@ -8422,11 +8195,6 @@ func (s *HTTPHeader) SetValue(v string) *HTTPHeader {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Part of the response from GetSampledRequests. This is a complex type that
 // appears as Request in the response syntax. HTTPRequest contains information
 // about one of the web requests.
@@ -8510,11 +8278,6 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Contains one or more IP addresses or blocks of IP addresses specified in
 // Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports any CIDR
 // range. For information about CIDR notation, see the Wikipedia entry Classless
@@ -8555,8 +8318,7 @@ type IPSet struct {
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// Specify IPV4 or IPV6.
@@ -8732,11 +8494,6 @@ func (s *IPSetForwardedIPConfig) SetPosition(v string) *IPSetForwardedIPConfig {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to detect web requests coming from particular IP addresses
 // or address ranges. To use this, create an IPSet that specifies the addresses
 // you want to detect, then use the ARN of that set in this statement. To create
@@ -8807,11 +8564,6 @@ func (s *IPSetReferenceStatement) SetIPSetForwardedIPConfig(v *IPSetForwardedIPC
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about an IPSet, returned by operations like create
 // and list. This provides information like the ID, that you can use to retrieve
 // and manage an IPSet, and the ARN, that you provide to the IPSetReferenceStatement
@@ -8822,8 +8574,7 @@ type IPSetSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -8882,6 +8633,158 @@ func (s *IPSetSummary) SetLockToken(v string) *IPSetSummary {
 // SetName sets the Name field's value.
 func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 	s.Name = &v
+	return s
+}
+
+// The body of a web request, inspected as JSON. The body immediately follows
+// the request headers. This is used in the FieldToMatch specification.
+//
+// Use the specifications in this object to indicate which parts of the JSON
+// body to inspect using the rule's inspection criteria. AWS WAF inspects only
+// the parts of the JSON that result from the matches that you indicate.
+type JsonBody struct {
+	_ struct{} `type:"structure"`
+
+	// The inspection behavior to fall back to if the JSON in the request body is
+	// invalid. For AWS WAF, invalid JSON is any content that isn't complete syntactical
+	// JSON, content whose root node isn't an object or an array, and duplicate
+	// keys in the content.
+	//
+	// You can specify the following fallback behaviors:
+	//
+	//    * MATCH - Treat the web request as matching the rule statement. AWS WAF
+	//    applies the rule action to the request.
+	//
+	//    * NO_MATCH - Treat the web request as not matching the rule statement.
+	//
+	//    * EVALUATE_AS_STRING - Inspect the body as plain text. This option applies
+	//    the text transformations and inspection criteria that you defined for
+	//    the JSON inspection to the body text string.
+	//
+	// If you don't provide this setting, when AWS WAF encounters invalid JSON,
+	// it parses and inspects what it can, up to the first invalid JSON that it
+	// encounters.
+	InvalidFallbackBehavior *string `type:"string" enum:"BodyParsingFallbackBehavior"`
+
+	// The patterns to look for in the JSON body. AWS WAF inspects the results of
+	// these pattern matches against the rule inspection criteria.
+	//
+	// MatchPattern is a required field
+	MatchPattern *JsonMatchPattern `type:"structure" required:"true"`
+
+	// The parts of the JSON to match against using the MatchPattern. If you specify
+	// All, AWS WAF matches against keys and values.
+	//
+	// MatchScope is a required field
+	MatchScope *string `type:"string" required:"true" enum:"JsonMatchScope"`
+}
+
+// String returns the string representation
+func (s JsonBody) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JsonBody) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JsonBody) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JsonBody"}
+	if s.MatchPattern == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchPattern"))
+	}
+	if s.MatchScope == nil {
+		invalidParams.Add(request.NewErrParamRequired("MatchScope"))
+	}
+	if s.MatchPattern != nil {
+		if err := s.MatchPattern.Validate(); err != nil {
+			invalidParams.AddNested("MatchPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInvalidFallbackBehavior sets the InvalidFallbackBehavior field's value.
+func (s *JsonBody) SetInvalidFallbackBehavior(v string) *JsonBody {
+	s.InvalidFallbackBehavior = &v
+	return s
+}
+
+// SetMatchPattern sets the MatchPattern field's value.
+func (s *JsonBody) SetMatchPattern(v *JsonMatchPattern) *JsonBody {
+	s.MatchPattern = v
+	return s
+}
+
+// SetMatchScope sets the MatchScope field's value.
+func (s *JsonBody) SetMatchScope(v string) *JsonBody {
+	s.MatchScope = &v
+	return s
+}
+
+// The patterns to look for in the JSON body. AWS WAF inspects the results of
+// these pattern matches against the rule inspection criteria. This is used
+// with the FieldToMatch option JsonBody.
+type JsonMatchPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Match all of the elements. See also MatchScope in JsonBody.
+	//
+	// You must specify either this setting or the IncludedPaths setting, but not
+	// both.
+	All *All `type:"structure"`
+
+	// Match only the specified include paths. See also MatchScope in JsonBody.
+	//
+	// Provide the include paths using JSON Pointer syntax. For example, "IncludedPaths":
+	// ["/dogs/0/name", "/dogs/1/name"]. For information about this syntax, see
+	// the Internet Engineering Task Force (IETF) documentation JavaScript Object
+	// Notation (JSON) Pointer (https://tools.ietf.org/html/rfc6901).
+	//
+	// You must specify either this setting or the All setting, but not both.
+	//
+	// Don't use this option to include all paths. Instead, use the All setting.
+	IncludedPaths []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s JsonMatchPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JsonMatchPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JsonMatchPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JsonMatchPattern"}
+	if s.IncludedPaths != nil && len(s.IncludedPaths) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedPaths", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAll sets the All field's value.
+func (s *JsonMatchPattern) SetAll(v *All) *JsonMatchPattern {
+	s.All = v
+	return s
+}
+
+// SetIncludedPaths sets the IncludedPaths field's value.
+func (s *JsonMatchPattern) SetIncludedPaths(v []*string) *JsonMatchPattern {
+	s.IncludedPaths = v
 	return s
 }
 
@@ -9728,11 +9631,6 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Defines an association between Amazon Kinesis Data Firehose destinations
 // and a web ACL resource, for logging from AWS WAF. As part of the association,
 // you can specify parts of the standard logging fields to keep out of the logs.
@@ -9830,11 +9728,6 @@ func (s *LoggingConfiguration) SetResourceArn(v string) *LoggingConfiguration {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to run the rules that are defined in a managed rule
 // group. To use this, provide the vendor name and the name of the rule group
 // in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
@@ -9923,11 +9816,6 @@ func (s *ManagedRuleGroupStatement) SetVendorName(v string) *ManagedRuleGroupSta
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a managed rule group, returned by ListAvailableManagedRuleGroups.
 // This provides information like the name and vendor name, that you provide
 // when you add a ManagedRuleGroupStatement to a web ACL. Managed rule groups
@@ -9978,11 +9866,6 @@ func (s *ManagedRuleGroupSummary) SetVendorName(v string) *ManagedRuleGroupSumma
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The HTTP method of a web request. The method indicates the type of operation
 // that the request is asking the origin to perform.
 //
@@ -10002,11 +9885,6 @@ func (s Method) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Specifies that AWS WAF should do nothing. This is generally used to try out
 // a rule without performing any actions. You set the OverrideAction on the
 // Rule.
@@ -10027,11 +9905,6 @@ func (s NoneAction) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A logical rule statement used to negate the results of another rule statement.
 // You provide one Statement within the NotStatement.
 type NotStatement struct {
@@ -10077,11 +9950,6 @@ func (s *NotStatement) SetStatement(v *Statement) *NotStatement {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A logical rule statement used to combine other rule statements with OR logic.
 // You provide more than one Statement within the OrStatement.
 type OrStatement struct {
@@ -10183,11 +10051,6 @@ func (s *OverrideAction) SetNone(v *NoneAction) *OverrideAction {
 type PutLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Defines an association between Amazon Kinesis Data Firehose destinations
 	// and a web ACL resource, for logging from AWS WAF. As part of the association,
 	// you can specify parts of the standard logging fields to keep out of the logs.
@@ -10233,11 +10096,6 @@ func (s *PutLoggingConfigurationInput) SetLoggingConfiguration(v *LoggingConfigu
 type PutLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// Defines an association between Amazon Kinesis Data Firehose destinations
 	// and a web ACL resource, for logging from AWS WAF. As part of the association,
 	// you can specify parts of the standard logging fields to keep out of the logs.
@@ -10349,11 +10207,6 @@ func (s PutPermissionPolicyOutput) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The query string of a web request. This is the part of a URL that appears
 // after a ? character, if any.
 //
@@ -10373,11 +10226,6 @@ func (s QueryString) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rate-based rule tracks the rate of requests for each originating IP address,
 // and triggers the rule action when the rate exceeds a limit that you specify
 // on the number of requests in any 5-minute time span. You can use this to
@@ -10510,11 +10358,6 @@ func (s *RateBasedStatement) SetScopeDownStatement(v *Statement) *RateBasedState
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The set of IP addresses that are currently blocked for a rate-based statement.
 type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
@@ -10547,11 +10390,6 @@ func (s *RateBasedStatementManagedKeysIPSet) SetIPAddressVersion(v string) *Rate
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A single regular expression. This is used in a RegexPatternSet.
 type Regex struct {
 	_ struct{} `type:"structure"`
@@ -10589,11 +10427,6 @@ func (s *Regex) SetRegexString(v string) *Regex {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Contains one or more regular expressions.
 //
 // AWS WAF assigns an ARN to each RegexPatternSet that you create. To use a
@@ -10604,8 +10437,7 @@ type RegexPatternSet struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -10659,11 +10491,6 @@ func (s *RegexPatternSet) SetRegularExpressionList(v []*Regex) *RegexPatternSet 
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to search web request components for matches with regular
 // expressions. To use this, create a RegexPatternSet that specifies the expressions
 // that you want to detect, then use the ARN of that set in this statement.
@@ -10768,11 +10595,6 @@ func (s *RegexPatternSetReferenceStatement) SetTextTransformations(v []*TextTran
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a RegexPatternSet, returned by operations like
 // create and list. This provides information like the ID, that you can use
 // to retrieve and manage a RegexPatternSet, and the ARN, that you provide to
@@ -10783,8 +10605,7 @@ type RegexPatternSetSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -10846,11 +10667,6 @@ func (s *RegexPatternSetSummary) SetName(v string) *RegexPatternSetSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A single rule, which you can use in a WebACL or RuleGroup to identify web
 // requests that you want to allow, block, or count. Each rule includes one
 // top-level Statement that AWS WAF uses to identify matching web requests,
@@ -11000,11 +10816,6 @@ func (s *Rule) SetVisibilityConfig(v *VisibilityConfig) *Rule {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The action that AWS WAF should take on a web request when it matches a rule's
 // statement. Settings at the web ACL level can override the rule action setting.
 type RuleAction struct {
@@ -11048,11 +10859,6 @@ func (s *RuleAction) SetCount(v *CountAction) *RuleAction {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule group defines a collection of rules to inspect and control web requests
 // that you can use in a WebACL. When you create a rule group, you define an
 // immutable capacity limit. If you update a rule group, you must stay within
@@ -11084,8 +10890,7 @@ type RuleGroup struct {
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the rule group. This ID is returned in the responses
@@ -11165,11 +10970,6 @@ func (s *RuleGroup) SetVisibilityConfig(v *VisibilityConfig) *RuleGroup {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement used to run the rules that are defined in a RuleGroup. To
 // use this, create a rule group with your rules, then provide the ARN of the
 // rule group in this statement.
@@ -11238,11 +11038,6 @@ func (s *RuleGroupReferenceStatement) SetExcludedRules(v []*ExcludedRule) *RuleG
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a RuleGroup, returned by operations like create
 // and list. This provides information like the ID, that you can use to retrieve
 // and manage a RuleGroup, and the ARN, that you provide to the RuleGroupReferenceStatement
@@ -11253,8 +11048,7 @@ type RuleGroupSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the rule group. This ID is returned in the responses
@@ -11317,11 +11111,6 @@ func (s *RuleGroupSummary) SetName(v string) *RuleGroupSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a Rule, returned by operations like DescribeManagedRuleGroup.
 // This provides information like the ID, that you can use to retrieve and manage
 // a RuleGroup, and the ARN, that you provide to the RuleGroupReferenceStatement
@@ -11329,11 +11118,6 @@ func (s *RuleGroupSummary) SetName(v string) *RuleGroupSummary {
 type RuleSummary struct {
 	_ struct{} `type:"structure"`
 
-	//
-	// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-	// 2019. For information, including how to migrate your AWS WAF resources from
-	// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-	//
 	// The action that AWS WAF should take on a web request when it matches a rule's
 	// statement. Settings at the web ACL level can override the rule action setting.
 	Action *RuleAction `type:"structure"`
@@ -11364,11 +11148,6 @@ func (s *RuleSummary) SetName(v string) *RuleSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Represents a single sampled web request. The response from GetSampledRequests
 // includes a SampledHTTPRequests complex type that appears as SampledRequests
 // in the response syntax. SampledHTTPRequests contains an array of SampledHTTPRequest
@@ -11443,11 +11222,6 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // One of the headers in a web request, identified by name, for example, User-Agent
 // or Referer. This setting isn't case sensitive.
 //
@@ -11494,11 +11268,6 @@ func (s *SingleHeader) SetName(v string) *SingleHeader {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // One query argument in a web request, identified by name, for example UserName
 // or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
 type SingleQueryArgument struct {
@@ -11542,11 +11311,6 @@ func (s *SingleQueryArgument) SetName(v string) *SingleQueryArgument {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement that compares a number of bytes against the size of a request
 // component, using a comparison operator, such as greater than (>) or less
 // than (<). For example, you can use a size constraint statement to look for
@@ -11663,11 +11427,6 @@ func (s *SizeConstraintStatement) SetTextTransformations(v []*TextTransformation
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Attackers sometimes insert malicious SQL code into web requests in an effort
 // to extract data from your database. To allow or block web requests that appear
 // to contain malicious SQL code, create one or more SQL injection match conditions.
@@ -11750,11 +11509,6 @@ func (s *SqliMatchStatement) SetTextTransformations(v []*TextTransformation) *Sq
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The processing guidance for a Rule, used by AWS WAF to determine whether
 // a web request matches the rule.
 type Statement struct {
@@ -12053,11 +11807,6 @@ func (s *Statement) SetXssMatchStatement(v *XssMatchStatement) *Statement {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A tag associated with an AWS resource. Tags are key:value pairs that you
 // can use to categorize and manage your resources, for purposes like billing
 // or other management. Typically, the tag key represents a category, such as
@@ -12128,11 +11877,6 @@ func (s *Tag) SetValue(v string) *Tag {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The collection of tagging definitions for an AWS resource. Tags are key:value
 // pairs that you can use to categorize and manage your resources, for purposes
 // like billing or other management. Typically, the tag key represents a category,
@@ -12259,11 +12003,6 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Text transformations eliminate some of the unusual formatting that attackers
 // use in web requests in an effort to bypass detection.
 type TextTransformation struct {
@@ -12387,11 +12126,6 @@ func (s *TextTransformation) SetType(v string) *TextTransformation {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // In a GetSampledRequests request, the StartTime and EndTime objects specify
 // the time range for which you want AWS WAF to return a sample of web requests.
 //
@@ -12566,8 +12300,7 @@ type UpdateIPSetInput struct {
 	// Addresses is a required field
 	Addresses []*string `type:"list" required:"true"`
 
-	// A description of the IP set that helps with identification. You cannot change
-	// the description of an IP set after you create it.
+	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -12720,8 +12453,7 @@ func (s *UpdateIPSetOutput) SetNextLockToken(v string) *UpdateIPSetOutput {
 type UpdateRegexPatternSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description of the set that helps with identification. You cannot change
-	// the description of a set after you create it.
+	// A description of the set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the set. This ID is returned in the responses to
@@ -12886,8 +12618,7 @@ func (s *UpdateRegexPatternSetOutput) SetNextLockToken(v string) *UpdateRegexPat
 type UpdateRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description of the rule group that helps with identification. You cannot
-	// change the description of a rule group after you create it.
+	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the rule group. This ID is returned in the responses
@@ -13078,8 +12809,7 @@ type UpdateWebACLInput struct {
 	// DefaultAction is a required field
 	DefaultAction *DefaultAction `type:"structure" required:"true"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the Web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The unique identifier for the Web ACL. This ID is returned in the responses
@@ -13271,11 +13001,6 @@ func (s *UpdateWebACLOutput) SetNextLockToken(v string) *UpdateWebACLOutput {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // The path component of the URI of a web request. This is the part of a web
 // request that identifies a resource, for example, /images/daily-ad.jpg.
 //
@@ -13295,11 +13020,6 @@ func (s UriPath) GoString() string {
 	return s.String()
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // Defines and enables Amazon CloudWatch metrics and web request sample collection.
 type VisibilityConfig struct {
 	_ struct{} `type:"structure"`
@@ -14268,11 +13988,6 @@ func (s *WAFUnavailableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A Web ACL defines a collection of rules to use to inspect and control web
 // requests. Each rule has an action defined (allow, block, or count) for requests
 // that match the statement of the rule. In the Web ACL, you assign a default
@@ -14307,8 +14022,7 @@ type WebACL struct {
 	// DefaultAction is a required field
 	DefaultAction *DefaultAction `type:"structure" required:"true"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the Web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// A unique identifier for the WebACL. This ID is returned in the responses
@@ -14439,11 +14153,6 @@ func (s *WebACL) SetVisibilityConfig(v *VisibilityConfig) *WebACL {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // High-level information about a WebACL, returned by operations like create
 // and list. This provides information like the ID, that you can use to retrieve
 // and manage a WebACL, and the ARN, that you provide to operations like AssociateWebACL.
@@ -14453,8 +14162,7 @@ type WebACLSummary struct {
 	// The Amazon Resource Name (ARN) of the entity.
 	ARN *string `min:"20" type:"string"`
 
-	// A description of the Web ACL that helps with identification. You cannot change
-	// the description of a Web ACL after you create it.
+	// A description of the Web ACL that helps with identification.
 	Description *string `min:"1" type:"string"`
 
 	// The unique identifier for the Web ACL. This ID is returned in the responses
@@ -14517,11 +14225,6 @@ func (s *WebACLSummary) SetName(v string) *WebACLSummary {
 	return s
 }
 
-//
-// This is the latest version of AWS WAF, named AWS WAFV2, released in November,
-// 2019. For information, including how to migrate your AWS WAF resources from
-// the prior release, see the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
-//
 // A rule statement that defines a cross-site scripting (XSS) match search for
 // AWS WAF to apply to web requests. XSS attacks are those where the attacker
 // uses vulnerabilities in a benign website as a vehicle to inject malicious
@@ -14602,6 +14305,26 @@ func (s *XssMatchStatement) SetFieldToMatch(v *FieldToMatch) *XssMatchStatement 
 func (s *XssMatchStatement) SetTextTransformations(v []*TextTransformation) *XssMatchStatement {
 	s.TextTransformations = v
 	return s
+}
+
+const (
+	// BodyParsingFallbackBehaviorMatch is a BodyParsingFallbackBehavior enum value
+	BodyParsingFallbackBehaviorMatch = "MATCH"
+
+	// BodyParsingFallbackBehaviorNoMatch is a BodyParsingFallbackBehavior enum value
+	BodyParsingFallbackBehaviorNoMatch = "NO_MATCH"
+
+	// BodyParsingFallbackBehaviorEvaluateAsString is a BodyParsingFallbackBehavior enum value
+	BodyParsingFallbackBehaviorEvaluateAsString = "EVALUATE_AS_STRING"
+)
+
+// BodyParsingFallbackBehavior_Values returns all elements of the BodyParsingFallbackBehavior enum
+func BodyParsingFallbackBehavior_Values() []string {
+	return []string{
+		BodyParsingFallbackBehaviorMatch,
+		BodyParsingFallbackBehaviorNoMatch,
+		BodyParsingFallbackBehaviorEvaluateAsString,
+	}
 }
 
 const (
@@ -15693,6 +15416,26 @@ func IPAddressVersion_Values() []string {
 }
 
 const (
+	// JsonMatchScopeAll is a JsonMatchScope enum value
+	JsonMatchScopeAll = "ALL"
+
+	// JsonMatchScopeKey is a JsonMatchScope enum value
+	JsonMatchScopeKey = "KEY"
+
+	// JsonMatchScopeValue is a JsonMatchScope enum value
+	JsonMatchScopeValue = "VALUE"
+)
+
+// JsonMatchScope_Values returns all elements of the JsonMatchScope enum
+func JsonMatchScope_Values() []string {
+	return []string{
+		JsonMatchScopeAll,
+		JsonMatchScopeKey,
+		JsonMatchScopeValue,
+	}
+}
+
+const (
 	// ParameterExceptionFieldWebAcl is a ParameterExceptionField enum value
 	ParameterExceptionFieldWebAcl = "WEB_ACL"
 
@@ -15821,6 +15564,15 @@ const (
 
 	// ParameterExceptionFieldHeaderName is a ParameterExceptionField enum value
 	ParameterExceptionFieldHeaderName = "HEADER_NAME"
+
+	// ParameterExceptionFieldJsonMatchPattern is a ParameterExceptionField enum value
+	ParameterExceptionFieldJsonMatchPattern = "JSON_MATCH_PATTERN"
+
+	// ParameterExceptionFieldJsonMatchScope is a ParameterExceptionField enum value
+	ParameterExceptionFieldJsonMatchScope = "JSON_MATCH_SCOPE"
+
+	// ParameterExceptionFieldBodyParsingFallbackBehavior is a ParameterExceptionField enum value
+	ParameterExceptionFieldBodyParsingFallbackBehavior = "BODY_PARSING_FALLBACK_BEHAVIOR"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -15869,6 +15621,9 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldForwardedIpConfig,
 		ParameterExceptionFieldIpSetForwardedIpConfig,
 		ParameterExceptionFieldHeaderName,
+		ParameterExceptionFieldJsonMatchPattern,
+		ParameterExceptionFieldJsonMatchScope,
+		ParameterExceptionFieldBodyParsingFallbackBehavior,
 	}
 }
 

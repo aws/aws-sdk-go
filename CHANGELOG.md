@@ -1,3 +1,21 @@
+Release v1.37.10 (2021-02-12)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/codepipeline`: Updates service API and documentation
+  * The release provides new GetActionType and UpdateActionType APIs for viewing and editing action types in CodePipeline.
+* `service/detective`: Updates service API
+* `service/eks`: Updates service API, documentation, and paginators
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/iam`: Updates service API and documentation
+  * AWS Identity and Access Management now supports tagging for the following resources: customer managed policies, identity providers, instance profiles, server certificates, and virtual MFA devices.
+* `service/macie2`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * EngineMode in the response of DescribeDBClusterSnapshots. SupportedEngineModes, SupportsParallelQuery and SupportsGlobalDatabases in ValidUpgradeTarget of DBEngineVersions in DescribeDBEngineVersions.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.37.9 (2021-02-11)
 ===
 

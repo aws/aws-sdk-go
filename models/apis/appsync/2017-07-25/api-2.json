@@ -947,7 +947,8 @@
         "dataSourceName":{"shape":"ResourceName"},
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
-        "functionVersion":{"shape":"String"}
+        "functionVersion":{"shape":"String"},
+        "syncConfig":{"shape":"SyncConfig"}
       }
     },
     "CreateFunctionResponse":{
@@ -1299,7 +1300,8 @@
         "dataSourceName":{"shape":"ResourceName"},
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
-        "functionVersion":{"shape":"String"}
+        "functionVersion":{"shape":"String"},
+        "syncConfig":{"shape":"SyncConfig"}
       }
     },
     "Functions":{
@@ -2174,7 +2176,8 @@
         "dataSourceName":{"shape":"ResourceName"},
         "requestMappingTemplate":{"shape":"MappingTemplate"},
         "responseMappingTemplate":{"shape":"MappingTemplate"},
-        "functionVersion":{"shape":"String"}
+        "functionVersion":{"shape":"String"},
+        "syncConfig":{"shape":"SyncConfig"}
       }
     },
     "UpdateFunctionResponse":{

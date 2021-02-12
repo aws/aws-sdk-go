@@ -155,6 +155,19 @@
         {"shape":"StageNotFoundException"}
       ]
     },
+    "GetActionType":{
+      "name":"GetActionType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetActionTypeInput"},
+      "output":{"shape":"GetActionTypeOutput"},
+      "errors":[
+        {"shape":"ActionTypeNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetJobDetails":{
       "name":"GetJobDetails",
       "http":{
@@ -532,6 +545,19 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "UpdateActionType":{
+      "name":"UpdateActionType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateActionTypeInput"},
+      "errors":[
+        {"shape":"RequestFailedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ActionTypeNotFoundException"}
+      ]
+    },
     "UpdatePipeline":{
       "name":"UpdatePipeline",
       "http":{
@@ -570,7 +596,10 @@
       },
       "sensitive":true
     },
-    "AccessKeyId":{"type":"string"},
+    "AccessKeyId":{
+      "type":"string",
+      "sensitive":true
+    },
     "AccountId":{
       "type":"string",
       "pattern":"[0-9]{12}"
@@ -812,7 +841,7 @@
     },
     "ActionProvider":{
       "type":"string",
-      "max":25,
+      "max":35,
       "min":1,
       "pattern":"[0-9A-Za-z_-]+"
     },
@@ -863,6 +892,60 @@
         "outputArtifactDetails":{"shape":"ArtifactDetails"}
       }
     },
+    "ActionTypeAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ActionTypeArtifactDetails":{
+      "type":"structure",
+      "required":[
+        "minimumCount",
+        "maximumCount"
+      ],
+      "members":{
+        "minimumCount":{"shape":"MinimumActionTypeArtifactCount"},
+        "maximumCount":{"shape":"MaximumActionTypeArtifactCount"}
+      }
+    },
+    "ActionTypeDeclaration":{
+      "type":"structure",
+      "required":[
+        "executor",
+        "id",
+        "inputArtifactDetails",
+        "outputArtifactDetails"
+      ],
+      "members":{
+        "description":{"shape":"ActionTypeDescription"},
+        "executor":{"shape":"ActionTypeExecutor"},
+        "id":{"shape":"ActionTypeIdentifier"},
+        "inputArtifactDetails":{"shape":"ActionTypeArtifactDetails"},
+        "outputArtifactDetails":{"shape":"ActionTypeArtifactDetails"},
+        "permissions":{"shape":"ActionTypePermissions"},
+        "properties":{"shape":"ActionTypeProperties"},
+        "urls":{"shape":"ActionTypeUrls"}
+      }
+    },
+    "ActionTypeDescription":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "ActionTypeExecutor":{
+      "type":"structure",
+      "required":[
+        "configuration",
+        "type"
+      ],
+      "members":{
+        "configuration":{"shape":"ExecutorConfiguration"},
+        "type":{"shape":"ExecutorType"},
+        "policyStatementsTemplate":{"shape":"PolicyStatementsTemplate"},
+        "jobTimeout":{"shape":"JobTimeout"}
+      }
+    },
     "ActionTypeId":{
       "type":"structure",
       "required":[
@@ -878,6 +961,21 @@
         "version":{"shape":"Version"}
       }
     },
+    "ActionTypeIdentifier":{
+      "type":"structure",
+      "required":[
+        "category",
+        "owner",
+        "provider",
+        "version"
+      ],
+      "members":{
+        "category":{"shape":"ActionCategory"},
+        "owner":{"shape":"ActionTypeOwner"},
+        "provider":{"shape":"ActionProvider"},
+        "version":{"shape":"Version"}
+      }
+    },
     "ActionTypeList":{
       "type":"list",
       "member":{"shape":"ActionType"}
@@ -888,6 +986,39 @@
       },
       "exception":true
     },
+    "ActionTypeOwner":{
+      "type":"string",
+      "pattern":"AWS|ThirdParty"
+    },
+    "ActionTypePermissions":{
+      "type":"structure",
+      "required":["allowedAccounts"],
+      "members":{
+        "allowedAccounts":{"shape":"AllowedAccounts"}
+      }
+    },
+    "ActionTypeProperties":{
+      "type":"list",
+      "member":{"shape":"ActionTypeProperty"},
+      "max":10
+    },
+    "ActionTypeProperty":{
+      "type":"structure",
+      "required":[
+        "name",
+        "optional",
+        "key",
+        "noEcho"
+      ],
+      "members":{
+        "name":{"shape":"ActionConfigurationKey"},
+        "optional":{"shape":"Boolean"},
+        "key":{"shape":"Boolean"},
+        "noEcho":{"shape":"Boolean"},
+        "queryable":{"shape":"Boolean"},
+        "description":{"shape":"PropertyDescription"}
+      }
+    },
     "ActionTypeSettings":{
       "type":"structure",
       "members":{
@@ -896,6 +1027,25 @@
         "executionUrlTemplate":{"shape":"UrlTemplate"},
         "revisionUrlTemplate":{"shape":"UrlTemplate"}
       }
+    },
+    "ActionTypeUrls":{
+      "type":"structure",
+      "members":{
+        "configurationUrl":{"shape":"Url"},
+        "entityUrlTemplate":{"shape":"UrlTemplate"},
+        "executionUrlTemplate":{"shape":"UrlTemplate"},
+        "revisionUrlTemplate":{"shape":"UrlTemplate"}
+      }
+    },
+    "AllowedAccount":{
+      "type":"string",
+      "pattern":"[0-9]{12}|\\*"
+    },
+    "AllowedAccounts":{
+      "type":"list",
+      "member":{"shape":"AllowedAccount"},
+      "max":1000,
+      "min":1
     },
     "ApprovalAlreadyCompletedException":{
       "type":"structure",
@@ -1277,6 +1427,20 @@
         "triggerDetail":{"shape":"TriggerDetail"}
       }
     },
+    "ExecutorConfiguration":{
+      "type":"structure",
+      "members":{
+        "lambdaExecutorConfiguration":{"shape":"LambdaExecutorConfiguration"},
+        "jobWorkerExecutorConfiguration":{"shape":"JobWorkerExecutorConfiguration"}
+      }
+    },
+    "ExecutorType":{
+      "type":"string",
+      "enum":[
+        "JobWorker",
+        "Lambda"
+      ]
+    },
     "ExternalExecutionId":{"type":"string"},
     "ExternalExecutionSummary":{"type":"string"},
     "FailureDetails":{
@@ -1301,6 +1465,27 @@
         "RevisionUnavailable",
         "SystemUnavailable"
       ]
+    },
+    "GetActionTypeInput":{
+      "type":"structure",
+      "required":[
+        "category",
+        "owner",
+        "provider",
+        "version"
+      ],
+      "members":{
+        "category":{"shape":"ActionCategory"},
+        "owner":{"shape":"ActionTypeOwner"},
+        "provider":{"shape":"ActionProvider"},
+        "version":{"shape":"Version"}
+      }
+    },
+    "GetActionTypeOutput":{
+      "type":"structure",
+      "members":{
+        "actionType":{"shape":"ActionTypeDeclaration"}
+      }
     },
     "GetJobDetailsInput":{
       "type":"structure",
@@ -1534,10 +1719,35 @@
         "Failed"
       ]
     },
+    "JobTimeout":{
+      "type":"integer",
+      "max":43200,
+      "min":60
+    },
+    "JobWorkerExecutorConfiguration":{
+      "type":"structure",
+      "members":{
+        "pollingAccounts":{"shape":"PollingAccountList"},
+        "pollingServicePrincipals":{"shape":"PollingServicePrincipalList"}
+      }
+    },
     "JsonPath":{
       "type":"string",
       "max":150,
       "min":1
+    },
+    "LambdaExecutorConfiguration":{
+      "type":"structure",
+      "required":["lambdaFunctionArn"],
+      "members":{
+        "lambdaFunctionArn":{"shape":"LambdaFunctionArn"}
+      }
+    },
+    "LambdaFunctionArn":{
+      "type":"string",
+      "max":140,
+      "min":1,
+      "pattern":"arn:aws(-[\\w]+)*:lambda:.+:[0-9]{12}:function:.+"
     },
     "LastChangedAt":{"type":"timestamp"},
     "LastChangedBy":{"type":"string"},
@@ -1569,7 +1779,8 @@
       "type":"structure",
       "members":{
         "actionOwnerFilter":{"shape":"ActionOwner"},
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "regionFilter":{"shape":"AWSRegionName"}
       }
     },
     "ListActionTypesOutput":{
@@ -1669,6 +1880,11 @@
       "max":100,
       "min":1
     },
+    "MaximumActionTypeArtifactCount":{
+      "type":"integer",
+      "max":10,
+      "min":0
+    },
     "MaximumArtifactCount":{
       "type":"integer",
       "max":5,
@@ -1678,6 +1894,11 @@
       "type":"string",
       "max":5000,
       "min":1
+    },
+    "MinimumActionTypeArtifactCount":{
+      "type":"integer",
+      "max":10,
+      "min":0
     },
     "MinimumArtifactCount":{
       "type":"integer",
@@ -1873,6 +2094,11 @@
       },
       "exception":true
     },
+    "PolicyStatementsTemplate":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "PollForJobsInput":{
       "type":"structure",
       "required":["actionTypeId"],
@@ -1901,6 +2127,23 @@
       "members":{
         "jobs":{"shape":"ThirdPartyJobList"}
       }
+    },
+    "PollingAccountList":{
+      "type":"list",
+      "member":{"shape":"AccountId"},
+      "max":1000,
+      "min":1
+    },
+    "PollingServicePrincipalList":{
+      "type":"list",
+      "member":{"shape":"ServicePrincipal"},
+      "max":10,
+      "min":1
+    },
+    "PropertyDescription":{
+      "type":"string",
+      "max":250,
+      "min":1
     },
     "PutActionRevisionInput":{
       "type":"structure",
@@ -2028,6 +2271,13 @@
       "members":{
       }
     },
+    "RequestFailedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "ResolvedActionConfigurationMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -2114,8 +2364,19 @@
       }
     },
     "S3ObjectKey":{"type":"string"},
-    "SecretAccessKey":{"type":"string"},
-    "SessionToken":{"type":"string"},
+    "SecretAccessKey":{
+      "type":"string",
+      "sensitive":true
+    },
+    "ServicePrincipal":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "SessionToken":{
+      "type":"string",
+      "sensitive":true
+    },
     "SourceRevision":{
       "type":"structure",
       "required":["actionName"],
@@ -2398,6 +2659,12 @@
     "UntagResourceOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateActionTypeInput":{
+      "type":"structure",
+      "members":{
+        "actionType":{"shape":"ActionTypeDeclaration"}
       }
     },
     "UpdatePipelineInput":{
