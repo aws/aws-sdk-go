@@ -134,6 +134,7 @@ func TestLogResponse(t *testing.T) {
 		ExpectBody []byte
 		ReadBody   bool
 		LogLevel   aws.LogLevelType
+		ExpectLog  bool
 	}{
 		{
 			Body:       bytes.NewBuffer([]byte("body content")),
@@ -142,11 +143,13 @@ func TestLogResponse(t *testing.T) {
 		{
 			Body:       bytes.NewBuffer([]byte("body content")),
 			LogLevel:   aws.LogDebug,
+			ExpectLog:  true,
 			ExpectBody: []byte("body content"),
 		},
 		{
 			Body:       bytes.NewBuffer([]byte("body content")),
 			LogLevel:   aws.LogDebugWithHTTPBody,
+			ExpectLog:  true,
 			ReadBody:   true,
 			ExpectBody: []byte("body content"),
 		},
@@ -190,8 +193,10 @@ func TestLogResponse(t *testing.T) {
 			}
 		}
 
-		if logW.Len() == 0 {
+		if c.ExpectLog && logW.Len() == 0 {
 			t.Errorf("%d, expect HTTP Response headers to be logged", i)
+		} else if !c.ExpectLog && logW.Len() != 0 {
+			t.Errorf("%d, expect no log, got,\n%v", i, logW.String())
 		}
 
 		b, err := ioutil.ReadAll(req.HTTPResponse.Body)

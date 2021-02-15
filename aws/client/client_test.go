@@ -47,11 +47,13 @@ func TestNewClient_CopyHandlers(t *testing.T) {
 	if e, a := 2, handlers.Send.Len(); e != a {
 		t.Errorf("expect %d original handlers, got %d", e, a)
 	}
-	if e, a := 3, c.Handlers.Send.Len(); e != a {
+	if e, a := 5, c.Handlers.Send.Len(); e != a {
 		t.Errorf("expect %d client handlers, got %d", e, a)
 	}
 
-	handlers.Send.Run(nil)
+	req := c.NewRequest(&request.Operation{}, struct{}{}, struct{}{})
+
+	handlers.Send.Run(req)
 	if !*firstCalled {
 		t.Errorf("expect first handler to of been called")
 	}
@@ -64,7 +66,7 @@ func TestNewClient_CopyHandlers(t *testing.T) {
 		t.Errorf("expect client handler to not of been called, but was")
 	}
 
-	c.Handlers.Send.Run(nil)
+	c.Handlers.Send.Run(req)
 	if !*firstCalled {
 		t.Errorf("expect client's first handler to of been called")
 	}
