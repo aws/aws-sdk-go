@@ -307,12 +307,10 @@
     },
     "GetMediaForFragmentListInput":{
       "type":"structure",
-      "required":[
-        "StreamName",
-        "Fragments"
-      ],
+      "required":["Fragments"],
       "members":{
         "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
         "Fragments":{"shape":"FragmentNumberList"}
       }
     },
@@ -399,9 +397,9 @@
     },
     "ListFragmentsInput":{
       "type":"structure",
-      "required":["StreamName"],
       "members":{
         "StreamName":{"shape":"StreamName"},
+        "StreamARN":{"shape":"ResourceARN"},
         "MaxResults":{"shape":"PageLimit"},
         "NextToken":{"shape":"NextToken"},
         "FragmentSelector":{"shape":"FragmentSelector"}
@@ -458,7 +456,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+"
+      "pattern":"arn:[a-z\\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+"
     },
     "ResourceNotFoundException":{
       "type":"structure",

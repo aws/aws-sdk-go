@@ -5170,6 +5170,9 @@
         "MessageType": {
           "shape": "MessageType"
         },
+        "OriginationNumber": {
+          "shape": "__string"
+        },
         "SenderId": {
           "shape": "__string"
         }
@@ -9192,6 +9195,9 @@
       "members": {
         "MessageType": {
           "shape": "MessageType"
+        },
+        "OriginationNumber": {
+          "shape": "__string"
         },
         "SenderId": {
           "shape": "__string"

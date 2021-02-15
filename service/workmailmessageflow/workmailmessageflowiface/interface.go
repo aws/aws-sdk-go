@@ -63,6 +63,10 @@ type WorkMailMessageFlowAPI interface {
 	GetRawMessageContent(*workmailmessageflow.GetRawMessageContentInput) (*workmailmessageflow.GetRawMessageContentOutput, error)
 	GetRawMessageContentWithContext(aws.Context, *workmailmessageflow.GetRawMessageContentInput, ...request.Option) (*workmailmessageflow.GetRawMessageContentOutput, error)
 	GetRawMessageContentRequest(*workmailmessageflow.GetRawMessageContentInput) (*request.Request, *workmailmessageflow.GetRawMessageContentOutput)
+
+	PutRawMessageContent(*workmailmessageflow.PutRawMessageContentInput) (*workmailmessageflow.PutRawMessageContentOutput, error)
+	PutRawMessageContentWithContext(aws.Context, *workmailmessageflow.PutRawMessageContentInput, ...request.Option) (*workmailmessageflow.PutRawMessageContentOutput, error)
+	PutRawMessageContentRequest(*workmailmessageflow.PutRawMessageContentInput) (*request.Request, *workmailmessageflow.PutRawMessageContentOutput)
 }
 
 var _ WorkMailMessageFlowAPI = (*workmailmessageflow.WorkMailMessageFlow)(nil)

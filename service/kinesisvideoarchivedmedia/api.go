@@ -63,7 +63,7 @@ func (c *KinesisVideoArchivedMedia) GetClipRequest(input *GetClipInput) (req *re
 // Both the StreamName and the StreamARN parameters are optional, but you must
 // specify either the StreamName or the StreamARN when invoking this API operation.
 //
-// As a prerequsite to using GetCLip API, you must obtain an endpoint using
+// As a prerequisite to using GetCLip API, you must obtain an endpoint using
 // GetDataEndpoint, specifying GET_CLIP for the APIName parameter.
 //
 // An Amazon Kinesis video stream has the following requirements for providing
@@ -1507,7 +1507,7 @@ type GetClipOutput struct {
 	// Traditional MP4 file that contains the media clip from the specified video
 	// stream. The output will contain the first 100 MB or the first 200 fragments
 	// from the specified start timestamp. For more information, see Kinesis Video
-	// Streams Limits (Kinesis Video Streams Limits).
+	// Streams Limits (https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 	Payload io.ReadCloser `type:"blob"`
 }
 
@@ -2043,10 +2043,13 @@ type GetMediaForFragmentListInput struct {
 	// Fragments is a required field
 	Fragments []*string `min:"1" type:"list" required:"true"`
 
-	// The name of the stream from which to retrieve fragment media.
-	//
-	// StreamName is a required field
-	StreamName *string `min:"1" type:"string" required:"true"`
+	// The Amazon Resource Name (ARN) of the stream from which to retrieve fragment
+	// media. Specify either this parameter or the StreamName parameter.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to retrieve fragment media. Specify either
+	// this parameter or the StreamARN parameter.
+	StreamName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2068,8 +2071,8 @@ func (s *GetMediaForFragmentListInput) Validate() error {
 	if s.Fragments != nil && len(s.Fragments) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Fragments", 1))
 	}
-	if s.StreamName == nil {
-		invalidParams.Add(request.NewErrParamRequired("StreamName"))
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
 	}
 	if s.StreamName != nil && len(*s.StreamName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
@@ -2084,6 +2087,12 @@ func (s *GetMediaForFragmentListInput) Validate() error {
 // SetFragments sets the Fragments field's value.
 func (s *GetMediaForFragmentListInput) SetFragments(v []*string) *GetMediaForFragmentListInput {
 	s.Fragments = v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *GetMediaForFragmentListInput) SetStreamARN(v string) *GetMediaForFragmentListInput {
+	s.StreamARN = &v
 	return s
 }
 
@@ -2452,10 +2461,13 @@ type ListFragmentsInput struct {
 	// from a previously truncated response.
 	NextToken *string `min:"1" type:"string"`
 
-	// The name of the stream from which to retrieve a fragment list.
-	//
-	// StreamName is a required field
-	StreamName *string `min:"1" type:"string" required:"true"`
+	// The Amazon Resource Name (ARN) of the stream from which to retrieve a fragment
+	// list. Specify either this parameter or the StreamName parameter.
+	StreamARN *string `min:"1" type:"string"`
+
+	// The name of the stream from which to retrieve a fragment list. Specify either
+	// this parameter or the StreamARN parameter.
+	StreamName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2477,8 +2489,8 @@ func (s *ListFragmentsInput) Validate() error {
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
-	if s.StreamName == nil {
-		invalidParams.Add(request.NewErrParamRequired("StreamName"))
+	if s.StreamARN != nil && len(*s.StreamARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamARN", 1))
 	}
 	if s.StreamName != nil && len(*s.StreamName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StreamName", 1))
@@ -2510,6 +2522,12 @@ func (s *ListFragmentsInput) SetMaxResults(v int64) *ListFragmentsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *ListFragmentsInput) SetNextToken(v string) *ListFragmentsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetStreamARN sets the StreamARN field's value.
+func (s *ListFragmentsInput) SetStreamARN(v string) *ListFragmentsInput {
+	s.StreamARN = &v
 	return s
 }
 
