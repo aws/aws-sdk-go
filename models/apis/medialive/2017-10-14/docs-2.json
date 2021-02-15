@@ -13,6 +13,7 @@
     "CreateInputSecurityGroup": "Creates a Input Security Group",
     "CreateMultiplex": "Create a new multiplex.",
     "CreateMultiplexProgram": "Create a new program in the multiplex.",
+    "CreatePartnerInput": "Create a partner input",
     "CreateTags": "Create tags for a resource",
     "DeleteChannel": "Starts deletion of channel. The associated outputs are also deleted.",
     "DeleteInput": "Deletes the input end point",
@@ -633,6 +634,16 @@
       }
     },
     "CreateMultiplexResultModel": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePartnerInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePartnerInputResultModel": {
       "base": null,
       "refs": {
       }
@@ -1502,6 +1513,7 @@
       "base": null,
       "refs": {
         "CreateInputResultModel$Input": null,
+        "CreatePartnerInputResultModel$Input": null,
         "UpdateInputResultModel$Input": null,
         "__listOfInput$member": null
       }
@@ -2897,6 +2909,7 @@
         "CreateChannel$Tags": "A collection of key-value pairs.",
         "CreateInput$Tags": "A collection of key-value pairs.",
         "CreateMultiplex$Tags": "A collection of key-value pairs.",
+        "CreatePartnerInput$Tags": "A collection of key-value pairs.",
         "Input$Tags": "A collection of key-value pairs.",
         "InputSecurityGroup$Tags": "A collection of key-value pairs.",
         "InputSecurityGroupWhitelistRequest$Tags": "A collection of key-value pairs.",
@@ -4017,6 +4030,7 @@
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "CreateMultiplex$AvailabilityZones": "A list of availability zones for the multiplex. You must specify exactly two.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
+        "Input$InputPartnerIds": "A list of IDs for all Inputs which are partners of this one.",
         "Input$SecurityGroups": "A list of IDs for all the Input Security Groups attached to the input.",
         "InputDeviceNetworkSettings$DnsAddresses": "The DNS addresses of the input device.",
         "InputPrepareScheduleActionSettings$UrlPath": "The value for the variable portion of the URL for the dynamic input, for this instance of the input. Each time you use the same dynamic input in an input switch action, you can provide a different value, in order to connect the input to a different content source.",
@@ -4102,6 +4116,7 @@
         "CreateMultiplex$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
         "CreateMultiplexProgram$ProgramName": "Name of multiplex program.",
         "CreateMultiplexProgram$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
+        "CreatePartnerInput$RequestId": "Unique identifier of the request to ensure the request is handled\nexactly once in case of retries.\n",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as \u201cArial\u201d), or a generic font family (such as \u201cserif\u201d), or \u201cdefault\u201d (to let the downstream player choose the font).\n- Leave blank to set the family to \u201cmonospace\u201d.",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",

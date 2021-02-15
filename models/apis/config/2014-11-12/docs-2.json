@@ -18,7 +18,7 @@
     "DeleteRemediationExceptions": "<p>Deletes one or more remediation exceptions mentioned in the resource keys.</p> <note> <p>AWS Config generates a remediation exception when a problem occurs executing a remediation action to a specific resource. Remediation exceptions blocks auto-remediation until the exception is cleared.</p> </note>",
     "DeleteResourceConfig": "<p>Records the configuration state for a custom resource that has been deleted. This API records a new ConfigurationItem with a ResourceDeleted status. You can retrieve the ConfigurationItems recorded for this resource in your AWS Config History. </p>",
     "DeleteRetentionConfiguration": "<p>Deletes the retention configuration.</p>",
-    "DeleteStoredQuery": "<p>Deletes the stored query for an AWS account in an AWS Region. </p>",
+    "DeleteStoredQuery": "<p>Deletes the stored query for a single AWS account and a single AWS Region.</p>",
     "DeliverConfigSnapshot": "<p>Schedules delivery of a configuration snapshot to the Amazon S3 bucket in the specified delivery channel. After the delivery has started, AWS Config sends the following notifications using an Amazon SNS topic that you have specified.</p> <ul> <li> <p>Notification of the start of the delivery.</p> </li> <li> <p>Notification of the completion of the delivery, if the delivery was successfully completed.</p> </li> <li> <p>Notification of delivery failure, if the delivery failed.</p> </li> </ul>",
     "DescribeAggregateComplianceByConfigRules": "<p>Returns a list of compliant and noncompliant rules with the number of resources for compliant and noncompliant rules. </p> <note> <p>The results can return an empty result page, but if you have a <code>nextToken</code>, the results are displayed on the next page.</p> </note>",
     "DescribeAggregationAuthorizations": "<p>Returns a list of authorizations granted to various aggregator accounts and regions.</p>",
@@ -61,23 +61,23 @@
     "GetStoredQuery": "<p>Returns the details of a specific stored query.</p>",
     "ListAggregateDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers that are aggregated for a specific resource type across accounts and regions. A resource identifier includes the resource type, ID, (if available) the custom resource name, source account, and source region. You can narrow the results to include only resources that have specific resource IDs, or a resource name, or source account ID, or source region.</p> <p>For example, if the input consists of accountID 12345678910 and the region is us-east-1 for resource type <code>AWS::EC2::Instance</code> then the API returns all the EC2 instance identifiers of accountID 12345678910 and region us-east-1.</p>",
     "ListDiscoveredResources": "<p>Accepts a resource type and returns a list of resource identifiers for the resources of that type. A resource identifier includes the resource type, ID, and (if available) the custom resource name. The results consist of resources that AWS Config has discovered, including those that AWS Config is not currently recording. You can narrow the results to include only resources that have specific resource IDs or a resource name.</p> <note> <p>You can specify either resource IDs or a resource name, but not both, in the same request.</p> </note> <p>The response is paginated. By default, AWS Config lists 100 resource identifiers on each page. You can customize this number with the <code>limit</code> parameter. The response includes a <code>nextToken</code> string. To get the next page of results, run the request again and specify the string for the <code>nextToken</code> parameter.</p>",
-    "ListStoredQueries": "<p>List the stored queries for an AWS account in an AWS Region. The default is 100. </p>",
+    "ListStoredQueries": "<p>Lists the stored queries for a single AWS account and a single AWS Region. The default is 100. </p>",
     "ListTagsForResource": "<p>List the tags for AWS Config resource.</p>",
     "PutAggregationAuthorization": "<p>Authorizes the aggregator account and region to collect data from the source account and region. </p>",
     "PutConfigRule": "<p>Adds or updates an AWS Config rule for evaluating whether your AWS resources comply with your desired configurations.</p> <p>You can use this action for custom AWS Config rules and AWS managed Config rules. A custom AWS Config rule is a rule that you develop and maintain. An AWS managed Config rule is a customizable, predefined rule that AWS Config provides.</p> <p>If you are adding a new custom AWS Config rule, you must first create the AWS Lambda function that the rule invokes to evaluate your resources. When you use the <code>PutConfigRule</code> action to add the rule to AWS Config, you must specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the function. Specify the ARN for the <code>SourceIdentifier</code> key. This key is part of the <code>Source</code> object, which is part of the <code>ConfigRule</code> object. </p> <p>If you are adding an AWS managed Config rule, specify the rule's identifier for the <code>SourceIdentifier</code> key. To reference AWS managed Config rule identifiers, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html\">About AWS Managed Config Rules</a>.</p> <p>For any new rule that you add, specify the <code>ConfigRuleName</code> in the <code>ConfigRule</code> object. Do not specify the <code>ConfigRuleArn</code> or the <code>ConfigRuleId</code>. These values are generated by AWS Config for new rules.</p> <p>If you are updating a rule that you added previously, you can specify the rule by <code>ConfigRuleName</code>, <code>ConfigRuleId</code>, or <code>ConfigRuleArn</code> in the <code>ConfigRule</code> data type that you use in this request.</p> <p>The maximum number of rules that AWS Config supports is 150.</p> <p>For information about requesting a rule limit increase, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_config\">AWS Config Limits</a> in the <i>AWS General Reference Guide</i>.</p> <p>For more information about developing and using AWS Config rules, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html\">Evaluating AWS Resource Configurations with AWS Config</a> in the <i>AWS Config Developer Guide</i>.</p>",
-    "PutConfigurationAggregator": "<p>Creates and updates the configuration aggregator with the selected source accounts and regions. The source account can be individual account(s) or an organization.</p> <note> <p>AWS Config should be enabled in source accounts and regions you want to aggregate.</p> <p>If your source type is an organization, you must be signed in to the master account and all features must be enabled in your organization. AWS Config calls <code>EnableAwsServiceAccess</code> API to enable integration between AWS Config and AWS Organizations. </p> </note>",
+    "PutConfigurationAggregator": "<p>Creates and updates the configuration aggregator with the selected source accounts and regions. The source account can be individual account(s) or an organization.</p> <p> <code>accountIds</code> that are passed will be replaced with existing accounts. If you want to add additional accounts into the aggregator, call <code>DescribeAggregator</code> to get the previous accounts and then append new ones.</p> <note> <p>AWS Config should be enabled in source accounts and regions you want to aggregate.</p> <p>If your source type is an organization, you must be signed in to the management account or a registered delegated administrator and all the features must be enabled in your organization. If the caller is a management account, AWS Config calls <code>EnableAwsServiceAccess</code> API to enable integration between AWS Config and AWS Organizations. If the caller is a registered delegated administrator, AWS Config calls <code>ListDelegatedAdministrators</code> API to verify whether the caller is a valid delegated administrator.</p> <p>To register a delegated administrator, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/set-up-aggregator-cli.html#register-a-delegated-administrator-cli\">Register a Delegated Administrator</a> in the AWS Config developer guide. </p> </note>",
     "PutConfigurationRecorder": "<p>Creates a new configuration recorder to record the selected resource configurations.</p> <p>You can use this action to change the role <code>roleARN</code> or the <code>recordingGroup</code> of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p> <note> <p>Currently, you can specify only one configuration recorder per region in your account.</p> <p>If <code>ConfigurationRecorder</code> does not have the <b>recordingGroup</b> parameter specified, the default is to record all supported resource types.</p> </note>",
     "PutConformancePack": "<p>Creates or updates a conformance pack. A conformance pack is a collection of AWS Config rules that can be easily deployed in an account and a region and across AWS Organization.</p> <p>This API creates a service linked role <code>AWSServiceRoleForConfigConforms</code> in your account. The service linked role is created only when the role does not exist in your account. </p> <note> <p>You must specify either the <code>TemplateS3Uri</code> or the <code>TemplateBody</code> parameter, but not both. If you provide both AWS Config uses the <code>TemplateS3Uri</code> parameter and ignores the <code>TemplateBody</code> parameter.</p> </note>",
     "PutDeliveryChannel": "<p>Creates a delivery channel object to deliver configuration information to an Amazon S3 bucket and Amazon SNS topic.</p> <p>Before you can create a delivery channel, you must create a configuration recorder.</p> <p>You can use this action to change the Amazon S3 bucket or an Amazon SNS topic of the existing delivery channel. To change the Amazon S3 bucket or an Amazon SNS topic, call this action and specify the changed values for the S3 bucket and the SNS topic. If you specify a different value for either the S3 bucket or the SNS topic, this action will keep the existing value for the parameter that is not changed.</p> <note> <p>You can have only one delivery channel per region in your account.</p> </note>",
     "PutEvaluations": "<p>Used by an AWS Lambda function to deliver evaluation results to AWS Config. This action is required in every AWS Lambda function that is invoked by an AWS Config rule.</p>",
-    "PutExternalEvaluation": null,
+    "PutExternalEvaluation": "<p>Add or updates the evaluations for process checks. This API checks if the rule is a process check when the name of the AWS Config rule is provided.</p>",
     "PutOrganizationConfigRule": "<p>Adds or updates organization config rule for your entire organization evaluating whether your AWS resources comply with your desired configurations.</p> <p> Only a master account and a delegated administrator can create or update an organization config rule. When calling this API with a delegated administrator, you must ensure AWS Organizations <code>ListDelegatedAdministrator</code> permissions are added. </p> <p>This API enables organization service access through the <code>EnableAWSServiceAccess</code> action and creates a service linked role <code>AWSServiceRoleForConfigMultiAccountSetup</code> in the master or delegated administrator account of your organization. The service linked role is created only when the role does not exist in the caller account. AWS Config verifies the existence of role with <code>GetRole</code> action.</p> <p>To use this API with delegated administrator, register a delegated administrator by calling AWS Organization <code>register-delegated-administrator</code> for <code>config-multiaccountsetup.amazonaws.com</code>. </p> <p>You can use this action to create both custom AWS Config rules and AWS managed Config rules. If you are adding a new custom AWS Config rule, you must first create AWS Lambda function in the master account or a delegated administrator that the rule invokes to evaluate your resources. When you use the <code>PutOrganizationConfigRule</code> action to add the rule to AWS Config, you must specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the function. If you are adding an AWS managed Config rule, specify the rule's identifier for the <code>RuleIdentifier</code> key.</p> <p>The maximum number of organization config rules that AWS Config supports is 150 and 3 delegated administrator per organization. </p> <note> <p>Prerequisite: Ensure you call <code>EnableAllFeatures</code> API to enable all features in an organization.</p> <p>Specify either <code>OrganizationCustomRuleMetadata</code> or <code>OrganizationManagedRuleMetadata</code>.</p> </note>",
     "PutOrganizationConformancePack": "<p>Deploys conformance packs across member accounts in an AWS Organization.</p> <p>Only a master account and a delegated administrator can call this API. When calling this API with a delegated administrator, you must ensure AWS Organizations <code>ListDelegatedAdministrator</code> permissions are added.</p> <p>This API enables organization service access for <code>config-multiaccountsetup.amazonaws.com</code> through the <code>EnableAWSServiceAccess</code> action and creates a service linked role <code>AWSServiceRoleForConfigMultiAccountSetup</code> in the master or delegated administrator account of your organization. The service linked role is created only when the role does not exist in the caller account. To use this API with delegated administrator, register a delegated administrator by calling AWS Organization <code>register-delegate-admin</code> for <code>config-multiaccountsetup.amazonaws.com</code>.</p> <note> <p>Prerequisite: Ensure you call <code>EnableAllFeatures</code> API to enable all features in an organization.</p> <p>You must specify either the <code>TemplateS3Uri</code> or the <code>TemplateBody</code> parameter, but not both. If you provide both AWS Config uses the <code>TemplateS3Uri</code> parameter and ignores the <code>TemplateBody</code> parameter.</p> <p>AWS Config sets the state of a conformance pack to CREATE_IN_PROGRESS and UPDATE_IN_PROGRESS until the conformance pack is created or updated. You cannot update a conformance pack while it is in this state.</p> <p>You can create 6 conformance packs with 25 AWS Config rules in each pack and 3 delegated administrator per organization. </p> </note>",
     "PutRemediationConfigurations": "<p>Adds or updates the remediation configuration with a specific AWS Config rule with the selected target or action. The API creates the <code>RemediationConfiguration</code> object for the AWS Config rule. The AWS Config rule must already exist for you to add a remediation configuration. The target (SSM document) must exist and have permissions to use the target. </p> <note> <p>If you make backward incompatible changes to the SSM document, you must call this again to ensure the remediations can run.</p> <p>This API does not support adding remediation configurations for service-linked AWS Config Rules such as Organization Config rules, the rules deployed by conformance packs, and rules deployed by AWS Security Hub.</p> </note>",
-    "PutRemediationExceptions": "<p>A remediation exception is when a specific resource is no longer considered for auto-remediation. This API adds a new exception or updates an exisiting exception for a specific resource with a specific AWS Config rule. </p> <note> <p>AWS Config generates a remediation exception when a problem occurs executing a remediation action to a specific resource. Remediation exceptions blocks auto-remediation until the exception is cleared.</p> </note>",
+    "PutRemediationExceptions": "<p>A remediation exception is when a specific resource is no longer considered for auto-remediation. This API adds a new exception or updates an existing exception for a specific resource with a specific AWS Config rule. </p> <note> <p>AWS Config generates a remediation exception when a problem occurs executing a remediation action to a specific resource. Remediation exceptions blocks auto-remediation until the exception is cleared.</p> </note>",
     "PutResourceConfig": "<p>Records the configuration state for the resource provided in the request. The configuration state of a resource is represented in AWS Config as Configuration Items. Once this API records the configuration item, you can retrieve the list of configuration items for the custom resource type using existing AWS Config APIs. </p> <note> <p>The custom resource type must be registered with AWS CloudFormation. This API accepts the configuration item registered with AWS CloudFormation.</p> <p>When you call this API, AWS Config only stores configuration state of the resource provided in the request. This API does not change or remediate the configuration of the resource. </p> <p>Write-only schema properites are not recorded as part of the published configuration item.</p> </note>",
     "PutRetentionConfiguration": "<p>Creates and updates the retention configuration with details about retention period (number of days) that AWS Config stores your historical information. The API creates the <code>RetentionConfiguration</code> object and names the object as <b>default</b>. When you have a <code>RetentionConfiguration</code> object named <b>default</b>, calling the API modifies the default object. </p> <note> <p>Currently, AWS Config supports only one retention configuration per region in your account.</p> </note>",
-    "PutStoredQuery": "<p>Saves a new query or updates an existing saved query. The <code>QueryName</code> must be unique for an AWS account in an AWS Region. You can create upto 300 queries in an AWS account in an AWS Region.</p>",
+    "PutStoredQuery": "<p>Saves a new query or updates an existing saved query. The <code>QueryName</code> must be unique for a single AWS account and a single AWS Region. You can create upto 300 queries in a single AWS account and a single AWS Region.</p>",
     "SelectAggregateResourceConfig": "<p>Accepts a structured query language (SQL) SELECT command and an aggregator to query configuration state of AWS resources across multiple accounts and regions, performs the corresponding search, and returns resource configurations matching the properties.</p> <p>For more information about query components, see the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/query-components.html\"> <b>Query Components</b> </a> section in the AWS Config Developer Guide.</p>",
     "SelectResourceConfig": "<p>Accepts a structured query language (SQL) <code>SELECT</code> command, performs the corresponding search, and returns resource configurations matching the properties.</p> <p>For more information about query components, see the <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/query-components.html\"> <b>Query Components</b> </a> section in the AWS Config Developer Guide.</p>",
     "StartConfigRulesEvaluation": "<p>Runs an on-demand evaluation for the specified AWS Config rules against the last known configuration state of the resources. Use <code>StartConfigRulesEvaluation</code> when you want to test that a rule you updated is working as expected. <code>StartConfigRulesEvaluation</code> does not re-record the latest configuration state for your resources. It re-runs an evaluation against the last known state of your resources. </p> <p>You can specify up to 25 AWS Config rules per request. </p> <p>An existing <code>StartConfigRulesEvaluation</code> call for the specified rules must complete before you can call the API again. If you chose to have AWS Config stream to an Amazon SNS topic, you will receive a <code>ConfigRuleEvaluationStarted</code> notification when the evaluation starts.</p> <note> <p>You don't need to call the <code>StartConfigRulesEvaluation</code> API to run an evaluation for a new rule. When you create a rule, AWS Config evaluates your resources against the rule automatically. </p> </note> <p>The <code>StartConfigRulesEvaluation</code> API is useful if you want to run on-demand evaluations, such as the following example:</p> <ol> <li> <p>You have a custom rule that evaluates your IAM resources every 24 hours.</p> </li> <li> <p>You update your Lambda function to add additional conditions to your rule.</p> </li> <li> <p>Instead of waiting for the next periodic evaluation, you call the <code>StartConfigRulesEvaluation</code> API.</p> </li> <li> <p>AWS Config invokes your Lambda function and evaluates your IAM resources.</p> </li> <li> <p>Your custom rule will still run periodic evaluations every 24 hours.</p> </li> </ol>",
@@ -92,7 +92,7 @@
       "base": null,
       "refs": {
         "BaseConfigurationItem$arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
-        "ConfigurationItem$arn": "<p>accoun</p>"
+        "ConfigurationItem$arn": "<p>Amazon Resource Name (ARN) associated with the resource.</p>"
       }
     },
     "AccountAggregationSource": {
@@ -316,7 +316,7 @@
         "DescribeComplianceByResourceRequest$ResourceId": "<p>The ID of the AWS resource for which you want compliance information. You can specify only one resource ID. If you specify a resource ID, you must also specify a type for <code>ResourceType</code>.</p>",
         "Evaluation$ComplianceResourceId": "<p>The ID of the AWS resource that was evaluated.</p>",
         "EvaluationResultQualifier$ResourceId": "<p>The ID of the evaluated AWS resource.</p>",
-        "ExternalEvaluation$ComplianceResourceId": null,
+        "ExternalEvaluation$ComplianceResourceId": "<p>The evaluated compliance resource ID. AWS Config accepts only AWS account ID.</p>",
         "GetComplianceDetailsByResourceRequest$ResourceId": "<p>The ID of the AWS resource for which you want compliance information.</p>",
         "Scope$ComplianceResourceId": "<p>The ID of the only AWS resource that you want to trigger an evaluation for the rule. If you specify a resource ID, you must specify one resource type for <code>ComplianceResourceTypes</code>.</p>"
       }
@@ -444,7 +444,7 @@
         "ConfigRuleComplianceFilters$ComplianceType": "<p>The rule compliance status.</p> <p>For the <code>ConfigRuleComplianceFilters</code> data type, AWS Config supports only <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>. AWS Config does not support the <code>NOT_APPLICABLE</code> and the <code>INSUFFICIENT_DATA</code> values.</p>",
         "Evaluation$ComplianceType": "<p>Indicates whether the AWS resource complies with the AWS Config rule that it was evaluated against.</p> <p>For the <code>Evaluation</code> data type, AWS Config supports only the <code>COMPLIANT</code>, <code>NON_COMPLIANT</code>, and <code>NOT_APPLICABLE</code> values. AWS Config does not support the <code>INSUFFICIENT_DATA</code> value for this data type.</p> <p>Similarly, AWS Config does not accept <code>INSUFFICIENT_DATA</code> as the value for <code>ComplianceType</code> from a <code>PutEvaluations</code> request. For example, an AWS Lambda function for a custom AWS Config rule cannot pass an <code>INSUFFICIENT_DATA</code> value to AWS Config.</p>",
         "EvaluationResult$ComplianceType": "<p>Indicates whether the AWS resource complies with the AWS Config rule that evaluated it.</p> <p>For the <code>EvaluationResult</code> data type, AWS Config supports only the <code>COMPLIANT</code>, <code>NON_COMPLIANT</code>, and <code>NOT_APPLICABLE</code> values. AWS Config does not support the <code>INSUFFICIENT_DATA</code> value for the <code>EvaluationResult</code> data type.</p>",
-        "ExternalEvaluation$ComplianceType": null,
+        "ExternalEvaluation$ComplianceType": "<p>The compliance of the AWS resource. The valid values are <code>COMPLIANT, NON_COMPLIANT, </code> and <code>NOT_APPLICABLE</code>.</p>",
         "GetAggregateComplianceDetailsByConfigRuleRequest$ComplianceType": "<p>The resource compliance status.</p> <note> <p>For the <code>GetAggregateComplianceDetailsByConfigRuleRequest</code> data type, AWS Config supports only the <code>COMPLIANT</code> and <code>NON_COMPLIANT</code>. AWS Config does not support the <code>NOT_APPLICABLE</code> and <code>INSUFFICIENT_DATA</code> values.</p> </note>"
       }
     },
@@ -517,7 +517,7 @@
         "DescribeRemediationExecutionStatusRequest$ConfigRuleName": "<p>A list of AWS Config rule names.</p>",
         "EvaluationResultQualifier$ConfigRuleName": "<p>The name of the AWS Config rule that was used in the evaluation.</p>",
         "GetAggregateComplianceDetailsByConfigRuleRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want compliance information.</p>",
-        "PutExternalEvaluationRequest$ConfigRuleName": null,
+        "PutExternalEvaluationRequest$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
         "PutRemediationExceptionsRequest$ConfigRuleName": "<p>The name of the AWS Config rule for which you want to create remediation exception.</p>",
         "ReevaluateConfigRuleNames$member": null,
         "RemediationConfiguration$ConfigRuleName": "<p>The name of the AWS Config rule.</p>",
@@ -1048,19 +1048,19 @@
     "DeliveryS3Bucket": {
       "base": null,
       "refs": {
-        "ConformancePackDetail$DeliveryS3Bucket": "<p>Conformance pack template that is used to create a pack. The delivery bucket name should start with awsconfigconforms. For example: \"Resource\": \"arn:aws:s3:::your_bucket_name/*\".</p>",
-        "OrganizationConformancePack$DeliveryS3Bucket": "<p>Location of an Amazon S3 bucket where AWS Config can deliver evaluation results and conformance pack template that is used to create a pack. </p>",
-        "PutConformancePackRequest$DeliveryS3Bucket": "<p>AWS Config stores intermediate files while processing conformance pack template.</p>",
-        "PutOrganizationConformancePackRequest$DeliveryS3Bucket": "<p>Location of an Amazon S3 bucket where AWS Config can deliver evaluation results. AWS Config stores intermediate files while processing conformance pack template. </p> <p>The delivery bucket name should start with awsconfigconforms. For example: \"Resource\": \"arn:aws:s3:::your_bucket_name/*\". For more information, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/conformance-pack-organization-apis.html\">Permissions for cross account bucket access</a>.</p>"
+        "ConformancePackDetail$DeliveryS3Bucket": "<p>Amazon S3 bucket where AWS Config stores conformance pack templates. </p> <note> <p>This field is optional.</p> </note>",
+        "OrganizationConformancePack$DeliveryS3Bucket": "<p>Amazon S3 bucket where AWS Config stores conformance pack templates. </p> <note> <p>This field is optional.</p> </note>",
+        "PutConformancePackRequest$DeliveryS3Bucket": "<p>Amazon S3 bucket where AWS Config stores conformance pack templates.</p> <note> <p>This field is optional.</p> </note>",
+        "PutOrganizationConformancePackRequest$DeliveryS3Bucket": "<p>Amazon S3 bucket where AWS Config stores conformance pack templates.</p> <note> <p>This field is optional.</p> </note>"
       }
     },
     "DeliveryS3KeyPrefix": {
       "base": null,
       "refs": {
-        "ConformancePackDetail$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket.</p>",
-        "OrganizationConformancePack$DeliveryS3KeyPrefix": "<p>Any folder structure you want to add to an Amazon S3 bucket.</p>",
-        "PutConformancePackRequest$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket. </p>",
-        "PutOrganizationConformancePackRequest$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket.</p>"
+        "ConformancePackDetail$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket.</p> <note> <p>This field is optional.</p> </note>",
+        "OrganizationConformancePack$DeliveryS3KeyPrefix": "<p>Any folder structure you want to add to an Amazon S3 bucket.</p> <note> <p>This field is optional.</p> </note>",
+        "PutConformancePackRequest$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket. </p> <note> <p>This field is optional.</p> </note>",
+        "PutOrganizationConformancePackRequest$DeliveryS3KeyPrefix": "<p>The prefix for the Amazon S3 bucket.</p> <note> <p>This field is optional.</p> </note>"
       }
     },
     "DeliveryStatus": {
@@ -1415,9 +1415,9 @@
       }
     },
     "ExternalEvaluation": {
-      "base": null,
+      "base": "<p>Identifies an AWS resource and indicates whether it complies with the AWS Config rule that it was evaluated against.</p>",
       "refs": {
-        "PutExternalEvaluationRequest$ExternalEvaluation": null
+        "PutExternalEvaluationRequest$ExternalEvaluation": "<p>An <code>ExternalEvaluation</code> object that provides details about compliance.</p>"
       }
     },
     "FailedDeleteRemediationExceptionsBatch": {
@@ -1717,6 +1717,11 @@
       "refs": {
       }
     },
+    "InvalidS3KmsKeyArnException": {
+      "base": "<p>The specified Amazon KMS Key ARN is not valid.</p>",
+      "refs": {
+      }
+    },
     "InvalidSNSTopicARNException": {
       "base": "<p>The specified Amazon SNS topic does not exist.</p>",
       "refs": {
@@ -1751,7 +1756,7 @@
         "GetComplianceDetailsByConfigRuleRequest$Limit": "<p>The maximum number of evaluation results returned on each page. The default is 10. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "GetDiscoveredResourceCountsRequest$limit": "<p>The maximum number of <a>ResourceCount</a> objects returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "GetResourceConfigHistoryRequest$limit": "<p>The maximum number of configuration items returned on each page. The default is 10. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
-        "ListAggregateDiscoveredResourcesRequest$Limit": "<p>The maximum number of resource identifiers returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
+        "ListAggregateDiscoveredResourcesRequest$Limit": "<p>The maximum number of resource identifiers returned on each page. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "ListDiscoveredResourcesRequest$limit": "<p>The maximum number of resource identifiers returned on each page. The default is 100. You cannot specify a number greater than 100. If you specify 0, AWS Config uses the default.</p>",
         "ListStoredQueriesRequest$MaxResults": "<p>The maximum number of results to be returned with a single call.</p>",
         "ListTagsForResourceRequest$Limit": "<p>The maximum number of tags returned on each page. The limit maximum is 50. You cannot specify a number greater than 50. If you specify 0, AWS Config uses the default. </p>",
@@ -2016,11 +2021,11 @@
       "base": null,
       "refs": {
         "Evaluation$OrderingTimestamp": "<p>The time of the event in AWS Config that triggered the evaluation. For event-based evaluations, the time indicates when AWS Config created the configuration item that triggered the evaluation. For periodic evaluations, the time indicates when AWS Config triggered the evaluation at the frequency that you specified (for example, every 24 hours).</p>",
-        "ExternalEvaluation$OrderingTimestamp": null
+        "ExternalEvaluation$OrderingTimestamp": "<p>The time when the compliance was recorded. </p>"
       }
     },
     "OrganizationAccessDeniedException": {
-      "base": "<p>For PutConfigAggregator API, no permission to call EnableAWSServiceAccess API.</p> <p>For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS Config throws an exception if APIs are called from member accounts. All APIs must be called from organization master account.</p>",
+      "base": "<p>For <code>PutConfigurationAggregator</code> API, you can see this exception for the following reasons:</p> <ul> <li> <p>No permission to call <code>EnableAWSServiceAccess</code> API</p> </li> <li> <p>The configuration aggregator cannot be updated because your AWS Organization management account or the delegated administrator role changed. Delete this aggregator and create a new one with the current AWS Organization.</p> </li> <li> <p>The configuration aggregator is associated with a previous AWS Organization and AWS Config cannot aggregate data with current AWS Organization. Delete this aggregator and create a new one with the current AWS Organization.</p> </li> <li> <p>You are not a registered delegated administrator for AWS Config with permissions to call <code>ListDelegatedAdministrators</code> API. Ensure that the management account registers delagated administrator for AWS Config service principle name before the delegated administrator creates an aggregator.</p> </li> </ul> <p>For all <code>OrganizationConfigRule</code> and <code>OrganizationConformancePack</code> APIs, AWS Config throws an exception if APIs are called from member accounts. All APIs must be called from organization master account.</p>",
       "refs": {
       }
     },
@@ -2376,9 +2381,9 @@
     "QueryArn": {
       "base": null,
       "refs": {
-        "PutStoredQueryResponse$QueryArn": "<p>Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-id.</p>",
-        "StoredQuery$QueryArn": "<p>Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-id.</p>",
-        "StoredQueryMetadata$QueryArn": "<p>Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-id.</p>"
+        "PutStoredQueryResponse$QueryArn": "<p>Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-name/resource-id.</p>",
+        "StoredQuery$QueryArn": "<p>Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-name/resource-id.</p>",
+        "StoredQueryMetadata$QueryArn": "<p>Amazon Resource Name (ARN) of the query. For example, arn:partition:service:region:account-id:resource-type/resource-name/resource-id.</p>"
       }
     },
     "QueryDescription": {
@@ -2729,7 +2734,7 @@
     "ResourceTypeList": {
       "base": null,
       "refs": {
-        "RecordingGroup$resourceTypes": "<p>A comma-separated list that specifies the types of AWS resources for which AWS Config records configuration changes (for example, <code>AWS::EC2::Instance</code> or <code>AWS::CloudTrail::Trail</code>).</p> <p>Before you can set this option to <code>true</code>, you must set the <code>allSupported</code> option to <code>false</code>.</p> <p>If you set this option to <code>true</code>, when AWS Config adds support for a new type of resource, it will not record resources of that type unless you manually add that type to your recording group.</p> <p>For a list of valid <code>resourceTypes</code> values, see the <b>resourceType Value</b> column in <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources\">Supported AWS Resource Types</a>.</p>"
+        "RecordingGroup$resourceTypes": "<p>A comma-separated list that specifies the types of AWS resources for which AWS Config records configuration changes (for example, <code>AWS::EC2::Instance</code> or <code>AWS::CloudTrail::Trail</code>).</p> <p>To record all configuration changes, you must set the <code>allSupported</code> option to <code>false</code>.</p> <p>If you set this option to <code>true</code>, when AWS Config adds support for a new type of resource, it will not record resources of that type unless you manually add that type to your recording group.</p> <p>For a list of valid <code>resourceTypes</code> values, see the <b>resourceType Value</b> column in <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources\">Supported AWS Resource Types</a>.</p>"
       }
     },
     "ResourceTypeString": {
@@ -2926,7 +2931,7 @@
       "base": "<p>Provides the details of a stored query.</p>",
       "refs": {
         "GetStoredQueryResponse$StoredQuery": "<p>Returns a <code>StoredQuery</code> object.</p>",
-        "PutStoredQueryRequest$StoredQuery": "<p>A list of <code>StoredQuery</code> objects. The mandatory fields are <code>QueryName</code> and <code>Expression</code>.</p>"
+        "PutStoredQueryRequest$StoredQuery": "<p>A list of <code>StoredQuery</code> objects. The mandatory fields are <code>QueryName</code> and <code>Expression</code>.</p> <note> <p>When you are creating a query, you must provide a query name and an expression. When you are updating a query, you must provide a query name but updating the description is optional.</p> </note>"
       }
     },
     "StoredQueryMetadata": {
@@ -2965,6 +2970,7 @@
         "DeliverConfigSnapshotResponse$configSnapshotId": "<p>The ID of the snapshot that is being created.</p>",
         "DeliveryChannel$s3BucketName": "<p>The name of the Amazon S3 bucket to which AWS Config delivers configuration snapshots and configuration history files.</p> <p>If you specify a bucket that belongs to another AWS account, that bucket must have policies that grant access permissions to AWS Config. For more information, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/s3-bucket-policy.html\">Permissions for the Amazon S3 Bucket</a> in the AWS Config Developer Guide.</p>",
         "DeliveryChannel$s3KeyPrefix": "<p>The prefix for the specified Amazon S3 bucket.</p>",
+        "DeliveryChannel$s3KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) customer managed key (CMK) used to encrypt objects delivered by AWS Config. Must belong to the same Region as the destination S3 bucket.</p>",
         "DeliveryChannel$snsTopicARN": "<p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which AWS Config sends notifications about configuration changes.</p> <p>If you choose a topic from another account, the topic must have policies that grant access permissions to AWS Config. For more information, see <a href=\"https://docs.aws.amazon.com/config/latest/developerguide/sns-topic-policy.html\">Permissions for the Amazon SNS Topic</a> in the AWS Config Developer Guide.</p>",
         "DeliveryChannelStatus$name": "<p>The name of the delivery channel.</p>",
         "DescribeAggregationAuthorizationsRequest$NextToken": "<p>The <code>nextToken</code> string returned on a previous page that you use to get the next page of results in a paginated response.</p>",
@@ -3069,8 +3075,8 @@
         "Evaluation$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",
         "EvaluationResult$Annotation": "<p>Supplementary information about how the evaluation determined the compliance.</p>",
         "EvaluationResultQualifier$ResourceType": "<p>The type of AWS resource that was evaluated.</p>",
-        "ExternalEvaluation$ComplianceResourceType": null,
-        "ExternalEvaluation$Annotation": null,
+        "ExternalEvaluation$ComplianceResourceType": "<p>The evaluated compliance resource type. AWS Config accepts <code>AWS::::Account</code> resource type.</p>",
+        "ExternalEvaluation$Annotation": "<p>Supplementary information about the reason of compliance. For example, this task was completed on a specific date.</p>",
         "GetAggregateConfigRuleComplianceSummaryResponse$GroupByKey": "<p>Groups the result based on ACCOUNT_ID or AWS_REGION.</p>",
         "GetAggregateDiscoveredResourceCountsResponse$GroupByKey": "<p>The key passed into the request object. If <code>GroupByKey</code> is not provided, the result will be empty.</p>",
         "GetComplianceDetailsByResourceRequest$ResourceType": "<p>The type of the AWS resource for which you want compliance information.</p>",
@@ -3225,7 +3231,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>The requested action is not valid.</p>",
+      "base": "<p>The requested action is not valid.</p> <p>For PutStoredQuery, you will see this exception if there are missing required fields or if the input value fails the validation, or if you are trying to create more than 300 queries.</p> <p>For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this exception if there are missing required fields or if the input value fails the validation.</p>",
       "refs": {
       }
     },

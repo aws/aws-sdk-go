@@ -7,6 +7,10 @@
 // tables. You can run individual SQL statements, which are committed if the
 // statement succeeds.
 //
+// For more information about the Amazon Redshift Data API, see Using the Amazon
+// Redshift Data API (https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html)
+// in the Amazon Redshift Cluster Management Guide.
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20 for more information on this service.
 //
 // See redshiftdataapiservice package documentation for more information.

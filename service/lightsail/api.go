@@ -934,11 +934,13 @@ func (c *Lightsail) CreateCertificateRequest(input *CreateCertificateInput) (req
 
 // CreateCertificate API operation for Amazon Lightsail.
 //
-// Creates an SSL/TLS certificate for a Amazon Lightsail content delivery network
-// (CDN) distribution.
+// Creates an SSL/TLS certificate for an Amazon Lightsail content delivery network
+// (CDN) distribution and a container service.
 //
-// After the certificate is created, use the AttachCertificateToDistribution
-// action to attach the certificate to your distribution.
+// After the certificate is valid, use the AttachCertificateToDistribution action
+// to use the certificate and its domains with your distribution. Or use the
+// UpdateContainerService action to use the certificate and its domains with
+// your container service.
 //
 // Only certificates created in the us-east-1 AWS Region can be attached to
 // Lightsail distributions. Lightsail distributions are global resources that
@@ -2802,7 +2804,7 @@ func (c *Lightsail) CreateLoadBalancerTlsCertificateRequest(input *CreateLoadBal
 
 // CreateLoadBalancerTlsCertificate API operation for Amazon Lightsail.
 //
-// Creates a Lightsail load balancer TLS certificate.
+// Creates an SSL/TLS certificate for an Amazon Lightsail load balancer.
 //
 // TLS is just an updated, more secure version of Secure Socket Layer (SSL).
 //
@@ -13066,7 +13068,7 @@ func (c *Lightsail) RegisterContainerImageRequest(input *RegisterContainerImageI
 // This action is not required if you install and use the Lightsail Control
 // (lightsailctl) plugin to push container images to your Lightsail container
 // service. For more information, see Pushing and managing container images
-// on your Amazon Lightsail container services (amazon-lightsail-pushing-container-images)
+// on your Amazon Lightsail container services (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-pushing-container-images)
 // in the Lightsail Dev Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -13486,7 +13488,7 @@ func (c *Lightsail) SetIpAddressTypeRequest(input *SetIpAddressTypeInput) (req *
 
 // SetIpAddressType API operation for Amazon Lightsail.
 //
-// Sets the IP address type for a Amazon Lightsail resource.
+// Sets the IP address type for an Amazon Lightsail resource.
 //
 // Use this action to enable dual-stack for a resource, which enables IPv4 and
 // IPv6 for the specified resource. Alternately, you can use this action to
@@ -17983,14 +17985,16 @@ type ContainerServiceHealthCheckConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The number of consecutive health checks successes required before moving
-	// the container to the Healthy state.
+	// the container to the Healthy state. The default value is 2.
 	HealthyThreshold *int64 `locationName:"healthyThreshold" type:"integer"`
 
 	// The approximate interval, in seconds, between health checks of an individual
-	// container. You may specify between 5 and 300 seconds.
+	// container. You can specify between 5 and 300 seconds. The default value is
+	// 5.
 	IntervalSeconds *int64 `locationName:"intervalSeconds" type:"integer"`
 
-	// The path on the container on which to perform the health check.
+	// The path on the container on which to perform the health check. The default
+	// value is /.
 	Path *string `locationName:"path" type:"string"`
 
 	// The HTTP codes to use when checking for a successful response from a container.
@@ -17998,11 +18002,11 @@ type ContainerServiceHealthCheckConfig struct {
 	SuccessCodes *string `locationName:"successCodes" type:"string"`
 
 	// The amount of time, in seconds, during which no response means a failed health
-	// check. You may specify between 2 and 60 seconds.
+	// check. You can specify between 2 and 60 seconds. The default value is 2.
 	TimeoutSeconds *int64 `locationName:"timeoutSeconds" type:"integer"`
 
 	// The number of consecutive health check failures required before moving the
-	// container to the Unhealthy state.
+	// container to the Unhealthy state. The default value is 2.
 	UnhealthyThreshold *int64 `locationName:"unhealthyThreshold" type:"integer"`
 }
 
@@ -20958,7 +20962,7 @@ type CreateRelationalDatabaseInput struct {
 	// RelationalDatabaseBundleId is a required field
 	RelationalDatabaseBundleId *string `locationName:"relationalDatabaseBundleId" type:"string" required:"true"`
 
-	// The name to use for your new database.
+	// The name to use for your new Lightsail database resource.
 	//
 	// Constraints:
 	//
@@ -30984,7 +30988,7 @@ type LoadBalancerTlsCertificate struct {
 	//    request was reported as an unsafe domain by VirusTotal (https://www.virustotal.com/gui/home/url).
 	//    To correct the problem, search for your domain name on the VirusTotal
 	//    (https://www.virustotal.com/gui/home/url) website. If your domain is reported
-	//    as suspicious, see Google Help for Hacked Websites (https://www.google.com/webmasters/hacked/?hl=en)
+	//    as suspicious, see Google Help for Hacked Websites (https://developers.google.com/web/fundamentals/security/hacked)
 	//    to learn what you can do. If you believe that the result is a false positive,
 	//    notify the organization that is reporting the domain. VirusTotal is an
 	//    aggregate of several antivirus and URL scanners and cannot remove your

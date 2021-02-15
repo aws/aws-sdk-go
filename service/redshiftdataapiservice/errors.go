@@ -8,6 +8,12 @@ import (
 
 const (
 
+	// ErrCodeActiveStatementsExceededException for service response error code
+	// "ActiveStatementsExceededException".
+	//
+	// The number of active statements exceeds the limit.
+	ErrCodeActiveStatementsExceededException = "ActiveStatementsExceededException"
+
 	// ErrCodeExecuteStatementException for service response error code
 	// "ExecuteStatementException".
 	//
@@ -34,8 +40,9 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"ExecuteStatementException": newErrorExecuteStatementException,
-	"InternalServerException":   newErrorInternalServerException,
-	"ResourceNotFoundException": newErrorResourceNotFoundException,
-	"ValidationException":       newErrorValidationException,
+	"ActiveStatementsExceededException": newErrorActiveStatementsExceededException,
+	"ExecuteStatementException":         newErrorExecuteStatementException,
+	"InternalServerException":           newErrorInternalServerException,
+	"ResourceNotFoundException":         newErrorResourceNotFoundException,
+	"ValidationException":               newErrorValidationException,
 }

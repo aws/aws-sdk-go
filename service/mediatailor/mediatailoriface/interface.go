@@ -72,6 +72,9 @@ type MediaTailorAPI interface {
 	ListPlaybackConfigurationsWithContext(aws.Context, *mediatailor.ListPlaybackConfigurationsInput, ...request.Option) (*mediatailor.ListPlaybackConfigurationsOutput, error)
 	ListPlaybackConfigurationsRequest(*mediatailor.ListPlaybackConfigurationsInput) (*request.Request, *mediatailor.ListPlaybackConfigurationsOutput)
 
+	ListPlaybackConfigurationsPages(*mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool) error
+	ListPlaybackConfigurationsPagesWithContext(aws.Context, *mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*mediatailor.ListTagsForResourceInput) (*mediatailor.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *mediatailor.ListTagsForResourceInput, ...request.Option) (*mediatailor.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*mediatailor.ListTagsForResourceInput) (*request.Request, *mediatailor.ListTagsForResourceOutput)

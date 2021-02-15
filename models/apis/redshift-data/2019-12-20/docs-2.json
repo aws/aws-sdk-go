@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>You can use the Amazon Redshift Data API to run queries on Amazon Redshift tables. You can run individual SQL statements, which are committed if the statement succeeds. </p>",
+  "service": "<p>You can use the Amazon Redshift Data API to run queries on Amazon Redshift tables. You can run individual SQL statements, which are committed if the statement succeeds. </p> <p>For more information about the Amazon Redshift Data API, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/data-api.html\">Using the Amazon Redshift Data API</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
   "operations": {
     "CancelStatement": "<p>Cancels a running query. To be canceled, a query must be running. </p>",
     "DescribeStatement": "<p>Describes the details about a specific instance when a query was run by the Amazon Redshift Data API. The information includes when the query started, when it finished, the query status, the number of rows returned, and the SQL statement. </p>",
@@ -13,6 +13,11 @@
     "ListTables": "<p>List the tables in a database. If neither <code>SchemaPattern</code> nor <code>TablePattern</code> are specified, then all tables in the database are returned. A token is returned to page through the table list. Depending on the authorization method, use one of the following combinations of request parameters: </p> <ul> <li> <p>AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the secret and the cluster identifier that matches the cluster in the secret. </p> </li> <li> <p>Temporary credentials - specify the cluster identifier, the database name, and the database user name. Permission to call the <code>redshift:GetClusterCredentials</code> operation is required to use this method. </p> </li> </ul>"
   },
   "shapes": {
+    "ActiveStatementsExceededException": {
+      "base": "<p>The number of active statements exceeds the limit.</p>",
+      "refs": {
+      }
+    },
     "Blob": {
       "base": null,
       "refs": {
@@ -23,7 +28,9 @@
       "base": null,
       "refs": {
         "CancelStatementResponse$Status": "<p>A value that indicates whether the cancel statement succeeded (true). </p>",
-        "ExecuteStatementInput$WithEvent": "<p>A value that indicates whether to send an event to the Amazon EventBridge event bus after the SQL statement runs. </p>"
+        "DescribeStatementResponse$HasResultSet": "<p>A value that indicates whether the statement has a result set. The result set can be empty. </p>",
+        "ExecuteStatementInput$WithEvent": "<p>A value that indicates whether to send an event to the Amazon EventBridge event bus after the SQL statement runs. </p>",
+        "ListStatementsRequest$RoleLevel": "<p>A value that filters which statements to return in the response. If true, all statements run by the caller's IAM role are returned. If false, only statements run by the caller's IAM role in the current IAM session are returned. The default is true. </p>"
       }
     },
     "BoxedBoolean": {
@@ -297,6 +304,7 @@
     "String": {
       "base": null,
       "refs": {
+        "ActiveStatementsExceededException$Message": null,
         "ColumnMetadata$columnDefault": "<p>The default value of the column. </p>",
         "ColumnMetadata$label": "<p>The label for the column. </p>",
         "ColumnMetadata$name": "<p>The name of the column. </p>",

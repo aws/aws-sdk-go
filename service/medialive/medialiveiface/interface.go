@@ -104,6 +104,10 @@ type MediaLiveAPI interface {
 	CreateMultiplexProgramWithContext(aws.Context, *medialive.CreateMultiplexProgramInput, ...request.Option) (*medialive.CreateMultiplexProgramOutput, error)
 	CreateMultiplexProgramRequest(*medialive.CreateMultiplexProgramInput) (*request.Request, *medialive.CreateMultiplexProgramOutput)
 
+	CreatePartnerInput(*medialive.CreatePartnerInputInput) (*medialive.CreatePartnerInputOutput, error)
+	CreatePartnerInputWithContext(aws.Context, *medialive.CreatePartnerInputInput, ...request.Option) (*medialive.CreatePartnerInputOutput, error)
+	CreatePartnerInputRequest(*medialive.CreatePartnerInputInput) (*request.Request, *medialive.CreatePartnerInputOutput)
+
 	CreateTags(*medialive.CreateTagsInput) (*medialive.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *medialive.CreateTagsInput, ...request.Option) (*medialive.CreateTagsOutput, error)
 	CreateTagsRequest(*medialive.CreateTagsInput) (*request.Request, *medialive.CreateTagsOutput)

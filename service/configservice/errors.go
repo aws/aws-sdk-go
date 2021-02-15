@@ -103,6 +103,12 @@ const (
 	// The specified Amazon S3 key prefix is not valid.
 	ErrCodeInvalidS3KeyPrefixException = "InvalidS3KeyPrefixException"
 
+	// ErrCodeInvalidS3KmsKeyArnException for service response error code
+	// "InvalidS3KmsKeyArnException".
+	//
+	// The specified Amazon KMS Key ARN is not valid.
+	ErrCodeInvalidS3KmsKeyArnException = "InvalidS3KmsKeyArnException"
+
 	// ErrCodeInvalidSNSTopicARNException for service response error code
 	// "InvalidSNSTopicARNException".
 	//
@@ -295,8 +301,23 @@ const (
 	// ErrCodeOrganizationAccessDeniedException for service response error code
 	// "OrganizationAccessDeniedException".
 	//
-	// For PutConfigAggregator API, no permission to call EnableAWSServiceAccess
-	// API.
+	// For PutConfigurationAggregator API, you can see this exception for the following
+	// reasons:
+	//
+	//    * No permission to call EnableAWSServiceAccess API
+	//
+	//    * The configuration aggregator cannot be updated because your AWS Organization
+	//    management account or the delegated administrator role changed. Delete
+	//    this aggregator and create a new one with the current AWS Organization.
+	//
+	//    * The configuration aggregator is associated with a previous AWS Organization
+	//    and AWS Config cannot aggregate data with current AWS Organization. Delete
+	//    this aggregator and create a new one with the current AWS Organization.
+	//
+	//    * You are not a registered delegated administrator for AWS Config with
+	//    permissions to call ListDelegatedAdministrators API. Ensure that the management
+	//    account registers delagated administrator for AWS Config service principle
+	//    name before the delegated administrator creates an aggregator.
 	//
 	// For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
 	// Config throws an exception if APIs are called from member accounts. All APIs
@@ -389,6 +410,14 @@ const (
 	// "ValidationException".
 	//
 	// The requested action is not valid.
+	//
+	// For PutStoredQuery, you will see this exception if there are missing required
+	// fields or if the input value fails the validation, or if you are trying to
+	// create more than 300 queries.
+	//
+	// For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this
+	// exception if there are missing required fields or if the input value fails
+	// the validation.
 	ErrCodeValidationException = "ValidationException"
 )
 
@@ -406,6 +435,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidResultTokenException":                              newErrorInvalidResultTokenException,
 	"InvalidRoleException":                                     newErrorInvalidRoleException,
 	"InvalidS3KeyPrefixException":                              newErrorInvalidS3KeyPrefixException,
+	"InvalidS3KmsKeyArnException":                              newErrorInvalidS3KmsKeyArnException,
 	"InvalidSNSTopicARNException":                              newErrorInvalidSNSTopicARNException,
 	"InvalidTimeRangeException":                                newErrorInvalidTimeRangeException,
 	"LastDeliveryChannelDeleteFailedException":                 newErrorLastDeliveryChannelDeleteFailedException,

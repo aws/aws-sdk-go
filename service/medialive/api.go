@@ -1025,6 +1025,94 @@ func (c *MediaLive) CreateMultiplexProgramWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opCreatePartnerInput = "CreatePartnerInput"
+
+// CreatePartnerInputRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePartnerInput operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePartnerInput for more information on using the CreatePartnerInput
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePartnerInputRequest method.
+//    req, resp := client.CreatePartnerInputRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreatePartnerInput
+func (c *MediaLive) CreatePartnerInputRequest(input *CreatePartnerInputInput) (req *request.Request, output *CreatePartnerInputOutput) {
+	op := &request.Operation{
+		Name:       opCreatePartnerInput,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputs/{inputId}/partners",
+	}
+
+	if input == nil {
+		input = &CreatePartnerInputInput{}
+	}
+
+	output = &CreatePartnerInputOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePartnerInput API operation for AWS Elemental MediaLive.
+//
+// Create a partner input
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CreatePartnerInput for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CreatePartnerInput
+func (c *MediaLive) CreatePartnerInput(input *CreatePartnerInputInput) (*CreatePartnerInputOutput, error) {
+	req, out := c.CreatePartnerInputRequest(input)
+	return out, req.Send()
+}
+
+// CreatePartnerInputWithContext is the same as CreatePartnerInput with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePartnerInput for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CreatePartnerInputWithContext(ctx aws.Context, input *CreatePartnerInputInput, opts ...request.Option) (*CreatePartnerInputOutput, error) {
+	req, out := c.CreatePartnerInputRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a "aws/request.Request" representing the
@@ -9639,6 +9727,83 @@ func (s *CreateMultiplexProgramOutput) SetMultiplexProgram(v *MultiplexProgram) 
 	return s
 }
 
+type CreatePartnerInputInput struct {
+	_ struct{} `type:"structure"`
+
+	// InputId is a required field
+	InputId *string `location:"uri" locationName:"inputId" type:"string" required:"true"`
+
+	RequestId *string `locationName:"requestId" type:"string" idempotencyToken:"true"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s CreatePartnerInputInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePartnerInputInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePartnerInputInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePartnerInputInput"}
+	if s.InputId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputId"))
+	}
+	if s.InputId != nil && len(*s.InputId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputId sets the InputId field's value.
+func (s *CreatePartnerInputInput) SetInputId(v string) *CreatePartnerInputInput {
+	s.InputId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreatePartnerInputInput) SetRequestId(v string) *CreatePartnerInputInput {
+	s.RequestId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreatePartnerInputInput) SetTags(v map[string]*string) *CreatePartnerInputInput {
+	s.Tags = v
+	return s
+}
+
+type CreatePartnerInputOutput struct {
+	_ struct{} `type:"structure"`
+
+	Input *Input `locationName:"input" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePartnerInputOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePartnerInputOutput) GoString() string {
+	return s.String()
+}
+
+// SetInput sets the Input field's value.
+func (s *CreatePartnerInputOutput) SetInput(v *Input) *CreatePartnerInputOutput {
+	s.Input = v
+	return s
+}
+
 type CreateTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11083,6 +11248,8 @@ type DescribeInputOutput struct {
 
 	InputDevices []*InputDeviceSettings `locationName:"inputDevices" type:"list"`
 
+	InputPartnerIds []*string `locationName:"inputPartnerIds" type:"list"`
+
 	// There are two types of input sources, static and dynamic. If an input source
 	// is dynamic you canchange the source url of the input dynamically using an
 	// input switch action. However, the only input typeto support a dynamic url
@@ -11149,6 +11316,12 @@ func (s *DescribeInputOutput) SetInputClass(v string) *DescribeInputOutput {
 // SetInputDevices sets the InputDevices field's value.
 func (s *DescribeInputOutput) SetInputDevices(v []*InputDeviceSettings) *DescribeInputOutput {
 	s.InputDevices = v
+	return s
+}
+
+// SetInputPartnerIds sets the InputPartnerIds field's value.
+func (s *DescribeInputOutput) SetInputPartnerIds(v []*string) *DescribeInputOutput {
+	s.InputPartnerIds = v
 	return s
 }
 
@@ -15926,6 +16099,9 @@ type Input struct {
 	// Settings for the input devices.
 	InputDevices []*InputDeviceSettings `locationName:"inputDevices" type:"list"`
 
+	// A list of IDs for all Inputs which are partners of this one.
+	InputPartnerIds []*string `locationName:"inputPartnerIds" type:"list"`
+
 	// Certain pull input sources can be dynamic, meaning that they can have their
 	// URL's dynamically changesduring input switch actions. Presently, this functionality
 	// only works with MP4_FILE inputs.
@@ -15998,6 +16174,12 @@ func (s *Input) SetInputClass(v string) *Input {
 // SetInputDevices sets the InputDevices field's value.
 func (s *Input) SetInputDevices(v []*InputDeviceSettings) *Input {
 	s.InputDevices = v
+	return s
+}
+
+// SetInputPartnerIds sets the InputPartnerIds field's value.
+func (s *Input) SetInputPartnerIds(v []*string) *Input {
+	s.InputPartnerIds = v
 	return s
 }
 

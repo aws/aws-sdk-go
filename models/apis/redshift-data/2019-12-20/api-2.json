@@ -63,7 +63,8 @@
       "output":{"shape":"ExecuteStatementOutput"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ExecuteStatementException"}
+        {"shape":"ExecuteStatementException"},
+        {"shape":"ActiveStatementsExceededException"}
       ]
     },
     "GetStatementResult":{
@@ -134,6 +135,13 @@
     }
   },
   "shapes":{
+    "ActiveStatementsExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "Blob":{"type":"blob"},
     "Boolean":{
       "type":"boolean",
@@ -211,6 +219,7 @@
         "DbUser":{"shape":"String"},
         "Duration":{"shape":"Long"},
         "Error":{"shape":"String"},
+        "HasResultSet":{"shape":"Boolean"},
         "Id":{"shape":"UUID"},
         "QueryString":{"shape":"StatementString"},
         "RedshiftPid":{"shape":"Long"},
@@ -293,7 +302,8 @@
         "isNull":{"shape":"BoxedBoolean"},
         "longValue":{"shape":"BoxedLong"},
         "stringValue":{"shape":"String"}
-      }
+      },
+      "union":true
     },
     "FieldList":{
       "type":"list",
@@ -379,6 +389,7 @@
       "members":{
         "MaxResults":{"shape":"ListStatementsLimit"},
         "NextToken":{"shape":"String"},
+        "RoleLevel":{"shape":"Boolean"},
         "StatementName":{"shape":"StatementNameString"},
         "Status":{"shape":"StatusString"}
       }
@@ -417,7 +428,11 @@
     },
     "Location":{"type":"string"},
     "Long":{"type":"long"},
-    "PageSize":{"type":"integer"},
+    "PageSize":{
+      "type":"integer",
+      "max":1000,
+      "min":0
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":[
@@ -465,13 +480,13 @@
     "StatusString":{
       "type":"string",
       "enum":[
-        "ABORTED",
-        "ALL",
-        "FAILED",
-        "FINISHED",
+        "SUBMITTED",
         "PICKED",
         "STARTED",
-        "SUBMITTED"
+        "FINISHED",
+        "ABORTED",
+        "FAILED",
+        "ALL"
       ]
     },
     "String":{"type":"string"},

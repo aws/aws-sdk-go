@@ -14488,6 +14488,12 @@ type CampaignSmsMessage struct {
 	// messages).
 	MessageType *string `type:"string" enum:"MessageType"`
 
+	// The long code to send the SMS message from. This value should be one of the
+	// dedicated long codes that's assigned to your AWS account. Although it isn't
+	// required, we recommend that you specify the long code using an E.164 format
+	// to ensure prompt and accurate delivery of the message. For example, +12065550100.
+	OriginationNumber *string `type:"string"`
+
 	// The sender ID to display on recipients' devices when they receive the SMS
 	// message.
 	SenderId *string `type:"string"`
@@ -14512,6 +14518,12 @@ func (s *CampaignSmsMessage) SetBody(v string) *CampaignSmsMessage {
 // SetMessageType sets the MessageType field's value.
 func (s *CampaignSmsMessage) SetMessageType(v string) *CampaignSmsMessage {
 	s.MessageType = &v
+	return s
+}
+
+// SetOriginationNumber sets the OriginationNumber field's value.
+func (s *CampaignSmsMessage) SetOriginationNumber(v string) *CampaignSmsMessage {
+	s.OriginationNumber = &v
 	return s
 }
 
@@ -25921,6 +25933,12 @@ type JourneySMSMessage struct {
 	// messages).
 	MessageType *string `type:"string" enum:"MessageType"`
 
+	// The long code to send the SMS message from. This value should be one of the
+	// dedicated long codes that's assigned to your AWS account. Although it isn't
+	// required, we recommend that you specify the long code using an E.164 format
+	// to ensure prompt and accurate delivery of the message. For example, +12065550100.
+	OriginationNumber *string `type:"string"`
+
 	// The sender ID to display as the sender of the message on a recipient's device.
 	// Support for sender IDs varies by country or region. For more information,
 	// see Supported Countries and Regions (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html)
@@ -25941,6 +25959,12 @@ func (s JourneySMSMessage) GoString() string {
 // SetMessageType sets the MessageType field's value.
 func (s *JourneySMSMessage) SetMessageType(v string) *JourneySMSMessage {
 	s.MessageType = &v
+	return s
+}
+
+// SetOriginationNumber sets the OriginationNumber field's value.
+func (s *JourneySMSMessage) SetOriginationNumber(v string) *JourneySMSMessage {
+	s.OriginationNumber = &v
 	return s
 }
 

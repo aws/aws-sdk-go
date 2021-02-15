@@ -192,6 +192,12 @@ func (c *MediaTailor) ListPlaybackConfigurationsRequest(input *ListPlaybackConfi
 		Name:       opListPlaybackConfigurations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/playbackConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -237,6 +243,58 @@ func (c *MediaTailor) ListPlaybackConfigurationsWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListPlaybackConfigurationsPages iterates over the pages of a ListPlaybackConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPlaybackConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPlaybackConfigurations operation.
+//    pageNum := 0
+//    err := client.ListPlaybackConfigurationsPages(params,
+//        func(page *mediatailor.ListPlaybackConfigurationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListPlaybackConfigurationsPages(input *ListPlaybackConfigurationsInput, fn func(*ListPlaybackConfigurationsOutput, bool) bool) error {
+	return c.ListPlaybackConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPlaybackConfigurationsPagesWithContext same as ListPlaybackConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListPlaybackConfigurationsPagesWithContext(ctx aws.Context, input *ListPlaybackConfigurationsInput, fn func(*ListPlaybackConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPlaybackConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPlaybackConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPlaybackConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -953,6 +1011,9 @@ type GetPlaybackConfigurationOutput struct {
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
+	// Predefined aliases for dynamic variables.
+	ConfigurationAliases map[string]map[string]*string `type:"map"`
+
 	// The configuration for DASH content.
 	DashConfiguration *DashConfiguration `type:"structure"`
 
@@ -1035,6 +1096,12 @@ func (s *GetPlaybackConfigurationOutput) SetBumper(v *Bumper) *GetPlaybackConfig
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *GetPlaybackConfigurationOutput) SetCdnConfiguration(v *CdnConfiguration) *GetPlaybackConfigurationOutput {
 	s.CdnConfiguration = v
+	return s
+}
+
+// SetConfigurationAliases sets the ConfigurationAliases field's value.
+func (s *GetPlaybackConfigurationOutput) SetConfigurationAliases(v map[string]map[string]*string) *GetPlaybackConfigurationOutput {
+	s.ConfigurationAliases = v
 	return s
 }
 
@@ -1359,6 +1426,9 @@ type PlaybackConfiguration struct {
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
+	// Predefined aliases for dynamic variables.
+	ConfigurationAliases map[string]map[string]*string `type:"map"`
+
 	// The configuration for DASH content.
 	DashConfiguration *DashConfiguration `type:"structure"`
 
@@ -1403,6 +1473,12 @@ func (s *PlaybackConfiguration) SetAdDecisionServerUrl(v string) *PlaybackConfig
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *PlaybackConfiguration) SetCdnConfiguration(v *CdnConfiguration) *PlaybackConfiguration {
 	s.CdnConfiguration = v
+	return s
+}
+
+// SetConfigurationAliases sets the ConfigurationAliases field's value.
+func (s *PlaybackConfiguration) SetConfigurationAliases(v map[string]map[string]*string) *PlaybackConfiguration {
+	s.ConfigurationAliases = v
 	return s
 }
 
@@ -1493,6 +1569,9 @@ type PutPlaybackConfigurationInput struct {
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
+	// Predefined aliases for dynamic variables.
+	ConfigurationAliases map[string]map[string]*string `type:"map"`
+
 	// The configuration for DASH content.
 	DashConfiguration *DashConfigurationForPut `type:"structure"`
 
@@ -1577,6 +1656,12 @@ func (s *PutPlaybackConfigurationInput) SetCdnConfiguration(v *CdnConfiguration)
 	return s
 }
 
+// SetConfigurationAliases sets the ConfigurationAliases field's value.
+func (s *PutPlaybackConfigurationInput) SetConfigurationAliases(v map[string]map[string]*string) *PutPlaybackConfigurationInput {
+	s.ConfigurationAliases = v
+	return s
+}
+
 // SetDashConfiguration sets the DashConfiguration field's value.
 func (s *PutPlaybackConfigurationInput) SetDashConfiguration(v *DashConfigurationForPut) *PutPlaybackConfigurationInput {
 	s.DashConfiguration = v
@@ -1646,6 +1731,9 @@ type PutPlaybackConfigurationOutput struct {
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
+	// Predefined aliases for dynamic variables.
+	ConfigurationAliases map[string]map[string]*string `type:"map"`
+
 	// The configuration for DASH content.
 	DashConfiguration *DashConfiguration `type:"structure"`
 
@@ -1707,6 +1795,12 @@ func (s *PutPlaybackConfigurationOutput) SetBumper(v *Bumper) *PutPlaybackConfig
 // SetCdnConfiguration sets the CdnConfiguration field's value.
 func (s *PutPlaybackConfigurationOutput) SetCdnConfiguration(v *CdnConfiguration) *PutPlaybackConfigurationOutput {
 	s.CdnConfiguration = v
+	return s
+}
+
+// SetConfigurationAliases sets the ConfigurationAliases field's value.
+func (s *PutPlaybackConfigurationOutput) SetConfigurationAliases(v map[string]map[string]*string) *PutPlaybackConfigurationOutput {
+	s.ConfigurationAliases = v
 	return s
 }
 
