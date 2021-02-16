@@ -6981,6 +6981,9 @@ type CopyDBClusterSnapshotInput struct {
 	// cluster snapshot, and otherwise false. The default is false.
 	CopyTags *bool `type:"boolean"`
 
+	// DestinationRegion is used for presigning the request to a given region.
+	DestinationRegion *string `type:"string"`
+
 	// The AWS AWS KMS key ID for an encrypted DB cluster snapshot. The KMS key
 	// ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key
 	// alias for the KMS encryption key.
@@ -7020,6 +7023,11 @@ type CopyDBClusterSnapshotInput struct {
 	//
 	// SourceDBClusterSnapshotIdentifier is a required field
 	SourceDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// SourceRegion is the source region where the resource exists. This is not
+	// sent over the wire and is only used for presigning. This value should always
+	// have the same region as the source ARN.
+	SourceRegion *string `type:"string" ignore:"true"`
 
 	// The tags to assign to the new DB cluster snapshot copy.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -7073,6 +7081,12 @@ func (s *CopyDBClusterSnapshotInput) SetCopyTags(v bool) *CopyDBClusterSnapshotI
 	return s
 }
 
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *CopyDBClusterSnapshotInput) SetDestinationRegion(v string) *CopyDBClusterSnapshotInput {
+	s.DestinationRegion = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CopyDBClusterSnapshotInput) SetKmsKeyId(v string) *CopyDBClusterSnapshotInput {
 	s.KmsKeyId = &v
@@ -7088,6 +7102,12 @@ func (s *CopyDBClusterSnapshotInput) SetPreSignedUrl(v string) *CopyDBClusterSna
 // SetSourceDBClusterSnapshotIdentifier sets the SourceDBClusterSnapshotIdentifier field's value.
 func (s *CopyDBClusterSnapshotInput) SetSourceDBClusterSnapshotIdentifier(v string) *CopyDBClusterSnapshotInput {
 	s.SourceDBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CopyDBClusterSnapshotInput) SetSourceRegion(v string) *CopyDBClusterSnapshotInput {
+	s.SourceRegion = &v
 	return s
 }
 
@@ -7534,6 +7554,9 @@ type CreateDBClusterInput struct {
 	// deletion protection is enabled.
 	DeletionProtection *bool `type:"boolean"`
 
+	// DestinationRegion is used for presigning the request to a given region.
+	DestinationRegion *string `type:"string"`
+
 	// The list of log types that need to be enabled for exporting to CloudWatch
 	// Logs.
 	EnableCloudwatchLogsExports []*string `type:"list"`
@@ -7645,6 +7668,11 @@ type CreateDBClusterInput struct {
 	// this DB cluster is created as a Read Replica.
 	ReplicationSourceIdentifier *string `type:"string"`
 
+	// SourceRegion is the source region where the resource exists. This is not
+	// sent over the wire and is only used for presigning. This value should always
+	// have the same region as the source ARN.
+	SourceRegion *string `type:"string" ignore:"true"`
+
 	// Specifies whether the DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
@@ -7729,6 +7757,12 @@ func (s *CreateDBClusterInput) SetDeletionProtection(v bool) *CreateDBClusterInp
 	return s
 }
 
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *CreateDBClusterInput) SetDestinationRegion(v string) *CreateDBClusterInput {
+	s.DestinationRegion = &v
+	return s
+}
+
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *CreateDBClusterInput) SetEnableCloudwatchLogsExports(v []*string) *CreateDBClusterInput {
 	s.EnableCloudwatchLogsExports = v
@@ -7804,6 +7838,12 @@ func (s *CreateDBClusterInput) SetPreferredMaintenanceWindow(v string) *CreateDB
 // SetReplicationSourceIdentifier sets the ReplicationSourceIdentifier field's value.
 func (s *CreateDBClusterInput) SetReplicationSourceIdentifier(v string) *CreateDBClusterInput {
 	s.ReplicationSourceIdentifier = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CreateDBClusterInput) SetSourceRegion(v string) *CreateDBClusterInput {
+	s.SourceRegion = &v
 	return s
 }
 
