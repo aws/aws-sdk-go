@@ -414,6 +414,103 @@ func (c *DevOpsGuru) DescribeAnomalyWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeFeedback = "DescribeFeedback"
+
+// DescribeFeedbackRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFeedback operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFeedback for more information on using the DescribeFeedback
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFeedbackRequest method.
+//    req, resp := client.DescribeFeedbackRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeFeedback
+func (c *DevOpsGuru) DescribeFeedbackRequest(input *DescribeFeedbackInput) (req *request.Request, output *DescribeFeedbackOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFeedback,
+		HTTPMethod: "POST",
+		HTTPPath:   "/feedback",
+	}
+
+	if input == nil {
+		input = &DescribeFeedbackInput{}
+	}
+
+	output = &DescribeFeedbackOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFeedback API operation for Amazon DevOps Guru.
+//
+// Returns the most recent feedback submitted in the current AWS account and
+// Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeFeedback for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeFeedback
+func (c *DevOpsGuru) DescribeFeedback(input *DescribeFeedbackInput) (*DescribeFeedbackOutput, error) {
+	req, out := c.DescribeFeedbackRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFeedbackWithContext is the same as DescribeFeedback with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFeedback for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeFeedbackWithContext(ctx aws.Context, input *DescribeFeedbackInput, opts ...request.Option) (*DescribeFeedbackOutput, error) {
+	req, out := c.DescribeFeedbackRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeInsight = "DescribeInsight"
 
 // DescribeInsightRequest generates a "aws/request.Request" representing the
@@ -2956,6 +3053,65 @@ func (s *DescribeAnomalyOutput) SetProactiveAnomaly(v *ProactiveAnomaly) *Descri
 // SetReactiveAnomaly sets the ReactiveAnomaly field's value.
 func (s *DescribeAnomalyOutput) SetReactiveAnomaly(v *ReactiveAnomaly) *DescribeAnomalyOutput {
 	s.ReactiveAnomaly = v
+	return s
+}
+
+type DescribeFeedbackInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the insight for which the feedback was provided.
+	InsightId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeFeedbackInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFeedbackInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFeedbackInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFeedbackInput"}
+	if s.InsightId != nil && len(*s.InsightId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InsightId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *DescribeFeedbackInput) SetInsightId(v string) *DescribeFeedbackInput {
+	s.InsightId = &v
+	return s
+}
+
+type DescribeFeedbackOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about insight feedback received from a customer.
+	InsightFeedback *InsightFeedback `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeFeedbackOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFeedbackOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsightFeedback sets the InsightFeedback field's value.
+func (s *DescribeFeedbackOutput) SetInsightFeedback(v *InsightFeedback) *DescribeFeedbackOutput {
+	s.InsightFeedback = v
 	return s
 }
 

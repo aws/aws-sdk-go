@@ -6405,6 +6405,13 @@ type CreateProjectInput struct {
 	// later time.
 	Cache *ProjectCache `locationName:"cache" type:"structure"`
 
+	// The maximum number of concurrent builds that are allowed for this project.
+	//
+	// New builds are only started if the current number of builds is less than
+	// or equal to this limit. If the current build count meets this limit, new
+	// builds are throttled and are not run.
+	ConcurrentBuildLimit *int64 `locationName:"concurrentBuildLimit" type:"integer"`
+
 	// A description that makes the build project easy to identify.
 	Description *string `locationName:"description" type:"string"`
 
@@ -6651,6 +6658,12 @@ func (s *CreateProjectInput) SetBuildBatchConfig(v *ProjectBuildBatchConfig) *Cr
 // SetCache sets the Cache field's value.
 func (s *CreateProjectInput) SetCache(v *ProjectCache) *CreateProjectInput {
 	s.Cache = v
+	return s
+}
+
+// SetConcurrentBuildLimit sets the ConcurrentBuildLimit field's value.
+func (s *CreateProjectInput) SetConcurrentBuildLimit(v int64) *CreateProjectInput {
+	s.ConcurrentBuildLimit = &v
 	return s
 }
 
@@ -9913,6 +9926,13 @@ type Project struct {
 	// Information about the cache for the build project.
 	Cache *ProjectCache `locationName:"cache" type:"structure"`
 
+	// The maximum number of concurrent builds that are allowed for this project.
+	//
+	// New builds are only started if the current number of builds is less than
+	// or equal to this limit. If the current build count meets this limit, new
+	// builds are throttled and are not run.
+	ConcurrentBuildLimit *int64 `locationName:"concurrentBuildLimit" type:"integer"`
+
 	// When the build project was created, expressed in Unix time format.
 	Created *time.Time `locationName:"created" type:"timestamp"`
 
@@ -10053,6 +10073,12 @@ func (s *Project) SetBuildBatchConfig(v *ProjectBuildBatchConfig) *Project {
 // SetCache sets the Cache field's value.
 func (s *Project) SetCache(v *ProjectCache) *Project {
 	s.Cache = v
+	return s
+}
+
+// SetConcurrentBuildLimit sets the ConcurrentBuildLimit field's value.
+func (s *Project) SetConcurrentBuildLimit(v int64) *Project {
+	s.ConcurrentBuildLimit = &v
 	return s
 }
 
@@ -10378,9 +10404,6 @@ type ProjectBadge struct {
 	BadgeEnabled *bool `locationName:"badgeEnabled" type:"boolean"`
 
 	// The publicly-accessible URL through which you can access the build badge
-	// for your project.
-	//
-	// The publicly accessible URL through which you can access the build badge
 	// for your project.
 	BadgeRequestUrl *string `locationName:"badgeRequestUrl" type:"string"`
 }
@@ -13702,6 +13725,15 @@ type UpdateProjectInput struct {
 	// later time.
 	Cache *ProjectCache `locationName:"cache" type:"structure"`
 
+	// The maximum number of concurrent builds that are allowed for this project.
+	//
+	// New builds are only started if the current number of builds is less than
+	// or equal to this limit. If the current build count meets this limit, new
+	// builds are throttled and are not run.
+	//
+	// To remove this limit, set this value to -1.
+	ConcurrentBuildLimit *int64 `locationName:"concurrentBuildLimit" type:"integer"`
+
 	// A new or replacement description of the build project.
 	Description *string `locationName:"description" type:"string"`
 
@@ -13932,6 +13964,12 @@ func (s *UpdateProjectInput) SetBuildBatchConfig(v *ProjectBuildBatchConfig) *Up
 // SetCache sets the Cache field's value.
 func (s *UpdateProjectInput) SetCache(v *ProjectCache) *UpdateProjectInput {
 	s.Cache = v
+	return s
+}
+
+// SetConcurrentBuildLimit sets the ConcurrentBuildLimit field's value.
+func (s *UpdateProjectInput) SetConcurrentBuildLimit(v int64) *UpdateProjectInput {
+	s.ConcurrentBuildLimit = &v
 	return s
 }
 

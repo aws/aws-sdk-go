@@ -6,6 +6,7 @@
     "DescribeAccountHealth": "<p> Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your AWS account. Use these numbers to gauge the health of operations in your AWS account. </p>",
     "DescribeAccountOverview": "<p> For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights. </p>",
     "DescribeAnomaly": "<p> Returns details about an anomaly that you specify using its ID. </p>",
+    "DescribeFeedback": "<p> Returns the most recent feedback submitted in the current AWS account and Region. </p>",
     "DescribeInsight": "<p> Returns details about an insight that you specify using its ID. </p>",
     "DescribeResourceCollectionHealth": "<p> Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of AWS resources collection. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. </p>",
     "DescribeServiceIntegration": "<p> Returns the integration status of services that are integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight. </p>",
@@ -221,6 +222,16 @@
       "refs": {
       }
     },
+    "DescribeFeedbackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFeedbackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeInsightRequest": {
       "base": null,
       "refs": {
@@ -382,6 +393,7 @@
     "InsightFeedback": {
       "base": "<p> Information about insight feedback received from a customer. </p>",
       "refs": {
+        "DescribeFeedbackResponse$InsightFeedback": null,
         "PutFeedbackRequest$InsightFeedback": "<p> The feedback from customers is about the recommendations in this insight. </p>"
       }
     },
@@ -400,6 +412,7 @@
     "InsightId": {
       "base": null,
       "refs": {
+        "DescribeFeedbackRequest$InsightId": "<p> The ID of the insight for which the feedback was provided. </p>",
         "DescribeInsightRequest$Id": "<p> The ID of the insight. </p>",
         "InsightFeedback$Id": "<p> The insight feedback ID. </p>",
         "ListAnomaliesForInsightRequest$InsightId": "<p> The ID of the insight. The returned anomalies belong to this insight. </p>",

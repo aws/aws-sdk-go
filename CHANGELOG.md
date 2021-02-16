@@ -1,3 +1,15 @@
+Release v1.37.12 (2021-02-16)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * This release provides per-project limits for the number of concurrent builds
+* `service/devops-guru`: Updates service API and documentation
+
+### SDK Bugs
+* `aws/client`: Fix logging to allow it to be enabled per operation
+  * Allow logging of operation and request to be enabled per operation, not only per client or session.
+
 Release v1.37.11 (2021-02-15)
 ===
 
