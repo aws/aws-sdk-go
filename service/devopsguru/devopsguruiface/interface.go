@@ -76,6 +76,10 @@ type DevOpsGuruAPI interface {
 	DescribeAnomalyWithContext(aws.Context, *devopsguru.DescribeAnomalyInput, ...request.Option) (*devopsguru.DescribeAnomalyOutput, error)
 	DescribeAnomalyRequest(*devopsguru.DescribeAnomalyInput) (*request.Request, *devopsguru.DescribeAnomalyOutput)
 
+	DescribeFeedback(*devopsguru.DescribeFeedbackInput) (*devopsguru.DescribeFeedbackOutput, error)
+	DescribeFeedbackWithContext(aws.Context, *devopsguru.DescribeFeedbackInput, ...request.Option) (*devopsguru.DescribeFeedbackOutput, error)
+	DescribeFeedbackRequest(*devopsguru.DescribeFeedbackInput) (*request.Request, *devopsguru.DescribeFeedbackOutput)
+
 	DescribeInsight(*devopsguru.DescribeInsightInput) (*devopsguru.DescribeInsightOutput, error)
 	DescribeInsightWithContext(aws.Context, *devopsguru.DescribeInsightInput, ...request.Option) (*devopsguru.DescribeInsightOutput, error)
 	DescribeInsightRequest(*devopsguru.DescribeInsightInput) (*request.Request, *devopsguru.DescribeInsightOutput)

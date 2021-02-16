@@ -80,6 +80,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeFeedback":{
+      "name":"DescribeFeedback",
+      "http":{
+        "method":"POST",
+        "requestUri":"/feedback",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeFeedbackRequest"},
+      "output":{"shape":"DescribeFeedbackResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeInsight":{
       "name":"DescribeInsight",
       "http":{
@@ -523,6 +540,18 @@
       "members":{
         "ProactiveAnomaly":{"shape":"ProactiveAnomaly"},
         "ReactiveAnomaly":{"shape":"ReactiveAnomaly"}
+      }
+    },
+    "DescribeFeedbackRequest":{
+      "type":"structure",
+      "members":{
+        "InsightId":{"shape":"InsightId"}
+      }
+    },
+    "DescribeFeedbackResponse":{
+      "type":"structure",
+      "members":{
+        "InsightFeedback":{"shape":"InsightFeedback"}
       }
     },
     "DescribeInsightRequest":{
