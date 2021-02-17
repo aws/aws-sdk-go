@@ -49,6 +49,8 @@ func (a *API) customizationPasses() error {
 		"s3control":  s3ControlCustomizations,
 		"cloudfront": cloudfrontCustomizations,
 		"rds":        rdsCustomizations,
+		"neptune":    neptuneCustomizations,
+		"docdb":      docdbCustomizations,
 
 		// Disable endpoint resolving for services that require customer
 		// to provide endpoint them selves.
@@ -327,7 +329,34 @@ func rdsCustomizations(a *API) error {
 		"CreateDBClusterInput",
 		"StartDBInstanceAutomatedBackupsReplicationInput",
 	}
-	for _, input := range inputs {
+	generatePresignedURL(a, inputs)
+	return nil
+}
+
+// neptuneCustomizations are customization for the service/neptune. This adds
+// non-modeled fields used for presigning.
+func neptuneCustomizations(a *API) error {
+	inputs := []string{
+		"CopyDBClusterSnapshotInput",
+		"CreateDBClusterInput",
+	}
+	generatePresignedURL(a, inputs)
+	return nil
+}
+
+// neptuneCustomizations are customization for the service/neptune. This adds
+// non-modeled fields used for presigning.
+func docdbCustomizations(a *API) error {
+	inputs := []string{
+		"CopyDBClusterSnapshotInput",
+		"CreateDBClusterInput",
+	}
+	generatePresignedURL(a, inputs)
+	return nil
+}
+
+func generatePresignedURL(a *API, inputShapes []string) {
+	for _, input := range inputShapes {
 		if ref, ok := a.Shapes[input]; ok {
 			ref.MemberRefs["SourceRegion"] = &ShapeRef{
 				Documentation: docstring(`SourceRegion is the source region where the resource exists. This is not sent over the wire and is only used for presigning. This value should always have the same region as the source ARN.`),
@@ -342,8 +371,6 @@ func rdsCustomizations(a *API) error {
 			}
 		}
 	}
-
-	return nil
 }
 
 func disableEndpointResolving(a *API) error {

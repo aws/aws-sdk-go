@@ -4964,6 +4964,9 @@ type CopyDBClusterSnapshotInput struct {
 	// cluster snapshot, and otherwise false. The default is false.
 	CopyTags *bool `type:"boolean"`
 
+	// DestinationRegion is used for presigning the request to a given region.
+	DestinationRegion *string `type:"string"`
+
 	// The AWS KMS key ID for an encrypted cluster snapshot. The AWS KMS key ID
 	// is the Amazon Resource Name (ARN), AWS KMS key identifier, or the AWS KMS
 	// key alias for the AWS KMS encryption key.
@@ -5033,6 +5036,11 @@ type CopyDBClusterSnapshotInput struct {
 	// SourceDBClusterSnapshotIdentifier is a required field
 	SourceDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
 
+	// SourceRegion is the source region where the resource exists. This is not
+	// sent over the wire and is only used for presigning. This value should always
+	// have the same region as the source ARN.
+	SourceRegion *string `type:"string" ignore:"true"`
+
 	// The tags to be assigned to the cluster snapshot.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -5085,6 +5093,12 @@ func (s *CopyDBClusterSnapshotInput) SetCopyTags(v bool) *CopyDBClusterSnapshotI
 	return s
 }
 
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *CopyDBClusterSnapshotInput) SetDestinationRegion(v string) *CopyDBClusterSnapshotInput {
+	s.DestinationRegion = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CopyDBClusterSnapshotInput) SetKmsKeyId(v string) *CopyDBClusterSnapshotInput {
 	s.KmsKeyId = &v
@@ -5100,6 +5114,12 @@ func (s *CopyDBClusterSnapshotInput) SetPreSignedUrl(v string) *CopyDBClusterSna
 // SetSourceDBClusterSnapshotIdentifier sets the SourceDBClusterSnapshotIdentifier field's value.
 func (s *CopyDBClusterSnapshotInput) SetSourceDBClusterSnapshotIdentifier(v string) *CopyDBClusterSnapshotInput {
 	s.SourceDBClusterSnapshotIdentifier = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CopyDBClusterSnapshotInput) SetSourceRegion(v string) *CopyDBClusterSnapshotInput {
+	s.SourceRegion = &v
 	return s
 }
 
@@ -5187,6 +5207,9 @@ type CreateDBClusterInput struct {
 	// is disabled. DeletionProtection protects clusters from being accidentally
 	// deleted.
 	DeletionProtection *bool `type:"boolean"`
+
+	// DestinationRegion is used for presigning the request to a given region.
+	DestinationRegion *string `type:"string"`
 
 	// A list of log types that need to be enabled for exporting to Amazon CloudWatch
 	// Logs. You can enable audit logs or profiler logs. For more information, see
@@ -5282,6 +5305,11 @@ type CreateDBClusterInput struct {
 	// Constraints: Minimum 30-minute window.
 	PreferredMaintenanceWindow *string `type:"string"`
 
+	// SourceRegion is the source region where the resource exists. This is not
+	// sent over the wire and is only used for presigning. This value should always
+	// have the same region as the source ARN.
+	SourceRegion *string `type:"string" ignore:"true"`
+
 	// Specifies whether the cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
@@ -5360,6 +5388,12 @@ func (s *CreateDBClusterInput) SetDeletionProtection(v bool) *CreateDBClusterInp
 	return s
 }
 
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *CreateDBClusterInput) SetDestinationRegion(v string) *CreateDBClusterInput {
+	s.DestinationRegion = &v
+	return s
+}
+
 // SetEnableCloudwatchLogsExports sets the EnableCloudwatchLogsExports field's value.
 func (s *CreateDBClusterInput) SetEnableCloudwatchLogsExports(v []*string) *CreateDBClusterInput {
 	s.EnableCloudwatchLogsExports = v
@@ -5417,6 +5451,12 @@ func (s *CreateDBClusterInput) SetPreferredBackupWindow(v string) *CreateDBClust
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *CreateDBClusterInput) SetPreferredMaintenanceWindow(v string) *CreateDBClusterInput {
 	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetSourceRegion sets the SourceRegion field's value.
+func (s *CreateDBClusterInput) SetSourceRegion(v string) *CreateDBClusterInput {
+	s.SourceRegion = &v
 	return s
 }
 
