@@ -25089,6 +25089,9 @@ const (
 
 	// ConformancePackComplianceTypeNonCompliant is a ConformancePackComplianceType enum value
 	ConformancePackComplianceTypeNonCompliant = "NON_COMPLIANT"
+
+	// ConformancePackComplianceTypeInsufficientData is a ConformancePackComplianceType enum value
+	ConformancePackComplianceTypeInsufficientData = "INSUFFICIENT_DATA"
 )
 
 // ConformancePackComplianceType_Values returns all elements of the ConformancePackComplianceType enum
@@ -25096,6 +25099,7 @@ func ConformancePackComplianceType_Values() []string {
 	return []string{
 		ConformancePackComplianceTypeCompliant,
 		ConformancePackComplianceTypeNonCompliant,
+		ConformancePackComplianceTypeInsufficientData,
 	}
 }
 

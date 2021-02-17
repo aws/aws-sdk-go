@@ -727,7 +727,7 @@
         "ContentType":{
           "shape":"ContentType",
           "location":"header",
-          "locationName":"content-type"
+          "locationName":"Content-Type"
         }
       },
       "payload":"Body"
@@ -952,10 +952,11 @@
     "ModelHostingStatus":{
       "type":"string",
       "enum":[
-        "RUNNING",
-        "STARTING",
-        "STOPPED",
-        "FAILED"
+        "STARTING_HOSTING",
+        "HOSTED",
+        "HOSTING_FAILED",
+        "STOPPING_HOSTING",
+        "SYSTEM_UPDATING"
       ]
     },
     "ModelMetadata":{
