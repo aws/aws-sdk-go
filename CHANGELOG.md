@@ -1,3 +1,12 @@
+Release v1.37.13 (2021-02-17)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * This release includes a new filter for describe-vpc-endpoint-services.
+* `service/lookoutvision`: Updates service API and documentation
+
 Release v1.37.12 (2021-02-16)
 ===
 

@@ -29507,7 +29507,7 @@
       "type":"structure",
       "members":{
         "AssociationId":{
-          "shape":"String",
+          "shape":"SubnetCidrAssociationId",
           "locationName":"associationId"
         },
         "Ipv6CidrBlock":{
