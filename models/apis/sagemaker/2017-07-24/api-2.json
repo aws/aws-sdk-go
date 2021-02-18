@@ -4810,7 +4810,8 @@
       "members":{
         "DomainId":{"shape":"DomainId"},
         "UserProfileName":{"shape":"UserProfileName"},
-        "SessionExpirationDurationInSeconds":{"shape":"SessionExpirationDurationInSeconds"}
+        "SessionExpirationDurationInSeconds":{"shape":"SessionExpirationDurationInSeconds"},
+        "ExpiresInSeconds":{"shape":"ExpiresInSeconds"}
       }
     },
     "CreatePresignedDomainUrlResponse":{
@@ -7595,6 +7596,11 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"}
       }
+    },
+    "ExpiresInSeconds":{
+      "type":"integer",
+      "max":300,
+      "min":5
     },
     "Explainability":{
       "type":"structure",
@@ -13313,7 +13319,6 @@
     },
     "TaskAvailabilityLifetimeInSeconds":{
       "type":"integer",
-      "max":864000,
       "min":60
     },
     "TaskCount":{
@@ -13346,7 +13351,6 @@
     },
     "TaskTimeLimitInSeconds":{
       "type":"integer",
-      "max":604800,
       "min":30
     },
     "TaskTitle":{

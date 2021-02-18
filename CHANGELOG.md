@@ -1,3 +1,20 @@
+Release v1.37.14 (2021-02-18)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Adding the 'callAs' parameter to all CloudFormation StackSets APIs except getTemplateSummary to support creating and managing service-managed StackSets with AWS Organizations Delegated Administrators
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now allows you to specify a separate bucket owner as part of the S3 destination in a report group.
+* `service/health`: Updates service documentation
+  * Documentation updates for health
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds expires-in-seconds parameter to the CreatePresignedDomainUrl API for support of a configurable TTL.
+
+### SDK Enhancements
+* `service/neptune`: Support for PreSignedUrl generation for CopyDBClusterSnapshot and CreateDBCluster operations. ([#3782](https://github.com/aws/aws-sdk-go/pull/3782))
+* `service/docdb`: Support for PreSignedUrl generation for CopyDBClusterSnapshot and CreateDBCluster operations. ([#3782](https://github.com/aws/aws-sdk-go/pull/3782))
+
 Release v1.37.13 (2021-02-17)
 ===
 

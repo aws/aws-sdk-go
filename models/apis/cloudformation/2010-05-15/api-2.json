@@ -892,6 +892,13 @@
       },
       "exception":true
     },
+    "CallAs":{
+      "type":"string",
+      "enum":[
+        "SELF",
+        "DELEGATED_ADMIN"
+      ]
+    },
     "CancelUpdateStackInput":{
       "type":"structure",
       "required":["StackName"],
@@ -1118,7 +1125,8 @@
         "OperationId":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "CreateStackInstancesOutput":{
@@ -1148,6 +1156,7 @@
         "ExecutionRoleName":{"shape":"ExecutionRoleName"},
         "PermissionModel":{"shape":"PermissionModels"},
         "AutoDeployment":{"shape":"AutoDeployment"},
+        "CallAs":{"shape":"CallAs"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
@@ -1212,7 +1221,8 @@
         "OperationId":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "DeleteStackInstancesOutput":{
@@ -1225,7 +1235,8 @@
       "type":"structure",
       "required":["StackSetName"],
       "members":{
-        "StackSetName":{"shape":"StackSetName"}
+        "StackSetName":{"shape":"StackSetName"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "DeleteStackSetOutput":{
@@ -1357,7 +1368,8 @@
       "members":{
         "StackSetName":{"shape":"StackSetName"},
         "StackInstanceAccount":{"shape":"Account"},
-        "StackInstanceRegion":{"shape":"Region"}
+        "StackInstanceRegion":{"shape":"Region"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "DescribeStackInstanceOutput":{
@@ -1419,7 +1431,8 @@
       "type":"structure",
       "required":["StackSetName"],
       "members":{
-        "StackSetName":{"shape":"StackSetName"}
+        "StackSetName":{"shape":"StackSetName"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "DescribeStackSetOperationInput":{
@@ -1430,7 +1443,8 @@
       ],
       "members":{
         "StackSetName":{"shape":"StackSetName"},
-        "OperationId":{"shape":"ClientRequestToken"}
+        "OperationId":{"shape":"ClientRequestToken"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "DescribeStackSetOperationOutput":{
@@ -1552,7 +1566,8 @@
         "OperationId":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "DetectStackSetDriftOutput":{
@@ -1855,7 +1870,8 @@
         "MaxResults":{"shape":"MaxResults"},
         "Filters":{"shape":"StackInstanceFilters"},
         "StackInstanceAccount":{"shape":"Account"},
-        "StackInstanceRegion":{"shape":"Region"}
+        "StackInstanceRegion":{"shape":"Region"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "ListStackInstancesOutput":{
@@ -1890,7 +1906,8 @@
         "StackSetName":{"shape":"StackSetName"},
         "OperationId":{"shape":"ClientRequestToken"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "ListStackSetOperationResultsOutput":{
@@ -1906,7 +1923,8 @@
       "members":{
         "StackSetName":{"shape":"StackSetName"},
         "NextToken":{"shape":"NextToken"},
-        "MaxResults":{"shape":"MaxResults"}
+        "MaxResults":{"shape":"MaxResults"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "ListStackSetOperationsOutput":{
@@ -1921,7 +1939,8 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "MaxResults":{"shape":"MaxResults"},
-        "Status":{"shape":"StackSetStatus"}
+        "Status":{"shape":"StackSetStatus"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "ListStackSetsOutput":{
@@ -3223,7 +3242,8 @@
       ],
       "members":{
         "StackSetName":{"shape":"StackSetName"},
-        "OperationId":{"shape":"ClientRequestToken"}
+        "OperationId":{"shape":"ClientRequestToken"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "StopStackSetOperationOutput":{
@@ -3416,7 +3436,8 @@
         "OperationId":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "UpdateStackInstancesOutput":{
@@ -3454,7 +3475,8 @@
           "idempotencyToken":true
         },
         "Accounts":{"shape":"AccountList"},
-        "Regions":{"shape":"RegionList"}
+        "Regions":{"shape":"RegionList"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "UpdateStackSetOutput":{
