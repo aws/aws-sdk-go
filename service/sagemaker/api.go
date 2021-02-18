@@ -3383,9 +3383,10 @@ func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomain
 // Domain's Amazon Elastic File System (EFS) volume. This operation can only
 // be called when the authentication mode equals IAM.
 //
-// The URL that you get from a call to CreatePresignedDomainUrl is valid only
-// for 5 minutes. If you try to use the URL after the 5-minute limit expires,
-// you are directed to the AWS console sign-in page.
+// The URL that you get from a call to CreatePresignedDomainUrl has a default
+// timeout of 5 minutes. You can configure this value using ExpiresInSeconds.
+// If you try to use the URL after the timeout limit expires, you are directed
+// to the AWS console sign-in page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17622,6 +17623,22 @@ func (c *SageMaker) ListTrainingJobsRequest(input *ListTrainingJobsInput) (req *
 //
 // Lists training jobs.
 //
+// When StatusEquals and MaxResults are set at the same time, the MaxResults
+// number of training jobs are first retrieved ignoring the StatusEquals parameter
+// and then they are filtered by the StatusEquals parameter, which is returned
+// as a response. For example, if ListTrainingJobs is invoked with the following
+// parameters:
+//
+// { ... MaxResults: 100, StatusEquals: InProgress ... }
+//
+// Then, 100 trainings jobs with any status including those other than InProgress
+// are selected first (sorted according the creation time, from the latest to
+// the oldest) and those with status InProgress are returned.
+//
+// You can quickly test the API using the following AWS CLI code.
+//
+// aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -23560,17 +23577,28 @@ type AnnotationConsolidationConfig struct {
 	// want workers to adjust 3D cuboids around objects in a 3D point cloud.
 	//
 	//    * arn:aws:lambda:us-east-1:432418664414:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:us-east-2:266458841044:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:us-west-2:081040173940:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:eu-west-1:568282634449:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:ap-south-1:565803892007:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:eu-central-1:203001061592:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:eu-west-2:487402164563:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-Adjustment3DPointCloudObjectDetection
-	//    arn:aws:lambda:ca-central-1:918755190332:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:us-east-2:266458841044:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:us-west-2:081040173940:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:eu-west-1:568282634449:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:ap-northeast-1:477331159723:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:ap-southeast-2:454466003867:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:ap-south-1:565803892007:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:eu-central-1:203001061592:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:ap-northeast-2:845288260483:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:eu-west-2:487402164563:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:ap-southeast-1:377565633583:function:ACS-Adjustment3DPointCloudObjectDetection
+	//
+	//    * arn:aws:lambda:ca-central-1:918755190332:function:ACS-Adjustment3DPointCloudObjectDetection
 	//
 	// 3D Point Cloud Object Tracking Adjustment - Use this task type when you want
 	// workers to adjust 3D cuboids around objects that appear in a sequence of
@@ -30153,15 +30181,51 @@ type CreateLabelingJobInput struct {
 	// Input data for the labeling job, such as the Amazon S3 location of the data
 	// objects and the location of the manifest file that describes the data objects.
 	//
+	// You must specify at least one of the following: S3DataSource or SnsDataSource.
+	//
+	//    * Use SnsDataSource to specify an SNS input topic for a streaming labeling
+	//    job. If you do not specify and SNS input topic ARN, Ground Truth will
+	//    create a one-time labeling job that stops after all data objects in the
+	//    input manifest file have been labeled.
+	//
+	//    * Use S3DataSource to specify an input manifest file for both streaming
+	//    and one-time labeling jobs. Adding an S3DataSource is optional if you
+	//    use SnsDataSource to create a streaming labeling job.
+	//
+	// If you use the Amazon Mechanical Turk workforce, your input data should not
+	// include confidential information, personal information or protected health
+	// information. Use ContentClassifiers to specify that your data is free of
+	// personally identifiable information and adult content.
+	//
 	// InputConfig is a required field
 	InputConfig *LabelingJobInputConfig `type:"structure" required:"true"`
 
 	// The attribute name to use for the label in the output manifest file. This
 	// is the key for the key/value pair formed with the label that a worker assigns
-	// to the object. The name can't end with "-metadata". If you are running a
-	// semantic segmentation labeling job, the attribute name must end with "-ref".
-	// If you are running any other kind of labeling job, the attribute name must
-	// not end with "-ref".
+	// to the object. The LabelAttributeName must meet the following requirements.
+	//
+	//    * The name can't end with "-metadata".
+	//
+	//    * If you are using one of the following built-in task types (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html),
+	//    the attribute name must end with "-ref". If the task type you are using
+	//    is not listed below, the attribute name must not end with "-ref". Image
+	//    semantic segmentation (SemanticSegmentation), and adjustment (AdjustmentSemanticSegmentation)
+	//    and verification (VerificationSemanticSegmentation) labeling jobs for
+	//    this task type. Video frame object detection (VideoObjectDetection), and
+	//    adjustment and verification (AdjustmentVideoObjectDetection) labeling
+	//    jobs for this task type. Video frame object tracking (VideoObjectTracking),
+	//    and adjustment and verification (AdjustmentVideoObjectTracking) labeling
+	//    jobs for this task type. 3D point cloud semantic segmentation (3DPointCloudSemanticSegmentation),
+	//    and adjustment and verification (Adjustment3DPointCloudSemanticSegmentation)
+	//    labeling jobs for this task type. 3D point cloud object tracking (3DPointCloudObjectTracking),
+	//    and adjustment and verification (Adjustment3DPointCloudObjectTracking)
+	//    labeling jobs for this task type.
+	//
+	// If you are creating an adjustment or verification labeling job, you must
+	// use a different LabelAttributeName than the one used in the original labeling
+	// job. The original labeling job is the Ground Truth labeling job that produced
+	// the labels that you want verified or adjusted. To learn more about adjustment
+	// and verification labeling jobs, see Verify and Adjust Labels (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-verification-data.html).
 	//
 	// LabelAttributeName is a required field
 	LabelAttributeName *string `min:"1" type:"string" required:"true"`
@@ -30182,33 +30246,25 @@ type CreateLabelingJobInput struct {
 	//
 	// {
 	//
-	// "document-version": "2018-11-28"
+	// "document-version": "2018-11-28",
 	//
-	// "labels": [
-	//
-	// {
-	//
-	// "label": "label_1"
-	//
-	// },
-	//
-	// {
-	//
-	// "label": "label_2"
-	//
-	// },
-	//
-	// ...
-	//
-	// {
-	//
-	// "label": "label_n"
+	// "labels": [{"label": "label_1"},{"label": "label_2"},...{"label": "label_n"}]
 	//
 	// }
 	//
-	// ]
+	// Note the following about the label category configuration file:
 	//
-	// }
+	//    * For image classification and text classification (single and multi-label)
+	//    you must specify at least two label categories. For all other task types,
+	//    the minimum number of label categories required is one.
+	//
+	//    * Each label category must be unique, you cannot specify duplicate label
+	//    categories.
+	//
+	//    * If you create a 3D point cloud or video frame adjustment or verification
+	//    labeling job, you must include auditLabelAttributeName in the label category
+	//    configuration. Use this parameter to enter the LabelAttributeName (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html#sagemaker-CreateLabelingJob-request-LabelAttributeName)
+	//    of the labeling job you want to adjust or verify annotations of.
 	LabelCategoryConfigS3Uri *string `type:"string"`
 
 	// Configures the information required to perform automated data labeling.
@@ -32204,7 +32260,11 @@ type CreatePresignedDomainUrlInput struct {
 	// DomainId is a required field
 	DomainId *string `type:"string" required:"true"`
 
-	// The session expiration duration in seconds.
+	// The number of seconds until the pre-signed URL expires. This value defaults
+	// to 300.
+	ExpiresInSeconds *int64 `min:"5" type:"integer"`
+
+	// The session expiration duration in seconds. This value defaults to 43200.
 	SessionExpirationDurationInSeconds *int64 `min:"1800" type:"integer"`
 
 	// The name of the UserProfile to sign-in as.
@@ -32229,6 +32289,9 @@ func (s *CreatePresignedDomainUrlInput) Validate() error {
 	if s.DomainId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DomainId"))
 	}
+	if s.ExpiresInSeconds != nil && *s.ExpiresInSeconds < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("ExpiresInSeconds", 5))
+	}
 	if s.SessionExpirationDurationInSeconds != nil && *s.SessionExpirationDurationInSeconds < 1800 {
 		invalidParams.Add(request.NewErrParamMinValue("SessionExpirationDurationInSeconds", 1800))
 	}
@@ -32245,6 +32308,12 @@ func (s *CreatePresignedDomainUrlInput) Validate() error {
 // SetDomainId sets the DomainId field's value.
 func (s *CreatePresignedDomainUrlInput) SetDomainId(v string) *CreatePresignedDomainUrlInput {
 	s.DomainId = &v
+	return s
+}
+
+// SetExpiresInSeconds sets the ExpiresInSeconds field's value.
+func (s *CreatePresignedDomainUrlInput) SetExpiresInSeconds(v int64) *CreatePresignedDomainUrlInput {
+	s.ExpiresInSeconds = &v
 	return s
 }
 
@@ -32364,7 +32433,8 @@ type CreateProcessingJobInput struct {
 	// AppSpecification is a required field
 	AppSpecification *AppSpecification `type:"structure" required:"true"`
 
-	// Sets the environment variables in the Docker container.
+	// The environment variables to set in the Docker container. Up to 100 key and
+	// values entries in the map are supported.
 	Environment map[string]*string `type:"map"`
 
 	// Associates a SageMaker job as a trial component with an experiment and trial.
@@ -32377,10 +32447,12 @@ type CreateProcessingJobInput struct {
 	//    * CreateTransformJob
 	ExperimentConfig *ExperimentConfig `type:"structure"`
 
-	// Networking options for a processing job.
+	// Networking options for a processing job, such as whether to allow inbound
+	// and outbound network calls to and from processing containers, and the VPC
+	// subnets and security groups to use for VPC-enabled processing jobs.
 	NetworkConfig *NetworkConfig `type:"structure"`
 
-	// List of input configurations for the processing job.
+	// An array of inputs configuring the data to download into the processing container.
 	ProcessingInputs []*ProcessingInput `type:"list"`
 
 	// The name of the processing job. The name must be unique within an AWS Region
@@ -38739,8 +38811,7 @@ type DescribeCompilationJobOutput struct {
 	// that the job failed.
 	CompilationEndTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker assumes
-	// to perform the model compilation job.
+	// The Amazon Resource Name (ARN) of the model compilation job.
 	//
 	// CompilationJobArn is a required field
 	CompilationJobArn *string `type:"string" required:"true"`
@@ -38802,7 +38873,8 @@ type DescribeCompilationJobOutput struct {
 	// OutputConfig is a required field
 	OutputConfig *OutputConfig `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the model compilation job.
+	// The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker assumes
+	// to perform the model compilation job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -44118,7 +44190,13 @@ type DescribeTrainingJobOutput struct {
 	// The Amazon Resource Name (ARN) of an AutoML job.
 	AutoMLJobArn *string `min:"1" type:"string"`
 
-	// The billable time in seconds.
+	// The billable time in seconds. Billable time refers to the absolute wall-clock
+	// time.
+	//
+	// Multiply BillableTimeInSeconds by the number of instances (InstanceCount)
+	// in your training cluster to get the total compute time Amazon SageMaker will
+	// bill you if you run distributed training. The formula is as follows: BillableTimeInSeconds
+	// * InstanceCount .
 	//
 	// You can calculate the savings from using managed spot training using the
 	// formula (1 - BillableTimeInSeconds / TrainingTimeInSeconds) * 100. For example,
@@ -47832,6 +47910,9 @@ type FlowDefinitionOutputConfig struct {
 	// The Amazon S3 path where the object containing human output will be made
 	// available.
 	//
+	// To learn more about the format of Amazon A2I output data, see Amazon A2I
+	// Output Data (https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-output-data.html).
+	//
 	// S3OutputPath is a required field
 	S3OutputPath *string `type:"string" required:"true"`
 }
@@ -48456,6 +48537,16 @@ type HumanLoopConfig struct {
 
 	// The Amazon Resource Name (ARN) of the human task user interface.
 	//
+	// You can use standard HTML and Crowd HTML Elements to create a custom worker
+	// task template. You use this template to create a human task UI.
+	//
+	// To learn how to create a custom HTML template, see Create Custom Worker Task
+	// Template (https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-custom-templates.html).
+	//
+	// To learn how to create a human task UI, which is a worker task template that
+	// can be used in a flow definition, see Create and Delete a Worker Task Templates
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-worker-template-console.html).
+	//
 	// HumanTaskUiArn is a required field
 	HumanTaskUiArn *string `type:"string" required:"true"`
 
@@ -48686,7 +48777,7 @@ type HumanLoopConfig struct {
 	TaskKeywords []*string `min:"1" type:"list"`
 
 	// The amount of time that a worker has to complete a task. The default value
-	// is 3,600 seconds (1 hour)
+	// is 3,600 seconds (1 hour).
 	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer"`
 
 	// A title for the human worker task.
@@ -48694,7 +48785,9 @@ type HumanLoopConfig struct {
 	// TaskTitle is a required field
 	TaskTitle *string `min:"1" type:"string" required:"true"`
 
-	// Amazon Resource Name (ARN) of a team of workers.
+	// Amazon Resource Name (ARN) of a team of workers. To learn more about the
+	// types of workforces and work teams you can create and use with Amazon A2I,
+	// see Create and Manage Workforces (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-management.html).
 	//
 	// WorkteamArn is a required field
 	WorkteamArn *string `type:"string" required:"true"`
@@ -49509,9 +49602,14 @@ type HumanTaskConfig struct {
 	PublicWorkforceTaskPrice *PublicWorkforceTaskPrice `type:"structure"`
 
 	// The length of time that a task remains available for labeling by human workers.
-	// If you choose the Amazon Mechanical Turk workforce, the maximum is 12 hours
-	// (43200). The default value is 864000 seconds (10 days). For private and vendor
-	// workforces, the maximum is as listed.
+	// The default and maximum values for this parameter depend on the type of workforce
+	// you use.
+	//
+	//    * If you choose the Amazon Mechanical Turk workforce, the maximum is 12
+	//    hours (43,200 seconds). The default is 6 hours (21,600 seconds).
+	//
+	//    * If you choose a private or vendor workforce, the default value is 10
+	//    days (864,000 seconds). For most users, the maximum is also 10 days.
 	TaskAvailabilityLifetimeInSeconds *int64 `min:"60" type:"integer"`
 
 	// A description of the task for your human workers.
@@ -49524,6 +49622,20 @@ type HumanTaskConfig struct {
 	TaskKeywords []*string `min:"1" type:"list"`
 
 	// The amount of time that a worker has to complete a task.
+	//
+	// If you create a custom labeling job, the maximum value for this parameter
+	// is 8 hours (28,800 seconds).
+	//
+	// If you create a labeling job using a built-in task type (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html)
+	// the maximum for this parameter depends on the task type you use:
+	//
+	//    * For image (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-label-images.html)
+	//    and text (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-label-text.html)
+	//    labeling jobs, the maximum is 8 hours (28,800 seconds).
+	//
+	//    * For 3D point cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html)
+	//    and video frame (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video.html)
+	//    labeling jobs, the maximum is 7 days (604,800 seconds).
 	//
 	// TaskTimeLimitInSeconds is a required field
 	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer" required:"true"`
@@ -52203,6 +52315,22 @@ type LabelingJobS3DataSource struct {
 
 	// The Amazon S3 location of the manifest file that describes the input data
 	// objects.
+	//
+	// The input manifest file referenced in ManifestS3Uri must contain one of the
+	// following keys: source-ref or source. The value of the keys are interpreted
+	// as follows:
+	//
+	//    * source-ref: The source of the object is the Amazon S3 object specified
+	//    in the value. Use this value when the object is a binary object, such
+	//    as an image.
+	//
+	//    * source: The source of the object is the value. Use this value when the
+	//    object is a text value.
+	//
+	// If you are a new user of Ground Truth, it is recommended you review Use an
+	// Input Manifest File (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-input-data-input-manifest.html)
+	// in the Amazon SageMaker Developer Guide to learn how to create an input manifest
+	// file.
 	//
 	// ManifestS3Uri is a required field
 	ManifestS3Uri *string `type:"string" required:"true"`
@@ -65197,7 +65325,8 @@ type ProcessingFeatureStoreOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Amazon SageMaker FeatureGroup to use as the destination for
-	// processing job output.
+	// processing job output. Note that your processing script is responsible for
+	// putting records into your Feature Store.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `min:"1" type:"string" required:"true"`
@@ -65248,12 +65377,13 @@ type ProcessingInput struct {
 	// Configuration for a Dataset Definition input.
 	DatasetDefinition *DatasetDefinition `type:"structure"`
 
-	// The name of the inputs for the processing job.
+	// The name for the processing job input.
 	//
 	// InputName is a required field
 	InputName *string `type:"string" required:"true"`
 
-	// Configuration for processing job inputs in Amazon S3.
+	// Configuration for downloading input data from Amazon S3 into the processing
+	// container.
 	S3Input *ProcessingS3Input `type:"structure"`
 }
 
@@ -65378,7 +65508,7 @@ type ProcessingJob struct {
 	// The status of the processing job.
 	ProcessingJobStatus *string `type:"string" enum:"ProcessingJobStatus"`
 
-	// The output configuration for the processing job.
+	// Configuration for uploading output from the processing container.
 	ProcessingOutputConfig *ProcessingOutputConfig `type:"structure"`
 
 	// Identifies the resources, ML compute instances, and ML storage volumes to
@@ -65392,7 +65522,9 @@ type ProcessingJob struct {
 	// The ARN of the role used to create the processing job.
 	RoleArn *string `min:"20" type:"string"`
 
-	// Specifies a time limit for how long the processing job is allowed to run.
+	// Configures conditions under which the processing job should be stopped, such
+	// as how long the processing job has been running. After the condition is met,
+	// the processing job is stopped.
 	StoppingCondition *ProcessingStoppingCondition `type:"structure"`
 
 	// An array of key-value pairs. For more information, see Using Cost Allocation
@@ -65747,7 +65879,7 @@ func (s *ProcessingOutput) SetS3Output(v *ProcessingS3Output) *ProcessingOutput 
 	return s
 }
 
-// The output configuration for the processing job.
+// Configuration for uploading output from the processing container.
 type ProcessingOutputConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -65757,7 +65889,7 @@ type ProcessingOutputConfig struct {
 	// applied to all outputs.
 	KmsKeyId *string `type:"string"`
 
-	// List of output configurations for the processing job.
+	// An array of outputs configuring the data to upload from the processing container.
 	//
 	// Outputs is a required field
 	Outputs []*ProcessingOutput `type:"list" required:"true"`
@@ -65855,20 +65987,26 @@ func (s *ProcessingResources) SetClusterConfig(v *ProcessingClusterConfig) *Proc
 	return s
 }
 
-// Configuration for processing job inputs in Amazon S3.
+// Configuration for downloading input data from Amazon S3 into the processing
+// container.
 type ProcessingS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// The local path to the Amazon S3 bucket where you want Amazon SageMaker to
-	// download the inputs to run a processing job. LocalPath is an absolute path
-	// to the input data. This is a required parameter when AppManaged is False
-	// (default).
+	// The local path in your container where you want Amazon SageMaker to write
+	// input data to. LocalPath is an absolute path to the input data and must begin
+	// with /opt/ml/processing/. LocalPath is a required parameter when AppManaged
+	// is False (default).
 	LocalPath *string `type:"string"`
 
-	// Whether to use Gzip compression for Amazon S3 storage.
+	// Whether to GZIP-decompress the data in Amazon S3 as it is streamed into the
+	// processing container. Gzip can only be used when Pipe mode is specified as
+	// the S3InputMode. In Pipe mode, Amazon SageMaker streams input data from the
+	// source directly to your container without using the EBS volume.
 	S3CompressionType *string `type:"string" enum:"ProcessingS3CompressionType"`
 
-	// Whether the data stored in Amazon S3 is FullyReplicated or ShardedByS3Key.
+	// Whether to distribute the data from Amazon S3 to all processing instances
+	// with FullyReplicated, or whether the data from Amazon S3 is shared by Amazon
+	// S3 key, downloading one shard of data to each processing instance.
 	S3DataDistributionType *string `type:"string" enum:"ProcessingS3DataDistributionType"`
 
 	// Whether you use an S3Prefix or a ManifestFile for the data type. If you choose
@@ -65882,15 +66020,14 @@ type ProcessingS3Input struct {
 	S3DataType *string `type:"string" required:"true" enum:"ProcessingS3DataType"`
 
 	// Whether to use File or Pipe input mode. In File mode, Amazon SageMaker copies
-	// the data from the input source onto the local Amazon Elastic Block Store
-	// (Amazon EBS) volumes before starting your training algorithm. This is the
-	// most commonly used input mode. In Pipe mode, Amazon SageMaker streams input
-	// data from the source directly to your algorithm without using the EBS volume.This
-	// is a required parameter when AppManaged is False (default).
+	// the data from the input source onto the local ML storage volume before starting
+	// your processing container. This is the most commonly used input mode. In
+	// Pipe mode, Amazon SageMaker streams input data from the source directly to
+	// your processing container into named pipes without using the ML storage volume.
 	S3InputMode *string `type:"string" enum:"ProcessingS3InputMode"`
 
-	// The URI for the Amazon S3 storage where you want Amazon SageMaker to download
-	// the artifacts needed to run a processing job.
+	// The URI of the Amazon S3 prefix Amazon SageMaker downloads data required
+	// to run a processing job.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
@@ -65958,13 +66095,15 @@ func (s *ProcessingS3Input) SetS3Uri(v string) *ProcessingS3Input {
 	return s
 }
 
-// Configuration for processing job outputs in Amazon S3.
+// Configuration for uploading output data to Amazon S3 from the processing
+// container.
 type ProcessingS3Output struct {
 	_ struct{} `type:"structure"`
 
-	// The local path to the Amazon S3 bucket where you want Amazon SageMaker to
-	// save the results of an processing job. LocalPath is an absolute path to the
-	// input data.
+	// The local path of a directory where you want Amazon SageMaker to upload its
+	// contents to Amazon S3. LocalPath is an absolute path to a directory containing
+	// output files. This directory will be created by the platform and exist when
+	// your container's entrypoint is invoked.
 	//
 	// LocalPath is a required field
 	LocalPath *string `type:"string" required:"true"`
@@ -66029,7 +66168,9 @@ func (s *ProcessingS3Output) SetS3Uri(v string) *ProcessingS3Output {
 	return s
 }
 
-// Specifies a time limit for how long the processing job is allowed to run.
+// Configures conditions under which the processing job should be stopped, such
+// as how long the processing job has been running. After the condition is met,
+// the processing job is stopped.
 type ProcessingStoppingCondition struct {
 	_ struct{} `type:"structure"`
 
@@ -73295,7 +73436,7 @@ type UiConfig struct {
 	//
 	// Use this parameter when you are creating a labeling job for 3D point cloud
 	// and video fram labeling jobs. Use your labeling job task type to select one
-	// of the following ARN's and use it with this parameter when you create a labeling
+	// of the following ARNs and use it with this parameter when you create a labeling
 	// job. Replace aws-region with the AWS region you are creating your labeling
 	// job in.
 	//

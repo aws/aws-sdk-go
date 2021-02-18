@@ -70,7 +70,7 @@ func (c *Health) DescribeAffectedAccountsForOrganizationRequest(input *DescribeA
 // Before you can call this operation, you must first enable AWS Health to work
 // with AWS Organizations. To do this, call the EnableHealthServiceAccessForOrganization
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html)
-// operation from your organization's master account.
+// operation from your organization's management account.
 //
 // This API operation uses pagination. Specify the nextToken parameter in the
 // next request to return more results.
@@ -220,8 +220,13 @@ func (c *Health) DescribeAffectedEntitiesRequest(input *DescribeAffectedEntities
 // At least one event ARN is required. Results are sorted by the lastUpdatedTime
 // of the entity, starting with the most recent.
 //
-// This API operation uses pagination. Specify the nextToken parameter in the
-// next request to return more results.
+//    * This API operation uses pagination. Specify the nextToken parameter
+//    in the next request to return more results.
+//
+//    * This operation supports resource-level permissions. You can use this
+//    operation to allow or deny access to specific AWS Health events. For more
+//    information, see Resource- and action-based conditions (https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions)
+//    in the AWS Health User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -374,10 +379,15 @@ func (c *Health) DescribeAffectedEntitiesForOrganizationRequest(input *DescribeA
 // Before you can call this operation, you must first enable AWS Health to work
 // with AWS Organizations. To do this, call the EnableHealthServiceAccessForOrganization
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html)
-// operation from your organization's master account.
+// operation from your organization's management account.
 //
-// This API operation uses pagination. Specify the nextToken parameter in the
-// next request to return more results.
+//    * This API operation uses pagination. Specify the nextToken parameter
+//    in the next request to return more results.
+//
+//    * This operation doesn't support resource-level permissions. You can't
+//    use this operation to allow or deny access to specific AWS Health events.
+//    For more information, see Resource- and action-based conditions (https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions)
+//    in the AWS Health User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -730,8 +740,8 @@ func (c *Health) DescribeEventDetailsRequest(input *DescribeEventDetailsInput) (
 // DescribeEventDetails API operation for AWS Health APIs and Notifications.
 //
 // Returns detailed information about one or more specified events. Information
-// includes standard event data (Region, service, and so on, as returned by
-// DescribeEvents (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEvents.html)),
+// includes standard event data (AWS Region, service, and so on, as returned
+// by DescribeEvents (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEvents.html)),
 // a detailed event description, and possible additional metadata that depends
 // upon the nature of the event. Affected entities are not included. To retrieve
 // those, use the DescribeAffectedEntities (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntities.html)
@@ -739,6 +749,11 @@ func (c *Health) DescribeEventDetailsRequest(input *DescribeEventDetailsInput) (
 //
 // If a specified event cannot be retrieved, an error message is returned for
 // that event.
+//
+// This operation supports resource-level permissions. You can use this operation
+// to allow or deny access to specific AWS Health events. For more information,
+// see Resource- and action-based conditions (https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions)
+// in the AWS Health User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -819,7 +834,7 @@ func (c *Health) DescribeEventDetailsForOrganizationRequest(input *DescribeEvent
 //
 // Returns detailed information about one or more specified events for one or
 // more accounts in your organization. Information includes standard event data
-// (Region, service, and so on, as returned by DescribeEventsForOrganization
+// (AWS Region, service, and so on, as returned by DescribeEventsForOrganization
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventsForOrganization.html)),
 // a detailed event description, and possible additional metadata that depends
 // upon the nature of the event. Affected entities are not included; to retrieve
@@ -829,7 +844,7 @@ func (c *Health) DescribeEventDetailsForOrganizationRequest(input *DescribeEvent
 // Before you can call this operation, you must first enable AWS Health to work
 // with AWS Organizations. To do this, call the EnableHealthServiceAccessForOrganization
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html)
-// operation from your organization's master account.
+// operation from your organization's management account.
 //
 // When you call the DescribeEventDetailsForOrganization operation, you specify
 // the organizationEventDetailFilters object in the request. Depending on the
@@ -846,6 +861,11 @@ func (c *Health) DescribeEventDetailsForOrganizationRequest(input *DescribeEvent
 //    organization.
 //
 // For more information, see Event (https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html).
+//
+// This operation doesn't support resource-level permissions. You can't use
+// this operation to allow or deny access to specific AWS Health events. For
+// more information, see Resource- and action-based conditions (https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html#resource-action-based-conditions)
+// in the AWS Health User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -930,8 +950,14 @@ func (c *Health) DescribeEventTypesRequest(input *DescribeEventTypesInput) (req 
 
 // DescribeEventTypes API operation for AWS Health APIs and Notifications.
 //
-// Returns the event types that meet the specified filter criteria. If no filter
-// criteria are specified, all event types are returned, in no particular order.
+// Returns the event types that meet the specified filter criteria. You can
+// use this API operation to find information about the AWS Health event, such
+// as the category, AWS service, and event code. The metadata for each event
+// appears in the EventType (https://docs.aws.amazon.com/health/latest/APIReference/API_EventType.html)
+// object.
+//
+// If you don't specify a filter criteria, the API operation returns all event
+// types, in no particular order.
 //
 // This API operation uses pagination. Specify the nextToken parameter in the
 // next request to return more results.
@@ -1256,7 +1282,7 @@ func (c *Health) DescribeEventsForOrganizationRequest(input *DescribeEventsForOr
 // Before you can call this operation, you must first enable AWS Health to work
 // with AWS Organizations. To do this, call the EnableHealthServiceAccessForOrganization
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html)
-// operation from your organization's master AWS account.
+// operation from your organization's management account.
 //
 // This API operation uses pagination. Specify the nextToken parameter in the
 // next request to return more results.
@@ -1396,7 +1422,7 @@ func (c *Health) DescribeHealthServiceStatusForOrganizationRequest(input *Descri
 // This operation provides status information on enabling or disabling AWS Health
 // to work with your organization. To call this operation, you must sign in
 // as an IAM user, assume an IAM role, or sign in as the root user (not recommended)
-// in the organization's master account.
+// in the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1474,13 +1500,13 @@ func (c *Health) DisableHealthServiceAccessForOrganizationRequest(input *Disable
 // Disables AWS Health from working with AWS Organizations. To call this operation,
 // you must sign in as an AWS Identity and Access Management (IAM) user, assume
 // an IAM role, or sign in as the root user (not recommended) in the organization's
-// master AWS account. For more information, see Aggregating AWS Health events
+// management account. For more information, see Aggregating AWS Health events
 // (https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html) in the
 // AWS Health User Guide.
 //
-// This operation doesn't remove the service-linked role (SLR) from the AWS
-// master account in your organization. You must use the IAM console, API, or
-// AWS Command Line Interface (AWS CLI) to remove the SLR. For more information,
+// This operation doesn't remove the service-linked role from the management
+// account in your organization. You must use the IAM console, API, or AWS Command
+// Line Interface (AWS CLI) to remove the service-linked role. For more information,
 // see Deleting a Service-Linked Role (https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role)
 // in the IAM User Guide.
 //
@@ -1573,13 +1599,28 @@ func (c *Health) EnableHealthServiceAccessForOrganizationRequest(input *EnableHe
 
 // EnableHealthServiceAccessForOrganization API operation for AWS Health APIs and Notifications.
 //
-// Calling this operation enables AWS Health to work with AWS Organizations.
-// This applies a service-linked role (SLR) to the master account in the organization.
-// To call this operation, you must sign in as an IAM user, assume an IAM role,
-// or sign in as the root user (not recommended) in the organization's master
-// account.
+// Enables AWS Health to work with AWS Organizations. You can use the organizational
+// view feature to aggregate events from all AWS accounts in your organization
+// in a centralized location.
 //
-// For more information, see Aggregating AWS Health events (https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html)
+// This operation also creates a service-linked role for the management account
+// in the organization.
+//
+// To call this operation, you must meet the following requirements:
+//
+//    * You must have a Business or Enterprise support plan from AWS Support
+//    (http://aws.amazon.com/premiumsupport/) to use the AWS Health API. If
+//    you call the AWS Health API from an AWS account that doesn't have a Business
+//    or Enterprise support plan, you receive a SubscriptionRequiredException
+//    error.
+//
+//    * You must have permission to call this operation from the organization's
+//    management account. For example IAM policies, see AWS Health identity-based
+//    policy examples (https://docs.aws.amazon.com/health/latest/ug/security_iam_id-based-policy-examples.html).
+//
+// If you don't have the required support plan, you can instead use the AWS
+// Health console to enable the organizational view feature. For more information,
+// see Aggregating AWS Health events (https://docs.aws.amazon.com/health/latest/ug/aggregate-events.html)
 // in the AWS Health User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3666,9 +3707,19 @@ func (s *EventFilter) SetTags(v []map[string]*string) *EventFilter {
 	return s
 }
 
-// Metadata about a type of event that is reported by AWS Health. Data consists
-// of the category (for example, issue), the service (for example, EC2), and
-// the event type code (for example, AWS_EC2_SYSTEM_MAINTENANCE_EVENT).
+// Contains the metadata about a type of event that is reported by AWS Health.
+// The EventType shows the category, service, and the event type code of the
+// event. For example, an issue might be the category, EC2 the service, and
+// AWS_EC2_SYSTEM_MAINTENANCE_EVENT the event type code.
+//
+// You can use the DescribeEventTypes (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventTypes.html)
+// API operation to return this information about an event.
+//
+// You can also use the Amazon CloudWatch Events console to create a rule so
+// that you can get notified or take action when AWS Health delivers a specific
+// event to your AWS account. For more information, see Monitor for AWS Health
+// events with Amazon CloudWatch Events (https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html)
+// in the AWS Health User Guide.
 type EventType struct {
 	_ struct{} `type:"structure"`
 
