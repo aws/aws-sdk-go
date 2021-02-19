@@ -1,3 +1,10 @@
+Release v1.37.15 (2021-02-19)
+===
+
+### Service Client Updates
+* `service/rds`: Updates service API and documentation
+  * Added awsBackupRecoveryPointArn in ModifyDBInstanceRequest and in the response of ModifyDBInstance.
+
 Release v1.37.14 (2021-02-18)
 ===
 
