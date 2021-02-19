@@ -198,12 +198,7 @@ func (t tplInputTestCaseData) BodyAssertions() string {
 	protocol := t.TestCase.TestSuite.API.Metadata.Protocol
 
 	// Extract the body bytes
-	switch protocol {
-	case "rest-xml":
-		fmt.Fprintln(code, "body := util.SortXML(r.Body)")
-	default:
-		fmt.Fprintln(code, "body, _ := ioutil.ReadAll(r.Body)")
-	}
+	fmt.Fprintln(code, "body, _ := ioutil.ReadAll(r.Body)")
 
 	// Generate the body verification code
 	expectedBody := util.Trim(t.TestCase.InputTest.Body)
@@ -213,7 +208,7 @@ func (t tplInputTestCaseData) BodyAssertions() string {
 			expectedBody)
 	case "rest-xml":
 		if strings.HasPrefix(expectedBody, "<") {
-			fmt.Fprintf(code, "awstesting.AssertXML(t, `%s`, util.Trim(body))",
+			fmt.Fprintf(code, "awstesting.AssertXML(t, `%s`, util.Trim(string(body)))",
 				expectedBody)
 		} else {
 			code.WriteString(fmtAssertEqual(fmt.Sprintf("%q", expectedBody), "util.Trim(string(body))"))
@@ -294,7 +289,7 @@ func (i *testCase) TestCase(idx int) string {
 			m, _ := url.ParseQuery(i.InputTest.Body)
 			i.InputTest.Body = m.Encode()
 		case "rest-xml":
-			i.InputTest.Body = util.SortXML(bytes.NewReader([]byte(i.InputTest.Body)))
+			// Nothing to do
 		case "json", "rest-json":
 			// Nothing to do
 		}

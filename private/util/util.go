@@ -42,6 +42,8 @@ func Capitalize(s string) string {
 }
 
 // SortXML sorts the reader's XML elements
+//
+// Deprecated: incorrectly handles XML namespaces, should not be used.
 func SortXML(r io.Reader) string {
 	var buf bytes.Buffer
 	d := xml.NewDecoder(r)
