@@ -8,9 +8,10 @@ import (
 	"github.com/aws/aws-sdk-go/internal/smithytesting/xml"
 )
 
-// XMLEqual asserts two xml documents by sorting the XML and comparing the strings
-// It returns an error in case of mismatch or in case of malformed xml found while sorting.
-// In case of mismatched XML, the error string will contain the diff between the two XMLs.
+// XMLEqual asserts two XML documents by sorting the XML and comparing the
+// strings It returns an error in case of mismatch or in case of malformed XML
+// found while sorting.  In case of mismatched XML, the error string will
+// contain the diff between the two XML documents.
 func XMLEqual(expectBytes, actualBytes []byte) error {
 	actualString, err := xml.SortXML(bytes.NewBuffer(actualBytes), true)
 	if err != nil {
@@ -23,7 +24,8 @@ func XMLEqual(expectBytes, actualBytes []byte) error {
 	}
 
 	if !reflect.DeepEqual(expectString, actualString) {
-		return fmt.Errorf("XML mismatch\nexpect: %+v\nactual: %+v\n", expectString, actualString)
+		return fmt.Errorf("unexpected XML mismatch\nexpect: %+v\nactual: %+v",
+			expectString, actualString)
 	}
 
 	return nil

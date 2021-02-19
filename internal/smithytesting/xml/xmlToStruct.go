@@ -8,39 +8,39 @@ import (
 	"strings"
 )
 
-// A XMLNode contains the values to be encoded or decoded.
-type XMLNode struct {
-	Name     xml.Name              `json:",omitempty"`
-	Children map[string][]*XMLNode `json:",omitempty"`
-	Text     string                `json:",omitempty"`
-	Attr     []xml.Attr            `json:",omitempty"`
+// A Node contains the values to be encoded or decoded.
+type Node struct {
+	Name     xml.Name           `json:",omitempty"`
+	Children map[string][]*Node `json:",omitempty"`
+	Text     string             `json:",omitempty"`
+	Attr     []xml.Attr         `json:",omitempty"`
 
 	namespaces map[string]string
-	parent     *XMLNode
+	parent     *Node
 }
 
-// NewXMLElement returns a pointer to a new XMLNode initialized to default values.
-func NewXMLElement(name xml.Name) *XMLNode {
-	return &XMLNode{
+// NewXMLElement returns a pointer to a new Node initialized to default values.
+func NewXMLElement(name xml.Name) *Node {
+	return &Node{
 		Name:     name,
-		Children: map[string][]*XMLNode{},
+		Children: map[string][]*Node{},
 		Attr:     []xml.Attr{},
 	}
 }
 
-// AddChild adds child to the XMLNode.
-func (n *XMLNode) AddChild(child *XMLNode) {
+// AddChild adds child to the Node.
+func (n *Node) AddChild(child *Node) {
 	child.parent = n
 	if _, ok := n.Children[child.Name.Local]; !ok {
 		// flattened will have multiple children with same tag name
-		n.Children[child.Name.Local] = []*XMLNode{}
+		n.Children[child.Name.Local] = []*Node{}
 	}
 	n.Children[child.Name.Local] = append(n.Children[child.Name.Local], child)
 }
 
-// XMLToStruct converts a xml.Decoder stream to XMLNode with nested values.
-func XMLToStruct(d *xml.Decoder, s *xml.StartElement, ignoreIndentation bool) (*XMLNode, error) {
-	out := &XMLNode{}
+// ToStruct converts a xml.Decoder stream to Node with nested values.
+func ToStruct(d *xml.Decoder, s *xml.StartElement, ignoreIndentation bool) (*Node, error) {
+	out := &Node{}
 
 	for {
 		tok, err := d.Token()
@@ -69,15 +69,15 @@ func XMLToStruct(d *xml.Decoder, s *xml.StartElement, ignoreIndentation bool) (*
 			el := typed.Copy()
 			out.Attr = el.Attr
 			if out.Children == nil {
-				out.Children = map[string][]*XMLNode{}
+				out.Children = map[string][]*Node{}
 			}
 
 			name := typed.Name.Local
 			slice := out.Children[name]
 			if slice == nil {
-				slice = []*XMLNode{}
+				slice = []*Node{}
 			}
-			node, e := XMLToStruct(d, &el, ignoreIndentation)
+			node, e := ToStruct(d, &el, ignoreIndentation)
 			out.findNamespaces()
 			if e != nil {
 				return out, e
@@ -99,13 +99,13 @@ func XMLToStruct(d *xml.Decoder, s *xml.StartElement, ignoreIndentation bool) (*
 			if s != nil && s.Name.Local == typed.Name.Local { // matching end token
 				return out, nil
 			}
-			out = &XMLNode{}
+			out = &Node{}
 		}
 	}
 	return out, nil
 }
 
-func (n *XMLNode) findNamespaces() {
+func (n *Node) findNamespaces() {
 	ns := map[string]string{}
 	for _, a := range n.Attr {
 		if a.Name.Space == "xmlns" {
@@ -116,7 +116,7 @@ func (n *XMLNode) findNamespaces() {
 	n.namespaces = ns
 }
 
-func (n *XMLNode) findElem(name string) (string, bool) {
+func (n *Node) findElem(name string) (string, bool) {
 	for node := n; node != nil; node = node.parent {
 		for _, a := range node.Attr {
 			namespace := a.Name.Space
@@ -131,8 +131,8 @@ func (n *XMLNode) findElem(name string) (string, bool) {
 	return "", false
 }
 
-// StructToXML writes an XMLNode to a xml.Encoder as tokens.
-func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
+// StructToXML writes an Node to a xml.Encoder as tokens.
+func StructToXML(e *xml.Encoder, node *Node, sorted bool) error {
 	var err error
 	// Sort Attributes
 	attrs := node.Attr
@@ -194,7 +194,7 @@ func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
 
 // sortFlattenedNodes sorts nodes with nodes having same element tag
 // but overall different values. The function will return list of pointer to
-// XMLNode and an error.
+// Node and an error.
 //
 // Overall sort order is followed is:
 // Nodes with concrete value (no nested node as value) are given precedence
@@ -206,21 +206,21 @@ func StructToXML(e *xml.Encoder, node *XMLNode, sorted bool) error {
 // which ever has lower value and then added to the global sorted list.
 // If value was initially chosen, but has nested nodes; key will be chosen as comparable
 // as it is unique and will always have concrete data ie. string.
-func sortFlattenedNodes(nodes []*XMLNode) ([]*XMLNode, error) {
-	var sortedNodes []*XMLNode
+func sortFlattenedNodes(nodes []*Node) ([]*Node, error) {
+	var sortedNodes []*Node
 
 	// concreteNodeMap stores concrete value associated with a list of nodes
 	// This is possible in case multiple members of a flatList has same values.
-	concreteNodeMap := make(map[string][]*XMLNode, 0)
+	concreteNodeMap := make(map[string][]*Node, 0)
 
 	// flatListNodeMap stores flat list or wrapped list members associated with a list of nodes
 	// This will have only flattened list with members that are Nodes and not concrete values.
-	flatListNodeMap := make(map[string][]*XMLNode, 0)
+	flatListNodeMap := make(map[string][]*Node, 0)
 
 	// flatMapNodeMap stores flat map or map entry members associated with a list of nodes
 	// This will have only flattened map concrete value members. It is possible to limit this
 	// to concrete value as map key is expected to be concrete.
-	flatMapNodeMap := make(map[string][]*XMLNode, 0)
+	flatMapNodeMap := make(map[string][]*Node, 0)
 
 	// nodes with concrete value are prioritized and appended based on sorting order
 	sortedNodesWithConcreteValue := []string{}
@@ -238,7 +238,7 @@ func sortFlattenedNodes(nodes []*XMLNode) ([]*XMLNode, error) {
 			if v, ok := concreteNodeMap[node.Text]; ok {
 				concreteNodeMap[node.Text] = append(v, node)
 			} else {
-				concreteNodeMap[node.Text] = []*XMLNode{node}
+				concreteNodeMap[node.Text] = []*Node{node}
 			}
 		}
 
@@ -253,14 +253,14 @@ func sortFlattenedNodes(nodes []*XMLNode) ([]*XMLNode, error) {
 				if v, ok := flatListNodeMap[nestedNodeName]; ok {
 					flatListNodeMap[nestedNodeName] = append(v, nestedNodes[0])
 				} else {
-					flatListNodeMap[nestedNodeName] = []*XMLNode{nestedNodes[0]}
+					flatListNodeMap[nestedNodeName] = []*Node{nestedNodes[0]}
 				}
 			}
 		}
 
 		// if node has two children, then it is a flattened map node
 		if len(node.Children) == 2 {
-			nestedPair := []*XMLNode{}
+			nestedPair := []*Node{}
 			for _, k := range node.Children {
 				nestedPair = append(nestedPair, k[0])
 			}
@@ -285,7 +285,7 @@ func sortFlattenedNodes(nodes []*XMLNode) ([]*XMLNode, error) {
 					if v, ok := flatMapNodeMap[comparableValue]; ok {
 						flatMapNodeMap[comparableValue] = append(v, node)
 					} else {
-						flatMapNodeMap[comparableValue] = []*XMLNode{node}
+						flatMapNodeMap[comparableValue] = []*Node{node}
 					}
 					break
 				}

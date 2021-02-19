@@ -37,7 +37,7 @@ func (x xmlAttrSlice) Swap(i, j int) {
 func SortXML(r io.Reader, ignoreIndentation bool) (string, error) {
 	var buf bytes.Buffer
 	d := xml.NewDecoder(r)
-	root, err := XMLToStruct(d, nil, ignoreIndentation)
+	root, err := ToStruct(d, nil, ignoreIndentation)
 	if err != nil {
 		return buf.String(), err
 	}
