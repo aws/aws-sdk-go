@@ -2548,6 +2548,12 @@
         "locationName":"AvailableProcessorFeature"
       }
     },
+    "AwsBackupRecoveryPointArn":{
+      "type":"string",
+      "max":350,
+      "min":43,
+      "pattern":"^arn:aws[a-z-]*:backup:[-a-z0-9]+:[0-9]{12}:[-a-z]+:([a-z0-9\\-]+:)?[a-z][a-z0-9\\-]{0,255}$"
+    },
     "BacktrackDBClusterMessage":{
       "type":"structure",
       "required":[
@@ -3760,7 +3766,8 @@
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "TagList":{"shape":"TagList"},
         "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"},
-        "CustomerOwnedIpEnabled":{"shape":"BooleanOptional"}
+        "CustomerOwnedIpEnabled":{"shape":"BooleanOptional"},
+        "AwsBackupRecoveryPointArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -6159,7 +6166,8 @@
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "CertificateRotationRestart":{"shape":"BooleanOptional"},
         "ReplicaMode":{"shape":"ReplicaMode"},
-        "EnableCustomerOwnedIp":{"shape":"BooleanOptional"}
+        "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
+        "AwsBackupRecoveryPointArn":{"shape":"AwsBackupRecoveryPointArn"}
       }
     },
     "ModifyDBInstanceResult":{

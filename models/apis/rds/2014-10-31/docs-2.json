@@ -290,6 +290,12 @@
         "ValidDBInstanceModificationsMessage$ValidProcessorFeatures": "<p>Valid processor features for your DB instance. </p>"
       }
     },
+    "AwsBackupRecoveryPointArn": {
+      "base": null,
+      "refs": {
+        "ModifyDBInstanceMessage$AwsBackupRecoveryPointArn": "<p>The Amazon Resource Name (ARN) of the recovery point in AWS Backup.</p>"
+      }
+    },
     "BacktrackDBClusterMessage": {
       "base": "<p/>",
       "refs": {
@@ -2574,7 +2580,7 @@
       "refs": {
         "CloudwatchLogsExportConfiguration$EnableLogTypes": "<p>The list of log types to enable.</p>",
         "CloudwatchLogsExportConfiguration$DisableLogTypes": "<p>The list of log types to disable.</p>",
-        "CreateDBClusterMessage$EnableCloudwatchLogsExports": "<p>The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch\">Publishing Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User Guide</i>.</p> <p> <b>Aurora MySQL</b> </p> <p>Possible values are <code>audit</code>, <code>error</code>, <code>general</code>, and <code>slowquery</code>. </p> <p> <b>Aurora PostgreSQL</b> </p> <p>Possible values are <code>postgresql</code> and <code>upgrade</code>. </p>",
+        "CreateDBClusterMessage$EnableCloudwatchLogsExports": "<p>The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch\">Publishing Database Logs to Amazon CloudWatch Logs</a> in the <i>Amazon Aurora User Guide</i>.</p> <p> <b>Aurora MySQL</b> </p> <p>Possible values are <code>audit</code>, <code>error</code>, <code>general</code>, and <code>slowquery</code>. </p> <p> <b>Aurora PostgreSQL</b> </p> <p>Possible value is <code>postgresql</code>. </p>",
         "CreateDBInstanceMessage$EnableCloudwatchLogsExports": "<p>The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch\">Publishing Database Logs to Amazon CloudWatch Logs </a> in the <i>Amazon Relational Database Service User Guide</i>.</p> <p> <b>Amazon Aurora</b> </p> <p>Not applicable. CloudWatch Logs exports are managed by the DB cluster. </p> <p> <b>MariaDB</b> </p> <p>Possible values are <code>audit</code>, <code>error</code>, <code>general</code>, and <code>slowquery</code>. </p> <p> <b>Microsoft SQL Server</b> </p> <p>Possible values are <code>agent</code> and <code>error</code>. </p> <p> <b>MySQL</b> </p> <p>Possible values are <code>audit</code>, <code>error</code>, <code>general</code>, and <code>slowquery</code>. </p> <p> <b>Oracle</b> </p> <p>Possible values are <code>alert</code>, <code>audit</code>, <code>listener</code>, <code>trace</code>, and <code>oemagent</code>. </p> <p> <b>PostgreSQL</b> </p> <p>Possible values are <code>postgresql</code> and <code>upgrade</code>. </p>",
         "CreateDBInstanceReadReplicaMessage$EnableCloudwatchLogsExports": "<p>The list of logs that the new DB instance is to export to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch\">Publishing Database Logs to Amazon CloudWatch Logs </a> in the <i>Amazon RDS User Guide</i>.</p>",
         "DBCluster$EnabledCloudwatchLogsExports": "<p>A list of log types that this DB cluster is configured to export to CloudWatch Logs.</p> <p>Log types vary by DB engine. For information about the log types for each DB engine, see <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html\">Amazon RDS Database Log Files</a> in the <i>Amazon Aurora User Guide.</i> </p>",
@@ -3756,6 +3762,7 @@
         "DBInstance$DBInstanceArn": "<p>The Amazon Resource Name (ARN) for the DB instance.</p>",
         "DBInstance$Timezone": "<p>The time zone of the DB instance. In most cases, the <code>Timezone</code> element is empty. <code>Timezone</code> content appears only for Microsoft SQL Server DB instances that were created with a time zone specified. </p>",
         "DBInstance$PerformanceInsightsKMSKeyId": "<p>The AWS KMS key identifier for encryption of Performance Insights data.</p> <p>The AWS KMS key identifier is the key ARN, key ID, alias ARN, or alias name for the AWS KMS customer master key (CMK).</p>",
+        "DBInstance$AwsBackupRecoveryPointArn": "<p>The Amazon Resource Name (ARN) of the recovery point in AWS Backup.</p>",
         "DBInstanceAutomatedBackup$DBInstanceArn": "<p>The Amazon Resource Name (ARN) for the automated backups.</p>",
         "DBInstanceAutomatedBackup$DbiResourceId": "<p>The identifier for the source DB instance, which can't be changed and which is unique to an AWS Region.</p>",
         "DBInstanceAutomatedBackup$Region": "<p>The AWS Region associated with the automated backup.</p>",

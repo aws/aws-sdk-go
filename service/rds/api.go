@@ -17419,7 +17419,7 @@ type CreateDBClusterInput struct {
 	//
 	// Aurora PostgreSQL
 	//
-	// Possible values are postgresql and upgrade.
+	// Possible value is postgresql.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable this DB cluster to forward write
@@ -22464,6 +22464,9 @@ type DBInstance struct {
 	// Specifies the name of the Availability Zone the DB instance is located in.
 	AvailabilityZone *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the recovery point in AWS Backup.
+	AwsBackupRecoveryPointArn *string `type:"string"`
+
 	// Specifies the number of days for which automatic DB snapshots are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
@@ -22790,6 +22793,12 @@ func (s *DBInstance) SetAutoMinorVersionUpgrade(v bool) *DBInstance {
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *DBInstance) SetAvailabilityZone(v string) *DBInstance {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAwsBackupRecoveryPointArn sets the AwsBackupRecoveryPointArn field's value.
+func (s *DBInstance) SetAwsBackupRecoveryPointArn(v string) *DBInstance {
+	s.AwsBackupRecoveryPointArn = &v
 	return s
 }
 
@@ -33952,6 +33961,9 @@ type ModifyDBInstanceInput struct {
 	// and RDS has enabled auto patching for that engine version.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
+	// The Amazon Resource Name (ARN) of the recovery point in AWS Backup.
+	AwsBackupRecoveryPointArn *string `min:"43" type:"string"`
+
 	// The number of days to retain automated backups. Setting this parameter to
 	// a positive number enables backups. Setting this parameter to 0 disables automated
 	// backups.
@@ -34497,6 +34509,9 @@ func (s ModifyDBInstanceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModifyDBInstanceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModifyDBInstanceInput"}
+	if s.AwsBackupRecoveryPointArn != nil && len(*s.AwsBackupRecoveryPointArn) < 43 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsBackupRecoveryPointArn", 43))
+	}
 	if s.DBInstanceIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("DBInstanceIdentifier"))
 	}
@@ -34528,6 +34543,12 @@ func (s *ModifyDBInstanceInput) SetApplyImmediately(v bool) *ModifyDBInstanceInp
 // SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
 func (s *ModifyDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBInstanceInput {
 	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAwsBackupRecoveryPointArn sets the AwsBackupRecoveryPointArn field's value.
+func (s *ModifyDBInstanceInput) SetAwsBackupRecoveryPointArn(v string) *ModifyDBInstanceInput {
+	s.AwsBackupRecoveryPointArn = &v
 	return s
 }
 
