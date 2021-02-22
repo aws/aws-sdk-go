@@ -1,9 +1,7 @@
 package awstesting
 
 import (
-	"bytes"
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
 	"net/url"
 	"reflect"
@@ -12,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
+	"github.com/aws/aws-sdk-go/internal/smithytesting"
 )
 
 // Match is a testing helper to test for testing error by comparing expected
@@ -114,26 +112,14 @@ func AssertJSON(t *testing.T, expect, actual string, msgAndArgs ...interface{}) 
 	return equal(t, expectVal, actualVal, msgAndArgs...)
 }
 
-// AssertXML verifies that the expect xml string matches the actual.
-// Elements in actual must match the order they appear in expect to match equally
+// AssertXML verifies that the expect XML string matches the actual.
 func AssertXML(t *testing.T, expect, actual string, msgAndArgs ...interface{}) bool {
-	buffer := bytes.NewReader([]byte(expect))
-	decoder := xml.NewDecoder(buffer)
-
-	expectVal, err := xmlutil.XMLToStruct(decoder, nil)
-	if err != nil {
-		t.Fatalf("failed to umarshal xml to struct: %v", err)
+	if err := smithytesting.XMLEqual([]byte(expect), []byte(actual)); err != nil {
+		t.Error("expect XML match", err, messageFromMsgAndArgs(msgAndArgs))
+		return false
 	}
 
-	buffer = bytes.NewReader([]byte(actual))
-	decoder = xml.NewDecoder(buffer)
-
-	actualVal, err := xmlutil.XMLToStruct(decoder, nil)
-	if err != nil {
-		t.Fatalf("failed to umarshal xml to struct: %v", err)
-	}
-
-	return equal(t, expectVal, actualVal, msgAndArgs...)
+	return true
 }
 
 // DidPanic returns if the function paniced and returns true if the function paniced.

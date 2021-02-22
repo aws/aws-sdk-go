@@ -25,7 +25,7 @@ func BenchmarkCredentials_Get(b *testing.B) {
 					for j := 0; j < b.N; j++ {
 						v, err := creds.Get()
 						if err != nil {
-							b.Fatalf("expect no error %v, %v", v, err)
+							b.Errorf("expect no error %v, %v", v, err)
 						}
 					}
 					wg.Done()
@@ -55,7 +55,7 @@ func BenchmarkCredentials_Get_Expire(b *testing.B) {
 						for j := 0; j < b.N; j++ {
 							v, err := creds.Get()
 							if err != nil {
-								b.Fatalf("expect no error %v, %v", v, err)
+								b.Errorf("expect no error %v, %v", v, err)
 							}
 							// periodically expire creds to cause rwlock
 							if id == 0 && j%expRate == 0 {

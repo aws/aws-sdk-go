@@ -17,6 +17,7 @@ go:
     - 1.13.x
     - 1.14.x
     - 1.15.x
+    - 1.16.x
     - tip
 
 matrix:
@@ -39,6 +40,8 @@ matrix:
         - os: windows
           go: 1.15.x
         - os: windows
+          go: 1.16.x
+        - os: windows
           go: tip
 
 before_install:
@@ -46,7 +49,8 @@ before_install:
 
 script:
   - if [ -z $(go env GOMOD) ]; then
-      if [ "$TRAVIS_GO_VERSION" == "1.13.x" ] ||
+      if [ "$TRAVIS_GO_VERSION" == "1.14.x" ] ||
+          [ "$TRAVIS_GO_VERSION" == "1.13.x" ] ||
           [ "$TRAVIS_GO_VERSION" == "1.12.x" ] ||
           [ "$TRAVIS_GO_VERSION" == "1.11.x" ] ||
           [ "$TRAVIS_GO_VERSION" == "1.10.x" ]; then
@@ -55,8 +59,8 @@ script:
       make get-deps;
     fi;
     if [ "$TRAVIS_GO_VERSION" == "tip" ] ||
-        [ "$TRAVIS_GO_VERSION" == "1.15.x" ] ||
-        [ "$TRAVIS_GO_VERSION" == "1.14.x" ]; then
+        [ "$TRAVIS_GO_VERSION" == "1.16.x" ] ||
+        [ "$TRAVIS_GO_VERSION" == "1.15.x" ]; then
 
       if [ "$TRAVIS_OS_NAME" = "windows" ]; then
         make unit-no-verify;
