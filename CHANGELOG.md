@@ -1,3 +1,11 @@
+Release v1.37.16 (2021-02-22)
+===
+
+### Service Client Updates
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports core dump for SageMaker Endpoints and direct invocation of a single container in a SageMaker Endpoint that hosts multiple containers.
+
 Release v1.37.15 (2021-02-19)
 ===
 
