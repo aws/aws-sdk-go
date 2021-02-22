@@ -87,6 +87,12 @@
         "ModelError$OriginalStatusCode": "<p> Original status code. </p>"
       }
     },
+    "TargetContainerHostnameHeader": {
+      "base": null,
+      "refs": {
+        "InvokeEndpointInput$TargetContainerHostname": "<p>If the endpoint hosts multiple containers and is configured to use direct invocation, this parameter specifies the host name of the container to invoke.</p>"
+      }
+    },
     "TargetModelHeader": {
       "base": null,
       "refs": {

@@ -30941,6 +30941,9 @@ type CreateModelInput struct {
 	// ExecutionRoleArn is a required field
 	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
+	// Specifies details of how containers in a multi-container endpoint are called.
+	InferenceExecutionConfig *InferenceExecutionConfig `type:"structure"`
+
 	// The name of the new model.
 	//
 	// ModelName is a required field
@@ -30997,6 +31000,11 @@ func (s *CreateModelInput) Validate() error {
 			}
 		}
 	}
+	if s.InferenceExecutionConfig != nil {
+		if err := s.InferenceExecutionConfig.Validate(); err != nil {
+			invalidParams.AddNested("InferenceExecutionConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PrimaryContainer != nil {
 		if err := s.PrimaryContainer.Validate(); err != nil {
 			invalidParams.AddNested("PrimaryContainer", err.(request.ErrInvalidParams))
@@ -31039,6 +31047,12 @@ func (s *CreateModelInput) SetEnableNetworkIsolation(v bool) *CreateModelInput {
 // SetExecutionRoleArn sets the ExecutionRoleArn field's value.
 func (s *CreateModelInput) SetExecutionRoleArn(v string) *CreateModelInput {
 	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetInferenceExecutionConfig sets the InferenceExecutionConfig field's value.
+func (s *CreateModelInput) SetInferenceExecutionConfig(v *InferenceExecutionConfig) *CreateModelInput {
+	s.InferenceExecutionConfig = v
 	return s
 }
 
@@ -42138,6 +42152,9 @@ type DescribeModelOutput struct {
 	// ExecutionRoleArn is a required field
 	ExecutionRoleArn *string `min:"20" type:"string" required:"true"`
 
+	// Specifies details of how containers in a multi-container endpoint are called.
+	InferenceExecutionConfig *InferenceExecutionConfig `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the model.
 	//
 	// ModelArn is a required field
@@ -42189,6 +42206,12 @@ func (s *DescribeModelOutput) SetEnableNetworkIsolation(v bool) *DescribeModelOu
 // SetExecutionRoleArn sets the ExecutionRoleArn field's value.
 func (s *DescribeModelOutput) SetExecutionRoleArn(v string) *DescribeModelOutput {
 	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetInferenceExecutionConfig sets the InferenceExecutionConfig field's value.
+func (s *DescribeModelOutput) SetInferenceExecutionConfig(v *InferenceExecutionConfig) *DescribeModelOutput {
+	s.InferenceExecutionConfig = v
 	return s
 }
 
@@ -49609,7 +49632,8 @@ type HumanTaskConfig struct {
 	//    hours (43,200 seconds). The default is 6 hours (21,600 seconds).
 	//
 	//    * If you choose a private or vendor workforce, the default value is 10
-	//    days (864,000 seconds). For most users, the maximum is also 10 days.
+	//    days (864,000 seconds). For most users, the maximum is also 10 days. If
+	//    you want to change this limit, contact AWS Support.
 	TaskAvailabilityLifetimeInSeconds *int64 `min:"60" type:"integer"`
 
 	// A description of the task for your human workers.
@@ -49635,7 +49659,8 @@ type HumanTaskConfig struct {
 	//
 	//    * For 3D point cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html)
 	//    and video frame (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video.html)
-	//    labeling jobs, the maximum is 7 days (604,800 seconds).
+	//    labeling jobs, the maximum is 7 days (604,800 seconds). If you want to
+	//    change these limits, contact AWS Support.
 	//
 	// TaskTimeLimitInSeconds is a required field
 	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer" required:"true"`
@@ -51141,6 +51166,49 @@ func (s *ImageVersion) SetLastModifiedTime(v time.Time) *ImageVersion {
 // SetVersion sets the Version field's value.
 func (s *ImageVersion) SetVersion(v int64) *ImageVersion {
 	s.Version = &v
+	return s
+}
+
+// Specifies details about how containers in a multi-container are run.
+type InferenceExecutionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// How containers in a multi-container are run. The following values are valid.
+	//
+	//    * SERIAL - Containers run as a serial pipeline.
+	//
+	//    * DIRECT - Only the individual container that you specify is run.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"InferenceExecutionMode"`
+}
+
+// String returns the string representation
+func (s InferenceExecutionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InferenceExecutionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InferenceExecutionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InferenceExecutionConfig"}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMode sets the Mode field's value.
+func (s *InferenceExecutionConfig) SetMode(v string) *InferenceExecutionConfig {
+	s.Mode = &v
 	return s
 }
 
@@ -64357,12 +64425,12 @@ type OutputDataConfig struct {
 	// with KMS-managed keys for OutputDataConfig. If you use a bucket policy with
 	// an s3:PutObject permission that only allows objects with server-side encryption,
 	// set the condition key of s3:x-amz-server-side-encryption to "aws:kms". For
-	// more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
+	// more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/mazonS3/latest/dev/UsingKMSEncryption.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
 	// in your CreateTrainingJob, CreateTransformJob, or CreateHyperParameterTuningJob
-	// requests. For more information, see Using Key Policies in AWS KMS (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// requests. For more information, see Using Key Policies in AWS KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
 	// in the AWS Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
@@ -66223,6 +66291,10 @@ type ProductionVariant struct {
 	// more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
 	AcceleratorType *string `type:"string" enum:"ProductionVariantAcceleratorType"`
 
+	// Specifies configuration for a core dump from the model container when the
+	// process crashes.
+	CoreDumpConfig *ProductionVariantCoreDumpConfig `type:"structure"`
+
 	// Number of instances to launch initially.
 	//
 	// InitialInstanceCount is a required field
@@ -66279,6 +66351,11 @@ func (s *ProductionVariant) Validate() error {
 	if s.VariantName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VariantName"))
 	}
+	if s.CoreDumpConfig != nil {
+		if err := s.CoreDumpConfig.Validate(); err != nil {
+			invalidParams.AddNested("CoreDumpConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -66289,6 +66366,12 @@ func (s *ProductionVariant) Validate() error {
 // SetAcceleratorType sets the AcceleratorType field's value.
 func (s *ProductionVariant) SetAcceleratorType(v string) *ProductionVariant {
 	s.AcceleratorType = &v
+	return s
+}
+
+// SetCoreDumpConfig sets the CoreDumpConfig field's value.
+func (s *ProductionVariant) SetCoreDumpConfig(v *ProductionVariantCoreDumpConfig) *ProductionVariant {
+	s.CoreDumpConfig = v
 	return s
 }
 
@@ -66319,6 +66402,80 @@ func (s *ProductionVariant) SetModelName(v string) *ProductionVariant {
 // SetVariantName sets the VariantName field's value.
 func (s *ProductionVariant) SetVariantName(v string) *ProductionVariant {
 	s.VariantName = &v
+	return s
+}
+
+// Specifies configuration for a core dump from the model container when the
+// process crashes.
+type ProductionVariantCoreDumpConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 bucket to send the core dump to.
+	//
+	// DestinationS3Uri is a required field
+	DestinationS3Uri *string `type:"string" required:"true"`
+
+	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
+	// encrypt the core dump data at rest using Amazon S3 server-side encryption.
+	// The KmsKeyId can be any of the following formats:
+	//
+	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * // KMS Key Alias "alias/ExampleAlias"
+	//
+	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
+	//
+	// If you use a KMS key ID or an alias of your master key, the Amazon SageMaker
+	// execution role must include permissions to call kms:Encrypt. If you don't
+	// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
+	// S3 for your role's account. Amazon SageMaker uses server-side encryption
+	// with KMS-managed keys for OutputDataConfig. If you use a bucket policy with
+	// an s3:PutObject permission that only allows objects with server-side encryption,
+	// set the condition key of s3:x-amz-server-side-encryption to "aws:kms". For
+	// more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// The KMS key policy must grant permission to the IAM role that you specify
+	// in your CreateEndpoint and UpdateEndpoint requests. For more information,
+	// see Using Key Policies in AWS KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// in the AWS Key Management Service Developer Guide.
+	KmsKeyId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ProductionVariantCoreDumpConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProductionVariantCoreDumpConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProductionVariantCoreDumpConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProductionVariantCoreDumpConfig"}
+	if s.DestinationS3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationS3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationS3Uri sets the DestinationS3Uri field's value.
+func (s *ProductionVariantCoreDumpConfig) SetDestinationS3Uri(v string) *ProductionVariantCoreDumpConfig {
+	s.DestinationS3Uri = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ProductionVariantCoreDumpConfig) SetKmsKeyId(v string) *ProductionVariantCoreDumpConfig {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -78195,6 +78352,22 @@ func ImageVersionStatus_Values() []string {
 		ImageVersionStatusCreateFailed,
 		ImageVersionStatusDeleting,
 		ImageVersionStatusDeleteFailed,
+	}
+}
+
+const (
+	// InferenceExecutionModeSerial is a InferenceExecutionMode enum value
+	InferenceExecutionModeSerial = "Serial"
+
+	// InferenceExecutionModeDirect is a InferenceExecutionMode enum value
+	InferenceExecutionModeDirect = "Direct"
+)
+
+// InferenceExecutionMode_Values returns all elements of the InferenceExecutionMode enum
+func InferenceExecutionMode_Values() []string {
+	return []string{
+		InferenceExecutionModeSerial,
+		InferenceExecutionModeDirect,
 	}
 }
 

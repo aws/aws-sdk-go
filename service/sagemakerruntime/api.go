@@ -227,6 +227,10 @@ type InvokeEndpointInput struct {
 	// Data (https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-capture.html).
 	InferenceId *string `location:"header" locationName:"X-Amzn-SageMaker-Inference-Id" min:"1" type:"string"`
 
+	// If the endpoint hosts multiple containers and is configured to use direct
+	// invocation, this parameter specifies the host name of the container to invoke.
+	TargetContainerHostname *string `location:"header" locationName:"X-Amzn-SageMaker-Target-Container-Hostname" type:"string"`
+
 	// The model to request for inference when invoking a multi-model endpoint.
 	TargetModel *string `location:"header" locationName:"X-Amzn-SageMaker-Target-Model" min:"1" type:"string"`
 
@@ -308,6 +312,12 @@ func (s *InvokeEndpointInput) SetEndpointName(v string) *InvokeEndpointInput {
 // SetInferenceId sets the InferenceId field's value.
 func (s *InvokeEndpointInput) SetInferenceId(v string) *InvokeEndpointInput {
 	s.InferenceId = &v
+	return s
+}
+
+// SetTargetContainerHostname sets the TargetContainerHostname field's value.
+func (s *InvokeEndpointInput) SetTargetContainerHostname(v string) *InvokeEndpointInput {
+	s.TargetContainerHostname = &v
 	return s
 }
 

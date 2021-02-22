@@ -104,6 +104,11 @@
           "location":"header",
           "locationName":"X-Amzn-SageMaker-Target-Variant"
         },
+        "TargetContainerHostname":{
+          "shape":"TargetContainerHostnameHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Target-Container-Hostname"
+        },
         "InferenceId":{
           "shape":"InferenceId",
           "location":"header",
@@ -162,6 +167,11 @@
       "synthetic":true
     },
     "StatusCode":{"type":"integer"},
+    "TargetContainerHostnameHeader":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
     "TargetModelHeader":{
       "type":"string",
       "max":1024,
