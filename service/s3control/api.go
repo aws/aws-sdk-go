@@ -6010,6 +6010,8 @@ func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
 type DescribeJobInput struct {
 	_ struct{} `locationName:"DescribeJobRequest" type:"structure"`
 
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
@@ -8788,6 +8790,8 @@ func (s *ListAccessPointsOutput) SetNextToken(v string) *ListAccessPointsOutput 
 type ListJobsInput struct {
 	_ struct{} `locationName:"ListJobsRequest" type:"structure"`
 
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
@@ -12115,6 +12119,8 @@ func (s *Transition) SetStorageClass(v string) *Transition {
 type UpdateJobPriorityInput struct {
 	_ struct{} `locationName:"UpdateJobPriorityRequest" type:"structure"`
 
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
@@ -12227,6 +12233,8 @@ func (s *UpdateJobPriorityOutput) SetPriority(v int64) *UpdateJobPriorityOutput 
 type UpdateJobStatusInput struct {
 	_ struct{} `locationName:"UpdateJobStatusRequest" type:"structure"`
 
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 

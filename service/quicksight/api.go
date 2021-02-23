@@ -13535,9 +13535,11 @@ type CreateDataSourceInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// The type of the data source. Currently, the supported types for this operation
-	// are: ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO,
-	// REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA. Use ListDataSources
-	// to return a list of all data sources.
+	// are: ATHENA, AURORA, AURORA_POSTGRESQL, AMAZON_ELASTICSEARCH, MARIADB, MYSQL,
+	// POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA.
+	// Use ListDataSources to return a list of all data sources.
+	//
+	// AMAZON_ELASTICSEARCH is for Amazon managed Elasticsearch Service.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataSourceType"`
@@ -27242,19 +27244,27 @@ func (s *RowInfo) SetRowsIngested(v int64) *RowInfo {
 	return s
 }
 
-// The row-level security configuration for the dataset.
+// Information about a dataset that contains permissions for row-level security
+// (RLS). The permissions dataset maps fields to users or groups. For more information,
+// see Using Row-Level Security (RLS) to Restrict Access to a Dataset (https://docs.aws.amazon.com/quicksight/latest/user/restrict-access-to-a-data-set-using-row-level-security.html)
+// in the Amazon QuickSight User Guide.
+//
+// The option to deny permissions by setting PermissionPolicy to DENY_ACCESS
+// is not supported for new RLS datasets.
 type RowLevelPermissionDataSet struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the permission dataset.
+	// The Amazon Resource Name (ARN) of the dataset that contains permissions for
+	// RLS.
 	//
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
-	// The namespace associated with the row-level permissions dataset.
+	// The namespace associated with the dataset that contains permissions for RLS.
 	Namespace *string `type:"string"`
 
-	// Permission policy.
+	// The type of permissions to use when interpretting the permissions for RLS.
+	// DENY_ACCESS is included for backward compatibility only.
 	//
 	// PermissionPolicy is a required field
 	PermissionPolicy *string `type:"string" required:"true" enum:"RowLevelPermissionPolicy"`
@@ -27353,7 +27363,7 @@ func (s *S3Parameters) SetManifestFileLocation(v *ManifestFileLocation) *S3Param
 type S3Source struct {
 	_ struct{} `type:"structure"`
 
-	// The amazon Resource Name (ARN) for the data source.
+	// The Amazon Resource Name (ARN) for the data source.
 	//
 	// DataSourceArn is a required field
 	DataSourceArn *string `type:"string" required:"true"`

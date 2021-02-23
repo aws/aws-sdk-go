@@ -1645,9 +1645,16 @@ type DescribeTableInput struct {
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
-	Database *string `type:"string"`
+	// A database name. The connected database is specified when you connect with
+	// your authentication credentials.
+	ConnectedDatabase *string `type:"string"`
+
+	// The name of the database that contains the tables to be described. If ConnectedDatabase
+	// is not specified, this is also the database to connect to with your authentication
+	// credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
 
 	// The database user name. This parameter is required when authenticating using
 	// temporary credentials.
@@ -1695,6 +1702,9 @@ func (s *DescribeTableInput) Validate() error {
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
 	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -1705,6 +1715,12 @@ func (s *DescribeTableInput) Validate() error {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *DescribeTableInput) SetClusterIdentifier(v string) *DescribeTableInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetConnectedDatabase sets the ConnectedDatabase field's value.
+func (s *DescribeTableInput) SetConnectedDatabase(v string) *DescribeTableInput {
+	s.ConnectedDatabase = &v
 	return s
 }
 
@@ -2406,8 +2422,13 @@ type ListSchemasInput struct {
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
+	// A database name. The connected database is specified when you connect with
+	// your authentication credentials.
+	ConnectedDatabase *string `type:"string"`
+
+	// The name of the database that contains the schemas to list. If ConnectedDatabase
+	// is not specified, this is also the database to connect to with your authentication
+	// credentials.
 	//
 	// Database is a required field
 	Database *string `type:"string" required:"true"`
@@ -2467,6 +2488,12 @@ func (s *ListSchemasInput) Validate() error {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *ListSchemasInput) SetClusterIdentifier(v string) *ListSchemasInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetConnectedDatabase sets the ConnectedDatabase field's value.
+func (s *ListSchemasInput) SetConnectedDatabase(v string) *ListSchemasInput {
+	s.ConnectedDatabase = &v
 	return s
 }
 
@@ -2677,8 +2704,13 @@ type ListTablesInput struct {
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
+	// A database name. The connected database is specified when you connect with
+	// your authentication credentials.
+	ConnectedDatabase *string `type:"string"`
+
+	// The name of the database that contains the tables to list. If ConnectedDatabase
+	// is not specified, this is also the database to connect to with your authentication
+	// credentials.
 	//
 	// Database is a required field
 	Database *string `type:"string" required:"true"`
@@ -2749,6 +2781,12 @@ func (s *ListTablesInput) Validate() error {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *ListTablesInput) SetClusterIdentifier(v string) *ListTablesInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetConnectedDatabase sets the ConnectedDatabase field's value.
+func (s *ListTablesInput) SetConnectedDatabase(v string) *ListTablesInput {
+	s.ConnectedDatabase = &v
 	return s
 }
 

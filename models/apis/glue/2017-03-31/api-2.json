@@ -2862,6 +2862,12 @@
         "TableName":{"shape":"NameString"}
       }
     },
+    "CatalogGetterPageSize":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "CatalogIdString":{
       "type":"string",
       "max":255,
@@ -4776,7 +4782,7 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"},
+        "MaxResults":{"shape":"CatalogGetterPageSize"},
         "ResourceShareType":{"shape":"ResourceShareType"}
       }
     },
@@ -5064,7 +5070,8 @@
         "Expression":{"shape":"PredicateString"},
         "NextToken":{"shape":"Token"},
         "Segment":{"shape":"Segment"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"PageSize"},
+        "ExcludeColumnSchema":{"shape":"BooleanNullable"}
       }
     },
     "GetPartitionsResponse":{
@@ -5313,7 +5320,7 @@
         "DatabaseName":{"shape":"NameString"},
         "TableName":{"shape":"NameString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"CatalogGetterPageSize"}
       }
     },
     "GetTableVersionsResponse":{
@@ -5331,7 +5338,7 @@
         "DatabaseName":{"shape":"NameString"},
         "Expression":{"shape":"FilterString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"CatalogGetterPageSize"}
       }
     },
     "GetTablesResponse":{
@@ -5408,7 +5415,7 @@
         "DatabaseName":{"shape":"NameString"},
         "Pattern":{"shape":"NameString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{"shape":"CatalogGetterPageSize"}
       }
     },
     "GetUserDefinedFunctionsResponse":{

@@ -14482,6 +14482,10 @@ type CampaignSmsMessage struct {
 	// The body of the SMS message.
 	Body *string `type:"string"`
 
+	// The entity ID or Principal Entity (PE) id received from the regulatory body
+	// for sending SMS in your country.
+	EntityId *string `type:"string"`
+
 	// The SMS message type. Valid values are TRANSACTIONAL (for messages that are
 	// critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL
 	// (for messsages that aren't critical or time-sensitive, such as marketing
@@ -14497,6 +14501,10 @@ type CampaignSmsMessage struct {
 	// The sender ID to display on recipients' devices when they receive the SMS
 	// message.
 	SenderId *string `type:"string"`
+
+	// The template ID received from the regulatory body for sending SMS in your
+	// country.
+	TemplateId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -14515,6 +14523,12 @@ func (s *CampaignSmsMessage) SetBody(v string) *CampaignSmsMessage {
 	return s
 }
 
+// SetEntityId sets the EntityId field's value.
+func (s *CampaignSmsMessage) SetEntityId(v string) *CampaignSmsMessage {
+	s.EntityId = &v
+	return s
+}
+
 // SetMessageType sets the MessageType field's value.
 func (s *CampaignSmsMessage) SetMessageType(v string) *CampaignSmsMessage {
 	s.MessageType = &v
@@ -14530,6 +14544,12 @@ func (s *CampaignSmsMessage) SetOriginationNumber(v string) *CampaignSmsMessage 
 // SetSenderId sets the SenderId field's value.
 func (s *CampaignSmsMessage) SetSenderId(v string) *CampaignSmsMessage {
 	s.SenderId = &v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *CampaignSmsMessage) SetTemplateId(v string) *CampaignSmsMessage {
+	s.TemplateId = &v
 	return s
 }
 
@@ -25927,6 +25947,10 @@ func (s *JourneyResponse) SetTags(v map[string]*string) *JourneyResponse {
 type JourneySMSMessage struct {
 	_ struct{} `type:"structure"`
 
+	// The entity ID or Principal Entity (PE) id received from the regulatory body
+	// for sending SMS in your country.
+	EntityId *string `type:"string"`
+
 	// The SMS message type. Valid values are TRANSACTIONAL (for messages that are
 	// critical or time-sensitive, such as a one-time passwords) and PROMOTIONAL
 	// (for messsages that aren't critical or time-sensitive, such as marketing
@@ -25944,6 +25968,10 @@ type JourneySMSMessage struct {
 	// see Supported Countries and Regions (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html)
 	// in the Amazon Pinpoint User Guide.
 	SenderId *string `type:"string"`
+
+	// The template ID received from the regulatory body for sending SMS in your
+	// country.
+	TemplateId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -25954,6 +25982,12 @@ func (s JourneySMSMessage) String() string {
 // GoString returns the string representation
 func (s JourneySMSMessage) GoString() string {
 	return s.String()
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *JourneySMSMessage) SetEntityId(v string) *JourneySMSMessage {
+	s.EntityId = &v
+	return s
 }
 
 // SetMessageType sets the MessageType field's value.
@@ -25971,6 +26005,12 @@ func (s *JourneySMSMessage) SetOriginationNumber(v string) *JourneySMSMessage {
 // SetSenderId sets the SenderId field's value.
 func (s *JourneySMSMessage) SetSenderId(v string) *JourneySMSMessage {
 	s.SenderId = &v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *JourneySMSMessage) SetTemplateId(v string) *JourneySMSMessage {
+	s.TemplateId = &v
 	return s
 }
 
@@ -28978,6 +29018,10 @@ type SMSMessage struct {
 	// The body of the SMS message.
 	Body *string `type:"string"`
 
+	// The entity ID or Principal Entity (PE) id received from the regulatory body
+	// for sending SMS in your country.
+	EntityId *string `type:"string"`
+
 	// The SMS program name that you provided to AWS Support when you requested
 	// your dedicated number.
 	Keyword *string `type:"string"`
@@ -29004,6 +29048,10 @@ type SMSMessage struct {
 	// The message variables to use in the SMS message. You can override the default
 	// variables with individual address variables.
 	Substitutions map[string][]*string `type:"map"`
+
+	// The template ID received from the regulatory body for sending SMS in your
+	// country.
+	TemplateId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -29019,6 +29067,12 @@ func (s SMSMessage) GoString() string {
 // SetBody sets the Body field's value.
 func (s *SMSMessage) SetBody(v string) *SMSMessage {
 	s.Body = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *SMSMessage) SetEntityId(v string) *SMSMessage {
+	s.EntityId = &v
 	return s
 }
 
@@ -29055,6 +29109,12 @@ func (s *SMSMessage) SetSenderId(v string) *SMSMessage {
 // SetSubstitutions sets the Substitutions field's value.
 func (s *SMSMessage) SetSubstitutions(v map[string][]*string) *SMSMessage {
 	s.Substitutions = v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *SMSMessage) SetTemplateId(v string) *SMSMessage {
+	s.TemplateId = &v
 	return s
 }
 

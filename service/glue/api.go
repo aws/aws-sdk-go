@@ -29462,6 +29462,8 @@ type GetPartitionsInput struct {
 	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
+	ExcludeColumnSchema *bool `type:"boolean"`
+
 	// An expression that filters the partitions to be returned.
 	//
 	// The expression uses SQL syntax similar to the SQL WHERE filter clause. The
@@ -29616,6 +29618,12 @@ func (s *GetPartitionsInput) SetCatalogId(v string) *GetPartitionsInput {
 // SetDatabaseName sets the DatabaseName field's value.
 func (s *GetPartitionsInput) SetDatabaseName(v string) *GetPartitionsInput {
 	s.DatabaseName = &v
+	return s
+}
+
+// SetExcludeColumnSchema sets the ExcludeColumnSchema field's value.
+func (s *GetPartitionsInput) SetExcludeColumnSchema(v bool) *GetPartitionsInput {
+	s.ExcludeColumnSchema = &v
 	return s
 }
 

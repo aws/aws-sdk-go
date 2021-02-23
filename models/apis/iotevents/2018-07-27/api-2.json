@@ -97,6 +97,22 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DescribeDetectorModelAnalysis":{
+      "name":"DescribeDetectorModelAnalysis",
+      "http":{
+        "method":"GET",
+        "requestUri":"/analysis/detector-models/{analysisId}"
+      },
+      "input":{"shape":"DescribeDetectorModelAnalysisRequest"},
+      "output":{"shape":"DescribeDetectorModelAnalysisResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DescribeInput":{
       "name":"DescribeInput",
       "http":{
@@ -128,6 +144,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"UnsupportedOperationException"}
+      ]
+    },
+    "GetDetectorModelAnalysisResults":{
+      "name":"GetDetectorModelAnalysisResults",
+      "http":{
+        "method":"GET",
+        "requestUri":"/analysis/detector-models/{analysisId}/results"
+      },
+      "input":{"shape":"GetDetectorModelAnalysisResultsRequest"},
+      "output":{"shape":"GetDetectorModelAnalysisResultsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     },
     "ListDetectorModelVersions":{
@@ -206,6 +238,22 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"UnsupportedOperationException"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "StartDetectorModelAnalysis":{
+      "name":"StartDetectorModelAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/analysis/detector-models/"
+      },
+      "input":{"shape":"StartDetectorModelAnalysisRequest"},
+      "output":{"shape":"StartDetectorModelAnalysisResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     },
     "TagResource":{
@@ -304,6 +352,49 @@
       "max":2048,
       "min":1
     },
+    "AnalysisId":{"type":"string"},
+    "AnalysisMessage":{"type":"string"},
+    "AnalysisResult":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"AnalysisType"},
+        "level":{"shape":"AnalysisResultLevel"},
+        "message":{"shape":"AnalysisMessage"},
+        "locations":{"shape":"AnalysisResultLocations"}
+      }
+    },
+    "AnalysisResultLevel":{
+      "type":"string",
+      "enum":[
+        "INFO",
+        "WARNING",
+        "ERROR"
+      ]
+    },
+    "AnalysisResultLocation":{
+      "type":"structure",
+      "members":{
+        "path":{"shape":"AnalysisResultLocationPath"}
+      }
+    },
+    "AnalysisResultLocationPath":{"type":"string"},
+    "AnalysisResultLocations":{
+      "type":"list",
+      "member":{"shape":"AnalysisResultLocation"}
+    },
+    "AnalysisResults":{
+      "type":"list",
+      "member":{"shape":"AnalysisResult"}
+    },
+    "AnalysisStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "COMPLETE",
+        "FAILED"
+      ]
+    },
+    "AnalysisType":{"type":"string"},
     "AssetId":{"type":"string"},
     "AssetPropertyAlias":{"type":"string"},
     "AssetPropertyBooleanValue":{"type":"string"},
@@ -450,6 +541,23 @@
       }
     },
     "DeliveryStreamName":{"type":"string"},
+    "DescribeDetectorModelAnalysisRequest":{
+      "type":"structure",
+      "required":["analysisId"],
+      "members":{
+        "analysisId":{
+          "shape":"AnalysisId",
+          "location":"uri",
+          "locationName":"analysisId"
+        }
+      }
+    },
+    "DescribeDetectorModelAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"AnalysisStatus"}
+      }
+    },
     "DescribeDetectorModelRequest":{
       "type":"structure",
       "required":["detectorModelName"],
@@ -672,6 +780,34 @@
     "FirehoseSeparator":{
       "type":"string",
       "pattern":"([\\n\\t])|(\\r\\n)|(,)"
+    },
+    "GetDetectorModelAnalysisResultsRequest":{
+      "type":"structure",
+      "required":["analysisId"],
+      "members":{
+        "analysisId":{
+          "shape":"AnalysisId",
+          "location":"uri",
+          "locationName":"analysisId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxAnalysisResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "GetDetectorModelAnalysisResultsResponse":{
+      "type":"structure",
+      "members":{
+        "analysisResults":{"shape":"AnalysisResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "Input":{
       "type":"structure",
@@ -923,6 +1059,7 @@
       "max":128,
       "min":1
     },
+    "MaxAnalysisResults":{"type":"integer"},
     "MaxResults":{
       "type":"integer",
       "max":250,
@@ -1060,6 +1197,19 @@
         "queueUrl":{"shape":"QueueUrl"},
         "useBase64":{"shape":"UseBase64"},
         "payload":{"shape":"Payload"}
+      }
+    },
+    "StartDetectorModelAnalysisRequest":{
+      "type":"structure",
+      "required":["detectorModelDefinition"],
+      "members":{
+        "detectorModelDefinition":{"shape":"DetectorModelDefinition"}
+      }
+    },
+    "StartDetectorModelAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "analysisId":{"shape":"AnalysisId"}
       }
     },
     "State":{

@@ -33,7 +33,7 @@
     "DescribeMetricCollectionTypes": "<p>Describes the available CloudWatch metrics for Amazon EC2 Auto Scaling.</p> <p>The <code>GroupStandbyInstances</code> metric is not returned by default. You must explicitly request this metric when calling the <a>EnableMetricsCollection</a> API.</p>",
     "DescribeNotificationConfigurations": "<p>Describes the notification actions associated with the specified Auto Scaling group.</p>",
     "DescribePolicies": "<p>Describes the policies for the specified Auto Scaling group.</p>",
-    "DescribeScalingActivities": "<p>Describes one or more scaling activities for the specified Auto Scaling group.</p>",
+    "DescribeScalingActivities": "<p>Describes one or more scaling activities for the specified Auto Scaling group.</p> <p>To view the scaling activities from the Amazon EC2 Auto Scaling console, choose the <b>Activity</b> tab of the Auto Scaling group. When scaling events occur, you see scaling activity messages in the <b>Activity history</b>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-verify-scaling-activity.html\">Verifying a scaling activity for an Auto Scaling group</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "DescribeScalingProcessTypes": "<p>Describes the scaling process types for use with the <a>ResumeProcesses</a> and <a>SuspendProcesses</a> APIs.</p>",
     "DescribeScheduledActions": "<p>Describes the actions scheduled for your Auto Scaling group that haven't run or that have not reached their end time. To describe the actions that have already run, call the <a>DescribeScalingActivities</a> API.</p>",
     "DescribeTags": "<p>Describes the specified tags.</p> <p>You can use filters to limit the results. For example, you can query for the tags for a specific Auto Scaling group. You can specify multiple values for a filter. A tag must match at least one of the specified values for it to be included in the results.</p> <p>You can also specify multiple filters. The result includes information for a particular tag only if it matches all the filters. If there's no match, no special message is returned.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html\">Tagging Auto Scaling groups and instances</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
@@ -222,6 +222,12 @@
     "AutoScalingGroupNamesType": {
       "base": null,
       "refs": {
+      }
+    },
+    "AutoScalingGroupState": {
+      "base": null,
+      "refs": {
+        "Activity$AutoScalingGroupState": "<p>The state of the Auto Scaling group, which is either <code>InService</code> or <code>Deleted</code>.</p>"
       }
     },
     "AutoScalingGroups": {
@@ -698,6 +704,12 @@
       "refs": {
         "ExecutePolicyType$HonorCooldown": "<p>Indicates whether Amazon EC2 Auto Scaling waits for the cooldown period to complete before executing the policy.</p> <p>Valid only if the policy type is <code>SimpleScaling</code>. For more information, see <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html\">Scaling cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
         "SetDesiredCapacityType$HonorCooldown": "<p>Indicates whether Amazon EC2 Auto Scaling waits for the cooldown period to complete before initiating a scaling activity to set your Auto Scaling group to its new capacity. By default, Amazon EC2 Auto Scaling does not honor the cooldown period during manual scaling activities.</p>"
+      }
+    },
+    "IncludeDeletedGroups": {
+      "base": null,
+      "refs": {
+        "DescribeScalingActivitiesType$IncludeDeletedGroups": "<p>Indicates whether to include scaling activity from deleted Auto Scaling groups.</p>"
       }
     },
     "Instance": {
@@ -1344,6 +1356,7 @@
     "ResourceName": {
       "base": null,
       "refs": {
+        "Activity$AutoScalingGroupARN": "<p>The Amazon Resource Name (ARN) of the Auto Scaling group.</p>",
         "Alarm$AlarmARN": "<p>The Amazon Resource Name (ARN) of the alarm.</p>",
         "AutoScalingGroup$AutoScalingGroupARN": "<p>The Amazon Resource Name (ARN) of the Auto Scaling group.</p>",
         "AutoScalingGroup$ServiceLinkedRoleARN": "<p>The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other AWS services on your behalf.</p>",

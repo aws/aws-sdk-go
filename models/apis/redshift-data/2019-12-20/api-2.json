@@ -233,9 +233,13 @@
     },
     "DescribeTableRequest":{
       "type":"structure",
-      "required":["ClusterIdentifier"],
+      "required":[
+        "ClusterIdentifier",
+        "Database"
+      ],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
+        "ConnectedDatabase":{"shape":"String"},
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
         "MaxResults":{"shape":"PageSize"},
@@ -364,6 +368,7 @@
       ],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
+        "ConnectedDatabase":{"shape":"String"},
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
         "MaxResults":{"shape":"PageSize"},
@@ -410,6 +415,7 @@
       ],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
+        "ConnectedDatabase":{"shape":"String"},
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
         "MaxResults":{"shape":"PageSize"},

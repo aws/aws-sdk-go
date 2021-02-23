@@ -323,8 +323,8 @@
         "NamespaceInfoV2$Arn": "<p>The namespace ARN.</p>",
         "RelationalTable$DataSourceArn": "<p>The Amazon Resource Name (ARN) for the data source.</p>",
         "RestoreAnalysisResponse$Arn": "<p>The Amazon Resource Name (ARN) of the analysis that you're restoring.</p>",
-        "RowLevelPermissionDataSet$Arn": "<p>The Amazon Resource Name (ARN) of the permission dataset.</p>",
-        "S3Source$DataSourceArn": "<p>The amazon Resource Name (ARN) for the data source.</p>",
+        "RowLevelPermissionDataSet$Arn": "<p>The Amazon Resource Name (ARN) of the dataset that contains permissions for RLS.</p>",
+        "S3Source$DataSourceArn": "<p>The Amazon Resource Name (ARN) for the data source.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to tag.</p>",
         "Template$Arn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "TemplateAlias$Arn": "<p>The Amazon Resource Name (ARN) of the template alias.</p>",
@@ -1136,7 +1136,7 @@
     "DataSourceType": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$Type": "<p>The type of the data source. Currently, the supported types for this operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use <code>ListDataSources</code> to return a list of all data sources.</p>",
+        "CreateDataSourceRequest$Type": "<p>The type of the data source. Currently, the supported types for this operation are: <code>ATHENA, AURORA, AURORA_POSTGRESQL, AMAZON_ELASTICSEARCH, MARIADB, MYSQL, POSTGRESQL, PRESTO, REDSHIFT, S3, SNOWFLAKE, SPARK, SQLSERVER, TERADATA</code>. Use <code>ListDataSources</code> to return a list of all data sources.</p> <p> <code>AMAZON_ELASTICSEARCH</code> is for Amazon managed Elasticsearch Service.</p>",
         "DataSource$Type": "<p>The type of the data source. This type indicates which database engine the data source connects to.</p>"
       }
     },
@@ -2357,7 +2357,7 @@
         "ListUsersRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
         "NamespaceInfoV2$Name": "<p>The name of the error.</p>",
         "RegisterUserRequest$Namespace": "<p>The namespace. Currently, you should set this to <code>default</code>.</p>",
-        "RowLevelPermissionDataSet$Namespace": "<p>The namespace associated with the row-level permissions dataset.</p>",
+        "RowLevelPermissionDataSet$Namespace": "<p>The namespace associated with the dataset that contains permissions for RLS.</p>",
         "UpdateAccountCustomizationRequest$Namespace": "<p>The namespace that you want to update QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$Namespace": "<p>The namespace associated with the customization that you're updating.</p>",
         "UpdateAccountSettingsRequest$DefaultNamespace": "<p>The default namespace for this AWS account. Currently, the default is <code>default</code>. AWS Identity and Access Management (IAM) users that register for the first time with QuickSight provide an email that becomes associated with the default namespace.</p>",
@@ -2845,7 +2845,7 @@
       }
     },
     "RowLevelPermissionDataSet": {
-      "base": "<p>The row-level security configuration for the dataset.</p>",
+      "base": "<p>Information about a dataset that contains permissions for row-level security (RLS). The permissions dataset maps fields to users or groups. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/restrict-access-to-a-data-set-using-row-level-security.html\">Using Row-Level Security (RLS) to Restrict Access to a Dataset</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>The option to deny permissions by setting <code>PermissionPolicy</code> to <code>DENY_ACCESS</code> is not supported for new RLS datasets.</p>",
       "refs": {
         "CreateDataSetRequest$RowLevelPermissionDataSet": "<p>The row-level security configuration for the data that you want to create.</p>",
         "DataSet$RowLevelPermissionDataSet": "<p>The row-level security configuration for the dataset.</p>",
@@ -2856,7 +2856,7 @@
     "RowLevelPermissionPolicy": {
       "base": null,
       "refs": {
-        "RowLevelPermissionDataSet$PermissionPolicy": "<p>Permission policy.</p>"
+        "RowLevelPermissionDataSet$PermissionPolicy": "<p>The type of permissions to use when interpretting the permissions for RLS. <code>DENY_ACCESS</code> is included for backward compatibility only.</p>"
       }
     },
     "S3Bucket": {
