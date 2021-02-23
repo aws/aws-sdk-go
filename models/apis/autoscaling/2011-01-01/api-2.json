@@ -871,7 +871,9 @@
         "StatusCode":{"shape":"ScalingActivityStatusCode"},
         "StatusMessage":{"shape":"XmlStringMaxLen255"},
         "Progress":{"shape":"Progress"},
-        "Details":{"shape":"XmlString"}
+        "Details":{"shape":"XmlString"},
+        "AutoScalingGroupState":{"shape":"AutoScalingGroupState"},
+        "AutoScalingGroupARN":{"shape":"ResourceName"}
       }
     },
     "ActivityIds":{
@@ -1020,6 +1022,11 @@
         "NextToken":{"shape":"XmlString"},
         "MaxRecords":{"shape":"MaxRecords"}
       }
+    },
+    "AutoScalingGroupState":{
+      "type":"string",
+      "max":32,
+      "min":1
     },
     "AutoScalingGroups":{
       "type":"list",
@@ -1456,6 +1463,7 @@
       "members":{
         "ActivityIds":{"shape":"ActivityIds"},
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
+        "IncludeDeletedGroups":{"shape":"IncludeDeletedGroups"},
         "MaxRecords":{"shape":"MaxRecords"},
         "NextToken":{"shape":"XmlString"}
       }
@@ -1652,6 +1660,7 @@
     "HealthCheckGracePeriod":{"type":"integer"},
     "HeartbeatTimeout":{"type":"integer"},
     "HonorCooldown":{"type":"boolean"},
+    "IncludeDeletedGroups":{"type":"boolean"},
     "Instance":{
       "type":"structure",
       "required":[

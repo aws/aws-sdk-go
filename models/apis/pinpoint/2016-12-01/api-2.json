@@ -5175,6 +5175,12 @@
         },
         "SenderId": {
           "shape": "__string"
+        },
+        "EntityId": {
+          "shape": "__string"
+        },
+        "TemplateId": {
+          "shape": "__string"
         }
       }
     },
@@ -9201,6 +9207,12 @@
         },
         "SenderId": {
           "shape": "__string"
+        },
+        "EntityId": {
+          "shape": "__string"
+        },
+        "TemplateId": {
+          "shape": "__string"
         }
       }
     },
@@ -10204,6 +10216,12 @@
         },
         "Substitutions": {
           "shape": "MapOfListOf__string"
+        },
+        "EntityId": {
+          "shape": "__string"
+        },
+        "TemplateId": {
+          "shape": "__string"
         }
       }
     },

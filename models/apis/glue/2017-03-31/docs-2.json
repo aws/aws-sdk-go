@@ -465,6 +465,7 @@
     "BooleanNullable": {
       "base": null,
       "refs": {
+        "GetPartitionsRequest$ExcludeColumnSchema": null,
         "UpdateTableRequest$SkipArchive": "<p>By default, <code>UpdateTable</code> always creates an archived version of the table before updating it. However, if <code>skipArchive</code> is set to true, <code>UpdateTable</code> does not create the archived version.</p>"
       }
     },
@@ -513,6 +514,15 @@
         "CatalogEntries$member": null,
         "GetMappingRequest$Source": "<p>Specifies the source table.</p>",
         "GetPlanRequest$Source": "<p>The source table.</p>"
+      }
+    },
+    "CatalogGetterPageSize": {
+      "base": null,
+      "refs": {
+        "GetDatabasesRequest$MaxResults": "<p>The maximum number of databases to return in one response.</p>",
+        "GetTableVersionsRequest$MaxResults": "<p>The maximum number of table versions to return in one response.</p>",
+        "GetTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>",
+        "GetUserDefinedFunctionsRequest$MaxResults": "<p>The maximum number of functions to return in one response.</p>"
       }
     },
     "CatalogIdString": {
@@ -3716,7 +3726,6 @@
         "GetConnectionsRequest$MaxResults": "<p>The maximum number of connections to return in one response.</p>",
         "GetCrawlerMetricsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetCrawlersRequest$MaxResults": "<p>The number of crawlers to return on each call.</p>",
-        "GetDatabasesRequest$MaxResults": "<p>The maximum number of databases to return in one response.</p>",
         "GetDevEndpointsRequest$MaxResults": "<p>The maximum size of information to return.</p>",
         "GetJobRunsRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetJobsRequest$MaxResults": "<p>The maximum size of the response.</p>",
@@ -3725,10 +3734,7 @@
         "GetPartitionsRequest$MaxResults": "<p>The maximum number of partitions to return in a single response.</p>",
         "GetResourcePoliciesRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetSecurityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
-        "GetTableVersionsRequest$MaxResults": "<p>The maximum number of table versions to return in one response.</p>",
-        "GetTablesRequest$MaxResults": "<p>The maximum number of tables to return in a single response.</p>",
         "GetTriggersRequest$MaxResults": "<p>The maximum size of the response.</p>",
-        "GetUserDefinedFunctionsRequest$MaxResults": "<p>The maximum number of functions to return in one response.</p>",
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",

@@ -484,6 +484,97 @@ func (c *IoTEvents) DescribeDetectorModelWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+const opDescribeDetectorModelAnalysis = "DescribeDetectorModelAnalysis"
+
+// DescribeDetectorModelAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDetectorModelAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDetectorModelAnalysis for more information on using the DescribeDetectorModelAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDetectorModelAnalysisRequest method.
+//    req, resp := client.DescribeDetectorModelAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeDetectorModelAnalysis
+func (c *IoTEvents) DescribeDetectorModelAnalysisRequest(input *DescribeDetectorModelAnalysisInput) (req *request.Request, output *DescribeDetectorModelAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDetectorModelAnalysis,
+		HTTPMethod: "GET",
+		HTTPPath:   "/analysis/detector-models/{analysisId}",
+	}
+
+	if input == nil {
+		input = &DescribeDetectorModelAnalysisInput{}
+	}
+
+	output = &DescribeDetectorModelAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDetectorModelAnalysis API operation for AWS IoT Events.
+//
+// Retrieves execution information about a detector model analysis
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Events's
+// API operation DescribeDetectorModelAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request was invalid.
+//
+//   * ResourceNotFoundException
+//   The resource was not found.
+//
+//   * ThrottlingException
+//   The request could not be completed due to throttling.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/DescribeDetectorModelAnalysis
+func (c *IoTEvents) DescribeDetectorModelAnalysis(input *DescribeDetectorModelAnalysisInput) (*DescribeDetectorModelAnalysisOutput, error) {
+	req, out := c.DescribeDetectorModelAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDetectorModelAnalysisWithContext is the same as DescribeDetectorModelAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDetectorModelAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTEvents) DescribeDetectorModelAnalysisWithContext(ctx aws.Context, input *DescribeDetectorModelAnalysisInput, opts ...request.Option) (*DescribeDetectorModelAnalysisOutput, error) {
+	req, out := c.DescribeDetectorModelAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeInput = "DescribeInput"
 
 // DescribeInputRequest generates a "aws/request.Request" representing the
@@ -664,6 +755,97 @@ func (c *IoTEvents) DescribeLoggingOptions(input *DescribeLoggingOptionsInput) (
 // for more information on using Contexts.
 func (c *IoTEvents) DescribeLoggingOptionsWithContext(ctx aws.Context, input *DescribeLoggingOptionsInput, opts ...request.Option) (*DescribeLoggingOptionsOutput, error) {
 	req, out := c.DescribeLoggingOptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDetectorModelAnalysisResults = "GetDetectorModelAnalysisResults"
+
+// GetDetectorModelAnalysisResultsRequest generates a "aws/request.Request" representing the
+// client's request for the GetDetectorModelAnalysisResults operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDetectorModelAnalysisResults for more information on using the GetDetectorModelAnalysisResults
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDetectorModelAnalysisResultsRequest method.
+//    req, resp := client.GetDetectorModelAnalysisResultsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/GetDetectorModelAnalysisResults
+func (c *IoTEvents) GetDetectorModelAnalysisResultsRequest(input *GetDetectorModelAnalysisResultsInput) (req *request.Request, output *GetDetectorModelAnalysisResultsOutput) {
+	op := &request.Operation{
+		Name:       opGetDetectorModelAnalysisResults,
+		HTTPMethod: "GET",
+		HTTPPath:   "/analysis/detector-models/{analysisId}/results",
+	}
+
+	if input == nil {
+		input = &GetDetectorModelAnalysisResultsInput{}
+	}
+
+	output = &GetDetectorModelAnalysisResultsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDetectorModelAnalysisResults API operation for AWS IoT Events.
+//
+// Retrieves one or more analysis results of the detector model.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Events's
+// API operation GetDetectorModelAnalysisResults for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request was invalid.
+//
+//   * ResourceNotFoundException
+//   The resource was not found.
+//
+//   * ThrottlingException
+//   The request could not be completed due to throttling.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/GetDetectorModelAnalysisResults
+func (c *IoTEvents) GetDetectorModelAnalysisResults(input *GetDetectorModelAnalysisResultsInput) (*GetDetectorModelAnalysisResultsOutput, error) {
+	req, out := c.GetDetectorModelAnalysisResultsRequest(input)
+	return out, req.Send()
+}
+
+// GetDetectorModelAnalysisResultsWithContext is the same as GetDetectorModelAnalysisResults with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDetectorModelAnalysisResults for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTEvents) GetDetectorModelAnalysisResultsWithContext(ctx aws.Context, input *GetDetectorModelAnalysisResultsInput, opts ...request.Option) (*GetDetectorModelAnalysisResultsOutput, error) {
+	req, out := c.GetDetectorModelAnalysisResultsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1129,6 +1311,99 @@ func (c *IoTEvents) PutLoggingOptionsWithContext(ctx aws.Context, input *PutLogg
 	return out, req.Send()
 }
 
+const opStartDetectorModelAnalysis = "StartDetectorModelAnalysis"
+
+// StartDetectorModelAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the StartDetectorModelAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartDetectorModelAnalysis for more information on using the StartDetectorModelAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartDetectorModelAnalysisRequest method.
+//    req, resp := client.StartDetectorModelAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/StartDetectorModelAnalysis
+func (c *IoTEvents) StartDetectorModelAnalysisRequest(input *StartDetectorModelAnalysisInput) (req *request.Request, output *StartDetectorModelAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opStartDetectorModelAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/analysis/detector-models/",
+	}
+
+	if input == nil {
+		input = &StartDetectorModelAnalysisInput{}
+	}
+
+	output = &StartDetectorModelAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartDetectorModelAnalysis API operation for AWS IoT Events.
+//
+// Performs an analysis of your detector model. For more information, see Running
+// detector model analyses (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html)
+// in the AWS IoT Events Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Events's
+// API operation StartDetectorModelAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request was invalid.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
+//   * ThrottlingException
+//   The request could not be completed due to throttling.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotevents-2018-07-27/StartDetectorModelAnalysis
+func (c *IoTEvents) StartDetectorModelAnalysis(input *StartDetectorModelAnalysisInput) (*StartDetectorModelAnalysisOutput, error) {
+	req, out := c.StartDetectorModelAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// StartDetectorModelAnalysisWithContext is the same as StartDetectorModelAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartDetectorModelAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTEvents) StartDetectorModelAnalysisWithContext(ctx aws.Context, input *StartDetectorModelAnalysisInput, opts ...request.Option) (*StartDetectorModelAnalysisOutput, error) {
+	req, out := c.StartDetectorModelAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -1573,7 +1848,7 @@ type ActionData struct {
 
 	// Writes to the DynamoDB table that you created. The default action payload
 	// contains all attribute-value pairs that have the information about the detector
-	// model instance and the event that triggered the action. You can also customize
+	// model instance and the event that triggered the action. You can customize
 	// the payload (https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html).
 	// One column of the DynamoDB table receives all attribute-value pairs in the
 	// payload that you specify. For more information, see Actions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html)
@@ -1582,7 +1857,7 @@ type ActionData struct {
 
 	// Writes to the DynamoDB table that you created. The default action payload
 	// contains all attribute-value pairs that have the information about the detector
-	// model instance and the event that triggered the action. You can also customize
+	// model instance and the event that triggered the action. You can customize
 	// the payload (https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html).
 	// A separate column of the DynamoDB table receives one attribute-value pair
 	// in the payload that you specify. For more information, see Actions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html)
@@ -1788,26 +2063,155 @@ func (s *ActionData) SetSqs(v *SqsAction) *ActionData {
 	return s
 }
 
+// Contains the result of the analysis.
+type AnalysisResult struct {
+	_ struct{} `type:"structure"`
+
+	// The severity level of the analysis result. Analysis results fall into three
+	// general categories based on the severity level:
+	//
+	//    * INFO - An information result informs you about a significant field in
+	//    your detector model. This type of result usually doesn't require immediate
+	//    action.
+	//
+	//    * WARNING - A warning result draws special attention to fields that are
+	//    potentially damaging to your detector model. We recommend that you review
+	//    warnings and take necessary actions before you use your detetor model
+	//    in production environments. Otherwise, the detector model may not fully
+	//    function as expected.
+	//
+	//    * ERROR - An error result notifies you about a problem found in your detector
+	//    model. You must fix all errors before you can publish your detector model.
+	Level *string `locationName:"level" type:"string" enum:"AnalysisResultLevel"`
+
+	// Contains one or more locations that you can use to locate the fields in your
+	// detector model that the analysis result references.
+	Locations []*AnalysisResultLocation `locationName:"locations" type:"list"`
+
+	// Contains additional information about the analysis result.
+	Message *string `locationName:"message" type:"string"`
+
+	// The type of the analysis result. Analyses fall into the following types based
+	// on the validators used to generate the analysis result:
+	//
+	//    * supported-actions - You must specify AWS IoT Events supported actions
+	//    that work with other AWS services in a supported AWS Region.
+	//
+	//    * service-limits - Resources or operations can't exceed service limits.
+	//    Update your detector model or request a limit adjust.
+	//
+	//    * structure - The detector model must follow a structure that AWS IoT
+	//    Events supports.
+	//
+	//    * expression-syntax - Your expression must follow the required syntax.
+	//
+	//    * data-type - Data types referenced in the detector model must be compatible.
+	//
+	//    * referenced-data - You must define the data referenced in your detector
+	//    model before you can use the data.
+	//
+	//    * referenced-resource - Resources that the detector model uses must be
+	//    available.
+	//
+	// For more information, see Running detector model analyses (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html)
+	// in the AWS IoT Events Developer Guide.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation
+func (s AnalysisResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AnalysisResult) GoString() string {
+	return s.String()
+}
+
+// SetLevel sets the Level field's value.
+func (s *AnalysisResult) SetLevel(v string) *AnalysisResult {
+	s.Level = &v
+	return s
+}
+
+// SetLocations sets the Locations field's value.
+func (s *AnalysisResult) SetLocations(v []*AnalysisResultLocation) *AnalysisResult {
+	s.Locations = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AnalysisResult) SetMessage(v string) *AnalysisResult {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AnalysisResult) SetType(v string) *AnalysisResult {
+	s.Type = &v
+	return s
+}
+
+// Contains information that you can use to locate the field in your detector
+// model that the analysis result references.
+type AnalysisResultLocation struct {
+	_ struct{} `type:"structure"`
+
+	// A JsonPath (https://github.com/json-path/JsonPath) expression that identifies
+	// the error field in your detector model.
+	Path *string `locationName:"path" type:"string"`
+}
+
+// String returns the string representation
+func (s AnalysisResultLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AnalysisResultLocation) GoString() string {
+	return s.String()
+}
+
+// SetPath sets the Path field's value.
+func (s *AnalysisResultLocation) SetPath(v string) *AnalysisResultLocation {
+	s.Path = &v
+	return s
+}
+
 // A structure that contains timestamp information. For more information, see
 // TimeInNanos (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_TimeInNanos.html)
 // in the AWS IoT SiteWise API Reference.
 //
-// For parameters that are string data type, you can specify the following options:
+// You must use expressions for all parameters in AssetPropertyTimestamp. The
+// expressions accept literals, operators, functions, references, and substitution
+// templates.
 //
-//    * Use a string. For example, the timeInSeconds value can be '1586400675'.
+// Examples
 //
-//    * Use an expression. For example, the timeInSeconds value can be '${$input.TemperatureInput.sensorData.timestamp/1000}'.
-//    For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
-//    in the AWS IoT Events Developer Guide.
+//    * For literal values, the expressions must contain single quotes. For
+//    example, the value for the timeInSeconds parameter can be '1586400675'.
+//
+//    * For references, you must specify either variables or input values. For
+//    example, the value for the offsetInNanos parameter can be $variable.time.
+//
+//    * For a substitution template, you must use ${}, and the template must
+//    be in single quotes. A substitution template can also contain a combination
+//    of literals, operators, functions, references, and substitution templates.
+//    In the following example, the value for the timeInSeconds parameter uses
+//    a substitution template. '${$input.TemperatureInput.sensorData.timestamp
+//    / 1000}'
+//
+// For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
+// in the AWS IoT Events Developer Guide.
 type AssetPropertyTimestamp struct {
 	_ struct{} `type:"structure"`
 
 	// The nanosecond offset converted from timeInSeconds. The valid range is between
-	// 0-999999999. You can also specify an expression.
+	// 0-999999999.
 	OffsetInNanos *string `locationName:"offsetInNanos" type:"string"`
 
 	// The timestamp, in seconds, in the Unix epoch format. The valid range is between
-	// 1-31556889864403199. You can also specify an expression.
+	// 1-31556889864403199.
 	//
 	// TimeInSeconds is a required field
 	TimeInSeconds *string `locationName:"timeInSeconds" type:"string" required:"true"`
@@ -1852,18 +2256,24 @@ func (s *AssetPropertyTimestamp) SetTimeInSeconds(v string) *AssetPropertyTimest
 // (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_AssetPropertyValue.html)
 // in the AWS IoT SiteWise API Reference.
 //
-// For parameters that are string data type, you can specify the following options:
+// You must use expressions for all parameters in AssetPropertyValue. The expressions
+// accept literals, operators, functions, references, and substitution templates.
 //
-//    * Use a string. For example, the quality value can be 'GOOD'.
+// Examples
 //
-//    * Use an expression. For example, the quality value can be $input.TemperatureInput.sensorData.quality
-//    . For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
-//    in the AWS IoT Events Developer Guide.
+//    * For literal values, the expressions must contain single quotes. For
+//    example, the value for the quality parameter can be 'GOOD'.
+//
+//    * For references, you must specify either variables or input values. For
+//    example, the value for the quality parameter can be $input.TemperatureInput.sensorData.quality.
+//
+// For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
+// in the AWS IoT Events Developer Guide.
 type AssetPropertyValue struct {
 	_ struct{} `type:"structure"`
 
-	// The quality of the asset property value. The value must be GOOD, BAD, or
-	// UNCERTAIN. You can also specify an expression.
+	// The quality of the asset property value. The value must be 'GOOD', 'BAD',
+	// or 'UNCERTAIN'.
 	Quality *string `locationName:"quality" type:"string"`
 
 	// The timestamp associated with the asset property value. The default is the
@@ -1926,36 +2336,50 @@ func (s *AssetPropertyValue) SetValue(v *AssetPropertyVariant) *AssetPropertyVal
 // see Variant (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_Variant.html)
 // in the AWS IoT SiteWise API Reference.
 //
+// You must use expressions for all parameters in AssetPropertyVariant. The
+// expressions accept literals, operators, functions, references, and substitution
+// templates.
+//
+// Examples
+//
+//    * For literal values, the expressions must contain single quotes. For
+//    example, the value for the integerValue parameter can be '100'.
+//
+//    * For references, you must specify either variables or parameters. For
+//    example, the value for the booleanValue parameter can be $variable.offline.
+//
+//    * For a substitution template, you must use ${}, and the template must
+//    be in single quotes. A substitution template can also contain a combination
+//    of literals, operators, functions, references, and substitution templates.
+//    In the following example, the value for the doubleValue parameter uses
+//    a substitution template. '${$input.TemperatureInput.sensorData.temperature
+//    * 6 / 5 + 32}'
+//
+// For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
+// in the AWS IoT Events Developer Guide.
+//
 // You must specify one of the following value types, depending on the dataType
 // of the specified asset property. For more information, see AssetProperty
 // (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_AssetProperty.html)
 // in the AWS IoT SiteWise API Reference.
-//
-// For parameters that are string data type, you can specify the following options:
-//
-//    * Use a string. For example, the doubleValue value can be '47.9'.
-//
-//    * Use an expression. For example, the doubleValue value can be $input.TemperatureInput.sensorData.temperature.
-//    For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
-//    in the AWS IoT Events Developer Guide.
 type AssetPropertyVariant struct {
 	_ struct{} `type:"structure"`
 
-	// The asset property value is a Boolean value that must be TRUE or FALSE. You
-	// can also specify an expression. If you use an expression, the evaluated result
-	// should be a Boolean value.
+	// The asset property value is a Boolean value that must be 'TRUE' or 'FALSE'.
+	// You must use an expression, and the evaluated result should be a Boolean
+	// value.
 	BooleanValue *string `locationName:"booleanValue" type:"string"`
 
-	// The asset property value is a double. You can also specify an expression.
-	// If you use an expression, the evaluated result should be a double.
+	// The asset property value is a double. You must use an expression, and the
+	// evaluated result should be a double.
 	DoubleValue *string `locationName:"doubleValue" type:"string"`
 
-	// The asset property value is an integer. You can also specify an expression.
-	// If you use an expression, the evaluated result should be an integer.
+	// The asset property value is an integer. You must use an expression, and the
+	// evaluated result should be an integer.
 	IntegerValue *string `locationName:"integerValue" type:"string"`
 
-	// The asset property value is a string. You can also specify an expression.
-	// If you use an expression, the evaluated result should be a string.
+	// The asset property value is a string. You must use an expression, and the
+	// evaluated result should be a string.
 	StringValue *string `locationName:"stringValue" type:"string"`
 }
 
@@ -2462,6 +2886,79 @@ func (s DeleteInputOutput) String() string {
 // GoString returns the string representation
 func (s DeleteInputOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeDetectorModelAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the analysis result that you want to retrieve.
+	//
+	// AnalysisId is a required field
+	AnalysisId *string `location:"uri" locationName:"analysisId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDetectorModelAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDetectorModelAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDetectorModelAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDetectorModelAnalysisInput"}
+	if s.AnalysisId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisId"))
+	}
+	if s.AnalysisId != nil && len(*s.AnalysisId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisId sets the AnalysisId field's value.
+func (s *DescribeDetectorModelAnalysisInput) SetAnalysisId(v string) *DescribeDetectorModelAnalysisInput {
+	s.AnalysisId = &v
+	return s
+}
+
+type DescribeDetectorModelAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the analysis activity. The status can be one of the following
+	// values:
+	//
+	//    * RUNNING - AWS IoT Events is analyzing your detector model. This process
+	//    can take several minutes to complete.
+	//
+	//    * COMPLETE - AWS IoT Events finished analyzing your detector model .
+	//
+	//    * FAILED - AWS IoT Events couldn't analyze your detector model. Try again
+	//    later.
+	Status *string `locationName:"status" type:"string" enum:"AnalysisStatus"`
+}
+
+// String returns the string representation
+func (s DescribeDetectorModelAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDetectorModelAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDetectorModelAnalysisOutput) SetStatus(v string) *DescribeDetectorModelAnalysisOutput {
+	s.Status = &v
+	return s
 }
 
 type DescribeDetectorModelInput struct {
@@ -3046,32 +3543,47 @@ func (s *DetectorModelVersionSummary) SetStatus(v string) *DetectorModelVersionS
 }
 
 // Defines an action to write to the Amazon DynamoDB table that you created.
-// The standard action payload contains all attribute-value pairs that have
-// the information about the detector model instance and the event that triggered
-// the action. You can also customize the payload (https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html).
+// The standard action payload contains all the information about the detector
+// model instance and the event that triggered the action. You can customize
+// the payload (https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html).
 // One column of the DynamoDB table receives all attribute-value pairs in the
 // payload that you specify.
 //
-// The tableName and hashKeyField values must match the table name and the partition
-// key of the DynamoDB table.
+// You must use expressions for all parameters in DynamoDBAction. The expressions
+// accept literals, operators, functions, references, and substitution templates.
 //
-// If the DynamoDB table also has a sort key, you must specify rangeKeyField.
-// The rangeKeyField value must match the sort key.
+// Examples
 //
-// The hashKeyValue and rangeKeyValue use substitution templates. These templates
-// provide data at runtime. The syntax is ${sql-expression}.
+//    * For literal values, the expressions must contain single quotes. For
+//    example, the value for the hashKeyType parameter can be 'STRING'.
 //
-// You can use expressions for parameters that are string data type. For more
-// information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
+//    * For references, you must specify either variables or input values. For
+//    example, the value for the hashKeyField parameter can be $input.GreenhouseInput.name.
+//
+//    * For a substitution template, you must use ${}, and the template must
+//    be in single quotes. A substitution template can also contain a combination
+//    of literals, operators, functions, references, and substitution templates.
+//    In the following example, the value for the hashKeyValue parameter uses
+//    a substitution template. '${$input.GreenhouseInput.temperature * 6 / 5
+//    + 32} in Fahrenheit'
+//
+//    * For a string concatenation, you must use +. A string concatenation can
+//    also contain a combination of literals, operators, functions, references,
+//    and substitution templates. In the following example, the value for the
+//    tableName parameter uses a string concatenation. 'GreenhouseTemperatureTable
+//    ' + $input.GreenhouseInput.date
+//
+// For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
 //
 // If the defined payload type is a string, DynamoDBAction writes non-JSON data
 // to the DynamoDB table as binary data. The DynamoDB console displays the data
-// as Base64-encoded text. The payloadField is <payload-field>_raw.
+// as Base64-encoded text. The value for the payloadField parameter is <payload-field>_raw.
 type DynamoDBAction struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the hash key (also called the partition key).
+	// The name of the hash key (also called the partition key). The hashKeyField
+	// value must match the partition key of the target DynamoDB table.
 	//
 	// HashKeyField is a required field
 	HashKeyField *string `locationName:"hashKeyField" type:"string" required:"true"`
@@ -3079,11 +3591,11 @@ type DynamoDBAction struct {
 	// The data type for the hash key (also called the partition key). You can specify
 	// the following values:
 	//
-	//    * STRING - The hash key is a string.
+	//    * 'STRING' - The hash key is a string.
 	//
-	//    * NUMBER - The hash key is a number.
+	//    * 'NUMBER' - The hash key is a number.
 	//
-	// If you don't specify hashKeyType, the default value is STRING.
+	// If you don't specify hashKeyType, the default value is 'STRING'.
 	HashKeyType *string `locationName:"hashKeyType" type:"string"`
 
 	// The value of the hash key (also called the partition key).
@@ -3093,19 +3605,20 @@ type DynamoDBAction struct {
 
 	// The type of operation to perform. You can specify the following values:
 	//
-	//    * INSERT - Insert data as a new item into the DynamoDB table. This item
+	//    * 'INSERT' - Insert data as a new item into the DynamoDB table. This item
 	//    uses the specified hash key as a partition key. If you specified a range
 	//    key, the item uses the range key as a sort key.
 	//
-	//    * UPDATE - Update an existing item of the DynamoDB table with new data.
+	//    * 'UPDATE' - Update an existing item of the DynamoDB table with new data.
 	//    This item's partition key must match the specified hash key. If you specified
 	//    a range key, the range key must match the item's sort key.
 	//
-	//    * DELETE - Delete an existing item of the DynamoDB table. This item's
+	//    * 'DELETE' - Delete an existing item of the DynamoDB table. This item's
 	//    partition key must match the specified hash key. If you specified a range
 	//    key, the range key must match the item's sort key.
 	//
-	// If you don't specify this parameter, AWS IoT Events triggers the INSERT operation.
+	// If you don't specify this parameter, AWS IoT Events triggers the 'INSERT'
+	// operation.
 	Operation *string `locationName:"operation" type:"string"`
 
 	// Information needed to configure the payload.
@@ -3121,23 +3634,25 @@ type DynamoDBAction struct {
 	// If you don't specify this parameter, the name of the DynamoDB column is payload.
 	PayloadField *string `locationName:"payloadField" type:"string"`
 
-	// The name of the range key (also called the sort key).
+	// The name of the range key (also called the sort key). The rangeKeyField value
+	// must match the sort key of the target DynamoDB table.
 	RangeKeyField *string `locationName:"rangeKeyField" type:"string"`
 
 	// The data type for the range key (also called the sort key), You can specify
 	// the following values:
 	//
-	//    * STRING - The range key is a string.
+	//    * 'STRING' - The range key is a string.
 	//
-	//    * NUMBER - The range key is number.
+	//    * 'NUMBER' - The range key is number.
 	//
-	// If you don't specify rangeKeyField, the default value is STRING.
+	// If you don't specify rangeKeyField, the default value is 'STRING'.
 	RangeKeyType *string `locationName:"rangeKeyType" type:"string"`
 
 	// The value of the range key (also called the sort key).
 	RangeKeyValue *string `locationName:"rangeKeyValue" type:"string"`
 
-	// The name of the DynamoDB table.
+	// The name of the DynamoDB table. The tableName value must match the table
+	// name of the target DynamoDB table.
 	//
 	// TableName is a required field
 	TableName *string `locationName:"tableName" type:"string" required:"true"`
@@ -3238,17 +3753,40 @@ func (s *DynamoDBAction) SetTableName(v string) *DynamoDBAction {
 }
 
 // Defines an action to write to the Amazon DynamoDB table that you created.
-// The default action payload contains all attribute-value pairs that have the
-// information about the detector model instance and the event that triggered
-// the action. You can also customize the payload (https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html).
+// The default action payload contains all the information about the detector
+// model instance and the event that triggered the action. You can customize
+// the payload (https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html).
 // A separate column of the DynamoDB table receives one attribute-value pair
 // in the payload that you specify.
 //
-// The type value for Payload must be JSON.
+// You must use expressions for all parameters in DynamoDBv2Action. The expressions
+// accept literals, operators, functions, references, and substitution templates.
 //
-// You can use expressions for parameters that are strings. For more information,
-// see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
+// Examples
+//
+//    * For literal values, the expressions must contain single quotes. For
+//    example, the value for the tableName parameter can be 'GreenhouseTemperatureTable'.
+//
+//    * For references, you must specify either variables or input values. For
+//    example, the value for the tableName parameter can be $variable.ddbtableName.
+//
+//    * For a substitution template, you must use ${}, and the template must
+//    be in single quotes. A substitution template can also contain a combination
+//    of literals, operators, functions, references, and substitution templates.
+//    In the following example, the value for the contentExpression parameter
+//    in Payload uses a substitution template. '{\"sensorID\": \"${$input.GreenhouseInput.sensor_id}\",
+//    \"temperature\": \"${$input.GreenhouseInput.temperature * 9 / 5 + 32}\"}'
+//
+//    * For a string concatenation, you must use +. A string concatenation can
+//    also contain a combination of literals, operators, functions, references,
+//    and substitution templates. In the following example, the value for the
+//    tableName parameter uses a string concatenation. 'GreenhouseTemperatureTable
+//    ' + $input.GreenhouseInput.date
+//
+// For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
 // in the AWS IoT Events Developer Guide.
+//
+// The value for the type parameter in Payload must be JSON.
 type DynamoDBv2Action struct {
 	_ struct{} `type:"structure"`
 
@@ -3438,6 +3976,98 @@ func (s *FirehoseAction) SetPayload(v *Payload) *FirehoseAction {
 // SetSeparator sets the Separator field's value.
 func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
 	s.Separator = &v
+	return s
+}
+
+type GetDetectorModelAnalysisResultsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the analysis result that you want to retrieve.
+	//
+	// AnalysisId is a required field
+	AnalysisId *string `location:"uri" locationName:"analysisId" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The token that you can use to return the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetDetectorModelAnalysisResultsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDetectorModelAnalysisResultsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDetectorModelAnalysisResultsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDetectorModelAnalysisResultsInput"}
+	if s.AnalysisId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalysisId"))
+	}
+	if s.AnalysisId != nil && len(*s.AnalysisId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AnalysisId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalysisId sets the AnalysisId field's value.
+func (s *GetDetectorModelAnalysisResultsInput) SetAnalysisId(v string) *GetDetectorModelAnalysisResultsInput {
+	s.AnalysisId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetDetectorModelAnalysisResultsInput) SetMaxResults(v int64) *GetDetectorModelAnalysisResultsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetDetectorModelAnalysisResultsInput) SetNextToken(v string) *GetDetectorModelAnalysisResultsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetDetectorModelAnalysisResultsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about one or more analysis results.
+	AnalysisResults []*AnalysisResult `locationName:"analysisResults" type:"list"`
+
+	// The token that you can use to return the next set of results, or null if
+	// there are no more results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetDetectorModelAnalysisResultsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetDetectorModelAnalysisResultsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisResults sets the AnalysisResults field's value.
+func (s *GetDetectorModelAnalysisResultsOutput) SetAnalysisResults(v []*AnalysisResult) *GetDetectorModelAnalysisResultsOutput {
+	s.AnalysisResults = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetDetectorModelAnalysisResultsOutput) SetNextToken(v string) *GetDetectorModelAnalysisResultsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -3795,31 +4425,44 @@ func (s *InvalidRequestException) RequestID() string {
 // Sends information about the detector model instance and the event that triggered
 // the action to a specified asset property in AWS IoT SiteWise.
 //
+// You must use expressions for all parameters in IotSiteWiseAction. The expressions
+// accept literals, operators, functions, references, and substitutions templates.
+//
+// Examples
+//
+//    * For literal values, the expressions must contain single quotes. For
+//    example, the value for the propertyAlias parameter can be '/company/windfarm/3/turbine/7/temperature'.
+//
+//    * For references, you must specify either variables or input values. For
+//    example, the value for the assetId parameter can be $input.TurbineInput.assetId1.
+//
+//    * For a substitution template, you must use ${}, and the template must
+//    be in single quotes. A substitution template can also contain a combination
+//    of literals, operators, functions, references, and substitution templates.
+//    In the following example, the value for the propertyAlias parameter uses
+//    a substitution template. 'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/
+//    ${$input.TemperatureInput.sensorData.turbineID}/temperature'
+//
 // You must specify either propertyAlias or both assetId and propertyId to identify
 // the target asset property in AWS IoT SiteWise.
 //
-// For parameters that are string data type, you can specify the following options:
-//
-//    * Use a string. For example, the propertyAlias value can be '/company/windfarm/3/turbine/7/temperature'.
-//
-//    * Use an expression. For example, the propertyAlias value can be 'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/${$input.TemperatureInput.sensorData.turbineID}/temperature'.
-//    For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
-//    in the AWS IoT Events Developer Guide.
+// For more information, see Expressions (https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html)
+// in the AWS IoT Events Developer Guide.
 type IotSiteWiseAction struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the asset that has the specified property. You can specify an expression.
+	// The ID of the asset that has the specified property.
 	AssetId *string `locationName:"assetId" type:"string"`
 
 	// A unique identifier for this entry. You can use the entry ID to track which
 	// data entry causes an error in case of failure. The default is a new unique
-	// identifier. You can also specify an expression.
+	// identifier.
 	EntryId *string `locationName:"entryId" type:"string"`
 
-	// The alias of the asset property. You can also specify an expression.
+	// The alias of the asset property.
 	PropertyAlias *string `locationName:"propertyAlias" type:"string"`
 
-	// The ID of the asset property. You can specify an expression.
+	// The ID of the asset property.
 	PropertyId *string `locationName:"propertyId" type:"string"`
 
 	// The value to send to the asset property. This value contains timestamp, quality,
@@ -4070,10 +4713,10 @@ type ListDetectorModelVersionsInput struct {
 	// DetectorModelName is a required field
 	DetectorModelName *string `location:"uri" locationName:"detectorModelName" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return at one time.
+	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next set of results.
+	// The token that you can use to return the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4130,8 +4773,8 @@ type ListDetectorModelVersionsOutput struct {
 	// Summary information about the detector model versions.
 	DetectorModelVersionSummaries []*DetectorModelVersionSummary `locationName:"detectorModelVersionSummaries" type:"list"`
 
-	// A token to retrieve the next set of results, or null if there are no additional
-	// results.
+	// The token that you can use to return the next set of results, or null if
+	// there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4160,10 +4803,10 @@ func (s *ListDetectorModelVersionsOutput) SetNextToken(v string) *ListDetectorMo
 type ListDetectorModelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return at one time.
+	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next set of results.
+	// The token that you can use to return the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4208,8 +4851,8 @@ type ListDetectorModelsOutput struct {
 	// Summary information about the detector models.
 	DetectorModelSummaries []*DetectorModelSummary `locationName:"detectorModelSummaries" type:"list"`
 
-	// A token to retrieve the next set of results, or null if there are no additional
-	// results.
+	// The token that you can use to return the next set of results, or null if
+	// there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4238,10 +4881,10 @@ func (s *ListDetectorModelsOutput) SetNextToken(v string) *ListDetectorModelsOut
 type ListInputsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to return at one time.
+	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token for the next set of results.
+	// The token that you can use to return the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -4286,8 +4929,8 @@ type ListInputsOutput struct {
 	// Summary information about the inputs.
 	InputSummaries []*InputSummary `locationName:"inputSummaries" type:"list"`
 
-	// A token to retrieve the next set of results, or null if there are no additional
-	// results.
+	// The token that you can use to return the next set of results, or null if
+	// there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -5280,6 +5923,72 @@ func (s *SqsAction) SetUseBase64(v bool) *SqsAction {
 	return s
 }
 
+type StartDetectorModelAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// Information that defines how a detector operates.
+	//
+	// DetectorModelDefinition is a required field
+	DetectorModelDefinition *DetectorModelDefinition `locationName:"detectorModelDefinition" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartDetectorModelAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartDetectorModelAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartDetectorModelAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartDetectorModelAnalysisInput"}
+	if s.DetectorModelDefinition == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorModelDefinition"))
+	}
+	if s.DetectorModelDefinition != nil {
+		if err := s.DetectorModelDefinition.Validate(); err != nil {
+			invalidParams.AddNested("DetectorModelDefinition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorModelDefinition sets the DetectorModelDefinition field's value.
+func (s *StartDetectorModelAnalysisInput) SetDetectorModelDefinition(v *DetectorModelDefinition) *StartDetectorModelAnalysisInput {
+	s.DetectorModelDefinition = v
+	return s
+}
+
+type StartDetectorModelAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID that you can use to retrieve the analysis result.
+	AnalysisId *string `locationName:"analysisId" type:"string"`
+}
+
+// String returns the string representation
+func (s StartDetectorModelAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartDetectorModelAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalysisId sets the AnalysisId field's value.
+func (s *StartDetectorModelAnalysisOutput) SetAnalysisId(v string) *StartDetectorModelAnalysisOutput {
+	s.AnalysisId = &v
+	return s
+}
+
 // Information that defines a state of a detector.
 type State struct {
 	_ struct{} `type:"structure"`
@@ -5985,6 +6694,46 @@ func (s UpdateInputOutput) GoString() string {
 func (s *UpdateInputOutput) SetInputConfiguration(v *InputConfiguration) *UpdateInputOutput {
 	s.InputConfiguration = v
 	return s
+}
+
+const (
+	// AnalysisResultLevelInfo is a AnalysisResultLevel enum value
+	AnalysisResultLevelInfo = "INFO"
+
+	// AnalysisResultLevelWarning is a AnalysisResultLevel enum value
+	AnalysisResultLevelWarning = "WARNING"
+
+	// AnalysisResultLevelError is a AnalysisResultLevel enum value
+	AnalysisResultLevelError = "ERROR"
+)
+
+// AnalysisResultLevel_Values returns all elements of the AnalysisResultLevel enum
+func AnalysisResultLevel_Values() []string {
+	return []string{
+		AnalysisResultLevelInfo,
+		AnalysisResultLevelWarning,
+		AnalysisResultLevelError,
+	}
+}
+
+const (
+	// AnalysisStatusRunning is a AnalysisStatus enum value
+	AnalysisStatusRunning = "RUNNING"
+
+	// AnalysisStatusComplete is a AnalysisStatus enum value
+	AnalysisStatusComplete = "COMPLETE"
+
+	// AnalysisStatusFailed is a AnalysisStatus enum value
+	AnalysisStatusFailed = "FAILED"
+)
+
+// AnalysisStatus_Values returns all elements of the AnalysisStatus enum
+func AnalysisStatus_Values() []string {
+	return []string{
+		AnalysisStatusRunning,
+		AnalysisStatusComplete,
+		AnalysisStatusFailed,
+	}
 }
 
 const (

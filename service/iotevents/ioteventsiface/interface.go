@@ -80,6 +80,10 @@ type IoTEventsAPI interface {
 	DescribeDetectorModelWithContext(aws.Context, *iotevents.DescribeDetectorModelInput, ...request.Option) (*iotevents.DescribeDetectorModelOutput, error)
 	DescribeDetectorModelRequest(*iotevents.DescribeDetectorModelInput) (*request.Request, *iotevents.DescribeDetectorModelOutput)
 
+	DescribeDetectorModelAnalysis(*iotevents.DescribeDetectorModelAnalysisInput) (*iotevents.DescribeDetectorModelAnalysisOutput, error)
+	DescribeDetectorModelAnalysisWithContext(aws.Context, *iotevents.DescribeDetectorModelAnalysisInput, ...request.Option) (*iotevents.DescribeDetectorModelAnalysisOutput, error)
+	DescribeDetectorModelAnalysisRequest(*iotevents.DescribeDetectorModelAnalysisInput) (*request.Request, *iotevents.DescribeDetectorModelAnalysisOutput)
+
 	DescribeInput(*iotevents.DescribeInputInput) (*iotevents.DescribeInputOutput, error)
 	DescribeInputWithContext(aws.Context, *iotevents.DescribeInputInput, ...request.Option) (*iotevents.DescribeInputOutput, error)
 	DescribeInputRequest(*iotevents.DescribeInputInput) (*request.Request, *iotevents.DescribeInputOutput)
@@ -87,6 +91,10 @@ type IoTEventsAPI interface {
 	DescribeLoggingOptions(*iotevents.DescribeLoggingOptionsInput) (*iotevents.DescribeLoggingOptionsOutput, error)
 	DescribeLoggingOptionsWithContext(aws.Context, *iotevents.DescribeLoggingOptionsInput, ...request.Option) (*iotevents.DescribeLoggingOptionsOutput, error)
 	DescribeLoggingOptionsRequest(*iotevents.DescribeLoggingOptionsInput) (*request.Request, *iotevents.DescribeLoggingOptionsOutput)
+
+	GetDetectorModelAnalysisResults(*iotevents.GetDetectorModelAnalysisResultsInput) (*iotevents.GetDetectorModelAnalysisResultsOutput, error)
+	GetDetectorModelAnalysisResultsWithContext(aws.Context, *iotevents.GetDetectorModelAnalysisResultsInput, ...request.Option) (*iotevents.GetDetectorModelAnalysisResultsOutput, error)
+	GetDetectorModelAnalysisResultsRequest(*iotevents.GetDetectorModelAnalysisResultsInput) (*request.Request, *iotevents.GetDetectorModelAnalysisResultsOutput)
 
 	ListDetectorModelVersions(*iotevents.ListDetectorModelVersionsInput) (*iotevents.ListDetectorModelVersionsOutput, error)
 	ListDetectorModelVersionsWithContext(aws.Context, *iotevents.ListDetectorModelVersionsInput, ...request.Option) (*iotevents.ListDetectorModelVersionsOutput, error)
@@ -107,6 +115,10 @@ type IoTEventsAPI interface {
 	PutLoggingOptions(*iotevents.PutLoggingOptionsInput) (*iotevents.PutLoggingOptionsOutput, error)
 	PutLoggingOptionsWithContext(aws.Context, *iotevents.PutLoggingOptionsInput, ...request.Option) (*iotevents.PutLoggingOptionsOutput, error)
 	PutLoggingOptionsRequest(*iotevents.PutLoggingOptionsInput) (*request.Request, *iotevents.PutLoggingOptionsOutput)
+
+	StartDetectorModelAnalysis(*iotevents.StartDetectorModelAnalysisInput) (*iotevents.StartDetectorModelAnalysisOutput, error)
+	StartDetectorModelAnalysisWithContext(aws.Context, *iotevents.StartDetectorModelAnalysisInput, ...request.Option) (*iotevents.StartDetectorModelAnalysisOutput, error)
+	StartDetectorModelAnalysisRequest(*iotevents.StartDetectorModelAnalysisInput) (*request.Request, *iotevents.StartDetectorModelAnalysisOutput)
 
 	TagResource(*iotevents.TagResourceInput) (*iotevents.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *iotevents.TagResourceInput, ...request.Option) (*iotevents.TagResourceOutput, error)

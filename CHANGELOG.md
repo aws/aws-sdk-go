@@ -1,3 +1,21 @@
+Release v1.37.17 (2021-02-23)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Adds a new optional IncludeDeletedGroups parameter to the DescribeScalingActivities API.
+* `service/connect`: Updates service API
+* `service/glue`: Updates service API and documentation
+  * Updating the page size for Glue catalog getter APIs.
+* `service/iotevents`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * Enables AWS Pinpoint customers to use Entity Id and Template Id when sending SMS message. These parameters can be obtained from the regulatory body of the country where you are trying to send the SMS.
+* `service/quicksight`: Updates service documentation
+  * Documentation updates for QuickSight Row Level Security
+* `service/redshift-data`: Updates service API and documentation
+* `service/s3control`: Updates service documentation
+  * Documentation updates for s3-control
+
 Release v1.37.16 (2021-02-22)
 ===
 

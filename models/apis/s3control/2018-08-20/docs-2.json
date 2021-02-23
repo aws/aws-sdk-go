@@ -90,7 +90,7 @@
         "DeletePublicAccessBlockRequest$AccountId": "<p>The account ID for the AWS account whose <code>PublicAccessBlock</code> configuration you want to remove.</p>",
         "DeleteStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "DeleteStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
-        "DescribeJobRequest$AccountId": "<p/>",
+        "DescribeJobRequest$AccountId": "<p>The AWS account ID associated with the S3 Batch Operations job.</p>",
         "GetAccessPointPolicyRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
         "GetAccessPointPolicyStatusRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
         "GetAccessPointRequest$AccountId": "<p>The account ID for the account that owns the specified access point.</p>",
@@ -103,7 +103,7 @@
         "GetStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "GetStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
         "ListAccessPointsRequest$AccountId": "<p>The AWS account ID for owner of the bucket whose access points you want to list.</p>",
-        "ListJobsRequest$AccountId": "<p/>",
+        "ListJobsRequest$AccountId": "<p>The AWS account ID associated with the S3 Batch Operations job.</p>",
         "ListRegionalBucketsRequest$AccountId": "<p>The AWS account ID of the Outposts bucket.</p>",
         "ListStorageLensConfigurationsRequest$AccountId": "<p>The account ID of the requester.</p>",
         "PutAccessPointPolicyRequest$AccountId": "<p>The AWS account ID for owner of the bucket associated with the specified access point.</p>",
@@ -115,8 +115,8 @@
         "PutStorageLensConfigurationRequest$AccountId": "<p>The account ID of the requester.</p>",
         "PutStorageLensConfigurationTaggingRequest$AccountId": "<p>The account ID of the requester.</p>",
         "S3BucketDestination$AccountId": "<p>The account ID of the owner of the S3 Storage Lens metrics export bucket.</p>",
-        "UpdateJobPriorityRequest$AccountId": "<p/>",
-        "UpdateJobStatusRequest$AccountId": "<p/>"
+        "UpdateJobPriorityRequest$AccountId": "<p>The AWS account ID associated with the S3 Batch Operations job.</p>",
+        "UpdateJobStatusRequest$AccountId": "<p>The AWS account ID associated with the S3 Batch Operations job.</p>"
       }
     },
     "AccountLevel": {
