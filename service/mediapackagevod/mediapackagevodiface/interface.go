@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Elemental MediaPackage VOD.
 //    func myFunc(svc mediapackagevodiface.MediaPackageVodAPI) bool {
-//        // Make svc.CreateAsset request
+//        // Make svc.ConfigureLogs request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockMediaPackageVodClient struct {
 //        mediapackagevodiface.MediaPackageVodAPI
 //    }
-//    func (m *mockMediaPackageVodClient) CreateAsset(input *mediapackagevod.CreateAssetInput) (*mediapackagevod.CreateAssetOutput, error) {
+//    func (m *mockMediaPackageVodClient) ConfigureLogs(input *mediapackagevod.ConfigureLogsInput) (*mediapackagevod.ConfigureLogsOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaPackageVodAPI interface {
+	ConfigureLogs(*mediapackagevod.ConfigureLogsInput) (*mediapackagevod.ConfigureLogsOutput, error)
+	ConfigureLogsWithContext(aws.Context, *mediapackagevod.ConfigureLogsInput, ...request.Option) (*mediapackagevod.ConfigureLogsOutput, error)
+	ConfigureLogsRequest(*mediapackagevod.ConfigureLogsInput) (*request.Request, *mediapackagevod.ConfigureLogsOutput)
+
 	CreateAsset(*mediapackagevod.CreateAssetInput) (*mediapackagevod.CreateAssetOutput, error)
 	CreateAssetWithContext(aws.Context, *mediapackagevod.CreateAssetInput, ...request.Option) (*mediapackagevod.CreateAssetOutput, error)
 	CreateAssetRequest(*mediapackagevod.CreateAssetInput) (*request.Request, *mediapackagevod.CreateAssetOutput)

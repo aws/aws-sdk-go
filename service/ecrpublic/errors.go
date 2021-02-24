@@ -62,6 +62,14 @@ const (
 	// API request.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
+	// ErrCodeInvalidTagParameterException for service response error code
+	// "InvalidTagParameterException".
+	//
+	// An invalid parameter has been specified. Tag keys can have a maximum character
+	// length of 128 characters, and tag values can have a maximum length of 256
+	// characters.
+	ErrCodeInvalidTagParameterException = "InvalidTagParameterException"
+
 	// ErrCodeLayerAlreadyExistsException for service response error code
 	// "LayerAlreadyExistsException".
 	//
@@ -134,6 +142,13 @@ const (
 	// These errors are usually caused by a server-side issue.
 	ErrCodeServerException = "ServerException"
 
+	// ErrCodeTooManyTagsException for service response error code
+	// "TooManyTagsException".
+	//
+	// The list of tags on the repository is over the limit. The maximum number
+	// of tags that can be applied to a repository is 50.
+	ErrCodeTooManyTagsException = "TooManyTagsException"
+
 	// ErrCodeUnsupportedCommandException for service response error code
 	// "UnsupportedCommandException".
 	//
@@ -157,6 +172,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidLayerException":             newErrorInvalidLayerException,
 	"InvalidLayerPartException":         newErrorInvalidLayerPartException,
 	"InvalidParameterException":         newErrorInvalidParameterException,
+	"InvalidTagParameterException":      newErrorInvalidTagParameterException,
 	"LayerAlreadyExistsException":       newErrorLayerAlreadyExistsException,
 	"LayerPartTooSmallException":        newErrorLayerPartTooSmallException,
 	"LayersNotFoundException":           newErrorLayersNotFoundException,
@@ -168,6 +184,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"RepositoryNotFoundException":       newErrorRepositoryNotFoundException,
 	"RepositoryPolicyNotFoundException": newErrorRepositoryPolicyNotFoundException,
 	"ServerException":                   newErrorServerException,
+	"TooManyTagsException":              newErrorTooManyTagsException,
 	"UnsupportedCommandException":       newErrorUnsupportedCommandException,
 	"UploadNotFoundException":           newErrorUploadNotFoundException,
 }

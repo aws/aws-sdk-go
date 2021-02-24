@@ -1115,6 +1115,154 @@ func (c *ElasticsearchService) DeletePackageWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDescribeDomainAutoTunes = "DescribeDomainAutoTunes"
+
+// DescribeDomainAutoTunesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDomainAutoTunes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDomainAutoTunes for more information on using the DescribeDomainAutoTunes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDomainAutoTunesRequest method.
+//    req, resp := client.DescribeDomainAutoTunesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *ElasticsearchService) DescribeDomainAutoTunesRequest(input *DescribeDomainAutoTunesInput) (req *request.Request, output *DescribeDomainAutoTunesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDomainAutoTunes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-01-01/es/domain/{DomainName}/autoTunes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeDomainAutoTunesInput{}
+	}
+
+	output = &DescribeDomainAutoTunesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDomainAutoTunes API operation for Amazon Elasticsearch Service.
+//
+// Provides scheduled Auto-Tune action details for the Elasticsearch domain,
+// such as Auto-Tune action type, description, severity, and scheduled date.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation DescribeDomainAutoTunes for usage and error information.
+//
+// Returned Error Types:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+func (c *ElasticsearchService) DescribeDomainAutoTunes(input *DescribeDomainAutoTunesInput) (*DescribeDomainAutoTunesOutput, error) {
+	req, out := c.DescribeDomainAutoTunesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDomainAutoTunesWithContext is the same as DescribeDomainAutoTunes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDomainAutoTunes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) DescribeDomainAutoTunesWithContext(ctx aws.Context, input *DescribeDomainAutoTunesInput, opts ...request.Option) (*DescribeDomainAutoTunesOutput, error) {
+	req, out := c.DescribeDomainAutoTunesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeDomainAutoTunesPages iterates over the pages of a DescribeDomainAutoTunes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDomainAutoTunes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDomainAutoTunes operation.
+//    pageNum := 0
+//    err := client.DescribeDomainAutoTunesPages(params,
+//        func(page *elasticsearchservice.DescribeDomainAutoTunesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ElasticsearchService) DescribeDomainAutoTunesPages(input *DescribeDomainAutoTunesInput, fn func(*DescribeDomainAutoTunesOutput, bool) bool) error {
+	return c.DescribeDomainAutoTunesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDomainAutoTunesPagesWithContext same as DescribeDomainAutoTunesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) DescribeDomainAutoTunesPagesWithContext(ctx aws.Context, input *DescribeDomainAutoTunesInput, fn func(*DescribeDomainAutoTunesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDomainAutoTunesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDomainAutoTunesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDomainAutoTunesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeElasticsearchDomain = "DescribeElasticsearchDomain"
 
 // DescribeElasticsearchDomainRequest generates a "aws/request.Request" representing the
@@ -4783,6 +4931,393 @@ func (s *AssociatePackageOutput) SetDomainPackageDetails(v *DomainPackageDetails
 	return s
 }
 
+// Specifies Auto-Tune type and Auto-Tune action details.
+type AutoTune struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies details of the Auto-Tune action. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	AutoTuneDetails *AutoTuneDetails `type:"structure"`
+
+	// Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION.
+	AutoTuneType *string `type:"string" enum:"AutoTuneType"`
+}
+
+// String returns the string representation
+func (s AutoTune) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTune) GoString() string {
+	return s.String()
+}
+
+// SetAutoTuneDetails sets the AutoTuneDetails field's value.
+func (s *AutoTune) SetAutoTuneDetails(v *AutoTuneDetails) *AutoTune {
+	s.AutoTuneDetails = v
+	return s
+}
+
+// SetAutoTuneType sets the AutoTuneType field's value.
+func (s *AutoTune) SetAutoTuneType(v string) *AutoTune {
+	s.AutoTuneType = &v
+	return s
+}
+
+// Specifies details of the Auto-Tune action. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+// for more information.
+type AutoTuneDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies details of the scheduled Auto-Tune action. See the Developer Guide
+	// (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	ScheduledAutoTuneDetails *ScheduledAutoTuneDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s AutoTuneDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneDetails) GoString() string {
+	return s.String()
+}
+
+// SetScheduledAutoTuneDetails sets the ScheduledAutoTuneDetails field's value.
+func (s *AutoTuneDetails) SetScheduledAutoTuneDetails(v *ScheduledAutoTuneDetails) *AutoTuneDetails {
+	s.ScheduledAutoTuneDetails = v
+	return s
+}
+
+// Specifies Auto-Tune maitenance schedule. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+// for more information.
+type AutoTuneMaintenanceSchedule struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies cron expression for a recurring maintenance schedule. See the Developer
+	// Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	CronExpressionForRecurrence *string `type:"string"`
+
+	// Specifies maintenance schedule duration: duration value and duration unit.
+	// See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	Duration *Duration `type:"structure"`
+
+	// Specifies timestamp at which Auto-Tune maintenance schedule start.
+	StartAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s AutoTuneMaintenanceSchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneMaintenanceSchedule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoTuneMaintenanceSchedule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoTuneMaintenanceSchedule"}
+	if s.Duration != nil {
+		if err := s.Duration.Validate(); err != nil {
+			invalidParams.AddNested("Duration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCronExpressionForRecurrence sets the CronExpressionForRecurrence field's value.
+func (s *AutoTuneMaintenanceSchedule) SetCronExpressionForRecurrence(v string) *AutoTuneMaintenanceSchedule {
+	s.CronExpressionForRecurrence = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *AutoTuneMaintenanceSchedule) SetDuration(v *Duration) *AutoTuneMaintenanceSchedule {
+	s.Duration = v
+	return s
+}
+
+// SetStartAt sets the StartAt field's value.
+func (s *AutoTuneMaintenanceSchedule) SetStartAt(v time.Time) *AutoTuneMaintenanceSchedule {
+	s.StartAt = &v
+	return s
+}
+
+// Specifies the Auto-Tune options: the Auto-Tune desired state for the domain,
+// rollback state when disabling Auto-Tune options and list of maintenance schedules.
+type AutoTuneOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.
+	DesiredState *string `type:"string" enum:"AutoTuneDesiredState"`
+
+	// Specifies list of maitenance schedules. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
+
+	// Specifies the rollback state while disabling Auto-Tune for the domain. Valid
+	// values are NO_ROLLBACK, DEFAULT_ROLLBACK.
+	RollbackOnDisable *string `type:"string" enum:"RollbackOnDisable"`
+}
+
+// String returns the string representation
+func (s AutoTuneOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoTuneOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoTuneOptions"}
+	if s.MaintenanceSchedules != nil {
+		for i, v := range s.MaintenanceSchedules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MaintenanceSchedules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDesiredState sets the DesiredState field's value.
+func (s *AutoTuneOptions) SetDesiredState(v string) *AutoTuneOptions {
+	s.DesiredState = &v
+	return s
+}
+
+// SetMaintenanceSchedules sets the MaintenanceSchedules field's value.
+func (s *AutoTuneOptions) SetMaintenanceSchedules(v []*AutoTuneMaintenanceSchedule) *AutoTuneOptions {
+	s.MaintenanceSchedules = v
+	return s
+}
+
+// SetRollbackOnDisable sets the RollbackOnDisable field's value.
+func (s *AutoTuneOptions) SetRollbackOnDisable(v string) *AutoTuneOptions {
+	s.RollbackOnDisable = &v
+	return s
+}
+
+// Specifies the Auto-Tune options: the Auto-Tune desired state for the domain
+// and list of maintenance schedules.
+type AutoTuneOptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.
+	DesiredState *string `type:"string" enum:"AutoTuneDesiredState"`
+
+	// Specifies list of maitenance schedules. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	MaintenanceSchedules []*AutoTuneMaintenanceSchedule `type:"list"`
+}
+
+// String returns the string representation
+func (s AutoTuneOptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneOptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoTuneOptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoTuneOptionsInput"}
+	if s.MaintenanceSchedules != nil {
+		for i, v := range s.MaintenanceSchedules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MaintenanceSchedules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDesiredState sets the DesiredState field's value.
+func (s *AutoTuneOptionsInput) SetDesiredState(v string) *AutoTuneOptionsInput {
+	s.DesiredState = &v
+	return s
+}
+
+// SetMaintenanceSchedules sets the MaintenanceSchedules field's value.
+func (s *AutoTuneOptionsInput) SetMaintenanceSchedules(v []*AutoTuneMaintenanceSchedule) *AutoTuneOptionsInput {
+	s.MaintenanceSchedules = v
+	return s
+}
+
+// Specifies the Auto-Tune options: the Auto-Tune desired state for the domain
+// and list of maintenance schedules.
+type AutoTuneOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the error message while enabling or disabling the Auto-Tune.
+	ErrorMessage *string `type:"string"`
+
+	// Specifies the AutoTuneState for the Elasticsearch domain.
+	State *string `type:"string" enum:"AutoTuneState"`
+}
+
+// String returns the string representation
+func (s AutoTuneOptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneOptionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *AutoTuneOptionsOutput) SetErrorMessage(v string) *AutoTuneOptionsOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AutoTuneOptionsOutput) SetState(v string) *AutoTuneOptionsOutput {
+	s.State = &v
+	return s
+}
+
+// Specifies the status of Auto-Tune options for the specified Elasticsearch
+// domain.
+type AutoTuneOptionsStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies Auto-Tune options for the specified Elasticsearch domain.
+	Options *AutoTuneOptions `type:"structure"`
+
+	// Specifies Status of the Auto-Tune options for the specified Elasticsearch
+	// domain.
+	Status *AutoTuneStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s AutoTuneOptionsStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneOptionsStatus) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *AutoTuneOptionsStatus) SetOptions(v *AutoTuneOptions) *AutoTuneOptionsStatus {
+	s.Options = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AutoTuneOptionsStatus) SetStatus(v *AutoTuneStatus) *AutoTuneOptionsStatus {
+	s.Status = v
+	return s
+}
+
+// Provides the current status of the Auto-Tune options.
+type AutoTuneStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Timestamp which tells Auto-Tune options creation date .
+	//
+	// CreationDate is a required field
+	CreationDate *time.Time `type:"timestamp" required:"true"`
+
+	// Specifies the error message while enabling or disabling the Auto-Tune options.
+	ErrorMessage *string `type:"string"`
+
+	// Indicates whether the Elasticsearch domain is being deleted.
+	PendingDeletion *bool `type:"boolean"`
+
+	// Specifies the AutoTuneState for the Elasticsearch domain.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"AutoTuneState"`
+
+	// Timestamp which tells Auto-Tune options last updated time.
+	//
+	// UpdateDate is a required field
+	UpdateDate *time.Time `type:"timestamp" required:"true"`
+
+	// Specifies the Auto-Tune options latest version.
+	UpdateVersion *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AutoTuneStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTuneStatus) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *AutoTuneStatus) SetCreationDate(v time.Time) *AutoTuneStatus {
+	s.CreationDate = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *AutoTuneStatus) SetErrorMessage(v string) *AutoTuneStatus {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetPendingDeletion sets the PendingDeletion field's value.
+func (s *AutoTuneStatus) SetPendingDeletion(v bool) *AutoTuneStatus {
+	s.PendingDeletion = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AutoTuneStatus) SetState(v string) *AutoTuneStatus {
+	s.State = &v
+	return s
+}
+
+// SetUpdateDate sets the UpdateDate field's value.
+func (s *AutoTuneStatus) SetUpdateDate(v time.Time) *AutoTuneStatus {
+	s.UpdateDate = &v
+	return s
+}
+
+// SetUpdateVersion sets the UpdateVersion field's value.
+func (s *AutoTuneStatus) SetUpdateVersion(v int64) *AutoTuneStatus {
+	s.UpdateVersion = &v
+	return s
+}
+
 // An error occurred while processing the request.
 type BaseException struct {
 	_            struct{}                  `type:"structure"`
@@ -5126,6 +5661,9 @@ type CreateElasticsearchDomainInput struct {
 	// Specifies advanced security options.
 	AdvancedSecurityOptions *AdvancedSecurityOptionsInput `type:"structure"`
 
+	// Specifies Auto-Tune options.
+	AutoTuneOptions *AutoTuneOptionsInput `type:"structure"`
+
 	// Options to specify the Cognito user and identity pools for Kibana authentication.
 	// For more information, see Amazon Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 	CognitoOptions *CognitoOptions `type:"structure"`
@@ -5198,6 +5736,11 @@ func (s *CreateElasticsearchDomainInput) Validate() error {
 			invalidParams.AddNested("AdvancedSecurityOptions", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.AutoTuneOptions != nil {
+		if err := s.AutoTuneOptions.Validate(); err != nil {
+			invalidParams.AddNested("AutoTuneOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CognitoOptions != nil {
 		if err := s.CognitoOptions.Validate(); err != nil {
 			invalidParams.AddNested("CognitoOptions", err.(request.ErrInvalidParams))
@@ -5235,6 +5778,12 @@ func (s *CreateElasticsearchDomainInput) SetAdvancedOptions(v map[string]*string
 // SetAdvancedSecurityOptions sets the AdvancedSecurityOptions field's value.
 func (s *CreateElasticsearchDomainInput) SetAdvancedSecurityOptions(v *AdvancedSecurityOptionsInput) *CreateElasticsearchDomainInput {
 	s.AdvancedSecurityOptions = v
+	return s
+}
+
+// SetAutoTuneOptions sets the AutoTuneOptions field's value.
+func (s *CreateElasticsearchDomainInput) SetAutoTuneOptions(v *AutoTuneOptionsInput) *CreateElasticsearchDomainInput {
+	s.AutoTuneOptions = v
 	return s
 }
 
@@ -5876,6 +6425,104 @@ func (s DeletePackageOutput) GoString() string {
 // SetPackageDetails sets the PackageDetails field's value.
 func (s *DeletePackageOutput) SetPackageDetails(v *PackageDetails) *DeletePackageOutput {
 	s.PackageDetails = v
+	return s
+}
+
+// Container for the parameters to the DescribeDomainAutoTunes operation.
+type DescribeDomainAutoTunesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the domain name for which you want Auto-Tune action details.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
+
+	// Set this value to limit the number of results returned. If not specified,
+	// defaults to 100.
+	MaxResults *int64 `type:"integer"`
+
+	// NextToken is sent in case the earlier API call results contain the NextToken.
+	// It is used for pagination.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDomainAutoTunesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDomainAutoTunesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDomainAutoTunesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDomainAutoTunesInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DescribeDomainAutoTunesInput) SetDomainName(v string) *DescribeDomainAutoTunesInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeDomainAutoTunesInput) SetMaxResults(v int64) *DescribeDomainAutoTunesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDomainAutoTunesInput) SetNextToken(v string) *DescribeDomainAutoTunesInput {
+	s.NextToken = &v
+	return s
+}
+
+// The result of DescribeDomainAutoTunes request. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+// for more information.
+type DescribeDomainAutoTunesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the list of setting adjustments that Auto-Tune has made to the
+	// domain. See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	AutoTunes []*AutoTune `type:"list"`
+
+	// Specifies an identifier to allow retrieval of paginated results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDomainAutoTunesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDomainAutoTunesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutoTunes sets the AutoTunes field's value.
+func (s *DescribeDomainAutoTunesOutput) SetAutoTunes(v []*AutoTune) *DescribeDomainAutoTunesOutput {
+	s.AutoTunes = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeDomainAutoTunesOutput) SetNextToken(v string) *DescribeDomainAutoTunesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -7118,6 +7765,58 @@ func (s *DomainPackageDetails) SetReferencePath(v string) *DomainPackageDetails 
 	return s
 }
 
+// Specifies maintenance schedule duration: duration value and duration unit.
+// See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+// for more information.
+type Duration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the unit of a maintenance schedule duration. Valid value is HOURS.
+	// See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	Unit *string `type:"string" enum:"TimeUnit"`
+
+	// Integer to specify the value of a maintenance schedule duration. See the
+	// Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+	// for more information.
+	Value *int64 `min:"1" type:"long"`
+}
+
+// String returns the string representation
+func (s Duration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Duration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Duration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Duration"}
+	if s.Value != nil && *s.Value < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUnit sets the Unit field's value.
+func (s *Duration) SetUnit(v string) *Duration {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Duration) SetValue(v int64) *Duration {
+	s.Value = &v
+	return s
+}
+
 // Options to enable, disable, and specify the properties of EBS storage volumes.
 // For more information, see Configuring EBS-based Storage (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-createupdatedomains.html#es-createdomain-configure-ebs).
 type EBSOptions struct {
@@ -7372,6 +8071,9 @@ type ElasticsearchDomainConfig struct {
 	// Specifies AdvancedSecurityOptions for the domain.
 	AdvancedSecurityOptions *AdvancedSecurityOptionsStatus `type:"structure"`
 
+	// Specifies AutoTuneOptions for the domain.
+	AutoTuneOptions *AutoTuneOptionsStatus `type:"structure"`
+
 	// The CognitoOptions for the specified domain. For more information, see Amazon
 	// Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 	CognitoOptions *CognitoOptionsStatus `type:"structure"`
@@ -7430,6 +8132,12 @@ func (s *ElasticsearchDomainConfig) SetAdvancedOptions(v *AdvancedOptionsStatus)
 // SetAdvancedSecurityOptions sets the AdvancedSecurityOptions field's value.
 func (s *ElasticsearchDomainConfig) SetAdvancedSecurityOptions(v *AdvancedSecurityOptionsStatus) *ElasticsearchDomainConfig {
 	s.AdvancedSecurityOptions = v
+	return s
+}
+
+// SetAutoTuneOptions sets the AutoTuneOptions field's value.
+func (s *ElasticsearchDomainConfig) SetAutoTuneOptions(v *AutoTuneOptionsStatus) *ElasticsearchDomainConfig {
+	s.AutoTuneOptions = v
 	return s
 }
 
@@ -7512,6 +8220,9 @@ type ElasticsearchDomainStatus struct {
 
 	// The current status of the Elasticsearch domain's advanced security options.
 	AdvancedSecurityOptions *AdvancedSecurityOptions `type:"structure"`
+
+	// The current status of the Elasticsearch domain's Auto-Tune options.
+	AutoTuneOptions *AutoTuneOptionsOutput `type:"structure"`
 
 	// The CognitoOptions for the specified domain. For more information, see Amazon
 	// Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
@@ -7623,6 +8334,12 @@ func (s *ElasticsearchDomainStatus) SetAdvancedOptions(v map[string]*string) *El
 // SetAdvancedSecurityOptions sets the AdvancedSecurityOptions field's value.
 func (s *ElasticsearchDomainStatus) SetAdvancedSecurityOptions(v *AdvancedSecurityOptions) *ElasticsearchDomainStatus {
 	s.AdvancedSecurityOptions = v
+	return s
+}
+
+// SetAutoTuneOptions sets the AutoTuneOptions field's value.
+func (s *ElasticsearchDomainStatus) SetAutoTuneOptions(v *AutoTuneOptionsOutput) *ElasticsearchDomainStatus {
+	s.AutoTuneOptions = v
 	return s
 }
 
@@ -10625,6 +11342,60 @@ func (s *SAMLOptionsOutput) SetSubjectKey(v string) *SAMLOptionsOutput {
 	return s
 }
 
+// Specifies details of the scheduled Auto-Tune action. See the Developer Guide
+// (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+// for more information.
+type ScheduledAutoTuneDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies Auto-Tune action description.
+	Action *string `type:"string"`
+
+	// Specifies Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and
+	// JVM_YOUNG_GEN_TUNING.
+	ActionType *string `type:"string" enum:"ScheduledAutoTuneActionType"`
+
+	// Specifies timestamp for the Auto-Tune action scheduled for the domain.
+	Date *time.Time `type:"timestamp"`
+
+	// Specifies Auto-Tune action severity. Valid values are LOW, MEDIUM and HIGH.
+	Severity *string `type:"string" enum:"ScheduledAutoTuneSeverityType"`
+}
+
+// String returns the string representation
+func (s ScheduledAutoTuneDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduledAutoTuneDetails) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *ScheduledAutoTuneDetails) SetAction(v string) *ScheduledAutoTuneDetails {
+	s.Action = &v
+	return s
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *ScheduledAutoTuneDetails) SetActionType(v string) *ScheduledAutoTuneDetails {
+	s.ActionType = &v
+	return s
+}
+
+// SetDate sets the Date field's value.
+func (s *ScheduledAutoTuneDetails) SetDate(v time.Time) *ScheduledAutoTuneDetails {
+	s.Date = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ScheduledAutoTuneDetails) SetSeverity(v string) *ScheduledAutoTuneDetails {
+	s.Severity = &v
+	return s
+}
+
 // The current options of an Elasticsearch domain service software options.
 type ServiceSoftwareOptions struct {
 	_ struct{} `type:"structure"`
@@ -11015,6 +11786,9 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// Specifies advanced security options.
 	AdvancedSecurityOptions *AdvancedSecurityOptionsInput `type:"structure"`
 
+	// Specifies Auto-Tune options.
+	AutoTuneOptions *AutoTuneOptions `type:"structure"`
+
 	// Options to specify the Cognito user and identity pools for Kibana authentication.
 	// For more information, see Amazon Cognito Authentication for Kibana (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html).
 	CognitoOptions *CognitoOptions `type:"structure"`
@@ -11077,6 +11851,11 @@ func (s *UpdateElasticsearchDomainConfigInput) Validate() error {
 			invalidParams.AddNested("AdvancedSecurityOptions", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.AutoTuneOptions != nil {
+		if err := s.AutoTuneOptions.Validate(); err != nil {
+			invalidParams.AddNested("AutoTuneOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CognitoOptions != nil {
 		if err := s.CognitoOptions.Validate(); err != nil {
 			invalidParams.AddNested("CognitoOptions", err.(request.ErrInvalidParams))
@@ -11114,6 +11893,12 @@ func (s *UpdateElasticsearchDomainConfigInput) SetAdvancedOptions(v map[string]*
 // SetAdvancedSecurityOptions sets the AdvancedSecurityOptions field's value.
 func (s *UpdateElasticsearchDomainConfigInput) SetAdvancedSecurityOptions(v *AdvancedSecurityOptionsInput) *UpdateElasticsearchDomainConfigInput {
 	s.AdvancedSecurityOptions = v
+	return s
+}
+
+// SetAutoTuneOptions sets the AutoTuneOptions field's value.
+func (s *UpdateElasticsearchDomainConfigInput) SetAutoTuneOptions(v *AutoTuneOptions) *UpdateElasticsearchDomainConfigInput {
+	s.AutoTuneOptions = v
 	return s
 }
 
@@ -11758,6 +12543,82 @@ func (s *ZoneAwarenessConfig) SetAvailabilityZoneCount(v int64) *ZoneAwarenessCo
 	return s
 }
 
+// Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.
+const (
+	// AutoTuneDesiredStateEnabled is a AutoTuneDesiredState enum value
+	AutoTuneDesiredStateEnabled = "ENABLED"
+
+	// AutoTuneDesiredStateDisabled is a AutoTuneDesiredState enum value
+	AutoTuneDesiredStateDisabled = "DISABLED"
+)
+
+// AutoTuneDesiredState_Values returns all elements of the AutoTuneDesiredState enum
+func AutoTuneDesiredState_Values() []string {
+	return []string{
+		AutoTuneDesiredStateEnabled,
+		AutoTuneDesiredStateDisabled,
+	}
+}
+
+// Specifies the Auto-Tune state for the Elasticsearch domain. For valid states
+// see the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html).
+const (
+	// AutoTuneStateEnabled is a AutoTuneState enum value
+	AutoTuneStateEnabled = "ENABLED"
+
+	// AutoTuneStateDisabled is a AutoTuneState enum value
+	AutoTuneStateDisabled = "DISABLED"
+
+	// AutoTuneStateEnableInProgress is a AutoTuneState enum value
+	AutoTuneStateEnableInProgress = "ENABLE_IN_PROGRESS"
+
+	// AutoTuneStateDisableInProgress is a AutoTuneState enum value
+	AutoTuneStateDisableInProgress = "DISABLE_IN_PROGRESS"
+
+	// AutoTuneStateDisabledAndRollbackScheduled is a AutoTuneState enum value
+	AutoTuneStateDisabledAndRollbackScheduled = "DISABLED_AND_ROLLBACK_SCHEDULED"
+
+	// AutoTuneStateDisabledAndRollbackInProgress is a AutoTuneState enum value
+	AutoTuneStateDisabledAndRollbackInProgress = "DISABLED_AND_ROLLBACK_IN_PROGRESS"
+
+	// AutoTuneStateDisabledAndRollbackComplete is a AutoTuneState enum value
+	AutoTuneStateDisabledAndRollbackComplete = "DISABLED_AND_ROLLBACK_COMPLETE"
+
+	// AutoTuneStateDisabledAndRollbackError is a AutoTuneState enum value
+	AutoTuneStateDisabledAndRollbackError = "DISABLED_AND_ROLLBACK_ERROR"
+
+	// AutoTuneStateError is a AutoTuneState enum value
+	AutoTuneStateError = "ERROR"
+)
+
+// AutoTuneState_Values returns all elements of the AutoTuneState enum
+func AutoTuneState_Values() []string {
+	return []string{
+		AutoTuneStateEnabled,
+		AutoTuneStateDisabled,
+		AutoTuneStateEnableInProgress,
+		AutoTuneStateDisableInProgress,
+		AutoTuneStateDisabledAndRollbackScheduled,
+		AutoTuneStateDisabledAndRollbackInProgress,
+		AutoTuneStateDisabledAndRollbackComplete,
+		AutoTuneStateDisabledAndRollbackError,
+		AutoTuneStateError,
+	}
+}
+
+// Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION.
+const (
+	// AutoTuneTypeScheduledAction is a AutoTuneType enum value
+	AutoTuneTypeScheduledAction = "SCHEDULED_ACTION"
+)
+
+// AutoTuneType_Values returns all elements of the AutoTuneType enum
+func AutoTuneType_Values() []string {
+	return []string{
+		AutoTuneTypeScheduledAction,
+	}
+}
+
 const (
 	// DeploymentStatusPendingUpdate is a DeploymentStatus enum value
 	DeploymentStatusPendingUpdate = "PENDING_UPDATE"
@@ -12297,6 +13158,63 @@ func ReservedElasticsearchInstancePaymentOption_Values() []string {
 	}
 }
 
+// Specifies the rollback state while disabling Auto-Tune for the domain. Valid
+// values are NO_ROLLBACK, DEFAULT_ROLLBACK.
+const (
+	// RollbackOnDisableNoRollback is a RollbackOnDisable enum value
+	RollbackOnDisableNoRollback = "NO_ROLLBACK"
+
+	// RollbackOnDisableDefaultRollback is a RollbackOnDisable enum value
+	RollbackOnDisableDefaultRollback = "DEFAULT_ROLLBACK"
+)
+
+// RollbackOnDisable_Values returns all elements of the RollbackOnDisable enum
+func RollbackOnDisable_Values() []string {
+	return []string{
+		RollbackOnDisableNoRollback,
+		RollbackOnDisableDefaultRollback,
+	}
+}
+
+// Specifies Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and
+// JVM_YOUNG_GEN_TUNING.
+const (
+	// ScheduledAutoTuneActionTypeJvmHeapSizeTuning is a ScheduledAutoTuneActionType enum value
+	ScheduledAutoTuneActionTypeJvmHeapSizeTuning = "JVM_HEAP_SIZE_TUNING"
+
+	// ScheduledAutoTuneActionTypeJvmYoungGenTuning is a ScheduledAutoTuneActionType enum value
+	ScheduledAutoTuneActionTypeJvmYoungGenTuning = "JVM_YOUNG_GEN_TUNING"
+)
+
+// ScheduledAutoTuneActionType_Values returns all elements of the ScheduledAutoTuneActionType enum
+func ScheduledAutoTuneActionType_Values() []string {
+	return []string{
+		ScheduledAutoTuneActionTypeJvmHeapSizeTuning,
+		ScheduledAutoTuneActionTypeJvmYoungGenTuning,
+	}
+}
+
+// Specifies Auto-Tune action severity. Valid values are LOW, MEDIUM and HIGH.
+const (
+	// ScheduledAutoTuneSeverityTypeLow is a ScheduledAutoTuneSeverityType enum value
+	ScheduledAutoTuneSeverityTypeLow = "LOW"
+
+	// ScheduledAutoTuneSeverityTypeMedium is a ScheduledAutoTuneSeverityType enum value
+	ScheduledAutoTuneSeverityTypeMedium = "MEDIUM"
+
+	// ScheduledAutoTuneSeverityTypeHigh is a ScheduledAutoTuneSeverityType enum value
+	ScheduledAutoTuneSeverityTypeHigh = "HIGH"
+)
+
+// ScheduledAutoTuneSeverityType_Values returns all elements of the ScheduledAutoTuneSeverityType enum
+func ScheduledAutoTuneSeverityType_Values() []string {
+	return []string{
+		ScheduledAutoTuneSeverityTypeLow,
+		ScheduledAutoTuneSeverityTypeMedium,
+		ScheduledAutoTuneSeverityTypeHigh,
+	}
+}
+
 const (
 	// TLSSecurityPolicyPolicyMinTls10201907 is a TLSSecurityPolicy enum value
 	TLSSecurityPolicyPolicyMinTls10201907 = "Policy-Min-TLS-1-0-2019-07"
@@ -12310,6 +13228,21 @@ func TLSSecurityPolicy_Values() []string {
 	return []string{
 		TLSSecurityPolicyPolicyMinTls10201907,
 		TLSSecurityPolicyPolicyMinTls12201907,
+	}
+}
+
+// Specifies the unit of a maintenance schedule duration. Valid value is HOUR.
+// See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
+// for more information.
+const (
+	// TimeUnitHours is a TimeUnit enum value
+	TimeUnitHours = "HOURS"
+)
+
+// TimeUnit_Values returns all elements of the TimeUnit enum
+func TimeUnit_Values() []string {
+	return []string{
+		TimeUnitHours,
 	}
 }
 

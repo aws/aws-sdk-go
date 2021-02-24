@@ -191,6 +191,21 @@
         {"shape":"ConflictException"}
       ]
     },
+    "DescribeDomainAutoTunes":{
+      "name":"DescribeDomainAutoTunes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-01-01/es/domain/{DomainName}/autoTunes"
+      },
+      "input":{"shape":"DescribeDomainAutoTunesRequest"},
+      "output":{"shape":"DescribeDomainAutoTunesResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeElasticsearchDomain":{
       "name":"DescribeElasticsearchDomain",
       "http":{
@@ -732,6 +747,107 @@
         "DomainPackageDetails":{"shape":"DomainPackageDetails"}
       }
     },
+    "AutoTune":{
+      "type":"structure",
+      "members":{
+        "AutoTuneType":{"shape":"AutoTuneType"},
+        "AutoTuneDetails":{"shape":"AutoTuneDetails"}
+      }
+    },
+    "AutoTuneDate":{"type":"timestamp"},
+    "AutoTuneDesiredState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "AutoTuneDetails":{
+      "type":"structure",
+      "members":{
+        "ScheduledAutoTuneDetails":{"shape":"ScheduledAutoTuneDetails"}
+      }
+    },
+    "AutoTuneList":{
+      "type":"list",
+      "member":{"shape":"AutoTune"}
+    },
+    "AutoTuneMaintenanceSchedule":{
+      "type":"structure",
+      "members":{
+        "StartAt":{"shape":"StartAt"},
+        "Duration":{"shape":"Duration"},
+        "CronExpressionForRecurrence":{"shape":"String"}
+      }
+    },
+    "AutoTuneMaintenanceScheduleList":{
+      "type":"list",
+      "member":{"shape":"AutoTuneMaintenanceSchedule"},
+      "max":100
+    },
+    "AutoTuneOptions":{
+      "type":"structure",
+      "members":{
+        "DesiredState":{"shape":"AutoTuneDesiredState"},
+        "RollbackOnDisable":{"shape":"RollbackOnDisable"},
+        "MaintenanceSchedules":{"shape":"AutoTuneMaintenanceScheduleList"}
+      }
+    },
+    "AutoTuneOptionsInput":{
+      "type":"structure",
+      "members":{
+        "DesiredState":{"shape":"AutoTuneDesiredState"},
+        "MaintenanceSchedules":{"shape":"AutoTuneMaintenanceScheduleList"}
+      }
+    },
+    "AutoTuneOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "State":{"shape":"AutoTuneState"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "AutoTuneOptionsStatus":{
+      "type":"structure",
+      "members":{
+        "Options":{"shape":"AutoTuneOptions"},
+        "Status":{"shape":"AutoTuneStatus"}
+      }
+    },
+    "AutoTuneState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "ENABLE_IN_PROGRESS",
+        "DISABLE_IN_PROGRESS",
+        "DISABLED_AND_ROLLBACK_SCHEDULED",
+        "DISABLED_AND_ROLLBACK_IN_PROGRESS",
+        "DISABLED_AND_ROLLBACK_COMPLETE",
+        "DISABLED_AND_ROLLBACK_ERROR",
+        "ERROR"
+      ]
+    },
+    "AutoTuneStatus":{
+      "type":"structure",
+      "required":[
+        "CreationDate",
+        "UpdateDate",
+        "State"
+      ],
+      "members":{
+        "CreationDate":{"shape":"UpdateTimestamp"},
+        "UpdateDate":{"shape":"UpdateTimestamp"},
+        "UpdateVersion":{"shape":"UIntValue"},
+        "State":{"shape":"AutoTuneState"},
+        "ErrorMessage":{"shape":"String"},
+        "PendingDeletion":{"shape":"Boolean"}
+      }
+    },
+    "AutoTuneType":{
+      "type":"string",
+      "enum":["SCHEDULED_ACTION"]
+    },
     "BackendRole":{
       "type":"string",
       "max":256,
@@ -822,7 +938,8 @@
         "AdvancedOptions":{"shape":"AdvancedOptions"},
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
-        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"}
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"}
       }
     },
     "CreateElasticsearchDomainResponse":{
@@ -955,6 +1072,26 @@
         "NOT_ELIGIBLE",
         "ELIGIBLE"
       ]
+    },
+    "DescribeDomainAutoTunesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeDomainAutoTunesResponse":{
+      "type":"structure",
+      "members":{
+        "AutoTunes":{"shape":"AutoTuneList"},
+        "NextToken":{"shape":"NextToken"}
+      }
     },
     "DescribeElasticsearchDomainConfigRequest":{
       "type":"structure",
@@ -1284,6 +1421,18 @@
       ]
     },
     "Double":{"type":"double"},
+    "Duration":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"DurationValue"},
+        "Unit":{"shape":"TimeUnit"}
+      }
+    },
+    "DurationValue":{
+      "type":"long",
+      "max":24,
+      "min":1
+    },
     "EBSOptions":{
       "type":"structure",
       "members":{
@@ -1415,7 +1564,8 @@
         "AdvancedOptions":{"shape":"AdvancedOptionsStatus"},
         "LogPublishingOptions":{"shape":"LogPublishingOptionsStatus"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptionsStatus"},
-        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsStatus"}
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsStatus"},
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsStatus"}
       }
     },
     "ElasticsearchDomainStatus":{
@@ -1449,7 +1599,8 @@
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "ServiceSoftwareOptions":{"shape":"ServiceSoftwareOptions"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
-        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptions"}
+        "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptions"},
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsOutput"}
       }
     },
     "ElasticsearchDomainStatusList":{
@@ -2193,6 +2344,13 @@
       "max":2048,
       "min":20
     },
+    "RollbackOnDisable":{
+      "type":"string",
+      "enum":[
+        "NO_ROLLBACK",
+        "DEFAULT_ROLLBACK"
+      ]
+    },
     "S3BucketName":{
       "type":"string",
       "max":63,
@@ -2242,6 +2400,31 @@
         "SessionTimeoutMinutes":{"shape":"IntegerClass"}
       }
     },
+    "ScheduledAutoTuneActionType":{
+      "type":"string",
+      "enum":[
+        "JVM_HEAP_SIZE_TUNING",
+        "JVM_YOUNG_GEN_TUNING"
+      ]
+    },
+    "ScheduledAutoTuneDescription":{"type":"string"},
+    "ScheduledAutoTuneDetails":{
+      "type":"structure",
+      "members":{
+        "Date":{"shape":"AutoTuneDate"},
+        "ActionType":{"shape":"ScheduledAutoTuneActionType"},
+        "Action":{"shape":"ScheduledAutoTuneDescription"},
+        "Severity":{"shape":"ScheduledAutoTuneSeverityType"}
+      }
+    },
+    "ScheduledAutoTuneSeverityType":{
+      "type":"string",
+      "enum":[
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
+    },
     "ServiceSoftwareOptions":{
       "type":"structure",
       "members":{
@@ -2273,6 +2456,7 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
+    "StartAt":{"type":"timestamp"},
     "StartElasticsearchServiceSoftwareUpdateRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -2349,6 +2533,10 @@
       "max":256,
       "min":0
     },
+    "TimeUnit":{
+      "type":"string",
+      "enum":["HOURS"]
+    },
     "UIntValue":{
       "type":"integer",
       "min":0
@@ -2373,7 +2561,8 @@
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
-        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"}
+        "EncryptionAtRestOptions":{"shape":"EncryptionAtRestOptions"},
+        "AutoTuneOptions":{"shape":"AutoTuneOptions"}
       }
     },
     "UpdateElasticsearchDomainConfigResponse":{

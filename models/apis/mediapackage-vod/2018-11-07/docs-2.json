@@ -2,6 +2,7 @@
   "version" : "2.0",
   "service" : "AWS Elemental MediaPackage VOD",
   "operations" : {
+    "ConfigureLogs" : "Changes the packaging group's properities to configure log subscription",
     "CreateAsset" : "Creates a new MediaPackage VOD Asset resource.",
     "CreatePackagingConfiguration" : "Creates a new MediaPackage VOD PackagingConfiguration resource.",
     "CreatePackagingGroup" : "Creates a new MediaPackage VOD PackagingGroup resource.",
@@ -65,6 +66,10 @@
         "PackagingConfigurationCreateParameters$CmafPackage" : null
       }
     },
+    "ConfigureLogsParameters" : {
+      "base" : "The configuration parameters for egress access logging.",
+      "refs" : { }
+    },
     "DashEncryption" : {
       "base" : "A Dynamic Adaptive Streaming over HTTP (DASH) encryption configuration.",
       "refs" : {
@@ -82,6 +87,14 @@
       "refs" : {
         "PackagingConfiguration$DashPackage" : null,
         "PackagingConfigurationCreateParameters$DashPackage" : null
+      }
+    },
+    "EgressAccessLogs" : {
+      "base" : "Configure egress access logging.",
+      "refs" : {
+        "ConfigureLogsParameters$EgressAccessLogs" : null,
+        "PackagingGroup$EgressAccessLogs" : null,
+        "PackagingGroupCreateParameters$EgressAccessLogs" : null
       }
     },
     "EgressEndpoint" : {
@@ -337,6 +350,7 @@
         "Authorization$CdnIdentifierSecret" : "The Amazon Resource Name (ARN) for the secret in AWS Secrets Manager that is used for CDN authorization.",
         "Authorization$SecretsRoleArn" : "The Amazon Resource Name (ARN) for the IAM role that allows MediaPackage to communicate with AWS Secrets Manager.",
         "DashManifest$ManifestName" : "An optional string to include in the name of the manifest.",
+        "EgressAccessLogs$LogGroupName" : "Customize the log group name.",
         "EgressEndpoint$PackagingConfigurationId" : "The ID of the PackagingConfiguration being applied to the Asset.",
         "EgressEndpoint$Url" : "The URL of the parent manifest for the repackaged Asset.",
         "HlsEncryption$ConstantInitializationVector" : "A constant initialization vector for encryption (optional).\nWhen not specified the initialization vector will be periodically rotated.\n",

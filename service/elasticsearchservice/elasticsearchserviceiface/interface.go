@@ -108,6 +108,13 @@ type ElasticsearchServiceAPI interface {
 	DeletePackageWithContext(aws.Context, *elasticsearchservice.DeletePackageInput, ...request.Option) (*elasticsearchservice.DeletePackageOutput, error)
 	DeletePackageRequest(*elasticsearchservice.DeletePackageInput) (*request.Request, *elasticsearchservice.DeletePackageOutput)
 
+	DescribeDomainAutoTunes(*elasticsearchservice.DescribeDomainAutoTunesInput) (*elasticsearchservice.DescribeDomainAutoTunesOutput, error)
+	DescribeDomainAutoTunesWithContext(aws.Context, *elasticsearchservice.DescribeDomainAutoTunesInput, ...request.Option) (*elasticsearchservice.DescribeDomainAutoTunesOutput, error)
+	DescribeDomainAutoTunesRequest(*elasticsearchservice.DescribeDomainAutoTunesInput) (*request.Request, *elasticsearchservice.DescribeDomainAutoTunesOutput)
+
+	DescribeDomainAutoTunesPages(*elasticsearchservice.DescribeDomainAutoTunesInput, func(*elasticsearchservice.DescribeDomainAutoTunesOutput, bool) bool) error
+	DescribeDomainAutoTunesPagesWithContext(aws.Context, *elasticsearchservice.DescribeDomainAutoTunesInput, func(*elasticsearchservice.DescribeDomainAutoTunesOutput, bool) bool, ...request.Option) error
+
 	DescribeElasticsearchDomain(*elasticsearchservice.DescribeElasticsearchDomainInput) (*elasticsearchservice.DescribeElasticsearchDomainOutput, error)
 	DescribeElasticsearchDomainWithContext(aws.Context, *elasticsearchservice.DescribeElasticsearchDomainInput, ...request.Option) (*elasticsearchservice.DescribeElasticsearchDomainOutput, error)
 	DescribeElasticsearchDomainRequest(*elasticsearchservice.DescribeElasticsearchDomainInput) (*request.Request, *elasticsearchservice.DescribeElasticsearchDomainOutput)
