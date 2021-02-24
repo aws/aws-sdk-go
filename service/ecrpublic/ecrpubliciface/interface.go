@@ -132,6 +132,10 @@ type ECRPublicAPI interface {
 	InitiateLayerUploadWithContext(aws.Context, *ecrpublic.InitiateLayerUploadInput, ...request.Option) (*ecrpublic.InitiateLayerUploadOutput, error)
 	InitiateLayerUploadRequest(*ecrpublic.InitiateLayerUploadInput) (*request.Request, *ecrpublic.InitiateLayerUploadOutput)
 
+	ListTagsForResource(*ecrpublic.ListTagsForResourceInput) (*ecrpublic.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *ecrpublic.ListTagsForResourceInput, ...request.Option) (*ecrpublic.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*ecrpublic.ListTagsForResourceInput) (*request.Request, *ecrpublic.ListTagsForResourceOutput)
+
 	PutImage(*ecrpublic.PutImageInput) (*ecrpublic.PutImageOutput, error)
 	PutImageWithContext(aws.Context, *ecrpublic.PutImageInput, ...request.Option) (*ecrpublic.PutImageOutput, error)
 	PutImageRequest(*ecrpublic.PutImageInput) (*request.Request, *ecrpublic.PutImageOutput)
@@ -147,6 +151,14 @@ type ECRPublicAPI interface {
 	SetRepositoryPolicy(*ecrpublic.SetRepositoryPolicyInput) (*ecrpublic.SetRepositoryPolicyOutput, error)
 	SetRepositoryPolicyWithContext(aws.Context, *ecrpublic.SetRepositoryPolicyInput, ...request.Option) (*ecrpublic.SetRepositoryPolicyOutput, error)
 	SetRepositoryPolicyRequest(*ecrpublic.SetRepositoryPolicyInput) (*request.Request, *ecrpublic.SetRepositoryPolicyOutput)
+
+	TagResource(*ecrpublic.TagResourceInput) (*ecrpublic.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *ecrpublic.TagResourceInput, ...request.Option) (*ecrpublic.TagResourceOutput, error)
+	TagResourceRequest(*ecrpublic.TagResourceInput) (*request.Request, *ecrpublic.TagResourceOutput)
+
+	UntagResource(*ecrpublic.UntagResourceInput) (*ecrpublic.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *ecrpublic.UntagResourceInput, ...request.Option) (*ecrpublic.UntagResourceOutput, error)
+	UntagResourceRequest(*ecrpublic.UntagResourceInput) (*request.Request, *ecrpublic.UntagResourceOutput)
 
 	UploadLayerPart(*ecrpublic.UploadLayerPartInput) (*ecrpublic.UploadLayerPartOutput, error)
 	UploadLayerPartWithContext(aws.Context, *ecrpublic.UploadLayerPartInput, ...request.Option) (*ecrpublic.UploadLayerPartOutput, error)

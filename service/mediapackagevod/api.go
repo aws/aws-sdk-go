@@ -12,6 +12,94 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opConfigureLogs = "ConfigureLogs"
+
+// ConfigureLogsRequest generates a "aws/request.Request" representing the
+// client's request for the ConfigureLogs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ConfigureLogs for more information on using the ConfigureLogs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ConfigureLogsRequest method.
+//    req, resp := client.ConfigureLogsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ConfigureLogs
+func (c *MediaPackageVod) ConfigureLogsRequest(input *ConfigureLogsInput) (req *request.Request, output *ConfigureLogsOutput) {
+	op := &request.Operation{
+		Name:       opConfigureLogs,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/packaging_groups/{id}/configure_logs",
+	}
+
+	if input == nil {
+		input = &ConfigureLogsInput{}
+	}
+
+	output = &ConfigureLogsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ConfigureLogs API operation for AWS Elemental MediaPackage VOD.
+//
+// Changes the packaging group's properities to configure log subscription
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaPackage VOD's
+// API operation ConfigureLogs for usage and error information.
+//
+// Returned Error Types:
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * ServiceUnavailableException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-vod-2018-11-07/ConfigureLogs
+func (c *MediaPackageVod) ConfigureLogs(input *ConfigureLogsInput) (*ConfigureLogsOutput, error) {
+	req, out := c.ConfigureLogsRequest(input)
+	return out, req.Send()
+}
+
+// ConfigureLogsWithContext is the same as ConfigureLogs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ConfigureLogs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaPackageVod) ConfigureLogsWithContext(ctx aws.Context, input *ConfigureLogsInput, opts ...request.Option) (*ConfigureLogsOutput, error) {
+	req, out := c.ConfigureLogsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAsset = "CreateAsset"
 
 // CreateAssetRequest generates a "aws/request.Request" representing the
@@ -1810,6 +1898,119 @@ func (s *CmafPackage) SetSegmentDurationSeconds(v int64) *CmafPackage {
 	return s
 }
 
+type ConfigureLogsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ConfigureLogsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigureLogsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigureLogsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigureLogsInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *ConfigureLogsInput) SetEgressAccessLogs(v *EgressAccessLogs) *ConfigureLogsInput {
+	s.EgressAccessLogs = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfigureLogsInput) SetId(v string) *ConfigureLogsInput {
+	s.Id = &v
+	return s
+}
+
+type ConfigureLogsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	// CDN Authorization credentials
+	Authorization *Authorization `locationName:"authorization" type:"structure"`
+
+	DomainName *string `locationName:"domainName" type:"string"`
+
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	// A collection of tags associated with a resource
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s ConfigureLogsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigureLogsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ConfigureLogsOutput) SetArn(v string) *ConfigureLogsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetAuthorization sets the Authorization field's value.
+func (s *ConfigureLogsOutput) SetAuthorization(v *Authorization) *ConfigureLogsOutput {
+	s.Authorization = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *ConfigureLogsOutput) SetDomainName(v string) *ConfigureLogsOutput {
+	s.DomainName = &v
+	return s
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *ConfigureLogsOutput) SetEgressAccessLogs(v *EgressAccessLogs) *ConfigureLogsOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfigureLogsOutput) SetId(v string) *ConfigureLogsOutput {
+	s.Id = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ConfigureLogsOutput) SetTags(v map[string]*string) *ConfigureLogsOutput {
+	s.Tags = v
+	return s
+}
+
 type CreateAssetInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2188,6 +2389,9 @@ type CreatePackagingGroupInput struct {
 	// CDN Authorization credentials
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
@@ -2229,6 +2433,12 @@ func (s *CreatePackagingGroupInput) SetAuthorization(v *Authorization) *CreatePa
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *CreatePackagingGroupInput) SetEgressAccessLogs(v *EgressAccessLogs) *CreatePackagingGroupInput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *CreatePackagingGroupInput) SetId(v string) *CreatePackagingGroupInput {
 	s.Id = &v
@@ -2250,6 +2460,9 @@ type CreatePackagingGroupOutput struct {
 	Authorization *Authorization `locationName:"authorization" type:"structure"`
 
 	DomainName *string `locationName:"domainName" type:"string"`
+
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
 
 	Id *string `locationName:"id" type:"string"`
 
@@ -2282,6 +2495,12 @@ func (s *CreatePackagingGroupOutput) SetAuthorization(v *Authorization) *CreateP
 // SetDomainName sets the DomainName field's value.
 func (s *CreatePackagingGroupOutput) SetDomainName(v string) *CreatePackagingGroupOutput {
 	s.DomainName = &v
+	return s
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *CreatePackagingGroupOutput) SetEgressAccessLogs(v *EgressAccessLogs) *CreatePackagingGroupOutput {
+	s.EgressAccessLogs = v
 	return s
 }
 
@@ -2953,6 +3172,9 @@ type DescribePackagingGroupOutput struct {
 
 	DomainName *string `locationName:"domainName" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	Id *string `locationName:"id" type:"string"`
 
 	// A collection of tags associated with a resource
@@ -2987,6 +3209,12 @@ func (s *DescribePackagingGroupOutput) SetDomainName(v string) *DescribePackagin
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *DescribePackagingGroupOutput) SetEgressAccessLogs(v *EgressAccessLogs) *DescribePackagingGroupOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *DescribePackagingGroupOutput) SetId(v string) *DescribePackagingGroupOutput {
 	s.Id = &v
@@ -2996,6 +3224,30 @@ func (s *DescribePackagingGroupOutput) SetId(v string) *DescribePackagingGroupOu
 // SetTags sets the Tags field's value.
 func (s *DescribePackagingGroupOutput) SetTags(v map[string]*string) *DescribePackagingGroupOutput {
 	s.Tags = v
+	return s
+}
+
+// Configure egress access logging.
+type EgressAccessLogs struct {
+	_ struct{} `type:"structure"`
+
+	// Customize the log group name.
+	LogGroupName *string `locationName:"logGroupName" type:"string"`
+}
+
+// String returns the string representation
+func (s EgressAccessLogs) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EgressAccessLogs) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *EgressAccessLogs) SetLogGroupName(v string) *EgressAccessLogs {
+	s.LogGroupName = &v
 	return s
 }
 
@@ -3949,6 +4201,9 @@ type PackagingGroup struct {
 	// The fully qualified domain name for Assets in the PackagingGroup.
 	DomainName *string `locationName:"domainName" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// The ID of the PackagingGroup.
 	Id *string `locationName:"id" type:"string"`
 
@@ -3981,6 +4236,12 @@ func (s *PackagingGroup) SetAuthorization(v *Authorization) *PackagingGroup {
 // SetDomainName sets the DomainName field's value.
 func (s *PackagingGroup) SetDomainName(v string) *PackagingGroup {
 	s.DomainName = &v
+	return s
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *PackagingGroup) SetEgressAccessLogs(v *EgressAccessLogs) *PackagingGroup {
+	s.EgressAccessLogs = v
 	return s
 }
 
@@ -4465,6 +4726,9 @@ type UpdatePackagingGroupOutput struct {
 
 	DomainName *string `locationName:"domainName" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	Id *string `locationName:"id" type:"string"`
 
 	// A collection of tags associated with a resource
@@ -4496,6 +4760,12 @@ func (s *UpdatePackagingGroupOutput) SetAuthorization(v *Authorization) *UpdateP
 // SetDomainName sets the DomainName field's value.
 func (s *UpdatePackagingGroupOutput) SetDomainName(v string) *UpdatePackagingGroupOutput {
 	s.DomainName = &v
+	return s
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *UpdatePackagingGroupOutput) SetEgressAccessLogs(v *EgressAccessLogs) *UpdatePackagingGroupOutput {
+	s.EgressAccessLogs = v
 	return s
 }
 

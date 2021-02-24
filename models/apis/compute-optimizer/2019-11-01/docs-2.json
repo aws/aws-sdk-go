@@ -12,7 +12,7 @@
     "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is the management account of an organization, this action also confirms the enrollment status of member accounts within the organization.</p>",
     "GetLambdaFunctionRecommendations": "<p>Returns AWS Lambda function recommendations.</p> <p>AWS Compute Optimizer generates recommendations for functions that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>For example, it returns the number of Amazon EC2 instances in an account that are under-provisioned, over-provisioned, or optimized. It also returns the number of Auto Scaling groups in an account that are not optimized, or optimized.</p>",
-    "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a management account of an organization, this action can also be used to enroll member accounts within the organization.</p>"
+    "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in and opt out) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a management account of an organization, this action can also be used to enroll member accounts within the organization.</p> <p>You must have the appropriate permissions to opt in to Compute Optimizer, to view its recommendations, and to opt out. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/ug/security-iam.html\">Controlling access with AWS Identity and Access Management</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>When you opt in, Compute Optimizer automatically creates a Service-Linked Role in your account to access its data. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/ug/using-service-linked-roles.html\">Using Service-Linked Roles for AWS Compute Optimizer</a> in the <i>Compute Optimizer User Guide</i>.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -429,7 +429,7 @@
       "refs": {
         "ExportAutoScalingGroupRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
         "ExportEC2InstanceRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
-        "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the your account is the management account of an organization.</p>"
+        "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the account is the management account of an organization.</p>"
       }
     },
     "InstanceArn": {
@@ -565,7 +565,7 @@
     "LambdaFunctionMetricName": {
       "base": null,
       "refs": {
-        "LambdaFunctionUtilizationMetric$name": "<p>The name of the utilization metric.</p>"
+        "LambdaFunctionUtilizationMetric$name": "<p>The name of the utilization metric.</p> <p>The following utilization metrics are available:</p> <ul> <li> <p> <code>Duration</code> - The amount of time that your function code spends processing an event.</p> </li> <li> <p> <code>Memory</code> - The amount of memory used per invocation.</p> </li> </ul>"
       }
     },
     "LambdaFunctionMetricStatistic": {
@@ -938,7 +938,7 @@
       "base": null,
       "refs": {
         "GetEnrollmentStatusResponse$status": "<p>The enrollment status of the account.</p>",
-        "UpdateEnrollmentStatusRequest$status": "<p>The new enrollment status of the account.</p> <p>Accepted options are <code>Active</code> or <code>Inactive</code>. You will get an error if <code>Pending</code> or <code>Failed</code> are specified.</p>",
+        "UpdateEnrollmentStatusRequest$status": "<p>The new enrollment status of the account.</p> <p>The following status options are available:</p> <ul> <li> <p> <code>Active</code> - Opts in your account to the Compute Optimizer service. Compute Optimizer begins analyzing the configuration and utilization metrics of your AWS resources after you opt in. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/ug/metrics.html\">Metrics analyzed by AWS Compute Optimizer</a> in the <i>Compute Optimizer User Guide</i>.</p> </li> <li> <p> <code>Inactive</code> - Opts out your account from the Compute Optimizer service. Your account's recommendations and related metrics data will be deleted from Compute Optimizer after you opt out.</p> </li> </ul> <note> <p>The <code>Pending</code> and <code>Failed</code> options cannot be used to update the enrollment status of an account. They are returned in the response of a request to update the enrollment status of an account.</p> </note>",
         "UpdateEnrollmentStatusResponse$status": "<p>The enrollment status of the account.</p>"
       }
     },

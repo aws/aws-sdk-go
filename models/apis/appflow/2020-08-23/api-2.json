@@ -498,7 +498,9 @@
         "Veeva":{"shape":"VeevaMetadata"},
         "Zendesk":{"shape":"ZendeskMetadata"},
         "EventBridge":{"shape":"EventBridgeMetadata"},
-        "Upsolver":{"shape":"UpsolverMetadata"}
+        "Upsolver":{"shape":"UpsolverMetadata"},
+        "CustomerProfiles":{"shape":"CustomerProfilesMetadata"},
+        "Honeycode":{"shape":"HoneycodeMetadata"}
       }
     },
     "ConnectorOAuthRequest":{
@@ -563,6 +565,7 @@
         "Datadog":{"shape":"DatadogConnectorProfileCredentials"},
         "Dynatrace":{"shape":"DynatraceConnectorProfileCredentials"},
         "GoogleAnalytics":{"shape":"GoogleAnalyticsConnectorProfileCredentials"},
+        "Honeycode":{"shape":"HoneycodeConnectorProfileCredentials"},
         "InforNexus":{"shape":"InforNexusConnectorProfileCredentials"},
         "Marketo":{"shape":"MarketoConnectorProfileCredentials"},
         "Redshift":{"shape":"RedshiftConnectorProfileCredentials"},
@@ -598,6 +601,7 @@
         "Datadog":{"shape":"DatadogConnectorProfileProperties"},
         "Dynatrace":{"shape":"DynatraceConnectorProfileProperties"},
         "GoogleAnalytics":{"shape":"GoogleAnalyticsConnectorProfileProperties"},
+        "Honeycode":{"shape":"HoneycodeConnectorProfileProperties"},
         "InforNexus":{"shape":"InforNexusConnectorProfileProperties"},
         "Marketo":{"shape":"MarketoConnectorProfileProperties"},
         "Redshift":{"shape":"RedshiftConnectorProfileProperties"},
@@ -639,7 +643,10 @@
         "Amplitude",
         "Veeva",
         "EventBridge",
-        "Upsolver"
+        "LookoutMetrics",
+        "Upsolver",
+        "Honeycode",
+        "CustomerProfiles"
       ]
     },
     "ConnectorTypeList":{
@@ -701,6 +708,19 @@
       "type":"string",
       "max":256,
       "pattern":"\\S+"
+    },
+    "CustomerProfilesDestinationProperties":{
+      "type":"structure",
+      "required":["domainName"],
+      "members":{
+        "domainName":{"shape":"DomainName"},
+        "objectTypeName":{"shape":"ObjectTypeName"}
+      }
+    },
+    "CustomerProfilesMetadata":{
+      "type":"structure",
+      "members":{
+      }
     },
     "DataPullMode":{
       "type":"string",
@@ -899,7 +919,10 @@
         "Salesforce":{"shape":"SalesforceDestinationProperties"},
         "Snowflake":{"shape":"SnowflakeDestinationProperties"},
         "EventBridge":{"shape":"EventBridgeDestinationProperties"},
-        "Upsolver":{"shape":"UpsolverDestinationProperties"}
+        "LookoutMetrics":{"shape":"LookoutMetricsDestinationProperties"},
+        "Upsolver":{"shape":"UpsolverDestinationProperties"},
+        "Honeycode":{"shape":"HoneycodeDestinationProperties"},
+        "CustomerProfiles":{"shape":"CustomerProfilesDestinationProperties"}
       }
     },
     "DestinationField":{
@@ -932,6 +955,11 @@
     "DestinationFlowConfigList":{
       "type":"list",
       "member":{"shape":"DestinationFlowConfig"}
+    },
+    "DomainName":{
+      "type":"string",
+      "max":64,
+      "pattern":"\\S+"
     },
     "DynatraceConnectorOperator":{
       "type":"string",
@@ -1190,6 +1218,33 @@
       "max":128,
       "pattern":"\\S+"
     },
+    "HoneycodeConnectorProfileCredentials":{
+      "type":"structure",
+      "members":{
+        "accessToken":{"shape":"AccessToken"},
+        "refreshToken":{"shape":"RefreshToken"},
+        "oAuthRequest":{"shape":"ConnectorOAuthRequest"}
+      }
+    },
+    "HoneycodeConnectorProfileProperties":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "HoneycodeDestinationProperties":{
+      "type":"structure",
+      "required":["object"],
+      "members":{
+        "object":{"shape":"Object"},
+        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"}
+      }
+    },
+    "HoneycodeMetadata":{
+      "type":"structure",
+      "members":{
+        "oAuthScopes":{"shape":"OAuthScopeList"}
+      }
+    },
     "IdFieldNameList":{
       "type":"list",
       "member":{"shape":"Name"},
@@ -1337,6 +1392,11 @@
       }
     },
     "Long":{"type":"long"},
+    "LookoutMetricsDestinationProperties":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "MarketoConnectorOperator":{
       "type":"string",
       "enum":[
@@ -1422,6 +1482,11 @@
     "Object":{
       "type":"string",
       "max":512,
+      "pattern":"\\S+"
+    },
+    "ObjectTypeName":{
+      "type":"string",
+      "max":255,
       "pattern":"\\S+"
     },
     "Operator":{
@@ -1740,7 +1805,8 @@
         "scheduleOffset":{
           "shape":"ScheduleOffset",
           "box":true
-        }
+        },
+        "firstExecutionFrom":{"shape":"Date"}
       }
     },
     "SchedulingFrequencyTypeList":{

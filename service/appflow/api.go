@@ -2383,6 +2383,8 @@ type ConnectorMetadata struct {
 	// The connector metadata specific to Amplitude.
 	Amplitude *AmplitudeMetadata `type:"structure"`
 
+	CustomerProfiles *CustomerProfilesMetadata `type:"structure"`
+
 	// The connector metadata specific to Datadog.
 	Datadog *DatadogMetadata `type:"structure"`
 
@@ -2394,6 +2396,8 @@ type ConnectorMetadata struct {
 
 	// The connector metadata specific to Google Analytics.
 	GoogleAnalytics *GoogleAnalyticsMetadata `type:"structure"`
+
+	Honeycode *HoneycodeMetadata `type:"structure"`
 
 	// The connector metadata specific to Infor Nexus.
 	InforNexus *InforNexusMetadata `type:"structure"`
@@ -2451,6 +2455,12 @@ func (s *ConnectorMetadata) SetAmplitude(v *AmplitudeMetadata) *ConnectorMetadat
 	return s
 }
 
+// SetCustomerProfiles sets the CustomerProfiles field's value.
+func (s *ConnectorMetadata) SetCustomerProfiles(v *CustomerProfilesMetadata) *ConnectorMetadata {
+	s.CustomerProfiles = v
+	return s
+}
+
 // SetDatadog sets the Datadog field's value.
 func (s *ConnectorMetadata) SetDatadog(v *DatadogMetadata) *ConnectorMetadata {
 	s.Datadog = v
@@ -2472,6 +2482,12 @@ func (s *ConnectorMetadata) SetEventBridge(v *EventBridgeMetadata) *ConnectorMet
 // SetGoogleAnalytics sets the GoogleAnalytics field's value.
 func (s *ConnectorMetadata) SetGoogleAnalytics(v *GoogleAnalyticsMetadata) *ConnectorMetadata {
 	s.GoogleAnalytics = v
+	return s
+}
+
+// SetHoneycode sets the Honeycode field's value.
+func (s *ConnectorMetadata) SetHoneycode(v *HoneycodeMetadata) *ConnectorMetadata {
+	s.Honeycode = v
 	return s
 }
 
@@ -2902,6 +2918,8 @@ type ConnectorProfileCredentials struct {
 	// The connector-specific credentials required when using Google Analytics.
 	GoogleAnalytics *GoogleAnalyticsConnectorProfileCredentials `type:"structure"`
 
+	Honeycode *HoneycodeConnectorProfileCredentials `type:"structure"`
+
 	// The connector-specific credentials required when using Infor Nexus.
 	InforNexus *InforNexusConnectorProfileCredentials `type:"structure"`
 
@@ -3055,6 +3073,12 @@ func (s *ConnectorProfileCredentials) SetGoogleAnalytics(v *GoogleAnalyticsConne
 	return s
 }
 
+// SetHoneycode sets the Honeycode field's value.
+func (s *ConnectorProfileCredentials) SetHoneycode(v *HoneycodeConnectorProfileCredentials) *ConnectorProfileCredentials {
+	s.Honeycode = v
+	return s
+}
+
 // SetInforNexus sets the InforNexus field's value.
 func (s *ConnectorProfileCredentials) SetInforNexus(v *InforNexusConnectorProfileCredentials) *ConnectorProfileCredentials {
 	s.InforNexus = v
@@ -3136,6 +3160,8 @@ type ConnectorProfileProperties struct {
 
 	// The connector-specific properties required Google Analytics.
 	GoogleAnalytics *GoogleAnalyticsConnectorProfileProperties `type:"structure"`
+
+	Honeycode *HoneycodeConnectorProfileProperties `type:"structure"`
 
 	// The connector-specific properties required by Infor Nexus.
 	InforNexus *InforNexusConnectorProfileProperties `type:"structure"`
@@ -3262,6 +3288,12 @@ func (s *ConnectorProfileProperties) SetDynatrace(v *DynatraceConnectorProfilePr
 // SetGoogleAnalytics sets the GoogleAnalytics field's value.
 func (s *ConnectorProfileProperties) SetGoogleAnalytics(v *GoogleAnalyticsConnectorProfileProperties) *ConnectorProfileProperties {
 	s.GoogleAnalytics = v
+	return s
+}
+
+// SetHoneycode sets the Honeycode field's value.
+func (s *ConnectorProfileProperties) SetHoneycode(v *HoneycodeConnectorProfileProperties) *ConnectorProfileProperties {
+	s.Honeycode = v
 	return s
 }
 
@@ -3704,6 +3736,64 @@ func (s *CreateFlowOutput) SetFlowArn(v string) *CreateFlowOutput {
 func (s *CreateFlowOutput) SetFlowStatus(v string) *CreateFlowOutput {
 	s.FlowStatus = &v
 	return s
+}
+
+type CustomerProfilesDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// DomainName is a required field
+	DomainName *string `locationName:"domainName" type:"string" required:"true"`
+
+	ObjectTypeName *string `locationName:"objectTypeName" type:"string"`
+}
+
+// String returns the string representation
+func (s CustomerProfilesDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerProfilesDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomerProfilesDestinationProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomerProfilesDestinationProperties"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *CustomerProfilesDestinationProperties) SetDomainName(v string) *CustomerProfilesDestinationProperties {
+	s.DomainName = &v
+	return s
+}
+
+// SetObjectTypeName sets the ObjectTypeName field's value.
+func (s *CustomerProfilesDestinationProperties) SetObjectTypeName(v string) *CustomerProfilesDestinationProperties {
+	s.ObjectTypeName = &v
+	return s
+}
+
+type CustomerProfilesMetadata struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CustomerProfilesMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerProfilesMetadata) GoString() string {
+	return s.String()
 }
 
 // The connector-specific credentials required by Datadog.
@@ -4533,8 +4623,14 @@ func (s *DescribeFlowOutput) SetTriggerConfig(v *TriggerConfig) *DescribeFlowOut
 type DestinationConnectorProperties struct {
 	_ struct{} `type:"structure"`
 
+	CustomerProfiles *CustomerProfilesDestinationProperties `type:"structure"`
+
 	// The properties required to query Amazon EventBridge.
 	EventBridge *EventBridgeDestinationProperties `type:"structure"`
+
+	Honeycode *HoneycodeDestinationProperties `type:"structure"`
+
+	LookoutMetrics *LookoutMetricsDestinationProperties `type:"structure"`
 
 	// The properties required to query Amazon Redshift.
 	Redshift *RedshiftDestinationProperties `type:"structure"`
@@ -4565,9 +4661,19 @@ func (s DestinationConnectorProperties) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DestinationConnectorProperties) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DestinationConnectorProperties"}
+	if s.CustomerProfiles != nil {
+		if err := s.CustomerProfiles.Validate(); err != nil {
+			invalidParams.AddNested("CustomerProfiles", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EventBridge != nil {
 		if err := s.EventBridge.Validate(); err != nil {
 			invalidParams.AddNested("EventBridge", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Honeycode != nil {
+		if err := s.Honeycode.Validate(); err != nil {
+			invalidParams.AddNested("Honeycode", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Redshift != nil {
@@ -4602,9 +4708,27 @@ func (s *DestinationConnectorProperties) Validate() error {
 	return nil
 }
 
+// SetCustomerProfiles sets the CustomerProfiles field's value.
+func (s *DestinationConnectorProperties) SetCustomerProfiles(v *CustomerProfilesDestinationProperties) *DestinationConnectorProperties {
+	s.CustomerProfiles = v
+	return s
+}
+
 // SetEventBridge sets the EventBridge field's value.
 func (s *DestinationConnectorProperties) SetEventBridge(v *EventBridgeDestinationProperties) *DestinationConnectorProperties {
 	s.EventBridge = v
+	return s
+}
+
+// SetHoneycode sets the Honeycode field's value.
+func (s *DestinationConnectorProperties) SetHoneycode(v *HoneycodeDestinationProperties) *DestinationConnectorProperties {
+	s.Honeycode = v
+	return s
+}
+
+// SetLookoutMetrics sets the LookoutMetrics field's value.
+func (s *DestinationConnectorProperties) SetLookoutMetrics(v *LookoutMetricsDestinationProperties) *DestinationConnectorProperties {
+	s.LookoutMetrics = v
 	return s
 }
 
@@ -5592,6 +5716,136 @@ func (s *GoogleAnalyticsSourceProperties) SetObject(v string) *GoogleAnalyticsSo
 	return s
 }
 
+type HoneycodeConnectorProfileCredentials struct {
+	_ struct{} `type:"structure"`
+
+	AccessToken *string `locationName:"accessToken" type:"string" sensitive:"true"`
+
+	// Used by select connectors for which the OAuth workflow is supported, such
+	// as Salesforce, Google Analytics, Marketo, Zendesk, and Slack.
+	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
+
+	RefreshToken *string `locationName:"refreshToken" type:"string"`
+}
+
+// String returns the string representation
+func (s HoneycodeConnectorProfileCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoneycodeConnectorProfileCredentials) GoString() string {
+	return s.String()
+}
+
+// SetAccessToken sets the AccessToken field's value.
+func (s *HoneycodeConnectorProfileCredentials) SetAccessToken(v string) *HoneycodeConnectorProfileCredentials {
+	s.AccessToken = &v
+	return s
+}
+
+// SetOAuthRequest sets the OAuthRequest field's value.
+func (s *HoneycodeConnectorProfileCredentials) SetOAuthRequest(v *ConnectorOAuthRequest) *HoneycodeConnectorProfileCredentials {
+	s.OAuthRequest = v
+	return s
+}
+
+// SetRefreshToken sets the RefreshToken field's value.
+func (s *HoneycodeConnectorProfileCredentials) SetRefreshToken(v string) *HoneycodeConnectorProfileCredentials {
+	s.RefreshToken = &v
+	return s
+}
+
+type HoneycodeConnectorProfileProperties struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s HoneycodeConnectorProfileProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoneycodeConnectorProfileProperties) GoString() string {
+	return s.String()
+}
+
+type HoneycodeDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The settings that determine how Amazon AppFlow handles an error when placing
+	// data in the destination. For example, this setting would determine if the
+	// flow should fail after one insertion error, or continue and attempt to insert
+	// every record regardless of the initial failure. ErrorHandlingConfig is a
+	// part of the destination connector details.
+	ErrorHandlingConfig *ErrorHandlingConfig `locationName:"errorHandlingConfig" type:"structure"`
+
+	// Object is a required field
+	Object *string `locationName:"object" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HoneycodeDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoneycodeDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HoneycodeDestinationProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HoneycodeDestinationProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+	if s.ErrorHandlingConfig != nil {
+		if err := s.ErrorHandlingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ErrorHandlingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetErrorHandlingConfig sets the ErrorHandlingConfig field's value.
+func (s *HoneycodeDestinationProperties) SetErrorHandlingConfig(v *ErrorHandlingConfig) *HoneycodeDestinationProperties {
+	s.ErrorHandlingConfig = v
+	return s
+}
+
+// SetObject sets the Object field's value.
+func (s *HoneycodeDestinationProperties) SetObject(v string) *HoneycodeDestinationProperties {
+	s.Object = &v
+	return s
+}
+
+type HoneycodeMetadata struct {
+	_ struct{} `type:"structure"`
+
+	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
+}
+
+// String returns the string representation
+func (s HoneycodeMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HoneycodeMetadata) GoString() string {
+	return s.String()
+}
+
+// SetOAuthScopes sets the OAuthScopes field's value.
+func (s *HoneycodeMetadata) SetOAuthScopes(v []*string) *HoneycodeMetadata {
+	s.OAuthScopes = v
+	return s
+}
+
 // Specifies the configuration used when importing incremental records from
 // the source.
 type IncrementalPullConfig struct {
@@ -6063,6 +6317,20 @@ func (s ListTagsForResourceOutput) GoString() string {
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
 	return s
+}
+
+type LookoutMetricsDestinationProperties struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s LookoutMetricsDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LookoutMetricsDestinationProperties) GoString() string {
+	return s.String()
 }
 
 // The connector-specific profile credentials required by Marketo.
@@ -7002,6 +7270,8 @@ type ScheduledTriggerProperties struct {
 	// complete data transfer for each flow run.
 	DataPullMode *string `locationName:"dataPullMode" type:"string" enum:"DataPullMode"`
 
+	FirstExecutionFrom *time.Time `locationName:"firstExecutionFrom" type:"timestamp"`
+
 	// Specifies the scheduled end time for a schedule-triggered flow.
 	ScheduleEndTime *time.Time `locationName:"scheduleEndTime" type:"timestamp"`
 
@@ -7049,6 +7319,12 @@ func (s *ScheduledTriggerProperties) Validate() error {
 // SetDataPullMode sets the DataPullMode field's value.
 func (s *ScheduledTriggerProperties) SetDataPullMode(v string) *ScheduledTriggerProperties {
 	s.DataPullMode = &v
+	return s
+}
+
+// SetFirstExecutionFrom sets the FirstExecutionFrom field's value.
+func (s *ScheduledTriggerProperties) SetFirstExecutionFrom(v time.Time) *ScheduledTriggerProperties {
+	s.FirstExecutionFrom = &v
 	return s
 }
 
@@ -9708,8 +9984,17 @@ const (
 	// ConnectorTypeEventBridge is a ConnectorType enum value
 	ConnectorTypeEventBridge = "EventBridge"
 
+	// ConnectorTypeLookoutMetrics is a ConnectorType enum value
+	ConnectorTypeLookoutMetrics = "LookoutMetrics"
+
 	// ConnectorTypeUpsolver is a ConnectorType enum value
 	ConnectorTypeUpsolver = "Upsolver"
+
+	// ConnectorTypeHoneycode is a ConnectorType enum value
+	ConnectorTypeHoneycode = "Honeycode"
+
+	// ConnectorTypeCustomerProfiles is a ConnectorType enum value
+	ConnectorTypeCustomerProfiles = "CustomerProfiles"
 )
 
 // ConnectorType_Values returns all elements of the ConnectorType enum
@@ -9732,7 +10017,10 @@ func ConnectorType_Values() []string {
 		ConnectorTypeAmplitude,
 		ConnectorTypeVeeva,
 		ConnectorTypeEventBridge,
+		ConnectorTypeLookoutMetrics,
 		ConnectorTypeUpsolver,
+		ConnectorTypeHoneycode,
+		ConnectorTypeCustomerProfiles,
 	}
 }
 

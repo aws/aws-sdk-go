@@ -1,3 +1,14 @@
+Release v1.37.18 (2021-02-24)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service documentation
+* `service/ecr-public`: Updates service API and documentation
+* `service/es`: Updates service API, documentation, and paginators
+  * Amazon Elasticsearch Service now supports Auto-Tune, which monitors performance metrics and automatically optimizes domains
+* `service/mediapackage-vod`: Updates service API and documentation
+
 Release v1.37.17 (2021-02-23)
 ===
 

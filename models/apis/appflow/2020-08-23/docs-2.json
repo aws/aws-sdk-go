@@ -41,6 +41,7 @@
       "base": null,
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Google Analytics resources. </p>",
+        "HoneycodeConnectorProfileCredentials$accessToken": null,
         "MarketoConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Marketo resources. </p>",
         "SalesforceConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Salesforce resources. </p>",
         "SlackConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Slack resources. </p>",
@@ -269,6 +270,7 @@
       "base": "<p> Used by select connectors for which the OAuth workflow is supported, such as Salesforce, Google Analytics, Marketo, Zendesk, and Slack. </p>",
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "HoneycodeConnectorProfileCredentials$oAuthRequest": null,
         "MarketoConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "SalesforceConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
         "SlackConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
@@ -396,6 +398,18 @@
         "FlowDefinition$createdBy": "<p> The ARN of the user who created the flow. </p>"
       }
     },
+    "CustomerProfilesDestinationProperties": {
+      "base": null,
+      "refs": {
+        "DestinationConnectorProperties$CustomerProfiles": null
+      }
+    },
+    "CustomerProfilesMetadata": {
+      "base": null,
+      "refs": {
+        "ConnectorMetadata$CustomerProfiles": null
+      }
+    },
     "DataPullMode": {
       "base": null,
       "refs": {
@@ -453,7 +467,8 @@
         "FlowDefinition$createdAt": "<p> Specifies when the flow was created. </p>",
         "FlowDefinition$lastUpdatedAt": "<p> Specifies when the flow was last updated. </p>",
         "ScheduledTriggerProperties$scheduleStartTime": "<p> Specifies the scheduled start time for a schedule-triggered flow. </p>",
-        "ScheduledTriggerProperties$scheduleEndTime": "<p> Specifies the scheduled end time for a schedule-triggered flow. </p>"
+        "ScheduledTriggerProperties$scheduleEndTime": "<p> Specifies the scheduled end time for a schedule-triggered flow. </p>",
+        "ScheduledTriggerProperties$firstExecutionFrom": null
       }
     },
     "DatetimeTypeFieldName": {
@@ -570,6 +585,12 @@
         "UpdateFlowRequest$destinationFlowConfigList": "<p> The configuration that controls how Amazon AppFlow transfers data to the destination connector. </p>"
       }
     },
+    "DomainName": {
+      "base": null,
+      "refs": {
+        "CustomerProfilesDestinationProperties$domainName": null
+      }
+    },
     "DynatraceConnectorOperator": {
       "base": null,
       "refs": {
@@ -610,6 +631,7 @@
       "base": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
       "refs": {
         "EventBridgeDestinationProperties$errorHandlingConfig": null,
+        "HoneycodeDestinationProperties$errorHandlingConfig": null,
         "RedshiftDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Amazon Redshift destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
         "SalesforceDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
         "SnowflakeDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Snowflake destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>"
@@ -814,6 +836,30 @@
         "ConnectorEntityMap$key": null
       }
     },
+    "HoneycodeConnectorProfileCredentials": {
+      "base": null,
+      "refs": {
+        "ConnectorProfileCredentials$Honeycode": null
+      }
+    },
+    "HoneycodeConnectorProfileProperties": {
+      "base": null,
+      "refs": {
+        "ConnectorProfileProperties$Honeycode": null
+      }
+    },
+    "HoneycodeDestinationProperties": {
+      "base": null,
+      "refs": {
+        "DestinationConnectorProperties$Honeycode": null
+      }
+    },
+    "HoneycodeMetadata": {
+      "base": null,
+      "refs": {
+        "ConnectorMetadata$Honeycode": null
+      }
+    },
     "IdFieldNameList": {
       "base": "<p> A list of field names that can be used as an ID field when performing a write operation. </p>",
       "refs": {
@@ -942,6 +988,12 @@
         "ExecutionResult$recordsProcessed": "<p> The number of records processed in the flow run. </p>"
       }
     },
+    "LookoutMetricsDestinationProperties": {
+      "base": null,
+      "refs": {
+        "DestinationConnectorProperties$LookoutMetrics": null
+      }
+    },
     "MarketoConnectorOperator": {
       "base": null,
       "refs": {
@@ -1017,6 +1069,7 @@
       "base": null,
       "refs": {
         "GoogleAnalyticsMetadata$oAuthScopes": "<p> The desired authorization scope for the Google Analytics account. </p>",
+        "HoneycodeMetadata$oAuthScopes": null,
         "SalesforceMetadata$oAuthScopes": "<p> The desired authorization scope for the Salesforce account. </p>",
         "SlackMetadata$oAuthScopes": "<p> The desired authorization scope for the Slack account. </p>",
         "ZendeskMetadata$oAuthScopes": "<p> The desired authorization scope for the Zendesk account. </p>"
@@ -1030,6 +1083,7 @@
         "DynatraceSourceProperties$object": "<p> The object specified in the Dynatrace flow source. </p>",
         "EventBridgeDestinationProperties$object": "<p> The object specified in the Amazon EventBridge flow destination. </p>",
         "GoogleAnalyticsSourceProperties$object": "<p> The object specified in the Google Analytics flow source. </p>",
+        "HoneycodeDestinationProperties$object": null,
         "InforNexusSourceProperties$object": "<p> The object specified in the Infor Nexus flow source. </p>",
         "MarketoSourceProperties$object": "<p> The object specified in the Marketo flow source. </p>",
         "RedshiftDestinationProperties$object": "<p> The object specified in the Amazon Redshift flow destination. </p>",
@@ -1042,6 +1096,12 @@
         "TrendmicroSourceProperties$object": "<p> The object specified in the Trend Micro flow source. </p>",
         "VeevaSourceProperties$object": "<p> The object specified in the Veeva flow source. </p>",
         "ZendeskSourceProperties$object": "<p> The object specified in the Zendesk flow source. </p>"
+      }
+    },
+    "ObjectTypeName": {
+      "base": null,
+      "refs": {
+        "CustomerProfilesDestinationProperties$objectTypeName": null
       }
     },
     "Operator": {
@@ -1130,6 +1190,7 @@
       "base": null,
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. This is required only for OAuth2 access tokens, and is not required for OAuth1 access tokens. </p>",
+        "HoneycodeConnectorProfileCredentials$refreshToken": null,
         "SalesforceConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>"
       }
     },

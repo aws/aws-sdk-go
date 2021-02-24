@@ -17,10 +17,13 @@
     "GetRepositoryCatalogData": "<p>Retrieve catalog metadata for a repository in a public registry. This metadata is displayed publicly in the Amazon ECR Public Gallery.</p>",
     "GetRepositoryPolicy": "<p>Retrieves the repository policy for the specified repository.</p>",
     "InitiateLayerUpload": "<p>Notifies Amazon ECR that you intend to upload an image layer.</p> <p>When an image is pushed, the InitiateLayerUpload API is called once per image layer that has not already been uploaded. Whether or not an image layer has been uploaded is determined by the BatchCheckLayerAvailability API action.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
+    "ListTagsForResource": "<p>List the tags for an Amazon ECR Public resource.</p>",
     "PutImage": "<p>Creates or updates the image manifest and tags associated with an image.</p> <p>When an image is pushed and all new image layers have been uploaded, the PutImage API is called once to create or update the image manifest and the tags associated with the image.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "PutRegistryCatalogData": "<p>Create or updates the catalog data for a public registry.</p>",
     "PutRepositoryCatalogData": "<p>Creates or updates the catalog data for a repository in a public registry.</p>",
     "SetRepositoryPolicy": "<p>Applies a repository policy to the specified public repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "TagResource": "<p>Associates the specified tags to a resource with the specified <code>resourceArn</code>. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well.</p>",
+    "UntagResource": "<p>Deletes specified tags from a resource.</p>",
     "UploadLayerPart": "<p>Uploads an image layer part to Amazon ECR.</p> <p>When an image is pushed, each new image layer is uploaded in parts. The maximum size of each image layer part can be 20971520 bytes (or about 20MB). The UploadLayerPart API is called once per each new image layer part.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>"
   },
   "shapes": {
@@ -47,8 +50,11 @@
     "Arn": {
       "base": null,
       "refs": {
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resource is an Amazon ECR Public repository.</p>",
         "Registry$registryArn": "<p>The Amazon Resource Name (ARN) of the public registry.</p>",
-        "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, AWS account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository/test</code>.</p>"
+        "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, AWS account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository/test</code>.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which to add tags. Currently, the supported resource is an Amazon ECR Public repository.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to delete tags. Currently, the supported resource is an Amazon ECR Public repository.</p>"
       }
     },
     "AuthorizationData": {
@@ -205,6 +211,7 @@
         "InvalidLayerException$message": null,
         "InvalidLayerPartException$message": null,
         "InvalidParameterException$message": null,
+        "InvalidTagParameterException$message": null,
         "LayerAlreadyExistsException$message": null,
         "LayerPartTooSmallException$message": null,
         "LayersNotFoundException$message": null,
@@ -216,6 +223,7 @@
         "RepositoryNotFoundException$message": null,
         "RepositoryPolicyNotFoundException$message": null,
         "ServerException$message": null,
+        "TooManyTagsException$message": null,
         "UnsupportedCommandException$message": null,
         "UploadNotFoundException$message": null
       }
@@ -426,6 +434,11 @@
       "refs": {
       }
     },
+    "InvalidTagParameterException": {
+      "base": "<p>An invalid parameter has been specified. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+      "refs": {
+      }
+    },
     "Layer": {
       "base": "<p>An object representing an Amazon ECR image layer.</p>",
       "refs": {
@@ -511,6 +524,16 @@
     },
     "LimitExceededException": {
       "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html\">Amazon ECR Service Quotas</a> in the Amazon Elastic Container Registry User Guide.</p>",
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -855,8 +878,66 @@
       "refs": {
       }
     },
+    "Tag": {
+      "base": "<p>The metadata that you apply to a resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>One part of a key-value pair that make up a tag. A <code>key</code> is a general label that acts like a category for more specific tag values.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The keys of the tags to be removed.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateRepositoryRequest$tags": "<p>The metadata that you apply to the repository to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The tags for the resource.</p>",
+        "TagResourceRequest$tags": "<p>The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The optional part of a key-value pair that make up a tag. A <code>value</code> acts as a descriptor within a tag category (key).</p>"
+      }
+    },
+    "TooManyTagsException": {
+      "base": "<p>The list of tags on the repository is over the limit. The maximum number of tags that can be applied to a repository is 50.</p>",
+      "refs": {
+      }
+    },
     "UnsupportedCommandException": {
       "base": "<p>The action is not supported in this Region.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },

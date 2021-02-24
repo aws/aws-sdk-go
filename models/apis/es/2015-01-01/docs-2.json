@@ -14,6 +14,7 @@
     "DeleteInboundCrossClusterSearchConnection": "<p>Allows the destination domain owner to delete an existing inbound cross-cluster search connection.</p>",
     "DeleteOutboundCrossClusterSearchConnection": "<p>Allows the source domain owner to delete an existing outbound cross-cluster search connection.</p>",
     "DeletePackage": "<p>Delete the package.</p>",
+    "DescribeDomainAutoTunes": "<p>Provides scheduled Auto-Tune action details for the Elasticsearch domain, such as Auto-Tune action type, description, severity, and scheduled date.</p>",
     "DescribeElasticsearchDomain": "<p>Returns domain configuration information about the specified Elasticsearch domain, including the domain ID, domain endpoint, and domain ARN.</p>",
     "DescribeElasticsearchDomainConfig": "<p>Provides cluster configuration information about the specified Elasticsearch domain, such as the state, creation date, update version, and update date for cluster options.</p>",
     "DescribeElasticsearchDomains": "<p>Returns domain configuration information about the specified Elasticsearch domains, including the domain ID, domain endpoint, and domain ARN.</p>",
@@ -137,6 +138,94 @@
       "refs": {
       }
     },
+    "AutoTune": {
+      "base": "<p>Specifies Auto-Tune type and Auto-Tune action details. </p>",
+      "refs": {
+        "AutoTuneList$member": null
+      }
+    },
+    "AutoTuneDate": {
+      "base": "<p>Specifies timestamp for the Auto-Tune action scheduled for the domain. </p>",
+      "refs": {
+        "ScheduledAutoTuneDetails$Date": "<p>Specifies timestamp for the Auto-Tune action scheduled for the domain. </p>"
+      }
+    },
+    "AutoTuneDesiredState": {
+      "base": "<p>Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED.</p>",
+      "refs": {
+        "AutoTuneOptions$DesiredState": "<p>Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED. </p>",
+        "AutoTuneOptionsInput$DesiredState": "<p>Specifies the Auto-Tune desired state. Valid values are ENABLED, DISABLED. </p>"
+      }
+    },
+    "AutoTuneDetails": {
+      "base": "<p>Specifies details of the Auto-Tune action. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information. </p>",
+      "refs": {
+        "AutoTune$AutoTuneDetails": "<p>Specifies details of the Auto-Tune action. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information. </p>"
+      }
+    },
+    "AutoTuneList": {
+      "base": null,
+      "refs": {
+        "DescribeDomainAutoTunesResponse$AutoTunes": "<p>Specifies the list of setting adjustments that Auto-Tune has made to the domain. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>"
+      }
+    },
+    "AutoTuneMaintenanceSchedule": {
+      "base": "<p>Specifies Auto-Tune maitenance schedule. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
+      "refs": {
+        "AutoTuneMaintenanceScheduleList$member": null
+      }
+    },
+    "AutoTuneMaintenanceScheduleList": {
+      "base": null,
+      "refs": {
+        "AutoTuneOptions$MaintenanceSchedules": "<p>Specifies list of maitenance schedules. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
+        "AutoTuneOptionsInput$MaintenanceSchedules": "<p>Specifies list of maitenance schedules. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>"
+      }
+    },
+    "AutoTuneOptions": {
+      "base": "<p>Specifies the Auto-Tune options: the Auto-Tune desired state for the domain, rollback state when disabling Auto-Tune options and list of maintenance schedules.</p>",
+      "refs": {
+        "AutoTuneOptionsStatus$Options": "<p> Specifies Auto-Tune options for the specified Elasticsearch domain.</p>",
+        "UpdateElasticsearchDomainConfigRequest$AutoTuneOptions": "<p>Specifies Auto-Tune options.</p>"
+      }
+    },
+    "AutoTuneOptionsInput": {
+      "base": "<p>Specifies the Auto-Tune options: the Auto-Tune desired state for the domain and list of maintenance schedules.</p>",
+      "refs": {
+        "CreateElasticsearchDomainRequest$AutoTuneOptions": "<p>Specifies Auto-Tune options.</p>"
+      }
+    },
+    "AutoTuneOptionsOutput": {
+      "base": "<p>Specifies the Auto-Tune options: the Auto-Tune desired state for the domain and list of maintenance schedules.</p>",
+      "refs": {
+        "ElasticsearchDomainStatus$AutoTuneOptions": "<p>The current status of the Elasticsearch domain's Auto-Tune options.</p>"
+      }
+    },
+    "AutoTuneOptionsStatus": {
+      "base": "<p> Specifies the status of Auto-Tune options for the specified Elasticsearch domain.</p>",
+      "refs": {
+        "ElasticsearchDomainConfig$AutoTuneOptions": "<p>Specifies <code>AutoTuneOptions</code> for the domain. </p>"
+      }
+    },
+    "AutoTuneState": {
+      "base": "<p>Specifies the Auto-Tune state for the Elasticsearch domain. For valid states see the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a>.</p>",
+      "refs": {
+        "AutoTuneOptionsOutput$State": "<p>Specifies the <code>AutoTuneState</code> for the Elasticsearch domain.</p>",
+        "AutoTuneStatus$State": "<p>Specifies the <code>AutoTuneState</code> for the Elasticsearch domain.</p>"
+      }
+    },
+    "AutoTuneStatus": {
+      "base": "<p>Provides the current status of the Auto-Tune options. </p>",
+      "refs": {
+        "AutoTuneOptionsStatus$Status": "<p> Specifies Status of the Auto-Tune options for the specified Elasticsearch domain.</p>"
+      }
+    },
+    "AutoTuneType": {
+      "base": "<p>Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION. </p>",
+      "refs": {
+        "AutoTune$AutoTuneType": "<p>Specifies Auto-Tune type. Valid value is SCHEDULED_ACTION. </p>"
+      }
+    },
     "BackendRole": {
       "base": null,
       "refs": {
@@ -155,6 +244,7 @@
         "AdvancedSecurityOptions$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
         "AdvancedSecurityOptionsInput$Enabled": "<p>True if advanced security is enabled.</p>",
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
+        "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
         "DomainEndpointOptions$EnforceHTTPS": "<p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>",
         "DomainEndpointOptions$CustomEndpointEnabled": "<p>Specify if custom endpoint should be enabled for the Elasticsearch domain.</p>",
@@ -350,6 +440,16 @@
         "ServiceSoftwareOptions$UpdateStatus": "<p>The status of your service software update. This field can take the following values: <code>ELIGIBLE</code>, <code>PENDING_UPDATE</code>, <code>IN_PROGRESS</code>, <code>COMPLETED</code>, and <code>NOT_ELIGIBLE</code>.</p>"
       }
     },
+    "DescribeDomainAutoTunesRequest": {
+      "base": "<p>Container for the parameters to the <code>DescribeDomainAutoTunes</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeDomainAutoTunesResponse": {
+      "base": "<p>The result of <code>DescribeDomainAutoTunes</code> request. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information. </p>",
+      "refs": {
+      }
+    },
     "DescribeElasticsearchDomainConfigRequest": {
       "base": "<p> Container for the parameters to the <code>DescribeElasticsearchDomainConfig</code> operation. Specifies the domain name for which you want configuration information.</p>",
       "refs": {
@@ -538,6 +638,7 @@
         "CancelElasticsearchServiceSoftwareUpdateRequest$DomainName": "<p>The name of the domain that you want to stop the latest service software update on.</p>",
         "CreateElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).</p>",
         "DeleteElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain that you want to permanently delete.</p>",
+        "DescribeDomainAutoTunesRequest$DomainName": "<p>Specifies the domain name for which you want Auto-Tune action details.</p>",
         "DescribeElasticsearchDomainConfigRequest$DomainName": "<p>The Elasticsearch domain that you want to get information about.</p>",
         "DescribeElasticsearchDomainRequest$DomainName": "<p>The name of the Elasticsearch domain for which you want information.</p>",
         "DescribeElasticsearchInstanceTypeLimitsRequest$DomainName": "<p> DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch <code> <a>Limits</a> </code> for existing domain. </p>",
@@ -600,6 +701,18 @@
         "ReservedElasticsearchInstanceOffering$FixedPrice": "<p>The upfront fixed charge you will pay to purchase the specific reserved Elasticsearch instance offering. </p>",
         "ReservedElasticsearchInstanceOffering$UsagePrice": "<p>The rate you are charged for each hour the domain that is using the offering is running.</p>",
         "UpgradeStepItem$ProgressPercent": "<p>The Floating point value representing progress percentage of a particular step.</p>"
+      }
+    },
+    "Duration": {
+      "base": "<p>Specifies maintenance schedule duration: duration value and duration unit. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
+      "refs": {
+        "AutoTuneMaintenanceSchedule$Duration": "<p>Specifies maintenance schedule duration: duration value and duration unit. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>"
+      }
+    },
+    "DurationValue": {
+      "base": "<p> Integer to specify the value of a maintenance schedule duration. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
+      "refs": {
+        "Duration$Value": "<p> Integer to specify the value of a maintenance schedule duration. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>"
       }
     },
     "EBSOptions": {
@@ -1056,6 +1169,7 @@
     "MaxResults": {
       "base": "<p> Set this value to limit the number of results returned. </p>",
       "refs": {
+        "DescribeDomainAutoTunesRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "DescribeInboundCrossClusterSearchConnectionsRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "DescribeOutboundCrossClusterSearchConnectionsRequest$MaxResults": "<p>Set this value to limit the number of results returned. If not specified, defaults to 100.</p>",
         "DescribePackagesRequest$MaxResults": "<p>Limits results to a maximum number of packages.</p>",
@@ -1084,6 +1198,8 @@
     "NextToken": {
       "base": "<p> Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results. </p>",
       "refs": {
+        "DescribeDomainAutoTunesRequest$NextToken": "<p>NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.</p>",
+        "DescribeDomainAutoTunesResponse$NextToken": "<p>Specifies an identifier to allow retrieval of paginated results.</p>",
         "DescribeInboundCrossClusterSearchConnectionsRequest$NextToken": "<p> NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.</p>",
         "DescribeInboundCrossClusterSearchConnectionsResponse$NextToken": "<p>If more results are available and NextToken is present, make the next request to the same API with the received NextToken to paginate the remaining results. </p>",
         "DescribeOutboundCrossClusterSearchConnectionsRequest$NextToken": "<p> NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.</p>",
@@ -1386,6 +1502,12 @@
         "CognitoOptions$RoleArn": "<p>Specifies the role ARN that provides Elasticsearch permissions for accessing Cognito resources.</p>"
       }
     },
+    "RollbackOnDisable": {
+      "base": "<p>Specifies the rollback state while disabling Auto-Tune for the domain. Valid values are NO_ROLLBACK, DEFAULT_ROLLBACK.</p>",
+      "refs": {
+        "AutoTuneOptions$RollbackOnDisable": "<p>Specifies the rollback state while disabling Auto-Tune for the domain. Valid values are NO_ROLLBACK, DEFAULT_ROLLBACK. </p>"
+      }
+    },
     "S3BucketName": {
       "base": null,
       "refs": {
@@ -1429,6 +1551,30 @@
         "AdvancedSecurityOptions$SAMLOptions": "<p>Describes the SAML application configured for a domain.</p>"
       }
     },
+    "ScheduledAutoTuneActionType": {
+      "base": "<p>Specifies Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and JVM_YOUNG_GEN_TUNING. </p>",
+      "refs": {
+        "ScheduledAutoTuneDetails$ActionType": "<p>Specifies Auto-Tune action type. Valid values are JVM_HEAP_SIZE_TUNING and JVM_YOUNG_GEN_TUNING. </p>"
+      }
+    },
+    "ScheduledAutoTuneDescription": {
+      "base": "<p>Specifies Auto-Tune action description. </p>",
+      "refs": {
+        "ScheduledAutoTuneDetails$Action": "<p>Specifies Auto-Tune action description. </p>"
+      }
+    },
+    "ScheduledAutoTuneDetails": {
+      "base": "<p>Specifies details of the scheduled Auto-Tune action. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information. </p>",
+      "refs": {
+        "AutoTuneDetails$ScheduledAutoTuneDetails": null
+      }
+    },
+    "ScheduledAutoTuneSeverityType": {
+      "base": "<p>Specifies Auto-Tune action severity. Valid values are LOW, MEDIUM and HIGH. </p>",
+      "refs": {
+        "ScheduledAutoTuneDetails$Severity": "<p>Specifies Auto-Tune action severity. Valid values are LOW, MEDIUM and HIGH. </p>"
+      }
+    },
     "ServiceSoftwareOptions": {
       "base": "<p>The current options of an Elasticsearch domain service software options.</p>",
       "refs": {
@@ -1457,6 +1603,12 @@
       "base": "<p>Status of a daily automated snapshot.</p>",
       "refs": {
         "ElasticsearchDomainConfig$SnapshotOptions": "<p>Specifies the <code>SnapshotOptions</code> for the Elasticsearch domain.</p>"
+      }
+    },
+    "StartAt": {
+      "base": null,
+      "refs": {
+        "AutoTuneMaintenanceSchedule$StartAt": "<p>Specifies timestamp at which Auto-Tune maintenance schedule start. </p>"
       }
     },
     "StartElasticsearchServiceSoftwareUpdateRequest": {
@@ -1516,6 +1668,9 @@
       "refs": {
         "AdvancedOptions$key": null,
         "AdvancedOptions$value": null,
+        "AutoTuneMaintenanceSchedule$CronExpressionForRecurrence": "<p>Specifies cron expression for a recurring maintenance schedule. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
+        "AutoTuneOptionsOutput$ErrorMessage": "<p>Specifies the error message while enabling or disabling the Auto-Tune.</p>",
+        "AutoTuneStatus$ErrorMessage": "<p>Specifies the error message while enabling or disabling the Auto-Tune options.</p>",
         "DescribePackagesResponse$NextToken": null,
         "DescribeReservedElasticsearchInstancesResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "EndpointsMap$key": null,
@@ -1581,9 +1736,16 @@
         "Tag$Value": "<p>Specifies the <code>TagValue</code>, the value assigned to the corresponding tag key. Tag values can be null and do not have to be unique in a tag set. For example, you can have a key value pair in a tag set of <code>project : Trinity</code> and <code>cost-center : Trinity</code></p>"
       }
     },
+    "TimeUnit": {
+      "base": "<p>Specifies the unit of a maintenance schedule duration. Valid value is HOUR. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>",
+      "refs": {
+        "Duration$Unit": "<p>Specifies the unit of a maintenance schedule duration. Valid value is HOURS. See the <a href=\"https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html\" target=\"_blank\">Developer Guide</a> for more information.</p>"
+      }
+    },
     "UIntValue": {
       "base": null,
       "refs": {
+        "AutoTuneStatus$UpdateVersion": "<p>Specifies the Auto-Tune options latest version.</p>",
         "OptionStatus$UpdateVersion": "<p>Specifies the latest version for the entity.</p>"
       }
     },
@@ -1610,6 +1772,8 @@
     "UpdateTimestamp": {
       "base": null,
       "refs": {
+        "AutoTuneStatus$CreationDate": "<p>Timestamp which tells Auto-Tune options creation date .</p>",
+        "AutoTuneStatus$UpdateDate": "<p>Timestamp which tells Auto-Tune options last updated time.</p>",
         "OptionStatus$CreationDate": "<p>Timestamp which tells the creation date for the entity.</p>",
         "OptionStatus$UpdateDate": "<p>Timestamp which tells the last updated time for the entity.</p>",
         "ReservedElasticsearchInstance$StartTime": "<p>The time the reservation started.</p>"
