@@ -23195,7 +23195,7 @@ type DiskSnapshot struct {
 	// The name of the disk snapshot (e.g., my-disk-snapshot).
 	Name *string `locationName:"name" type:"string"`
 
-	// The progress of the disk snapshot operation.
+	// The progress of the snapshot.
 	Progress *string `locationName:"progress" type:"string"`
 
 	// The Lightsail resource type (e.g., DiskSnapshot).
@@ -30159,6 +30159,8 @@ type InstanceSnapshot struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// The progress of the snapshot.
+	//
+	// This is populated only for disk snapshots, and is null for instance snapshots.
 	Progress *string `locationName:"progress" type:"string"`
 
 	// The type of resource (usually InstanceSnapshot).

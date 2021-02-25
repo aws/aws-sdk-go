@@ -203,6 +203,13 @@ type ImagebuilderAPI interface {
 	ListImageBuildVersionsPages(*imagebuilder.ListImageBuildVersionsInput, func(*imagebuilder.ListImageBuildVersionsOutput, bool) bool) error
 	ListImageBuildVersionsPagesWithContext(aws.Context, *imagebuilder.ListImageBuildVersionsInput, func(*imagebuilder.ListImageBuildVersionsOutput, bool) bool, ...request.Option) error
 
+	ListImagePackages(*imagebuilder.ListImagePackagesInput) (*imagebuilder.ListImagePackagesOutput, error)
+	ListImagePackagesWithContext(aws.Context, *imagebuilder.ListImagePackagesInput, ...request.Option) (*imagebuilder.ListImagePackagesOutput, error)
+	ListImagePackagesRequest(*imagebuilder.ListImagePackagesInput) (*request.Request, *imagebuilder.ListImagePackagesOutput)
+
+	ListImagePackagesPages(*imagebuilder.ListImagePackagesInput, func(*imagebuilder.ListImagePackagesOutput, bool) bool) error
+	ListImagePackagesPagesWithContext(aws.Context, *imagebuilder.ListImagePackagesInput, func(*imagebuilder.ListImagePackagesOutput, bool) bool, ...request.Option) error
+
 	ListImagePipelineImages(*imagebuilder.ListImagePipelineImagesInput) (*imagebuilder.ListImagePipelineImagesOutput, error)
 	ListImagePipelineImagesWithContext(aws.Context, *imagebuilder.ListImagePipelineImagesInput, ...request.Option) (*imagebuilder.ListImagePipelineImagesOutput, error)
 	ListImagePipelineImagesRequest(*imagebuilder.ListImagePipelineImagesInput) (*request.Request, *imagebuilder.ListImagePipelineImagesOutput)

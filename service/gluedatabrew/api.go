@@ -4010,6 +4010,9 @@ func (s *ConflictException) RequestID() string {
 type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the file format of a dataset created from an S3 file or folder.
+	Format *string `type:"string" enum:"InputFormat"`
+
 	// Options that define the structure of either Csv, Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
@@ -4069,6 +4072,12 @@ func (s *CreateDatasetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *CreateDatasetInput) SetFormat(v string) *CreateDatasetInput {
+	s.Format = &v
+	return s
 }
 
 // SetFormatOptions sets the FormatOptions field's value.
@@ -4933,6 +4942,10 @@ type CsvOptions struct {
 
 	// A single character that specifies the delimiter being used in the Csv file.
 	Delimiter *string `min:"1" type:"string"`
+
+	// A variable that specifies whether the first row in the file will be parsed
+	// as the header. If false, column names will be auto-generated.
+	HeaderRow *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -4961,6 +4974,12 @@ func (s *CsvOptions) Validate() error {
 // SetDelimiter sets the Delimiter field's value.
 func (s *CsvOptions) SetDelimiter(v string) *CsvOptions {
 	s.Delimiter = &v
+	return s
+}
+
+// SetHeaderRow sets the HeaderRow field's value.
+func (s *CsvOptions) SetHeaderRow(v bool) *CsvOptions {
+	s.HeaderRow = &v
 	return s
 }
 
@@ -5102,6 +5121,9 @@ type Dataset struct {
 	// The Amazon Resource Name (ARN) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
+	// Specifies the file format of a dataset created from an S3 file or folder.
+	Format *string `type:"string" enum:"InputFormat"`
+
 	// Options that define how DataBrew interprets the data in the dataset.
 	FormatOptions *FormatOptions `type:"structure"`
 
@@ -5158,6 +5180,12 @@ func (s *Dataset) SetCreateDate(v time.Time) *Dataset {
 // SetCreatedBy sets the CreatedBy field's value.
 func (s *Dataset) SetCreatedBy(v string) *Dataset {
 	s.CreatedBy = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *Dataset) SetFormat(v string) *Dataset {
+	s.Format = &v
 	return s
 }
 
@@ -5618,6 +5646,9 @@ type DescribeDatasetOutput struct {
 	// The identifier (user name) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
+	// Specifies the file format of a dataset created from an S3 file or folder.
+	Format *string `type:"string" enum:"InputFormat"`
+
 	// Options that define the structure of either Csv, Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
@@ -5668,6 +5699,12 @@ func (s *DescribeDatasetOutput) SetCreateDate(v time.Time) *DescribeDatasetOutpu
 // SetCreatedBy sets the CreatedBy field's value.
 func (s *DescribeDatasetOutput) SetCreatedBy(v string) *DescribeDatasetOutput {
 	s.CreatedBy = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *DescribeDatasetOutput) SetFormat(v string) *DescribeDatasetOutput {
+	s.Format = &v
 	return s
 }
 
@@ -6709,6 +6746,10 @@ func (s *DescribeScheduleOutput) SetTags(v map[string]*string) *DescribeSchedule
 type ExcelOptions struct {
 	_ struct{} `type:"structure"`
 
+	// A variable that specifies whether the first row in the file will be parsed
+	// as the header. If false, column names will be auto-generated.
+	HeaderRow *bool `type:"boolean"`
+
 	// Specifies one or more sheet numbers in the Excel file, which will be included
 	// in the dataset.
 	SheetIndexes []*int64 `min:"1" type:"list"`
@@ -6742,6 +6783,12 @@ func (s *ExcelOptions) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetHeaderRow sets the HeaderRow field's value.
+func (s *ExcelOptions) SetHeaderRow(v bool) *ExcelOptions {
+	s.HeaderRow = &v
+	return s
 }
 
 // SetSheetIndexes sets the SheetIndexes field's value.
@@ -9688,6 +9735,9 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the file format of a dataset created from an S3 file or folder.
+	Format *string `type:"string" enum:"InputFormat"`
+
 	// Options that define the structure of either Csv, Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
@@ -9740,6 +9790,12 @@ func (s *UpdateDatasetInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *UpdateDatasetInput) SetFormat(v string) *UpdateDatasetInput {
+	s.Format = &v
+	return s
 }
 
 // SetFormatOptions sets the FormatOptions field's value.
@@ -10609,6 +10665,30 @@ func EncryptionMode_Values() []string {
 	return []string{
 		EncryptionModeSseKms,
 		EncryptionModeSseS3,
+	}
+}
+
+const (
+	// InputFormatCsv is a InputFormat enum value
+	InputFormatCsv = "CSV"
+
+	// InputFormatJson is a InputFormat enum value
+	InputFormatJson = "JSON"
+
+	// InputFormatParquet is a InputFormat enum value
+	InputFormatParquet = "PARQUET"
+
+	// InputFormatExcel is a InputFormat enum value
+	InputFormatExcel = "EXCEL"
+)
+
+// InputFormat_Values returns all elements of the InputFormat enum
+func InputFormat_Values() []string {
+	return []string{
+		InputFormatCsv,
+		InputFormatJson,
+		InputFormatParquet,
+		InputFormatExcel,
 	}
 }
 

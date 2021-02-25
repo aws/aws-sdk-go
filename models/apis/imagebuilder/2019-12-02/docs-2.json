@@ -34,6 +34,7 @@
     "ListContainerRecipes": "<p>Returns a list of container recipes.</p>",
     "ListDistributionConfigurations": "<p>Returns a list of distribution configurations. </p>",
     "ListImageBuildVersions": "<p> Returns a list of image build versions. </p>",
+    "ListImagePackages": "<p>List the Packages that are associated with an Image Build Version, as determined by AWS Systems Manager Inventory at build time.</p>",
     "ListImagePipelineImages": "<p> Returns a list of images created by the specified pipeline. </p>",
     "ListImagePipelines": "<p>Returns a list of image pipelines. </p>",
     "ListImageRecipes": "<p> Returns a list of image recipes. </p>",
@@ -765,6 +766,7 @@
         "DeleteImageRequest$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image to delete. </p>",
         "DeleteImageResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that was deleted. </p>",
         "GetImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image whose policy you want to retrieve. </p>",
+        "ListImagePackagesRequest$imageBuildVersionArn": "<p>Filter results for the ListImagePackages request by the Image Build Version ARN</p>",
         "PutImagePolicyRequest$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy should be applied to. </p>",
         "PutImagePolicyResponse$imageArn": "<p>The Amazon Resource Name (ARN) of the image that this policy was applied to. </p>",
         "StartImagePipelineExecutionResponse$imageBuildVersionArn": "<p>The Amazon Resource Name (ARN) of the image that was created by this request.</p>"
@@ -791,6 +793,18 @@
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve. </p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to tag. </p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to untag. </p>"
+      }
+    },
+    "ImagePackage": {
+      "base": "<p>Represents a package installed on an Image Builder image.</p>",
+      "refs": {
+        "ImagePackageList$member": null
+      }
+    },
+    "ImagePackageList": {
+      "base": null,
+      "refs": {
+        "ListImagePackagesResponse$imagePackageList": "<p>The list of Image Packages returned in the response.</p>"
       }
     },
     "ImagePipeline": {
@@ -997,6 +1011,13 @@
         "ImageRecipe$blockDeviceMappings": "<p>The block device mappings to apply when creating images from this recipe.</p>"
       }
     },
+    "InstanceProfileNameType": {
+      "base": null,
+      "refs": {
+        "InfrastructureConfiguration$instanceProfileName": "<p>The instance profile of the infrastructure configuration.</p>",
+        "InfrastructureConfigurationSummary$instanceProfileName": "<p>The instance profile of the infrastructure configuration.</p>"
+      }
+    },
     "InstanceType": {
       "base": null,
       "refs": {
@@ -1008,6 +1029,7 @@
       "refs": {
         "CreateInfrastructureConfigurationRequest$instanceTypes": "<p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability. </p>",
         "InfrastructureConfiguration$instanceTypes": "<p>The instance types of the infrastructure configuration.</p>",
+        "InfrastructureConfigurationSummary$instanceTypes": "<p>The instance types of the infrastructure configuration.</p>",
         "UpdateInfrastructureConfigurationRequest$instanceTypes": "<p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability. </p>"
       }
     },
@@ -1105,6 +1127,16 @@
       }
     },
     "ListImageBuildVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImagePackagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImagePackagesResponse": {
       "base": null,
       "refs": {
       }
@@ -1253,6 +1285,8 @@
         "GetImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "GetImageResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "GetInfrastructureConfigurationResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "ImagePackage$packageName": "<p>The name of the package as reported to the operating system package manager.</p>",
+        "ImagePackage$packageVersion": "<p>The version of the package as reported to the operating system package manager.</p>",
         "ImagePipeline$description": "<p>The description of the image pipeline.</p>",
         "ImageRecipe$description": "<p>The description of the image recipe.</p>",
         "ImageRecipe$owner": "<p>The owner of the image recipe.</p>",
@@ -1269,7 +1303,6 @@
         "ImportComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component. </p>",
         "ImportComponentResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "InfrastructureConfiguration$description": "<p>The description of the infrastructure configuration.</p>",
-        "InfrastructureConfiguration$instanceProfileName": "<p>The instance profile of the infrastructure configuration.</p>",
         "InfrastructureConfiguration$subnetId": "<p>The subnet ID of the infrastructure configuration.</p>",
         "InfrastructureConfiguration$keyPair": "<p>The EC2 key pair of the infrastructure configuration.</p>",
         "InfrastructureConfiguration$snsTopicArn": "<p>The SNS topic Amazon Resource Name (ARN) of the infrastructure configuration.</p>",
@@ -1283,6 +1316,7 @@
         "ListContainerRecipesResponse$nextToken": "<p>The next token field is used for paginated responses. When this is not empty, there are additional container recipes that the service has not included in this response. Use this token with the next request to retrieve additional list items.</p>",
         "ListDistributionConfigurationsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListImageBuildVersionsResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
+        "ListImagePackagesResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "ListImagePipelineImagesResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListImagePipelinesResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "ListImageRecipesResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
@@ -1375,6 +1409,8 @@
         "ListDistributionConfigurationsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImageBuildVersionsRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImageBuildVersionsResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
+        "ListImagePackagesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
+        "ListImagePackagesResponse$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response.</p>",
         "ListImagePipelineImagesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
         "ListImagePipelineImagesResponse$nextToken": "<p>The next token used for paginated responses. When this is not empty, there are additional elements that the service has not included in this request. Use this token with the next request to retrieve additional objects. </p>",
         "ListImagePipelinesRequest$nextToken": "<p>A token to specify where to start paginating. This is the NextToken from a previously truncated response. </p>",
@@ -1544,6 +1580,7 @@
         "ListContainerRecipesRequest$maxResults": "<p>The maximum number of results to return in the list.</p>",
         "ListDistributionConfigurationsRequest$maxResults": "<p>The maximum items to return in a request. </p>",
         "ListImageBuildVersionsRequest$maxResults": "<p>The maximum items to return in a request. </p>",
+        "ListImagePackagesRequest$maxResults": "<p>The maxiumum number of results to return from the ListImagePackages request.</p>",
         "ListImagePipelineImagesRequest$maxResults": "<p>The maximum items to return in a request. </p>",
         "ListImagePipelinesRequest$maxResults": "<p>The maximum items to return in a request. </p>",
         "ListImageRecipesRequest$maxResults": "<p>The maximum items to return in a request. </p>",
@@ -1679,6 +1716,12 @@
         "ContainerDistributionConfiguration$targetRepository": "<p>The destination repository for the container distribution configuration.</p>",
         "ContainerRecipe$targetRepository": "<p>The destination repository for the container image.</p>",
         "CreateContainerRecipeRequest$targetRepository": "<p>The destination repository for the container image.</p>"
+      }
+    },
+    "Timezone": {
+      "base": null,
+      "refs": {
+        "Schedule$timezone": "<p>The timezone that applies to the scheduling expression. For example, \"Etc/UTC\", \"America/Los_Angeles\" in the <a href=\"https://www.joda.org/joda-time/timezones.html\">IANA timezone format</a>. If not specified this defaults to UTC.</p>"
       }
     },
     "UntagResourceRequest": {

@@ -217,6 +217,7 @@
       "max":50,
       "min":1
     },
+    "Boolean":{"type":"boolean"},
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -240,6 +241,7 @@
       "members":{
         "GraphArn":{"shape":"GraphArn"},
         "Message":{"shape":"EmailMessage"},
+        "DisableEmailNotification":{"shape":"Boolean"},
         "Accounts":{"shape":"AccountList"}
       }
     },
@@ -385,7 +387,12 @@
         "AccountId":{"shape":"AccountId"},
         "EmailAddress":{"shape":"EmailAddress"},
         "GraphArn":{"shape":"GraphArn"},
-        "MasterId":{"shape":"AccountId"},
+        "MasterId":{
+          "shape":"AccountId",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use AdministratorId instead."
+        },
+        "AdministratorId":{"shape":"AccountId"},
         "Status":{"shape":"MemberStatus"},
         "DisabledReason":{"shape":"MemberDisabledReason"},
         "InvitedTime":{"shape":"Timestamp"},

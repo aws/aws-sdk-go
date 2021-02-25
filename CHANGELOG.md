@@ -1,3 +1,15 @@
+Release v1.37.19 (2021-02-25)
+===
+
+### Service Client Updates
+* `service/databrew`: Updates service API and documentation
+* `service/detective`: Updates service API and documentation
+* `service/imagebuilder`: Updates service API, documentation, and paginators
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/transfer`: Updates service API
+  * Corrected the upper limit for TestIdentityProvider input lengths to 1024 characters
+
 Release v1.37.18 (2021-02-24)
 ===
 
