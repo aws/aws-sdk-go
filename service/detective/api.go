@@ -152,8 +152,8 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 // CreateGraph API operation for Amazon Detective.
 //
 // Creates a new behavior graph for the calling account, and sets that account
-// as the master account. This operation is called by the account that is enabling
-// Detective.
+// as the administrator account. This operation is called by the account that
+// is enabling Detective.
 //
 // Before you try to enable Detective, make sure that your account has been
 // enrolled in Amazon GuardDuty for at least 48 hours. If you do not meet this
@@ -168,10 +168,10 @@ func (c *Detective) CreateGraphRequest(input *CreateGraphInput) (req *request.Re
 // CreateGraph triggers a process to create the corresponding data tables for
 // the new behavior graph.
 //
-// An account can only be the master account for one behavior graph within a
-// Region. If the same account calls CreateGraph with the same master account,
-// it always returns the same behavior graph ARN. It does not create a new behavior
-// graph.
+// An account can only be the administrator account for one behavior graph within
+// a Region. If the same account calls CreateGraph with the same administrator
+// account, it always returns the same behavior graph ARN. It does not create
+// a new behavior graph.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -267,11 +267,13 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 // CreateMembers API operation for Amazon Detective.
 //
 // Sends a request to invite the specified AWS accounts to be member accounts
-// in the behavior graph. This operation can only be called by the master account
-// for a behavior graph.
+// in the behavior graph. This operation can only be called by the administrator
+// account for a behavior graph.
 //
-// CreateMembers verifies the accounts and then sends invitations to the verified
-// accounts.
+// CreateMembers verifies the accounts and then invites the verified accounts.
+// The administrator can optionally specify to not send invitation emails to
+// the member accounts. This would be used when the administrator manages their
+// member accounts centrally.
 //
 // The request provides the behavior graph ARN and the list of accounts to invite.
 //
@@ -279,8 +281,7 @@ func (c *Detective) CreateMembersRequest(input *CreateMembersInput) (req *reques
 //
 //    * The accounts that CreateMembers was able to start the verification for.
 //    This list includes member accounts that are being verified, that have
-//    passed verification and are being sent an invitation, and that have failed
-//    verification.
+//    passed verification and are to be invited, and that have failed verification.
 //
 //    * The accounts that CreateMembers was unable to process. This list includes
 //    accounts that were already invited to be member accounts in the behavior
@@ -386,7 +387,8 @@ func (c *Detective) DeleteGraphRequest(input *DeleteGraphInput) (req *request.Re
 // Disables the specified behavior graph and queues it to be deleted. This operation
 // removes the graph from each member account's list of behavior graphs.
 //
-// DeleteGraph can only be called by the master account for a behavior graph.
+// DeleteGraph can only be called by the administrator account for a behavior
+// graph.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -471,11 +473,11 @@ func (c *Detective) DeleteMembersRequest(input *DeleteMembersInput) (req *reques
 
 // DeleteMembers API operation for Amazon Detective.
 //
-// Deletes one or more member accounts from the master account behavior graph.
-// This operation can only be called by a Detective master account. That account
-// cannot use DeleteMembers to delete their own account from the behavior graph.
-// To disable a behavior graph, the master account uses the DeleteGraph API
-// method.
+// Deletes one or more member accounts from the administrator account's behavior
+// graph. This operation can only be called by a Detective administrator account.
+// That account cannot use DeleteMembers to delete their own account from the
+// behavior graph. To disable a behavior graph, the administrator account uses
+// the DeleteGraph API method.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -745,11 +747,11 @@ func (c *Detective) ListGraphsRequest(input *ListGraphsInput) (req *request.Requ
 
 // ListGraphs API operation for Amazon Detective.
 //
-// Returns the list of behavior graphs that the calling account is a master
-// of. This operation can only be called by a master account.
+// Returns the list of behavior graphs that the calling account is an administrator
+// account of. This operation can only be called by an administrator account.
 //
-// Because an account can currently only be the master of one behavior graph
-// within a Region, the results always contain a single graph.
+// Because an account can currently only be the administrator of one behavior
+// graph within a Region, the results always contain a single behavior graph.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1385,7 +1387,8 @@ func (s AcceptInvitationOutput) GoString() string {
 	return s.String()
 }
 
-// An AWS account that is the master of or a member of a behavior graph.
+// An AWS account that is the administrator account of or a member of a behavior
+// graph.
 type Account struct {
 	_ struct{} `type:"structure"`
 
@@ -1547,6 +1550,10 @@ type CreateMembersInput struct {
 	// Accounts is a required field
 	Accounts []*Account `min:"1" type:"list" required:"true"`
 
+	// if set to true, then the member accounts do not receive email notifications.
+	// By default, this is set to false, and the member accounts receive email notifications.
+	DisableEmailNotification *bool `type:"boolean"`
+
 	// The ARN of the behavior graph to invite the member accounts to contribute
 	// their data to.
 	//
@@ -1603,6 +1610,12 @@ func (s *CreateMembersInput) Validate() error {
 // SetAccounts sets the Accounts field's value.
 func (s *CreateMembersInput) SetAccounts(v []*Account) *CreateMembersInput {
 	s.Accounts = v
+	return s
+}
+
+// SetDisableEmailNotification sets the DisableEmailNotification field's value.
+func (s *CreateMembersInput) SetDisableEmailNotification(v bool) *CreateMembersInput {
+	s.DisableEmailNotification = &v
 	return s
 }
 
@@ -2092,7 +2105,7 @@ func (s *ListGraphsInput) SetNextToken(v string) *ListGraphsInput {
 type ListGraphsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of behavior graphs that the account is a master for.
+	// A list of behavior graphs that the account is an administrator account for.
 	GraphList []*Graph `type:"list"`
 
 	// If there are more behavior graphs remaining in the results, then this is
@@ -2320,6 +2333,10 @@ type MemberDetail struct {
 	// The AWS account identifier for the member account.
 	AccountId *string `min:"12" type:"string"`
 
+	// The AWS account identifier of the administrator account for the behavior
+	// graph.
+	AdministratorId *string `min:"12" type:"string"`
+
 	// For member accounts with a status of ACCEPTED_BUT_DISABLED, the reason that
 	// the member account is not enabled.
 	//
@@ -2343,8 +2360,13 @@ type MemberDetail struct {
 	// The value is in milliseconds since the epoch.
 	InvitedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The AWS account identifier of the master account for the behavior graph.
-	MasterId *string `min:"12" type:"string"`
+	// Deprecated. Instead of MasterId, use AdministratorId.
+	//
+	// The AWS account identifier of the administrator account for the behavior
+	// graph.
+	//
+	// Deprecated: This property is deprecated, use AdministratorId instead.
+	MasterId *string `min:"12" deprecated:"true" type:"string"`
 
 	// The member account data volume as a percentage of the maximum allowed data
 	// volume. 0 indicates 0 percent, and 100 indicates 100 percent.
@@ -2405,6 +2427,12 @@ func (s MemberDetail) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *MemberDetail) SetAccountId(v string) *MemberDetail {
 	s.AccountId = &v
+	return s
+}
+
+// SetAdministratorId sets the AdministratorId field's value.
+func (s *MemberDetail) SetAdministratorId(v string) *MemberDetail {
+	s.AdministratorId = &v
 	return s
 }
 

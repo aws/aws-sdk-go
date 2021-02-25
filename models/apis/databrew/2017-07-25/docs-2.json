@@ -532,6 +532,13 @@
         "UpdateDatasetRequest$FormatOptions": null
       }
     },
+    "HeaderRow": {
+      "base": null,
+      "refs": {
+        "CsvOptions$HeaderRow": "<p>A variable that specifies whether the first row in the file will be parsed as the header. If false, column names will be auto-generated.</p>",
+        "ExcelOptions$HeaderRow": "<p>A variable that specifies whether the first row in the file will be parsed as the header. If false, column names will be auto-generated.</p>"
+      }
+    },
     "HiddenColumnList": {
       "base": null,
       "refs": {
@@ -545,6 +552,15 @@
         "Dataset$Input": "<p>Information on how DataBrew can find the dataset, in either the AWS Glue Data Catalog or Amazon S3.</p>",
         "DescribeDatasetResponse$Input": null,
         "UpdateDatasetRequest$Input": null
+      }
+    },
+    "InputFormat": {
+      "base": null,
+      "refs": {
+        "CreateDatasetRequest$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>",
+        "Dataset$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>",
+        "DescribeDatasetResponse$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>",
+        "UpdateDatasetRequest$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>"
       }
     },
     "InternalServerException": {

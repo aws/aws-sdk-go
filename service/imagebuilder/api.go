@@ -3556,6 +3556,167 @@ func (c *Imagebuilder) ListImageBuildVersionsPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opListImagePackages = "ListImagePackages"
+
+// ListImagePackagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListImagePackages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImagePackages for more information on using the ListImagePackages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListImagePackagesRequest method.
+//    req, resp := client.ListImagePackagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListImagePackages
+func (c *Imagebuilder) ListImagePackagesRequest(input *ListImagePackagesInput) (req *request.Request, output *ListImagePackagesOutput) {
+	op := &request.Operation{
+		Name:       opListImagePackages,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListImagePackages",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImagePackagesInput{}
+	}
+
+	output = &ListImagePackagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImagePackages API operation for EC2 Image Builder.
+//
+// List the Packages that are associated with an Image Build Version, as determined
+// by AWS Systems Manager Inventory at build time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for EC2 Image Builder's
+// API operation ListImagePackages for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   This exception is thrown when the service encounters an unrecoverable exception.
+//
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an invalid resource identifier.
+//
+//   * ServiceUnavailableException
+//   The service is unable to process your request at this time.
+//
+//   * InvalidRequestException
+//   You have made a request for an action that is not supported by the service.
+//
+//   * InvalidPaginationTokenException
+//   You have provided an invalid pagination token in your request.
+//
+//   * ResourceNotFoundException
+//   At least one of the resources referenced by your request does not exist.
+//
+//   * ForbiddenException
+//   You are not authorized to perform the requested operation.
+//
+//   * CallRateLimitExceededException
+//   You have exceeded the permitted request rate for the specific operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/imagebuilder-2019-12-02/ListImagePackages
+func (c *Imagebuilder) ListImagePackages(input *ListImagePackagesInput) (*ListImagePackagesOutput, error) {
+	req, out := c.ListImagePackagesRequest(input)
+	return out, req.Send()
+}
+
+// ListImagePackagesWithContext is the same as ListImagePackages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImagePackages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListImagePackagesWithContext(ctx aws.Context, input *ListImagePackagesInput, opts ...request.Option) (*ListImagePackagesOutput, error) {
+	req, out := c.ListImagePackagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImagePackagesPages iterates over the pages of a ListImagePackages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImagePackages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListImagePackages operation.
+//    pageNum := 0
+//    err := client.ListImagePackagesPages(params,
+//        func(page *imagebuilder.ListImagePackagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Imagebuilder) ListImagePackagesPages(input *ListImagePackagesInput, fn func(*ListImagePackagesOutput, bool) bool) error {
+	return c.ListImagePackagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImagePackagesPagesWithContext same as ListImagePackagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Imagebuilder) ListImagePackagesPagesWithContext(ctx aws.Context, input *ListImagePackagesInput, fn func(*ListImagePackagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImagePackagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImagePackagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImagePackagesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListImagePipelineImages = "ListImagePipelineImages"
 
 // ListImagePipelineImagesRequest generates a "aws/request.Request" representing the
@@ -9982,6 +10143,39 @@ func (s *Image) SetVersion(v string) *Image {
 	return s
 }
 
+// Represents a package installed on an Image Builder image.
+type ImagePackage struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the package as reported to the operating system package manager.
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
+
+	// The version of the package as reported to the operating system package manager.
+	PackageVersion *string `locationName:"packageVersion" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ImagePackage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImagePackage) GoString() string {
+	return s.String()
+}
+
+// SetPackageName sets the PackageName field's value.
+func (s *ImagePackage) SetPackageName(v string) *ImagePackage {
+	s.PackageName = &v
+	return s
+}
+
+// SetPackageVersion sets the PackageVersion field's value.
+func (s *ImagePackage) SetPackageVersion(v string) *ImagePackage {
+	s.PackageVersion = &v
+	return s
+}
+
 // Details of an image pipeline.
 type ImagePipeline struct {
 	_ struct{} `type:"structure"`
@@ -11041,6 +11235,12 @@ type InfrastructureConfigurationSummary struct {
 	// The description of the infrastructure configuration.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The instance profile of the infrastructure configuration.
+	InstanceProfileName *string `locationName:"instanceProfileName" min:"1" type:"string"`
+
+	// The instance types of the infrastructure configuration.
+	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
+
 	// The name of the infrastructure configuration.
 	Name *string `locationName:"name" type:"string"`
 
@@ -11082,6 +11282,18 @@ func (s *InfrastructureConfigurationSummary) SetDateUpdated(v string) *Infrastru
 // SetDescription sets the Description field's value.
 func (s *InfrastructureConfigurationSummary) SetDescription(v string) *InfrastructureConfigurationSummary {
 	s.Description = &v
+	return s
+}
+
+// SetInstanceProfileName sets the InstanceProfileName field's value.
+func (s *InfrastructureConfigurationSummary) SetInstanceProfileName(v string) *InfrastructureConfigurationSummary {
+	s.InstanceProfileName = &v
+	return s
+}
+
+// SetInstanceTypes sets the InstanceTypes field's value.
+func (s *InfrastructureConfigurationSummary) SetInstanceTypes(v []*string) *InfrastructureConfigurationSummary {
+	s.InstanceTypes = v
 	return s
 }
 
@@ -12174,6 +12386,112 @@ func (s *ListImageBuildVersionsOutput) SetNextToken(v string) *ListImageBuildVer
 
 // SetRequestId sets the RequestId field's value.
 func (s *ListImageBuildVersionsOutput) SetRequestId(v string) *ListImageBuildVersionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+type ListImagePackagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filter results for the ListImagePackages request by the Image Build Version
+	// ARN
+	//
+	// ImageBuildVersionArn is a required field
+	ImageBuildVersionArn *string `locationName:"imageBuildVersionArn" type:"string" required:"true"`
+
+	// The maxiumum number of results to return from the ListImagePackages request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token to specify where to start paginating. This is the NextToken from
+	// a previously truncated response.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListImagePackagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImagePackagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImagePackagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImagePackagesInput"}
+	if s.ImageBuildVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageBuildVersionArn"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageBuildVersionArn sets the ImageBuildVersionArn field's value.
+func (s *ListImagePackagesInput) SetImageBuildVersionArn(v string) *ListImagePackagesInput {
+	s.ImageBuildVersionArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImagePackagesInput) SetMaxResults(v int64) *ListImagePackagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImagePackagesInput) SetNextToken(v string) *ListImagePackagesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImagePackagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Image Packages returned in the response.
+	ImagePackageList []*ImagePackage `locationName:"imagePackageList" type:"list"`
+
+	// A token to specify where to start paginating. This is the NextToken from
+	// a previously truncated response.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// The request ID that uniquely identifies this request.
+	RequestId *string `locationName:"requestId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListImagePackagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImagePackagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetImagePackageList sets the ImagePackageList field's value.
+func (s *ListImagePackagesOutput) SetImagePackageList(v []*ImagePackage) *ListImagePackagesOutput {
+	s.ImagePackageList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImagePackagesOutput) SetNextToken(v string) *ListImagePackagesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListImagePackagesOutput) SetRequestId(v string) *ListImagePackagesOutput {
 	s.RequestId = &v
 	return s
 }
@@ -13595,6 +13913,11 @@ type Schedule struct {
 	// For information on how to format a cron expression in Image Builder, see
 	// Use cron expressions in EC2 Image Builder (https://docs.aws.amazon.com/imagebuilder/latest/userguide/image-builder-cron.html).
 	ScheduleExpression *string `locationName:"scheduleExpression" min:"1" type:"string"`
+
+	// The timezone that applies to the scheduling expression. For example, "Etc/UTC",
+	// "America/Los_Angeles" in the IANA timezone format (https://www.joda.org/joda-time/timezones.html).
+	// If not specified this defaults to UTC.
+	Timezone *string `locationName:"timezone" min:"3" type:"string"`
 }
 
 // String returns the string representation
@@ -13613,6 +13936,9 @@ func (s *Schedule) Validate() error {
 	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
 	}
+	if s.Timezone != nil && len(*s.Timezone) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Timezone", 3))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13629,6 +13955,12 @@ func (s *Schedule) SetPipelineExecutionStartCondition(v string) *Schedule {
 // SetScheduleExpression sets the ScheduleExpression field's value.
 func (s *Schedule) SetScheduleExpression(v string) *Schedule {
 	s.ScheduleExpression = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *Schedule) SetTimezone(v string) *Schedule {
+	s.Timezone = &v
 	return s
 }
 
@@ -14700,6 +15032,9 @@ const (
 	// EbsVolumeTypeGp2 is a EbsVolumeType enum value
 	EbsVolumeTypeGp2 = "gp2"
 
+	// EbsVolumeTypeGp3 is a EbsVolumeType enum value
+	EbsVolumeTypeGp3 = "gp3"
+
 	// EbsVolumeTypeSc1 is a EbsVolumeType enum value
 	EbsVolumeTypeSc1 = "sc1"
 
@@ -14714,6 +15049,7 @@ func EbsVolumeType_Values() []string {
 		EbsVolumeTypeIo1,
 		EbsVolumeTypeIo2,
 		EbsVolumeTypeGp2,
+		EbsVolumeTypeGp3,
 		EbsVolumeTypeSc1,
 		EbsVolumeTypeSt1,
 	}
