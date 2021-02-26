@@ -18,7 +18,8 @@ const (
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// This exception occurs when there is an internal failure in the EMR service.
+	// This exception occurs when there is an internal failure in the Amazon EMR
+	// service.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeInvalidRequestException for service response error code

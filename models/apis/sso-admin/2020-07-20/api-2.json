@@ -1409,7 +1409,7 @@
     "Token":{
       "type":"string",
       "max":2048,
-      "pattern":"^[-a-zA-Z0-9+=/]*"
+      "pattern":"^[-a-zA-Z0-9+=/_]*"
     },
     "UUId":{
       "type":"string",

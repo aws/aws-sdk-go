@@ -71,7 +71,8 @@ func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *reques
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -338,7 +339,8 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -508,7 +510,8 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -579,10 +582,6 @@ func (c *EMR) CreateStudioRequest(input *CreateStudioInput) (req *request.Reques
 
 // CreateStudio API operation for Amazon Elastic MapReduce.
 //
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
-//
 // Creates a new Amazon EMR Studio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -594,7 +593,8 @@ func (c *EMR) CreateStudioRequest(input *CreateStudioInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -665,10 +665,6 @@ func (c *EMR) CreateStudioSessionMappingRequest(input *CreateStudioSessionMappin
 }
 
 // CreateStudioSessionMapping API operation for Amazon Elastic MapReduce.
-//
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
 //
 // Maps a user or group to the Amazon EMR Studio specified by StudioId, and
 // applies a session policy to refine Studio permissions for that user or group.
@@ -766,7 +762,8 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -838,10 +835,6 @@ func (c *EMR) DeleteStudioRequest(input *DeleteStudioInput) (req *request.Reques
 
 // DeleteStudio API operation for Amazon Elastic MapReduce.
 //
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
-//
 // Removes an Amazon EMR Studio from the Studio metadata store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -853,7 +846,8 @@ func (c *EMR) DeleteStudioRequest(input *DeleteStudioInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -924,10 +918,6 @@ func (c *EMR) DeleteStudioSessionMappingRequest(input *DeleteStudioSessionMappin
 }
 
 // DeleteStudioSessionMapping API operation for Amazon Elastic MapReduce.
-//
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
 //
 // Removes a user or group from an Amazon EMR Studio.
 //
@@ -1024,7 +1014,8 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -1298,7 +1289,8 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -1380,7 +1372,8 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -1451,10 +1444,6 @@ func (c *EMR) DescribeStudioRequest(input *DescribeStudioInput) (req *request.Re
 
 // DescribeStudio API operation for Amazon Elastic MapReduce.
 //
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
-//
 // Returns details for the specified Amazon EMR Studio including ID, Name, VPC,
 // Studio access URL, and so on.
 //
@@ -1467,7 +1456,8 @@ func (c *EMR) DescribeStudioRequest(input *DescribeStudioInput) (req *request.Re
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -1552,7 +1542,8 @@ func (c *EMR) GetBlockPublicAccessConfigurationRequest(input *GetBlockPublicAcce
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -1697,10 +1688,6 @@ func (c *EMR) GetStudioSessionMappingRequest(input *GetStudioSessionMappingInput
 
 // GetStudioSessionMapping API operation for Amazon Elastic MapReduce.
 //
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
-//
 // Fetches mapping details for the specified Amazon EMR Studio and identity
 // (user or group).
 //
@@ -1802,7 +1789,8 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -1946,7 +1934,8 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -2089,7 +2078,8 @@ func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *re
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -2229,7 +2219,8 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -2372,7 +2363,8 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -2659,7 +2651,8 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -2790,7 +2783,7 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 //
 // Provides a list of steps for the cluster in reverse order unless you specify
 // stepIds with the request of filter by StepStates. You can specify a maximum
-// of ten stepIDs.
+// of 10 stepIDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2801,7 +2794,8 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -2930,12 +2924,8 @@ func (c *EMR) ListStudioSessionMappingsRequest(input *ListStudioSessionMappingsI
 
 // ListStudioSessionMappings API operation for Amazon Elastic MapReduce.
 //
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
-//
-// Returns a list of all user or group session mappings for the EMR Studio specified
-// by StudioId.
+// Returns a list of all user or group session mappings for the Amazon EMR Studio
+// specified by StudioId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3076,10 +3066,6 @@ func (c *EMR) ListStudiosRequest(input *ListStudiosInput) (req *request.Request,
 
 // ListStudios API operation for Amazon Elastic MapReduce.
 //
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
-//
 // Returns a list of all Amazon EMR Studios associated with the AWS account.
 // The list includes details such as ID, Studio Access URL, and creation time
 // for each Studio.
@@ -3093,7 +3079,8 @@ func (c *EMR) ListStudiosRequest(input *ListStudiosInput) (req *request.Request,
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -3317,7 +3304,8 @@ func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -3564,7 +3552,8 @@ func (c *EMR) PutBlockPublicAccessConfigurationRequest(input *PutBlockPublicAcce
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -3880,7 +3869,8 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -4254,7 +4244,8 @@ func (c *EMR) StartNotebookExecutionRequest(input *StartNotebookExecutionInput) 
 //
 // Returned Error Types:
 //   * InternalServerException
-//   This exception occurs when there is an internal failure in the EMR service.
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
 //
 //   * InvalidRequestException
 //   This exception occurs when there is something wrong with user input.
@@ -4455,6 +4446,91 @@ func (c *EMR) TerminateJobFlowsWithContext(ctx aws.Context, input *TerminateJobF
 	return out, req.Send()
 }
 
+const opUpdateStudio = "UpdateStudio"
+
+// UpdateStudioRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStudio operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStudio for more information on using the UpdateStudio
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateStudioRequest method.
+//    req, resp := client.UpdateStudioRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/UpdateStudio
+func (c *EMR) UpdateStudioRequest(input *UpdateStudioInput) (req *request.Request, output *UpdateStudioOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStudio,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStudioInput{}
+	}
+
+	output = &UpdateStudioOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateStudio API operation for Amazon Elastic MapReduce.
+//
+// Updates an Amazon EMR Studio configuration, including attributes such as
+// name, description, and subnets.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic MapReduce's
+// API operation UpdateStudio for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   This exception occurs when there is an internal failure in the Amazon EMR
+//   service.
+//
+//   * InvalidRequestException
+//   This exception occurs when there is something wrong with user input.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/UpdateStudio
+func (c *EMR) UpdateStudio(input *UpdateStudioInput) (*UpdateStudioOutput, error) {
+	req, out := c.UpdateStudioRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStudioWithContext is the same as UpdateStudio with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStudio for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) UpdateStudioWithContext(ctx aws.Context, input *UpdateStudioInput, opts ...request.Option) (*UpdateStudioOutput, error) {
+	req, out := c.UpdateStudioRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateStudioSessionMapping = "UpdateStudioSessionMapping"
 
 // UpdateStudioSessionMappingRequest generates a "aws/request.Request" representing the
@@ -4499,10 +4575,6 @@ func (c *EMR) UpdateStudioSessionMappingRequest(input *UpdateStudioSessionMappin
 }
 
 // UpdateStudioSessionMapping API operation for Amazon Elastic MapReduce.
-//
-//
-// The Amazon EMR Studio APIs are in preview release for Amazon EMR and are
-// subject to change.
 //
 // Updates the session policy attached to the user or group for the specified
 // Amazon EMR Studio.
@@ -6445,12 +6517,14 @@ type CreateStudioInput struct {
 	// AuthMode is a required field
 	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
 
-	// The default Amazon S3 location to back up EMR Studio Workspaces and notebook
-	// files. A Studio user can select an alternative Amazon S3 location when creating
-	// a Workspace.
-	DefaultS3Location *string `type:"string"`
+	// The default Amazon S3 location to back up Amazon EMR Studio Workspaces and
+	// notebook files. A Studio user can select an alternative Amazon S3 location
+	// when creating a Workspace.
+	//
+	// DefaultS3Location is a required field
+	DefaultS3Location *string `type:"string" required:"true"`
 
-	// A detailed description of the Studio.
+	// A detailed description of the Amazon EMR Studio.
 	Description *string `type:"string"`
 
 	// The ID of the Amazon EMR Studio Engine security group. The Engine security
@@ -6471,21 +6545,21 @@ type CreateStudioInput struct {
 	// ServiceRole is a required field
 	ServiceRole *string `type:"string" required:"true"`
 
-	// A list of subnet IDs to associate with the Studio. The subnets must belong
-	// to the VPC specified by VpcId. Studio users can create a Workspace in any
-	// of the specified subnets.
+	// A list of subnet IDs to associate with the Amazon EMR Studio. A Studio can
+	// have a maximum of 5 subnets. The subnets must belong to the VPC specified
+	// by VpcId. Studio users can create a Workspace in any of the specified subnets.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
 
-	// A list of tags to associate with the Studio. Tags are user-defined key-value
-	// pairs that consist of a required key string with a maximum of 128 characters,
-	// and an optional value string with a maximum of 256 characters.
+	// A list of tags to associate with the Amazon EMR Studio. Tags are user-defined
+	// key-value pairs that consist of a required key string with a maximum of 128
+	// characters, and an optional value string with a maximum of 256 characters.
 	Tags []*Tag `type:"list"`
 
-	// The IAM user role that will be assumed by users and groups logged in to a
-	// Studio. The permissions attached to this IAM role can be scoped down for
-	// each user or group using session policies.
+	// The IAM user role that will be assumed by users and groups logged in to an
+	// Amazon EMR Studio. The permissions attached to this IAM role can be scoped
+	// down for each user or group using session policies.
 	//
 	// UserRole is a required field
 	UserRole *string `type:"string" required:"true"`
@@ -6519,6 +6593,9 @@ func (s *CreateStudioInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateStudioInput"}
 	if s.AuthMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("AuthMode"))
+	}
+	if s.DefaultS3Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultS3Location"))
 	}
 	if s.EngineSecurityGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EngineSecurityGroupId"))
@@ -6656,13 +6733,14 @@ type CreateStudioSessionMappingInput struct {
 	// must be specified.
 	IdentityId *string `type:"string"`
 
-	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId
 	// must be specified.
 	IdentityName *string `type:"string"`
 
-	// Specifies whether the identity to map to the Studio is a user or a group.
+	// Specifies whether the identity to map to the Amazon EMR Studio is a user
+	// or a group.
 	//
 	// IdentityType is a required field
 	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
@@ -6867,14 +6945,15 @@ type DeleteStudioSessionMappingInput struct {
 	// must be specified.
 	IdentityId *string `type:"string"`
 
-	// The name of the user name or group to remove from the Studio. For more information,
-	// see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// The name of the user name or group to remove from the Amazon EMR Studio.
+	// For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId
 	// must be specified.
 	IdentityName *string `type:"string"`
 
-	// Specifies whether the identity to delete from the Studio is a user or a group.
+	// Specifies whether the identity to delete from the Amazon EMR Studio is a
+	// user or a group.
 	//
 	// IdentityType is a required field
 	IdentityType *string `type:"string" required:"true" enum:"IdentityType"`
@@ -7929,7 +8008,7 @@ type GetStudioSessionMappingInput struct {
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group to fetch. For more information, see UserName
-	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId
 	// must be specified.
@@ -8040,7 +8119,7 @@ type HadoopJarStepConfig struct {
 	MainClass *string `type:"string"`
 
 	// A list of Java properties that are set when the step runs. You can use these
-	// properties to pass key value pairs to your main function.
+	// properties to pass key-value pairs to your main function.
 	Properties []*KeyValue `type:"list"`
 }
 
@@ -8332,8 +8411,8 @@ type InstanceFleet struct {
 	TargetOnDemandCapacity *int64 `type:"integer"`
 
 	// The target capacity of Spot units for the instance fleet, which determines
-	// how many Spot instances to provision. When the instance fleet launches, Amazon
-	// EMR tries to provision Spot instances as specified by InstanceTypeConfig.
+	// how many Spot Instances to provision. When the instance fleet launches, Amazon
+	// EMR tries to provision Spot Instances as specified by InstanceTypeConfig.
 	// Each instance configuration has a specified WeightedCapacity. When a Spot
 	// instance is provisioned, the WeightedCapacity units count toward the target
 	// capacity. Amazon EMR provisions instances until the target capacity is totally
@@ -8344,7 +8423,7 @@ type InstanceFleet struct {
 	// to determine the Spot capacity units that have been provisioned for the instance
 	// fleet.
 	//
-	// If not specified or set to 0, only On-Demand instances are provisioned for
+	// If not specified or set to 0, only On-Demand Instances are provisioned for
 	// the instance fleet. At least one of TargetSpotCapacity and TargetOnDemandCapacity
 	// should be greater than 0. For a master instance fleet, only one of TargetSpotCapacity
 	// and TargetOnDemandCapacity can be specified, and its value must be 1.
@@ -8428,8 +8507,8 @@ func (s *InstanceFleet) SetTargetSpotCapacity(v int64) *InstanceFleet {
 type InstanceFleetConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The node type that the instance fleet hosts. Valid values are MASTER,CORE,and
-	// TASK.
+	// The node type that the instance fleet hosts. Valid values are MASTER, CORE,
+	// and TASK.
 	//
 	// InstanceFleetType is a required field
 	InstanceFleetType *string `type:"string" required:"true" enum:"InstanceFleetType"`
@@ -9023,9 +9102,9 @@ type InstanceGroupConfig struct {
 	// of a CloudWatch metric. See PutAutoScalingPolicy.
 	AutoScalingPolicy *AutoScalingPolicy `type:"structure"`
 
-	// The bid price for each EC2 Spot Instance type as defined by InstanceType.
-	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
-	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// The bid price for each EC2 Spot Instance as defined by InstanceType. Expressed
+	// in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided,
+	// BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
 	BidPrice *string `type:"string"`
 
 	//
@@ -9162,9 +9241,9 @@ func (s *InstanceGroupConfig) SetName(v string) *InstanceGroupConfig {
 type InstanceGroupDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The bid price for each EC2 Spot Instance type as defined by InstanceType.
-	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
-	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// The bid price for each EC2 Spot Instance as defined by InstanceType. Expressed
+	// in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided,
+	// BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
 	BidPrice *string `type:"string"`
 
 	// The date/time the instance group was created.
@@ -9926,7 +10005,8 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception occurs when there is an internal failure in the EMR service.
+// This exception occurs when there is an internal failure in the Amazon EMR
+// service.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11594,8 +11674,8 @@ type ListStudioSessionMappingsOutput struct {
 	Marker *string `type:"string"`
 
 	// A list of session mapping summary objects. Each object includes session mapping
-	// details such as creation time, identity type (user or group), and Studio
-	// ID.
+	// details such as creation time, identity type (user or group), and Amazon
+	// EMR Studio ID.
 	SessionMappings []*SessionMappingSummary `type:"list"`
 }
 
@@ -12506,7 +12586,7 @@ type PutAutoScalingPolicyOutput struct {
 	// The automatic scaling policy definition.
 	AutoScalingPolicy *AutoScalingPolicyDescription `type:"structure"`
 
-	// The Amazon Resource Name of the cluster.
+	// The Amazon Resource Name (ARN) of the cluster.
 	ClusterArn *string `min:"20" type:"string"`
 
 	// Specifies the ID of a cluster. The instance group to which the automatic
@@ -12984,7 +13064,7 @@ type RunJobFlowInput struct {
 	//
 	//    * "mapr-m7" - launch the cluster using MapR M7 Edition.
 	//
-	//    * "hunk" - launch the cluster with the Hunk Big Data Analtics Platform.
+	//    * "hunk" - launch the cluster with the Hunk Big Data Analytics Platform.
 	//
 	//    * "hue"- launch the cluster with Hue installed.
 	//
@@ -13301,10 +13381,10 @@ func (s *RunJobFlowInput) SetVisibleToAllUsers(v bool) *RunJobFlowInput {
 type RunJobFlowOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name of the cluster.
+	// The Amazon Resource Name (ARN) of the cluster.
 	ClusterArn *string `min:"20" type:"string"`
 
-	// An unique identifier for the job flow.
+	// A unique identifier for the job flow.
 	JobFlowId *string `type:"string"`
 }
 
@@ -13674,12 +13754,13 @@ type SessionMappingDetail struct {
 	// The globally unique identifier (GUID) of the user or group.
 	IdentityId *string `type:"string"`
 
-	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the AWS SSO Identity Store API Reference.
 	IdentityName *string `type:"string"`
 
-	// Specifies whether the identity mapped to the Studio is a user or a group.
+	// Specifies whether the identity mapped to the Amazon EMR Studio is a user
+	// or a group.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
 	// The time the session mapping was last modified.
@@ -13757,12 +13838,13 @@ type SessionMappingSummary struct {
 	// Identity Store.
 	IdentityId *string `type:"string"`
 
-	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the AWS SSO Identity Store API Reference.
 	IdentityName *string `type:"string"`
 
-	// Specifies whether the identity mapped to the Studio is a user or a group.
+	// Specifies whether the identity mapped to the Amazon EMR Studio is a user
+	// or a group.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
 	// The Amazon Resource Name (ARN) of the session policy associated with the
@@ -14090,7 +14172,7 @@ type SpotProvisioningSpecification struct {
 
 	// The defined duration for Spot Instances (also known as Spot blocks) in minutes.
 	// When specified, the Spot Instance does not terminate before the defined duration
-	// expires, and defined duration pricing for Spot instances applies. Valid values
+	// expires, and defined duration pricing for Spot Instances applies. Valid values
 	// are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as
 	// a Spot Instance receives its instance ID. At the end of the duration, Amazon
 	// EC2 marks the Spot Instance for termination and provides a Spot Instance
@@ -14800,8 +14882,8 @@ func (s StopNotebookExecutionOutput) GoString() string {
 type Studio struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the Studio authenticates users using single sign-on (SSO)
-	// or IAM.
+	// Specifies whether the Amazon EMR Studio authenticates users using single
+	// sign-on (SSO) or IAM.
 	AuthMode *string `type:"string" enum:"AuthMode"`
 
 	// The time the Amazon EMR Studio was created.
@@ -14811,7 +14893,7 @@ type Studio struct {
 	// notebook files.
 	DefaultS3Location *string `type:"string"`
 
-	// The detailed description of the EMR Studio.
+	// The detailed description of the Amazon EMR Studio.
 	Description *string `type:"string"`
 
 	// The ID of the Engine security group associated with the Amazon EMR Studio.
@@ -14819,16 +14901,16 @@ type Studio struct {
 	// the Workspace security group.
 	EngineSecurityGroupId *string `type:"string"`
 
-	// The name of the EMR Studio.
+	// The name of the Amazon EMR Studio.
 	Name *string `type:"string"`
 
 	// The name of the IAM role assumed by the Amazon EMR Studio.
 	ServiceRole *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the EMR Studio.
+	// The Amazon Resource Name (ARN) of the Amazon EMR Studio.
 	StudioArn *string `type:"string"`
 
-	// The ID of the EMR Studio.
+	// The ID of the Amazon EMR Studio.
 	StudioId *string `type:"string"`
 
 	// The list of IDs of the subnets associated with the Amazon EMR Studio.
@@ -14843,7 +14925,7 @@ type Studio struct {
 	// The name of the IAM role assumed by users logged in to the Amazon EMR Studio.
 	UserRole *string `type:"string"`
 
-	// The ID of the VPC associated with the EMR Studio.
+	// The ID of the VPC associated with the Amazon EMR Studio.
 	VpcId *string `type:"string"`
 
 	// The ID of the Workspace security group associated with the Amazon EMR Studio.
@@ -14961,7 +15043,7 @@ type StudioSummary struct {
 	// The time when the Amazon EMR Studio was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The detailed description of the EMR Studio.
+	// The detailed description of the Amazon EMR Studio.
 	Description *string `type:"string"`
 
 	// The name of the Amazon EMR Studio.
@@ -15024,7 +15106,7 @@ func (s *StudioSummary) SetVpcId(v string) *StudioSummary {
 	return s
 }
 
-// The list of supported product configurations which allow user-supplied arguments.
+// The list of supported product configurations that allow user-supplied arguments.
 // EMR accepts these arguments and forwards them to the corresponding installation
 // script as bootstrap action arguments.
 type SupportedProductConfig struct {
@@ -15150,6 +15232,100 @@ func (s TerminateJobFlowsOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateStudioInput struct {
+	_ struct{} `type:"structure"`
+
+	// A default Amazon S3 location to back up Workspaces and notebook files for
+	// the Amazon EMR Studio. A Studio user can select an alternative Amazon S3
+	// location when creating a Workspace.
+	DefaultS3Location *string `type:"string"`
+
+	// A detailed description to assign to the Amazon EMR Studio.
+	Description *string `type:"string"`
+
+	// A descriptive name for the Amazon EMR Studio.
+	Name *string `type:"string"`
+
+	// The ID of the Amazon EMR Studio to update.
+	//
+	// StudioId is a required field
+	StudioId *string `type:"string" required:"true"`
+
+	// A list of subnet IDs to associate with the Amazon EMR Studio. The list can
+	// include new subnet IDs, but must also include all of the subnet IDs previously
+	// associated with the Studio. The list order does not matter. A Studio can
+	// have a maximum of 5 subnets. The subnets must belong to the same VPC as the
+	// Studio.
+	SubnetIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateStudioInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStudioInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStudioInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStudioInput"}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultS3Location sets the DefaultS3Location field's value.
+func (s *UpdateStudioInput) SetDefaultS3Location(v string) *UpdateStudioInput {
+	s.DefaultS3Location = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateStudioInput) SetDescription(v string) *UpdateStudioInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateStudioInput) SetName(v string) *UpdateStudioInput {
+	s.Name = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *UpdateStudioInput) SetStudioId(v string) *UpdateStudioInput {
+	s.StudioId = &v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *UpdateStudioInput) SetSubnetIds(v []*string) *UpdateStudioInput {
+	s.SubnetIds = v
+	return s
+}
+
+type UpdateStudioOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateStudioOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStudioOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateStudioSessionMappingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15161,7 +15337,7 @@ type UpdateStudioSessionMappingInput struct {
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group to update. For more information, see UserName
-	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
+	// (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the AWS SSO Identity Store API Reference. Either IdentityName or IdentityId
 	// must be specified.
@@ -15178,7 +15354,7 @@ type UpdateStudioSessionMappingInput struct {
 	// SessionPolicyArn is a required field
 	SessionPolicyArn *string `type:"string" required:"true"`
 
-	// The ID of the EMR Studio.
+	// The ID of the Amazon EMR Studio.
 	//
 	// StudioId is a required field
 	StudioId *string `type:"string" required:"true"`

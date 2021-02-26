@@ -562,6 +562,18 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateStudio":{
+      "name":"UpdateStudio",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStudioInput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "UpdateStudioSessionMapping":{
       "name":"UpdateStudioSessionMapping",
       "http":{
@@ -1035,7 +1047,8 @@
         "ServiceRole",
         "UserRole",
         "WorkspaceSecurityGroupId",
-        "EngineSecurityGroupId"
+        "EngineSecurityGroupId",
+        "DefaultS3Location"
       ],
       "members":{
         "Name":{"shape":"XmlStringMaxLen256"},
@@ -2835,6 +2848,17 @@
         "TERA_BITS_PER_SECOND",
         "COUNT_PER_SECOND"
       ]
+    },
+    "UpdateStudioInput":{
+      "type":"structure",
+      "required":["StudioId"],
+      "members":{
+        "StudioId":{"shape":"XmlStringMaxLen256"},
+        "Name":{"shape":"XmlStringMaxLen256"},
+        "Description":{"shape":"XmlStringMaxLen256"},
+        "SubnetIds":{"shape":"SubnetIdList"},
+        "DefaultS3Location":{"shape":"XmlString"}
+      }
     },
     "UpdateStudioSessionMappingInput":{
       "type":"structure",

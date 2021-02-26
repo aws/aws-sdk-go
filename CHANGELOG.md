@@ -1,3 +1,14 @@
+Release v1.37.20 (2021-02-26)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Added UpdateStudio API that allows updating a few attributes of an EMR Studio.
+* `service/s3`: Updates service API, documentation, and examples
+  * Add RequestPayer to GetObjectTagging and PutObjectTagging.
+* `service/sso-admin`: Updates service API
+
 Release v1.37.19 (2021-02-25)
 ===
 
