@@ -13,6 +13,110 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAssociateEncryptionConfig = "AssociateEncryptionConfig"
+
+// AssociateEncryptionConfigRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateEncryptionConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateEncryptionConfig for more information on using the AssociateEncryptionConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateEncryptionConfigRequest method.
+//    req, resp := client.AssociateEncryptionConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/AssociateEncryptionConfig
+func (c *EKS) AssociateEncryptionConfigRequest(input *AssociateEncryptionConfigInput) (req *request.Request, output *AssociateEncryptionConfigOutput) {
+	op := &request.Operation{
+		Name:       opAssociateEncryptionConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/clusters/{name}/encryption-config/associate",
+	}
+
+	if input == nil {
+		input = &AssociateEncryptionConfigInput{}
+	}
+
+	output = &AssociateEncryptionConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateEncryptionConfig API operation for Amazon Elastic Kubernetes Service.
+//
+// Associate encryption configuration to an existing cluster.
+//
+// You can use this API to enable encryption on existing clusters which do not
+// have encryption already enabled. This allows you to implement a defense-in-depth
+// security strategy without migrating applications to new EKS clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation AssociateEncryptionConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found. You can view your available clusters
+//   with ListClusters. You can view your available managed node groups with ListNodegroups.
+//   Amazon EKS clusters and node groups are Region-specific.
+//
+//   * InvalidRequestException
+//   The request is invalid given the state of the cluster. Check the state of
+//   the cluster and the associated operations.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/AssociateEncryptionConfig
+func (c *EKS) AssociateEncryptionConfig(input *AssociateEncryptionConfigInput) (*AssociateEncryptionConfigOutput, error) {
+	req, out := c.AssociateEncryptionConfigRequest(input)
+	return out, req.Send()
+}
+
+// AssociateEncryptionConfigWithContext is the same as AssociateEncryptionConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateEncryptionConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) AssociateEncryptionConfigWithContext(ctx aws.Context, input *AssociateEncryptionConfigInput, opts ...request.Option) (*AssociateEncryptionConfigOutput, error) {
+	req, out := c.AssociateEncryptionConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateIdentityProviderConfig = "AssociateIdentityProviderConfig"
 
 // AssociateIdentityProviderConfigRequest generates a "aws/request.Request" representing the
@@ -289,26 +393,9 @@ func (c *EKS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // plane via the Kubernetes API server endpoint and a certificate file that
 // is created for your cluster.
 //
-// You can use the endpointPublicAccess and endpointPrivateAccess parameters
-// to enable or disable public and private access to your cluster's Kubernetes
-// API server endpoint. By default, public access is enabled, and private access
-// is disabled. For more information, see Amazon EKS Cluster Endpoint Access
-// Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
-// in the Amazon EKS User Guide .
-//
-// You can use the logging parameter to enable or disable exporting the Kubernetes
-// control plane logs for your cluster to CloudWatch Logs. By default, cluster
-// control plane logs aren't exported to CloudWatch Logs. For more information,
-// see Amazon EKS Cluster Control Plane Logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
-// in the Amazon EKS User Guide .
-//
-// CloudWatch Logs ingestion, archive storage, and data scanning rates apply
-// to exported control plane logs. For more information, see Amazon CloudWatch
-// Pricing (http://aws.amazon.com/cloudwatch/pricing/).
-//
-// Cluster creation typically takes between 10 and 15 minutes. After you create
-// an Amazon EKS cluster, you must configure your Kubernetes tooling to communicate
-// with the API server and launch nodes into your cluster. For more information,
+// Cluster creation typically takes several minutes. After you create an Amazon
+// EKS cluster, you must configure your Kubernetes tooling to communicate with
+// the API server and launch nodes into your cluster. For more information,
 // see Managing Cluster Authentication (https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html)
 // and Launching Amazon EKS nodes (https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html)
 // in the Amazon EKS User Guide.
@@ -3853,6 +3940,93 @@ func (s *AddonVersionInfo) SetArchitecture(v []*string) *AddonVersionInfo {
 // SetCompatibilities sets the Compatibilities field's value.
 func (s *AddonVersionInfo) SetCompatibilities(v []*Compatibility) *AddonVersionInfo {
 	s.Compatibilities = v
+	return s
+}
+
+type AssociateEncryptionConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client request token you are using with the encryption configuration.
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// The name of the cluster that you are associating with encryption configuration.
+	//
+	// ClusterName is a required field
+	ClusterName *string `location:"uri" locationName:"name" type:"string" required:"true"`
+
+	// The configuration you are using for encryption.
+	//
+	// EncryptionConfig is a required field
+	EncryptionConfig []*EncryptionConfig `locationName:"encryptionConfig" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateEncryptionConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateEncryptionConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateEncryptionConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateEncryptionConfigInput"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.EncryptionConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncryptionConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *AssociateEncryptionConfigInput) SetClientRequestToken(v string) *AssociateEncryptionConfigInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *AssociateEncryptionConfigInput) SetClusterName(v string) *AssociateEncryptionConfigInput {
+	s.ClusterName = &v
+	return s
+}
+
+// SetEncryptionConfig sets the EncryptionConfig field's value.
+func (s *AssociateEncryptionConfigInput) SetEncryptionConfig(v []*EncryptionConfig) *AssociateEncryptionConfigInput {
+	s.EncryptionConfig = v
+	return s
+}
+
+type AssociateEncryptionConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing an asynchronous update.
+	Update *Update `locationName:"update" type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateEncryptionConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateEncryptionConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetUpdate sets the Update field's value.
+func (s *AssociateEncryptionConfigOutput) SetUpdate(v *Update) *AssociateEncryptionConfigOutput {
+	s.Update = v
 	return s
 }
 
@@ -10238,6 +10412,9 @@ const (
 	// UpdateParamTypeIdentityProviderConfig is a UpdateParamType enum value
 	UpdateParamTypeIdentityProviderConfig = "IdentityProviderConfig"
 
+	// UpdateParamTypeEncryptionConfig is a UpdateParamType enum value
+	UpdateParamTypeEncryptionConfig = "EncryptionConfig"
+
 	// UpdateParamTypeAddonVersion is a UpdateParamType enum value
 	UpdateParamTypeAddonVersion = "AddonVersion"
 
@@ -10264,6 +10441,7 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeReleaseVersion,
 		UpdateParamTypePublicAccessCidrs,
 		UpdateParamTypeIdentityProviderConfig,
+		UpdateParamTypeEncryptionConfig,
 		UpdateParamTypeAddonVersion,
 		UpdateParamTypeServiceAccountRoleArn,
 		UpdateParamTypeResolveConflicts,
@@ -10313,6 +10491,9 @@ const (
 	// UpdateTypeDisassociateIdentityProviderConfig is a UpdateType enum value
 	UpdateTypeDisassociateIdentityProviderConfig = "DisassociateIdentityProviderConfig"
 
+	// UpdateTypeAssociateEncryptionConfig is a UpdateType enum value
+	UpdateTypeAssociateEncryptionConfig = "AssociateEncryptionConfig"
+
 	// UpdateTypeAddonUpdate is a UpdateType enum value
 	UpdateTypeAddonUpdate = "AddonUpdate"
 )
@@ -10326,6 +10507,7 @@ func UpdateType_Values() []string {
 		UpdateTypeConfigUpdate,
 		UpdateTypeAssociateIdentityProviderConfig,
 		UpdateTypeDisassociateIdentityProviderConfig,
+		UpdateTypeAssociateEncryptionConfig,
 		UpdateTypeAddonUpdate,
 	}
 }

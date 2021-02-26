@@ -270,6 +270,10 @@ type EMRAPI interface {
 	TerminateJobFlowsWithContext(aws.Context, *emr.TerminateJobFlowsInput, ...request.Option) (*emr.TerminateJobFlowsOutput, error)
 	TerminateJobFlowsRequest(*emr.TerminateJobFlowsInput) (*request.Request, *emr.TerminateJobFlowsOutput)
 
+	UpdateStudio(*emr.UpdateStudioInput) (*emr.UpdateStudioOutput, error)
+	UpdateStudioWithContext(aws.Context, *emr.UpdateStudioInput, ...request.Option) (*emr.UpdateStudioOutput, error)
+	UpdateStudioRequest(*emr.UpdateStudioInput) (*request.Request, *emr.UpdateStudioOutput)
+
 	UpdateStudioSessionMapping(*emr.UpdateStudioSessionMappingInput) (*emr.UpdateStudioSessionMappingOutput, error)
 	UpdateStudioSessionMappingWithContext(aws.Context, *emr.UpdateStudioSessionMappingInput, ...request.Option) (*emr.UpdateStudioSessionMappingOutput, error)
 	UpdateStudioSessionMappingRequest(*emr.UpdateStudioSessionMappingInput) (*request.Request, *emr.UpdateStudioSessionMappingOutput)

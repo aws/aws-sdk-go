@@ -8,20 +8,20 @@
     "AddTags": "<p>Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p>",
     "CancelSteps": "<p>Cancels a pending step or steps in a running cluster. Available only in Amazon EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps are allowed in each CancelSteps request. CancelSteps is idempotent but asynchronous; it does not guarantee that a step will be canceled, even if the request is successfully submitted. You can only cancel steps that are in a <code>PENDING</code> state.</p>",
     "CreateSecurityConfiguration": "<p>Creates a security configuration, which is stored in the service and can be specified when a cluster is created.</p>",
-    "CreateStudio": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Creates a new Amazon EMR Studio.</p>",
-    "CreateStudioSessionMapping": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Maps a user or group to the Amazon EMR Studio specified by <code>StudioId</code>, and applies a session policy to refine Studio permissions for that user or group.</p>",
+    "CreateStudio": "<p>Creates a new Amazon EMR Studio.</p>",
+    "CreateStudioSessionMapping": "<p>Maps a user or group to the Amazon EMR Studio specified by <code>StudioId</code>, and applies a session policy to refine Studio permissions for that user or group.</p>",
     "DeleteSecurityConfiguration": "<p>Deletes a security configuration.</p>",
-    "DeleteStudio": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Removes an Amazon EMR Studio from the Studio metadata store.</p>",
-    "DeleteStudioSessionMapping": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Removes a user or group from an Amazon EMR Studio.</p>",
+    "DeleteStudio": "<p>Removes an Amazon EMR Studio from the Studio metadata store.</p>",
+    "DeleteStudioSessionMapping": "<p>Removes a user or group from an Amazon EMR Studio.</p>",
     "DescribeCluster": "<p>Provides cluster-level details including status, hardware and software configuration, VPC settings, and so on. </p>",
     "DescribeJobFlows": "<p>This API is no longer supported and will eventually be removed. We recommend you use <a>ListClusters</a>, <a>DescribeCluster</a>, <a>ListSteps</a>, <a>ListInstanceGroups</a> and <a>ListBootstrapActions</a> instead.</p> <p>DescribeJobFlows returns a list of job flows that match all of the supplied parameters. The parameters can include a list of job flow IDs, job flow states, and restrictions on job flow creation date and time.</p> <p>Regardless of supplied parameters, only job flows created within the last two months are returned.</p> <p>If no parameters are supplied, then job flows matching either of the following criteria are returned:</p> <ul> <li> <p>Job flows created and completed in the last two weeks</p> </li> <li> <p> Job flows created within the last two months that are in one of the following states: <code>RUNNING</code>, <code>WAITING</code>, <code>SHUTTING_DOWN</code>, <code>STARTING</code> </p> </li> </ul> <p>Amazon EMR can return a maximum of 512 job flow descriptions.</p>",
     "DescribeNotebookExecution": "<p>Provides details of a notebook execution.</p>",
     "DescribeSecurityConfiguration": "<p>Provides the details of a security configuration by returning the configuration JSON.</p>",
     "DescribeStep": "<p>Provides more detail about the cluster step.</p>",
-    "DescribeStudio": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Returns details for the specified Amazon EMR Studio including ID, Name, VPC, Studio access URL, and so on.</p>",
+    "DescribeStudio": "<p>Returns details for the specified Amazon EMR Studio including ID, Name, VPC, Studio access URL, and so on.</p>",
     "GetBlockPublicAccessConfiguration": "<p>Returns the Amazon EMR block public access configuration for your AWS account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
     "GetManagedScalingPolicy": "<p>Fetches the attached managed scaling policy for an Amazon EMR cluster. </p>",
-    "GetStudioSessionMapping": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Fetches mapping details for the specified Amazon EMR Studio and identity (user or group).</p>",
+    "GetStudioSessionMapping": "<p>Fetches mapping details for the specified Amazon EMR Studio and identity (user or group).</p>",
     "ListBootstrapActions": "<p>Provides information about the bootstrap actions associated with a cluster.</p>",
     "ListClusters": "<p>Provides the status of all clusters visible to this AWS account. Allows you to filter the list of clusters based on certain criteria; for example, filtering by cluster creation date and time or by status. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListClusters calls.</p>",
     "ListInstanceFleets": "<p>Lists all available details about the instance fleets in a cluster.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
@@ -29,9 +29,9 @@
     "ListInstances": "<p>Provides information for all active EC2 instances and EC2 instances terminated in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the following states are considered active: AWAITING_FULFILLMENT, PROVISIONING, BOOTSTRAPPING, RUNNING.</p>",
     "ListNotebookExecutions": "<p>Provides summaries of all notebook executions. You can filter the list based on multiple criteria such as status, time range, and editor id. Returns a maximum of 50 notebook executions and a marker to track the paging of a longer notebook execution list across multiple <code>ListNotebookExecution</code> calls.</p>",
     "ListSecurityConfigurations": "<p>Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.</p>",
-    "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request of filter by <code>StepStates</code>. You can specify a maximum of ten <code>stepIDs</code>.</p>",
-    "ListStudioSessionMappings": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Returns a list of all user or group session mappings for the EMR Studio specified by <code>StudioId</code>.</p>",
-    "ListStudios": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Returns a list of all Amazon EMR Studios associated with the AWS account. The list includes details such as ID, Studio Access URL, and creation time for each Studio.</p>",
+    "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request of filter by <code>StepStates</code>. You can specify a maximum of 10 <code>stepIDs</code>.</p>",
+    "ListStudioSessionMappings": "<p>Returns a list of all user or group session mappings for the Amazon EMR Studio specified by <code>StudioId</code>.</p>",
+    "ListStudios": "<p>Returns a list of all Amazon EMR Studios associated with the AWS account. The list includes details such as ID, Studio Access URL, and creation time for each Studio.</p>",
     "ModifyCluster": "<p>Modifies the number of steps that can be executed concurrently for the cluster specified using ClusterID.</p>",
     "ModifyInstanceFleet": "<p>Modifies the target On-Demand and target Spot capacities for the instance fleet with the specified InstanceFleetID within the cluster specified using ClusterID. The call either succeeds or fails atomically.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ModifyInstanceGroups": "<p>ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.</p>",
@@ -47,7 +47,8 @@
     "StartNotebookExecution": "<p>Starts a notebook execution.</p>",
     "StopNotebookExecution": "<p>Stops a notebook execution.</p>",
     "TerminateJobFlows": "<p>TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the cluster is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the cluster was created.</p> <p>The maximum number of clusters allowed is 10. The call to <code>TerminateJobFlows</code> is asynchronous. Depending on the configuration of the cluster, it may take up to 1-5 minutes for the cluster to completely terminate and release allocated resources, such as Amazon EC2 instances.</p>",
-    "UpdateStudioSessionMapping": "<note> <p>The Amazon EMR Studio APIs are in preview release for Amazon EMR and are subject to change.</p> </note> <p>Updates the session policy attached to the user or group for the specified Amazon EMR Studio.</p>"
+    "UpdateStudio": "<p>Updates an Amazon EMR Studio configuration, including attributes such as name, description, and subnets.</p>",
+    "UpdateStudioSessionMapping": "<p>Updates the session policy attached to the user or group for the specified Amazon EMR Studio.</p>"
   },
   "shapes": {
     "ActionOnFailure": {
@@ -125,15 +126,15 @@
         "BlockPublicAccessConfigurationMetadata$CreatedByArn": "<p>The Amazon Resource Name that created or last modified the configuration.</p>",
         "Cluster$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
         "ClusterSummary$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
-        "PutAutoScalingPolicyOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>",
-        "RunJobFlowOutput$ClusterArn": "<p>The Amazon Resource Name of the cluster.</p>"
+        "PutAutoScalingPolicyOutput$ClusterArn": "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "RunJobFlowOutput$ClusterArn": "<p>The Amazon Resource Name (ARN) of the cluster.</p>"
       }
     },
     "AuthMode": {
       "base": null,
       "refs": {
         "CreateStudioInput$AuthMode": "<p>Specifies whether the Studio authenticates users using single sign-on (SSO) or IAM. Amazon EMR Studio currently only supports SSO authentication.</p>",
-        "Studio$AuthMode": "<p>Specifies whether the Studio authenticates users using single sign-on (SSO) or IAM.</p>"
+        "Studio$AuthMode": "<p>Specifies whether the Amazon EMR Studio authenticates users using single sign-on (SSO) or IAM.</p>"
       }
     },
     "AutoScalingPolicy": {
@@ -695,12 +696,12 @@
     "IdentityType": {
       "base": null,
       "refs": {
-        "CreateStudioSessionMappingInput$IdentityType": "<p>Specifies whether the identity to map to the Studio is a user or a group.</p>",
-        "DeleteStudioSessionMappingInput$IdentityType": "<p>Specifies whether the identity to delete from the Studio is a user or a group.</p>",
+        "CreateStudioSessionMappingInput$IdentityType": "<p>Specifies whether the identity to map to the Amazon EMR Studio is a user or a group.</p>",
+        "DeleteStudioSessionMappingInput$IdentityType": "<p>Specifies whether the identity to delete from the Amazon EMR Studio is a user or a group.</p>",
         "GetStudioSessionMappingInput$IdentityType": "<p>Specifies whether the identity to fetch is a user or a group.</p>",
         "ListStudioSessionMappingsInput$IdentityType": "<p>Specifies whether to return session mappings for users or groups. If not specified, the results include session mapping details for both users and groups.</p>",
-        "SessionMappingDetail$IdentityType": "<p>Specifies whether the identity mapped to the Studio is a user or a group.</p>",
-        "SessionMappingSummary$IdentityType": "<p>Specifies whether the identity mapped to the Studio is a user or a group.</p>",
+        "SessionMappingDetail$IdentityType": "<p>Specifies whether the identity mapped to the Amazon EMR Studio is a user or a group.</p>",
+        "SessionMappingSummary$IdentityType": "<p>Specifies whether the identity mapped to the Amazon EMR Studio is a user or a group.</p>",
         "UpdateStudioSessionMappingInput$IdentityType": "<p>Specifies whether the identity to update is a user or a group.</p>"
       }
     },
@@ -798,7 +799,7 @@
       "base": null,
       "refs": {
         "InstanceFleet$InstanceFleetType": "<p>The node type that the instance fleet hosts. Valid values are MASTER, CORE, or TASK. </p>",
-        "InstanceFleetConfig$InstanceFleetType": "<p>The node type that the instance fleet hosts. Valid values are MASTER,CORE,and TASK.</p>",
+        "InstanceFleetConfig$InstanceFleetType": "<p>The node type that the instance fleet hosts. Valid values are MASTER, CORE, and TASK.</p>",
         "ListInstancesInput$InstanceFleetType": "<p>The node type of the instance fleet. For example MASTER, CORE, or TASK.</p>"
       }
     },
@@ -1059,7 +1060,7 @@
       }
     },
     "InternalServerException": {
-      "base": "<p>This exception occurs when there is an internal failure in the EMR service.</p>",
+      "base": "<p>This exception occurs when there is an internal failure in the Amazon EMR service.</p>",
       "refs": {
       }
     },
@@ -1127,7 +1128,7 @@
     "KeyValueList": {
       "base": null,
       "refs": {
-        "HadoopJarStepConfig$Properties": "<p>A list of Java properties that are set when the step runs. You can use these properties to pass key value pairs to your main function.</p>"
+        "HadoopJarStepConfig$Properties": "<p>A list of Java properties that are set when the step runs. You can use these properties to pass key-value pairs to your main function.</p>"
       }
     },
     "ListBootstrapActionsInput": {
@@ -1315,7 +1316,7 @@
     "NewSupportedProductsList": {
       "base": null,
       "refs": {
-        "RunJobFlowInput$NewSupportedProducts": "<note> <p>For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and later, use Applications.</p> </note> <p>A list of strings that indicates third-party software to use with the job flow that accepts a user argument list. EMR accepts and forwards the argument list to the corresponding installation script as bootstrap action arguments. For more information, see \"Launch a Job Flow on the MapR Distribution for Hadoop\" in the <a href=\"https://docs.aws.amazon.com/emr/latest/DeveloperGuide/emr-dg.pdf\">Amazon EMR Developer Guide</a>. Supported values are:</p> <ul> <li> <p>\"mapr-m3\" - launch the cluster using MapR M3 Edition.</p> </li> <li> <p>\"mapr-m5\" - launch the cluster using MapR M5 Edition.</p> </li> <li> <p>\"mapr\" with the user arguments specifying \"--edition,m3\" or \"--edition,m5\" - launch the job flow using MapR M3 or M5 Edition respectively.</p> </li> <li> <p>\"mapr-m7\" - launch the cluster using MapR M7 Edition.</p> </li> <li> <p>\"hunk\" - launch the cluster with the Hunk Big Data Analtics Platform.</p> </li> <li> <p>\"hue\"- launch the cluster with Hue installed.</p> </li> <li> <p>\"spark\" - launch the cluster with Apache Spark installed.</p> </li> <li> <p>\"ganglia\" - launch the cluster with the Ganglia Monitoring System installed.</p> </li> </ul>"
+        "RunJobFlowInput$NewSupportedProducts": "<note> <p>For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and later, use Applications.</p> </note> <p>A list of strings that indicates third-party software to use with the job flow that accepts a user argument list. EMR accepts and forwards the argument list to the corresponding installation script as bootstrap action arguments. For more information, see \"Launch a Job Flow on the MapR Distribution for Hadoop\" in the <a href=\"https://docs.aws.amazon.com/emr/latest/DeveloperGuide/emr-dg.pdf\">Amazon EMR Developer Guide</a>. Supported values are:</p> <ul> <li> <p>\"mapr-m3\" - launch the cluster using MapR M3 Edition.</p> </li> <li> <p>\"mapr-m5\" - launch the cluster using MapR M5 Edition.</p> </li> <li> <p>\"mapr\" with the user arguments specifying \"--edition,m3\" or \"--edition,m5\" - launch the job flow using MapR M3 or M5 Edition respectively.</p> </li> <li> <p>\"mapr-m7\" - launch the cluster using MapR M7 Edition.</p> </li> <li> <p>\"hunk\" - launch the cluster with the Hunk Big Data Analytics Platform.</p> </li> <li> <p>\"hue\"- launch the cluster with Hue installed.</p> </li> <li> <p>\"spark\" - launch the cluster with Apache Spark installed.</p> </li> <li> <p>\"ganglia\" - launch the cluster with the Ganglia Monitoring System installed.</p> </li> </ul>"
       }
     },
     "NonNegativeDouble": {
@@ -1580,7 +1581,7 @@
     "SessionMappingSummaryList": {
       "base": null,
       "refs": {
-        "ListStudioSessionMappingsOutput$SessionMappings": "<p>A list of session mapping summary objects. Each object includes session mapping details such as creation time, identity type (user or group), and Studio ID.</p>"
+        "ListStudioSessionMappingsOutput$SessionMappings": "<p>A list of session mapping summary objects. Each object includes session mapping details such as creation time, identity type (user or group), and Amazon EMR Studio ID.</p>"
       }
     },
     "SetTerminationProtectionInput": {
@@ -1867,12 +1868,13 @@
     "SubnetIdList": {
       "base": null,
       "refs": {
-        "CreateStudioInput$SubnetIds": "<p>A list of subnet IDs to associate with the Studio. The subnets must belong to the VPC specified by <code>VpcId</code>. Studio users can create a Workspace in any of the specified subnets.</p>",
-        "Studio$SubnetIds": "<p>The list of IDs of the subnets associated with the Amazon EMR Studio.</p>"
+        "CreateStudioInput$SubnetIds": "<p>A list of subnet IDs to associate with the Amazon EMR Studio. A Studio can have a maximum of 5 subnets. The subnets must belong to the VPC specified by <code>VpcId</code>. Studio users can create a Workspace in any of the specified subnets.</p>",
+        "Studio$SubnetIds": "<p>The list of IDs of the subnets associated with the Amazon EMR Studio.</p>",
+        "UpdateStudioInput$SubnetIds": "<p>A list of subnet IDs to associate with the Amazon EMR Studio. The list can include new subnet IDs, but must also include all of the subnet IDs previously associated with the Studio. The list order does not matter. A Studio can have a maximum of 5 subnets. The subnets must belong to the same VPC as the Studio. </p>"
       }
     },
     "SupportedProductConfig": {
-      "base": "<p>The list of supported product configurations which allow user-supplied arguments. EMR accepts these arguments and forwards them to the corresponding installation script as bootstrap action arguments.</p>",
+      "base": "<p>The list of supported product configurations that allow user-supplied arguments. EMR accepts these arguments and forwards them to the corresponding installation script as bootstrap action arguments.</p>",
       "refs": {
         "NewSupportedProductsList$member": null
       }
@@ -1895,7 +1897,7 @@
       "refs": {
         "AddTagsInput$Tags": "<p>A list of tags to associate with a cluster and propagate to EC2 instances. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
         "Cluster$Tags": "<p>A list of tags associated with a cluster.</p>",
-        "CreateStudioInput$Tags": "<p>A list of tags to associate with the Studio. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
+        "CreateStudioInput$Tags": "<p>A list of tags to associate with the Amazon EMR Studio. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
         "NotebookExecution$Tags": "<p>A list of tags associated with a notebook execution. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters and an optional value string with a maximum of 256 characters.</p>",
         "RunJobFlowInput$Tags": "<p>A list of tags to associate with a cluster and propagate to Amazon EC2 instances.</p>",
         "StartNotebookExecutionInput$Tags": "<p>A list of tags associated with a notebook execution. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters and an optional value string with a maximum of 256 characters.</p>",
@@ -1911,6 +1913,11 @@
       "base": null,
       "refs": {
         "CloudWatchAlarmDefinition$Unit": "<p>The unit of measure associated with the CloudWatch metric being watched. The value specified for <code>Unit</code> must correspond to the units specified in the CloudWatch metric.</p>"
+      }
+    },
+    "UpdateStudioInput": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateStudioSessionMappingInput": {
@@ -1929,7 +1936,7 @@
       "base": null,
       "refs": {
         "InstanceFleet$TargetOnDemandCapacity": "<p>The target capacity of On-Demand units for the instance fleet, which determines how many On-Demand Instances to provision. When the instance fleet launches, Amazon EMR tries to provision On-Demand Instances as specified by <a>InstanceTypeConfig</a>. Each instance configuration has a specified <code>WeightedCapacity</code>. When an On-Demand Instance is provisioned, the <code>WeightedCapacity</code> units count toward the target capacity. Amazon EMR provisions instances until the target capacity is totally fulfilled, even if this results in an overage. For example, if there are 2 units remaining to fulfill capacity, and Amazon EMR can only provision an instance with a <code>WeightedCapacity</code> of 5 units, the instance is provisioned, and the target capacity is exceeded by 3 units. You can use <a>InstanceFleet$ProvisionedOnDemandCapacity</a> to determine the Spot capacity units that have been provisioned for the instance fleet.</p> <note> <p>If not specified or set to 0, only Spot Instances are provisioned for the instance fleet using <code>TargetSpotCapacity</code>. At least one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> should be greater than 0. For a master instance fleet, only one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> can be specified, and its value must be 1.</p> </note>",
-        "InstanceFleet$TargetSpotCapacity": "<p>The target capacity of Spot units for the instance fleet, which determines how many Spot instances to provision. When the instance fleet launches, Amazon EMR tries to provision Spot instances as specified by <a>InstanceTypeConfig</a>. Each instance configuration has a specified <code>WeightedCapacity</code>. When a Spot instance is provisioned, the <code>WeightedCapacity</code> units count toward the target capacity. Amazon EMR provisions instances until the target capacity is totally fulfilled, even if this results in an overage. For example, if there are 2 units remaining to fulfill capacity, and Amazon EMR can only provision an instance with a <code>WeightedCapacity</code> of 5 units, the instance is provisioned, and the target capacity is exceeded by 3 units. You can use <a>InstanceFleet$ProvisionedSpotCapacity</a> to determine the Spot capacity units that have been provisioned for the instance fleet.</p> <note> <p>If not specified or set to 0, only On-Demand instances are provisioned for the instance fleet. At least one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> should be greater than 0. For a master instance fleet, only one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> can be specified, and its value must be 1.</p> </note>",
+        "InstanceFleet$TargetSpotCapacity": "<p>The target capacity of Spot units for the instance fleet, which determines how many Spot Instances to provision. When the instance fleet launches, Amazon EMR tries to provision Spot Instances as specified by <a>InstanceTypeConfig</a>. Each instance configuration has a specified <code>WeightedCapacity</code>. When a Spot instance is provisioned, the <code>WeightedCapacity</code> units count toward the target capacity. Amazon EMR provisions instances until the target capacity is totally fulfilled, even if this results in an overage. For example, if there are 2 units remaining to fulfill capacity, and Amazon EMR can only provision an instance with a <code>WeightedCapacity</code> of 5 units, the instance is provisioned, and the target capacity is exceeded by 3 units. You can use <a>InstanceFleet$ProvisionedSpotCapacity</a> to determine the Spot capacity units that have been provisioned for the instance fleet.</p> <note> <p>If not specified or set to 0, only On-Demand Instances are provisioned for the instance fleet. At least one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> should be greater than 0. For a master instance fleet, only one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> can be specified, and its value must be 1.</p> </note>",
         "InstanceFleet$ProvisionedOnDemandCapacity": "<p>The number of On-Demand units that have been provisioned for the instance fleet to fulfill <code>TargetOnDemandCapacity</code>. This provisioned capacity might be less than or greater than <code>TargetOnDemandCapacity</code>.</p>",
         "InstanceFleet$ProvisionedSpotCapacity": "<p>The number of Spot units that have been provisioned for this instance fleet to fulfill <code>TargetSpotCapacity</code>. This provisioned capacity might be less than or greater than <code>TargetSpotCapacity</code>.</p>",
         "InstanceFleetConfig$TargetOnDemandCapacity": "<p>The target capacity of On-Demand units for the instance fleet, which determines how many On-Demand Instances to provision. When the instance fleet launches, Amazon EMR tries to provision On-Demand Instances as specified by <a>InstanceTypeConfig</a>. Each instance configuration has a specified <code>WeightedCapacity</code>. When an On-Demand Instance is provisioned, the <code>WeightedCapacity</code> units count toward the target capacity. Amazon EMR provisions instances until the target capacity is totally fulfilled, even if this results in an overage. For example, if there are 2 units remaining to fulfill capacity, and Amazon EMR can only provision an instance with a <code>WeightedCapacity</code> of 5 units, the instance is provisioned, and the target capacity is exceeded by 3 units.</p> <note> <p>If not specified or set to 0, only Spot Instances are provisioned for the instance fleet using <code>TargetSpotCapacity</code>. At least one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> should be greater than 0. For a master instance fleet, only one of <code>TargetSpotCapacity</code> and <code>TargetOnDemandCapacity</code> can be specified, and its value must be 1.</p> </note>",
@@ -1939,7 +1946,7 @@
         "InstanceTypeConfig$WeightedCapacity": "<p>The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in <a>InstanceFleetConfig</a>. This value is 1 for a master instance fleet, and must be 1 or greater for core and task instance fleets. Defaults to 1 if not specified. </p>",
         "InstanceTypeSpecification$WeightedCapacity": "<p>The number of units that a provisioned instance of this type provides toward fulfilling the target capacities defined in <a>InstanceFleetConfig</a>. Capacity values represent performance characteristics such as vCPUs, memory, or I/O. If not specified, the default value is 1.</p>",
         "SpotProvisioningSpecification$TimeoutDurationMinutes": "<p>The spot provisioning timeout period in minutes. If Spot Instances are not provisioned within this time period, the <code>TimeOutAction</code> is taken. Minimum value is 5 and maximum value is 1440. The timeout applies only during initial provisioning, when the cluster is first created.</p>",
-        "SpotProvisioningSpecification$BlockDurationMinutes": "<p>The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot instances applies. Valid values are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as a Spot Instance receives its instance ID. At the end of the duration, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two-minute warning before it terminates. </p>"
+        "SpotProvisioningSpecification$BlockDurationMinutes": "<p>The defined duration for Spot Instances (also known as Spot blocks) in minutes. When specified, the Spot Instance does not terminate before the defined duration expires, and defined duration pricing for Spot Instances applies. Valid values are 60, 120, 180, 240, 300, or 360. The duration period starts as soon as a Spot Instance receives its instance ID. At the end of the duration, Amazon EC2 marks the Spot Instance for termination and provides a Spot Instance termination notice, which gives the instance a two-minute warning before it terminates. </p>"
       }
     },
     "XmlString": {
@@ -1950,8 +1957,8 @@
         "CreateSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
         "CreateSecurityConfigurationOutput$Name": "<p>The name of the security configuration.</p>",
         "CreateStudioInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR Studio. The service role provides a way for Amazon EMR Studio to interoperate with other AWS services.</p>",
-        "CreateStudioInput$UserRole": "<p>The IAM user role that will be assumed by users and groups logged in to a Studio. The permissions attached to this IAM role can be scoped down for each user or group using session policies.</p>",
-        "CreateStudioInput$DefaultS3Location": "<p>The default Amazon S3 location to back up EMR Studio Workspaces and notebook files. A Studio user can select an alternative Amazon S3 location when creating a Workspace.</p>",
+        "CreateStudioInput$UserRole": "<p>The IAM user role that will be assumed by users and groups logged in to an Amazon EMR Studio. The permissions attached to this IAM role can be scoped down for each user or group using session policies.</p>",
+        "CreateStudioInput$DefaultS3Location": "<p>The default Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files. A Studio user can select an alternative Amazon S3 location when creating a Workspace.</p>",
         "CreateStudioOutput$Url": "<p>The unique Studio access URL.</p>",
         "DeleteSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
         "DescribeSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
@@ -1990,6 +1997,7 @@
         "Studio$UserRole": "<p>The name of the IAM role assumed by users logged in to the Amazon EMR Studio.</p>",
         "Studio$Url": "<p>The unique access URL of the Amazon EMR Studio.</p>",
         "Studio$DefaultS3Location": "<p>The default Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files.</p>",
+        "UpdateStudioInput$DefaultS3Location": "<p>A default Amazon S3 location to back up Workspaces and notebook files for the Amazon EMR Studio. A Studio user can select an alternative Amazon S3 location when creating a Workspace.</p>",
         "XmlStringList$member": null
       }
     },
@@ -2018,33 +2026,33 @@
         "CancelStepsInput$ClusterId": "<p>The <code>ClusterID</code> for the specified steps that will be canceled. Use <a>RunJobFlow</a> and <a>ListClusters</a> to get ClusterIDs. </p>",
         "Cluster$CustomAmiId": "<p>Available only in Amazon EMR version 5.7.0 and later. The ID of a custom Amazon EBS-backed Linux AMI if the cluster uses a custom AMI.</p>",
         "CreateStudioInput$Name": "<p>A descriptive name for the Amazon EMR Studio.</p>",
-        "CreateStudioInput$Description": "<p>A detailed description of the Studio.</p>",
+        "CreateStudioInput$Description": "<p>A detailed description of the Amazon EMR Studio.</p>",
         "CreateStudioInput$VpcId": "<p>The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with the Studio.</p>",
         "CreateStudioInput$WorkspaceSecurityGroupId": "<p>The ID of the Amazon EMR Studio Workspace security group. The Workspace security group allows outbound network traffic to resources in the Engine security group, and it must be in the same VPC specified by <code>VpcId</code>.</p>",
         "CreateStudioInput$EngineSecurityGroupId": "<p>The ID of the Amazon EMR Studio Engine security group. The Engine security group allows inbound network traffic from the Workspace security group, and it must be in the same VPC specified by <code>VpcId</code>.</p>",
         "CreateStudioOutput$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "CreateStudioSessionMappingInput$StudioId": "<p>The ID of the Amazon EMR Studio to which the user or group will be mapped.</p>",
         "CreateStudioSessionMappingInput$IdentityId": "<p>The globally unique identifier (GUID) of the user or group from the AWS SSO Identity Store. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserId</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId\">GroupId</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
-        "CreateStudioSessionMappingInput$IdentityName": "<p>The name of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
+        "CreateStudioSessionMappingInput$IdentityName": "<p>The name of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
         "CreateStudioSessionMappingInput$SessionPolicyArn": "<p>The Amazon Resource Name (ARN) for the session policy that will be applied to the user or group. Session policies refine Studio user permissions without the need to use multiple IAM user roles.</p>",
         "DeleteStudioInput$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "DeleteStudioSessionMappingInput$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "DeleteStudioSessionMappingInput$IdentityId": "<p>The globally unique identifier (GUID) of the user or group to remove from the Amazon EMR Studio. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserId</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId\">GroupId</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
-        "DeleteStudioSessionMappingInput$IdentityName": "<p>The name of the user name or group to remove from the Studio. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
+        "DeleteStudioSessionMappingInput$IdentityName": "<p>The name of the user name or group to remove from the Amazon EMR Studio. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
         "DescribeNotebookExecutionInput$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
         "DescribeStudioInput$StudioId": "<p>The Amazon EMR Studio ID.</p>",
         "ExecutionEngineConfig$Id": "<p>The unique identifier of the execution engine. For an EMR cluster, this is the cluster ID.</p>",
         "ExecutionEngineConfig$MasterInstanceSecurityGroupId": "<p>An optional unique ID of an EC2 security group to associate with the master instance of the EMR cluster for this notebook execution. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-security-groups.html\">Specifying EC2 Security Groups for EMR Notebooks</a> in the <i>EMR Management Guide</i>.</p>",
         "GetStudioSessionMappingInput$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "GetStudioSessionMappingInput$IdentityId": "<p>The globally unique identifier (GUID) of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserId</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId\">GroupId</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
-        "GetStudioSessionMappingInput$IdentityName": "<p>The name of the user or group to fetch. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
+        "GetStudioSessionMappingInput$IdentityName": "<p>The name of the user or group to fetch. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
         "InstanceFleet$Name": "<p>A friendly name for the instance fleet.</p>",
         "InstanceFleetConfig$Name": "<p>The friendly name of the instance fleet.</p>",
         "InstanceGroupConfig$Name": "<p>Friendly name given to the instance group.</p>",
-        "InstanceGroupConfig$BidPrice": "<p>The bid price for each EC2 Spot Instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
+        "InstanceGroupConfig$BidPrice": "<p>The bid price for each EC2 Spot Instance as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceGroupDetail$InstanceGroupId": "<p>Unique identifier for the instance group.</p>",
         "InstanceGroupDetail$Name": "<p>Friendly name for the instance group.</p>",
-        "InstanceGroupDetail$BidPrice": "<p>The bid price for each EC2 Spot Instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
+        "InstanceGroupDetail$BidPrice": "<p>The bid price for each EC2 Spot Instance as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
         "InstanceGroupIdsList$member": null,
         "InstanceGroupModifyConfig$InstanceGroupId": "<p>Unique ID of the instance group to modify.</p>",
         "InstanceTypeConfig$BidPrice": "<p>The bid price for each EC2 Spot Instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%. </p>",
@@ -2080,15 +2088,15 @@
         "RunJobFlowInput$AmiVersion": "<p>Applies only to Amazon EMR AMI versions 3.x and 2.x. For Amazon EMR releases 4.0 and later, <code>ReleaseLabel</code> is used. To specify a custom AMI, use <code>CustomAmiID</code>.</p>",
         "RunJobFlowInput$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
         "RunJobFlowInput$CustomAmiId": "<p>Available only in Amazon EMR version 5.7.0 and later. The ID of a custom Amazon EBS-backed Linux AMI. If specified, Amazon EMR uses this AMI when it launches cluster EC2 instances. For more information about custom AMIs in Amazon EMR, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-custom-ami.html\">Using a Custom AMI</a> in the <i>Amazon EMR Management Guide</i>. If omitted, the cluster uses the base Linux AMI for the <code>ReleaseLabel</code> specified. For Amazon EMR versions 2.x and 3.x, use <code>AmiVersion</code> instead.</p> <p>For information about creating a custom AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html\">Creating an Amazon EBS-Backed Linux AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide for Linux Instances</i>. For information about finding an AMI ID, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html\">Finding a Linux AMI</a>. </p>",
-        "RunJobFlowOutput$JobFlowId": "<p>An unique identifier for the job flow.</p>",
+        "RunJobFlowOutput$JobFlowId": "<p>A unique identifier for the job flow.</p>",
         "SecurityGroupsList$member": null,
         "SessionMappingDetail$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "SessionMappingDetail$IdentityId": "<p>The globally unique identifier (GUID) of the user or group.</p>",
-        "SessionMappingDetail$IdentityName": "<p>The name of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>.</p>",
+        "SessionMappingDetail$IdentityName": "<p>The name of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>.</p>",
         "SessionMappingDetail$SessionPolicyArn": "<p>The Amazon Resource Name (ARN) of the session policy associated with the user or group.</p>",
         "SessionMappingSummary$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "SessionMappingSummary$IdentityId": "<p>The globally unique identifier (GUID) of the user or group from the AWS SSO Identity Store.</p>",
-        "SessionMappingSummary$IdentityName": "<p>The name of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>.</p>",
+        "SessionMappingSummary$IdentityName": "<p>The name of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>.</p>",
         "SessionMappingSummary$SessionPolicyArn": "<p>The Amazon Resource Name (ARN) of the session policy associated with the user or group.</p>",
         "StartNotebookExecutionInput$EditorId": "<p>The unique identifier of the EMR Notebook to use for notebook execution.</p>",
         "StartNotebookExecutionInput$NotebookExecutionName": "<p>An optional name for the notebook execution.</p>",
@@ -2097,23 +2105,26 @@
         "StepConfig$Name": "<p>The name of the step.</p>",
         "StepIdsList$member": null,
         "StopNotebookExecutionInput$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
-        "Studio$StudioId": "<p>The ID of the EMR Studio.</p>",
-        "Studio$StudioArn": "<p>The Amazon Resource Name (ARN) of the EMR Studio.</p>",
-        "Studio$Name": "<p>The name of the EMR Studio.</p>",
-        "Studio$Description": "<p>The detailed description of the EMR Studio.</p>",
-        "Studio$VpcId": "<p>The ID of the VPC associated with the EMR Studio.</p>",
+        "Studio$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
+        "Studio$StudioArn": "<p>The Amazon Resource Name (ARN) of the Amazon EMR Studio.</p>",
+        "Studio$Name": "<p>The name of the Amazon EMR Studio.</p>",
+        "Studio$Description": "<p>The detailed description of the Amazon EMR Studio.</p>",
+        "Studio$VpcId": "<p>The ID of the VPC associated with the Amazon EMR Studio.</p>",
         "Studio$WorkspaceSecurityGroupId": "<p>The ID of the Workspace security group associated with the Amazon EMR Studio. The Workspace security group allows outbound network traffic to resources in the Engine security group and to the internet.</p>",
         "Studio$EngineSecurityGroupId": "<p>The ID of the Engine security group associated with the Amazon EMR Studio. The Engine security group allows inbound network traffic from resources in the Workspace security group.</p>",
         "StudioSummary$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "StudioSummary$Name": "<p>The name of the Amazon EMR Studio.</p>",
         "StudioSummary$VpcId": "<p>The ID of the Virtual Private Cloud (Amazon VPC) associated with the Amazon EMR Studio.</p>",
-        "StudioSummary$Description": "<p>The detailed description of the EMR Studio.</p>",
+        "StudioSummary$Description": "<p>The detailed description of the Amazon EMR Studio.</p>",
         "StudioSummary$Url": "<p>The unique access URL of the Amazon EMR Studio.</p>",
         "SupportedProductConfig$Name": "<p>The name of the product configuration.</p>",
         "SupportedProductsList$member": null,
-        "UpdateStudioSessionMappingInput$StudioId": "<p>The ID of the EMR Studio.</p>",
+        "UpdateStudioInput$StudioId": "<p>The ID of the Amazon EMR Studio to update.</p>",
+        "UpdateStudioInput$Name": "<p>A descriptive name for the Amazon EMR Studio.</p>",
+        "UpdateStudioInput$Description": "<p>A detailed description to assign to the Amazon EMR Studio.</p>",
+        "UpdateStudioSessionMappingInput$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "UpdateStudioSessionMappingInput$IdentityId": "<p>The globally unique identifier (GUID) of the user or group. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserId</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId\">GroupId</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
-        "UpdateStudioSessionMappingInput$IdentityName": "<p>The name of the user or group to update. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
+        "UpdateStudioSessionMappingInput$IdentityName": "<p>The name of the user or group to update. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName\">UserName</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName\">DisplayName</a> in the <i>AWS SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified.</p>",
         "UpdateStudioSessionMappingInput$SessionPolicyArn": "<p>The Amazon Resource Name (ARN) of the session policy to associate with the specified user or group.</p>",
         "XmlStringMaxLen256List$member": null
       }

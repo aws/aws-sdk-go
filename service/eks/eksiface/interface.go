@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Elastic Kubernetes Service.
 //    func myFunc(svc eksiface.EKSAPI) bool {
-//        // Make svc.AssociateIdentityProviderConfig request
+//        // Make svc.AssociateEncryptionConfig request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockEKSClient struct {
 //        eksiface.EKSAPI
 //    }
-//    func (m *mockEKSClient) AssociateIdentityProviderConfig(input *eks.AssociateIdentityProviderConfigInput) (*eks.AssociateIdentityProviderConfigOutput, error) {
+//    func (m *mockEKSClient) AssociateEncryptionConfig(input *eks.AssociateEncryptionConfigInput) (*eks.AssociateEncryptionConfigOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type EKSAPI interface {
+	AssociateEncryptionConfig(*eks.AssociateEncryptionConfigInput) (*eks.AssociateEncryptionConfigOutput, error)
+	AssociateEncryptionConfigWithContext(aws.Context, *eks.AssociateEncryptionConfigInput, ...request.Option) (*eks.AssociateEncryptionConfigOutput, error)
+	AssociateEncryptionConfigRequest(*eks.AssociateEncryptionConfigInput) (*request.Request, *eks.AssociateEncryptionConfigOutput)
+
 	AssociateIdentityProviderConfig(*eks.AssociateIdentityProviderConfigInput) (*eks.AssociateIdentityProviderConfigOutput, error)
 	AssociateIdentityProviderConfigWithContext(aws.Context, *eks.AssociateIdentityProviderConfigInput, ...request.Option) (*eks.AssociateIdentityProviderConfigOutput, error)
 	AssociateIdentityProviderConfigRequest(*eks.AssociateIdentityProviderConfigInput) (*request.Request, *eks.AssociateIdentityProviderConfigOutput)
