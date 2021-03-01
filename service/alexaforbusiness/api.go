@@ -6026,6 +6026,13 @@ func (c *AlexaForBusiness) ResolveRoomRequest(input *ResolveRoomInput) (req *req
 // Determines the details for the room from which a skill request was invoked.
 // This operation is used by skill developers.
 //
+// To query ResolveRoom from an Alexa skill, the skill ID needs to be authorized.
+// When the skill is using an AWS Lambda function, the skill is automatically
+// authorized when you publish your skill as a private skill to your AWS account.
+// Skills that are hosted using a custom web service must be manually authorized.
+// To get your skill authorized, contact AWS Support with your AWS account ID
+// that queries the ResolveRoom API and skill ID.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9923,6 +9930,9 @@ type CreateAddressBookInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags to be added to the specified resource. Do not provide system tags.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -9950,6 +9960,16 @@ func (s *CreateAddressBookInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9972,6 +9992,12 @@ func (s *CreateAddressBookInput) SetDescription(v string) *CreateAddressBookInpu
 // SetName sets the Name field's value.
 func (s *CreateAddressBookInput) SetName(v string) *CreateAddressBookInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAddressBookInput) SetTags(v []*Tag) *CreateAddressBookInput {
+	s.Tags = v
 	return s
 }
 
@@ -10174,6 +10200,9 @@ type CreateConferenceProviderInput struct {
 
 	// The information for PSTN conferencing.
 	PSTNDialIn *PSTNDialIn `type:"structure"`
+
+	// The tags to be added to the specified resource. Do not provide system tags.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -10219,6 +10248,16 @@ func (s *CreateConferenceProviderInput) Validate() error {
 			invalidParams.AddNested("PSTNDialIn", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10259,6 +10298,12 @@ func (s *CreateConferenceProviderInput) SetMeetingSetting(v *MeetingSetting) *Cr
 // SetPSTNDialIn sets the PSTNDialIn field's value.
 func (s *CreateConferenceProviderInput) SetPSTNDialIn(v *PSTNDialIn) *CreateConferenceProviderInput {
 	s.PSTNDialIn = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConferenceProviderInput) SetTags(v []*Tag) *CreateConferenceProviderInput {
+	s.Tags = v
 	return s
 }
 
@@ -10313,6 +10358,9 @@ type CreateContactInput struct {
 
 	// The list of SIP addresses for the contact.
 	SipAddresses []*SipAddress `type:"list"`
+
+	// The tags to be added to the specified resource. Do not provide system tags.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -10363,6 +10411,16 @@ func (s *CreateContactInput) Validate() error {
 			}
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10409,6 +10467,12 @@ func (s *CreateContactInput) SetPhoneNumbers(v []*PhoneNumber) *CreateContactInp
 // SetSipAddresses sets the SipAddresses field's value.
 func (s *CreateContactInput) SetSipAddresses(v []*SipAddress) *CreateContactInput {
 	s.SipAddresses = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContactInput) SetTags(v []*Tag) *CreateContactInput {
+	s.Tags = v
 	return s
 }
 
@@ -10520,6 +10584,9 @@ type CreateGatewayGroupInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags to be added to the specified resource. Do not provide system tags.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -10544,6 +10611,16 @@ func (s *CreateGatewayGroupInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10566,6 +10643,12 @@ func (s *CreateGatewayGroupInput) SetDescription(v string) *CreateGatewayGroupIn
 // SetName sets the Name field's value.
 func (s *CreateGatewayGroupInput) SetName(v string) *CreateGatewayGroupInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateGatewayGroupInput) SetTags(v []*Tag) *CreateGatewayGroupInput {
+	s.Tags = v
 	return s
 }
 
@@ -10771,6 +10854,9 @@ type CreateNetworkProfileInput struct {
 	// Ssid is a required field
 	Ssid *string `min:"1" type:"string" required:"true"`
 
+	// The tags to be added to the specified resource. Do not provide system tags.
+	Tags []*Tag `type:"list"`
+
 	// The root certificates of your authentication server that is installed on
 	// your devices and used to trust your authentication server during EAP negotiation.
 	TrustAnchors []*string `min:"1" type:"list"`
@@ -10812,6 +10898,16 @@ func (s *CreateNetworkProfileInput) Validate() error {
 	}
 	if s.TrustAnchors != nil && len(s.TrustAnchors) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TrustAnchors", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10871,6 +10967,12 @@ func (s *CreateNetworkProfileInput) SetSecurityType(v string) *CreateNetworkProf
 // SetSsid sets the Ssid field's value.
 func (s *CreateNetworkProfileInput) SetSsid(v string) *CreateNetworkProfileInput {
 	s.Ssid = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateNetworkProfileInput) SetTags(v []*Tag) *CreateNetworkProfileInput {
+	s.Tags = v
 	return s
 }
 
@@ -16591,8 +16693,12 @@ type RegisterAVSDeviceInput struct {
 	// ProductId is a required field
 	ProductId *string `type:"string" required:"true"`
 
-	// The ARN of the room with which to associate your AVS device.
+	// The Amazon Resource Name (ARN) of the room with which to associate your AVS
+	// device.
 	RoomArn *string `type:"string"`
+
+	// The tags to be added to the specified resource. Do not provide system tags.
+	Tags []*Tag `type:"list"`
 
 	// The code that is obtained after your AVS device has made a POST request to
 	// LWA as a part of the Device Authorization Request component of the OAuth
@@ -16630,6 +16736,16 @@ func (s *RegisterAVSDeviceInput) Validate() error {
 	if s.UserCode != nil && len(*s.UserCode) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserCode", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -16664,6 +16780,12 @@ func (s *RegisterAVSDeviceInput) SetProductId(v string) *RegisterAVSDeviceInput 
 // SetRoomArn sets the RoomArn field's value.
 func (s *RegisterAVSDeviceInput) SetRoomArn(v string) *RegisterAVSDeviceInput {
 	s.RoomArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RegisterAVSDeviceInput) SetTags(v []*Tag) *RegisterAVSDeviceInput {
+	s.Tags = v
 	return s
 }
 

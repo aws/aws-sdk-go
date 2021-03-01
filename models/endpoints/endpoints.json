@@ -3680,6 +3680,7 @@
             },
             "hostname" : "lakeformation-fips.us-west-2.amazonaws.com"
           },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -6352,6 +6353,7 @@
       },
       "transfer" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -9832,6 +9834,18 @@
         "endpoints" : {
           "us-isob-east-1" : { }
         }
+      },
+      "route53" : {
+        "endpoints" : {
+          "aws-iso-b-global" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "hostname" : "route53.sc2s.sgov.gov"
+          }
+        },
+        "isRegionalized" : false,
+        "partitionEndpoint" : "aws-iso-b-global"
       },
       "s3" : {
         "defaults" : {

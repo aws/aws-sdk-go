@@ -1566,7 +1566,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateAddressBookResponse":{
@@ -1617,7 +1618,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateConferenceProviderResponse":{
@@ -1639,7 +1641,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateContactResponse":{
@@ -1673,7 +1676,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateGatewayGroupResponse":{
@@ -1723,7 +1727,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateNetworkProfileResponse":{
@@ -3175,7 +3180,8 @@
         "ProductId":{"shape":"ProductId"},
         "DeviceSerialNumber":{"shape":"DeviceSerialNumberForAVS"},
         "AmazonId":{"shape":"AmazonId"},
-        "RoomArn":{"shape":"Arn"}
+        "RoomArn":{"shape":"Arn"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "RegisterAVSDeviceResponse":{

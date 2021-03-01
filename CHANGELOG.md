@@ -1,3 +1,14 @@
+Release v1.37.21 (2021-03-01)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/codepipeline`: Updates service API, documentation, and paginators
+  * Added a new field to the ListPipelines API to allow maximum search results of 1000
+* `service/eks`: Updates service API
+* `service/ssm`: Updates service API and documentation
+  * Add Support for Patch Manger Baseline Override parameter.
+
 Release v1.37.20 (2021-02-26)
 ===
 

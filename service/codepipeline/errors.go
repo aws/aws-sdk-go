@@ -195,7 +195,7 @@ const (
 	// ErrCodeRequestFailedException for service response error code
 	// "RequestFailedException".
 	//
-	// The request has failed because of an unknown error, exception, or failure.
+	// The request failed because of an unknown error, exception, or failure.
 	ErrCodeRequestFailedException = "RequestFailedException"
 
 	// ErrCodeResourceNotFoundException for service response error code

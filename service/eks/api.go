@@ -10007,6 +10007,9 @@ const (
 
 	// AddonIssueCodeConfigurationConflict is a AddonIssueCode enum value
 	AddonIssueCodeConfigurationConflict = "ConfigurationConflict"
+
+	// AddonIssueCodeAdmissionRequestDenied is a AddonIssueCode enum value
+	AddonIssueCodeAdmissionRequestDenied = "AdmissionRequestDenied"
 )
 
 // AddonIssueCode_Values returns all elements of the AddonIssueCode enum
@@ -10017,6 +10020,7 @@ func AddonIssueCode_Values() []string {
 		AddonIssueCodeClusterUnreachable,
 		AddonIssueCodeInsufficientNumberOfReplicas,
 		AddonIssueCodeConfigurationConflict,
+		AddonIssueCodeAdmissionRequestDenied,
 	}
 }
 
@@ -10162,6 +10166,9 @@ const (
 
 	// ErrorCodeConfigurationConflict is a ErrorCode enum value
 	ErrorCodeConfigurationConflict = "ConfigurationConflict"
+
+	// ErrorCodeAdmissionRequestDenied is a ErrorCode enum value
+	ErrorCodeAdmissionRequestDenied = "AdmissionRequestDenied"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -10181,6 +10188,7 @@ func ErrorCode_Values() []string {
 		ErrorCodeClusterUnreachable,
 		ErrorCodeInsufficientNumberOfReplicas,
 		ErrorCodeConfigurationConflict,
+		ErrorCodeAdmissionRequestDenied,
 	}
 }
 

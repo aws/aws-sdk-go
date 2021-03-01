@@ -2708,6 +2708,20 @@
       "min":3,
       "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
     },
+    "BaselineOverride":{
+      "type":"structure",
+      "members":{
+        "OperatingSystem":{"shape":"OperatingSystem"},
+        "GlobalFilters":{"shape":"PatchFilterGroup"},
+        "ApprovalRules":{"shape":"PatchRuleGroup"},
+        "ApprovedPatches":{"shape":"PatchIdList"},
+        "ApprovedPatchesComplianceLevel":{"shape":"PatchComplianceLevel"},
+        "RejectedPatches":{"shape":"PatchIdList"},
+        "RejectedPatchesAction":{"shape":"PatchAction"},
+        "ApprovedPatchesEnableNonSecurity":{"shape":"Boolean"},
+        "Sources":{"shape":"PatchSourceList"}
+      }
+    },
     "BatchErrorMessage":{"type":"string"},
     "Boolean":{"type":"boolean"},
     "CalendarNameOrARN":{"type":"string"},
@@ -4801,7 +4815,8 @@
       ],
       "members":{
         "InstanceId":{"shape":"InstanceId"},
-        "SnapshotId":{"shape":"SnapshotId"}
+        "SnapshotId":{"shape":"SnapshotId"},
+        "BaselineOverride":{"shape":"BaselineOverride"}
       }
     },
     "GetDeployablePatchSnapshotForInstanceResult":{

@@ -956,7 +956,7 @@ func (c *CodePipeline) GetActionTypeRequest(input *GetActionTypeInput) (req *req
 //
 // Returns information about an action type created for an external provider,
 // where the action is to be used by customers of the external provider. The
-// action can have been created with any supported integration model.
+// action can be created with any supported integration model.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1904,7 +1904,7 @@ func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *req
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
-			LimitToken:      "",
+			LimitToken:      "maxResults",
 			TruncationToken: "",
 		},
 	}
@@ -3732,10 +3732,10 @@ func (c *CodePipeline) UpdateActionTypeRequest(input *UpdateActionTypeInput) (re
 
 // UpdateActionType API operation for AWS CodePipeline.
 //
-// Updates an action type that has been created with any supported integration
-// model, where the action type is to be used by customers of the action type
-// provider. Use a JSON file with the action definition and UpdateActionType
-// to provide the full structure.
+// Updates an action type that was created with any supported integration model,
+// where the action type is to be used by customers of the action type provider.
+// Use a JSON file with the action definition and UpdateActionType to provide
+// the full structure.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3746,7 +3746,7 @@ func (c *CodePipeline) UpdateActionTypeRequest(input *UpdateActionTypeInput) (re
 //
 // Returned Error Types:
 //   * RequestFailedException
-//   The request has failed because of an unknown error, exception, or failure.
+//   The request failed because of an unknown error, exception, or failure.
 //
 //   * ValidationException
 //   The validation was specified in an invalid format.
@@ -5145,16 +5145,16 @@ func (s *ActionType) SetSettings(v *ActionTypeSettings) *ActionType {
 type ActionTypeArtifactDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum allowed number of artifacts that can be used with the actiontype.
-	// For example, you should specify a minimum and maximum of zero input artifacts
+	// The maximum number of artifacts that can be used with the actiontype. For
+	// example, you should specify a minimum and maximum of zero input artifacts
 	// for an action type with a category of source.
 	//
 	// MaximumCount is a required field
 	MaximumCount *int64 `locationName:"maximumCount" type:"integer" required:"true"`
 
-	// The minimum allowed number of artifacts that can be used with the action
-	// type. For example, you should specify a minimum and maximum of zero input
-	// artifacts for an action type with a category of source.
+	// The minimum number of artifacts that can be used with the action type. For
+	// example, you should specify a minimum and maximum of zero input artifacts
+	// for an action type with a category of source.
 	//
 	// MinimumCount is a required field
 	MinimumCount *int64 `locationName:"minimumCount" type:"integer" required:"true"`
@@ -5212,8 +5212,8 @@ type ActionTypeDeclaration struct {
 	// Executor is a required field
 	Executor *ActionTypeExecutor `locationName:"executor" type:"structure" required:"true"`
 
-	// The action ID is composed of the action category, owner, provider, and version
-	// of the action type to be updated.
+	// The action category, owner, provider, and version of the action type to be
+	// updated.
 	//
 	// Id is a required field
 	Id *ActionTypeIdentifier `locationName:"id" type:"structure" required:"true"`
@@ -5378,24 +5378,21 @@ type ActionTypeExecutor struct {
 	// Configuration is a required field
 	Configuration *ExecutorConfiguration `locationName:"configuration" type:"structure" required:"true"`
 
-	// The timeout in seconds for the job. An action execution can consist of multiple
-	// jobs. This is the timeout for a single job, and not for the entire action
-	// execution.
+	// The timeout in seconds for the job. An action execution can have multiple
+	// jobs. This is the timeout for a single job, not the entire action execution.
 	JobTimeout *int64 `locationName:"jobTimeout" min:"60" type:"integer"`
 
 	// The policy statement that specifies the permissions in the CodePipeline customer’s
-	// account that are needed to successfully run an action execution.
+	// account that are needed to successfully run an action.
 	//
-	// To grant permission to another account, specify the account ID as the Principal.
-	// For AWS services, the Principal is a domain-style identifier defined by the
-	// service, like codepipeline.amazonaws.com.
+	// To grant permission to another account, specify the account ID as the Principal,
+	// a domain-style identifier defined by the service, for example codepipeline.amazonaws.com.
 	//
 	// The size of the passed JSON policy document cannot exceed 2048 characters.
 	PolicyStatementsTemplate *string `locationName:"policyStatementsTemplate" min:"1" type:"string"`
 
-	// The integration model used to create and update the action type, such as
-	// the Lambda integration model. Each integration type has a related action
-	// engine, or executor. The available executor types are Lambda and JobWorker.
+	// The integration model used to create and update the action type, Lambda or
+	// JobWorker.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ExecutorType"`
@@ -5574,8 +5571,7 @@ func (s *ActionTypeId) SetVersion(v string) *ActionTypeId {
 type ActionTypeIdentifier struct {
 	_ struct{} `type:"structure"`
 
-	// A category defines what kind of action can be taken in the stage. Valid categories
-	// are limited to one of the following values:
+	// Defines what kind of action can be taken in the stage, one of the following:
 	//
 	//    * Source
 	//
@@ -5592,8 +5588,7 @@ type ActionTypeIdentifier struct {
 	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
-	// The creator of the action type being called. There are two valid values for
-	// the owner field: AWS and ThirdParty.
+	// The creator of the action type being called: AWS or ThirdParty.
 	//
 	// Owner is a required field
 	Owner *string `locationName:"owner" type:"string" required:"true"`
@@ -5732,8 +5727,7 @@ func (s *ActionTypeNotFoundException) RequestID() string {
 type ActionTypePermissions struct {
 	_ struct{} `type:"structure"`
 
-	// A list of AWS account IDs with allow access to use the action type in their
-	// pipelines.
+	// A list of AWS account IDs with access to use the action type in their pipelines.
 	//
 	// AllowedAccounts is a required field
 	AllowedAccounts []*string `locationName:"allowedAccounts" min:"1" type:"list" required:"true"`
@@ -5785,14 +5779,13 @@ type ActionTypeProperty struct {
 	// Key is a required field
 	Key *bool `locationName:"key" type:"boolean" required:"true"`
 
-	// The property name. This represents a field name that is displayed to users.
+	// The property name that is displayed to users.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// Determines whether the field value entered by the customer is logged. If
-	// noEcho is true, the value is not shown in CloudTrail logs for the action
-	// execution.
+	// Whether to omit the field value entered by the customer in the log. If true,
+	// the value is not saved in CloudTrail logs for the action execution.
 	//
 	// NoEcho is a required field
 	NoEcho *bool `locationName:"noEcho" type:"boolean" required:"true"`
@@ -7856,8 +7849,8 @@ func (s *FailureDetails) SetType(v string) *FailureDetails {
 type GetActionTypeInput struct {
 	_ struct{} `type:"structure"`
 
-	// A category defines what kind of action can be taken in the stage. Valid categories
-	// are limited to one of the following values:
+	// Defines what kind of action can be taken in the stage. The following are
+	// the valid values:
 	//
 	//    * Source
 	//
@@ -7874,9 +7867,8 @@ type GetActionTypeInput struct {
 	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
-	// The creator of an action type that has been created with any supported integration
-	// model. There are two valid values for the owner field in the action type
-	// category: AWS and ThirdParty.
+	// The creator of an action type that was created with any supported integration
+	// model. There are two valid values: AWS and ThirdParty.
 	//
 	// Owner is a required field
 	Owner *string `locationName:"owner" type:"string" required:"true"`
@@ -9956,6 +9948,11 @@ func (s *ListPipelineExecutionsOutput) SetPipelineExecutionSummaries(v []*Pipeli
 type ListPipelinesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of pipelines to return in a single call. To retrieve the
+	// remaining pipelines, make another call with the returned nextToken value.
+	// The minimum value you can specify is 1. The maximum accepted value is 1000.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
 	// An identifier that was returned from the previous list pipelines call. It
 	// can be used to return the next set of pipelines in the list.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
@@ -9974,6 +9971,9 @@ func (s ListPipelinesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListPipelinesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListPipelinesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
 	}
@@ -9982,6 +9982,12 @@ func (s *ListPipelinesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPipelinesInput) SetMaxResults(v int64) *ListPipelinesInput {
+	s.MaxResults = &v
+	return s
 }
 
 // SetNextToken sets the NextToken field's value.
@@ -12204,7 +12210,7 @@ func (s RegisterWebhookWithThirdPartyOutput) GoString() string {
 	return s.String()
 }
 
-// The request has failed because of an unknown error, exception, or failure.
+// The request failed because of an unknown error, exception, or failure.
 type RequestFailedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
