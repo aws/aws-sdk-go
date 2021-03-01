@@ -12,7 +12,7 @@
     "DeregisterWebhookWithThirdParty": "<p>Removes the connection between the webhook that was created by CodePipeline and the external tool with events to be detected. Currently supported only for webhooks that target an action type of GitHub.</p>",
     "DisableStageTransition": "<p>Prevents artifacts in a pipeline from transitioning to the next stage in the pipeline.</p>",
     "EnableStageTransition": "<p>Enables artifacts in a pipeline to transition to a stage in a pipeline.</p>",
-    "GetActionType": "<p>Returns information about an action type created for an external provider, where the action is to be used by customers of the external provider. The action can have been created with any supported integration model.</p>",
+    "GetActionType": "<p>Returns information about an action type created for an external provider, where the action is to be used by customers of the external provider. The action can be created with any supported integration model.</p>",
     "GetJobDetails": "<p>Returns information about a job. Used for custom actions only.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the S3 bucket used to store artifacts for the pipeline, if the action requires access to that S3 bucket for input or output artifacts. This API also returns any secret values defined for the action.</p> </important>",
     "GetPipeline": "<p>Returns the metadata, structure, stages, and actions of a pipeline. Can be used to return the entire structure of a pipeline in JSON format, which can then be modified and used to update the pipeline structure with <a>UpdatePipeline</a>.</p>",
     "GetPipelineExecution": "<p>Returns information about an execution of a pipeline, including details about artifacts, the pipeline execution ID, and the name, version, and status of the pipeline.</p>",
@@ -39,7 +39,7 @@
     "StopPipelineExecution": "<p>Stops the specified pipeline execution. You choose to either stop the pipeline execution by completing in-progress actions without starting subsequent actions, or by abandoning in-progress actions. While completing or abandoning in-progress actions, the pipeline execution is in a <code>Stopping</code> state. After all in-progress actions are completed or abandoned, the pipeline execution is in a <code>Stopped</code> state.</p>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource. </p>",
     "UntagResource": "<p>Removes tags from an AWS resource.</p>",
-    "UpdateActionType": "<p>Updates an action type that has been created with any supported integration model, where the action type is to be used by customers of the action type provider. Use a JSON file with the action definition and <code>UpdateActionType</code> to provide the full structure.</p>",
+    "UpdateActionType": "<p>Updates an action type that was created with any supported integration model, where the action type is to be used by customers of the action type provider. Use a JSON file with the action definition and <code>UpdateActionType</code> to provide the full structure.</p>",
     "UpdatePipeline": "<p>Updates a specified pipeline with edits or changes to its structure. Use a JSON file with the pipeline structure and <code>UpdatePipeline</code> to provide the full structure of the pipeline. Updating the pipeline increases the version number of the pipeline by 1.</p>"
   },
   "shapes": {
@@ -97,10 +97,10 @@
       "base": null,
       "refs": {
         "ActionTypeId$category": "<p>A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the following values. </p> <ul> <li> <p>Source</p> </li> <li> <p>Build</p> </li> <li> <p>Test</p> </li> <li> <p>Deploy</p> </li> <li> <p>Invoke</p> </li> <li> <p>Approval</p> </li> </ul>",
-        "ActionTypeIdentifier$category": "<p>A category defines what kind of action can be taken in the stage. Valid categories are limited to one of the following values:</p> <ul> <li> <p> <code>Source</code> </p> </li> <li> <p> <code>Build</code> </p> </li> <li> <p> <code>Test</code> </p> </li> <li> <p> <code>Deploy</code> </p> </li> <li> <p> <code>Approval</code> </p> </li> <li> <p> <code>Invoke</code> </p> </li> </ul>",
+        "ActionTypeIdentifier$category": "<p>Defines what kind of action can be taken in the stage, one of the following:</p> <ul> <li> <p> <code>Source</code> </p> </li> <li> <p> <code>Build</code> </p> </li> <li> <p> <code>Test</code> </p> </li> <li> <p> <code>Deploy</code> </p> </li> <li> <p> <code>Approval</code> </p> </li> <li> <p> <code>Invoke</code> </p> </li> </ul>",
         "CreateCustomActionTypeInput$category": "<p>The category of the custom action, such as a build action or a test action.</p>",
         "DeleteCustomActionTypeInput$category": "<p>The category of the custom action that you want to delete, such as source or deploy.</p>",
-        "GetActionTypeInput$category": "<p>A category defines what kind of action can be taken in the stage. Valid categories are limited to one of the following values:</p> <ul> <li> <p> <code>Source</code> </p> </li> <li> <p> <code>Build</code> </p> </li> <li> <p> <code>Test</code> </p> </li> <li> <p> <code>Deploy</code> </p> </li> <li> <p> <code>Approval</code> </p> </li> <li> <p> <code>Invoke</code> </p> </li> </ul>"
+        "GetActionTypeInput$category": "<p>Defines what kind of action can be taken in the stage. The following are the valid values:</p> <ul> <li> <p> <code>Source</code> </p> </li> <li> <p> <code>Build</code> </p> </li> <li> <p> <code>Test</code> </p> </li> <li> <p> <code>Deploy</code> </p> </li> <li> <p> <code>Approval</code> </p> </li> <li> <p> <code>Invoke</code> </p> </li> </ul>"
       }
     },
     "ActionConfiguration": {
@@ -115,7 +115,7 @@
       "refs": {
         "ActionConfigurationMap$key": null,
         "ActionConfigurationProperty$name": "<p>The name of the action configuration property.</p>",
-        "ActionTypeProperty$name": "<p>The property name. This represents a field name that is displayed to users.</p>",
+        "ActionTypeProperty$name": "<p>The property name that is displayed to users.</p>",
         "QueryParamMap$key": null
       }
     },
@@ -353,7 +353,7 @@
     "ActionTypeIdentifier": {
       "base": "<p>Specifies the category, owner, provider, and version of the action type.</p>",
       "refs": {
-        "ActionTypeDeclaration$id": "<p>The action ID is composed of the action category, owner, provider, and version of the action type to be updated.</p>"
+        "ActionTypeDeclaration$id": "<p>The action category, owner, provider, and version of the action type to be updated.</p>"
       }
     },
     "ActionTypeList": {
@@ -370,8 +370,8 @@
     "ActionTypeOwner": {
       "base": null,
       "refs": {
-        "ActionTypeIdentifier$owner": "<p>The creator of the action type being called. There are two valid values for the <code>owner</code> field: <code>AWS</code> and <code>ThirdParty</code>.</p>",
-        "GetActionTypeInput$owner": "<p>The creator of an action type that has been created with any supported integration model. There are two valid values for the <code>owner</code> field in the action type category: <code>AWS</code> and <code>ThirdParty</code>.</p>"
+        "ActionTypeIdentifier$owner": "<p>The creator of the action type being called: <code>AWS</code> or <code>ThirdParty</code>.</p>",
+        "GetActionTypeInput$owner": "<p>The creator of an action type that was created with any supported integration model. There are two valid values: <code>AWS</code> and <code>ThirdParty</code>.</p>"
       }
     },
     "ActionTypePermissions": {
@@ -414,7 +414,7 @@
     "AllowedAccounts": {
       "base": null,
       "refs": {
-        "ActionTypePermissions$allowedAccounts": "<p>A list of AWS account IDs with allow access to use the action type in their pipelines.</p>"
+        "ActionTypePermissions$allowedAccounts": "<p>A list of AWS account IDs with access to use the action type in their pipelines.</p>"
       }
     },
     "ApprovalAlreadyCompletedException": {
@@ -569,7 +569,7 @@
         "ActionConfigurationProperty$queryable": "<p>Indicates that the property is used with <code>PollForJobs</code>. When creating a custom action, an action can have up to one queryable property. If it has one, that property must be both required and not secret.</p> <p>If you create a pipeline with a custom action type, and that custom action contains a queryable property, the value for that configuration property is subject to other restrictions. The value must be less than or equal to twenty (20) characters. The value can contain only alphanumeric characters, underscores, and hyphens.</p>",
         "ActionTypeProperty$optional": "<p>Whether the configuration property is an optional value.</p>",
         "ActionTypeProperty$key": "<p>Whether the configuration property is a key.</p>",
-        "ActionTypeProperty$noEcho": "<p>Determines whether the field value entered by the customer is logged. If <code>noEcho</code> is <code>true</code>, the value is not shown in CloudTrail logs for the action execution.</p>",
+        "ActionTypeProperty$noEcho": "<p>Whether to omit the field value entered by the customer in the log. If <code>true</code>, the value is not saved in CloudTrail logs for the action execution.</p>",
         "ActionTypeProperty$queryable": "<p>Indicates that the property is used with polling. An action type can have up to one queryable property. If it has one, that property must be both required and not secret.</p>",
         "PutActionRevisionOutput$newRevision": "<p>Indicates whether the artifact revision was previously used in an execution of the specified pipeline.</p>",
         "StopPipelineExecutionInput$abandon": "<p>Use this option to stop the pipeline execution by abandoning, rather than finishing, in-progress actions.</p> <note> <p>This option can lead to failed or out-of-sequence tasks.</p> </note>"
@@ -775,7 +775,7 @@
     "ExecutorType": {
       "base": null,
       "refs": {
-        "ActionTypeExecutor$type": "<p>The integration model used to create and update the action type, such as the Lambda integration model. Each integration type has a related action engine, or executor. The available executor types are <code>Lambda</code> and <code>JobWorker</code>.</p>"
+        "ActionTypeExecutor$type": "<p>The integration model used to create and update the action type, <code>Lambda</code> or <code>JobWorker</code>. </p>"
       }
     },
     "ExternalExecutionId": {
@@ -997,7 +997,7 @@
     "JobTimeout": {
       "base": null,
       "refs": {
-        "ActionTypeExecutor$jobTimeout": "<p>The timeout in seconds for the job. An action execution can consist of multiple jobs. This is the timeout for a single job, and not for the entire action execution.</p>"
+        "ActionTypeExecutor$jobTimeout": "<p>The timeout in seconds for the job. An action execution can have multiple jobs. This is the timeout for a single job, not the entire action execution.</p>"
       }
     },
     "JobWorkerExecutorConfiguration": {
@@ -1127,6 +1127,12 @@
         "PollForThirdPartyJobsInput$maxBatchSize": "<p>The maximum number of jobs to return in a poll for jobs call.</p>"
       }
     },
+    "MaxPipelines": {
+      "base": null,
+      "refs": {
+        "ListPipelinesInput$maxResults": "<p>The maximum number of pipelines to return in a single call. To retrieve the remaining pipelines, make another call with the returned nextToken value. The minimum value you can specify is 1. The maximum accepted value is 1000.</p>"
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -1139,7 +1145,7 @@
     "MaximumActionTypeArtifactCount": {
       "base": null,
       "refs": {
-        "ActionTypeArtifactDetails$maximumCount": "<p>The maximum allowed number of artifacts that can be used with the actiontype. For example, you should specify a minimum and maximum of zero input artifacts for an action type with a category of <code>source</code>.</p>"
+        "ActionTypeArtifactDetails$maximumCount": "<p>The maximum number of artifacts that can be used with the actiontype. For example, you should specify a minimum and maximum of zero input artifacts for an action type with a category of <code>source</code>.</p>"
       }
     },
     "MaximumArtifactCount": {
@@ -1167,7 +1173,7 @@
     "MinimumActionTypeArtifactCount": {
       "base": null,
       "refs": {
-        "ActionTypeArtifactDetails$minimumCount": "<p>The minimum allowed number of artifacts that can be used with the action type. For example, you should specify a minimum and maximum of zero input artifacts for an action type with a category of <code>source</code>.</p>"
+        "ActionTypeArtifactDetails$minimumCount": "<p>The minimum number of artifacts that can be used with the action type. For example, you should specify a minimum and maximum of zero input artifacts for an action type with a category of <code>source</code>.</p>"
       }
     },
     "MinimumArtifactCount": {
@@ -1410,7 +1416,7 @@
     "PolicyStatementsTemplate": {
       "base": null,
       "refs": {
-        "ActionTypeExecutor$policyStatementsTemplate": "<p>The policy statement that specifies the permissions in the CodePipeline customer’s account that are needed to successfully run an action execution.</p> <p>To grant permission to another account, specify the account ID as the Principal. For AWS services, the Principal is a domain-style identifier defined by the service, like <code>codepipeline.amazonaws.com</code>.</p> <note> <p>The size of the passed JSON policy document cannot exceed 2048 characters.</p> </note>"
+        "ActionTypeExecutor$policyStatementsTemplate": "<p>The policy statement that specifies the permissions in the CodePipeline customer’s account that are needed to successfully run an action.</p> <p>To grant permission to another account, specify the account ID as the Principal, a domain-style identifier defined by the service, for example <code>codepipeline.amazonaws.com</code>.</p> <note> <p>The size of the passed JSON policy document cannot exceed 2048 characters.</p> </note>"
       }
     },
     "PollForJobsInput": {
@@ -1518,7 +1524,7 @@
       }
     },
     "RequestFailedException": {
-      "base": "<p>The request has failed because of an unknown error, exception, or failure.</p>",
+      "base": "<p>The request failed because of an unknown error, exception, or failure.</p>",
       "refs": {
       }
     },

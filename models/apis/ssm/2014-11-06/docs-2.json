@@ -256,7 +256,7 @@
     "ApproveAfterDays": {
       "base": null,
       "refs": {
-        "PatchRule$ApproveAfterDays": "<p>The number of days after the release date of each patch matched by the rule that the patch is marked as approved in the patch baseline. For example, a value of <code>7</code> means that patches are approved seven days after they are released. Not supported on Ubuntu Server.</p>"
+        "PatchRule$ApproveAfterDays": "<p>The number of days after the release date of each patch matched by the rule that the patch is marked as approved in the patch baseline. For example, a value of <code>7</code> means that patches are approved seven days after they are released. Not supported on Debian Server or Ubuntu Server.</p>"
       }
     },
     "AssociatedInstances": {
@@ -864,6 +864,12 @@
         "UpdatePatchBaselineResult$Name": "<p>The name of the patch baseline.</p>"
       }
     },
+    "BaselineOverride": {
+      "base": "<p>Defines the basic information about a patch baseline override.</p>",
+      "refs": {
+        "GetDeployablePatchSnapshotForInstanceRequest$BaselineOverride": "<p>Defines the basic information about a patch baseline override.</p>"
+      }
+    },
     "BatchErrorMessage": {
       "base": null,
       "refs": {
@@ -875,6 +881,7 @@
       "refs": {
         "Activation$Expired": "<p>Whether or not the activation is expired.</p>",
         "AutomationExecution$StepExecutionsTruncated": "<p>A boolean value that indicates if the response contains the full list of the Automation step executions. If true, use the DescribeAutomationStepExecutions API action to get the full list of step executions.</p>",
+        "BaselineOverride$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.</p>",
         "CreatePatchBaselineRequest$ApprovedPatchesEnableNonSecurity": "<p>Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.</p>",
         "DeleteDocumentRequest$Force": "<p>Some SSM document types require that you specify a <code>Force</code> flag before you can delete the document. For example, you must specify a <code>Force</code> flag to delete a document of type <code>ApplicationConfigurationSchema</code>. You can restrict access to the <code>Force</code> flag in an AWS Identity and Access Management (IAM) policy.</p>",
         "DeregisterTargetFromMaintenanceWindowRequest$Safe": "<p>The system checks if the target is being referenced by a task. If the target is being referenced, the system returns an error and does not deregister the target from the maintenance window.</p>",
@@ -3050,7 +3057,7 @@
     "InstanceInformationStringFilterKey": {
       "base": null,
       "refs": {
-        "InstanceInformationStringFilter$Key": "<p>The filter key name to describe your instances. For example:</p> <p>\"InstanceIds\"|\"AgentVersion\"|\"PingStatus\"|\"PlatformTypes\"|\"ActivationIds\"|\"IamRole\"|\"ResourceType\"|\"AssociationStatus\"|\"Tag Key\"</p>"
+        "InstanceInformationStringFilter$Key": "<p>The filter key name to describe your instances. For example:</p> <p>\"InstanceIds\"|\"AgentVersion\"|\"PingStatus\"|\"PlatformTypes\"|\"ActivationIds\"|\"IamRole\"|\"ResourceType\"|\"AssociationStatus\"|\"Tag Key\"</p> <important> <p> <code>Tag key</code> is not a valid filter. You must specify either <code>tag-key</code> or <code>tag:keyname</code> and a string. Here are some valid examples: tag-key, tag:123, tag:al!, tag:Windows. Here are some <i>invalid</i> examples: tag-keys, Tag Key, tag:, tagKey, abc:keyname.</p> </important>"
       }
     },
     "InstanceInformationStringFilterList": {
@@ -4759,6 +4766,7 @@
     "OperatingSystem": {
       "base": null,
       "refs": {
+        "BaselineOverride$OperatingSystem": "<p>The operating system rule used by the patch baseline override.</p>",
         "CreatePatchBaselineRequest$OperatingSystem": "<p>Defines the operating system the patch baseline applies to. The Default value is WINDOWS.</p>",
         "DescribePatchPropertiesRequest$OperatingSystem": "<p>The operating system type for which to list patches.</p>",
         "GetDefaultPatchBaselineRequest$OperatingSystem": "<p>Returns the default patch baseline for the specified operating system.</p>",
@@ -5333,7 +5341,7 @@
         "ParameterHistory$Name": "<p>The name of the parameter.</p>",
         "ParameterMetadata$Name": "<p>The parameter name.</p>",
         "ParameterNameList$member": null,
-        "PutParameterRequest$Name": "<p>The fully qualified name of the parameter that you want to add to the system. The fully qualified name includes the complete hierarchy of the parameter path and name. For parameters in a hierarchy, you must include a leading forward slash character (/) when you create or reference a parameter. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <p>Naming Constraints:</p> <ul> <li> <p>Parameter names are case sensitive.</p> </li> <li> <p>A parameter name must be unique within an AWS Region</p> </li> <li> <p>A parameter name can't be prefixed with \"aws\" or \"ssm\" (case-insensitive).</p> </li> <li> <p>Parameter names can include only the following symbols and letters: <code>a-zA-Z0-9_.-/</code> </p> </li> <li> <p>A parameter name can't include spaces.</p> </li> <li> <p>Parameter hierarchies are limited to a maximum depth of fifteen levels.</p> </li> </ul> <p>For additional information about valid values for parameter names, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-parameter-name-constraints.html\">About requirements and constraints for parameter names</a> in the <i>AWS Systems Manager User Guide</i>.</p> <note> <p>The maximum length constraint listed below includes capacity for additional system attributes that are not part of the name. The maximum length for a parameter name, including the full length of the parameter ARN, is 1011 characters. For example, the length of the following parameter name is 65 characters, not 20 characters:</p> <p> <code>arn:aws:ssm:us-east-2:111122223333:parameter/ExampleParameterName</code> </p> </note>"
+        "PutParameterRequest$Name": "<p>The fully qualified name of the parameter that you want to add to the system. The fully qualified name includes the complete hierarchy of the parameter path and name. For parameters in a hierarchy, you must include a leading forward slash character (/) when you create or reference a parameter. For example: <code>/Dev/DBServer/MySQL/db-string13</code> </p> <p>Naming Constraints:</p> <ul> <li> <p>Parameter names are case sensitive.</p> </li> <li> <p>A parameter name must be unique within an AWS Region</p> </li> <li> <p>A parameter name can't be prefixed with \"aws\" or \"ssm\" (case-insensitive).</p> </li> <li> <p>Parameter names can include only the following symbols and letters: <code>a-zA-Z0-9_.-</code> </p> <p>In addition, the slash character ( / ) is used to delineate hierarchies in parameter names. For example: <code>/Dev/Production/East/Project-ABC/MyParameter</code> </p> </li> <li> <p>A parameter name can't include spaces.</p> </li> <li> <p>Parameter hierarchies are limited to a maximum depth of fifteen levels.</p> </li> </ul> <p>For additional information about valid values for parameter names, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-create.html\">Creating Systems Manager parameters</a> in the <i>AWS Systems Manager User Guide</i>.</p> <note> <p>The maximum length constraint listed below includes capacity for additional system attributes that are not part of the name. The maximum length for a parameter name, including the full length of the parameter ARN, is 1011 characters. For example, the length of the following parameter name is 65 characters, not 20 characters:</p> <p> <code>arn:aws:ssm:us-east-2:111122223333:parameter/ExampleParameterName</code> </p> </note>"
       }
     },
     "PSParameterSelector": {
@@ -5629,6 +5637,7 @@
     "PatchAction": {
       "base": null,
       "refs": {
+        "BaselineOverride$RejectedPatchesAction": "<p>The action for Patch Manager to take on patches included in the RejectedPackages list. A patch can be allowed only if it is a dependency of another package, or blocked entirely along with packages that include it as a dependency.</p>",
         "CreatePatchBaselineRequest$RejectedPatchesAction": "<p>The action for Patch Manager to take on patches included in the RejectedPackages list.</p> <ul> <li> <p> <b>ALLOW_AS_DEPENDENCY</b>: A package in the Rejected patches list is installed only if it is a dependency of another package. It is considered compliant with the patch baseline, and its status is reported as <i>InstalledOther</i>. This is the default action if no option is specified.</p> </li> <li> <p> <b>BLOCK</b>: Packages in the RejectedPatches list, and packages that include them as dependencies, are not installed under any circumstances. If a package was installed before it was added to the Rejected patches list, it is considered non-compliant with the patch baseline, and its status is reported as <i>InstalledRejected</i>.</p> </li> </ul>",
         "GetPatchBaselineResult$RejectedPatchesAction": "<p>The action specified to take on patches included in the RejectedPatches list. A patch can be allowed only if it is a dependency of another package, or blocked entirely along with packages that include it as a dependency.</p>",
         "UpdatePatchBaselineRequest$RejectedPatchesAction": "<p>The action for Patch Manager to take on patches included in the RejectedPackages list.</p> <ul> <li> <p> <b>ALLOW_AS_DEPENDENCY</b>: A package in the Rejected patches list is installed only if it is a dependency of another package. It is considered compliant with the patch baseline, and its status is reported as <i>InstalledOther</i>. This is the default action if no option is specified.</p> </li> <li> <p> <b>BLOCK</b>: Packages in the RejectedPatches list, and packages that include them as dependencies, are not installed under any circumstances. If a package was installed before it was added to the Rejected patches list, it is considered non-compliant with the patch baseline, and its status is reported as <i>InstalledRejected</i>.</p> </li> </ul>",
@@ -5733,7 +5742,8 @@
     "PatchComplianceLevel": {
       "base": null,
       "refs": {
-        "CreatePatchBaselineRequest$ApprovedPatchesComplianceLevel": "<p>Defines the compliance level for approved patches. This means that if an approved patch is reported as missing, this is the severity of the compliance violation. The default value is UNSPECIFIED.</p>",
+        "BaselineOverride$ApprovedPatchesComplianceLevel": "<p>Defines the compliance level for approved patches. When an approved patch is reported as missing, this value describes the severity of the compliance violation.</p>",
+        "CreatePatchBaselineRequest$ApprovedPatchesComplianceLevel": "<p>Defines the compliance level for approved patches. When an approved patch is reported as missing, this value describes the severity of the compliance violation. The default value is UNSPECIFIED.</p>",
         "GetPatchBaselineResult$ApprovedPatchesComplianceLevel": "<p>Returns the specified compliance severity level for approved patches in the patch baseline.</p>",
         "PatchRule$ComplianceLevel": "<p>A compliance severity level for all approved patches in a patch baseline.</p>",
         "PatchStatus$ComplianceLevel": "<p>The compliance severity level for a patch.</p>",
@@ -5788,6 +5798,7 @@
     "PatchFilterGroup": {
       "base": "<p>A set of patch filters, typically used for approval rules.</p>",
       "refs": {
+        "BaselineOverride$GlobalFilters": null,
         "CreatePatchBaselineRequest$GlobalFilters": "<p>A set of global filters used to include patches in the baseline.</p>",
         "GetPatchBaselineResult$GlobalFilters": "<p>A set of global filters used to exclude patches from the baseline.</p>",
         "PatchRule$PatchFilterGroup": "<p>The patch filter group that defines the criteria for the rule.</p>",
@@ -5863,6 +5874,8 @@
     "PatchIdList": {
       "base": null,
       "refs": {
+        "BaselineOverride$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">About package name formats for approved and rejected patch lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "BaselineOverride$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">About package name formats for approved and rejected patch lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "CreatePatchBaselineRequest$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">About package name formats for approved and rejected patch lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "CreatePatchBaselineRequest$RejectedPatches": "<p>A list of explicitly rejected patches for the baseline.</p> <p>For information about accepted formats for lists of approved patches and rejected patches, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager-approved-rejected-package-name-formats.html\">About package name formats for approved and rejected patch lists</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "GetPatchBaselineResult$ApprovedPatches": "<p>A list of explicitly approved patches for the baseline.</p>",
@@ -6037,6 +6050,7 @@
     "PatchRuleGroup": {
       "base": "<p>A set of rules defining the approval rules for a patch baseline.</p>",
       "refs": {
+        "BaselineOverride$ApprovalRules": null,
         "CreatePatchBaselineRequest$ApprovalRules": "<p>A set of rules used to include patches in the baseline.</p>",
         "GetPatchBaselineResult$ApprovalRules": "<p>A set of rules used to include patches in the baseline.</p>",
         "UpdatePatchBaselineRequest$ApprovalRules": "<p>A set of rules used to include patches in the baseline.</p>",
@@ -6077,6 +6091,7 @@
     "PatchSourceList": {
       "base": null,
       "refs": {
+        "BaselineOverride$Sources": "<p>Information about the patches to use to update the instances, including target operating systems and source repositories. Applies to Linux instances only.</p>",
         "CreatePatchBaselineRequest$Sources": "<p>Information about the patches to use to update the instances, including target operating systems and source repositories. Applies to Linux instances only.</p>",
         "GetPatchBaselineResult$Sources": "<p>Information about the patches to use to update the instances, including target operating systems and source repositories. Applies to Linux instances only.</p>",
         "UpdatePatchBaselineRequest$Sources": "<p>Information about the patches to use to update the instances, including target operating systems and source repositories. Applies to Linux instances only.</p>",
@@ -6110,7 +6125,7 @@
     "PatchStringDateTime": {
       "base": null,
       "refs": {
-        "PatchRule$ApproveUntilDate": "<p>The cutoff date for auto approval of released patches. Any patches released on or before this date are installed automatically. Not supported on Ubuntu Server.</p> <p>Enter dates in the format <code>YYYY-MM-DD</code>. For example, <code>2020-12-31</code>.</p>"
+        "PatchRule$ApproveUntilDate": "<p>The cutoff date for auto approval of released patches. Any patches released on or before this date are installed automatically. Not supported on Debian Server or Ubuntu Server.</p> <p>Enter dates in the format <code>YYYY-MM-DD</code>. For example, <code>2020-12-31</code>.</p>"
       }
     },
     "PatchTitle": {
@@ -6769,10 +6784,10 @@
     "ServiceSettingId": {
       "base": null,
       "refs": {
-        "GetServiceSettingRequest$SettingId": "<p>The ID of the service setting to get. The setting ID can be <code>/ssm/parameter-store/default-parameter-tier</code>, <code>/ssm/parameter-store/high-throughput-enabled</code>, or <code>/ssm/managed-instance/activation-tier</code>.</p>",
-        "ResetServiceSettingRequest$SettingId": "<p>The Amazon Resource Name (ARN) of the service setting to reset. The setting ID can be <code>/ssm/parameter-store/default-parameter-tier</code>, <code>/ssm/parameter-store/high-throughput-enabled</code>, or <code>/ssm/managed-instance/activation-tier</code>. For example, <code>arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled</code>.</p>",
+        "GetServiceSettingRequest$SettingId": "<p>The ID of the service setting to get. The setting ID can be <code>/ssm/automation/customer-script-log-destination</code>, <code>/ssm/automation/customer-script-log-group-name</code>, <code>/ssm/parameter-store/default-parameter-tier</code>, <code>/ssm/parameter-store/high-throughput-enabled</code>, or <code>/ssm/managed-instance/activation-tier</code>.</p>",
+        "ResetServiceSettingRequest$SettingId": "<p>The Amazon Resource Name (ARN) of the service setting to reset. The setting ID can be <code>/ssm/automation/customer-script-log-destination</code>, <code>/ssm/automation/customer-script-log-group-name</code>, <code>/ssm/parameter-store/default-parameter-tier</code>, <code>/ssm/parameter-store/high-throughput-enabled</code>, or <code>/ssm/managed-instance/activation-tier</code>. For example, <code>arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled</code>.</p>",
         "ServiceSetting$SettingId": "<p>The ID of the service setting.</p>",
-        "UpdateServiceSettingRequest$SettingId": "<p>The Amazon Resource Name (ARN) of the service setting to reset. For example, <code>arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled</code>. The setting ID can be one of the following.</p> <ul> <li> <p> <code>/ssm/parameter-store/default-parameter-tier</code> </p> </li> <li> <p> <code>/ssm/parameter-store/high-throughput-enabled</code> </p> </li> <li> <p> <code>/ssm/managed-instance/activation-tier</code> </p> </li> </ul>"
+        "UpdateServiceSettingRequest$SettingId": "<p>The Amazon Resource Name (ARN) of the service setting to reset. For example, <code>arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled</code>. The setting ID can be one of the following.</p> <ul> <li> <p> <code>/ssm/automation/customer-script-log-destination</code> </p> </li> <li> <p> <code>/ssm/automation/customer-script-log-group-name</code> </p> </li> <li> <p> <code>/ssm/parameter-store/default-parameter-tier</code> </p> </li> <li> <p> <code>/ssm/parameter-store/high-throughput-enabled</code> </p> </li> <li> <p> <code>/ssm/managed-instance/activation-tier</code> </p> </li> </ul>"
       }
     },
     "ServiceSettingNotFound": {
@@ -6784,7 +6799,7 @@
       "base": null,
       "refs": {
         "ServiceSetting$SettingValue": "<p>The value of the service setting.</p>",
-        "UpdateServiceSettingRequest$SettingValue": "<p>The new value to specify for the service setting. For the <code>/ssm/parameter-store/default-parameter-tier</code> setting ID, the setting value can be one of the following.</p> <ul> <li> <p>Standard</p> </li> <li> <p>Advanced</p> </li> <li> <p>Intelligent-Tiering</p> </li> </ul> <p>For the <code>/ssm/parameter-store/high-throughput-enabled</code>, and <code>/ssm/managed-instance/activation-tier</code> setting IDs, the setting value can be true or false.</p>"
+        "UpdateServiceSettingRequest$SettingValue": "<p>The new value to specify for the service setting. For the <code>/ssm/parameter-store/default-parameter-tier</code> setting ID, the setting value can be one of the following.</p> <ul> <li> <p>Standard</p> </li> <li> <p>Advanced</p> </li> <li> <p>Intelligent-Tiering</p> </li> </ul> <p>For the <code>/ssm/parameter-store/high-throughput-enabled</code>, and <code>/ssm/managed-instance/activation-tier</code> setting IDs, the setting value can be true or false.</p> <p>For the <code>/ssm/automation/customer-script-log-destination</code> setting ID, the setting value can be CloudWatch.</p> <p>For the <code>/ssm/automation/customer-script-log-group-name</code> setting ID, the setting value can be the name of a CloudWatch Logs log group.</p>"
       }
     },
     "Session": {
@@ -7462,7 +7477,7 @@
         "GetMaintenanceWindowTaskResult$Targets": "<p>The targets where the task should run.</p>",
         "MaintenanceWindowTarget$Targets": "<p>The targets, either instances or tags.</p> <p>Specify instances using the following format:</p> <p> <code>Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;</code> </p> <p>Tags are specified using the following format:</p> <p> <code>Key=&lt;tag name&gt;,Values=&lt;tag value&gt;</code>.</p>",
         "MaintenanceWindowTask$Targets": "<p>The targets (either instances or tags). Instances are specified using Key=instanceids,Values=&lt;instanceid1&gt;,&lt;instanceid2&gt;. Tags are specified using Key=&lt;tag name&gt;,Values=&lt;tag value&gt;.</p>",
-        "RegisterTargetWithMaintenanceWindowRequest$Targets": "<p>The targets to register with the maintenance window. In other words, the instances to run commands on when the maintenance window runs.</p> <p>You can specify targets using instance IDs, resource group names, or tags that have been applied to instances.</p> <p> <b>Example 1</b>: Specify instance IDs</p> <p> <code>Key=InstanceIds,Values=<i>instance-id-1</i>,<i>instance-id-2</i>,<i>instance-id-3</i> </code> </p> <p> <b>Example 2</b>: Use tag key-pairs applied to instances</p> <p> <code>Key=tag:<i>my-tag-key</i>,Values=<i>my-tag-value-1</i>,<i>my-tag-value-2</i> </code> </p> <p> <b>Example 3</b>: Use tag-keys applied to instances</p> <p> <code>Key=tag-key,Values=<i>my-tag-key-1</i>,<i>my-tag-key-2</i> </code> </p> <p> <b>Example 4</b>: Use resource group names</p> <p> <code>Key=resource-groups:Name,Values=<i>resource-group-name</i> </code> </p> <p> <b>Example 5</b>: Use filters for resource group types</p> <p> <code>Key=resource-groups:ResourceTypeFilters,Values=<i>resource-type-1</i>,<i>resource-type-2</i> </code> </p> <note> <p>For <code>Key=resource-groups:ResourceTypeFilters</code>, specify resource types in the following format</p> <p> <code>Key=resource-groups:ResourceTypeFilters,Values=<i>AWS::EC2::INSTANCE</i>,<i>AWS::EC2::VPC</i> </code> </p> </note> <p>For more information about these examples formats, including the best use case for each one, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/mw-cli-tutorial-targets-examples.html\">Examples: Register targets with a maintenance window</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "RegisterTargetWithMaintenanceWindowRequest$Targets": "<p>The targets to register with the maintenance window. In other words, the instances to run commands on when the maintenance window runs.</p> <note> <p>If a single maintenance window task is registered with multiple targets, its task invocations occur sequentially and not in parallel. If your task must run on multiple targets at the same time, register a task for each target individually and assign each task the same priority level.</p> </note> <p>You can specify targets using instance IDs, resource group names, or tags that have been applied to instances.</p> <p> <b>Example 1</b>: Specify instance IDs</p> <p> <code>Key=InstanceIds,Values=<i>instance-id-1</i>,<i>instance-id-2</i>,<i>instance-id-3</i> </code> </p> <p> <b>Example 2</b>: Use tag key-pairs applied to instances</p> <p> <code>Key=tag:<i>my-tag-key</i>,Values=<i>my-tag-value-1</i>,<i>my-tag-value-2</i> </code> </p> <p> <b>Example 3</b>: Use tag-keys applied to instances</p> <p> <code>Key=tag-key,Values=<i>my-tag-key-1</i>,<i>my-tag-key-2</i> </code> </p> <p> <b>Example 4</b>: Use resource group names</p> <p> <code>Key=resource-groups:Name,Values=<i>resource-group-name</i> </code> </p> <p> <b>Example 5</b>: Use filters for resource group types</p> <p> <code>Key=resource-groups:ResourceTypeFilters,Values=<i>resource-type-1</i>,<i>resource-type-2</i> </code> </p> <note> <p>For <code>Key=resource-groups:ResourceTypeFilters</code>, specify resource types in the following format</p> <p> <code>Key=resource-groups:ResourceTypeFilters,Values=<i>AWS::EC2::INSTANCE</i>,<i>AWS::EC2::VPC</i> </code> </p> </note> <p>For more information about these examples formats, including the best use case for each one, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/mw-cli-tutorial-targets-examples.html\">Examples: Register targets with a maintenance window</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
         "RegisterTaskWithMaintenanceWindowRequest$Targets": "<p>The targets (either instances or maintenance window targets).</p> <note> <p>One or more targets must be specified for maintenance window Run Command-type tasks. Depending on the task, targets are optional for other maintenance window task types (Automation, AWS Lambda, and AWS Step Functions). For more information about running tasks that do not specify targets, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/maintenance-windows-targetless-tasks.html\">Registering maintenance window tasks without targets</a> in the <i>AWS Systems Manager User Guide</i>.</p> </note> <p>Specify instances using the following format: </p> <p> <code>Key=InstanceIds,Values=&lt;instance-id-1&gt;,&lt;instance-id-2&gt;</code> </p> <p>Specify maintenance window targets using the following format:</p> <p> <code>Key=WindowTargetIds,Values=&lt;window-target-id-1&gt;,&lt;window-target-id-2&gt;</code> </p>",
         "Runbook$Targets": "<p>A key-value mapping to target resources that the Runbook operation performs tasks on. Required if you specify <code>TargetParameterName</code>.</p>",
         "SendCommandRequest$Targets": "<p>An array of search criteria that targets instances using a <code>Key,Value</code> combination that you specify. Specifying targets is most useful when you want to send a command to a large number of instances at once. Using <code>Targets</code>, which accepts tag key-value pairs to identify instances, you can send a command to tens, hundreds, or thousands of instances at once.</p> <p>To send a command to a smaller number of instances, you can use the <code>InstanceIds</code> option instead.</p> <p>For more information about how to use targets, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html\">Sending commands to a fleet</a> in the <i>AWS Systems Manager User Guide</i>.</p>",

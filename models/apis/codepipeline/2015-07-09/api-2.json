@@ -1810,7 +1810,8 @@
     "ListPipelinesInput":{
       "type":"structure",
       "members":{
-        "nextToken":{"shape":"NextToken"}
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxPipelines"}
       }
     },
     "ListPipelinesOutput":{
@@ -1873,6 +1874,11 @@
     },
     "MaxBatchSize":{
       "type":"integer",
+      "min":1
+    },
+    "MaxPipelines":{
+      "type":"integer",
+      "max":1000,
       "min":1
     },
     "MaxResults":{
