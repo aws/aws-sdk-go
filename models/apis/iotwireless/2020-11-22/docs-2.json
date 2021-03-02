@@ -784,7 +784,7 @@
         "AssociateWirelessGatewayWithCertificateRequest$IotCertificateId": "<p>The ID of the certificate to associate with the wireless gateway.</p>",
         "AssociateWirelessGatewayWithCertificateResponse$IotCertificateId": "<p>The ID of the certificate associated with the wireless gateway.</p>",
         "GetWirelessGatewayCertificateResponse$IotCertificateId": "<p>The ID of the certificate associated with the wireless gateway.</p>",
-        "GetWirelessGatewayCertificateResponse$LoRaWANNetworkServerCertificateId": "<p>The ID of the certificate associated with the wireless gateway and used for LoRaWANNetworkServer endpoint.</p>"
+        "GetWirelessGatewayCertificateResponse$LoRaWANNetworkServerCertificateId": "<p>The ID of the certificate that is associated with the wireless gateway and used for the LoRaWANNetworkServer endpoint.</p>"
       }
     },
     "JoinEui": {
@@ -1090,6 +1090,13 @@
       "base": null,
       "refs": {
         "LoRaWANGatewayVersion$PackageVersion": "<p>The version of the wireless gateway firmware.</p>"
+      }
+    },
+    "PartnerAccountArn": {
+      "base": null,
+      "refs": {
+        "AssociateAwsAccountWithPartnerAccountResponse$Arn": "<p>The Amazon Resource Name of the resource.</p>",
+        "SidewalkAccountInfoWithFingerprint$Arn": "<p>The Amazon Resource Name of the resource.</p>"
       }
     },
     "PartnerAccountId": {
@@ -1398,10 +1405,12 @@
     "TagList": {
       "base": null,
       "refs": {
+        "AssociateAwsAccountWithPartnerAccountRequest$Tags": "<p>The tags attached to the specified resource. Tags are metadata that can be used to manage a resource</p>",
         "CreateDestinationRequest$Tags": "<p>The tags to attach to the new destination. Tags are metadata that can be used to manage a resource.</p>",
         "CreateDeviceProfileRequest$Tags": "<p>The tags to attach to the new device profile Tags are metadata that can be used to manage a resource.</p>",
         "CreateServiceProfileRequest$Tags": "<p>The tags to attach to the new service profile. Tags are metadata that can be used to manage a resource.</p>",
         "CreateWirelessGatewayRequest$Tags": "<p>The tags to attach to the new wireless gateway. Tags are metadata that can be used to manage a resource.</p>",
+        "CreateWirelessGatewayTaskDefinitionRequest$Tags": "<p>The tags attached to the specified resource. Tags are metadata that can be used to manage a resource</p>",
         "ListTagsForResourceResponse$Tags": "<p>The tags attached to the specified resource. Tags are metadata that can be used to manage a resource</p>",
         "TagResourceRequest$Tags": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>"
       }
@@ -1691,6 +1700,14 @@
       "base": null,
       "refs": {
         "ListWirelessGatewaysResponse$WirelessGatewayList": "<p>The ID of the wireless gateway.</p>"
+      }
+    },
+    "WirelessGatewayTaskDefinitionArn": {
+      "base": null,
+      "refs": {
+        "CreateWirelessGatewayTaskDefinitionResponse$Arn": "<p>The Amazon Resource Name of the resource.</p>",
+        "GetWirelessGatewayTaskDefinitionResponse$Arn": "<p>The Amazon Resource Name of the resource.</p>",
+        "UpdateWirelessGatewayTaskEntry$Arn": "<p>The Amazon Resource Name of the resource.</p>"
       }
     },
     "WirelessGatewayTaskDefinitionId": {

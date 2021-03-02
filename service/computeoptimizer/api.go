@@ -1012,10 +1012,16 @@ func (c *ComputeOptimizer) GetRecommendationSummariesRequest(input *GetRecommend
 //
 // Returns the optimization findings for an account.
 //
-// For example, it returns the number of Amazon EC2 instances in an account
-// that are under-provisioned, over-provisioned, or optimized. It also returns
-// the number of Auto Scaling groups in an account that are not optimized, or
-// optimized.
+// It returns the number of:
+//
+//    * Amazon EC2 instances in an account that are Underprovisioned, Overprovisioned,
+//    or Optimized.
+//
+//    * Auto Scaling groups in an account that are NotOptimized, or Optimized.
+//
+//    * Amazon EBS volumes in an account that are NotOptimized, or Optimized.
+//
+//    * Lambda functions in an account that are NotOptimized, or Optimized.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1623,13 +1629,17 @@ type EBSUtilizationMetric struct {
 
 	// The statistic of the utilization metric.
 	//
-	// The following statistics are available:
+	// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
+	// return utilization metrics using only the Maximum statistic, which is the
+	// highest value observed during the specified period.
 	//
-	//    * Average - This is the value of Sum / SampleCount during the specified
-	//    period, or the average value observed during the specified period.
-	//
-	//    * Maximum - The highest value observed during the specified period. Use
-	//    this value to determine high volumes of activity for your application.
+	// The Compute Optimizer console displays graphs for some utilization metrics
+	// using the Average statistic, which is the value of Sum / SampleCount during
+	// the specified period. For more information, see Viewing resource recommendations
+	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
+	// in the AWS Compute Optimizer User Guide. You can also get averaged utilization
+	// metric data for your resources using Amazon CloudWatch. For more information,
+	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
 	Statistic *string `locationName:"statistic" type:"string" enum:"MetricStatistic"`
 
 	// The value of the utilization metric.
@@ -3497,6 +3507,18 @@ type LambdaFunctionUtilizationMetric struct {
 	Name *string `locationName:"name" type:"string" enum:"LambdaFunctionMetricName"`
 
 	// The statistic of the utilization metric.
+	//
+	// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
+	// return utilization metrics using only the Maximum statistic, which is the
+	// highest value observed during the specified period.
+	//
+	// The Compute Optimizer console displays graphs for some utilization metrics
+	// using the Average statistic, which is the value of Sum / SampleCount during
+	// the specified period. For more information, see Viewing resource recommendations
+	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
+	// in the AWS Compute Optimizer User Guide. You can also get averaged utilization
+	// metric data for your resources using Amazon CloudWatch. For more information,
+	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
 	Statistic *string `locationName:"statistic" type:"string" enum:"LambdaFunctionMetricStatistic"`
 
 	// The value of the utilization metric.
@@ -4462,13 +4484,17 @@ type UtilizationMetric struct {
 
 	// The statistic of the utilization metric.
 	//
-	// The following statistics are available:
+	// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
+	// return utilization metrics using only the Maximum statistic, which is the
+	// highest value observed during the specified period.
 	//
-	//    * Average - This is the value of Sum / SampleCount during the specified
-	//    period, or the average value observed during the specified period.
-	//
-	//    * Maximum - The highest value observed during the specified period. Use
-	//    this value to determine high volumes of activity for your application.
+	// The Compute Optimizer console displays graphs for some utilization metrics
+	// using the Average statistic, which is the value of Sum / SampleCount during
+	// the specified period. For more information, see Viewing resource recommendations
+	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
+	// in the AWS Compute Optimizer User Guide. You can also get averaged utilization
+	// metric data for your resources using Amazon CloudWatch. For more information,
+	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
 	Statistic *string `locationName:"statistic" type:"string" enum:"MetricStatistic"`
 
 	// The value of the utilization metric.

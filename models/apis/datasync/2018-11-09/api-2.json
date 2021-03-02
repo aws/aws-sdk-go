@@ -404,6 +404,45 @@
         {"shape":"InternalException"}
       ]
     },
+    "UpdateLocationNfs":{
+      "name":"UpdateLocationNfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationNfsRequest"},
+      "output":{"shape":"UpdateLocationNfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationObjectStorage":{
+      "name":"UpdateLocationObjectStorage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationObjectStorageRequest"},
+      "output":{"shape":"UpdateLocationObjectStorageResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "UpdateLocationSmb":{
+      "name":"UpdateLocationSmb",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationSmbRequest"},
+      "output":{"shape":"UpdateLocationSmbResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "UpdateTask":{
       "name":"UpdateTask",
       "http":{
@@ -1620,6 +1659,57 @@
       }
     },
     "UpdateAgentResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationNfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"NfsSubdirectory"},
+        "OnPremConfig":{"shape":"OnPremConfig"},
+        "MountOptions":{"shape":"NfsMountOptions"}
+      }
+    },
+    "UpdateLocationNfsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationObjectStorageRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "ServerPort":{"shape":"ObjectStorageServerPort"},
+        "ServerProtocol":{"shape":"ObjectStorageServerProtocol"},
+        "Subdirectory":{"shape":"S3Subdirectory"},
+        "AccessKey":{"shape":"ObjectStorageAccessKey"},
+        "SecretKey":{"shape":"ObjectStorageSecretKey"},
+        "AgentArns":{"shape":"AgentArnList"}
+      }
+    },
+    "UpdateLocationObjectStorageResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationSmbRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"SmbSubdirectory"},
+        "User":{"shape":"SmbUser"},
+        "Domain":{"shape":"SmbDomain"},
+        "Password":{"shape":"SmbPassword"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "MountOptions":{"shape":"SmbMountOptions"}
+      }
+    },
+    "UpdateLocationSmbResponse":{
       "type":"structure",
       "members":{
       }

@@ -8095,6 +8095,13 @@ type PutEventsRequestEntry struct {
 	// The time stamp of the event, per RFC3339 (https://www.rfc-editor.org/rfc/rfc3339.txt).
 	// If no time stamp is provided, the time stamp of the PutEvents call is used.
 	Time *time.Time `type:"timestamp"`
+
+	// An AWS X-Ray trade header, which is an http header (X-Amzn-Trace-Id) that
+	// contains the trace-id associated with the event.
+	//
+	// To learn more about X-Ray trace headers, see Tracing header (https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
+	// in the AWS X-Ray Developer Guide.
+	TraceHeader *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -8112,6 +8119,9 @@ func (s *PutEventsRequestEntry) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutEventsRequestEntry"}
 	if s.EventBusName != nil && len(*s.EventBusName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EventBusName", 1))
+	}
+	if s.TraceHeader != nil && len(*s.TraceHeader) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TraceHeader", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8153,6 +8163,12 @@ func (s *PutEventsRequestEntry) SetSource(v string) *PutEventsRequestEntry {
 // SetTime sets the Time field's value.
 func (s *PutEventsRequestEntry) SetTime(v time.Time) *PutEventsRequestEntry {
 	s.Time = &v
+	return s
+}
+
+// SetTraceHeader sets the TraceHeader field's value.
+func (s *PutEventsRequestEntry) SetTraceHeader(v string) *PutEventsRequestEntry {
+	s.TraceHeader = &v
 	return s
 }
 
@@ -10291,7 +10307,23 @@ func (s *Target) SetSqsParameters(v *SqsParameters) *Target {
 type TestEventPatternInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event, in JSON format, to test against the event pattern.
+	// The event, in JSON format, to test against the event pattern. The JSON must
+	// follow the format specified in AWS Events (https://docs.aws.amazon.com/eventbridge/latest/userguide/aws-events.html),
+	// and the following fields are mandatory:
+	//
+	//    * id
+	//
+	//    * account
+	//
+	//    * source
+	//
+	//    * time
+	//
+	//    * region
+	//
+	//    * resources
+	//
+	//    * detail-type
 	//
 	// Event is a required field
 	Event *string `type:"string" required:"true"`

@@ -330,7 +330,7 @@ func (c *DataSync) CreateLocationFsxWindowsRequest(input *CreateLocationFsxWindo
 
 // CreateLocationFsxWindows API operation for AWS DataSync.
 //
-// Creates an endpoint for an Amazon FSx for Windows file system.
+// Creates an endpoint for an Amazon FSx for Windows File Server file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -746,23 +746,26 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 
 // CreateTask API operation for AWS DataSync.
 //
-// Creates a task. A task is a set of two locations (source and destination)
-// and a set of Options that you use to control the behavior of a task. If you
-// don't specify Options when you create a task, AWS DataSync populates them
-// with service defaults.
+// Creates a task.
 //
-// When you create a task, it first enters the CREATING state. During CREATING
-// AWS DataSync attempts to mount the on-premises Network File System (NFS)
-// location. The task transitions to the AVAILABLE state without waiting for
-// the AWS location to become mounted. If required, AWS DataSync mounts the
-// AWS location before each task execution.
+// A task includes a source location and a destination location, and a configuration
+// that specifies how data is transferred. A task always transfers data from
+// the source location to the destination location. The configuration specifies
+// options such as task scheduling, bandwidth limits, etc. A task is the complete
+// definition of a data transfer.
 //
-// If an agent that is associated with a source (NFS) location goes offline,
-// the task transitions to the UNAVAILABLE status. If the status of the task
-// remains in the CREATING status for more than a few minutes, it means that
-// your agent might be having trouble mounting the source NFS file system. Check
-// the task's ErrorCode and ErrorDetail. Mount issues are often caused by either
-// a misconfigured firewall or a mistyped NFS server hostname.
+// When you create a task that transfers data between AWS services in different
+// AWS Regions, one of the two locations that you specify must reside in the
+// Region where DataSync is being used. The other location must be specified
+// in a different Region.
+//
+// You can transfer data between commercial AWS Regions except for China, or
+// between AWS GovCloud (US-East and US-West) Regions.
+//
+// When you use DataSync to copy files or objects between AWS Regions, you pay
+// for data transfer between Regions. This is billed as data transfer OUT from
+// your source Region to your destination Region. For more information, see
+// Data Transfer pricing (http://aws.amazon.com/ec2/pricing/on-demand/#Data_Transfer).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1264,7 +1267,7 @@ func (c *DataSync) DescribeLocationFsxWindowsRequest(input *DescribeLocationFsxW
 // DescribeLocationFsxWindows API operation for AWS DataSync.
 //
 // Returns metadata, such as the path information about an Amazon FSx for Windows
-// location.
+// File Server location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2849,6 +2852,261 @@ func (c *DataSync) UpdateAgentWithContext(ctx aws.Context, input *UpdateAgentInp
 	return out, req.Send()
 }
 
+const opUpdateLocationNfs = "UpdateLocationNfs"
+
+// UpdateLocationNfsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationNfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationNfs for more information on using the UpdateLocationNfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLocationNfsRequest method.
+//    req, resp := client.UpdateLocationNfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationNfs
+func (c *DataSync) UpdateLocationNfsRequest(input *UpdateLocationNfsInput) (req *request.Request, output *UpdateLocationNfsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationNfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationNfsInput{}
+	}
+
+	output = &UpdateLocationNfsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationNfs API operation for AWS DataSync.
+//
+// Updates some of the parameters of a previously created location for Network
+// File System (NFS) access. For information about creating an NFS location,
+// see create-nfs-location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationNfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the AWS DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationNfs
+func (c *DataSync) UpdateLocationNfs(input *UpdateLocationNfsInput) (*UpdateLocationNfsOutput, error) {
+	req, out := c.UpdateLocationNfsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationNfsWithContext is the same as UpdateLocationNfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationNfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationNfsWithContext(ctx aws.Context, input *UpdateLocationNfsInput, opts ...request.Option) (*UpdateLocationNfsOutput, error) {
+	req, out := c.UpdateLocationNfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLocationObjectStorage = "UpdateLocationObjectStorage"
+
+// UpdateLocationObjectStorageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationObjectStorage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationObjectStorage for more information on using the UpdateLocationObjectStorage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLocationObjectStorageRequest method.
+//    req, resp := client.UpdateLocationObjectStorageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationObjectStorage
+func (c *DataSync) UpdateLocationObjectStorageRequest(input *UpdateLocationObjectStorageInput) (req *request.Request, output *UpdateLocationObjectStorageOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationObjectStorage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationObjectStorageInput{}
+	}
+
+	output = &UpdateLocationObjectStorageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationObjectStorage API operation for AWS DataSync.
+//
+// Updates some of the parameters of a previously created location for self-managed
+// object storage server access. For information about creating a self-managed
+// object storage location, see create-object-location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationObjectStorage for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the AWS DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationObjectStorage
+func (c *DataSync) UpdateLocationObjectStorage(input *UpdateLocationObjectStorageInput) (*UpdateLocationObjectStorageOutput, error) {
+	req, out := c.UpdateLocationObjectStorageRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationObjectStorageWithContext is the same as UpdateLocationObjectStorage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationObjectStorage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationObjectStorageWithContext(ctx aws.Context, input *UpdateLocationObjectStorageInput, opts ...request.Option) (*UpdateLocationObjectStorageOutput, error) {
+	req, out := c.UpdateLocationObjectStorageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLocationSmb = "UpdateLocationSmb"
+
+// UpdateLocationSmbRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationSmb operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationSmb for more information on using the UpdateLocationSmb
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLocationSmbRequest method.
+//    req, resp := client.UpdateLocationSmbRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationSmb
+func (c *DataSync) UpdateLocationSmbRequest(input *UpdateLocationSmbInput) (req *request.Request, output *UpdateLocationSmbOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationSmb,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationSmbInput{}
+	}
+
+	output = &UpdateLocationSmbOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationSmb API operation for AWS DataSync.
+//
+// Updates some of the parameters of a previously created location for Server
+// Message Block (SMB) file system access. For information about creating an
+// SMB location, see create-smb-location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationSmb for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the AWS DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationSmb
+func (c *DataSync) UpdateLocationSmb(input *UpdateLocationSmbInput) (*UpdateLocationSmbOutput, error) {
+	req, out := c.UpdateLocationSmbRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationSmbWithContext is the same as UpdateLocationSmb with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationSmb for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationSmbWithContext(ctx aws.Context, input *UpdateLocationSmbInput, opts ...request.Option) (*UpdateLocationSmbOutput, error) {
+	req, out := c.UpdateLocationSmbRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTask = "UpdateTask"
 
 // UpdateTaskRequest generates a "aws/request.Request" representing the
@@ -2981,7 +3239,7 @@ func (c *DataSync) UpdateTaskExecutionRequest(input *UpdateTaskExecutionInput) (
 //
 // You can modify bandwidth throttling for a task execution that is running
 // or queued. For more information, see Adjusting Bandwidth Throttling for a
-// Task Execution (https://docs.aws.amazon.com/datasync/latest/working-with-task-executions.html#adjust-bandwidth-throttling).
+// Task Execution (https://docs.aws.amazon.com/datasync/latest/userguide/working-with-task-executions.html#adjust-bandwidth-throttling).
 //
 // The only Option that can be modified by UpdateTaskExecution is BytesPerSecond
 // (https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond) .
@@ -3414,29 +3672,31 @@ func (s *CreateLocationEfsOutput) SetLocationArn(v string) *CreateLocationEfsOut
 type CreateLocationFsxWindowsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Windows domain that the FSx for Windows server belongs to.
+	// The name of the Windows domain that the FSx for Windows File Server belongs
+	// to.
 	Domain *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) for the FSx for Windows file system.
+	// The Amazon Resource Name (ARN) for the FSx for Windows File Server file system.
 	//
 	// FsxFilesystemArn is a required field
 	FsxFilesystemArn *string `type:"string" required:"true"`
 
 	// The password of the user who has the permissions to access files and folders
-	// in the FSx for Windows file system.
+	// in the FSx for Windows File Server file system.
 	//
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
 
 	// The Amazon Resource Names (ARNs) of the security groups that are to use to
-	// configure the FSx for Windows file system.
+	// configure the FSx for Windows File Server file system.
 	//
 	// SecurityGroupArns is a required field
 	SecurityGroupArns []*string `min:"1" type:"list" required:"true"`
 
 	// A subdirectory in the location’s path. This subdirectory in the Amazon
-	// FSx for Windows file system is used to read data from the Amazon FSx for
-	// Windows source location or write data to the FSx for Windows destination.
+	// FSx for Windows File Server file system is used to read data from the Amazon
+	// FSx for Windows File Server source location or write data to the FSx for
+	// Windows File Server destination.
 	Subdirectory *string `type:"string"`
 
 	// The key-value pair that represents a tag that you want to add to the resource.
@@ -3446,7 +3706,7 @@ type CreateLocationFsxWindowsInput struct {
 	Tags []*TagListEntry `type:"list"`
 
 	// The user who has the permissions to access files and folders in the FSx for
-	// Windows file system.
+	// Windows File Server file system.
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
@@ -3542,8 +3802,8 @@ func (s *CreateLocationFsxWindowsInput) SetUser(v string) *CreateLocationFsxWind
 type CreateLocationFsxWindowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the FSx for Windows file system location
-	// that is created.
+	// The Amazon Resource Name (ARN) of the FSx for Windows File Server file system
+	// location that is created.
 	LocationArn *string `type:"string"`
 }
 
@@ -4792,7 +5052,8 @@ func (s *DescribeLocationEfsOutput) SetLocationUri(v string) *DescribeLocationEf
 type DescribeLocationFsxWindowsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the FSx for Windows location to describe.
+	// The Amazon Resource Name (ARN) of the FSx for Windows File Server location
+	// to describe.
 	//
 	// LocationArn is a required field
 	LocationArn *string `type:"string" required:"true"`
@@ -4830,24 +5091,26 @@ func (s *DescribeLocationFsxWindowsInput) SetLocationArn(v string) *DescribeLoca
 type DescribeLocationFsxWindowsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The time that the FSx for Windows location was created.
+	// The time that the FSx for Windows File Server location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The name of the Windows domain that the FSx for Windows server belongs to.
+	// The name of the Windows domain that the FSx for Windows File Server belongs
+	// to.
 	Domain *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the FSx for Windows location that was described.
+	// The Amazon Resource Name (ARN) of the FSx for Windows File Server location
+	// that was described.
 	LocationArn *string `type:"string"`
 
-	// The URL of the FSx for Windows location that was described.
+	// The URL of the FSx for Windows File Server location that was described.
 	LocationUri *string `type:"string"`
 
 	// The Amazon Resource Names (ARNs) of the security groups that are configured
-	// for the FSx for Windows file system.
+	// for the FSx for Windows File Server file system.
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
 	// The user who has the permissions to access files and folders in the FSx for
-	// Windows file system.
+	// Windows File Server file system.
 	User *string `type:"string"`
 }
 
@@ -7682,6 +7945,379 @@ func (s UpdateAgentOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateAgentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationNfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the NFS location to update.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Represents the mount options that are available for DataSync to access an
+	// NFS location.
+	MountOptions *NfsMountOptions `type:"structure"`
+
+	// A list of Amazon Resource Names (ARNs) of agents to use for a Network File
+	// System (NFS) location.
+	OnPremConfig *OnPremConfig `type:"structure"`
+
+	// The subdirectory in the NFS file system that is used to read data from the
+	// NFS source location or write data to the NFS destination. The NFS path should
+	// be a path that's exported by the NFS server, or a subdirectory of that path.
+	// The path should be such that it can be mounted by other NFS clients in your
+	// network.
+	//
+	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
+	// from an NFS client that has access to your server. You can specify any directory
+	// that appears in the results, and any subdirectory of that directory. Ensure
+	// that the NFS export is accessible without Kerberos authentication.
+	//
+	// To transfer all the data in the folder that you specified, DataSync must
+	// have permissions to read all the data. To ensure this, either configure the
+	// NFS export with no_root_squash, or ensure that the files you want DataSync
+	// to access have permissions that allow read access for all users. Doing either
+	// option enables the agent to read the files. For the agent to access directories,
+	// you must additionally enable all execute access.
+	//
+	// If you are copying data to or from your AWS Snowcone device, see NFS Server
+	// on AWS Snowcone (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html#nfs-on-snowcone)
+	// for more information.
+	//
+	// For information about NFS export configuration, see 18.7. The /etc/exports
+	// Configuration File in the Red Hat Enterprise Linux documentation.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateLocationNfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLocationNfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationNfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationNfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.OnPremConfig != nil {
+		if err := s.OnPremConfig.Validate(); err != nil {
+			invalidParams.AddNested("OnPremConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationNfsInput) SetLocationArn(v string) *UpdateLocationNfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *UpdateLocationNfsInput) SetMountOptions(v *NfsMountOptions) *UpdateLocationNfsInput {
+	s.MountOptions = v
+	return s
+}
+
+// SetOnPremConfig sets the OnPremConfig field's value.
+func (s *UpdateLocationNfsInput) SetOnPremConfig(v *OnPremConfig) *UpdateLocationNfsInput {
+	s.OnPremConfig = v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationNfsInput) SetSubdirectory(v string) *UpdateLocationNfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationNfsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLocationNfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLocationNfsOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationObjectStorageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. The access key is used if credentials are required to access the
+	// self-managed object storage server. If your object storage requires a user
+	// name and password to authenticate, use AccessKey and SecretKey to provide
+	// the user name and password, respectively.
+	AccessKey *string `min:"8" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
+	// object storage server location.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the self-managed object storage server
+	// location to be updated.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Optional. The secret key is used if credentials are required to access the
+	// self-managed object storage server. If your object storage requires a user
+	// name and password to authenticate, use AccessKey and SecretKey to provide
+	// the user name and password, respectively.
+	SecretKey *string `min:"8" type:"string" sensitive:"true"`
+
+	// The port that your self-managed object storage server accepts inbound network
+	// traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443
+	// (HTTPS). You can specify a custom port if your self-managed object storage
+	// server requires one.
+	ServerPort *int64 `min:"1" type:"integer"`
+
+	// The protocol that the object storage server uses to communicate. Valid values
+	// are HTTP or HTTPS.
+	ServerProtocol *string `type:"string" enum:"ObjectStorageServerProtocol"`
+
+	// The subdirectory in the self-managed object storage server that is used to
+	// read data from.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateLocationObjectStorageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLocationObjectStorageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationObjectStorageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationObjectStorageInput"}
+	if s.AccessKey != nil && len(*s.AccessKey) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessKey", 8))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.SecretKey != nil && len(*s.SecretKey) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretKey", 8))
+	}
+	if s.ServerPort != nil && *s.ServerPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ServerPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessKey sets the AccessKey field's value.
+func (s *UpdateLocationObjectStorageInput) SetAccessKey(v string) *UpdateLocationObjectStorageInput {
+	s.AccessKey = &v
+	return s
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationObjectStorageInput) SetAgentArns(v []*string) *UpdateLocationObjectStorageInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationObjectStorageInput) SetLocationArn(v string) *UpdateLocationObjectStorageInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetSecretKey sets the SecretKey field's value.
+func (s *UpdateLocationObjectStorageInput) SetSecretKey(v string) *UpdateLocationObjectStorageInput {
+	s.SecretKey = &v
+	return s
+}
+
+// SetServerPort sets the ServerPort field's value.
+func (s *UpdateLocationObjectStorageInput) SetServerPort(v int64) *UpdateLocationObjectStorageInput {
+	s.ServerPort = &v
+	return s
+}
+
+// SetServerProtocol sets the ServerProtocol field's value.
+func (s *UpdateLocationObjectStorageInput) SetServerProtocol(v string) *UpdateLocationObjectStorageInput {
+	s.ServerProtocol = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationObjectStorageInput) SetSubdirectory(v string) *UpdateLocationObjectStorageInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationObjectStorageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLocationObjectStorageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLocationObjectStorageOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLocationSmbInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block
+	// (SMB) location.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The name of the Windows domain that the SMB server belongs to.
+	Domain *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the SMB location to update.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// Represents the mount options that are available for DataSync to access an
+	// SMB location.
+	MountOptions *SmbMountOptions `type:"structure"`
+
+	// The password of the user who can mount the share has the permissions to access
+	// files and folders in the SMB share.
+	Password *string `type:"string" sensitive:"true"`
+
+	// The subdirectory in the SMB file system that is used to read data from the
+	// SMB source location or write data to the SMB destination. The SMB path should
+	// be a path that's exported by the SMB server, or a subdirectory of that path.
+	// The path should be such that it can be mounted by other SMB clients in your
+	// network.
+	//
+	// Subdirectory must be specified with forward slashes. For example, /path/to/folder.
+	//
+	// To transfer all the data in the folder that you specified, DataSync must
+	// have permissions to mount the SMB share and to access all the data in that
+	// share. To ensure this, do either of the following:
+	//
+	//    * Ensure that the user/password specified belongs to the user who can
+	//    mount the share and who has the appropriate permissions for all of the
+	//    files and directories that you want DataSync to access.
+	//
+	//    * Use credentials of a member of the Backup Operators group to mount the
+	//    share.
+	//
+	// Doing either of these options enables the agent to access the data. For the
+	// agent to access directories, you must also enable all execute access.
+	Subdirectory *string `type:"string"`
+
+	// The user who can mount the share has the permissions to access files and
+	// folders in the SMB share.
+	User *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateLocationSmbInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLocationSmbInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationSmbInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationSmbInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationSmbInput) SetAgentArns(v []*string) *UpdateLocationSmbInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *UpdateLocationSmbInput) SetDomain(v string) *UpdateLocationSmbInput {
+	s.Domain = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationSmbInput) SetLocationArn(v string) *UpdateLocationSmbInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *UpdateLocationSmbInput) SetMountOptions(v *SmbMountOptions) *UpdateLocationSmbInput {
+	s.MountOptions = v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *UpdateLocationSmbInput) SetPassword(v string) *UpdateLocationSmbInput {
+	s.Password = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationSmbInput) SetSubdirectory(v string) *UpdateLocationSmbInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *UpdateLocationSmbInput) SetUser(v string) *UpdateLocationSmbInput {
+	s.User = &v
+	return s
+}
+
+type UpdateLocationSmbOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLocationSmbOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLocationSmbOutput) GoString() string {
 	return s.String()
 }
 

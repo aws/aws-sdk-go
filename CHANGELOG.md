@@ -1,3 +1,15 @@
+Release v1.37.22 (2021-03-02)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service documentation
+* `service/datasync`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * Doc only update for AWS Direct Connect that fixes several customer-reported issues
+* `service/eventbridge`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/managedblockchain`: Updates service documentation
+
 Release v1.37.21 (2021-03-01)
 ===
 

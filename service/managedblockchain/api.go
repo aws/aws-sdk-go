@@ -279,8 +279,6 @@ func (c *ManagedBlockchain) CreateNodeRequest(input *CreateNodeInput) (req *requ
 //
 // Applies to Hyperledger Fabric and Ethereum.
 //
-// Ethereum on Managed Blockchain is in preview release and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2989,7 +2987,8 @@ type CreateNetworkInput struct {
 	// Tags to assign to the network. Each tag consists of a key and optional value.
 	//
 	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	// pairs in a single request, with an overall maximum of 50 tags added to each
+	// resource.
 	//
 	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
@@ -3184,7 +3183,8 @@ type CreateNodeInput struct {
 	// Tags to assign to the node. Each tag consists of a key and optional value.
 	//
 	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	// pairs in a single request, with an overall maximum of 50 tags added to each
+	// resource.
 	//
 	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
@@ -3322,9 +3322,9 @@ type CreateProposalInput struct {
 	// Tags to assign to the proposal. Each tag consists of a key and optional value.
 	//
 	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 added to each resource.
-	// If the proposal is for a network invitation, the invitation inherits the
-	// tags added to the proposal.
+	// pairs in a single request, with an overall maximum of 50 tags added to each
+	// resource. If the proposal is for a network invitation, the invitation inherits
+	// the tags added to the proposal.
 	//
 	// For more information about tags, see Tagging Resources (https://docs.aws.amazon.com/managed-blockchain/latest/ethereum-dev/tagging-resources.html)
 	// in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources
@@ -5129,7 +5129,8 @@ type MemberConfiguration struct {
 	// in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide.
 	//
 	// When specifying tags during creation, you can specify multiple key-value
-	// pairs in a single request, with an overall maximum of 50 added to each resource.
+	// pairs in a single request, with an overall maximum of 50 tags added to each
+	// resource.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -5647,8 +5648,7 @@ func (s *Network) SetVpcEndpointServiceName(v string) *Network {
 	return s
 }
 
-// Attributes of Ethereum for a network. Ethereum on Managed Blockchain is in
-// preview release and is subject to change.
+// Attributes of Ethereum for a network.
 type NetworkEthereumAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -5759,8 +5759,7 @@ type NetworkFrameworkAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Attributes of an Ethereum network for Managed Blockchain resources participating
-	// in an Ethereum network. Ethereum on Managed Blockchain is in preview release
-	// and is subject to change.
+	// in an Ethereum network.
 	Ethereum *NetworkEthereumAttributes `type:"structure"`
 
 	// Attributes of Hyperledger Fabric for a Managed Blockchain network that uses
@@ -5930,7 +5929,6 @@ type Node struct {
 	Arn *string `min:"1" type:"string"`
 
 	// The Availability Zone in which the node exists. Required for Ethereum nodes.
-	// Ethereum on Managed Blockchain is in preview release and is subject to change.
 	AvailabilityZone *string `type:"string"`
 
 	// The date and time that the node was created.
@@ -6061,7 +6059,6 @@ type NodeConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone in which the node exists. Required for Ethereum nodes.
-	// Ethereum on Managed Blockchain is in preview release and is subject to change.
 	AvailabilityZone *string `type:"string"`
 
 	// The Amazon Managed Blockchain instance type for the node.
@@ -6128,8 +6125,7 @@ func (s *NodeConfiguration) SetStateDB(v string) *NodeConfiguration {
 	return s
 }
 
-// Attributes of an Ethereum node. Ethereum on Managed Blockchain is in preview
-// release and is subject to change.
+// Attributes of an Ethereum node.
 type NodeEthereumAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -6250,8 +6246,7 @@ type NodeFrameworkAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Attributes of Ethereum for a node on a Managed Blockchain network that uses
-	// Ethereum. Ethereum on Managed Blockchain is in preview release and is subject
-	// to change.
+	// Ethereum.
 	Ethereum *NodeEthereumAttributes `type:"structure"`
 
 	// Attributes of Hyperledger Fabric for a peer node on a Managed Blockchain
@@ -7078,7 +7073,7 @@ type TagResourceInput struct {
 
 	// The tags to assign to the specified resource. Tag values can be empty, for
 	// example, "MyTagKey" : "". You can specify multiple key-value pairs in a single
-	// request, with an overall maximum of 50 added to each resource.
+	// request, with an overall maximum of 50 tags added to each resource.
 	//
 	// Tags is a required field
 	Tags map[string]*string `type:"map" required:"true"`
