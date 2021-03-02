@@ -1285,7 +1285,7 @@
         "PutPartnerEventsRequestEntry$Detail": "<p>A valid JSON string. There is no other schema imposed. The JSON string may contain fields and nested subobjects.</p>",
         "PutPermissionRequest$Policy": "<p>A JSON string that describes the permission policy statement. You can include a <code>Policy</code> parameter in the request instead of using the <code>StatementId</code>, <code>Action</code>, <code>Principal</code>, or <code>Condition</code> parameters.</p>",
         "StringList$member": null,
-        "TestEventPatternRequest$Event": "<p>The event, in JSON format, to test against the event pattern.</p>"
+        "TestEventPatternRequest$Event": "<p>The event, in JSON format, to test against the event pattern. The JSON must follow the format specified in <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/aws-events.html\">AWS Events</a>, and the following fields are mandatory:</p> <ul> <li> <p> <code>id</code> </p> </li> <li> <p> <code>account</code> </p> </li> <li> <p> <code>source</code> </p> </li> <li> <p> <code>time</code> </p> </li> <li> <p> <code>region</code> </p> </li> <li> <p> <code>resources</code> </p> </li> <li> <p> <code>detail-type</code> </p> </li> </ul>"
       }
     },
     "StringList": {
@@ -1429,6 +1429,12 @@
         "StartReplayRequest$EventEndTime": "<p>A time stamp for the time to stop replaying events. Only events that occurred between the <code>EventStartTime</code> and <code>EventEndTime</code> are replayed.</p>",
         "StartReplayResponse$ReplayStartTime": "<p>The time at which the replay started.</p>",
         "UpdateArchiveResponse$CreationTime": "<p>The time at which the archive was updated.</p>"
+      }
+    },
+    "TraceHeader": {
+      "base": null,
+      "refs": {
+        "PutEventsRequestEntry$TraceHeader": "<p>An AWS X-Ray trade header, which is an http header (X-Amzn-Trace-Id) that contains the trace-id associated with the event.</p> <p>To learn more about X-Ray trace headers, see <a href=\"https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader\">Tracing header</a> in the AWS X-Ray Developer Guide.</p>"
       }
     },
     "TransformerInput": {

@@ -792,13 +792,13 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"([a-zA-Z0-9]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+      "pattern":"([a-zA-Z0-9_+.-@]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
     },
     "DbUser":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"([a-zA-Z0-9]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+      "pattern":"([a-zA-Z0-9_+.-@]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
     },
     "DeactivateEventSourceRequest":{
       "type":"structure",
@@ -1433,7 +1433,8 @@
         "Resources":{"shape":"EventResourceList"},
         "DetailType":{"shape":"String"},
         "Detail":{"shape":"String"},
-        "EventBusName":{"shape":"NonPartnerEventBusNameOrArn"}
+        "EventBusName":{"shape":"NonPartnerEventBusNameOrArn"},
+        "TraceHeader":{"shape":"TraceHeader"}
       }
     },
     "PutEventsRequestEntryList":{
@@ -2002,6 +2003,11 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
+    "TraceHeader":{
+      "type":"string",
+      "max":500,
+      "min":1
+    },
     "TransformerInput":{
       "type":"string",
       "max":8192,

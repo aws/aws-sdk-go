@@ -5106,6 +5106,10 @@ type AssociateAwsAccountWithPartnerAccountInput struct {
 	//
 	// Sidewalk is a required field
 	Sidewalk *SidewalkAccountInfo `type:"structure" required:"true"`
+
+	// The tags attached to the specified resource. Tags are metadata that can be
+	// used to manage a resource
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -5132,6 +5136,16 @@ func (s *AssociateAwsAccountWithPartnerAccountInput) Validate() error {
 			invalidParams.AddNested("Sidewalk", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5151,8 +5165,17 @@ func (s *AssociateAwsAccountWithPartnerAccountInput) SetSidewalk(v *SidewalkAcco
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *AssociateAwsAccountWithPartnerAccountInput) SetTags(v []*Tag) *AssociateAwsAccountWithPartnerAccountInput {
+	s.Tags = v
+	return s
+}
+
 type AssociateAwsAccountWithPartnerAccountOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name of the resource.
+	Arn *string `type:"string"`
 
 	// The Sidewalk account credentials.
 	Sidewalk *SidewalkAccountInfo `type:"structure"`
@@ -5166,6 +5189,12 @@ func (s AssociateAwsAccountWithPartnerAccountOutput) String() string {
 // GoString returns the string representation
 func (s AssociateAwsAccountWithPartnerAccountOutput) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AssociateAwsAccountWithPartnerAccountOutput) SetArn(v string) *AssociateAwsAccountWithPartnerAccountOutput {
+	s.Arn = &v
+	return s
 }
 
 // SetSidewalk sets the Sidewalk field's value.
@@ -6103,6 +6132,10 @@ type CreateWirelessGatewayTaskDefinitionInput struct {
 	// The name of the new resource.
 	Name *string `min:"1" type:"string"`
 
+	// The tags attached to the specified resource. Tags are metadata that can be
+	// used to manage a resource
+	Tags []*Tag `type:"list"`
+
 	// Information about the gateways to update.
 	Update *UpdateWirelessGatewayTaskCreate `type:"structure"`
 }
@@ -6128,6 +6161,16 @@ func (s *CreateWirelessGatewayTaskDefinitionInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Update != nil {
 		if err := s.Update.Validate(); err != nil {
@@ -6159,6 +6202,12 @@ func (s *CreateWirelessGatewayTaskDefinitionInput) SetName(v string) *CreateWire
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateWirelessGatewayTaskDefinitionInput) SetTags(v []*Tag) *CreateWirelessGatewayTaskDefinitionInput {
+	s.Tags = v
+	return s
+}
+
 // SetUpdate sets the Update field's value.
 func (s *CreateWirelessGatewayTaskDefinitionInput) SetUpdate(v *UpdateWirelessGatewayTaskCreate) *CreateWirelessGatewayTaskDefinitionInput {
 	s.Update = v
@@ -6167,6 +6216,9 @@ func (s *CreateWirelessGatewayTaskDefinitionInput) SetUpdate(v *UpdateWirelessGa
 
 type CreateWirelessGatewayTaskDefinitionOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name of the resource.
+	Arn *string `type:"string"`
 
 	// The ID of the new wireless gateway task definition.
 	Id *string `type:"string"`
@@ -6180,6 +6232,12 @@ func (s CreateWirelessGatewayTaskDefinitionOutput) String() string {
 // GoString returns the string representation
 func (s CreateWirelessGatewayTaskDefinitionOutput) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateWirelessGatewayTaskDefinitionOutput) SetArn(v string) *CreateWirelessGatewayTaskDefinitionOutput {
+	s.Arn = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -7729,8 +7787,8 @@ type GetWirelessGatewayCertificateOutput struct {
 	// The ID of the certificate associated with the wireless gateway.
 	IotCertificateId *string `min:"1" type:"string"`
 
-	// The ID of the certificate associated with the wireless gateway and used for
-	// LoRaWANNetworkServer endpoint.
+	// The ID of the certificate that is associated with the wireless gateway and
+	// used for the LoRaWANNetworkServer endpoint.
 	LoRaWANNetworkServerCertificateId *string `min:"1" type:"string"`
 }
 
@@ -8070,6 +8128,9 @@ func (s *GetWirelessGatewayTaskDefinitionInput) SetId(v string) *GetWirelessGate
 type GetWirelessGatewayTaskDefinitionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name of the resource.
+	Arn *string `type:"string"`
+
 	// Whether to automatically create tasks using this task definition for all
 	// gateways with the specified current version. If false, the task must me created
 	// by calling CreateWirelessGatewayTask.
@@ -8090,6 +8151,12 @@ func (s GetWirelessGatewayTaskDefinitionOutput) String() string {
 // GoString returns the string representation
 func (s GetWirelessGatewayTaskDefinitionOutput) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetWirelessGatewayTaskDefinitionOutput) SetArn(v string) *GetWirelessGatewayTaskDefinitionOutput {
+	s.Arn = &v
+	return s
 }
 
 // SetAutoCreateTasks sets the AutoCreateTasks field's value.
@@ -10188,6 +10255,9 @@ type SidewalkAccountInfoWithFingerprint struct {
 	// The Sidewalk Amazon ID.
 	AmazonId *string `type:"string"`
 
+	// The Amazon Resource Name of the resource.
+	Arn *string `type:"string"`
+
 	// The fingerprint of the Sidewalk application server private key.
 	Fingerprint *string `min:"64" type:"string" sensitive:"true"`
 }
@@ -10205,6 +10275,12 @@ func (s SidewalkAccountInfoWithFingerprint) GoString() string {
 // SetAmazonId sets the AmazonId field's value.
 func (s *SidewalkAccountInfoWithFingerprint) SetAmazonId(v string) *SidewalkAccountInfoWithFingerprint {
 	s.AmazonId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *SidewalkAccountInfoWithFingerprint) SetArn(v string) *SidewalkAccountInfoWithFingerprint {
+	s.Arn = &v
 	return s
 }
 
@@ -11095,6 +11171,9 @@ func (s *UpdateWirelessGatewayTaskCreate) SetUpdateDataSource(v string) *UpdateW
 type UpdateWirelessGatewayTaskEntry struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name of the resource.
+	Arn *string `type:"string"`
+
 	// The ID of the new wireless gateway task entry.
 	Id *string `type:"string"`
 
@@ -11110,6 +11189,12 @@ func (s UpdateWirelessGatewayTaskEntry) String() string {
 // GoString returns the string representation
 func (s UpdateWirelessGatewayTaskEntry) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateWirelessGatewayTaskEntry) SetArn(v string) *UpdateWirelessGatewayTaskEntry {
+	s.Arn = &v
+	return s
 }
 
 // SetId sets the Id field's value.
