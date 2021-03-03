@@ -161,6 +161,10 @@ type WellArchitectedAPI interface {
 	ListShareInvitationsPages(*wellarchitected.ListShareInvitationsInput, func(*wellarchitected.ListShareInvitationsOutput, bool) bool) error
 	ListShareInvitationsPagesWithContext(aws.Context, *wellarchitected.ListShareInvitationsInput, func(*wellarchitected.ListShareInvitationsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*wellarchitected.ListTagsForResourceInput) (*wellarchitected.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *wellarchitected.ListTagsForResourceInput, ...request.Option) (*wellarchitected.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*wellarchitected.ListTagsForResourceInput) (*request.Request, *wellarchitected.ListTagsForResourceOutput)
+
 	ListWorkloadShares(*wellarchitected.ListWorkloadSharesInput) (*wellarchitected.ListWorkloadSharesOutput, error)
 	ListWorkloadSharesWithContext(aws.Context, *wellarchitected.ListWorkloadSharesInput, ...request.Option) (*wellarchitected.ListWorkloadSharesOutput, error)
 	ListWorkloadSharesRequest(*wellarchitected.ListWorkloadSharesInput) (*request.Request, *wellarchitected.ListWorkloadSharesOutput)
@@ -174,6 +178,14 @@ type WellArchitectedAPI interface {
 
 	ListWorkloadsPages(*wellarchitected.ListWorkloadsInput, func(*wellarchitected.ListWorkloadsOutput, bool) bool) error
 	ListWorkloadsPagesWithContext(aws.Context, *wellarchitected.ListWorkloadsInput, func(*wellarchitected.ListWorkloadsOutput, bool) bool, ...request.Option) error
+
+	TagResource(*wellarchitected.TagResourceInput) (*wellarchitected.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *wellarchitected.TagResourceInput, ...request.Option) (*wellarchitected.TagResourceOutput, error)
+	TagResourceRequest(*wellarchitected.TagResourceInput) (*request.Request, *wellarchitected.TagResourceOutput)
+
+	UntagResource(*wellarchitected.UntagResourceInput) (*wellarchitected.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *wellarchitected.UntagResourceInput, ...request.Option) (*wellarchitected.UntagResourceOutput, error)
+	UntagResourceRequest(*wellarchitected.UntagResourceInput) (*request.Request, *wellarchitected.UntagResourceOutput)
 
 	UpdateAnswer(*wellarchitected.UpdateAnswerInput) (*wellarchitected.UpdateAnswerOutput, error)
 	UpdateAnswerWithContext(aws.Context, *wellarchitected.UpdateAnswerInput, ...request.Option) (*wellarchitected.UpdateAnswerOutput, error)

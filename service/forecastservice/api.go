@@ -3326,6 +3326,110 @@ func (c *ForecastService) ListTagsForResourceWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opStopResource = "StopResource"
+
+// StopResourceRequest generates a "aws/request.Request" representing the
+// client's request for the StopResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopResource for more information on using the StopResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopResourceRequest method.
+//    req, resp := client.StopResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/StopResource
+func (c *ForecastService) StopResourceRequest(input *StopResourceInput) (req *request.Request, output *StopResourceOutput) {
+	op := &request.Operation{
+		Name:       opStopResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopResourceInput{}
+	}
+
+	output = &StopResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopResource API operation for Amazon Forecast Service.
+//
+// Stops a resource.
+//
+// The resource undergoes the following states: CREATE_STOPPING and CREATE_STOPPED.
+// You cannot resume a resource once it has been stopped.
+//
+// This operation can be applied to the following resources (and their corresponding
+// child resources):
+//
+//    * Dataset Import Job
+//
+//    * Predictor Job
+//
+//    * Forecast Job
+//
+//    * Forecast Export Job
+//
+//    * Predictor Backtest Export Job
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation StopResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * LimitExceededException
+//   The limit on the number of resources per account has been exceeded.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/StopResource
+func (c *ForecastService) StopResource(input *StopResourceInput) (*StopResourceOutput, error) {
+	req, out := c.StopResourceRequest(input)
+	return out, req.Send()
+}
+
+// StopResourceWithContext is the same as StopResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) StopResourceWithContext(ctx aws.Context, input *StopResourceInput, opts ...request.Option) (*StopResourceOutput, error) {
+	req, out := c.StopResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -5239,12 +5343,16 @@ type DatasetImportJobSummary struct {
 	// The name of the dataset import job.
 	DatasetImportJobName *string `min:"1" type:"string"`
 
-	// The last time that the dataset was modified. The time depends on the status
-	// of the job, as follows:
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
 	//
-	//    * CREATE_PENDING - The same time as CreationTime.
+	//    * CREATE_PENDING - The CreationTime.
 	//
 	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
 	//
 	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
@@ -5252,15 +5360,15 @@ type DatasetImportJobSummary struct {
 	// If an error occurred, an informational message about the error.
 	Message *string `type:"string"`
 
-	// The status of the dataset import job. The status is reflected in the status
-	// of the dataset. For example, when the import job status is CREATE_IN_PROGRESS,
-	// the status of the dataset is UPDATE_IN_PROGRESS. States include:
+	// The status of the dataset import job. States include:
 	//
 	//    * ACTIVE
 	//
 	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
+	//
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	Status *string `type:"string"`
 }
 
@@ -5955,12 +6063,16 @@ type DescribeDatasetImportJobOutput struct {
 	// The format of the geolocation attribute. Valid Values:"LAT_LONG" and "CC_POSTALCODE".
 	GeolocationFormat *string `type:"string"`
 
-	// The last time that the dataset was modified. The time depends on the status
-	// of the job, as follows:
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
 	//
-	//    * CREATE_PENDING - The same time as CreationTime.
+	//    * CREATE_PENDING - The CreationTime.
 	//
 	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
 	//
 	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
@@ -5968,15 +6080,15 @@ type DescribeDatasetImportJobOutput struct {
 	// If an error occurred, an informational message about the error.
 	Message *string `type:"string"`
 
-	// The status of the dataset import job. The status is reflected in the status
-	// of the dataset. For example, when the import job status is CREATE_IN_PROGRESS,
-	// the status of the dataset is UPDATE_IN_PROGRESS. States include:
+	// The status of the dataset import job. States include:
 	//
 	//    * ACTIVE
 	//
 	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
+	//
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	Status *string `type:"string"`
 
 	// The single time zone applied to every item in the dataset
@@ -6315,7 +6427,18 @@ type DescribeForecastExportJobOutput struct {
 	// The name of the forecast export job.
 	ForecastExportJobName *string `min:"1" type:"string"`
 
-	// When the last successful export job finished.
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// If an error occurred, an informational message about the error.
@@ -6326,6 +6449,8 @@ type DescribeForecastExportJobOutput struct {
 	//    * ACTIVE
 	//
 	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
+	//
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	//
@@ -6448,10 +6573,18 @@ type DescribeForecastOutput struct {
 	// The quantiles at which probabilistic forecasts were generated.
 	ForecastTypes []*string `min:"1" type:"list"`
 
-	// Initially, the same as CreationTime (status is CREATE_PENDING). Updated when
-	// inference (creating the forecast) starts (status changed to CREATE_IN_PROGRESS),
-	// and when inference is complete (status changed to ACTIVE) or fails (status
-	// changed to CREATE_FAILED).
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// If an error occurred, an informational message about the error.
@@ -6465,6 +6598,8 @@ type DescribeForecastOutput struct {
 	//    * ACTIVE
 	//
 	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
+	//
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	//
@@ -6586,7 +6721,18 @@ type DescribePredictorBacktestExportJobOutput struct {
 	// and an AWS Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
-	// When the last successful export job finished.
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// Information about any errors that may have occurred during the backtest export.
@@ -6605,17 +6751,11 @@ type DescribePredictorBacktestExportJobOutput struct {
 	//
 	//    * ACTIVE
 	//
-	//    * CREATE_PENDING
+	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
 	//
-	//    * CREATE_IN_PROGRESS
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
-	//    * CREATE_FAILED
-	//
-	//    * DELETE_PENDING
-	//
-	//    * DELETE_IN_PROGRESS
-	//
-	//    * DELETE_FAILED
+	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	Status *string `type:"string"`
 }
 
@@ -6758,10 +6898,18 @@ type DescribePredictorOutput struct {
 	// Describes the dataset group that contains the data to use to train the predictor.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
-	// Initially, the same as CreationTime (when the status is CREATE_PENDING).
-	// This value is updated when training starts (when the status changes to CREATE_IN_PROGRESS),
-	// and when training has completed (when the status changes to ACTIVE) or fails
-	// (when the status changes to CREATE_FAILED).
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// If an error occurred, an informational message about the error.
@@ -6792,7 +6940,7 @@ type DescribePredictorOutput struct {
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	//
-	//    * UPDATE_PENDING, UPDATE_IN_PROGRESS, UPDATE_FAILED
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
 	// The Status of the predictor must be ACTIVE before you can use the predictor
 	// to create a forecast.
@@ -7495,7 +7643,18 @@ type ForecastExportJobSummary struct {
 	// The name of the forecast export job.
 	ForecastExportJobName *string `min:"1" type:"string"`
 
-	// When the last successful export job finished.
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// If an error occurred, an informational message about the error.
@@ -7506,6 +7665,8 @@ type ForecastExportJobSummary struct {
 	//    * ACTIVE
 	//
 	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
+	//
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	//
@@ -7585,10 +7746,18 @@ type ForecastSummary struct {
 	// The name of the forecast.
 	ForecastName *string `min:"1" type:"string"`
 
-	// Initially, the same as CreationTime (status is CREATE_PENDING). Updated when
-	// inference (creating the forecast) starts (status changed to CREATE_IN_PROGRESS),
-	// and when inference is complete (status changed to ACTIVE) or fails (status
-	// changed to CREATE_FAILED).
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// If an error occurred, an informational message about the error.
@@ -7602,6 +7771,8 @@ type ForecastSummary struct {
 	//    * ACTIVE
 	//
 	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
+	//
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	//
@@ -8667,7 +8838,7 @@ type ListPredictorBacktestExportJobsInput struct {
 	//    specify IS. To exclude matching predictor backtest export jobs, specify
 	//    IS_NOT.
 	//
-	//    * Key - The name of the parameter to filter on. Valid values are PredictorBacktestExportJobArn
+	//    * Key - The name of the parameter to filter on. Valid values are PredictorArn
 	//    and Status.
 	//
 	//    * Value - The value to match.
@@ -9111,7 +9282,18 @@ type PredictorBacktestExportJobSummary struct {
 	// and an AWS Key Management Service (KMS) key (optional).
 	Destination *DataDestination `type:"structure"`
 
-	// When the last successful export job finished.
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// Information about any errors that may have occurred during the backtest export.
@@ -9127,17 +9309,11 @@ type PredictorBacktestExportJobSummary struct {
 	//
 	//    * ACTIVE
 	//
-	//    * CREATE_PENDING
+	//    * CREATE_PENDING, CREATE_IN_PROGRESS, CREATE_FAILED
 	//
-	//    * CREATE_IN_PROGRESS
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
-	//    * CREATE_FAILED
-	//
-	//    * DELETE_PENDING
-	//
-	//    * DELETE_IN_PROGRESS
-	//
-	//    * DELETE_FAILED
+	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	Status *string `type:"string"`
 }
 
@@ -9269,9 +9445,18 @@ type PredictorSummary struct {
 	// used to train the predictor.
 	DatasetGroupArn *string `type:"string"`
 
-	// Initially, the same as CreationTime (status is CREATE_PENDING). Updated when
-	// training starts (status changed to CREATE_IN_PROGRESS), and when training
-	// is complete (status changed to ACTIVE) or fails (status changed to CREATE_FAILED).
+	// The last time the resource was modified. The timestamp depends on the status
+	// of the job:
+	//
+	//    * CREATE_PENDING - The CreationTime.
+	//
+	//    * CREATE_IN_PROGRESS - The current timestamp.
+	//
+	//    * CREATE_STOPPING - The current timestamp.
+	//
+	//    * CREATE_STOPPED - When the job stopped.
+	//
+	//    * ACTIVE or CREATE_FAILED - When the job finished or failed.
 	LastModificationTime *time.Time `type:"timestamp"`
 
 	// If an error occurred, an informational message about the error.
@@ -9291,7 +9476,7 @@ type PredictorSummary struct {
 	//
 	//    * DELETE_PENDING, DELETE_IN_PROGRESS, DELETE_FAILED
 	//
-	//    * UPDATE_PENDING, UPDATE_IN_PROGRESS, UPDATE_FAILED
+	//    * CREATE_STOPPING, CREATE_STOPPED
 	//
 	// The Status of the predictor must be ACTIVE before you can use the predictor
 	// to create a forecast.
@@ -9773,6 +9958,60 @@ func (s *Statistics) SetMin(v string) *Statistics {
 func (s *Statistics) SetStddev(v float64) *Statistics {
 	s.Stddev = &v
 	return s
+}
+
+type StopResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that identifies the resource to stop. The
+	// supported ARNs are DatasetImportJobArn, PredictorArn, PredictorBacktestExportJobArn,
+	// ForecastArn, and ForecastExportJobArn.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *StopResourceInput) SetResourceArn(v string) *StopResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type StopResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a supplementary feature of a dataset group. This object is part

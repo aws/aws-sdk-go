@@ -5329,6 +5329,11 @@ type BuildBatch struct {
 	// The current phase of the batch build.
 	CurrentPhase *string `locationName:"currentPhase" type:"string"`
 
+	// Specifies if session debugging is enabled for this batch build. For more
+	// information, see Viewing a running build in Session Manager (https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html).
+	// Batch session debugging is not supported for matrix batch builds.
+	DebugSessionEnabled *bool `locationName:"debugSessionEnabled" type:"boolean"`
+
 	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
 	// used for encrypting the batch build output artifacts.
 	//
@@ -5500,6 +5505,12 @@ func (s *BuildBatch) SetComplete(v bool) *BuildBatch {
 // SetCurrentPhase sets the CurrentPhase field's value.
 func (s *BuildBatch) SetCurrentPhase(v string) *BuildBatch {
 	s.CurrentPhase = &v
+	return s
+}
+
+// SetDebugSessionEnabled sets the DebugSessionEnabled field's value.
+func (s *BuildBatch) SetDebugSessionEnabled(v bool) *BuildBatch {
+	s.DebugSessionEnabled = &v
 	return s
 }
 
@@ -10995,7 +11006,8 @@ type ProjectSource struct {
 	// provider.
 	ReportBuildStatus *bool `locationName:"reportBuildStatus" type:"boolean"`
 
-	// An identifier for this project source.
+	// An identifier for this project source. The identifier can only contain alphanumeric
+	// characters and underscores, and must be less than 128 characters in length.
 	SourceIdentifier *string `locationName:"sourceIdentifier" type:"string"`
 
 	// The type of repository that contains the source code to be built. Valid values
@@ -11015,7 +11027,7 @@ type ProjectSource struct {
 	//
 	//    * NO_SOURCE: The project does not have input source code.
 	//
-	//    * S3: The source code is in an Amazon S3 input bucket.
+	//    * S3: The source code is in an Amazon S3 bucket.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"SourceType"`
@@ -11118,7 +11130,9 @@ func (s *ProjectSource) SetType(v string) *ProjectSource {
 type ProjectSourceVersion struct {
 	_ struct{} `type:"structure"`
 
-	// An identifier for a source in the build project.
+	// An identifier for a source in the build project. The identifier can only
+	// contain alphanumeric characters and underscores, and must be less than 128
+	// characters in length.
 	//
 	// SourceIdentifier is a required field
 	SourceIdentifier *string `locationName:"sourceIdentifier" type:"string" required:"true"`
@@ -12352,6 +12366,11 @@ type StartBuildBatchInput struct {
 	// in the batch build project.
 	ComputeTypeOverride *string `locationName:"computeTypeOverride" type:"string" enum:"ComputeType"`
 
+	// Specifies if session debugging is enabled for this batch build. For more
+	// information, see Viewing a running build in Session Manager (https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html).
+	// Batch session debugging is not supported for matrix batch builds.
+	DebugSessionEnabled *bool `locationName:"debugSessionEnabled" type:"boolean"`
+
 	// The AWS Key Management Service (AWS KMS) customer master key (CMK) that overrides
 	// the one specified in the batch build project. The CMK key encrypts the build
 	// output artifacts.
@@ -12663,6 +12682,12 @@ func (s *StartBuildBatchInput) SetCertificateOverride(v string) *StartBuildBatch
 // SetComputeTypeOverride sets the ComputeTypeOverride field's value.
 func (s *StartBuildBatchInput) SetComputeTypeOverride(v string) *StartBuildBatchInput {
 	s.ComputeTypeOverride = &v
+	return s
+}
+
+// SetDebugSessionEnabled sets the DebugSessionEnabled field's value.
+func (s *StartBuildBatchInput) SetDebugSessionEnabled(v bool) *StartBuildBatchInput {
+	s.DebugSessionEnabled = &v
 	return s
 }
 

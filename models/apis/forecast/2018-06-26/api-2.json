@@ -443,6 +443,20 @@
         {"shape":"InvalidInputException"}
       ]
     },
+    "StopResource":{
+      "name":"StopResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopResourceRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -1541,6 +1555,13 @@
     "Status":{
       "type":"string",
       "max":256
+    },
+    "StopResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"Arn"}
+      }
     },
     "String":{
       "type":"string",

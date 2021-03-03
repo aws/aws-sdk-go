@@ -1,3 +1,21 @@
+Release v1.37.23 (2021-03-03)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Adds 2 new APIs to add and retrieve account configuration in AWS Certificate Manager.
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now supports Session Manager debugging for batch builds.
+* `service/es`: Updates service API and documentation
+  * AWS ElasticSearch Feature : Support for adding tags in elastic search domain during domain creation
+* `service/events`: Updates service API and documentation
+  * Adds TraceHeader to PutEventsRequestEntry to support AWS X-Ray trace-ids on events generated using the PutEvents operation.
+* `service/forecast`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/secretsmanager`: Updates service API and documentation
+  * Added support for multi-Region secrets APIs ReplicateSecretToRegions, RemoveRegionsFromReplication, and StopReplicationToReplica
+* `service/wellarchitected`: Updates service API and documentation
+
 Release v1.37.22 (2021-03-02)
 ===
 

@@ -104,6 +104,9 @@ func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req
 //   * InvalidParameterException
 //   An input parameter was invalid.
 //
+//   * ThrottlingException
+//   The request was denied because it exceeded a quota.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/AddTagsToCertificate
 func (c *ACM) AddTagsToCertificate(input *AddTagsToCertificateInput) (*AddTagsToCertificateOutput, error) {
 	req, out := c.AddTagsToCertificateRequest(input)
@@ -399,6 +402,88 @@ func (c *ACM) ExportCertificateWithContext(ctx aws.Context, input *ExportCertifi
 	return out, req.Send()
 }
 
+const opGetAccountConfiguration = "GetAccountConfiguration"
+
+// GetAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccountConfiguration for more information on using the GetAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccountConfigurationRequest method.
+//    req, resp := client.GetAccountConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/GetAccountConfiguration
+func (c *ACM) GetAccountConfigurationRequest(input *GetAccountConfigurationInput) (req *request.Request, output *GetAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetAccountConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAccountConfigurationInput{}
+	}
+
+	output = &GetAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccountConfiguration API operation for AWS Certificate Manager.
+//
+// Returns the account configuration options associated with an AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation GetAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have access required to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded a quota.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/GetAccountConfiguration
+func (c *ACM) GetAccountConfiguration(input *GetAccountConfigurationInput) (*GetAccountConfigurationOutput, error) {
+	req, out := c.GetAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetAccountConfigurationWithContext is the same as GetAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ACM) GetAccountConfigurationWithContext(ctx aws.Context, input *GetAccountConfigurationInput, opts ...request.Option) (*GetAccountConfigurationOutput, error) {
+	req, out := c.GetAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCertificate = "GetCertificate"
 
 // GetCertificateRequest generates a "aws/request.Request" representing the
@@ -554,6 +639,8 @@ func (c *ACM) ImportCertificateRequest(input *ImportCertificateInput) (req *requ
 //    * The private key must be unencrypted. You cannot import a private key
 //    that is protected by a password or a passphrase.
 //
+//    * The private key must be no larger than 5 KB (5,120 bytes).
+//
 //    * If the certificate you are importing is not self-signed, you must enter
 //    its certificate chain.
 //
@@ -570,12 +657,12 @@ func (c *ACM) ImportCertificateRequest(input *ImportCertificateInput) (req *requ
 //    * The OCSP authority URL, if present, must not exceed 1000 characters.
 //
 //    * To import a new certificate, omit the CertificateArn argument. Include
-//    this argument only when you want to replace a previously imported certifica
+//    this argument only when you want to replace a previously imported certificate.
 //
 //    * When you import a certificate by using the CLI, you must specify the
 //    certificate, the certificate chain, and the private key by their file
-//    names preceded by file://. For example, you can specify a certificate
-//    saved in the C:\temp folder as file://C:\temp\certificate_to_import.pem.
+//    names preceded by fileb://. For example, you can specify a certificate
+//    saved in the C:\temp folder as fileb://C:\temp\certificate_to_import.pem.
 //    If you are making an HTTP or HTTPS Query request, include these arguments
 //    as BLOBs.
 //
@@ -617,6 +704,9 @@ func (c *ACM) ImportCertificateRequest(input *ImportCertificateInput) (req *requ
 //
 //   * InvalidParameterException
 //   An input parameter was invalid.
+//
+//   * InvalidArnException
+//   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/ImportCertificate
 func (c *ACM) ImportCertificate(input *ImportCertificateInput) (*ImportCertificateOutput, error) {
@@ -866,6 +956,102 @@ func (c *ACM) ListTagsForCertificateWithContext(ctx aws.Context, input *ListTags
 	return out, req.Send()
 }
 
+const opPutAccountConfiguration = "PutAccountConfiguration"
+
+// PutAccountConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccountConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccountConfiguration for more information on using the PutAccountConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccountConfigurationRequest method.
+//    req, resp := client.PutAccountConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/PutAccountConfiguration
+func (c *ACM) PutAccountConfigurationRequest(input *PutAccountConfigurationInput) (req *request.Request, output *PutAccountConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutAccountConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutAccountConfigurationInput{}
+	}
+
+	output = &PutAccountConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAccountConfiguration API operation for AWS Certificate Manager.
+//
+// Adds or modifies account-level configurations in ACM.
+//
+// The supported configuration option is DaysBeforeExpiry. This option specifies
+// the number of days prior to certificate expiration when ACM starts generating
+// EventBridge events. ACM sends one event per day per certificate until the
+// certificate expires. By default, accounts receive events starting 45 days
+// before certificate expiration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Certificate Manager's
+// API operation PutAccountConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The supplied input failed to satisfy constraints of an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded a quota.
+//
+//   * AccessDeniedException
+//   You do not have access required to perform this action.
+//
+//   * ConflictException
+//   You are trying to update a resource or configuration that is already being
+//   created or updated. Wait for the previous operation to finish and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/PutAccountConfiguration
+func (c *ACM) PutAccountConfiguration(input *PutAccountConfigurationInput) (*PutAccountConfigurationOutput, error) {
+	req, out := c.PutAccountConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutAccountConfigurationWithContext is the same as PutAccountConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccountConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ACM) PutAccountConfigurationWithContext(ctx aws.Context, input *PutAccountConfigurationInput, opts ...request.Option) (*PutAccountConfigurationOutput, error) {
+	req, out := c.PutAccountConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRemoveTagsFromCertificate = "RemoveTagsFromCertificate"
 
 // RemoveTagsFromCertificateRequest generates a "aws/request.Request" representing the
@@ -945,6 +1131,9 @@ func (c *ACM) RemoveTagsFromCertificateRequest(input *RemoveTagsFromCertificateI
 //   * InvalidParameterException
 //   An input parameter was invalid.
 //
+//   * ThrottlingException
+//   The request was denied because it exceeded a quota.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/acm-2015-12-08/RemoveTagsFromCertificate
 func (c *ACM) RemoveTagsFromCertificate(input *RemoveTagsFromCertificateInput) (*RemoveTagsFromCertificateOutput, error) {
 	req, out := c.RemoveTagsFromCertificateRequest(input)
@@ -1012,7 +1201,7 @@ func (c *ACM) RenewCertificateRequest(input *RenewCertificateInput) (req *reques
 
 // RenewCertificate API operation for AWS Certificate Manager.
 //
-// Renews an eligable ACM certificate. At this time, only exported private certificates
+// Renews an eligible ACM certificate. At this time, only exported private certificates
 // can be renewed with this operation. In order to renew your ACM PCA certificates
 // with ACM, you must first grant the ACM service principal permission to do
 // so (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaPermissions.html).
@@ -1358,6 +1547,62 @@ func (c *ACM) UpdateCertificateOptionsWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+// You do not have access required to perform this action.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type AddTagsToCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1366,8 +1611,7 @@ type AddTagsToCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -1452,7 +1696,7 @@ type CertificateDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the certificate. For more information about
-	// ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
 	CertificateArn *string `min:"20" type:"string"`
 
@@ -1462,8 +1706,7 @@ type CertificateDetail struct {
 	// arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012
 	CertificateAuthorityArn *string `min:"20" type:"string"`
 
-	// The time at which the certificate was requested. This value exists only when
-	// the certificate type is AMAZON_ISSUED.
+	// The time at which the certificate was requested.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The fully qualified domain name for the certificate, such as www.example.com
@@ -1776,8 +2019,7 @@ type CertificateSummary struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	CertificateArn *string `min:"20" type:"string"`
 
 	// Fully qualified domain name (FQDN), such as www.example.com or example.com,
@@ -1807,6 +2049,63 @@ func (s *CertificateSummary) SetDomainName(v string) *CertificateSummary {
 	return s
 }
 
+// You are trying to update a resource or configuration that is already being
+// created or updated. Wait for the previous operation to finish and try again.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1815,8 +2114,7 @@ type DeleteCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -1876,8 +2174,7 @@ type DescribeCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -2098,6 +2395,46 @@ func (s *DomainValidationOption) SetValidationDomain(v string) *DomainValidation
 	return s
 }
 
+// Object containing expiration events options associated with an AWS account.
+type ExpiryEventsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days prior to certificate expiration when ACM starts
+	// generating EventBridge events. ACM sends one event per day per certificate
+	// until the certificate expires. By default, accounts receive events starting
+	// 45 days before certificate expiration.
+	DaysBeforeExpiry *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ExpiryEventsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExpiryEventsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExpiryEventsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExpiryEventsConfiguration"}
+	if s.DaysBeforeExpiry != nil && *s.DaysBeforeExpiry < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DaysBeforeExpiry", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDaysBeforeExpiry sets the DaysBeforeExpiry field's value.
+func (s *ExpiryEventsConfiguration) SetDaysBeforeExpiry(v int64) *ExpiryEventsConfiguration {
+	s.DaysBeforeExpiry = &v
+	return s
+}
+
 type ExportCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2273,10 +2610,10 @@ type Filters struct {
 
 	// Specify one or more algorithms that can be used to generate key pairs.
 	//
-	// Default filtering returns only RSA_2048 certificates. To return other certificate
-	// types, provide the desired type signatures in a comma-separated list. For
-	// example, "keyTypes": ["RSA_2048,RSA_4096"] returns both RSA_2048 and RSA_4096
-	// certificates.
+	// Default filtering returns only RSA_1024 and RSA_2048 certificates that have
+	// at least one domain. To return other certificate types, provide the desired
+	// type signatures in a comma-separated list. For example, "keyTypes": ["RSA_2048,RSA_4096"]
+	// returns both RSA_2048 and RSA_4096 certificates.
 	KeyTypes []*string `locationName:"keyTypes" type:"list"`
 
 	// Specify one or more KeyUsage extension values.
@@ -2311,6 +2648,43 @@ func (s *Filters) SetKeyUsage(v []*string) *Filters {
 	return s
 }
 
+type GetAccountConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Expiration events configuration options associated with the AWS account.
+	ExpiryEvents *ExpiryEventsConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetExpiryEvents sets the ExpiryEvents field's value.
+func (s *GetAccountConfigurationOutput) SetExpiryEvents(v *ExpiryEventsConfiguration) *GetAccountConfigurationOutput {
+	s.ExpiryEvents = v
+	return s
+}
+
 type GetCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2318,8 +2692,7 @@ type GetCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -3059,8 +3432,7 @@ type ListTagsForCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -3121,6 +3493,79 @@ func (s *ListTagsForCertificateOutput) SetTags(v []*Tag) *ListTagsForCertificate
 	return s
 }
 
+type PutAccountConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies expiration events associated with an account.
+	ExpiryEvents *ExpiryEventsConfiguration `type:"structure"`
+
+	// Customer-chosen string used to distinguish between calls to PutAccountConfiguration.
+	// Idempotency tokens time out after one hour. If you call PutAccountConfiguration
+	// multiple times with the same unexpired idempotency token, ACM treats it as
+	// the same request and returns the original result. If you change the idempotency
+	// token for each call, ACM treats each call as a new request.
+	//
+	// IdempotencyToken is a required field
+	IdempotencyToken *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAccountConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccountConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccountConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccountConfigurationInput"}
+	if s.IdempotencyToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdempotencyToken"))
+	}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.ExpiryEvents != nil {
+		if err := s.ExpiryEvents.Validate(); err != nil {
+			invalidParams.AddNested("ExpiryEvents", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpiryEvents sets the ExpiryEvents field's value.
+func (s *PutAccountConfigurationInput) SetExpiryEvents(v *ExpiryEventsConfiguration) *PutAccountConfigurationInput {
+	s.ExpiryEvents = v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *PutAccountConfigurationInput) SetIdempotencyToken(v string) *PutAccountConfigurationInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+type PutAccountConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccountConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccountConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type RemoveTagsFromCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3129,8 +3574,7 @@ type RemoveTagsFromCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -3217,8 +3661,7 @@ type RenewCertificateInput struct {
 	//
 	// arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `min:"20" type:"string" required:"true"`
@@ -3988,6 +4431,62 @@ func (s *TagPolicyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The request was denied because it exceeded a quota.
+type ThrottlingException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ThrottlingException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ThrottlingException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottlingException(v protocol.ResponseMetadata) error {
+	return &ThrottlingException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottlingException) Code() string {
+	return "ThrottlingException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottlingException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottlingException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottlingException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottlingException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottlingException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The request contains too many tags. Try the request again with fewer tags.
 type TooManyTagsException struct {
 	_            struct{}                  `type:"structure"`
@@ -4117,6 +4616,62 @@ func (s UpdateCertificateOptionsOutput) String() string {
 // GoString returns the string representation
 func (s UpdateCertificateOptionsOutput) GoString() string {
 	return s.String()
+}
+
+// The supplied input failed to satisfy constraints of an AWS service.
+type ValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s *ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 const (

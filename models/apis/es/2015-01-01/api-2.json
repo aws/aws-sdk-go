@@ -939,7 +939,8 @@
         "LogPublishingOptions":{"shape":"LogPublishingOptions"},
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
-        "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"}
+        "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"},
+        "TagList":{"shape":"TagList"}
       }
     },
     "CreateElasticsearchDomainResponse":{

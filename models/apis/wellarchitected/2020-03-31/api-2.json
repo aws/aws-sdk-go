@@ -335,6 +335,19 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{WorkloadArn}"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListWorkloadShares":{
       "name":"ListWorkloadShares",
       "http":{
@@ -364,6 +377,32 @@
         {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{WorkloadArn}"
+      },
+      "input":{"shape":"TagResourceInput"},
+      "output":{"shape":"TagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{WorkloadArn}"
+      },
+      "input":{"shape":"UntagResourceInput"},
+      "output":{"shape":"UntagResourceOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "UpdateAnswer":{
@@ -635,7 +674,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateWorkloadOutput":{
@@ -1286,6 +1326,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "required":["WorkloadArn"],
+      "members":{
+        "WorkloadArn":{
+          "shape":"WorkloadArn",
+          "location":"uri",
+          "locationName":"WorkloadArn"
+        }
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagMap"}
+      }
+    },
     "ListWorkloadSharesInput":{
       "type":"structure",
       "required":["WorkloadId"],
@@ -1588,6 +1645,49 @@
       "type":"string",
       "max":100
     },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":1
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":1
+    },
+    "TagResourceInput":{
+      "type":"structure",
+      "required":[
+        "WorkloadArn",
+        "Tags"
+      ],
+      "members":{
+        "WorkloadArn":{
+          "shape":"WorkloadArn",
+          "location":"uri",
+          "locationName":"WorkloadArn"
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["Message"],
@@ -1600,6 +1700,30 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceInput":{
+      "type":"structure",
+      "required":[
+        "WorkloadArn",
+        "TagKeys"
+      ],
+      "members":{
+        "WorkloadArn":{
+          "shape":"WorkloadArn",
+          "location":"uri",
+          "locationName":"WorkloadArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateAnswerInput":{
       "type":"structure",
       "required":[
@@ -1832,7 +1956,8 @@
         "PillarPriorities":{"shape":"WorkloadPillarPriorities"},
         "Lenses":{"shape":"WorkloadLenses"},
         "Owner":{"shape":"AwsAccountId"},
-        "ShareInvitationId":{"shape":"ShareInvitationId"}
+        "ShareInvitationId":{"shape":"ShareInvitationId"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "WorkloadAccountIds":{

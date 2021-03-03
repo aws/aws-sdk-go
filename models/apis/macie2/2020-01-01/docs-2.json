@@ -21,7 +21,7 @@
     "DisableMacie" : "<p>Disables an Amazon Macie account and deletes Macie resources for the account.</p>",
     "DisableOrganizationAdminAccount" : "<p>Disables an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
     "DisassociateFromAdministratorAccount" : "<p>Disassociates a member account from its Amazon Macie administrator account.</p>",
-    "DisassociateFromMasterAccount" : "<p>(Deprecated) Disassociates a member account from its Amazon Macie administrator account. This operation has been replaced by the DisassociateFromAdministratorAccount operation.</p>",
+    "DisassociateFromMasterAccount" : "<p>(Deprecated) Disassociates a member account from its Amazon Macie administrator account. This operation has been replaced by the <link  linkend=\"DisassociateFromAdministratorAccount\">DisassociateFromAdministratorAccount</link> operation.</p>",
     "DisassociateMember" : "<p>Disassociates an Amazon Macie administrator account from a member account.</p>",
     "EnableMacie" : "<p>Enables Amazon Macie and specifies the configuration settings for a Macie account.</p>",
     "EnableOrganizationAdminAccount" : "<p>Designates an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
@@ -34,7 +34,7 @@
     "GetFindingsFilter" : "<p>Retrieves the criteria and other settings for a findings filter.</p>",
     "GetInvitationsCount" : "<p>Retrieves the count of Amazon Macie membership invitations that were received by an account.</p>",
     "GetMacieSession" : "<p>Retrieves the current status and configuration settings for an Amazon Macie account.</p>",
-    "GetMasterAccount" : "<p>(Deprecated) Retrieves information about the Amazon Macie administrator account for an account. This operation has been replaced by the GetAdministratorAccount operation.</p>",
+    "GetMasterAccount" : "<p>(Deprecated) Retrieves information about the Amazon Macie administrator account for an account. This operation has been replaced by the <link  linkend=\"GetAdministratorAccount\">GetAdministratorAccount</link> operation.</p>",
     "GetMember" : "<p>Retrieves information about an account that's associated with an Amazon Macie administrator account.</p>",
     "GetUsageStatistics" : "<p>Retrieves (queries) quotas and aggregated usage data for one or more accounts.</p>",
     "GetUsageTotals" : "<p>Retrieves (queries) aggregated usage data for an account.</p>",
@@ -383,7 +383,7 @@
       "refs" : { }
     },
     "DescribeBucketsRequest" : {
-      "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a query for information about S3 buckets.</p>",
+      "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a query for statistical data and other information about S3 buckets.</p>",
       "refs" : { }
     },
     "DescribeBucketsResponse" : {
@@ -425,7 +425,7 @@
     "EncryptionType" : {
       "base" : "<p>The type of server-side encryption that's used to encrypt an S3 object or objects in an S3 bucket. Valid values are:</p>",
       "refs" : {
-        "ServerSideEncryption$EncryptionType" : "<p>The server-side encryption algorithm that's used when storing data in the bucket or object. If encryption is disabled for the bucket or object, this value is NONE.</p>"
+        "ServerSideEncryption$EncryptionType" : "<p>The server-side encryption algorithm that's used when storing data in the bucket or object. If default encryption is disabled for the bucket or the object isn't encrypted using server-side encryption, this value is NONE.</p>"
       }
     },
     "ErrorCode" : {
@@ -531,7 +531,7 @@
       "refs" : { }
     },
     "GetBucketStatisticsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved aggregated statistical data for the S3 buckets that are owned by an account.</p>",
+      "base" : "<p>Provides the results of a query that retrieved aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes for an account.</p>",
       "refs" : { }
     },
     "GetClassificationExportConfigurationResponse" : {
@@ -847,12 +847,12 @@
       }
     },
     "ObjectLevelStatistics" : {
-      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results.</p>",
+      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results. If versioning is enabled for a bucket, total storage size values are based on the size of the latest version of each applicable object in the bucket.</p>",
       "refs" : {
         "BucketMetadata$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
         "BucketMetadata$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
         "GetBucketStatisticsResponse$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
-        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>"
+        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>"
       }
     },
     "Occurrences" : {
@@ -865,7 +865,7 @@
     "OrderBy" : {
       "base" : null,
       "refs" : {
-        "BucketSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
+        "BucketSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "FindingStatisticsSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "ListJobsSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "SortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
@@ -1020,7 +1020,7 @@
       "base" : "<p>Provides information about the server-side encryption settings for an S3 bucket or S3 object.</p>",
       "refs" : {
         "S3Bucket$DefaultServerSideEncryption" : "<p>The type of server-side encryption that's used by default to encrypt objects in the bucket.</p>",
-        "S3Object$ServerSideEncryption" : "<p>The type of server-side encryption that's used for the object.</p>"
+        "S3Object$ServerSideEncryption" : "<p>The type of server-side encryption that's used to encrypt the object.</p>"
       }
     },
     "ServiceLimit" : {
@@ -1217,7 +1217,7 @@
       }
     },
     "UsageStatisticsFilter" : {
-      "base" : "<p>Specifies a condition for filtering the results of a query for the quotas and usage data that applies to one or more Amazon Macie accounts.</p>",
+      "base" : "<p>Specifies a condition for filtering the results of a query for quota and usage data for one or more Amazon Macie accounts.</p>",
       "refs" : {
         "__listOfUsageStatisticsFilter$member" : null
       }
@@ -1348,7 +1348,7 @@
         "ListClassificationJobsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListCustomDataIdentifiersRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
-        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie runs the job on the last day of that month. For example, if this value is 31 and a month has only 30 days, Macie runs the job on day 30 of that month.</p>",
+        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie doesn't run the job that month. Macie runs the job only during months that have the specified day. For example, if this value is 31 and a month has only 30 days, Macie doesn’t run the job that month. To run the job every month, specify a value that’s less than 29.</p>",
         "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of instances of sample text that matched the detection criteria specified in the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
@@ -1511,7 +1511,7 @@
         "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify multiple values and Amazon Macie uses an OR operator to join the values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - A string that represents the file name extension of an object. For example: docx or pdf</p></li> <li><p>OBJECT_KEY - A string that represents the key prefix (folder name or path) of an object. For example: logs or awslogs/eventlogs. This value applies a condition to objects whose keys (names) begin with the specified value.</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE - An integer that represents the storage size (in bytes) of an object.</p></li> <li><p>TAG - A string that represents a tag key for an object. For advanced options, use a TagScopeTerm object, instead of a SimpleScopeTerm object, to define a tag-based condition for the job.</p></li></ul> <p>Macie doesn't support use of wildcard characters in values. Also, string values are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
-        "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current, estimated month-to-date cost for an account.</p></li></ul>"
+        "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current estimated cost for an account.</p></li></ul>"
       }
     },
     "__long" : {
@@ -1533,10 +1533,10 @@
         "BucketCriteriaAdditionalProperties$Lt" : "<p>The value for the property is less than the specified value.</p>",
         "BucketCriteriaAdditionalProperties$Lte" : "<p>The value for the property is less than or equal to the specified value.</p>",
         "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
-        "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
+        "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
-        "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p>",
-        "BucketMetadata$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the bucket.</p>",
+        "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
+        "BucketMetadata$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
         "Cell$Column" : "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, this value correlates to the alphabetical character(s) for a column identifier. For example, 1 for column A, 2 for column B, and so on.</p>",
         "Cell$Row" : "<p>The row number of the row that contains the data.</p>",
         "ClassificationResult$SizeClassified" : "<p>The total size, in bytes, of the data that the finding applies to.</p>",
@@ -1550,10 +1550,10 @@
         "Finding$Count" : "<p>The total number of occurrences of the finding. For sensitive data findings, this value is always 1. All sensitive data findings are considered new (unique) because they derive from individual classification jobs.</p>",
         "GetBucketStatisticsResponse$BucketCount" : "<p>The total number of buckets.</p>",
         "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
-        "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
+        "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each applicable object in those buckets. This value doesn't reflect the storage size of all versions of all applicable objects in the buckets.</p>",
         "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each object in those buckets. This value doesn't reflect the storage size of all versions of the objects in the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each object in those buckets. This value doesn't reflect the storage size of all versions of the objects in the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
         "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side encryption (SSE-C).</p>",
@@ -1603,7 +1603,7 @@
         "BucketMetadata$BucketName" : "<p>The name of the bucket.</p>",
         "BucketMetadata$Region" : "<p>The AWS Region that hosts the bucket.</p>",
         "BucketServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the AWS Key Management Service (AWS KMS) customer master key (CMK) that's used by default to encrypt objects that are added to the bucket. This value is null if the bucket uses an Amazon S3 managed key to encrypt new objects or the bucket doesn't encrypt new objects by default.</p>",
-        "BucketSortCriteria$AttributeName" : "<p>The name of the property to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName or accountId.</p>",
+        "BucketSortCriteria$AttributeName" : "<p>The name of the bucket property to sort the results by. This value can be one of the following properties that Amazon Macie defines as bucket metadata: accountId, bucketName, classifiableObjectCount, classifiableSizeInBytes, objectCount, or sizeInBytes.</p>",
         "Cell$CellReference" : "<p>The location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel workbook. This value is null for CSV and TSV files.</p>",
         "Cell$ColumnName" : "<p>The name of the column that contains the data, if available.</p>",
         "ClassificationDetails$DetailedResultsLocation" : "<p>The path to the folder or file (in Amazon S3) that contains the corresponding sensitive data discovery result for the finding. If a finding applies to a large archive or compressed file, this value is the path to a folder. Otherwise, this value is the path to a file.</p>",
@@ -1732,7 +1732,7 @@
         "S3Object$Key" : "<p>The full key (name) that's assigned to the object.</p>",
         "S3Object$Path" : "<p>The path to the object, including the full key (name).</p>",
         "S3Object$VersionId" : "<p>The identifier for the affected version of the object.</p>",
-        "ServerSideEncryption$KmsMasterKeyId" : "<p>The unique identifier for the AWS Key Management Service (AWS KMS) master key that's used to encrypt the bucket or object. This value is null if AWS KMS isn't used to encrypt the bucket or object.</p>",
+        "ServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the AWS Key Management Service (AWS KMS) customer master key (CMK) that's used to encrypt data in the bucket or the object. If an AWS KMS CMK isn't used, this value is null.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The explanation of the error that occurred.</p>",
         "SessionIssuer$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",
         "SessionIssuer$Arn" : "<p>The Amazon Resource Name (ARN) of the source account, IAM user, or role that was used to get the credentials.</p>",
@@ -1771,13 +1771,13 @@
         "ApiCallDetails$LastSeen" : "<p>The most recent date and time, in UTC and extended ISO 8601 format, when the specified operation (api) was invoked and produced the finding.</p>",
         "BatchGetCustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "BucketMetadata$BucketCreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
-        "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the bucket from Amazon S3.</p>",
+        "BucketMetadata$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved both bucket and object metadata from Amazon S3 for the bucket.</p>",
         "CustomDataIdentifierSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "DescribeClassificationJobResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
         "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job started. If the job is a recurring job, this value indicates when the most recent run started.</p>",
         "Finding$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was created.</p>",
         "Finding$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was last updated. For sensitive data findings, this value is the same as the value for the createdAt property. All sensitive data findings are considered new (unique) because they derive from individual classification jobs.</p>",
-        "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the buckets from Amazon S3.</p>",
+        "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved both bucket and object metadata from Amazon S3 for the buckets.</p>",
         "GetCustomDataIdentifierResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "GetMacieSessionResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the Amazon Macie account was created.</p>",
         "GetMacieSessionResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the Macie account.</p>",

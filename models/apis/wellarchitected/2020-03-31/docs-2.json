@@ -22,9 +22,12 @@
     "ListMilestones": "<p>List all milestones for an existing workload.</p>",
     "ListNotifications": "<p>List lens notifications.</p>",
     "ListShareInvitations": "<p>List the workload invitations.</p>",
+    "ListTagsForResource": "<p>List the tags for a resource.</p>",
     "ListWorkloadShares": "<p>List the workload shares associated with the workload.</p>",
     "ListWorkloads": "<p>List workloads. Paginated.</p>",
-    "UpdateAnswer": "<p>Update the answer.</p>",
+    "TagResource": "<p>Adds one or more tags to the specified resource.</p>",
+    "UntagResource": "<p>Deletes specified tags from a resource.</p>",
+    "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
     "UpdateLensReview": "<p>Update lens review.</p>",
     "UpdateShareInvitation": "<p>Update a workload invitation.</p>",
     "UpdateWorkload": "<p>Update an existing workload.</p>",
@@ -527,6 +530,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkloadSharesInput": {
       "base": "<p>Input for List Workload Share</p>",
       "refs": {
@@ -885,6 +898,44 @@
         "ListWorkloadSharesInput$SharedWithPrefix": "<p>The AWS account ID or IAM role with which the workload is shared.</p>"
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceInput$TagKeys": "<p>The keys of the tags to be removed.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateWorkloadInput$Tags": "<p>The tags to be associated with the workload.</p>",
+        "ListTagsForResourceOutput$Tags": "<p>The tags for the resource.</p>",
+        "TagResourceInput$Tags": "<p>The tags for the resource.</p>",
+        "Workload$Tags": "<p>The tags associated with the workload.</p>"
+      }
+    },
+    "TagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "ThrottlingException": {
       "base": "<p>Request was denied due to request throttling.</p>",
       "refs": {
@@ -900,6 +951,16 @@
         "Workload$UpdatedAt": null,
         "Workload$ReviewRestrictionDate": null,
         "WorkloadSummary$UpdatedAt": null
+      }
+    },
+    "UntagResourceInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateAnswerInput": {
@@ -1020,6 +1081,9 @@
       "base": "<p>The ARN for the workload.</p>",
       "refs": {
         "CreateWorkloadOutput$WorkloadArn": null,
+        "ListTagsForResourceInput$WorkloadArn": null,
+        "TagResourceInput$WorkloadArn": null,
+        "UntagResourceInput$WorkloadArn": null,
         "Workload$WorkloadArn": null,
         "WorkloadSummary$WorkloadArn": null
       }
