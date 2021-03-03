@@ -76,6 +76,10 @@ type ACMAPI interface {
 	ExportCertificateWithContext(aws.Context, *acm.ExportCertificateInput, ...request.Option) (*acm.ExportCertificateOutput, error)
 	ExportCertificateRequest(*acm.ExportCertificateInput) (*request.Request, *acm.ExportCertificateOutput)
 
+	GetAccountConfiguration(*acm.GetAccountConfigurationInput) (*acm.GetAccountConfigurationOutput, error)
+	GetAccountConfigurationWithContext(aws.Context, *acm.GetAccountConfigurationInput, ...request.Option) (*acm.GetAccountConfigurationOutput, error)
+	GetAccountConfigurationRequest(*acm.GetAccountConfigurationInput) (*request.Request, *acm.GetAccountConfigurationOutput)
+
 	GetCertificate(*acm.GetCertificateInput) (*acm.GetCertificateOutput, error)
 	GetCertificateWithContext(aws.Context, *acm.GetCertificateInput, ...request.Option) (*acm.GetCertificateOutput, error)
 	GetCertificateRequest(*acm.GetCertificateInput) (*request.Request, *acm.GetCertificateOutput)
@@ -94,6 +98,10 @@ type ACMAPI interface {
 	ListTagsForCertificate(*acm.ListTagsForCertificateInput) (*acm.ListTagsForCertificateOutput, error)
 	ListTagsForCertificateWithContext(aws.Context, *acm.ListTagsForCertificateInput, ...request.Option) (*acm.ListTagsForCertificateOutput, error)
 	ListTagsForCertificateRequest(*acm.ListTagsForCertificateInput) (*request.Request, *acm.ListTagsForCertificateOutput)
+
+	PutAccountConfiguration(*acm.PutAccountConfigurationInput) (*acm.PutAccountConfigurationOutput, error)
+	PutAccountConfigurationWithContext(aws.Context, *acm.PutAccountConfigurationInput, ...request.Option) (*acm.PutAccountConfigurationOutput, error)
+	PutAccountConfigurationRequest(*acm.PutAccountConfigurationInput) (*request.Request, *acm.PutAccountConfigurationOutput)
 
 	RemoveTagsFromCertificate(*acm.RemoveTagsFromCertificateInput) (*acm.RemoveTagsFromCertificateOutput, error)
 	RemoveTagsFromCertificateWithContext(aws.Context, *acm.RemoveTagsFromCertificateInput, ...request.Option) (*acm.RemoveTagsFromCertificateOutput, error)

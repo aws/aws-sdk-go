@@ -131,6 +131,8 @@ func ExampleSecretsManager_DeleteResourcePolicy_shared00() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodeInvalidRequestException:
 				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

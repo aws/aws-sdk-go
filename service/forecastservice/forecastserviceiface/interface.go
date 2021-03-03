@@ -201,6 +201,10 @@ type ForecastServiceAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *forecastservice.ListTagsForResourceInput, ...request.Option) (*forecastservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*forecastservice.ListTagsForResourceInput) (*request.Request, *forecastservice.ListTagsForResourceOutput)
 
+	StopResource(*forecastservice.StopResourceInput) (*forecastservice.StopResourceOutput, error)
+	StopResourceWithContext(aws.Context, *forecastservice.StopResourceInput, ...request.Option) (*forecastservice.StopResourceOutput, error)
+	StopResourceRequest(*forecastservice.StopResourceInput) (*request.Request, *forecastservice.StopResourceOutput)
+
 	TagResource(*forecastservice.TagResourceInput) (*forecastservice.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *forecastservice.TagResourceInput, ...request.Option) (*forecastservice.TagResourceOutput, error)
 	TagResourceRequest(*forecastservice.TagResourceInput) (*request.Request, *forecastservice.TagResourceOutput)

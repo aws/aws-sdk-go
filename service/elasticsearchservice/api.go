@@ -5706,6 +5706,9 @@ type CreateElasticsearchDomainInput struct {
 	// value is 0 hours.
 	SnapshotOptions *SnapshotOptions `type:"structure"`
 
+	// A list of Tag added during domain creation.
+	TagList []*Tag `type:"list"`
+
 	// Options to specify the subnets and security groups for VPC endpoint. For
 	// more information, see Creating a VPC (http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-vpc.html#es-creating-vpc)
 	// in VPC Endpoints for Amazon Elasticsearch Service Domains
@@ -5754,6 +5757,16 @@ func (s *CreateElasticsearchDomainInput) Validate() error {
 	if s.EncryptionAtRestOptions != nil {
 		if err := s.EncryptionAtRestOptions.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionAtRestOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagList != nil {
+		for i, v := range s.TagList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TagList", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -5844,6 +5857,12 @@ func (s *CreateElasticsearchDomainInput) SetNodeToNodeEncryptionOptions(v *NodeT
 // SetSnapshotOptions sets the SnapshotOptions field's value.
 func (s *CreateElasticsearchDomainInput) SetSnapshotOptions(v *SnapshotOptions) *CreateElasticsearchDomainInput {
 	s.SnapshotOptions = v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *CreateElasticsearchDomainInput) SetTagList(v []*Tag) *CreateElasticsearchDomainInput {
+	s.TagList = v
 	return s
 }
 

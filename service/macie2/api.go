@@ -6925,12 +6925,16 @@ type BucketMetadata struct {
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, total storage size values are based
+	// on the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, total storage size values are based
+	// on the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 
 	Versioning *bool `locationName:"versioning" type:"boolean"`
@@ -8703,7 +8707,7 @@ func (s DeleteMemberOutput) GoString() string {
 }
 
 // Specifies criteria for filtering, sorting, and paginating the results of
-// a query for information about S3 buckets.
+// a query for statistical data and other information about S3 buckets.
 type DescribeBucketsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9882,7 +9886,7 @@ func (s *GetBucketStatisticsInput) SetAccountId(v string) *GetBucketStatisticsIn
 }
 
 // Provides the results of a query that retrieved aggregated statistical data
-// for the S3 buckets that are owned by an account.
+// for all the S3 buckets that Amazon Macie monitors and analyzes for an account.
 type GetBucketStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9916,12 +9920,16 @@ type GetBucketStatisticsOutput struct {
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, total storage size values are based
+	// on the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, total storage size values are based
+	// on the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 }
 
@@ -12494,6 +12502,8 @@ func (s *ObjectCountByEncryptionType) SetUnencrypted(v int64) *ObjectCountByEncr
 // objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 // object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 // object, this data is aggregated for all the buckets in the query results.
+// If versioning is enabled for a bucket, total storage size values are based
+// on the size of the latest version of each applicable object in the bucket.
 type ObjectLevelStatistics struct {
 	_ struct{} `type:"structure"`
 
@@ -14692,8 +14702,8 @@ func (s *UsageRecord) SetUsage(v []*UsageByAccount) *UsageRecord {
 	return s
 }
 
-// Specifies a condition for filtering the results of a query for the quotas
-// and usage data that applies to one or more Amazon Macie accounts.
+// Specifies a condition for filtering the results of a query for quota and
+// usage data for one or more Amazon Macie accounts.
 type UsageStatisticsFilter struct {
 	_ struct{} `type:"structure"`
 

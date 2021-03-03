@@ -26,7 +26,8 @@
         {"shape":"InvalidTagException"},
         {"shape":"TooManyTagsException"},
         {"shape":"TagPolicyException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteCertificate":{
@@ -69,6 +70,18 @@
         {"shape":"InvalidArnException"}
       ]
     },
+    "GetAccountConfiguration":{
+      "name":"GetAccountConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{"shape":"GetAccountConfigurationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetCertificate":{
       "name":"GetCertificate",
       "http":{
@@ -97,7 +110,8 @@
         {"shape":"InvalidTagException"},
         {"shape":"TooManyTagsException"},
         {"shape":"TagPolicyException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidArnException"}
       ]
     },
     "ListCertificates":{
@@ -125,6 +139,20 @@
         {"shape":"InvalidArnException"}
       ]
     },
+    "PutAccountConfiguration":{
+      "name":"PutAccountConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAccountConfigurationRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "RemoveTagsFromCertificate":{
       "name":"RemoveTagsFromCertificate",
       "http":{
@@ -137,7 +165,8 @@
         {"shape":"InvalidArnException"},
         {"shape":"InvalidTagException"},
         {"shape":"TagPolicyException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "RenewCertificate":{
@@ -200,6 +229,14 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ServiceErrorMessage"}
+      },
+      "exception":true,
+      "synthetic":true
+    },
     "AddTagsToCertificateRequest":{
       "type":"structure",
       "required":[
@@ -217,6 +254,7 @@
       "min":20,
       "pattern":"arn:[\\w+=/,.@-]+:[\\w+=/,.@-]+:[\\w+=/,.@-]*:[0-9]+:[\\w+=,.@-]+(/[\\w+=,.@-]+)*"
     },
+    "AvailabilityErrorMessage":{"type":"string"},
     "CertificateBody":{
       "type":"string",
       "max":32768,
@@ -318,6 +356,13 @@
         "PRIVATE"
       ]
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "DeleteCertificateRequest":{
       "type":"structure",
       "required":["CertificateArn"],
@@ -392,6 +437,12 @@
       "member":{"shape":"DomainValidationOption"},
       "max":100,
       "min":1
+    },
+    "ExpiryEventsConfiguration":{
+      "type":"structure",
+      "members":{
+        "DaysBeforeExpiry":{"shape":"PositiveInteger"}
+      }
     },
     "ExportCertificateRequest":{
       "type":"structure",
@@ -472,6 +523,12 @@
         "extendedKeyUsage":{"shape":"ExtendedKeyUsageFilterList"},
         "keyUsage":{"shape":"KeyUsageFilterList"},
         "keyTypes":{"shape":"KeyAlgorithmList"}
+      }
+    },
+    "GetAccountConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "ExpiryEvents":{"shape":"ExpiryEventsConfiguration"}
       }
     },
     "GetCertificateRequest":{
@@ -658,6 +715,10 @@
       "min":4,
       "sensitive":true
     },
+    "PositiveInteger":{
+      "type":"integer",
+      "min":1
+    },
     "PrivateKey":{
       "type":"string",
       "max":524288,
@@ -670,6 +731,14 @@
       "max":5120,
       "min":1,
       "sensitive":true
+    },
+    "PutAccountConfigurationRequest":{
+      "type":"structure",
+      "required":["IdempotencyToken"],
+      "members":{
+        "ExpiryEvents":{"shape":"ExpiryEventsConfiguration"},
+        "IdempotencyToken":{"shape":"IdempotencyToken"}
+      }
     },
     "RecordType":{
       "type":"string",
@@ -805,6 +874,7 @@
         "A_A_COMPROMISE"
       ]
     },
+    "ServiceErrorMessage":{"type":"string"},
     "String":{"type":"string"},
     "TStamp":{"type":"timestamp"},
     "Tag":{
@@ -840,6 +910,14 @@
       "min":0,
       "pattern":"[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@]*"
     },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"AvailabilityErrorMessage"}
+      },
+      "exception":true,
+      "synthetic":true
+    },
     "TooManyTagsException":{
       "type":"structure",
       "members":{
@@ -862,6 +940,15 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ValidationExceptionMessage"}
+      },
+      "exception":true,
+      "synthetic":true
+    },
+    "ValidationExceptionMessage":{"type":"string"},
     "ValidationMethod":{
       "type":"string",
       "enum":[

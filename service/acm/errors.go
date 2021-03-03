@@ -8,6 +8,19 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// You do not have access required to perform this action.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// You are trying to update a resource or configuration that is already being
+	// created or updated. Wait for the previous operation to finish and try again.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInvalidArgsException for service response error code
 	// "InvalidArgsException".
 	//
@@ -78,14 +91,28 @@ const (
 	// A specified tag did not comply with an existing tag policy and was rejected.
 	ErrCodeTagPolicyException = "TagPolicyException"
 
+	// ErrCodeThrottlingException for service response error code
+	// "ThrottlingException".
+	//
+	// The request was denied because it exceeded a quota.
+	ErrCodeThrottlingException = "ThrottlingException"
+
 	// ErrCodeTooManyTagsException for service response error code
 	// "TooManyTagsException".
 	//
 	// The request contains too many tags. Try the request again with fewer tags.
 	ErrCodeTooManyTagsException = "TooManyTagsException"
+
+	// ErrCodeValidationException for service response error code
+	// "ValidationException".
+	//
+	// The supplied input failed to satisfy constraints of an AWS service.
+	ErrCodeValidationException = "ValidationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":                   newErrorAccessDeniedException,
+	"ConflictException":                       newErrorConflictException,
 	"InvalidArgsException":                    newErrorInvalidArgsException,
 	"InvalidArnException":                     newErrorInvalidArnException,
 	"InvalidDomainValidationOptionsException": newErrorInvalidDomainValidationOptionsException,
@@ -97,5 +124,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceInUseException":                  newErrorResourceInUseException,
 	"ResourceNotFoundException":               newErrorResourceNotFoundException,
 	"TagPolicyException":                      newErrorTagPolicyException,
+	"ThrottlingException":                     newErrorThrottlingException,
 	"TooManyTagsException":                    newErrorTooManyTagsException,
+	"ValidationException":                     newErrorValidationException,
 }

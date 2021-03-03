@@ -1727,6 +1727,7 @@
       "base": "<p>A list of <code>Tag</code> </p>",
       "refs": {
         "AddTagsRequest$TagList": "<p> List of <code>Tag</code> that need to be added for the Elasticsearch domain. </p>",
+        "CreateElasticsearchDomainRequest$TagList": "<p>A list of <code>Tag</code> added during domain creation.</p>",
         "ListTagsResponse$TagList": "<p> List of <code>Tag</code> for the requested Elasticsearch domain.</p>"
       }
     },

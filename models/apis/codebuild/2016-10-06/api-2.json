@@ -784,7 +784,8 @@
         "buildBatchNumber":{"shape":"WrapperLong"},
         "fileSystemLocations":{"shape":"ProjectFileSystemLocations"},
         "buildBatchConfig":{"shape":"ProjectBuildBatchConfig"},
-        "buildGroups":{"shape":"BuildGroups"}
+        "buildGroups":{"shape":"BuildGroups"},
+        "debugSessionEnabled":{"shape":"WrapperBoolean"}
       }
     },
     "BuildBatchFilter":{
@@ -2228,7 +2229,8 @@
         "logsConfigOverride":{"shape":"LogsConfig"},
         "registryCredentialOverride":{"shape":"RegistryCredential"},
         "imagePullCredentialsTypeOverride":{"shape":"ImagePullCredentialsType"},
-        "buildBatchConfigOverride":{"shape":"ProjectBuildBatchConfig"}
+        "buildBatchConfigOverride":{"shape":"ProjectBuildBatchConfig"},
+        "debugSessionEnabled":{"shape":"WrapperBoolean"}
       }
     },
     "StartBuildBatchOutput":{
