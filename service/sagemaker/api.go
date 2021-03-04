@@ -10520,6 +10520,11 @@ func (c *SageMaker) DescribeTrainingJobRequest(input *DescribeTrainingJobInput) 
 //
 // Returns information about a training job.
 //
+// Some of the attributes below only appear if the training job successfully
+// starts. If the training job fails, TrainingJobStatus is Failed and, depending
+// on the FailureReason, attributes like TrainingStartTime, TrainingTimeInSeconds,
+// TrainingEndTime, and BillableTimeInSeconds may not be present in the response.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -51169,7 +51174,8 @@ func (s *ImageVersion) SetVersion(v int64) *ImageVersion {
 	return s
 }
 
-// Specifies details about how containers in a multi-container are run.
+// Specifies details about how containers in a multi-container endpoint are
+// run.
 type InferenceExecutionConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -68430,6 +68436,9 @@ type S3StorageConfig struct {
 	//    * "kms:GenerateDataKey"
 	KmsKeyId *string `type:"string"`
 
+	// The S3 path where offline records are written.
+	ResolvedOutputS3Uri *string `type:"string"`
+
 	// The S3 URI, or location in Amazon S3, of OfflineStore.
 	//
 	// S3 URIs have a format similar to the following: s3://example-bucket/prefix/.
@@ -68464,6 +68473,12 @@ func (s *S3StorageConfig) Validate() error {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *S3StorageConfig) SetKmsKeyId(v string) *S3StorageConfig {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetResolvedOutputS3Uri sets the ResolvedOutputS3Uri field's value.
+func (s *S3StorageConfig) SetResolvedOutputS3Uri(v string) *S3StorageConfig {
+	s.ResolvedOutputS3Uri = &v
 	return s
 }
 

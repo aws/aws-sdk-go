@@ -369,7 +369,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"NamespaceName"},
+        "Name":{"shape":"NamespaceNameHttp"},
         "CreatorRequestId":{
           "shape":"ResourceId",
           "idempotencyToken":true
@@ -391,7 +391,7 @@
         "Vpc"
       ],
       "members":{
-        "Name":{"shape":"NamespaceName"},
+        "Name":{"shape":"NamespaceNamePrivate"},
         "CreatorRequestId":{
           "shape":"ResourceId",
           "idempotencyToken":true
@@ -411,7 +411,7 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"NamespaceName"},
+        "Name":{"shape":"NamespaceNamePublic"},
         "CreatorRequestId":{
           "shape":"ResourceId",
           "idempotencyToken":true
@@ -440,7 +440,8 @@
         "DnsConfig":{"shape":"DnsConfig"},
         "HealthCheckConfig":{"shape":"HealthCheckConfig"},
         "HealthCheckCustomConfig":{"shape":"HealthCheckCustomConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "Type":{"shape":"ServiceTypeOption"}
       }
     },
     "CreateServiceResponse":{
@@ -688,7 +689,11 @@
     "HealthCheckCustomConfig":{
       "type":"structure",
       "members":{
-        "FailureThreshold":{"shape":"FailureThreshold"}
+        "FailureThreshold":{
+          "shape":"FailureThreshold",
+          "deprecated":true,
+          "deprecatedMessage":"Configurable FailureThreshold of HealthCheckCustomConfig is deprecated.  It will always have value 1."
+        }
       }
     },
     "HealthCheckType":{
@@ -719,7 +724,7 @@
       "type":"structure",
       "members":{
         "InstanceId":{"shape":"ResourceId"},
-        "NamespaceName":{"shape":"NamespaceName"},
+        "NamespaceName":{"shape":"NamespaceNameHttp"},
         "ServiceName":{"shape":"ServiceName"},
         "HealthStatus":{"shape":"HealthStatus"},
         "Attributes":{"shape":"Attributes"}
@@ -905,6 +910,21 @@
     "NamespaceName":{
       "type":"string",
       "max":1024
+    },
+    "NamespaceNameHttp":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[!-~]{1,1024}$"
+    },
+    "NamespaceNamePrivate":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^[!-~]{1,1024}$"
+    },
+    "NamespaceNamePublic":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^([a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z0-9]([a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?$"
     },
     "NamespaceNotFound":{
       "type":"structure",
@@ -1137,6 +1157,7 @@
         "Description":{"shape":"ResourceDescription"},
         "InstanceCount":{"shape":"ResourceCount"},
         "DnsConfig":{"shape":"DnsConfig"},
+        "Type":{"shape":"ServiceType"},
         "HealthCheckConfig":{"shape":"HealthCheckConfig"},
         "HealthCheckCustomConfig":{"shape":"HealthCheckCustomConfig"},
         "CreateDate":{"shape":"Timestamp"},
@@ -1201,6 +1222,7 @@
         "Id":{"shape":"ResourceId"},
         "Arn":{"shape":"Arn"},
         "Name":{"shape":"ServiceName"},
+        "Type":{"shape":"ServiceType"},
         "Description":{"shape":"ResourceDescription"},
         "InstanceCount":{"shape":"ResourceCount"},
         "DnsConfig":{"shape":"DnsConfig"},
@@ -1208,6 +1230,18 @@
         "HealthCheckCustomConfig":{"shape":"HealthCheckCustomConfig"},
         "CreateDate":{"shape":"Timestamp"}
       }
+    },
+    "ServiceType":{
+      "type":"string",
+      "enum":[
+        "HTTP",
+        "DNS_HTTP",
+        "DNS"
+      ]
+    },
+    "ServiceTypeOption":{
+      "type":"string",
+      "enum":["HTTP"]
     },
     "Tag":{
       "type":"structure",

@@ -1,3 +1,15 @@
+Release v1.37.24 (2021-03-04)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Introducing support for EventBridge Api Destinations - any HTTP APIs as Targets, with managed authorization via EventBridge Connections.
+* `service/mwaa`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds the ResolvedOutputS3Uri to the DescribeFeatureGroup API to indicate the S3 prefix where offline data is stored in a feature group
+* `service/servicediscovery`: Updates service API and documentation
+
 Release v1.37.23 (2021-03-03)
 ===
 

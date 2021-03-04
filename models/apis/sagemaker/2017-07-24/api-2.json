@@ -12672,7 +12672,8 @@
       "required":["S3Uri"],
       "members":{
         "S3Uri":{"shape":"S3Uri"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "ResolvedOutputS3Uri":{"shape":"S3Uri"}
       }
     },
     "S3Uri":{

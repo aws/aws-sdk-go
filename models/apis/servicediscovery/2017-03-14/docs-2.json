@@ -499,14 +499,29 @@
     "NamespaceName": {
       "base": null,
       "refs": {
-        "CreateHttpNamespaceRequest$Name": "<p>The name that you want to assign to this namespace.</p>",
-        "CreatePrivateDnsNamespaceRequest$Name": "<p>The name that you want to assign to this namespace. When you create a private DNS namespace, AWS Cloud Map automatically creates an Amazon Route 53 private hosted zone that has the same name as the namespace.</p>",
-        "CreatePublicDnsNamespaceRequest$Name": "<p>The name that you want to assign to this namespace.</p>",
         "DiscoverInstancesRequest$NamespaceName": "<p>The name of the namespace that you specified when you registered the instance.</p>",
-        "HttpInstanceSummary$NamespaceName": "<p>The name of the namespace that you specified when you registered the instance.</p>",
         "HttpProperties$HttpName": "<p>The name of an HTTP namespace.</p>",
         "Namespace$Name": "<p>The name of the namespace, such as <code>example.com</code>.</p>",
         "NamespaceSummary$Name": "<p>The name of the namespace. When you create a namespace, AWS Cloud Map automatically creates a Route 53 hosted zone that has the same name as the namespace.</p>"
+      }
+    },
+    "NamespaceNameHttp": {
+      "base": null,
+      "refs": {
+        "CreateHttpNamespaceRequest$Name": "<p>The name that you want to assign to this namespace.</p>",
+        "HttpInstanceSummary$NamespaceName": "<p>The name of the namespace that you specified when you registered the instance.</p>"
+      }
+    },
+    "NamespaceNamePrivate": {
+      "base": null,
+      "refs": {
+        "CreatePrivateDnsNamespaceRequest$Name": "<p>The name that you want to assign to this namespace. When you create a private DNS namespace, AWS Cloud Map automatically creates an Amazon Route 53 private hosted zone that has the same name as the namespace.</p>"
+      }
+    },
+    "NamespaceNamePublic": {
+      "base": null,
+      "refs": {
+        "CreatePublicDnsNamespaceRequest$Name": "<p>The name that you want to assign to this namespace.</p>"
       }
     },
     "NamespaceNotFound": {
@@ -800,7 +815,7 @@
     "ServiceName": {
       "base": null,
       "refs": {
-        "CreateServiceRequest$Name": "<p>The name that you want to assign to the service.</p> <p>If you want AWS Cloud Map to create an <code>SRV</code> record when you register an instance, and if you're using a system that requires a specific <code>SRV</code> format, such as <a href=\"http://www.haproxy.org/\">HAProxy</a>, specify the following for <code>Name</code>:</p> <ul> <li> <p>Start the name with an underscore (_), such as <code>_exampleservice</code> </p> </li> <li> <p>End the name with <i>._protocol</i>, such as <code>._tcp</code> </p> </li> </ul> <p>When you register an instance, AWS Cloud Map creates an <code>SRV</code> record and assigns a name to the record by concatenating the service name and the namespace name, for example:</p> <p> <code>_exampleservice._tcp.example.com</code> </p>",
+        "CreateServiceRequest$Name": "<p>The name that you want to assign to the service.</p> <p>If you want AWS Cloud Map to create an <code>SRV</code> record when you register an instance, and if you're using a system that requires a specific <code>SRV</code> format, such as <a href=\"http://www.haproxy.org/\">HAProxy</a>, specify the following for <code>Name</code>:</p> <ul> <li> <p>Start the name with an underscore (_), such as <code>_exampleservice</code> </p> </li> <li> <p>End the name with <i>._protocol</i>, such as <code>._tcp</code> </p> </li> </ul> <p>When you register an instance, AWS Cloud Map creates an <code>SRV</code> record and assigns a name to the record by concatenating the service name and the namespace name, for example:</p> <p> <code>_exampleservice._tcp.example.com</code> </p> <note> <p>For a single DNS namespace, you cannot create two services with names that differ only by case (such as EXAMPLE and example). Otherwise, these services will have the same DNS name. However, you can create multiple HTTP services with names that differ only by case because HTTP services are case sensitive.</p> </note>",
         "DiscoverInstancesRequest$ServiceName": "<p>The name of the service that you specified when you registered the instance.</p>",
         "HttpInstanceSummary$ServiceName": "<p>The name of the service that you specified when you registered the instance.</p>",
         "Service$Name": "<p>The name of the service.</p>",
@@ -822,6 +837,19 @@
       "base": "<p>A complex type that contains information about a specified service.</p>",
       "refs": {
         "ServiceSummariesList$member": null
+      }
+    },
+    "ServiceType": {
+      "base": null,
+      "refs": {
+        "Service$Type": "<p>Describes the systems that can be used to discover the service instances.</p> <dl> <dt>DNS_HTTP</dt> <dd> <p>The service instances can be discovered using either DNS queries or the <code>DiscoverInstances</code> API operation.</p> </dd> <dt>HTTP</dt> <dd> <p>The service instances can only be discovered using the <code>DiscoverInstances</code> API operation.</p> </dd> <dt>DNS</dt> <dd> <p>Reserved.</p> </dd> </dl>",
+        "ServiceSummary$Type": "<p>Describes the systems that can be used to discover the service instances.</p> <dl> <dt>DNS_HTTP</dt> <dd> <p>The service instances can be discovered using either DNS queries or the <code>DiscoverInstances</code> API operation.</p> </dd> <dt>HTTP</dt> <dd> <p>The service instances can only be discovered using the <code>DiscoverInstances</code> API operation.</p> </dd> <dt>DNS</dt> <dd> <p>Reserved.</p> </dd> </dl>"
+      }
+    },
+    "ServiceTypeOption": {
+      "base": null,
+      "refs": {
+        "CreateServiceRequest$Type": "<p>If present, specifies that the service instances are only discoverable using the <code>DiscoverInstances</code> API operation. No DNS records will be registered for the service instances. The only valid value is <code>HTTP</code>.</p>"
       }
     },
     "Tag": {

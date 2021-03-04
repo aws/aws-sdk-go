@@ -266,6 +266,7 @@
         "KmsKey":{"shape":"KmsKey"},
         "LoggingConfiguration":{"shape":"LoggingConfigurationInput"},
         "MaxWorkers":{"shape":"MaxWorkers"},
+        "MinWorkers":{"shape":"MinWorkers"},
         "Name":{
           "shape":"EnvironmentName",
           "location":"uri",
@@ -356,6 +357,7 @@
         "LastUpdate":{"shape":"LastUpdate"},
         "LoggingConfiguration":{"shape":"LoggingConfiguration"},
         "MaxWorkers":{"shape":"MaxWorkers"},
+        "MinWorkers":{"shape":"MinWorkers"},
         "Name":{"shape":"EnvironmentName"},
         "NetworkConfiguration":{"shape":"NetworkConfiguration"},
         "PluginsS3ObjectVersion":{"shape":"S3ObjectVersion"},
@@ -570,6 +572,11 @@
         "Value":{"shape":"Double"}
       }
     },
+    "MinWorkers":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
     "ModuleLoggingConfiguration":{
       "type":"structure",
       "members":{
@@ -642,7 +649,7 @@
       "type":"string",
       "max":1224,
       "min":1,
-      "pattern":"^arn:aws(-[a-z]+)?:s3:::airflow-[a-z0-9.\\-]+$"
+      "pattern":"^arn:aws(-[a-z]+)?:s3:::[a-z0-9.\\-]+$"
     },
     "S3ObjectVersion":{
       "type":"string",
@@ -817,6 +824,7 @@
         "ExecutionRoleArn":{"shape":"IamRoleArn"},
         "LoggingConfiguration":{"shape":"LoggingConfigurationInput"},
         "MaxWorkers":{"shape":"MaxWorkers"},
+        "MinWorkers":{"shape":"MinWorkers"},
         "Name":{
           "shape":"EnvironmentName",
           "location":"uri",

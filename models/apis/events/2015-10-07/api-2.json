@@ -42,6 +42,21 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateApiDestination":{
+      "name":"CreateApiDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateApiDestinationRequest"},
+      "output":{"shape":"CreateApiDestinationResponse"},
+      "errors":[
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateArchive":{
       "name":"CreateArchive",
       "http":{
@@ -57,6 +72,20 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidEventPatternException"}
+      ]
+    },
+    "CreateConnection":{
+      "name":"CreateConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateConnectionRequest"},
+      "output":{"shape":"CreateConnectionResponse"},
+      "errors":[
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalException"}
       ]
     },
     "CreateEventBus":{
@@ -108,6 +137,34 @@
         {"shape":"OperationDisabledException"}
       ]
     },
+    "DeauthorizeConnection":{
+      "name":"DeauthorizeConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeauthorizeConnectionRequest"},
+      "output":{"shape":"DeauthorizeConnectionResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DeleteApiDestination":{
+      "name":"DeleteApiDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteApiDestinationRequest"},
+      "output":{"shape":"DeleteApiDestinationResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DeleteArchive":{
       "name":"DeleteArchive",
       "http":{
@@ -116,6 +173,20 @@
       },
       "input":{"shape":"DeleteArchiveRequest"},
       "output":{"shape":"DeleteArchiveResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DeleteConnection":{
+      "name":"DeleteConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConnectionRequest"},
+      "output":{"shape":"DeleteConnectionResponse"},
       "errors":[
         {"shape":"ConcurrentModificationException"},
         {"shape":"ResourceNotFoundException"},
@@ -161,6 +232,19 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeApiDestination":{
+      "name":"DescribeApiDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApiDestinationRequest"},
+      "output":{"shape":"DescribeApiDestinationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DescribeArchive":{
       "name":"DescribeArchive",
       "http":{
@@ -171,6 +255,19 @@
       "output":{"shape":"DescribeArchiveResponse"},
       "errors":[
         {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeConnection":{
+      "name":"DescribeConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConnectionRequest"},
+      "output":{"shape":"DescribeConnectionResponse"},
+      "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"}
       ]
@@ -270,6 +367,18 @@
         {"shape":"InternalException"}
       ]
     },
+    "ListApiDestinations":{
+      "name":"ListApiDestinations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListApiDestinationsRequest"},
+      "output":{"shape":"ListApiDestinationsResponse"},
+      "errors":[
+        {"shape":"InternalException"}
+      ]
+    },
     "ListArchives":{
       "name":"ListArchives",
       "http":{
@@ -280,6 +389,18 @@
       "output":{"shape":"ListArchivesResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "ListConnections":{
+      "name":"ListConnections",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListConnectionsRequest"},
+      "output":{"shape":"ListConnectionsResponse"},
+      "errors":[
         {"shape":"InternalException"}
       ]
     },
@@ -560,6 +681,21 @@
         {"shape":"ManagedRuleException"}
       ]
     },
+    "UpdateApiDestination":{
+      "name":"UpdateApiDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateApiDestinationRequest"},
+      "output":{"shape":"UpdateApiDestinationResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "UpdateArchive":{
       "name":"UpdateArchive",
       "http":{
@@ -574,6 +710,21 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidEventPatternException"}
+      ]
+    },
+    "UpdateConnection":{
+      "name":"UpdateConnection",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateConnectionRequest"},
+      "output":{"shape":"UpdateConnectionResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"}
       ]
     }
   },
@@ -596,6 +747,64 @@
       "members":{
         "Name":{"shape":"EventSourceName"}
       }
+    },
+    "ApiDestination":{
+      "type":"structure",
+      "members":{
+        "ApiDestinationArn":{"shape":"ApiDestinationArn"},
+        "Name":{"shape":"ApiDestinationName"},
+        "ApiDestinationState":{"shape":"ApiDestinationState"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "InvocationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ApiDestinationHttpMethod"},
+        "InvocationRateLimitPerSecond":{"shape":"ApiDestinationInvocationRateLimitPerSecond"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
+    "ApiDestinationArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:api-destination\\/[\\.\\-_A-Za-z0-9]+\\/[\\-A-Za-z0-9]+$"
+    },
+    "ApiDestinationDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "ApiDestinationHttpMethod":{
+      "type":"string",
+      "enum":[
+        "POST",
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PUT",
+        "PATCH",
+        "DELETE"
+      ]
+    },
+    "ApiDestinationInvocationRateLimitPerSecond":{
+      "type":"integer",
+      "min":1
+    },
+    "ApiDestinationName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "ApiDestinationResponseList":{
+      "type":"list",
+      "member":{"shape":"ApiDestination"}
+    },
+    "ApiDestinationState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
     },
     "Archive":{
       "type":"structure",
@@ -658,6 +867,12 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "AuthHeaderParameters":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^[ \\t]*[^\\x00-\\x1F:\\x7F]+([ \\t]+[^\\x00-\\x1F:\\x7F]+)*[ \\t]*$"
     },
     "AwsVpcConfiguration":{
       "type":"structure",
@@ -728,6 +943,185 @@
         "Value":{"shape":"String"}
       }
     },
+    "Connection":{
+      "type":"structure",
+      "members":{
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "Name":{"shape":"ConnectionName"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "StateReason":{"shape":"ConnectionStateReason"},
+        "AuthorizationType":{"shape":"ConnectionAuthorizationType"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastAuthorizedTime":{"shape":"Timestamp"}
+      }
+    },
+    "ConnectionApiKeyAuthResponseParameters":{
+      "type":"structure",
+      "members":{
+        "ApiKeyName":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "ConnectionArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:connection\\/[\\.\\-_A-Za-z0-9]+\\/[\\-A-Za-z0-9]+$"
+    },
+    "ConnectionAuthResponseParameters":{
+      "type":"structure",
+      "members":{
+        "BasicAuthParameters":{"shape":"ConnectionBasicAuthResponseParameters"},
+        "OAuthParameters":{"shape":"ConnectionOAuthResponseParameters"},
+        "ApiKeyAuthParameters":{"shape":"ConnectionApiKeyAuthResponseParameters"},
+        "InvocationHttpParameters":{"shape":"ConnectionHttpParameters"}
+      }
+    },
+    "ConnectionAuthorizationType":{
+      "type":"string",
+      "enum":[
+        "BASIC",
+        "OAUTH_CLIENT_CREDENTIALS",
+        "API_KEY"
+      ]
+    },
+    "ConnectionBasicAuthResponseParameters":{
+      "type":"structure",
+      "members":{
+        "Username":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "ConnectionBodyParameter":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"},
+        "IsValueSecret":{"shape":"Boolean"}
+      }
+    },
+    "ConnectionBodyParametersList":{
+      "type":"list",
+      "member":{"shape":"ConnectionBodyParameter"},
+      "max":100,
+      "min":0
+    },
+    "ConnectionDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "ConnectionHeaderParameter":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"HeaderKey"},
+        "Value":{"shape":"HeaderValue"},
+        "IsValueSecret":{"shape":"Boolean"}
+      }
+    },
+    "ConnectionHeaderParametersList":{
+      "type":"list",
+      "member":{"shape":"ConnectionHeaderParameter"},
+      "max":100,
+      "min":0
+    },
+    "ConnectionHttpParameters":{
+      "type":"structure",
+      "members":{
+        "HeaderParameters":{"shape":"ConnectionHeaderParametersList"},
+        "QueryStringParameters":{"shape":"ConnectionQueryStringParametersList"},
+        "BodyParameters":{"shape":"ConnectionBodyParametersList"}
+      }
+    },
+    "ConnectionName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "ConnectionOAuthClientResponseParameters":{
+      "type":"structure",
+      "members":{
+        "ClientID":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "ConnectionOAuthHttpMethod":{
+      "type":"string",
+      "enum":[
+        "GET",
+        "POST",
+        "PUT"
+      ]
+    },
+    "ConnectionOAuthResponseParameters":{
+      "type":"structure",
+      "members":{
+        "ClientParameters":{"shape":"ConnectionOAuthClientResponseParameters"},
+        "AuthorizationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ConnectionOAuthHttpMethod"},
+        "OAuthHttpParameters":{"shape":"ConnectionHttpParameters"}
+      }
+    },
+    "ConnectionQueryStringParameter":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"QueryStringKey"},
+        "Value":{"shape":"QueryStringValue"},
+        "IsValueSecret":{"shape":"Boolean"}
+      }
+    },
+    "ConnectionQueryStringParametersList":{
+      "type":"list",
+      "member":{"shape":"ConnectionQueryStringParameter"},
+      "max":100,
+      "min":0
+    },
+    "ConnectionResponseList":{
+      "type":"list",
+      "member":{"shape":"Connection"}
+    },
+    "ConnectionState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "AUTHORIZED",
+        "DEAUTHORIZED",
+        "AUTHORIZING",
+        "DEAUTHORIZING"
+      ]
+    },
+    "ConnectionStateReason":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "CreateApiDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ConnectionArn",
+        "InvocationEndpoint",
+        "HttpMethod"
+      ],
+      "members":{
+        "Name":{"shape":"ApiDestinationName"},
+        "Description":{"shape":"ApiDestinationDescription"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "InvocationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ApiDestinationHttpMethod"},
+        "InvocationRateLimitPerSecond":{"shape":"ApiDestinationInvocationRateLimitPerSecond"}
+      }
+    },
+    "CreateApiDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "ApiDestinationArn":{"shape":"ApiDestinationArn"},
+        "ApiDestinationState":{"shape":"ApiDestinationState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
     "CreateArchiveRequest":{
       "type":"structure",
       "required":[
@@ -749,6 +1143,85 @@
         "State":{"shape":"ArchiveState"},
         "StateReason":{"shape":"ArchiveStateReason"},
         "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "CreateConnectionApiKeyAuthRequestParameters":{
+      "type":"structure",
+      "required":[
+        "ApiKeyName",
+        "ApiKeyValue"
+      ],
+      "members":{
+        "ApiKeyName":{"shape":"AuthHeaderParameters"},
+        "ApiKeyValue":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "CreateConnectionAuthRequestParameters":{
+      "type":"structure",
+      "members":{
+        "BasicAuthParameters":{"shape":"CreateConnectionBasicAuthRequestParameters"},
+        "OAuthParameters":{"shape":"CreateConnectionOAuthRequestParameters"},
+        "ApiKeyAuthParameters":{"shape":"CreateConnectionApiKeyAuthRequestParameters"},
+        "InvocationHttpParameters":{"shape":"ConnectionHttpParameters"}
+      }
+    },
+    "CreateConnectionBasicAuthRequestParameters":{
+      "type":"structure",
+      "required":[
+        "Username",
+        "Password"
+      ],
+      "members":{
+        "Username":{"shape":"AuthHeaderParameters"},
+        "Password":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "CreateConnectionOAuthClientRequestParameters":{
+      "type":"structure",
+      "required":[
+        "ClientID",
+        "ClientSecret"
+      ],
+      "members":{
+        "ClientID":{"shape":"AuthHeaderParameters"},
+        "ClientSecret":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "CreateConnectionOAuthRequestParameters":{
+      "type":"structure",
+      "required":[
+        "ClientParameters",
+        "AuthorizationEndpoint",
+        "HttpMethod"
+      ],
+      "members":{
+        "ClientParameters":{"shape":"CreateConnectionOAuthClientRequestParameters"},
+        "AuthorizationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ConnectionOAuthHttpMethod"},
+        "OAuthHttpParameters":{"shape":"ConnectionHttpParameters"}
+      }
+    },
+    "CreateConnectionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "AuthorizationType",
+        "AuthParameters"
+      ],
+      "members":{
+        "Name":{"shape":"ConnectionName"},
+        "Description":{"shape":"ConnectionDescription"},
+        "AuthorizationType":{"shape":"ConnectionAuthorizationType"},
+        "AuthParameters":{"shape":"CreateConnectionAuthRequestParameters"}
+      }
+    },
+    "CreateConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
     "CreateEventBusRequest":{
@@ -791,14 +1264,12 @@
     "Database":{
       "type":"string",
       "max":64,
-      "min":1,
-      "pattern":"([a-zA-Z0-9_+.-@]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+      "min":1
     },
     "DbUser":{
       "type":"string",
       "max":128,
-      "min":1,
-      "pattern":"([a-zA-Z0-9_+.-@]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+      "min":1
     },
     "DeactivateEventSourceRequest":{
       "type":"structure",
@@ -813,6 +1284,35 @@
         "Arn":{"shape":"ResourceArn"}
       }
     },
+    "DeauthorizeConnectionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ConnectionName"}
+      }
+    },
+    "DeauthorizeConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastAuthorizedTime":{"shape":"Timestamp"}
+      }
+    },
+    "DeleteApiDestinationRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ApiDestinationName"}
+      }
+    },
+    "DeleteApiDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteArchiveRequest":{
       "type":"structure",
       "required":["ArchiveName"],
@@ -823,6 +1323,23 @@
     "DeleteArchiveResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteConnectionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ConnectionName"}
+      }
+    },
+    "DeleteConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastAuthorizedTime":{"shape":"Timestamp"}
       }
     },
     "DeleteEventBusRequest":{
@@ -852,6 +1369,28 @@
         "Force":{"shape":"Boolean"}
       }
     },
+    "DescribeApiDestinationRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ApiDestinationName"}
+      }
+    },
+    "DescribeApiDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "ApiDestinationArn":{"shape":"ApiDestinationArn"},
+        "Name":{"shape":"ApiDestinationName"},
+        "Description":{"shape":"ApiDestinationDescription"},
+        "ApiDestinationState":{"shape":"ApiDestinationState"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "InvocationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ApiDestinationHttpMethod"},
+        "InvocationRateLimitPerSecond":{"shape":"ApiDestinationInvocationRateLimitPerSecond"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
     "DescribeArchiveRequest":{
       "type":"structure",
       "required":["ArchiveName"],
@@ -873,6 +1412,29 @@
         "SizeBytes":{"shape":"Long"},
         "EventCount":{"shape":"Long"},
         "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeConnectionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ConnectionName"}
+      }
+    },
+    "DescribeConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "Name":{"shape":"ConnectionName"},
+        "Description":{"shape":"ConnectionDescription"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "StateReason":{"shape":"ConnectionStateReason"},
+        "AuthorizationType":{"shape":"ConnectionAuthorizationType"},
+        "SecretArn":{"shape":"SecretsManagerSecretArn"},
+        "AuthParameters":{"shape":"ConnectionAuthResponseParameters"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastAuthorizedTime":{"shape":"Timestamp"}
       }
     },
     "DescribeEventBusRequest":{
@@ -1088,6 +1650,12 @@
         "QueryStringParameters":{"shape":"QueryStringParametersMap"}
       }
     },
+    "HttpsEndpoint":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^((%[0-9A-Fa-f]{2}|[-()_.!~*';/?:@\\x26=+$,A-Za-z0-9])+)([).!';/?:,])?$"
+    },
     "IllegalStatusException":{
       "type":"structure",
       "members":{
@@ -1157,6 +1725,22 @@
       "type":"integer",
       "min":1
     },
+    "ListApiDestinationsRequest":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"ApiDestinationName"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"LimitMax100"}
+      }
+    },
+    "ListApiDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "ApiDestinations":{"shape":"ApiDestinationResponseList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListArchivesRequest":{
       "type":"structure",
       "members":{
@@ -1171,6 +1755,22 @@
       "type":"structure",
       "members":{
         "Archives":{"shape":"ArchiveResponseList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListConnectionsRequest":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"ConnectionName"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"LimitMax100"}
+      }
+    },
+    "ListConnectionsResponse":{
+      "type":"structure",
+      "members":{
+        "Connections":{"shape":"ConnectionResponseList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1827,6 +2427,12 @@
       "type":"string",
       "max":256
     },
+    "SecretsManagerSecretArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws([a-z]|\\-)*:secretsmanager:([a-z]|\\d|\\-)*:([0-9]{12})?:secret:[\\/_+=\\.@\\-A-Za-z0-9]+$"
+    },
     "Sql":{
       "type":"string",
       "max":100000,
@@ -2035,6 +2641,27 @@
       "members":{
       }
     },
+    "UpdateApiDestinationRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ApiDestinationName"},
+        "Description":{"shape":"ApiDestinationDescription"},
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "InvocationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ApiDestinationHttpMethod"},
+        "InvocationRateLimitPerSecond":{"shape":"ApiDestinationInvocationRateLimitPerSecond"}
+      }
+    },
+    "UpdateApiDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "ApiDestinationArn":{"shape":"ApiDestinationArn"},
+        "ApiDestinationState":{"shape":"ApiDestinationState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
     "UpdateArchiveRequest":{
       "type":"structure",
       "required":["ArchiveName"],
@@ -2052,6 +2679,65 @@
         "State":{"shape":"ArchiveState"},
         "StateReason":{"shape":"ArchiveStateReason"},
         "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateConnectionApiKeyAuthRequestParameters":{
+      "type":"structure",
+      "members":{
+        "ApiKeyName":{"shape":"AuthHeaderParameters"},
+        "ApiKeyValue":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "UpdateConnectionAuthRequestParameters":{
+      "type":"structure",
+      "members":{
+        "BasicAuthParameters":{"shape":"UpdateConnectionBasicAuthRequestParameters"},
+        "OAuthParameters":{"shape":"UpdateConnectionOAuthRequestParameters"},
+        "ApiKeyAuthParameters":{"shape":"UpdateConnectionApiKeyAuthRequestParameters"},
+        "InvocationHttpParameters":{"shape":"ConnectionHttpParameters"}
+      }
+    },
+    "UpdateConnectionBasicAuthRequestParameters":{
+      "type":"structure",
+      "members":{
+        "Username":{"shape":"AuthHeaderParameters"},
+        "Password":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "UpdateConnectionOAuthClientRequestParameters":{
+      "type":"structure",
+      "members":{
+        "ClientID":{"shape":"AuthHeaderParameters"},
+        "ClientSecret":{"shape":"AuthHeaderParameters"}
+      }
+    },
+    "UpdateConnectionOAuthRequestParameters":{
+      "type":"structure",
+      "members":{
+        "ClientParameters":{"shape":"UpdateConnectionOAuthClientRequestParameters"},
+        "AuthorizationEndpoint":{"shape":"HttpsEndpoint"},
+        "HttpMethod":{"shape":"ConnectionOAuthHttpMethod"},
+        "OAuthHttpParameters":{"shape":"ConnectionHttpParameters"}
+      }
+    },
+    "UpdateConnectionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ConnectionName"},
+        "Description":{"shape":"ConnectionDescription"},
+        "AuthorizationType":{"shape":"ConnectionAuthorizationType"},
+        "AuthParameters":{"shape":"UpdateConnectionAuthRequestParameters"}
+      }
+    },
+    "UpdateConnectionResponse":{
+      "type":"structure",
+      "members":{
+        "ConnectionArn":{"shape":"ConnectionArn"},
+        "ConnectionState":{"shape":"ConnectionState"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastAuthorizedTime":{"shape":"Timestamp"}
       }
     }
   }
