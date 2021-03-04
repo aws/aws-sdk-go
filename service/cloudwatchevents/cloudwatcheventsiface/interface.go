@@ -68,9 +68,17 @@ type CloudWatchEventsAPI interface {
 	CancelReplayWithContext(aws.Context, *cloudwatchevents.CancelReplayInput, ...request.Option) (*cloudwatchevents.CancelReplayOutput, error)
 	CancelReplayRequest(*cloudwatchevents.CancelReplayInput) (*request.Request, *cloudwatchevents.CancelReplayOutput)
 
+	CreateApiDestination(*cloudwatchevents.CreateApiDestinationInput) (*cloudwatchevents.CreateApiDestinationOutput, error)
+	CreateApiDestinationWithContext(aws.Context, *cloudwatchevents.CreateApiDestinationInput, ...request.Option) (*cloudwatchevents.CreateApiDestinationOutput, error)
+	CreateApiDestinationRequest(*cloudwatchevents.CreateApiDestinationInput) (*request.Request, *cloudwatchevents.CreateApiDestinationOutput)
+
 	CreateArchive(*cloudwatchevents.CreateArchiveInput) (*cloudwatchevents.CreateArchiveOutput, error)
 	CreateArchiveWithContext(aws.Context, *cloudwatchevents.CreateArchiveInput, ...request.Option) (*cloudwatchevents.CreateArchiveOutput, error)
 	CreateArchiveRequest(*cloudwatchevents.CreateArchiveInput) (*request.Request, *cloudwatchevents.CreateArchiveOutput)
+
+	CreateConnection(*cloudwatchevents.CreateConnectionInput) (*cloudwatchevents.CreateConnectionOutput, error)
+	CreateConnectionWithContext(aws.Context, *cloudwatchevents.CreateConnectionInput, ...request.Option) (*cloudwatchevents.CreateConnectionOutput, error)
+	CreateConnectionRequest(*cloudwatchevents.CreateConnectionInput) (*request.Request, *cloudwatchevents.CreateConnectionOutput)
 
 	CreateEventBus(*cloudwatchevents.CreateEventBusInput) (*cloudwatchevents.CreateEventBusOutput, error)
 	CreateEventBusWithContext(aws.Context, *cloudwatchevents.CreateEventBusInput, ...request.Option) (*cloudwatchevents.CreateEventBusOutput, error)
@@ -84,9 +92,21 @@ type CloudWatchEventsAPI interface {
 	DeactivateEventSourceWithContext(aws.Context, *cloudwatchevents.DeactivateEventSourceInput, ...request.Option) (*cloudwatchevents.DeactivateEventSourceOutput, error)
 	DeactivateEventSourceRequest(*cloudwatchevents.DeactivateEventSourceInput) (*request.Request, *cloudwatchevents.DeactivateEventSourceOutput)
 
+	DeauthorizeConnection(*cloudwatchevents.DeauthorizeConnectionInput) (*cloudwatchevents.DeauthorizeConnectionOutput, error)
+	DeauthorizeConnectionWithContext(aws.Context, *cloudwatchevents.DeauthorizeConnectionInput, ...request.Option) (*cloudwatchevents.DeauthorizeConnectionOutput, error)
+	DeauthorizeConnectionRequest(*cloudwatchevents.DeauthorizeConnectionInput) (*request.Request, *cloudwatchevents.DeauthorizeConnectionOutput)
+
+	DeleteApiDestination(*cloudwatchevents.DeleteApiDestinationInput) (*cloudwatchevents.DeleteApiDestinationOutput, error)
+	DeleteApiDestinationWithContext(aws.Context, *cloudwatchevents.DeleteApiDestinationInput, ...request.Option) (*cloudwatchevents.DeleteApiDestinationOutput, error)
+	DeleteApiDestinationRequest(*cloudwatchevents.DeleteApiDestinationInput) (*request.Request, *cloudwatchevents.DeleteApiDestinationOutput)
+
 	DeleteArchive(*cloudwatchevents.DeleteArchiveInput) (*cloudwatchevents.DeleteArchiveOutput, error)
 	DeleteArchiveWithContext(aws.Context, *cloudwatchevents.DeleteArchiveInput, ...request.Option) (*cloudwatchevents.DeleteArchiveOutput, error)
 	DeleteArchiveRequest(*cloudwatchevents.DeleteArchiveInput) (*request.Request, *cloudwatchevents.DeleteArchiveOutput)
+
+	DeleteConnection(*cloudwatchevents.DeleteConnectionInput) (*cloudwatchevents.DeleteConnectionOutput, error)
+	DeleteConnectionWithContext(aws.Context, *cloudwatchevents.DeleteConnectionInput, ...request.Option) (*cloudwatchevents.DeleteConnectionOutput, error)
+	DeleteConnectionRequest(*cloudwatchevents.DeleteConnectionInput) (*request.Request, *cloudwatchevents.DeleteConnectionOutput)
 
 	DeleteEventBus(*cloudwatchevents.DeleteEventBusInput) (*cloudwatchevents.DeleteEventBusOutput, error)
 	DeleteEventBusWithContext(aws.Context, *cloudwatchevents.DeleteEventBusInput, ...request.Option) (*cloudwatchevents.DeleteEventBusOutput, error)
@@ -100,9 +120,17 @@ type CloudWatchEventsAPI interface {
 	DeleteRuleWithContext(aws.Context, *cloudwatchevents.DeleteRuleInput, ...request.Option) (*cloudwatchevents.DeleteRuleOutput, error)
 	DeleteRuleRequest(*cloudwatchevents.DeleteRuleInput) (*request.Request, *cloudwatchevents.DeleteRuleOutput)
 
+	DescribeApiDestination(*cloudwatchevents.DescribeApiDestinationInput) (*cloudwatchevents.DescribeApiDestinationOutput, error)
+	DescribeApiDestinationWithContext(aws.Context, *cloudwatchevents.DescribeApiDestinationInput, ...request.Option) (*cloudwatchevents.DescribeApiDestinationOutput, error)
+	DescribeApiDestinationRequest(*cloudwatchevents.DescribeApiDestinationInput) (*request.Request, *cloudwatchevents.DescribeApiDestinationOutput)
+
 	DescribeArchive(*cloudwatchevents.DescribeArchiveInput) (*cloudwatchevents.DescribeArchiveOutput, error)
 	DescribeArchiveWithContext(aws.Context, *cloudwatchevents.DescribeArchiveInput, ...request.Option) (*cloudwatchevents.DescribeArchiveOutput, error)
 	DescribeArchiveRequest(*cloudwatchevents.DescribeArchiveInput) (*request.Request, *cloudwatchevents.DescribeArchiveOutput)
+
+	DescribeConnection(*cloudwatchevents.DescribeConnectionInput) (*cloudwatchevents.DescribeConnectionOutput, error)
+	DescribeConnectionWithContext(aws.Context, *cloudwatchevents.DescribeConnectionInput, ...request.Option) (*cloudwatchevents.DescribeConnectionOutput, error)
+	DescribeConnectionRequest(*cloudwatchevents.DescribeConnectionInput) (*request.Request, *cloudwatchevents.DescribeConnectionOutput)
 
 	DescribeEventBus(*cloudwatchevents.DescribeEventBusInput) (*cloudwatchevents.DescribeEventBusOutput, error)
 	DescribeEventBusWithContext(aws.Context, *cloudwatchevents.DescribeEventBusInput, ...request.Option) (*cloudwatchevents.DescribeEventBusOutput, error)
@@ -132,9 +160,17 @@ type CloudWatchEventsAPI interface {
 	EnableRuleWithContext(aws.Context, *cloudwatchevents.EnableRuleInput, ...request.Option) (*cloudwatchevents.EnableRuleOutput, error)
 	EnableRuleRequest(*cloudwatchevents.EnableRuleInput) (*request.Request, *cloudwatchevents.EnableRuleOutput)
 
+	ListApiDestinations(*cloudwatchevents.ListApiDestinationsInput) (*cloudwatchevents.ListApiDestinationsOutput, error)
+	ListApiDestinationsWithContext(aws.Context, *cloudwatchevents.ListApiDestinationsInput, ...request.Option) (*cloudwatchevents.ListApiDestinationsOutput, error)
+	ListApiDestinationsRequest(*cloudwatchevents.ListApiDestinationsInput) (*request.Request, *cloudwatchevents.ListApiDestinationsOutput)
+
 	ListArchives(*cloudwatchevents.ListArchivesInput) (*cloudwatchevents.ListArchivesOutput, error)
 	ListArchivesWithContext(aws.Context, *cloudwatchevents.ListArchivesInput, ...request.Option) (*cloudwatchevents.ListArchivesOutput, error)
 	ListArchivesRequest(*cloudwatchevents.ListArchivesInput) (*request.Request, *cloudwatchevents.ListArchivesOutput)
+
+	ListConnections(*cloudwatchevents.ListConnectionsInput) (*cloudwatchevents.ListConnectionsOutput, error)
+	ListConnectionsWithContext(aws.Context, *cloudwatchevents.ListConnectionsInput, ...request.Option) (*cloudwatchevents.ListConnectionsOutput, error)
+	ListConnectionsRequest(*cloudwatchevents.ListConnectionsInput) (*request.Request, *cloudwatchevents.ListConnectionsOutput)
 
 	ListEventBuses(*cloudwatchevents.ListEventBusesInput) (*cloudwatchevents.ListEventBusesOutput, error)
 	ListEventBusesWithContext(aws.Context, *cloudwatchevents.ListEventBusesInput, ...request.Option) (*cloudwatchevents.ListEventBusesOutput, error)
@@ -216,9 +252,17 @@ type CloudWatchEventsAPI interface {
 	UntagResourceWithContext(aws.Context, *cloudwatchevents.UntagResourceInput, ...request.Option) (*cloudwatchevents.UntagResourceOutput, error)
 	UntagResourceRequest(*cloudwatchevents.UntagResourceInput) (*request.Request, *cloudwatchevents.UntagResourceOutput)
 
+	UpdateApiDestination(*cloudwatchevents.UpdateApiDestinationInput) (*cloudwatchevents.UpdateApiDestinationOutput, error)
+	UpdateApiDestinationWithContext(aws.Context, *cloudwatchevents.UpdateApiDestinationInput, ...request.Option) (*cloudwatchevents.UpdateApiDestinationOutput, error)
+	UpdateApiDestinationRequest(*cloudwatchevents.UpdateApiDestinationInput) (*request.Request, *cloudwatchevents.UpdateApiDestinationOutput)
+
 	UpdateArchive(*cloudwatchevents.UpdateArchiveInput) (*cloudwatchevents.UpdateArchiveOutput, error)
 	UpdateArchiveWithContext(aws.Context, *cloudwatchevents.UpdateArchiveInput, ...request.Option) (*cloudwatchevents.UpdateArchiveOutput, error)
 	UpdateArchiveRequest(*cloudwatchevents.UpdateArchiveInput) (*request.Request, *cloudwatchevents.UpdateArchiveOutput)
+
+	UpdateConnection(*cloudwatchevents.UpdateConnectionInput) (*cloudwatchevents.UpdateConnectionOutput, error)
+	UpdateConnectionWithContext(aws.Context, *cloudwatchevents.UpdateConnectionInput, ...request.Option) (*cloudwatchevents.UpdateConnectionOutput, error)
+	UpdateConnectionRequest(*cloudwatchevents.UpdateConnectionInput) (*request.Request, *cloudwatchevents.UpdateConnectionOutput)
 }
 
 var _ CloudWatchEventsAPI = (*cloudwatchevents.CloudWatchEvents)(nil)

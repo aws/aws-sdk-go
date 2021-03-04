@@ -293,8 +293,8 @@
       "base": null,
       "refs": {
         "CreateEnvironmentInput$MaxWorkers": "<p>The maximum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers and the Fargate containers that run your tasks up to the number you specify in this field. When there are no more tasks running, and no more in the queue, MWAA disposes of the extra containers leaving the one worker that is included with your environment.</p>",
-        "Environment$MaxWorkers": "<p>The Maximum Workers of the Amazon MWAA Environment.</p>",
-        "UpdateEnvironmentInput$MaxWorkers": "<p>The Maximum Workers to update of your Amazon MWAA environment.</p>"
+        "Environment$MaxWorkers": "<p>The maximum number of workers to run in your Amazon MWAA Environment.</p>",
+        "UpdateEnvironmentInput$MaxWorkers": "<p>The maximum number of workers to update of your Amazon MWAA environment.</p>"
       }
     },
     "MetricData": {
@@ -307,6 +307,14 @@
       "base": "<p>Internal only API.</p>",
       "refs": {
         "MetricData$member": null
+      }
+    },
+    "MinWorkers": {
+      "base": null,
+      "refs": {
+        "CreateEnvironmentInput$MinWorkers": "<p>The minimum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers and the Fargate containers that run your tasks up to the number you specify in the <code>MaxWorkers</code> field. When there are no more tasks running, and no more in the queue, MWAA disposes of the extra containers leaving the worker count you specify in the <code>MinWorkers</code> field.</p>",
+        "Environment$MinWorkers": "<p>The minimum number of workers to run in your Amazon MWAA Environment.</p>",
+        "UpdateEnvironmentInput$MinWorkers": "<p>The minimum number of workers to update of your Amazon MWAA environment.</p>"
       }
     },
     "ModuleLoggingConfiguration": {

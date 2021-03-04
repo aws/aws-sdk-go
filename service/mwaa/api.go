@@ -1203,6 +1203,14 @@ type CreateEnvironmentInput struct {
 	// containers leaving the one worker that is included with your environment.
 	MaxWorkers *int64 `min:"1" type:"integer"`
 
+	// The minimum number of workers that you want to run in your environment. MWAA
+	// scales the number of Apache Airflow workers and the Fargate containers that
+	// run your tasks up to the number you specify in the MaxWorkers field. When
+	// there are no more tasks running, and no more in the queue, MWAA disposes
+	// of the extra containers leaving the worker count you specify in the MinWorkers
+	// field.
+	MinWorkers *int64 `min:"1" type:"integer"`
+
 	// The name of your MWAA environment.
 	//
 	// Name is a required field
@@ -1292,6 +1300,9 @@ func (s *CreateEnvironmentInput) Validate() error {
 	}
 	if s.MaxWorkers != nil && *s.MaxWorkers < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxWorkers", 1))
+	}
+	if s.MinWorkers != nil && *s.MinWorkers < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinWorkers", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -1388,6 +1399,12 @@ func (s *CreateEnvironmentInput) SetLoggingConfiguration(v *LoggingConfiguration
 // SetMaxWorkers sets the MaxWorkers field's value.
 func (s *CreateEnvironmentInput) SetMaxWorkers(v int64) *CreateEnvironmentInput {
 	s.MaxWorkers = &v
+	return s
+}
+
+// SetMinWorkers sets the MinWorkers field's value.
+func (s *CreateEnvironmentInput) SetMinWorkers(v int64) *CreateEnvironmentInput {
+	s.MinWorkers = &v
 	return s
 }
 
@@ -1690,8 +1707,11 @@ type Environment struct {
 	// The Logging Configuration of the Amazon MWAA Environment.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 
-	// The Maximum Workers of the Amazon MWAA Environment.
+	// The maximum number of workers to run in your Amazon MWAA Environment.
 	MaxWorkers *int64 `min:"1" type:"integer"`
+
+	// The minimum number of workers to run in your Amazon MWAA Environment.
+	MinWorkers *int64 `min:"1" type:"integer"`
 
 	// The name of the Amazon MWAA Environment.
 	Name *string `min:"1" type:"string"`
@@ -1807,6 +1827,12 @@ func (s *Environment) SetLoggingConfiguration(v *LoggingConfiguration) *Environm
 // SetMaxWorkers sets the MaxWorkers field's value.
 func (s *Environment) SetMaxWorkers(v int64) *Environment {
 	s.MaxWorkers = &v
+	return s
+}
+
+// SetMinWorkers sets the MinWorkers field's value.
+func (s *Environment) SetMinWorkers(v int64) *Environment {
+	s.MinWorkers = &v
 	return s
 }
 
@@ -2966,8 +2992,11 @@ type UpdateEnvironmentInput struct {
 	// The Logging Configuration to update of your Amazon MWAA environment.
 	LoggingConfiguration *LoggingConfigurationInput `type:"structure"`
 
-	// The Maximum Workers to update of your Amazon MWAA environment.
+	// The maximum number of workers to update of your Amazon MWAA environment.
 	MaxWorkers *int64 `min:"1" type:"integer"`
+
+	// The minimum number of workers to update of your Amazon MWAA environment.
+	MinWorkers *int64 `min:"1" type:"integer"`
 
 	// The name of your Amazon MWAA environment that you wish to update.
 	//
@@ -3026,6 +3055,9 @@ func (s *UpdateEnvironmentInput) Validate() error {
 	}
 	if s.MaxWorkers != nil && *s.MaxWorkers < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxWorkers", 1))
+	}
+	if s.MinWorkers != nil && *s.MinWorkers < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinWorkers", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -3107,6 +3139,12 @@ func (s *UpdateEnvironmentInput) SetLoggingConfiguration(v *LoggingConfiguration
 // SetMaxWorkers sets the MaxWorkers field's value.
 func (s *UpdateEnvironmentInput) SetMaxWorkers(v int64) *UpdateEnvironmentInput {
 	s.MaxWorkers = &v
+	return s
+}
+
+// SetMinWorkers sets the MinWorkers field's value.
+func (s *UpdateEnvironmentInput) SetMinWorkers(v int64) *UpdateEnvironmentInput {
+	s.MinWorkers = &v
 	return s
 }
 

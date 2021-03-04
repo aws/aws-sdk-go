@@ -2826,6 +2826,11 @@ type CreateServiceInput struct {
 	//
 	// _exampleservice._tcp.example.com
 	//
+	// For a single DNS namespace, you cannot create two services with names that
+	// differ only by case (such as EXAMPLE and example). Otherwise, these services
+	// will have the same DNS name. However, you can create multiple HTTP services
+	// with names that differ only by case because HTTP services are case sensitive.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
@@ -2836,6 +2841,11 @@ type CreateServiceInput struct {
 	// value, both of which you define. Tag keys can have a maximum character length
 	// of 128 characters, and tag values can have a maximum length of 256 characters.
 	Tags []*Tag `type:"list"`
+
+	// If present, specifies that the service instances are only discoverable using
+	// the DiscoverInstances API operation. No DNS records will be registered for
+	// the service instances. The only valid value is HTTP.
+	Type *string `type:"string" enum:"ServiceTypeOption"`
 }
 
 // String returns the string representation
@@ -2931,6 +2941,12 @@ func (s *CreateServiceInput) SetNamespaceId(v string) *CreateServiceInput {
 // SetTags sets the Tags field's value.
 func (s *CreateServiceInput) SetTags(v []*Tag) *CreateServiceInput {
 	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateServiceInput) SetType(v string) *CreateServiceInput {
+	s.Type = &v
 	return s
 }
 
@@ -4311,7 +4327,9 @@ type HealthCheckCustomConfig struct {
 	// the same value before 30 seconds has passed doesn't accelerate the change.
 	// AWS Cloud Map still waits 30 seconds after the first request to make the
 	// change.
-	FailureThreshold *int64 `min:"1" type:"integer"`
+	//
+	// Deprecated: Configurable FailureThreshold of HealthCheckCustomConfig is deprecated.  It will always have value 1.
+	FailureThreshold *int64 `min:"1" deprecated:"true" type:"integer"`
 }
 
 // String returns the string representation
@@ -6521,6 +6539,23 @@ type Service struct {
 
 	// The ID of the namespace that was used to create the service.
 	NamespaceId *string `type:"string"`
+
+	// Describes the systems that can be used to discover the service instances.
+	//
+	// DNS_HTTP
+	//
+	// The service instances can be discovered using either DNS queries or the DiscoverInstances
+	// API operation.
+	//
+	// HTTP
+	//
+	// The service instances can only be discovered using the DiscoverInstances
+	// API operation.
+	//
+	// DNS
+	//
+	// Reserved.
+	Type *string `type:"string" enum:"ServiceType"`
 }
 
 // String returns the string representation
@@ -6596,6 +6631,12 @@ func (s *Service) SetName(v string) *Service {
 // SetNamespaceId sets the NamespaceId field's value.
 func (s *Service) SetNamespaceId(v string) *Service {
 	s.NamespaceId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Service) SetType(v string) *Service {
+	s.Type = &v
 	return s
 }
 
@@ -7053,6 +7094,23 @@ type ServiceSummary struct {
 
 	// The name of the service.
 	Name *string `type:"string"`
+
+	// Describes the systems that can be used to discover the service instances.
+	//
+	// DNS_HTTP
+	//
+	// The service instances can be discovered using either DNS queries or the DiscoverInstances
+	// API operation.
+	//
+	// HTTP
+	//
+	// The service instances can only be discovered using the DiscoverInstances
+	// API operation.
+	//
+	// DNS
+	//
+	// Reserved.
+	Type *string `type:"string" enum:"ServiceType"`
 }
 
 // String returns the string representation
@@ -7116,6 +7174,12 @@ func (s *ServiceSummary) SetInstanceCount(v int64) *ServiceSummary {
 // SetName sets the Name field's value.
 func (s *ServiceSummary) SetName(v string) *ServiceSummary {
 	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ServiceSummary) SetType(v string) *ServiceSummary {
+	s.Type = &v
 	return s
 }
 
@@ -7827,5 +7891,37 @@ const (
 func ServiceFilterName_Values() []string {
 	return []string{
 		ServiceFilterNameNamespaceId,
+	}
+}
+
+const (
+	// ServiceTypeHttp is a ServiceType enum value
+	ServiceTypeHttp = "HTTP"
+
+	// ServiceTypeDnsHttp is a ServiceType enum value
+	ServiceTypeDnsHttp = "DNS_HTTP"
+
+	// ServiceTypeDns is a ServiceType enum value
+	ServiceTypeDns = "DNS"
+)
+
+// ServiceType_Values returns all elements of the ServiceType enum
+func ServiceType_Values() []string {
+	return []string{
+		ServiceTypeHttp,
+		ServiceTypeDnsHttp,
+		ServiceTypeDns,
+	}
+}
+
+const (
+	// ServiceTypeOptionHttp is a ServiceTypeOption enum value
+	ServiceTypeOptionHttp = "HTTP"
+)
+
+// ServiceTypeOption_Values returns all elements of the ServiceTypeOption enum
+func ServiceTypeOption_Values() []string {
+	return []string{
+		ServiceTypeOptionHttp,
 	}
 }

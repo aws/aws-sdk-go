@@ -4,15 +4,22 @@
   "operations": {
     "ActivateEventSource": "<p>Activates a partner event source that has been deactivated. Once activated, your matching event bus will start receiving events from the event source.</p>",
     "CancelReplay": "<p>Cancels the specified replay.</p>",
+    "CreateApiDestination": "<p>Creates an API destination, which is an HTTP invocation endpoint configured as a target for events.</p>",
     "CreateArchive": "<p>Creates an archive of events with the specified settings. When you create an archive, incoming events might not immediately start being sent to the archive. Allow a short period of time for changes to take effect. If you do not specify a pattern to filter events sent to the archive, all events are sent to the archive except replayed events. Replayed events are not sent to an archive.</p>",
+    "CreateConnection": "<p>Creates a connection. A connection defines the authorization type and credentials to use for authorization with an API destination HTTP endpoint.</p>",
     "CreateEventBus": "<p>Creates a new event bus within your account. This can be a custom event bus which you can use to receive events from your custom applications and services, or it can be a partner event bus which can be matched to a partner event source.</p>",
     "CreatePartnerEventSource": "<p>Called by an SaaS partner to create a partner event source. This operation is not used by AWS customers.</p> <p>Each partner event source can be used by one AWS account to create a matching partner event bus in that AWS account. A SaaS partner must create one partner event source for each AWS account that wants to receive those event types. </p> <p>A partner event source creates events based on resources within the SaaS partner's service or application.</p> <p>An AWS account that creates a partner event bus that matches the partner event source can use that event bus to receive events from the partner, and then process them using AWS Events rules and targets.</p> <p>Partner event source names follow this format:</p> <p> <code> <i>partner_name</i>/<i>event_namespace</i>/<i>event_name</i> </code> </p> <p> <i>partner_name</i> is determined during partner registration and identifies the partner to AWS customers. <i>event_namespace</i> is determined by the partner and is a way for the partner to categorize their events. <i>event_name</i> is determined by the partner, and should uniquely identify an event-generating resource within the partner system. The combination of <i>event_namespace</i> and <i>event_name</i> should help AWS customers decide whether to create an event bus to receive these events.</p>",
     "DeactivateEventSource": "<p>You can use this operation to temporarily stop receiving events from the specified partner event source. The matching event bus is not deleted. </p> <p>When you deactivate a partner event source, the source goes into PENDING state. If it remains in PENDING state for more than two weeks, it is deleted.</p> <p>To activate a deactivated partner event source, use <a>ActivateEventSource</a>.</p>",
+    "DeauthorizeConnection": "<p>Removes all authorization parameters from the connection. This lets you remove the secret from the connection so you can reuse it without having to create a new connection.</p>",
+    "DeleteApiDestination": "<p>Deletes the specified API destination.</p>",
     "DeleteArchive": "<p>Deletes the specified archive.</p>",
+    "DeleteConnection": "<p>Deletes a connection.</p>",
     "DeleteEventBus": "<p>Deletes the specified custom event bus or partner event bus. All rules associated with this event bus need to be deleted. You can't delete your account's default event bus.</p>",
     "DeletePartnerEventSource": "<p>This operation is used by SaaS partners to delete a partner event source. This operation is not used by AWS customers.</p> <p>When you delete an event source, the status of the corresponding partner event bus in the AWS customer account becomes DELETED.</p> <p/>",
     "DeleteRule": "<p>Deletes the specified rule.</p> <p>Before you can delete the rule, you must remove all targets, using <a>RemoveTargets</a>.</p> <p>When you delete a rule, incoming events might continue to match to the deleted rule. Allow a short period of time for changes to take effect.</p> <p>Managed rules are rules created and managed by another AWS service on your behalf. These rules are created by those other AWS services to support functionality in those services. You can delete these rules using the <code>Force</code> option, but you should do so only if you are sure the other service is not still using that rule.</p>",
+    "DescribeApiDestination": "<p>Retrieves details about an API destination.</p>",
     "DescribeArchive": "<p>Retrieves details about an archive.</p>",
+    "DescribeConnection": "<p>Retrieves details about a connection.</p>",
     "DescribeEventBus": "<p>Displays details about an event bus in your account. This can include the external AWS accounts that are permitted to write events to your default event bus, and the associated policy. For custom event buses and partner event buses, it displays the name, ARN, policy, state, and creation time.</p> <p> To enable your account to receive events from other accounts on its default event bus, use <a>PutPermission</a>.</p> <p>For more information about partner event buses, see <a>CreateEventBus</a>.</p>",
     "DescribeEventSource": "<p>This operation lists details about a partner event source that is shared with your account.</p>",
     "DescribePartnerEventSource": "<p>An SaaS partner can use this operation to list details about a partner event source that they have created. AWS customers do not use this operation. Instead, AWS customers can use <a>DescribeEventSource</a> to see details about a partner event source that is shared with them.</p>",
@@ -20,7 +27,9 @@
     "DescribeRule": "<p>Describes the specified rule.</p> <p>DescribeRule does not list the targets of a rule. To see the targets associated with a rule, use <a>ListTargetsByRule</a>.</p>",
     "DisableRule": "<p>Disables the specified rule. A disabled rule won't match any events, and won't self-trigger if it has a schedule expression.</p> <p>When you disable a rule, incoming events might continue to match to the disabled rule. Allow a short period of time for changes to take effect.</p>",
     "EnableRule": "<p>Enables the specified rule. If the rule does not exist, the operation fails.</p> <p>When you enable a rule, incoming events might not immediately start matching to a newly enabled rule. Allow a short period of time for changes to take effect.</p>",
+    "ListApiDestinations": "<p>Retrieves a list of API destination in the account in the current Region.</p>",
     "ListArchives": "<p>Lists your archives. You can either list all the archives or you can provide a prefix to match to the archive names. Filter parameters are exclusive.</p>",
+    "ListConnections": "<p>Retrieves a list of connections from the account.</p>",
     "ListEventBuses": "<p>Lists all the event buses in your account, including the default event bus, custom event buses, and partner event buses.</p>",
     "ListEventSources": "<p>You can use this to see all the partner event sources that have been shared with your AWS account. For more information about partner event sources, see <a>CreateEventBus</a>.</p>",
     "ListPartnerEventSourceAccounts": "<p>An SaaS partner can use this operation to display the AWS account ID that a particular partner event source name is associated with. This operation is not used by AWS customers.</p>",
@@ -34,14 +43,16 @@
     "PutPartnerEvents": "<p>This is used by SaaS partners to write events to a customer's partner event bus. AWS customers do not use this operation.</p>",
     "PutPermission": "<p>Running <code>PutPermission</code> permits the specified AWS account or AWS organization to put events to the specified <i>event bus</i>. Amazon EventBridge (CloudWatch Events) rules in your account are triggered by these events arriving to an event bus in your account. </p> <p>For another account to send events to your account, that external account must have an EventBridge rule with your account's event bus as a target.</p> <p>To enable multiple AWS accounts to put events to your event bus, run <code>PutPermission</code> once for each of these accounts. Or, if all the accounts are members of the same AWS organization, you can run <code>PutPermission</code> once specifying <code>Principal</code> as \"*\" and specifying the AWS organization ID in <code>Condition</code>, to grant permissions to all accounts in that organization.</p> <p>If you grant permissions using an organization, then accounts in that organization must specify a <code>RoleArn</code> with proper permissions when they use <code>PutTarget</code> to add your account's event bus as a target. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html\">Sending and Receiving Events Between AWS Accounts</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>The permission policy on the default event bus cannot exceed 10 KB in size.</p>",
     "PutRule": "<p>Creates or updates the specified rule. Rules are enabled by default, or based on value of the state. You can disable a rule using <a>DisableRule</a>.</p> <p>A single rule watches for events from a single event bus. Events generated by AWS services go to your account's default event bus. Events generated by SaaS partner services or applications go to the matching partner event bus. If you have custom applications or services, you can specify whether their events go to your default event bus or a custom event bus that you have created. For more information, see <a>CreateEventBus</a>.</p> <p>If you are updating an existing rule, the rule is replaced with what you specify in this <code>PutRule</code> command. If you omit arguments in <code>PutRule</code>, the old values for those arguments are not kept. Instead, they are replaced with null values.</p> <p>When you create or update a rule, incoming events might not immediately start matching to new or updated rules. Allow a short period of time for changes to take effect.</p> <p>A rule must contain at least an EventPattern or ScheduleExpression. Rules with EventPatterns are triggered when a matching event is observed. Rules with ScheduleExpressions self-trigger based on the given schedule. A rule can have both an EventPattern and a ScheduleExpression, in which case the rule triggers on matching events as well as on a schedule.</p> <p>When you initially create a rule, you can optionally assign one or more tags to the rule. Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only rules with certain tag values. To use the <code>PutRule</code> operation and assign tags, you must have both the <code>events:PutRule</code> and <code>events:TagResource</code> permissions.</p> <p>If you are updating an existing rule, any tags you specify in the <code>PutRule</code> operation are ignored. To update the tags of an existing rule, use <a>TagResource</a> and <a>UntagResource</a>.</p> <p>Most services in AWS treat : or / as the same character in Amazon Resource Names (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the correct ARN characters when creating event patterns so that they match the ARN syntax in the event you want to match.</p> <p>In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired repeatedly. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger software to change them to the desired state. If the rule is not written carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop.</p> <p>To prevent this, write the rules so that the triggered actions do not re-fire the same rule. For example, your rule could fire only if ACLs are found to be in a bad state, instead of after any change. </p> <p>An infinite loop can quickly cause higher than expected charges. We recommend that you use budgeting, which alerts you when charges exceed your specified limit. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html\">Managing Your Costs with Budgets</a>.</p>",
-    "PutTargets": "<p>Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.</p> <p>Targets are the resources that are invoked when a rule is triggered.</p> <p>You can configure the following as targets for Events:</p> <ul> <li> <p>EC2 instances</p> </li> <li> <p>SSM Run Command</p> </li> <li> <p>SSM Automation</p> </li> <li> <p>AWS Lambda functions</p> </li> <li> <p>Data streams in Amazon Kinesis Data Streams</p> </li> <li> <p>Data delivery streams in Amazon Kinesis Data Firehose</p> </li> <li> <p>Amazon ECS tasks</p> </li> <li> <p>AWS Step Functions state machines</p> </li> <li> <p>AWS Batch jobs</p> </li> <li> <p>AWS CodeBuild projects</p> </li> <li> <p>Pipelines in AWS CodePipeline</p> </li> <li> <p>Amazon Inspector assessment templates</p> </li> <li> <p>Amazon SNS topics</p> </li> <li> <p>Amazon SQS queues, including FIFO queues</p> </li> <li> <p>The default event bus of another AWS account</p> </li> <li> <p>Amazon API Gateway REST APIs</p> </li> <li> <p>Redshift Clusters to invoke Data API ExecuteStatement on</p> </li> </ul> <p>Creating rules with built-in targets is supported only in the AWS Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>, <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>, and <code>EC2 TerminateInstances API call</code>. </p> <p>For some target types, <code>PutTargets</code> provides target-specific parameters. If the target is a Kinesis data stream, you can optionally specify which shard the event goes to by using the <code>KinesisParameters</code> argument. To invoke a command on multiple EC2 instances with one rule, you can use the <code>RunCommandParameters</code> field.</p> <p>To be able to make API calls against the resources that you own, Amazon EventBridge (CloudWatch Events) needs the appropriate permissions. For AWS Lambda and Amazon SNS resources, EventBridge relies on resource-based policies. For EC2 instances, Kinesis data streams, AWS Step Functions state machines and API Gateway REST APIs, EventBridge relies on IAM roles that you specify in the <code>RoleARN</code> argument in <code>PutTargets</code>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html\">Authentication and Access Control</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>If another AWS account is in the same region and has granted you permission (using <code>PutPermission</code>), you can send events to that account. Set that account's event bus as a target of the rules in your account. To send the matched events to the other account, specify that account's event bus as the <code>Arn</code> value when you run <code>PutTargets</code>. If your account sends events to another account, your account is charged for each sent event. Each event sent to another account is charged as a custom event. The account receiving the event is not charged. For more information, see <a href=\"https://aws.amazon.com/eventbridge/pricing/\">Amazon EventBridge (CloudWatch Events) Pricing</a>.</p> <note> <p> <code>Input</code>, <code>InputPath</code>, and <code>InputTransformer</code> are not available with <code>PutTarget</code> if the target is an event bus of a different AWS account.</p> </note> <p>If you are setting the event bus of another account as the target, and that account granted permission to your account through an organization instead of directly by the account ID, then you must specify a <code>RoleArn</code> with proper permissions in the <code>Target</code> structure. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html\">Sending and Receiving Events Between AWS Accounts</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>For more information about enabling cross-account events, see <a>PutPermission</a>.</p> <p> <b>Input</b>, <b>InputPath</b>, and <b>InputTransformer</b> are mutually exclusive and optional parameters of a target. When a rule is triggered due to a matched event:</p> <ul> <li> <p>If none of the following arguments are specified for a target, then the entire event is passed to the target in JSON format (unless the target is Amazon EC2 Run Command or Amazon ECS task, in which case nothing from the event is passed to the target).</p> </li> <li> <p>If <b>Input</b> is specified in the form of valid JSON, then the matched event is overridden with this constant.</p> </li> <li> <p>If <b>InputPath</b> is specified in the form of JSONPath (for example, <code>$.detail</code>), then only the part of the event specified in the path is passed to the target (for example, only the detail part of the event is passed).</p> </li> <li> <p>If <b>InputTransformer</b> is specified, then one or more specified JSONPaths are extracted from the event and used as values in a template that you specify as the input to the target.</p> </li> </ul> <p>When you specify <code>InputPath</code> or <code>InputTransformer</code>, you must use JSON dot notation, not bracket notation.</p> <p>When you add targets to a rule and the associated rule triggers soon after, new or updated targets might not be immediately invoked. Allow a short period of time for changes to take effect.</p> <p>This action can partially fail if too many requests are made at the same time. If that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry in <code>FailedEntries</code> provides the ID of the failed target and the error code.</p>",
+    "PutTargets": "<p>Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.</p> <p>Targets are the resources that are invoked when a rule is triggered.</p> <p>You can configure the following as targets for Events:</p> <ul> <li> <p>EC2 instances</p> </li> <li> <p>SSM Run Command</p> </li> <li> <p>SSM Automation</p> </li> <li> <p>AWS Lambda functions</p> </li> <li> <p>Data streams in Amazon Kinesis Data Streams</p> </li> <li> <p>Data delivery streams in Amazon Kinesis Data Firehose</p> </li> <li> <p>Amazon ECS tasks</p> </li> <li> <p>AWS Step Functions state machines</p> </li> <li> <p>AWS Batch jobs</p> </li> <li> <p>AWS CodeBuild projects</p> </li> <li> <p>Pipelines in AWS CodePipeline</p> </li> <li> <p>Amazon Inspector assessment templates</p> </li> <li> <p>Amazon SNS topics</p> </li> <li> <p>Amazon SQS queues, including FIFO queues</p> </li> <li> <p>The default event bus of another AWS account</p> </li> <li> <p>Amazon API Gateway REST APIs</p> </li> <li> <p>Redshift Clusters to invoke Data API ExecuteStatement on</p> </li> <li> <p>Custom/SaaS HTTPS APIs via EventBridge API Destinations</p> </li> </ul> <p>Creating rules with built-in targets is supported only in the AWS Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>, <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>, and <code>EC2 TerminateInstances API call</code>. </p> <p>For some target types, <code>PutTargets</code> provides target-specific parameters. If the target is a Kinesis data stream, you can optionally specify which shard the event goes to by using the <code>KinesisParameters</code> argument. To invoke a command on multiple EC2 instances with one rule, you can use the <code>RunCommandParameters</code> field.</p> <p>To be able to make API calls against the resources that you own, Amazon EventBridge (CloudWatch Events) needs the appropriate permissions. For AWS Lambda and Amazon SNS resources, EventBridge relies on resource-based policies. For EC2 instances, Kinesis data streams, AWS Step Functions state machines and API Gateway REST APIs, EventBridge relies on IAM roles that you specify in the <code>RoleARN</code> argument in <code>PutTargets</code>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html\">Authentication and Access Control</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>If another AWS account is in the same region and has granted you permission (using <code>PutPermission</code>), you can send events to that account. Set that account's event bus as a target of the rules in your account. To send the matched events to the other account, specify that account's event bus as the <code>Arn</code> value when you run <code>PutTargets</code>. If your account sends events to another account, your account is charged for each sent event. Each event sent to another account is charged as a custom event. The account receiving the event is not charged. For more information, see <a href=\"https://aws.amazon.com/eventbridge/pricing/\">Amazon EventBridge (CloudWatch Events) Pricing</a>.</p> <note> <p> <code>Input</code>, <code>InputPath</code>, and <code>InputTransformer</code> are not available with <code>PutTarget</code> if the target is an event bus of a different AWS account.</p> </note> <p>If you are setting the event bus of another account as the target, and that account granted permission to your account through an organization instead of directly by the account ID, then you must specify a <code>RoleArn</code> with proper permissions in the <code>Target</code> structure. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html\">Sending and Receiving Events Between AWS Accounts</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>For more information about enabling cross-account events, see <a>PutPermission</a>.</p> <p> <b>Input</b>, <b>InputPath</b>, and <b>InputTransformer</b> are mutually exclusive and optional parameters of a target. When a rule is triggered due to a matched event:</p> <ul> <li> <p>If none of the following arguments are specified for a target, then the entire event is passed to the target in JSON format (unless the target is Amazon EC2 Run Command or Amazon ECS task, in which case nothing from the event is passed to the target).</p> </li> <li> <p>If <b>Input</b> is specified in the form of valid JSON, then the matched event is overridden with this constant.</p> </li> <li> <p>If <b>InputPath</b> is specified in the form of JSONPath (for example, <code>$.detail</code>), then only the part of the event specified in the path is passed to the target (for example, only the detail part of the event is passed).</p> </li> <li> <p>If <b>InputTransformer</b> is specified, then one or more specified JSONPaths are extracted from the event and used as values in a template that you specify as the input to the target.</p> </li> </ul> <p>When you specify <code>InputPath</code> or <code>InputTransformer</code>, you must use JSON dot notation, not bracket notation.</p> <p>When you add targets to a rule and the associated rule triggers soon after, new or updated targets might not be immediately invoked. Allow a short period of time for changes to take effect.</p> <p>This action can partially fail if too many requests are made at the same time. If that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry in <code>FailedEntries</code> provides the ID of the failed target and the error code.</p>",
     "RemovePermission": "<p>Revokes the permission of another AWS account to be able to put events to the specified event bus. Specify the account to revoke by the <code>StatementId</code> value that you associated with the account when you granted it permission with <code>PutPermission</code>. You can find the <code>StatementId</code> by using <a>DescribeEventBus</a>.</p>",
     "RemoveTargets": "<p>Removes the specified targets from the specified rule. When the rule is triggered, those targets are no longer be invoked.</p> <p>When you remove a target, when the associated rule triggers, removed targets might continue to be invoked. Allow a short period of time for changes to take effect.</p> <p>This action can partially fail if too many requests are made at the same time. If that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry in <code>FailedEntries</code> provides the ID of the failed target and the error code.</p>",
     "StartReplay": "<p>Starts the specified replay. Events are not necessarily replayed in the exact same order that they were added to the archive. A replay processes events to replay based on the time in the event, and replays them using 1 minute intervals. If you specify an <code>EventStartTime</code> and an <code>EventEndTime</code> that covers a 20 minute time range, the events are replayed from the first minute of that 20 minute range first. Then the events from the second minute are replayed. You can use <code>DescribeReplay</code> to determine the progress of a replay. The value returned for <code>EventLastReplayedTime</code> indicates the time within the specified time range associated with the last event replayed.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified EventBridge resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In EventBridge, rules and event buses can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the <code>TagResource</code> action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "TestEventPattern": "<p>Tests whether the specified event pattern matches the provided event.</p> <p>Most services in AWS treat : or / as the same character in Amazon Resource Names (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the correct ARN characters when creating event patterns so that they match the ARN syntax in the event you want to match.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge (CloudWatch Events, rules and event buses can be tagged.</p>",
-    "UpdateArchive": "<p>Updates the specified archive.</p>"
+    "UpdateApiDestination": "<p>Updates an API destination.</p>",
+    "UpdateArchive": "<p>Updates the specified archive.</p>",
+    "UpdateConnection": "<p>Updates settings for a connection.</p>"
   },
   "shapes": {
     "AccountId": {
@@ -61,6 +72,74 @@
     "ActivateEventSourceRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "ApiDestination": {
+      "base": "<p>Contains details about an API destination.</p>",
+      "refs": {
+        "ApiDestinationResponseList$member": null
+      }
+    },
+    "ApiDestinationArn": {
+      "base": null,
+      "refs": {
+        "ApiDestination$ApiDestinationArn": "<p>The ARN of the API destination.</p>",
+        "CreateApiDestinationResponse$ApiDestinationArn": "<p>The ARN of the API destination that was created by the request.</p>",
+        "DescribeApiDestinationResponse$ApiDestinationArn": "<p>The ARN of the API destination retrieved.</p>",
+        "UpdateApiDestinationResponse$ApiDestinationArn": "<p>The ARN of the API destination that was updated.</p>"
+      }
+    },
+    "ApiDestinationDescription": {
+      "base": null,
+      "refs": {
+        "CreateApiDestinationRequest$Description": "<p>A description for the API destination to create.</p>",
+        "DescribeApiDestinationResponse$Description": "<p>The description for the API destination retrieved.</p>",
+        "UpdateApiDestinationRequest$Description": "<p>The name of the API destination to update.</p>"
+      }
+    },
+    "ApiDestinationHttpMethod": {
+      "base": null,
+      "refs": {
+        "ApiDestination$HttpMethod": "<p>The method to use to connect to the HTTP endpoint.</p>",
+        "CreateApiDestinationRequest$HttpMethod": "<p>The method to use for the request to the HTTP invocation endpoint.</p>",
+        "DescribeApiDestinationResponse$HttpMethod": "<p>The method to use to connect to the HTTP endpoint.</p>",
+        "UpdateApiDestinationRequest$HttpMethod": "<p>The method to use for the API destination.</p>"
+      }
+    },
+    "ApiDestinationInvocationRateLimitPerSecond": {
+      "base": null,
+      "refs": {
+        "ApiDestination$InvocationRateLimitPerSecond": "<p>The maximum number of invocations per second to send to the HTTP endpoint.</p>",
+        "CreateApiDestinationRequest$InvocationRateLimitPerSecond": "<p>The maximum number of requests per second to send to the HTTP invocation endpoint.</p>",
+        "DescribeApiDestinationResponse$InvocationRateLimitPerSecond": "<p>The maximum number of invocations per second to specified for the API destination. Note that if you set the invocation rate maximum to a value lower the rate necessary to send all events received on to the destination HTTP endpoint, some events may not be delivered within the 24-hour retry window. If you plan to set the rate lower than the rate necessary to deliver all events, consider using a dead-letter queue to catch events that are not delivered within 24 hours.</p>",
+        "UpdateApiDestinationRequest$InvocationRateLimitPerSecond": "<p>The maximum number of invocations per second to send to the API destination.</p>"
+      }
+    },
+    "ApiDestinationName": {
+      "base": null,
+      "refs": {
+        "ApiDestination$Name": "<p>The name of the API destination.</p>",
+        "CreateApiDestinationRequest$Name": "<p>The name for the API destination to create.</p>",
+        "DeleteApiDestinationRequest$Name": "<p>The name of the destination to delete.</p>",
+        "DescribeApiDestinationRequest$Name": "<p>The name of the API destination to retrieve.</p>",
+        "DescribeApiDestinationResponse$Name": "<p>The name of the API destination retrieved.</p>",
+        "ListApiDestinationsRequest$NamePrefix": "<p>A name prefix to filter results returned. Only API destinations with a name that starts with the prefix are returned.</p>",
+        "UpdateApiDestinationRequest$Name": "<p>The name of the API destination to update.</p>"
+      }
+    },
+    "ApiDestinationResponseList": {
+      "base": null,
+      "refs": {
+        "ListApiDestinationsResponse$ApiDestinations": "<p>An array of <code>ApiDestination</code> objects that include information about an API destination.</p>"
+      }
+    },
+    "ApiDestinationState": {
+      "base": null,
+      "refs": {
+        "ApiDestination$ApiDestinationState": "<p>The state of the API destination.</p>",
+        "CreateApiDestinationResponse$ApiDestinationState": "<p>The state of the API destination that was created by the request.</p>",
+        "DescribeApiDestinationResponse$ApiDestinationState": "<p>The state of the API destination retrieved.</p>",
+        "UpdateApiDestinationResponse$ApiDestinationState": "<p>The state of the API destination that was updated.</p>"
       }
     },
     "Archive": {
@@ -147,6 +226,26 @@
         "AwsVpcConfiguration$AssignPublicIp": "<p>Specifies whether the task's elastic network interface receives a public IP address. You can specify <code>ENABLED</code> only when <code>LaunchType</code> in <code>EcsParameters</code> is set to <code>FARGATE</code>.</p>"
       }
     },
+    "AuthHeaderParameters": {
+      "base": null,
+      "refs": {
+        "ConnectionApiKeyAuthResponseParameters$ApiKeyName": "<p>The name of the header to use for the <code>APIKeyValue</code> used for authorization.</p>",
+        "ConnectionBasicAuthResponseParameters$Username": "<p>The user name to use for Basic authorization.</p>",
+        "ConnectionOAuthClientResponseParameters$ClientID": "<p>The client ID associated with the response to the connection request.</p>",
+        "CreateConnectionApiKeyAuthRequestParameters$ApiKeyName": "<p>The name of the API key to use for authorization.</p>",
+        "CreateConnectionApiKeyAuthRequestParameters$ApiKeyValue": "<p>The value for the API key to use for authorization.</p>",
+        "CreateConnectionBasicAuthRequestParameters$Username": "<p>The user name to use for Basic authorization.</p>",
+        "CreateConnectionBasicAuthRequestParameters$Password": "<p>The password associated with the user name to use for Basic authorization.</p>",
+        "CreateConnectionOAuthClientRequestParameters$ClientID": "<p>The client ID to use for OAuth authorization for the connection.</p>",
+        "CreateConnectionOAuthClientRequestParameters$ClientSecret": "<p>The client secret associated with the client ID to use for OAuth authorization for the connection.</p>",
+        "UpdateConnectionApiKeyAuthRequestParameters$ApiKeyName": "<p>The name of the API key to use for authorization.</p>",
+        "UpdateConnectionApiKeyAuthRequestParameters$ApiKeyValue": "<p>The value associated with teh API key to use for authorization.</p>",
+        "UpdateConnectionBasicAuthRequestParameters$Username": "<p>The user name to use for Basic authorization.</p>",
+        "UpdateConnectionBasicAuthRequestParameters$Password": "<p>The password associated with the user name to use for Basic authorization.</p>",
+        "UpdateConnectionOAuthClientRequestParameters$ClientID": "<p>The client ID to use for OAuth authorization.</p>",
+        "UpdateConnectionOAuthClientRequestParameters$ClientSecret": "<p>The client secret assciated with the client ID to use for OAuth authorization.</p>"
+      }
+    },
     "AwsVpcConfiguration": {
       "base": "<p>This structure specifies the VPC subnets and security groups for the task, and whether a public IP address is to be used. This structure is relevant only for ECS tasks that use the <code>awsvpc</code> network mode.</p>",
       "refs": {
@@ -174,6 +273,9 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "ConnectionBodyParameter$IsValueSecret": "<p>Specified whether the value is secret.</p>",
+        "ConnectionHeaderParameter$IsValueSecret": "<p>Specified whether the value is a secret.</p>",
+        "ConnectionQueryStringParameter$IsValueSecret": "<p>Specifies whether the value is secret.</p>",
         "DeleteRuleRequest$Force": "<p>If this is a managed rule, created by an AWS service on your behalf, you must specify <code>Force</code> as <code>True</code> to delete the rule. This parameter is ignored for rules that are not managed rules. You can check whether a rule is a managed rule by using <code>DescribeRule</code> or <code>ListRules</code> and checking the <code>ManagedBy</code> field of the response.</p>",
         "RedshiftDataParameters$WithEvent": "<p>Indicates whether to send an event back to EventBridge after the SQL statement runs.</p>",
         "RemovePermissionRequest$RemoveAllPermissions": "<p>Specifies whether to remove all permissions.</p>",
@@ -202,12 +304,224 @@
         "PutPermissionRequest$Condition": "<p>This parameter enables you to limit the permission to accounts that fulfill a certain condition, such as being a member of a certain AWS organization. For more information about AWS Organizations, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html\">What Is AWS Organizations</a> in the <i>AWS Organizations User Guide</i>.</p> <p>If you specify <code>Condition</code> with an AWS organization ID, and specify \"*\" as the value for <code>Principal</code>, you grant permission to all the accounts in the named organization.</p> <p>The <code>Condition</code> is a JSON string which must contain <code>Type</code>, <code>Key</code>, and <code>Value</code> fields.</p>"
       }
     },
+    "Connection": {
+      "base": "<p>Contains information about a connection.</p>",
+      "refs": {
+        "ConnectionResponseList$member": null
+      }
+    },
+    "ConnectionApiKeyAuthResponseParameters": {
+      "base": "<p>Contains the authorization parameters for the connection if API Key is specified as the authorization type.</p>",
+      "refs": {
+        "ConnectionAuthResponseParameters$ApiKeyAuthParameters": "<p>The API Key parameters to use for authorization.</p>"
+      }
+    },
+    "ConnectionArn": {
+      "base": null,
+      "refs": {
+        "ApiDestination$ConnectionArn": "<p>The ARN of the connection specified for the API destination.</p>",
+        "Connection$ConnectionArn": "<p>The ARN of the connection.</p>",
+        "CreateApiDestinationRequest$ConnectionArn": "<p>The ARN of the connection to use for the API destination. The destination endpoint must support the authorization type specified for the connection.</p>",
+        "CreateConnectionResponse$ConnectionArn": "<p>The ARN of the connection that was created by the request.</p>",
+        "DeauthorizeConnectionResponse$ConnectionArn": "<p>The ARN of the connection that authorization was removed from.</p>",
+        "DeleteConnectionResponse$ConnectionArn": "<p>The ARN of the connection that was deleted.</p>",
+        "DescribeApiDestinationResponse$ConnectionArn": "<p>The ARN of the connection specified for the API destination retrieved.</p>",
+        "DescribeConnectionResponse$ConnectionArn": "<p>The ARN of the connection retrieved.</p>",
+        "ListApiDestinationsRequest$ConnectionArn": "<p>The ARN of the connection specified for the API destination.</p>",
+        "UpdateApiDestinationRequest$ConnectionArn": "<p>The ARN of the connection to use for the API destination.</p>",
+        "UpdateConnectionResponse$ConnectionArn": "<p>The ARN of the connection that was updated.</p>"
+      }
+    },
+    "ConnectionAuthResponseParameters": {
+      "base": "<p>Contains the authorization parameters to use for the connection.</p>",
+      "refs": {
+        "DescribeConnectionResponse$AuthParameters": "<p>The parameters to use for authorization for the connection.</p>"
+      }
+    },
+    "ConnectionAuthorizationType": {
+      "base": null,
+      "refs": {
+        "Connection$AuthorizationType": "<p>The authorization type specified for the connection.</p>",
+        "CreateConnectionRequest$AuthorizationType": "<p>The type of authorization to use for the connection.</p>",
+        "DescribeConnectionResponse$AuthorizationType": "<p>The type of authorization specified for the connection.</p>",
+        "UpdateConnectionRequest$AuthorizationType": "<p>The type of authorization to use for the connection.</p>"
+      }
+    },
+    "ConnectionBasicAuthResponseParameters": {
+      "base": "<p>Contains the authorization parameters for the connection if Basic is specified as the authorization type.</p>",
+      "refs": {
+        "ConnectionAuthResponseParameters$BasicAuthParameters": "<p>The authorization parameters for Basic authorization.</p>"
+      }
+    },
+    "ConnectionBodyParameter": {
+      "base": "<p>Additional parameter included in the body. You can include up to 100 additional body parameters per request. An event payload cannot exceed 64 KB.</p>",
+      "refs": {
+        "ConnectionBodyParametersList$member": null
+      }
+    },
+    "ConnectionBodyParametersList": {
+      "base": null,
+      "refs": {
+        "ConnectionHttpParameters$BodyParameters": "<p>Contains additional body string parameters for the connection.</p>"
+      }
+    },
+    "ConnectionDescription": {
+      "base": null,
+      "refs": {
+        "CreateConnectionRequest$Description": "<p>A description for the connection to create.</p>",
+        "DescribeConnectionResponse$Description": "<p>The description for the connection retrieved.</p>",
+        "UpdateConnectionRequest$Description": "<p>A description for the connection.</p>"
+      }
+    },
+    "ConnectionHeaderParameter": {
+      "base": "<p>Additional parameter included in the header. You can include up to 100 additional header parameters per request. An event payload cannot exceed 64 KB.</p>",
+      "refs": {
+        "ConnectionHeaderParametersList$member": null
+      }
+    },
+    "ConnectionHeaderParametersList": {
+      "base": null,
+      "refs": {
+        "ConnectionHttpParameters$HeaderParameters": "<p>Contains additional header parameters for the connection.</p>"
+      }
+    },
+    "ConnectionHttpParameters": {
+      "base": "<p>Contains additional parameters for the connection.</p>",
+      "refs": {
+        "ConnectionAuthResponseParameters$InvocationHttpParameters": "<p>Additional parameters for the connection that are passed through with every invocation to the HTTP endpoint.</p>",
+        "ConnectionOAuthResponseParameters$OAuthHttpParameters": "<p>The additional HTTP parameters used for the OAuth authorization request.</p>",
+        "CreateConnectionAuthRequestParameters$InvocationHttpParameters": "<p>A <code>ConnectionHttpParameters</code> object that contains the API key authorization parameters to use for the connection. Note that if you include additional parameters for the target of a rule via <code>HttpParameters</code>, including query strings, the parameters added for the connection take precedence.</p>",
+        "CreateConnectionOAuthRequestParameters$OAuthHttpParameters": "<p>A <code>ConnectionHttpParameters</code> object that contains details about the additional parameters to use for the connection.</p>",
+        "UpdateConnectionAuthRequestParameters$InvocationHttpParameters": "<p>A <code>ConnectionHttpParameters</code> object that contains the additional parameters to use for the connection.</p>",
+        "UpdateConnectionOAuthRequestParameters$OAuthHttpParameters": "<p>The additional HTTP parameters used for the OAuth authorization request.</p>"
+      }
+    },
+    "ConnectionName": {
+      "base": null,
+      "refs": {
+        "Connection$Name": "<p>The name of the connection.</p>",
+        "CreateConnectionRequest$Name": "<p>The name for the connection to create.</p>",
+        "DeauthorizeConnectionRequest$Name": "<p>The name of the connection to remove authorization from.</p>",
+        "DeleteConnectionRequest$Name": "<p>The name of the connection to delete.</p>",
+        "DescribeConnectionRequest$Name": "<p>The name of the connection to retrieve.</p>",
+        "DescribeConnectionResponse$Name": "<p>The name of the connection retrieved.</p>",
+        "ListConnectionsRequest$NamePrefix": "<p>A name prefix to filter results returned. Only connections with a name that starts with the prefix are returned.</p>",
+        "UpdateConnectionRequest$Name": "<p>The name of the connection to update.</p>"
+      }
+    },
+    "ConnectionOAuthClientResponseParameters": {
+      "base": "<p>Contains the client response parameters for the connection when OAuth is specified as the authorization type.</p>",
+      "refs": {
+        "ConnectionOAuthResponseParameters$ClientParameters": "<p>A <code>ConnectionOAuthClientResponseParameters</code> object that contains details about the client parameters returned when OAuth is specified as the authorization type.</p>"
+      }
+    },
+    "ConnectionOAuthHttpMethod": {
+      "base": null,
+      "refs": {
+        "ConnectionOAuthResponseParameters$HttpMethod": "<p>The method used to connect to the HTTP endpoint.</p>",
+        "CreateConnectionOAuthRequestParameters$HttpMethod": "<p>The method to use for the authorization request.</p>",
+        "UpdateConnectionOAuthRequestParameters$HttpMethod": "<p>The method used to connect to the HTTP endpoint.</p>"
+      }
+    },
+    "ConnectionOAuthResponseParameters": {
+      "base": "<p>Contains the response parameters when OAuth is specified as the authorization type.</p>",
+      "refs": {
+        "ConnectionAuthResponseParameters$OAuthParameters": "<p>The OAuth parameters to use for authorization.</p>"
+      }
+    },
+    "ConnectionQueryStringParameter": {
+      "base": "<p>Additional query string parameter for the connection. You can include up to 100 additional query string parameters per request. Each additional parameter counts towards the event payload size, which cannot exceed 64 KB.</p>",
+      "refs": {
+        "ConnectionQueryStringParametersList$member": null
+      }
+    },
+    "ConnectionQueryStringParametersList": {
+      "base": null,
+      "refs": {
+        "ConnectionHttpParameters$QueryStringParameters": "<p>Contains additional query string parameters for the connection.</p>"
+      }
+    },
+    "ConnectionResponseList": {
+      "base": null,
+      "refs": {
+        "ListConnectionsResponse$Connections": "<p>An array of connections objects that include details about the connections.</p>"
+      }
+    },
+    "ConnectionState": {
+      "base": null,
+      "refs": {
+        "Connection$ConnectionState": "<p>The state of the connection.</p>",
+        "CreateConnectionResponse$ConnectionState": "<p>The state of the connection that was created by the request.</p>",
+        "DeauthorizeConnectionResponse$ConnectionState": "<p>The state of the connection.</p>",
+        "DeleteConnectionResponse$ConnectionState": "<p>The state of the connection before it was deleted.</p>",
+        "DescribeConnectionResponse$ConnectionState": "<p>The state of the connection retrieved.</p>",
+        "ListConnectionsRequest$ConnectionState": "<p>The state of the connection.</p>",
+        "UpdateConnectionResponse$ConnectionState": "<p>The state of the connection that was updated.</p>"
+      }
+    },
+    "ConnectionStateReason": {
+      "base": null,
+      "refs": {
+        "Connection$StateReason": "<p>The reason that the connection is in the connection state.</p>",
+        "DescribeConnectionResponse$StateReason": "<p>The reason that the connection is in the current connection state.</p>"
+      }
+    },
+    "CreateApiDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateApiDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateArchiveRequest": {
       "base": null,
       "refs": {
       }
     },
     "CreateArchiveResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectionApiKeyAuthRequestParameters": {
+      "base": "<p>Contains the API key authorization parameters for the connection.</p>",
+      "refs": {
+        "CreateConnectionAuthRequestParameters$ApiKeyAuthParameters": "<p>A <code>CreateConnectionApiKeyAuthRequestParameters</code> object that contains the API key authorization parameters to use for the connection.</p>"
+      }
+    },
+    "CreateConnectionAuthRequestParameters": {
+      "base": "<p>Contains the authorization parameters for the connection.</p>",
+      "refs": {
+        "CreateConnectionRequest$AuthParameters": "<p>A <code>CreateConnectionAuthRequestParameters</code> object that contains the authorization parameters to use to authorize with the endpoint. </p>"
+      }
+    },
+    "CreateConnectionBasicAuthRequestParameters": {
+      "base": "<p>Contains the Basic authorization parameters to use for the connection.</p>",
+      "refs": {
+        "CreateConnectionAuthRequestParameters$BasicAuthParameters": "<p>A <code>CreateConnectionBasicAuthRequestParameters</code> object that contains the Basic authorization parameters to use for the connection.</p>"
+      }
+    },
+    "CreateConnectionOAuthClientRequestParameters": {
+      "base": "<p>Contains the Basic authorization parameters to use for the connection.</p>",
+      "refs": {
+        "CreateConnectionOAuthRequestParameters$ClientParameters": "<p>A <code>CreateConnectionOAuthClientRequestParameters</code> object that contains the client parameters for OAuth authorization.</p>"
+      }
+    },
+    "CreateConnectionOAuthRequestParameters": {
+      "base": "<p>Contains the OAuth authorization parameters to use for the connection.</p>",
+      "refs": {
+        "CreateConnectionAuthRequestParameters$OAuthParameters": "<p>A <code>CreateConnectionOAuthRequestParameters</code> object that contains the OAuth authorization parameters to use for the connection.</p>"
+      }
+    },
+    "CreateConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -261,12 +575,42 @@
         "Target$DeadLetterConfig": "<p>The <code>DeadLetterConfig</code> that defines the target queue to send dead-letter queue events to.</p>"
       }
     },
+    "DeauthorizeConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeauthorizeConnectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteApiDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteApiDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteArchiveRequest": {
       "base": null,
       "refs": {
       }
     },
     "DeleteArchiveResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -286,12 +630,32 @@
       "refs": {
       }
     },
+    "DescribeApiDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApiDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeArchiveRequest": {
       "base": null,
       "refs": {
       }
     },
     "DescribeArchiveResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectionResponse": {
       "base": null,
       "refs": {
       }
@@ -500,25 +864,39 @@
     "HeaderKey": {
       "base": null,
       "refs": {
+        "ConnectionHeaderParameter$Key": "<p>The key for the parameter.</p>",
         "HeaderParametersMap$key": null
       }
     },
     "HeaderParametersMap": {
       "base": null,
       "refs": {
-        "HttpParameters$HeaderParameters": "<p>The headers that need to be sent as part of request invoking the API Gateway REST API.</p>"
+        "HttpParameters$HeaderParameters": "<p>The headers that need to be sent as part of request invoking the API Gateway REST API or EventBridge ApiDestination.</p>"
       }
     },
     "HeaderValue": {
       "base": null,
       "refs": {
+        "ConnectionHeaderParameter$Value": "<p>The value associated with the key.</p>",
         "HeaderParametersMap$value": null
       }
     },
     "HttpParameters": {
-      "base": "<p>These are custom parameter to be used when the target is an API Gateway REST APIs.</p>",
+      "base": "<p>These are custom parameter to be used when the target is an API Gateway REST APIs or EventBridge ApiDestinations. In the latter case, these are merged with any InvocationParameters specified on the Connection, with any values from the Connection taking precedence.</p>",
       "refs": {
-        "Target$HttpParameters": "<p>Contains the HTTP parameters to use when the target is a API Gateway REST endpoint.</p> <p>If you specify an API Gateway REST API as a target, you can use this parameter to specify headers, path parameter, query string keys/values as part of your target invoking request.</p>"
+        "Target$HttpParameters": "<p>Contains the HTTP parameters to use when the target is a API Gateway REST endpoint or EventBridge ApiDestination.</p> <p>If you specify an API Gateway REST API or EventBridge ApiDestination as a target, you can use this parameter to specify headers, path parameters, and query string keys/values as part of your target invoking request. If you're using ApiDestinations, the corresponding Connection can also have these values configured. In case of any conflicting keys, values from the Connection take precedence.</p>"
+      }
+    },
+    "HttpsEndpoint": {
+      "base": null,
+      "refs": {
+        "ApiDestination$InvocationEndpoint": "<p>The URL to the endpoint for the API destination.</p>",
+        "ConnectionOAuthResponseParameters$AuthorizationEndpoint": "<p>The URL to the HTTP endpoint that authorized the request.</p>",
+        "CreateApiDestinationRequest$InvocationEndpoint": "<p>The URL to the HTTP invocation endpoint for the API destination.</p>",
+        "CreateConnectionOAuthRequestParameters$AuthorizationEndpoint": "<p>The URL to the authorization endpoint when OAuth is specified as the authorization type.</p>",
+        "DescribeApiDestinationResponse$InvocationEndpoint": "<p>The URL to use to connect to the HTTP endpoint.</p>",
+        "UpdateApiDestinationRequest$InvocationEndpoint": "<p>The URL to the endpoint to use for the API destination.</p>",
+        "UpdateConnectionOAuthRequestParameters$AuthorizationEndpoint": "<p>The URL to the authorization endpoint when OAuth is specified as the authorization type.</p>"
       }
     },
     "IllegalStatusException": {
@@ -584,7 +962,9 @@
     "LimitMax100": {
       "base": null,
       "refs": {
+        "ListApiDestinationsRequest$Limit": "<p>The maximum number of API destinations to include in the response.</p>",
         "ListArchivesRequest$Limit": "<p>The maximum number of results to return.</p>",
+        "ListConnectionsRequest$Limit": "<p>The maximum number of connections to return.</p>",
         "ListEventBusesRequest$Limit": "<p>Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListEventSourcesRequest$Limit": "<p>Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListPartnerEventSourceAccountsRequest$Limit": "<p>Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
@@ -601,12 +981,32 @@
         "EcsParameters$TaskCount": "<p>The number of tasks to create based on <code>TaskDefinition</code>. The default is 1.</p>"
       }
     },
+    "ListApiDestinationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApiDestinationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListArchivesRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListArchivesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConnectionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListConnectionsResponse": {
       "base": null,
       "refs": {
       }
@@ -749,8 +1149,12 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListApiDestinationsRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
+        "ListApiDestinationsResponse$NextToken": "<p>A token you can use in a subsequent request to retrieve the next set of results.</p>",
         "ListArchivesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListArchivesResponse$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
+        "ListConnectionsRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
+        "ListConnectionsResponse$NextToken": "<p>A token you can use in a subsequent request to retrieve the next set of results.</p>",
         "ListEventBusesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListEventBusesResponse$NextToken": "<p>A token you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListEventSourcesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
@@ -826,7 +1230,7 @@
     "PathParameterList": {
       "base": null,
       "refs": {
-        "HttpParameters$PathParameterValues": "<p>The path parameter values to be used to populate API Gateway REST API path wildcards (\"*\").</p>"
+        "HttpParameters$PathParameterValues": "<p>The path parameter values to be used to populate API Gateway REST API or EventBridge ApiDestination path wildcards (\"*\").</p>"
       }
     },
     "PolicyLengthExceededException": {
@@ -948,18 +1352,20 @@
     "QueryStringKey": {
       "base": null,
       "refs": {
+        "ConnectionQueryStringParameter$Key": "<p>The key for a query string parameter.</p>",
         "QueryStringParametersMap$key": null
       }
     },
     "QueryStringParametersMap": {
       "base": null,
       "refs": {
-        "HttpParameters$QueryStringParameters": "<p>The query string keys/values that need to be sent as part of request invoking the API Gateway REST API.</p>"
+        "HttpParameters$QueryStringParameters": "<p>The query string keys/values that need to be sent as part of request invoking the API Gateway REST API or EventBridge ApiDestination.</p>"
       }
     },
     "QueryStringValue": {
       "base": null,
       "refs": {
+        "ConnectionQueryStringParameter$Value": "<p>The value associated with the key for the query string parameter.</p>",
         "QueryStringParametersMap$value": null
       }
     },
@@ -1215,6 +1621,12 @@
         "Rule$ScheduleExpression": "<p>The scheduling expression. For example, \"cron(0 20 * * ? *)\", \"rate(5 minutes)\".</p>"
       }
     },
+    "SecretsManagerSecretArn": {
+      "base": null,
+      "refs": {
+        "DescribeConnectionResponse$SecretArn": "<p>The ARN of the secret created from the authorization parameters specified for the connection.</p>"
+      }
+    },
     "Sql": {
       "base": null,
       "refs": {
@@ -1258,6 +1670,8 @@
         "Condition$Type": "<p>Specifies the type of condition. Currently the only supported value is <code>StringEquals</code>.</p>",
         "Condition$Key": "<p>Specifies the key for the condition. Currently the only supported key is <code>aws:PrincipalOrgID</code>.</p>",
         "Condition$Value": "<p>Specifies the value for the key. Currently, this must be the ID of the organization.</p>",
+        "ConnectionBodyParameter$Key": "<p>The key for the parameter.</p>",
+        "ConnectionBodyParameter$Value": "<p>The value associated with the key.</p>",
         "CreateEventBusResponse$EventBusArn": "<p>The ARN of the new event bus.</p>",
         "CreatePartnerEventSourceResponse$EventSourceArn": "<p>The ARN of the partner event source.</p>",
         "DescribeEventBusResponse$Name": "<p>The name of the event bus. Currently, this is always <code>default</code>.</p>",
@@ -1406,9 +1820,29 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "ApiDestination$CreationTime": "<p>A time stamp for the time that the API destination was created.</p>",
+        "ApiDestination$LastModifiedTime": "<p>A time stamp for the time that the API destination was last modified.</p>",
         "Archive$CreationTime": "<p>The time stamp for the time that the archive was created.</p>",
+        "Connection$CreationTime": "<p>A time stamp for the time that the connection was created.</p>",
+        "Connection$LastModifiedTime": "<p>A time stamp for the time that the connection was last modified.</p>",
+        "Connection$LastAuthorizedTime": "<p>A time stamp for the time that the connection was last authorized.</p>",
+        "CreateApiDestinationResponse$CreationTime": "<p>A time stamp indicating the time that the API destination was created.</p>",
+        "CreateApiDestinationResponse$LastModifiedTime": "<p>A time stamp indicating the time that the API destination was last modified.</p>",
         "CreateArchiveResponse$CreationTime": "<p>The time at which the archive was created.</p>",
+        "CreateConnectionResponse$CreationTime": "<p>A time stamp for the time that the connection was created.</p>",
+        "CreateConnectionResponse$LastModifiedTime": "<p>A time stamp for the time that the connection was last updated.</p>",
+        "DeauthorizeConnectionResponse$CreationTime": "<p>A time stamp for the time that the connection was created.</p>",
+        "DeauthorizeConnectionResponse$LastModifiedTime": "<p>A time stamp for the time that the connection was last updated.</p>",
+        "DeauthorizeConnectionResponse$LastAuthorizedTime": "<p>A time stamp for the time that the connection was last authorized.</p>",
+        "DeleteConnectionResponse$CreationTime": "<p>A time stamp for the time that the connection was created.</p>",
+        "DeleteConnectionResponse$LastModifiedTime": "<p>A time stamp for the time that the connection was last modified before it was deleted.</p>",
+        "DeleteConnectionResponse$LastAuthorizedTime": "<p>A time stamp for the time that the connection was last authorized before it wa deleted.</p>",
+        "DescribeApiDestinationResponse$CreationTime": "<p>A time stamp for the time that the API destination was created.</p>",
+        "DescribeApiDestinationResponse$LastModifiedTime": "<p>A time stamp for the time that the API destination was last modified.</p>",
         "DescribeArchiveResponse$CreationTime": "<p>The time at which the archive was created.</p>",
+        "DescribeConnectionResponse$CreationTime": "<p>A time stamp for the time that the connection was created.</p>",
+        "DescribeConnectionResponse$LastModifiedTime": "<p>A time stamp for the time that the connection was last modified.</p>",
+        "DescribeConnectionResponse$LastAuthorizedTime": "<p>A time stamp for the time that the connection was last authorized.</p>",
         "DescribeEventSourceResponse$CreationTime": "<p>The date and time that the event source was created.</p>",
         "DescribeEventSourceResponse$ExpirationTime": "<p>The date and time that the event source will expire if you do not create a matching event bus.</p>",
         "DescribeReplayResponse$EventStartTime": "<p>The time stamp of the first event that was last replayed from the archive.</p>",
@@ -1428,7 +1862,12 @@
         "StartReplayRequest$EventStartTime": "<p>A time stamp for the time to start replaying events. Only events that occurred between the <code>EventStartTime</code> and <code>EventEndTime</code> are replayed.</p>",
         "StartReplayRequest$EventEndTime": "<p>A time stamp for the time to stop replaying events. Only events that occurred between the <code>EventStartTime</code> and <code>EventEndTime</code> are replayed.</p>",
         "StartReplayResponse$ReplayStartTime": "<p>The time at which the replay started.</p>",
-        "UpdateArchiveResponse$CreationTime": "<p>The time at which the archive was updated.</p>"
+        "UpdateApiDestinationResponse$CreationTime": "<p>A time stamp for the time that the API destination was created.</p>",
+        "UpdateApiDestinationResponse$LastModifiedTime": "<p>A time stamp for the time that the API destination was last modified.</p>",
+        "UpdateArchiveResponse$CreationTime": "<p>The time at which the archive was updated.</p>",
+        "UpdateConnectionResponse$CreationTime": "<p>A time stamp for the time that the connection was created.</p>",
+        "UpdateConnectionResponse$LastModifiedTime": "<p>A time stamp for the time that the connection was last modified.</p>",
+        "UpdateConnectionResponse$LastAuthorizedTime": "<p>A time stamp for the time that the connection was last authorized.</p>"
       }
     },
     "TraceHeader": {
@@ -1440,13 +1879,13 @@
     "TransformerInput": {
       "base": null,
       "refs": {
-        "InputTransformer$InputTemplate": "<p>Input template where you specify placeholders that will be filled with the values of the keys from <code>InputPathsMap</code> to customize the data sent to the target. Enclose each <code>InputPathsMaps</code> value in brackets: &lt;<i>value</i>&gt; The InputTemplate must be valid JSON.</p> <p>If <code>InputTemplate</code> is a JSON object (surrounded by curly braces), the following restrictions apply:</p> <ul> <li> <p>The placeholder cannot be used as an object key.</p> </li> <li> <p>Object values cannot include quote marks.</p> </li> </ul> <p>The following example shows the syntax for using <code>InputPathsMap</code> and <code>InputTemplate</code>.</p> <p> <code> \"InputTransformer\":</code> </p> <p> <code>{</code> </p> <p> <code>\"InputPathsMap\": {\"instance\": \"$.detail.instance\",\"status\": \"$.detail.status\"},</code> </p> <p> <code>\"InputTemplate\": \"&lt;instance&gt; is in state &lt;status&gt;\"</code> </p> <p> <code>}</code> </p> <p>To have the <code>InputTemplate</code> include quote marks within a JSON string, escape each quote marks with a slash, as in the following example:</p> <p> <code> \"InputTransformer\":</code> </p> <p> <code>{</code> </p> <p> <code>\"InputPathsMap\": {\"instance\": \"$.detail.instance\",\"status\": \"$.detail.status\"},</code> </p> <p> <code>\"InputTemplate\": \"&lt;instance&gt; is in state \\\"&lt;status&gt;\\\"\"</code> </p> <p> <code>}</code> </p>"
+        "InputTransformer$InputTemplate": "<p>Input template where you specify placeholders that will be filled with the values of the keys from <code>InputPathsMap</code> to customize the data sent to the target. Enclose each <code>InputPathsMaps</code> value in brackets: &lt;<i>value</i>&gt; The InputTemplate must be valid JSON.</p> <p>If <code>InputTemplate</code> is a JSON object (surrounded by curly braces), the following restrictions apply:</p> <ul> <li> <p>The placeholder cannot be used as an object key.</p> </li> </ul> <p>The following example shows the syntax for using <code>InputPathsMap</code> and <code>InputTemplate</code>.</p> <p> <code> \"InputTransformer\":</code> </p> <p> <code>{</code> </p> <p> <code>\"InputPathsMap\": {\"instance\": \"$.detail.instance\",\"status\": \"$.detail.status\"},</code> </p> <p> <code>\"InputTemplate\": \"&lt;instance&gt; is in state &lt;status&gt;\"</code> </p> <p> <code>}</code> </p> <p>To have the <code>InputTemplate</code> include quote marks within a JSON string, escape each quote marks with a slash, as in the following example:</p> <p> <code> \"InputTransformer\":</code> </p> <p> <code>{</code> </p> <p> <code>\"InputPathsMap\": {\"instance\": \"$.detail.instance\",\"status\": \"$.detail.status\"},</code> </p> <p> <code>\"InputTemplate\": \"&lt;instance&gt; is in state \\\"&lt;status&gt;\\\"\"</code> </p> <p> <code>}</code> </p> <p>The <code>InputTemplate</code> can also be valid JSON with varibles in quotes or out, as in the following example:</p> <p> <code> \"InputTransformer\":</code> </p> <p> <code>{</code> </p> <p> <code>\"InputPathsMap\": {\"instance\": \"$.detail.instance\",\"status\": \"$.detail.status\"},</code> </p> <p> <code>\"InputTemplate\": '{\"myInstance\": &lt;instance&gt;,\"myStatus\": \"&lt;instance&gt; is in state \\\"&lt;status&gt;\\\"\"}'</code> </p> <p> <code>}</code> </p>"
       }
     },
     "TransformerPaths": {
       "base": null,
       "refs": {
-        "InputTransformer$InputPathsMap": "<p>Map of JSON paths to be extracted from the event. You can then insert these in the template in <code>InputTemplate</code> to produce the output you want to be sent to the target.</p> <p> <code>InputPathsMap</code> is an array key-value pairs, where each value is a valid JSON path. You can have as many as 10 key-value pairs. You must use JSON dot notation, not bracket notation.</p> <p>The keys cannot start with \"AWS.\" </p>"
+        "InputTransformer$InputPathsMap": "<p>Map of JSON paths to be extracted from the event. You can then insert these in the template in <code>InputTemplate</code> to produce the output you want to be sent to the target.</p> <p> <code>InputPathsMap</code> is an array key-value pairs, where each value is a valid JSON path. You can have as many as 100 key-value pairs. You must use JSON dot notation, not bracket notation.</p> <p>The keys cannot start with \"AWS.\" </p>"
       }
     },
     "UntagResourceRequest": {
@@ -1459,12 +1898,62 @@
       "refs": {
       }
     },
+    "UpdateApiDestinationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApiDestinationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateArchiveRequest": {
       "base": null,
       "refs": {
       }
     },
     "UpdateArchiveResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectionApiKeyAuthRequestParameters": {
+      "base": "<p>Contains the API key authorization parameters to use to update the connection.</p>",
+      "refs": {
+        "UpdateConnectionAuthRequestParameters$ApiKeyAuthParameters": "<p>A <code>UpdateConnectionApiKeyAuthRequestParameters</code> object that contains the authorization parameters for API key authorization.</p>"
+      }
+    },
+    "UpdateConnectionAuthRequestParameters": {
+      "base": "<p>Contains the additional parameters to use for the connection.</p>",
+      "refs": {
+        "UpdateConnectionRequest$AuthParameters": "<p>The authorization parameters to use for the connection.</p>"
+      }
+    },
+    "UpdateConnectionBasicAuthRequestParameters": {
+      "base": "<p>Contains the Basic authorization parameters for the connection.</p>",
+      "refs": {
+        "UpdateConnectionAuthRequestParameters$BasicAuthParameters": "<p>A <code>UpdateConnectionBasicAuthRequestParameters</code> object that contains the authorization parameters for Basic authorization.</p>"
+      }
+    },
+    "UpdateConnectionOAuthClientRequestParameters": {
+      "base": "<p>Contains the OAuth authorization parameters to use for the connection.</p>",
+      "refs": {
+        "UpdateConnectionOAuthRequestParameters$ClientParameters": "<p>A <code>UpdateConnectionOAuthClientRequestParameters</code> object that contains the client parameters to use for the connection when OAuth is specified as the authorization type.</p>"
+      }
+    },
+    "UpdateConnectionOAuthRequestParameters": {
+      "base": "<p>Contains the OAuth request parameters to use for the connection.</p>",
+      "refs": {
+        "UpdateConnectionAuthRequestParameters$OAuthParameters": "<p>A <code>UpdateConnectionOAuthRequestParameters</code> object that contains the authorization parameters for OAuth authorization.</p>"
+      }
+    },
+    "UpdateConnectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectionResponse": {
       "base": null,
       "refs": {
       }
