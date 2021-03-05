@@ -13583,7 +13583,9 @@ type UpdateActionTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The action type definition for the action type to be updated.
-	ActionType *ActionTypeDeclaration `locationName:"actionType" type:"structure"`
+	//
+	// ActionType is a required field
+	ActionType *ActionTypeDeclaration `locationName:"actionType" type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -13599,6 +13601,9 @@ func (s UpdateActionTypeInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateActionTypeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateActionTypeInput"}
+	if s.ActionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionType"))
+	}
 	if s.ActionType != nil {
 		if err := s.ActionType.Validate(); err != nil {
 			invalidParams.AddNested("ActionType", err.(request.ErrInvalidParams))

@@ -22,6 +22,11 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "ListPreparedStatements": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "ListQueryExecutions": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

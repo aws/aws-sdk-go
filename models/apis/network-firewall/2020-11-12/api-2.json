@@ -45,7 +45,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InvalidTokenException"},
-        {"shape":"InvalidOperationException"}
+        {"shape":"InvalidOperationException"},
+        {"shape":"InsufficientCapacityException"}
       ]
     },
     "CreateFirewall":{
@@ -140,6 +141,7 @@
       "input":{"shape":"DeleteResourcePolicyRequest"},
       "output":{"shape":"DeleteResourcePolicyResponse"},
       "errors":[
+        {"shape":"InvalidRequestException"},
         {"shape":"InternalServerError"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -216,6 +218,7 @@
       "input":{"shape":"DescribeResourcePolicyRequest"},
       "output":{"shape":"DescribeResourcePolicyResponse"},
       "errors":[
+        {"shape":"InvalidRequestException"},
         {"shape":"InternalServerError"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -304,7 +307,8 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "PutResourcePolicy":{
@@ -1197,7 +1201,8 @@
     "PerObjectStatus":{
       "type":"structure",
       "members":{
-        "SyncStatus":{"shape":"PerObjectSyncStatus"}
+        "SyncStatus":{"shape":"PerObjectSyncStatus"},
+        "UpdateToken":{"shape":"UpdateToken"}
       }
     },
     "PerObjectSyncStatus":{

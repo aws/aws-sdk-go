@@ -41,7 +41,7 @@
       "base": null,
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Google Analytics resources. </p>",
-        "HoneycodeConnectorProfileCredentials$accessToken": null,
+        "HoneycodeConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Amazon Honeycode resources. </p>",
         "MarketoConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Marketo resources. </p>",
         "SalesforceConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Salesforce resources. </p>",
         "SlackConnectorProfileCredentials$accessToken": "<p> The credentials used to access protected Slack resources. </p>",
@@ -368,7 +368,7 @@
       "base": null,
       "refs": {
         "ConnectorConfiguration$supportedDestinationConnectors": "<p> Lists the connectors that are available for use as destinations. </p>",
-        "DescribeConnectorsRequest$connectorTypes": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p> <note> <p> <i>Locke</i> refers to a new destination known as Amazon Connect Customer Profiles. At this time, we recommend that you do not use this destination. </p> </note>"
+        "DescribeConnectorsRequest$connectorTypes": "<p> The type of connector, such as Salesforce, Amplitude, and so on. </p>"
       }
     },
     "CreateConnectorProfileRequest": {
@@ -399,15 +399,15 @@
       }
     },
     "CustomerProfilesDestinationProperties": {
-      "base": null,
+      "base": "<p> The properties that are applied when Amazon Connect Customer Profiles is used as a destination. </p>",
       "refs": {
-        "DestinationConnectorProperties$CustomerProfiles": null
+        "DestinationConnectorProperties$CustomerProfiles": "<p> The properties required to query Amazon Connect Customer Profiles. </p>"
       }
     },
     "CustomerProfilesMetadata": {
-      "base": null,
+      "base": "<p> The connector metadata specific to Amazon Connect Customer Profiles. </p>",
       "refs": {
-        "ConnectorMetadata$CustomerProfiles": null
+        "ConnectorMetadata$CustomerProfiles": "<p> The connector metadata specific to Amazon Connect Customer Profiles. </p>"
       }
     },
     "DataPullMode": {
@@ -468,7 +468,7 @@
         "FlowDefinition$lastUpdatedAt": "<p> Specifies when the flow was last updated. </p>",
         "ScheduledTriggerProperties$scheduleStartTime": "<p> Specifies the scheduled start time for a schedule-triggered flow. </p>",
         "ScheduledTriggerProperties$scheduleEndTime": "<p> Specifies the scheduled end time for a schedule-triggered flow. </p>",
-        "ScheduledTriggerProperties$firstExecutionFrom": null
+        "ScheduledTriggerProperties$firstExecutionFrom": "<p> Specifies the date range for the records to import from the connector in the first flow run. </p>"
       }
     },
     "DatetimeTypeFieldName": {
@@ -588,7 +588,7 @@
     "DomainName": {
       "base": null,
       "refs": {
-        "CustomerProfilesDestinationProperties$domainName": null
+        "CustomerProfilesDestinationProperties$domainName": "<p> The unique name of the Amazon Connect Customer Profiles domain. </p>"
       }
     },
     "DynatraceConnectorOperator": {
@@ -837,27 +837,27 @@
       }
     },
     "HoneycodeConnectorProfileCredentials": {
-      "base": null,
+      "base": "<p> The connector-specific credentials required when using Amazon Honeycode. </p>",
       "refs": {
-        "ConnectorProfileCredentials$Honeycode": null
+        "ConnectorProfileCredentials$Honeycode": "<p> The connector-specific credentials required when using Amazon Honeycode. </p>"
       }
     },
     "HoneycodeConnectorProfileProperties": {
-      "base": null,
+      "base": "<p> The connector-specific properties required when using Amazon Honeycode. </p>",
       "refs": {
-        "ConnectorProfileProperties$Honeycode": null
+        "ConnectorProfileProperties$Honeycode": "<p> The connector-specific properties required by Amazon Honeycode. </p>"
       }
     },
     "HoneycodeDestinationProperties": {
-      "base": null,
+      "base": "<p> The properties that are applied when Amazon Honeycode is used as a destination. </p>",
       "refs": {
-        "DestinationConnectorProperties$Honeycode": null
+        "DestinationConnectorProperties$Honeycode": "<p> The properties required to query Amazon Honeycode. </p>"
       }
     },
     "HoneycodeMetadata": {
-      "base": null,
+      "base": "<p> The connector metadata specific to Amazon Honeycode. </p>",
       "refs": {
-        "ConnectorMetadata$Honeycode": null
+        "ConnectorMetadata$Honeycode": "<p> The connector metadata specific to Amazon Honeycode. </p>"
       }
     },
     "IdFieldNameList": {
@@ -989,9 +989,9 @@
       }
     },
     "LookoutMetricsDestinationProperties": {
-      "base": null,
+      "base": "<p> The properties that are applied when Amazon Lookout for Metrics is used as a destination. </p>",
       "refs": {
-        "DestinationConnectorProperties$LookoutMetrics": null
+        "DestinationConnectorProperties$LookoutMetrics": "<p> The properties required to query Amazon Lookout for Metrics. </p>"
       }
     },
     "MarketoConnectorOperator": {
@@ -1069,7 +1069,7 @@
       "base": null,
       "refs": {
         "GoogleAnalyticsMetadata$oAuthScopes": "<p> The desired authorization scope for the Google Analytics account. </p>",
-        "HoneycodeMetadata$oAuthScopes": null,
+        "HoneycodeMetadata$oAuthScopes": "<p> The desired authorization scope for the Amazon Honeycode account. </p>",
         "SalesforceMetadata$oAuthScopes": "<p> The desired authorization scope for the Salesforce account. </p>",
         "SlackMetadata$oAuthScopes": "<p> The desired authorization scope for the Slack account. </p>",
         "ZendeskMetadata$oAuthScopes": "<p> The desired authorization scope for the Zendesk account. </p>"
@@ -1083,7 +1083,7 @@
         "DynatraceSourceProperties$object": "<p> The object specified in the Dynatrace flow source. </p>",
         "EventBridgeDestinationProperties$object": "<p> The object specified in the Amazon EventBridge flow destination. </p>",
         "GoogleAnalyticsSourceProperties$object": "<p> The object specified in the Google Analytics flow source. </p>",
-        "HoneycodeDestinationProperties$object": null,
+        "HoneycodeDestinationProperties$object": "<p> The object specified in the Amazon Honeycode flow destination. </p>",
         "InforNexusSourceProperties$object": "<p> The object specified in the Infor Nexus flow source. </p>",
         "MarketoSourceProperties$object": "<p> The object specified in the Marketo flow source. </p>",
         "RedshiftDestinationProperties$object": "<p> The object specified in the Amazon Redshift flow destination. </p>",
@@ -1101,7 +1101,7 @@
     "ObjectTypeName": {
       "base": null,
       "refs": {
-        "CustomerProfilesDestinationProperties$objectTypeName": null
+        "CustomerProfilesDestinationProperties$objectTypeName": "<p> The object specified in the Amazon Connect Customer Profiles flow destination. </p>"
       }
     },
     "Operator": {
@@ -1135,13 +1135,13 @@
     "PrefixFormat": {
       "base": null,
       "refs": {
-        "PrefixConfig$prefixFormat": "<p> Determines the format of the prefix, and whether it applies to the file name, file path, or both. </p>"
+        "PrefixConfig$prefixFormat": "<p> Determines the level of granularity that's included in the prefix. </p>"
       }
     },
     "PrefixType": {
       "base": null,
       "refs": {
-        "PrefixConfig$prefixType": "<p> Determines the level of granularity that's included in the prefix. </p>"
+        "PrefixConfig$prefixType": "<p> Determines the format of the prefix, and whether it applies to the file name, file path, or both. </p>"
       }
     },
     "PrivateLinkServiceName": {
@@ -1190,7 +1190,7 @@
       "base": null,
       "refs": {
         "GoogleAnalyticsConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. This is required only for OAuth2 access tokens, and is not required for OAuth1 access tokens. </p>",
-        "HoneycodeConnectorProfileCredentials$refreshToken": null,
+        "HoneycodeConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>",
         "SalesforceConnectorProfileCredentials$refreshToken": "<p> The credentials used to acquire new access tokens. </p>"
       }
     },

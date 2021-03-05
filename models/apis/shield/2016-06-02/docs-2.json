@@ -29,6 +29,9 @@
     "ListProtectionGroups": "<p>Retrieves the <a>ProtectionGroup</a> objects for the account.</p>",
     "ListProtections": "<p>Lists all <a>Protection</a> objects for the account.</p>",
     "ListResourcesInProtectionGroup": "<p>Retrieves the resources that are included in the protection group. </p>",
+    "ListTagsForResource": "<p>Gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS Shield.</p>",
+    "TagResource": "<p>Adds or updates tags for a resource in AWS Shield.</p>",
+    "UntagResource": "<p>Removes tags from a resource in AWS Shield.</p>",
     "UpdateEmergencyContactSettings": "<p>Updates the details of the list of email addresses and phone numbers that the DDoS Response Team (DRT) can use to contact you if you have proactive engagement enabled, for escalations to the DRT and to initiate proactive customer support.</p>",
     "UpdateProtectionGroup": "<p>Updates an existing protection group. A protection group is a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
     "UpdateSubscription": "<p>Updates the details of an existing subscription. Only enter values for parameters you want to change. Empty parameters are not updated.</p>"
@@ -546,6 +549,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LockedSubscriptionException": {
       "base": "<p>You are trying to update a subscription that has not yet completed the 1-year commitment. You can change the <code>AutoRenew</code> parameter during the last 30 days of your subscription. This exception indicates that you are attempting to change <code>AutoRenew</code> prior to that period.</p>",
       "refs": {
@@ -741,10 +754,16 @@
         "AttackDetail$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource that was attacked.</p>",
         "CreateProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource to be protected.</p> <p>The ARN should be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Elastic Load Balancer (Classic Load Balancer): <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/<i>load-balancer-name</i> </code> </p> </li> <li> <p>For an AWS CloudFront distribution: <code>arn:aws:cloudfront::<i>account-id</i>:distribution/<i>distribution-id</i> </code> </p> </li> <li> <p>For an AWS Global Accelerator accelerator: <code>arn:aws:globalaccelerator::<i>account-id</i>:accelerator/<i>accelerator-id</i> </code> </p> </li> <li> <p>For Amazon Route 53: <code>arn:aws:route53:::hostedzone/<i>hosted-zone-id</i> </code> </p> </li> <li> <p>For an Elastic IP address: <code>arn:aws:ec2:<i>region</i>:<i>account-id</i>:eip-allocation/<i>allocation-id</i> </code> </p> </li> </ul>",
         "DescribeProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the AWS resource for the <a>Protection</a> object that is described. When submitting the <code>DescribeProtection</code> request you must provide either the <code>ResourceArn</code> or the <code>ProtectionID</code>, but not both.</p>",
+        "ListTagsForResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource to get tags for.</p>",
         "Protection$ResourceArn": "<p>The ARN (Amazon Resource Name) of the AWS resource that is protected.</p>",
+        "Protection$ProtectionArn": "<p>The ARN (Amazon Resource Name) of the protection.</p>",
+        "ProtectionGroup$ProtectionGroupArn": "<p>The ARN (Amazon Resource Name) of the protection group.</p>",
         "ProtectionGroupMembers$member": null,
         "ResourceArnFilterList$member": null,
-        "ResourceArnList$member": null
+        "ResourceArnList$member": null,
+        "Subscription$SubscriptionArn": "<p>The ARN (Amazon Resource Name) of the subscription.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource that you want to add or update tags for.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource that you want to remove tags from.</p>"
       }
     },
     "ResourceArnFilterList": {
@@ -852,6 +871,50 @@
         "SummarizedAttackVector$VectorCounters": "<p>The list of counters that describe the details of the attack.</p>"
       }
     },
+    "Tag": {
+      "base": "<p>A tag associated with an AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing or other management. Typically, the tag key represents a category, such as \"environment\", and the tag value represents a specific value within that category, such as \"test,\" \"development,\" or \"production\". Or you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>Part of the key:value pair that defines a tag. You can use a tag key to describe a category of information, such as \"customer.\" Tag keys are case-sensitive.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag key for each tag that you want to remove from the resource.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateProtectionGroupRequest$Tags": "<p>One or more tag key-value pairs for the protection group.</p>",
+        "CreateProtectionRequest$Tags": "<p>One or more tag key-value pairs for the <a>Protection</a> object that is created.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>A list of tag key and value pairs associated with the specified resource.</p>",
+        "TagResourceRequest$Tags": "<p>The tags that you want to modify or add to the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>Part of the key:value pair that defines a tag. You can use a tag value to describe a specific value within a category, such as \"companyA\" or \"companyB.\" Tag values are case-sensitive.</p>"
+      }
+    },
     "TimeRange": {
       "base": "<p>The time range. </p>",
       "refs": {
@@ -890,6 +953,16 @@
       "base": null,
       "refs": {
         "AttackProperty$Unit": "<p>The unit of the <code>Value</code> of the contributions.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateEmergencyContactSettingsRequest": {
