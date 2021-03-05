@@ -369,6 +369,91 @@ func (c *Athena) CreateNamedQueryWithContext(ctx aws.Context, input *CreateNamed
 	return out, req.Send()
 }
 
+const opCreatePreparedStatement = "CreatePreparedStatement"
+
+// CreatePreparedStatementRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePreparedStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePreparedStatement for more information on using the CreatePreparedStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePreparedStatementRequest method.
+//    req, resp := client.CreatePreparedStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreatePreparedStatement
+func (c *Athena) CreatePreparedStatementRequest(input *CreatePreparedStatementInput) (req *request.Request, output *CreatePreparedStatementOutput) {
+	op := &request.Operation{
+		Name:       opCreatePreparedStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreatePreparedStatementInput{}
+	}
+
+	output = &CreatePreparedStatementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreatePreparedStatement API operation for Amazon Athena.
+//
+// Creates a prepared statement for use with SQL queries in Athena.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation CreatePreparedStatement for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/CreatePreparedStatement
+func (c *Athena) CreatePreparedStatement(input *CreatePreparedStatementInput) (*CreatePreparedStatementOutput, error) {
+	req, out := c.CreatePreparedStatementRequest(input)
+	return out, req.Send()
+}
+
+// CreatePreparedStatementWithContext is the same as CreatePreparedStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePreparedStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) CreatePreparedStatementWithContext(ctx aws.Context, input *CreatePreparedStatementInput, opts ...request.Option) (*CreatePreparedStatementOutput, error) {
+	req, out := c.CreatePreparedStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkGroup = "CreateWorkGroup"
 
 // CreateWorkGroupRequest generates a "aws/request.Request" representing the
@@ -624,6 +709,95 @@ func (c *Athena) DeleteNamedQuery(input *DeleteNamedQueryInput) (*DeleteNamedQue
 // for more information on using Contexts.
 func (c *Athena) DeleteNamedQueryWithContext(ctx aws.Context, input *DeleteNamedQueryInput, opts ...request.Option) (*DeleteNamedQueryOutput, error) {
 	req, out := c.DeleteNamedQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePreparedStatement = "DeletePreparedStatement"
+
+// DeletePreparedStatementRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePreparedStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePreparedStatement for more information on using the DeletePreparedStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePreparedStatementRequest method.
+//    req, resp := client.DeletePreparedStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/DeletePreparedStatement
+func (c *Athena) DeletePreparedStatementRequest(input *DeletePreparedStatementInput) (req *request.Request, output *DeletePreparedStatementOutput) {
+	op := &request.Operation{
+		Name:       opDeletePreparedStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeletePreparedStatementInput{}
+	}
+
+	output = &DeletePreparedStatementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePreparedStatement API operation for Amazon Athena.
+//
+// Deletes the prepared statement with the specified name from the specified
+// workgroup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation DeletePreparedStatement for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+//   * ResourceNotFoundException
+//   A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/DeletePreparedStatement
+func (c *Athena) DeletePreparedStatement(input *DeletePreparedStatementInput) (*DeletePreparedStatementOutput, error) {
+	req, out := c.DeletePreparedStatementRequest(input)
+	return out, req.Send()
+}
+
+// DeletePreparedStatementWithContext is the same as DeletePreparedStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePreparedStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) DeletePreparedStatementWithContext(ctx aws.Context, input *DeletePreparedStatementInput, opts ...request.Option) (*DeletePreparedStatementOutput, error) {
+	req, out := c.DeletePreparedStatementRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -970,6 +1144,94 @@ func (c *Athena) GetNamedQuery(input *GetNamedQueryInput) (*GetNamedQueryOutput,
 // for more information on using Contexts.
 func (c *Athena) GetNamedQueryWithContext(ctx aws.Context, input *GetNamedQueryInput, opts ...request.Option) (*GetNamedQueryOutput, error) {
 	req, out := c.GetNamedQueryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPreparedStatement = "GetPreparedStatement"
+
+// GetPreparedStatementRequest generates a "aws/request.Request" representing the
+// client's request for the GetPreparedStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPreparedStatement for more information on using the GetPreparedStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPreparedStatementRequest method.
+//    req, resp := client.GetPreparedStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetPreparedStatement
+func (c *Athena) GetPreparedStatementRequest(input *GetPreparedStatementInput) (req *request.Request, output *GetPreparedStatementOutput) {
+	op := &request.Operation{
+		Name:       opGetPreparedStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetPreparedStatementInput{}
+	}
+
+	output = &GetPreparedStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPreparedStatement API operation for Amazon Athena.
+//
+// Retrieves the prepared statement with the specified name from the specified
+// workgroup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation GetPreparedStatement for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+//   * ResourceNotFoundException
+//   A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/GetPreparedStatement
+func (c *Athena) GetPreparedStatement(input *GetPreparedStatementInput) (*GetPreparedStatementOutput, error) {
+	req, out := c.GetPreparedStatementRequest(input)
+	return out, req.Send()
+}
+
+// GetPreparedStatementWithContext is the same as GetPreparedStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPreparedStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) GetPreparedStatementWithContext(ctx aws.Context, input *GetPreparedStatementInput, opts ...request.Option) (*GetPreparedStatementOutput, error) {
+	req, out := c.GetPreparedStatementRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1909,6 +2171,148 @@ func (c *Athena) ListNamedQueriesPagesWithContext(ctx aws.Context, input *ListNa
 
 	for p.Next() {
 		if !fn(p.Page().(*ListNamedQueriesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPreparedStatements = "ListPreparedStatements"
+
+// ListPreparedStatementsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPreparedStatements operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPreparedStatements for more information on using the ListPreparedStatements
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPreparedStatementsRequest method.
+//    req, resp := client.ListPreparedStatementsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListPreparedStatements
+func (c *Athena) ListPreparedStatementsRequest(input *ListPreparedStatementsInput) (req *request.Request, output *ListPreparedStatementsOutput) {
+	op := &request.Operation{
+		Name:       opListPreparedStatements,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPreparedStatementsInput{}
+	}
+
+	output = &ListPreparedStatementsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPreparedStatements API operation for Amazon Athena.
+//
+// Lists the prepared statements in the specfied workgroup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation ListPreparedStatements for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/ListPreparedStatements
+func (c *Athena) ListPreparedStatements(input *ListPreparedStatementsInput) (*ListPreparedStatementsOutput, error) {
+	req, out := c.ListPreparedStatementsRequest(input)
+	return out, req.Send()
+}
+
+// ListPreparedStatementsWithContext is the same as ListPreparedStatements with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPreparedStatements for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListPreparedStatementsWithContext(ctx aws.Context, input *ListPreparedStatementsInput, opts ...request.Option) (*ListPreparedStatementsOutput, error) {
+	req, out := c.ListPreparedStatementsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPreparedStatementsPages iterates over the pages of a ListPreparedStatements operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPreparedStatements method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPreparedStatements operation.
+//    pageNum := 0
+//    err := client.ListPreparedStatementsPages(params,
+//        func(page *athena.ListPreparedStatementsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Athena) ListPreparedStatementsPages(input *ListPreparedStatementsInput, fn func(*ListPreparedStatementsOutput, bool) bool) error {
+	return c.ListPreparedStatementsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPreparedStatementsPagesWithContext same as ListPreparedStatementsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) ListPreparedStatementsPagesWithContext(ctx aws.Context, input *ListPreparedStatementsInput, fn func(*ListPreparedStatementsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPreparedStatementsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPreparedStatementsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPreparedStatementsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2954,6 +3358,94 @@ func (c *Athena) UpdateDataCatalogWithContext(ctx aws.Context, input *UpdateData
 	return out, req.Send()
 }
 
+const opUpdatePreparedStatement = "UpdatePreparedStatement"
+
+// UpdatePreparedStatementRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePreparedStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePreparedStatement for more information on using the UpdatePreparedStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePreparedStatementRequest method.
+//    req, resp := client.UpdatePreparedStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdatePreparedStatement
+func (c *Athena) UpdatePreparedStatementRequest(input *UpdatePreparedStatementInput) (req *request.Request, output *UpdatePreparedStatementOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePreparedStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdatePreparedStatementInput{}
+	}
+
+	output = &UpdatePreparedStatementOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdatePreparedStatement API operation for Amazon Athena.
+//
+// Updates a prepared statement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Athena's
+// API operation UpdatePreparedStatement for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   Indicates a platform issue, which may be due to a transient condition or
+//   outage.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a required parameter may be missing or out of range.
+//
+//   * ResourceNotFoundException
+//   A resource, such as a workgroup, was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/athena-2017-05-18/UpdatePreparedStatement
+func (c *Athena) UpdatePreparedStatement(input *UpdatePreparedStatementInput) (*UpdatePreparedStatementOutput, error) {
+	req, out := c.UpdatePreparedStatementRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePreparedStatementWithContext is the same as UpdatePreparedStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePreparedStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Athena) UpdatePreparedStatementWithContext(ctx aws.Context, input *UpdatePreparedStatementInput, opts ...request.Option) (*UpdatePreparedStatementOutput, error) {
+	req, out := c.UpdatePreparedStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateWorkGroup = "UpdateWorkGroup"
 
 // UpdateWorkGroupRequest generates a "aws/request.Request" representing the
@@ -3607,6 +4099,104 @@ func (s *CreateNamedQueryOutput) SetNamedQueryId(v string) *CreateNamedQueryOutp
 	return s
 }
 
+type CreatePreparedStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the prepared statement.
+	Description *string `min:"1" type:"string"`
+
+	// The query string for the prepared statement.
+	//
+	// QueryStatement is a required field
+	QueryStatement *string `min:"1" type:"string" required:"true"`
+
+	// The name of the prepared statement.
+	//
+	// StatementName is a required field
+	StatementName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the workgroup to which the prepared statement belongs.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreatePreparedStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePreparedStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePreparedStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePreparedStatementInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.QueryStatement == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryStatement"))
+	}
+	if s.QueryStatement != nil && len(*s.QueryStatement) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryStatement", 1))
+	}
+	if s.StatementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementName"))
+	}
+	if s.StatementName != nil && len(*s.StatementName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementName", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreatePreparedStatementInput) SetDescription(v string) *CreatePreparedStatementInput {
+	s.Description = &v
+	return s
+}
+
+// SetQueryStatement sets the QueryStatement field's value.
+func (s *CreatePreparedStatementInput) SetQueryStatement(v string) *CreatePreparedStatementInput {
+	s.QueryStatement = &v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *CreatePreparedStatementInput) SetStatementName(v string) *CreatePreparedStatementInput {
+	s.StatementName = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *CreatePreparedStatementInput) SetWorkGroup(v string) *CreatePreparedStatementInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type CreatePreparedStatementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePreparedStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePreparedStatementOutput) GoString() string {
+	return s.String()
+}
+
 type CreateWorkGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3969,6 +4559,75 @@ func (s DeleteNamedQueryOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteNamedQueryOutput) GoString() string {
+	return s.String()
+}
+
+type DeletePreparedStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the prepared statement to delete.
+	//
+	// StatementName is a required field
+	StatementName *string `min:"1" type:"string" required:"true"`
+
+	// The workgroup to which the statement to be deleted belongs.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeletePreparedStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePreparedStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePreparedStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePreparedStatementInput"}
+	if s.StatementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementName"))
+	}
+	if s.StatementName != nil && len(*s.StatementName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementName", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *DeletePreparedStatementInput) SetStatementName(v string) *DeletePreparedStatementInput {
+	s.StatementName = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *DeletePreparedStatementInput) SetWorkGroup(v string) *DeletePreparedStatementInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type DeletePreparedStatementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePreparedStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePreparedStatementOutput) GoString() string {
 	return s.String()
 }
 
@@ -4347,6 +5006,84 @@ func (s GetNamedQueryOutput) GoString() string {
 // SetNamedQuery sets the NamedQuery field's value.
 func (s *GetNamedQueryOutput) SetNamedQuery(v *NamedQuery) *GetNamedQueryOutput {
 	s.NamedQuery = v
+	return s
+}
+
+type GetPreparedStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the prepared statement to retrieve.
+	//
+	// StatementName is a required field
+	StatementName *string `min:"1" type:"string" required:"true"`
+
+	// The workgroup to which the statement to be retrieved belongs.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPreparedStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPreparedStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPreparedStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPreparedStatementInput"}
+	if s.StatementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementName"))
+	}
+	if s.StatementName != nil && len(*s.StatementName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementName", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *GetPreparedStatementInput) SetStatementName(v string) *GetPreparedStatementInput {
+	s.StatementName = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *GetPreparedStatementInput) SetWorkGroup(v string) *GetPreparedStatementInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type GetPreparedStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the prepared statement that was retrieved.
+	PreparedStatement *PreparedStatement `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPreparedStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPreparedStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetPreparedStatement sets the PreparedStatement field's value.
+func (s *GetPreparedStatementOutput) SetPreparedStatement(v *PreparedStatement) *GetPreparedStatementOutput {
+	s.PreparedStatement = v
 	return s
 }
 
@@ -5167,6 +5904,106 @@ func (s *ListNamedQueriesOutput) SetNextToken(v string) *ListNamedQueriesOutput 
 	return s
 }
 
+type ListPreparedStatementsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in this request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+
+	// The workgroup to list the prepared statements for.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListPreparedStatementsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPreparedStatementsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPreparedStatementsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPreparedStatementsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPreparedStatementsInput) SetMaxResults(v int64) *ListPreparedStatementsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPreparedStatementsInput) SetNextToken(v string) *ListPreparedStatementsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *ListPreparedStatementsInput) SetWorkGroup(v string) *ListPreparedStatementsInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type ListPreparedStatementsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token generated by the Athena service that specifies where to continue
+	// pagination if a previous request was truncated. To obtain the next set of
+	// pages, pass in the NextToken from the response object of the previous page
+	// call.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of prepared statements for the workgroup.
+	PreparedStatements []*PreparedStatementSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListPreparedStatementsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPreparedStatementsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPreparedStatementsOutput) SetNextToken(v string) *ListPreparedStatementsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPreparedStatements sets the PreparedStatements field's value.
+func (s *ListPreparedStatementsOutput) SetPreparedStatements(v []*PreparedStatementSummary) *ListPreparedStatementsOutput {
+	s.PreparedStatements = v
+	return s
+}
+
 type ListQueryExecutionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5708,6 +6545,99 @@ func (s *NamedQuery) SetQueryString(v string) *NamedQuery {
 // SetWorkGroup sets the WorkGroup field's value.
 func (s *NamedQuery) SetWorkGroup(v string) *NamedQuery {
 	s.WorkGroup = &v
+	return s
+}
+
+// A prepared SQL statement for use with Athena.
+type PreparedStatement struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the prepared statement.
+	Description *string `min:"1" type:"string"`
+
+	// The last modified time of the prepared statement.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The query string for the prepared statement.
+	QueryStatement *string `min:"1" type:"string"`
+
+	// The name of the prepared statement.
+	StatementName *string `min:"1" type:"string"`
+
+	// The name of the workgroup to which the prepared statement belongs.
+	WorkGroupName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s PreparedStatement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PreparedStatement) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *PreparedStatement) SetDescription(v string) *PreparedStatement {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *PreparedStatement) SetLastModifiedTime(v time.Time) *PreparedStatement {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetQueryStatement sets the QueryStatement field's value.
+func (s *PreparedStatement) SetQueryStatement(v string) *PreparedStatement {
+	s.QueryStatement = &v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *PreparedStatement) SetStatementName(v string) *PreparedStatement {
+	s.StatementName = &v
+	return s
+}
+
+// SetWorkGroupName sets the WorkGroupName field's value.
+func (s *PreparedStatement) SetWorkGroupName(v string) *PreparedStatement {
+	s.WorkGroupName = &v
+	return s
+}
+
+// The name and last modified time of the prepared statement.
+type PreparedStatementSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The last modified time of the prepared statement.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The name of the prepared statement.
+	StatementName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PreparedStatementSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PreparedStatementSummary) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *PreparedStatementSummary) SetLastModifiedTime(v time.Time) *PreparedStatementSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *PreparedStatementSummary) SetStatementName(v string) *PreparedStatementSummary {
+	s.StatementName = &v
 	return s
 }
 
@@ -7016,6 +7946,104 @@ func (s UpdateDataCatalogOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateDataCatalogOutput) GoString() string {
+	return s.String()
+}
+
+type UpdatePreparedStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the prepared statement.
+	Description *string `min:"1" type:"string"`
+
+	// The query string for the prepared statement.
+	//
+	// QueryStatement is a required field
+	QueryStatement *string `min:"1" type:"string" required:"true"`
+
+	// The name of the prepared statement.
+	//
+	// StatementName is a required field
+	StatementName *string `min:"1" type:"string" required:"true"`
+
+	// The workgroup for the prepared statement.
+	//
+	// WorkGroup is a required field
+	WorkGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdatePreparedStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePreparedStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePreparedStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePreparedStatementInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.QueryStatement == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryStatement"))
+	}
+	if s.QueryStatement != nil && len(*s.QueryStatement) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryStatement", 1))
+	}
+	if s.StatementName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementName"))
+	}
+	if s.StatementName != nil && len(*s.StatementName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementName", 1))
+	}
+	if s.WorkGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdatePreparedStatementInput) SetDescription(v string) *UpdatePreparedStatementInput {
+	s.Description = &v
+	return s
+}
+
+// SetQueryStatement sets the QueryStatement field's value.
+func (s *UpdatePreparedStatementInput) SetQueryStatement(v string) *UpdatePreparedStatementInput {
+	s.QueryStatement = &v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *UpdatePreparedStatementInput) SetStatementName(v string) *UpdatePreparedStatementInput {
+	s.StatementName = &v
+	return s
+}
+
+// SetWorkGroup sets the WorkGroup field's value.
+func (s *UpdatePreparedStatementInput) SetWorkGroup(v string) *UpdatePreparedStatementInput {
+	s.WorkGroup = &v
+	return s
+}
+
+type UpdatePreparedStatementOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdatePreparedStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePreparedStatementOutput) GoString() string {
 	return s.String()
 }
 

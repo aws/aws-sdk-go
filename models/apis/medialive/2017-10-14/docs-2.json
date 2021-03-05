@@ -4270,6 +4270,7 @@
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
         "ThumbnailData$Body": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
         "TransferInputDevice$TargetCustomerId": "The AWS account ID (12 digits) for the recipient of the device transfer.",
+        "TransferInputDevice$TargetRegion": "The target AWS region to transfer the device.",
         "TransferInputDevice$TransferMessage": "An optional message for the recipient. Maximum 280 characters.",
         "TransferringInputDeviceSummary$Id": "The unique ID of the input device.",
         "TransferringInputDeviceSummary$Message": "The optional message that the sender has attached to the transfer.",

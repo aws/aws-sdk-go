@@ -4398,7 +4398,8 @@
       "enum":[
         "lowestPrice",
         "diversified",
-        "capacityOptimized"
+        "capacityOptimized",
+        "capacityOptimizedPrioritized"
       ]
     },
     "AllowedPrincipal":{
@@ -4940,17 +4941,17 @@
     "AssociateSubnetCidrBlockRequest":{
       "type":"structure",
       "required":[
-        "Ipv6CidrBlock",
-        "SubnetId"
+        "SubnetId",
+        "Ipv6CidrBlock"
       ],
       "members":{
-        "Ipv6CidrBlock":{
-          "shape":"String",
-          "locationName":"ipv6CidrBlock"
-        },
         "SubnetId":{
           "shape":"SubnetId",
           "locationName":"subnetId"
+        },
+        "Ipv6CidrBlock":{
+          "shape":"String",
+          "locationName":"ipv6CidrBlock"
         }
       }
     },
@@ -7909,11 +7910,10 @@
     "CreateNatGatewayRequest":{
       "type":"structure",
       "required":[
-        "AllocationId",
-        "SubnetId"
+        "SubnetId",
+        "AllocationId"
       ],
       "members":{
-        "AllocationId":{"shape":"AllocationId"},
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
@@ -7923,7 +7923,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "AllocationId":{"shape":"AllocationId"}
       }
     },
     "CreateNatGatewayResult":{
@@ -8393,8 +8394,8 @@
     "CreateSubnetRequest":{
       "type":"structure",
       "required":[
-        "CidrBlock",
-        "VpcId"
+        "VpcId",
+        "CidrBlock"
       ],
       "members":{
         "TagSpecifications":{
@@ -8403,14 +8404,14 @@
         },
         "AvailabilityZone":{"shape":"String"},
         "AvailabilityZoneId":{"shape":"String"},
-        "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
         "OutpostArn":{"shape":"String"},
         "VpcId":{"shape":"VpcId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "CidrBlock":{"shape":"String"}
       }
     },
     "CreateSubnetResult":{
@@ -28565,7 +28566,8 @@
       "enum":[
         "lowest-price",
         "diversified",
-        "capacity-optimized"
+        "capacity-optimized",
+        "capacity-optimized-prioritized"
       ]
     },
     "SpotCapacityRebalance":{

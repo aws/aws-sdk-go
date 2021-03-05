@@ -25045,6 +25045,8 @@ type TransferInputDeviceInput struct {
 
 	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
 
+	TargetRegion *string `locationName:"targetRegion" type:"string"`
+
 	TransferMessage *string `locationName:"transferMessage" type:"string"`
 }
 
@@ -25083,6 +25085,12 @@ func (s *TransferInputDeviceInput) SetInputDeviceId(v string) *TransferInputDevi
 // SetTargetCustomerId sets the TargetCustomerId field's value.
 func (s *TransferInputDeviceInput) SetTargetCustomerId(v string) *TransferInputDeviceInput {
 	s.TargetCustomerId = &v
+	return s
+}
+
+// SetTargetRegion sets the TargetRegion field's value.
+func (s *TransferInputDeviceInput) SetTargetRegion(v string) *TransferInputDeviceInput {
+	s.TargetRegion = &v
 	return s
 }
 

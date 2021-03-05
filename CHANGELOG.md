@@ -1,3 +1,21 @@
+Release v1.37.25 (2021-03-05)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service documentation
+* `service/athena`: Updates service API, documentation, and paginators
+  * Adds APIs to create, list, update, and delete prepared SQL statements that have optional placeholder parameters. A prepared statement can use different values for these parameters each time it is run.
+* `service/codepipeline`: Updates service API
+  * Updated the parameters to make actionType required for UpdateActionType
+* `service/ec2`: Updates service API and documentation
+  * Expands EC2/Spot Fleet capacity-optimized allocation strategy to allow users to prioritize instance pools. Fleet attempts to fulfill priorities on a best-effort basis but optimizes for capacity first.
+* `service/license-manager`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * Medialive now supports the ability to transfer AWS Elemental Link devices to another region.
+* `service/network-firewall`: Updates service API and documentation
+* `service/shield`: Updates service API and documentation
+  * Add support for tagging of Shield protection and protection group resources.
+
 Release v1.37.24 (2021-03-04)
 ===
 

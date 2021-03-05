@@ -2669,6 +2669,7 @@
     },
     "UpdateActionTypeInput":{
       "type":"structure",
+      "required":["actionType"],
       "members":{
         "actionType":{"shape":"ActionTypeDeclaration"}
       }

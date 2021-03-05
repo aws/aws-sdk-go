@@ -9923,9 +9923,7 @@ type ProductInformationFilter struct {
 	ProductInformationFilterName *string `type:"string" required:"true"`
 
 	// Filter value.
-	//
-	// ProductInformationFilterValue is a required field
-	ProductInformationFilterValue []*string `type:"list" required:"true"`
+	ProductInformationFilterValue []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -9946,9 +9944,6 @@ func (s *ProductInformationFilter) Validate() error {
 	}
 	if s.ProductInformationFilterName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProductInformationFilterName"))
-	}
-	if s.ProductInformationFilterValue == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProductInformationFilterValue"))
 	}
 
 	if invalidParams.Len() > 0 {

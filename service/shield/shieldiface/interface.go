@@ -180,6 +180,18 @@ type ShieldAPI interface {
 	ListResourcesInProtectionGroupPages(*shield.ListResourcesInProtectionGroupInput, func(*shield.ListResourcesInProtectionGroupOutput, bool) bool) error
 	ListResourcesInProtectionGroupPagesWithContext(aws.Context, *shield.ListResourcesInProtectionGroupInput, func(*shield.ListResourcesInProtectionGroupOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*shield.ListTagsForResourceInput) (*shield.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *shield.ListTagsForResourceInput, ...request.Option) (*shield.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*shield.ListTagsForResourceInput) (*request.Request, *shield.ListTagsForResourceOutput)
+
+	TagResource(*shield.TagResourceInput) (*shield.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *shield.TagResourceInput, ...request.Option) (*shield.TagResourceOutput, error)
+	TagResourceRequest(*shield.TagResourceInput) (*request.Request, *shield.TagResourceOutput)
+
+	UntagResource(*shield.UntagResourceInput) (*shield.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *shield.UntagResourceInput, ...request.Option) (*shield.UntagResourceOutput, error)
+	UntagResourceRequest(*shield.UntagResourceInput) (*request.Request, *shield.UntagResourceOutput)
+
 	UpdateEmergencyContactSettings(*shield.UpdateEmergencyContactSettingsInput) (*shield.UpdateEmergencyContactSettingsOutput, error)
 	UpdateEmergencyContactSettingsWithContext(aws.Context, *shield.UpdateEmergencyContactSettingsInput, ...request.Option) (*shield.UpdateEmergencyContactSettingsOutput, error)
 	UpdateEmergencyContactSettingsRequest(*shield.UpdateEmergencyContactSettingsInput) (*request.Request, *shield.UpdateEmergencyContactSettingsOutput)

@@ -2383,6 +2383,7 @@ type ConnectorMetadata struct {
 	// The connector metadata specific to Amplitude.
 	Amplitude *AmplitudeMetadata `type:"structure"`
 
+	// The connector metadata specific to Amazon Connect Customer Profiles.
 	CustomerProfiles *CustomerProfilesMetadata `type:"structure"`
 
 	// The connector metadata specific to Datadog.
@@ -2397,6 +2398,7 @@ type ConnectorMetadata struct {
 	// The connector metadata specific to Google Analytics.
 	GoogleAnalytics *GoogleAnalyticsMetadata `type:"structure"`
 
+	// The connector metadata specific to Amazon Honeycode.
 	Honeycode *HoneycodeMetadata `type:"structure"`
 
 	// The connector metadata specific to Infor Nexus.
@@ -2918,6 +2920,7 @@ type ConnectorProfileCredentials struct {
 	// The connector-specific credentials required when using Google Analytics.
 	GoogleAnalytics *GoogleAnalyticsConnectorProfileCredentials `type:"structure"`
 
+	// The connector-specific credentials required when using Amazon Honeycode.
 	Honeycode *HoneycodeConnectorProfileCredentials `type:"structure"`
 
 	// The connector-specific credentials required when using Infor Nexus.
@@ -3161,6 +3164,7 @@ type ConnectorProfileProperties struct {
 	// The connector-specific properties required Google Analytics.
 	GoogleAnalytics *GoogleAnalyticsConnectorProfileProperties `type:"structure"`
 
+	// The connector-specific properties required by Amazon Honeycode.
 	Honeycode *HoneycodeConnectorProfileProperties `type:"structure"`
 
 	// The connector-specific properties required by Infor Nexus.
@@ -3738,12 +3742,17 @@ func (s *CreateFlowOutput) SetFlowStatus(v string) *CreateFlowOutput {
 	return s
 }
 
+// The properties that are applied when Amazon Connect Customer Profiles is
+// used as a destination.
 type CustomerProfilesDestinationProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The unique name of the Amazon Connect Customer Profiles domain.
+	//
 	// DomainName is a required field
 	DomainName *string `locationName:"domainName" type:"string" required:"true"`
 
+	// The object specified in the Amazon Connect Customer Profiles flow destination.
 	ObjectTypeName *string `locationName:"objectTypeName" type:"string"`
 }
 
@@ -3782,6 +3791,7 @@ func (s *CustomerProfilesDestinationProperties) SetObjectTypeName(v string) *Cus
 	return s
 }
 
+// The connector metadata specific to Amazon Connect Customer Profiles.
 type CustomerProfilesMetadata struct {
 	_ struct{} `type:"structure"`
 }
@@ -4258,9 +4268,6 @@ type DescribeConnectorsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
-	//
-	// Locke refers to a new destination known as Amazon Connect Customer Profiles.
-	// At this time, we recommend that you do not use this destination.
 	ConnectorTypes []*string `locationName:"connectorTypes" type:"list"`
 
 	// The pagination token for the next page of data.
@@ -4623,13 +4630,16 @@ func (s *DescribeFlowOutput) SetTriggerConfig(v *TriggerConfig) *DescribeFlowOut
 type DestinationConnectorProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The properties required to query Amazon Connect Customer Profiles.
 	CustomerProfiles *CustomerProfilesDestinationProperties `type:"structure"`
 
 	// The properties required to query Amazon EventBridge.
 	EventBridge *EventBridgeDestinationProperties `type:"structure"`
 
+	// The properties required to query Amazon Honeycode.
 	Honeycode *HoneycodeDestinationProperties `type:"structure"`
 
+	// The properties required to query Amazon Lookout for Metrics.
 	LookoutMetrics *LookoutMetricsDestinationProperties `type:"structure"`
 
 	// The properties required to query Amazon Redshift.
@@ -5716,15 +5726,18 @@ func (s *GoogleAnalyticsSourceProperties) SetObject(v string) *GoogleAnalyticsSo
 	return s
 }
 
+// The connector-specific credentials required when using Amazon Honeycode.
 type HoneycodeConnectorProfileCredentials struct {
 	_ struct{} `type:"structure"`
 
+	// The credentials used to access protected Amazon Honeycode resources.
 	AccessToken *string `locationName:"accessToken" type:"string" sensitive:"true"`
 
 	// Used by select connectors for which the OAuth workflow is supported, such
 	// as Salesforce, Google Analytics, Marketo, Zendesk, and Slack.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
 
+	// The credentials used to acquire new access tokens.
 	RefreshToken *string `locationName:"refreshToken" type:"string"`
 }
 
@@ -5756,6 +5769,7 @@ func (s *HoneycodeConnectorProfileCredentials) SetRefreshToken(v string) *Honeyc
 	return s
 }
 
+// The connector-specific properties required when using Amazon Honeycode.
 type HoneycodeConnectorProfileProperties struct {
 	_ struct{} `type:"structure"`
 }
@@ -5770,6 +5784,7 @@ func (s HoneycodeConnectorProfileProperties) GoString() string {
 	return s.String()
 }
 
+// The properties that are applied when Amazon Honeycode is used as a destination.
 type HoneycodeDestinationProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -5780,6 +5795,8 @@ type HoneycodeDestinationProperties struct {
 	// part of the destination connector details.
 	ErrorHandlingConfig *ErrorHandlingConfig `locationName:"errorHandlingConfig" type:"structure"`
 
+	// The object specified in the Amazon Honeycode flow destination.
+	//
 	// Object is a required field
 	Object *string `locationName:"object" type:"string" required:"true"`
 }
@@ -5824,9 +5841,11 @@ func (s *HoneycodeDestinationProperties) SetObject(v string) *HoneycodeDestinati
 	return s
 }
 
+// The connector metadata specific to Amazon Honeycode.
 type HoneycodeMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// The desired authorization scope for the Amazon Honeycode account.
 	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
 }
 
@@ -6319,6 +6338,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The properties that are applied when Amazon Lookout for Metrics is used as
+// a destination.
 type LookoutMetricsDestinationProperties struct {
 	_ struct{} `type:"structure"`
 }
@@ -6505,11 +6526,11 @@ func (s *MarketoSourceProperties) SetObject(v string) *MarketoSourceProperties {
 type PrefixConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Determines the format of the prefix, and whether it applies to the file name,
-	// file path, or both.
+	// Determines the level of granularity that's included in the prefix.
 	PrefixFormat *string `locationName:"prefixFormat" type:"string" enum:"PrefixFormat"`
 
-	// Determines the level of granularity that's included in the prefix.
+	// Determines the format of the prefix, and whether it applies to the file name,
+	// file path, or both.
 	PrefixType *string `locationName:"prefixType" type:"string" enum:"PrefixType"`
 }
 
@@ -7270,6 +7291,8 @@ type ScheduledTriggerProperties struct {
 	// complete data transfer for each flow run.
 	DataPullMode *string `locationName:"dataPullMode" type:"string" enum:"DataPullMode"`
 
+	// Specifies the date range for the records to import from the connector in
+	// the first flow run.
 	FirstExecutionFrom *time.Time `locationName:"firstExecutionFrom" type:"timestamp"`
 
 	// Specifies the scheduled end time for a schedule-triggered flow.

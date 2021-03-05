@@ -209,6 +209,10 @@ func (c *NetworkFirewall) AssociateSubnetsRequest(input *AssociateSubnetsInput) 
 //   The operation failed because it's not valid. For example, you might have
 //   tried to delete a rule group or firewall policy that's in use.
 //
+//   * InsufficientCapacityException
+//   AWS doesn't currently have enough available capacity to fulfill your request.
+//   Try your request later.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/AssociateSubnets
 func (c *NetworkFirewall) AssociateSubnets(input *AssociateSubnetsInput) (*AssociateSubnetsOutput, error) {
 	req, out := c.AssociateSubnetsRequest(input)
@@ -838,6 +842,17 @@ func (c *NetworkFirewall) DeleteResourcePolicyRequest(input *DeleteResourcePolic
 // API operation DeleteResourcePolicy for usage and error information.
 //
 // Returned Error Types:
+//   * InvalidRequestException
+//   The operation failed because of a problem with your request. Examples include:
+//
+//      * You specified an unsupported parameter name or value.
+//
+//      * You tried to update a property with a value that isn't among the available
+//      types.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource that isn't valid in the context of the request.
+//
 //   * InternalServerError
 //   Your request is valid, but Network Firewall couldn’t perform the operation
 //   because of a system problem. Retry your request.
@@ -1319,6 +1334,17 @@ func (c *NetworkFirewall) DescribeResourcePolicyRequest(input *DescribeResourceP
 // API operation DescribeResourcePolicy for usage and error information.
 //
 // Returned Error Types:
+//   * InvalidRequestException
+//   The operation failed because of a problem with your request. Examples include:
+//
+//      * You specified an unsupported parameter name or value.
+//
+//      * You tried to update a property with a value that isn't among the available
+//      types.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource that isn't valid in the context of the request.
+//
 //   * InternalServerError
 //   Your request is valid, but Network Firewall couldn’t perform the operation
 //   because of a system problem. Retry your request.
@@ -2088,6 +2114,17 @@ func (c *NetworkFirewall) ListTagsForResourceRequest(input *ListTagsForResourceI
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   Unable to locate a resource using the parameters that you provided.
+//
+//   * InvalidRequestException
+//   The operation failed because of a problem with your request. Examples include:
+//
+//      * You specified an unsupported parameter name or value.
+//
+//      * You tried to update a property with a value that isn't among the available
+//      types.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource that isn't valid in the context of the request.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/ListTagsForResource
 func (c *NetworkFirewall) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -5632,9 +5669,11 @@ type FirewallPolicy struct {
 	// StatelessDefaultActions is a required field
 	StatelessDefaultActions []*string `type:"list" required:"true"`
 
-	// The actions to take on a fragmented packet if it doesn't match any of the
-	// stateless rules in the policy. If you want non-matching fragmented packets
-	// to be forwarded for stateful inspection, specify aws:forward_to_sfe.
+	// The actions to take on a fragmented UDP packet if it doesn't match any of
+	// the stateless rules in the policy. Network Firewall only manages UDP packet
+	// fragments and silently drops packet fragments for other protocols. If you
+	// want non-matching fragmented UDP packets to be forwarded for stateful inspection,
+	// specify aws:forward_to_sfe.
 	//
 	// You must specify one of the standard actions: aws:pass, aws:drop, or aws:forward_to_sfe.
 	// In addition, you can specify custom actions that are compatible with your
@@ -5966,7 +6005,7 @@ type Header struct {
 	// Direction is a required field
 	Direction *string `type:"string" required:"true" enum:"StatefulRuleDirection"`
 
-	// The protocol to inspect for. To match with any protocol, specify ANY.
+	// The protocol to inspect for.
 	//
 	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"StatefulRuleProtocol"`
@@ -7271,10 +7310,21 @@ func (s *MatchAttributes) SetTCPFlags(v []*TCPFlagField) *MatchAttributes {
 	return s
 }
 
+// Provides configuration status for a single policy or rule group that is used
+// for a firewall endpoint. Network Firewall provides each endpoint with the
+// rules that are configured in the firewall policy. Each time you add a subnet
+// or modify the associated firewall policy, Network Firewall synchronizes the
+// rules in the endpoint, so it can properly filter network traffic. This is
+// part of a SyncState for a firewall.
 type PerObjectStatus struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether this object is in sync with the version indicated in the
+	// update token.
 	SyncStatus *string `type:"string" enum:"PerObjectSyncStatus"`
+
+	// The current version of the object that is either in sync or pending synchronization.
+	UpdateToken *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -7290,6 +7340,12 @@ func (s PerObjectStatus) GoString() string {
 // SetSyncStatus sets the SyncStatus field's value.
 func (s *PerObjectStatus) SetSyncStatus(v string) *PerObjectStatus {
 	s.SyncStatus = &v
+	return s
+}
+
+// SetUpdateToken sets the UpdateToken field's value.
+func (s *PerObjectStatus) SetUpdateToken(v string) *PerObjectStatus {
+	s.UpdateToken = &v
 	return s
 }
 
@@ -8058,12 +8114,6 @@ type RulesSource struct {
 	// These rules contain the inspection criteria and the action to take for traffic
 	// that matches the criteria, so this type of rule group doesn't have a separate
 	// action setting.
-	//
-	// You can provide the rules from a file that you've stored in an Amazon S3
-	// bucket, or by providing the rules in a Suricata rules string. To import from
-	// Amazon S3, provide the fully qualified name of the file that contains the
-	// rules definitions. To provide a Suricata rule string, provide the complete,
-	// Suricata compatible rule.
 	RulesString *string `type:"string"`
 
 	// The 5-tuple stateful inspection criteria. This contains an array of individual
@@ -8139,6 +8189,17 @@ func (s *RulesSource) SetStatelessRulesAndCustomActions(v *StatelessRulesAndCust
 }
 
 // Stateful inspection criteria for a domain list rule group.
+//
+// For HTTPS traffic, domain filtering is SNI-based. It uses the server name
+// indicator extension of the TLS handshake.
+//
+// By default, Network Firewall domain list inspection only includes traffic
+// coming from the VPC where you deploy the firewall. To inspect traffic from
+// IP addresses outside of the deployment VPC, you set the HOME_NET rule variable
+// to include the CIDR range of the deployment VPC plus the other CIDR ranges.
+// For more information, see RuleVariables in this guide and Stateful domain
+// list rule groups in AWS Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html)
+// in the Network Firewall Developer Guide
 type RulesSourceList struct {
 	_ struct{} `type:"structure"`
 
@@ -8147,11 +8208,22 @@ type RulesSourceList struct {
 	// GeneratedRulesType is a required field
 	GeneratedRulesType *string `type:"string" required:"true" enum:"GeneratedRulesType"`
 
+	// The protocols you want to inspect. Specify TLS_SNI for HTTPS. Specity HTTP_HOST
+	// for HTTP. You can specify either or both.
+	//
 	// TargetTypes is a required field
 	TargetTypes []*string `type:"list" required:"true"`
 
 	// The domains that you want to inspect for in your traffic flows. To provide
-	// multiple domains, separate them with commas.
+	// multiple domains, separate them with commas. Valid domain specifications
+	// are the following:
+	//
+	//    * Explicit names. For example, abc.example.com matches only the domain
+	//    abc.example.com.
+	//
+	//    * Names that use a domain wildcard, which you indicate with an initial
+	//    '.'. For example,.example.com matches example.com and matches all subdomains
+	//    of example.com, such as abc.example.com and www.example.com.
 	//
 	// Targets is a required field
 	Targets []*string `type:"list" required:"true"`

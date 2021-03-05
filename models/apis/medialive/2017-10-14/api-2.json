@@ -11505,6 +11505,10 @@
           "shape": "__string",
           "locationName": "targetCustomerId"
         },
+        "TargetRegion": {
+          "shape": "__string",
+          "locationName": "targetRegion"
+        },
         "TransferMessage": {
           "shape": "__string",
           "locationName": "transferMessage"
@@ -11522,6 +11526,10 @@
         "TargetCustomerId": {
           "shape": "__string",
           "locationName": "targetCustomerId"
+        },
+        "TargetRegion": {
+          "shape": "__string",
+          "locationName": "targetRegion"
         },
         "TransferMessage": {
           "shape": "__string",
