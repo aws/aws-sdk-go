@@ -2330,6 +2330,7 @@
     },
     "LayerPermissionAllowedAction":{
       "type":"string",
+      "max":22,
       "pattern":"lambda:GetLayerVersion"
     },
     "LayerPermissionAllowedPrincipal":{
@@ -2806,6 +2807,7 @@
     },
     "OrganizationId":{
       "type":"string",
+      "max":34,
       "pattern":"o-[a-z0-9]{10,32}"
     },
     "PackageType":{
@@ -2844,7 +2846,7 @@
     },
     "Principal":{
       "type":"string",
-      "pattern":".*"
+      "pattern":"[^\\s]+"
     },
     "ProvisionedConcurrencyConfigList":{
       "type":"list",
@@ -3251,6 +3253,7 @@
     },
     "SourceOwner":{
       "type":"string",
+      "max":12,
       "pattern":"\\d{12}"
     },
     "State":{

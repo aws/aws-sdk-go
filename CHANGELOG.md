@@ -1,3 +1,19 @@
+Release v1.37.26 (2021-03-08)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for autoscaling for capacity-optimized-prioritized SpotAllocationStrategy
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now specify how EC2 On-Demand Capacity Reservations are used in their EMR clusters with instance fleets using allocation strategy.
+* `service/kinesis-video-archived-media`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Documentation updates for Lambda. Constraint updates to AddLayerVersionPermission's Action and OrganizationId parameters, and AddPermission's Principal and SourceAccount parameters.
+* `service/s3`: Updates service documentation and examples
+  * Amazon S3 Documentation updates
+* `service/s3control`: Updates service API and documentation
+  * Documentation updates for Amazon S3
+
 Release v1.37.25 (2021-03-05)
 ===
 

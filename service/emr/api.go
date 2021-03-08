@@ -8918,9 +8918,9 @@ type InstanceGroup struct {
 	// of a CloudWatch metric. See PutAutoScalingPolicy.
 	AutoScalingPolicy *AutoScalingPolicyDescription `type:"structure"`
 
-	// The bid price for each EC2 Spot Instance type as defined by InstanceType.
-	// Expressed in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice
-	// is provided, BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// If specified, indicates that the instance group uses Spot Instances. This
+	// is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice
+	// to set the amount equal to the On-Demand price, or specify an amount in USD.
 	BidPrice *string `type:"string"`
 
 	//
@@ -9102,9 +9102,9 @@ type InstanceGroupConfig struct {
 	// of a CloudWatch metric. See PutAutoScalingPolicy.
 	AutoScalingPolicy *AutoScalingPolicy `type:"structure"`
 
-	// The bid price for each EC2 Spot Instance as defined by InstanceType. Expressed
-	// in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided,
-	// BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// If specified, indicates that the instance group uses Spot Instances. This
+	// is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice
+	// to set the amount equal to the On-Demand price, or specify an amount in USD.
 	BidPrice *string `type:"string"`
 
 	//
@@ -9241,9 +9241,9 @@ func (s *InstanceGroupConfig) SetName(v string) *InstanceGroupConfig {
 type InstanceGroupDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The bid price for each EC2 Spot Instance as defined by InstanceType. Expressed
-	// in USD. If neither BidPrice nor BidPriceAsPercentageOfOnDemandPrice is provided,
-	// BidPriceAsPercentageOfOnDemandPrice defaults to 100%.
+	// If specified, indicates that the instance group uses Spot Instances. This
+	// is the maximum price you are willing to pay for Spot Instances. Specify OnDemandPrice
+	// to set the amount equal to the On-Demand price, or specify an amount in USD.
 	BidPrice *string `type:"string"`
 
 	// The date/time the instance group was created.
@@ -11847,7 +11847,7 @@ type ModifyClusterInput struct {
 	ClusterId *string `type:"string" required:"true"`
 
 	// The number of steps that can be executed concurrently. You can specify a
-	// maximum of 256 steps.
+	// minimum of 1 step and a maximum of 256 steps.
 	StepConcurrencyLevel *int64 `type:"integer"`
 }
 
@@ -12305,6 +12305,59 @@ func (s *NotebookExecutionSummary) SetStatus(v string) *NotebookExecutionSummary
 	return s
 }
 
+// Describes the strategy for using unused Capacity Reservations for fulfilling
+// On-Demand capacity.
+type OnDemandCapacityReservationOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the instance's Capacity Reservation preferences. Possible preferences
+	// include:
+	//
+	//    * open - The instance can run in any open Capacity Reservation that has
+	//    matching attributes (instance type, platform, Availability Zone).
+	//
+	//    * none - The instance avoids running in a Capacity Reservation even if
+	//    one is available. The instance runs as an On-Demand Instance.
+	CapacityReservationPreference *string `type:"string" enum:"OnDemandCapacityReservationPreference"`
+
+	// Indicates whether to use unused Capacity Reservations for fulfilling On-Demand
+	// capacity.
+	//
+	// If you specify use-capacity-reservations-first, the fleet uses unused Capacity
+	// Reservations to fulfill On-Demand capacity up to the target On-Demand capacity.
+	// If multiple instance pools have unused Capacity Reservations, the On-Demand
+	// allocation strategy (lowest-price) is applied. If the number of unused Capacity
+	// Reservations is less than the On-Demand target capacity, the remaining On-Demand
+	// target capacity is launched according to the On-Demand allocation strategy
+	// (lowest-price).
+	//
+	// If you do not specify a value, the fleet fulfils the On-Demand capacity according
+	// to the chosen On-Demand allocation strategy.
+	UsageStrategy *string `type:"string" enum:"OnDemandCapacityReservationUsageStrategy"`
+}
+
+// String returns the string representation
+func (s OnDemandCapacityReservationOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OnDemandCapacityReservationOptions) GoString() string {
+	return s.String()
+}
+
+// SetCapacityReservationPreference sets the CapacityReservationPreference field's value.
+func (s *OnDemandCapacityReservationOptions) SetCapacityReservationPreference(v string) *OnDemandCapacityReservationOptions {
+	s.CapacityReservationPreference = &v
+	return s
+}
+
+// SetUsageStrategy sets the UsageStrategy field's value.
+func (s *OnDemandCapacityReservationOptions) SetUsageStrategy(v string) *OnDemandCapacityReservationOptions {
+	s.UsageStrategy = &v
+	return s
+}
+
 // The launch specification for On-Demand Instances in the instance fleet, which
 // determines the allocation strategy.
 //
@@ -12314,12 +12367,16 @@ func (s *NotebookExecutionSummary) SetStatus(v string) *NotebookExecutionSummary
 type OnDemandProvisioningSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the strategy to use in launching On-Demand Instance fleets. Currently,
+	// Specifies the strategy to use in launching On-Demand instance fleets. Currently,
 	// the only option is lowest-price (the default), which launches the lowest
 	// price first.
 	//
 	// AllocationStrategy is a required field
 	AllocationStrategy *string `type:"string" required:"true" enum:"OnDemandProvisioningAllocationStrategy"`
+
+	// The launch specification for On-Demand instances in the instance fleet, which
+	// determines the allocation strategy.
+	CapacityReservationOptions *OnDemandCapacityReservationOptions `type:"structure"`
 }
 
 // String returns the string representation
@@ -12348,6 +12405,12 @@ func (s *OnDemandProvisioningSpecification) Validate() error {
 // SetAllocationStrategy sets the AllocationStrategy field's value.
 func (s *OnDemandProvisioningSpecification) SetAllocationStrategy(v string) *OnDemandProvisioningSpecification {
 	s.AllocationStrategy = &v
+	return s
+}
+
+// SetCapacityReservationOptions sets the CapacityReservationOptions field's value.
+func (s *OnDemandProvisioningSpecification) SetCapacityReservationOptions(v *OnDemandCapacityReservationOptions) *OnDemandProvisioningSpecification {
+	s.CapacityReservationOptions = v
 	return s
 }
 
@@ -16143,6 +16206,34 @@ func NotebookExecutionStatus_Values() []string {
 		NotebookExecutionStatusStopPending,
 		NotebookExecutionStatusStopping,
 		NotebookExecutionStatusStopped,
+	}
+}
+
+const (
+	// OnDemandCapacityReservationPreferenceOpen is a OnDemandCapacityReservationPreference enum value
+	OnDemandCapacityReservationPreferenceOpen = "open"
+
+	// OnDemandCapacityReservationPreferenceNone is a OnDemandCapacityReservationPreference enum value
+	OnDemandCapacityReservationPreferenceNone = "none"
+)
+
+// OnDemandCapacityReservationPreference_Values returns all elements of the OnDemandCapacityReservationPreference enum
+func OnDemandCapacityReservationPreference_Values() []string {
+	return []string{
+		OnDemandCapacityReservationPreferenceOpen,
+		OnDemandCapacityReservationPreferenceNone,
+	}
+}
+
+const (
+	// OnDemandCapacityReservationUsageStrategyUseCapacityReservationsFirst is a OnDemandCapacityReservationUsageStrategy enum value
+	OnDemandCapacityReservationUsageStrategyUseCapacityReservationsFirst = "use-capacity-reservations-first"
+)
+
+// OnDemandCapacityReservationUsageStrategy_Values returns all elements of the OnDemandCapacityReservationUsageStrategy enum
+func OnDemandCapacityReservationUsageStrategy_Values() []string {
+	return []string{
+		OnDemandCapacityReservationUsageStrategyUseCapacityReservationsFirst,
 	}
 }
 
