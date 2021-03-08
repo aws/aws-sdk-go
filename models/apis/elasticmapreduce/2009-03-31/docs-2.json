@@ -1041,7 +1041,7 @@
         "JobFlowInstancesConfig$InstanceCount": "<p>The number of EC2 instances in the cluster.</p>",
         "JobFlowInstancesDetail$InstanceCount": "<p>The number of Amazon EC2 instances in the cluster. If the value is 1, the same instance serves as both the master and core and task node. If the value is greater than 1, one instance is the master node and all others are core and task nodes.</p>",
         "JobFlowInstancesDetail$NormalizedInstanceHours": "<p>An approximation of the cost of the cluster, represented in m1.small/hours. This value is increased one time for every hour that an m1.small instance runs. Larger instances are weighted more heavily, so an Amazon EC2 instance that is roughly four times more expensive would result in the normalized instance hours being increased incrementally four times. This result is only an approximation and does not reflect the actual billing rate.</p>",
-        "ModifyClusterInput$StepConcurrencyLevel": "<p>The number of steps that can be executed concurrently. You can specify a maximum of 256 steps. </p>",
+        "ModifyClusterInput$StepConcurrencyLevel": "<p>The number of steps that can be executed concurrently. You can specify a minimum of 1 step and a maximum of 256 steps. </p>",
         "ModifyClusterOutput$StepConcurrencyLevel": "<p>The number of steps that can be executed concurrently.</p>",
         "RunJobFlowInput$EbsRootVolumeSize": "<p>The size, in GiB, of the Amazon EBS root device volume of the Linux AMI that is used for each EC2 instance. Available in Amazon EMR version 4.x and later.</p>",
         "RunJobFlowInput$StepConcurrencyLevel": "<p>Specifies the number of steps that can be executed concurrently. The default value is <code>1</code>. The maximum value is <code>256</code>.</p>",
@@ -1353,10 +1353,28 @@
         "ListNotebookExecutionsOutput$NotebookExecutions": "<p>A list of notebook executions.</p>"
       }
     },
+    "OnDemandCapacityReservationOptions": {
+      "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p>",
+      "refs": {
+        "OnDemandProvisioningSpecification$CapacityReservationOptions": "<p>The launch specification for On-Demand instances in the instance fleet, which determines the allocation strategy.</p>"
+      }
+    },
+    "OnDemandCapacityReservationPreference": {
+      "base": null,
+      "refs": {
+        "OnDemandCapacityReservationOptions$CapacityReservationPreference": "<p>Indicates the instance's Capacity Reservation preferences. Possible preferences include:</p> <ul> <li> <p> <code>open</code> - The instance can run in any open Capacity Reservation that has matching attributes (instance type, platform, Availability Zone).</p> </li> <li> <p> <code>none</code> - The instance avoids running in a Capacity Reservation even if one is available. The instance runs as an On-Demand Instance.</p> </li> </ul>"
+      }
+    },
+    "OnDemandCapacityReservationUsageStrategy": {
+      "base": null,
+      "refs": {
+        "OnDemandCapacityReservationOptions$UsageStrategy": "<p>Indicates whether to use unused Capacity Reservations for fulfilling On-Demand capacity.</p> <p>If you specify <code>use-capacity-reservations-first</code>, the fleet uses unused Capacity Reservations to fulfill On-Demand capacity up to the target On-Demand capacity. If multiple instance pools have unused Capacity Reservations, the On-Demand allocation strategy (<code>lowest-price</code>) is applied. If the number of unused Capacity Reservations is less than the On-Demand target capacity, the remaining On-Demand target capacity is launched according to the On-Demand allocation strategy (<code>lowest-price</code>).</p> <p>If you do not specify a value, the fleet fulfils the On-Demand capacity according to the chosen On-Demand allocation strategy.</p>"
+      }
+    },
     "OnDemandProvisioningAllocationStrategy": {
       "base": null,
       "refs": {
-        "OnDemandProvisioningSpecification$AllocationStrategy": "<p> Specifies the strategy to use in launching On-Demand Instance fleets. Currently, the only option is lowest-price (the default), which launches the lowest price first. </p>"
+        "OnDemandProvisioningSpecification$AllocationStrategy": "<p>Specifies the strategy to use in launching On-Demand instance fleets. Currently, the only option is <code>lowest-price</code> (the default), which launches the lowest price first.</p>"
       }
     },
     "OnDemandProvisioningSpecification": {
@@ -1808,7 +1826,7 @@
         "Instance$InstanceGroupId": "<p>The identifier of the instance group to which this instance belongs.</p>",
         "InstanceFleetStateChangeReason$Message": "<p>An explanatory message.</p>",
         "InstanceGroup$Name": "<p>The name of the instance group.</p>",
-        "InstanceGroup$BidPrice": "<p>The bid price for each EC2 Spot Instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
+        "InstanceGroup$BidPrice": "<p>If specified, indicates that the instance group uses Spot Instances. This is the maximum price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code> to set the amount equal to the On-Demand price, or specify an amount in USD.</p>",
         "InstanceGroupStateChangeReason$Message": "<p>The status change reason description.</p>",
         "InstanceStateChangeReason$Message": "<p>The status change reason description.</p>",
         "MetricDimension$Key": "<p>The dimension name.</p>",
@@ -2049,10 +2067,10 @@
         "InstanceFleet$Name": "<p>A friendly name for the instance fleet.</p>",
         "InstanceFleetConfig$Name": "<p>The friendly name of the instance fleet.</p>",
         "InstanceGroupConfig$Name": "<p>Friendly name given to the instance group.</p>",
-        "InstanceGroupConfig$BidPrice": "<p>The bid price for each EC2 Spot Instance as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
+        "InstanceGroupConfig$BidPrice": "<p>If specified, indicates that the instance group uses Spot Instances. This is the maximum price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code> to set the amount equal to the On-Demand price, or specify an amount in USD.</p>",
         "InstanceGroupDetail$InstanceGroupId": "<p>Unique identifier for the instance group.</p>",
         "InstanceGroupDetail$Name": "<p>Friendly name for the instance group.</p>",
-        "InstanceGroupDetail$BidPrice": "<p>The bid price for each EC2 Spot Instance as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%.</p>",
+        "InstanceGroupDetail$BidPrice": "<p>If specified, indicates that the instance group uses Spot Instances. This is the maximum price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code> to set the amount equal to the On-Demand price, or specify an amount in USD.</p>",
         "InstanceGroupIdsList$member": null,
         "InstanceGroupModifyConfig$InstanceGroupId": "<p>Unique ID of the instance group to modify.</p>",
         "InstanceTypeConfig$BidPrice": "<p>The bid price for each EC2 Spot Instance type as defined by <code>InstanceType</code>. Expressed in USD. If neither <code>BidPrice</code> nor <code>BidPriceAsPercentageOfOnDemandPrice</code> is provided, <code>BidPriceAsPercentageOfOnDemandPrice</code> defaults to 100%. </p>",

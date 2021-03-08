@@ -117,7 +117,8 @@ func (c *KinesisVideoArchivedMedia) GetClipRequest(input *GetClipInput) (req *re
 //
 //   * ClientLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   a limit. Try making the call later. For information about limits, see Kinesis
+//   Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 //   * NotAuthorizedException
 //   Status Code: 403, The caller is not authorized to perform an operation on
@@ -247,9 +248,9 @@ func (c *KinesisVideoArchivedMedia) GetDASHStreamingSessionURLRequest(input *Get
 // an authenticated URL (that includes an encrypted session token) for the session's
 // MPEG-DASH manifest (the root resource needed for streaming with MPEG-DASH).
 //
-// Don't share or store this token where an unauthorized entity could access
-// it. The token provides access to the content of the stream. Safeguard the
-// token with the same measures that you would use with your AWS credentials.
+// Don't share or store this token where an unauthorized entity can access it.
+// The token provides access to the content of the stream. Safeguard the token
+// with the same measures that you use with your AWS credentials.
 //
 // The media that is made available through the manifest consists only of the
 // requested stream, time range, and format. No other media data (such as frames
@@ -290,20 +291,8 @@ func (c *KinesisVideoArchivedMedia) GetDASHStreamingSessionURLRequest(input *Get
 //    this action is billable. See Pricing (https://aws.amazon.com/kinesis/video-streams/pricing/)
 //    for details.
 //
-// The following restrictions apply to MPEG-DASH sessions:
-//
-//    * A streaming session URL should not be shared between players. The service
-//    might throttle a session if multiple media players are sharing it. For
-//    connection limits, see Kinesis Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
-//
-//    * A Kinesis video stream can have a maximum of ten active MPEG-DASH streaming
-//    sessions. If a new session is created when the maximum number of sessions
-//    is already active, the oldest (earliest created) session is closed. The
-//    number of active GetMedia connections on a Kinesis video stream does not
-//    count against this limit, and the number of active MPEG-DASH sessions
-//    does not count against the active GetMedia connection limit. The maximum
-//    limits for active HLS and MPEG-DASH streaming sessions are independent
-//    of each other.
+// For restrictions that apply to MPEG-DASH sessions, see Kinesis Video Streams
+// Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 // You can monitor the amount of data that the media player consumes by monitoring
 // the GetMP4MediaFragment.OutgoingBytes Amazon CloudWatch metric. For information
@@ -359,7 +348,8 @@ func (c *KinesisVideoArchivedMedia) GetDASHStreamingSessionURLRequest(input *Get
 //
 //   * ClientLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   a limit. Try making the call later. For information about limits, see Kinesis
+//   Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 //   * NotAuthorizedException
 //   Status Code: 403, The caller is not authorized to perform an operation on
@@ -550,20 +540,9 @@ func (c *KinesisVideoArchivedMedia) GetHLSStreamingSessionURLRequest(input *GetH
 //    to retrieve stream media. Data retrieved with this action is billable.
 //    For more information, see Kinesis Video Streams pricing (https://aws.amazon.com/kinesis/video-streams/pricing/).
 //
-// The following restrictions apply to HLS sessions:
-//
-//    * A streaming session URL should not be shared between players. The service
-//    might throttle a session if multiple media players are sharing it. For
-//    connection limits, see Kinesis Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
-//
-//    * A Kinesis video stream can have a maximum of ten active HLS streaming
-//    sessions. If a new session is created when the maximum number of sessions
-//    is already active, the oldest (earliest created) session is closed. The
-//    number of active GetMedia connections on a Kinesis video stream does not
-//    count against this limit, and the number of active HLS sessions does not
-//    count against the active GetMedia connection limit. The maximum limits
-//    for active HLS and MPEG-DASH streaming sessions are independent of each
-//    other.
+// A streaming session URL must not be shared between players. The service might
+// throttle a session if multiple media players are sharing it. For connection
+// limits, see Kinesis Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 // You can monitor the amount of data that the media player consumes by monitoring
 // the GetMP4MediaFragment.OutgoingBytes Amazon CloudWatch metric. For information
@@ -619,7 +598,8 @@ func (c *KinesisVideoArchivedMedia) GetHLSStreamingSessionURLRequest(input *GetH
 //
 //   * ClientLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   a limit. Try making the call later. For information about limits, see Kinesis
+//   Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 //   * NotAuthorizedException
 //   Status Code: 403, The caller is not authorized to perform an operation on
@@ -715,14 +695,7 @@ func (c *KinesisVideoArchivedMedia) GetMediaForFragmentListRequest(input *GetMed
 // the GetMediaForFragmentList requests to this endpoint using the --endpoint-url
 // parameter (https://docs.aws.amazon.com/cli/latest/reference/).
 //
-// The following limits apply when using the GetMediaForFragmentList API:
-//
-//    * A client can call GetMediaForFragmentList up to five times per second
-//    per stream.
-//
-//    * Kinesis Video Streams sends media data at a rate of up to 25 megabytes
-//    per second (or 200 megabits per second) during a GetMediaForFragmentList
-//    session.
+// For limits, see Kinesis Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 // If an error is thrown after invoking a Kinesis Video Streams archived media
 // API, in addition to the HTTP status code and the response body, it includes
@@ -767,7 +740,8 @@ func (c *KinesisVideoArchivedMedia) GetMediaForFragmentListRequest(input *GetMed
 //
 //   * ClientLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   a limit. Try making the call later. For information about limits, see Kinesis
+//   Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 //   * NotAuthorizedException
 //   Status Code: 403, The caller is not authorized to perform an operation on
@@ -900,7 +874,8 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsRequest(input *ListFragmentsInp
 //
 //   * ClientLimitExceededException
 //   Kinesis Video Streams has throttled the request because you have exceeded
-//   the limit of allowed client calls. Try making the call later.
+//   a limit. Try making the call later. For information about limits, see Kinesis
+//   Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 //
 //   * NotAuthorizedException
 //   Status Code: 403, The caller is not authorized to perform an operation on
@@ -981,7 +956,8 @@ func (c *KinesisVideoArchivedMedia) ListFragmentsPagesWithContext(ctx aws.Contex
 }
 
 // Kinesis Video Streams has throttled the request because you have exceeded
-// the limit of allowed client calls. Try making the call later.
+// a limit. Try making the call later. For information about limits, see Kinesis
+// Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 type ClientLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1103,16 +1079,12 @@ func (s *ClipFragmentSelector) SetTimestampRange(v *ClipTimestampRange) *ClipFra
 }
 
 // The range of timestamps for which to return fragments.
-//
-// The values in the ClipTimestampRange are inclusive. Fragments that begin
-// before the start time but continue past it, or fragments that begin before
-// the end time but continue past it, are included in the session.
 type ClipTimestampRange struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the timestamp range for the requested media.
 	//
-	// This value must be within 3 hours of the specified StartTimestamp, and it
+	// This value must be within 24 hours of the specified StartTimestamp, and it
 	// must be later than the StartTimestamp value. If FragmentSelectorType for
 	// the request is SERVER_TIMESTAMP, this value must be in the past.
 	//
@@ -1125,9 +1097,10 @@ type ClipTimestampRange struct {
 
 	// The starting timestamp in the range of timestamps for which to return fragments.
 	//
-	// This value is inclusive. Fragments that start before the StartTimestamp and
-	// continue past it are included in the session. If FragmentSelectorType is
-	// SERVER_TIMESTAMP, the StartTimestamp must be later than the stream head.
+	// Only fragments that start exactly at or after StartTimestamp are included
+	// in the session. Fragments that start before StartTimestamp and continue past
+	// it aren't included in the session. If FragmentSelectorType is SERVER_TIMESTAMP,
+	// the StartTimestamp must be later than the stream head.
 	//
 	// StartTimestamp is a required field
 	StartTimestamp *time.Time `type:"timestamp" required:"true"`
@@ -1236,14 +1209,14 @@ func (s *DASHFragmentSelector) SetTimestampRange(v *DASHTimestampRange) *DASHFra
 //
 // This value should not be present if PlaybackType is LIVE.
 //
-// The values in the DASHimestampRange are inclusive. Fragments that begin before
-// the start time but continue past it, or fragments that begin before the end
-// time but continue past it, are included in the session.
+// The values in DASHimestampRange are inclusive. Fragments that start exactly
+// at or after the start time are included in the session. Fragments that start
+// before the start time and continue past it are not included in the session.
 type DASHTimestampRange struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the timestamp range for the requested media. This value must be
-	// within 3 hours of the specified StartTimestamp, and it must be later than
+	// within 24 hours of the specified StartTimestamp, and it must be later than
 	// the StartTimestamp value.
 	//
 	// If FragmentSelectorType for the request is SERVER_TIMESTAMP, this value must
@@ -1263,9 +1236,10 @@ type DASHTimestampRange struct {
 	// If the DASHTimestampRange value is specified, the StartTimestamp value is
 	// required.
 	//
-	// This value is inclusive. Fragments that start before the StartTimestamp and
-	// continue past it are included in the session. If FragmentSelectorType is
-	// SERVER_TIMESTAMP, the StartTimestamp must be later than the stream head.
+	// Only fragments that start exactly at or after StartTimestamp are included
+	// in the session. Fragments that start before StartTimestamp and continue past
+	// it aren't included in the session. If FragmentSelectorType is SERVER_TIMESTAMP,
+	// the StartTimestamp must be later than the stream head.
 	StartTimestamp *time.Time `type:"timestamp"`
 }
 
@@ -1632,9 +1606,9 @@ type GetDASHStreamingSessionURLInput struct {
 	//
 	//    * ON_DEMAND : For sessions of this type, the MPEG-DASH manifest contains
 	//    all the fragments for the session, up to the number that is specified
-	//    in MaxMediaPlaylistFragmentResults. The manifest must be retrieved only
-	//    once for each session. When this type of session is played in a media
-	//    player, the user interface typically displays a scrubber control for choosing
+	//    in MaxManifestFragmentResults. The manifest must be retrieved only once
+	//    for each session. When this type of session is played in a media player,
+	//    the user interface typically displays a scrubber control for choosing
 	//    the position in the playback window to display.
 	//
 	// In all playback modes, if FragmentSelectorType is PRODUCER_TIMESTAMP, and
@@ -1859,9 +1833,9 @@ type GetHLSStreamingSessionURLInput struct {
 	// The default is 5 fragments if PlaybackMode is LIVE or LIVE_REPLAY, and 1,000
 	// if PlaybackMode is ON_DEMAND.
 	//
-	// The maximum value of 1,000 fragments corresponds to more than 16 minutes
-	// of video on streams with 1-second fragments, and more than 2 1/2 hours of
-	// video on streams with 10-second fragments.
+	// The maximum value of 5,000 fragments corresponds to more than 80 minutes
+	// of video on streams with 1-second fragments, and more than 13 hours of video
+	// on streams with 10-second fragments.
 	MaxMediaPlaylistFragmentResults *int64 `min:"1" type:"long"`
 
 	// Whether to retrieve live, live replay, or archived, on-demand data.
@@ -1903,7 +1877,7 @@ type GetHLSStreamingSessionURLInput struct {
 	//
 	// In all playback modes, if FragmentSelectorType is PRODUCER_TIMESTAMP, and
 	// if there are multiple fragments with the same start timestamp, the fragment
-	// that has the larger fragment number (that is, the newer fragment) is included
+	// that has the largest fragment number (that is, the newest fragment) is included
 	// in the HLS media playlist. The other fragments are not included. Fragments
 	// that have different timestamps but have overlapping durations are still included
 	// in the HLS media playlist. This can lead to unexpected behavior in the media
@@ -2218,15 +2192,11 @@ func (s *HLSFragmentSelector) SetTimestampRange(v *HLSTimestampRange) *HLSFragme
 // The start and end of the timestamp range for the requested media.
 //
 // This value should not be present if PlaybackType is LIVE.
-//
-// The values in the HLSTimestampRange are inclusive. Fragments that begin before
-// the start time but continue past it, or fragments that begin before the end
-// time but continue past it, are included in the session.
 type HLSTimestampRange struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the timestamp range for the requested media. This value must be
-	// within 3 hours of the specified StartTimestamp, and it must be later than
+	// within 24 hours of the specified StartTimestamp, and it must be later than
 	// the StartTimestamp value.
 	//
 	// If FragmentSelectorType for the request is SERVER_TIMESTAMP, this value must
@@ -2246,9 +2216,10 @@ type HLSTimestampRange struct {
 	// If the HLSTimestampRange value is specified, the StartTimestamp value is
 	// required.
 	//
-	// This value is inclusive. Fragments that start before the StartTimestamp and
-	// continue past it are included in the session. If FragmentSelectorType is
-	// SERVER_TIMESTAMP, the StartTimestamp must be later than the stream head.
+	// Only fragments that start exactly at or after StartTimestamp are included
+	// in the session. Fragments that start before StartTimestamp and continue past
+	// it aren't included in the session. If FragmentSelectorType is SERVER_TIMESTAMP,
+	// the StartTimestamp must be later than the stream head.
 	StartTimestamp *time.Time `type:"timestamp"`
 }
 

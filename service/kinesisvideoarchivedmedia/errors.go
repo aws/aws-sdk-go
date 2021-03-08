@@ -12,7 +12,8 @@ const (
 	// "ClientLimitExceededException".
 	//
 	// Kinesis Video Streams has throttled the request because you have exceeded
-	// the limit of allowed client calls. Try making the call later.
+	// a limit. Try making the call later. For information about limits, see Kinesis
+	// Video Streams Limits (http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html).
 	ErrCodeClientLimitExceededException = "ClientLimitExceededException"
 
 	// ErrCodeInvalidArgumentException for service response error code

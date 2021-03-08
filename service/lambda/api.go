@@ -3710,8 +3710,12 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *request.R
 // of each. Lambda returns up to 50 functions per call.
 //
 // Set FunctionVersion to ALL to include all published versions of each function
-// in addition to the unpublished version. To get more information about a function
-// or version, use GetFunction.
+// in addition to the unpublished version.
+//
+// The ListFunctions action returns a subset of the FunctionConfiguration fields.
+// To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus,
+// LastUpdateStatusReason, LastUpdateStatusReasonCode) for a function or version,
+// use GetFunction.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13030,7 +13034,9 @@ type ListFunctionsInput struct {
 	// you must set FunctionVersion to ALL.
 	MasterRegion *string `location:"querystring" locationName:"MasterRegion" type:"string"`
 
-	// The maximum number of functions to return.
+	// The maximum number of functions to return in the response. Note that ListFunctions
+	// returns a maximum of 50 items in each response, even if you set the number
+	// higher.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 }
 

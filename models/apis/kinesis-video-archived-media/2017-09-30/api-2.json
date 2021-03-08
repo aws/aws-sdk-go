@@ -179,6 +179,11 @@
         "SERVER_TIMESTAMP"
       ]
     },
+    "DASHMaxResults":{
+      "type":"long",
+      "max":5000,
+      "min":1
+    },
     "DASHPlaybackMode":{
       "type":"string",
       "enum":[
@@ -276,7 +281,7 @@
         "DisplayFragmentNumber":{"shape":"DASHDisplayFragmentNumber"},
         "DASHFragmentSelector":{"shape":"DASHFragmentSelector"},
         "Expires":{"shape":"Expires"},
-        "MaxManifestFragmentResults":{"shape":"PageLimit"}
+        "MaxManifestFragmentResults":{"shape":"DASHMaxResults"}
       }
     },
     "GetDASHStreamingSessionURLOutput":{
@@ -296,7 +301,7 @@
         "DiscontinuityMode":{"shape":"HLSDiscontinuityMode"},
         "DisplayFragmentTimestamp":{"shape":"HLSDisplayFragmentTimestamp"},
         "Expires":{"shape":"Expires"},
-        "MaxMediaPlaylistFragmentResults":{"shape":"PageLimit"}
+        "MaxMediaPlaylistFragmentResults":{"shape":"HLSMaxResults"}
       }
     },
     "GetHLSStreamingSessionURLOutput":{
@@ -355,6 +360,11 @@
         "SERVER_TIMESTAMP"
       ]
     },
+    "HLSMaxResults":{
+      "type":"long",
+      "max":5000,
+      "min":1
+    },
     "HLSPlaybackMode":{
       "type":"string",
       "enum":[
@@ -400,10 +410,15 @@
       "members":{
         "StreamName":{"shape":"StreamName"},
         "StreamARN":{"shape":"ResourceARN"},
-        "MaxResults":{"shape":"PageLimit"},
+        "MaxResults":{"shape":"ListFragmentsMaxResults"},
         "NextToken":{"shape":"NextToken"},
         "FragmentSelector":{"shape":"FragmentSelector"}
       }
+    },
+    "ListFragmentsMaxResults":{
+      "type":"long",
+      "max":1000,
+      "min":1
     },
     "ListFragmentsOutput":{
       "type":"structure",
@@ -442,11 +457,6 @@
       },
       "error":{"httpStatusCode":401},
       "exception":true
-    },
-    "PageLimit":{
-      "type":"long",
-      "max":1000,
-      "min":1
     },
     "Payload":{
       "type":"blob",

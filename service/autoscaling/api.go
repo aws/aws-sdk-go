@@ -6648,13 +6648,13 @@ type CreateAutoScalingGroupInput struct {
 	MinSize *int64 `type:"integer" required:"true"`
 
 	// An embedded object that specifies a mixed instances policy. The required
-	// parameters must be specified. If optional parameters are unspecified, their
+	// properties must be specified. If optional properties are unspecified, their
 	// default values are used.
 	//
-	// The policy includes parameters that not only define the distribution of On-Demand
+	// The policy includes properties that not only define the distribution of On-Demand
 	// Instances and Spot Instances, the maximum price to pay for Spot Instances,
 	// and how the Auto Scaling group allocates instance types to fulfill On-Demand
-	// and Spot capacities, but also the parameters that specify the instance configuration
+	// and Spot capacities, but also the properties that specify the instance configuration
 	// information—the launch template and instance types. The policy can also
 	// include a weight for each instance type and different launch templates for
 	// individual instance types. For more information, see Auto Scaling groups
@@ -11133,11 +11133,12 @@ type InstancesDistribution struct {
 
 	// Indicates how to allocate instance types to fulfill On-Demand capacity. The
 	// only valid value is prioritized, which is also the default value. This strategy
-	// uses the order of instance types in the overrides to define the launch priority
-	// of each instance type. The first instance type in the array is prioritized
-	// higher than the last. If all your On-Demand capacity cannot be fulfilled
-	// using your highest priority instance, then the Auto Scaling groups launches
-	// the remaining capacity using the second priority instance type, and so on.
+	// uses the order of instance types in the LaunchTemplateOverrides to define
+	// the launch priority of each instance type. The first instance type in the
+	// array is prioritized higher than the last. If all your On-Demand capacity
+	// cannot be fulfilled using your highest priority instance, then the Auto Scaling
+	// groups launches the remaining capacity using the second priority instance
+	// type, and so on.
 	OnDemandAllocationStrategy *string `type:"string"`
 
 	// The minimum amount of the Auto Scaling group's capacity that must be fulfilled
@@ -11153,13 +11154,20 @@ type InstancesDistribution struct {
 	// to 100 if not specified. If set to 100, only On-Demand Instances are provisioned.
 	OnDemandPercentageAboveBaseCapacity *int64 `type:"integer"`
 
-	// Indicates how to allocate instances across Spot Instance pools. If the allocation
-	// strategy is capacity-optimized (recommended), the Auto Scaling group launches
-	// instances using Spot pools that are optimally chosen based on the available
-	// Spot capacity. If the allocation strategy is lowest-price, the Auto Scaling
-	// group launches instances using the Spot pools with the lowest price, and
-	// evenly allocates your instances across the number of Spot pools that you
-	// specify. Defaults to lowest-price if not specified.
+	// Indicates how to allocate instances across Spot Instance pools.
+	//
+	// If the allocation strategy is lowest-price, the Auto Scaling group launches
+	// instances using the Spot pools with the lowest price, and evenly allocates
+	// your instances across the number of Spot pools that you specify. Defaults
+	// to lowest-price if not specified.
+	//
+	// If the allocation strategy is capacity-optimized (recommended), the Auto
+	// Scaling group launches instances using Spot pools that are optimally chosen
+	// based on the available Spot capacity. Alternatively, you can use capacity-optimized-prioritized
+	// and set the order of instance types in the list of launch template overrides
+	// from highest to lowest priority (from first to last in the list). Amazon
+	// EC2 Auto Scaling honors the instance type priorities on a best-effort basis
+	// but optimizes for capacity first.
 	SpotAllocationStrategy *string `type:"string"`
 
 	// The number of Spot Instance pools across which to allocate your Spot Instances.
@@ -11482,7 +11490,7 @@ func (s *LaunchConfiguration) SetUserData(v string) *LaunchConfiguration {
 
 // Describes a launch template and overrides.
 //
-// You specify these parameters as part of a mixed instances policy.
+// You specify these properties as part of a mixed instances policy.
 //
 // When you update the launch template or overrides, existing Amazon EC2 instances
 // continue to run. When scale out occurs, Amazon EC2 Auto Scaling launches
@@ -11494,7 +11502,7 @@ type LaunchTemplate struct {
 	// The launch template to use.
 	LaunchTemplateSpecification *LaunchTemplateSpecification `type:"structure"`
 
-	// Any parameters that you specify override the same parameters in the launch
+	// Any properties that you specify override the same properties in the launch
 	// template. If not provided, Amazon EC2 Auto Scaling uses the instance type
 	// specified in the launch template when it launches an instance.
 	Overrides []*LaunchTemplateOverrides `type:"list"`
@@ -12233,13 +12241,13 @@ func (s *MetricGranularityType) SetGranularity(v string) *MetricGranularityType 
 //
 // You can create a mixed instances policy for a new Auto Scaling group, or
 // you can create it for an existing group by updating the group to specify
-// MixedInstancesPolicy as the top-level parameter instead of a launch configuration
+// MixedInstancesPolicy as the top-level property instead of a launch configuration
 // or launch template.
 type MixedInstancesPolicy struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the instances distribution. If not provided, the value for each
-	// parameter in InstancesDistribution uses a default value.
+	// property in InstancesDistribution uses a default value.
 	InstancesDistribution *InstancesDistribution `type:"structure"`
 
 	// Specifies the launch template to use and optionally the instance types (overrides)
@@ -14655,7 +14663,7 @@ type UpdateAutoScalingGroupInput struct {
 	MinSize *int64 `type:"integer"`
 
 	// An embedded object that specifies a mixed instances policy. When you make
-	// changes to an existing policy, all optional parameters are left unchanged
+	// changes to an existing policy, all optional properties are left unchanged
 	// if not specified. For more information, see Auto Scaling groups with multiple
 	// instance types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 	// in the Amazon EC2 Auto Scaling User Guide.

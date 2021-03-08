@@ -37,7 +37,7 @@
     "ListCodeSigningConfigs": "<p>Returns a list of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html\">code signing configurations</a>. A request returns up to 10,000 configurations per call. You can use the <code>MaxItems</code> parameter to return fewer configurations per call. </p>",
     "ListEventSourceMappings": "<p>Lists event source mappings. Specify an <code>EventSourceArn</code> to only show event source mappings for a single event source.</p>",
     "ListFunctionEventInvokeConfigs": "<p>Retrieves a list of configurations for asynchronous invocation for a function.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>",
-    "ListFunctions": "<p>Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.</p> <p>Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions of each function in addition to the unpublished version. To get more information about a function or version, use <a>GetFunction</a>.</p>",
+    "ListFunctions": "<p>Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.</p> <p>Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions of each function in addition to the unpublished version. </p> <note> <p>The <code>ListFunctions</code> action returns a subset of the <a>FunctionConfiguration</a> fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode) for a function or version, use <a>GetFunction</a>.</p> </note>",
     "ListFunctionsByCodeSigningConfig": "<p>List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.</p>",
     "ListLayerVersions": "<p>Lists the versions of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layer</a>. Versions that have been deleted aren't listed. Specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime identifier</a> to list only versions that indicate that they're compatible with that runtime.</p>",
     "ListLayers": "<p>Lists <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">AWS Lambda layers</a> and shows information about the latest version of each. Specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime identifier</a> to list only layers that indicate that they're compatible with that runtime.</p>",
@@ -1228,7 +1228,7 @@
         "ListCodeSigningConfigsRequest$MaxItems": "<p>Maximum number of items to return.</p>",
         "ListEventSourceMappingsRequest$MaxItems": "<p>The maximum number of event source mappings to return.</p>",
         "ListFunctionsByCodeSigningConfigRequest$MaxItems": "<p>Maximum number of items to return.</p>",
-        "ListFunctionsRequest$MaxItems": "<p>The maximum number of functions to return.</p>",
+        "ListFunctionsRequest$MaxItems": "<p>The maximum number of functions to return in the response. Note that <code>ListFunctions</code> returns a maximum of 50 items in each response, even if you set the number higher.</p>",
         "ListVersionsByFunctionRequest$MaxItems": "<p>The maximum number of versions to return.</p>"
       }
     },
