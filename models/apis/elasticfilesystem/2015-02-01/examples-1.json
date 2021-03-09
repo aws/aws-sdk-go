@@ -4,7 +4,9 @@
     "CreateFileSystem": [
       {
         "input": {
+          "Backup": true,
           "CreationToken": "tokenstring",
+          "Encrypted": true,
           "PerformanceMode": "generalPurpose",
           "Tags": [
             {
@@ -16,6 +18,7 @@
         "output": {
           "CreationTime": "1481841524.0",
           "CreationToken": "tokenstring",
+          "Encrypted": true,
           "FileSystemId": "fs-01234567",
           "LifeCycleState": "creating",
           "NumberOfMountTargets": 0,
@@ -37,7 +40,7 @@
           "output": {
           }
         },
-        "description": "This operation creates a new file system with the default generalpurpose performance mode.",
+        "description": "This operation creates a new, encrypted file system with automatic backups enabled, and the default generalpurpose performance mode.",
         "id": "to-create-a-new-file-system-1481840798547",
         "title": "To create a new file system"
       }

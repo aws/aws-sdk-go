@@ -91,6 +91,7 @@
       "output":{"shape":"DeleteProfilingGroupResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"}
@@ -434,11 +435,11 @@
     "AgentParameterField":{
       "type":"string",
       "enum":[
-        "MaxStackDepth",
-        "MemoryUsageLimitPercent",
-        "MinimumTimeForReportingInMilliseconds",
+        "SamplingIntervalInMilliseconds",
         "ReportingIntervalInMilliseconds",
-        "SamplingIntervalInMilliseconds"
+        "MinimumTimeForReportingInMilliseconds",
+        "MemoryUsageLimitPercent",
+        "MaxStackDepth"
       ]
     },
     "AgentParameters":{
@@ -458,9 +459,9 @@
     "AggregationPeriod":{
       "type":"string",
       "enum":[
-        "P1D",
+        "PT5M",
         "PT1H",
-        "PT5M"
+        "P1D"
       ]
     },
     "Anomalies":{
@@ -588,8 +589,8 @@
     "ComputePlatform":{
       "type":"string",
       "enum":[
-        "AWSLambda",
-        "Default"
+        "Default",
+        "AWSLambda"
       ]
     },
     "ConfigureAgentRequest":{
@@ -704,8 +705,8 @@
     "FeedbackType":{
       "type":"string",
       "enum":[
-        "Negative",
-        "Positive"
+        "Positive",
+        "Negative"
       ]
     },
     "FindingsReportId":{
@@ -759,9 +760,13 @@
         "values":{"shape":"FrameMetricValues"}
       }
     },
+    "FrameMetricValue":{
+      "type":"double",
+      "box":true
+    },
     "FrameMetricValues":{
       "type":"list",
-      "member":{"shape":"Double"}
+      "member":{"shape":"FrameMetricValue"}
     },
     "FrameMetrics":{
       "type":"list",
@@ -951,7 +956,8 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true,
-      "fault":true
+      "fault":true,
+      "retryable":{"throttling":false}
     },
     "ListFindingsReportsRequest":{
       "type":"structure",
@@ -1138,15 +1144,15 @@
     "MetadataField":{
       "type":"string",
       "enum":[
+        "ComputePlatform",
         "AgentId",
         "AwsRequestId",
-        "ComputePlatform",
         "ExecutionEnvironment",
         "LambdaFunctionArn",
         "LambdaMemoryLimitInMB",
-        "LambdaPreviousExecutionTimeInMilliseconds",
         "LambdaRemainingTimeInMilliseconds",
-        "LambdaTimeGapBetweenInvokesInMilliseconds"
+        "LambdaTimeGapBetweenInvokesInMilliseconds",
+        "LambdaPreviousExecutionTimeInMilliseconds"
       ]
     },
     "Metric":{
@@ -1175,8 +1181,8 @@
     "OrderBy":{
       "type":"string",
       "enum":[
-        "TimestampAscending",
-        "TimestampDescending"
+        "TimestampDescending",
+        "TimestampAscending"
       ]
     },
     "PaginationToken":{
@@ -1436,7 +1442,8 @@
         "httpStatusCode":402,
         "senderFault":true
       },
-      "exception":true
+      "exception":true,
+      "retryable":{"throttling":false}
     },
     "String":{"type":"string"},
     "Strings":{
@@ -1521,7 +1528,8 @@
         "httpStatusCode":429,
         "senderFault":true
       },
-      "exception":true
+      "exception":true,
+      "retryable":{"throttling":false}
     },
     "Timestamp":{
       "type":"timestamp",

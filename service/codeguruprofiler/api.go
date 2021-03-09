@@ -245,7 +245,7 @@ func (c *CodeGuruProfiler) ConfigureAgentRequest(input *ConfigureAgentInput) (re
 // ConfigureAgent API operation for Amazon CodeGuru Profiler.
 //
 // Used by profiler agents to report their current state and to receive remote
-// configuration updates. For example, ConfigureAgent can be used to tell and
+// configuration updates. For example, ConfigureAgent can be used to tell an
 // agent whether to profile or not and for how long to return profiling data.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -442,6 +442,11 @@ func (c *CodeGuruProfiler) DeleteProfilingGroupRequest(input *DeleteProfilingGro
 // Returned Error Types:
 //   * InternalServerException
 //   The server encountered an internal error and is unable to complete the request.
+//
+//   * ConflictException
+//   The requested operation would cause a conflict with the current state of
+//   a service resource associated with the request. Resolve the conflict before
+//   retrying this request.
 //
 //   * ValidationException
 //   The parameter is not valid.
@@ -6325,66 +6330,66 @@ func ActionGroup_Values() []string {
 }
 
 const (
-	// AgentParameterFieldMaxStackDepth is a AgentParameterField enum value
-	AgentParameterFieldMaxStackDepth = "MaxStackDepth"
-
-	// AgentParameterFieldMemoryUsageLimitPercent is a AgentParameterField enum value
-	AgentParameterFieldMemoryUsageLimitPercent = "MemoryUsageLimitPercent"
-
-	// AgentParameterFieldMinimumTimeForReportingInMilliseconds is a AgentParameterField enum value
-	AgentParameterFieldMinimumTimeForReportingInMilliseconds = "MinimumTimeForReportingInMilliseconds"
+	// AgentParameterFieldSamplingIntervalInMilliseconds is a AgentParameterField enum value
+	AgentParameterFieldSamplingIntervalInMilliseconds = "SamplingIntervalInMilliseconds"
 
 	// AgentParameterFieldReportingIntervalInMilliseconds is a AgentParameterField enum value
 	AgentParameterFieldReportingIntervalInMilliseconds = "ReportingIntervalInMilliseconds"
 
-	// AgentParameterFieldSamplingIntervalInMilliseconds is a AgentParameterField enum value
-	AgentParameterFieldSamplingIntervalInMilliseconds = "SamplingIntervalInMilliseconds"
+	// AgentParameterFieldMinimumTimeForReportingInMilliseconds is a AgentParameterField enum value
+	AgentParameterFieldMinimumTimeForReportingInMilliseconds = "MinimumTimeForReportingInMilliseconds"
+
+	// AgentParameterFieldMemoryUsageLimitPercent is a AgentParameterField enum value
+	AgentParameterFieldMemoryUsageLimitPercent = "MemoryUsageLimitPercent"
+
+	// AgentParameterFieldMaxStackDepth is a AgentParameterField enum value
+	AgentParameterFieldMaxStackDepth = "MaxStackDepth"
 )
 
 // AgentParameterField_Values returns all elements of the AgentParameterField enum
 func AgentParameterField_Values() []string {
 	return []string{
-		AgentParameterFieldMaxStackDepth,
-		AgentParameterFieldMemoryUsageLimitPercent,
-		AgentParameterFieldMinimumTimeForReportingInMilliseconds,
-		AgentParameterFieldReportingIntervalInMilliseconds,
 		AgentParameterFieldSamplingIntervalInMilliseconds,
+		AgentParameterFieldReportingIntervalInMilliseconds,
+		AgentParameterFieldMinimumTimeForReportingInMilliseconds,
+		AgentParameterFieldMemoryUsageLimitPercent,
+		AgentParameterFieldMaxStackDepth,
 	}
 }
 
 const (
-	// AggregationPeriodP1d is a AggregationPeriod enum value
-	AggregationPeriodP1d = "P1D"
+	// AggregationPeriodPt5m is a AggregationPeriod enum value
+	AggregationPeriodPt5m = "PT5M"
 
 	// AggregationPeriodPt1h is a AggregationPeriod enum value
 	AggregationPeriodPt1h = "PT1H"
 
-	// AggregationPeriodPt5m is a AggregationPeriod enum value
-	AggregationPeriodPt5m = "PT5M"
+	// AggregationPeriodP1d is a AggregationPeriod enum value
+	AggregationPeriodP1d = "P1D"
 )
 
 // AggregationPeriod_Values returns all elements of the AggregationPeriod enum
 func AggregationPeriod_Values() []string {
 	return []string{
-		AggregationPeriodP1d,
-		AggregationPeriodPt1h,
 		AggregationPeriodPt5m,
+		AggregationPeriodPt1h,
+		AggregationPeriodP1d,
 	}
 }
 
 const (
-	// ComputePlatformAwslambda is a ComputePlatform enum value
-	ComputePlatformAwslambda = "AWSLambda"
-
 	// ComputePlatformDefault is a ComputePlatform enum value
 	ComputePlatformDefault = "Default"
+
+	// ComputePlatformAwslambda is a ComputePlatform enum value
+	ComputePlatformAwslambda = "AWSLambda"
 )
 
 // ComputePlatform_Values returns all elements of the ComputePlatform enum
 func ComputePlatform_Values() []string {
 	return []string{
-		ComputePlatformAwslambda,
 		ComputePlatformDefault,
+		ComputePlatformAwslambda,
 	}
 }
 
@@ -6401,30 +6406,30 @@ func EventPublisher_Values() []string {
 }
 
 const (
-	// FeedbackTypeNegative is a FeedbackType enum value
-	FeedbackTypeNegative = "Negative"
-
 	// FeedbackTypePositive is a FeedbackType enum value
 	FeedbackTypePositive = "Positive"
+
+	// FeedbackTypeNegative is a FeedbackType enum value
+	FeedbackTypeNegative = "Negative"
 )
 
 // FeedbackType_Values returns all elements of the FeedbackType enum
 func FeedbackType_Values() []string {
 	return []string{
-		FeedbackTypeNegative,
 		FeedbackTypePositive,
+		FeedbackTypeNegative,
 	}
 }
 
 const (
+	// MetadataFieldComputePlatform is a MetadataField enum value
+	MetadataFieldComputePlatform = "ComputePlatform"
+
 	// MetadataFieldAgentId is a MetadataField enum value
 	MetadataFieldAgentId = "AgentId"
 
 	// MetadataFieldAwsRequestId is a MetadataField enum value
 	MetadataFieldAwsRequestId = "AwsRequestId"
-
-	// MetadataFieldComputePlatform is a MetadataField enum value
-	MetadataFieldComputePlatform = "ComputePlatform"
 
 	// MetadataFieldExecutionEnvironment is a MetadataField enum value
 	MetadataFieldExecutionEnvironment = "ExecutionEnvironment"
@@ -6435,28 +6440,28 @@ const (
 	// MetadataFieldLambdaMemoryLimitInMb is a MetadataField enum value
 	MetadataFieldLambdaMemoryLimitInMb = "LambdaMemoryLimitInMB"
 
-	// MetadataFieldLambdaPreviousExecutionTimeInMilliseconds is a MetadataField enum value
-	MetadataFieldLambdaPreviousExecutionTimeInMilliseconds = "LambdaPreviousExecutionTimeInMilliseconds"
-
 	// MetadataFieldLambdaRemainingTimeInMilliseconds is a MetadataField enum value
 	MetadataFieldLambdaRemainingTimeInMilliseconds = "LambdaRemainingTimeInMilliseconds"
 
 	// MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds is a MetadataField enum value
 	MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds = "LambdaTimeGapBetweenInvokesInMilliseconds"
+
+	// MetadataFieldLambdaPreviousExecutionTimeInMilliseconds is a MetadataField enum value
+	MetadataFieldLambdaPreviousExecutionTimeInMilliseconds = "LambdaPreviousExecutionTimeInMilliseconds"
 )
 
 // MetadataField_Values returns all elements of the MetadataField enum
 func MetadataField_Values() []string {
 	return []string{
+		MetadataFieldComputePlatform,
 		MetadataFieldAgentId,
 		MetadataFieldAwsRequestId,
-		MetadataFieldComputePlatform,
 		MetadataFieldExecutionEnvironment,
 		MetadataFieldLambdaFunctionArn,
 		MetadataFieldLambdaMemoryLimitInMb,
-		MetadataFieldLambdaPreviousExecutionTimeInMilliseconds,
 		MetadataFieldLambdaRemainingTimeInMilliseconds,
 		MetadataFieldLambdaTimeGapBetweenInvokesInMilliseconds,
+		MetadataFieldLambdaPreviousExecutionTimeInMilliseconds,
 	}
 }
 
@@ -6473,17 +6478,17 @@ func MetricType_Values() []string {
 }
 
 const (
-	// OrderByTimestampAscending is a OrderBy enum value
-	OrderByTimestampAscending = "TimestampAscending"
-
 	// OrderByTimestampDescending is a OrderBy enum value
 	OrderByTimestampDescending = "TimestampDescending"
+
+	// OrderByTimestampAscending is a OrderBy enum value
+	OrderByTimestampAscending = "TimestampAscending"
 )
 
 // OrderBy_Values returns all elements of the OrderBy enum
 func OrderBy_Values() []string {
 	return []string{
-		OrderByTimestampAscending,
 		OrderByTimestampDescending,
+		OrderByTimestampAscending,
 	}
 }

@@ -432,6 +432,25 @@
         {"shape":"DBProxyQuotaExceededFault"}
       ]
     },
+    "CreateDBProxyEndpoint":{
+      "name":"CreateDBProxyEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDBProxyEndpointRequest"},
+      "output":{
+        "shape":"CreateDBProxyEndpointResponse",
+        "resultWrapper":"CreateDBProxyEndpointResult"
+      },
+      "errors":[
+        {"shape":"InvalidSubnet"},
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyEndpointAlreadyExistsFault"},
+        {"shape":"DBProxyEndpointQuotaExceededFault"},
+        {"shape":"InvalidDBProxyStateFault"}
+      ]
+    },
     "CreateDBSecurityGroup":{
       "name":"CreateDBSecurityGroup",
       "http":{
@@ -683,6 +702,22 @@
       "errors":[
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"InvalidDBProxyStateFault"}
+      ]
+    },
+    "DeleteDBProxyEndpoint":{
+      "name":"DeleteDBProxyEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDBProxyEndpointRequest"},
+      "output":{
+        "shape":"DeleteDBProxyEndpointResponse",
+        "resultWrapper":"DeleteDBProxyEndpointResult"
+      },
+      "errors":[
+        {"shape":"DBProxyEndpointNotFoundFault"},
+        {"shape":"InvalidDBProxyEndpointStateFault"}
       ]
     },
     "DeleteDBSecurityGroup":{
@@ -1051,6 +1086,22 @@
       },
       "errors":[
         {"shape":"DBProxyNotFoundFault"}
+      ]
+    },
+    "DescribeDBProxyEndpoints":{
+      "name":"DescribeDBProxyEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBProxyEndpointsRequest"},
+      "output":{
+        "shape":"DescribeDBProxyEndpointsResponse",
+        "resultWrapper":"DescribeDBProxyEndpointsResult"
+      },
+      "errors":[
+        {"shape":"DBProxyNotFoundFault"},
+        {"shape":"DBProxyEndpointNotFoundFault"}
       ]
     },
     "DescribeDBProxyTargetGroups":{
@@ -1627,6 +1678,24 @@
       "errors":[
         {"shape":"DBProxyNotFoundFault"},
         {"shape":"DBProxyAlreadyExistsFault"},
+        {"shape":"InvalidDBProxyStateFault"}
+      ]
+    },
+    "ModifyDBProxyEndpoint":{
+      "name":"ModifyDBProxyEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBProxyEndpointRequest"},
+      "output":{
+        "shape":"ModifyDBProxyEndpointResponse",
+        "resultWrapper":"ModifyDBProxyEndpointResult"
+      },
+      "errors":[
+        {"shape":"DBProxyEndpointNotFoundFault"},
+        {"shape":"DBProxyEndpointAlreadyExistsFault"},
+        {"shape":"InvalidDBProxyEndpointStateFault"},
         {"shape":"InvalidDBProxyStateFault"}
       ]
     },
@@ -3025,6 +3094,28 @@
         "DBParameterGroup":{"shape":"DBParameterGroup"}
       }
     },
+    "CreateDBProxyEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "DBProxyName",
+        "DBProxyEndpointName",
+        "VpcSubnetIds"
+      ],
+      "members":{
+        "DBProxyName":{"shape":"DBProxyName"},
+        "DBProxyEndpointName":{"shape":"DBProxyEndpointName"},
+        "VpcSubnetIds":{"shape":"StringList"},
+        "VpcSecurityGroupIds":{"shape":"StringList"},
+        "TargetRole":{"shape":"DBProxyEndpointTargetRole"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateDBProxyEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxyEndpoint":{"shape":"DBProxyEndpoint"}
+      }
+    },
     "CreateDBProxyRequest":{
       "type":"structure",
       "required":[
@@ -4054,6 +4145,7 @@
         "DBProxyArn":{"shape":"String"},
         "Status":{"shape":"DBProxyStatus"},
         "EngineFamily":{"shape":"String"},
+        "VpcId":{"shape":"String"},
         "VpcSecurityGroupIds":{"shape":"StringList"},
         "VpcSubnetIds":{"shape":"StringList"},
         "Auth":{"shape":"UserAuthConfigInfoList"},
@@ -4071,15 +4163,98 @@
       "members":{
       },
       "error":{
-        "code":"DBProxyTargetExistsFault",
+        "code":"DBProxyAlreadyExistsFault",
         "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
     },
+    "DBProxyEndpoint":{
+      "type":"structure",
+      "members":{
+        "DBProxyEndpointName":{"shape":"String"},
+        "DBProxyEndpointArn":{"shape":"String"},
+        "DBProxyName":{"shape":"String"},
+        "Status":{"shape":"DBProxyEndpointStatus"},
+        "VpcId":{"shape":"String"},
+        "VpcSecurityGroupIds":{"shape":"StringList"},
+        "VpcSubnetIds":{"shape":"StringList"},
+        "Endpoint":{"shape":"String"},
+        "CreatedDate":{"shape":"TStamp"},
+        "TargetRole":{"shape":"DBProxyEndpointTargetRole"},
+        "IsDefault":{"shape":"Boolean"}
+      }
+    },
+    "DBProxyEndpointAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyEndpointAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyEndpointList":{
+      "type":"list",
+      "member":{"shape":"DBProxyEndpoint"}
+    },
+    "DBProxyEndpointName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*"
+    },
+    "DBProxyEndpointNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyEndpointNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyEndpointQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBProxyEndpointQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBProxyEndpointStatus":{
+      "type":"string",
+      "enum":[
+        "available",
+        "modifying",
+        "incompatible-network",
+        "insufficient-resource-limits",
+        "creating",
+        "deleting"
+      ]
+    },
+    "DBProxyEndpointTargetRole":{
+      "type":"string",
+      "enum":[
+        "READ_WRITE",
+        "READ_ONLY"
+      ]
+    },
     "DBProxyList":{
       "type":"list",
       "member":{"shape":"DBProxy"}
+    },
+    "DBProxyName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[a-zA-Z][a-zA-Z0-9]*(-[a-zA-Z0-9]+)*"
     },
     "DBProxyNotFoundFault":{
       "type":"structure",
@@ -4126,6 +4301,7 @@
         "RdsResourceId":{"shape":"String"},
         "Port":{"shape":"Integer"},
         "Type":{"shape":"TargetType"},
+        "Role":{"shape":"TargetRole"},
         "TargetHealth":{"shape":"TargetHealth"}
       }
     },
@@ -4555,6 +4731,19 @@
         "DBParameterGroupName":{"shape":"String"}
       }
     },
+    "DeleteDBProxyEndpointRequest":{
+      "type":"structure",
+      "required":["DBProxyEndpointName"],
+      "members":{
+        "DBProxyEndpointName":{"shape":"DBProxyEndpointName"}
+      }
+    },
+    "DeleteDBProxyEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxyEndpoint":{"shape":"DBProxyEndpoint"}
+      }
+    },
     "DeleteDBProxyRequest":{
       "type":"structure",
       "required":["DBProxyName"],
@@ -4853,6 +5042,23 @@
       "type":"structure",
       "members":{
         "DBProxies":{"shape":"DBProxyList"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeDBProxyEndpointsRequest":{
+      "type":"structure",
+      "members":{
+        "DBProxyName":{"shape":"DBProxyName"},
+        "DBProxyEndpointName":{"shape":"DBProxyEndpointName"},
+        "Filters":{"shape":"FilterList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"MaxRecords"}
+      }
+    },
+    "DescribeDBProxyEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxyEndpoints":{"shape":"DBProxyEndpointList"},
         "Marker":{"shape":"String"}
       }
     },
@@ -5796,6 +6002,17 @@
       },
       "exception":true
     },
+    "InvalidDBProxyEndpointStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidDBProxyEndpointStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidDBProxyStateFault":{
       "type":"structure",
       "members":{
@@ -6185,6 +6402,21 @@
       "members":{
         "DBParameterGroupName":{"shape":"String"},
         "Parameters":{"shape":"ParametersList"}
+      }
+    },
+    "ModifyDBProxyEndpointRequest":{
+      "type":"structure",
+      "required":["DBProxyEndpointName"],
+      "members":{
+        "DBProxyEndpointName":{"shape":"DBProxyEndpointName"},
+        "NewDBProxyEndpointName":{"shape":"DBProxyEndpointName"},
+        "VpcSecurityGroupIds":{"shape":"StringList"}
+      }
+    },
+    "ModifyDBProxyEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "DBProxyEndpoint":{"shape":"DBProxyEndpoint"}
       }
     },
     "ModifyDBProxyRequest":{
@@ -7799,12 +8031,21 @@
         "UNREACHABLE",
         "CONNECTION_FAILED",
         "AUTH_FAILURE",
-        "PENDING_PROXY_CAPACITY"
+        "PENDING_PROXY_CAPACITY",
+        "INVALID_REPLICATION_STATE"
       ]
     },
     "TargetList":{
       "type":"list",
       "member":{"shape":"DBProxyTarget"}
+    },
+    "TargetRole":{
+      "type":"string",
+      "enum":[
+        "READ_WRITE",
+        "READ_ONLY",
+        "UNKNOWN"
+      ]
     },
     "TargetState":{
       "type":"string",

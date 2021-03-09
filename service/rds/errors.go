@@ -213,11 +213,30 @@ const (
 	ErrCodeDBParameterGroupQuotaExceededFault = "DBParameterGroupQuotaExceeded"
 
 	// ErrCodeDBProxyAlreadyExistsFault for service response error code
-	// "DBProxyTargetExistsFault".
+	// "DBProxyAlreadyExistsFault".
 	//
 	// The specified proxy name must be unique for all proxies owned by your AWS
 	// account in the specified AWS Region.
-	ErrCodeDBProxyAlreadyExistsFault = "DBProxyTargetExistsFault"
+	ErrCodeDBProxyAlreadyExistsFault = "DBProxyAlreadyExistsFault"
+
+	// ErrCodeDBProxyEndpointAlreadyExistsFault for service response error code
+	// "DBProxyEndpointAlreadyExistsFault".
+	//
+	// The specified DB proxy endpoint name must be unique for all DB proxy endpoints
+	// owned by your AWS account in the specified AWS Region.
+	ErrCodeDBProxyEndpointAlreadyExistsFault = "DBProxyEndpointAlreadyExistsFault"
+
+	// ErrCodeDBProxyEndpointNotFoundFault for service response error code
+	// "DBProxyEndpointNotFoundFault".
+	//
+	// The DB proxy endpoint doesn't exist.
+	ErrCodeDBProxyEndpointNotFoundFault = "DBProxyEndpointNotFoundFault"
+
+	// ErrCodeDBProxyEndpointQuotaExceededFault for service response error code
+	// "DBProxyEndpointQuotaExceededFault".
+	//
+	// The DB proxy already has the maximum number of endpoints.
+	ErrCodeDBProxyEndpointQuotaExceededFault = "DBProxyEndpointQuotaExceededFault"
 
 	// ErrCodeDBProxyNotFoundFault for service response error code
 	// "DBProxyNotFoundFault".
@@ -488,6 +507,13 @@ const (
 	// to delete the parameter group, you can't delete it when the parameter group
 	// is in this state.
 	ErrCodeInvalidDBParameterGroupStateFault = "InvalidDBParameterGroupState"
+
+	// ErrCodeInvalidDBProxyEndpointStateFault for service response error code
+	// "InvalidDBProxyEndpointStateFault".
+	//
+	// You can't perform this operation while the DB proxy endpoint is in a particular
+	// state.
+	ErrCodeInvalidDBProxyEndpointStateFault = "InvalidDBProxyEndpointStateFault"
 
 	// ErrCodeInvalidDBProxyStateFault for service response error code
 	// "InvalidDBProxyStateFault".

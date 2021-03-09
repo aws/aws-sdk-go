@@ -148,6 +148,10 @@ type RDSAPI interface {
 	CreateDBProxyWithContext(aws.Context, *rds.CreateDBProxyInput, ...request.Option) (*rds.CreateDBProxyOutput, error)
 	CreateDBProxyRequest(*rds.CreateDBProxyInput) (*request.Request, *rds.CreateDBProxyOutput)
 
+	CreateDBProxyEndpoint(*rds.CreateDBProxyEndpointInput) (*rds.CreateDBProxyEndpointOutput, error)
+	CreateDBProxyEndpointWithContext(aws.Context, *rds.CreateDBProxyEndpointInput, ...request.Option) (*rds.CreateDBProxyEndpointOutput, error)
+	CreateDBProxyEndpointRequest(*rds.CreateDBProxyEndpointInput) (*request.Request, *rds.CreateDBProxyEndpointOutput)
+
 	CreateDBSecurityGroup(*rds.CreateDBSecurityGroupInput) (*rds.CreateDBSecurityGroupOutput, error)
 	CreateDBSecurityGroupWithContext(aws.Context, *rds.CreateDBSecurityGroupInput, ...request.Option) (*rds.CreateDBSecurityGroupOutput, error)
 	CreateDBSecurityGroupRequest(*rds.CreateDBSecurityGroupInput) (*request.Request, *rds.CreateDBSecurityGroupOutput)
@@ -207,6 +211,10 @@ type RDSAPI interface {
 	DeleteDBProxy(*rds.DeleteDBProxyInput) (*rds.DeleteDBProxyOutput, error)
 	DeleteDBProxyWithContext(aws.Context, *rds.DeleteDBProxyInput, ...request.Option) (*rds.DeleteDBProxyOutput, error)
 	DeleteDBProxyRequest(*rds.DeleteDBProxyInput) (*request.Request, *rds.DeleteDBProxyOutput)
+
+	DeleteDBProxyEndpoint(*rds.DeleteDBProxyEndpointInput) (*rds.DeleteDBProxyEndpointOutput, error)
+	DeleteDBProxyEndpointWithContext(aws.Context, *rds.DeleteDBProxyEndpointInput, ...request.Option) (*rds.DeleteDBProxyEndpointOutput, error)
+	DeleteDBProxyEndpointRequest(*rds.DeleteDBProxyEndpointInput) (*request.Request, *rds.DeleteDBProxyEndpointOutput)
 
 	DeleteDBSecurityGroup(*rds.DeleteDBSecurityGroupInput) (*rds.DeleteDBSecurityGroupOutput, error)
 	DeleteDBSecurityGroupWithContext(aws.Context, *rds.DeleteDBSecurityGroupInput, ...request.Option) (*rds.DeleteDBSecurityGroupOutput, error)
@@ -352,6 +360,13 @@ type RDSAPI interface {
 
 	DescribeDBProxiesPages(*rds.DescribeDBProxiesInput, func(*rds.DescribeDBProxiesOutput, bool) bool) error
 	DescribeDBProxiesPagesWithContext(aws.Context, *rds.DescribeDBProxiesInput, func(*rds.DescribeDBProxiesOutput, bool) bool, ...request.Option) error
+
+	DescribeDBProxyEndpoints(*rds.DescribeDBProxyEndpointsInput) (*rds.DescribeDBProxyEndpointsOutput, error)
+	DescribeDBProxyEndpointsWithContext(aws.Context, *rds.DescribeDBProxyEndpointsInput, ...request.Option) (*rds.DescribeDBProxyEndpointsOutput, error)
+	DescribeDBProxyEndpointsRequest(*rds.DescribeDBProxyEndpointsInput) (*request.Request, *rds.DescribeDBProxyEndpointsOutput)
+
+	DescribeDBProxyEndpointsPages(*rds.DescribeDBProxyEndpointsInput, func(*rds.DescribeDBProxyEndpointsOutput, bool) bool) error
+	DescribeDBProxyEndpointsPagesWithContext(aws.Context, *rds.DescribeDBProxyEndpointsInput, func(*rds.DescribeDBProxyEndpointsOutput, bool) bool, ...request.Option) error
 
 	DescribeDBProxyTargetGroups(*rds.DescribeDBProxyTargetGroupsInput) (*rds.DescribeDBProxyTargetGroupsOutput, error)
 	DescribeDBProxyTargetGroupsWithContext(aws.Context, *rds.DescribeDBProxyTargetGroupsInput, ...request.Option) (*rds.DescribeDBProxyTargetGroupsOutput, error)
@@ -553,6 +568,10 @@ type RDSAPI interface {
 	ModifyDBProxy(*rds.ModifyDBProxyInput) (*rds.ModifyDBProxyOutput, error)
 	ModifyDBProxyWithContext(aws.Context, *rds.ModifyDBProxyInput, ...request.Option) (*rds.ModifyDBProxyOutput, error)
 	ModifyDBProxyRequest(*rds.ModifyDBProxyInput) (*request.Request, *rds.ModifyDBProxyOutput)
+
+	ModifyDBProxyEndpoint(*rds.ModifyDBProxyEndpointInput) (*rds.ModifyDBProxyEndpointOutput, error)
+	ModifyDBProxyEndpointWithContext(aws.Context, *rds.ModifyDBProxyEndpointInput, ...request.Option) (*rds.ModifyDBProxyEndpointOutput, error)
+	ModifyDBProxyEndpointRequest(*rds.ModifyDBProxyEndpointInput) (*request.Request, *rds.ModifyDBProxyEndpointOutput)
 
 	ModifyDBProxyTargetGroup(*rds.ModifyDBProxyTargetGroupInput) (*rds.ModifyDBProxyTargetGroupOutput, error)
 	ModifyDBProxyTargetGroupWithContext(aws.Context, *rds.ModifyDBProxyTargetGroupInput, ...request.Option) (*rds.ModifyDBProxyTargetGroupOutput, error)

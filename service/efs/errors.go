@@ -29,6 +29,15 @@ const (
 	// AWS account.
 	ErrCodeAccessPointNotFound = "AccessPointNotFound"
 
+	// ErrCodeAvailabilityZonesMismatch for service response error code
+	// "AvailabilityZonesMismatch".
+	//
+	// Returned if the Availability Zone that was specified for a mount target is
+	// different from the Availability Zone that was specified for One Zone storage
+	// classes. For more information, see Regional and One Zone storage redundancy
+	// (https://docs.aws.amazon.com/efs/latest/ug/availability-durability.html).
+	ErrCodeAvailabilityZonesMismatch = "AvailabilityZonesMismatch"
+
 	// ErrCodeBadRequest for service response error code
 	// "BadRequest".
 	//
@@ -89,7 +98,7 @@ const (
 	// This value might be returned when you try to create a file system in provisioned
 	// throughput mode, when you attempt to increase the provisioned throughput
 	// of an existing file system, or when you attempt to change an existing file
-	// system from bursting to provisioned throughput mode.
+	// system from bursting to provisioned throughput mode. Try again later.
 	ErrCodeInsufficientThroughputCapacity = "InsufficientThroughputCapacity"
 
 	// ErrCodeInternalServerError for service response error code
@@ -188,13 +197,16 @@ const (
 
 	// ErrCodeUnsupportedAvailabilityZone for service response error code
 	// "UnsupportedAvailabilityZone".
+	//
+	// Returned if the requested Amazon EFS functionality is not available in the
+	// specified Availability Zone.
 	ErrCodeUnsupportedAvailabilityZone = "UnsupportedAvailabilityZone"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// Returned if the AWS Backup service is not available in the region that the
-	// request was made.
+	// Returned if the AWS Backup service is not available in the Region in which
+	// the request was made.
 	ErrCodeValidationException = "ValidationException"
 )
 
@@ -202,6 +214,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessPointAlreadyExists":          newErrorAccessPointAlreadyExists,
 	"AccessPointLimitExceeded":          newErrorAccessPointLimitExceeded,
 	"AccessPointNotFound":               newErrorAccessPointNotFound,
+	"AvailabilityZonesMismatch":         newErrorAvailabilityZonesMismatch,
 	"BadRequest":                        newErrorBadRequest,
 	"DependencyTimeout":                 newErrorDependencyTimeout,
 	"FileSystemAlreadyExists":           newErrorFileSystemAlreadyExists,
