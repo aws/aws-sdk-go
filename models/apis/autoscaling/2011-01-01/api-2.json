@@ -2237,7 +2237,8 @@
         "Recurrence":{"shape":"XmlStringMaxLen255"},
         "MinSize":{"shape":"AutoScalingGroupMinSize"},
         "MaxSize":{"shape":"AutoScalingGroupMaxSize"},
-        "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"}
+        "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"},
+        "TimeZone":{"shape":"XmlStringMaxLen255"}
       }
     },
     "RecordLifecycleActionHeartbeatAnswer":{
@@ -2388,7 +2389,8 @@
         "Recurrence":{"shape":"XmlStringMaxLen255"},
         "MinSize":{"shape":"AutoScalingGroupMinSize"},
         "MaxSize":{"shape":"AutoScalingGroupMaxSize"},
-        "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"}
+        "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"},
+        "TimeZone":{"shape":"XmlStringMaxLen255"}
       }
     },
     "ScheduledUpdateGroupActionRequest":{
@@ -2401,7 +2403,8 @@
         "Recurrence":{"shape":"XmlStringMaxLen255"},
         "MinSize":{"shape":"AutoScalingGroupMinSize"},
         "MaxSize":{"shape":"AutoScalingGroupMaxSize"},
-        "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"}
+        "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"},
+        "TimeZone":{"shape":"XmlStringMaxLen255"}
       }
     },
     "ScheduledUpdateGroupActionRequests":{

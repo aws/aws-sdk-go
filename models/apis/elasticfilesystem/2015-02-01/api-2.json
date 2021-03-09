@@ -44,7 +44,8 @@
         {"shape":"FileSystemAlreadyExists"},
         {"shape":"FileSystemLimitExceeded"},
         {"shape":"InsufficientThroughputCapacity"},
-        {"shape":"ThroughputLimitExceeded"}
+        {"shape":"ThroughputLimitExceeded"},
+        {"shape":"UnsupportedAvailabilityZone"}
       ]
     },
     "CreateMountTarget":{
@@ -68,7 +69,8 @@
         {"shape":"NetworkInterfaceLimitExceeded"},
         {"shape":"SecurityGroupLimitExceeded"},
         {"shape":"SecurityGroupNotFound"},
-        {"shape":"UnsupportedAvailabilityZone"}
+        {"shape":"UnsupportedAvailabilityZone"},
+        {"shape":"AvailabilityZonesMismatch"}
       ]
     },
     "CreateTags":{
@@ -436,7 +438,11 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
-    "AccessPointArn":{"type":"string"},
+    "AccessPointArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"^arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}$"
+    },
     "AccessPointDescription":{
       "type":"structure",
       "members":{
@@ -456,7 +462,11 @@
       "type":"list",
       "member":{"shape":"AccessPointDescription"}
     },
-    "AccessPointId":{"type":"string"},
+    "AccessPointId":{
+      "type":"string",
+      "max":128,
+      "pattern":"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:access-point/fsap-[0-9a-f]{8,40}|fsap-[0-9a-f]{8,40})$"
+    },
     "AccessPointLimitExceeded":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -478,12 +488,27 @@
       "exception":true
     },
     "AvailabilityZoneId":{"type":"string"},
-    "AvailabilityZoneName":{"type":"string"},
+    "AvailabilityZoneName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".+"
+    },
+    "AvailabilityZonesMismatch":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "AwsAccountId":{
       "type":"string",
       "max":14,
       "pattern":"^(\\d{12})|(\\d{4}-\\d{4}-\\d{4})$"
     },
+    "Backup":{"type":"boolean"},
     "BackupPolicy":{
       "type":"structure",
       "required":["Status"],
@@ -511,7 +536,8 @@
     "ClientToken":{
       "type":"string",
       "max":64,
-      "min":1
+      "min":1,
+      "pattern":".+"
     },
     "CreateAccessPointRequest":{
       "type":"structure",
@@ -543,6 +569,8 @@
         "KmsKeyId":{"shape":"KmsKeyId"},
         "ThroughputMode":{"shape":"ThroughputMode"},
         "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"},
+        "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
+        "Backup":{"shape":"Backup"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -895,6 +923,8 @@
         "KmsKeyId":{"shape":"KmsKeyId"},
         "ThroughputMode":{"shape":"ThroughputMode"},
         "ProvisionedThroughputInMibps":{"shape":"ProvisionedThroughputInMibps"},
+        "AvailabilityZoneName":{"shape":"AvailabilityZoneName"},
+        "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
         "Tags":{"shape":"Tags"}
       }
     },
@@ -1044,7 +1074,8 @@
         "available",
         "updating",
         "deleting",
-        "deleted"
+        "deleted",
+        "error"
       ]
     },
     "LifecycleConfigurationDescription":{
@@ -1207,7 +1238,8 @@
     "Path":{
       "type":"string",
       "max":100,
-      "min":1
+      "min":1,
+      "pattern":"^(\\/|(\\/(?!\\.)+[^$#<>;`|&?{}^*/\\n]+){1,4})$"
     },
     "PerformanceMode":{
       "type":"string",
@@ -1218,9 +1250,16 @@
     },
     "Permissions":{
       "type":"string",
+      "max":4,
+      "min":3,
       "pattern":"^[0-7]{3,4}$"
     },
-    "Policy":{"type":"string"},
+    "Policy":{
+      "type":"string",
+      "max":20000,
+      "min":1,
+      "pattern":"[\\s\\S]+"
+    },
     "PolicyNotFound":{
       "type":"structure",
       "members":{
@@ -1292,7 +1331,11 @@
         "LifecyclePolicies":{"shape":"LifecyclePolicies"}
       }
     },
-    "ResourceId":{"type":"string"},
+    "ResourceId":{
+      "type":"string",
+      "max":128,
+      "pattern":"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$"
+    },
     "RootDirectory":{
       "type":"structure",
       "members":{
@@ -1427,7 +1470,12 @@
       ]
     },
     "Timestamp":{"type":"timestamp"},
-    "Token":{"type":"string"},
+    "Token":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".+"
+    },
     "TooManyRequests":{
       "type":"structure",
       "required":["ErrorCode"],

@@ -2338,6 +2338,7 @@
     },
     "Seq":{
       "type":"integer",
+      "max":16383,
       "min":0
     },
     "ServiceProfile":{

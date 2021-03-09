@@ -27,12 +27,14 @@ func parseTime(layout, value string) *time.Time {
 
 // To create a new file system
 //
-// This operation creates a new file system with the default generalpurpose performance
-// mode.
+// This operation creates a new, encrypted file system with automatic backups enabled,
+// and the default generalpurpose performance mode.
 func ExampleEFS_CreateFileSystem_shared00() {
 	svc := efs.New(session.New())
 	input := &efs.CreateFileSystemInput{
+		Backup:          aws.Bool(true),
 		CreationToken:   aws.String("tokenstring"),
+		Encrypted:       aws.Bool(true),
 		PerformanceMode: aws.String("generalPurpose"),
 		Tags: []*efs.Tag{
 			{
@@ -58,6 +60,8 @@ func ExampleEFS_CreateFileSystem_shared00() {
 				fmt.Println(efs.ErrCodeInsufficientThroughputCapacity, aerr.Error())
 			case efs.ErrCodeThroughputLimitExceeded:
 				fmt.Println(efs.ErrCodeThroughputLimitExceeded, aerr.Error())
+			case efs.ErrCodeUnsupportedAvailabilityZone:
+				fmt.Println(efs.ErrCodeUnsupportedAvailabilityZone, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -110,6 +114,8 @@ func ExampleEFS_CreateMountTarget_shared00() {
 				fmt.Println(efs.ErrCodeSecurityGroupNotFound, aerr.Error())
 			case efs.ErrCodeUnsupportedAvailabilityZone:
 				fmt.Println(efs.ErrCodeUnsupportedAvailabilityZone, aerr.Error())
+			case efs.ErrCodeAvailabilityZonesMismatch:
+				fmt.Println(efs.ErrCodeAvailabilityZonesMismatch, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

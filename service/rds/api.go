@@ -2259,7 +2259,7 @@ func (c *RDS) CreateDBProxyRequest(input *CreateDBProxyInput) (req *request.Requ
 //   The requested subnet is invalid, or multiple subnets were requested that
 //   are not all in a common VPC.
 //
-//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyTargetExistsFault"
+//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyAlreadyExistsFault"
 //   The specified proxy name must be unique for all proxies owned by your AWS
 //   account in the specified AWS Region.
 //
@@ -2284,6 +2284,103 @@ func (c *RDS) CreateDBProxy(input *CreateDBProxyInput) (*CreateDBProxyOutput, er
 // for more information on using Contexts.
 func (c *RDS) CreateDBProxyWithContext(ctx aws.Context, input *CreateDBProxyInput, opts ...request.Option) (*CreateDBProxyOutput, error) {
 	req, out := c.CreateDBProxyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDBProxyEndpoint = "CreateDBProxyEndpoint"
+
+// CreateDBProxyEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBProxyEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDBProxyEndpoint for more information on using the CreateDBProxyEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDBProxyEndpointRequest method.
+//    req, resp := client.CreateDBProxyEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBProxyEndpoint
+func (c *RDS) CreateDBProxyEndpointRequest(input *CreateDBProxyEndpointInput) (req *request.Request, output *CreateDBProxyEndpointOutput) {
+	op := &request.Operation{
+		Name:       opCreateDBProxyEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDBProxyEndpointInput{}
+	}
+
+	output = &CreateDBProxyEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDBProxyEndpoint API operation for Amazon Relational Database Service.
+//
+// Creates a DBProxyEndpoint. Only applies to proxies that are associated with
+// Aurora DB clusters. You can use DB proxy endpoints to specify read/write
+// or read-only access to the DB cluster. You can also use DB proxy endpoints
+// to access a DB proxy through a different VPC than the proxy's default VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation CreateDBProxyEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidSubnet "InvalidSubnet"
+//   The requested subnet is invalid, or multiple subnets were requested that
+//   are not all in a common VPC.
+//
+//   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
+//   The specified proxy name doesn't correspond to a proxy owned by your AWS
+//   account in the specified AWS Region.
+//
+//   * ErrCodeDBProxyEndpointAlreadyExistsFault "DBProxyEndpointAlreadyExistsFault"
+//   The specified DB proxy endpoint name must be unique for all DB proxy endpoints
+//   owned by your AWS account in the specified AWS Region.
+//
+//   * ErrCodeDBProxyEndpointQuotaExceededFault "DBProxyEndpointQuotaExceededFault"
+//   The DB proxy already has the maximum number of endpoints.
+//
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateDBProxyEndpoint
+func (c *RDS) CreateDBProxyEndpoint(input *CreateDBProxyEndpointInput) (*CreateDBProxyEndpointOutput, error) {
+	req, out := c.CreateDBProxyEndpointRequest(input)
+	return out, req.Send()
+}
+
+// CreateDBProxyEndpointWithContext is the same as CreateDBProxyEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDBProxyEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) CreateDBProxyEndpointWithContext(ctx aws.Context, input *CreateDBProxyEndpointInput, opts ...request.Option) (*CreateDBProxyEndpointOutput, error) {
+	req, out := c.CreateDBProxyEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3656,7 +3753,7 @@ func (c *RDS) DeleteDBProxyRequest(input *DeleteDBProxyInput) (req *request.Requ
 
 // DeleteDBProxy API operation for Amazon Relational Database Service.
 //
-// Deletes an existing proxy.
+// Deletes an existing DB proxy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3690,6 +3787,92 @@ func (c *RDS) DeleteDBProxy(input *DeleteDBProxyInput) (*DeleteDBProxyOutput, er
 // for more information on using Contexts.
 func (c *RDS) DeleteDBProxyWithContext(ctx aws.Context, input *DeleteDBProxyInput, opts ...request.Option) (*DeleteDBProxyOutput, error) {
 	req, out := c.DeleteDBProxyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDBProxyEndpoint = "DeleteDBProxyEndpoint"
+
+// DeleteDBProxyEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBProxyEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDBProxyEndpoint for more information on using the DeleteDBProxyEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDBProxyEndpointRequest method.
+//    req, resp := client.DeleteDBProxyEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBProxyEndpoint
+func (c *RDS) DeleteDBProxyEndpointRequest(input *DeleteDBProxyEndpointInput) (req *request.Request, output *DeleteDBProxyEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDBProxyEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDBProxyEndpointInput{}
+	}
+
+	output = &DeleteDBProxyEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDBProxyEndpoint API operation for Amazon Relational Database Service.
+//
+// Deletes a DBProxyEndpoint. Doing so removes the ability to access the DB
+// proxy using the endpoint that you defined. The endpoint that you delete might
+// have provided capabilities such as read/write or read-only operations, or
+// using a different VPC than the DB proxy's default VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DeleteDBProxyEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBProxyEndpointNotFoundFault "DBProxyEndpointNotFoundFault"
+//   The DB proxy endpoint doesn't exist.
+//
+//   * ErrCodeInvalidDBProxyEndpointStateFault "InvalidDBProxyEndpointStateFault"
+//   You can't perform this operation while the DB proxy endpoint is in a particular
+//   state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteDBProxyEndpoint
+func (c *RDS) DeleteDBProxyEndpoint(input *DeleteDBProxyEndpointInput) (*DeleteDBProxyEndpointOutput, error) {
+	req, out := c.DeleteDBProxyEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDBProxyEndpointWithContext is the same as DeleteDBProxyEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDBProxyEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DeleteDBProxyEndpointWithContext(ctx aws.Context, input *DeleteDBProxyEndpointInput, opts ...request.Option) (*DeleteDBProxyEndpointOutput, error) {
+	req, out := c.DeleteDBProxyEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6648,6 +6831,147 @@ func (c *RDS) DescribeDBProxiesPagesWithContext(ctx aws.Context, input *Describe
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeDBProxiesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeDBProxyEndpoints = "DescribeDBProxyEndpoints"
+
+// DescribeDBProxyEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBProxyEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDBProxyEndpoints for more information on using the DescribeDBProxyEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDBProxyEndpointsRequest method.
+//    req, resp := client.DescribeDBProxyEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBProxyEndpoints
+func (c *RDS) DescribeDBProxyEndpointsRequest(input *DescribeDBProxyEndpointsInput) (req *request.Request, output *DescribeDBProxyEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBProxyEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeDBProxyEndpointsInput{}
+	}
+
+	output = &DescribeDBProxyEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDBProxyEndpoints API operation for Amazon Relational Database Service.
+//
+// Returns information about DB proxy endpoints.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DescribeDBProxyEndpoints for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
+//   The specified proxy name doesn't correspond to a proxy owned by your AWS
+//   account in the specified AWS Region.
+//
+//   * ErrCodeDBProxyEndpointNotFoundFault "DBProxyEndpointNotFoundFault"
+//   The DB proxy endpoint doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBProxyEndpoints
+func (c *RDS) DescribeDBProxyEndpoints(input *DescribeDBProxyEndpointsInput) (*DescribeDBProxyEndpointsOutput, error) {
+	req, out := c.DescribeDBProxyEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDBProxyEndpointsWithContext is the same as DescribeDBProxyEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDBProxyEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBProxyEndpointsWithContext(ctx aws.Context, input *DescribeDBProxyEndpointsInput, opts ...request.Option) (*DescribeDBProxyEndpointsOutput, error) {
+	req, out := c.DescribeDBProxyEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeDBProxyEndpointsPages iterates over the pages of a DescribeDBProxyEndpoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBProxyEndpoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBProxyEndpoints operation.
+//    pageNum := 0
+//    err := client.DescribeDBProxyEndpointsPages(params,
+//        func(page *rds.DescribeDBProxyEndpointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RDS) DescribeDBProxyEndpointsPages(input *DescribeDBProxyEndpointsInput, fn func(*DescribeDBProxyEndpointsOutput, bool) bool) error {
+	return c.DescribeDBProxyEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBProxyEndpointsPagesWithContext same as DescribeDBProxyEndpointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DescribeDBProxyEndpointsPagesWithContext(ctx aws.Context, input *DescribeDBProxyEndpointsInput, fn func(*DescribeDBProxyEndpointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBProxyEndpointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBProxyEndpointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBProxyEndpointsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -10950,7 +11274,7 @@ func (c *RDS) ModifyDBProxyRequest(input *ModifyDBProxyInput) (req *request.Requ
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
 //   account in the specified AWS Region.
 //
-//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyTargetExistsFault"
+//   * ErrCodeDBProxyAlreadyExistsFault "DBProxyAlreadyExistsFault"
 //   The specified proxy name must be unique for all proxies owned by your AWS
 //   account in the specified AWS Region.
 //
@@ -10974,6 +11298,96 @@ func (c *RDS) ModifyDBProxy(input *ModifyDBProxyInput) (*ModifyDBProxyOutput, er
 // for more information on using Contexts.
 func (c *RDS) ModifyDBProxyWithContext(ctx aws.Context, input *ModifyDBProxyInput, opts ...request.Option) (*ModifyDBProxyOutput, error) {
 	req, out := c.ModifyDBProxyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyDBProxyEndpoint = "ModifyDBProxyEndpoint"
+
+// ModifyDBProxyEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBProxyEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyDBProxyEndpoint for more information on using the ModifyDBProxyEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyDBProxyEndpointRequest method.
+//    req, resp := client.ModifyDBProxyEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBProxyEndpoint
+func (c *RDS) ModifyDBProxyEndpointRequest(input *ModifyDBProxyEndpointInput) (req *request.Request, output *ModifyDBProxyEndpointOutput) {
+	op := &request.Operation{
+		Name:       opModifyDBProxyEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBProxyEndpointInput{}
+	}
+
+	output = &ModifyDBProxyEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyDBProxyEndpoint API operation for Amazon Relational Database Service.
+//
+// Changes the settings for an existing DB proxy endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation ModifyDBProxyEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBProxyEndpointNotFoundFault "DBProxyEndpointNotFoundFault"
+//   The DB proxy endpoint doesn't exist.
+//
+//   * ErrCodeDBProxyEndpointAlreadyExistsFault "DBProxyEndpointAlreadyExistsFault"
+//   The specified DB proxy endpoint name must be unique for all DB proxy endpoints
+//   owned by your AWS account in the specified AWS Region.
+//
+//   * ErrCodeInvalidDBProxyEndpointStateFault "InvalidDBProxyEndpointStateFault"
+//   You can't perform this operation while the DB proxy endpoint is in a particular
+//   state.
+//
+//   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
+//   The requested operation can't be performed while the proxy is in this state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyDBProxyEndpoint
+func (c *RDS) ModifyDBProxyEndpoint(input *ModifyDBProxyEndpointInput) (*ModifyDBProxyEndpointOutput, error) {
+	req, out := c.ModifyDBProxyEndpointRequest(input)
+	return out, req.Send()
+}
+
+// ModifyDBProxyEndpointWithContext is the same as ModifyDBProxyEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyDBProxyEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) ModifyDBProxyEndpointWithContext(ctx aws.Context, input *ModifyDBProxyEndpointInput, opts ...request.Option) (*ModifyDBProxyEndpointOutput, error) {
+	req, out := c.ModifyDBProxyEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -20022,6 +20436,135 @@ func (s *CreateDBParameterGroupOutput) SetDBParameterGroup(v *DBParameterGroup) 
 	return s
 }
 
+type CreateDBProxyEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the DB proxy endpoint to create.
+	//
+	// DBProxyEndpointName is a required field
+	DBProxyEndpointName *string `min:"1" type:"string" required:"true"`
+
+	// The name of the DB proxy associated with the DB proxy endpoint that you create.
+	//
+	// DBProxyName is a required field
+	DBProxyName *string `min:"1" type:"string" required:"true"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A value that indicates whether the DB proxy endpoint can be used for read/write
+	// or read-only operations. The default is READ_WRITE.
+	TargetRole *string `type:"string" enum:"DBProxyEndpointTargetRole"`
+
+	// The VPC security group IDs for the DB proxy endpoint that you create. You
+	// can specify a different set of security group IDs than for the original DB
+	// proxy. The default is the default security group for the VPC.
+	VpcSecurityGroupIds []*string `type:"list"`
+
+	// The VPC subnet IDs for the DB proxy endpoint that you create. You can specify
+	// a different set of subnet IDs than for the original DB proxy.
+	//
+	// VpcSubnetIds is a required field
+	VpcSubnetIds []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateDBProxyEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBProxyEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDBProxyEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDBProxyEndpointInput"}
+	if s.DBProxyEndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBProxyEndpointName"))
+	}
+	if s.DBProxyEndpointName != nil && len(*s.DBProxyEndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DBProxyEndpointName", 1))
+	}
+	if s.DBProxyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBProxyName"))
+	}
+	if s.DBProxyName != nil && len(*s.DBProxyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DBProxyName", 1))
+	}
+	if s.VpcSubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcSubnetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBProxyEndpointName sets the DBProxyEndpointName field's value.
+func (s *CreateDBProxyEndpointInput) SetDBProxyEndpointName(v string) *CreateDBProxyEndpointInput {
+	s.DBProxyEndpointName = &v
+	return s
+}
+
+// SetDBProxyName sets the DBProxyName field's value.
+func (s *CreateDBProxyEndpointInput) SetDBProxyName(v string) *CreateDBProxyEndpointInput {
+	s.DBProxyName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBProxyEndpointInput) SetTags(v []*Tag) *CreateDBProxyEndpointInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetRole sets the TargetRole field's value.
+func (s *CreateDBProxyEndpointInput) SetTargetRole(v string) *CreateDBProxyEndpointInput {
+	s.TargetRole = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *CreateDBProxyEndpointInput) SetVpcSecurityGroupIds(v []*string) *CreateDBProxyEndpointInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
+// SetVpcSubnetIds sets the VpcSubnetIds field's value.
+func (s *CreateDBProxyEndpointInput) SetVpcSubnetIds(v []*string) *CreateDBProxyEndpointInput {
+	s.VpcSubnetIds = v
+	return s
+}
+
+type CreateDBProxyEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DBProxyEndpoint object that is created by the API operation. The DB proxy
+	// endpoint that you create might provide capabilities such as read/write or
+	// read-only operations, or using a different VPC than the proxy's default VPC.
+	DBProxyEndpoint *DBProxyEndpoint `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBProxyEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBProxyEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBProxyEndpoint sets the DBProxyEndpoint field's value.
+func (s *CreateDBProxyEndpointOutput) SetDBProxyEndpoint(v *DBProxyEndpoint) *CreateDBProxyEndpointOutput {
+	s.DBProxyEndpoint = v
+	return s
+}
+
 type CreateDBProxyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23722,8 +24265,8 @@ type DBProxy struct {
 	// in the logs.
 	DebugLogging *bool `type:"boolean"`
 
-	// The endpoint that you can use to connect to the proxy. You include the endpoint
-	// value in the connection string for a database client application.
+	// The endpoint that you can use to connect to the DB proxy. You include the
+	// endpoint value in the connection string for a database client application.
 	Endpoint *string `type:"string"`
 
 	// The engine family applies to MySQL and PostgreSQL for both RDS and Aurora.
@@ -23754,6 +24297,9 @@ type DBProxy struct {
 
 	// The date and time when the proxy was last updated.
 	UpdatedDate *time.Time `type:"timestamp"`
+
+	// Provides the VPC ID of the DB proxy.
+	VpcId *string `type:"string"`
 
 	// Provides a list of VPC security groups that the proxy belongs to.
 	VpcSecurityGroupIds []*string `type:"list"`
@@ -23844,6 +24390,12 @@ func (s *DBProxy) SetUpdatedDate(v time.Time) *DBProxy {
 	return s
 }
 
+// SetVpcId sets the VpcId field's value.
+func (s *DBProxy) SetVpcId(v string) *DBProxy {
+	s.VpcId = &v
+	return s
+}
+
 // SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
 func (s *DBProxy) SetVpcSecurityGroupIds(v []*string) *DBProxy {
 	s.VpcSecurityGroupIds = v
@@ -23852,6 +24404,138 @@ func (s *DBProxy) SetVpcSecurityGroupIds(v []*string) *DBProxy {
 
 // SetVpcSubnetIds sets the VpcSubnetIds field's value.
 func (s *DBProxy) SetVpcSubnetIds(v []*string) *DBProxy {
+	s.VpcSubnetIds = v
+	return s
+}
+
+// The data structure representing an endpoint associated with a DB proxy. RDS
+// automatically creates one endpoint for each DB proxy. For Aurora DB clusters,
+// you can associate additional endpoints with the same DB proxy. These endpoints
+// can be read/write or read-only. They can also reside in different VPCs than
+// the associated DB proxy.
+//
+// This data type is used as a response element in the DescribeDBProxyEndpoints
+// operation.
+type DBProxyEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the DB proxy endpoint was first created.
+	CreatedDate *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) for the DB proxy endpoint.
+	DBProxyEndpointArn *string `type:"string"`
+
+	// The name for the DB proxy endpoint. An identifier must begin with a letter
+	// and must contain only ASCII letters, digits, and hyphens; it can't end with
+	// a hyphen or contain two consecutive hyphens.
+	DBProxyEndpointName *string `type:"string"`
+
+	// The identifier for the DB proxy that is associated with this DB proxy endpoint.
+	DBProxyName *string `type:"string"`
+
+	// The endpoint that you can use to connect to the DB proxy. You include the
+	// endpoint value in the connection string for a database client application.
+	Endpoint *string `type:"string"`
+
+	// A value that indicates whether this endpoint is the default endpoint for
+	// the associated DB proxy. Default DB proxy endpoints always have read/write
+	// capability. Other endpoints that you associate with the DB proxy can be either
+	// read/write or read-only.
+	IsDefault *bool `type:"boolean"`
+
+	// The current status of this DB proxy endpoint. A status of available means
+	// the endpoint is ready to handle requests. Other values indicate that you
+	// must wait for the endpoint to be ready, or take some action to resolve an
+	// issue.
+	Status *string `type:"string" enum:"DBProxyEndpointStatus"`
+
+	// A value that indicates whether the DB proxy endpoint can be used for read/write
+	// or read-only operations.
+	TargetRole *string `type:"string" enum:"DBProxyEndpointTargetRole"`
+
+	// Provides the VPC ID of the DB proxy endpoint.
+	VpcId *string `type:"string"`
+
+	// Provides a list of VPC security groups that the DB proxy endpoint belongs
+	// to.
+	VpcSecurityGroupIds []*string `type:"list"`
+
+	// The EC2 subnet IDs for the DB proxy endpoint.
+	VpcSubnetIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DBProxyEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBProxyEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *DBProxyEndpoint) SetCreatedDate(v time.Time) *DBProxyEndpoint {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDBProxyEndpointArn sets the DBProxyEndpointArn field's value.
+func (s *DBProxyEndpoint) SetDBProxyEndpointArn(v string) *DBProxyEndpoint {
+	s.DBProxyEndpointArn = &v
+	return s
+}
+
+// SetDBProxyEndpointName sets the DBProxyEndpointName field's value.
+func (s *DBProxyEndpoint) SetDBProxyEndpointName(v string) *DBProxyEndpoint {
+	s.DBProxyEndpointName = &v
+	return s
+}
+
+// SetDBProxyName sets the DBProxyName field's value.
+func (s *DBProxyEndpoint) SetDBProxyName(v string) *DBProxyEndpoint {
+	s.DBProxyName = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DBProxyEndpoint) SetEndpoint(v string) *DBProxyEndpoint {
+	s.Endpoint = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *DBProxyEndpoint) SetIsDefault(v bool) *DBProxyEndpoint {
+	s.IsDefault = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBProxyEndpoint) SetStatus(v string) *DBProxyEndpoint {
+	s.Status = &v
+	return s
+}
+
+// SetTargetRole sets the TargetRole field's value.
+func (s *DBProxyEndpoint) SetTargetRole(v string) *DBProxyEndpoint {
+	s.TargetRole = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DBProxyEndpoint) SetVpcId(v string) *DBProxyEndpoint {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *DBProxyEndpoint) SetVpcSecurityGroupIds(v []*string) *DBProxyEndpoint {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
+// SetVpcSubnetIds sets the VpcSubnetIds field's value.
+func (s *DBProxyEndpoint) SetVpcSubnetIds(v []*string) *DBProxyEndpoint {
 	s.VpcSubnetIds = v
 	return s
 }
@@ -23875,6 +24559,10 @@ type DBProxyTarget struct {
 	// The identifier representing the target. It can be the instance identifier
 	// for an RDS DB instance, or the cluster identifier for an Aurora DB cluster.
 	RdsResourceId *string `type:"string"`
+
+	// A value that indicates whether the target of the proxy can be used for read/write
+	// or read-only operations.
+	Role *string `type:"string" enum:"TargetRole"`
 
 	// The Amazon Resource Name (ARN) for the RDS DB instance or Aurora DB cluster.
 	TargetArn *string `type:"string"`
@@ -23916,6 +24604,12 @@ func (s *DBProxyTarget) SetPort(v int64) *DBProxyTarget {
 // SetRdsResourceId sets the RdsResourceId field's value.
 func (s *DBProxyTarget) SetRdsResourceId(v string) *DBProxyTarget {
 	s.RdsResourceId = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *DBProxyTarget) SetRole(v string) *DBProxyTarget {
+	s.Role = &v
 	return s
 }
 
@@ -25316,6 +26010,71 @@ func (s DeleteDBParameterGroupOutput) String() string {
 // GoString returns the string representation
 func (s DeleteDBParameterGroupOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteDBProxyEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the DB proxy endpoint to delete.
+	//
+	// DBProxyEndpointName is a required field
+	DBProxyEndpointName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDBProxyEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBProxyEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDBProxyEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDBProxyEndpointInput"}
+	if s.DBProxyEndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBProxyEndpointName"))
+	}
+	if s.DBProxyEndpointName != nil && len(*s.DBProxyEndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DBProxyEndpointName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBProxyEndpointName sets the DBProxyEndpointName field's value.
+func (s *DeleteDBProxyEndpointInput) SetDBProxyEndpointName(v string) *DeleteDBProxyEndpointInput {
+	s.DBProxyEndpointName = &v
+	return s
+}
+
+type DeleteDBProxyEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The data structure representing the details of the DB proxy endpoint that
+	// you delete.
+	DBProxyEndpoint *DBProxyEndpoint `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBProxyEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBProxyEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBProxyEndpoint sets the DBProxyEndpoint field's value.
+func (s *DeleteDBProxyEndpointOutput) SetDBProxyEndpoint(v *DBProxyEndpoint) *DeleteDBProxyEndpointOutput {
+	s.DBProxyEndpoint = v
+	return s
 }
 
 type DeleteDBProxyInput struct {
@@ -28122,7 +28881,8 @@ func (s *DescribeDBParametersOutput) SetParameters(v []*Parameter) *DescribeDBPa
 type DescribeDBProxiesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the DB proxy.
+	// The name of the DB proxy. If you omit this parameter, the output includes
+	// information about all DB proxies owned by your AWS account ID.
 	DBProxyName *string `type:"string"`
 
 	// This parameter is not currently supported.
@@ -28230,6 +28990,140 @@ func (s *DescribeDBProxiesOutput) SetDBProxies(v []*DBProxy) *DescribeDBProxiesO
 
 // SetMarker sets the Marker field's value.
 func (s *DescribeDBProxiesOutput) SetMarker(v string) *DescribeDBProxiesOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeDBProxyEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a DB proxy endpoint to describe. If you omit this parameter,
+	// the output includes information about all DB proxy endpoints associated with
+	// the specified proxy.
+	DBProxyEndpointName *string `min:"1" type:"string"`
+
+	// The name of the DB proxy whose endpoints you want to describe. If you omit
+	// this parameter, the output includes information about all DB proxy endpoints
+	// associated with all your DB proxies.
+	DBProxyName *string `min:"1" type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `min:"20" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeDBProxyEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBProxyEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDBProxyEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDBProxyEndpointsInput"}
+	if s.DBProxyEndpointName != nil && len(*s.DBProxyEndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DBProxyEndpointName", 1))
+	}
+	if s.DBProxyName != nil && len(*s.DBProxyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DBProxyName", 1))
+	}
+	if s.MaxRecords != nil && *s.MaxRecords < 20 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxRecords", 20))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBProxyEndpointName sets the DBProxyEndpointName field's value.
+func (s *DescribeDBProxyEndpointsInput) SetDBProxyEndpointName(v string) *DescribeDBProxyEndpointsInput {
+	s.DBProxyEndpointName = &v
+	return s
+}
+
+// SetDBProxyName sets the DBProxyName field's value.
+func (s *DescribeDBProxyEndpointsInput) SetDBProxyName(v string) *DescribeDBProxyEndpointsInput {
+	s.DBProxyName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBProxyEndpointsInput) SetFilters(v []*Filter) *DescribeDBProxyEndpointsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBProxyEndpointsInput) SetMarker(v string) *DescribeDBProxyEndpointsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBProxyEndpointsInput) SetMaxRecords(v int64) *DescribeDBProxyEndpointsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeDBProxyEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of ProxyEndpoint objects returned by the API operation.
+	DBProxyEndpoints []*DBProxyEndpoint `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDBProxyEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBProxyEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBProxyEndpoints sets the DBProxyEndpoints field's value.
+func (s *DescribeDBProxyEndpointsOutput) SetDBProxyEndpoints(v []*DBProxyEndpoint) *DescribeDBProxyEndpointsOutput {
+	s.DBProxyEndpoints = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBProxyEndpointsOutput) SetMarker(v string) *DescribeDBProxyEndpointsOutput {
 	s.Marker = &v
 	return s
 }
@@ -34879,6 +35773,97 @@ func (s *ModifyDBParameterGroupInput) SetDBParameterGroupName(v string) *ModifyD
 // SetParameters sets the Parameters field's value.
 func (s *ModifyDBParameterGroupInput) SetParameters(v []*Parameter) *ModifyDBParameterGroupInput {
 	s.Parameters = v
+	return s
+}
+
+type ModifyDBProxyEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the DB proxy sociated with the DB proxy endpoint that you want
+	// to modify.
+	//
+	// DBProxyEndpointName is a required field
+	DBProxyEndpointName *string `min:"1" type:"string" required:"true"`
+
+	// The new identifier for the DBProxyEndpoint. An identifier must begin with
+	// a letter and must contain only ASCII letters, digits, and hyphens; it can't
+	// end with a hyphen or contain two consecutive hyphens.
+	NewDBProxyEndpointName *string `min:"1" type:"string"`
+
+	// The VPC security group IDs for the DB proxy endpoint. When the DB proxy endpoint
+	// uses a different VPC than the original proxy, you also specify a different
+	// set of security group IDs than for the original proxy.
+	VpcSecurityGroupIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyDBProxyEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBProxyEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyDBProxyEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyDBProxyEndpointInput"}
+	if s.DBProxyEndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBProxyEndpointName"))
+	}
+	if s.DBProxyEndpointName != nil && len(*s.DBProxyEndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DBProxyEndpointName", 1))
+	}
+	if s.NewDBProxyEndpointName != nil && len(*s.NewDBProxyEndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NewDBProxyEndpointName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBProxyEndpointName sets the DBProxyEndpointName field's value.
+func (s *ModifyDBProxyEndpointInput) SetDBProxyEndpointName(v string) *ModifyDBProxyEndpointInput {
+	s.DBProxyEndpointName = &v
+	return s
+}
+
+// SetNewDBProxyEndpointName sets the NewDBProxyEndpointName field's value.
+func (s *ModifyDBProxyEndpointInput) SetNewDBProxyEndpointName(v string) *ModifyDBProxyEndpointInput {
+	s.NewDBProxyEndpointName = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *ModifyDBProxyEndpointInput) SetVpcSecurityGroupIds(v []*string) *ModifyDBProxyEndpointInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
+type ModifyDBProxyEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DBProxyEndpoint object representing the new settings for the DB proxy
+	// endpoint.
+	DBProxyEndpoint *DBProxyEndpoint `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBProxyEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBProxyEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBProxyEndpoint sets the DBProxyEndpoint field's value.
+func (s *ModifyDBProxyEndpointOutput) SetDBProxyEndpoint(v *DBProxyEndpoint) *ModifyDBProxyEndpointOutput {
+	s.DBProxyEndpoint = v
 	return s
 }
 
@@ -43552,6 +44537,54 @@ func AuthScheme_Values() []string {
 }
 
 const (
+	// DBProxyEndpointStatusAvailable is a DBProxyEndpointStatus enum value
+	DBProxyEndpointStatusAvailable = "available"
+
+	// DBProxyEndpointStatusModifying is a DBProxyEndpointStatus enum value
+	DBProxyEndpointStatusModifying = "modifying"
+
+	// DBProxyEndpointStatusIncompatibleNetwork is a DBProxyEndpointStatus enum value
+	DBProxyEndpointStatusIncompatibleNetwork = "incompatible-network"
+
+	// DBProxyEndpointStatusInsufficientResourceLimits is a DBProxyEndpointStatus enum value
+	DBProxyEndpointStatusInsufficientResourceLimits = "insufficient-resource-limits"
+
+	// DBProxyEndpointStatusCreating is a DBProxyEndpointStatus enum value
+	DBProxyEndpointStatusCreating = "creating"
+
+	// DBProxyEndpointStatusDeleting is a DBProxyEndpointStatus enum value
+	DBProxyEndpointStatusDeleting = "deleting"
+)
+
+// DBProxyEndpointStatus_Values returns all elements of the DBProxyEndpointStatus enum
+func DBProxyEndpointStatus_Values() []string {
+	return []string{
+		DBProxyEndpointStatusAvailable,
+		DBProxyEndpointStatusModifying,
+		DBProxyEndpointStatusIncompatibleNetwork,
+		DBProxyEndpointStatusInsufficientResourceLimits,
+		DBProxyEndpointStatusCreating,
+		DBProxyEndpointStatusDeleting,
+	}
+}
+
+const (
+	// DBProxyEndpointTargetRoleReadWrite is a DBProxyEndpointTargetRole enum value
+	DBProxyEndpointTargetRoleReadWrite = "READ_WRITE"
+
+	// DBProxyEndpointTargetRoleReadOnly is a DBProxyEndpointTargetRole enum value
+	DBProxyEndpointTargetRoleReadOnly = "READ_ONLY"
+)
+
+// DBProxyEndpointTargetRole_Values returns all elements of the DBProxyEndpointTargetRole enum
+func DBProxyEndpointTargetRole_Values() []string {
+	return []string{
+		DBProxyEndpointTargetRoleReadWrite,
+		DBProxyEndpointTargetRoleReadOnly,
+	}
+}
+
+const (
 	// DBProxyStatusAvailable is a DBProxyStatus enum value
 	DBProxyStatusAvailable = "available"
 
@@ -43707,6 +44740,9 @@ const (
 
 	// TargetHealthReasonPendingProxyCapacity is a TargetHealthReason enum value
 	TargetHealthReasonPendingProxyCapacity = "PENDING_PROXY_CAPACITY"
+
+	// TargetHealthReasonInvalidReplicationState is a TargetHealthReason enum value
+	TargetHealthReasonInvalidReplicationState = "INVALID_REPLICATION_STATE"
 )
 
 // TargetHealthReason_Values returns all elements of the TargetHealthReason enum
@@ -43716,6 +44752,27 @@ func TargetHealthReason_Values() []string {
 		TargetHealthReasonConnectionFailed,
 		TargetHealthReasonAuthFailure,
 		TargetHealthReasonPendingProxyCapacity,
+		TargetHealthReasonInvalidReplicationState,
+	}
+}
+
+const (
+	// TargetRoleReadWrite is a TargetRole enum value
+	TargetRoleReadWrite = "READ_WRITE"
+
+	// TargetRoleReadOnly is a TargetRole enum value
+	TargetRoleReadOnly = "READ_ONLY"
+
+	// TargetRoleUnknown is a TargetRole enum value
+	TargetRoleUnknown = "UNKNOWN"
+)
+
+// TargetRole_Values returns all elements of the TargetRole enum
+func TargetRole_Values() []string {
+	return []string{
+		TargetRoleReadWrite,
+		TargetRoleReadOnly,
+		TargetRoleUnknown,
 	}
 }
 

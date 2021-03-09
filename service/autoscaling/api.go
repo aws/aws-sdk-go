@@ -436,8 +436,7 @@ func (c *AutoScaling) BatchPutScheduledUpdateGroupActionRequest(input *BatchPutS
 // BatchPutScheduledUpdateGroupAction API operation for Auto Scaling.
 //
 // Creates or updates one or more scheduled scaling actions for an Auto Scaling
-// group. If you leave a parameter unspecified when updating a scheduled scaling
-// action, the corresponding value remains unchanged.
+// group.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4757,8 +4756,6 @@ func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUp
 // PutScheduledUpdateGroupAction API operation for Auto Scaling.
 //
 // Creates or updates a scheduled scaling action for an Auto Scaling group.
-// If you leave a parameter unspecified when updating a scheduled scaling action,
-// the corresponding value remains unchanged.
 //
 // For more information, see Scheduled scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/schedule_time.html)
 // in the Amazon EC2 Auto Scaling User Guide.
@@ -13027,8 +13024,7 @@ type PutScheduledUpdateGroupActionInput struct {
 	// scale beyond this capacity if you add more scaling conditions.
 	DesiredCapacity *int64 `type:"integer"`
 
-	// The date and time for the recurring schedule to end. Amazon EC2 Auto Scaling
-	// does not perform the action after this time.
+	// The date and time for the recurring schedule to end, in UTC.
 	EndTime *time.Time `type:"timestamp"`
 
 	// The maximum size of the Auto Scaling group.
@@ -13037,14 +13033,15 @@ type PutScheduledUpdateGroupActionInput struct {
 	// The minimum size of the Auto Scaling group.
 	MinSize *int64 `type:"integer"`
 
-	// The recurring schedule for this action, in Unix cron syntax format. This
-	// format consists of five fields separated by white spaces: [Minute] [Hour]
-	// [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes
-	// (for example, "30 0 1 1,6,12 *"). For more information about this format,
-	// see Crontab (http://crontab.org).
+	// The recurring schedule for this action. This format consists of five fields
+	// separated by white spaces: [Minute] [Hour] [Day_of_Month] [Month_of_Year]
+	// [Day_of_Week]. The value must be in quotes (for example, "30 0 1 1,6,12 *").
+	// For more information about this format, see Crontab (http://crontab.org).
 	//
 	// When StartTime and EndTime are specified with Recurrence, they form the boundaries
 	// of when the recurring action starts and stops.
+	//
+	// Cron expressions use Universal Coordinated Time (UTC) by default.
 	Recurrence *string `min:"1" type:"string"`
 
 	// The name of this scaling action.
@@ -13065,6 +13062,15 @@ type PutScheduledUpdateGroupActionInput struct {
 
 	// This parameter is no longer used.
 	Time *time.Time `type:"timestamp"`
+
+	// Specifies the time zone for a cron expression. If a time zone is not provided,
+	// UTC is used by default.
+	//
+	// Valid values are the canonical names of the IANA time zones, derived from
+	// the IANA Time Zone Database (such as Etc/GMT+9 or Pacific/Tahiti). For more
+	// information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	// (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+	TimeZone *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -13094,6 +13100,9 @@ func (s *PutScheduledUpdateGroupActionInput) Validate() error {
 	}
 	if s.ScheduledActionName != nil && len(*s.ScheduledActionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduledActionName", 1))
+	}
+	if s.TimeZone != nil && len(*s.TimeZone) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimeZone", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -13153,6 +13162,12 @@ func (s *PutScheduledUpdateGroupActionInput) SetStartTime(v time.Time) *PutSched
 // SetTime sets the Time field's value.
 func (s *PutScheduledUpdateGroupActionInput) SetTime(v time.Time) *PutScheduledUpdateGroupActionInput {
 	s.Time = &v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *PutScheduledUpdateGroupActionInput) SetTimeZone(v string) *PutScheduledUpdateGroupActionInput {
+	s.TimeZone = &v
 	return s
 }
 
@@ -13596,6 +13611,9 @@ type ScheduledUpdateGroupAction struct {
 
 	// This parameter is no longer used.
 	Time *time.Time `type:"timestamp"`
+
+	// The time zone for the cron expression.
+	TimeZone *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -13668,11 +13686,14 @@ func (s *ScheduledUpdateGroupAction) SetTime(v time.Time) *ScheduledUpdateGroupA
 	return s
 }
 
+// SetTimeZone sets the TimeZone field's value.
+func (s *ScheduledUpdateGroupAction) SetTimeZone(v string) *ScheduledUpdateGroupAction {
+	s.TimeZone = &v
+	return s
+}
+
 // Describes information used for one or more scheduled scaling action updates
 // in a BatchPutScheduledUpdateGroupAction operation.
-//
-// When updating a scheduled scaling action, all optional parameters are left
-// unchanged if not specified.
 type ScheduledUpdateGroupActionRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -13680,8 +13701,7 @@ type ScheduledUpdateGroupActionRequest struct {
 	// the scheduled action runs and the capacity it attempts to maintain.
 	DesiredCapacity *int64 `type:"integer"`
 
-	// The date and time for the recurring schedule to end. Amazon EC2 Auto Scaling
-	// does not perform the action after this time.
+	// The date and time for the recurring schedule to end, in UTC.
 	EndTime *time.Time `type:"timestamp"`
 
 	// The maximum size of the Auto Scaling group.
@@ -13697,6 +13717,8 @@ type ScheduledUpdateGroupActionRequest struct {
 	//
 	// When StartTime and EndTime are specified with Recurrence, they form the boundaries
 	// of when the recurring action starts and stops.
+	//
+	// Cron expressions use Universal Coordinated Time (UTC) by default.
 	Recurrence *string `min:"1" type:"string"`
 
 	// The name of the scaling action.
@@ -13714,6 +13736,15 @@ type ScheduledUpdateGroupActionRequest struct {
 	// If you try to schedule the action in the past, Amazon EC2 Auto Scaling returns
 	// an error message.
 	StartTime *time.Time `type:"timestamp"`
+
+	// Specifies the time zone for a cron expression. If a time zone is not provided,
+	// UTC is used by default.
+	//
+	// Valid values are the canonical names of the IANA time zones, derived from
+	// the IANA Time Zone Database (such as Etc/GMT+9 or Pacific/Tahiti). For more
+	// information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+	// (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+	TimeZone *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -13737,6 +13768,9 @@ func (s *ScheduledUpdateGroupActionRequest) Validate() error {
 	}
 	if s.ScheduledActionName != nil && len(*s.ScheduledActionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ScheduledActionName", 1))
+	}
+	if s.TimeZone != nil && len(*s.TimeZone) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimeZone", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -13784,6 +13818,12 @@ func (s *ScheduledUpdateGroupActionRequest) SetScheduledActionName(v string) *Sc
 // SetStartTime sets the StartTime field's value.
 func (s *ScheduledUpdateGroupActionRequest) SetStartTime(v time.Time) *ScheduledUpdateGroupActionRequest {
 	s.StartTime = &v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *ScheduledUpdateGroupActionRequest) SetTimeZone(v string) *ScheduledUpdateGroupActionRequest {
+	s.TimeZone = &v
 	return s
 }
 

@@ -1,3 +1,16 @@
+Release v1.37.27 (2021-03-09)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * EC2 Auto Scaling now supports setting a local time zone for cron expressions in scheduled actions, removing the need to adjust for Daylight Saving Time (DST)
+* `service/codeguruprofiler`: Updates service API and documentation
+* `service/elasticfilesystem`: Updates service API, documentation, and examples
+  * AWS EFS is introducing one-zone file systems.
+* `service/iotwireless`: Updates service API
+* `service/rds`: Updates service API, documentation, and paginators
+  * This release adds support for Amazon RDS Proxy endpoints.
+
 Release v1.37.26 (2021-03-08)
 ===
 
