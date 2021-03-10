@@ -1,5 +1,17 @@
 {
   "pagination": {
+    "ListAccessPreviewFindings": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "findings"
+    },
+    "ListAccessPreviews": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "accessPreviews"
+    },
     "ListAnalyzedResources": {
       "input_token": "nextToken",
       "output_token": "nextToken",

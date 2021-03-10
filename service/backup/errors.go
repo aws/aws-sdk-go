@@ -35,6 +35,14 @@ const (
 	// a parameter is of the wrong type.
 	ErrCodeInvalidRequestException = "InvalidRequestException"
 
+	// ErrCodeInvalidResourceStateException for service response error code
+	// "InvalidResourceStateException".
+	//
+	// AWS Backup is already performing an action on this recovery point. It can't
+	// perform the action you requested until the first action finishes. Try again
+	// later.
+	ErrCodeInvalidResourceStateException = "InvalidResourceStateException"
+
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
@@ -66,6 +74,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"DependencyFailureException":     newErrorDependencyFailureException,
 	"InvalidParameterValueException": newErrorInvalidParameterValueException,
 	"InvalidRequestException":        newErrorInvalidRequestException,
+	"InvalidResourceStateException":  newErrorInvalidResourceStateException,
 	"LimitExceededException":         newErrorLimitExceededException,
 	"MissingParameterValueException": newErrorMissingParameterValueException,
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,

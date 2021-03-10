@@ -831,6 +831,9 @@ func (c *Backup) DeleteRecoveryPointRequest(input *DeleteRecoveryPointInput) (re
 //
 // Deletes the recovery point specified by a recovery point ID.
 //
+// If the recovery point ID belongs to a continuous backup, calling this endpoint
+// deletes the existing continuous backup and stops future continuous backup.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -848,6 +851,11 @@ func (c *Backup) DeleteRecoveryPointRequest(input *DeleteRecoveryPointInput) (re
 //
 //   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
+//
+//   * InvalidResourceStateException
+//   AWS Backup is already performing an action on this recovery point. It can't
+//   perform the action you requested until the first action finishes. Try again
+//   later.
 //
 //   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
@@ -1204,6 +1212,10 @@ func (c *Backup) DescribeGlobalSettingsRequest(input *DescribeGlobalSettingsInpu
 // API operation DescribeGlobalSettings for usage and error information.
 //
 // Returned Error Types:
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
 //   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
@@ -1588,6 +1600,110 @@ func (c *Backup) DescribeRestoreJobWithContext(ctx aws.Context, input *DescribeR
 	return out, req.Send()
 }
 
+const opDisassociateRecoveryPoint = "DisassociateRecoveryPoint"
+
+// DisassociateRecoveryPointRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateRecoveryPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateRecoveryPoint for more information on using the DisassociateRecoveryPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateRecoveryPointRequest method.
+//    req, resp := client.DisassociateRecoveryPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DisassociateRecoveryPoint
+func (c *Backup) DisassociateRecoveryPointRequest(input *DisassociateRecoveryPointInput) (req *request.Request, output *DisassociateRecoveryPointOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateRecoveryPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/backup-vaults/{backupVaultName}/recovery-points/{recoveryPointArn}/disassociate",
+	}
+
+	if input == nil {
+		input = &DisassociateRecoveryPointInput{}
+	}
+
+	output = &DisassociateRecoveryPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateRecoveryPoint API operation for AWS Backup.
+//
+// Deletes the specified continuous backup recovery point from AWS Backup and
+// releases control of that continuous backup to the source service, such as
+// Amazon RDS. The source service will continue to create and retain continuous
+// backups using the lifecycle that you specified in your original backup plan.
+//
+// Does not support snapshot backup recovery points.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DisassociateRecoveryPoint for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * InvalidResourceStateException
+//   AWS Backup is already performing an action on this recovery point. It can't
+//   perform the action you requested until the first action finishes. Try again
+//   later.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DisassociateRecoveryPoint
+func (c *Backup) DisassociateRecoveryPoint(input *DisassociateRecoveryPointInput) (*DisassociateRecoveryPointOutput, error) {
+	req, out := c.DisassociateRecoveryPointRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateRecoveryPointWithContext is the same as DisassociateRecoveryPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateRecoveryPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DisassociateRecoveryPointWithContext(ctx aws.Context, input *DisassociateRecoveryPointInput, opts ...request.Option) (*DisassociateRecoveryPointOutput, error) {
+	req, out := c.DisassociateRecoveryPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opExportBackupPlanTemplate = "ExportBackupPlanTemplate"
 
 // ExportBackupPlanTemplateRequest generates a "aws/request.Request" representing the
@@ -1721,8 +1837,8 @@ func (c *Backup) GetBackupPlanRequest(input *GetBackupPlanInput) (req *request.R
 
 // GetBackupPlan API operation for AWS Backup.
 //
-// Returns BackupPlan details for the specified BackupPlanId. Returns the body
-// of a backup plan in JSON format, in addition to plan metadata.
+// Returns BackupPlan details for the specified BackupPlanId. The details are
+// the body of a backup plan in JSON format, in addition to plan metadata.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2437,7 +2553,9 @@ func (c *Backup) ListBackupJobsRequest(input *ListBackupJobsInput) (req *request
 
 // ListBackupJobs API operation for AWS Backup.
 //
-// Returns a list of existing backup jobs for an authenticated account.
+// Returns a list of existing backup jobs for an authenticated account for the
+// last 30 days. For a longer period of time, consider using these monitoring
+// tools (https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4475,6 +4593,8 @@ func (c *Backup) StartCopyJobRequest(input *StartCopyJobInput) (req *request.Req
 //
 // Starts a job to create a one-time copy of the specified resource.
 //
+// Does not support continuous backups.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4499,6 +4619,10 @@ func (c *Backup) StartCopyJobRequest(input *StartCopyJobInput) (req *request.Req
 //   * LimitExceededException
 //   A limit in the request has been exceeded; for example, a maximum number of
 //   items allowed in a request.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/StartCopyJob
 func (c *Backup) StartCopyJob(input *StartCopyJobInput) (*StartCopyJobOutput, error) {
@@ -5130,6 +5254,8 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 // has been transitioned to cold.
 //
 // Only Amazon EFS file system backups can be transitioned to cold storage.
+//
+// Does not support continuous backups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7664,6 +7790,79 @@ func (s *DescribeRestoreJobOutput) SetStatusMessage(v string) *DescribeRestoreJo
 	return s
 }
 
+type DisassociateRecoveryPointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of an AWS Backup vault. Required.
+	//
+	// BackupVaultName is a required field
+	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS Backup recovery
+	// point. Required.
+	//
+	// RecoveryPointArn is a required field
+	RecoveryPointArn *string `location:"uri" locationName:"recoveryPointArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateRecoveryPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateRecoveryPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateRecoveryPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateRecoveryPointInput"}
+	if s.BackupVaultName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupVaultName"))
+	}
+	if s.BackupVaultName != nil && len(*s.BackupVaultName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupVaultName", 1))
+	}
+	if s.RecoveryPointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecoveryPointArn"))
+	}
+	if s.RecoveryPointArn != nil && len(*s.RecoveryPointArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecoveryPointArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *DisassociateRecoveryPointInput) SetBackupVaultName(v string) *DisassociateRecoveryPointInput {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetRecoveryPointArn sets the RecoveryPointArn field's value.
+func (s *DisassociateRecoveryPointInput) SetRecoveryPointArn(v string) *DisassociateRecoveryPointInput {
+	s.RecoveryPointArn = &v
+	return s
+}
+
+type DisassociateRecoveryPointOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateRecoveryPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateRecoveryPointOutput) GoString() string {
+	return s.String()
+}
+
 type ExportBackupPlanTemplateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8610,6 +8809,70 @@ func (s *InvalidRequestException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// AWS Backup is already performing an action on this recovery point. It can't
+// perform the action you requested until the first action finishes. Try again
+// later.
+type InvalidResourceStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InvalidResourceStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidResourceStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidResourceStateException(v protocol.ResponseMetadata) error {
+	return &InvalidResourceStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidResourceStateException) Code() string {
+	return "InvalidResourceStateException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidResourceStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidResourceStateException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidResourceStateException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidResourceStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidResourceStateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11397,6 +11660,11 @@ type Rule struct {
 	// An array of CopyAction objects, which contains the details of the copy operation.
 	CopyActions []*CopyAction `type:"list"`
 
+	// Specifies whether AWS Backup creates continuous backups. True causes AWS
+	// Backup to create continuous backups capable of point-in-time restore (PITR).
+	// False (or not specified) causes AWS Backup to create snapshot backups.
+	EnableContinuousBackup *bool `type:"boolean"`
+
 	// The lifecycle defines when a protected resource is transitioned to cold storage
 	// and when it expires. AWS Backup transitions and expires backups automatically
 	// according to the lifecycle that you define.
@@ -11466,6 +11734,12 @@ func (s *Rule) SetCopyActions(v []*CopyAction) *Rule {
 	return s
 }
 
+// SetEnableContinuousBackup sets the EnableContinuousBackup field's value.
+func (s *Rule) SetEnableContinuousBackup(v bool) *Rule {
+	s.EnableContinuousBackup = &v
+	return s
+}
+
 // SetLifecycle sets the Lifecycle field's value.
 func (s *Rule) SetLifecycle(v *Lifecycle) *Rule {
 	s.Lifecycle = v
@@ -11518,6 +11792,11 @@ type RuleInput struct {
 
 	// An array of CopyAction objects, which contains the details of the copy operation.
 	CopyActions []*CopyAction `type:"list"`
+
+	// Specifies whether AWS Backup creates continuous backups. True causes AWS
+	// Backup to create continuous backups capable of point-in-time restore (PITR).
+	// False (or not specified) causes AWS Backup to create snapshot backups.
+	EnableContinuousBackup *bool `type:"boolean"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
 	// and when it expires. AWS Backup will transition and expire backups automatically
@@ -11602,6 +11881,12 @@ func (s *RuleInput) SetCompletionWindowMinutes(v int64) *RuleInput {
 // SetCopyActions sets the CopyActions field's value.
 func (s *RuleInput) SetCopyActions(v []*CopyAction) *RuleInput {
 	s.CopyActions = v
+	return s
+}
+
+// SetEnableContinuousBackup sets the EnableContinuousBackup field's value.
+func (s *RuleInput) SetEnableContinuousBackup(v bool) *RuleInput {
+	s.EnableContinuousBackup = &v
 	return s
 }
 

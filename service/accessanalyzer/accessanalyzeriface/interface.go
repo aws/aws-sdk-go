@@ -64,6 +64,10 @@ type AccessAnalyzerAPI interface {
 	ApplyArchiveRuleWithContext(aws.Context, *accessanalyzer.ApplyArchiveRuleInput, ...request.Option) (*accessanalyzer.ApplyArchiveRuleOutput, error)
 	ApplyArchiveRuleRequest(*accessanalyzer.ApplyArchiveRuleInput) (*request.Request, *accessanalyzer.ApplyArchiveRuleOutput)
 
+	CreateAccessPreview(*accessanalyzer.CreateAccessPreviewInput) (*accessanalyzer.CreateAccessPreviewOutput, error)
+	CreateAccessPreviewWithContext(aws.Context, *accessanalyzer.CreateAccessPreviewInput, ...request.Option) (*accessanalyzer.CreateAccessPreviewOutput, error)
+	CreateAccessPreviewRequest(*accessanalyzer.CreateAccessPreviewInput) (*request.Request, *accessanalyzer.CreateAccessPreviewOutput)
+
 	CreateAnalyzer(*accessanalyzer.CreateAnalyzerInput) (*accessanalyzer.CreateAnalyzerOutput, error)
 	CreateAnalyzerWithContext(aws.Context, *accessanalyzer.CreateAnalyzerInput, ...request.Option) (*accessanalyzer.CreateAnalyzerOutput, error)
 	CreateAnalyzerRequest(*accessanalyzer.CreateAnalyzerInput) (*request.Request, *accessanalyzer.CreateAnalyzerOutput)
@@ -80,6 +84,10 @@ type AccessAnalyzerAPI interface {
 	DeleteArchiveRuleWithContext(aws.Context, *accessanalyzer.DeleteArchiveRuleInput, ...request.Option) (*accessanalyzer.DeleteArchiveRuleOutput, error)
 	DeleteArchiveRuleRequest(*accessanalyzer.DeleteArchiveRuleInput) (*request.Request, *accessanalyzer.DeleteArchiveRuleOutput)
 
+	GetAccessPreview(*accessanalyzer.GetAccessPreviewInput) (*accessanalyzer.GetAccessPreviewOutput, error)
+	GetAccessPreviewWithContext(aws.Context, *accessanalyzer.GetAccessPreviewInput, ...request.Option) (*accessanalyzer.GetAccessPreviewOutput, error)
+	GetAccessPreviewRequest(*accessanalyzer.GetAccessPreviewInput) (*request.Request, *accessanalyzer.GetAccessPreviewOutput)
+
 	GetAnalyzedResource(*accessanalyzer.GetAnalyzedResourceInput) (*accessanalyzer.GetAnalyzedResourceOutput, error)
 	GetAnalyzedResourceWithContext(aws.Context, *accessanalyzer.GetAnalyzedResourceInput, ...request.Option) (*accessanalyzer.GetAnalyzedResourceOutput, error)
 	GetAnalyzedResourceRequest(*accessanalyzer.GetAnalyzedResourceInput) (*request.Request, *accessanalyzer.GetAnalyzedResourceOutput)
@@ -95,6 +103,20 @@ type AccessAnalyzerAPI interface {
 	GetFinding(*accessanalyzer.GetFindingInput) (*accessanalyzer.GetFindingOutput, error)
 	GetFindingWithContext(aws.Context, *accessanalyzer.GetFindingInput, ...request.Option) (*accessanalyzer.GetFindingOutput, error)
 	GetFindingRequest(*accessanalyzer.GetFindingInput) (*request.Request, *accessanalyzer.GetFindingOutput)
+
+	ListAccessPreviewFindings(*accessanalyzer.ListAccessPreviewFindingsInput) (*accessanalyzer.ListAccessPreviewFindingsOutput, error)
+	ListAccessPreviewFindingsWithContext(aws.Context, *accessanalyzer.ListAccessPreviewFindingsInput, ...request.Option) (*accessanalyzer.ListAccessPreviewFindingsOutput, error)
+	ListAccessPreviewFindingsRequest(*accessanalyzer.ListAccessPreviewFindingsInput) (*request.Request, *accessanalyzer.ListAccessPreviewFindingsOutput)
+
+	ListAccessPreviewFindingsPages(*accessanalyzer.ListAccessPreviewFindingsInput, func(*accessanalyzer.ListAccessPreviewFindingsOutput, bool) bool) error
+	ListAccessPreviewFindingsPagesWithContext(aws.Context, *accessanalyzer.ListAccessPreviewFindingsInput, func(*accessanalyzer.ListAccessPreviewFindingsOutput, bool) bool, ...request.Option) error
+
+	ListAccessPreviews(*accessanalyzer.ListAccessPreviewsInput) (*accessanalyzer.ListAccessPreviewsOutput, error)
+	ListAccessPreviewsWithContext(aws.Context, *accessanalyzer.ListAccessPreviewsInput, ...request.Option) (*accessanalyzer.ListAccessPreviewsOutput, error)
+	ListAccessPreviewsRequest(*accessanalyzer.ListAccessPreviewsInput) (*request.Request, *accessanalyzer.ListAccessPreviewsOutput)
+
+	ListAccessPreviewsPages(*accessanalyzer.ListAccessPreviewsInput, func(*accessanalyzer.ListAccessPreviewsOutput, bool) bool) error
+	ListAccessPreviewsPagesWithContext(aws.Context, *accessanalyzer.ListAccessPreviewsInput, func(*accessanalyzer.ListAccessPreviewsOutput, bool) bool, ...request.Option) error
 
 	ListAnalyzedResources(*accessanalyzer.ListAnalyzedResourcesInput) (*accessanalyzer.ListAnalyzedResourcesOutput, error)
 	ListAnalyzedResourcesWithContext(aws.Context, *accessanalyzer.ListAnalyzedResourcesInput, ...request.Option) (*accessanalyzer.ListAnalyzedResourcesOutput, error)
