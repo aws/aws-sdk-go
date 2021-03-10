@@ -3334,7 +3334,8 @@
       "required":["ResourceId"],
       "members":{
         "ResourceId":{"shape":"OpsMetadataResourceId"},
-        "Metadata":{"shape":"MetadataMap"}
+        "Metadata":{"shape":"MetadataMap"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateOpsMetadataResult":{
@@ -8884,7 +8885,8 @@
         "MaintenanceWindow",
         "Parameter",
         "PatchBaseline",
-        "OpsItem"
+        "OpsItem",
+        "OpsMetadata"
       ]
     },
     "ResponseCode":{"type":"integer"},

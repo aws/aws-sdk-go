@@ -128,6 +128,10 @@ type BackupAPI interface {
 	DescribeRestoreJobWithContext(aws.Context, *backup.DescribeRestoreJobInput, ...request.Option) (*backup.DescribeRestoreJobOutput, error)
 	DescribeRestoreJobRequest(*backup.DescribeRestoreJobInput) (*request.Request, *backup.DescribeRestoreJobOutput)
 
+	DisassociateRecoveryPoint(*backup.DisassociateRecoveryPointInput) (*backup.DisassociateRecoveryPointOutput, error)
+	DisassociateRecoveryPointWithContext(aws.Context, *backup.DisassociateRecoveryPointInput, ...request.Option) (*backup.DisassociateRecoveryPointOutput, error)
+	DisassociateRecoveryPointRequest(*backup.DisassociateRecoveryPointInput) (*request.Request, *backup.DisassociateRecoveryPointOutput)
+
 	ExportBackupPlanTemplate(*backup.ExportBackupPlanTemplateInput) (*backup.ExportBackupPlanTemplateOutput, error)
 	ExportBackupPlanTemplateWithContext(aws.Context, *backup.ExportBackupPlanTemplateInput, ...request.Option) (*backup.ExportBackupPlanTemplateOutput, error)
 	ExportBackupPlanTemplateRequest(*backup.ExportBackupPlanTemplateInput) (*request.Request, *backup.ExportBackupPlanTemplateOutput)

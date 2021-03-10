@@ -15209,6 +15209,12 @@ type AddTagsToResourceInput struct {
 	//
 	// PatchBaseline: pb-012345abcde
 	//
+	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
+	// Name (ARN) for the object. Specifically, ResourceID is created from the strings
+	// that come after the word opsmetadata in the ARN. For example, an OpsMetadata
+	// object with an ARN of arn:aws:ssm:us-east-2:1234567890:opsmetadata/aws/ssm/MyGroup/appmanager
+	// has a ResourceID of either aws/ssm/MyGroup/appmanager or /aws/ssm/MyGroup/appmanager.
+	//
 	// For the Document and Parameter values, use the name of the resource.
 	//
 	// The ManagedInstance type for this API action is only for on-premises managed
@@ -20990,6 +20996,18 @@ type CreateOpsMetadataInput struct {
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
+
+	// Optional metadata that you assign to a resource. You can specify a maximum
+	// of five tags for an OpsMetadata object. Tags enable you to categorize a resource
+	// in different ways, such as by purpose, owner, or environment. For example,
+	// you might want to tag an OpsMetadata object to identify an environment or
+	// target AWS Region. In this case, you could specify the following key-value
+	// pairs:
+	//
+	//    * Key=Environment,Value=Production
+	//
+	//    * Key=Region,Value=us-east-2
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -21024,6 +21042,16 @@ func (s *CreateOpsMetadataInput) Validate() error {
 			}
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -21040,6 +21068,12 @@ func (s *CreateOpsMetadataInput) SetMetadata(v map[string]*MetadataValue) *Creat
 // SetResourceId sets the ResourceId field's value.
 func (s *CreateOpsMetadataInput) SetResourceId(v string) *CreateOpsMetadataInput {
 	s.ResourceId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateOpsMetadataInput) SetTags(v []*Tag) *CreateOpsMetadataInput {
+	s.Tags = v
 	return s
 }
 
@@ -28014,11 +28048,13 @@ type GetCommandInvocationInput struct {
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
 
-	// (Optional) The name of the plugin for which you want detailed results. If
-	// the document contains only one plugin, the name can be omitted and the details
-	// will be returned.
+	// The name of the plugin for which you want detailed results. If the document
+	// contains only one plugin, you can omit the name and details for that plugin
+	// are returned. If the document contains more than one plugin, you must specify
+	// the name of the plugin for which you want to view details.
 	//
 	// Plugin names are also referred to as step names in Systems Manager documents.
+	// For example, aws:RunShellScript is a plugin.
 	PluginName *string `min:"4" type:"string"`
 }
 
@@ -28116,8 +28152,8 @@ type GetCommandInvocationOutput struct {
 	// configured for Systems Manager.
 	InstanceId *string `type:"string"`
 
-	// The name of the plugin for which you want detailed results. For example,
-	// aws:RunShellScript is a plugin.
+	// The name of the plugin, or step name, for which details are reported. For
+	// example, aws:RunShellScript is a plugin.
 	PluginName *string `min:"4" type:"string"`
 
 	// The error level response code for the plugin script. If the response code
@@ -31373,6 +31409,10 @@ func (s *InstanceAssociation) SetInstanceId(v string) *InstanceAssociation {
 }
 
 // An S3 bucket where you want to store the results of this request.
+//
+// For the minimal permissions required to enable Amazon S3 output for an association,
+// see Creating associations (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-state-assoc.html)
+// in the Systems Manager User Guide.
 type InstanceAssociationOutputLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -44173,6 +44213,12 @@ type RemoveTagsFromResourceInput struct {
 	//
 	// PatchBaseline: pb-012345abcde
 	//
+	// OpsMetadata object: ResourceID for tagging is created from the Amazon Resource
+	// Name (ARN) for the object. Specifically, ResourceID is created from the strings
+	// that come after the word opsmetadata in the ARN. For example, an OpsMetadata
+	// object with an ARN of arn:aws:ssm:us-east-2:1234567890:opsmetadata/aws/ssm/MyGroup/appmanager
+	// has a ResourceID of either aws/ssm/MyGroup/appmanager or /aws/ssm/MyGroup/appmanager.
+	//
 	// For the Document and Parameter values, use the name of the resource.
 	//
 	// The ManagedInstance type for this API action is only for on-premises managed
@@ -53205,6 +53251,9 @@ const (
 
 	// ResourceTypeForTaggingOpsItem is a ResourceTypeForTagging enum value
 	ResourceTypeForTaggingOpsItem = "OpsItem"
+
+	// ResourceTypeForTaggingOpsMetadata is a ResourceTypeForTagging enum value
+	ResourceTypeForTaggingOpsMetadata = "OpsMetadata"
 )
 
 // ResourceTypeForTagging_Values returns all elements of the ResourceTypeForTagging enum
@@ -53216,6 +53265,7 @@ func ResourceTypeForTagging_Values() []string {
 		ResourceTypeForTaggingParameter,
 		ResourceTypeForTaggingPatchBaseline,
 		ResourceTypeForTaggingOpsItem,
+		ResourceTypeForTaggingOpsMetadata,
 	}
 }
 

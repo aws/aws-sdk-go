@@ -1772,6 +1772,7 @@
     "ID": {
       "base": null,
       "refs": {
+        "CORSRule$ID": "<p>Unique identifier for the rule. The value cannot be longer than 255 characters.</p>",
         "Grantee$ID": "<p>The canonical user ID of the grantee.</p>",
         "Initiator$ID": "<p>If the principal is an AWS account, it provides the Canonical User ID. If the principal is an IAM User, it provides a user ARN value.</p>",
         "LifecycleRule$ID": "<p>Unique identifier for the rule. The value cannot be longer than 255 characters.</p>",

@@ -10,7 +10,7 @@
     "DeleteBackupVault": "<p>Deletes the backup vault identified by its name. A vault can be deleted only if it is empty.</p>",
     "DeleteBackupVaultAccessPolicy": "<p>Deletes the policy document that manages permissions on a backup vault.</p>",
     "DeleteBackupVaultNotifications": "<p>Deletes event notifications for the specified backup vault.</p>",
-    "DeleteRecoveryPoint": "<p>Deletes the recovery point specified by a recovery point ID.</p>",
+    "DeleteRecoveryPoint": "<p>Deletes the recovery point specified by a recovery point ID.</p> <p>If the recovery point ID belongs to a continuous backup, calling this endpoint deletes the existing continuous backup and stops future continuous backup.</p>",
     "DescribeBackupJob": "<p>Returns backup job details for the specified <code>BackupJobId</code>.</p>",
     "DescribeBackupVault": "<p>Returns metadata about a backup vault specified by its name.</p>",
     "DescribeCopyJob": "<p>Returns metadata associated with creating a copy of a resource.</p>",
@@ -19,8 +19,9 @@
     "DescribeRecoveryPoint": "<p>Returns metadata associated with a recovery point, including ID, status, encryption, and lifecycle.</p>",
     "DescribeRegionSettings": "<p>Returns the current service opt-in settings for the Region. If service-opt-in is enabled for a service, AWS Backup tries to protect that service's resources in this Region, when the resource is included in an on-demand backup or scheduled backup plan. Otherwise, AWS Backup does not try to protect that service's resources in this Region, AWS Backup does not try to protect that service's resources in this Region.</p>",
     "DescribeRestoreJob": "<p>Returns metadata associated with a restore job that is specified by a job ID.</p>",
+    "DisassociateRecoveryPoint": "<p>Deletes the specified continuous backup recovery point from AWS Backup and releases control of that continuous backup to the source service, such as Amazon RDS. The source service will continue to create and retain continuous backups using the lifecycle that you specified in your original backup plan.</p> <p>Does not support snapshot backup recovery points.</p>",
     "ExportBackupPlanTemplate": "<p>Returns the backup plan that is specified by the plan ID as a backup template.</p>",
-    "GetBackupPlan": "<p>Returns <code>BackupPlan</code> details for the specified <code>BackupPlanId</code>. Returns the body of a backup plan in JSON format, in addition to plan metadata.</p>",
+    "GetBackupPlan": "<p>Returns <code>BackupPlan</code> details for the specified <code>BackupPlanId</code>. The details are the body of a backup plan in JSON format, in addition to plan metadata.</p>",
     "GetBackupPlanFromJSON": "<p>Returns a valid JSON document specifying a backup plan or an error.</p>",
     "GetBackupPlanFromTemplate": "<p>Returns the template specified by its <code>templateId</code> as a backup plan.</p>",
     "GetBackupSelection": "<p>Returns selection metadata and a document in JSON format that specifies a list of resources that are associated with a backup plan.</p>",
@@ -28,7 +29,7 @@
     "GetBackupVaultNotifications": "<p>Returns event notifications for the specified backup vault.</p>",
     "GetRecoveryPointRestoreMetadata": "<p>Returns a set of metadata key-value pairs that were used to create the backup.</p>",
     "GetSupportedResourceTypes": "<p>Returns the AWS resource types supported by AWS Backup.</p>",
-    "ListBackupJobs": "<p>Returns a list of existing backup jobs for an authenticated account.</p>",
+    "ListBackupJobs": "<p>Returns a list of existing backup jobs for an authenticated account for the last 30 days. For a longer period of time, consider using these <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/monitoring.html\">monitoring tools</a>.</p>",
     "ListBackupPlanTemplates": "<p>Returns metadata of your saved backup plan templates, including the template ID, name, and the creation and deletion dates.</p>",
     "ListBackupPlanVersions": "<p>Returns version metadata of your backup plans, including Amazon Resource Names (ARNs), backup plan IDs, creation and deletion dates, plan names, and version IDs.</p>",
     "ListBackupPlans": "<p>Returns a list of existing backup plans for an authenticated account. The list is populated only if the advanced option is set for the backup plan. The list contains information such as Amazon Resource Names (ARNs), plan IDs, creation and deletion dates, version IDs, plan names, and creator request IDs.</p>",
@@ -43,14 +44,14 @@
     "PutBackupVaultAccessPolicy": "<p>Sets a resource-based policy that is used to manage access permissions on the target backup vault. Requires a backup vault name and an access policy document in JSON format.</p>",
     "PutBackupVaultNotifications": "<p>Turns on notifications on a backup vault for the specified topic and events.</p>",
     "StartBackupJob": "<p>Starts an on-demand backup job for the specified resource.</p>",
-    "StartCopyJob": "<p>Starts a job to create a one-time copy of the specified resource.</p>",
-    "StartRestoreJob": "<p>Recovers the saved resource identified by an Amazon Resource Name (ARN). </p>",
+    "StartCopyJob": "<p>Starts a job to create a one-time copy of the specified resource.</p> <p>Does not support continuous backups.</p>",
+    "StartRestoreJob": "<p>Recovers the saved resource identified by an Amazon Resource Name (ARN).</p>",
     "StopBackupJob": "<p>Attempts to cancel a job to create a one-time backup of a resource.</p>",
     "TagResource": "<p>Assigns a set of key-value pairs to a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN).</p>",
     "UntagResource": "<p>Removes a set of key-value pairs from a recovery point, backup plan, or backup vault identified by an Amazon Resource Name (ARN)</p>",
     "UpdateBackupPlan": "<p>Updates an existing backup plan identified by its <code>backupPlanId</code> with the input document in JSON format. The new version is uniquely identified by a <code>VersionId</code>.</p>",
     "UpdateGlobalSettings": "<p>Updates the current global settings for the AWS account. Use the <code>DescribeGlobalSettings</code> API to determine the current settings.</p>",
-    "UpdateRecoveryPointLifecycle": "<p>Sets the transition lifecycle of a recovery point.</p> <p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. AWS Backup transitions and expires backups automatically according to the lifecycle that you define. </p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “expire after days” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold. </p> <p>Only Amazon EFS file system backups can be transitioned to cold storage.</p>",
+    "UpdateRecoveryPointLifecycle": "<p>Sets the transition lifecycle of a recovery point.</p> <p>The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. AWS Backup transitions and expires backups automatically according to the lifecycle that you define.</p> <p>Backups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the “expire after days” setting must be 90 days greater than the “transition to cold after days” setting. The “transition to cold after days” setting cannot be changed after a backup has been transitioned to cold.</p> <p>Only Amazon EFS file system backups can be transitioned to cold storage.</p> <p>Does not support continuous backups.</p>",
     "UpdateRegionSettings": "<p>Updates the current service opt-in settings for the Region. If service-opt-in is enabled for a service, AWS Backup tries to protect that service's resources in this Region, when the resource is included in an on-demand backup or scheduled backup plan. Otherwise, AWS Backup does not try to protect that service's resources in this Region. Use the <code>DescribeRegionSettings</code> API to determine the resource types that are supported.</p>"
   },
   "shapes": {
@@ -89,6 +90,7 @@
         "DescribeRecoveryPointOutput$EncryptionKeyArn": "<p>The server-side encryption key used to protect your backups; for example, <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>.</p>",
         "DescribeRestoreJobOutput$RecoveryPointArn": "<p>An ARN that uniquely identifies a recovery point; for example, <code>arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45</code>.</p>",
         "DescribeRestoreJobOutput$CreatedResourceArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a resource whose recovery point is being restored. The format of the ARN depends on the resource type of the backed-up resource.</p>",
+        "DisassociateRecoveryPointInput$RecoveryPointArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies an AWS Backup recovery point. Required.</p>",
         "GetBackupPlanOutput$BackupPlanArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for example, <code>arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50</code>.</p>",
         "GetBackupVaultAccessPolicyOutput$BackupVaultArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>",
         "GetBackupVaultNotificationsOutput$BackupVaultArn": "<p>An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for example, <code>arn:aws:backup:us-east-1:123456789012:vault:aBackupVault</code>.</p>",
@@ -354,6 +356,7 @@
         "DescribeBackupJobOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "DescribeRecoveryPointInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "DescribeRecoveryPointOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
+        "DisassociateRecoveryPointInput$BackupVaultName": "<p>The unique name of an AWS Backup vault. Required.</p>",
         "GetBackupVaultAccessPolicyInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "GetBackupVaultAccessPolicyOutput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
         "GetBackupVaultNotificationsInput$BackupVaultName": "<p>The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the AWS Region where they are created. They consist of lowercase letters, numbers, and hyphens.</p>",
@@ -373,6 +376,8 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "BackupRule$EnableContinuousBackup": "<p>Specifies whether AWS Backup creates continuous backups. True causes AWS Backup to create continuous backups capable of point-in-time restore (PITR). False (or not specified) causes AWS Backup to create snapshot backups.</p>",
+        "BackupRuleInput$EnableContinuousBackup": "<p>Specifies whether AWS Backup creates continuous backups. True causes AWS Backup to create continuous backups capable of point-in-time restore (PITR). False (or not specified) causes AWS Backup to create snapshot backups.</p>",
         "ListBackupPlansInput$IncludeDeleted": "<p>A Boolean value with a default value of <code>FALSE</code> that returns deleted backup plans when set to <code>TRUE</code>.</p>"
       }
     },
@@ -598,6 +603,11 @@
       "refs": {
       }
     },
+    "DisassociateRecoveryPointInput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ExportBackupPlanTemplateInput": {
       "base": null,
       "refs": {
@@ -733,6 +743,11 @@
     },
     "InvalidRequestException": {
       "base": "<p>Indicates that something is wrong with the input to the request. For example, a parameter is of the wrong type.</p>",
+      "refs": {
+      }
+    },
+    "InvalidResourceStateException": {
+      "base": "<p>AWS Backup is already performing an action on this recovery point. It can't perform the action you requested until the first action finishes. Try again later.</p>",
       "refs": {
       }
     },
@@ -1027,7 +1042,7 @@
       "refs": {
         "AdvancedBackupSetting$ResourceType": "<p>Specifies an object containing resource type and backup options. The only supported resource type is Amazon EC2 instances with Windows VSS. For an CloudFormation example, see the <a href=\"https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.html\">sample CloudFormation template to enable Windows VSS</a> in the <i>AWS Backup User Guide</i>.</p> <p>Valid values: <code>EC2</code>.</p>",
         "BackupJob$ResourceType": "<p>The type of AWS resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database. For VSS Windows backups, the only supported resource type is Amazon EC2.</p>",
-        "CopyJob$ResourceType": "<p>The type of AWS resource to be copied; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database. </p>",
+        "CopyJob$ResourceType": "<p>The type of AWS resource to be copied; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "DescribeBackupJobOutput$ResourceType": "<p>The type of AWS resource to be backed up; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
         "DescribeProtectedResourceOutput$ResourceType": "<p>The type of AWS resource saved as a recovery point; for example, an EBS volume or an Amazon RDS database.</p>",
         "DescribeRecoveryPointOutput$ResourceType": "<p>The type of AWS resource to save as a recovery point; for example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.</p>",
@@ -1161,7 +1176,7 @@
         "CreateBackupVaultInput$BackupVaultTags": "<p>Metadata that you can assign to help organize the resources that you create. Each tag is a key-value pair.</p>",
         "ListTagsOutput$Tags": "<p>To help organize your resources, you can assign your own metadata to the resources you create. Each tag is a key-value pair.</p>",
         "StartBackupJobInput$RecoveryPointTags": "<p>To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair.</p>",
-        "TagResourceInput$Tags": "<p>Key-value pairs that are used to help organize your resources. You can assign your own metadata to the resources you create. </p>"
+        "TagResourceInput$Tags": "<p>Key-value pairs that are used to help organize your resources. You can assign your own metadata to the resources you create.</p>"
       }
     },
     "UntagResourceInput": {
@@ -1301,6 +1316,10 @@
         "InvalidRequestException$Message": null,
         "InvalidRequestException$Type": "<p/>",
         "InvalidRequestException$Context": "<p/>",
+        "InvalidResourceStateException$Code": null,
+        "InvalidResourceStateException$Message": null,
+        "InvalidResourceStateException$Type": "<p/>",
+        "InvalidResourceStateException$Context": "<p/>",
         "LimitExceededException$Code": null,
         "LimitExceededException$Message": null,
         "LimitExceededException$Type": "<p/>",

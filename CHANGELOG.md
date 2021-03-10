@@ -1,3 +1,14 @@
+Release v1.37.28 (2021-03-10)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API, documentation, and paginators
+* `service/backup`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Adding ID element to the CORSRule schema
+* `service/ssm`: Updates service API and documentation
+  * Systems Manager support for tagging OpsMetadata.
+
 Release v1.37.27 (2021-03-09)
 ===
 

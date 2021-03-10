@@ -106,6 +106,104 @@ func (c *AccessAnalyzer) ApplyArchiveRuleWithContext(ctx aws.Context, input *App
 	return out, req.Send()
 }
 
+const opCreateAccessPreview = "CreateAccessPreview"
+
+// CreateAccessPreviewRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessPreview operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessPreview for more information on using the CreateAccessPreview
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAccessPreviewRequest method.
+//    req, resp := client.CreateAccessPreviewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CreateAccessPreview
+func (c *AccessAnalyzer) CreateAccessPreviewRequest(input *CreateAccessPreviewInput) (req *request.Request, output *CreateAccessPreviewOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessPreview,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/access-preview",
+	}
+
+	if input == nil {
+		input = &CreateAccessPreviewInput{}
+	}
+
+	output = &CreateAccessPreviewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAccessPreview API operation for Access Analyzer.
+//
+// Creates an access preview that allows you to preview Access Analyzer findings
+// for your resource before deploying resource permissions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation CreateAccessPreview for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConflictException
+//   A conflict exception error.
+//
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ServiceQuotaExceededException
+//   Service quote met error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CreateAccessPreview
+func (c *AccessAnalyzer) CreateAccessPreview(input *CreateAccessPreviewInput) (*CreateAccessPreviewOutput, error) {
+	req, out := c.CreateAccessPreviewRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessPreviewWithContext is the same as CreateAccessPreview with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessPreview for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) CreateAccessPreviewWithContext(ctx aws.Context, input *CreateAccessPreviewInput, opts ...request.Option) (*CreateAccessPreviewOutput, error) {
+	req, out := c.CreateAccessPreviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAnalyzer = "CreateAnalyzer"
 
 // CreateAnalyzerRequest generates a "aws/request.Request" representing the
@@ -487,6 +585,97 @@ func (c *AccessAnalyzer) DeleteArchiveRuleWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+const opGetAccessPreview = "GetAccessPreview"
+
+// GetAccessPreviewRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPreview operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPreview for more information on using the GetAccessPreview
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPreviewRequest method.
+//    req, resp := client.GetAccessPreviewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetAccessPreview
+func (c *AccessAnalyzer) GetAccessPreviewRequest(input *GetAccessPreviewInput) (req *request.Request, output *GetAccessPreviewOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPreview,
+		HTTPMethod: "GET",
+		HTTPPath:   "/access-preview/{accessPreviewId}",
+	}
+
+	if input == nil {
+		input = &GetAccessPreviewInput{}
+	}
+
+	output = &GetAccessPreviewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAccessPreview API operation for Access Analyzer.
+//
+// Retrieves information about an access preview for the specified analyzer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation GetAccessPreview for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetAccessPreview
+func (c *AccessAnalyzer) GetAccessPreview(input *GetAccessPreviewInput) (*GetAccessPreviewOutput, error) {
+	req, out := c.GetAccessPreviewRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPreviewWithContext is the same as GetAccessPreview with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPreview for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) GetAccessPreviewWithContext(ctx aws.Context, input *GetAccessPreviewInput, opts ...request.Option) (*GetAccessPreviewOutput, error) {
+	req, out := c.GetAccessPreviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAnalyzedResource = "GetAnalyzedResource"
 
 // GetAnalyzedResourceRequest generates a "aws/request.Request" representing the
@@ -853,6 +1042,308 @@ func (c *AccessAnalyzer) GetFindingWithContext(ctx aws.Context, input *GetFindin
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAccessPreviewFindings = "ListAccessPreviewFindings"
+
+// ListAccessPreviewFindingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessPreviewFindings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessPreviewFindings for more information on using the ListAccessPreviewFindings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAccessPreviewFindingsRequest method.
+//    req, resp := client.ListAccessPreviewFindingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListAccessPreviewFindings
+func (c *AccessAnalyzer) ListAccessPreviewFindingsRequest(input *ListAccessPreviewFindingsInput) (req *request.Request, output *ListAccessPreviewFindingsOutput) {
+	op := &request.Operation{
+		Name:       opListAccessPreviewFindings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/access-preview/{accessPreviewId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessPreviewFindingsInput{}
+	}
+
+	output = &ListAccessPreviewFindingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAccessPreviewFindings API operation for Access Analyzer.
+//
+// Retrieves a list of access preview findings generated by the specified access
+// preview.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation ListAccessPreviewFindings for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConflictException
+//   A conflict exception error.
+//
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListAccessPreviewFindings
+func (c *AccessAnalyzer) ListAccessPreviewFindings(input *ListAccessPreviewFindingsInput) (*ListAccessPreviewFindingsOutput, error) {
+	req, out := c.ListAccessPreviewFindingsRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessPreviewFindingsWithContext is the same as ListAccessPreviewFindings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessPreviewFindings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ListAccessPreviewFindingsWithContext(ctx aws.Context, input *ListAccessPreviewFindingsInput, opts ...request.Option) (*ListAccessPreviewFindingsOutput, error) {
+	req, out := c.ListAccessPreviewFindingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessPreviewFindingsPages iterates over the pages of a ListAccessPreviewFindings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessPreviewFindings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAccessPreviewFindings operation.
+//    pageNum := 0
+//    err := client.ListAccessPreviewFindingsPages(params,
+//        func(page *accessanalyzer.ListAccessPreviewFindingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AccessAnalyzer) ListAccessPreviewFindingsPages(input *ListAccessPreviewFindingsInput, fn func(*ListAccessPreviewFindingsOutput, bool) bool) error {
+	return c.ListAccessPreviewFindingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessPreviewFindingsPagesWithContext same as ListAccessPreviewFindingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ListAccessPreviewFindingsPagesWithContext(ctx aws.Context, input *ListAccessPreviewFindingsInput, fn func(*ListAccessPreviewFindingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessPreviewFindingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessPreviewFindingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessPreviewFindingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAccessPreviews = "ListAccessPreviews"
+
+// ListAccessPreviewsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessPreviews operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessPreviews for more information on using the ListAccessPreviews
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAccessPreviewsRequest method.
+//    req, resp := client.ListAccessPreviewsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListAccessPreviews
+func (c *AccessAnalyzer) ListAccessPreviewsRequest(input *ListAccessPreviewsInput) (req *request.Request, output *ListAccessPreviewsOutput) {
+	op := &request.Operation{
+		Name:       opListAccessPreviews,
+		HTTPMethod: "GET",
+		HTTPPath:   "/access-preview",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessPreviewsInput{}
+	}
+
+	output = &ListAccessPreviewsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAccessPreviews API operation for Access Analyzer.
+//
+// Retrieves a list of access previews for the specified analyzer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation ListAccessPreviews for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListAccessPreviews
+func (c *AccessAnalyzer) ListAccessPreviews(input *ListAccessPreviewsInput) (*ListAccessPreviewsOutput, error) {
+	req, out := c.ListAccessPreviewsRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessPreviewsWithContext is the same as ListAccessPreviews with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessPreviews for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ListAccessPreviewsWithContext(ctx aws.Context, input *ListAccessPreviewsInput, opts ...request.Option) (*ListAccessPreviewsOutput, error) {
+	req, out := c.ListAccessPreviewsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessPreviewsPages iterates over the pages of a ListAccessPreviews operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessPreviews method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAccessPreviews operation.
+//    pageNum := 0
+//    err := client.ListAccessPreviewsPages(params,
+//        func(page *accessanalyzer.ListAccessPreviewsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AccessAnalyzer) ListAccessPreviewsPages(input *ListAccessPreviewsInput, fn func(*ListAccessPreviewsOutput, bool) bool) error {
+	return c.ListAccessPreviewsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessPreviewsPagesWithContext same as ListAccessPreviewsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ListAccessPreviewsPagesWithContext(ctx aws.Context, input *ListAccessPreviewsInput, fn func(*ListAccessPreviewsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessPreviewsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessPreviewsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessPreviewsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListAnalyzedResources = "ListAnalyzedResources"
@@ -1349,8 +1840,8 @@ func (c *AccessAnalyzer) ListFindingsRequest(input *ListFindingsInput) (req *req
 //
 // Retrieves a list of findings generated by the specified analyzer.
 //
-// To learn about filter keys that you can use to create an archive rule, see
-// Access Analyzer filter keys (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html)
+// To learn about filter keys that you can use to retrieve a list of findings,
+// see Access Analyzer filter keys (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html)
 // in the IAM User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2057,6 +2548,425 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains information about an access preview.
+type AccessPreview struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the analyzer used to generate the access preview.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
+
+	// A map of resource ARNs for the proposed resource configuration.
+	//
+	// Configurations is a required field
+	Configurations map[string]*Configuration `locationName:"configurations" type:"map" required:"true"`
+
+	// The time at which the access preview was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The unique ID for the access preview.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The status of the access preview.
+	//
+	//    * Creating - The access preview creation is in progress.
+	//
+	//    * Completed - The access preview is complete. You can preview findings
+	//    for external access to the resource.
+	//
+	//    * Failed - The access preview creation has failed.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AccessPreviewStatus"`
+
+	// Provides more details about the current status of the access preview.
+	//
+	// For example, if the creation of the access preview fails, a Failed status
+	// is returned. This failure can be due to an internal issue with the analysis
+	// or due to an invalid resource configuration.
+	StatusReason *AccessPreviewStatusReason `locationName:"statusReason" type:"structure"`
+}
+
+// String returns the string representation
+func (s AccessPreview) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessPreview) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *AccessPreview) SetAnalyzerArn(v string) *AccessPreview {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *AccessPreview) SetConfigurations(v map[string]*Configuration) *AccessPreview {
+	s.Configurations = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AccessPreview) SetCreatedAt(v time.Time) *AccessPreview {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AccessPreview) SetId(v string) *AccessPreview {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AccessPreview) SetStatus(v string) *AccessPreview {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *AccessPreview) SetStatusReason(v *AccessPreviewStatusReason) *AccessPreview {
+	s.StatusReason = v
+	return s
+}
+
+// An access preview finding generated by the access preview.
+type AccessPreviewFinding struct {
+	_ struct{} `type:"structure"`
+
+	// The action in the analyzed policy statement that an external principal has
+	// permission to perform.
+	Action []*string `locationName:"action" type:"list"`
+
+	// Provides context on how the access preview finding compares to existing access
+	// identified in Access Analyzer.
+	//
+	//    * New - The finding is for newly-introduced access.
+	//
+	//    * Unchanged - The preview finding is an existing finding that would remain
+	//    unchanged.
+	//
+	//    * Changed - The preview finding is an existing finding with a change in
+	//    status.
+	//
+	// For example, a Changed finding with preview status Resolved and existing
+	// status Active indicates the existing Active finding would become Resolved
+	// as a result of the proposed permissions change.
+	//
+	// ChangeType is a required field
+	ChangeType *string `locationName:"changeType" type:"string" required:"true" enum:"FindingChangeType"`
+
+	// The condition in the analyzed policy statement that resulted in a finding.
+	Condition map[string]*string `locationName:"condition" type:"map"`
+
+	// The time at which the access preview finding was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// An error.
+	Error *string `locationName:"error" type:"string"`
+
+	// The existing ID of the finding in Access Analyzer, provided only for existing
+	// findings.
+	ExistingFindingId *string `locationName:"existingFindingId" type:"string"`
+
+	// The existing status of the finding, provided only for existing findings.
+	ExistingFindingStatus *string `locationName:"existingFindingStatus" type:"string" enum:"FindingStatus"`
+
+	// The ID of the access preview finding. This ID uniquely identifies the element
+	// in the list of access preview findings and is not related to the finding
+	// ID in Access Analyzer.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// Indicates whether the policy that generated the finding allows public access
+	// to the resource.
+	IsPublic *bool `locationName:"isPublic" type:"boolean"`
+
+	// The external principal that has access to a resource within the zone of trust.
+	Principal map[string]*string `locationName:"principal" type:"map"`
+
+	// The resource that an external principal has access to. This is the resource
+	// associated with the access preview.
+	Resource *string `locationName:"resource" type:"string"`
+
+	// The AWS account ID that owns the resource. For most AWS resources, the owning
+	// account is the account in which the resource was created.
+	//
+	// ResourceOwnerAccount is a required field
+	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string" required:"true"`
+
+	// The type of the resource that can be accessed in the finding.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	// The sources of the finding. This indicates how the access that generated
+	// the finding is granted. It is populated for Amazon S3 bucket findings.
+	Sources []*FindingSource `locationName:"sources" type:"list"`
+
+	// The preview status of the finding. This is what the status of the finding
+	// would be after permissions deployment. For example, a Changed finding with
+	// preview status Resolved and existing status Active indicates the existing
+	// Active finding would become Resolved as a result of the proposed permissions
+	// change.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"FindingStatus"`
+}
+
+// String returns the string representation
+func (s AccessPreviewFinding) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessPreviewFinding) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *AccessPreviewFinding) SetAction(v []*string) *AccessPreviewFinding {
+	s.Action = v
+	return s
+}
+
+// SetChangeType sets the ChangeType field's value.
+func (s *AccessPreviewFinding) SetChangeType(v string) *AccessPreviewFinding {
+	s.ChangeType = &v
+	return s
+}
+
+// SetCondition sets the Condition field's value.
+func (s *AccessPreviewFinding) SetCondition(v map[string]*string) *AccessPreviewFinding {
+	s.Condition = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AccessPreviewFinding) SetCreatedAt(v time.Time) *AccessPreviewFinding {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *AccessPreviewFinding) SetError(v string) *AccessPreviewFinding {
+	s.Error = &v
+	return s
+}
+
+// SetExistingFindingId sets the ExistingFindingId field's value.
+func (s *AccessPreviewFinding) SetExistingFindingId(v string) *AccessPreviewFinding {
+	s.ExistingFindingId = &v
+	return s
+}
+
+// SetExistingFindingStatus sets the ExistingFindingStatus field's value.
+func (s *AccessPreviewFinding) SetExistingFindingStatus(v string) *AccessPreviewFinding {
+	s.ExistingFindingStatus = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AccessPreviewFinding) SetId(v string) *AccessPreviewFinding {
+	s.Id = &v
+	return s
+}
+
+// SetIsPublic sets the IsPublic field's value.
+func (s *AccessPreviewFinding) SetIsPublic(v bool) *AccessPreviewFinding {
+	s.IsPublic = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *AccessPreviewFinding) SetPrincipal(v map[string]*string) *AccessPreviewFinding {
+	s.Principal = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *AccessPreviewFinding) SetResource(v string) *AccessPreviewFinding {
+	s.Resource = &v
+	return s
+}
+
+// SetResourceOwnerAccount sets the ResourceOwnerAccount field's value.
+func (s *AccessPreviewFinding) SetResourceOwnerAccount(v string) *AccessPreviewFinding {
+	s.ResourceOwnerAccount = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AccessPreviewFinding) SetResourceType(v string) *AccessPreviewFinding {
+	s.ResourceType = &v
+	return s
+}
+
+// SetSources sets the Sources field's value.
+func (s *AccessPreviewFinding) SetSources(v []*FindingSource) *AccessPreviewFinding {
+	s.Sources = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AccessPreviewFinding) SetStatus(v string) *AccessPreviewFinding {
+	s.Status = &v
+	return s
+}
+
+// Provides more details about the current status of the access preview. For
+// example, if the creation of the access preview fails, a Failed status is
+// returned. This failure can be due to an internal issue with the analysis
+// or due to an invalid proposed resource configuration.
+type AccessPreviewStatusReason struct {
+	_ struct{} `type:"structure"`
+
+	// The reason code for the current status of the access preview.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true" enum:"AccessPreviewStatusReasonCode"`
+}
+
+// String returns the string representation
+func (s AccessPreviewStatusReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessPreviewStatusReason) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AccessPreviewStatusReason) SetCode(v string) *AccessPreviewStatusReason {
+	s.Code = &v
+	return s
+}
+
+// Contains a summary of information about an access preview.
+type AccessPreviewSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the analyzer used to generate the access preview.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
+
+	// The time at which the access preview was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The unique ID for the access preview.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The status of the access preview.
+	//
+	//    * Creating - The access preview creation is in progress.
+	//
+	//    * Completed - The access preview is complete and previews the findings
+	//    for external access to the resource.
+	//
+	//    * Failed - The access preview creation has failed.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"AccessPreviewStatus"`
+
+	// Provides more details about the current status of the access preview. For
+	// example, if the creation of the access preview fails, a Failed status is
+	// returned. This failure can be due to an internal issue with the analysis
+	// or due to an invalid proposed resource configuration.
+	StatusReason *AccessPreviewStatusReason `locationName:"statusReason" type:"structure"`
+}
+
+// String returns the string representation
+func (s AccessPreviewSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessPreviewSummary) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *AccessPreviewSummary) SetAnalyzerArn(v string) *AccessPreviewSummary {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AccessPreviewSummary) SetCreatedAt(v time.Time) *AccessPreviewSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AccessPreviewSummary) SetId(v string) *AccessPreviewSummary {
+	s.Id = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AccessPreviewSummary) SetStatus(v string) *AccessPreviewSummary {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *AccessPreviewSummary) SetStatusReason(v *AccessPreviewStatusReason) *AccessPreviewSummary {
+	s.StatusReason = v
+	return s
+}
+
+// You specify each grantee as a type-value pair using one of these types. You
+// can specify only one type of grantee. For more information, see PutBucketAcl
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketAcl.html).
+type AclGrantee struct {
+	_ struct{} `type:"structure"`
+
+	// The value specified is the canonical user ID of an AWS account.
+	Id *string `locationName:"id" type:"string"`
+
+	// Used for granting permissions to a predefined group.
+	Uri *string `locationName:"uri" type:"string"`
+}
+
+// String returns the string representation
+func (s AclGrantee) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AclGrantee) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *AclGrantee) SetId(v string) *AclGrantee {
+	s.Id = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *AclGrantee) SetUri(v string) *AclGrantee {
+	s.Uri = &v
+	return s
+}
+
 // Contains details about the analyzed resource.
 type AnalyzedResource struct {
 	_ struct{} `type:"structure"`
@@ -2272,7 +3182,7 @@ type AnalyzerSummary struct {
 	Status *string `locationName:"status" type:"string" required:"true" enum:"AnalyzerStatus"`
 
 	// The statusReason provides more details about the current status of the analyzer.
-	// For example, if the creation for the analyzer fails, a Failed status is displayed.
+	// For example, if the creation for the analyzer fails, a Failed status is returned.
 	// For an analyzer with organization as the type, this failure can be due to
 	// an issue with creating the service-linked roles required in the member accounts
 	// of the AWS organization.
@@ -2490,6 +3400,88 @@ func (s *ArchiveRuleSummary) SetUpdatedAt(v time.Time) *ArchiveRuleSummary {
 	return s
 }
 
+// Access control configuration structures for your resource. You specify the
+// configuration as a type-value pair. You can specify only one type of access
+// control configuration.
+type Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The access control configuration is for an IAM role.
+	IamRole *IamRoleConfiguration `locationName:"iamRole" type:"structure"`
+
+	// The access control configuration is for a KMS key.
+	KmsKey *KmsKeyConfiguration `locationName:"kmsKey" type:"structure"`
+
+	// The access control configuration is for an Amazon S3 Bucket.
+	S3Bucket *S3BucketConfiguration `locationName:"s3Bucket" type:"structure"`
+
+	// The access control configuration is for a Secrets Manager secret.
+	SecretsManagerSecret *SecretsManagerSecretConfiguration `locationName:"secretsManagerSecret" type:"structure"`
+
+	// The access control configuration is for an SQS queue.
+	SqsQueue *SqsQueueConfiguration `locationName:"sqsQueue" type:"structure"`
+}
+
+// String returns the string representation
+func (s Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Configuration"}
+	if s.KmsKey != nil {
+		if err := s.KmsKey.Validate(); err != nil {
+			invalidParams.AddNested("KmsKey", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Bucket != nil {
+		if err := s.S3Bucket.Validate(); err != nil {
+			invalidParams.AddNested("S3Bucket", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIamRole sets the IamRole field's value.
+func (s *Configuration) SetIamRole(v *IamRoleConfiguration) *Configuration {
+	s.IamRole = v
+	return s
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *Configuration) SetKmsKey(v *KmsKeyConfiguration) *Configuration {
+	s.KmsKey = v
+	return s
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *Configuration) SetS3Bucket(v *S3BucketConfiguration) *Configuration {
+	s.S3Bucket = v
+	return s
+}
+
+// SetSecretsManagerSecret sets the SecretsManagerSecret field's value.
+func (s *Configuration) SetSecretsManagerSecret(v *SecretsManagerSecretConfiguration) *Configuration {
+	s.SecretsManagerSecret = v
+	return s
+}
+
+// SetSqsQueue sets the SqsQueue field's value.
+func (s *Configuration) SetSqsQueue(v *SqsQueueConfiguration) *Configuration {
+	s.SqsQueue = v
+	return s
+}
+
 // A conflict exception error.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -2554,6 +3546,107 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateAccessPreviewInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the account analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// used to generate the access preview. You can only create an access preview
+	// for analyzers with an Account type and Active status.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
+
+	// A client token.
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// Access control configuration for your resource that is used to generate the
+	// access preview. The access preview includes findings for external access
+	// allowed to the resource with the proposed access control configuration. The
+	// configuration must contain exactly one element.
+	//
+	// Configurations is a required field
+	Configurations map[string]*Configuration `locationName:"configurations" type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAccessPreviewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessPreviewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessPreviewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessPreviewInput"}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+	if s.Configurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configurations"))
+	}
+	if s.Configurations != nil {
+		for i, v := range s.Configurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Configurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *CreateAccessPreviewInput) SetAnalyzerArn(v string) *CreateAccessPreviewInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateAccessPreviewInput) SetClientToken(v string) *CreateAccessPreviewInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *CreateAccessPreviewInput) SetConfigurations(v map[string]*Configuration) *CreateAccessPreviewInput {
+	s.Configurations = v
+	return s
+}
+
+type CreateAccessPreviewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID for the access preview.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAccessPreviewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessPreviewOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *CreateAccessPreviewOutput) SetId(v string) *CreateAccessPreviewOutput {
+	s.Id = &v
+	return s
 }
 
 // Creates an analyzer.
@@ -3045,7 +4138,7 @@ type Finding struct {
 	// ResourceOwnerAccount is a required field
 	ResourceOwnerAccount *string `locationName:"resourceOwnerAccount" type:"string" required:"true"`
 
-	// The type of the resource reported in the finding.
+	// The type of the resource identified in the finding.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
@@ -3382,11 +4475,93 @@ func (s *FindingSummary) SetUpdatedAt(v time.Time) *FindingSummary {
 	return s
 }
 
+type GetAccessPreviewInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID for the access preview.
+	//
+	// AccessPreviewId is a required field
+	AccessPreviewId *string `location:"uri" locationName:"accessPreviewId" type:"string" required:"true"`
+
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// used to generate the access preview.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `location:"querystring" locationName:"analyzerArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPreviewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPreviewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPreviewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPreviewInput"}
+	if s.AccessPreviewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessPreviewId"))
+	}
+	if s.AccessPreviewId != nil && len(*s.AccessPreviewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessPreviewId", 1))
+	}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessPreviewId sets the AccessPreviewId field's value.
+func (s *GetAccessPreviewInput) SetAccessPreviewId(v string) *GetAccessPreviewInput {
+	s.AccessPreviewId = &v
+	return s
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *GetAccessPreviewInput) SetAnalyzerArn(v string) *GetAccessPreviewInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+type GetAccessPreviewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains information about the access preview.
+	//
+	// AccessPreview is a required field
+	AccessPreview *AccessPreview `locationName:"accessPreview" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPreviewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPreviewOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPreview sets the AccessPreview field's value.
+func (s *GetAccessPreviewOutput) SetAccessPreview(v *AccessPreview) *GetAccessPreviewOutput {
+	s.AccessPreview = v
+	return s
+}
+
 // Retrieves an analyzed resource.
 type GetAnalyzedResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the analyzer to retrieve information from.
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// to retrieve information from.
 	//
 	// AnalyzerArn is a required field
 	AnalyzerArn *string `location:"querystring" locationName:"analyzerArn" type:"string" required:"true"`
@@ -3439,7 +4614,7 @@ func (s *GetAnalyzedResourceInput) SetResourceArn(v string) *GetAnalyzedResource
 type GetAnalyzedResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An AnalyedResource object that contains information that Access Analyzer
+	// An AnalyzedResource object that contains information that Access Analyzer
 	// found when it analyzed the resource.
 	Resource *AnalyzedResource `locationName:"resource" type:"structure"`
 }
@@ -3617,7 +4792,8 @@ func (s *GetArchiveRuleOutput) SetArchiveRule(v *ArchiveRuleSummary) *GetArchive
 type GetFindingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the analyzer that generated the finding.
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// that generated the finding.
 	//
 	// AnalyzerArn is a required field
 	AnalyzerArn *string `location:"querystring" locationName:"analyzerArn" type:"string" required:"true"`
@@ -3690,6 +4866,37 @@ func (s GetFindingOutput) GoString() string {
 // SetFinding sets the Finding field's value.
 func (s *GetFindingOutput) SetFinding(v *Finding) *GetFindingOutput {
 	s.Finding = v
+	return s
+}
+
+// The proposed access control configuration for an IAM role. You can propose
+// a configuration for a new IAM role or an existing IAM role that you own by
+// specifying the trust policy. If the configuration is for a new IAM role,
+// you must specify the trust policy. If the configuration is for an existing
+// IAM role that you own and you do not propose the trust policy, the access
+// preview uses the existing trust policy for the role. The proposed trust policy
+// cannot be an empty string. For more information about role trust policy limits,
+// see IAM and STS quotas (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html).
+type IamRoleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The proposed trust policy for the IAM role.
+	TrustPolicy *string `locationName:"trustPolicy" type:"string"`
+}
+
+// String returns the string representation
+func (s IamRoleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IamRoleConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTrustPolicy sets the TrustPolicy field's value.
+func (s *IamRoleConfiguration) SetTrustPolicy(v string) *IamRoleConfiguration {
+	s.TrustPolicy = &v
 	return s
 }
 
@@ -3819,11 +5026,447 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// This configuration sets the Amazon S3 access point network origin to Internet.
+type InternetConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s InternetConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InternetConfiguration) GoString() string {
+	return s.String()
+}
+
+// A proposed grant configuration for a KMS key. For more information, see CreateGrant
+// (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateGrant.html).
+type KmsGrantConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Use this structure to propose allowing cryptographic operations (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations)
+	// in the grant only when the operation request includes the specified encryption
+	// context (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context).
+	Constraints *KmsGrantConstraints `locationName:"constraints" type:"structure"`
+
+	// The principal that is given permission to perform the operations that the
+	// grant permits.
+	//
+	// GranteePrincipal is a required field
+	GranteePrincipal *string `locationName:"granteePrincipal" type:"string" required:"true"`
+
+	// The AWS account under which the grant was issued. The account is used to
+	// propose KMS grants issued by accounts other than the owner of the key.
+	//
+	// IssuingAccount is a required field
+	IssuingAccount *string `locationName:"issuingAccount" type:"string" required:"true"`
+
+	// A list of operations that the grant permits.
+	//
+	// Operations is a required field
+	Operations []*string `locationName:"operations" type:"list" required:"true"`
+
+	// The principal that is given permission to retire the grant by using RetireGrant
+	// (https://docs.aws.amazon.com/kms/latest/APIReference/API_RetireGrant.html)
+	// operation.
+	RetiringPrincipal *string `locationName:"retiringPrincipal" type:"string"`
+}
+
+// String returns the string representation
+func (s KmsGrantConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KmsGrantConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KmsGrantConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KmsGrantConfiguration"}
+	if s.GranteePrincipal == nil {
+		invalidParams.Add(request.NewErrParamRequired("GranteePrincipal"))
+	}
+	if s.IssuingAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("IssuingAccount"))
+	}
+	if s.Operations == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operations"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *KmsGrantConfiguration) SetConstraints(v *KmsGrantConstraints) *KmsGrantConfiguration {
+	s.Constraints = v
+	return s
+}
+
+// SetGranteePrincipal sets the GranteePrincipal field's value.
+func (s *KmsGrantConfiguration) SetGranteePrincipal(v string) *KmsGrantConfiguration {
+	s.GranteePrincipal = &v
+	return s
+}
+
+// SetIssuingAccount sets the IssuingAccount field's value.
+func (s *KmsGrantConfiguration) SetIssuingAccount(v string) *KmsGrantConfiguration {
+	s.IssuingAccount = &v
+	return s
+}
+
+// SetOperations sets the Operations field's value.
+func (s *KmsGrantConfiguration) SetOperations(v []*string) *KmsGrantConfiguration {
+	s.Operations = v
+	return s
+}
+
+// SetRetiringPrincipal sets the RetiringPrincipal field's value.
+func (s *KmsGrantConfiguration) SetRetiringPrincipal(v string) *KmsGrantConfiguration {
+	s.RetiringPrincipal = &v
+	return s
+}
+
+// Use this structure to propose allowing cryptographic operations (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations)
+// in the grant only when the operation request includes the specified encryption
+// context (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context).
+// You can specify only one type of encryption context. An empty map is treated
+// as not specified. For more information, see GrantConstraints (https://docs.aws.amazon.com/kms/latest/APIReference/API_GrantConstraints.html).
+type KmsGrantConstraints struct {
+	_ struct{} `type:"structure"`
+
+	// A list of key-value pairs that must match the encryption context in the cryptographic
+	// operation (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations)
+	// request. The grant allows the operation only when the encryption context
+	// in the request is the same as the encryption context specified in this constraint.
+	EncryptionContextEquals map[string]*string `locationName:"encryptionContextEquals" type:"map"`
+
+	// A list of key-value pairs that must be included in the encryption context
+	// of the cryptographic operation (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations)
+	// request. The grant allows the cryptographic operation only when the encryption
+	// context in the request includes the key-value pairs specified in this constraint,
+	// although it can include additional key-value pairs.
+	EncryptionContextSubset map[string]*string `locationName:"encryptionContextSubset" type:"map"`
+}
+
+// String returns the string representation
+func (s KmsGrantConstraints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KmsGrantConstraints) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionContextEquals sets the EncryptionContextEquals field's value.
+func (s *KmsGrantConstraints) SetEncryptionContextEquals(v map[string]*string) *KmsGrantConstraints {
+	s.EncryptionContextEquals = v
+	return s
+}
+
+// SetEncryptionContextSubset sets the EncryptionContextSubset field's value.
+func (s *KmsGrantConstraints) SetEncryptionContextSubset(v map[string]*string) *KmsGrantConstraints {
+	s.EncryptionContextSubset = v
+	return s
+}
+
+// Proposed access control configuration for a KMS key. You can propose a configuration
+// for a new KMS key or an existing KMS key that you own by specifying the key
+// policy and KMS grant configuration. If the configuration is for an existing
+// key and you do not specify the key policy, the access preview uses the existing
+// policy for the key. If the access preview is for a new resource and you do
+// not specify the key policy, then the access preview uses the default key
+// policy. The proposed key policy cannot be an empty string. For more information,
+// see Default key policy (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default).
+// For more information about key policy limits, see Resource quotas (https://docs.aws.amazon.com/kms/latest/developerguide/resource-limits.html).
+type KmsKeyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of proposed grant configurations for the KMS key. If the proposed
+	// grant configuration is for an existing key, the access preview uses the proposed
+	// list of grant configurations in place of the existing grants. Otherwise,
+	// the access preview uses the existing grants for the key.
+	Grants []*KmsGrantConfiguration `locationName:"grants" type:"list"`
+
+	// Resource policy configuration for the KMS key. The only valid value for the
+	// name of the key policy is default. For more information, see Default key
+	// policy (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default).
+	KeyPolicies map[string]*string `locationName:"keyPolicies" type:"map"`
+}
+
+// String returns the string representation
+func (s KmsKeyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KmsKeyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KmsKeyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KmsKeyConfiguration"}
+	if s.Grants != nil {
+		for i, v := range s.Grants {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Grants", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGrants sets the Grants field's value.
+func (s *KmsKeyConfiguration) SetGrants(v []*KmsGrantConfiguration) *KmsKeyConfiguration {
+	s.Grants = v
+	return s
+}
+
+// SetKeyPolicies sets the KeyPolicies field's value.
+func (s *KmsKeyConfiguration) SetKeyPolicies(v map[string]*string) *KmsKeyConfiguration {
+	s.KeyPolicies = v
+	return s
+}
+
+type ListAccessPreviewFindingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID for the access preview.
+	//
+	// AccessPreviewId is a required field
+	AccessPreviewId *string `location:"uri" locationName:"accessPreviewId" type:"string" required:"true"`
+
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// used to generate the access.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
+
+	// Criteria to filter the returned findings.
+	Filter map[string]*Criterion `locationName:"filter" type:"map"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPreviewFindingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPreviewFindingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessPreviewFindingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessPreviewFindingsInput"}
+	if s.AccessPreviewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessPreviewId"))
+	}
+	if s.AccessPreviewId != nil && len(*s.AccessPreviewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccessPreviewId", 1))
+	}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+	if s.Filter != nil {
+		for i, v := range s.Filter {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filter", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessPreviewId sets the AccessPreviewId field's value.
+func (s *ListAccessPreviewFindingsInput) SetAccessPreviewId(v string) *ListAccessPreviewFindingsInput {
+	s.AccessPreviewId = &v
+	return s
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *ListAccessPreviewFindingsInput) SetAnalyzerArn(v string) *ListAccessPreviewFindingsInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListAccessPreviewFindingsInput) SetFilter(v map[string]*Criterion) *ListAccessPreviewFindingsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessPreviewFindingsInput) SetMaxResults(v int64) *ListAccessPreviewFindingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPreviewFindingsInput) SetNextToken(v string) *ListAccessPreviewFindingsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAccessPreviewFindingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of access preview findings that match the specified filter criteria.
+	//
+	// Findings is a required field
+	Findings []*AccessPreviewFinding `locationName:"findings" type:"list" required:"true"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPreviewFindingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPreviewFindingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindings sets the Findings field's value.
+func (s *ListAccessPreviewFindingsOutput) SetFindings(v []*AccessPreviewFinding) *ListAccessPreviewFindingsOutput {
+	s.Findings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPreviewFindingsOutput) SetNextToken(v string) *ListAccessPreviewFindingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAccessPreviewsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// used to generate the access preview.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `location:"querystring" locationName:"analyzerArn" type:"string" required:"true"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPreviewsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPreviewsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessPreviewsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessPreviewsInput"}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *ListAccessPreviewsInput) SetAnalyzerArn(v string) *ListAccessPreviewsInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessPreviewsInput) SetMaxResults(v int64) *ListAccessPreviewsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPreviewsInput) SetNextToken(v string) *ListAccessPreviewsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAccessPreviewsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of access previews retrieved for the analyzer.
+	//
+	// AccessPreviews is a required field
+	AccessPreviews []*AccessPreviewSummary `locationName:"accessPreviews" type:"list" required:"true"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPreviewsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPreviewsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPreviews sets the AccessPreviews field's value.
+func (s *ListAccessPreviewsOutput) SetAccessPreviews(v []*AccessPreviewSummary) *ListAccessPreviewsOutput {
+	s.AccessPreviews = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPreviewsOutput) SetNextToken(v string) *ListAccessPreviewsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Retrieves a list of resources that have been analyzed.
 type ListAnalyzedResourcesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the analyzer to retrieve a list of analyzed resources from.
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// to retrieve a list of analyzed resources from.
 	//
 	// AnalyzerArn is a required field
 	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
@@ -4096,7 +5739,8 @@ func (s *ListArchiveRulesOutput) SetNextToken(v string) *ListArchiveRulesOutput 
 type ListFindingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the analyzer to retrieve findings from.
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// to retrieve findings from.
 	//
 	// AnalyzerArn is a required field
 	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
@@ -4279,6 +5923,60 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The proposed InternetConfiguration or VpcConfiguration to apply to the Amazon
+// S3 Access point. You can make the access point accessible from the internet,
+// or you can specify that all requests made through that access point must
+// originate from a specific virtual private cloud (VPC). You can specify only
+// one type of network configuration. For more information, see Creating access
+// points (https://docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html).
+type NetworkOriginConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the Amazon S3 access point with an Internet origin.
+	InternetConfiguration *InternetConfiguration `locationName:"internetConfiguration" type:"structure"`
+
+	// The proposed virtual private cloud (VPC) configuration for the Amazon S3
+	// access point. For more information, see VpcConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_VpcConfiguration.html).
+	VpcConfiguration *VpcConfiguration `locationName:"vpcConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkOriginConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkOriginConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NetworkOriginConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NetworkOriginConfiguration"}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInternetConfiguration sets the InternetConfiguration field's value.
+func (s *NetworkOriginConfiguration) SetInternetConfiguration(v *InternetConfiguration) *NetworkOriginConfiguration {
+	s.InternetConfiguration = v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *NetworkOriginConfiguration) SetVpcConfiguration(v *VpcConfiguration) *NetworkOriginConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -4343,6 +6041,343 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The configuration for an Amazon S3 access point for the bucket. You can propose
+// up to 10 access points per bucket. If the proposed Amazon S3 access point
+// configuration is for an existing bucket, the access preview uses the proposed
+// access point configuration in place of the existing access points. To propose
+// an access point without a policy, you can provide an empty string as the
+// access point policy. For more information, see Creating access points (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/creating-access-points.html).
+// For more information about access point policy limits, see Access points
+// restrictions and limitations (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points-restrictions-limitations.html).
+type S3AccessPointConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The access point policy.
+	AccessPointPolicy *string `locationName:"accessPointPolicy" type:"string"`
+
+	// The proposed Internet and VpcConfiguration to apply to this Amazon S3 access
+	// point. If the access preview is for a new resource and neither is specified,
+	// the access preview uses Internet for the network origin. If the access preview
+	// is for an existing resource and neither is specified, the access preview
+	// uses the exiting network origin.
+	NetworkOrigin *NetworkOriginConfiguration `locationName:"networkOrigin" type:"structure"`
+
+	// The proposed S3PublicAccessBlock configuration to apply to this Amazon S3
+	// Access Point.
+	PublicAccessBlock *S3PublicAccessBlockConfiguration `locationName:"publicAccessBlock" type:"structure"`
+}
+
+// String returns the string representation
+func (s S3AccessPointConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3AccessPointConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3AccessPointConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3AccessPointConfiguration"}
+	if s.NetworkOrigin != nil {
+		if err := s.NetworkOrigin.Validate(); err != nil {
+			invalidParams.AddNested("NetworkOrigin", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PublicAccessBlock != nil {
+		if err := s.PublicAccessBlock.Validate(); err != nil {
+			invalidParams.AddNested("PublicAccessBlock", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessPointPolicy sets the AccessPointPolicy field's value.
+func (s *S3AccessPointConfiguration) SetAccessPointPolicy(v string) *S3AccessPointConfiguration {
+	s.AccessPointPolicy = &v
+	return s
+}
+
+// SetNetworkOrigin sets the NetworkOrigin field's value.
+func (s *S3AccessPointConfiguration) SetNetworkOrigin(v *NetworkOriginConfiguration) *S3AccessPointConfiguration {
+	s.NetworkOrigin = v
+	return s
+}
+
+// SetPublicAccessBlock sets the PublicAccessBlock field's value.
+func (s *S3AccessPointConfiguration) SetPublicAccessBlock(v *S3PublicAccessBlockConfiguration) *S3AccessPointConfiguration {
+	s.PublicAccessBlock = v
+	return s
+}
+
+// A proposed access control list grant configuration for an Amazon S3 bucket.
+// For more information, see How to Specify an ACL (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#setting-acls).
+type S3BucketAclGrantConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The grantee to whom you’re assigning access rights.
+	//
+	// Grantee is a required field
+	Grantee *AclGrantee `locationName:"grantee" type:"structure" required:"true"`
+
+	// The permissions being granted.
+	//
+	// Permission is a required field
+	Permission *string `locationName:"permission" type:"string" required:"true" enum:"AclPermission"`
+}
+
+// String returns the string representation
+func (s S3BucketAclGrantConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3BucketAclGrantConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketAclGrantConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketAclGrantConfiguration"}
+	if s.Grantee == nil {
+		invalidParams.Add(request.NewErrParamRequired("Grantee"))
+	}
+	if s.Permission == nil {
+		invalidParams.Add(request.NewErrParamRequired("Permission"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *S3BucketAclGrantConfiguration) SetGrantee(v *AclGrantee) *S3BucketAclGrantConfiguration {
+	s.Grantee = v
+	return s
+}
+
+// SetPermission sets the Permission field's value.
+func (s *S3BucketAclGrantConfiguration) SetPermission(v string) *S3BucketAclGrantConfiguration {
+	s.Permission = &v
+	return s
+}
+
+// Proposed access control configuration for an Amazon S3 bucket. You can propose
+// a configuration for a new Amazon S3 bucket or an existing Amazon S3 bucket
+// that you own by specifying the Amazon S3 bucket policy, bucket ACLs, bucket
+// BPA settings, and Amazon S3 access points attached to the bucket. If the
+// configuration is for an existing Amazon S3 bucket and you do not specify
+// the Amazon S3 bucket policy, the access preview uses the existing policy
+// attached to the bucket. If the access preview is for a new resource and you
+// do not specify the Amazon S3 bucket policy, the access preview assumes a
+// bucket without a policy. To propose deletion of an existing bucket policy,
+// you can specify an empty string. For more information about bucket policy
+// limits, see Bucket Policy Examples (https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html).
+type S3BucketConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration of Amazon S3 access points for the bucket.
+	AccessPoints map[string]*S3AccessPointConfiguration `locationName:"accessPoints" type:"map"`
+
+	// The proposed list of ACL grants for the Amazon S3 bucket. You can propose
+	// up to 100 ACL grants per bucket. If the proposed grant configuration is for
+	// an existing bucket, the access preview uses the proposed list of grant configurations
+	// in place of the existing grants. Otherwise, the access preview uses the existing
+	// grants for the bucket.
+	BucketAclGrants []*S3BucketAclGrantConfiguration `locationName:"bucketAclGrants" type:"list"`
+
+	// The proposed bucket policy for the Amazon S3 bucket.
+	BucketPolicy *string `locationName:"bucketPolicy" type:"string"`
+
+	// The proposed block public access configuration for the Amazon S3 bucket.
+	BucketPublicAccessBlock *S3PublicAccessBlockConfiguration `locationName:"bucketPublicAccessBlock" type:"structure"`
+}
+
+// String returns the string representation
+func (s S3BucketConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3BucketConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketConfiguration"}
+	if s.AccessPoints != nil {
+		for i, v := range s.AccessPoints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AccessPoints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.BucketAclGrants != nil {
+		for i, v := range s.BucketAclGrants {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BucketAclGrants", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.BucketPublicAccessBlock != nil {
+		if err := s.BucketPublicAccessBlock.Validate(); err != nil {
+			invalidParams.AddNested("BucketPublicAccessBlock", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessPoints sets the AccessPoints field's value.
+func (s *S3BucketConfiguration) SetAccessPoints(v map[string]*S3AccessPointConfiguration) *S3BucketConfiguration {
+	s.AccessPoints = v
+	return s
+}
+
+// SetBucketAclGrants sets the BucketAclGrants field's value.
+func (s *S3BucketConfiguration) SetBucketAclGrants(v []*S3BucketAclGrantConfiguration) *S3BucketConfiguration {
+	s.BucketAclGrants = v
+	return s
+}
+
+// SetBucketPolicy sets the BucketPolicy field's value.
+func (s *S3BucketConfiguration) SetBucketPolicy(v string) *S3BucketConfiguration {
+	s.BucketPolicy = &v
+	return s
+}
+
+// SetBucketPublicAccessBlock sets the BucketPublicAccessBlock field's value.
+func (s *S3BucketConfiguration) SetBucketPublicAccessBlock(v *S3PublicAccessBlockConfiguration) *S3BucketConfiguration {
+	s.BucketPublicAccessBlock = v
+	return s
+}
+
+// The PublicAccessBlock configuration to apply to this Amazon S3 bucket. If
+// the proposed configuration is for an existing Amazon S3 bucket and the configuration
+// is not specified, the access preview uses the existing setting. If the proposed
+// configuration is for a new bucket and the configuration is not specified,
+// the access preview uses false. If the proposed configuration is for a new
+// access point and the access point BPA configuration is not specified, the
+// access preview uses true. For more information, see PublicAccessBlockConfiguration
+// (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-publicaccessblockconfiguration.html).
+type S3PublicAccessBlockConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether Amazon S3 should ignore public ACLs for this bucket and
+	// objects in this bucket.
+	//
+	// IgnorePublicAcls is a required field
+	IgnorePublicAcls *bool `locationName:"ignorePublicAcls" type:"boolean" required:"true"`
+
+	// Specifies whether Amazon S3 should restrict public bucket policies for this
+	// bucket.
+	//
+	// RestrictPublicBuckets is a required field
+	RestrictPublicBuckets *bool `locationName:"restrictPublicBuckets" type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s S3PublicAccessBlockConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3PublicAccessBlockConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3PublicAccessBlockConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3PublicAccessBlockConfiguration"}
+	if s.IgnorePublicAcls == nil {
+		invalidParams.Add(request.NewErrParamRequired("IgnorePublicAcls"))
+	}
+	if s.RestrictPublicBuckets == nil {
+		invalidParams.Add(request.NewErrParamRequired("RestrictPublicBuckets"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIgnorePublicAcls sets the IgnorePublicAcls field's value.
+func (s *S3PublicAccessBlockConfiguration) SetIgnorePublicAcls(v bool) *S3PublicAccessBlockConfiguration {
+	s.IgnorePublicAcls = &v
+	return s
+}
+
+// SetRestrictPublicBuckets sets the RestrictPublicBuckets field's value.
+func (s *S3PublicAccessBlockConfiguration) SetRestrictPublicBuckets(v bool) *S3PublicAccessBlockConfiguration {
+	s.RestrictPublicBuckets = &v
+	return s
+}
+
+// The configuration for a Secrets Manager secret. For more information, see
+// CreateSecret (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html).
+//
+// You can propose a configuration for a new secret or an existing secret that
+// you own by specifying the secret policy and optional KMS encryption key.
+// If the configuration is for an existing secret and you do not specify the
+// secret policy, the access preview uses the existing policy for the secret.
+// If the access preview is for a new resource and you do not specify the policy,
+// the access preview assumes a secret without a policy. To propose deletion
+// of an existing policy, you can specify an empty string. If the proposed configuration
+// is for a new secret and you do not specify the KMS key ID, the access preview
+// uses the default CMK of the AWS account. If you specify an empty string for
+// the KMS key ID, the access preview uses the default CMK of the AWS account.
+// For more information about secret policy limits, see Quotas for AWS Secrets
+// Manager. (https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_limits.html).
+type SecretsManagerSecretConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The proposed ARN, key ID, or alias of the AWS KMS customer master key (CMK).
+	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
+
+	// The proposed resource policy defining who can access or manage the secret.
+	SecretPolicy *string `locationName:"secretPolicy" type:"string"`
+}
+
+// String returns the string representation
+func (s SecretsManagerSecretConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecretsManagerSecretConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *SecretsManagerSecretConfiguration) SetKmsKeyId(v string) *SecretsManagerSecretConfiguration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetSecretPolicy sets the SecretPolicy field's value.
+func (s *SecretsManagerSecretConfiguration) SetSecretPolicy(v string) *SecretsManagerSecretConfiguration {
+	s.SecretPolicy = &v
+	return s
 }
 
 // Service quote met error.
@@ -4444,12 +6479,44 @@ func (s *SortCriteria) SetOrderBy(v string) *SortCriteria {
 	return s
 }
 
+// The proposed access control configuration for an SQS queue. You can propose
+// a configuration for a new SQS queue or an existing SQS queue that you own
+// by specifying the SQS policy. If the configuration is for an existing SQS
+// queue and you do not specify the SQS policy, the access preview uses the
+// existing SQS policy for the queue. If the access preview is for a new resource
+// and you do not specify the policy, the access preview assumes an SQS queue
+// without a policy. To propose deletion of an existing SQS queue policy, you
+// can specify an empty string for the SQS policy. For more information about
+// SQS policy limits, see Quotas related to policies (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-policies.html).
+type SqsQueueConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The proposed resource policy for the SQS queue.
+	QueuePolicy *string `locationName:"queuePolicy" type:"string"`
+}
+
+// String returns the string representation
+func (s SqsQueueConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SqsQueueConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetQueuePolicy sets the QueuePolicy field's value.
+func (s *SqsQueueConfiguration) SetQueuePolicy(v string) *SqsQueueConfiguration {
+	s.QueuePolicy = &v
+	return s
+}
+
 // Starts a scan of the policies applied to the specified resource.
 type StartResourceScanInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the analyzer to use to scan the policies applied to the specified
-	// resource.
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// to use to scan the policies applied to the specified resource.
 	//
 	// AnalyzerArn is a required field
 	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
@@ -4513,7 +6580,7 @@ func (s StartResourceScanOutput) GoString() string {
 }
 
 // Provides more details about the current status of the analyzer. For example,
-// if the creation for the analyzer fails, a Failed status is displayed. For
+// if the creation for the analyzer fails, a Failed status is returned. For
 // an analyzer with organization as the type, this failure can be due to an
 // issue with creating the service-linked roles required in the member accounts
 // of the AWS organization.
@@ -4854,7 +6921,8 @@ func (s UpdateArchiveRuleOutput) GoString() string {
 type UpdateFindingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the analyzer that generated the findings to update.
+	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
+	// that generated the findings to update.
 	//
 	// AnalyzerArn is a required field
 	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
@@ -5047,6 +7115,111 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
+// The proposed virtual private cloud (VPC) configuration for the Amazon S3
+// access point. For more information, see VpcConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_VpcConfiguration.html).
+type VpcConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// If this field is specified, this access point will only allow connections
+	// from the specified VPC ID.
+	//
+	// VpcId is a required field
+	VpcId *string `locationName:"vpcId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VpcConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcConfiguration"}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcConfiguration) SetVpcId(v string) *VpcConfiguration {
+	s.VpcId = &v
+	return s
+}
+
+const (
+	// AccessPreviewStatusCompleted is a AccessPreviewStatus enum value
+	AccessPreviewStatusCompleted = "COMPLETED"
+
+	// AccessPreviewStatusCreating is a AccessPreviewStatus enum value
+	AccessPreviewStatusCreating = "CREATING"
+
+	// AccessPreviewStatusFailed is a AccessPreviewStatus enum value
+	AccessPreviewStatusFailed = "FAILED"
+)
+
+// AccessPreviewStatus_Values returns all elements of the AccessPreviewStatus enum
+func AccessPreviewStatus_Values() []string {
+	return []string{
+		AccessPreviewStatusCompleted,
+		AccessPreviewStatusCreating,
+		AccessPreviewStatusFailed,
+	}
+}
+
+const (
+	// AccessPreviewStatusReasonCodeInternalError is a AccessPreviewStatusReasonCode enum value
+	AccessPreviewStatusReasonCodeInternalError = "INTERNAL_ERROR"
+
+	// AccessPreviewStatusReasonCodeInvalidConfiguration is a AccessPreviewStatusReasonCode enum value
+	AccessPreviewStatusReasonCodeInvalidConfiguration = "INVALID_CONFIGURATION"
+)
+
+// AccessPreviewStatusReasonCode_Values returns all elements of the AccessPreviewStatusReasonCode enum
+func AccessPreviewStatusReasonCode_Values() []string {
+	return []string{
+		AccessPreviewStatusReasonCodeInternalError,
+		AccessPreviewStatusReasonCodeInvalidConfiguration,
+	}
+}
+
+const (
+	// AclPermissionRead is a AclPermission enum value
+	AclPermissionRead = "READ"
+
+	// AclPermissionWrite is a AclPermission enum value
+	AclPermissionWrite = "WRITE"
+
+	// AclPermissionReadAcp is a AclPermission enum value
+	AclPermissionReadAcp = "READ_ACP"
+
+	// AclPermissionWriteAcp is a AclPermission enum value
+	AclPermissionWriteAcp = "WRITE_ACP"
+
+	// AclPermissionFullControl is a AclPermission enum value
+	AclPermissionFullControl = "FULL_CONTROL"
+)
+
+// AclPermission_Values returns all elements of the AclPermission enum
+func AclPermission_Values() []string {
+	return []string{
+		AclPermissionRead,
+		AclPermissionWrite,
+		AclPermissionReadAcp,
+		AclPermissionWriteAcp,
+		AclPermissionFullControl,
+	}
+}
+
 const (
 	// AnalyzerStatusActive is a AnalyzerStatus enum value
 	AnalyzerStatusActive = "ACTIVE"
@@ -5068,6 +7241,26 @@ func AnalyzerStatus_Values() []string {
 		AnalyzerStatusCreating,
 		AnalyzerStatusDisabled,
 		AnalyzerStatusFailed,
+	}
+}
+
+const (
+	// FindingChangeTypeChanged is a FindingChangeType enum value
+	FindingChangeTypeChanged = "CHANGED"
+
+	// FindingChangeTypeNew is a FindingChangeType enum value
+	FindingChangeTypeNew = "NEW"
+
+	// FindingChangeTypeUnchanged is a FindingChangeType enum value
+	FindingChangeTypeUnchanged = "UNCHANGED"
+)
+
+// FindingChangeType_Values returns all elements of the FindingChangeType enum
+func FindingChangeType_Values() []string {
+	return []string{
+		FindingChangeTypeChanged,
+		FindingChangeTypeNew,
+		FindingChangeTypeUnchanged,
 	}
 }
 
@@ -5124,6 +7317,70 @@ func FindingStatusUpdate_Values() []string {
 	return []string{
 		FindingStatusUpdateActive,
 		FindingStatusUpdateArchived,
+	}
+}
+
+const (
+	// KmsGrantOperationCreateGrant is a KmsGrantOperation enum value
+	KmsGrantOperationCreateGrant = "CreateGrant"
+
+	// KmsGrantOperationDecrypt is a KmsGrantOperation enum value
+	KmsGrantOperationDecrypt = "Decrypt"
+
+	// KmsGrantOperationDescribeKey is a KmsGrantOperation enum value
+	KmsGrantOperationDescribeKey = "DescribeKey"
+
+	// KmsGrantOperationEncrypt is a KmsGrantOperation enum value
+	KmsGrantOperationEncrypt = "Encrypt"
+
+	// KmsGrantOperationGenerateDataKey is a KmsGrantOperation enum value
+	KmsGrantOperationGenerateDataKey = "GenerateDataKey"
+
+	// KmsGrantOperationGenerateDataKeyPair is a KmsGrantOperation enum value
+	KmsGrantOperationGenerateDataKeyPair = "GenerateDataKeyPair"
+
+	// KmsGrantOperationGenerateDataKeyPairWithoutPlaintext is a KmsGrantOperation enum value
+	KmsGrantOperationGenerateDataKeyPairWithoutPlaintext = "GenerateDataKeyPairWithoutPlaintext"
+
+	// KmsGrantOperationGenerateDataKeyWithoutPlaintext is a KmsGrantOperation enum value
+	KmsGrantOperationGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
+
+	// KmsGrantOperationGetPublicKey is a KmsGrantOperation enum value
+	KmsGrantOperationGetPublicKey = "GetPublicKey"
+
+	// KmsGrantOperationReEncryptFrom is a KmsGrantOperation enum value
+	KmsGrantOperationReEncryptFrom = "ReEncryptFrom"
+
+	// KmsGrantOperationReEncryptTo is a KmsGrantOperation enum value
+	KmsGrantOperationReEncryptTo = "ReEncryptTo"
+
+	// KmsGrantOperationRetireGrant is a KmsGrantOperation enum value
+	KmsGrantOperationRetireGrant = "RetireGrant"
+
+	// KmsGrantOperationSign is a KmsGrantOperation enum value
+	KmsGrantOperationSign = "Sign"
+
+	// KmsGrantOperationVerify is a KmsGrantOperation enum value
+	KmsGrantOperationVerify = "Verify"
+)
+
+// KmsGrantOperation_Values returns all elements of the KmsGrantOperation enum
+func KmsGrantOperation_Values() []string {
+	return []string{
+		KmsGrantOperationCreateGrant,
+		KmsGrantOperationDecrypt,
+		KmsGrantOperationDescribeKey,
+		KmsGrantOperationEncrypt,
+		KmsGrantOperationGenerateDataKey,
+		KmsGrantOperationGenerateDataKeyPair,
+		KmsGrantOperationGenerateDataKeyPairWithoutPlaintext,
+		KmsGrantOperationGenerateDataKeyWithoutPlaintext,
+		KmsGrantOperationGetPublicKey,
+		KmsGrantOperationReEncryptFrom,
+		KmsGrantOperationReEncryptTo,
+		KmsGrantOperationRetireGrant,
+		KmsGrantOperationSign,
+		KmsGrantOperationVerify,
 	}
 }
 

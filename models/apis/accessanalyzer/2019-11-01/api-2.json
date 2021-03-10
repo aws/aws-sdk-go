@@ -29,6 +29,26 @@
       ],
       "idempotent":true
     },
+    "CreateAccessPreview":{
+      "name":"CreateAccessPreview",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/access-preview",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateAccessPreviewRequest"},
+      "output":{"shape":"CreateAccessPreviewResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "CreateAnalyzer":{
       "name":"CreateAnalyzer",
       "http":{
@@ -101,6 +121,23 @@
       ],
       "idempotent":true
     },
+    "GetAccessPreview":{
+      "name":"GetAccessPreview",
+      "http":{
+        "method":"GET",
+        "requestUri":"/access-preview/{accessPreviewId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAccessPreviewRequest"},
+      "output":{"shape":"GetAccessPreviewResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetAnalyzedResource":{
       "name":"GetAnalyzedResource",
       "http":{
@@ -161,6 +198,41 @@
       },
       "input":{"shape":"GetFindingRequest"},
       "output":{"shape":"GetFindingResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListAccessPreviewFindings":{
+      "name":"ListAccessPreviewFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/access-preview/{accessPreviewId}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAccessPreviewFindingsRequest"},
+      "output":{"shape":"ListAccessPreviewFindingsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListAccessPreviews":{
+      "name":"ListAccessPreviews",
+      "http":{
+        "method":"GET",
+        "requestUri":"/access-preview",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAccessPreviewsRequest"},
+      "output":{"shape":"ListAccessPreviewsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
@@ -352,6 +424,128 @@
       },
       "exception":true
     },
+    "AccessPointArn":{
+      "type":"string",
+      "pattern":"arn:[^:]*:s3:[^:]*:[^:]*:accesspoint/.*$"
+    },
+    "AccessPointPolicy":{"type":"string"},
+    "AccessPreview":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "configurations",
+        "createdAt",
+        "id",
+        "status"
+      ],
+      "members":{
+        "analyzerArn":{"shape":"AnalyzerArn"},
+        "configurations":{"shape":"ConfigurationsMap"},
+        "createdAt":{"shape":"Timestamp"},
+        "id":{"shape":"AccessPreviewId"},
+        "status":{"shape":"AccessPreviewStatus"},
+        "statusReason":{"shape":"AccessPreviewStatusReason"}
+      }
+    },
+    "AccessPreviewFinding":{
+      "type":"structure",
+      "required":[
+        "changeType",
+        "createdAt",
+        "id",
+        "resourceOwnerAccount",
+        "resourceType",
+        "status"
+      ],
+      "members":{
+        "action":{"shape":"ActionList"},
+        "changeType":{"shape":"FindingChangeType"},
+        "condition":{"shape":"ConditionKeyMap"},
+        "createdAt":{"shape":"Timestamp"},
+        "error":{"shape":"String"},
+        "existingFindingId":{"shape":"FindingId"},
+        "existingFindingStatus":{"shape":"FindingStatus"},
+        "id":{"shape":"AccessPreviewFindingId"},
+        "isPublic":{"shape":"Boolean"},
+        "principal":{"shape":"PrincipalMap"},
+        "resource":{"shape":"String"},
+        "resourceOwnerAccount":{"shape":"String"},
+        "resourceType":{"shape":"ResourceType"},
+        "sources":{"shape":"FindingSourceList"},
+        "status":{"shape":"FindingStatus"}
+      }
+    },
+    "AccessPreviewFindingId":{"type":"string"},
+    "AccessPreviewFindingsList":{
+      "type":"list",
+      "member":{"shape":"AccessPreviewFinding"}
+    },
+    "AccessPreviewId":{
+      "type":"string",
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
+    "AccessPreviewStatus":{
+      "type":"string",
+      "enum":[
+        "COMPLETED",
+        "CREATING",
+        "FAILED"
+      ]
+    },
+    "AccessPreviewStatusReason":{
+      "type":"structure",
+      "required":["code"],
+      "members":{
+        "code":{"shape":"AccessPreviewStatusReasonCode"}
+      }
+    },
+    "AccessPreviewStatusReasonCode":{
+      "type":"string",
+      "enum":[
+        "INTERNAL_ERROR",
+        "INVALID_CONFIGURATION"
+      ]
+    },
+    "AccessPreviewSummary":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "createdAt",
+        "id",
+        "status"
+      ],
+      "members":{
+        "analyzerArn":{"shape":"AnalyzerArn"},
+        "createdAt":{"shape":"Timestamp"},
+        "id":{"shape":"AccessPreviewId"},
+        "status":{"shape":"AccessPreviewStatus"},
+        "statusReason":{"shape":"AccessPreviewStatusReason"}
+      }
+    },
+    "AccessPreviewsList":{
+      "type":"list",
+      "member":{"shape":"AccessPreviewSummary"}
+    },
+    "AclCanonicalId":{"type":"string"},
+    "AclGrantee":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"AclCanonicalId"},
+        "uri":{"shape":"AclUri"}
+      },
+      "union":true
+    },
+    "AclPermission":{
+      "type":"string",
+      "enum":[
+        "READ",
+        "WRITE",
+        "READ_ACP",
+        "WRITE_ACP",
+        "FULL_CONTROL"
+      ]
+    },
+    "AclUri":{"type":"string"},
     "ActionList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -479,6 +673,23 @@
       "key":{"shape":"String"},
       "value":{"shape":"String"}
     },
+    "Configuration":{
+      "type":"structure",
+      "members":{
+        "iamRole":{"shape":"IamRoleConfiguration"},
+        "kmsKey":{"shape":"KmsKeyConfiguration"},
+        "s3Bucket":{"shape":"S3BucketConfiguration"},
+        "secretsManagerSecret":{"shape":"SecretsManagerSecretConfiguration"},
+        "sqsQueue":{"shape":"SqsQueueConfiguration"}
+      },
+      "union":true
+    },
+    "ConfigurationsMap":{
+      "type":"map",
+      "key":{"shape":"ConfigurationsMapKey"},
+      "value":{"shape":"Configuration"}
+    },
+    "ConfigurationsMapKey":{"type":"string"},
     "ConflictException":{
       "type":"structure",
       "required":[
@@ -496,6 +707,28 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "CreateAccessPreviewRequest":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "configurations"
+      ],
+      "members":{
+        "analyzerArn":{"shape":"AnalyzerArn"},
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "configurations":{"shape":"ConfigurationsMap"}
+      }
+    },
+    "CreateAccessPreviewResponse":{
+      "type":"structure",
+      "required":["id"],
+      "members":{
+        "id":{"shape":"AccessPreviewId"}
+      }
     },
     "CreateAnalyzerRequest":{
       "type":"structure",
@@ -626,6 +859,14 @@
         "updatedAt":{"shape":"Timestamp"}
       }
     },
+    "FindingChangeType":{
+      "type":"string",
+      "enum":[
+        "CHANGED",
+        "NEW",
+        "UNCHANGED"
+      ]
+    },
     "FindingId":{"type":"string"},
     "FindingIdList":{
       "type":"list",
@@ -704,6 +945,32 @@
     "FindingsList":{
       "type":"list",
       "member":{"shape":"FindingSummary"}
+    },
+    "GetAccessPreviewRequest":{
+      "type":"structure",
+      "required":[
+        "accessPreviewId",
+        "analyzerArn"
+      ],
+      "members":{
+        "accessPreviewId":{
+          "shape":"AccessPreviewId",
+          "location":"uri",
+          "locationName":"accessPreviewId"
+        },
+        "analyzerArn":{
+          "shape":"AnalyzerArn",
+          "location":"querystring",
+          "locationName":"analyzerArn"
+        }
+      }
+    },
+    "GetAccessPreviewResponse":{
+      "type":"structure",
+      "required":["accessPreview"],
+      "members":{
+        "accessPreview":{"shape":"AccessPreview"}
+      }
     },
     "GetAnalyzedResourceRequest":{
       "type":"structure",
@@ -799,6 +1066,14 @@
         "finding":{"shape":"Finding"}
       }
     },
+    "GranteePrincipal":{"type":"string"},
+    "IamRoleConfiguration":{
+      "type":"structure",
+      "members":{
+        "trustPolicy":{"shape":"IamTrustPolicy"}
+      }
+    },
+    "IamTrustPolicy":{"type":"string"},
     "InlineArchiveRule":{
       "type":"structure",
       "required":[
@@ -833,6 +1108,136 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "InternetConfiguration":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "IssuingAccount":{"type":"string"},
+    "KmsConstraintsKey":{"type":"string"},
+    "KmsConstraintsMap":{
+      "type":"map",
+      "key":{"shape":"KmsConstraintsKey"},
+      "value":{"shape":"KmsConstraintsValue"}
+    },
+    "KmsConstraintsValue":{"type":"string"},
+    "KmsGrantConfiguration":{
+      "type":"structure",
+      "required":[
+        "granteePrincipal",
+        "issuingAccount",
+        "operations"
+      ],
+      "members":{
+        "constraints":{"shape":"KmsGrantConstraints"},
+        "granteePrincipal":{"shape":"GranteePrincipal"},
+        "issuingAccount":{"shape":"IssuingAccount"},
+        "operations":{"shape":"KmsGrantOperationsList"},
+        "retiringPrincipal":{"shape":"RetiringPrincipal"}
+      }
+    },
+    "KmsGrantConfigurationsList":{
+      "type":"list",
+      "member":{"shape":"KmsGrantConfiguration"}
+    },
+    "KmsGrantConstraints":{
+      "type":"structure",
+      "members":{
+        "encryptionContextEquals":{"shape":"KmsConstraintsMap"},
+        "encryptionContextSubset":{"shape":"KmsConstraintsMap"}
+      }
+    },
+    "KmsGrantOperation":{
+      "type":"string",
+      "enum":[
+        "CreateGrant",
+        "Decrypt",
+        "DescribeKey",
+        "Encrypt",
+        "GenerateDataKey",
+        "GenerateDataKeyPair",
+        "GenerateDataKeyPairWithoutPlaintext",
+        "GenerateDataKeyWithoutPlaintext",
+        "GetPublicKey",
+        "ReEncryptFrom",
+        "ReEncryptTo",
+        "RetireGrant",
+        "Sign",
+        "Verify"
+      ]
+    },
+    "KmsGrantOperationsList":{
+      "type":"list",
+      "member":{"shape":"KmsGrantOperation"}
+    },
+    "KmsKeyConfiguration":{
+      "type":"structure",
+      "members":{
+        "grants":{"shape":"KmsGrantConfigurationsList"},
+        "keyPolicies":{"shape":"KmsKeyPoliciesMap"}
+      }
+    },
+    "KmsKeyPoliciesMap":{
+      "type":"map",
+      "key":{"shape":"PolicyName"},
+      "value":{"shape":"KmsKeyPolicy"}
+    },
+    "KmsKeyPolicy":{"type":"string"},
+    "ListAccessPreviewFindingsRequest":{
+      "type":"structure",
+      "required":[
+        "accessPreviewId",
+        "analyzerArn"
+      ],
+      "members":{
+        "accessPreviewId":{
+          "shape":"AccessPreviewId",
+          "location":"uri",
+          "locationName":"accessPreviewId"
+        },
+        "analyzerArn":{"shape":"AnalyzerArn"},
+        "filter":{"shape":"FilterCriteriaMap"},
+        "maxResults":{"shape":"Integer"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
+    "ListAccessPreviewFindingsResponse":{
+      "type":"structure",
+      "required":["findings"],
+      "members":{
+        "findings":{"shape":"AccessPreviewFindingsList"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
+    "ListAccessPreviewsRequest":{
+      "type":"structure",
+      "required":["analyzerArn"],
+      "members":{
+        "analyzerArn":{
+          "shape":"AnalyzerArn",
+          "location":"querystring",
+          "locationName":"analyzerArn"
+        },
+        "maxResults":{
+          "shape":"Integer",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListAccessPreviewsResponse":{
+      "type":"structure",
+      "required":["accessPreviews"],
+      "members":{
+        "accessPreviews":{"shape":"AccessPreviewsList"},
+        "nextToken":{"shape":"Token"}
+      }
     },
     "ListAnalyzedResourcesRequest":{
       "type":"structure",
@@ -951,6 +1356,14 @@
       "min":1,
       "pattern":"^[A-Za-z][A-Za-z0-9_.-]*$"
     },
+    "NetworkOriginConfiguration":{
+      "type":"structure",
+      "members":{
+        "internetConfiguration":{"shape":"InternetConfiguration"},
+        "vpcConfiguration":{"shape":"VpcConfiguration"}
+      },
+      "union":true
+    },
     "OrderBy":{
       "type":"string",
       "enum":[
@@ -958,6 +1371,7 @@
         "DESC"
       ]
     },
+    "PolicyName":{"type":"string"},
     "PrincipalMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1006,6 +1420,65 @@
         "AWS::SecretsManager::Secret"
       ]
     },
+    "RetiringPrincipal":{"type":"string"},
+    "S3AccessPointConfiguration":{
+      "type":"structure",
+      "members":{
+        "accessPointPolicy":{"shape":"AccessPointPolicy"},
+        "networkOrigin":{"shape":"NetworkOriginConfiguration"},
+        "publicAccessBlock":{"shape":"S3PublicAccessBlockConfiguration"}
+      }
+    },
+    "S3AccessPointConfigurationsMap":{
+      "type":"map",
+      "key":{"shape":"AccessPointArn"},
+      "value":{"shape":"S3AccessPointConfiguration"}
+    },
+    "S3BucketAclGrantConfiguration":{
+      "type":"structure",
+      "required":[
+        "grantee",
+        "permission"
+      ],
+      "members":{
+        "grantee":{"shape":"AclGrantee"},
+        "permission":{"shape":"AclPermission"}
+      }
+    },
+    "S3BucketAclGrantConfigurationsList":{
+      "type":"list",
+      "member":{"shape":"S3BucketAclGrantConfiguration"}
+    },
+    "S3BucketConfiguration":{
+      "type":"structure",
+      "members":{
+        "accessPoints":{"shape":"S3AccessPointConfigurationsMap"},
+        "bucketAclGrants":{"shape":"S3BucketAclGrantConfigurationsList"},
+        "bucketPolicy":{"shape":"S3BucketPolicy"},
+        "bucketPublicAccessBlock":{"shape":"S3PublicAccessBlockConfiguration"}
+      }
+    },
+    "S3BucketPolicy":{"type":"string"},
+    "S3PublicAccessBlockConfiguration":{
+      "type":"structure",
+      "required":[
+        "ignorePublicAcls",
+        "restrictPublicBuckets"
+      ],
+      "members":{
+        "ignorePublicAcls":{"shape":"Boolean"},
+        "restrictPublicBuckets":{"shape":"Boolean"}
+      }
+    },
+    "SecretsManagerSecretConfiguration":{
+      "type":"structure",
+      "members":{
+        "kmsKeyId":{"shape":"SecretsManagerSecretKmsId"},
+        "secretPolicy":{"shape":"SecretsManagerSecretPolicy"}
+      }
+    },
+    "SecretsManagerSecretKmsId":{"type":"string"},
+    "SecretsManagerSecretPolicy":{"type":"string"},
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":[
@@ -1035,6 +1508,13 @@
         "orderBy":{"shape":"OrderBy"}
       }
     },
+    "SqsQueueConfiguration":{
+      "type":"structure",
+      "members":{
+        "queuePolicy":{"shape":"SqsQueuePolicy"}
+      }
+    },
+    "SqsQueuePolicy":{"type":"string"},
     "StartResourceScanRequest":{
       "type":"structure",
       "required":[
@@ -1225,6 +1705,17 @@
       "member":{"shape":"String"},
       "max":20,
       "min":1
+    },
+    "VpcConfiguration":{
+      "type":"structure",
+      "required":["vpcId"],
+      "members":{
+        "vpcId":{"shape":"VpcId"}
+      }
+    },
+    "VpcId":{
+      "type":"string",
+      "pattern":"^vpc-([0-9a-f]){8}(([0-9a-f]){9})?$"
     }
   }
 }
