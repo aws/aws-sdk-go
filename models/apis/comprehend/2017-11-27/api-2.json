@@ -107,6 +107,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ContainsPiiEntities":{
+      "name":"ContainsPiiEntities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ContainsPiiEntitiesRequest"},
+      "output":{"shape":"ContainsPiiEntitiesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"UnsupportedLanguageException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateDocumentClassifier":{
       "name":"CreateDocumentClassifier",
       "http":{
@@ -1205,6 +1220,23 @@
       },
       "exception":true
     },
+    "ContainsPiiEntitiesRequest":{
+      "type":"structure",
+      "required":[
+        "Text",
+        "LanguageCode"
+      ],
+      "members":{
+        "Text":{"shape":"String"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "ContainsPiiEntitiesResponse":{
+      "type":"structure",
+      "members":{
+        "Labels":{"shape":"ListOfEntityLabels"}
+      }
+    },
     "CreateDocumentClassifierRequest":{
       "type":"structure",
       "required":[
@@ -1812,6 +1844,13 @@
         "EndOffset":{"shape":"Integer"}
       }
     },
+    "EntityLabel":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"PiiEntityType"},
+        "Score":{"shape":"Float"}
+      }
+    },
     "EntityRecognizerAnnotations":{
       "type":"structure",
       "required":["S3Uri"],
@@ -1943,7 +1982,7 @@
     "EntityTypeName":{
       "type":"string",
       "max":64,
-      "pattern":"^(?:(?!\\\\n+|\\\\t+|\\\\r+|[\\r\\t\\n\\s,]).)+$"
+      "pattern":"^(?:(?!\\\\n+|\\\\t+|\\\\r+|[\\r\\t\\n,]).)+$"
     },
     "EntityTypesEvaluationMetrics":{
       "type":"structure",
@@ -2302,6 +2341,10 @@
     "ListOfEntities":{
       "type":"list",
       "member":{"shape":"Entity"}
+    },
+    "ListOfEntityLabels":{
+      "type":"list",
+      "member":{"shape":"EntityLabel"}
     },
     "ListOfKeyPhrases":{
       "type":"list",

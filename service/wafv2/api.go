@@ -4103,6 +4103,12 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //
 // Updates the specified IPSet.
 //
+// This operation completely replaces any IP address specifications that you
+// already have in the IP set with the ones that you provide to this call. If
+// you want to add to or modify the addresses that are already in the IP set,
+// retrieve those by calling GetIPSet, update them, and provide the complete
+// updated array of IP addresses to this call.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5067,7 +5073,7 @@ type CreateIPSetInput struct {
 
 	// Contains an array of strings that specify one or more IP addresses or blocks
 	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF
-	// supports all address ranges for IP versions IPv4 and IPv6.
+	// supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
 	// Examples:
 	//
@@ -6775,6 +6781,8 @@ type FieldToMatch struct {
 
 	// Inspect a single header. Provide the name of the header to inspect, for example,
 	// User-Agent or Referer. This setting isn't case sensitive.
+	//
+	// Example JSON: "SingleHeader": { "Name": "haystack" }
 	SingleHeader *SingleHeader `type:"structure"`
 
 	// Inspect a single query argument. Provide the name of the query argument to
@@ -6783,6 +6791,8 @@ type FieldToMatch struct {
 	//
 	// This is used only to indicate the web request component for AWS WAF to inspect,
 	// in the FieldToMatch specification.
+	//
+	// Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 	SingleQueryArgument *SingleQueryArgument `type:"structure"`
 
 	// Inspect the request URI path. This is the part of a web request that identifies
@@ -7236,9 +7246,9 @@ type GetIPSetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Contains one or more IP addresses or blocks of IP addresses specified in
-	// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports any CIDR
-	// range. For information about CIDR notation, see the Wikipedia entry Classless
-	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+	// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports all IPv4
+	// and IPv6 CIDR ranges except for /0. For information about CIDR notation,
+	// see the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// AWS WAF assigns an ARN to each IPSet that you create. To use an IP set in
 	// a rule, you provide the ARN to the Rule statement IPSetReferenceStatement.
@@ -8279,9 +8289,9 @@ func (s *HTTPRequest) SetURI(v string) *HTTPRequest {
 }
 
 // Contains one or more IP addresses or blocks of IP addresses specified in
-// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports any CIDR
-// range. For information about CIDR notation, see the Wikipedia entry Classless
-// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+// Classless Inter-Domain Routing (CIDR) notation. AWS WAF supports all IPv4
+// and IPv6 CIDR ranges except for /0. For information about CIDR notation,
+// see the Wikipedia entry Classless Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 //
 // AWS WAF assigns an ARN to each IPSet that you create. To use an IP set in
 // a rule, you provide the ARN to the Rule statement IPSetReferenceStatement.
@@ -8295,7 +8305,7 @@ type IPSet struct {
 
 	// Contains an array of strings that specify one or more IP addresses or blocks
 	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF
-	// supports all address ranges for IP versions IPv4 and IPv6.
+	// supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
 	// Examples:
 	//
@@ -8645,25 +8655,33 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 type JsonBody struct {
 	_ struct{} `type:"structure"`
 
-	// The inspection behavior to fall back to if the JSON in the request body is
-	// invalid. For AWS WAF, invalid JSON is any content that isn't complete syntactical
-	// JSON, content whose root node isn't an object or an array, and duplicate
-	// keys in the content.
+	// What AWS WAF should do if it fails to completely parse the JSON body. The
+	// options are the following:
 	//
-	// You can specify the following fallback behaviors:
+	//    * EVALUATE_AS_STRING - Inspect the body as plain text. AWS WAF applies
+	//    the text transformations and inspection criteria that you defined for
+	//    the JSON inspection to the body text string.
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. AWS WAF
 	//    applies the rule action to the request.
 	//
 	//    * NO_MATCH - Treat the web request as not matching the rule statement.
 	//
-	//    * EVALUATE_AS_STRING - Inspect the body as plain text. This option applies
-	//    the text transformations and inspection criteria that you defined for
-	//    the JSON inspection to the body text string.
+	// If you don't provide this setting, AWS WAF parses and evaluates the content
+	// only up to the first parsing failure that it encounters.
 	//
-	// If you don't provide this setting, when AWS WAF encounters invalid JSON,
-	// it parses and inspects what it can, up to the first invalid JSON that it
-	// encounters.
+	// AWS WAF does its best to parse the entire JSON body, but might be forced
+	// to stop for reasons such as invalid characters, duplicate keys, truncation,
+	// and any content whose root node isn't an object or an array.
+	//
+	// AWS WAF parses the JSON in the following examples as two valid key, value
+	// pairs:
+	//
+	//    * Missing comma: {"key1":"value1""key2":"value2"}
+	//
+	//    * Missing colon: {"key1":"value1","key2""value2"}
+	//
+	//    * Extra colons: {"key1"::"value1","key2""value2"}
 	InvalidFallbackBehavior *string `type:"string" enum:"BodyParsingFallbackBehavior"`
 
 	// The patterns to look for in the JSON body. AWS WAF inspects the results of
@@ -12277,7 +12295,7 @@ type UpdateIPSetInput struct {
 
 	// Contains an array of strings that specify one or more IP addresses or blocks
 	// of IP addresses in Classless Inter-Domain Routing (CIDR) notation. AWS WAF
-	// supports all address ranges for IP versions IPv4 and IPv6.
+	// supports all IPv4 and IPv6 CIDR ranges except for /0.
 	//
 	// Examples:
 	//
