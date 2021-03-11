@@ -4175,20 +4175,17 @@ type CreateRuleGroupInput struct {
 	// RuleGroupName is a required field
 	RuleGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The name of a file containing stateful rule group rules specifications in
-	// Suricata flat format, with one rule per line. Use this to import your existing
-	// Suricata compatible rule groups.
+	// A string containing stateful rule group rules specifications in Suricata
+	// flat format, with one rule per line. Use this to import your existing Suricata
+	// compatible rule groups.
 	//
 	// You must provide either this rules setting or a populated RuleGroup setting,
 	// but not both.
 	//
-	// You can provide your rule group specification in a file through this setting
-	// when you create or update your rule group. The call response returns a RuleGroup
-	// object that Network Firewall has populated from your file. Network Firewall
-	// uses the file contents to populate the rule group rules, but does not maintain
-	// a reference to the file or use the file in any way after performing the create
-	// or update. If you call DescribeRuleGroup to retrieve the rule group, Network
-	// Firewall returns rules settings inside a RuleGroup object.
+	// You can provide your rule group specification in Suricata flat format through
+	// this setting when you create or update your rule group. The call response
+	// returns a RuleGroup object that Network Firewall has populated from your
+	// string.
 	Rules *string `type:"string"`
 
 	// The key:value pairs to associate with the resource.
@@ -6005,7 +6002,8 @@ type Header struct {
 	// Direction is a required field
 	Direction *string `type:"string" required:"true" enum:"StatefulRuleDirection"`
 
-	// The protocol to inspect for.
+	// The protocol to inspect for. To specify all, you can use IP, because all
+	// traffic on AWS and on the internet is IP.
 	//
 	// Protocol is a required field
 	Protocol *string `type:"string" required:"true" enum:"StatefulRuleProtocol"`
@@ -9899,20 +9897,17 @@ type UpdateRuleGroupInput struct {
 	// You must specify the ARN or the name, and you can specify both.
 	RuleGroupName *string `min:"1" type:"string"`
 
-	// The name of a file containing stateful rule group rules specifications in
-	// Suricata flat format, with one rule per line. Use this to import your existing
-	// Suricata compatible rule groups.
+	// A string containing stateful rule group rules specifications in Suricata
+	// flat format, with one rule per line. Use this to import your existing Suricata
+	// compatible rule groups.
 	//
 	// You must provide either this rules setting or a populated RuleGroup setting,
 	// but not both.
 	//
-	// You can provide your rule group specification in a file through this setting
-	// when you create or update your rule group. The call response returns a RuleGroup
-	// object that Network Firewall has populated from your file. Network Firewall
-	// uses the file contents to populate the rule group rules, but does not maintain
-	// a reference to the file or use the file in any way after performing the create
-	// or update. If you call DescribeRuleGroup to retrieve the rule group, Network
-	// Firewall returns rules settings inside a RuleGroup object.
+	// You can provide your rule group specification in Suricata flat format through
+	// this setting when you create or update your rule group. The call response
+	// returns a RuleGroup object that Network Firewall has populated from your
+	// string.
 	Rules *string `type:"string"`
 
 	// Indicates whether the rule group is stateless or stateful. If the rule group

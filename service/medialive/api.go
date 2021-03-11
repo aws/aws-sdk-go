@@ -5973,6 +5973,30 @@ func (s *AncillarySourceSettings) SetSourceAncillaryChannelNumber(v int64) *Anci
 	return s
 }
 
+// Archive Cdn Settings
+type ArchiveCdnSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Archive S3 Settings
+	ArchiveS3Settings *ArchiveS3Settings `locationName:"archiveS3Settings" type:"structure"`
+}
+
+// String returns the string representation
+func (s ArchiveCdnSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ArchiveCdnSettings) GoString() string {
+	return s.String()
+}
+
+// SetArchiveS3Settings sets the ArchiveS3Settings field's value.
+func (s *ArchiveCdnSettings) SetArchiveS3Settings(v *ArchiveS3Settings) *ArchiveCdnSettings {
+	s.ArchiveS3Settings = v
+	return s
+}
+
 // Archive Container Settings
 type ArchiveContainerSettings struct {
 	_ struct{} `type:"structure"`
@@ -6025,6 +6049,9 @@ func (s *ArchiveContainerSettings) SetRawSettings(v *RawSettings) *ArchiveContai
 type ArchiveGroupSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Parameters that control interactions with the CDN.
+	ArchiveCdnSettings *ArchiveCdnSettings `locationName:"archiveCdnSettings" type:"structure"`
+
 	// A directory and base filename where archive files should be written.
 	//
 	// Destination is a required field
@@ -6059,6 +6086,12 @@ func (s *ArchiveGroupSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArchiveCdnSettings sets the ArchiveCdnSettings field's value.
+func (s *ArchiveGroupSettings) SetArchiveCdnSettings(v *ArchiveCdnSettings) *ArchiveGroupSettings {
+	s.ArchiveCdnSettings = v
+	return s
 }
 
 // SetDestination sets the Destination field's value.
@@ -6134,6 +6167,30 @@ func (s *ArchiveOutputSettings) SetExtension(v string) *ArchiveOutputSettings {
 // SetNameModifier sets the NameModifier field's value.
 func (s *ArchiveOutputSettings) SetNameModifier(v string) *ArchiveOutputSettings {
 	s.NameModifier = &v
+	return s
+}
+
+// Archive S3 Settings
+type ArchiveS3Settings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the canned ACL to apply to each S3 request. Defaults to none.
+	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"S3CannedAcl"`
+}
+
+// String returns the string representation
+func (s ArchiveS3Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ArchiveS3Settings) GoString() string {
+	return s.String()
+}
+
+// SetCannedAcl sets the CannedAcl field's value.
+func (s *ArchiveS3Settings) SetCannedAcl(v string) *ArchiveS3Settings {
+	s.CannedAcl = &v
 	return s
 }
 
@@ -8520,6 +8577,112 @@ func (s *CaptionLanguageMapping) SetLanguageDescription(v string) *CaptionLangua
 	return s
 }
 
+// Caption Rectangle
+type CaptionRectangle struct {
+	_ struct{} `type:"structure"`
+
+	// See the description in leftOffset.For height, specify the entire height of
+	// the rectangle as a percentage of the underlying frame height. For example,
+	// \"80\" means the rectangle height is 80% of the underlying frame height.
+	// The topOffset and rectangleHeight must add up to 100% or less.This field
+	// corresponds to tts:extent - Y in the TTML standard.
+	//
+	// Height is a required field
+	Height *float64 `locationName:"height" type:"double" required:"true"`
+
+	// Applies only if you plan to convert these source captions to EBU-TT-D or
+	// TTML in an output. (Make sure to leave the default if you don't have either
+	// of these formats in the output.) You can define a display rectangle for the
+	// captions that is smaller than the underlying video frame. You define the
+	// rectangle by specifying the position of the left edge, top edge, bottom edge,
+	// and right edge of the rectangle, all within the underlying video frame. The
+	// units for the measurements are percentages.If you specify a value for one
+	// of these fields, you must specify a value for all of them.For leftOffset,
+	// specify the position of the left edge of the rectangle, as a percentage of
+	// the underlying frame width, and relative to the left edge of the frame. For
+	// example, \"10\" means the measurement is 10% of the underlying frame width.
+	// The rectangle left edge starts at that position from the left edge of the
+	// frame.This field corresponds to tts:origin - X in the TTML standard.
+	//
+	// LeftOffset is a required field
+	LeftOffset *float64 `locationName:"leftOffset" type:"double" required:"true"`
+
+	// See the description in leftOffset.For topOffset, specify the position of
+	// the top edge of the rectangle, as a percentage of the underlying frame height,
+	// and relative to the top edge of the frame. For example, \"10\" means the
+	// measurement is 10% of the underlying frame height. The rectangle top edge
+	// starts at that position from the top edge of the frame.This field corresponds
+	// to tts:origin - Y in the TTML standard.
+	//
+	// TopOffset is a required field
+	TopOffset *float64 `locationName:"topOffset" type:"double" required:"true"`
+
+	// See the description in leftOffset.For width, specify the entire width of
+	// the rectangle as a percentage of the underlying frame width. For example,
+	// \"80\" means the rectangle width is 80% of the underlying frame width. The
+	// leftOffset and rectangleWidth must add up to 100% or less.This field corresponds
+	// to tts:extent - X in the TTML standard.
+	//
+	// Width is a required field
+	Width *float64 `locationName:"width" type:"double" required:"true"`
+}
+
+// String returns the string representation
+func (s CaptionRectangle) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CaptionRectangle) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptionRectangle) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptionRectangle"}
+	if s.Height == nil {
+		invalidParams.Add(request.NewErrParamRequired("Height"))
+	}
+	if s.LeftOffset == nil {
+		invalidParams.Add(request.NewErrParamRequired("LeftOffset"))
+	}
+	if s.TopOffset == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopOffset"))
+	}
+	if s.Width == nil {
+		invalidParams.Add(request.NewErrParamRequired("Width"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHeight sets the Height field's value.
+func (s *CaptionRectangle) SetHeight(v float64) *CaptionRectangle {
+	s.Height = &v
+	return s
+}
+
+// SetLeftOffset sets the LeftOffset field's value.
+func (s *CaptionRectangle) SetLeftOffset(v float64) *CaptionRectangle {
+	s.LeftOffset = &v
+	return s
+}
+
+// SetTopOffset sets the TopOffset field's value.
+func (s *CaptionRectangle) SetTopOffset(v float64) *CaptionRectangle {
+	s.TopOffset = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *CaptionRectangle) SetWidth(v float64) *CaptionRectangle {
+	s.Width = &v
+	return s
+}
+
 // Output groups for this Live Event. Output groups contain information about
 // where streams should be distributed.
 type CaptionSelector struct {
@@ -8651,6 +8814,11 @@ func (s *CaptionSelectorSettings) Validate() error {
 	if s.Scte27SourceSettings != nil {
 		if err := s.Scte27SourceSettings.Validate(); err != nil {
 			invalidParams.AddNested("Scte27SourceSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TeletextSourceSettings != nil {
+		if err := s.TeletextSourceSettings.Validate(); err != nil {
+			invalidParams.AddNested("TeletextSourceSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -12842,6 +13010,11 @@ func (s *Eac3Settings) SetSurroundMode(v string) *Eac3Settings {
 type EbuTtDDestinationSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Applies only if you plan to convert these source captions to EBU-TT-D or
+	// TTML in an output. Complete this field if you want to include the name of
+	// the copyright holder in the copyright metadata tag in the TTML
+	CopyrightHolder *string `locationName:"copyrightHolder" type:"string"`
+
 	// Specifies how to handle the gap between the lines (in multi-line captions).-
 	// enabled: Fill with the captions background color (as specified in the input
 	// captions).- disabled: Leave the gap unfilled.
@@ -12878,6 +13051,12 @@ func (s EbuTtDDestinationSettings) String() string {
 // GoString returns the string representation
 func (s EbuTtDDestinationSettings) GoString() string {
 	return s.String()
+}
+
+// SetCopyrightHolder sets the CopyrightHolder field's value.
+func (s *EbuTtDDestinationSettings) SetCopyrightHolder(v string) *EbuTtDDestinationSettings {
+	s.CopyrightHolder = &v
+	return s
 }
 
 // SetFillLineGap sets the FillLineGap field's value.
@@ -13601,6 +13780,30 @@ func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Frame Capture Cdn Settings
+type FrameCaptureCdnSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Frame Capture S3 Settings
+	FrameCaptureS3Settings *FrameCaptureS3Settings `locationName:"frameCaptureS3Settings" type:"structure"`
+}
+
+// String returns the string representation
+func (s FrameCaptureCdnSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FrameCaptureCdnSettings) GoString() string {
+	return s.String()
+}
+
+// SetFrameCaptureS3Settings sets the FrameCaptureS3Settings field's value.
+func (s *FrameCaptureCdnSettings) SetFrameCaptureS3Settings(v *FrameCaptureS3Settings) *FrameCaptureCdnSettings {
+	s.FrameCaptureS3Settings = v
+	return s
+}
+
 // Frame Capture Group Settings
 type FrameCaptureGroupSettings struct {
 	_ struct{} `type:"structure"`
@@ -13615,6 +13818,9 @@ type FrameCaptureGroupSettings struct {
 	//
 	// Destination is a required field
 	Destination *OutputLocationRef `locationName:"destination" type:"structure" required:"true"`
+
+	// Parameters that control interactions with the CDN.
+	FrameCaptureCdnSettings *FrameCaptureCdnSettings `locationName:"frameCaptureCdnSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -13643,6 +13849,12 @@ func (s *FrameCaptureGroupSettings) Validate() error {
 // SetDestination sets the Destination field's value.
 func (s *FrameCaptureGroupSettings) SetDestination(v *OutputLocationRef) *FrameCaptureGroupSettings {
 	s.Destination = v
+	return s
+}
+
+// SetFrameCaptureCdnSettings sets the FrameCaptureCdnSettings field's value.
+func (s *FrameCaptureGroupSettings) SetFrameCaptureCdnSettings(v *FrameCaptureCdnSettings) *FrameCaptureGroupSettings {
+	s.FrameCaptureCdnSettings = v
 	return s
 }
 
@@ -13683,6 +13895,30 @@ func (s FrameCaptureOutputSettings) GoString() string {
 // SetNameModifier sets the NameModifier field's value.
 func (s *FrameCaptureOutputSettings) SetNameModifier(v string) *FrameCaptureOutputSettings {
 	s.NameModifier = &v
+	return s
+}
+
+// Frame Capture S3 Settings
+type FrameCaptureS3Settings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the canned ACL to apply to each S3 request. Defaults to none.
+	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"S3CannedAcl"`
+}
+
+// String returns the string representation
+func (s FrameCaptureS3Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FrameCaptureS3Settings) GoString() string {
+	return s.String()
+}
+
+// SetCannedAcl sets the CannedAcl field's value.
+func (s *FrameCaptureS3Settings) SetCannedAcl(v string) *FrameCaptureS3Settings {
+	s.CannedAcl = &v
 	return s
 }
 
@@ -14128,7 +14364,7 @@ type H264Settings struct {
 	Slices *int64 `locationName:"slices" min:"1" type:"integer"`
 
 	// Softness. Selects quantizer matrix, larger values reduce high-frequency content
-	// in the encoded image.
+	// in the encoded image. If not set to zero, must be greater than 15.
 	Softness *int64 `locationName:"softness" type:"integer"`
 
 	// If set to enabled, adjust quantization within each frame based on spatial
@@ -15071,6 +15307,9 @@ type HlsCdnSettings struct {
 	// Hls Media Store Settings
 	HlsMediaStoreSettings *HlsMediaStoreSettings `locationName:"hlsMediaStoreSettings" type:"structure"`
 
+	// Hls S3 Settings
+	HlsS3Settings *HlsS3Settings `locationName:"hlsS3Settings" type:"structure"`
+
 	// Hls Webdav Settings
 	HlsWebdavSettings *HlsWebdavSettings `locationName:"hlsWebdavSettings" type:"structure"`
 }
@@ -15100,6 +15339,12 @@ func (s *HlsCdnSettings) SetHlsBasicPutSettings(v *HlsBasicPutSettings) *HlsCdnS
 // SetHlsMediaStoreSettings sets the HlsMediaStoreSettings field's value.
 func (s *HlsCdnSettings) SetHlsMediaStoreSettings(v *HlsMediaStoreSettings) *HlsCdnSettings {
 	s.HlsMediaStoreSettings = v
+	return s
+}
+
+// SetHlsS3Settings sets the HlsS3Settings field's value.
+func (s *HlsCdnSettings) SetHlsS3Settings(v *HlsS3Settings) *HlsCdnSettings {
+	s.HlsS3Settings = v
 	return s
 }
 
@@ -15880,6 +16125,30 @@ func (s *HlsOutputSettings) SetNameModifier(v string) *HlsOutputSettings {
 // SetSegmentModifier sets the SegmentModifier field's value.
 func (s *HlsOutputSettings) SetSegmentModifier(v string) *HlsOutputSettings {
 	s.SegmentModifier = &v
+	return s
+}
+
+// Hls S3 Settings
+type HlsS3Settings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the canned ACL to apply to each S3 request. Defaults to none.
+	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"S3CannedAcl"`
+}
+
+// String returns the string representation
+func (s HlsS3Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HlsS3Settings) GoString() string {
+	return s.String()
+}
+
+// SetCannedAcl sets the CannedAcl field's value.
+func (s *HlsS3Settings) SetCannedAcl(v string) *HlsS3Settings {
+	s.CannedAcl = &v
 	return s
 }
 
@@ -24864,6 +25133,9 @@ func (s TeletextDestinationSettings) GoString() string {
 type TeletextSourceSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Optionally defines a region where TTML style captions will be displayed
+	OutputRectangle *CaptionRectangle `locationName:"outputRectangle" type:"structure"`
+
 	// Specifies the teletext page number within the data stream from which to extract
 	// captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should
 	// be specified as a hexadecimal string with no "0x" prefix.
@@ -24878,6 +25150,27 @@ func (s TeletextSourceSettings) String() string {
 // GoString returns the string representation
 func (s TeletextSourceSettings) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TeletextSourceSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TeletextSourceSettings"}
+	if s.OutputRectangle != nil {
+		if err := s.OutputRectangle.Validate(); err != nil {
+			invalidParams.AddNested("OutputRectangle", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOutputRectangle sets the OutputRectangle field's value.
+func (s *TeletextSourceSettings) SetOutputRectangle(v *CaptionRectangle) *TeletextSourceSettings {
+	s.OutputRectangle = v
+	return s
 }
 
 // SetPageNumber sets the PageNumber field's value.
@@ -25127,6 +25420,8 @@ type TransferringInputDeviceSummary struct {
 	// The AWS account ID for the recipient of the input device transfer.
 	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
 
+	TargetRegion *string `locationName:"targetRegion" type:"string"`
+
 	// The type (direction) of the input device transfer.
 	TransferType *string `locationName:"transferType" type:"string" enum:"InputDeviceTransferType"`
 }
@@ -25156,6 +25451,12 @@ func (s *TransferringInputDeviceSummary) SetMessage(v string) *TransferringInput
 // SetTargetCustomerId sets the TargetCustomerId field's value.
 func (s *TransferringInputDeviceSummary) SetTargetCustomerId(v string) *TransferringInputDeviceSummary {
 	s.TargetCustomerId = &v
+	return s
+}
+
+// SetTargetRegion sets the TargetRegion field's value.
+func (s *TransferringInputDeviceSummary) SetTargetRegion(v string) *TransferringInputDeviceSummary {
+	s.TargetRegion = &v
 	return s
 }
 
@@ -31187,6 +31488,31 @@ func RtmpOutputCertificateMode_Values() []string {
 	return []string{
 		RtmpOutputCertificateModeSelfSigned,
 		RtmpOutputCertificateModeVerifyAuthenticity,
+	}
+}
+
+// S3 Canned Acl
+const (
+	// S3CannedAclAuthenticatedRead is a S3CannedAcl enum value
+	S3CannedAclAuthenticatedRead = "AUTHENTICATED_READ"
+
+	// S3CannedAclBucketOwnerFullControl is a S3CannedAcl enum value
+	S3CannedAclBucketOwnerFullControl = "BUCKET_OWNER_FULL_CONTROL"
+
+	// S3CannedAclBucketOwnerRead is a S3CannedAcl enum value
+	S3CannedAclBucketOwnerRead = "BUCKET_OWNER_READ"
+
+	// S3CannedAclPublicRead is a S3CannedAcl enum value
+	S3CannedAclPublicRead = "PUBLIC_READ"
+)
+
+// S3CannedAcl_Values returns all elements of the S3CannedAcl enum
+func S3CannedAcl_Values() []string {
+	return []string{
+		S3CannedAclAuthenticatedRead,
+		S3CannedAclBucketOwnerFullControl,
+		S3CannedAclBucketOwnerRead,
+		S3CannedAclPublicRead,
 	}
 }
 

@@ -166,11 +166,9 @@ func (c *Comprehend) BatchDetectEntitiesRequest(input *BatchDetectEntitiesInput)
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * BatchSizeLimitExceededException
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -262,11 +260,9 @@ func (c *Comprehend) BatchDetectKeyPhrasesRequest(input *BatchDetectKeyPhrasesIn
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * BatchSizeLimitExceededException
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -359,11 +355,9 @@ func (c *Comprehend) BatchDetectSentimentRequest(input *BatchDetectSentimentInpu
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * BatchSizeLimitExceededException
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -457,11 +451,9 @@ func (c *Comprehend) BatchDetectSyntaxRequest(input *BatchDetectSyntaxInput) (re
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * BatchSizeLimitExceededException
 //   The number of documents in the request exceeds the limit of 25. Try your
@@ -583,6 +575,98 @@ func (c *Comprehend) ClassifyDocumentWithContext(ctx aws.Context, input *Classif
 	return out, req.Send()
 }
 
+const opContainsPiiEntities = "ContainsPiiEntities"
+
+// ContainsPiiEntitiesRequest generates a "aws/request.Request" representing the
+// client's request for the ContainsPiiEntities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ContainsPiiEntities for more information on using the ContainsPiiEntities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ContainsPiiEntitiesRequest method.
+//    req, resp := client.ContainsPiiEntitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ContainsPiiEntities
+func (c *Comprehend) ContainsPiiEntitiesRequest(input *ContainsPiiEntitiesInput) (req *request.Request, output *ContainsPiiEntitiesOutput) {
+	op := &request.Operation{
+		Name:       opContainsPiiEntities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ContainsPiiEntitiesInput{}
+	}
+
+	output = &ContainsPiiEntitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ContainsPiiEntities API operation for Amazon Comprehend.
+//
+// Analyzes input text for the presence of personally identifiable information
+// (PII) and returns the labels of identified PII entity types such as name,
+// address, bank account number, or phone number.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ContainsPiiEntities for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TextSizeLimitExceededException
+//   The size of the input text exceeds the limit. Use a smaller document.
+//
+//   * UnsupportedLanguageException
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ContainsPiiEntities
+func (c *Comprehend) ContainsPiiEntities(input *ContainsPiiEntitiesInput) (*ContainsPiiEntitiesOutput, error) {
+	req, out := c.ContainsPiiEntitiesRequest(input)
+	return out, req.Send()
+}
+
+// ContainsPiiEntitiesWithContext is the same as ContainsPiiEntities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ContainsPiiEntities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ContainsPiiEntitiesWithContext(ctx aws.Context, input *ContainsPiiEntitiesInput, opts ...request.Option) (*ContainsPiiEntitiesOutput, error) {
+	req, out := c.ContainsPiiEntitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDocumentClassifier = "CreateDocumentClassifier"
 
 // CreateDocumentClassifierRequest generates a "aws/request.Request" representing the
@@ -661,11 +745,9 @@ func (c *Comprehend) CreateDocumentClassifierRequest(input *CreateDocumentClassi
 //   resources, and then try your request again.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -878,11 +960,9 @@ func (c *Comprehend) CreateEntityRecognizerRequest(input *CreateEntityRecognizer
 //   resources, and then try your request again.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
@@ -2353,11 +2433,9 @@ func (c *Comprehend) DetectEntitiesRequest(input *DetectEntitiesInput) (req *req
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -2445,11 +2523,9 @@ func (c *Comprehend) DetectKeyPhrasesRequest(input *DetectKeyPhrasesInput) (req 
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -2538,11 +2614,9 @@ func (c *Comprehend) DetectPiiEntitiesRequest(input *DetectPiiEntitiesInput) (re
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -2631,11 +2705,9 @@ func (c *Comprehend) DetectSentimentRequest(input *DetectSentimentInput) (req *r
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -2724,11 +2796,9 @@ func (c *Comprehend) DetectSyntaxRequest(input *DetectSyntaxInput) (req *request
 //   The size of the input text exceeds the limit. Use a smaller document.
 //
 //   * UnsupportedLanguageException
-//   Amazon Comprehend can't process the language of the input text. For all custom
-//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-//   French, Italian, German, or Portuguese are accepted. For most other APIs,
-//   such as those for Custom Classification, Amazon Comprehend accepts text in
-//   all supported languages. For a list of supported languages, see supported-languages.
+//   Amazon Comprehend can't process the language of the input text. For custom
+//   entity recognition APIs, only English, Spanish, French, Italian, German,
+//   or Portuguese are accepted. For a list of supported languages, see supported-languages.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -7250,6 +7320,87 @@ func (s *ConcurrentModificationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ContainsPiiEntitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the input documents.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// Creates a new document classification request to analyze a single document
+	// in real-time, returning personally identifiable information (PII) entity
+	// labels.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ContainsPiiEntitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainsPiiEntitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainsPiiEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainsPiiEntitiesInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *ContainsPiiEntitiesInput) SetLanguageCode(v string) *ContainsPiiEntitiesInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *ContainsPiiEntitiesInput) SetText(v string) *ContainsPiiEntitiesInput {
+	s.Text = &v
+	return s
+}
+
+type ContainsPiiEntitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The labels used in the document being analyzed. Individual labels represent
+	// personally identifiable information (PII) entity types.
+	Labels []*EntityLabel `type:"list"`
+}
+
+// String returns the string representation
+func (s ContainsPiiEntitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainsPiiEntitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetLabels sets the Labels field's value.
+func (s *ContainsPiiEntitiesOutput) SetLabels(v []*EntityLabel) *ContainsPiiEntitiesOutput {
+	s.Labels = v
+	return s
+}
+
 type CreateDocumentClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10453,6 +10604,41 @@ func (s *Entity) SetText(v string) *Entity {
 // SetType sets the Type field's value.
 func (s *Entity) SetType(v string) *Entity {
 	s.Type = &v
+	return s
+}
+
+// Specifies one of the label or labels that categorize the personally identifiable
+// information (PII) entity being analyzed.
+type EntityLabel struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the label.
+	Name *string `type:"string" enum:"PiiEntityType"`
+
+	// The level of confidence that Amazon Comprehend has in the accuracy of the
+	// detection.
+	Score *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s EntityLabel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EntityLabel) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *EntityLabel) SetName(v string) *EntityLabel {
+	s.Name = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *EntityLabel) SetScore(v float64) *EntityLabel {
+	s.Score = &v
 	return s
 }
 
@@ -16734,11 +16920,9 @@ func (s *TopicsDetectionJobProperties) SetVpcConfig(v *VpcConfig) *TopicsDetecti
 	return s
 }
 
-// Amazon Comprehend can't process the language of the input text. For all custom
-// entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
-// French, Italian, German, or Portuguese are accepted. For most other APIs,
-// such as those for Custom Classification, Amazon Comprehend accepts text in
-// all supported languages. For a list of supported languages, see supported-languages.
+// Amazon Comprehend can't process the language of the input text. For custom
+// entity recognition APIs, only English, Spanish, French, Italian, German,
+// or Portuguese are accepted. For a list of supported languages, see supported-languages.
 type UnsupportedLanguageException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

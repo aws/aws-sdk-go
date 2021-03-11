@@ -84,6 +84,10 @@ type ComprehendAPI interface {
 	ClassifyDocumentWithContext(aws.Context, *comprehend.ClassifyDocumentInput, ...request.Option) (*comprehend.ClassifyDocumentOutput, error)
 	ClassifyDocumentRequest(*comprehend.ClassifyDocumentInput) (*request.Request, *comprehend.ClassifyDocumentOutput)
 
+	ContainsPiiEntities(*comprehend.ContainsPiiEntitiesInput) (*comprehend.ContainsPiiEntitiesOutput, error)
+	ContainsPiiEntitiesWithContext(aws.Context, *comprehend.ContainsPiiEntitiesInput, ...request.Option) (*comprehend.ContainsPiiEntitiesOutput, error)
+	ContainsPiiEntitiesRequest(*comprehend.ContainsPiiEntitiesInput) (*request.Request, *comprehend.ContainsPiiEntitiesOutput)
+
 	CreateDocumentClassifier(*comprehend.CreateDocumentClassifierInput) (*comprehend.CreateDocumentClassifierOutput, error)
 	CreateDocumentClassifierWithContext(aws.Context, *comprehend.CreateDocumentClassifierInput, ...request.Option) (*comprehend.CreateDocumentClassifierOutput, error)
 	CreateDocumentClassifierRequest(*comprehend.CreateDocumentClassifierInput) (*request.Request, *comprehend.CreateDocumentClassifierOutput)

@@ -163,6 +163,12 @@
         "CaptionSelectorSettings$AncillarySourceSettings": null
       }
     },
+    "ArchiveCdnSettings": {
+      "base": "Archive Cdn Settings",
+      "refs": {
+        "ArchiveGroupSettings$ArchiveCdnSettings": "Parameters that control interactions with the CDN."
+      }
+    },
     "ArchiveContainerSettings": {
       "base": "Archive Container Settings",
       "refs": {
@@ -179,6 +185,18 @@
       "base": "Archive Output Settings",
       "refs": {
         "OutputSettings$ArchiveOutputSettings": null
+      }
+    },
+    "ArchiveS3LogUploads": {
+      "base": "Archive S3 Log Uploads",
+      "refs": {
+        "ArchiveS3Settings$LogUploads": "When set to enabled, each upload to CDN or server will be logged."
+      }
+    },
+    "ArchiveS3Settings": {
+      "base": "Archive S3 Settings",
+      "refs": {
+        "ArchiveCdnSettings$ArchiveS3Settings": null
       }
     },
     "AribDestinationSettings": {
@@ -513,6 +531,12 @@
         "__listOfCaptionLanguageMapping$member": null
       }
     },
+    "CaptionRectangle": {
+       "base": "Caption Rectangle",
+       "refs": {
+         "TeletextSourceSettings$OutputRectangle": "Optionally defines a region where TTML style captions will be displayed"
+      }
+    }, 
     "CaptionSelector": {
       "base": "Output groups for this Live Event. Output groups contain information about where streams should be distributed.",
       "refs": {
@@ -970,6 +994,12 @@
       "refs": {
       }
     },
+    "FrameCaptureCdnSettings": {
+      "base": "Frame Capture Cdn Settings",
+      "refs": {
+        "FrameCaptureGroupSettings$FrameCaptureCdnSettings": "Parameters that control interactions with the CDN."
+      }
+    },
     "FrameCaptureGroupSettings": {
       "base": "Frame Capture Group Settings",
       "refs": {
@@ -992,6 +1022,18 @@
       "base": "Frame Capture Output Settings",
       "refs": {
         "OutputSettings$FrameCaptureOutputSettings": null
+      }
+    },
+    "FrameCaptureS3LogUploads": {
+      "base": "Frame Capture S3 Log Uploads",
+      "refs": {
+        "FrameCaptureS3Settings$LogUploads": "When set to enabled, each upload to CDN or server will be logged."
+      }
+    },
+    "FrameCaptureS3Settings": {
+      "base": "Frame Capture S3 Settings",
+      "refs": {
+        "FrameCaptureCdnSettings$FrameCaptureS3Settings": null
       }
     },
     "FrameCaptureSettings": {
@@ -1447,6 +1489,18 @@
       "base": "Hls Redundant Manifest",
       "refs": {
         "HlsGroupSettings$RedundantManifest": "ENABLED: The master manifest (.m3u8 file) for each pipeline includes information about both pipelines: first its own media files, then the media files of the other pipeline. This feature allows playout device that support stale manifest detection to switch from one manifest to the other, when the current manifest seems to be stale. There are still two destinations and two master manifests, but both master manifests reference the media files from both pipelines.\n\nDISABLED: The master manifest (.m3u8 file) for each pipeline includes information about its own pipeline only.\n\nFor an HLS output group with MediaPackage as the destination, the DISABLED behavior is always followed. MediaPackage regenerates the manifests it serves to players so a redundant manifest from MediaLive is irrelevant."
+      }
+    },
+    "HlsS3LogUploads": {
+      "base": "Hls S3 Log Uploads",
+      "refs": {
+        "HlsS3Settings$LogUploads": "When set to enabled, each fragment upload to CDN or server will be logged."
+      }
+    },
+    "HlsS3Settings": {
+      "base": "Hls S3 Settings",
+      "refs": {
+        "HlsCdnSettings$HlsS3Settings": null
       }
     },
     "HlsSegmentationMode": {
@@ -2639,6 +2693,14 @@
         "OutputSettings$RtmpOutputSettings": null
       }
     },
+    "S3CannedAcl": {
+      "base": "S3 Canned Acl",
+      "refs": {
+        "ArchiveS3Settings$CannedAcl": "Specify the canned ACL to apply to each S3 request. Defaults to none.",
+        "FrameCaptureS3Settings$CannedAcl": "Specify the canned ACL to apply to each S3 request. Defaults to none.",
+        "HlsS3Settings$CannedAcl": "Specify the canned ACL to apply to each S3 request. Defaults to none."
+      }
+    },
     "ScheduleAction": {
       "base": "Contains information on a single schedule action.",
       "refs": {
@@ -3238,6 +3300,15 @@
         "VideoBlackFailoverSettings$BlackDetectThreshold": "A value used in calculating the threshold below which MediaLive considers a pixel to be 'black'. For the input to be considered black, every pixel in a frame must be below this threshold. The threshold is calculated as a percentage (expressed as a decimal) of white. Therefore .1 means 10% white (or 90% black). Note how the formula works for any color depth. For example, if you set this field to 0.1 in 10-bit color depth: (1023*0.1=102.3), which means a pixel value of 102 or less is 'black'. If you set this field to .1 in an 8-bit color depth: (255*0.1=25.5), which means a pixel value of 25 or less is 'black'. The range is 0.0 to 1.0, with any number of decimal places."
       }
     },
+    "__doubleMin0Max100": {
+      "base": null,
+      "refs": {
+        "CaptionRectangle$Height": "See the description in leftOffset.\nFor height, specify the entire height of the rectangle as a percentage of the underlying frame height. For example, \\\"80\\\" means the rectangle height is 80% of the underlying frame height. The topOffset and rectangleHeight must add up to 100% or less.\nThis field corresponds to tts:extent - Y in the TTML standard.",
+        "CaptionRectangle$LeftOffset": "Applies only if you plan to convert these source captions to EBU-TT-D or TTML in an output. (Make sure to leave the default if you don't have either of these formats in the output.) You can define a display rectangle for the captions that is smaller than the underlying video frame. You define the rectangle by specifying the position of the left edge, top edge, bottom edge, and right edge of the rectangle, all within the underlying video frame. The units for the measurements are percentages.\nIf you specify a value for one of these fields, you must specify a value for all of them.\nFor leftOffset, specify the position of the left edge of the rectangle, as a percentage of the underlying frame width, and relative to the left edge of the frame. For example, \\\"10\\\" means the measurement is 10% of the underlying frame width. The rectangle left edge starts at that position from the left edge of the frame.\nThis field corresponds to tts:origin - X in the TTML standard.",
+        "CaptionRectangle$TopOffset": "See the description in leftOffset.\nFor topOffset, specify the position of the top edge of the rectangle, as a percentage of the underlying frame height, and relative to the top edge of the frame. For example, \\\"10\\\" means the measurement is 10% of the underlying frame height. The rectangle top edge starts at that position from the top edge of the frame.\nThis field corresponds to tts:origin - Y in the TTML standard.",
+        "CaptionRectangle$Width": "See the description in leftOffset.\nFor width, specify the entire width of the rectangle as a percentage of the underlying frame width. For example, \\\"80\\\" means the rectangle width is 80% of the underlying frame width. The leftOffset and rectangleWidth must add up to 100% or less.\nThis field corresponds to tts:extent - X in the TTML standard."
+      }
+    }, 
     "__doubleMin1": {
       "base": null,
       "refs": {
@@ -3379,7 +3450,7 @@
     "__integerMin0Max128": {
       "base": null,
       "refs": {
-        "H264Settings$Softness": "Softness. Selects quantizer matrix, larger values reduce high-frequency content in the encoded image."
+        "H264Settings$Softness": "Softness. Selects quantizer matrix, larger values reduce high-frequency content in the encoded image.  If not set to zero, must be greater than 15."
       }
     },
     "__integerMin0Max15": {
@@ -4288,6 +4359,12 @@
         "__listOf__string$member": null
       }
     },
+    "__stringMax1000": {
+      "base": null,
+      "refs": {
+        "EbuTtDDestinationSettings$CopyrightHolder": "Applies only if you plan to convert these source captions to EBU-TT-D or TTML in an output. Complete this field if you want to include the name of the copyright holder in the copyright metadata tag in the TTML"
+      }
+    }, 
     "__stringMax256": {
       "base": null,
       "refs": {

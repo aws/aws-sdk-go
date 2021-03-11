@@ -1,3 +1,13 @@
+Release v1.37.29 (2021-03-11)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * MediaLive supports the ability to apply a canned ACL to output sent to an AWS S3 bucket; supports ability to specify position for EBU-TT and TTML output captions converted from Teletext source.
+* `service/network-firewall`: Updates service documentation
+* `service/wafv2`: Updates service documentation
+
 Release v1.37.28 (2021-03-10)
 ===
 
