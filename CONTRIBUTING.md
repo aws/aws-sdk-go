@@ -17,7 +17,7 @@ Jump To:
 
 *Before you send us a pull request, please be sure that:*
 
-1. You're working from the latest source on the master branch.
+1. You're working from the latest source on the main branch.
 2. You check existing open, and recently closed, pull requests to be sure 
    that someone else hasn't already addressed the problem.
 3. You create an issue before working on a contribution that will take a 
@@ -26,7 +26,7 @@ Jump To:
 *Creating a Pull Request*
 
 1. Fork the repository.
-2. In your fork, make your change in a branch that's based on this repo's master branch.
+2. In your fork, make your change in a branch that's based on this repo's main branch.
 3. Commit the change to your fork, using a clear and descriptive commit message.
 4. Create a pull request, answering any questions in the pull request form.
 
