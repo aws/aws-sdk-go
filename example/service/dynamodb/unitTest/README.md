@@ -30,7 +30,7 @@ getter.DynamoDB.GetItem(/* ... */)
 ## Querying in tests
 Construct a `fakeDynamoDB` and add the necessary methods for each of those
 structs (custom ones for `ItemGetter` and [whatever methods you're using for
-DynamoDB](https://github.com/aws/aws-sdk-go/blob/master/service/dynamodb/dynamodbiface/interface.go)),
+DynamoDB](https://github.com/aws/aws-sdk-go/blob/main/service/dynamodb/dynamodbiface/interface.go)),
 and you're good to go!
 
 ```go

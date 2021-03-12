@@ -1,6 +1,6 @@
 # AWS SDK for Go
 
-[![API Reference](https://img.shields.io/badge/api-reference-blue.svg)](https://docs.aws.amazon.com/sdk-for-go/api) [![Join the chat at https://gitter.im/aws/aws-sdk-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://api.travis-ci.com/aws/aws-sdk-go.svg?branch=master)](https://travis-ci.com/aws/aws-sdk-go) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/aws/aws-sdk-go/blob/master/LICENSE.txt)
+[![API Reference](https://img.shields.io/badge/api-reference-blue.svg)](https://docs.aws.amazon.com/sdk-for-go/api) [![Join the chat at https://gitter.im/aws/aws-sdk-go](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-go?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://api.travis-ci.com/aws/aws-sdk-go.svg?branch=main)](https://travis-ci.com/aws/aws-sdk-go) [![Apache V2 License](https://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/aws/aws-sdk-go/blob/main/LICENSE.txt)
 
 aws-sdk-go is the official AWS SDK for the Go programming language.
 
@@ -511,7 +511,7 @@ great for getting started with a service, or when looking for more
 information about a service. While this document is not required for coding, 
 services may supply helpful samples to look out for.
 
-[SDK Examples](https://github.com/aws/aws-sdk-go/tree/master/example) -
+[SDK Examples](https://github.com/aws/aws-sdk-go/tree/main/example) -
 Included in the SDK's repo are several hand crafted examples using the SDK
 features and AWS services.
 
