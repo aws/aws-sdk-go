@@ -1,10 +1,40 @@
 {
-  "pagination": {
-    "ListPlaybackConfigurations": {
-      "input_token": "NextToken",
-      "output_token": "NextToken",
-      "limit_key": "MaxResults",
-      "result_key": "Items"
+    "pagination": {
+        "GetChannelSchedule": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        },
+        "ListChannels": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        },
+        "ListPlaybackConfigurations": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        },
+        "ListPrograms": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        },
+        "ListSourceLocations": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        },
+        "ListVodSources": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        }
     }
-  }
 }

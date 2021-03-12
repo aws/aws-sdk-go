@@ -4,6 +4,7 @@ package mediatailor
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -11,6 +12,452 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
+
+const opCreateChannel = "CreateChannel"
+
+// CreateChannelRequest generates a "aws/request.Request" representing the
+// client's request for the CreateChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateChannel for more information on using the CreateChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateChannelRequest method.
+//    req, resp := client.CreateChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateChannel
+func (c *MediaTailor) CreateChannelRequest(input *CreateChannelInput) (req *request.Request, output *CreateChannelOutput) {
+	op := &request.Operation{
+		Name:       opCreateChannel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channel/{channelName}",
+	}
+
+	if input == nil {
+		input = &CreateChannelInput{}
+	}
+
+	output = &CreateChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateChannel API operation for AWS MediaTailor.
+//
+// Creates a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation CreateChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateChannel
+func (c *MediaTailor) CreateChannel(input *CreateChannelInput) (*CreateChannelOutput, error) {
+	req, out := c.CreateChannelRequest(input)
+	return out, req.Send()
+}
+
+// CreateChannelWithContext is the same as CreateChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) CreateChannelWithContext(ctx aws.Context, input *CreateChannelInput, opts ...request.Option) (*CreateChannelOutput, error) {
+	req, out := c.CreateChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateProgram = "CreateProgram"
+
+// CreateProgramRequest generates a "aws/request.Request" representing the
+// client's request for the CreateProgram operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateProgram for more information on using the CreateProgram
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateProgramRequest method.
+//    req, resp := client.CreateProgramRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateProgram
+func (c *MediaTailor) CreateProgramRequest(input *CreateProgramInput) (req *request.Request, output *CreateProgramOutput) {
+	op := &request.Operation{
+		Name:       opCreateProgram,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channel/{channelName}/program/{programName}",
+	}
+
+	if input == nil {
+		input = &CreateProgramInput{}
+	}
+
+	output = &CreateProgramOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateProgram API operation for AWS MediaTailor.
+//
+// Creates a program.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation CreateProgram for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateProgram
+func (c *MediaTailor) CreateProgram(input *CreateProgramInput) (*CreateProgramOutput, error) {
+	req, out := c.CreateProgramRequest(input)
+	return out, req.Send()
+}
+
+// CreateProgramWithContext is the same as CreateProgram with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateProgram for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) CreateProgramWithContext(ctx aws.Context, input *CreateProgramInput, opts ...request.Option) (*CreateProgramOutput, error) {
+	req, out := c.CreateProgramRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSourceLocation = "CreateSourceLocation"
+
+// CreateSourceLocationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSourceLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSourceLocation for more information on using the CreateSourceLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSourceLocationRequest method.
+//    req, resp := client.CreateSourceLocationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateSourceLocation
+func (c *MediaTailor) CreateSourceLocationRequest(input *CreateSourceLocationInput) (req *request.Request, output *CreateSourceLocationOutput) {
+	op := &request.Operation{
+		Name:       opCreateSourceLocation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+	}
+
+	if input == nil {
+		input = &CreateSourceLocationInput{}
+	}
+
+	output = &CreateSourceLocationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSourceLocation API operation for AWS MediaTailor.
+//
+// Creates a source location on a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation CreateSourceLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateSourceLocation
+func (c *MediaTailor) CreateSourceLocation(input *CreateSourceLocationInput) (*CreateSourceLocationOutput, error) {
+	req, out := c.CreateSourceLocationRequest(input)
+	return out, req.Send()
+}
+
+// CreateSourceLocationWithContext is the same as CreateSourceLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSourceLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) CreateSourceLocationWithContext(ctx aws.Context, input *CreateSourceLocationInput, opts ...request.Option) (*CreateSourceLocationOutput, error) {
+	req, out := c.CreateSourceLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVodSource = "CreateVodSource"
+
+// CreateVodSourceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVodSource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVodSource for more information on using the CreateVodSource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateVodSourceRequest method.
+//    req, resp := client.CreateVodSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateVodSource
+func (c *MediaTailor) CreateVodSourceRequest(input *CreateVodSourceInput) (req *request.Request, output *CreateVodSourceOutput) {
+	op := &request.Operation{
+		Name:       opCreateVodSource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+	}
+
+	if input == nil {
+		input = &CreateVodSourceInput{}
+	}
+
+	output = &CreateVodSourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVodSource API operation for AWS MediaTailor.
+//
+// Creates name for a specific VOD source in a source location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation CreateVodSource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreateVodSource
+func (c *MediaTailor) CreateVodSource(input *CreateVodSourceInput) (*CreateVodSourceOutput, error) {
+	req, out := c.CreateVodSourceRequest(input)
+	return out, req.Send()
+}
+
+// CreateVodSourceWithContext is the same as CreateVodSource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVodSource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) CreateVodSourceWithContext(ctx aws.Context, input *CreateVodSourceInput, opts ...request.Option) (*CreateVodSourceOutput, error) {
+	req, out := c.CreateVodSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannel = "DeleteChannel"
+
+// DeleteChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannel for more information on using the DeleteChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelRequest method.
+//    req, resp := client.DeleteChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteChannel
+func (c *MediaTailor) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Request, output *DeleteChannelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannel,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channel/{channelName}",
+	}
+
+	if input == nil {
+		input = &DeleteChannelInput{}
+	}
+
+	output = &DeleteChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteChannel API operation for AWS MediaTailor.
+//
+// Deletes a channel. You must stop the channel before it can be deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DeleteChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteChannel
+func (c *MediaTailor) DeleteChannel(input *DeleteChannelInput) (*DeleteChannelOutput, error) {
+	req, out := c.DeleteChannelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelWithContext is the same as DeleteChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DeleteChannelWithContext(ctx aws.Context, input *DeleteChannelInput, opts ...request.Option) (*DeleteChannelOutput, error) {
+	req, out := c.DeleteChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteChannelPolicy = "DeleteChannelPolicy"
+
+// DeleteChannelPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteChannelPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteChannelPolicy for more information on using the DeleteChannelPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteChannelPolicyRequest method.
+//    req, resp := client.DeleteChannelPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteChannelPolicy
+func (c *MediaTailor) DeleteChannelPolicyRequest(input *DeleteChannelPolicyInput) (req *request.Request, output *DeleteChannelPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteChannelPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channel/{channelName}/policy",
+	}
+
+	if input == nil {
+		input = &DeleteChannelPolicyInput{}
+	}
+
+	output = &DeleteChannelPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteChannelPolicy API operation for AWS MediaTailor.
+//
+// Deletes a channel's IAM policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DeleteChannelPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteChannelPolicy
+func (c *MediaTailor) DeleteChannelPolicy(input *DeleteChannelPolicyInput) (*DeleteChannelPolicyOutput, error) {
+	req, out := c.DeleteChannelPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteChannelPolicyWithContext is the same as DeleteChannelPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteChannelPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DeleteChannelPolicyWithContext(ctx aws.Context, input *DeleteChannelPolicyInput, opts ...request.Option) (*DeleteChannelPolicyOutput, error) {
+	req, out := c.DeleteChannelPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opDeletePlaybackConfiguration = "DeletePlaybackConfiguration"
 
@@ -87,6 +534,733 @@ func (c *MediaTailor) DeletePlaybackConfigurationWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opDeleteProgram = "DeleteProgram"
+
+// DeleteProgramRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteProgram operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteProgram for more information on using the DeleteProgram
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteProgramRequest method.
+//    req, resp := client.DeleteProgramRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteProgram
+func (c *MediaTailor) DeleteProgramRequest(input *DeleteProgramInput) (req *request.Request, output *DeleteProgramOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProgram,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/channel/{channelName}/program/{programName}",
+	}
+
+	if input == nil {
+		input = &DeleteProgramInput{}
+	}
+
+	output = &DeleteProgramOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteProgram API operation for AWS MediaTailor.
+//
+// Deletes a specific program on a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DeleteProgram for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteProgram
+func (c *MediaTailor) DeleteProgram(input *DeleteProgramInput) (*DeleteProgramOutput, error) {
+	req, out := c.DeleteProgramRequest(input)
+	return out, req.Send()
+}
+
+// DeleteProgramWithContext is the same as DeleteProgram with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteProgram for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DeleteProgramWithContext(ctx aws.Context, input *DeleteProgramInput, opts ...request.Option) (*DeleteProgramOutput, error) {
+	req, out := c.DeleteProgramRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSourceLocation = "DeleteSourceLocation"
+
+// DeleteSourceLocationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSourceLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSourceLocation for more information on using the DeleteSourceLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSourceLocationRequest method.
+//    req, resp := client.DeleteSourceLocationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteSourceLocation
+func (c *MediaTailor) DeleteSourceLocationRequest(input *DeleteSourceLocationInput) (req *request.Request, output *DeleteSourceLocationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSourceLocation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+	}
+
+	if input == nil {
+		input = &DeleteSourceLocationInput{}
+	}
+
+	output = &DeleteSourceLocationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSourceLocation API operation for AWS MediaTailor.
+//
+// Deletes a source location on a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DeleteSourceLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteSourceLocation
+func (c *MediaTailor) DeleteSourceLocation(input *DeleteSourceLocationInput) (*DeleteSourceLocationOutput, error) {
+	req, out := c.DeleteSourceLocationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSourceLocationWithContext is the same as DeleteSourceLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSourceLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DeleteSourceLocationWithContext(ctx aws.Context, input *DeleteSourceLocationInput, opts ...request.Option) (*DeleteSourceLocationOutput, error) {
+	req, out := c.DeleteSourceLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVodSource = "DeleteVodSource"
+
+// DeleteVodSourceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVodSource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVodSource for more information on using the DeleteVodSource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVodSourceRequest method.
+//    req, resp := client.DeleteVodSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteVodSource
+func (c *MediaTailor) DeleteVodSourceRequest(input *DeleteVodSourceInput) (req *request.Request, output *DeleteVodSourceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVodSource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+	}
+
+	if input == nil {
+		input = &DeleteVodSourceInput{}
+	}
+
+	output = &DeleteVodSourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteVodSource API operation for AWS MediaTailor.
+//
+// Deletes a specific VOD source in a specific source location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DeleteVodSource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeleteVodSource
+func (c *MediaTailor) DeleteVodSource(input *DeleteVodSourceInput) (*DeleteVodSourceOutput, error) {
+	req, out := c.DeleteVodSourceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVodSourceWithContext is the same as DeleteVodSource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVodSource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DeleteVodSourceWithContext(ctx aws.Context, input *DeleteVodSourceInput, opts ...request.Option) (*DeleteVodSourceOutput, error) {
+	req, out := c.DeleteVodSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeChannel = "DescribeChannel"
+
+// DescribeChannelRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeChannel for more information on using the DescribeChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeChannelRequest method.
+//    req, resp := client.DescribeChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeChannel
+func (c *MediaTailor) DescribeChannelRequest(input *DescribeChannelInput) (req *request.Request, output *DescribeChannelOutput) {
+	op := &request.Operation{
+		Name:       opDescribeChannel,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channel/{channelName}",
+	}
+
+	if input == nil {
+		input = &DescribeChannelInput{}
+	}
+
+	output = &DescribeChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeChannel API operation for AWS MediaTailor.
+//
+// Describes the properties of a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DescribeChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeChannel
+func (c *MediaTailor) DescribeChannel(input *DescribeChannelInput) (*DescribeChannelOutput, error) {
+	req, out := c.DescribeChannelRequest(input)
+	return out, req.Send()
+}
+
+// DescribeChannelWithContext is the same as DescribeChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DescribeChannelWithContext(ctx aws.Context, input *DescribeChannelInput, opts ...request.Option) (*DescribeChannelOutput, error) {
+	req, out := c.DescribeChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeProgram = "DescribeProgram"
+
+// DescribeProgramRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeProgram operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeProgram for more information on using the DescribeProgram
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeProgramRequest method.
+//    req, resp := client.DescribeProgramRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeProgram
+func (c *MediaTailor) DescribeProgramRequest(input *DescribeProgramInput) (req *request.Request, output *DescribeProgramOutput) {
+	op := &request.Operation{
+		Name:       opDescribeProgram,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channel/{channelName}/program/{programName}",
+	}
+
+	if input == nil {
+		input = &DescribeProgramInput{}
+	}
+
+	output = &DescribeProgramOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeProgram API operation for AWS MediaTailor.
+//
+// Retrieves the properties of the requested program.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DescribeProgram for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeProgram
+func (c *MediaTailor) DescribeProgram(input *DescribeProgramInput) (*DescribeProgramOutput, error) {
+	req, out := c.DescribeProgramRequest(input)
+	return out, req.Send()
+}
+
+// DescribeProgramWithContext is the same as DescribeProgram with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeProgram for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DescribeProgramWithContext(ctx aws.Context, input *DescribeProgramInput, opts ...request.Option) (*DescribeProgramOutput, error) {
+	req, out := c.DescribeProgramRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeSourceLocation = "DescribeSourceLocation"
+
+// DescribeSourceLocationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSourceLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSourceLocation for more information on using the DescribeSourceLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSourceLocationRequest method.
+//    req, resp := client.DescribeSourceLocationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeSourceLocation
+func (c *MediaTailor) DescribeSourceLocationRequest(input *DescribeSourceLocationInput) (req *request.Request, output *DescribeSourceLocationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSourceLocation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+	}
+
+	if input == nil {
+		input = &DescribeSourceLocationInput{}
+	}
+
+	output = &DescribeSourceLocationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSourceLocation API operation for AWS MediaTailor.
+//
+// Retrieves the properties of the requested source location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DescribeSourceLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeSourceLocation
+func (c *MediaTailor) DescribeSourceLocation(input *DescribeSourceLocationInput) (*DescribeSourceLocationOutput, error) {
+	req, out := c.DescribeSourceLocationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSourceLocationWithContext is the same as DescribeSourceLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSourceLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DescribeSourceLocationWithContext(ctx aws.Context, input *DescribeSourceLocationInput, opts ...request.Option) (*DescribeSourceLocationOutput, error) {
+	req, out := c.DescribeSourceLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeVodSource = "DescribeVodSource"
+
+// DescribeVodSourceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVodSource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVodSource for more information on using the DescribeVodSource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVodSourceRequest method.
+//    req, resp := client.DescribeVodSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeVodSource
+func (c *MediaTailor) DescribeVodSourceRequest(input *DescribeVodSourceInput) (req *request.Request, output *DescribeVodSourceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVodSource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+	}
+
+	if input == nil {
+		input = &DescribeVodSourceInput{}
+	}
+
+	output = &DescribeVodSourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVodSource API operation for AWS MediaTailor.
+//
+// Provides details about a specific VOD source in a specific source location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DescribeVodSource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DescribeVodSource
+func (c *MediaTailor) DescribeVodSource(input *DescribeVodSourceInput) (*DescribeVodSourceOutput, error) {
+	req, out := c.DescribeVodSourceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVodSourceWithContext is the same as DescribeVodSource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVodSource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DescribeVodSourceWithContext(ctx aws.Context, input *DescribeVodSourceInput, opts ...request.Option) (*DescribeVodSourceOutput, error) {
+	req, out := c.DescribeVodSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetChannelPolicy = "GetChannelPolicy"
+
+// GetChannelPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetChannelPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetChannelPolicy for more information on using the GetChannelPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetChannelPolicyRequest method.
+//    req, resp := client.GetChannelPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/GetChannelPolicy
+func (c *MediaTailor) GetChannelPolicyRequest(input *GetChannelPolicyInput) (req *request.Request, output *GetChannelPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetChannelPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channel/{channelName}/policy",
+	}
+
+	if input == nil {
+		input = &GetChannelPolicyInput{}
+	}
+
+	output = &GetChannelPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetChannelPolicy API operation for AWS MediaTailor.
+//
+// Retrieves information about a channel's IAM policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation GetChannelPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/GetChannelPolicy
+func (c *MediaTailor) GetChannelPolicy(input *GetChannelPolicyInput) (*GetChannelPolicyOutput, error) {
+	req, out := c.GetChannelPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetChannelPolicyWithContext is the same as GetChannelPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetChannelPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) GetChannelPolicyWithContext(ctx aws.Context, input *GetChannelPolicyInput, opts ...request.Option) (*GetChannelPolicyOutput, error) {
+	req, out := c.GetChannelPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetChannelSchedule = "GetChannelSchedule"
+
+// GetChannelScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the GetChannelSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetChannelSchedule for more information on using the GetChannelSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetChannelScheduleRequest method.
+//    req, resp := client.GetChannelScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/GetChannelSchedule
+func (c *MediaTailor) GetChannelScheduleRequest(input *GetChannelScheduleInput) (req *request.Request, output *GetChannelScheduleOutput) {
+	op := &request.Operation{
+		Name:       opGetChannelSchedule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channel/{channelName}/schedule",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetChannelScheduleInput{}
+	}
+
+	output = &GetChannelScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetChannelSchedule API operation for AWS MediaTailor.
+//
+// Retrieves information about your channel's schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation GetChannelSchedule for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/GetChannelSchedule
+func (c *MediaTailor) GetChannelSchedule(input *GetChannelScheduleInput) (*GetChannelScheduleOutput, error) {
+	req, out := c.GetChannelScheduleRequest(input)
+	return out, req.Send()
+}
+
+// GetChannelScheduleWithContext is the same as GetChannelSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetChannelSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) GetChannelScheduleWithContext(ctx aws.Context, input *GetChannelScheduleInput, opts ...request.Option) (*GetChannelScheduleOutput, error) {
+	req, out := c.GetChannelScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetChannelSchedulePages iterates over the pages of a GetChannelSchedule operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetChannelSchedule method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetChannelSchedule operation.
+//    pageNum := 0
+//    err := client.GetChannelSchedulePages(params,
+//        func(page *mediatailor.GetChannelScheduleOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) GetChannelSchedulePages(input *GetChannelScheduleInput, fn func(*GetChannelScheduleOutput, bool) bool) error {
+	return c.GetChannelSchedulePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetChannelSchedulePagesWithContext same as GetChannelSchedulePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) GetChannelSchedulePagesWithContext(ctx aws.Context, input *GetChannelScheduleInput, fn func(*GetChannelScheduleOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetChannelScheduleInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetChannelScheduleRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetChannelScheduleOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetPlaybackConfiguration = "GetPlaybackConfiguration"
 
 // GetPlaybackConfigurationRequest generates a "aws/request.Request" representing the
@@ -159,6 +1333,138 @@ func (c *MediaTailor) GetPlaybackConfigurationWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListChannels = "ListChannels"
+
+// ListChannelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListChannels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChannels for more information on using the ListChannels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChannelsRequest method.
+//    req, resp := client.ListChannelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListChannels
+func (c *MediaTailor) ListChannelsRequest(input *ListChannelsInput) (req *request.Request, output *ListChannelsOutput) {
+	op := &request.Operation{
+		Name:       opListChannels,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChannelsInput{}
+	}
+
+	output = &ListChannelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListChannels API operation for AWS MediaTailor.
+//
+// Retrieves a list of channels that are associated with this account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ListChannels for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListChannels
+func (c *MediaTailor) ListChannels(input *ListChannelsInput) (*ListChannelsOutput, error) {
+	req, out := c.ListChannelsRequest(input)
+	return out, req.Send()
+}
+
+// ListChannelsWithContext is the same as ListChannels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChannels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListChannelsWithContext(ctx aws.Context, input *ListChannelsInput, opts ...request.Option) (*ListChannelsOutput, error) {
+	req, out := c.ListChannelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChannelsPages iterates over the pages of a ListChannels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChannels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChannels operation.
+//    pageNum := 0
+//    err := client.ListChannelsPages(params,
+//        func(page *mediatailor.ListChannelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListChannelsPages(input *ListChannelsInput, fn func(*ListChannelsOutput, bool) bool) error {
+	return c.ListChannelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChannelsPagesWithContext same as ListChannelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListChannelsPagesWithContext(ctx aws.Context, input *ListChannelsInput, fn func(*ListChannelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChannelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChannelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListPlaybackConfigurations = "ListPlaybackConfigurations"
@@ -297,6 +1603,270 @@ func (c *MediaTailor) ListPlaybackConfigurationsPagesWithContext(ctx aws.Context
 	return p.Err()
 }
 
+const opListPrograms = "ListPrograms"
+
+// ListProgramsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPrograms operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPrograms for more information on using the ListPrograms
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListProgramsRequest method.
+//    req, resp := client.ListProgramsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListPrograms
+func (c *MediaTailor) ListProgramsRequest(input *ListProgramsInput) (req *request.Request, output *ListProgramsOutput) {
+	op := &request.Operation{
+		Name:       opListPrograms,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channel/{channelName}/programs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListProgramsInput{}
+	}
+
+	output = &ListProgramsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPrograms API operation for AWS MediaTailor.
+//
+// Retrieves a list of programs on a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ListPrograms for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListPrograms
+func (c *MediaTailor) ListPrograms(input *ListProgramsInput) (*ListProgramsOutput, error) {
+	req, out := c.ListProgramsRequest(input)
+	return out, req.Send()
+}
+
+// ListProgramsWithContext is the same as ListPrograms with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPrograms for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListProgramsWithContext(ctx aws.Context, input *ListProgramsInput, opts ...request.Option) (*ListProgramsOutput, error) {
+	req, out := c.ListProgramsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListProgramsPages iterates over the pages of a ListPrograms operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrograms method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPrograms operation.
+//    pageNum := 0
+//    err := client.ListProgramsPages(params,
+//        func(page *mediatailor.ListProgramsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListProgramsPages(input *ListProgramsInput, fn func(*ListProgramsOutput, bool) bool) error {
+	return c.ListProgramsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProgramsPagesWithContext same as ListProgramsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListProgramsPagesWithContext(ctx aws.Context, input *ListProgramsInput, fn func(*ListProgramsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProgramsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProgramsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProgramsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSourceLocations = "ListSourceLocations"
+
+// ListSourceLocationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSourceLocations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSourceLocations for more information on using the ListSourceLocations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSourceLocationsRequest method.
+//    req, resp := client.ListSourceLocationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListSourceLocations
+func (c *MediaTailor) ListSourceLocationsRequest(input *ListSourceLocationsInput) (req *request.Request, output *ListSourceLocationsOutput) {
+	op := &request.Operation{
+		Name:       opListSourceLocations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sourceLocations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSourceLocationsInput{}
+	}
+
+	output = &ListSourceLocationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSourceLocations API operation for AWS MediaTailor.
+//
+// Retrieves a list of source locations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ListSourceLocations for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListSourceLocations
+func (c *MediaTailor) ListSourceLocations(input *ListSourceLocationsInput) (*ListSourceLocationsOutput, error) {
+	req, out := c.ListSourceLocationsRequest(input)
+	return out, req.Send()
+}
+
+// ListSourceLocationsWithContext is the same as ListSourceLocations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSourceLocations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListSourceLocationsWithContext(ctx aws.Context, input *ListSourceLocationsInput, opts ...request.Option) (*ListSourceLocationsOutput, error) {
+	req, out := c.ListSourceLocationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSourceLocationsPages iterates over the pages of a ListSourceLocations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSourceLocations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSourceLocations operation.
+//    pageNum := 0
+//    err := client.ListSourceLocationsPages(params,
+//        func(page *mediatailor.ListSourceLocationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListSourceLocationsPages(input *ListSourceLocationsInput, fn func(*ListSourceLocationsOutput, bool) bool) error {
+	return c.ListSourceLocationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSourceLocationsPagesWithContext same as ListSourceLocationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListSourceLocationsPagesWithContext(ctx aws.Context, input *ListSourceLocationsInput, fn func(*ListSourceLocationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSourceLocationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSourceLocationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSourceLocationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -353,7 +1923,7 @@ func (c *MediaTailor) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //
 // Returned Error Types:
 //   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   A request contains unexpected data.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListTagsForResource
 func (c *MediaTailor) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -372,6 +1942,213 @@ func (c *MediaTailor) ListTagsForResource(input *ListTagsForResourceInput) (*Lis
 // for more information on using Contexts.
 func (c *MediaTailor) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListVodSources = "ListVodSources"
+
+// ListVodSourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListVodSources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListVodSources for more information on using the ListVodSources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListVodSourcesRequest method.
+//    req, resp := client.ListVodSourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListVodSources
+func (c *MediaTailor) ListVodSourcesRequest(input *ListVodSourcesInput) (req *request.Request, output *ListVodSourcesOutput) {
+	op := &request.Operation{
+		Name:       opListVodSources,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListVodSourcesInput{}
+	}
+
+	output = &ListVodSourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListVodSources API operation for AWS MediaTailor.
+//
+// Lists all the VOD sources in a source location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ListVodSources for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListVodSources
+func (c *MediaTailor) ListVodSources(input *ListVodSourcesInput) (*ListVodSourcesOutput, error) {
+	req, out := c.ListVodSourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListVodSourcesWithContext is the same as ListVodSources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListVodSources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListVodSourcesWithContext(ctx aws.Context, input *ListVodSourcesInput, opts ...request.Option) (*ListVodSourcesOutput, error) {
+	req, out := c.ListVodSourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListVodSourcesPages iterates over the pages of a ListVodSources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListVodSources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListVodSources operation.
+//    pageNum := 0
+//    err := client.ListVodSourcesPages(params,
+//        func(page *mediatailor.ListVodSourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListVodSourcesPages(input *ListVodSourcesInput, fn func(*ListVodSourcesOutput, bool) bool) error {
+	return c.ListVodSourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListVodSourcesPagesWithContext same as ListVodSourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListVodSourcesPagesWithContext(ctx aws.Context, input *ListVodSourcesInput, fn func(*ListVodSourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListVodSourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListVodSourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListVodSourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opPutChannelPolicy = "PutChannelPolicy"
+
+// PutChannelPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutChannelPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutChannelPolicy for more information on using the PutChannelPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutChannelPolicyRequest method.
+//    req, resp := client.PutChannelPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/PutChannelPolicy
+func (c *MediaTailor) PutChannelPolicyRequest(input *PutChannelPolicyInput) (req *request.Request, output *PutChannelPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutChannelPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channel/{channelName}/policy",
+	}
+
+	if input == nil {
+		input = &PutChannelPolicyInput{}
+	}
+
+	output = &PutChannelPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutChannelPolicy API operation for AWS MediaTailor.
+//
+// Creates an IAM policy for the channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation PutChannelPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/PutChannelPolicy
+func (c *MediaTailor) PutChannelPolicy(input *PutChannelPolicyInput) (*PutChannelPolicyOutput, error) {
+	req, out := c.PutChannelPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutChannelPolicyWithContext is the same as PutChannelPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutChannelPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) PutChannelPolicyWithContext(ctx aws.Context, input *PutChannelPolicyInput, opts ...request.Option) (*PutChannelPolicyOutput, error) {
+	req, out := c.PutChannelPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -451,6 +2228,156 @@ func (c *MediaTailor) PutPlaybackConfigurationWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opStartChannel = "StartChannel"
+
+// StartChannelRequest generates a "aws/request.Request" representing the
+// client's request for the StartChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartChannel for more information on using the StartChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartChannelRequest method.
+//    req, resp := client.StartChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/StartChannel
+func (c *MediaTailor) StartChannelRequest(input *StartChannelInput) (req *request.Request, output *StartChannelOutput) {
+	op := &request.Operation{
+		Name:       opStartChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channel/{channelName}/start",
+	}
+
+	if input == nil {
+		input = &StartChannelInput{}
+	}
+
+	output = &StartChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartChannel API operation for AWS MediaTailor.
+//
+// Starts a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation StartChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/StartChannel
+func (c *MediaTailor) StartChannel(input *StartChannelInput) (*StartChannelOutput, error) {
+	req, out := c.StartChannelRequest(input)
+	return out, req.Send()
+}
+
+// StartChannelWithContext is the same as StartChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) StartChannelWithContext(ctx aws.Context, input *StartChannelInput, opts ...request.Option) (*StartChannelOutput, error) {
+	req, out := c.StartChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopChannel = "StopChannel"
+
+// StopChannelRequest generates a "aws/request.Request" representing the
+// client's request for the StopChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopChannel for more information on using the StopChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopChannelRequest method.
+//    req, resp := client.StopChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/StopChannel
+func (c *MediaTailor) StopChannelRequest(input *StopChannelInput) (req *request.Request, output *StopChannelOutput) {
+	op := &request.Operation{
+		Name:       opStopChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channel/{channelName}/stop",
+	}
+
+	if input == nil {
+		input = &StopChannelInput{}
+	}
+
+	output = &StopChannelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopChannel API operation for AWS MediaTailor.
+//
+// Stops a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation StopChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/StopChannel
+func (c *MediaTailor) StopChannel(input *StopChannelInput) (*StopChannelOutput, error) {
+	req, out := c.StopChannelRequest(input)
+	return out, req.Send()
+}
+
+// StopChannelWithContext is the same as StopChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) StopChannelWithContext(ctx aws.Context, input *StopChannelInput, opts ...request.Option) (*StopChannelOutput, error) {
+	req, out := c.StopChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -508,7 +2435,7 @@ func (c *MediaTailor) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 // Returned Error Types:
 //   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   A request contains unexpected data.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/TagResource
 func (c *MediaTailor) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -589,7 +2516,7 @@ func (c *MediaTailor) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 // Returned Error Types:
 //   * BadRequestException
-//   One of the parameters in the request is invalid.
+//   A request contains unexpected data.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UntagResource
 func (c *MediaTailor) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -613,9 +2540,339 @@ func (c *MediaTailor) UntagResourceWithContext(ctx aws.Context, input *UntagReso
 	return out, req.Send()
 }
 
+const opUpdateChannel = "UpdateChannel"
+
+// UpdateChannelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateChannel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateChannel for more information on using the UpdateChannel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateChannelRequest method.
+//    req, resp := client.UpdateChannelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateChannel
+func (c *MediaTailor) UpdateChannelRequest(input *UpdateChannelInput) (req *request.Request, output *UpdateChannelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateChannel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channel/{channelName}",
+	}
+
+	if input == nil {
+		input = &UpdateChannelInput{}
+	}
+
+	output = &UpdateChannelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateChannel API operation for AWS MediaTailor.
+//
+// Updates an existing channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation UpdateChannel for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateChannel
+func (c *MediaTailor) UpdateChannel(input *UpdateChannelInput) (*UpdateChannelOutput, error) {
+	req, out := c.UpdateChannelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateChannelWithContext is the same as UpdateChannel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateChannel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) UpdateChannelWithContext(ctx aws.Context, input *UpdateChannelInput, opts ...request.Option) (*UpdateChannelOutput, error) {
+	req, out := c.UpdateChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSourceLocation = "UpdateSourceLocation"
+
+// UpdateSourceLocationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSourceLocation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSourceLocation for more information on using the UpdateSourceLocation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSourceLocationRequest method.
+//    req, resp := client.UpdateSourceLocationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateSourceLocation
+func (c *MediaTailor) UpdateSourceLocationRequest(input *UpdateSourceLocationInput) (req *request.Request, output *UpdateSourceLocationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSourceLocation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}",
+	}
+
+	if input == nil {
+		input = &UpdateSourceLocationInput{}
+	}
+
+	output = &UpdateSourceLocationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSourceLocation API operation for AWS MediaTailor.
+//
+// Updates a source location on a specific channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation UpdateSourceLocation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateSourceLocation
+func (c *MediaTailor) UpdateSourceLocation(input *UpdateSourceLocationInput) (*UpdateSourceLocationOutput, error) {
+	req, out := c.UpdateSourceLocationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSourceLocationWithContext is the same as UpdateSourceLocation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSourceLocation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) UpdateSourceLocationWithContext(ctx aws.Context, input *UpdateSourceLocationInput, opts ...request.Option) (*UpdateSourceLocationOutput, error) {
+	req, out := c.UpdateSourceLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateVodSource = "UpdateVodSource"
+
+// UpdateVodSourceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVodSource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVodSource for more information on using the UpdateVodSource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateVodSourceRequest method.
+//    req, resp := client.UpdateVodSourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateVodSource
+func (c *MediaTailor) UpdateVodSourceRequest(input *UpdateVodSourceInput) (req *request.Request, output *UpdateVodSourceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVodSource,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sourceLocation/{sourceLocationName}/vodSource/{vodSourceName}",
+	}
+
+	if input == nil {
+		input = &UpdateVodSourceInput{}
+	}
+
+	output = &UpdateVodSourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVodSource API operation for AWS MediaTailor.
+//
+// Updates a specific VOD source in a specific source location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation UpdateVodSource for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/UpdateVodSource
+func (c *MediaTailor) UpdateVodSource(input *UpdateVodSourceInput) (*UpdateVodSourceOutput, error) {
+	req, out := c.UpdateVodSourceRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVodSourceWithContext is the same as UpdateVodSource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVodSource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) UpdateVodSourceWithContext(ctx aws.Context, input *UpdateVodSourceInput, opts ...request.Option) (*UpdateVodSourceOutput, error) {
+	req, out := c.UpdateVodSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// Access configuration parameters.
+type AccessConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of authentication used to access content from HttpConfiguration::BaseUrl
+	// on your source location. Accepted value: S3_SIGV4.
+	//
+	// S3_SIGV4 - AWS Signature Version 4 authentication for Amazon S3 hosted virtual-style
+	// access. If your source location base URL is an Amazon S3 bucket, MediaTailor
+	// can use AWS Signature Version 4 (SigV4) authentication to access the bucket
+	// where your source content is stored. Your MediaTailor source location baseURL
+	// must follow the S3 virtual hosted-style request URL format. For example,
+	// https://bucket-name.s3.Region.amazonaws.com/key-name.
+	//
+	// Before you can use S3_SIGV4, you must meet these requirements:
+	//
+	// • You must allow MediaTailor to access your S3 bucket by granting mediatailor.amazonaws.com
+	// principal access in IAM. For information about configuring access in IAM,
+	// see Access management in the IAM User Guide.
+	//
+	// • The mediatailor.amazonaws.com service principal must have permissions
+	// to read all top level manifests referenced by the VodSource packaging configurations.
+	//
+	// • The caller of the API must have s3:GetObject IAM permissions to read
+	// all top level manifests referenced by your MediaTailor VodSource packaging
+	// configurations.
+	AccessType *string `type:"string" enum:"AccessType"`
+}
+
+// String returns the string representation
+func (s AccessConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAccessType sets the AccessType field's value.
+func (s *AccessConfiguration) SetAccessType(v string) *AccessConfiguration {
+	s.AccessType = &v
+	return s
+}
+
+// Ad break configuration parameters.
+type AdBreak struct {
+	_ struct{} `type:"structure"`
+
+	// The SCTE-35 ad insertion type. Accepted value: SPLICE_INSERT.
+	MessageType *string `type:"string" enum:"MessageType"`
+
+	// How long (in milliseconds) after the beginning of the program that an ad
+	// starts. This value must fall within 100ms of a segment boundary, otherwise
+	// the ad break will be skipped.
+	OffsetMillis *int64 `type:"long"`
+
+	// Ad break slate configuration.
+	Slate *SlateSource `type:"structure"`
+
+	// This defines the SCTE-35 splice_insert() message inserted around the ad.
+	// For information about using splice_insert(), see the SCTE-35 specficiaiton,
+	// section 9.7.3.1.
+	SpliceInsertMessage *SpliceInsertMessage `type:"structure"`
+}
+
+// String returns the string representation
+func (s AdBreak) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdBreak) GoString() string {
+	return s.String()
+}
+
+// SetMessageType sets the MessageType field's value.
+func (s *AdBreak) SetMessageType(v string) *AdBreak {
+	s.MessageType = &v
+	return s
+}
+
+// SetOffsetMillis sets the OffsetMillis field's value.
+func (s *AdBreak) SetOffsetMillis(v int64) *AdBreak {
+	s.OffsetMillis = &v
+	return s
+}
+
+// SetSlate sets the Slate field's value.
+func (s *AdBreak) SetSlate(v *SlateSource) *AdBreak {
+	s.Slate = v
+	return s
+}
+
+// SetSpliceInsertMessage sets the SpliceInsertMessage field's value.
+func (s *AdBreak) SetSpliceInsertMessage(v *SpliceInsertMessage) *AdBreak {
+	s.SpliceInsertMessage = v
+	return s
+}
+
+// For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT,
+// and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor
+// personalized manifest.
+//
+// No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has
+// a value of 60, but no ads are filled for that ad break, MediaTailor will
+// not set the value to 0.
 type AdMarkerPassthrough struct {
 	_ struct{} `type:"structure"`
 
+	// Enables ad marker passthrough for your configuration.
 	Enabled *bool `type:"boolean"`
 }
 
@@ -635,14 +2892,25 @@ func (s *AdMarkerPassthrough) SetEnabled(v bool) *AdMarkerPassthrough {
 	return s
 }
 
+// The configuration for avail suppression, also known as ad suppression. For
+// more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 type AvailSuppression struct {
 	_ struct{} `type:"structure"`
 
+	// Sets the ad suppression mode. By default, ad suppression is off and all ad
+	// breaks are filled with ads or slate. When Mode is set to BEHIND_LIVE_EDGE,
+	// ad suppression is active and MediaTailor won't fill ad breaks on or behind
+	// the ad suppression Value time in the manifest lookback window.
 	Mode *string `type:"string" enum:"Mode"`
 
-	// Sets the mode for avail suppression, also known as ad suppression. By default,
-	// ad suppression is off and all ad breaks are filled by MediaTailor with ads
-	// or slate.
+	// A live edge offset time in HH:MM:SS. MediaTailor won't fill ad breaks on
+	// or behind this time in the manifest lookback window. If Value is set to 00:00:00,
+	// it is in sync with the live edge, and MediaTailor won't fill any ad breaks
+	// on or behind the live edge. If you set a Value time, MediaTailor won't fill
+	// any ad breaks on or behind this time in the manifest lookback window. For
+	// example, if you set 00:45:00, then MediaTailor will fill ad breaks that occur
+	// within 45 minutes behind the live edge, but won't fill ad breaks on or behind
+	// 45 minutes behind the live edge.
 	Value *string `type:"string"`
 }
 
@@ -668,12 +2936,12 @@ func (s *AvailSuppression) SetValue(v string) *AvailSuppression {
 	return s
 }
 
-// One of the parameters in the request is invalid.
+// A request contains unexpected data.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// One of the parameters in the request is invalid.
+	// Constructs a new BadRequestException with the specified error message.
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
@@ -726,12 +2994,15 @@ func (s *BadRequestException) RequestID() string {
 }
 
 // The configuration for bumpers. Bumpers are short audio or video clips that
-// play at the start or before the end of an ad break.
+// play at the start or before the end of an ad break. To learn more about bumpers,
+// see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html).
 type Bumper struct {
 	_ struct{} `type:"structure"`
 
+	// The URL for the end bumper asset.
 	EndUrl *string `type:"string"`
 
+	// The URL for the start bumper asset.
 	StartUrl *string `type:"string"`
 }
 
@@ -765,9 +3036,9 @@ type CdnConfiguration struct {
 	// A non-default content delivery network (CDN) to serve ad segments. By default,
 	// AWS Elemental MediaTailor uses Amazon CloudFront with default cache settings
 	// as its CDN for ad segments. To set up an alternate CDN, create a rule in
-	// your CDN for the following origin: ads.mediatailor.<region>.amazonaws.com.
-	// Then specify the rule's name in this AdSegmentUrlPrefix. When AWS Elemental
-	// MediaTailor serves a manifest, it reports your CDN as the source for ad segments.
+	// your CDN for the origin ads.mediatailor.<region>.amazonaws.com. Then specify
+	// the rule's name in this AdSegmentUrlPrefix. When AWS Elemental MediaTailor
+	// serves a manifest, it reports your CDN as the source for ad segments.
 	AdSegmentUrlPrefix *string `type:"string"`
 
 	// A content delivery network (CDN) to cache content segments, so that content
@@ -797,6 +3068,781 @@ func (s *CdnConfiguration) SetAdSegmentUrlPrefix(v string) *CdnConfiguration {
 // SetContentSegmentUrlPrefix sets the ContentSegmentUrlPrefix field's value.
 func (s *CdnConfiguration) SetContentSegmentUrlPrefix(v string) *CdnConfiguration {
 	s.ContentSegmentUrlPrefix = &v
+	return s
+}
+
+// The configuration parameters for a channel.
+type Channel struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The name of the channel.
+	//
+	// ChannelName is a required field
+	ChannelName *string `type:"string" required:"true"`
+
+	// Returns the state whether the channel is running or not.
+	//
+	// ChannelState is a required field
+	ChannelState *string `type:"string" required:"true"`
+
+	// The timestamp of when the channel was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The timestamp of when the channel was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The channel's output properties.
+	//
+	// Outputs is a required field
+	Outputs []*ResponseOutputItem `type:"list" required:"true"`
+
+	// The type of playback mode for this channel. Possible values: ONCE or LOOP.
+	//
+	// PlaybackMode is a required field
+	PlaybackMode *string `type:"string" required:"true"`
+
+	// The tags to assign to the channel.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s Channel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Channel) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Channel) SetArn(v string) *Channel {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *Channel) SetChannelName(v string) *Channel {
+	s.ChannelName = &v
+	return s
+}
+
+// SetChannelState sets the ChannelState field's value.
+func (s *Channel) SetChannelState(v string) *Channel {
+	s.ChannelState = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Channel) SetCreationTime(v time.Time) *Channel {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Channel) SetLastModifiedTime(v time.Time) *Channel {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *Channel) SetOutputs(v []*ResponseOutputItem) *Channel {
+	s.Outputs = v
+	return s
+}
+
+// SetPlaybackMode sets the PlaybackMode field's value.
+func (s *Channel) SetPlaybackMode(v string) *Channel {
+	s.PlaybackMode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Channel) SetTags(v map[string]*string) *Channel {
+	s.Tags = v
+	return s
+}
+
+// The configuration for this channel.
+type CreateChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	// The channel's output properties.
+	//
+	// Outputs is a required field
+	Outputs []*RequestOutputItem `type:"list" required:"true"`
+
+	// The type of playback mode for this channel. The only supported value is LOOP.
+	//
+	// PlaybackMode is a required field
+	PlaybackMode *string `type:"string" required:"true" enum:"PlaybackMode"`
+
+	// The tags to assign to the channel.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.Outputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Outputs"))
+	}
+	if s.PlaybackMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaybackMode"))
+	}
+	if s.Outputs != nil {
+		for i, v := range s.Outputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Outputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *CreateChannelInput) SetChannelName(v string) *CreateChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *CreateChannelInput) SetOutputs(v []*RequestOutputItem) *CreateChannelInput {
+	s.Outputs = v
+	return s
+}
+
+// SetPlaybackMode sets the PlaybackMode field's value.
+func (s *CreateChannelInput) SetPlaybackMode(v string) *CreateChannelInput {
+	s.PlaybackMode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateChannelInput) SetTags(v map[string]*string) *CreateChannelInput {
+	s.Tags = v
+	return s
+}
+
+type CreateChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	ChannelName *string `type:"string"`
+
+	ChannelState *string `type:"string" enum:"ChannelState"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	Outputs []*ResponseOutputItem `type:"list"`
+
+	PlaybackMode *string `type:"string"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateChannelOutput) SetArn(v string) *CreateChannelOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *CreateChannelOutput) SetChannelName(v string) *CreateChannelOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetChannelState sets the ChannelState field's value.
+func (s *CreateChannelOutput) SetChannelState(v string) *CreateChannelOutput {
+	s.ChannelState = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateChannelOutput) SetCreationTime(v time.Time) *CreateChannelOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *CreateChannelOutput) SetLastModifiedTime(v time.Time) *CreateChannelOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *CreateChannelOutput) SetOutputs(v []*ResponseOutputItem) *CreateChannelOutput {
+	s.Outputs = v
+	return s
+}
+
+// SetPlaybackMode sets the PlaybackMode field's value.
+func (s *CreateChannelOutput) SetPlaybackMode(v string) *CreateChannelOutput {
+	s.PlaybackMode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateChannelOutput) SetTags(v map[string]*string) *CreateChannelOutput {
+	s.Tags = v
+	return s
+}
+
+// Program configuration parameters.
+type CreateProgramInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ad break configuration settings.
+	AdBreaks []*AdBreak `type:"list"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	// ProgramName is a required field
+	ProgramName *string `location:"uri" locationName:"programName" type:"string" required:"true"`
+
+	// The schedule configuration settings.
+	//
+	// ScheduleConfiguration is a required field
+	ScheduleConfiguration *ScheduleConfiguration `type:"structure" required:"true"`
+
+	// The name of the source location.
+	//
+	// SourceLocationName is a required field
+	SourceLocationName *string `type:"string" required:"true"`
+
+	// The name that's used to refer to a VOD source.
+	//
+	// VodSourceName is a required field
+	VodSourceName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateProgramInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateProgramInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateProgramInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateProgramInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.ProgramName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProgramName"))
+	}
+	if s.ProgramName != nil && len(*s.ProgramName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProgramName", 1))
+	}
+	if s.ScheduleConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleConfiguration"))
+	}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.VodSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VodSourceName"))
+	}
+	if s.ScheduleConfiguration != nil {
+		if err := s.ScheduleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdBreaks sets the AdBreaks field's value.
+func (s *CreateProgramInput) SetAdBreaks(v []*AdBreak) *CreateProgramInput {
+	s.AdBreaks = v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *CreateProgramInput) SetChannelName(v string) *CreateProgramInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *CreateProgramInput) SetProgramName(v string) *CreateProgramInput {
+	s.ProgramName = &v
+	return s
+}
+
+// SetScheduleConfiguration sets the ScheduleConfiguration field's value.
+func (s *CreateProgramInput) SetScheduleConfiguration(v *ScheduleConfiguration) *CreateProgramInput {
+	s.ScheduleConfiguration = v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *CreateProgramInput) SetSourceLocationName(v string) *CreateProgramInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *CreateProgramInput) SetVodSourceName(v string) *CreateProgramInput {
+	s.VodSourceName = &v
+	return s
+}
+
+type CreateProgramOutput struct {
+	_ struct{} `type:"structure"`
+
+	AdBreaks []*AdBreak `type:"list"`
+
+	Arn *string `type:"string"`
+
+	ChannelName *string `type:"string"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	ProgramName *string `type:"string"`
+
+	SourceLocationName *string `type:"string"`
+
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateProgramOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateProgramOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdBreaks sets the AdBreaks field's value.
+func (s *CreateProgramOutput) SetAdBreaks(v []*AdBreak) *CreateProgramOutput {
+	s.AdBreaks = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateProgramOutput) SetArn(v string) *CreateProgramOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *CreateProgramOutput) SetChannelName(v string) *CreateProgramOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateProgramOutput) SetCreationTime(v time.Time) *CreateProgramOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *CreateProgramOutput) SetProgramName(v string) *CreateProgramOutput {
+	s.ProgramName = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *CreateProgramOutput) SetSourceLocationName(v string) *CreateProgramOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *CreateProgramOutput) SetVodSourceName(v string) *CreateProgramOutput {
+	s.VodSourceName = &v
+	return s
+}
+
+// Source location configuration parameters.
+type CreateSourceLocationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Access configuration parameters. Configures the type of authentication used
+	// to access content from your source location.
+	AccessConfiguration *AccessConfiguration `type:"structure"`
+
+	// The optional configuration for the server that serves segments.
+	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
+
+	// The source's HTTP package configurations.
+	//
+	// HttpConfiguration is a required field
+	HttpConfiguration *HttpConfiguration `type:"structure" required:"true"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+
+	// The tags to assign to the source location.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateSourceLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSourceLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSourceLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSourceLocationInput"}
+	if s.HttpConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("HttpConfiguration"))
+	}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+	if s.HttpConfiguration != nil {
+		if err := s.HttpConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("HttpConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessConfiguration sets the AccessConfiguration field's value.
+func (s *CreateSourceLocationInput) SetAccessConfiguration(v *AccessConfiguration) *CreateSourceLocationInput {
+	s.AccessConfiguration = v
+	return s
+}
+
+// SetDefaultSegmentDeliveryConfiguration sets the DefaultSegmentDeliveryConfiguration field's value.
+func (s *CreateSourceLocationInput) SetDefaultSegmentDeliveryConfiguration(v *DefaultSegmentDeliveryConfiguration) *CreateSourceLocationInput {
+	s.DefaultSegmentDeliveryConfiguration = v
+	return s
+}
+
+// SetHttpConfiguration sets the HttpConfiguration field's value.
+func (s *CreateSourceLocationInput) SetHttpConfiguration(v *HttpConfiguration) *CreateSourceLocationInput {
+	s.HttpConfiguration = v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *CreateSourceLocationInput) SetSourceLocationName(v string) *CreateSourceLocationInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSourceLocationInput) SetTags(v map[string]*string) *CreateSourceLocationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSourceLocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Access configuration parameters.
+	AccessConfiguration *AccessConfiguration `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The optional configuration for a server that serves segments. Use this if
+	// you want the segment delivery server to be different from the source location
+	// server. For example, you can configure your source location server to be
+	// an origination server, such as MediaPackage, and the segment delivery server
+	// to be a content delivery network (CDN), such as CloudFront. If you don't
+	// specify a segment delivery server, then the source location server is used.
+	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
+
+	// The HTTP configuration for the source location.
+	HttpConfiguration *HttpConfiguration `type:"structure"`
+
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	SourceLocationName *string `type:"string"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateSourceLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSourceLocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessConfiguration sets the AccessConfiguration field's value.
+func (s *CreateSourceLocationOutput) SetAccessConfiguration(v *AccessConfiguration) *CreateSourceLocationOutput {
+	s.AccessConfiguration = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateSourceLocationOutput) SetArn(v string) *CreateSourceLocationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateSourceLocationOutput) SetCreationTime(v time.Time) *CreateSourceLocationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDefaultSegmentDeliveryConfiguration sets the DefaultSegmentDeliveryConfiguration field's value.
+func (s *CreateSourceLocationOutput) SetDefaultSegmentDeliveryConfiguration(v *DefaultSegmentDeliveryConfiguration) *CreateSourceLocationOutput {
+	s.DefaultSegmentDeliveryConfiguration = v
+	return s
+}
+
+// SetHttpConfiguration sets the HttpConfiguration field's value.
+func (s *CreateSourceLocationOutput) SetHttpConfiguration(v *HttpConfiguration) *CreateSourceLocationOutput {
+	s.HttpConfiguration = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *CreateSourceLocationOutput) SetLastModifiedTime(v time.Time) *CreateSourceLocationOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *CreateSourceLocationOutput) SetSourceLocationName(v string) *CreateSourceLocationOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSourceLocationOutput) SetTags(v map[string]*string) *CreateSourceLocationOutput {
+	s.Tags = v
+	return s
+}
+
+// The VOD source configuration parameters.
+type CreateVodSourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of HTTP package configuration parameters for this VOD source.
+	//
+	// HttpPackageConfigurations is a required field
+	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+
+	// The tags to assign to the VOD source.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// VodSourceName is a required field
+	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateVodSourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVodSourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVodSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVodSourceInput"}
+	if s.HttpPackageConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("HttpPackageConfigurations"))
+	}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+	if s.VodSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VodSourceName"))
+	}
+	if s.VodSourceName != nil && len(*s.VodSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VodSourceName", 1))
+	}
+	if s.HttpPackageConfigurations != nil {
+		for i, v := range s.HttpPackageConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "HttpPackageConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHttpPackageConfigurations sets the HttpPackageConfigurations field's value.
+func (s *CreateVodSourceInput) SetHttpPackageConfigurations(v []*HttpPackageConfiguration) *CreateVodSourceInput {
+	s.HttpPackageConfigurations = v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *CreateVodSourceInput) SetSourceLocationName(v string) *CreateVodSourceInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVodSourceInput) SetTags(v map[string]*string) *CreateVodSourceInput {
+	s.Tags = v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *CreateVodSourceInput) SetVodSourceName(v string) *CreateVodSourceInput {
+	s.VodSourceName = &v
+	return s
+}
+
+type CreateVodSourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The VOD source's HTTP package configuration settings.
+	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
+
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	SourceLocationName *string `type:"string"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateVodSourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVodSourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateVodSourceOutput) SetArn(v string) *CreateVodSourceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateVodSourceOutput) SetCreationTime(v time.Time) *CreateVodSourceOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetHttpPackageConfigurations sets the HttpPackageConfigurations field's value.
+func (s *CreateVodSourceOutput) SetHttpPackageConfigurations(v []*HttpPackageConfiguration) *CreateVodSourceOutput {
+	s.HttpPackageConfigurations = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *CreateVodSourceOutput) SetLastModifiedTime(v time.Time) *CreateVodSourceOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *CreateVodSourceOutput) SetSourceLocationName(v string) *CreateVodSourceOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVodSourceOutput) SetTags(v map[string]*string) *CreateVodSourceOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *CreateVodSourceOutput) SetVodSourceName(v string) *CreateVodSourceOutput {
+	s.VodSourceName = &v
 	return s
 }
 
@@ -898,6 +3944,200 @@ func (s *DashConfigurationForPut) SetOriginManifestType(v string) *DashConfigura
 	return s
 }
 
+// Dash manifest configuration parameters.
+type DashPlaylistSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The total duration (in seconds) of each manifest. Minimum value: 30 seconds.
+	// Maximum value: 3600 seconds.
+	ManifestWindowSeconds *int64 `type:"integer"`
+
+	// Minimum amount of content (measured in seconds) that a player must keep available
+	// in the buffer. Minimum value: 2 seconds. Maximum value: 60 seconds.
+	MinBufferTimeSeconds *int64 `type:"integer"`
+
+	// Minimum amount of time (in seconds) that the player should wait before requesting
+	// updates to the manifest. Minimum value: 2 seconds. Maximum value: 60 seconds.
+	MinUpdatePeriodSeconds *int64 `type:"integer"`
+
+	// Amount of time (in seconds) that the player should be from the live point
+	// at the end of the manifest. Minimum value: 2 seconds. Maximum value: 60 seconds.
+	SuggestedPresentationDelaySeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DashPlaylistSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DashPlaylistSettings) GoString() string {
+	return s.String()
+}
+
+// SetManifestWindowSeconds sets the ManifestWindowSeconds field's value.
+func (s *DashPlaylistSettings) SetManifestWindowSeconds(v int64) *DashPlaylistSettings {
+	s.ManifestWindowSeconds = &v
+	return s
+}
+
+// SetMinBufferTimeSeconds sets the MinBufferTimeSeconds field's value.
+func (s *DashPlaylistSettings) SetMinBufferTimeSeconds(v int64) *DashPlaylistSettings {
+	s.MinBufferTimeSeconds = &v
+	return s
+}
+
+// SetMinUpdatePeriodSeconds sets the MinUpdatePeriodSeconds field's value.
+func (s *DashPlaylistSettings) SetMinUpdatePeriodSeconds(v int64) *DashPlaylistSettings {
+	s.MinUpdatePeriodSeconds = &v
+	return s
+}
+
+// SetSuggestedPresentationDelaySeconds sets the SuggestedPresentationDelaySeconds field's value.
+func (s *DashPlaylistSettings) SetSuggestedPresentationDelaySeconds(v int64) *DashPlaylistSettings {
+	s.SuggestedPresentationDelaySeconds = &v
+	return s
+}
+
+// The optional configuration for a server that serves segments. Use this if
+// you want the segment delivery server to be different from the source location
+// server. For example, you can configure your source location server to be
+// an origination server, such as MediaPackage, and the segment delivery server
+// to be a content delivery network (CDN), such as CloudFront. If you don't
+// specify a segment delivery server, then the source location server is used.
+type DefaultSegmentDeliveryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname of the server that will be used to serve segments. This string
+	// must include the protocol, such as https://.
+	BaseUrl *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DefaultSegmentDeliveryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DefaultSegmentDeliveryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetBaseUrl sets the BaseUrl field's value.
+func (s *DefaultSegmentDeliveryConfiguration) SetBaseUrl(v string) *DefaultSegmentDeliveryConfiguration {
+	s.BaseUrl = &v
+	return s
+}
+
+type DeleteChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DeleteChannelInput) SetChannelName(v string) *DeleteChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DeleteChannelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelOutput) GoString() string {
+	return s.String()
+}
+
+// This response includes only the "type" : "object" property.
+type DeleteChannelPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteChannelPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteChannelPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteChannelPolicyInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DeleteChannelPolicyInput) SetChannelName(v string) *DeleteChannelPolicyInput {
+	s.ChannelName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DeleteChannelPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteChannelPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChannelPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type DeletePlaybackConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -951,6 +4191,877 @@ func (s DeletePlaybackConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteProgramInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	// ProgramName is a required field
+	ProgramName *string `location:"uri" locationName:"programName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteProgramInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProgramInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteProgramInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteProgramInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.ProgramName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProgramName"))
+	}
+	if s.ProgramName != nil && len(*s.ProgramName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProgramName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DeleteProgramInput) SetChannelName(v string) *DeleteProgramInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *DeleteProgramInput) SetProgramName(v string) *DeleteProgramInput {
+	s.ProgramName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DeleteProgramOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteProgramOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProgramOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSourceLocationInput struct {
+	_ struct{} `type:"structure"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSourceLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSourceLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSourceLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSourceLocationInput"}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DeleteSourceLocationInput) SetSourceLocationName(v string) *DeleteSourceLocationInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DeleteSourceLocationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSourceLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSourceLocationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteVodSourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+
+	// VodSourceName is a required field
+	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteVodSourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVodSourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVodSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVodSourceInput"}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+	if s.VodSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VodSourceName"))
+	}
+	if s.VodSourceName != nil && len(*s.VodSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VodSourceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DeleteVodSourceInput) SetSourceLocationName(v string) *DeleteVodSourceInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *DeleteVodSourceInput) SetVodSourceName(v string) *DeleteVodSourceInput {
+	s.VodSourceName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DeleteVodSourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVodSourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVodSourceOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DescribeChannelInput) SetChannelName(v string) *DescribeChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+// Returns a channel's properties.
+type DescribeChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	Arn *string `type:"string"`
+
+	// The name of the channel.
+	ChannelName *string `type:"string"`
+
+	// Indicates whether the channel is in a running state or not.
+	ChannelState *string `type:"string" enum:"ChannelState"`
+
+	// The timestamp of when the channel was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The timestamp of when the channel was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The channel's output properties.
+	Outputs []*ResponseOutputItem `type:"list"`
+
+	// The type of playback for this channel. The only supported value is LOOP.
+	PlaybackMode *string `type:"string"`
+
+	// The tags assigned to the channel.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s DescribeChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeChannelOutput) SetArn(v string) *DescribeChannelOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DescribeChannelOutput) SetChannelName(v string) *DescribeChannelOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetChannelState sets the ChannelState field's value.
+func (s *DescribeChannelOutput) SetChannelState(v string) *DescribeChannelOutput {
+	s.ChannelState = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeChannelOutput) SetCreationTime(v time.Time) *DescribeChannelOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeChannelOutput) SetLastModifiedTime(v time.Time) *DescribeChannelOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *DescribeChannelOutput) SetOutputs(v []*ResponseOutputItem) *DescribeChannelOutput {
+	s.Outputs = v
+	return s
+}
+
+// SetPlaybackMode sets the PlaybackMode field's value.
+func (s *DescribeChannelOutput) SetPlaybackMode(v string) *DescribeChannelOutput {
+	s.PlaybackMode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeChannelOutput) SetTags(v map[string]*string) *DescribeChannelOutput {
+	s.Tags = v
+	return s
+}
+
+type DescribeProgramInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	// ProgramName is a required field
+	ProgramName *string `location:"uri" locationName:"programName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeProgramInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeProgramInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeProgramInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeProgramInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.ProgramName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProgramName"))
+	}
+	if s.ProgramName != nil && len(*s.ProgramName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProgramName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DescribeProgramInput) SetChannelName(v string) *DescribeProgramInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *DescribeProgramInput) SetProgramName(v string) *DescribeProgramInput {
+	s.ProgramName = &v
+	return s
+}
+
+// This program's configuration parameters.
+type DescribeProgramOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ad break configuration settings.
+	AdBreaks []*AdBreak `type:"list"`
+
+	// The ARN of the program.
+	Arn *string `type:"string"`
+
+	// The name of the channel that the program belongs to.
+	ChannelName *string `type:"string"`
+
+	// The timestamp of when the program was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the program.
+	ProgramName *string `type:"string"`
+
+	// The source location name.
+	SourceLocationName *string `type:"string"`
+
+	// The name that's used to refer to a VOD source.
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeProgramOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeProgramOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdBreaks sets the AdBreaks field's value.
+func (s *DescribeProgramOutput) SetAdBreaks(v []*AdBreak) *DescribeProgramOutput {
+	s.AdBreaks = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeProgramOutput) SetArn(v string) *DescribeProgramOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *DescribeProgramOutput) SetChannelName(v string) *DescribeProgramOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeProgramOutput) SetCreationTime(v time.Time) *DescribeProgramOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *DescribeProgramOutput) SetProgramName(v string) *DescribeProgramOutput {
+	s.ProgramName = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DescribeProgramOutput) SetSourceLocationName(v string) *DescribeProgramOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *DescribeProgramOutput) SetVodSourceName(v string) *DescribeProgramOutput {
+	s.VodSourceName = &v
+	return s
+}
+
+type DescribeSourceLocationInput struct {
+	_ struct{} `type:"structure"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeSourceLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSourceLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSourceLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSourceLocationInput"}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DescribeSourceLocationInput) SetSourceLocationName(v string) *DescribeSourceLocationInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DescribeSourceLocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The access configuration for the source location.
+	AccessConfiguration *AccessConfiguration `type:"structure"`
+
+	// The ARN of the source location.
+	Arn *string `type:"string"`
+
+	// The timestamp that indicates when the source location was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The default segment delivery configuration settings.
+	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
+
+	// The HTTP package configuration settings for the source location.
+	HttpConfiguration *HttpConfiguration `type:"structure"`
+
+	// The timestamp that indicates when the source location was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the source location.
+	SourceLocationName *string `type:"string"`
+
+	// The tags assigned to the source location.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s DescribeSourceLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSourceLocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessConfiguration sets the AccessConfiguration field's value.
+func (s *DescribeSourceLocationOutput) SetAccessConfiguration(v *AccessConfiguration) *DescribeSourceLocationOutput {
+	s.AccessConfiguration = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeSourceLocationOutput) SetArn(v string) *DescribeSourceLocationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeSourceLocationOutput) SetCreationTime(v time.Time) *DescribeSourceLocationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDefaultSegmentDeliveryConfiguration sets the DefaultSegmentDeliveryConfiguration field's value.
+func (s *DescribeSourceLocationOutput) SetDefaultSegmentDeliveryConfiguration(v *DefaultSegmentDeliveryConfiguration) *DescribeSourceLocationOutput {
+	s.DefaultSegmentDeliveryConfiguration = v
+	return s
+}
+
+// SetHttpConfiguration sets the HttpConfiguration field's value.
+func (s *DescribeSourceLocationOutput) SetHttpConfiguration(v *HttpConfiguration) *DescribeSourceLocationOutput {
+	s.HttpConfiguration = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeSourceLocationOutput) SetLastModifiedTime(v time.Time) *DescribeSourceLocationOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DescribeSourceLocationOutput) SetSourceLocationName(v string) *DescribeSourceLocationOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeSourceLocationOutput) SetTags(v map[string]*string) *DescribeSourceLocationOutput {
+	s.Tags = v
+	return s
+}
+
+type DescribeVodSourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+
+	// VodSourceName is a required field
+	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeVodSourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVodSourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVodSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVodSourceInput"}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+	if s.VodSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VodSourceName"))
+	}
+	if s.VodSourceName != nil && len(*s.VodSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VodSourceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DescribeVodSourceInput) SetSourceLocationName(v string) *DescribeVodSourceInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *DescribeVodSourceInput) SetVodSourceName(v string) *DescribeVodSourceInput {
+	s.VodSourceName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type DescribeVodSourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the VOD source.
+	Arn *string `type:"string"`
+
+	// The timestamp that indicates when the VOD source was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The HTTP package configurations.
+	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
+
+	// The ARN for the VOD source.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the source location associated with the VOD source.
+	SourceLocationName *string `type:"string"`
+
+	// The tags assigned to the VOD source.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The name of the VOD source.
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeVodSourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVodSourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeVodSourceOutput) SetArn(v string) *DescribeVodSourceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeVodSourceOutput) SetCreationTime(v time.Time) *DescribeVodSourceOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetHttpPackageConfigurations sets the HttpPackageConfigurations field's value.
+func (s *DescribeVodSourceOutput) SetHttpPackageConfigurations(v []*HttpPackageConfiguration) *DescribeVodSourceOutput {
+	s.HttpPackageConfigurations = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeVodSourceOutput) SetLastModifiedTime(v time.Time) *DescribeVodSourceOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *DescribeVodSourceOutput) SetSourceLocationName(v string) *DescribeVodSourceOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeVodSourceOutput) SetTags(v map[string]*string) *DescribeVodSourceOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *DescribeVodSourceOutput) SetVodSourceName(v string) *DescribeVodSourceOutput {
+	s.VodSourceName = &v
+	return s
+}
+
+type GetChannelPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetChannelPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChannelPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetChannelPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetChannelPolicyInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *GetChannelPolicyInput) SetChannelName(v string) *GetChannelPolicyInput {
+	s.ChannelName = &v
+	return s
+}
+
+// Returns the channel's IAM policy.
+type GetChannelPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The IAM policy for the channel.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetChannelPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChannelPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetChannelPolicyOutput) SetPolicy(v string) *GetChannelPolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+type GetChannelScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	DurationMinutes *string `location:"querystring" locationName:"durationMinutes" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetChannelScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChannelScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetChannelScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetChannelScheduleInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *GetChannelScheduleInput) SetChannelName(v string) *GetChannelScheduleInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetDurationMinutes sets the DurationMinutes field's value.
+func (s *GetChannelScheduleInput) SetDurationMinutes(v string) *GetChannelScheduleInput {
+	s.DurationMinutes = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetChannelScheduleInput) SetMaxResults(v int64) *GetChannelScheduleInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetChannelScheduleInput) SetNextToken(v string) *GetChannelScheduleInput {
+	s.NextToken = &v
+	return s
+}
+
+// Returns the schedule entries for the channel.
+type GetChannelScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of schedule entries for the channel.
+	Items []*ScheduleEntry `type:"list"`
+
+	// Pagination token from the GET list request. Use the token to fetch the next
+	// page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetChannelScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetChannelScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *GetChannelScheduleOutput) SetItems(v []*ScheduleEntry) *GetChannelScheduleOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetChannelScheduleOutput) SetNextToken(v string) *GetChannelScheduleOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetPlaybackConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -990,6 +5101,7 @@ func (s *GetPlaybackConfigurationInput) SetName(v string) *GetPlaybackConfigurat
 	return s
 }
 
+// Returns the playback configuration for the specified name.
 type GetPlaybackConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1000,18 +5112,21 @@ type GetPlaybackConfigurationOutput struct {
 	// static VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
-	// The configuration for Avail Suppression.
+	// The configuration for avail suppression, also known as ad suppression. For
+	// more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	AvailSuppression *AvailSuppression `type:"structure"`
 
 	// The configuration for bumpers. Bumpers are short audio or video clips that
-	// play at the start or before the end of an ad break.
+	// play at the start or before the end of an ad break. To learn more about bumpers,
+	// see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html).
 	Bumper *Bumper `type:"structure"`
 
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
-	// Predefined aliases for dynamic variables.
+	// The player parameters and aliases used as dynamic variables during session
+	// initialization. For more information, see Domain Variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html).
 	ConfigurationAliases map[string]map[string]*string `type:"map"`
 
 	// The configuration for DASH content.
@@ -1030,6 +5145,13 @@ type GetPlaybackConfigurationOutput struct {
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
+	// Defines the maximum duration of underfilled ad time (in seconds) allowed
+	// in an ad break. If the duration of underfilled ad time exceeds the personalization
+	// threshold, then the personalization of the ad break is abandoned and the
+	// underlying content is shown. This feature applies to ad replacement in live
+	// and VOD streams, rather than ad insertion, because it relies on an underlying
+	// content stream. For more information about ad break behavior, including ad
+	// replacement and insertion, see Ad Behavior in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the playback configuration.
@@ -1060,7 +5182,7 @@ type GetPlaybackConfigurationOutput struct {
 	// AWS Support.
 	TranscodeProfileName *string `type:"string"`
 
-	// The URL prefix for the master playlist for the stream, minus the asset ID.
+	// The URL prefix for the parent manifest for the stream, minus the asset ID.
 	// The maximum length is 512 characters.
 	VideoContentSourceUrl *string `type:"string"`
 }
@@ -1208,6 +5330,217 @@ func (s *HlsConfiguration) SetManifestEndpointPrefix(v string) *HlsConfiguration
 	return s
 }
 
+// HLS playlist configuration parameters.
+type HlsPlaylistSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The total duration (in seconds) of each manifest. Minimum value: 30 seconds.
+	// Maximum value: 3600 seconds.
+	ManifestWindowSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s HlsPlaylistSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HlsPlaylistSettings) GoString() string {
+	return s.String()
+}
+
+// SetManifestWindowSeconds sets the ManifestWindowSeconds field's value.
+func (s *HlsPlaylistSettings) SetManifestWindowSeconds(v int64) *HlsPlaylistSettings {
+	s.ManifestWindowSeconds = &v
+	return s
+}
+
+// The HTTP configuration for the source location.
+type HttpConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The base URL for the source location host server. This string must include
+	// the protocol, such as https://.
+	//
+	// BaseUrl is a required field
+	BaseUrl *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HttpConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpConfiguration"}
+	if s.BaseUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("BaseUrl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseUrl sets the BaseUrl field's value.
+func (s *HttpConfiguration) SetBaseUrl(v string) *HttpConfiguration {
+	s.BaseUrl = &v
+	return s
+}
+
+// The HTTP package configuration properties for the requested VOD source.
+type HttpPackageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The relative path to the URL for this VOD source. This is combined with SourceLocation::HttpConfiguration::BaseUrl
+	// to form a valid URL.
+	//
+	// Path is a required field
+	Path *string `type:"string" required:"true"`
+
+	// The name of the source group. This has to match one of the Channel::Outputs::SourceGroup.
+	//
+	// SourceGroup is a required field
+	SourceGroup *string `type:"string" required:"true"`
+
+	// The streaming protocol for this package configuration. Supported values are
+	// HLS and DASH.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"Type"`
+}
+
+// String returns the string representation
+func (s HttpPackageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpPackageConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpPackageConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpPackageConfiguration"}
+	if s.Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("Path"))
+	}
+	if s.SourceGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceGroup"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPath sets the Path field's value.
+func (s *HttpPackageConfiguration) SetPath(v string) *HttpPackageConfiguration {
+	s.Path = &v
+	return s
+}
+
+// SetSourceGroup sets the SourceGroup field's value.
+func (s *HttpPackageConfiguration) SetSourceGroup(v string) *HttpPackageConfiguration {
+	s.SourceGroup = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *HttpPackageConfiguration) SetType(v string) *HttpPackageConfiguration {
+	s.Type = &v
+	return s
+}
+
+type ListChannelsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListChannelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChannelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChannelsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChannelsInput) SetMaxResults(v int64) *ListChannelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelsInput) SetNextToken(v string) *ListChannelsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Returns a list of channels.
+type ListChannelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of channels that are associated with this account.
+	Items []*Channel `type:"list"`
+
+	// Pagination token returned by the list request when results exceed the maximum
+	// allowed. Use the token to fetch the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListChannelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListChannelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListChannelsOutput) SetItems(v []*Channel) *ListChannelsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListPlaybackConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1251,6 +5584,7 @@ func (s *ListPlaybackConfigurationsInput) SetNextToken(v string) *ListPlaybackCo
 	return s
 }
 
+// Returns a list of playback configurations.
 type ListPlaybackConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -1282,6 +5616,175 @@ func (s *ListPlaybackConfigurationsOutput) SetItems(v []*PlaybackConfiguration) 
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListPlaybackConfigurationsOutput) SetNextToken(v string) *ListPlaybackConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListProgramsInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListProgramsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListProgramsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListProgramsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListProgramsInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *ListProgramsInput) SetChannelName(v string) *ListProgramsInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListProgramsInput) SetMaxResults(v int64) *ListProgramsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProgramsInput) SetNextToken(v string) *ListProgramsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Returns a list of programs for a channel.
+type ListProgramsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing the programs for a channel.
+	Items []*Program `type:"list"`
+
+	// Pagination token from the list request. Use the token to fetch the next page
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListProgramsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListProgramsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListProgramsOutput) SetItems(v []*Program) *ListProgramsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListProgramsOutput) SetNextToken(v string) *ListProgramsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSourceLocationsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListSourceLocationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSourceLocationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSourceLocationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSourceLocationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSourceLocationsInput) SetMaxResults(v int64) *ListSourceLocationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSourceLocationsInput) SetNextToken(v string) *ListSourceLocationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Lists the source locations.
+type ListSourceLocationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of source locations.
+	Items []*SourceLocation `type:"list"`
+
+	// Pagination token from the list request. Use the token to fetch the next page
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListSourceLocationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSourceLocationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListSourceLocationsOutput) SetItems(v []*SourceLocation) *ListSourceLocationsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSourceLocationsOutput) SetNextToken(v string) *ListSourceLocationsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -1344,6 +5847,98 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type ListVodSourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListVodSourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListVodSourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListVodSourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListVodSourcesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListVodSourcesInput) SetMaxResults(v int64) *ListVodSourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVodSourcesInput) SetNextToken(v string) *ListVodSourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *ListVodSourcesInput) SetSourceLocationName(v string) *ListVodSourcesInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// An array of VOD sources.
+type ListVodSourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the VOD sources.
+	Items []*VodSource `type:"list"`
+
+	// Pagination token from the list request. Use the token to fetch the next page
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListVodSourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListVodSourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListVodSourcesOutput) SetItems(v []*VodSource) *ListVodSourcesOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListVodSourcesOutput) SetNextToken(v string) *ListVodSourcesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -1417,40 +6012,89 @@ func (s *ManifestProcessingRules) SetAdMarkerPassthrough(v *AdMarkerPassthrough)
 	return s
 }
 
+// Creates a playback configuration. For information about MediaTailor configurations,
+// see Working with configurations in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/configurations.html).
 type PlaybackConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The URL for the ad decision server (ADS). This includes the specification
+	// of static parameters and placeholders for dynamic parameters. AWS Elemental
+	// MediaTailor substitutes player-specific and session-specific parameters as
+	// needed when calling the ADS. Alternately, for testing you can provide a static
+	// VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
+
+	// The configuration for avail suppression, also known as ad suppression. For
+	// more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
+	AvailSuppression *AvailSuppression `type:"structure"`
+
+	// The configuration for bumpers. Bumpers are short audio or video clips that
+	// play at the start or before the end of an ad break. To learn more about bumpers,
+	// see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html).
+	Bumper *Bumper `type:"structure"`
 
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
-	// Predefined aliases for dynamic variables.
+	// The player parameters and aliases used as dynamic variables during session
+	// initialization. For more information, see Domain Variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html).
 	ConfigurationAliases map[string]map[string]*string `type:"map"`
 
-	// The configuration for DASH content.
+	// The configuration for a DASH source.
 	DashConfiguration *DashConfiguration `type:"structure"`
 
 	// The configuration for HLS content.
 	HlsConfiguration *HlsConfiguration `type:"structure"`
 
+	// The configuration for pre-roll ad insertion.
+	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
+	// The configuration for manifest processing rules. Manifest processing rules
+	// enable customization of the personalized manifests created by MediaTailor.
+	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
+
+	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
+	// Defines the maximum duration of underfilled ad time (in seconds) allowed
+	// in an ad break. If the duration of underfilled ad time exceeds the personalization
+	// threshold, then the personalization of the ad break is abandoned and the
+	// underlying content is shown. This feature applies to ad replacement in live
+	// and VOD streams, rather than ad insertion, because it relies on an underlying
+	// content stream. For more information about ad break behavior, including ad
+	// replacement and insertion, see Ad Behavior in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
+	// The Amazon Resource Name (ARN) for the playback configuration.
 	PlaybackConfigurationArn *string `type:"string"`
 
+	// The URL that the player accesses to get a manifest from AWS Elemental MediaTailor.
 	PlaybackEndpointPrefix *string `type:"string"`
 
+	// The URL that the player uses to initialize a session that uses client-side
+	// reporting.
 	SessionInitializationEndpointPrefix *string `type:"string"`
 
+	// The URL for a video asset to transcode and use to fill in time that's not
+	// used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in
+	// media content. Configuring the slate is optional for non-VPAID playback configurations.
+	// For VPAID, the slate is required because MediaTailor provides it in the slots
+	// designated for dynamic ad content. The slate must be a high-quality asset
+	// that contains both audio and video.
 	SlateAdUrl *string `type:"string"`
 
+	// The tags to assign to the playback configuration.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The name that is used to associate this playback configuration with a custom
+	// transcode profile. This overrides the dynamic transcoding defaults of MediaTailor.
+	// Use this only if you have already set up custom profiles with the help of
+	// AWS Support.
 	TranscodeProfileName *string `type:"string"`
 
+	// The URL prefix for the parent manifest for the stream, minus the asset ID.
+	// The maximum length is 512 characters.
 	VideoContentSourceUrl *string `type:"string"`
 }
 
@@ -1467,6 +6111,18 @@ func (s PlaybackConfiguration) GoString() string {
 // SetAdDecisionServerUrl sets the AdDecisionServerUrl field's value.
 func (s *PlaybackConfiguration) SetAdDecisionServerUrl(v string) *PlaybackConfiguration {
 	s.AdDecisionServerUrl = &v
+	return s
+}
+
+// SetAvailSuppression sets the AvailSuppression field's value.
+func (s *PlaybackConfiguration) SetAvailSuppression(v *AvailSuppression) *PlaybackConfiguration {
+	s.AvailSuppression = v
+	return s
+}
+
+// SetBumper sets the Bumper field's value.
+func (s *PlaybackConfiguration) SetBumper(v *Bumper) *PlaybackConfiguration {
+	s.Bumper = v
 	return s
 }
 
@@ -1491,6 +6147,18 @@ func (s *PlaybackConfiguration) SetDashConfiguration(v *DashConfiguration) *Play
 // SetHlsConfiguration sets the HlsConfiguration field's value.
 func (s *PlaybackConfiguration) SetHlsConfiguration(v *HlsConfiguration) *PlaybackConfiguration {
 	s.HlsConfiguration = v
+	return s
+}
+
+// SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
+func (s *PlaybackConfiguration) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PlaybackConfiguration {
+	s.LivePreRollConfiguration = v
+	return s
+}
+
+// SetManifestProcessingRules sets the ManifestProcessingRules field's value.
+func (s *PlaybackConfiguration) SetManifestProcessingRules(v *ManifestProcessingRules) *PlaybackConfiguration {
+	s.ManifestProcessingRules = v
 	return s
 }
 
@@ -1548,6 +6216,173 @@ func (s *PlaybackConfiguration) SetVideoContentSourceUrl(v string) *PlaybackConf
 	return s
 }
 
+// Program configuration parameters.
+type Program struct {
+	_ struct{} `type:"structure"`
+
+	// The ad break configuration settings.
+	AdBreaks []*AdBreak `type:"list"`
+
+	// The ARN of the program.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The name of the channel that the program belongs to.
+	//
+	// ChannelName is a required field
+	ChannelName *string `type:"string" required:"true"`
+
+	// The timestamp of when the program was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The timestamp of when the program was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the program.
+	//
+	// ProgramName is a required field
+	ProgramName *string `type:"string" required:"true"`
+
+	// The name of the source location.
+	//
+	// SourceLocationName is a required field
+	SourceLocationName *string `type:"string" required:"true"`
+
+	// The name that's used to refer to a VOD source.
+	//
+	// VodSourceName is a required field
+	VodSourceName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Program) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Program) GoString() string {
+	return s.String()
+}
+
+// SetAdBreaks sets the AdBreaks field's value.
+func (s *Program) SetAdBreaks(v []*AdBreak) *Program {
+	s.AdBreaks = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *Program) SetArn(v string) *Program {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *Program) SetChannelName(v string) *Program {
+	s.ChannelName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Program) SetCreationTime(v time.Time) *Program {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Program) SetLastModifiedTime(v time.Time) *Program {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *Program) SetProgramName(v string) *Program {
+	s.ProgramName = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *Program) SetSourceLocationName(v string) *Program {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *Program) SetVodSourceName(v string) *Program {
+	s.VodSourceName = &v
+	return s
+}
+
+// Adds an IAM policy for the channel.
+type PutChannelPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	// Adds an IAM role that determines the permissions of your channel.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutChannelPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutChannelPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutChannelPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutChannelPolicyInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *PutChannelPolicyInput) SetChannelName(v string) *PutChannelPolicyInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutChannelPolicyInput) SetPolicy(v string) *PutChannelPolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type PutChannelPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutChannelPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutChannelPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// The configuration for creating a playback configuration.
 type PutPlaybackConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1558,18 +6393,21 @@ type PutPlaybackConfigurationInput struct {
 	// VAST URL. The maximum length is 25,000 characters.
 	AdDecisionServerUrl *string `type:"string"`
 
-	// The configuration for Avail Suppression.
+	// The configuration for avail suppression, also known as ad suppression. For
+	// more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	AvailSuppression *AvailSuppression `type:"structure"`
 
 	// The configuration for bumpers. Bumpers are short audio or video clips that
-	// play at the start or before the end of an ad break.
+	// play at the start or before the end of an ad break. To learn more about bumpers,
+	// see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html).
 	Bumper *Bumper `type:"structure"`
 
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
-	// Predefined aliases for dynamic variables.
+	// The player parameters and aliases used as dynamic variables during session
+	// initialization. For more information, see Domain Variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html).
 	ConfigurationAliases map[string]map[string]*string `type:"map"`
 
 	// The configuration for DASH content.
@@ -1585,6 +6423,13 @@ type PutPlaybackConfigurationInput struct {
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
+	// Defines the maximum duration of underfilled ad time (in seconds) allowed
+	// in an ad break. If the duration of underfilled ad time exceeds the personalization
+	// threshold, then the personalization of the ad break is abandoned and the
+	// underlying content is shown. This feature applies to ad replacement in live
+	// and VOD streams, rather than ad insertion, because it relies on an underlying
+	// content stream. For more information about ad break behavior, including ad
+	// replacement and insertion, see Ad Behavior in AWS Elemental MediaTailor (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
 	// The URL for a high-quality video asset to transcode and use to fill in time
@@ -1604,7 +6449,7 @@ type PutPlaybackConfigurationInput struct {
 	// AWS Support.
 	TranscodeProfileName *string `type:"string"`
 
-	// The URL prefix for the master playlist for the stream, minus the asset ID.
+	// The URL prefix for the parent manifest for the stream, minus the asset ID.
 	// The maximum length is 512 characters.
 	VideoContentSourceUrl *string `type:"string"`
 }
@@ -1721,17 +6566,20 @@ type PutPlaybackConfigurationOutput struct {
 
 	AdDecisionServerUrl *string `type:"string"`
 
+	// The configuration for avail suppression, also known as ad suppression. For
+	// more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 	AvailSuppression *AvailSuppression `type:"structure"`
 
 	// The configuration for bumpers. Bumpers are short audio or video clips that
-	// play at the start or before the end of an ad break.
+	// play at the start or before the end of an ad break. To learn more about bumpers,
+	// see Bumpers (https://docs.aws.amazon.com/mediatailor/latest/ug/bumpers.html).
 	Bumper *Bumper `type:"structure"`
 
 	// The configuration for using a content delivery network (CDN), like Amazon
 	// CloudFront, for content and ad segment management.
 	CdnConfiguration *CdnConfiguration `type:"structure"`
 
-	// Predefined aliases for dynamic variables.
+	// The predefined aliases for dynamic variables.
 	ConfigurationAliases map[string]map[string]*string `type:"map"`
 
 	// The configuration for DASH content.
@@ -1748,6 +6596,8 @@ type PutPlaybackConfigurationOutput struct {
 	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
 
 	Name *string `type:"string"`
+
+	PersonalizationThresholdSeconds *int64 `min:"1" type:"integer"`
 
 	PlaybackConfigurationArn *string `type:"string"`
 
@@ -1834,6 +6684,12 @@ func (s *PutPlaybackConfigurationOutput) SetName(v string) *PutPlaybackConfigura
 	return s
 }
 
+// SetPersonalizationThresholdSeconds sets the PersonalizationThresholdSeconds field's value.
+func (s *PutPlaybackConfigurationOutput) SetPersonalizationThresholdSeconds(v int64) *PutPlaybackConfigurationOutput {
+	s.PersonalizationThresholdSeconds = &v
+	return s
+}
+
 // SetPlaybackConfigurationArn sets the PlaybackConfigurationArn field's value.
 func (s *PutPlaybackConfigurationOutput) SetPlaybackConfigurationArn(v string) *PutPlaybackConfigurationOutput {
 	s.PlaybackConfigurationArn = &v
@@ -1874,6 +6730,569 @@ func (s *PutPlaybackConfigurationOutput) SetTranscodeProfileName(v string) *PutP
 func (s *PutPlaybackConfigurationOutput) SetVideoContentSourceUrl(v string) *PutPlaybackConfigurationOutput {
 	s.VideoContentSourceUrl = &v
 	return s
+}
+
+// The ouput configuration for this channel.
+type RequestOutputItem struct {
+	_ struct{} `type:"structure"`
+
+	// DASH manifest configuration parameters.
+	DashPlaylistSettings *DashPlaylistSettings `type:"structure"`
+
+	// HLS playlist configuration parameters.
+	HlsPlaylistSettings *HlsPlaylistSettings `type:"structure"`
+
+	// The name of the manifest for the channel. The name appears in the PlaybackUrl.
+	//
+	// ManifestName is a required field
+	ManifestName *string `type:"string" required:"true"`
+
+	// A string used to match which HttpPackageConfiguration is used for each VodSource.
+	//
+	// SourceGroup is a required field
+	SourceGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RequestOutputItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequestOutputItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestOutputItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestOutputItem"}
+	if s.ManifestName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ManifestName"))
+	}
+	if s.SourceGroup == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceGroup"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDashPlaylistSettings sets the DashPlaylistSettings field's value.
+func (s *RequestOutputItem) SetDashPlaylistSettings(v *DashPlaylistSettings) *RequestOutputItem {
+	s.DashPlaylistSettings = v
+	return s
+}
+
+// SetHlsPlaylistSettings sets the HlsPlaylistSettings field's value.
+func (s *RequestOutputItem) SetHlsPlaylistSettings(v *HlsPlaylistSettings) *RequestOutputItem {
+	s.HlsPlaylistSettings = v
+	return s
+}
+
+// SetManifestName sets the ManifestName field's value.
+func (s *RequestOutputItem) SetManifestName(v string) *RequestOutputItem {
+	s.ManifestName = &v
+	return s
+}
+
+// SetSourceGroup sets the SourceGroup field's value.
+func (s *RequestOutputItem) SetSourceGroup(v string) *RequestOutputItem {
+	s.SourceGroup = &v
+	return s
+}
+
+// This response includes only the "property" : "type" property.
+type ResponseOutputItem struct {
+	_ struct{} `type:"structure"`
+
+	// DASH manifest configuration settings.
+	DashPlaylistSettings *DashPlaylistSettings `type:"structure"`
+
+	// HLS manifest configuration settings.
+	HlsPlaylistSettings *HlsPlaylistSettings `type:"structure"`
+
+	// The name of the manifest for the channel that will appear in the channel
+	// output's playback URL.
+	//
+	// ManifestName is a required field
+	ManifestName *string `type:"string" required:"true"`
+
+	// The URL used for playback by content players.
+	//
+	// PlaybackUrl is a required field
+	PlaybackUrl *string `type:"string" required:"true"`
+
+	// A string used to associate a package configuration source group with a channel
+	// output.
+	//
+	// SourceGroup is a required field
+	SourceGroup *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ResponseOutputItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResponseOutputItem) GoString() string {
+	return s.String()
+}
+
+// SetDashPlaylistSettings sets the DashPlaylistSettings field's value.
+func (s *ResponseOutputItem) SetDashPlaylistSettings(v *DashPlaylistSettings) *ResponseOutputItem {
+	s.DashPlaylistSettings = v
+	return s
+}
+
+// SetHlsPlaylistSettings sets the HlsPlaylistSettings field's value.
+func (s *ResponseOutputItem) SetHlsPlaylistSettings(v *HlsPlaylistSettings) *ResponseOutputItem {
+	s.HlsPlaylistSettings = v
+	return s
+}
+
+// SetManifestName sets the ManifestName field's value.
+func (s *ResponseOutputItem) SetManifestName(v string) *ResponseOutputItem {
+	s.ManifestName = &v
+	return s
+}
+
+// SetPlaybackUrl sets the PlaybackUrl field's value.
+func (s *ResponseOutputItem) SetPlaybackUrl(v string) *ResponseOutputItem {
+	s.PlaybackUrl = &v
+	return s
+}
+
+// SetSourceGroup sets the SourceGroup field's value.
+func (s *ResponseOutputItem) SetSourceGroup(v string) *ResponseOutputItem {
+	s.SourceGroup = &v
+	return s
+}
+
+// Schedule configuration parameters. A channel must be stopped before changes
+// can be made to the schedule.
+type ScheduleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Program transition configurations.
+	//
+	// Transition is a required field
+	Transition *Transition `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ScheduleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduleConfiguration"}
+	if s.Transition == nil {
+		invalidParams.Add(request.NewErrParamRequired("Transition"))
+	}
+	if s.Transition != nil {
+		if err := s.Transition.Validate(); err != nil {
+			invalidParams.AddNested("Transition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransition sets the Transition field's value.
+func (s *ScheduleConfiguration) SetTransition(v *Transition) *ScheduleConfiguration {
+	s.Transition = v
+	return s
+}
+
+// The properties for a schedule.
+type ScheduleEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The approximate duration of this program, in seconds.
+	ApproximateDurationSeconds *int64 `type:"long"`
+
+	// The approximate time that the program will start playing.
+	ApproximateStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The ARN of the program.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The name of the channel that uses this schedule.
+	//
+	// ChannelName is a required field
+	ChannelName *string `type:"string" required:"true"`
+
+	// The name of the program.
+	//
+	// ProgramName is a required field
+	ProgramName *string `type:"string" required:"true"`
+
+	// The name of the source location.
+	//
+	// SourceLocationName is a required field
+	SourceLocationName *string `type:"string" required:"true"`
+
+	// The name of the VOD source.
+	//
+	// VodSourceName is a required field
+	VodSourceName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ScheduleEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleEntry) GoString() string {
+	return s.String()
+}
+
+// SetApproximateDurationSeconds sets the ApproximateDurationSeconds field's value.
+func (s *ScheduleEntry) SetApproximateDurationSeconds(v int64) *ScheduleEntry {
+	s.ApproximateDurationSeconds = &v
+	return s
+}
+
+// SetApproximateStartTime sets the ApproximateStartTime field's value.
+func (s *ScheduleEntry) SetApproximateStartTime(v time.Time) *ScheduleEntry {
+	s.ApproximateStartTime = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *ScheduleEntry) SetArn(v string) *ScheduleEntry {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *ScheduleEntry) SetChannelName(v string) *ScheduleEntry {
+	s.ChannelName = &v
+	return s
+}
+
+// SetProgramName sets the ProgramName field's value.
+func (s *ScheduleEntry) SetProgramName(v string) *ScheduleEntry {
+	s.ProgramName = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *ScheduleEntry) SetSourceLocationName(v string) *ScheduleEntry {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *ScheduleEntry) SetVodSourceName(v string) *ScheduleEntry {
+	s.VodSourceName = &v
+	return s
+}
+
+// Slate VOD source configuration.
+type SlateSource struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the source location where the slate VOD source is stored.
+	SourceLocationName *string `type:"string"`
+
+	// The slate VOD source name. The VOD source must already exist in a source
+	// location before it can be used for slate.
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SlateSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SlateSource) GoString() string {
+	return s.String()
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *SlateSource) SetSourceLocationName(v string) *SlateSource {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *SlateSource) SetVodSourceName(v string) *SlateSource {
+	s.VodSourceName = &v
+	return s
+}
+
+// This response includes only the "type" : "object" property.
+type SourceLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The access configuration for the source location.
+	AccessConfiguration *AccessConfiguration `type:"structure"`
+
+	// The ARN of the SourceLocation.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The timestamp that indicates when the source location was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The default segment delivery configuration.
+	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
+
+	// The HTTP configuration for the source location.
+	//
+	// HttpConfiguration is a required field
+	HttpConfiguration *HttpConfiguration `type:"structure" required:"true"`
+
+	// The timestamp that indicates when the source location was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the source location.
+	//
+	// SourceLocationName is a required field
+	SourceLocationName *string `type:"string" required:"true"`
+
+	// The tags assigned to the source location.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s SourceLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceLocation) GoString() string {
+	return s.String()
+}
+
+// SetAccessConfiguration sets the AccessConfiguration field's value.
+func (s *SourceLocation) SetAccessConfiguration(v *AccessConfiguration) *SourceLocation {
+	s.AccessConfiguration = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *SourceLocation) SetArn(v string) *SourceLocation {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *SourceLocation) SetCreationTime(v time.Time) *SourceLocation {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDefaultSegmentDeliveryConfiguration sets the DefaultSegmentDeliveryConfiguration field's value.
+func (s *SourceLocation) SetDefaultSegmentDeliveryConfiguration(v *DefaultSegmentDeliveryConfiguration) *SourceLocation {
+	s.DefaultSegmentDeliveryConfiguration = v
+	return s
+}
+
+// SetHttpConfiguration sets the HttpConfiguration field's value.
+func (s *SourceLocation) SetHttpConfiguration(v *HttpConfiguration) *SourceLocation {
+	s.HttpConfiguration = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *SourceLocation) SetLastModifiedTime(v time.Time) *SourceLocation {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *SourceLocation) SetSourceLocationName(v string) *SourceLocation {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SourceLocation) SetTags(v map[string]*string) *SourceLocation {
+	s.Tags = v
+	return s
+}
+
+// Splice insert message configuration.
+type SpliceInsertMessage struct {
+	_ struct{} `type:"structure"`
+
+	// This is written to splice_insert.avail_num, as defined in section 9.7.3.1
+	// of the SCTE-35 specification. The default value is 0. Values must be between
+	// 0 and 256, inclusive.
+	AvailNum *int64 `type:"integer"`
+
+	// This is written to splice_insert.avails_expected, as defined in section 9.7.3.1
+	// of the SCTE-35 specification. The default value is 0. Values must be between
+	// 0 and 256, inclusive.
+	AvailsExpected *int64 `type:"integer"`
+
+	// This is written to splice_insert.splice_event_id, as defined in section 9.7.3.1
+	// of the SCTE-35 specification. The default value is 1.
+	SpliceEventId *int64 `type:"integer"`
+
+	// This is written to splice_insert.unique_program_id, as defined in section
+	// 9.7.3.1 of the SCTE-35 specification. The default value is 0. Values must
+	// be between 0 and 256, inclusive.
+	UniqueProgramId *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s SpliceInsertMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SpliceInsertMessage) GoString() string {
+	return s.String()
+}
+
+// SetAvailNum sets the AvailNum field's value.
+func (s *SpliceInsertMessage) SetAvailNum(v int64) *SpliceInsertMessage {
+	s.AvailNum = &v
+	return s
+}
+
+// SetAvailsExpected sets the AvailsExpected field's value.
+func (s *SpliceInsertMessage) SetAvailsExpected(v int64) *SpliceInsertMessage {
+	s.AvailsExpected = &v
+	return s
+}
+
+// SetSpliceEventId sets the SpliceEventId field's value.
+func (s *SpliceInsertMessage) SetSpliceEventId(v int64) *SpliceInsertMessage {
+	s.SpliceEventId = &v
+	return s
+}
+
+// SetUniqueProgramId sets the UniqueProgramId field's value.
+func (s *SpliceInsertMessage) SetUniqueProgramId(v int64) *SpliceInsertMessage {
+	s.UniqueProgramId = &v
+	return s
+}
+
+type StartChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *StartChannelInput) SetChannelName(v string) *StartChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+type StartChannelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartChannelOutput) GoString() string {
+	return s.String()
+}
+
+type StopChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *StopChannelInput) SetChannelName(v string) *StopChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+type StopChannelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopChannelOutput) GoString() string {
+	return s.String()
 }
 
 type TagResourceInput struct {
@@ -1941,6 +7360,71 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Program transition configuration.
+type Transition struct {
+	_ struct{} `type:"structure"`
+
+	// The position where this program will be inserted relative to the RelativeProgram.
+	// Possible values are: AFTER_PROGRAM, and BEFORE_PROGRAM.
+	//
+	// RelativePosition is a required field
+	RelativePosition *string `type:"string" required:"true" enum:"RelativePosition"`
+
+	// The name of the program that this program will be inserted next to, as defined
+	// by RelativePosition.
+	RelativeProgram *string `type:"string"`
+
+	// When the program should be played. RELATIVE means that programs will be played
+	// back-to-back.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Transition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Transition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Transition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Transition"}
+	if s.RelativePosition == nil {
+		invalidParams.Add(request.NewErrParamRequired("RelativePosition"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRelativePosition sets the RelativePosition field's value.
+func (s *Transition) SetRelativePosition(v string) *Transition {
+	s.RelativePosition = &v
+	return s
+}
+
+// SetRelativeProgram sets the RelativeProgram field's value.
+func (s *Transition) SetRelativeProgram(v string) *Transition {
+	s.RelativeProgram = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Transition) SetType(v string) *Transition {
+	s.Type = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2006,6 +7490,588 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Updates a channel's Outputs.
+type UpdateChannelInput struct {
+	_ struct{} `type:"structure"`
+
+	// ChannelName is a required field
+	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
+
+	// The channel's output properties.
+	//
+	// Outputs is a required field
+	Outputs []*RequestOutputItem `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateChannelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateChannelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateChannelInput"}
+	if s.ChannelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelName"))
+	}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.Outputs == nil {
+		invalidParams.Add(request.NewErrParamRequired("Outputs"))
+	}
+	if s.Outputs != nil {
+		for i, v := range s.Outputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Outputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *UpdateChannelInput) SetChannelName(v string) *UpdateChannelInput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *UpdateChannelInput) SetOutputs(v []*RequestOutputItem) *UpdateChannelInput {
+	s.Outputs = v
+	return s
+}
+
+type UpdateChannelOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	ChannelName *string `type:"string"`
+
+	ChannelState *string `type:"string" enum:"ChannelState"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	Outputs []*ResponseOutputItem `type:"list"`
+
+	PlaybackMode *string `type:"string"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s UpdateChannelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChannelOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateChannelOutput) SetArn(v string) *UpdateChannelOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *UpdateChannelOutput) SetChannelName(v string) *UpdateChannelOutput {
+	s.ChannelName = &v
+	return s
+}
+
+// SetChannelState sets the ChannelState field's value.
+func (s *UpdateChannelOutput) SetChannelState(v string) *UpdateChannelOutput {
+	s.ChannelState = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateChannelOutput) SetCreationTime(v time.Time) *UpdateChannelOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UpdateChannelOutput) SetLastModifiedTime(v time.Time) *UpdateChannelOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *UpdateChannelOutput) SetOutputs(v []*ResponseOutputItem) *UpdateChannelOutput {
+	s.Outputs = v
+	return s
+}
+
+// SetPlaybackMode sets the PlaybackMode field's value.
+func (s *UpdateChannelOutput) SetPlaybackMode(v string) *UpdateChannelOutput {
+	s.PlaybackMode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateChannelOutput) SetTags(v map[string]*string) *UpdateChannelOutput {
+	s.Tags = v
+	return s
+}
+
+// Source location configuration parameters.
+type UpdateSourceLocationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Access configuration parameters. Configures the type of authentication used
+	// to access content from your source location.
+	AccessConfiguration *AccessConfiguration `type:"structure"`
+
+	// The optional configuration for the host server that serves segments.
+	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
+
+	// The HTTP configuration for the source location.
+	//
+	// HttpConfiguration is a required field
+	HttpConfiguration *HttpConfiguration `type:"structure" required:"true"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateSourceLocationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSourceLocationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSourceLocationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSourceLocationInput"}
+	if s.HttpConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("HttpConfiguration"))
+	}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+	if s.HttpConfiguration != nil {
+		if err := s.HttpConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("HttpConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessConfiguration sets the AccessConfiguration field's value.
+func (s *UpdateSourceLocationInput) SetAccessConfiguration(v *AccessConfiguration) *UpdateSourceLocationInput {
+	s.AccessConfiguration = v
+	return s
+}
+
+// SetDefaultSegmentDeliveryConfiguration sets the DefaultSegmentDeliveryConfiguration field's value.
+func (s *UpdateSourceLocationInput) SetDefaultSegmentDeliveryConfiguration(v *DefaultSegmentDeliveryConfiguration) *UpdateSourceLocationInput {
+	s.DefaultSegmentDeliveryConfiguration = v
+	return s
+}
+
+// SetHttpConfiguration sets the HttpConfiguration field's value.
+func (s *UpdateSourceLocationInput) SetHttpConfiguration(v *HttpConfiguration) *UpdateSourceLocationInput {
+	s.HttpConfiguration = v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *UpdateSourceLocationInput) SetSourceLocationName(v string) *UpdateSourceLocationInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+type UpdateSourceLocationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Access configuration parameters.
+	AccessConfiguration *AccessConfiguration `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The optional configuration for a server that serves segments. Use this if
+	// you want the segment delivery server to be different from the source location
+	// server. For example, you can configure your source location server to be
+	// an origination server, such as MediaPackage, and the segment delivery server
+	// to be a content delivery network (CDN), such as CloudFront. If you don't
+	// specify a segment delivery server, then the source location server is used.
+	DefaultSegmentDeliveryConfiguration *DefaultSegmentDeliveryConfiguration `type:"structure"`
+
+	// The HTTP configuration for the source location.
+	HttpConfiguration *HttpConfiguration `type:"structure"`
+
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	SourceLocationName *string `type:"string"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s UpdateSourceLocationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSourceLocationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessConfiguration sets the AccessConfiguration field's value.
+func (s *UpdateSourceLocationOutput) SetAccessConfiguration(v *AccessConfiguration) *UpdateSourceLocationOutput {
+	s.AccessConfiguration = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateSourceLocationOutput) SetArn(v string) *UpdateSourceLocationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateSourceLocationOutput) SetCreationTime(v time.Time) *UpdateSourceLocationOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDefaultSegmentDeliveryConfiguration sets the DefaultSegmentDeliveryConfiguration field's value.
+func (s *UpdateSourceLocationOutput) SetDefaultSegmentDeliveryConfiguration(v *DefaultSegmentDeliveryConfiguration) *UpdateSourceLocationOutput {
+	s.DefaultSegmentDeliveryConfiguration = v
+	return s
+}
+
+// SetHttpConfiguration sets the HttpConfiguration field's value.
+func (s *UpdateSourceLocationOutput) SetHttpConfiguration(v *HttpConfiguration) *UpdateSourceLocationOutput {
+	s.HttpConfiguration = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UpdateSourceLocationOutput) SetLastModifiedTime(v time.Time) *UpdateSourceLocationOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *UpdateSourceLocationOutput) SetSourceLocationName(v string) *UpdateSourceLocationOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateSourceLocationOutput) SetTags(v map[string]*string) *UpdateSourceLocationOutput {
+	s.Tags = v
+	return s
+}
+
+// Updates a VOD source's configuration.
+type UpdateVodSourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of HTTP package configurations for the VOD source on this account.
+	//
+	// HttpPackageConfigurations is a required field
+	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
+
+	// SourceLocationName is a required field
+	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
+
+	// VodSourceName is a required field
+	VodSourceName *string `location:"uri" locationName:"vodSourceName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateVodSourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateVodSourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVodSourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVodSourceInput"}
+	if s.HttpPackageConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("HttpPackageConfigurations"))
+	}
+	if s.SourceLocationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLocationName"))
+	}
+	if s.SourceLocationName != nil && len(*s.SourceLocationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceLocationName", 1))
+	}
+	if s.VodSourceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VodSourceName"))
+	}
+	if s.VodSourceName != nil && len(*s.VodSourceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VodSourceName", 1))
+	}
+	if s.HttpPackageConfigurations != nil {
+		for i, v := range s.HttpPackageConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "HttpPackageConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHttpPackageConfigurations sets the HttpPackageConfigurations field's value.
+func (s *UpdateVodSourceInput) SetHttpPackageConfigurations(v []*HttpPackageConfiguration) *UpdateVodSourceInput {
+	s.HttpPackageConfigurations = v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *UpdateVodSourceInput) SetSourceLocationName(v string) *UpdateVodSourceInput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *UpdateVodSourceInput) SetVodSourceName(v string) *UpdateVodSourceInput {
+	s.VodSourceName = &v
+	return s
+}
+
+type UpdateVodSourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The VOD source's HTTP package configuration settings.
+	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list"`
+
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	SourceLocationName *string `type:"string"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateVodSourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateVodSourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateVodSourceOutput) SetArn(v string) *UpdateVodSourceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateVodSourceOutput) SetCreationTime(v time.Time) *UpdateVodSourceOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetHttpPackageConfigurations sets the HttpPackageConfigurations field's value.
+func (s *UpdateVodSourceOutput) SetHttpPackageConfigurations(v []*HttpPackageConfiguration) *UpdateVodSourceOutput {
+	s.HttpPackageConfigurations = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UpdateVodSourceOutput) SetLastModifiedTime(v time.Time) *UpdateVodSourceOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *UpdateVodSourceOutput) SetSourceLocationName(v string) *UpdateVodSourceOutput {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateVodSourceOutput) SetTags(v map[string]*string) *UpdateVodSourceOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *UpdateVodSourceOutput) SetVodSourceName(v string) *UpdateVodSourceOutput {
+	s.VodSourceName = &v
+	return s
+}
+
+// VOD source configuration parameters.
+type VodSource struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN for the VOD source.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The timestamp that indicates when the VOD source was created.
+	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The HTTP package configurations for the VOD source.
+	//
+	// HttpPackageConfigurations is a required field
+	HttpPackageConfigurations []*HttpPackageConfiguration `type:"list" required:"true"`
+
+	// The timestamp that indicates when the VOD source was last modified.
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the source location that the VOD source is associated with.
+	//
+	// SourceLocationName is a required field
+	SourceLocationName *string `type:"string" required:"true"`
+
+	// The tags assigned to the VOD source.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The name of the VOD source.
+	//
+	// VodSourceName is a required field
+	VodSourceName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VodSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VodSource) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *VodSource) SetArn(v string) *VodSource {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *VodSource) SetCreationTime(v time.Time) *VodSource {
+	s.CreationTime = &v
+	return s
+}
+
+// SetHttpPackageConfigurations sets the HttpPackageConfigurations field's value.
+func (s *VodSource) SetHttpPackageConfigurations(v []*HttpPackageConfiguration) *VodSource {
+	s.HttpPackageConfigurations = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *VodSource) SetLastModifiedTime(v time.Time) *VodSource {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *VodSource) SetSourceLocationName(v string) *VodSource {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VodSource) SetTags(v map[string]*string) *VodSource {
+	s.Tags = v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *VodSource) SetVodSourceName(v string) *VodSource {
+	s.VodSourceName = &v
+	return s
+}
+
+const (
+	// AccessTypeS3Sigv4 is a AccessType enum value
+	AccessTypeS3Sigv4 = "S3_SIGV4"
+)
+
+// AccessType_Values returns all elements of the AccessType enum
+func AccessType_Values() []string {
+	return []string{
+		AccessTypeS3Sigv4,
+	}
+}
+
+const (
+	// ChannelStateRunning is a ChannelState enum value
+	ChannelStateRunning = "RUNNING"
+
+	// ChannelStateStopped is a ChannelState enum value
+	ChannelStateStopped = "STOPPED"
+)
+
+// ChannelState_Values returns all elements of the ChannelState enum
+func ChannelState_Values() []string {
+	return []string{
+		ChannelStateRunning,
+		ChannelStateStopped,
+	}
+}
+
+const (
+	// MessageTypeSpliceInsert is a MessageType enum value
+	MessageTypeSpliceInsert = "SPLICE_INSERT"
+)
+
+// MessageType_Values returns all elements of the MessageType enum
+func MessageType_Values() []string {
+	return []string{
+		MessageTypeSpliceInsert,
+	}
+}
+
 const (
 	// ModeOff is a Mode enum value
 	ModeOff = "OFF"
@@ -2035,5 +8101,49 @@ func OriginManifestType_Values() []string {
 	return []string{
 		OriginManifestTypeSinglePeriod,
 		OriginManifestTypeMultiPeriod,
+	}
+}
+
+const (
+	// PlaybackModeLoop is a PlaybackMode enum value
+	PlaybackModeLoop = "LOOP"
+)
+
+// PlaybackMode_Values returns all elements of the PlaybackMode enum
+func PlaybackMode_Values() []string {
+	return []string{
+		PlaybackModeLoop,
+	}
+}
+
+const (
+	// RelativePositionBeforeProgram is a RelativePosition enum value
+	RelativePositionBeforeProgram = "BEFORE_PROGRAM"
+
+	// RelativePositionAfterProgram is a RelativePosition enum value
+	RelativePositionAfterProgram = "AFTER_PROGRAM"
+)
+
+// RelativePosition_Values returns all elements of the RelativePosition enum
+func RelativePosition_Values() []string {
+	return []string{
+		RelativePositionBeforeProgram,
+		RelativePositionAfterProgram,
+	}
+}
+
+const (
+	// TypeDash is a Type enum value
+	TypeDash = "DASH"
+
+	// TypeHls is a Type enum value
+	TypeHls = "HLS"
+)
+
+// Type_Values returns all elements of the Type enum
+func Type_Values() []string {
+	return []string{
+		TypeDash,
+		TypeHls,
 	}
 }

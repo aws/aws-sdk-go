@@ -26,6 +26,12 @@
         "ReportDefinition$AdditionalArtifacts": "<p>A list of manifests that you want Amazon Web Services to create for this report.</p>"
       }
     },
+    "BillingViewArn": {
+      "base": null,
+      "refs": {
+        "ReportDefinition$BillingViewArn": "<p> The Amazon resource name of the billing view. You can get this value by using the billing view service public APIs. </p>"
+      }
+    },
     "CompressionFormat": {
       "base": "<p>The compression format that AWS uses for the report.</p>",
       "refs": {

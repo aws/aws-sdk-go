@@ -804,6 +804,10 @@ type ReportDefinition struct {
 	// AdditionalSchemaElements is a required field
 	AdditionalSchemaElements []*string `type:"list" required:"true"`
 
+	// The Amazon resource name of the billing view. You can get this value by using
+	// the billing view service public APIs.
+	BillingViewArn *string `type:"string"`
+
 	// The compression format that AWS uses for the report.
 	//
 	// Compression is a required field
@@ -904,6 +908,12 @@ func (s *ReportDefinition) SetAdditionalArtifacts(v []*string) *ReportDefinition
 // SetAdditionalSchemaElements sets the AdditionalSchemaElements field's value.
 func (s *ReportDefinition) SetAdditionalSchemaElements(v []*string) *ReportDefinition {
 	s.AdditionalSchemaElements = v
+	return s
+}
+
+// SetBillingViewArn sets the BillingViewArn field's value.
+func (s *ReportDefinition) SetBillingViewArn(v string) *ReportDefinition {
+	s.BillingViewArn = &v
 	return s
 }
 

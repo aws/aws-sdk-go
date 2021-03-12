@@ -127,6 +127,23 @@
         {"shape":"ResourceLimitExceededException"}
       ]
     },
+    "CreateWorkspaceBundle":{
+      "name":"CreateWorkspaceBundle",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWorkspaceBundleRequest"},
+      "output":{"shape":"CreateWorkspaceBundleResult"},
+      "errors":[
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateWorkspaces":{
       "name":"CreateWorkspaces",
       "http":{
@@ -183,6 +200,21 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValuesException"}
+      ]
+    },
+    "DeleteWorkspaceBundle":{
+      "name":"DeleteWorkspaceBundle",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWorkspaceBundleRequest"},
+      "output":{"shape":"DeleteWorkspaceBundleResult"},
+      "errors":[
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAssociatedException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteWorkspaceImage":{
@@ -705,6 +737,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "UpdateWorkspaceBundle":{
+      "name":"UpdateWorkspaceBundle",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateWorkspaceBundleRequest"},
+      "output":{"shape":"UpdateWorkspaceBundleResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "UpdateWorkspaceImagePermission":{
       "name":"UpdateWorkspaceImagePermission",
       "http":{
@@ -1040,6 +1087,31 @@
       "members":{
       }
     },
+    "CreateWorkspaceBundleRequest":{
+      "type":"structure",
+      "required":[
+        "BundleName",
+        "BundleDescription",
+        "ImageId",
+        "ComputeType",
+        "UserStorage"
+      ],
+      "members":{
+        "BundleName":{"shape":"WorkspaceBundleName"},
+        "BundleDescription":{"shape":"WorkspaceBundleDescription"},
+        "ImageId":{"shape":"WorkspaceImageId"},
+        "ComputeType":{"shape":"ComputeType"},
+        "UserStorage":{"shape":"UserStorage"},
+        "RootStorage":{"shape":"RootStorage"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateWorkspaceBundleResult":{
+      "type":"structure",
+      "members":{
+        "WorkspaceBundle":{"shape":"WorkspaceBundle"}
+      }
+    },
     "CreateWorkspacesRequest":{
       "type":"structure",
       "required":["Workspaces"],
@@ -1129,6 +1201,17 @@
       }
     },
     "DeleteTagsResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteWorkspaceBundleRequest":{
+      "type":"structure",
+      "members":{
+        "BundleId":{"shape":"BundleId"}
+      }
+    },
+    "DeleteWorkspaceBundleResult":{
       "type":"structure",
       "members":{
       }
@@ -2143,6 +2226,18 @@
       "members":{
       }
     },
+    "UpdateWorkspaceBundleRequest":{
+      "type":"structure",
+      "members":{
+        "BundleId":{"shape":"BundleId"},
+        "ImageId":{"shape":"WorkspaceImageId"}
+      }
+    },
+    "UpdateWorkspaceBundleResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateWorkspaceImagePermissionRequest":{
       "type":"structure",
       "required":[
@@ -2217,8 +2312,21 @@
         "RootStorage":{"shape":"RootStorage"},
         "UserStorage":{"shape":"UserStorage"},
         "ComputeType":{"shape":"ComputeType"},
-        "LastUpdatedTime":{"shape":"Timestamp"}
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "CreationTime":{"shape":"Timestamp"}
       }
+    },
+    "WorkspaceBundleDescription":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_./() -]+$"
+    },
+    "WorkspaceBundleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_./()\\\\-]+$"
     },
     "WorkspaceConnectionStatus":{
       "type":"structure",
