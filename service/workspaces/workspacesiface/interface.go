@@ -88,6 +88,10 @@ type WorkSpacesAPI interface {
 	CreateTagsWithContext(aws.Context, *workspaces.CreateTagsInput, ...request.Option) (*workspaces.CreateTagsOutput, error)
 	CreateTagsRequest(*workspaces.CreateTagsInput) (*request.Request, *workspaces.CreateTagsOutput)
 
+	CreateWorkspaceBundle(*workspaces.CreateWorkspaceBundleInput) (*workspaces.CreateWorkspaceBundleOutput, error)
+	CreateWorkspaceBundleWithContext(aws.Context, *workspaces.CreateWorkspaceBundleInput, ...request.Option) (*workspaces.CreateWorkspaceBundleOutput, error)
+	CreateWorkspaceBundleRequest(*workspaces.CreateWorkspaceBundleInput) (*request.Request, *workspaces.CreateWorkspaceBundleOutput)
+
 	CreateWorkspaces(*workspaces.CreateWorkspacesInput) (*workspaces.CreateWorkspacesOutput, error)
 	CreateWorkspacesWithContext(aws.Context, *workspaces.CreateWorkspacesInput, ...request.Option) (*workspaces.CreateWorkspacesOutput, error)
 	CreateWorkspacesRequest(*workspaces.CreateWorkspacesInput) (*request.Request, *workspaces.CreateWorkspacesOutput)
@@ -103,6 +107,10 @@ type WorkSpacesAPI interface {
 	DeleteTags(*workspaces.DeleteTagsInput) (*workspaces.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *workspaces.DeleteTagsInput, ...request.Option) (*workspaces.DeleteTagsOutput, error)
 	DeleteTagsRequest(*workspaces.DeleteTagsInput) (*request.Request, *workspaces.DeleteTagsOutput)
+
+	DeleteWorkspaceBundle(*workspaces.DeleteWorkspaceBundleInput) (*workspaces.DeleteWorkspaceBundleOutput, error)
+	DeleteWorkspaceBundleWithContext(aws.Context, *workspaces.DeleteWorkspaceBundleInput, ...request.Option) (*workspaces.DeleteWorkspaceBundleOutput, error)
+	DeleteWorkspaceBundleRequest(*workspaces.DeleteWorkspaceBundleInput) (*request.Request, *workspaces.DeleteWorkspaceBundleOutput)
 
 	DeleteWorkspaceImage(*workspaces.DeleteWorkspaceImageInput) (*workspaces.DeleteWorkspaceImageOutput, error)
 	DeleteWorkspaceImageWithContext(aws.Context, *workspaces.DeleteWorkspaceImageInput, ...request.Option) (*workspaces.DeleteWorkspaceImageOutput, error)
@@ -264,6 +272,10 @@ type WorkSpacesAPI interface {
 	UpdateRulesOfIpGroup(*workspaces.UpdateRulesOfIpGroupInput) (*workspaces.UpdateRulesOfIpGroupOutput, error)
 	UpdateRulesOfIpGroupWithContext(aws.Context, *workspaces.UpdateRulesOfIpGroupInput, ...request.Option) (*workspaces.UpdateRulesOfIpGroupOutput, error)
 	UpdateRulesOfIpGroupRequest(*workspaces.UpdateRulesOfIpGroupInput) (*request.Request, *workspaces.UpdateRulesOfIpGroupOutput)
+
+	UpdateWorkspaceBundle(*workspaces.UpdateWorkspaceBundleInput) (*workspaces.UpdateWorkspaceBundleOutput, error)
+	UpdateWorkspaceBundleWithContext(aws.Context, *workspaces.UpdateWorkspaceBundleInput, ...request.Option) (*workspaces.UpdateWorkspaceBundleOutput, error)
+	UpdateWorkspaceBundleRequest(*workspaces.UpdateWorkspaceBundleInput) (*request.Request, *workspaces.UpdateWorkspaceBundleOutput)
 
 	UpdateWorkspaceImagePermission(*workspaces.UpdateWorkspaceImagePermissionInput) (*workspaces.UpdateWorkspaceImagePermissionOutput, error)
 	UpdateWorkspaceImagePermissionWithContext(aws.Context, *workspaces.UpdateWorkspaceImagePermissionInput, ...request.Option) (*workspaces.UpdateWorkspaceImagePermissionOutput, error)

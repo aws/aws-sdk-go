@@ -108,6 +108,11 @@
       "type":"list",
       "member":{"shape":"AdditionalArtifact"}
     },
+    "BillingViewArn":{
+      "type":"string",
+      "max":128,
+      "pattern":"(arn:aws(-cn)?:billing::[0-9]{12}:billingview/)?[a-zA-Z0-9_\\+=\\.\\-@].{1,30}"
+    },
     "CompressionFormat":{
       "type":"string",
       "enum":[
@@ -225,7 +230,8 @@
         "S3Region":{"shape":"AWSRegion"},
         "AdditionalArtifacts":{"shape":"AdditionalArtifactList"},
         "RefreshClosedReports":{"shape":"RefreshClosedReports"},
-        "ReportVersioning":{"shape":"ReportVersioning"}
+        "ReportVersioning":{"shape":"ReportVersioning"},
+        "BillingViewArn":{"shape":"BillingViewArn"}
       }
     },
     "ReportDefinitionList":{

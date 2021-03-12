@@ -9,10 +9,12 @@
     "CreateConnectionAlias": "<p>Creates the specified connection alias for use with cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "CreateIpGroup": "<p>Creates an IP access control group.</p> <p>An IP access control group provides you with the ability to control the IP addresses from which users are allowed to access their WorkSpaces. To specify the CIDR address ranges, add rules to your IP access control group and then associate the group with your directory. You can add rules when you create the group or at any time using <a>AuthorizeIpRules</a>.</p> <p>There is a default IP access control group associated with your directory. If you don't associate an IP access control group with your directory, the default group is used. The default group includes a default rule that allows users to access their WorkSpaces from anywhere. You cannot modify the default IP access control group for your directory.</p>",
     "CreateTags": "<p>Creates the specified tags for the specified WorkSpaces resource.</p>",
+    "CreateWorkspaceBundle": "<p>Creates the specified WorkSpace bundle. For more information about creating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html\"> Create a Custom WorkSpaces Image and Bundle</a>.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p>",
     "DeleteConnectionAlias": "<p>Deletes the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <important> <p> <b>If you will no longer be using a fully qualified domain name (FQDN) as the registration code for your WorkSpaces users, you must take certain precautions to prevent potential security issues.</b> For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html#cross-region-redirection-security-considerations\"> Security Considerations if You Stop Using Cross-Region Redirection</a>.</p> </important> <note> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </note>",
     "DeleteIpGroup": "<p>Deletes the specified IP access control group.</p> <p>You cannot delete an IP access control group that is associated with a directory.</p>",
     "DeleteTags": "<p>Deletes the specified tags from the specified WorkSpaces resource.</p>",
+    "DeleteWorkspaceBundle": "<p>Deletes the specified WorkSpace bundle. For more information about deleting WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete_bundle.html\"> Delete a Custom WorkSpaces Bundle or Image</a>.</p>",
     "DeleteWorkspaceImage": "<p>Deletes the specified image from your account. To delete an image, you must first delete any bundles that are associated with the image and unshare the image if it is shared with other accounts. </p>",
     "DeregisterWorkspaceDirectory": "<p>Deregisters the specified directory. This operation is asynchronous and returns before the WorkSpace directory is deregistered. If any WorkSpaces are registered to this directory, you must remove them before you can deregister the directory.</p> <note> <p>Simple AD and AD Connector are made available to you free of charge to use with WorkSpaces. If there are no WorkSpaces being used with your Simple AD or AD Connector directory for 30 consecutive days, this directory will be automatically deregistered for use with Amazon WorkSpaces, and you will be charged for this directory as per the <a href=\"http://aws.amazon.com/directoryservice/pricing/\">AWS Directory Services pricing terms</a>.</p> <p>To delete empty directories, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html\"> Delete the Directory for Your WorkSpaces</a>. If you delete your Simple AD or AD Connector directory, you can always create a new one when you want to start using WorkSpaces again.</p> </note>",
     "DescribeAccount": "<p>Retrieves a list that describes the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
@@ -51,6 +53,7 @@
     "TerminateWorkspaces": "<p>Terminates the specified WorkSpaces.</p> <important> <p>Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is destroyed. If you need to archive any user data, contact AWS Support before terminating the WorkSpace.</p> </important> <p>You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely terminated. After a WorkSpace is terminated, the <code>TERMINATED</code> state is returned only briefly before the WorkSpace directory metadata is cleaned up, so this state is rarely returned. To confirm that a WorkSpace is terminated, check for the WorkSpace ID by using <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html\"> DescribeWorkSpaces</a>. If the WorkSpace ID isn't returned, then the WorkSpace has been successfully terminated.</p> <note> <p>Simple AD and AD Connector are made available to you free of charge to use with WorkSpaces. If there are no WorkSpaces being used with your Simple AD or AD Connector directory for 30 consecutive days, this directory will be automatically deregistered for use with Amazon WorkSpaces, and you will be charged for this directory as per the <a href=\"http://aws.amazon.com/directoryservice/pricing/\">AWS Directory Services pricing terms</a>.</p> <p>To delete empty directories, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html\"> Delete the Directory for Your WorkSpaces</a>. If you delete your Simple AD or AD Connector directory, you can always create a new one when you want to start using WorkSpaces again.</p> </note>",
     "UpdateConnectionAliasPermission": "<p>Shares or unshares a connection alias with one account by specifying whether that account has permission to associate the connection alias with a directory. If the association permission is granted, the connection alias is shared with that account. If the association permission is revoked, the connection alias is unshared with the account. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <ul> <li> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </li> <li> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </li> </ul> </note>",
     "UpdateRulesOfIpGroup": "<p>Replaces the current rules of the specified IP access control group with the specified rules.</p>",
+    "UpdateWorkspaceBundle": "<p>Updates a WorkSpace bundle with a new image. For more information about updating WorkSpace bundles, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/update-custom-bundle.html\"> Update a Custom WorkSpaces Bundle</a>.</p> <important> <p>Existing WorkSpaces aren't automatically updated when you update the bundle that they're based on. To update existing WorkSpaces that are based on a bundle that you've updated, you must either rebuild the WorkSpaces or delete and recreate them.</p> </important>",
     "UpdateWorkspaceImagePermission": "<p>Shares or unshares an image with one account in the same AWS Region by specifying whether that account has permission to copy the image. If the copy image permission is granted, the image is shared with that account. If the copy image permission is revoked, the image is unshared with the account.</p> <p>After an image has been shared, the recipient account can copy the image to other AWS Regions as needed.</p> <note> <p>In the China (Ningxia) Region, you can copy images only within the same Region.</p> <p>In the AWS GovCloud (US-West) Region, to copy images to and from other AWS Regions, contact AWS Support.</p> </note> <p>For more information about sharing images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html\"> Share or Unshare a Custom WorkSpaces Image</a>.</p> <note> <ul> <li> <p>To delete an image that has been shared, you must unshare the image before you delete it.</p> </li> <li> <p>Sharing Bring Your Own License (BYOL) images across AWS accounts isn't supported at this time in the AWS GovCloud (US-West) Region. To share BYOL images across accounts in the AWS GovCloud (US-West) Region, contact AWS Support.</p> </li> </ul> </note>"
   },
   "shapes": {
@@ -179,10 +182,12 @@
       "base": null,
       "refs": {
         "BundleIdList$member": null,
+        "DeleteWorkspaceBundleRequest$BundleId": "<p>The identifier of the bundle.</p>",
         "DescribeWorkspacesRequest$BundleId": "<p>The identifier of the bundle. All WorkSpaces that are created from this bundle are retrieved. You cannot combine this parameter with any other filter.</p>",
         "MigrateWorkspaceRequest$BundleId": "<p>The identifier of the target bundle type to migrate the WorkSpace to.</p>",
+        "UpdateWorkspaceBundleRequest$BundleId": "<p>The identifier of the bundle.</p>",
         "Workspace$BundleId": "<p>The identifier of the bundle used to create the WorkSpace.</p>",
-        "WorkspaceBundle$BundleId": "<p>The bundle identifier.</p>",
+        "WorkspaceBundle$BundleId": "<p>The identifier of the bundle.</p>",
         "WorkspaceRequest$BundleId": "<p>The identifier of the bundle for the WorkSpace. You can use <a>DescribeWorkspaceBundles</a> to list the available bundles.</p>"
       }
     },
@@ -201,7 +206,7 @@
     "BundleOwner": {
       "base": null,
       "refs": {
-        "DescribeWorkspaceBundlesRequest$Owner": "<p>The owner of the bundles. You cannot combine this parameter with any other filter.</p> <p>Specify <code>AMAZON</code> to describe the bundles provided by AWS or null to describe the bundles that belong to your account.</p>",
+        "DescribeWorkspaceBundlesRequest$Owner": "<p>The owner of the bundles. You cannot combine this parameter with any other filter.</p> <p>To describe the bundles provided by AWS, specify <code>AMAZON</code>. To describe the bundles that belong to your account, don't specify a value.</p>",
         "WorkspaceBundle$Owner": "<p>The owner of the bundle. This is the account identifier of the owner, or <code>AMAZON</code> if the bundle is provided by AWS.</p>"
       }
     },
@@ -232,9 +237,10 @@
       }
     },
     "ComputeType": {
-      "base": "<p>Describes the compute type.</p>",
+      "base": "<p>Describes the compute type of the bundle.</p>",
       "refs": {
-        "WorkspaceBundle$ComputeType": "<p>The compute type. For more information, see <a href=\"http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles\">Amazon WorkSpaces Bundles</a>.</p>"
+        "CreateWorkspaceBundleRequest$ComputeType": null,
+        "WorkspaceBundle$ComputeType": "<p>The compute type of the bundle. For more information, see <a href=\"http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles\">Amazon WorkSpaces Bundles</a>.</p>"
       }
     },
     "ComputerName": {
@@ -366,6 +372,16 @@
       "refs": {
       }
     },
+    "CreateWorkspaceBundleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateWorkspaceBundleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateWorkspacesRequest": {
       "base": null,
       "refs": {
@@ -449,6 +465,16 @@
       }
     },
     "DeleteTagsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceBundleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteWorkspaceBundleResult": {
       "base": null,
       "refs": {
       }
@@ -620,7 +646,7 @@
         "FailedCreateWorkspaceRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be created.</p>",
         "FailedWorkspaceChangeRequest$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be rebooted.</p>",
         "Workspace$ErrorMessage": "<p>The text of the error message that is returned if the WorkSpace cannot be created.</p>",
-        "WorkspaceBundle$Description": "<p>A description.</p>",
+        "WorkspaceBundle$Description": "<p>The description of the bundle.</p>",
         "WorkspaceImage$ErrorMessage": "<p>The text of the error message that is returned for the image.</p>"
       }
     },
@@ -1037,7 +1063,7 @@
         "ResourceUnavailableException$ResourceId": "<p>The identifier of the resource that is not available.</p>",
         "RootStorage$Capacity": "<p>The size of the root volume.</p>",
         "TagKeyList$member": null,
-        "UserStorage$Capacity": "<p>The size of the user storage.</p>",
+        "UserStorage$Capacity": "<p>The size of the user volume.</p>",
         "WorkspaceBundle$Name": "<p>The name of the bundle.</p>"
       }
     },
@@ -1067,27 +1093,27 @@
       "base": null,
       "refs": {
         "DescribeAccountModificationsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeAccountModificationsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeAccountModificationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeConnectionAliasPermissionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
-        "DescribeConnectionAliasPermissionsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeConnectionAliasPermissionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeConnectionAliasesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
-        "DescribeConnectionAliasesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeConnectionAliasesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeIpGroupsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeIpGroupsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeIpGroupsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspaceBundlesRequest$NextToken": "<p>The token for the next set of results. (You received this token from a previous call.)</p>",
-        "DescribeWorkspaceBundlesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if there are no more results available. This token is valid for one day and must be used within that time frame.</p>",
+        "DescribeWorkspaceBundlesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. This token is valid for one day and must be used within that time frame.</p>",
         "DescribeWorkspaceDirectoriesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeWorkspaceDirectoriesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeWorkspaceDirectoriesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspaceImagePermissionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeWorkspaceImagePermissionsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeWorkspaceImagePermissionsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspaceImagesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeWorkspaceImagesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeWorkspaceImagesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspacesConnectionStatusRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeWorkspacesConnectionStatusResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeWorkspacesConnectionStatusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "DescribeWorkspacesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "DescribeWorkspacesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeWorkspacesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>",
         "ListAvailableManagementCidrRangesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
-        "ListAvailableManagementCidrRangesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>"
+        "ListAvailableManagementCidrRangesResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return. </p>"
       }
     },
     "RebootRequest": {
@@ -1226,6 +1252,7 @@
     "RootStorage": {
       "base": "<p>Describes the root volume for a WorkSpace bundle.</p>",
       "refs": {
+        "CreateWorkspaceBundleRequest$RootStorage": null,
         "WorkspaceBundle$RootStorage": "<p>The size of the root volume.</p>"
       }
     },
@@ -1358,6 +1385,7 @@
         "CreateConnectionAliasRequest$Tags": "<p>The tags to associate with the connection alias.</p>",
         "CreateIpGroupRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "CreateTagsRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
+        "CreateWorkspaceBundleRequest$Tags": "<p>The tags associated with the bundle.</p> <note> <p>To add tags at the same time that you're creating the bundle, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
         "DescribeTagsResult$TagList": "<p>The tags.</p>",
         "ImportWorkspaceImageRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "RegisterWorkspaceDirectoryRequest$Tags": "<p>The tags associated with the directory.</p>",
@@ -1411,6 +1439,7 @@
         "AccountModification$StartTime": "<p>The timestamp when the modification of the BYOL configuration was started.</p>",
         "Snapshot$SnapshotTime": "<p>The time when the snapshot was created.</p>",
         "WorkspaceBundle$LastUpdatedTime": "<p>The last time that the bundle was updated.</p>",
+        "WorkspaceBundle$CreationTime": "<p>The time when the bundle was created.</p>",
         "WorkspaceConnectionStatus$ConnectionStateCheckTimestamp": "<p>The timestamp of the connection status check.</p>",
         "WorkspaceConnectionStatus$LastKnownUserConnectionTimestamp": "<p>The timestamp of the last known user connection.</p>",
         "WorkspaceImage$Created": "<p>The date when the image was created. If the image has been shared, the AWS account that the image has been shared with sees the original creation date of the image.</p>"
@@ -1446,6 +1475,16 @@
       "refs": {
       }
     },
+    "UpdateWorkspaceBundleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateWorkspaceBundleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateWorkspaceImagePermissionRequest": {
       "base": null,
       "refs": {
@@ -1466,9 +1505,10 @@
       }
     },
     "UserStorage": {
-      "base": "<p>Describes the user storage for a WorkSpace bundle.</p>",
+      "base": "<p>Describes the user volume for a WorkSpace bundle.</p>",
       "refs": {
-        "WorkspaceBundle$UserStorage": "<p>The size of the user storage.</p>"
+        "CreateWorkspaceBundleRequest$UserStorage": null,
+        "WorkspaceBundle$UserStorage": "<p>The size of the user volume.</p>"
       }
     },
     "UserVolumeSizeGib": {
@@ -1500,7 +1540,20 @@
     "WorkspaceBundle": {
       "base": "<p>Describes a WorkSpace bundle.</p>",
       "refs": {
-        "BundleList$member": null
+        "BundleList$member": null,
+        "CreateWorkspaceBundleResult$WorkspaceBundle": null
+      }
+    },
+    "WorkspaceBundleDescription": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceBundleRequest$BundleDescription": "<p>The description of the bundle.</p>"
+      }
+    },
+    "WorkspaceBundleName": {
+      "base": null,
+      "refs": {
+        "CreateWorkspaceBundleRequest$BundleName": "<p>The name of the bundle.</p>"
       }
     },
     "WorkspaceConnectionStatus": {
@@ -1599,12 +1652,14 @@
       "refs": {
         "CopyWorkspaceImageRequest$SourceImageId": "<p>The identifier of the source image.</p>",
         "CopyWorkspaceImageResult$ImageId": "<p>The identifier of the image.</p>",
+        "CreateWorkspaceBundleRequest$ImageId": "<p>The identifier of the image that is used to create the bundle.</p>",
         "DeleteWorkspaceImageRequest$ImageId": "<p>The identifier of the image.</p>",
         "DescribeWorkspaceImagePermissionsRequest$ImageId": "<p>The identifier of the image.</p>",
         "DescribeWorkspaceImagePermissionsResult$ImageId": "<p>The identifier of the image.</p>",
         "ImportWorkspaceImageResult$ImageId": "<p>The identifier of the WorkSpace image.</p>",
+        "UpdateWorkspaceBundleRequest$ImageId": "<p>The identifier of the image.</p>",
         "UpdateWorkspaceImagePermissionRequest$ImageId": "<p>The identifier of the image.</p>",
-        "WorkspaceBundle$ImageId": "<p>The image identifier of the bundle.</p>",
+        "WorkspaceBundle$ImageId": "<p>The identifier of the image that was used to create the bundle.</p>",
         "WorkspaceImage$ImageId": "<p>The identifier of the image.</p>",
         "WorkspaceImageIdList$member": null
       }

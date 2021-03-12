@@ -698,6 +698,101 @@ func (c *WorkSpaces) CreateTagsWithContext(ctx aws.Context, input *CreateTagsInp
 	return out, req.Send()
 }
 
+const opCreateWorkspaceBundle = "CreateWorkspaceBundle"
+
+// CreateWorkspaceBundleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWorkspaceBundle operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWorkspaceBundle for more information on using the CreateWorkspaceBundle
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateWorkspaceBundleRequest method.
+//    req, resp := client.CreateWorkspaceBundleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspaceBundle
+func (c *WorkSpaces) CreateWorkspaceBundleRequest(input *CreateWorkspaceBundleInput) (req *request.Request, output *CreateWorkspaceBundleOutput) {
+	op := &request.Operation{
+		Name:       opCreateWorkspaceBundle,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateWorkspaceBundleInput{}
+	}
+
+	output = &CreateWorkspaceBundleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWorkspaceBundle API operation for Amazon WorkSpaces.
+//
+// Creates the specified WorkSpace bundle. For more information about creating
+// WorkSpace bundles, see Create a Custom WorkSpaces Image and Bundle (https://docs.aws.amazon.com/workspaces/latest/adminguide/create-custom-bundle.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateWorkspaceBundle for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceUnavailableException
+//   The specified resource is not available.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateWorkspaceBundle
+func (c *WorkSpaces) CreateWorkspaceBundle(input *CreateWorkspaceBundleInput) (*CreateWorkspaceBundleOutput, error) {
+	req, out := c.CreateWorkspaceBundleRequest(input)
+	return out, req.Send()
+}
+
+// CreateWorkspaceBundleWithContext is the same as CreateWorkspaceBundle with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWorkspaceBundle for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateWorkspaceBundleWithContext(ctx aws.Context, input *CreateWorkspaceBundleInput, opts ...request.Option) (*CreateWorkspaceBundleOutput, error) {
+	req, out := c.CreateWorkspaceBundleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkspaces = "CreateWorkspaces"
 
 // CreateWorkspacesRequest generates a "aws/request.Request" representing the
@@ -1058,6 +1153,96 @@ func (c *WorkSpaces) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, erro
 // for more information on using Contexts.
 func (c *WorkSpaces) DeleteTagsWithContext(ctx aws.Context, input *DeleteTagsInput, opts ...request.Option) (*DeleteTagsOutput, error) {
 	req, out := c.DeleteTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteWorkspaceBundle = "DeleteWorkspaceBundle"
+
+// DeleteWorkspaceBundleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWorkspaceBundle operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWorkspaceBundle for more information on using the DeleteWorkspaceBundle
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteWorkspaceBundleRequest method.
+//    req, resp := client.DeleteWorkspaceBundleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteWorkspaceBundle
+func (c *WorkSpaces) DeleteWorkspaceBundleRequest(input *DeleteWorkspaceBundleInput) (req *request.Request, output *DeleteWorkspaceBundleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWorkspaceBundle,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteWorkspaceBundleInput{}
+	}
+
+	output = &DeleteWorkspaceBundleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteWorkspaceBundle API operation for Amazon WorkSpaces.
+//
+// Deletes the specified WorkSpace bundle. For more information about deleting
+// WorkSpace bundles, see Delete a Custom WorkSpaces Bundle or Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/delete_bundle.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation DeleteWorkspaceBundle for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ResourceAssociatedException
+//   The resource is associated with a directory.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/DeleteWorkspaceBundle
+func (c *WorkSpaces) DeleteWorkspaceBundle(input *DeleteWorkspaceBundleInput) (*DeleteWorkspaceBundleOutput, error) {
+	req, out := c.DeleteWorkspaceBundleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWorkspaceBundleWithContext is the same as DeleteWorkspaceBundle with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWorkspaceBundle for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) DeleteWorkspaceBundleWithContext(ctx aws.Context, input *DeleteWorkspaceBundleInput, opts ...request.Option) (*DeleteWorkspaceBundleOutput, error) {
+	req, out := c.DeleteWorkspaceBundleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4623,6 +4808,101 @@ func (c *WorkSpaces) UpdateRulesOfIpGroupWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opUpdateWorkspaceBundle = "UpdateWorkspaceBundle"
+
+// UpdateWorkspaceBundleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateWorkspaceBundle operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateWorkspaceBundle for more information on using the UpdateWorkspaceBundle
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateWorkspaceBundleRequest method.
+//    req, resp := client.UpdateWorkspaceBundleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspaceBundle
+func (c *WorkSpaces) UpdateWorkspaceBundleRequest(input *UpdateWorkspaceBundleInput) (req *request.Request, output *UpdateWorkspaceBundleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateWorkspaceBundle,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateWorkspaceBundleInput{}
+	}
+
+	output = &UpdateWorkspaceBundleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateWorkspaceBundle API operation for Amazon WorkSpaces.
+//
+// Updates a WorkSpace bundle with a new image. For more information about updating
+// WorkSpace bundles, see Update a Custom WorkSpaces Bundle (https://docs.aws.amazon.com/workspaces/latest/adminguide/update-custom-bundle.html).
+//
+// Existing WorkSpaces aren't automatically updated when you update the bundle
+// that they're based on. To update existing WorkSpaces that are based on a
+// bundle that you've updated, you must either rebuild the WorkSpaces or delete
+// and recreate them.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation UpdateWorkspaceBundle for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * ResourceUnavailableException
+//   The specified resource is not available.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/UpdateWorkspaceBundle
+func (c *WorkSpaces) UpdateWorkspaceBundle(input *UpdateWorkspaceBundleInput) (*UpdateWorkspaceBundleOutput, error) {
+	req, out := c.UpdateWorkspaceBundleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateWorkspaceBundleWithContext is the same as UpdateWorkspaceBundle with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateWorkspaceBundle for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) UpdateWorkspaceBundleWithContext(ctx aws.Context, input *UpdateWorkspaceBundleInput, opts ...request.Option) (*UpdateWorkspaceBundleOutput, error) {
+	req, out := c.UpdateWorkspaceBundleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateWorkspaceImagePermission = "UpdateWorkspaceImagePermission"
 
 // UpdateWorkspaceImagePermissionRequest generates a "aws/request.Request" representing the
@@ -5142,7 +5422,7 @@ func (s *ClientPropertiesResult) SetResourceId(v string) *ClientPropertiesResult
 	return s
 }
 
-// Describes the compute type.
+// Describes the compute type of the bundle.
 type ComputeType struct {
 	_ struct{} `type:"structure"`
 
@@ -5736,6 +6016,170 @@ func (s CreateTagsOutput) GoString() string {
 	return s.String()
 }
 
+type CreateWorkspaceBundleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the bundle.
+	//
+	// BundleDescription is a required field
+	BundleDescription *string `min:"1" type:"string" required:"true"`
+
+	// The name of the bundle.
+	//
+	// BundleName is a required field
+	BundleName *string `min:"1" type:"string" required:"true"`
+
+	// Describes the compute type of the bundle.
+	//
+	// ComputeType is a required field
+	ComputeType *ComputeType `type:"structure" required:"true"`
+
+	// The identifier of the image that is used to create the bundle.
+	//
+	// ImageId is a required field
+	ImageId *string `type:"string" required:"true"`
+
+	// Describes the root volume for a WorkSpace bundle.
+	RootStorage *RootStorage `type:"structure"`
+
+	// The tags associated with the bundle.
+	//
+	// To add tags at the same time that you're creating the bundle, you must create
+	// an IAM policy that grants your IAM user permissions to use workspaces:CreateTags.
+	Tags []*Tag `type:"list"`
+
+	// Describes the user volume for a WorkSpace bundle.
+	//
+	// UserStorage is a required field
+	UserStorage *UserStorage `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateWorkspaceBundleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateWorkspaceBundleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkspaceBundleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkspaceBundleInput"}
+	if s.BundleDescription == nil {
+		invalidParams.Add(request.NewErrParamRequired("BundleDescription"))
+	}
+	if s.BundleDescription != nil && len(*s.BundleDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BundleDescription", 1))
+	}
+	if s.BundleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BundleName"))
+	}
+	if s.BundleName != nil && len(*s.BundleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BundleName", 1))
+	}
+	if s.ComputeType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComputeType"))
+	}
+	if s.ImageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageId"))
+	}
+	if s.UserStorage == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserStorage"))
+	}
+	if s.RootStorage != nil {
+		if err := s.RootStorage.Validate(); err != nil {
+			invalidParams.AddNested("RootStorage", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserStorage != nil {
+		if err := s.UserStorage.Validate(); err != nil {
+			invalidParams.AddNested("UserStorage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBundleDescription sets the BundleDescription field's value.
+func (s *CreateWorkspaceBundleInput) SetBundleDescription(v string) *CreateWorkspaceBundleInput {
+	s.BundleDescription = &v
+	return s
+}
+
+// SetBundleName sets the BundleName field's value.
+func (s *CreateWorkspaceBundleInput) SetBundleName(v string) *CreateWorkspaceBundleInput {
+	s.BundleName = &v
+	return s
+}
+
+// SetComputeType sets the ComputeType field's value.
+func (s *CreateWorkspaceBundleInput) SetComputeType(v *ComputeType) *CreateWorkspaceBundleInput {
+	s.ComputeType = v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CreateWorkspaceBundleInput) SetImageId(v string) *CreateWorkspaceBundleInput {
+	s.ImageId = &v
+	return s
+}
+
+// SetRootStorage sets the RootStorage field's value.
+func (s *CreateWorkspaceBundleInput) SetRootStorage(v *RootStorage) *CreateWorkspaceBundleInput {
+	s.RootStorage = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkspaceBundleInput) SetTags(v []*Tag) *CreateWorkspaceBundleInput {
+	s.Tags = v
+	return s
+}
+
+// SetUserStorage sets the UserStorage field's value.
+func (s *CreateWorkspaceBundleInput) SetUserStorage(v *UserStorage) *CreateWorkspaceBundleInput {
+	s.UserStorage = v
+	return s
+}
+
+type CreateWorkspaceBundleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a WorkSpace bundle.
+	WorkspaceBundle *WorkspaceBundle `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateWorkspaceBundleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateWorkspaceBundleOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkspaceBundle sets the WorkspaceBundle field's value.
+func (s *CreateWorkspaceBundleOutput) SetWorkspaceBundle(v *WorkspaceBundle) *CreateWorkspaceBundleOutput {
+	s.WorkspaceBundle = v
+	return s
+}
+
 type CreateWorkspacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6083,6 +6527,43 @@ func (s DeleteTagsOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteWorkspaceBundleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bundle.
+	BundleId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteWorkspaceBundleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteWorkspaceBundleInput) GoString() string {
+	return s.String()
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *DeleteWorkspaceBundleInput) SetBundleId(v string) *DeleteWorkspaceBundleInput {
+	s.BundleId = &v
+	return s
+}
+
+type DeleteWorkspaceBundleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteWorkspaceBundleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteWorkspaceBundleOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteWorkspaceImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6249,8 +6730,8 @@ type DescribeAccountModificationsOutput struct {
 	// The list of modifications to the configuration of BYOL.
 	AccountModifications []*AccountModification `type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6453,8 +6934,8 @@ type DescribeConnectionAliasPermissionsOutput struct {
 	// The permissions associated with a connection alias.
 	ConnectionAliasPermissions []*ConnectionAliasPermission `min:"1" type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6565,8 +7046,8 @@ type DescribeConnectionAliasesOutput struct {
 	// Information about the specified connection aliases.
 	ConnectionAliases []*ConnectionAlias `min:"1" type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6653,8 +7134,8 @@ func (s *DescribeIpGroupsInput) SetNextToken(v string) *DescribeIpGroupsInput {
 type DescribeIpGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 
 	// Information about the IP access control groups.
@@ -6763,8 +7244,8 @@ type DescribeWorkspaceBundlesInput struct {
 	// The owner of the bundles. You cannot combine this parameter with any other
 	// filter.
 	//
-	// Specify AMAZON to describe the bundles provided by AWS or null to describe
-	// the bundles that belong to your account.
+	// To describe the bundles provided by AWS, specify AMAZON. To describe the
+	// bundles that belong to your account, don't specify a value.
 	Owner *string `type:"string"`
 }
 
@@ -6818,9 +7299,9 @@ type DescribeWorkspaceBundlesOutput struct {
 	// Information about the bundles.
 	Bundles []*WorkspaceBundle `type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if there are
-	// no more results available. This token is valid for one day and must be used
-	// within that time frame.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return. This token is valid for one day
+	// and must be used within that time frame.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -6914,8 +7395,8 @@ type DescribeWorkspaceDirectoriesOutput struct {
 	// Information about the directories.
 	Directories []*WorkspaceDirectory `type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -7013,8 +7494,8 @@ type DescribeWorkspaceImagePermissionsOutput struct {
 	// The identifiers of the AWS accounts that the image has been shared with.
 	ImagePermissions []*ImagePermission `type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -7122,8 +7603,8 @@ type DescribeWorkspaceImagesOutput struct {
 	// Information about the images.
 	Images []*WorkspaceImage `type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -7273,8 +7754,8 @@ func (s *DescribeWorkspacesConnectionStatusInput) SetWorkspaceIds(v []*string) *
 type DescribeWorkspacesConnectionStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 
 	// Information about the connection status of the WorkSpace.
@@ -7408,8 +7889,8 @@ func (s *DescribeWorkspacesInput) SetWorkspaceIds(v []*string) *DescribeWorkspac
 type DescribeWorkspacesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 
 	// Information about the WorkSpaces.
@@ -8097,8 +8578,8 @@ type ListAvailableManagementCidrRangesOutput struct {
 	// The list of available IP address ranges, specified as IPv4 CIDR blocks.
 	ManagementCidrRanges []*string `type:"list"`
 
-	// The token to use to retrieve the next set of results, or null if no more
-	// results are available.
+	// The token to use to retrieve the next page of results. This value is null
+	// when there are no more results to return.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -9682,6 +10163,19 @@ func (s RootStorage) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RootStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RootStorage"}
+	if s.Capacity != nil && len(*s.Capacity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Capacity", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetCapacity sets the Capacity field's value.
 func (s *RootStorage) SetCapacity(v string) *RootStorage {
 	s.Capacity = &v
@@ -10375,6 +10869,52 @@ func (s UpdateRulesOfIpGroupOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateWorkspaceBundleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bundle.
+	BundleId *string `type:"string"`
+
+	// The identifier of the image.
+	ImageId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateWorkspaceBundleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateWorkspaceBundleInput) GoString() string {
+	return s.String()
+}
+
+// SetBundleId sets the BundleId field's value.
+func (s *UpdateWorkspaceBundleInput) SetBundleId(v string) *UpdateWorkspaceBundleInput {
+	s.BundleId = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *UpdateWorkspaceBundleInput) SetImageId(v string) *UpdateWorkspaceBundleInput {
+	s.ImageId = &v
+	return s
+}
+
+type UpdateWorkspaceBundleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateWorkspaceBundleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateWorkspaceBundleOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateWorkspaceImagePermissionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10459,11 +10999,11 @@ func (s UpdateWorkspaceImagePermissionOutput) GoString() string {
 	return s.String()
 }
 
-// Describes the user storage for a WorkSpace bundle.
+// Describes the user volume for a WorkSpace bundle.
 type UserStorage struct {
 	_ struct{} `type:"structure"`
 
-	// The size of the user storage.
+	// The size of the user volume.
 	Capacity *string `min:"1" type:"string"`
 }
 
@@ -10475,6 +11015,19 @@ func (s UserStorage) String() string {
 // GoString returns the string representation
 func (s UserStorage) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserStorage"}
+	if s.Capacity != nil && len(*s.Capacity) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Capacity", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCapacity sets the Capacity field's value.
@@ -10732,16 +11285,20 @@ func (s *WorkspaceAccessProperties) SetDeviceTypeZeroClient(v string) *Workspace
 type WorkspaceBundle struct {
 	_ struct{} `type:"structure"`
 
-	// The bundle identifier.
+	// The identifier of the bundle.
 	BundleId *string `type:"string"`
 
-	// The compute type. For more information, see Amazon WorkSpaces Bundles (http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles).
+	// The compute type of the bundle. For more information, see Amazon WorkSpaces
+	// Bundles (http://aws.amazon.com/workspaces/details/#Amazon_WorkSpaces_Bundles).
 	ComputeType *ComputeType `type:"structure"`
 
-	// A description.
+	// The time when the bundle was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The description of the bundle.
 	Description *string `type:"string"`
 
-	// The image identifier of the bundle.
+	// The identifier of the image that was used to create the bundle.
 	ImageId *string `type:"string"`
 
 	// The last time that the bundle was updated.
@@ -10757,7 +11314,7 @@ type WorkspaceBundle struct {
 	// The size of the root volume.
 	RootStorage *RootStorage `type:"structure"`
 
-	// The size of the user storage.
+	// The size of the user volume.
 	UserStorage *UserStorage `type:"structure"`
 }
 
@@ -10780,6 +11337,12 @@ func (s *WorkspaceBundle) SetBundleId(v string) *WorkspaceBundle {
 // SetComputeType sets the ComputeType field's value.
 func (s *WorkspaceBundle) SetComputeType(v *ComputeType) *WorkspaceBundle {
 	s.ComputeType = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *WorkspaceBundle) SetCreationTime(v time.Time) *WorkspaceBundle {
+	s.CreationTime = &v
 	return s
 }
 

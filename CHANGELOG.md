@@ -1,3 +1,13 @@
+Release v1.37.30 (2021-03-12)
+===
+
+### Service Client Updates
+* `service/cur`: Updates service API and documentation
+  * - Added optional billingViewArn field for OSG.
+* `service/mediatailor`: Updates service API, documentation, and paginators
+* `service/workspaces`: Updates service API and documentation
+  * Adds API support for WorkSpaces bundle management operations.
+
 Release v1.37.29 (2021-03-11)
 ===
 
