@@ -790,6 +790,9 @@ func (s *Alternative) SetTranscript(v string) *Alternative {
 }
 
 // Provides a wrapper for the audio chunks that you are sending.
+//
+// For information on audio encoding in Amazon Transcribe, see input. For information
+// on audio encoding formats in Amazon Transcribe Medical, see input-med.
 type AudioEvent struct {
 	_ struct{} `type:"structure" payload:"AudioChunk"`
 
@@ -1161,9 +1164,13 @@ func (s *InternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A word or phrase transcribed from the input audio.
+// A word, phrase, or punctuation mark that is transcribed from the input audio.
 type Item struct {
 	_ struct{} `type:"structure"`
+
+	// A value between 0 and 1 for an item that is a confidence score that Amazon
+	// Transcribe assigns to each word or phrase that it transcribes.
+	Confidence *float64 `type:"double"`
 
 	// The word or punctuation that was recognized in the input audio.
 	Content *string `type:"string"`
@@ -1199,6 +1206,12 @@ func (s Item) String() string {
 // GoString returns the string representation
 func (s Item) GoString() string {
 	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *Item) SetConfidence(v float64) *Item {
+	s.Confidence = &v
+	return s
 }
 
 // SetContent sets the Content field's value.
@@ -1436,7 +1449,7 @@ func (s *MedicalEntity) SetStartTime(v float64) *MedicalEntity {
 	return s
 }
 
-// A word or punctuation that is transcribed from the input audio.
+// A word, phrase, or punctuation mark that is transcribed from the input audio.
 type MedicalItem struct {
 	_ struct{} `type:"structure"`
 
@@ -2889,6 +2902,9 @@ const (
 
 	// LanguageCodeKoKr is a LanguageCode enum value
 	LanguageCodeKoKr = "ko-KR"
+
+	// LanguageCodeZhCn is a LanguageCode enum value
+	LanguageCodeZhCn = "zh-CN"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -2905,6 +2921,7 @@ func LanguageCode_Values() []string {
 		LanguageCodePtBr,
 		LanguageCodeJaJp,
 		LanguageCodeKoKr,
+		LanguageCodeZhCn,
 	}
 }
 

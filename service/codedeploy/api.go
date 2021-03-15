@@ -6976,6 +6976,18 @@ type CreateDeploymentGroupInput struct {
 	// Cannot be used in the same call as onPremisesInstanceTagFilters.
 	OnPremisesTagSet *OnPremisesTagSet `locationName:"onPremisesTagSet" type:"structure"`
 
+	// Indicates what happens when new EC2 instances are launched mid-deployment
+	// and do not receive the deployed application revision.
+	//
+	// If this option is set to UPDATE or is unspecified, CodeDeploy initiates one
+	// or more 'auto-update outdated instances' deployments to apply the deployed
+	// application revision to the new EC2 instances.
+	//
+	// If this option is set to IGNORE, CodeDeploy does not initiate a deployment
+	// to update the new EC2 instances. This may result in instances having different
+	// revisions.
+	OutdatedInstancesStrategy *string `locationName:"outdatedInstancesStrategy" type:"string" enum:"OutdatedInstancesStrategy"`
+
 	// A service role Amazon Resource Name (ARN) that allows AWS CodeDeploy to act
 	// on the user's behalf when interacting with AWS services.
 	//
@@ -7112,6 +7124,12 @@ func (s *CreateDeploymentGroupInput) SetOnPremisesInstanceTagFilters(v []*TagFil
 // SetOnPremisesTagSet sets the OnPremisesTagSet field's value.
 func (s *CreateDeploymentGroupInput) SetOnPremisesTagSet(v *OnPremisesTagSet) *CreateDeploymentGroupInput {
 	s.OnPremisesTagSet = v
+	return s
+}
+
+// SetOutdatedInstancesStrategy sets the OutdatedInstancesStrategy field's value.
+func (s *CreateDeploymentGroupInput) SetOutdatedInstancesStrategy(v string) *CreateDeploymentGroupInput {
+	s.OutdatedInstancesStrategy = &v
 	return s
 }
 
@@ -8290,6 +8308,18 @@ type DeploymentGroupInfo struct {
 	// tag groups. Cannot be used in the same call as onPremisesInstanceTagFilters.
 	OnPremisesTagSet *OnPremisesTagSet `locationName:"onPremisesTagSet" type:"structure"`
 
+	// Indicates what happens when new EC2 instances are launched mid-deployment
+	// and do not receive the deployed application revision.
+	//
+	// If this option is set to UPDATE or is unspecified, CodeDeploy initiates one
+	// or more 'auto-update outdated instances' deployments to apply the deployed
+	// application revision to the new EC2 instances.
+	//
+	// If this option is set to IGNORE, CodeDeploy does not initiate a deployment
+	// to update the new EC2 instances. This may result in instances having different
+	// revisions.
+	OutdatedInstancesStrategy *string `locationName:"outdatedInstancesStrategy" type:"string" enum:"OutdatedInstancesStrategy"`
+
 	// A service role Amazon Resource Name (ARN) that grants CodeDeploy permission
 	// to make calls to AWS services on your behalf. For more information, see Create
 	// a Service Role for AWS CodeDeploy (https://docs.aws.amazon.com/codedeploy/latest/userguide/getting-started-create-service-role.html)
@@ -8419,6 +8449,12 @@ func (s *DeploymentGroupInfo) SetOnPremisesInstanceTagFilters(v []*TagFilter) *D
 // SetOnPremisesTagSet sets the OnPremisesTagSet field's value.
 func (s *DeploymentGroupInfo) SetOnPremisesTagSet(v *OnPremisesTagSet) *DeploymentGroupInfo {
 	s.OnPremisesTagSet = v
+	return s
+}
+
+// SetOutdatedInstancesStrategy sets the OutdatedInstancesStrategy field's value.
+func (s *DeploymentGroupInfo) SetOutdatedInstancesStrategy(v string) *DeploymentGroupInfo {
+	s.OutdatedInstancesStrategy = &v
 	return s
 }
 
@@ -8642,6 +8678,9 @@ type DeploymentInfo struct {
 	//    * autoscaling: Amazon EC2 Auto Scaling created the deployment.
 	//
 	//    * codeDeployRollback: A rollback process created the deployment.
+	//
+	//    * CodeDeployAutoUpdate: An auto-update process created the deployment
+	//    when it detected outdated EC2 instances.
 	Creator *string `locationName:"creator" type:"string" enum:"DeploymentCreator"`
 
 	// The deployment configuration name.
@@ -8724,6 +8763,9 @@ type DeploymentInfo struct {
 	// Information about the application revision that was deployed to the deployment
 	// group before the most recent successful deployment.
 	PreviousRevision *RevisionLocation `locationName:"previousRevision" type:"structure"`
+
+	// Information about deployments related to the specified deployment.
+	RelatedDeployments *RelatedDeployments `locationName:"relatedDeployments" type:"structure"`
 
 	// Information about the location of stored application artifacts and the service
 	// from which to retrieve them.
@@ -8891,6 +8933,12 @@ func (s *DeploymentInfo) SetLoadBalancerInfo(v *LoadBalancerInfo) *DeploymentInf
 // SetPreviousRevision sets the PreviousRevision field's value.
 func (s *DeploymentInfo) SetPreviousRevision(v *RevisionLocation) *DeploymentInfo {
 	s.PreviousRevision = v
+	return s
+}
+
+// SetRelatedDeployments sets the RelatedDeployments field's value.
+func (s *DeploymentInfo) SetRelatedDeployments(v *RelatedDeployments) *DeploymentInfo {
+	s.RelatedDeployments = v
 	return s
 }
 
@@ -16405,8 +16453,8 @@ type PutLifecycleEventHookExecutionStatusInput struct {
 	// hook is specified in the hooks section of the AppSpec file.
 	LifecycleEventHookExecutionId *string `locationName:"lifecycleEventHookExecutionId" type:"string"`
 
-	// The result of a Lambda function that validates a deployment lifecycle event
-	// (Succeeded or Failed).
+	// The result of a Lambda function that validates a deployment lifecycle event.
+	// Succeeded and Failed are the only valid values for status.
 	Status *string `locationName:"status" type:"string" enum:"LifecycleEventStatus"`
 }
 
@@ -16651,6 +16699,40 @@ func (s RegisterOnPremisesInstanceOutput) String() string {
 // GoString returns the string representation
 func (s RegisterOnPremisesInstanceOutput) GoString() string {
 	return s.String()
+}
+
+// Information about deployments related to the specified deployment.
+type RelatedDeployments struct {
+	_ struct{} `type:"structure"`
+
+	// The deployment IDs of 'auto-update outdated instances' deployments triggered
+	// by this deployment.
+	AutoUpdateOutdatedInstancesDeploymentIds []*string `locationName:"autoUpdateOutdatedInstancesDeploymentIds" type:"list"`
+
+	// The deployment ID of the root deployment that triggered this deployment.
+	AutoUpdateOutdatedInstancesRootDeploymentId *string `locationName:"autoUpdateOutdatedInstancesRootDeploymentId" type:"string"`
+}
+
+// String returns the string representation
+func (s RelatedDeployments) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RelatedDeployments) GoString() string {
+	return s.String()
+}
+
+// SetAutoUpdateOutdatedInstancesDeploymentIds sets the AutoUpdateOutdatedInstancesDeploymentIds field's value.
+func (s *RelatedDeployments) SetAutoUpdateOutdatedInstancesDeploymentIds(v []*string) *RelatedDeployments {
+	s.AutoUpdateOutdatedInstancesDeploymentIds = v
+	return s
+}
+
+// SetAutoUpdateOutdatedInstancesRootDeploymentId sets the AutoUpdateOutdatedInstancesRootDeploymentId field's value.
+func (s *RelatedDeployments) SetAutoUpdateOutdatedInstancesRootDeploymentId(v string) *RelatedDeployments {
+	s.AutoUpdateOutdatedInstancesRootDeploymentId = &v
+	return s
 }
 
 // Represents the input of a RemoveTagsFromOnPremisesInstances operation.
@@ -18406,6 +18488,18 @@ type UpdateDeploymentGroupInput struct {
 	// only on-premises instances identified by all the tag groups.
 	OnPremisesTagSet *OnPremisesTagSet `locationName:"onPremisesTagSet" type:"structure"`
 
+	// Indicates what happens when new EC2 instances are launched mid-deployment
+	// and do not receive the deployed application revision.
+	//
+	// If this option is set to UPDATE or is unspecified, CodeDeploy initiates one
+	// or more 'auto-update outdated instances' deployments to apply the deployed
+	// application revision to the new EC2 instances.
+	//
+	// If this option is set to IGNORE, CodeDeploy does not initiate a deployment
+	// to update the new EC2 instances. This may result in instances having different
+	// revisions.
+	OutdatedInstancesStrategy *string `locationName:"outdatedInstancesStrategy" type:"string" enum:"OutdatedInstancesStrategy"`
+
 	// A replacement ARN for the service role, if you want to change it.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
@@ -18540,6 +18634,12 @@ func (s *UpdateDeploymentGroupInput) SetOnPremisesInstanceTagFilters(v []*TagFil
 // SetOnPremisesTagSet sets the OnPremisesTagSet field's value.
 func (s *UpdateDeploymentGroupInput) SetOnPremisesTagSet(v *OnPremisesTagSet) *UpdateDeploymentGroupInput {
 	s.OnPremisesTagSet = v
+	return s
+}
+
+// SetOutdatedInstancesStrategy sets the OutdatedInstancesStrategy field's value.
+func (s *UpdateDeploymentGroupInput) SetOutdatedInstancesStrategy(v string) *UpdateDeploymentGroupInput {
+	s.OutdatedInstancesStrategy = &v
 	return s
 }
 
@@ -18684,6 +18784,9 @@ const (
 	// DeploymentCreatorCodeDeploy is a DeploymentCreator enum value
 	DeploymentCreatorCodeDeploy = "CodeDeploy"
 
+	// DeploymentCreatorCodeDeployAutoUpdate is a DeploymentCreator enum value
+	DeploymentCreatorCodeDeployAutoUpdate = "CodeDeployAutoUpdate"
+
 	// DeploymentCreatorCloudFormation is a DeploymentCreator enum value
 	DeploymentCreatorCloudFormation = "CloudFormation"
 
@@ -18698,6 +18801,7 @@ func DeploymentCreator_Values() []string {
 		DeploymentCreatorAutoscaling,
 		DeploymentCreatorCodeDeployRollback,
 		DeploymentCreatorCodeDeploy,
+		DeploymentCreatorCodeDeployAutoUpdate,
 		DeploymentCreatorCloudFormation,
 		DeploymentCreatorCloudFormationRollback,
 	}
@@ -19196,6 +19300,22 @@ func MinimumHealthyHostsType_Values() []string {
 	return []string{
 		MinimumHealthyHostsTypeHostCount,
 		MinimumHealthyHostsTypeFleetPercent,
+	}
+}
+
+const (
+	// OutdatedInstancesStrategyUpdate is a OutdatedInstancesStrategy enum value
+	OutdatedInstancesStrategyUpdate = "UPDATE"
+
+	// OutdatedInstancesStrategyIgnore is a OutdatedInstancesStrategy enum value
+	OutdatedInstancesStrategyIgnore = "IGNORE"
+)
+
+// OutdatedInstancesStrategy_Values returns all elements of the OutdatedInstancesStrategy enum
+func OutdatedInstancesStrategy_Values() []string {
+	return []string{
+		OutdatedInstancesStrategyUpdate,
+		OutdatedInstancesStrategyIgnore,
 	}
 }
 

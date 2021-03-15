@@ -2195,7 +2195,8 @@
       "type":"structure",
       "members":{
         "UsageStrategy":{"shape":"OnDemandCapacityReservationUsageStrategy"},
-        "CapacityReservationPreference":{"shape":"OnDemandCapacityReservationPreference"}
+        "CapacityReservationPreference":{"shape":"OnDemandCapacityReservationPreference"},
+        "CapacityReservationResourceGroupArn":{"shape":"XmlStringMaxLen256"}
       }
     },
     "OnDemandCapacityReservationPreference":{

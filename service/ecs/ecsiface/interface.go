@@ -140,6 +140,10 @@ type ECSAPI interface {
 	DiscoverPollEndpointWithContext(aws.Context, *ecs.DiscoverPollEndpointInput, ...request.Option) (*ecs.DiscoverPollEndpointOutput, error)
 	DiscoverPollEndpointRequest(*ecs.DiscoverPollEndpointInput) (*request.Request, *ecs.DiscoverPollEndpointOutput)
 
+	ExecuteCommand(*ecs.ExecuteCommandInput) (*ecs.ExecuteCommandOutput, error)
+	ExecuteCommandWithContext(aws.Context, *ecs.ExecuteCommandInput, ...request.Option) (*ecs.ExecuteCommandOutput, error)
+	ExecuteCommandRequest(*ecs.ExecuteCommandInput) (*request.Request, *ecs.ExecuteCommandOutput)
+
 	ListAccountSettings(*ecs.ListAccountSettingsInput) (*ecs.ListAccountSettingsOutput, error)
 	ListAccountSettingsWithContext(aws.Context, *ecs.ListAccountSettingsInput, ...request.Option) (*ecs.ListAccountSettingsOutput, error)
 	ListAccountSettingsRequest(*ecs.ListAccountSettingsInput) (*request.Request, *ecs.ListAccountSettingsOutput)
@@ -259,6 +263,10 @@ type ECSAPI interface {
 	UpdateCapacityProvider(*ecs.UpdateCapacityProviderInput) (*ecs.UpdateCapacityProviderOutput, error)
 	UpdateCapacityProviderWithContext(aws.Context, *ecs.UpdateCapacityProviderInput, ...request.Option) (*ecs.UpdateCapacityProviderOutput, error)
 	UpdateCapacityProviderRequest(*ecs.UpdateCapacityProviderInput) (*request.Request, *ecs.UpdateCapacityProviderOutput)
+
+	UpdateCluster(*ecs.UpdateClusterInput) (*ecs.UpdateClusterOutput, error)
+	UpdateClusterWithContext(aws.Context, *ecs.UpdateClusterInput, ...request.Option) (*ecs.UpdateClusterOutput, error)
+	UpdateClusterRequest(*ecs.UpdateClusterInput) (*request.Request, *ecs.UpdateClusterOutput)
 
 	UpdateClusterSettings(*ecs.UpdateClusterSettingsInput) (*ecs.UpdateClusterSettingsOutput, error)
 	UpdateClusterSettingsWithContext(aws.Context, *ecs.UpdateClusterSettingsInput, ...request.Option) (*ecs.UpdateClusterSettingsOutput, error)

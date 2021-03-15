@@ -1,3 +1,16 @@
+Release v1.37.31 (2021-03-15)
+===
+
+### Service Client Updates
+* `service/codedeploy`: Updates service API and documentation
+  * AWS CodeDeploy can now detect instances running an outdated revision of your application and automatically update them with the latest revision.
+* `service/ecs`: Updates service API and documentation
+  * This is for ecs exec feature release which includes two new APIs - execute-command and update-cluster and an AWS CLI customization for execute-command API
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now specify Resource Group to target Capacity Reservations in their EMR clusters with instance fleets using allocation strategy.
+* `service/fis`: Updates service API, documentation, paginators, and examples
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.37.30 (2021-03-12)
 ===
 
