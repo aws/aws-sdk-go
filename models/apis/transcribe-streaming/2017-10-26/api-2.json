@@ -111,7 +111,8 @@
         "Type":{"shape":"ItemType"},
         "Content":{"shape":"String"},
         "VocabularyFilterMatch":{"shape":"Boolean"},
-        "Speaker":{"shape":"String"}
+        "Speaker":{"shape":"String"},
+        "Confidence":{"shape":"Confidence"}
       }
     },
     "ItemList":{
@@ -138,7 +139,8 @@
         "de-DE",
         "pt-BR",
         "ja-JP",
-        "ko-KR"
+        "ko-KR",
+        "zh-CN"
       ]
     },
     "LimitExceededException":{

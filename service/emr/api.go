@@ -6517,9 +6517,8 @@ type CreateStudioInput struct {
 	// AuthMode is a required field
 	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
 
-	// The default Amazon S3 location to back up Amazon EMR Studio Workspaces and
-	// notebook files. A Studio user can select an alternative Amazon S3 location
-	// when creating a Workspace.
+	// The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook
+	// files.
 	//
 	// DefaultS3Location is a required field
 	DefaultS3Location *string `type:"string" required:"true"`
@@ -12320,6 +12319,9 @@ type OnDemandCapacityReservationOptions struct {
 	//    one is available. The instance runs as an On-Demand Instance.
 	CapacityReservationPreference *string `type:"string" enum:"OnDemandCapacityReservationPreference"`
 
+	// The ARN of the Capacity Reservation resource group in which to run the instance.
+	CapacityReservationResourceGroupArn *string `type:"string"`
+
 	// Indicates whether to use unused Capacity Reservations for fulfilling On-Demand
 	// capacity.
 	//
@@ -12349,6 +12351,12 @@ func (s OnDemandCapacityReservationOptions) GoString() string {
 // SetCapacityReservationPreference sets the CapacityReservationPreference field's value.
 func (s *OnDemandCapacityReservationOptions) SetCapacityReservationPreference(v string) *OnDemandCapacityReservationOptions {
 	s.CapacityReservationPreference = &v
+	return s
+}
+
+// SetCapacityReservationResourceGroupArn sets the CapacityReservationResourceGroupArn field's value.
+func (s *OnDemandCapacityReservationOptions) SetCapacityReservationResourceGroupArn(v string) *OnDemandCapacityReservationOptions {
+	s.CapacityReservationResourceGroupArn = &v
 	return s
 }
 
@@ -14952,8 +14960,8 @@ type Studio struct {
 	// The time the Amazon EMR Studio was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The default Amazon S3 location to back up Amazon EMR Studio Workspaces and
-	// notebook files.
+	// The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook
+	// files.
 	DefaultS3Location *string `type:"string"`
 
 	// The detailed description of the Amazon EMR Studio.
@@ -15298,9 +15306,8 @@ func (s TerminateJobFlowsOutput) GoString() string {
 type UpdateStudioInput struct {
 	_ struct{} `type:"structure"`
 
-	// A default Amazon S3 location to back up Workspaces and notebook files for
-	// the Amazon EMR Studio. A Studio user can select an alternative Amazon S3
-	// location when creating a Workspace.
+	// The Amazon S3 location to back up Workspaces and notebook files for the Amazon
+	// EMR Studio.
 	DefaultS3Location *string `type:"string"`
 
 	// A detailed description to assign to the Amazon EMR Studio.

@@ -141,6 +141,13 @@ const (
 	// with ListServices. Amazon ECS services are cluster-specific and Region-specific.
 	ErrCodeServiceNotFoundException = "ServiceNotFoundException"
 
+	// ErrCodeTargetNotConnectedException for service response error code
+	// "TargetNotConnectedException".
+	//
+	// The target container is not properly configured with the execute command
+	// agent or the container is no longer active or running.
+	ErrCodeTargetNotConnectedException = "TargetNotConnectedException"
+
 	// ErrCodeTargetNotFoundException for service response error code
 	// "TargetNotFoundException".
 	//
@@ -194,6 +201,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ServerException":                                newErrorServerException,
 	"ServiceNotActiveException":                      newErrorServiceNotActiveException,
 	"ServiceNotFoundException":                       newErrorServiceNotFoundException,
+	"TargetNotConnectedException":                    newErrorTargetNotConnectedException,
 	"TargetNotFoundException":                        newErrorTargetNotFoundException,
 	"TaskSetNotFoundException":                       newErrorTaskSetNotFoundException,
 	"UnsupportedFeatureException":                    newErrorUnsupportedFeatureException,

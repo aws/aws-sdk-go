@@ -552,7 +552,7 @@
     "DeploymentCreator": {
       "base": null,
       "refs": {
-        "DeploymentInfo$creator": "<p>The means by which the deployment was created:</p> <ul> <li> <p> <code>user</code>: A user created the deployment.</p> </li> <li> <p> <code>autoscaling</code>: Amazon EC2 Auto Scaling created the deployment.</p> </li> <li> <p> <code>codeDeployRollback</code>: A rollback process created the deployment.</p> </li> </ul>"
+        "DeploymentInfo$creator": "<p>The means by which the deployment was created:</p> <ul> <li> <p> <code>user</code>: A user created the deployment.</p> </li> <li> <p> <code>autoscaling</code>: Amazon EC2 Auto Scaling created the deployment.</p> </li> <li> <p> <code>codeDeployRollback</code>: A rollback process created the deployment.</p> </li> <li> <p> <code>CodeDeployAutoUpdate</code>: An auto-update process created the deployment when it detected outdated EC2 instances.</p> </li> </ul>"
       }
     },
     "DeploymentDoesNotExistException": {
@@ -644,6 +644,7 @@
         "ListDeploymentInstancesInput$deploymentId": "<p> The unique ID of a deployment. </p>",
         "ListDeploymentTargetsInput$deploymentId": "<p> The unique ID of a deployment. </p>",
         "PutLifecycleEventHookExecutionStatusInput$deploymentId": "<p> The unique ID of a deployment. Pass this ID to a Lambda function that validates a deployment lifecycle event. </p>",
+        "RelatedDeployments$autoUpdateOutdatedInstancesRootDeploymentId": "<p>The deployment ID of the root deployment that triggered this deployment.</p>",
         "RollbackInfo$rollbackDeploymentId": "<p>The ID of the deployment rollback.</p>",
         "RollbackInfo$rollbackTriggeringDeploymentId": "<p>The deployment ID of the deployment that was underway and triggered a rollback deployment because it failed or was stopped.</p>",
         "SkipWaitTimeForInstanceTerminationInput$deploymentId": "<p> The unique ID of a blue/green deployment for which you want to skip the instance termination wait time. </p>",
@@ -786,7 +787,8 @@
       "base": null,
       "refs": {
         "BatchGetDeploymentsInput$deploymentIds": "<p> A list of deployment IDs, separated by spaces. The maximum number of deployment IDs you can specify is 25.</p>",
-        "ListDeploymentsOutput$deployments": "<p>A list of deployment IDs.</p>"
+        "ListDeploymentsOutput$deployments": "<p>A list of deployment IDs.</p>",
+        "RelatedDeployments$autoUpdateOutdatedInstancesDeploymentIds": "<p>The deployment IDs of 'auto-update outdated instances' deployments triggered by this deployment.</p>"
       }
     },
     "DeregisterOnPremisesInstanceInput": {
@@ -1355,11 +1357,6 @@
       "refs": {
       }
     },
-    "InvalidDeploymentConfigIdException": {
-      "base": "<p> The ID of the deployment configuration is invalid. </p>",
-      "refs": {
-      }
-    },
     "InvalidDeploymentConfigNameException": {
       "base": "<p>The deployment configuration name was specified in an invalid format.</p>",
       "refs": {
@@ -1679,7 +1676,7 @@
       "base": null,
       "refs": {
         "LifecycleEvent$status": "<p>The deployment lifecycle event status:</p> <ul> <li> <p>Pending: The deployment lifecycle event is pending.</p> </li> <li> <p>InProgress: The deployment lifecycle event is in progress.</p> </li> <li> <p>Succeeded: The deployment lifecycle event ran successfully.</p> </li> <li> <p>Failed: The deployment lifecycle event has failed.</p> </li> <li> <p>Skipped: The deployment lifecycle event has been skipped.</p> </li> <li> <p>Unknown: The deployment lifecycle event is unknown.</p> </li> </ul>",
-        "PutLifecycleEventHookExecutionStatusInput$status": "<p>The result of a Lambda function that validates a deployment lifecycle event (<code>Succeeded</code> or <code>Failed</code>).</p>"
+        "PutLifecycleEventHookExecutionStatusInput$status": "<p>The result of a Lambda function that validates a deployment lifecycle event. <code>Succeeded</code> and <code>Failed</code> are the only valid values for <code>status</code>.</p>"
       }
     },
     "LifecycleHookLimitExceededException": {
@@ -1906,6 +1903,14 @@
       "refs": {
       }
     },
+    "OutdatedInstancesStrategy": {
+      "base": null,
+      "refs": {
+        "CreateDeploymentGroupInput$outdatedInstancesStrategy": "<p>Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision.</p> <p>If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances.</p> <p>If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions.</p>",
+        "DeploymentGroupInfo$outdatedInstancesStrategy": "<p>Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision.</p> <p>If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances.</p> <p>If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions.</p>",
+        "UpdateDeploymentGroupInput$outdatedInstancesStrategy": "<p>Indicates what happens when new EC2 instances are launched mid-deployment and do not receive the deployed application revision.</p> <p>If this option is set to <code>UPDATE</code> or is unspecified, CodeDeploy initiates one or more 'auto-update outdated instances' deployments to apply the deployed application revision to the new EC2 instances.</p> <p>If this option is set to <code>IGNORE</code>, CodeDeploy does not initiate a deployment to update the new EC2 instances. This may result in instances having different revisions.</p>"
+      }
+    },
     "Percentage": {
       "base": null,
       "refs": {
@@ -1957,6 +1962,12 @@
       "base": null,
       "refs": {
         "ListOnPremisesInstancesInput$registrationStatus": "<p>The registration status of the on-premises instances:</p> <ul> <li> <p> <code>Deregistered</code>: Include deregistered on-premises instances in the resulting list.</p> </li> <li> <p> <code>Registered</code>: Include registered on-premises instances in the resulting list.</p> </li> </ul>"
+      }
+    },
+    "RelatedDeployments": {
+      "base": "<p>Information about deployments related to the specified deployment.</p>",
+      "refs": {
+        "DeploymentInfo$relatedDeployments": null
       }
     },
     "RemoveTagsFromOnPremisesInstancesInput": {

@@ -1028,6 +1028,7 @@ func mockStartStreamTranscriptionReadEvents() (
 							{
 								Items: []*Item{
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1036,6 +1037,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1044,35 +1046,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-								},
-								Transcript: aws.String("string value goes here"),
-							},
-							{
-								Items: []*Item{
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1086,6 +1060,7 @@ func mockStartStreamTranscriptionReadEvents() (
 							{
 								Items: []*Item{
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1094,6 +1069,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1102,44 +1078,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-								},
-								Transcript: aws.String("string value goes here"),
-							},
-						},
-						ChannelId: aws.String("string value goes here"),
-						EndTime:   aws.Float64(123.45),
-						IsPartial: aws.Bool(true),
-						ResultId:  aws.String("string value goes here"),
-						StartTime: aws.Float64(123.45),
-					},
-					{
-						Alternatives: []*Alternative{
-							{
-								Items: []*Item{
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1153,6 +1092,7 @@ func mockStartStreamTranscriptionReadEvents() (
 							{
 								Items: []*Item{
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1161,6 +1101,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1169,35 +1110,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-								},
-								Transcript: aws.String("string value goes here"),
-							},
-							{
-								Items: []*Item{
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1220,6 +1133,7 @@ func mockStartStreamTranscriptionReadEvents() (
 							{
 								Items: []*Item{
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1228,6 +1142,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1236,35 +1151,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-								},
-								Transcript: aws.String("string value goes here"),
-							},
-							{
-								Items: []*Item{
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
-										Content:               aws.String("string value goes here"),
-										EndTime:               aws.Float64(123.45),
-										Speaker:               aws.String("string value goes here"),
-										StartTime:             aws.Float64(123.45),
-										Type:                  aws.String("string value goes here"),
-										VocabularyFilterMatch: aws.Bool(true),
-									},
-									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1278,6 +1165,7 @@ func mockStartStreamTranscriptionReadEvents() (
 							{
 								Items: []*Item{
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1286,6 +1174,7 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),
@@ -1294,6 +1183,144 @@ func mockStartStreamTranscriptionReadEvents() (
 										VocabularyFilterMatch: aws.Bool(true),
 									},
 									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+								},
+								Transcript: aws.String("string value goes here"),
+							},
+							{
+								Items: []*Item{
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+								},
+								Transcript: aws.String("string value goes here"),
+							},
+						},
+						ChannelId: aws.String("string value goes here"),
+						EndTime:   aws.Float64(123.45),
+						IsPartial: aws.Bool(true),
+						ResultId:  aws.String("string value goes here"),
+						StartTime: aws.Float64(123.45),
+					},
+					{
+						Alternatives: []*Alternative{
+							{
+								Items: []*Item{
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+								},
+								Transcript: aws.String("string value goes here"),
+							},
+							{
+								Items: []*Item{
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+								},
+								Transcript: aws.String("string value goes here"),
+							},
+							{
+								Items: []*Item{
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
+										Content:               aws.String("string value goes here"),
+										EndTime:               aws.Float64(123.45),
+										Speaker:               aws.String("string value goes here"),
+										StartTime:             aws.Float64(123.45),
+										Type:                  aws.String("string value goes here"),
+										VocabularyFilterMatch: aws.Bool(true),
+									},
+									{
+										Confidence:            aws.Float64(123.45),
 										Content:               aws.String("string value goes here"),
 										EndTime:               aws.Float64(123.45),
 										Speaker:               aws.String("string value goes here"),

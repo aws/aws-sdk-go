@@ -1976,7 +1976,7 @@
         "CreateSecurityConfigurationOutput$Name": "<p>The name of the security configuration.</p>",
         "CreateStudioInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR Studio. The service role provides a way for Amazon EMR Studio to interoperate with other AWS services.</p>",
         "CreateStudioInput$UserRole": "<p>The IAM user role that will be assumed by users and groups logged in to an Amazon EMR Studio. The permissions attached to this IAM role can be scoped down for each user or group using session policies.</p>",
-        "CreateStudioInput$DefaultS3Location": "<p>The default Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files. A Studio user can select an alternative Amazon S3 location when creating a Workspace.</p>",
+        "CreateStudioInput$DefaultS3Location": "<p>The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files.</p>",
         "CreateStudioOutput$Url": "<p>The unique Studio access URL.</p>",
         "DeleteSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
         "DescribeSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
@@ -2014,8 +2014,8 @@
         "Studio$ServiceRole": "<p>The name of the IAM role assumed by the Amazon EMR Studio.</p>",
         "Studio$UserRole": "<p>The name of the IAM role assumed by users logged in to the Amazon EMR Studio.</p>",
         "Studio$Url": "<p>The unique access URL of the Amazon EMR Studio.</p>",
-        "Studio$DefaultS3Location": "<p>The default Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files.</p>",
-        "UpdateStudioInput$DefaultS3Location": "<p>A default Amazon S3 location to back up Workspaces and notebook files for the Amazon EMR Studio. A Studio user can select an alternative Amazon S3 location when creating a Workspace.</p>",
+        "Studio$DefaultS3Location": "<p>The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files.</p>",
+        "UpdateStudioInput$DefaultS3Location": "<p>The Amazon S3 location to back up Workspaces and notebook files for the Amazon EMR Studio.</p>",
         "XmlStringList$member": null
       }
     },
@@ -2102,6 +2102,7 @@
         "NotebookExecutionSummary$NotebookExecutionId": "<p>The unique identifier of the notebook execution.</p>",
         "NotebookExecutionSummary$EditorId": "<p>The unique identifier of the editor associated with the notebook execution.</p>",
         "NotebookExecutionSummary$NotebookExecutionName": "<p>The name of the notebook execution.</p>",
+        "OnDemandCapacityReservationOptions$CapacityReservationResourceGroupArn": "<p>The ARN of the Capacity Reservation resource group in which to run the instance.</p>",
         "RunJobFlowInput$Name": "<p>The name of the job flow.</p>",
         "RunJobFlowInput$AmiVersion": "<p>Applies only to Amazon EMR AMI versions 3.x and 2.x. For Amazon EMR releases 4.0 and later, <code>ReleaseLabel</code> is used. To specify a custom AMI, use <code>CustomAmiID</code>.</p>",
         "RunJobFlowInput$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
