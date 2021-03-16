@@ -3375,6 +3375,12 @@ const (
 
 	// EnvironmentStatusDeleted is a EnvironmentStatus enum value
 	EnvironmentStatusDeleted = "DELETED"
+
+	// EnvironmentStatusUnavailable is a EnvironmentStatus enum value
+	EnvironmentStatusUnavailable = "UNAVAILABLE"
+
+	// EnvironmentStatusUpdateFailed is a EnvironmentStatus enum value
+	EnvironmentStatusUpdateFailed = "UPDATE_FAILED"
 )
 
 // EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
@@ -3386,6 +3392,8 @@ func EnvironmentStatus_Values() []string {
 		EnvironmentStatusUpdating,
 		EnvironmentStatusDeleting,
 		EnvironmentStatusDeleted,
+		EnvironmentStatusUnavailable,
+		EnvironmentStatusUpdateFailed,
 	}
 }
 

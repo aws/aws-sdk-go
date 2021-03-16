@@ -3426,6 +3426,13 @@ type AddOutputRequest struct {
 	// The maximum latency in milliseconds for Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The minimum latency in milliseconds for SRT-based streams. In streams that
+	// use the SRT protocol, this value that you set on your MediaConnect source
+	// or output represents the minimal potential latency of that connection. The
+	// latency of the stream is set to the highest number between the sender’s
+	// minimum latency and the receiver’s minimum latency.
+	MinLatency *int64 `locationName:"minLatency" type:"integer"`
+
 	// The name of the output. This value must be unique within the current flow.
 	Name *string `locationName:"name" type:"string"`
 
@@ -3506,6 +3513,12 @@ func (s *AddOutputRequest) SetEncryption(v *Encryption) *AddOutputRequest {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *AddOutputRequest) SetMaxLatency(v int64) *AddOutputRequest {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMinLatency sets the MinLatency field's value.
+func (s *AddOutputRequest) SetMinLatency(v int64) *AddOutputRequest {
+	s.MinLatency = &v
 	return s
 }
 
@@ -4121,9 +4134,7 @@ type Encryption struct {
 
 	// The type of algorithm that is used for the encryption (such as aes128, aes192,
 	// or aes256).
-	//
-	// Algorithm is a required field
-	Algorithm *string `locationName:"algorithm" type:"string" required:"true" enum:"Algorithm"`
+	Algorithm *string `locationName:"algorithm" type:"string" enum:"Algorithm"`
 
 	// A 128-bit, 16-byte hex value represented by a 32-character string, to be
 	// used with the key for encrypting content. This parameter is not valid for
@@ -4179,9 +4190,6 @@ func (s Encryption) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Encryption) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Encryption"}
-	if s.Algorithm == nil {
-		invalidParams.Add(request.NewErrParamRequired("Algorithm"))
-	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
@@ -6473,6 +6481,13 @@ type SetSourceRequest struct {
 	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The minimum latency in milliseconds for SRT-based streams. In streams that
+	// use the SRT protocol, this value that you set on your MediaConnect source
+	// or output represents the minimal potential latency of that connection. The
+	// latency of the stream is set to the highest number between the sender’s
+	// minimum latency and the receiver’s minimum latency.
+	MinLatency *int64 `locationName:"minLatency" type:"integer"`
+
 	// The name of the source.
 	Name *string `locationName:"name" type:"string"`
 
@@ -6550,6 +6565,12 @@ func (s *SetSourceRequest) SetMaxBitrate(v int64) *SetSourceRequest {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *SetSourceRequest) SetMaxLatency(v int64) *SetSourceRequest {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMinLatency sets the MinLatency field's value.
+func (s *SetSourceRequest) SetMinLatency(v int64) *SetSourceRequest {
+	s.MinLatency = &v
 	return s
 }
 
@@ -6994,6 +7015,13 @@ type Transport struct {
 	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The minimum latency in milliseconds for SRT-based streams. In streams that
+	// use the SRT protocol, this value that you set on your MediaConnect source
+	// or output represents the minimal potential latency of that connection. The
+	// latency of the stream is set to the highest number between the sender’s
+	// minimum latency and the receiver’s minimum latency.
+	MinLatency *int64 `locationName:"minLatency" type:"integer"`
+
 	// The protocol that is used by the source or output.
 	//
 	// Protocol is a required field
@@ -7035,6 +7063,12 @@ func (s *Transport) SetMaxBitrate(v int64) *Transport {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *Transport) SetMaxLatency(v int64) *Transport {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMinLatency sets the MinLatency field's value.
+func (s *Transport) SetMinLatency(v int64) *Transport {
+	s.MinLatency = &v
 	return s
 }
 
@@ -7502,6 +7536,13 @@ type UpdateFlowOutputInput struct {
 	// The maximum latency in milliseconds for Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The minimum latency in milliseconds for SRT-based streams. In streams that
+	// use the SRT protocol, this value that you set on your MediaConnect source
+	// or output represents the minimal potential latency of that connection. The
+	// latency of the stream is set to the highest number between the sender’s
+	// minimum latency and the receiver’s minimum latency.
+	MinLatency *int64 `locationName:"minLatency" type:"integer"`
+
 	// OutputArn is a required field
 	OutputArn *string `location:"uri" locationName:"outputArn" type:"string" required:"true"`
 
@@ -7590,6 +7631,12 @@ func (s *UpdateFlowOutputInput) SetFlowArn(v string) *UpdateFlowOutputInput {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *UpdateFlowOutputInput) SetMaxLatency(v int64) *UpdateFlowOutputInput {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMinLatency sets the MinLatency field's value.
+func (s *UpdateFlowOutputInput) SetMinLatency(v int64) *UpdateFlowOutputInput {
+	s.MinLatency = &v
 	return s
 }
 
@@ -7698,6 +7745,13 @@ type UpdateFlowSourceInput struct {
 	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The minimum latency in milliseconds for SRT-based streams. In streams that
+	// use the SRT protocol, this value that you set on your MediaConnect source
+	// or output represents the minimal potential latency of that connection. The
+	// latency of the stream is set to the highest number between the sender’s
+	// minimum latency and the receiver’s minimum latency.
+	MinLatency *int64 `locationName:"minLatency" type:"integer"`
+
 	// The protocol that is used by the source.
 	Protocol *string `locationName:"protocol" type:"string" enum:"Protocol"`
 
@@ -7788,6 +7842,12 @@ func (s *UpdateFlowSourceInput) SetMaxBitrate(v int64) *UpdateFlowSourceInput {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *UpdateFlowSourceInput) SetMaxLatency(v int64) *UpdateFlowSourceInput {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMinLatency sets the MinLatency field's value.
+func (s *UpdateFlowSourceInput) SetMinLatency(v int64) *UpdateFlowSourceInput {
+	s.MinLatency = &v
 	return s
 }
 
@@ -8085,6 +8145,9 @@ const (
 
 	// KeyTypeStaticKey is a KeyType enum value
 	KeyTypeStaticKey = "static-key"
+
+	// KeyTypeSrtPassword is a KeyType enum value
+	KeyTypeSrtPassword = "srt-password"
 )
 
 // KeyType_Values returns all elements of the KeyType enum
@@ -8092,6 +8155,7 @@ func KeyType_Values() []string {
 	return []string{
 		KeyTypeSpeke,
 		KeyTypeStaticKey,
+		KeyTypeSrtPassword,
 	}
 }
 
@@ -8122,6 +8186,9 @@ const (
 
 	// ProtocolRist is a Protocol enum value
 	ProtocolRist = "rist"
+
+	// ProtocolSrtListener is a Protocol enum value
+	ProtocolSrtListener = "srt-listener"
 )
 
 // Protocol_Values returns all elements of the Protocol enum
@@ -8132,6 +8199,7 @@ func Protocol_Values() []string {
 		ProtocolRtp,
 		ProtocolZixiPull,
 		ProtocolRist,
+		ProtocolSrtListener,
 	}
 }
 

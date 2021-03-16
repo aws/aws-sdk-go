@@ -347,6 +347,10 @@ func (c *AccessAnalyzer) CreateArchiveRuleRequest(input *CreateArchiveRuleInput)
 // archive new findings that meet the criteria you define when you create the
 // rule.
 //
+// To learn about filter keys that you can use to create an archive rule, see
+// Access Analyzer filter keys (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html)
+// in the IAM User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2490,6 +2494,155 @@ func (c *AccessAnalyzer) UpdateFindingsWithContext(ctx aws.Context, input *Updat
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opValidatePolicy = "ValidatePolicy"
+
+// ValidatePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the ValidatePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ValidatePolicy for more information on using the ValidatePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ValidatePolicyRequest method.
+//    req, resp := client.ValidatePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ValidatePolicy
+func (c *AccessAnalyzer) ValidatePolicyRequest(input *ValidatePolicyInput) (req *request.Request, output *ValidatePolicyOutput) {
+	op := &request.Operation{
+		Name:       opValidatePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/policy/validation",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ValidatePolicyInput{}
+	}
+
+	output = &ValidatePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ValidatePolicy API operation for Access Analyzer.
+//
+// Requests the validation of a policy and returns a list of findings. The findings
+// help you identify issues and provide actionable recommendations to resolve
+// the issue and enable you to author functional policies that meet security
+// best practices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation ValidatePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ValidatePolicy
+func (c *AccessAnalyzer) ValidatePolicy(input *ValidatePolicyInput) (*ValidatePolicyOutput, error) {
+	req, out := c.ValidatePolicyRequest(input)
+	return out, req.Send()
+}
+
+// ValidatePolicyWithContext is the same as ValidatePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ValidatePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ValidatePolicyWithContext(ctx aws.Context, input *ValidatePolicyInput, opts ...request.Option) (*ValidatePolicyOutput, error) {
+	req, out := c.ValidatePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ValidatePolicyPages iterates over the pages of a ValidatePolicy operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ValidatePolicy method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ValidatePolicy operation.
+//    pageNum := 0
+//    err := client.ValidatePolicyPages(params,
+//        func(page *accessanalyzer.ValidatePolicyOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AccessAnalyzer) ValidatePolicyPages(input *ValidatePolicyInput, fn func(*ValidatePolicyOutput, bool) bool) error {
+	return c.ValidatePolicyPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ValidatePolicyPagesWithContext same as ValidatePolicyPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ValidatePolicyPagesWithContext(ctx aws.Context, input *ValidatePolicyInput, fn func(*ValidatePolicyOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ValidatePolicyInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ValidatePolicyRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ValidatePolicyOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 // You do not have sufficient access to perform this action.
@@ -5923,6 +6076,44 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// A location in a policy that is represented as a path through the JSON representation
+// and a corresponding span.
+type Location struct {
+	_ struct{} `type:"structure"`
+
+	// A path in a policy, represented as a sequence of path elements.
+	//
+	// Path is a required field
+	Path []*PathElement `locationName:"path" type:"list" required:"true"`
+
+	// A span in a policy.
+	//
+	// Span is a required field
+	Span *Span `locationName:"span" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s Location) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Location) GoString() string {
+	return s.String()
+}
+
+// SetPath sets the Path field's value.
+func (s *Location) SetPath(v []*PathElement) *Location {
+	s.Path = v
+	return s
+}
+
+// SetSpan sets the Span field's value.
+func (s *Location) SetSpan(v *Span) *Location {
+	s.Span = v
+	return s
+}
+
 // The proposed InternetConfiguration or VpcConfiguration to apply to the Amazon
 // S3 Access point. You can make the access point accessible from the internet,
 // or you can specify that all requests made through that access point must
@@ -5974,6 +6165,106 @@ func (s *NetworkOriginConfiguration) SetInternetConfiguration(v *InternetConfigu
 // SetVpcConfiguration sets the VpcConfiguration field's value.
 func (s *NetworkOriginConfiguration) SetVpcConfiguration(v *VpcConfiguration) *NetworkOriginConfiguration {
 	s.VpcConfiguration = v
+	return s
+}
+
+// A single element in a path through the JSON representation of a policy.
+type PathElement struct {
+	_ struct{} `type:"structure"`
+
+	// Refers to an index in a JSON array.
+	Index *int64 `locationName:"index" type:"integer"`
+
+	// Refers to a key in a JSON object.
+	Key *string `locationName:"key" type:"string"`
+
+	// Refers to a substring of a literal string in a JSON object.
+	Substring *Substring `locationName:"substring" type:"structure"`
+
+	// Refers to the value associated with a given key in a JSON object.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation
+func (s PathElement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PathElement) GoString() string {
+	return s.String()
+}
+
+// SetIndex sets the Index field's value.
+func (s *PathElement) SetIndex(v int64) *PathElement {
+	s.Index = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *PathElement) SetKey(v string) *PathElement {
+	s.Key = &v
+	return s
+}
+
+// SetSubstring sets the Substring field's value.
+func (s *PathElement) SetSubstring(v *Substring) *PathElement {
+	s.Substring = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *PathElement) SetValue(v string) *PathElement {
+	s.Value = &v
+	return s
+}
+
+// A position in a policy.
+type Position struct {
+	_ struct{} `type:"structure"`
+
+	// The column of the position, starting from 0.
+	//
+	// Column is a required field
+	Column *int64 `locationName:"column" type:"integer" required:"true"`
+
+	// The line of the position, starting from 1.
+	//
+	// Line is a required field
+	Line *int64 `locationName:"line" type:"integer" required:"true"`
+
+	// The offset within the policy that corresponds to the position, starting from
+	// 0.
+	//
+	// Offset is a required field
+	Offset *int64 `locationName:"offset" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s Position) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Position) GoString() string {
+	return s.String()
+}
+
+// SetColumn sets the Column field's value.
+func (s *Position) SetColumn(v int64) *Position {
+	s.Column = &v
+	return s
+}
+
+// SetLine sets the Line field's value.
+func (s *Position) SetLine(v int64) *Position {
+	s.Line = &v
+	return s
+}
+
+// SetOffset sets the Offset field's value.
+func (s *Position) SetOffset(v int64) *Position {
+	s.Offset = &v
 	return s
 }
 
@@ -6479,6 +6770,44 @@ func (s *SortCriteria) SetOrderBy(v string) *SortCriteria {
 	return s
 }
 
+// A span in a policy. The span consists of a start position (inclusive) and
+// end position (exclusive).
+type Span struct {
+	_ struct{} `type:"structure"`
+
+	// The end position of the span (exclusive).
+	//
+	// End is a required field
+	End *Position `locationName:"end" type:"structure" required:"true"`
+
+	// The start position of the span (inclusive).
+	//
+	// Start is a required field
+	Start *Position `locationName:"start" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s Span) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Span) GoString() string {
+	return s.String()
+}
+
+// SetEnd sets the End field's value.
+func (s *Span) SetEnd(v *Position) *Span {
+	s.End = v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *Span) SetStart(v *Position) *Span {
+	s.Start = v
+	return s
+}
+
 // The proposed access control configuration for an SQS queue. You can propose
 // a configuration for a new SQS queue or an existing SQS queue that you own
 // by specifying the SQS policy. If the configuration is for an existing SQS
@@ -6606,6 +6935,43 @@ func (s StatusReason) GoString() string {
 // SetCode sets the Code field's value.
 func (s *StatusReason) SetCode(v string) *StatusReason {
 	s.Code = &v
+	return s
+}
+
+// A reference to a substring of a literal string in a JSON document.
+type Substring struct {
+	_ struct{} `type:"structure"`
+
+	// The length of the substring.
+	//
+	// Length is a required field
+	Length *int64 `locationName:"length" type:"integer" required:"true"`
+
+	// The start index of the substring, starting from 0.
+	//
+	// Start is a required field
+	Start *int64 `locationName:"start" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s Substring) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Substring) GoString() string {
+	return s.String()
+}
+
+// SetLength sets the Length field's value.
+func (s *Substring) SetLength(v int64) *Substring {
+	s.Length = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *Substring) SetStart(v int64) *Substring {
+	s.Start = &v
 	return s
 }
 
@@ -7014,6 +7380,213 @@ func (s UpdateFindingsOutput) GoString() string {
 	return s.String()
 }
 
+// A finding in a policy. Each finding is an actionable recommendation that
+// can be used to improve the policy.
+type ValidatePolicyFinding struct {
+	_ struct{} `type:"structure"`
+
+	// A localized message that explains the finding and provides guidance on how
+	// to address it.
+	//
+	// FindingDetails is a required field
+	FindingDetails *string `locationName:"findingDetails" type:"string" required:"true"`
+
+	// The impact of the finding.
+	//
+	// Security warnings report when the policy allows access that we consider overly
+	// permissive.
+	//
+	// Errors report when a part of the policy is not functional.
+	//
+	// Warnings report non-security issues when a policy does not conform to policy
+	// writing best practices.
+	//
+	// Suggestions recommend stylistic improvements in the policy that do not impact
+	// access.
+	//
+	// FindingType is a required field
+	FindingType *string `locationName:"findingType" type:"string" required:"true" enum:"ValidatePolicyFindingType"`
+
+	// The issue code provides an identifier of the issue associated with this finding.
+	//
+	// IssueCode is a required field
+	IssueCode *string `locationName:"issueCode" type:"string" required:"true"`
+
+	// A link to additional documentation about the type of finding.
+	//
+	// LearnMoreLink is a required field
+	LearnMoreLink *string `locationName:"learnMoreLink" type:"string" required:"true"`
+
+	// The list of locations in the policy document that are related to the finding.
+	// The issue code provides a summary of an issue identified by the finding.
+	//
+	// Locations is a required field
+	Locations []*Location `locationName:"locations" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ValidatePolicyFinding) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidatePolicyFinding) GoString() string {
+	return s.String()
+}
+
+// SetFindingDetails sets the FindingDetails field's value.
+func (s *ValidatePolicyFinding) SetFindingDetails(v string) *ValidatePolicyFinding {
+	s.FindingDetails = &v
+	return s
+}
+
+// SetFindingType sets the FindingType field's value.
+func (s *ValidatePolicyFinding) SetFindingType(v string) *ValidatePolicyFinding {
+	s.FindingType = &v
+	return s
+}
+
+// SetIssueCode sets the IssueCode field's value.
+func (s *ValidatePolicyFinding) SetIssueCode(v string) *ValidatePolicyFinding {
+	s.IssueCode = &v
+	return s
+}
+
+// SetLearnMoreLink sets the LearnMoreLink field's value.
+func (s *ValidatePolicyFinding) SetLearnMoreLink(v string) *ValidatePolicyFinding {
+	s.LearnMoreLink = &v
+	return s
+}
+
+// SetLocations sets the Locations field's value.
+func (s *ValidatePolicyFinding) SetLocations(v []*Location) *ValidatePolicyFinding {
+	s.Locations = v
+	return s
+}
+
+type ValidatePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The locale to use for localizing the findings.
+	Locale *string `locationName:"locale" type:"string" enum:"Locale"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The JSON policy document to use as the content for the policy.
+	//
+	// PolicyDocument is a required field
+	PolicyDocument *string `locationName:"policyDocument" type:"string" required:"true"`
+
+	// The type of policy to validate. Identity policies grant permissions to IAM
+	// principals. Identity policies include managed and inline policies for IAM
+	// roles, users, and groups. They also include service-control policies (SCPs)
+	// that are attached to an AWS organization, organizational unit (OU), or an
+	// account.
+	//
+	// Resource policies grant permissions on AWS resources. Resource policies include
+	// trust policies for IAM roles and bucket policies for S3 buckets. You can
+	// provide a generic input such as identity policy or resource policy or a specific
+	// input such as managed policy or S3 bucket policy.
+	//
+	// PolicyType is a required field
+	PolicyType *string `locationName:"policyType" type:"string" required:"true" enum:"PolicyType"`
+}
+
+// String returns the string representation
+func (s ValidatePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidatePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ValidatePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ValidatePolicyInput"}
+	if s.PolicyDocument == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyDocument"))
+	}
+	if s.PolicyType == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocale sets the Locale field's value.
+func (s *ValidatePolicyInput) SetLocale(v string) *ValidatePolicyInput {
+	s.Locale = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ValidatePolicyInput) SetMaxResults(v int64) *ValidatePolicyInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ValidatePolicyInput) SetNextToken(v string) *ValidatePolicyInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPolicyDocument sets the PolicyDocument field's value.
+func (s *ValidatePolicyInput) SetPolicyDocument(v string) *ValidatePolicyInput {
+	s.PolicyDocument = &v
+	return s
+}
+
+// SetPolicyType sets the PolicyType field's value.
+func (s *ValidatePolicyInput) SetPolicyType(v string) *ValidatePolicyInput {
+	s.PolicyType = &v
+	return s
+}
+
+type ValidatePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of findings in a policy returned by Access Analyzer based on its
+	// suite of policy checks.
+	//
+	// Findings is a required field
+	Findings []*ValidatePolicyFinding `locationName:"findings" type:"list" required:"true"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidatePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidatePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindings sets the Findings field's value.
+func (s *ValidatePolicyOutput) SetFindings(v []*ValidatePolicyFinding) *ValidatePolicyOutput {
+	s.Findings = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ValidatePolicyOutput) SetNextToken(v string) *ValidatePolicyOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Validation exception error.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -7385,6 +7958,54 @@ func KmsGrantOperation_Values() []string {
 }
 
 const (
+	// LocaleDe is a Locale enum value
+	LocaleDe = "DE"
+
+	// LocaleEn is a Locale enum value
+	LocaleEn = "EN"
+
+	// LocaleEs is a Locale enum value
+	LocaleEs = "ES"
+
+	// LocaleFr is a Locale enum value
+	LocaleFr = "FR"
+
+	// LocaleIt is a Locale enum value
+	LocaleIt = "IT"
+
+	// LocaleJa is a Locale enum value
+	LocaleJa = "JA"
+
+	// LocaleKo is a Locale enum value
+	LocaleKo = "KO"
+
+	// LocalePtBr is a Locale enum value
+	LocalePtBr = "PT_BR"
+
+	// LocaleZhCn is a Locale enum value
+	LocaleZhCn = "ZH_CN"
+
+	// LocaleZhTw is a Locale enum value
+	LocaleZhTw = "ZH_TW"
+)
+
+// Locale_Values returns all elements of the Locale enum
+func Locale_Values() []string {
+	return []string{
+		LocaleDe,
+		LocaleEn,
+		LocaleEs,
+		LocaleFr,
+		LocaleIt,
+		LocaleJa,
+		LocaleKo,
+		LocalePtBr,
+		LocaleZhCn,
+		LocaleZhTw,
+	}
+}
+
+const (
 	// OrderByAsc is a OrderBy enum value
 	OrderByAsc = "ASC"
 
@@ -7397,6 +8018,26 @@ func OrderBy_Values() []string {
 	return []string{
 		OrderByAsc,
 		OrderByDesc,
+	}
+}
+
+const (
+	// PolicyTypeIdentityPolicy is a PolicyType enum value
+	PolicyTypeIdentityPolicy = "IDENTITY_POLICY"
+
+	// PolicyTypeResourcePolicy is a PolicyType enum value
+	PolicyTypeResourcePolicy = "RESOURCE_POLICY"
+
+	// PolicyTypeServiceControlPolicy is a PolicyType enum value
+	PolicyTypeServiceControlPolicy = "SERVICE_CONTROL_POLICY"
+)
+
+// PolicyType_Values returns all elements of the PolicyType enum
+func PolicyType_Values() []string {
+	return []string{
+		PolicyTypeIdentityPolicy,
+		PolicyTypeResourcePolicy,
+		PolicyTypeServiceControlPolicy,
 	}
 }
 
@@ -7473,6 +8114,30 @@ func Type_Values() []string {
 	return []string{
 		TypeAccount,
 		TypeOrganization,
+	}
+}
+
+const (
+	// ValidatePolicyFindingTypeError is a ValidatePolicyFindingType enum value
+	ValidatePolicyFindingTypeError = "ERROR"
+
+	// ValidatePolicyFindingTypeSecurityWarning is a ValidatePolicyFindingType enum value
+	ValidatePolicyFindingTypeSecurityWarning = "SECURITY_WARNING"
+
+	// ValidatePolicyFindingTypeSuggestion is a ValidatePolicyFindingType enum value
+	ValidatePolicyFindingTypeSuggestion = "SUGGESTION"
+
+	// ValidatePolicyFindingTypeWarning is a ValidatePolicyFindingType enum value
+	ValidatePolicyFindingTypeWarning = "WARNING"
+)
+
+// ValidatePolicyFindingType_Values returns all elements of the ValidatePolicyFindingType enum
+func ValidatePolicyFindingType_Values() []string {
+	return []string{
+		ValidatePolicyFindingTypeError,
+		ValidatePolicyFindingTypeSecurityWarning,
+		ValidatePolicyFindingTypeSuggestion,
+		ValidatePolicyFindingTypeWarning,
 	}
 }
 

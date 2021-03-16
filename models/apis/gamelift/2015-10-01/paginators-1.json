@@ -18,6 +18,11 @@
       "limit_key": "Limit",
       "result_key": "Events"
     },
+    "DescribeFleetLocationAttributes": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "Limit"
+    },
     "DescribeFleetUtilization": {
       "input_token": "NextToken",
       "output_token": "NextToken",

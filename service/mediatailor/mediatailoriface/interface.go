@@ -145,13 +145,6 @@ type MediaTailorAPI interface {
 	ListPlaybackConfigurationsPages(*mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool) error
 	ListPlaybackConfigurationsPagesWithContext(aws.Context, *mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool, ...request.Option) error
 
-	ListPrograms(*mediatailor.ListProgramsInput) (*mediatailor.ListProgramsOutput, error)
-	ListProgramsWithContext(aws.Context, *mediatailor.ListProgramsInput, ...request.Option) (*mediatailor.ListProgramsOutput, error)
-	ListProgramsRequest(*mediatailor.ListProgramsInput) (*request.Request, *mediatailor.ListProgramsOutput)
-
-	ListProgramsPages(*mediatailor.ListProgramsInput, func(*mediatailor.ListProgramsOutput, bool) bool) error
-	ListProgramsPagesWithContext(aws.Context, *mediatailor.ListProgramsInput, func(*mediatailor.ListProgramsOutput, bool) bool, ...request.Option) error
-
 	ListSourceLocations(*mediatailor.ListSourceLocationsInput) (*mediatailor.ListSourceLocationsOutput, error)
 	ListSourceLocationsWithContext(aws.Context, *mediatailor.ListSourceLocationsInput, ...request.Option) (*mediatailor.ListSourceLocationsOutput, error)
 	ListSourceLocationsRequest(*mediatailor.ListSourceLocationsInput) (*request.Request, *mediatailor.ListSourceLocationsOutput)

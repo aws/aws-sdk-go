@@ -18,12 +18,6 @@
             "output_token": "NextToken",
             "result_key": "Items"
         },
-        "ListPrograms": {
-            "input_token": "NextToken",
-            "limit_key": "MaxResults",
-            "output_token": "NextToken",
-            "result_key": "Items"
-        },
         "ListSourceLocations": {
             "input_token": "NextToken",
             "limit_key": "MaxResults",
