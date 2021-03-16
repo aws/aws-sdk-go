@@ -1006,6 +1006,10 @@
           "shape": "__integer",
           "locationName": "maxLatency"
         },
+        "MinLatency": {
+          "shape": "__integer",
+          "locationName": "minLatency"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -1271,7 +1275,6 @@
         }
       },
       "required": [
-        "Algorithm",
         "RoleArn"
       ]
     },
@@ -1510,7 +1513,8 @@
       "type": "string",
       "enum": [
         "speke",
-        "static-key"
+        "static-key",
+        "srt-password"
       ]
     },
     "ListEntitlementsRequest": {
@@ -1851,7 +1855,8 @@
         "rtp-fec",
         "rtp",
         "zixi-pull",
-        "rist"
+        "rist",
+        "srt-listener"
       ]
     },
     "PurchaseOfferingRequest": {
@@ -2176,6 +2181,10 @@
           "shape": "__integer",
           "locationName": "maxLatency"
         },
+        "MinLatency": {
+          "shape": "__integer",
+          "locationName": "minLatency"
+        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -2378,6 +2387,10 @@
           "shape": "__integer",
           "locationName": "maxLatency"
         },
+        "MinLatency": {
+          "shape": "__integer",
+          "locationName": "minLatency"
+        },
         "Protocol": {
           "shape": "Protocol",
           "locationName": "protocol"
@@ -2548,6 +2561,10 @@
           "shape": "__integer",
           "locationName": "maxLatency"
         },
+        "MinLatency": {
+          "shape": "__integer",
+          "locationName": "minLatency"
+        },
         "OutputArn": {
           "shape": "__string",
           "location": "uri",
@@ -2653,6 +2670,10 @@
         "MaxLatency": {
           "shape": "__integer",
           "locationName": "maxLatency"
+        },
+        "MinLatency": {
+          "shape": "__integer",
+          "locationName": "minLatency"
         },
         "Protocol": {
           "shape": "Protocol",

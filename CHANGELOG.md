@@ -1,3 +1,18 @@
+Release v1.37.32 (2021-03-16)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API, documentation, and paginators
+* `service/gamelift`: Updates service API, documentation, and paginators
+  * GameLift expands to six new AWS Regions, adds support for multi-location fleets to streamline management of hosting resources, and lets you customize more of the game session placement process.
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/lambda`: Updates service API
+  * Allow empty list for function response types
+* `service/mediaconnect`: Updates service API and documentation
+* `service/mediatailor`: Updates service API, documentation, and paginators
+* `service/mwaa`: Updates service API
+
 Release v1.37.31 (2021-03-15)
 ===
 

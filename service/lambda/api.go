@@ -7347,7 +7347,7 @@ type CreateEventSourceMappingInput struct {
 
 	// (Streams) A list of current response type enums applied to the event source
 	// mapping.
-	FunctionResponseTypes []*string `min:"1" type:"list"`
+	FunctionResponseTypes []*string `type:"list"`
 
 	// (Streams and SQS standard queues) The maximum amount of time to gather records
 	// before invoking the function, in seconds.
@@ -7412,9 +7412,6 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	}
 	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
-	}
-	if s.FunctionResponseTypes != nil && len(s.FunctionResponseTypes) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("FunctionResponseTypes", 1))
 	}
 	if s.MaximumRecordAgeInSeconds != nil && *s.MaximumRecordAgeInSeconds < -1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaximumRecordAgeInSeconds", -1))
@@ -9105,7 +9102,7 @@ type EventSourceMappingConfiguration struct {
 
 	// (Streams) A list of current response type enums applied to the event source
 	// mapping.
-	FunctionResponseTypes []*string `min:"1" type:"list"`
+	FunctionResponseTypes []*string `type:"list"`
 
 	// The date that the event source mapping was last updated, or its state changed.
 	LastModified *time.Time `type:"timestamp"`
@@ -15975,7 +15972,7 @@ type UpdateEventSourceMappingInput struct {
 
 	// (Streams) A list of current response type enums applied to the event source
 	// mapping.
-	FunctionResponseTypes []*string `min:"1" type:"list"`
+	FunctionResponseTypes []*string `type:"list"`
 
 	// (Streams and SQS standard queues) The maximum amount of time to gather records
 	// before invoking the function, in seconds.
@@ -16025,9 +16022,6 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	}
 	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
-	}
-	if s.FunctionResponseTypes != nil && len(s.FunctionResponseTypes) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("FunctionResponseTypes", 1))
 	}
 	if s.MaximumRecordAgeInSeconds != nil && *s.MaximumRecordAgeInSeconds < -1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaximumRecordAgeInSeconds", -1))

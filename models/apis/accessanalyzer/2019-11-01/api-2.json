@@ -409,6 +409,22 @@
         {"shape":"AccessDeniedException"}
       ],
       "idempotent":true
+    },
+    "ValidatePolicy":{
+      "name":"ValidatePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy/validation",
+        "responseCode":200
+      },
+      "input":{"shape":"ValidatePolicyRequest"},
+      "output":{"shape":"ValidatePolicyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
     }
   },
   "shapes":{
@@ -1114,6 +1130,7 @@
       "members":{
       }
     },
+    "IssueCode":{"type":"string"},
     "IssuingAccount":{"type":"string"},
     "KmsConstraintsKey":{"type":"string"},
     "KmsConstraintsMap":{
@@ -1184,6 +1201,7 @@
       "value":{"shape":"KmsKeyPolicy"}
     },
     "KmsKeyPolicy":{"type":"string"},
+    "LearnMoreLink":{"type":"string"},
     "ListAccessPreviewFindingsRequest":{
       "type":"structure",
       "required":[
@@ -1350,6 +1368,36 @@
         "tags":{"shape":"TagsMap"}
       }
     },
+    "Locale":{
+      "type":"string",
+      "enum":[
+        "DE",
+        "EN",
+        "ES",
+        "FR",
+        "IT",
+        "JA",
+        "KO",
+        "PT_BR",
+        "ZH_CN",
+        "ZH_TW"
+      ]
+    },
+    "Location":{
+      "type":"structure",
+      "required":[
+        "path",
+        "span"
+      ],
+      "members":{
+        "path":{"shape":"PathElementList"},
+        "span":{"shape":"Span"}
+      }
+    },
+    "LocationList":{
+      "type":"list",
+      "member":{"shape":"Location"}
+    },
     "Name":{
       "type":"string",
       "max":255,
@@ -1371,7 +1419,43 @@
         "DESC"
       ]
     },
+    "PathElement":{
+      "type":"structure",
+      "members":{
+        "index":{"shape":"Integer"},
+        "key":{"shape":"String"},
+        "substring":{"shape":"Substring"},
+        "value":{"shape":"String"}
+      },
+      "union":true
+    },
+    "PathElementList":{
+      "type":"list",
+      "member":{"shape":"PathElement"}
+    },
+    "PolicyDocument":{"type":"string"},
     "PolicyName":{"type":"string"},
+    "PolicyType":{
+      "type":"string",
+      "enum":[
+        "IDENTITY_POLICY",
+        "RESOURCE_POLICY",
+        "SERVICE_CONTROL_POLICY"
+      ]
+    },
+    "Position":{
+      "type":"structure",
+      "required":[
+        "column",
+        "line",
+        "offset"
+      ],
+      "members":{
+        "column":{"shape":"Integer"},
+        "line":{"shape":"Integer"},
+        "offset":{"shape":"Integer"}
+      }
+    },
     "PrincipalMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -1508,6 +1592,17 @@
         "orderBy":{"shape":"OrderBy"}
       }
     },
+    "Span":{
+      "type":"structure",
+      "required":[
+        "end",
+        "start"
+      ],
+      "members":{
+        "end":{"shape":"Position"},
+        "start":{"shape":"Position"}
+      }
+    },
     "SqsQueueConfiguration":{
       "type":"structure",
       "members":{
@@ -1534,6 +1629,17 @@
       }
     },
     "String":{"type":"string"},
+    "Substring":{
+      "type":"structure",
+      "required":[
+        "length",
+        "start"
+      ],
+      "members":{
+        "length":{"shape":"Integer"},
+        "start":{"shape":"Integer"}
+      }
+    },
     "TagKeys":{
       "type":"list",
       "member":{"shape":"String"}
@@ -1657,6 +1763,66 @@
         "ids":{"shape":"FindingIdList"},
         "resourceArn":{"shape":"ResourceArn"},
         "status":{"shape":"FindingStatusUpdate"}
+      }
+    },
+    "ValidatePolicyFinding":{
+      "type":"structure",
+      "required":[
+        "findingDetails",
+        "findingType",
+        "issueCode",
+        "learnMoreLink",
+        "locations"
+      ],
+      "members":{
+        "findingDetails":{"shape":"String"},
+        "findingType":{"shape":"ValidatePolicyFindingType"},
+        "issueCode":{"shape":"IssueCode"},
+        "learnMoreLink":{"shape":"LearnMoreLink"},
+        "locations":{"shape":"LocationList"}
+      }
+    },
+    "ValidatePolicyFindingList":{
+      "type":"list",
+      "member":{"shape":"ValidatePolicyFinding"}
+    },
+    "ValidatePolicyFindingType":{
+      "type":"string",
+      "enum":[
+        "ERROR",
+        "SECURITY_WARNING",
+        "SUGGESTION",
+        "WARNING"
+      ]
+    },
+    "ValidatePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "policyDocument",
+        "policyType"
+      ],
+      "members":{
+        "locale":{"shape":"Locale"},
+        "maxResults":{
+          "shape":"Integer",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "policyDocument":{"shape":"PolicyDocument"},
+        "policyType":{"shape":"PolicyType"}
+      }
+    },
+    "ValidatePolicyResponse":{
+      "type":"structure",
+      "required":["findings"],
+      "members":{
+        "findings":{"shape":"ValidatePolicyFindingList"},
+        "nextToken":{"shape":"Token"}
       }
     },
     "ValidationException":{

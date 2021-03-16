@@ -21,7 +21,6 @@
     "GetPlaybackConfiguration": "<p>Returns the playback configuration for the specified name.</p>  ",
     "ListChannels": "<p>Retrieves a list of channels that are associated with this account.</p>",
     "ListPlaybackConfigurations": "<p>Returns a list of the playback configurations defined in AWS Elemental MediaTailor. You can specify a maximum number of configurations to return at a time. The default maximum is 50. Results are returned in pagefuls. If MediaTailor has more configurations than the specified maximum, it provides parameters in the response that you can use to retrieve the next pageful.</p>  ",
-    "ListPrograms": "<p>Retrieves a list of programs on a specific channel.</p>",
     "ListSourceLocations": "<p>Retrieves a list of source locations.</p>",
     "ListTagsForResource": "<p>Returns a list of the tags assigned to the specified playback configuration resource.</p>  ",
     "ListVodSources": "<p>Lists all the VOD sources in a source location.</p>",
@@ -263,10 +262,6 @@
       "base": "<p>Returns a list of playback configurations.</p>",
       "refs": {}
     },
-    "ListProgramsResponse": {
-      "base": "<p>Returns a list of programs for a channel.</p>",
-      "refs": {}
-    },
     "ListSourceLocationsResponse": {
       "base": "<p>Lists the source locations.</p>",
       "refs": {}
@@ -320,12 +315,6 @@
       "base": null,
       "refs": {
         "CreateChannelRequest$PlaybackMode": "<p>The type of playback mode for this channel. The only supported value is LOOP.</p>"
-      }
-    },
-    "Program": {
-      "base": "<p>Program configuration parameters.</p>",
-      "refs": {
-        "__listOfProgram$member": null
       }
     },
     "PutChannelPolicyRequest": {
@@ -469,8 +458,7 @@
       "base": null,
       "refs": {
         "CreateProgramRequest$AdBreaks": "<p>The ad break configuration settings.</p>",
-        "DescribeProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>",
-        "Program$AdBreaks": "<p>The ad break configuration settings.</p>"
+        "DescribeProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>"
       }
     },
     "__listOfChannel": {
@@ -483,12 +471,6 @@
       "base": null,
       "refs": {
         "ListPlaybackConfigurationsResponse$Items": "<p>Array of playback configurations. This might be all the available configurations or a subset, depending on the settings that you provide and the total number of configurations stored.</p>"
-      }
-    },
-    "__listOfProgram": {
-      "base": null,
-      "refs": {
-        "ListProgramsResponse$Items": "<p>An array containing the programs for a channel.</p>"
       }
     },
     "__listOfScheduleEntry": {
@@ -584,7 +566,6 @@
         "HttpPackageConfiguration$SourceGroup": "<p>The name of the source group. This has to match one of the Channel::Outputs::SourceGroup.</p>",
         "ListChannelsResponse$NextToken": "<p>Pagination token returned by the list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
         "ListPlaybackConfigurationsResponse$NextToken": "<p>Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
-        "ListProgramsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "ListSourceLocationsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "ListVodSourcesResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
         "LivePreRollConfiguration$AdDecisionServerUrl": "<p>The URL for the ad decision server (ADS) for pre-roll ads. This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters.</p>",
@@ -596,11 +577,6 @@
         "PlaybackConfiguration$SlateAdUrl": "<p>The URL for a video asset to transcode and use to fill in time that's not used by ads. AWS Elemental MediaTailor shows the slate to fill in gaps in media content. Configuring the slate is optional for non-VPAID playback configurations. For VPAID, the slate is required because MediaTailor provides it in the slots designated for dynamic ad content. The slate must be a high-quality asset that contains both audio and video.</p>",
         "PlaybackConfiguration$TranscodeProfileName": "<p>The name that is used to associate this playback configuration with a custom transcode profile. This overrides the dynamic transcoding defaults of MediaTailor. Use this only if you have already set up custom profiles with the help of AWS Support.</p>",
         "PlaybackConfiguration$VideoContentSourceUrl": "<p>The URL prefix for the parent manifest for the stream, minus the asset ID. The maximum length is 512 characters.</p>",
-        "Program$Arn": "<p>The ARN of the program.</p>",
-        "Program$ChannelName": "<p>The name of the channel that the program belongs to.</p>",
-        "Program$ProgramName": "<p>The name of the program.</p>",
-        "Program$SourceLocationName": "<p>The name of the source location.</p>",
-        "Program$VodSourceName": "<p>The name that's used to refer to a VOD source.</p>",
         "PutChannelPolicyRequest$Policy": "<p>Adds an IAM role that determines the permissions of your channel.</p>",
         "PutPlaybackConfigurationRequest$AdDecisionServerUrl": "<p>The URL for the ad decision server (ADS). This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing you can provide a static VAST URL. The maximum length is 25,000 characters.</p>",
         "PutPlaybackConfigurationRequest$Name": "<p>The identifier for the playback configuration.</p>",
@@ -641,8 +617,6 @@
         "DescribeSourceLocationResponse$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",
         "DescribeVodSourceResponse$CreationTime": "<p>The timestamp that indicates when the VOD source was created.</p>",
         "DescribeVodSourceResponse$LastModifiedTime": "<p>The ARN for the VOD source.</p>",
-        "Program$CreationTime": "<p>The timestamp of when the program was created.</p>",
-        "Program$LastModifiedTime": "<p>The timestamp of when the program was last modified.</p>",
         "ScheduleEntry$ApproximateStartTime": "<p>The approximate time that the program will start playing.</p>",
         "SourceLocation$CreationTime": "<p>The timestamp that indicates when the source location was created.</p>",
         "SourceLocation$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",

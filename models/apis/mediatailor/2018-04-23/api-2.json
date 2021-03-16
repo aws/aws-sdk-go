@@ -297,21 +297,6 @@
         "shape": "ListPlaybackConfigurationsResponse"
       }
     },
-    "ListPrograms": {
-      "errors": [],
-      "http": {
-        "method": "GET",
-        "requestUri": "/channel/{channelName}/programs",
-        "responseCode": 200
-      },
-      "input": {
-        "shape": "ListProgramsRequest"
-      },
-      "name": "ListPrograms",
-      "output": {
-        "shape": "ListProgramsResponse"
-      }
-    },
     "ListSourceLocations": {
       "errors": [],
       "http": {
@@ -1450,40 +1435,6 @@
       },
       "type": "structure"
     },
-    "ListProgramsRequest": {
-      "members": {
-        "ChannelName": {
-          "location": "uri",
-          "locationName": "channelName",
-          "shape": "__string"
-        },
-        "MaxResults": {
-          "location": "querystring",
-          "locationName": "maxResults",
-          "shape": "MaxResults"
-        },
-        "NextToken": {
-          "location": "querystring",
-          "locationName": "nextToken",
-          "shape": "__string"
-        }
-      },
-      "required": [
-        "ChannelName"
-      ],
-      "type": "structure"
-    },
-    "ListProgramsResponse": {
-      "members": {
-        "Items": {
-          "shape": "__listOfProgram"
-        },
-        "NextToken": {
-          "shape": "__string"
-        }
-      },
-      "type": "structure"
-    },
     "ListSourceLocationsRequest": {
       "members": {
         "MaxResults": {
@@ -1675,42 +1626,6 @@
         "LOOP"
       ],
       "type": "string"
-    },
-    "Program": {
-      "members": {
-        "AdBreaks": {
-          "shape": "__listOfAdBreak"
-        },
-        "Arn": {
-          "shape": "__string"
-        },
-        "ChannelName": {
-          "shape": "__string"
-        },
-        "CreationTime": {
-          "shape": "__timestampUnix"
-        },
-        "LastModifiedTime": {
-          "shape": "__timestampUnix"
-        },
-        "ProgramName": {
-          "shape": "__string"
-        },
-        "SourceLocationName": {
-          "shape": "__string"
-        },
-        "VodSourceName": {
-          "shape": "__string"
-        }
-      },
-      "required": [
-        "VodSourceName",
-        "ChannelName",
-        "SourceLocationName",
-        "Arn",
-        "ProgramName"
-      ],
-      "type": "structure"
     },
     "PutChannelPolicyRequest": {
       "members": {
@@ -2317,12 +2232,6 @@
     "__listOfPlaybackConfiguration": {
       "member": {
         "shape": "PlaybackConfiguration"
-      },
-      "type": "list"
-    },
-    "__listOfProgram": {
-      "member": {
-        "shape": "Program"
       },
       "type": "list"
     },

@@ -169,6 +169,13 @@ type AccessAnalyzerAPI interface {
 	UpdateFindings(*accessanalyzer.UpdateFindingsInput) (*accessanalyzer.UpdateFindingsOutput, error)
 	UpdateFindingsWithContext(aws.Context, *accessanalyzer.UpdateFindingsInput, ...request.Option) (*accessanalyzer.UpdateFindingsOutput, error)
 	UpdateFindingsRequest(*accessanalyzer.UpdateFindingsInput) (*request.Request, *accessanalyzer.UpdateFindingsOutput)
+
+	ValidatePolicy(*accessanalyzer.ValidatePolicyInput) (*accessanalyzer.ValidatePolicyOutput, error)
+	ValidatePolicyWithContext(aws.Context, *accessanalyzer.ValidatePolicyInput, ...request.Option) (*accessanalyzer.ValidatePolicyOutput, error)
+	ValidatePolicyRequest(*accessanalyzer.ValidatePolicyInput) (*request.Request, *accessanalyzer.ValidatePolicyOutput)
+
+	ValidatePolicyPages(*accessanalyzer.ValidatePolicyInput, func(*accessanalyzer.ValidatePolicyOutput, bool) bool) error
+	ValidatePolicyPagesWithContext(aws.Context, *accessanalyzer.ValidatePolicyInput, func(*accessanalyzer.ValidatePolicyOutput, bool) bool, ...request.Option) error
 }
 
 var _ AccessAnalyzerAPI = (*accessanalyzer.AccessAnalyzer)(nil)

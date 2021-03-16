@@ -80,6 +80,10 @@ type GameLiftAPI interface {
 	CreateFleetWithContext(aws.Context, *gamelift.CreateFleetInput, ...request.Option) (*gamelift.CreateFleetOutput, error)
 	CreateFleetRequest(*gamelift.CreateFleetInput) (*request.Request, *gamelift.CreateFleetOutput)
 
+	CreateFleetLocations(*gamelift.CreateFleetLocationsInput) (*gamelift.CreateFleetLocationsOutput, error)
+	CreateFleetLocationsWithContext(aws.Context, *gamelift.CreateFleetLocationsInput, ...request.Option) (*gamelift.CreateFleetLocationsOutput, error)
+	CreateFleetLocationsRequest(*gamelift.CreateFleetLocationsInput) (*request.Request, *gamelift.CreateFleetLocationsOutput)
+
 	CreateGameServerGroup(*gamelift.CreateGameServerGroupInput) (*gamelift.CreateGameServerGroupOutput, error)
 	CreateGameServerGroupWithContext(aws.Context, *gamelift.CreateGameServerGroupInput, ...request.Option) (*gamelift.CreateGameServerGroupOutput, error)
 	CreateGameServerGroupRequest(*gamelift.CreateGameServerGroupInput) (*request.Request, *gamelift.CreateGameServerGroupOutput)
@@ -131,6 +135,10 @@ type GameLiftAPI interface {
 	DeleteFleet(*gamelift.DeleteFleetInput) (*gamelift.DeleteFleetOutput, error)
 	DeleteFleetWithContext(aws.Context, *gamelift.DeleteFleetInput, ...request.Option) (*gamelift.DeleteFleetOutput, error)
 	DeleteFleetRequest(*gamelift.DeleteFleetInput) (*request.Request, *gamelift.DeleteFleetOutput)
+
+	DeleteFleetLocations(*gamelift.DeleteFleetLocationsInput) (*gamelift.DeleteFleetLocationsOutput, error)
+	DeleteFleetLocationsWithContext(aws.Context, *gamelift.DeleteFleetLocationsInput, ...request.Option) (*gamelift.DeleteFleetLocationsOutput, error)
+	DeleteFleetLocationsRequest(*gamelift.DeleteFleetLocationsInput) (*request.Request, *gamelift.DeleteFleetLocationsOutput)
 
 	DeleteGameServerGroup(*gamelift.DeleteGameServerGroupInput) (*gamelift.DeleteGameServerGroupOutput, error)
 	DeleteGameServerGroupWithContext(aws.Context, *gamelift.DeleteGameServerGroupInput, ...request.Option) (*gamelift.DeleteGameServerGroupOutput, error)
@@ -200,6 +208,21 @@ type GameLiftAPI interface {
 
 	DescribeFleetEventsPages(*gamelift.DescribeFleetEventsInput, func(*gamelift.DescribeFleetEventsOutput, bool) bool) error
 	DescribeFleetEventsPagesWithContext(aws.Context, *gamelift.DescribeFleetEventsInput, func(*gamelift.DescribeFleetEventsOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetLocationAttributes(*gamelift.DescribeFleetLocationAttributesInput) (*gamelift.DescribeFleetLocationAttributesOutput, error)
+	DescribeFleetLocationAttributesWithContext(aws.Context, *gamelift.DescribeFleetLocationAttributesInput, ...request.Option) (*gamelift.DescribeFleetLocationAttributesOutput, error)
+	DescribeFleetLocationAttributesRequest(*gamelift.DescribeFleetLocationAttributesInput) (*request.Request, *gamelift.DescribeFleetLocationAttributesOutput)
+
+	DescribeFleetLocationAttributesPages(*gamelift.DescribeFleetLocationAttributesInput, func(*gamelift.DescribeFleetLocationAttributesOutput, bool) bool) error
+	DescribeFleetLocationAttributesPagesWithContext(aws.Context, *gamelift.DescribeFleetLocationAttributesInput, func(*gamelift.DescribeFleetLocationAttributesOutput, bool) bool, ...request.Option) error
+
+	DescribeFleetLocationCapacity(*gamelift.DescribeFleetLocationCapacityInput) (*gamelift.DescribeFleetLocationCapacityOutput, error)
+	DescribeFleetLocationCapacityWithContext(aws.Context, *gamelift.DescribeFleetLocationCapacityInput, ...request.Option) (*gamelift.DescribeFleetLocationCapacityOutput, error)
+	DescribeFleetLocationCapacityRequest(*gamelift.DescribeFleetLocationCapacityInput) (*request.Request, *gamelift.DescribeFleetLocationCapacityOutput)
+
+	DescribeFleetLocationUtilization(*gamelift.DescribeFleetLocationUtilizationInput) (*gamelift.DescribeFleetLocationUtilizationOutput, error)
+	DescribeFleetLocationUtilizationWithContext(aws.Context, *gamelift.DescribeFleetLocationUtilizationInput, ...request.Option) (*gamelift.DescribeFleetLocationUtilizationOutput, error)
+	DescribeFleetLocationUtilizationRequest(*gamelift.DescribeFleetLocationUtilizationInput) (*request.Request, *gamelift.DescribeFleetLocationUtilizationOutput)
 
 	DescribeFleetPortSettings(*gamelift.DescribeFleetPortSettingsInput) (*gamelift.DescribeFleetPortSettingsOutput, error)
 	DescribeFleetPortSettingsWithContext(aws.Context, *gamelift.DescribeFleetPortSettingsInput, ...request.Option) (*gamelift.DescribeFleetPortSettingsOutput, error)
