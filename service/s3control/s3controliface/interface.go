@@ -64,6 +64,10 @@ type S3ControlAPI interface {
 	CreateAccessPointWithContext(aws.Context, *s3control.CreateAccessPointInput, ...request.Option) (*s3control.CreateAccessPointOutput, error)
 	CreateAccessPointRequest(*s3control.CreateAccessPointInput) (*request.Request, *s3control.CreateAccessPointOutput)
 
+	CreateAccessPointForObjectLambda(*s3control.CreateAccessPointForObjectLambdaInput) (*s3control.CreateAccessPointForObjectLambdaOutput, error)
+	CreateAccessPointForObjectLambdaWithContext(aws.Context, *s3control.CreateAccessPointForObjectLambdaInput, ...request.Option) (*s3control.CreateAccessPointForObjectLambdaOutput, error)
+	CreateAccessPointForObjectLambdaRequest(*s3control.CreateAccessPointForObjectLambdaInput) (*request.Request, *s3control.CreateAccessPointForObjectLambdaOutput)
+
 	CreateBucket(*s3control.CreateBucketInput) (*s3control.CreateBucketOutput, error)
 	CreateBucketWithContext(aws.Context, *s3control.CreateBucketInput, ...request.Option) (*s3control.CreateBucketOutput, error)
 	CreateBucketRequest(*s3control.CreateBucketInput) (*request.Request, *s3control.CreateBucketOutput)
@@ -76,9 +80,17 @@ type S3ControlAPI interface {
 	DeleteAccessPointWithContext(aws.Context, *s3control.DeleteAccessPointInput, ...request.Option) (*s3control.DeleteAccessPointOutput, error)
 	DeleteAccessPointRequest(*s3control.DeleteAccessPointInput) (*request.Request, *s3control.DeleteAccessPointOutput)
 
+	DeleteAccessPointForObjectLambda(*s3control.DeleteAccessPointForObjectLambdaInput) (*s3control.DeleteAccessPointForObjectLambdaOutput, error)
+	DeleteAccessPointForObjectLambdaWithContext(aws.Context, *s3control.DeleteAccessPointForObjectLambdaInput, ...request.Option) (*s3control.DeleteAccessPointForObjectLambdaOutput, error)
+	DeleteAccessPointForObjectLambdaRequest(*s3control.DeleteAccessPointForObjectLambdaInput) (*request.Request, *s3control.DeleteAccessPointForObjectLambdaOutput)
+
 	DeleteAccessPointPolicy(*s3control.DeleteAccessPointPolicyInput) (*s3control.DeleteAccessPointPolicyOutput, error)
 	DeleteAccessPointPolicyWithContext(aws.Context, *s3control.DeleteAccessPointPolicyInput, ...request.Option) (*s3control.DeleteAccessPointPolicyOutput, error)
 	DeleteAccessPointPolicyRequest(*s3control.DeleteAccessPointPolicyInput) (*request.Request, *s3control.DeleteAccessPointPolicyOutput)
+
+	DeleteAccessPointPolicyForObjectLambda(*s3control.DeleteAccessPointPolicyForObjectLambdaInput) (*s3control.DeleteAccessPointPolicyForObjectLambdaOutput, error)
+	DeleteAccessPointPolicyForObjectLambdaWithContext(aws.Context, *s3control.DeleteAccessPointPolicyForObjectLambdaInput, ...request.Option) (*s3control.DeleteAccessPointPolicyForObjectLambdaOutput, error)
+	DeleteAccessPointPolicyForObjectLambdaRequest(*s3control.DeleteAccessPointPolicyForObjectLambdaInput) (*request.Request, *s3control.DeleteAccessPointPolicyForObjectLambdaOutput)
 
 	DeleteBucket(*s3control.DeleteBucketInput) (*s3control.DeleteBucketOutput, error)
 	DeleteBucketWithContext(aws.Context, *s3control.DeleteBucketInput, ...request.Option) (*s3control.DeleteBucketOutput, error)
@@ -120,13 +132,29 @@ type S3ControlAPI interface {
 	GetAccessPointWithContext(aws.Context, *s3control.GetAccessPointInput, ...request.Option) (*s3control.GetAccessPointOutput, error)
 	GetAccessPointRequest(*s3control.GetAccessPointInput) (*request.Request, *s3control.GetAccessPointOutput)
 
+	GetAccessPointConfigurationForObjectLambda(*s3control.GetAccessPointConfigurationForObjectLambdaInput) (*s3control.GetAccessPointConfigurationForObjectLambdaOutput, error)
+	GetAccessPointConfigurationForObjectLambdaWithContext(aws.Context, *s3control.GetAccessPointConfigurationForObjectLambdaInput, ...request.Option) (*s3control.GetAccessPointConfigurationForObjectLambdaOutput, error)
+	GetAccessPointConfigurationForObjectLambdaRequest(*s3control.GetAccessPointConfigurationForObjectLambdaInput) (*request.Request, *s3control.GetAccessPointConfigurationForObjectLambdaOutput)
+
+	GetAccessPointForObjectLambda(*s3control.GetAccessPointForObjectLambdaInput) (*s3control.GetAccessPointForObjectLambdaOutput, error)
+	GetAccessPointForObjectLambdaWithContext(aws.Context, *s3control.GetAccessPointForObjectLambdaInput, ...request.Option) (*s3control.GetAccessPointForObjectLambdaOutput, error)
+	GetAccessPointForObjectLambdaRequest(*s3control.GetAccessPointForObjectLambdaInput) (*request.Request, *s3control.GetAccessPointForObjectLambdaOutput)
+
 	GetAccessPointPolicy(*s3control.GetAccessPointPolicyInput) (*s3control.GetAccessPointPolicyOutput, error)
 	GetAccessPointPolicyWithContext(aws.Context, *s3control.GetAccessPointPolicyInput, ...request.Option) (*s3control.GetAccessPointPolicyOutput, error)
 	GetAccessPointPolicyRequest(*s3control.GetAccessPointPolicyInput) (*request.Request, *s3control.GetAccessPointPolicyOutput)
 
+	GetAccessPointPolicyForObjectLambda(*s3control.GetAccessPointPolicyForObjectLambdaInput) (*s3control.GetAccessPointPolicyForObjectLambdaOutput, error)
+	GetAccessPointPolicyForObjectLambdaWithContext(aws.Context, *s3control.GetAccessPointPolicyForObjectLambdaInput, ...request.Option) (*s3control.GetAccessPointPolicyForObjectLambdaOutput, error)
+	GetAccessPointPolicyForObjectLambdaRequest(*s3control.GetAccessPointPolicyForObjectLambdaInput) (*request.Request, *s3control.GetAccessPointPolicyForObjectLambdaOutput)
+
 	GetAccessPointPolicyStatus(*s3control.GetAccessPointPolicyStatusInput) (*s3control.GetAccessPointPolicyStatusOutput, error)
 	GetAccessPointPolicyStatusWithContext(aws.Context, *s3control.GetAccessPointPolicyStatusInput, ...request.Option) (*s3control.GetAccessPointPolicyStatusOutput, error)
 	GetAccessPointPolicyStatusRequest(*s3control.GetAccessPointPolicyStatusInput) (*request.Request, *s3control.GetAccessPointPolicyStatusOutput)
+
+	GetAccessPointPolicyStatusForObjectLambda(*s3control.GetAccessPointPolicyStatusForObjectLambdaInput) (*s3control.GetAccessPointPolicyStatusForObjectLambdaOutput, error)
+	GetAccessPointPolicyStatusForObjectLambdaWithContext(aws.Context, *s3control.GetAccessPointPolicyStatusForObjectLambdaInput, ...request.Option) (*s3control.GetAccessPointPolicyStatusForObjectLambdaOutput, error)
+	GetAccessPointPolicyStatusForObjectLambdaRequest(*s3control.GetAccessPointPolicyStatusForObjectLambdaInput) (*request.Request, *s3control.GetAccessPointPolicyStatusForObjectLambdaOutput)
 
 	GetBucket(*s3control.GetBucketInput) (*s3control.GetBucketOutput, error)
 	GetBucketWithContext(aws.Context, *s3control.GetBucketInput, ...request.Option) (*s3control.GetBucketOutput, error)
@@ -167,6 +195,13 @@ type S3ControlAPI interface {
 	ListAccessPointsPages(*s3control.ListAccessPointsInput, func(*s3control.ListAccessPointsOutput, bool) bool) error
 	ListAccessPointsPagesWithContext(aws.Context, *s3control.ListAccessPointsInput, func(*s3control.ListAccessPointsOutput, bool) bool, ...request.Option) error
 
+	ListAccessPointsForObjectLambda(*s3control.ListAccessPointsForObjectLambdaInput) (*s3control.ListAccessPointsForObjectLambdaOutput, error)
+	ListAccessPointsForObjectLambdaWithContext(aws.Context, *s3control.ListAccessPointsForObjectLambdaInput, ...request.Option) (*s3control.ListAccessPointsForObjectLambdaOutput, error)
+	ListAccessPointsForObjectLambdaRequest(*s3control.ListAccessPointsForObjectLambdaInput) (*request.Request, *s3control.ListAccessPointsForObjectLambdaOutput)
+
+	ListAccessPointsForObjectLambdaPages(*s3control.ListAccessPointsForObjectLambdaInput, func(*s3control.ListAccessPointsForObjectLambdaOutput, bool) bool) error
+	ListAccessPointsForObjectLambdaPagesWithContext(aws.Context, *s3control.ListAccessPointsForObjectLambdaInput, func(*s3control.ListAccessPointsForObjectLambdaOutput, bool) bool, ...request.Option) error
+
 	ListJobs(*s3control.ListJobsInput) (*s3control.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *s3control.ListJobsInput, ...request.Option) (*s3control.ListJobsOutput, error)
 	ListJobsRequest(*s3control.ListJobsInput) (*request.Request, *s3control.ListJobsOutput)
@@ -185,9 +220,17 @@ type S3ControlAPI interface {
 	ListStorageLensConfigurationsWithContext(aws.Context, *s3control.ListStorageLensConfigurationsInput, ...request.Option) (*s3control.ListStorageLensConfigurationsOutput, error)
 	ListStorageLensConfigurationsRequest(*s3control.ListStorageLensConfigurationsInput) (*request.Request, *s3control.ListStorageLensConfigurationsOutput)
 
+	PutAccessPointConfigurationForObjectLambda(*s3control.PutAccessPointConfigurationForObjectLambdaInput) (*s3control.PutAccessPointConfigurationForObjectLambdaOutput, error)
+	PutAccessPointConfigurationForObjectLambdaWithContext(aws.Context, *s3control.PutAccessPointConfigurationForObjectLambdaInput, ...request.Option) (*s3control.PutAccessPointConfigurationForObjectLambdaOutput, error)
+	PutAccessPointConfigurationForObjectLambdaRequest(*s3control.PutAccessPointConfigurationForObjectLambdaInput) (*request.Request, *s3control.PutAccessPointConfigurationForObjectLambdaOutput)
+
 	PutAccessPointPolicy(*s3control.PutAccessPointPolicyInput) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyWithContext(aws.Context, *s3control.PutAccessPointPolicyInput, ...request.Option) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyRequest(*s3control.PutAccessPointPolicyInput) (*request.Request, *s3control.PutAccessPointPolicyOutput)
+
+	PutAccessPointPolicyForObjectLambda(*s3control.PutAccessPointPolicyForObjectLambdaInput) (*s3control.PutAccessPointPolicyForObjectLambdaOutput, error)
+	PutAccessPointPolicyForObjectLambdaWithContext(aws.Context, *s3control.PutAccessPointPolicyForObjectLambdaInput, ...request.Option) (*s3control.PutAccessPointPolicyForObjectLambdaOutput, error)
+	PutAccessPointPolicyForObjectLambdaRequest(*s3control.PutAccessPointPolicyForObjectLambdaInput) (*request.Request, *s3control.PutAccessPointPolicyForObjectLambdaOutput)
 
 	PutBucketLifecycleConfiguration(*s3control.PutBucketLifecycleConfigurationInput) (*s3control.PutBucketLifecycleConfigurationOutput, error)
 	PutBucketLifecycleConfigurationWithContext(aws.Context, *s3control.PutBucketLifecycleConfigurationInput, ...request.Option) (*s3control.PutBucketLifecycleConfigurationOutput, error)

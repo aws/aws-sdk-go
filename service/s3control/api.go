@@ -65,24 +65,14 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 // CreateAccessPoint API operation for AWS S3 Control.
 //
 // Creates an access point and associates it with the specified bucket. For
-// more information, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
+// more information, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)
 // in the Amazon Simple Storage Service User Guide.
 //
-// Using this action with Amazon S3 on Outposts
+// S3 on Outposts only supports VPC-style Access Points.
 //
-// This action:
-//
-//    * Requires a virtual private cloud (VPC) configuration as S3 on Outposts
-//    only supports VPC style access points.
-//
-//    * Does not support ACL on S3 on Outposts buckets.
-//
-//    * Does not support Public Access on S3 on Outposts buckets.
-//
-//    * Does not support object lock for S3 on Outposts buckets.
-//
-// For more information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
-// in the Amazon Simple Storage Service User Guide .
+// For more information, see Accessing Amazon S3 on Outposts using virtual private
+// cloud (VPC) only Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+// in the Amazon Simple Storage Service User Guide.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request and an S3 on
@@ -123,6 +113,92 @@ func (c *S3Control) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAcc
 // for more information on using Contexts.
 func (c *S3Control) CreateAccessPointWithContext(ctx aws.Context, input *CreateAccessPointInput, opts ...request.Option) (*CreateAccessPointOutput, error) {
 	req, out := c.CreateAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateAccessPointForObjectLambda = "CreateAccessPointForObjectLambda"
+
+// CreateAccessPointForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccessPointForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccessPointForObjectLambda for more information on using the CreateAccessPointForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAccessPointForObjectLambdaRequest method.
+//    req, resp := client.CreateAccessPointForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessPointForObjectLambda
+func (c *S3Control) CreateAccessPointForObjectLambdaRequest(input *CreateAccessPointForObjectLambdaInput) (req *request.Request, output *CreateAccessPointForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccessPointForObjectLambda,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}",
+	}
+
+	if input == nil {
+		input = &CreateAccessPointForObjectLambdaInput{}
+	}
+
+	output = &CreateAccessPointForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateAccessPointForObjectLambda API operation for AWS S3 Control.
+//
+// Creates an Object Lambda Access Point. For more information, see Transforming
+// objects with Object Lambda Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html)
+// in the Amazon Simple Storage Service User Guide.
+//
+// The following actions are related to CreateAccessPointForObjectLambda:
+//
+//    * DeleteAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html)
+//
+//    * GetAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html)
+//
+//    * ListAccessPointsForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateAccessPointForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateAccessPointForObjectLambda
+func (c *S3Control) CreateAccessPointForObjectLambda(input *CreateAccessPointForObjectLambdaInput) (*CreateAccessPointForObjectLambdaOutput, error) {
+	req, out := c.CreateAccessPointForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessPointForObjectLambdaWithContext is the same as CreateAccessPointForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccessPointForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateAccessPointForObjectLambdaWithContext(ctx aws.Context, input *CreateAccessPointForObjectLambdaInput, opts ...request.Option) (*CreateAccessPointForObjectLambdaOutput, error) {
+	req, out := c.CreateAccessPointForObjectLambdaRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -183,11 +259,11 @@ func (c *S3Control) CreateBucketRequest(input *CreateBucketInput) (req *request.
 //
 // Creates a new Outposts bucket. By creating the bucket, you become the bucket
 // owner. To create an Outposts bucket, you must have S3 on Outposts. For more
-// information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in Amazon Simple Storage Service User Guide.
 //
 // Not every string is an acceptable bucket name. For information on bucket
-// naming restrictions, see Working with Amazon S3 Buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules).
+// naming restrictions, see Working with Amazon S3 Buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/BucketRestrictions.html#bucketnamingrules).
 //
 // S3 on Outposts buckets support:
 //
@@ -195,8 +271,8 @@ func (c *S3Control) CreateBucketRequest(input *CreateBucketInput) (req *request.
 //
 //    * LifecycleConfigurations for deleting expired objects
 //
-// For a list of Amazon S3 features not supported by Amazon S3 on Outposts,
-// see Unsupported Amazon S3 features (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OnOutpostsRestrictionsLimitations.html#S3OnOutpostsFeatureLimitations).
+// For a complete list of restrictions and Amazon S3 feature limitations on
+// S3 on Outposts, see Amazon S3 on Outposts Restrictions and Limitations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3OnOutpostsRestrictionsLimitations.html).
 //
 // For an example of the request syntax for Amazon S3 on Outposts that uses
 // the S3 on Outposts endpoint hostname prefix and x-amz-outpost-id in your
@@ -452,6 +528,91 @@ func (c *S3Control) DeleteAccessPointWithContext(ctx aws.Context, input *DeleteA
 	return out, req.Send()
 }
 
+const opDeleteAccessPointForObjectLambda = "DeleteAccessPointForObjectLambda"
+
+// DeleteAccessPointForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessPointForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessPointForObjectLambda for more information on using the DeleteAccessPointForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccessPointForObjectLambdaRequest method.
+//    req, resp := client.DeleteAccessPointForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPointForObjectLambda
+func (c *S3Control) DeleteAccessPointForObjectLambdaRequest(input *DeleteAccessPointForObjectLambdaInput) (req *request.Request, output *DeleteAccessPointForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessPointForObjectLambda,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteAccessPointForObjectLambdaInput{}
+	}
+
+	output = &DeleteAccessPointForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAccessPointForObjectLambda API operation for AWS S3 Control.
+//
+// Deletes the specified Object Lambda Access Point.
+//
+// The following actions are related to DeleteAccessPointForObjectLambda:
+//
+//    * CreateAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html)
+//
+//    * GetAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html)
+//
+//    * ListAccessPointsForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessPointForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPointForObjectLambda
+func (c *S3Control) DeleteAccessPointForObjectLambda(input *DeleteAccessPointForObjectLambdaInput) (*DeleteAccessPointForObjectLambdaOutput, error) {
+	req, out := c.DeleteAccessPointForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessPointForObjectLambdaWithContext is the same as DeleteAccessPointForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessPointForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessPointForObjectLambdaWithContext(ctx aws.Context, input *DeleteAccessPointForObjectLambdaInput, opts ...request.Option) (*DeleteAccessPointForObjectLambdaOutput, error) {
+	req, out := c.DeleteAccessPointForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAccessPointPolicy = "DeleteAccessPointPolicy"
 
 // DeleteAccessPointPolicyRequest generates a "aws/request.Request" representing the
@@ -546,6 +707,89 @@ func (c *S3Control) DeleteAccessPointPolicyWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteAccessPointPolicyForObjectLambda = "DeleteAccessPointPolicyForObjectLambda"
+
+// DeleteAccessPointPolicyForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccessPointPolicyForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccessPointPolicyForObjectLambda for more information on using the DeleteAccessPointPolicyForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccessPointPolicyForObjectLambdaRequest method.
+//    req, resp := client.DeleteAccessPointPolicyForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPointPolicyForObjectLambda
+func (c *S3Control) DeleteAccessPointPolicyForObjectLambdaRequest(input *DeleteAccessPointPolicyForObjectLambdaInput) (req *request.Request, output *DeleteAccessPointPolicyForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccessPointPolicyForObjectLambda,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}/policy",
+	}
+
+	if input == nil {
+		input = &DeleteAccessPointPolicyForObjectLambdaInput{}
+	}
+
+	output = &DeleteAccessPointPolicyForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteAccessPointPolicyForObjectLambda API operation for AWS S3 Control.
+//
+// Removes the resource policy for an Object Lambda Access Point.
+//
+// The following actions are related to DeleteAccessPointPolicyForObjectLambda:
+//
+//    * GetAccessPointPolicyForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyForObjectLambda.html)
+//
+//    * PutAccessPointPolicyForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicyForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteAccessPointPolicyForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteAccessPointPolicyForObjectLambda
+func (c *S3Control) DeleteAccessPointPolicyForObjectLambda(input *DeleteAccessPointPolicyForObjectLambdaInput) (*DeleteAccessPointPolicyForObjectLambdaOutput, error) {
+	req, out := c.DeleteAccessPointPolicyForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessPointPolicyForObjectLambdaWithContext is the same as DeleteAccessPointPolicyForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccessPointPolicyForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteAccessPointPolicyForObjectLambdaWithContext(ctx aws.Context, input *DeleteAccessPointPolicyForObjectLambdaInput, opts ...request.Option) (*DeleteAccessPointPolicyForObjectLambdaOutput, error) {
+	req, out := c.DeleteAccessPointPolicyForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteBucket = "DeleteBucket"
 
 // DeleteBucketRequest generates a "aws/request.Request" representing the
@@ -604,8 +848,8 @@ func (c *S3Control) DeleteBucketRequest(input *DeleteBucketInput) (req *request.
 // Deletes the Amazon S3 on Outposts bucket. All objects (including all object
 // versions and delete markers) in the bucket must be deleted before the bucket
 // itself can be deleted. For more information, see Using Amazon S3 on Outposts
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in Amazon
-// Simple Storage Service User Guide.
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+// in Amazon Simple Storage Service User Guide.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request and an S3 on
@@ -712,7 +956,7 @@ func (c *S3Control) DeleteBucketLifecycleConfigurationRequest(input *DeleteBucke
 // subresource associated with the bucket. Your objects never expire, and Amazon
 // S3 on Outposts no longer automatically deletes any objects on the basis of
 // rules contained in the deleted lifecycle configuration. For more information,
-// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in Amazon Simple Storage Service User Guide.
 //
 // To use this action, you must have permission to perform the s3-outposts:DeleteLifecycleConfiguration
@@ -825,8 +1069,8 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // the calling identity must have the s3-outposts:DeleteBucketPolicy permissions
 // on the specified Outposts bucket and belong to the bucket owner's account
 // to use this action. For more information, see Using Amazon S3 on Outposts
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in Amazon
-// Simple Storage Service User Guide.
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+// in Amazon Simple Storage Service User Guide.
 //
 // If you don't have DeleteBucketPolicy permissions, Amazon S3 returns a 403
 // Access Denied error. If you have the correct permissions, but you're not
@@ -938,7 +1182,7 @@ func (c *S3Control) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) 
 // in the Amazon Simple Storage Service API.
 //
 // Deletes the tags from the Outposts bucket. For more information, see Using
-// Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in Amazon Simple Storage Service User Guide.
 //
 // To use this action, you must have permission to perform the PutBucketTagging
@@ -1531,6 +1775,171 @@ func (c *S3Control) GetAccessPointWithContext(ctx aws.Context, input *GetAccessP
 	return out, req.Send()
 }
 
+const opGetAccessPointConfigurationForObjectLambda = "GetAccessPointConfigurationForObjectLambda"
+
+// GetAccessPointConfigurationForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPointConfigurationForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPointConfigurationForObjectLambda for more information on using the GetAccessPointConfigurationForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointConfigurationForObjectLambdaRequest method.
+//    req, resp := client.GetAccessPointConfigurationForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointConfigurationForObjectLambda
+func (c *S3Control) GetAccessPointConfigurationForObjectLambdaRequest(input *GetAccessPointConfigurationForObjectLambdaInput) (req *request.Request, output *GetAccessPointConfigurationForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPointConfigurationForObjectLambda,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}/configuration",
+	}
+
+	if input == nil {
+		input = &GetAccessPointConfigurationForObjectLambdaInput{}
+	}
+
+	output = &GetAccessPointConfigurationForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPointConfigurationForObjectLambda API operation for AWS S3 Control.
+//
+// Returns configuration for an Object Lambda Access Point.
+//
+// The following actions are related to GetAccessPointConfigurationForObjectLambda:
+//
+//    * PutAccessPointConfigurationForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointConfigurationForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPointConfigurationForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointConfigurationForObjectLambda
+func (c *S3Control) GetAccessPointConfigurationForObjectLambda(input *GetAccessPointConfigurationForObjectLambdaInput) (*GetAccessPointConfigurationForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointConfigurationForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointConfigurationForObjectLambdaWithContext is the same as GetAccessPointConfigurationForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPointConfigurationForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointConfigurationForObjectLambdaWithContext(ctx aws.Context, input *GetAccessPointConfigurationForObjectLambdaInput, opts ...request.Option) (*GetAccessPointConfigurationForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointConfigurationForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessPointForObjectLambda = "GetAccessPointForObjectLambda"
+
+// GetAccessPointForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPointForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPointForObjectLambda for more information on using the GetAccessPointForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointForObjectLambdaRequest method.
+//    req, resp := client.GetAccessPointForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointForObjectLambda
+func (c *S3Control) GetAccessPointForObjectLambdaRequest(input *GetAccessPointForObjectLambdaInput) (req *request.Request, output *GetAccessPointForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPointForObjectLambda,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}",
+	}
+
+	if input == nil {
+		input = &GetAccessPointForObjectLambdaInput{}
+	}
+
+	output = &GetAccessPointForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPointForObjectLambda API operation for AWS S3 Control.
+//
+// Returns configuration information about the specified Object Lambda Access
+// Point
+//
+// The following actions are related to GetAccessPointForObjectLambda:
+//
+//    * CreateAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html)
+//
+//    * DeleteAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html)
+//
+//    * ListAccessPointsForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPointsForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPointForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointForObjectLambda
+func (c *S3Control) GetAccessPointForObjectLambda(input *GetAccessPointForObjectLambdaInput) (*GetAccessPointForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointForObjectLambdaWithContext is the same as GetAccessPointForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPointForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointForObjectLambdaWithContext(ctx aws.Context, input *GetAccessPointForObjectLambdaInput, opts ...request.Option) (*GetAccessPointForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccessPointPolicy = "GetAccessPointPolicy"
 
 // GetAccessPointPolicyRequest generates a "aws/request.Request" representing the
@@ -1616,6 +2025,88 @@ func (c *S3Control) GetAccessPointPolicyWithContext(ctx aws.Context, input *GetA
 	return out, req.Send()
 }
 
+const opGetAccessPointPolicyForObjectLambda = "GetAccessPointPolicyForObjectLambda"
+
+// GetAccessPointPolicyForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPointPolicyForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPointPolicyForObjectLambda for more information on using the GetAccessPointPolicyForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointPolicyForObjectLambdaRequest method.
+//    req, resp := client.GetAccessPointPolicyForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicyForObjectLambda
+func (c *S3Control) GetAccessPointPolicyForObjectLambdaRequest(input *GetAccessPointPolicyForObjectLambdaInput) (req *request.Request, output *GetAccessPointPolicyForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPointPolicyForObjectLambda,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}/policy",
+	}
+
+	if input == nil {
+		input = &GetAccessPointPolicyForObjectLambdaInput{}
+	}
+
+	output = &GetAccessPointPolicyForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPointPolicyForObjectLambda API operation for AWS S3 Control.
+//
+// Returns the resource policy for an Object Lambda Access Point.
+//
+// The following actions are related to GetAccessPointPolicyForObjectLambda:
+//
+//    * DeleteAccessPointPolicyForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicyForObjectLambda.html)
+//
+//    * PutAccessPointPolicyForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicyForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPointPolicyForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicyForObjectLambda
+func (c *S3Control) GetAccessPointPolicyForObjectLambda(input *GetAccessPointPolicyForObjectLambdaInput) (*GetAccessPointPolicyForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointPolicyForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointPolicyForObjectLambdaWithContext is the same as GetAccessPointPolicyForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPointPolicyForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointPolicyForObjectLambdaWithContext(ctx aws.Context, input *GetAccessPointPolicyForObjectLambdaInput, opts ...request.Option) (*GetAccessPointPolicyForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointPolicyForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccessPointPolicyStatus = "GetAccessPointPolicyStatus"
 
 // GetAccessPointPolicyStatusRequest generates a "aws/request.Request" representing the
@@ -1664,7 +2155,7 @@ func (c *S3Control) GetAccessPointPolicyStatusRequest(input *GetAccessPointPolic
 //
 // Indicates whether the specified access point currently has a policy that
 // allows public access. For more information about public access through access
-// points, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
+// points, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1690,6 +2181,83 @@ func (c *S3Control) GetAccessPointPolicyStatus(input *GetAccessPointPolicyStatus
 // for more information on using Contexts.
 func (c *S3Control) GetAccessPointPolicyStatusWithContext(ctx aws.Context, input *GetAccessPointPolicyStatusInput, opts ...request.Option) (*GetAccessPointPolicyStatusOutput, error) {
 	req, out := c.GetAccessPointPolicyStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAccessPointPolicyStatusForObjectLambda = "GetAccessPointPolicyStatusForObjectLambda"
+
+// GetAccessPointPolicyStatusForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the GetAccessPointPolicyStatusForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAccessPointPolicyStatusForObjectLambda for more information on using the GetAccessPointPolicyStatusForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAccessPointPolicyStatusForObjectLambdaRequest method.
+//    req, resp := client.GetAccessPointPolicyStatusForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicyStatusForObjectLambda
+func (c *S3Control) GetAccessPointPolicyStatusForObjectLambdaRequest(input *GetAccessPointPolicyStatusForObjectLambdaInput) (req *request.Request, output *GetAccessPointPolicyStatusForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opGetAccessPointPolicyStatusForObjectLambda,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}/policyStatus",
+	}
+
+	if input == nil {
+		input = &GetAccessPointPolicyStatusForObjectLambdaInput{}
+	}
+
+	output = &GetAccessPointPolicyStatusForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetAccessPointPolicyStatusForObjectLambda API operation for AWS S3 Control.
+//
+// Returns the status of the resource policy associated with an Object Lambda
+// Access Point.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetAccessPointPolicyStatusForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetAccessPointPolicyStatusForObjectLambda
+func (c *S3Control) GetAccessPointPolicyStatusForObjectLambda(input *GetAccessPointPolicyStatusForObjectLambdaInput) (*GetAccessPointPolicyStatusForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointPolicyStatusForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// GetAccessPointPolicyStatusForObjectLambdaWithContext is the same as GetAccessPointPolicyStatusForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAccessPointPolicyStatusForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetAccessPointPolicyStatusForObjectLambdaWithContext(ctx aws.Context, input *GetAccessPointPolicyStatusForObjectLambdaInput, opts ...request.Option) (*GetAccessPointPolicyStatusForObjectLambdaOutput, error) {
+	req, out := c.GetAccessPointPolicyStatusForObjectLambdaRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1745,14 +2313,15 @@ func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Reques
 // GetBucket API operation for AWS S3 Control.
 //
 // Gets an Amazon S3 on Outposts bucket. For more information, see Using Amazon
-// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon Simple Storage Service User Guide.
 //
 // If you are using an identity other than the root user of the AWS account
-// that owns the bucket, the calling identity must have the s3-outposts:GetBucket
-// permissions on the specified bucket and belong to the bucket owner's account
-// in order to use this action. Only users from Outposts bucket owner account
-// with the right permissions can perform actions on an Outposts bucket.
+// that owns the Outposts bucket, the calling identity must have the s3-outposts:GetBucket
+// permissions on the specified Outposts bucket and belong to the Outposts bucket
+// owner's account in order to use this action. Only users from Outposts bucket
+// owner account with the right permissions can perform actions on an Outposts
+// bucket.
 //
 // If you don't have s3-outposts:GetBucket permissions or you're not using an
 // identity that belongs to the bucket owner's account, Amazon S3 returns a
@@ -1858,7 +2427,7 @@ func (c *S3Control) GetBucketLifecycleConfigurationRequest(input *GetBucketLifec
 // in the Amazon Simple Storage Service API.
 //
 // Returns the lifecycle configuration information set on the Outposts bucket.
-// For more information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// For more information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // and for information about lifecycle configuration, see Object Lifecycle Management
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html)
 // in Amazon Simple Storage Service User Guide.
@@ -1866,8 +2435,8 @@ func (c *S3Control) GetBucketLifecycleConfigurationRequest(input *GetBucketLifec
 // To use this action, you must have permission to perform the s3-outposts:GetLifecycleConfiguration
 // action. The Outposts bucket owner has this permission, by default. The bucket
 // owner can grant this permission to others. For more information about permissions,
-// see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
-// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html).
+// see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
+// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request and an S3 on
@@ -1972,7 +2541,7 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // in the Amazon Simple Storage Service API.
 //
 // Returns the policy of a specified Outposts bucket. For more information,
-// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon Simple Storage Service User Guide.
 //
 // If you are using an identity other than the root user of the AWS account
@@ -2091,7 +2660,7 @@ func (c *S3Control) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *
 // in the Amazon Simple Storage Service API.
 //
 // Returns the tag set associated with the Outposts bucket. For more information,
-// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon Simple Storage Service User Guide.
 //
 // To use this action, you must have permission to perform the GetBucketTagging
@@ -2653,6 +3222,152 @@ func (c *S3Control) ListAccessPointsPagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opListAccessPointsForObjectLambda = "ListAccessPointsForObjectLambda"
+
+// ListAccessPointsForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccessPointsForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccessPointsForObjectLambda for more information on using the ListAccessPointsForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAccessPointsForObjectLambdaRequest method.
+//    req, resp := client.ListAccessPointsForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessPointsForObjectLambda
+func (c *S3Control) ListAccessPointsForObjectLambdaRequest(input *ListAccessPointsForObjectLambdaInput) (req *request.Request, output *ListAccessPointsForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opListAccessPointsForObjectLambda,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessPointsForObjectLambdaInput{}
+	}
+
+	output = &ListAccessPointsForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListAccessPointsForObjectLambda API operation for AWS S3 Control.
+//
+// Returns a list of the access points associated with the Object Lambda Access
+// Point. You can retrieve up to 1000 access points per call. If there are more
+// than 1,000 access points (or the number specified in maxResults, whichever
+// is less), the response will include a continuation token that you can use
+// to list the additional access points.
+//
+// The following actions are related to ListAccessPointsForObjectLambda:
+//
+//    * CreateAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPointForObjectLambda.html)
+//
+//    * DeleteAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointForObjectLambda.html)
+//
+//    * GetAccessPointForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListAccessPointsForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListAccessPointsForObjectLambda
+func (c *S3Control) ListAccessPointsForObjectLambda(input *ListAccessPointsForObjectLambdaInput) (*ListAccessPointsForObjectLambdaOutput, error) {
+	req, out := c.ListAccessPointsForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessPointsForObjectLambdaWithContext is the same as ListAccessPointsForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccessPointsForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessPointsForObjectLambdaWithContext(ctx aws.Context, input *ListAccessPointsForObjectLambdaInput, opts ...request.Option) (*ListAccessPointsForObjectLambdaOutput, error) {
+	req, out := c.ListAccessPointsForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessPointsForObjectLambdaPages iterates over the pages of a ListAccessPointsForObjectLambda operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccessPointsForObjectLambda method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAccessPointsForObjectLambda operation.
+//    pageNum := 0
+//    err := client.ListAccessPointsForObjectLambdaPages(params,
+//        func(page *s3control.ListAccessPointsForObjectLambdaOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Control) ListAccessPointsForObjectLambdaPages(input *ListAccessPointsForObjectLambdaInput, fn func(*ListAccessPointsForObjectLambdaOutput, bool) bool) error {
+	return c.ListAccessPointsForObjectLambdaPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessPointsForObjectLambdaPagesWithContext same as ListAccessPointsForObjectLambdaPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListAccessPointsForObjectLambdaPagesWithContext(ctx aws.Context, input *ListAccessPointsForObjectLambdaInput, fn func(*ListAccessPointsForObjectLambdaOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessPointsForObjectLambdaInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessPointsForObjectLambdaRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessPointsForObjectLambdaOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a "aws/request.Request" representing the
@@ -2862,7 +3577,7 @@ func (c *S3Control) ListRegionalBucketsRequest(input *ListRegionalBucketsInput) 
 //
 // Returns a list of all Outposts buckets in an Outpost that are owned by the
 // authenticated sender of the request. For more information, see Using Amazon
-// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon Simple Storage Service User Guide.
 //
 // For an example of the request syntax for Amazon S3 on Outposts that uses
@@ -3034,6 +3749,87 @@ func (c *S3Control) ListStorageLensConfigurationsWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opPutAccessPointConfigurationForObjectLambda = "PutAccessPointConfigurationForObjectLambda"
+
+// PutAccessPointConfigurationForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccessPointConfigurationForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccessPointConfigurationForObjectLambda for more information on using the PutAccessPointConfigurationForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccessPointConfigurationForObjectLambdaRequest method.
+//    req, resp := client.PutAccessPointConfigurationForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessPointConfigurationForObjectLambda
+func (c *S3Control) PutAccessPointConfigurationForObjectLambdaRequest(input *PutAccessPointConfigurationForObjectLambdaInput) (req *request.Request, output *PutAccessPointConfigurationForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opPutAccessPointConfigurationForObjectLambda,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}/configuration",
+	}
+
+	if input == nil {
+		input = &PutAccessPointConfigurationForObjectLambdaInput{}
+	}
+
+	output = &PutAccessPointConfigurationForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// PutAccessPointConfigurationForObjectLambda API operation for AWS S3 Control.
+//
+// Replaces configuration for an Object Lambda Access Point.
+//
+// The following actions are related to PutAccessPointConfigurationForObjectLambda:
+//
+//    * GetAccessPointConfigurationForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointConfigurationForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutAccessPointConfigurationForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessPointConfigurationForObjectLambda
+func (c *S3Control) PutAccessPointConfigurationForObjectLambda(input *PutAccessPointConfigurationForObjectLambdaInput) (*PutAccessPointConfigurationForObjectLambdaOutput, error) {
+	req, out := c.PutAccessPointConfigurationForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// PutAccessPointConfigurationForObjectLambdaWithContext is the same as PutAccessPointConfigurationForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccessPointConfigurationForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutAccessPointConfigurationForObjectLambdaWithContext(ctx aws.Context, input *PutAccessPointConfigurationForObjectLambdaInput, opts ...request.Option) (*PutAccessPointConfigurationForObjectLambdaOutput, error) {
+	req, out := c.PutAccessPointConfigurationForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutAccessPointPolicy = "PutAccessPointPolicy"
 
 // PutAccessPointPolicyRequest generates a "aws/request.Request" representing the
@@ -3130,6 +3926,91 @@ func (c *S3Control) PutAccessPointPolicyWithContext(ctx aws.Context, input *PutA
 	return out, req.Send()
 }
 
+const opPutAccessPointPolicyForObjectLambda = "PutAccessPointPolicyForObjectLambda"
+
+// PutAccessPointPolicyForObjectLambdaRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccessPointPolicyForObjectLambda operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccessPointPolicyForObjectLambda for more information on using the PutAccessPointPolicyForObjectLambda
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccessPointPolicyForObjectLambdaRequest method.
+//    req, resp := client.PutAccessPointPolicyForObjectLambdaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessPointPolicyForObjectLambda
+func (c *S3Control) PutAccessPointPolicyForObjectLambdaRequest(input *PutAccessPointPolicyForObjectLambdaInput) (req *request.Request, output *PutAccessPointPolicyForObjectLambdaOutput) {
+	op := &request.Operation{
+		Name:       opPutAccessPointPolicyForObjectLambda,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/accesspointforobjectlambda/{name}/policy",
+	}
+
+	if input == nil {
+		input = &PutAccessPointPolicyForObjectLambdaInput{}
+	}
+
+	output = &PutAccessPointPolicyForObjectLambdaOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// PutAccessPointPolicyForObjectLambda API operation for AWS S3 Control.
+//
+// Creates or replaces resource policy for an Object Lambda Access Point. For
+// an example policy, see Creating Object Lambda Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/olap-create.html#olap-create-cli)
+// in the Amazon Simple Storage Service User Guide.
+//
+// The following actions are related to PutAccessPointPolicyForObjectLambda:
+//
+//    * DeleteAccessPointPolicyForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicyForObjectLambda.html)
+//
+//    * GetAccessPointPolicyForObjectLambda (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicyForObjectLambda.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutAccessPointPolicyForObjectLambda for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutAccessPointPolicyForObjectLambda
+func (c *S3Control) PutAccessPointPolicyForObjectLambda(input *PutAccessPointPolicyForObjectLambdaInput) (*PutAccessPointPolicyForObjectLambdaOutput, error) {
+	req, out := c.PutAccessPointPolicyForObjectLambdaRequest(input)
+	return out, req.Send()
+}
+
+// PutAccessPointPolicyForObjectLambdaWithContext is the same as PutAccessPointPolicyForObjectLambda with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccessPointPolicyForObjectLambda for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutAccessPointPolicyForObjectLambdaWithContext(ctx aws.Context, input *PutAccessPointPolicyForObjectLambdaInput, opts ...request.Option) (*PutAccessPointPolicyForObjectLambdaOutput, error) {
+	req, out := c.PutAccessPointPolicyForObjectLambdaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBucketLifecycleConfiguration = "PutBucketLifecycleConfiguration"
 
 // PutBucketLifecycleConfigurationRequest generates a "aws/request.Request" representing the
@@ -3190,11 +4071,10 @@ func (c *S3Control) PutBucketLifecycleConfigurationRequest(input *PutBucketLifec
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
 // in the Amazon Simple Storage Service API.
 //
-// Creates a new lifecycle configuration for the Outposts bucket or replaces
+// Creates a new lifecycle configuration for the S3 on Outposts bucket or replaces
 // an existing lifecycle configuration. Outposts buckets only support lifecycle
 // configurations that delete/expire objects after a certain period of time
-// and abort incomplete multipart uploads. For more information, see Managing
-// Lifecycle Permissions for Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html).
+// and abort incomplete multipart uploads.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
 // parameter of x-amz-outpost-id to be passed with the request and an S3 on
@@ -3298,7 +4178,7 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // in the Amazon Simple Storage Service API.
 //
 // Applies an Amazon S3 bucket policy to an Outposts bucket. For more information,
-// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon Simple Storage Service User Guide.
 //
 // If you are using an identity other than the root user of the AWS account
@@ -3419,8 +4299,8 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // an S3 bucket, see PutBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
 // in the Amazon Simple Storage Service API.
 //
-// Sets the tags for an Outposts bucket. For more information, see Using Amazon
-// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// Sets the tags for an S3 on Outposts bucket. For more information, see Using
+// Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon Simple Storage Service User Guide.
 //
 // Use tags to organize your AWS bill to reflect your own cost structure. To
@@ -3429,17 +4309,17 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // according to resources with the same tag key values. For example, you can
 // tag several resources with a specific application name, and then organize
 // your billing information to see the total cost of that application across
-// several services. For more information, see Cost Allocation and Tagging (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
+// several services. For more information, see Cost allocation and tagging (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
 //
 // Within a bucket, if you add a tag that has the same key as an existing tag,
-// the new value overwrites the old value. For more information, see Using Cost
-// Allocation in Amazon S3 Bucket Tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/CostAllocTagging.html).
+// the new value overwrites the old value. For more information, see Using cost
+// allocation in Amazon S3 bucket tags (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CostAllocTagging.html).
 //
 // To use this action, you must have permissions to perform the s3-outposts:PutBucketTagging
 // action. The Outposts bucket owner has this permission by default and can
 // grant this permission to others. For more information about permissions,
-// see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
-// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html).
+// see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
+// and Managing access permissions to your Amazon S3 resources (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-access-control.html).
 //
 // PutBucketTagging has the following special errors:
 //
@@ -4253,6 +5133,59 @@ func (s *ActivityMetrics) SetIsEnabled(v bool) *ActivityMetrics {
 	return s
 }
 
+// AWS Lambda function used to transform objects through an Object Lambda Access
+// Point.
+type AwsLambdaTransformation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AWS Lambda function.
+	//
+	// FunctionArn is a required field
+	FunctionArn *string `min:"1" type:"string" required:"true"`
+
+	// Additional JSON that provides supplemental data to the Lambda function used
+	// to transform objects.
+	FunctionPayload *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsLambdaTransformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsLambdaTransformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AwsLambdaTransformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AwsLambdaTransformation"}
+	if s.FunctionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionArn"))
+	}
+	if s.FunctionArn != nil && len(*s.FunctionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *AwsLambdaTransformation) SetFunctionArn(v string) *AwsLambdaTransformation {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionPayload sets the FunctionPayload field's value.
+func (s *AwsLambdaTransformation) SetFunctionPayload(v string) *AwsLambdaTransformation {
+	s.FunctionPayload = &v
+	return s
+}
+
 // A container for the bucket-level configuration.
 type BucketLevel struct {
 	_ struct{} `type:"structure"`
@@ -4298,6 +5231,112 @@ func (s *BucketLevel) SetActivityMetrics(v *ActivityMetrics) *BucketLevel {
 // SetPrefixLevel sets the PrefixLevel field's value.
 func (s *BucketLevel) SetPrefixLevel(v *PrefixLevel) *BucketLevel {
 	s.PrefixLevel = v
+	return s
+}
+
+type CreateAccessPointForObjectLambdaInput struct {
+	_ struct{} `locationName:"CreateAccessPointForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The AWS account ID for owner of the specified Object Lambda Access Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Object Lambda Access Point configuration as a JSON document.
+	//
+	// Configuration is a required field
+	Configuration *ObjectLambdaConfiguration `type:"structure" required:"true"`
+
+	// The name you want to assign to this Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAccessPointForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessPointForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessPointForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessPointForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateAccessPointForObjectLambdaInput) SetAccountId(v string) *CreateAccessPointForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateAccessPointForObjectLambdaInput) SetConfiguration(v *ObjectLambdaConfiguration) *CreateAccessPointForObjectLambdaInput {
+	s.Configuration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAccessPointForObjectLambdaInput) SetName(v string) *CreateAccessPointForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *CreateAccessPointForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type CreateAccessPointForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ARN for the Object Lambda Access Point.
+	ObjectLambdaAccessPointArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAccessPointForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessPointForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+// SetObjectLambdaAccessPointArn sets the ObjectLambdaAccessPointArn field's value.
+func (s *CreateAccessPointForObjectLambdaOutput) SetObjectLambdaAccessPointArn(v string) *CreateAccessPointForObjectLambdaOutput {
+	s.ObjectLambdaAccessPointArn = &v
 	return s
 }
 
@@ -4939,6 +5978,85 @@ func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 	return s
 }
 
+type DeleteAccessPointForObjectLambdaInput struct {
+	_ struct{} `locationName:"DeleteAccessPointForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the access point you want to delete.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessPointForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessPointForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessPointForObjectLambdaInput) SetAccountId(v string) *DeleteAccessPointForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteAccessPointForObjectLambdaInput) SetName(v string) *DeleteAccessPointForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *DeleteAccessPointForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessPointForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteAccessPointInput struct {
 	_ struct{} `locationName:"DeleteAccessPointRequest" type:"structure"`
 
@@ -5065,6 +6183,86 @@ func (s DeleteAccessPointOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteAccessPointPolicyForObjectLambdaInput struct {
+	_ struct{} `locationName:"DeleteAccessPointPolicyForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Object Lambda Access Point you want to delete the policy
+	// for.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointPolicyForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointPolicyForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessPointPolicyForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessPointPolicyForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteAccessPointPolicyForObjectLambdaInput) SetAccountId(v string) *DeleteAccessPointPolicyForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteAccessPointPolicyForObjectLambdaInput) SetName(v string) *DeleteAccessPointPolicyForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *DeleteAccessPointPolicyForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteAccessPointPolicyForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessPointPolicyForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessPointPolicyForObjectLambdaOutput) GoString() string {
 	return s.String()
 }
 
@@ -6126,6 +7324,202 @@ func (s *Exclude) SetRegions(v []*string) *Exclude {
 	return s
 }
 
+type GetAccessPointConfigurationForObjectLambdaInput struct {
+	_ struct{} `locationName:"GetAccessPointConfigurationForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Object Lambda Access Point you want to return the configuration
+	// for.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointConfigurationForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointConfigurationForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointConfigurationForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointConfigurationForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointConfigurationForObjectLambdaInput) SetAccountId(v string) *GetAccessPointConfigurationForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointConfigurationForObjectLambdaInput) SetName(v string) *GetAccessPointConfigurationForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointConfigurationForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointConfigurationForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Object Lambda Access Point configuration document.
+	Configuration *ObjectLambdaConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessPointConfigurationForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointConfigurationForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *GetAccessPointConfigurationForObjectLambdaOutput) SetConfiguration(v *ObjectLambdaConfiguration) *GetAccessPointConfigurationForObjectLambdaOutput {
+	s.Configuration = v
+	return s
+}
+
+type GetAccessPointForObjectLambdaInput struct {
+	_ struct{} `locationName:"GetAccessPointForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointForObjectLambdaInput) SetAccountId(v string) *GetAccessPointForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointForObjectLambdaInput) SetName(v string) *GetAccessPointForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the specified Object Lambda Access Point was created.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// The name of the Object Lambda Access Point.
+	Name *string `min:"3" type:"string"`
+
+	// Configuration to block all public access. This setting is turned on and can
+	// not be edited.
+	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessPointForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetAccessPointForObjectLambdaOutput) SetCreationDate(v time.Time) *GetAccessPointForObjectLambdaOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointForObjectLambdaOutput) SetName(v string) *GetAccessPointForObjectLambdaOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPublicAccessBlockConfiguration sets the PublicAccessBlockConfiguration field's value.
+func (s *GetAccessPointForObjectLambdaOutput) SetPublicAccessBlockConfiguration(v *PublicAccessBlockConfiguration) *GetAccessPointForObjectLambdaOutput {
+	s.PublicAccessBlockConfiguration = v
+	return s
+}
+
 type GetAccessPointInput struct {
 	_ struct{} `locationName:"GetAccessPointRequest" type:"structure"`
 
@@ -6323,6 +7717,94 @@ func (s *GetAccessPointOutput) SetVpcConfiguration(v *VpcConfiguration) *GetAcce
 	return s
 }
 
+type GetAccessPointPolicyForObjectLambdaInput struct {
+	_ struct{} `locationName:"GetAccessPointPolicyForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointPolicyForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointPolicyForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointPolicyForObjectLambdaInput) SetAccountId(v string) *GetAccessPointPolicyForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointPolicyForObjectLambdaInput) SetName(v string) *GetAccessPointPolicyForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointPolicyForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointPolicyForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Object Lambda Access Point resource policy document.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetAccessPointPolicyForObjectLambdaOutput) SetPolicy(v string) *GetAccessPointPolicyForObjectLambdaOutput {
+	s.Policy = &v
+	return s
+}
+
 type GetAccessPointPolicyInput struct {
 	_ struct{} `locationName:"GetAccessPointPolicyRequest" type:"structure"`
 
@@ -6458,6 +7940,97 @@ func (s GetAccessPointPolicyOutput) GoString() string {
 // SetPolicy sets the Policy field's value.
 func (s *GetAccessPointPolicyOutput) SetPolicy(v string) *GetAccessPointPolicyOutput {
 	s.Policy = &v
+	return s
+}
+
+type GetAccessPointPolicyStatusForObjectLambdaInput struct {
+	_ struct{} `locationName:"GetAccessPointPolicyStatusForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyStatusForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyStatusForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAccessPointPolicyStatusForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAccessPointPolicyStatusForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetAccessPointPolicyStatusForObjectLambdaInput) SetAccountId(v string) *GetAccessPointPolicyStatusForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetAccessPointPolicyStatusForObjectLambdaInput) SetName(v string) *GetAccessPointPolicyStatusForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetAccessPointPolicyStatusForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetAccessPointPolicyStatusForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether this access point policy is public. For more information
+	// about how Amazon S3 evaluates policies to determine whether they are public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon Simple Storage Service User Guide.
+	PolicyStatus *PolicyStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessPointPolicyStatusForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessPointPolicyStatusForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicyStatus sets the PolicyStatus field's value.
+func (s *GetAccessPointPolicyStatusForObjectLambdaOutput) SetPolicyStatus(v *PolicyStatus) *GetAccessPointPolicyStatusForObjectLambdaOutput {
+	s.PolicyStatus = v
 	return s
 }
 
@@ -8614,6 +10187,114 @@ func (s *LifecycleRuleFilter) SetTag(v *S3Tag) *LifecycleRuleFilter {
 	return s
 }
 
+type ListAccessPointsForObjectLambdaInput struct {
+	_ struct{} `locationName:"ListAccessPointsForObjectLambdaRequest" type:"structure"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The maximum number of access points that you want to include in the list.
+	// If there are more than this number of access points, then the response will
+	// include a continuation token in the NextToken field that you can use to retrieve
+	// the next page of access points.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// If the list has more access points than can be returned in one call to this
+	// API, this field contains a continuation token that you can provide in subsequent
+	// calls to this API to retrieve additional access points.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAccessPointsForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPointsForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessPointsForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessPointsForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAccessPointsForObjectLambdaInput) SetAccountId(v string) *ListAccessPointsForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessPointsForObjectLambdaInput) SetMaxResults(v int64) *ListAccessPointsForObjectLambdaInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPointsForObjectLambdaInput) SetNextToken(v string) *ListAccessPointsForObjectLambdaInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListAccessPointsForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListAccessPointsForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the list has more access points than can be returned in one call to this
+	// API, this field contains a continuation token that you can provide in subsequent
+	// calls to this API to retrieve additional access points.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returns list of Object Lambda Access Points.
+	ObjectLambdaAccessPointList []*ObjectLambdaAccessPoint `locationNameList:"ObjectLambdaAccessPoint" type:"list"`
+}
+
+// String returns the string representation
+func (s ListAccessPointsForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessPointsForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessPointsForObjectLambdaOutput) SetNextToken(v string) *ListAccessPointsForObjectLambdaOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetObjectLambdaAccessPointList sets the ObjectLambdaAccessPointList field's value.
+func (s *ListAccessPointsForObjectLambdaOutput) SetObjectLambdaAccessPointList(v []*ObjectLambdaAccessPoint) *ListAccessPointsForObjectLambdaOutput {
+	s.ObjectLambdaAccessPointList = v
+	return s
+}
+
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
@@ -9244,6 +10925,225 @@ func (s *NoncurrentVersionTransition) SetStorageClass(v string) *NoncurrentVersi
 	return s
 }
 
+// An access point with an attached AWS Lambda function used to access transformed
+// data from an Amazon S3 bucket.
+type ObjectLambdaAccessPoint struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `min:"3" type:"string" required:"true"`
+
+	// Specifies the ARN for the Object Lambda Access Point.
+	ObjectLambdaAccessPointArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ObjectLambdaAccessPoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectLambdaAccessPoint) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *ObjectLambdaAccessPoint) SetName(v string) *ObjectLambdaAccessPoint {
+	s.Name = &v
+	return s
+}
+
+// SetObjectLambdaAccessPointArn sets the ObjectLambdaAccessPointArn field's value.
+func (s *ObjectLambdaAccessPoint) SetObjectLambdaAccessPointArn(v string) *ObjectLambdaAccessPoint {
+	s.ObjectLambdaAccessPointArn = &v
+	return s
+}
+
+// A configuration used when creating an Object Lambda Access Point.
+type ObjectLambdaConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A container for allowed features. Valid inputs are GetObject-Range and GetObject-PartNumber.
+	AllowedFeatures []*string `locationNameList:"AllowedFeature" type:"list"`
+
+	// A container for whether the CloudWatch metrics configuration is enabled.
+	CloudWatchMetricsEnabled *bool `type:"boolean"`
+
+	// Standard access point associated with the Object Lambda Access Point.
+	//
+	// SupportingAccessPoint is a required field
+	SupportingAccessPoint *string `min:"1" type:"string" required:"true"`
+
+	// A container for transformation configurations for an Object Lambda Access
+	// Point.
+	//
+	// TransformationConfigurations is a required field
+	TransformationConfigurations []*ObjectLambdaTransformationConfiguration `locationNameList:"TransformationConfiguration" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ObjectLambdaConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectLambdaConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ObjectLambdaConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ObjectLambdaConfiguration"}
+	if s.SupportingAccessPoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("SupportingAccessPoint"))
+	}
+	if s.SupportingAccessPoint != nil && len(*s.SupportingAccessPoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportingAccessPoint", 1))
+	}
+	if s.TransformationConfigurations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransformationConfigurations"))
+	}
+	if s.TransformationConfigurations != nil {
+		for i, v := range s.TransformationConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TransformationConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedFeatures sets the AllowedFeatures field's value.
+func (s *ObjectLambdaConfiguration) SetAllowedFeatures(v []*string) *ObjectLambdaConfiguration {
+	s.AllowedFeatures = v
+	return s
+}
+
+// SetCloudWatchMetricsEnabled sets the CloudWatchMetricsEnabled field's value.
+func (s *ObjectLambdaConfiguration) SetCloudWatchMetricsEnabled(v bool) *ObjectLambdaConfiguration {
+	s.CloudWatchMetricsEnabled = &v
+	return s
+}
+
+// SetSupportingAccessPoint sets the SupportingAccessPoint field's value.
+func (s *ObjectLambdaConfiguration) SetSupportingAccessPoint(v string) *ObjectLambdaConfiguration {
+	s.SupportingAccessPoint = &v
+	return s
+}
+
+// SetTransformationConfigurations sets the TransformationConfigurations field's value.
+func (s *ObjectLambdaConfiguration) SetTransformationConfigurations(v []*ObjectLambdaTransformationConfiguration) *ObjectLambdaConfiguration {
+	s.TransformationConfigurations = v
+	return s
+}
+
+// A container for AwsLambdaTransformation.
+type ObjectLambdaContentTransformation struct {
+	_ struct{} `type:"structure"`
+
+	// A container for an AWS Lambda function.
+	AwsLambda *AwsLambdaTransformation `type:"structure"`
+}
+
+// String returns the string representation
+func (s ObjectLambdaContentTransformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectLambdaContentTransformation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ObjectLambdaContentTransformation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ObjectLambdaContentTransformation"}
+	if s.AwsLambda != nil {
+		if err := s.AwsLambda.Validate(); err != nil {
+			invalidParams.AddNested("AwsLambda", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsLambda sets the AwsLambda field's value.
+func (s *ObjectLambdaContentTransformation) SetAwsLambda(v *AwsLambdaTransformation) *ObjectLambdaContentTransformation {
+	s.AwsLambda = v
+	return s
+}
+
+// A configuration used when creating an Object Lambda Access Point transformation.
+type ObjectLambdaTransformationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the action of an Object Lambda Access Point configuration.
+	//
+	// Actions is a required field
+	Actions []*string `locationNameList:"Action" type:"list" required:"true"`
+
+	// A container for the content transformation of an Object Lambda Access Point
+	// configuration.
+	//
+	// ContentTransformation is a required field
+	ContentTransformation *ObjectLambdaContentTransformation `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ObjectLambdaTransformationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectLambdaTransformationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ObjectLambdaTransformationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ObjectLambdaTransformationConfiguration"}
+	if s.Actions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Actions"))
+	}
+	if s.ContentTransformation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentTransformation"))
+	}
+	if s.ContentTransformation != nil {
+		if err := s.ContentTransformation.Validate(); err != nil {
+			invalidParams.AddNested("ContentTransformation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActions sets the Actions field's value.
+func (s *ObjectLambdaTransformationConfiguration) SetActions(v []*string) *ObjectLambdaTransformationConfiguration {
+	s.Actions = v
+	return s
+}
+
+// SetContentTransformation sets the ContentTransformation field's value.
+func (s *ObjectLambdaTransformationConfiguration) SetContentTransformation(v *ObjectLambdaContentTransformation) *ObjectLambdaTransformationConfiguration {
+	s.ContentTransformation = v
+	return s
+}
+
 // Indicates whether this access point policy is public. For more information
 // about how Amazon S3 evaluates policies to determine whether they are public,
 // see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
@@ -9453,6 +11353,197 @@ func (s *PublicAccessBlockConfiguration) SetRestrictPublicBuckets(v bool) *Publi
 	return s
 }
 
+type PutAccessPointConfigurationForObjectLambdaInput struct {
+	_ struct{} `locationName:"PutAccessPointConfigurationForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Object Lambda Access Point configuration document.
+	//
+	// Configuration is a required field
+	Configuration *ObjectLambdaConfiguration `type:"structure" required:"true"`
+
+	// The name of the Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAccessPointConfigurationForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessPointConfigurationForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccessPointConfigurationForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccessPointConfigurationForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("Configuration"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutAccessPointConfigurationForObjectLambdaInput) SetAccountId(v string) *PutAccessPointConfigurationForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *PutAccessPointConfigurationForObjectLambdaInput) SetConfiguration(v *ObjectLambdaConfiguration) *PutAccessPointConfigurationForObjectLambdaInput {
+	s.Configuration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutAccessPointConfigurationForObjectLambdaInput) SetName(v string) *PutAccessPointConfigurationForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+func (s *PutAccessPointConfigurationForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type PutAccessPointConfigurationForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccessPointConfigurationForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessPointConfigurationForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
+type PutAccessPointPolicyForObjectLambdaInput struct {
+	_ struct{} `locationName:"PutAccessPointPolicyForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The account ID for the account that owns the specified Object Lambda Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Object Lambda Access Point.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// Object Lambda Access Point resource policy document.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAccessPointPolicyForObjectLambdaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessPointPolicyForObjectLambdaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccessPointPolicyForObjectLambdaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccessPointPolicyForObjectLambdaInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 3))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutAccessPointPolicyForObjectLambdaInput) SetAccountId(v string) *PutAccessPointPolicyForObjectLambdaInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutAccessPointPolicyForObjectLambdaInput) SetName(v string) *PutAccessPointPolicyForObjectLambdaInput {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutAccessPointPolicyForObjectLambdaInput) SetPolicy(v string) *PutAccessPointPolicyForObjectLambdaInput {
+	s.Policy = &v
+	return s
+}
+
+func (s *PutAccessPointPolicyForObjectLambdaInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type PutAccessPointPolicyForObjectLambdaOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccessPointPolicyForObjectLambdaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccessPointPolicyForObjectLambdaOutput) GoString() string {
+	return s.String()
+}
+
 type PutAccessPointPolicyInput struct {
 	_ struct{} `locationName:"PutAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
@@ -9480,7 +11571,7 @@ type PutAccessPointPolicyInput struct {
 
 	// The policy that you want to apply to the specified access point. For more
 	// information about access point policies, see Managing data access with Amazon
-	// S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
+	// S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html)
 	// in the Amazon Simple Storage Service User Guide.
 	//
 	// Policy is a required field
@@ -12652,6 +14743,34 @@ func NetworkOrigin_Values() []string {
 	return []string{
 		NetworkOriginInternet,
 		NetworkOriginVpc,
+	}
+}
+
+const (
+	// ObjectLambdaAllowedFeatureGetObjectRange is a ObjectLambdaAllowedFeature enum value
+	ObjectLambdaAllowedFeatureGetObjectRange = "GetObject-Range"
+
+	// ObjectLambdaAllowedFeatureGetObjectPartNumber is a ObjectLambdaAllowedFeature enum value
+	ObjectLambdaAllowedFeatureGetObjectPartNumber = "GetObject-PartNumber"
+)
+
+// ObjectLambdaAllowedFeature_Values returns all elements of the ObjectLambdaAllowedFeature enum
+func ObjectLambdaAllowedFeature_Values() []string {
+	return []string{
+		ObjectLambdaAllowedFeatureGetObjectRange,
+		ObjectLambdaAllowedFeatureGetObjectPartNumber,
+	}
+}
+
+const (
+	// ObjectLambdaTransformationConfigurationActionGetObject is a ObjectLambdaTransformationConfigurationAction enum value
+	ObjectLambdaTransformationConfigurationActionGetObject = "GetObject"
+)
+
+// ObjectLambdaTransformationConfigurationAction_Values returns all elements of the ObjectLambdaTransformationConfigurationAction enum
+func ObjectLambdaTransformationConfigurationAction_Values() []string {
+	return []string{
+		ObjectLambdaTransformationConfigurationActionGetObject,
 	}
 }
 
