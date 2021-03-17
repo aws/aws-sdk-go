@@ -566,8 +566,7 @@
       "type":"structure",
       "required":[
         "computeEnvironmentName",
-        "type",
-        "serviceRole"
+        "type"
       ],
       "members":{
         "computeEnvironmentName":{"shape":"String"},

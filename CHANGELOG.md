@@ -1,3 +1,12 @@
+Release v1.37.33 (2021-03-17)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Making serviceRole an optional parameter when creating a compute environment. If serviceRole is not provided then Service Linked Role will be created (or reused if it already exists).
+* `service/sagemaker`: Updates service API and documentation
+  * Support new target device ml_eia2 in SageMaker CreateCompilationJob API
+
 Release v1.37.32 (2021-03-16)
 ===
 
