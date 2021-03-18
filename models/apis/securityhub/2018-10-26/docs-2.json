@@ -5,7 +5,7 @@
     "AcceptInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub master account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the master account to view findings generated in the member account.</p>",
     "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
-    "BatchImportFindings": "<p>Imports security findings generated from an integrated third-party product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p> <code>BatchImportFindings</code> can be used to update the following finding fields and objects only if they have not been updated using <code>BatchUpdateFindings</code>. After they are updated using <code>BatchUpdateFindings</code>, these fields cannot be updated using <code>BatchImportFindings</code>.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> </ul>",
+    "BatchImportFindings": "<p>Imports security findings generated from an integrated product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Finding providers also should not use <code>BatchImportFindings</code> to update the following attributes.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> </ul> <p>Instead, finding providers use <code>FindingProviderFields</code> to provide values for these attributes.</p>",
     "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by master accounts or member accounts. Master accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Master and member accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access\">Configuring access to BatchUpdateFindings</a> in the <i>AWS Security Hub User Guide</i>.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
@@ -1447,6 +1447,13 @@
         "AwsRedshiftClusterDetails$VpcSecurityGroups": "<p>The list of VPC security groups that the cluster belongs to, if the cluster is in a VPC.</p>"
       }
     },
+    "AwsS3AccountPublicAccessBlockDetails": {
+      "base": "<p>provides information about the Amazon S3 Public Access Block configuration for accounts.</p>",
+      "refs": {
+        "AwsS3BucketDetails$PublicAccessBlockConfiguration": "<p>Provides information about the Amazon S3 Public Access Block configuration for the S3 bucket.</p>",
+        "ResourceDetails$AwsS3AccountPublicAccessBlock": "<p>Details about the Amazon S3 Public Access Block configuration for an account.</p>"
+      }
+    },
     "AwsS3BucketDetails": {
       "base": "<p>The details of an Amazon S3 bucket.</p>",
       "refs": {
@@ -1498,7 +1505,8 @@
     "AwsSecurityFinding": {
       "base": "<p>Provides consistent format for the contents of the Security Hub-aggregated findings. <code>AwsSecurityFinding</code> format enables you to share findings between AWS security services and third-party solutions, and security standards checks.</p> <note> <p>A finding is a potential security issue generated either by AWS services (Amazon GuardDuty, Amazon Inspector, and Amazon Macie) or by the integrated third-party solutions and standards checks.</p> </note>",
       "refs": {
-        "AwsSecurityFindingList$member": null
+        "AwsSecurityFindingList$member": null,
+        "BatchImportFindingsRequestFindingList$member": null
       }
     },
     "AwsSecurityFindingFilters": {
@@ -1528,7 +1536,6 @@
     "AwsSecurityFindingList": {
       "base": null,
       "refs": {
-        "BatchImportFindingsRequest$Findings": "<p>A list of findings to import. To successfully import a finding, it must follow the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">AWS Security Finding Format</a>. Maximum of 100 findings per request.</p>",
         "GetFindingsResponse$Findings": "<p>The findings that matched the filters specified in the request.</p>"
       }
     },
@@ -1615,6 +1622,12 @@
     "BatchImportFindingsRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "BatchImportFindingsRequestFindingList": {
+      "base": null,
+      "refs": {
+        "BatchImportFindingsRequest$Findings": "<p>A list of findings to import. To successfully import a finding, it must follow the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format.html\">AWS Security Finding Format</a>. Maximum of 100 findings per request.</p>"
       }
     },
     "BatchImportFindingsResponse": {
@@ -1713,9 +1726,14 @@
         "AwsRedshiftClusterPendingModifiedValues$EnhancedVpcRouting": "<p>Indicates whether to create the cluster with enhanced VPC routing enabled.</p>",
         "AwsRedshiftClusterPendingModifiedValues$PubliclyAccessible": "<p>The pending or in-progress change to whether the cluster can be connected to from the public network.</p>",
         "AwsRedshiftClusterResizeInfo$AllowCancelResize": "<p>Indicates whether the resize operation can be canceled.</p>",
+        "AwsS3AccountPublicAccessBlockDetails$BlockPublicAcls": "<p>Indicates whether to reject calls to update an S3 bucket if the calls include a public access control list (ACL).</p>",
+        "AwsS3AccountPublicAccessBlockDetails$BlockPublicPolicy": "<p>Indicates whether to reject calls to update the access policy for an S3 bucket or access point if the policy allows public access.</p>",
+        "AwsS3AccountPublicAccessBlockDetails$IgnorePublicAcls": "<p>Indicates whether Amazon S3 ignores public ACLs that are associated with an S3 bucket.</p>",
+        "AwsS3AccountPublicAccessBlockDetails$RestrictPublicBuckets": "<p>Indicates whether to restrict access to an access point or S3 bucket that has a public policy to only AWS service principals and authorized users within the S3 bucket owner's account.</p>",
         "AwsSecretsManagerSecretDetails$RotationOccurredWithinFrequency": "<p>Whether the rotation occurred within the specified rotation frequency.</p>",
         "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
         "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
+        "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>If set to <code>true</code>, then Security Hub is enabled for new accounts. If set to false, then new accounts are not added automatically.</p>",
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account.</p>",
@@ -1735,6 +1753,18 @@
         "Product$Categories": "<p>The categories assigned to the product.</p>"
       }
     },
+    "Cell": {
+      "base": "<p>An occurrence of sensitive data detected in a Microsoft Excel workbook, comma-separated value (CSV) file, or tab-separated value (TSV) file.</p>",
+      "refs": {
+        "Cells$member": null
+      }
+    },
+    "Cells": {
+      "base": null,
+      "refs": {
+        "Occurrences$Cells": "<p>Occurrences of sensitive data detected in Microsoft Excel workbooks, comma-separated value (CSV) files, or tab-separated value (TSV) files.</p>"
+      }
+    },
     "CidrBlockAssociation": {
       "base": "<p>An IPv4 CIDR block association.</p>",
       "refs": {
@@ -1751,6 +1781,18 @@
       "base": "<p>Information about a city.</p>",
       "refs": {
         "ActionRemoteIpDetails$City": "<p>The city where the remote IP address is located.</p>"
+      }
+    },
+    "ClassificationResult": {
+      "base": "<p>Details about the sensitive data that was detected on the resource.</p>",
+      "refs": {
+        "DataClassificationDetails$Result": "<p>The details about the sensitive data that was detected on the resource.</p>"
+      }
+    },
+    "ClassificationStatus": {
+      "base": "<p>Provides details about the current status of the sensitive data detection.</p>",
+      "refs": {
+        "ClassificationResult$Status": "<p>The current status of the sensitive data detection.</p>"
       }
     },
     "Compliance": {
@@ -1821,6 +1863,24 @@
         "ListMembersRequest$MaxResults": "<p>The maximum number of items to return in the response. </p>"
       }
     },
+    "CustomDataIdentifiersDetections": {
+      "base": "<p>The list of detected instances of sensitive data.</p>",
+      "refs": {
+        "CustomDataIdentifiersDetectionsList$member": null
+      }
+    },
+    "CustomDataIdentifiersDetectionsList": {
+      "base": null,
+      "refs": {
+        "CustomDataIdentifiersResult$Detections": "<p>The list of detected instances of sensitive data.</p>"
+      }
+    },
+    "CustomDataIdentifiersResult": {
+      "base": "<p>Contains an instance of sensitive data that was detected by a customer-defined identifier.</p>",
+      "refs": {
+        "ClassificationResult$CustomDataIdentifiers": "<p>Provides details about sensitive data that was identified based on customer-defined configuration.</p>"
+      }
+    },
     "Cvss": {
       "base": "<p>CVSS scores from the advisory related to the vulnerability.</p>",
       "refs": {
@@ -1831,6 +1891,12 @@
       "base": null,
       "refs": {
         "Vulnerability$Cvss": "<p>CVSS scores from the advisory related to the vulnerability.</p>"
+      }
+    },
+    "DataClassificationDetails": {
+      "base": "<p>Provides details about sensitive data that was detected on a resource.</p>",
+      "refs": {
+        "Resource$DataClassification": "<p>Contains information about sensitive data that was detected on the resource.</p>"
       }
     },
     "DateFilter": {
@@ -2095,6 +2161,18 @@
         "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
         "Resource$Tags": "<p>A list of AWS tags associated with a resource at the time the finding was processed.</p>",
         "ResourceDetails$Other": "<p>Details about a resource that are not available in a type-specific details object. Use the <code>Other</code> object in the following cases.</p> <ul> <li> <p>The type-specific object does not contain all of the fields that you want to populate. In this case, first use the type-specific object to populate those fields. Use the <code>Other</code> object to populate the fields that are missing from the type-specific object.</p> </li> <li> <p>The resource type does not have a corresponding object. This includes resources for which the type is <code>Other</code>. </p> </li> </ul>"
+      }
+    },
+    "FindingProviderFields": {
+      "base": "<p>In a <code>BatchImportFindings</code> request, finding providers use <code>FindingProviderFields</code> to provide and update values for confidence, criticality, related findings, severity, and types.</p>",
+      "refs": {
+        "AwsSecurityFinding$FindingProviderFields": "<p>In a <code>BatchImportFindings</code> request, finding providers use <code>FindingProviderFields</code> to provide and update their own values for confidence, criticality, related findings, severity, and types.</p>"
+      }
+    },
+    "FindingProviderSeverity": {
+      "base": "<p>The severity assigned to the finding by the finding provider.</p>",
+      "refs": {
+        "FindingProviderFields$Severity": "<p>The severity of a finding.</p>"
       }
     },
     "GeoLocation": {
@@ -2490,7 +2568,19 @@
         "AwsRedshiftClusterRestoreStatus$ElapsedTimeInSeconds": "<p>The amount of time an in-progress restore has been running, or the amount of time it took a completed restore to finish.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "AwsRedshiftClusterRestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore is complete. Returns 0 for a completed restore.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "AwsRedshiftClusterRestoreStatus$ProgressInMegaBytes": "<p>The number of megabytes that were transferred from snapshot storage.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
-        "AwsRedshiftClusterRestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data that was used to restore the cluster.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>"
+        "AwsRedshiftClusterRestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data that was used to restore the cluster.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
+        "Cell$Column": "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, the column number corresponds to the alphabetical column identifiers. For example, a value of 1 for Column corresponds to the A column in the workbook.</p>",
+        "Cell$Row": "<p>The row number of the row that contains the data.</p>",
+        "ClassificationResult$SizeClassified": "<p>The total size in bytes of the affected data.</p>",
+        "CustomDataIdentifiersDetections$Count": "<p>The total number of occurrences of sensitive data that were detected.</p>",
+        "CustomDataIdentifiersResult$TotalCount": "<p>The total number of occurrences of sensitive data.</p>",
+        "Page$PageNumber": "<p>The page number of the page that contains the sensitive data.</p>",
+        "Range$Start": "<p>The number of lines (for a line range) or characters (for an offset range) from the beginning of the file to the end of the sensitive data.</p>",
+        "Range$End": "<p>The number of lines (for a line range) or characters (for an offset range) from the beginning of the file to the end of the sensitive data.</p>",
+        "Range$StartColumn": "<p>In the line where the sensitive data starts, the column within the line where the sensitive data starts.</p>",
+        "Record$RecordIndex": "<p>The record index, starting from 0, for the record that contains the data.</p>",
+        "SensitiveDataDetections$Count": "<p>The total number of occurrences of sensitive data that were detected.</p>",
+        "SensitiveDataResult$TotalCount": "<p>The total number of occurrences of sensitive data.</p>"
       }
     },
     "Malware": {
@@ -3191,10 +3281,15 @@
         "BatchUpdateFindingsUnprocessedFinding$ErrorCode": "<p>The code associated with the error.</p>",
         "BatchUpdateFindingsUnprocessedFinding$ErrorMessage": "<p>The message associated with the error.</p>",
         "CategoryList$member": null,
+        "Cell$ColumnName": "<p>The name of the column that contains the data.</p>",
+        "Cell$CellReference": "<p>For a Microsoft Excel workbook, provides the location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2.</p>",
         "CidrBlockAssociation$AssociationId": "<p>The association ID for the IPv4 CIDR block.</p>",
         "CidrBlockAssociation$CidrBlock": "<p>The IPv4 CIDR block.</p>",
         "CidrBlockAssociation$CidrBlockState": "<p>Information about the state of the IPv4 CIDR block.</p>",
         "City$CityName": "<p>The name of the city.</p>",
+        "ClassificationResult$MimeType": "<p>The type of content that the finding applies to.</p>",
+        "ClassificationStatus$Code": "<p>The code that represents the status of the sensitive data detection.</p>",
+        "ClassificationStatus$Reason": "<p>A longer description of the current status of the sensitive data detection.</p>",
         "ContainerDetails$Name": "<p>The name of the container related to a finding.</p>",
         "ContainerDetails$ImageId": "<p>The identifier of the image related to a finding.</p>",
         "ContainerDetails$ImageName": "<p>The name of the image related to a finding.</p>",
@@ -3208,8 +3303,11 @@
         "CreateInsightRequest$Name": "<p>The name of the custom insight to create.</p>",
         "CreateInsightRequest$GroupByAttribute": "<p>The attribute used to group the findings for the insight. The grouping attribute identifies the type of item that the insight applies to. For example, if an insight is grouped by resource identifier, then the insight produces a list of resource identifiers.</p>",
         "CreateInsightResponse$InsightArn": "<p>The ARN of the insight created.</p>",
+        "CustomDataIdentifiersDetections$Arn": "<p>The ARN of the custom identifier that was used to detect the sensitive data.</p>",
+        "CustomDataIdentifiersDetections$Name": "<p>he name of the custom identifier that detected the sensitive data.</p>",
         "Cvss$Version": "<p>The version of CVSS for the CVSS score.</p>",
         "Cvss$BaseVector": "<p>The base scoring vector for the CVSS score.</p>",
+        "DataClassificationDetails$DetailedResultsLocation": "<p>The path to the folder or file that contains the sensitive data.</p>",
         "DateFilter$Start": "<p>A start date for the date filter.</p>",
         "DateFilter$End": "<p>An end date for the date filter.</p>",
         "DeleteActionTargetRequest$ActionTargetArn": "<p>The ARN of the custom action target to delete.</p>",
@@ -3230,6 +3328,7 @@
         "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The AWS account identifier of the account to designate as the Security Hub administrator account.</p>",
         "FieldMap$key": null,
         "FieldMap$value": null,
+        "FindingProviderSeverity$Original": "<p>The finding provider's original value for the severity.</p>",
         "GetInsightResultsRequest$InsightArn": "<p>The ARN of the insight for which to return results.</p>",
         "ImportFindingsError$Id": "<p>The identifier of the finding that could not be updated.</p>",
         "ImportFindingsError$ErrorCode": "<p>The code of the error returned by the <code>BatchImportFindings</code> operation.</p>",
@@ -3307,6 +3406,7 @@
         "ProductSubscriptionArnList$member": null,
         "Recommendation$Text": "<p>Describes the recommended steps to take to remediate an issue identified in a finding.</p>",
         "Recommendation$Url": "<p>A URL to a page or site that contains information about how to remediate a finding.</p>",
+        "Record$JsonPath": "<p>The path, as a JSONPath expression, to the field in the record that contains the data. If the field name is longer than 20 characters, it is truncated. If the path is longer than 250 characters, it is truncated.</p>",
         "RelatedFinding$ProductArn": "<p>The ARN of the product that generated a related finding.</p>",
         "RelatedFinding$Id": "<p>The product-generated identifier for a related finding.</p>",
         "RelatedRequirementsList$member": null,
@@ -3320,6 +3420,8 @@
         "ResourceNotFoundException$Code": null,
         "Result$ProcessingResult": "<p>The reason that the account was not processed.</p>",
         "SecurityGroups$member": null,
+        "SensitiveDataDetections$Type": "<p>The type of sensitive data that was detected. For example, the type might indicate that the data is an email address.</p>",
+        "SensitiveDataResult$Category": "<p>The category of sensitive data that was detected. For example, the category can indicate that the sensitive data involved credentials, financial information, or personal information.</p>",
         "Severity$Original": "<p>The native severity from the finding product that generated the finding.</p>",
         "SoftwarePackage$Name": "<p>The name of the software package.</p>",
         "SoftwarePackage$Version": "<p>The version of the software package.</p>",
@@ -3418,7 +3520,28 @@
         "AwsSecurityFindingFilters$NetworkSourcePort": "<p>The source port of network-related information about a finding.</p>",
         "AwsSecurityFindingFilters$NetworkDestinationPort": "<p>The destination port of network-related information about a finding.</p>",
         "AwsSecurityFindingFilters$ProcessPid": "<p>The process ID.</p>",
-        "AwsSecurityFindingFilters$ProcessParentPid": "<p>The parent process ID.</p>"
+        "AwsSecurityFindingFilters$ProcessParentPid": "<p>The parent process ID.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsConfidence": "<p>The finding provider value for the finding confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsCriticality": "<p>The finding provider value for the level of importance assigned to the resources associated with the findings.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources. </p>"
+      }
+    },
+    "Occurrences": {
+      "base": "<p>The detected occurrences of sensitive data.</p>",
+      "refs": {
+        "CustomDataIdentifiersDetections$Occurrences": "<p>Details about the sensitive data that was detected.</p>",
+        "SensitiveDataDetections$Occurrences": "<p>Details about the sensitive data that was detected.</p>"
+      }
+    },
+    "Page": {
+      "base": "<p>An occurrence of sensitive data in an Adobe Portable Document Format (PDF) file.</p>",
+      "refs": {
+        "Pages$member": null
+      }
+    },
+    "Pages": {
+      "base": null,
+      "refs": {
+        "Occurrences$Pages": "<p>Occurrences of sensitive data in an Adobe Portable Document Format (PDF) file.</p>"
       }
     },
     "Partition": {
@@ -3488,11 +3611,28 @@
         "DescribeProductsResponse$Products": "<p>A list of products, including details for each product.</p>"
       }
     },
+    "Range": {
+      "base": "<p>Identifies where the sensitive data begins and ends.</p>",
+      "refs": {
+        "Page$LineRange": "<p>An occurrence of sensitive data detected in a non-binary text file or a Microsoft Word file. Non-binary text files include files such as HTML, XML, JSON, and TXT files.</p>",
+        "Page$OffsetRange": "<p>An occurrence of sensitive data detected in a binary text file.</p>",
+        "Ranges$member": null
+      }
+    },
+    "Ranges": {
+      "base": null,
+      "refs": {
+        "Occurrences$LineRanges": "<p>Occurrences of sensitive data detected in a non-binary text file or a Microsoft Word file. Non-binary text files include files such as HTML, XML, JSON, and TXT files.</p>",
+        "Occurrences$OffsetRanges": "<p>Occurrences of sensitive data detected in a binary text file.</p>"
+      }
+    },
     "RatioScale": {
       "base": null,
       "refs": {
         "BatchUpdateFindingsRequest$Confidence": "<p>The updated value for the finding confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "BatchUpdateFindingsRequest$Criticality": "<p>The updated value for the level of importance assigned to the resources associated with the findings.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources. </p>",
+        "FindingProviderFields$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
+        "FindingProviderFields$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
         "SeverityUpdate$Normalized": "<p>The normalized severity for the finding. This attribute is to be deprecated in favor of <code>Label</code>.</p> <p>If you provide <code>Normalized</code> and do not provide <code>Label</code>, <code>Label</code> is set automatically as follows.</p> <ul> <li> <p>0 - <code>INFORMATIONAL</code> </p> </li> <li> <p>1–39 - <code>LOW</code> </p> </li> <li> <p>40–69 - <code>MEDIUM</code> </p> </li> <li> <p>70–89 - <code>HIGH</code> </p> </li> <li> <p>90–100 - <code>CRITICAL</code> </p> </li> </ul>"
       }
     },
@@ -3502,11 +3642,23 @@
         "Remediation$Recommendation": "<p>A recommendation on the steps to take to remediate the issue identified by a finding.</p>"
       }
     },
+    "Record": {
+      "base": "<p>An occurrence of sensitive data in an Apache Avro object container or an Apache Parquet file.</p>",
+      "refs": {
+        "Records$member": null
+      }
+    },
     "RecordState": {
       "base": null,
       "refs": {
         "AwsSecurityFinding$RecordState": "<p>The record state of a finding.</p>",
         "UpdateFindingsRequest$RecordState": "<p>The updated record state for the finding.</p>"
+      }
+    },
+    "Records": {
+      "base": null,
+      "refs": {
+        "Occurrences$Records": "<p>Occurrences of sensitive data in an Apache Avro object container or an Apache Parquet file.</p>"
       }
     },
     "RelatedFinding": {
@@ -3519,7 +3671,8 @@
       "base": null,
       "refs": {
         "AwsSecurityFinding$RelatedFindings": "<p>A list of related findings.</p>",
-        "BatchUpdateFindingsRequest$RelatedFindings": "<p>A list of findings that are related to the updated findings.</p>"
+        "BatchUpdateFindingsRequest$RelatedFindings": "<p>A list of findings that are related to the updated findings.</p>",
+        "FindingProviderFields$RelatedFindings": "<p>A list of findings that are related to the current finding.</p>"
       }
     },
     "RelatedRequirementsList": {
@@ -3594,6 +3747,30 @@
         "AwsElbv2LoadBalancerDetails$SecurityGroups": "<p>The IDs of the security groups for the load balancer.</p>"
       }
     },
+    "SensitiveDataDetections": {
+      "base": "<p>The list of detected instances of sensitive data.</p>",
+      "refs": {
+        "SensitiveDataDetectionsList$member": null
+      }
+    },
+    "SensitiveDataDetectionsList": {
+      "base": null,
+      "refs": {
+        "SensitiveDataResult$Detections": "<p>The list of detected instances of sensitive data.</p>"
+      }
+    },
+    "SensitiveDataResult": {
+      "base": "<p>Contains a detected instance of sensitive data that are based on built-in identifiers.</p>",
+      "refs": {
+        "SensitiveDataResultList$member": null
+      }
+    },
+    "SensitiveDataResultList": {
+      "base": null,
+      "refs": {
+        "ClassificationResult$SensitiveData": "<p>Provides details about sensitive data that was identified based on built-in configuration.</p>"
+      }
+    },
     "Severity": {
       "base": "<p>The severity of the finding.</p> <p>The finding provider can provide the initial severity. The finding provider can only update the severity if it has not been updated using <code>BatchUpdateFindings</code>.</p> <p>The finding must have either <code>Label</code> or <code>Normalized</code> populated. If only one of these attributes is populated, then Security Hub automatically populates the other one. If neither attribute is populated, then the finding is invalid. <code>Label</code> is the preferred attribute.</p>",
       "refs": {
@@ -3603,6 +3780,7 @@
     "SeverityLabel": {
       "base": null,
       "refs": {
+        "FindingProviderSeverity$Label": "<p>The severity label assigned to the finding by the finding provider.</p>",
         "Severity$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul> <p>If you provide <code>Normalized</code> and do not provide <code>Label</code>, then <code>Label</code> is set automatically as follows. </p> <ul> <li> <p>0 - <code>INFORMATIONAL</code> </p> </li> <li> <p>1–39 - <code>LOW</code> </p> </li> <li> <p>40–69 - <code>MEDIUM</code> </p> </li> <li> <p>70–89 - <code>HIGH</code> </p> </li> <li> <p>90–100 - <code>CRITICAL</code> </p> </li> </ul>",
         "SeverityUpdate$Label": "<p>The severity value of the finding. The allowed values are the following.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - No issue was found.</p> </li> <li> <p> <code>LOW</code> - The issue does not require action on its own.</p> </li> <li> <p> <code>MEDIUM</code> - The issue must be addressed but not urgently.</p> </li> <li> <p> <code>HIGH</code> - The issue must be addressed as a priority.</p> </li> <li> <p> <code>CRITICAL</code> - The issue must be remediated immediately to avoid it escalating.</p> </li> </ul>"
       }
@@ -3806,7 +3984,12 @@
         "AwsSecurityFindingFilters$RelatedFindingsProductArn": "<p>The ARN of the solution that generated a related finding.</p>",
         "AwsSecurityFindingFilters$RelatedFindingsId": "<p>The solution-generated identifier for a related finding.</p>",
         "AwsSecurityFindingFilters$NoteText": "<p>The text of a note.</p>",
-        "AwsSecurityFindingFilters$NoteUpdatedBy": "<p>The principal that created a note.</p>"
+        "AwsSecurityFindingFilters$NoteUpdatedBy": "<p>The principal that created a note.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsRelatedFindingsId": "<p>The finding identifier of a related finding that is identified by the finding provider.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsRelatedFindingsProductArn": "<p>The ARN of the solution that generated a related finding that is identified by the finding provider.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsSeverityLabel": "<p>The finding provider value for the severity label.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsSeverityOriginal": "<p>The finding provider's original value for the severity.</p>",
+        "AwsSecurityFindingFilters$FindingProviderFieldsTypes": "<p>One or more finding types that the finding provider assigned to the finding. Uses the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>"
       }
     },
     "StringList": {
@@ -3917,7 +4100,8 @@
       "base": null,
       "refs": {
         "AwsSecurityFinding$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>",
-        "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>"
+        "BatchUpdateFindingsRequest$Types": "<p>One or more finding types in the format of namespace/category/classifier that classify a finding.</p> <p>Valid namespace values are as follows.</p> <ul> <li> <p>Software and Configuration Checks</p> </li> <li> <p>TTPs</p> </li> <li> <p>Effects</p> </li> <li> <p>Unusual Behaviors</p> </li> <li> <p>Sensitive Data Identifications </p> </li> </ul>",
+        "FindingProviderFields$Types": "<p>One or more finding types in the format of <code>namespace/category/classifier</code> that classify a finding.</p> <p>Valid namespace values are: Software and Configuration Checks | TTPs | Effects | Unusual Behaviors | Sensitive Data Identifications</p>"
       }
     },
     "UntagResourceRequest": {

@@ -1161,6 +1161,15 @@
       }
     },
     "CapacityRebalanceEnabled":{"type":"boolean"},
+    "CheckpointDelay":{
+      "type":"integer",
+      "max":172800,
+      "min":0
+    },
+    "CheckpointPercentages":{
+      "type":"list",
+      "member":{"shape":"NonZeroIntPercent"}
+    },
     "ClassicLinkVPCSecurityGroups":{
       "type":"list",
       "member":{"shape":"XmlStringMaxLen255"}
@@ -2084,6 +2093,11 @@
     },
     "MonitoringEnabled":{"type":"boolean"},
     "NoDevice":{"type":"boolean"},
+    "NonZeroIntPercent":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "NotificationConfiguration":{
       "type":"structure",
       "members":{
@@ -2267,7 +2281,9 @@
       "type":"structure",
       "members":{
         "MinHealthyPercentage":{"shape":"IntPercent"},
-        "InstanceWarmup":{"shape":"RefreshInstanceWarmup"}
+        "InstanceWarmup":{"shape":"RefreshInstanceWarmup"},
+        "CheckpointPercentages":{"shape":"CheckpointPercentages"},
+        "CheckpointDelay":{"shape":"CheckpointDelay"}
       }
     },
     "RefreshStrategy":{
