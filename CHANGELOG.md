@@ -25,6 +25,10 @@ Release v1.37.32 (2021-03-16)
 Release v1.37.31 (2021-03-15)
 ===
 
+### Announcement
+* The HEAD tracking branch of the repository has been renamed from `master` to `main`.
+  * Users using GOPATH to manage application dependencies need to remove the SDK from GOPATH and re-retrieve the SDK using `go get github.com/aws/aws-sdk-go`.
+
 ### Service Client Updates
 * `service/codedeploy`: Updates service API and documentation
   * AWS CodeDeploy can now detect instances running an outdated revision of your application and automatically update them with the latest revision.
