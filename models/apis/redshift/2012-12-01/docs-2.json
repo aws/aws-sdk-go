@@ -1356,7 +1356,7 @@
       "refs": {
         "BatchModifyClusterSnapshotsMessage$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If you specify the value -1, the manual snapshot is retained indefinitely.</p> <p>The number must be either -1 or an integer between 1 and 3,653.</p> <p>If you decrease the manual snapshot retention period from its current value, existing manual snapshots that fall outside of the new retention period will return an error. If you want to suppress the errors and delete the snapshots, use the force option. </p>",
         "CopyClusterSnapshotMessage$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p> <p>The default value is -1.</p>",
-        "CreateClusterMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>Default: <code>1</code> </p> <p>Constraints: Must be a value from 0 to 35.</p>",
+        "CreateClusterMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.</p> <p>Default: <code>1</code> </p> <p>Constraints: Must be a value from 0 to 35.</p>",
         "CreateClusterMessage$ManualSnapshotRetentionPeriod": "<p>The default number of days to retain a manual snapshot. If the value is -1, the snapshot is retained indefinitely. This setting doesn't change the retention period of existing snapshots.</p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "CreateClusterMessage$Port": "<p>The port number on which the cluster accepts incoming connections.</p> <p>The cluster is accessible only via the JDBC and ODBC connection strings. Part of the connection string requires the port on which the cluster will listen for incoming connections.</p> <p>Default: <code>5439</code> </p> <p>Valid Values: <code>1150-65535</code> </p>",
         "CreateClusterMessage$NumberOfNodes": "<p>The number of compute nodes in the cluster. This parameter is required when the <b>ClusterType</b> parameter is specified as <code>multi-node</code>. </p> <p>For information about determining how many nodes you need, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes\"> Working with Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>If you don't specify this parameter, you get a single-node cluster. When requesting a multi-node cluster, you must specify the number of nodes that you want in the cluster.</p> <p>Default: <code>1</code> </p> <p>Constraints: Value must be at least 1 and no more than 100.</p>",
@@ -1394,7 +1394,7 @@
         "GetReservedNodeExchangeOfferingsInputMessage$MaxRecords": "<p>An integer setting the maximum number of ReservedNodeOfferings to retrieve.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenanceDuration": "<p>An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.</p>",
         "ModifyClusterMessage$NumberOfNodes": "<p>The new number of nodes of the cluster. If you specify a new number of nodes, you must also specify the node type parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: Integer greater than <code>0</code>.</p>",
-        "ModifyClusterMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>If you decrease the automated snapshot retention period from its current value, existing automated snapshots that fall outside of the new retention period will be immediately deleted.</p> <p>Default: Uses existing setting.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
+        "ModifyClusterMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>If you decrease the automated snapshot retention period from its current value, existing automated snapshots that fall outside of the new retention period will be immediately deleted.</p> <p>You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.</p> <p>Default: Uses existing setting.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
         "ModifyClusterMessage$ManualSnapshotRetentionPeriod": "<p>The default for number of days that a newly created manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. This value doesn't retroactively change the retention periods of existing manual snapshots.</p> <p>The value must be either -1 or an integer between 1 and 3,653.</p> <p>The default value is -1.</p>",
         "ModifyClusterMessage$Port": "<p>The option to change the port of an Amazon Redshift cluster.</p>",
         "ModifyClusterSnapshotMessage$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely.</p> <p>If the manual snapshot falls outside of the new retention period, you can specify the force option to immediately delete the snapshot.</p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
@@ -1404,7 +1404,7 @@
         "ResizeClusterMessage$NumberOfNodes": "<p>The new number of nodes for the cluster. If not specified, the cluster's current number of nodes is used.</p>",
         "ResizeProgressMessage$TargetNumberOfNodes": "<p>The number of nodes that the cluster will have after the resize operation is complete.</p>",
         "RestoreFromClusterSnapshotMessage$Port": "<p>The port number on which the cluster accepts connections.</p> <p>Default: The same port as the original cluster.</p> <p>Constraints: Must be between <code>1115</code> and <code>65535</code>.</p>",
-        "RestoreFromClusterSnapshotMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>Default: The value selected for the cluster from which the snapshot was taken.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
+        "RestoreFromClusterSnapshotMessage$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automated snapshots are retained. If the value is 0, automated snapshots are disabled. Even if automated snapshots are disabled, you can still create manual snapshots when you want with <a>CreateClusterSnapshot</a>. </p> <p>You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.</p> <p>Default: The value selected for the cluster from which the snapshot was taken.</p> <p>Constraints: Must be a value from 0 to 35.</p>",
         "RestoreFromClusterSnapshotMessage$ManualSnapshotRetentionPeriod": "<p>The default number of days to retain a manual snapshot. If the value is -1, the snapshot is retained indefinitely. This setting doesn't change the retention period of existing snapshots.</p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "RestoreFromClusterSnapshotMessage$NumberOfNodes": "<p>The number of nodes specified when provisioning the restored cluster.</p>",
         "Snapshot$ManualSnapshotRetentionPeriod": "<p>The number of days that a manual snapshot is retained. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
@@ -1566,6 +1566,7 @@
     "LongOptional": {
       "base": null,
       "refs": {
+        "Cluster$TotalStorageCapacityInMegaBytes": "<p>The total storage capacity of the cluster in megabytes. </p>",
         "DataTransferProgress$EstimatedTimeToCompletionInSeconds": "<p>Describes the estimated number of seconds remaining to complete the transfer.</p>",
         "DataTransferProgress$ElapsedTimeInSeconds": "<p>Describes the number of seconds that have elapsed during the data transfer.</p>",
         "ModifyUsageLimitMessage$Amount": "<p>The new limit amount. For more information about this parameter, see <a>UsageLimit</a>. </p>",
@@ -1692,6 +1693,18 @@
     "ModifyUsageLimitMessage": {
       "base": null,
       "refs": {
+      }
+    },
+    "NetworkInterface": {
+      "base": "<p>Describes a network interface. </p>",
+      "refs": {
+        "NetworkInterfaceList$member": null
+      }
+    },
+    "NetworkInterfaceList": {
+      "base": null,
+      "refs": {
+        "VpcEndpoint$NetworkInterfaces": "<p>One or more network interfaces of the endpoint. Also known as an interface endpoint. </p>"
       }
     },
     "NodeConfigurationOption": {
@@ -2636,6 +2649,10 @@
         "ModifySnapshotCopyRetentionPeriodMessage$ClusterIdentifier": "<p>The unique identifier of the cluster for which you want to change the retention period for either automated or manual snapshots that are copied to a destination AWS Region.</p> <p>Constraints: Must be the valid name of an existing cluster that has cross-region snapshot copy enabled.</p>",
         "ModifySnapshotScheduleMessage$ScheduleIdentifier": "<p>A unique alphanumeric identifier of the schedule to modify.</p>",
         "ModifyUsageLimitMessage$UsageLimitId": "<p>The identifier of the usage limit to modify.</p>",
+        "NetworkInterface$NetworkInterfaceId": "<p>The network interface identifier. </p>",
+        "NetworkInterface$SubnetId": "<p>The subnet identifier. </p>",
+        "NetworkInterface$PrivateIpAddress": "<p>The IPv4 address of the network interface within the subnet. </p>",
+        "NetworkInterface$AvailabilityZone": "<p>The Availability Zone. </p>",
         "NodeConfigurationOption$NodeType": "<p>The node type, such as, \"ds2.8xlarge\".</p>",
         "NodeConfigurationOptionsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "OrderableClusterOption$ClusterVersion": "<p>The version of the orderable cluster.</p>",
@@ -2643,7 +2660,7 @@
         "OrderableClusterOption$NodeType": "<p>The node type for the orderable cluster.</p>",
         "OrderableClusterOptionsMessage$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "Parameter$ParameterName": "<p>The name of the parameter.</p>",
-        "Parameter$ParameterValue": "<p>The value of the parameter.</p>",
+        "Parameter$ParameterValue": "<p>The value of the parameter. If <code>ParameterName</code> is <code>wlm_json_configuration</code>, then the maximum size of <code>ParameterValue</code> is 8000 characters.</p>",
         "Parameter$Description": "<p>A description of the parameter.</p>",
         "Parameter$Source": "<p>The source of the parameter value, such as \"engine-default\" or \"user\".</p>",
         "Parameter$DataType": "<p>The data type of the parameter.</p>",
@@ -2785,6 +2802,7 @@
         "UsageLimitList$Marker": "<p>A value that indicates the starting point for the next set of response records in a subsequent request. If a value is returned in a response, you can retrieve the next set of records by providing this returned marker value in the <code>Marker</code> parameter and retrying the command. If the <code>Marker</code> field is empty, all response records have been retrieved for the request. </p>",
         "ValueStringList$member": null,
         "VpcEndpoint$VpcEndpointId": "<p>The connection endpoint ID for connecting an Amazon Redshift cluster through the proxy.</p>",
+        "VpcEndpoint$VpcId": "<p>The VPC identifier that the endpoint is associated. </p>",
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
         "VpcSecurityGroupMembership$Status": "<p>The status of the VPC security group.</p>"

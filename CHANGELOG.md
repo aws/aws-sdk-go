@@ -1,3 +1,17 @@
+Release v1.38.0 (2021-03-18)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Amazon EC2 Auto Scaling Instance Refresh now supports phased deployments.
+* `service/redshift`: Updates service API and documentation
+  * Add new fields for additional information about VPC endpoint for clusters with reallocation enabled, and a new field for total storage capacity for all clusters.
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Features
+* `service/s3`: S3 Object Lambda is a new S3 feature that enables users to apply their own custom code to process the output of a standard S3 GET request by automatically invoking a Lambda function with a GET request
+* `service/s3control`: S3 Object Lambda is a new S3 feature that enables users to apply their own custom code to process the output of a standard S3 GET request by automatically invoking a Lambda function with a GET request.
+
 Release v1.37.33 (2021-03-17)
 ===
 

@@ -354,9 +354,9 @@ func (c *SecurityHub) BatchImportFindingsRequest(input *BatchImportFindingsInput
 
 // BatchImportFindings API operation for AWS SecurityHub.
 //
-// Imports security findings generated from an integrated third-party product
-// into Security Hub. This action is requested by the integrated product to
-// import its findings into Security Hub.
+// Imports security findings generated from an integrated product into Security
+// Hub. This action is requested by the integrated product to import its findings
+// into Security Hub.
 //
 // The maximum allowed size for a finding is 240 Kb. An error is returned for
 // any finding larger than 240 Kb.
@@ -373,10 +373,8 @@ func (c *SecurityHub) BatchImportFindingsRequest(input *BatchImportFindingsInput
 //
 //    * Workflow
 //
-// BatchImportFindings can be used to update the following finding fields and
-// objects only if they have not been updated using BatchUpdateFindings. After
-// they are updated using BatchUpdateFindings, these fields cannot be updated
-// using BatchImportFindings.
+// Finding providers also should not use BatchImportFindings to update the following
+// attributes.
 //
 //    * Confidence
 //
@@ -387,6 +385,9 @@ func (c *SecurityHub) BatchImportFindingsRequest(input *BatchImportFindingsInput
 //    * Severity
 //
 //    * Types
+//
+// Instead, finding providers use FindingProviderFields to provide values for
+// these attributes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16437,6 +16438,63 @@ func (s *AwsRedshiftClusterVpcSecurityGroup) SetVpcSecurityGroupId(v string) *Aw
 	return s
 }
 
+// provides information about the Amazon S3 Public Access Block configuration
+// for accounts.
+type AwsS3AccountPublicAccessBlockDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to reject calls to update an S3 bucket if the calls include
+	// a public access control list (ACL).
+	BlockPublicAcls *bool `type:"boolean"`
+
+	// Indicates whether to reject calls to update the access policy for an S3 bucket
+	// or access point if the policy allows public access.
+	BlockPublicPolicy *bool `type:"boolean"`
+
+	// Indicates whether Amazon S3 ignores public ACLs that are associated with
+	// an S3 bucket.
+	IgnorePublicAcls *bool `type:"boolean"`
+
+	// Indicates whether to restrict access to an access point or S3 bucket that
+	// has a public policy to only AWS service principals and authorized users within
+	// the S3 bucket owner's account.
+	RestrictPublicBuckets *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsS3AccountPublicAccessBlockDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3AccountPublicAccessBlockDetails) GoString() string {
+	return s.String()
+}
+
+// SetBlockPublicAcls sets the BlockPublicAcls field's value.
+func (s *AwsS3AccountPublicAccessBlockDetails) SetBlockPublicAcls(v bool) *AwsS3AccountPublicAccessBlockDetails {
+	s.BlockPublicAcls = &v
+	return s
+}
+
+// SetBlockPublicPolicy sets the BlockPublicPolicy field's value.
+func (s *AwsS3AccountPublicAccessBlockDetails) SetBlockPublicPolicy(v bool) *AwsS3AccountPublicAccessBlockDetails {
+	s.BlockPublicPolicy = &v
+	return s
+}
+
+// SetIgnorePublicAcls sets the IgnorePublicAcls field's value.
+func (s *AwsS3AccountPublicAccessBlockDetails) SetIgnorePublicAcls(v bool) *AwsS3AccountPublicAccessBlockDetails {
+	s.IgnorePublicAcls = &v
+	return s
+}
+
+// SetRestrictPublicBuckets sets the RestrictPublicBuckets field's value.
+func (s *AwsS3AccountPublicAccessBlockDetails) SetRestrictPublicBuckets(v bool) *AwsS3AccountPublicAccessBlockDetails {
+	s.RestrictPublicBuckets = &v
+	return s
+}
+
 // The details of an Amazon S3 bucket.
 type AwsS3BucketDetails struct {
 	_ struct{} `type:"structure"`
@@ -16453,6 +16511,10 @@ type AwsS3BucketDetails struct {
 
 	// The display name of the owner of the S3 bucket.
 	OwnerName *string `type:"string"`
+
+	// Provides information about the Amazon S3 Public Access Block configuration
+	// for the S3 bucket.
+	PublicAccessBlockConfiguration *AwsS3AccountPublicAccessBlockDetails `type:"structure"`
 
 	// The encryption rules that are applied to the S3 bucket.
 	ServerSideEncryptionConfiguration *AwsS3BucketServerSideEncryptionConfiguration `type:"structure"`
@@ -16483,6 +16545,12 @@ func (s *AwsS3BucketDetails) SetOwnerId(v string) *AwsS3BucketDetails {
 // SetOwnerName sets the OwnerName field's value.
 func (s *AwsS3BucketDetails) SetOwnerName(v string) *AwsS3BucketDetails {
 	s.OwnerName = &v
+	return s
+}
+
+// SetPublicAccessBlockConfiguration sets the PublicAccessBlockConfiguration field's value.
+func (s *AwsS3BucketDetails) SetPublicAccessBlockConfiguration(v *AwsS3AccountPublicAccessBlockDetails) *AwsS3BucketDetails {
+	s.PublicAccessBlockConfiguration = v
 	return s
 }
 
@@ -16817,6 +16885,11 @@ type AwsSecurityFinding struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// In a BatchImportFindings request, finding providers use FindingProviderFields
+	// to provide and update their own values for confidence, criticality, related
+	// findings, severity, and types.
+	FindingProviderFields *FindingProviderFields `type:"structure"`
+
 	// Indicates when the security-findings provider first observed the potential
 	// security issue that a finding captured.
 	//
@@ -16897,9 +16970,7 @@ type AwsSecurityFinding struct {
 	SchemaVersion *string `type:"string" required:"true"`
 
 	// A finding's severity.
-	//
-	// Severity is a required field
-	Severity *Severity `type:"structure" required:"true"`
+	Severity *Severity `type:"structure"`
 
 	// A URL that links to a page about the current finding in the security-findings
 	// provider's solution.
@@ -16920,9 +16991,7 @@ type AwsSecurityFinding struct {
 	//
 	// Valid namespace values are: Software and Configuration Checks | TTPs | Effects
 	// | Unusual Behaviors | Sensitive Data Identifications
-	//
-	// Types is a required field
-	Types []*string `type:"list" required:"true"`
+	Types []*string `type:"list"`
 
 	// Indicates when the security-findings provider last updated the finding record.
 	//
@@ -16987,14 +17056,8 @@ func (s *AwsSecurityFinding) Validate() error {
 	if s.SchemaVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("SchemaVersion"))
 	}
-	if s.Severity == nil {
-		invalidParams.Add(request.NewErrParamRequired("Severity"))
-	}
 	if s.Title == nil {
 		invalidParams.Add(request.NewErrParamRequired("Title"))
-	}
-	if s.Types == nil {
-		invalidParams.Add(request.NewErrParamRequired("Types"))
 	}
 	if s.UpdatedAt == nil {
 		invalidParams.Add(request.NewErrParamRequired("UpdatedAt"))
@@ -17002,6 +17065,11 @@ func (s *AwsSecurityFinding) Validate() error {
 	if s.Compliance != nil {
 		if err := s.Compliance.Validate(); err != nil {
 			invalidParams.AddNested("Compliance", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FindingProviderFields != nil {
+		if err := s.FindingProviderFields.Validate(); err != nil {
+			invalidParams.AddNested("FindingProviderFields", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Malware != nil {
@@ -17100,6 +17168,12 @@ func (s *AwsSecurityFinding) SetCriticality(v int64) *AwsSecurityFinding {
 // SetDescription sets the Description field's value.
 func (s *AwsSecurityFinding) SetDescription(v string) *AwsSecurityFinding {
 	s.Description = &v
+	return s
+}
+
+// SetFindingProviderFields sets the FindingProviderFields field's value.
+func (s *AwsSecurityFinding) SetFindingProviderFields(v *FindingProviderFields) *AwsSecurityFinding {
+	s.FindingProviderFields = v
 	return s
 }
 
@@ -17312,6 +17386,42 @@ type AwsSecurityFindingFilters struct {
 	// A finding's description.
 	Description []*StringFilter `type:"list"`
 
+	// The finding provider value for the finding confidence. Confidence is defined
+	// as the likelihood that a finding accurately identifies the behavior or issue
+	// that it was intended to identify.
+	//
+	// Confidence is scored on a 0-100 basis using a ratio scale, where 0 means
+	// zero percent confidence and 100 means 100 percent confidence.
+	FindingProviderFieldsConfidence []*NumberFilter `type:"list"`
+
+	// The finding provider value for the level of importance assigned to the resources
+	// associated with the findings.
+	//
+	// A score of 0 means that the underlying resources have no criticality, and
+	// a score of 100 is reserved for the most critical resources.
+	FindingProviderFieldsCriticality []*NumberFilter `type:"list"`
+
+	// The finding identifier of a related finding that is identified by the finding
+	// provider.
+	FindingProviderFieldsRelatedFindingsId []*StringFilter `type:"list"`
+
+	// The ARN of the solution that generated a related finding that is identified
+	// by the finding provider.
+	FindingProviderFieldsRelatedFindingsProductArn []*StringFilter `type:"list"`
+
+	// The finding provider value for the severity label.
+	FindingProviderFieldsSeverityLabel []*StringFilter `type:"list"`
+
+	// The finding provider's original value for the severity.
+	FindingProviderFieldsSeverityOriginal []*StringFilter `type:"list"`
+
+	// One or more finding types that the finding provider assigned to the finding.
+	// Uses the format of namespace/category/classifier that classify a finding.
+	//
+	// Valid namespace values are: Software and Configuration Checks | TTPs | Effects
+	// | Unusual Behaviors | Sensitive Data Identifications
+	FindingProviderFieldsTypes []*StringFilter `type:"list"`
+
 	// An ISO8601-formatted timestamp that indicates when the security-findings
 	// provider first observed the potential security issue that a finding captured.
 	FirstObservedAt []*DateFilter `type:"list"`
@@ -17507,11 +17617,15 @@ type AwsSecurityFindingFilters struct {
 	SeverityLabel []*StringFilter `type:"list"`
 
 	// The normalized severity of a finding.
-	SeverityNormalized []*NumberFilter `type:"list"`
+	//
+	// Deprecated: This filter is deprecated, use SeverityLabel or FindingProviderFieldsSeverityLabel instead.
+	SeverityNormalized []*NumberFilter `deprecated:"true" type:"list"`
 
 	// The native severity as defined by the security-findings provider's solution
 	// that generated the finding.
-	SeverityProduct []*NumberFilter `type:"list"`
+	//
+	// Deprecated: This filter is deprecated, use FindingProviiltersSeverityOriginal instead.
+	SeverityProduct []*NumberFilter `deprecated:"true" type:"list"`
 
 	// A URL that links to a page about the current finding in the security-findings
 	// provider's solution.
@@ -17628,6 +17742,48 @@ func (s *AwsSecurityFindingFilters) SetCriticality(v []*NumberFilter) *AwsSecuri
 // SetDescription sets the Description field's value.
 func (s *AwsSecurityFindingFilters) SetDescription(v []*StringFilter) *AwsSecurityFindingFilters {
 	s.Description = v
+	return s
+}
+
+// SetFindingProviderFieldsConfidence sets the FindingProviderFieldsConfidence field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsConfidence(v []*NumberFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsConfidence = v
+	return s
+}
+
+// SetFindingProviderFieldsCriticality sets the FindingProviderFieldsCriticality field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsCriticality(v []*NumberFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsCriticality = v
+	return s
+}
+
+// SetFindingProviderFieldsRelatedFindingsId sets the FindingProviderFieldsRelatedFindingsId field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsRelatedFindingsId(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsRelatedFindingsId = v
+	return s
+}
+
+// SetFindingProviderFieldsRelatedFindingsProductArn sets the FindingProviderFieldsRelatedFindingsProductArn field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsRelatedFindingsProductArn(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsRelatedFindingsProductArn = v
+	return s
+}
+
+// SetFindingProviderFieldsSeverityLabel sets the FindingProviderFieldsSeverityLabel field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsSeverityLabel(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsSeverityLabel = v
+	return s
+}
+
+// SetFindingProviderFieldsSeverityOriginal sets the FindingProviderFieldsSeverityOriginal field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsSeverityOriginal(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsSeverityOriginal = v
+	return s
+}
+
+// SetFindingProviderFieldsTypes sets the FindingProviderFieldsTypes field's value.
+func (s *AwsSecurityFindingFilters) SetFindingProviderFieldsTypes(v []*StringFilter) *AwsSecurityFindingFilters {
+	s.FindingProviderFieldsTypes = v
 	return s
 }
 
@@ -18821,7 +18977,7 @@ type BatchImportFindingsInput struct {
 	// Maximum of 100 findings per request.
 	//
 	// Findings is a required field
-	Findings []*AwsSecurityFinding `type:"list" required:"true"`
+	Findings []*AwsSecurityFinding `min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -18839,6 +18995,9 @@ func (s *BatchImportFindingsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "BatchImportFindingsInput"}
 	if s.Findings == nil {
 		invalidParams.Add(request.NewErrParamRequired("Findings"))
+	}
+	if s.Findings != nil && len(s.Findings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Findings", 1))
 	}
 	if s.Findings != nil {
 		for i, v := range s.Findings {
@@ -19179,6 +19338,62 @@ func (s *BatchUpdateFindingsUnprocessedFinding) SetFindingIdentifier(v *AwsSecur
 	return s
 }
 
+// An occurrence of sensitive data detected in a Microsoft Excel workbook, comma-separated
+// value (CSV) file, or tab-separated value (TSV) file.
+type Cell struct {
+	_ struct{} `type:"structure"`
+
+	// For a Microsoft Excel workbook, provides the location of the cell, as an
+	// absolute cell reference, that contains the data. For example, Sheet2!C5 for
+	// cell C5 on Sheet2.
+	CellReference *string `type:"string"`
+
+	// The column number of the column that contains the data. For a Microsoft Excel
+	// workbook, the column number corresponds to the alphabetical column identifiers.
+	// For example, a value of 1 for Column corresponds to the A column in the workbook.
+	Column *int64 `type:"long"`
+
+	// The name of the column that contains the data.
+	ColumnName *string `type:"string"`
+
+	// The row number of the row that contains the data.
+	Row *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s Cell) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Cell) GoString() string {
+	return s.String()
+}
+
+// SetCellReference sets the CellReference field's value.
+func (s *Cell) SetCellReference(v string) *Cell {
+	s.CellReference = &v
+	return s
+}
+
+// SetColumn sets the Column field's value.
+func (s *Cell) SetColumn(v int64) *Cell {
+	s.Column = &v
+	return s
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *Cell) SetColumnName(v string) *Cell {
+	s.ColumnName = &v
+	return s
+}
+
+// SetRow sets the Row field's value.
+func (s *Cell) SetRow(v int64) *Cell {
+	s.Row = &v
+	return s
+}
+
 // An IPv4 CIDR block association.
 type CidrBlockAssociation struct {
 	_ struct{} `type:"structure"`
@@ -19242,6 +19457,112 @@ func (s City) GoString() string {
 // SetCityName sets the CityName field's value.
 func (s *City) SetCityName(v string) *City {
 	s.CityName = &v
+	return s
+}
+
+// Details about the sensitive data that was detected on the resource.
+type ClassificationResult struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether there are additional occurrences of sensitive data that
+	// are not included in the finding. This occurs when the number of occurrences
+	// exceeds the maximum that can be included.
+	AdditionalOccurrences *bool `type:"boolean"`
+
+	// Provides details about sensitive data that was identified based on customer-defined
+	// configuration.
+	CustomDataIdentifiers *CustomDataIdentifiersResult `type:"structure"`
+
+	// The type of content that the finding applies to.
+	MimeType *string `type:"string"`
+
+	// Provides details about sensitive data that was identified based on built-in
+	// configuration.
+	SensitiveData []*SensitiveDataResult `type:"list"`
+
+	// The total size in bytes of the affected data.
+	SizeClassified *int64 `type:"long"`
+
+	// The current status of the sensitive data detection.
+	Status *ClassificationStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClassificationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClassificationResult) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalOccurrences sets the AdditionalOccurrences field's value.
+func (s *ClassificationResult) SetAdditionalOccurrences(v bool) *ClassificationResult {
+	s.AdditionalOccurrences = &v
+	return s
+}
+
+// SetCustomDataIdentifiers sets the CustomDataIdentifiers field's value.
+func (s *ClassificationResult) SetCustomDataIdentifiers(v *CustomDataIdentifiersResult) *ClassificationResult {
+	s.CustomDataIdentifiers = v
+	return s
+}
+
+// SetMimeType sets the MimeType field's value.
+func (s *ClassificationResult) SetMimeType(v string) *ClassificationResult {
+	s.MimeType = &v
+	return s
+}
+
+// SetSensitiveData sets the SensitiveData field's value.
+func (s *ClassificationResult) SetSensitiveData(v []*SensitiveDataResult) *ClassificationResult {
+	s.SensitiveData = v
+	return s
+}
+
+// SetSizeClassified sets the SizeClassified field's value.
+func (s *ClassificationResult) SetSizeClassified(v int64) *ClassificationResult {
+	s.SizeClassified = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ClassificationResult) SetStatus(v *ClassificationStatus) *ClassificationResult {
+	s.Status = v
+	return s
+}
+
+// Provides details about the current status of the sensitive data detection.
+type ClassificationStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The code that represents the status of the sensitive data detection.
+	Code *string `type:"string"`
+
+	// A longer description of the current status of the sensitive data detection.
+	Reason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ClassificationStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClassificationStatus) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ClassificationStatus) SetCode(v string) *ClassificationStatus {
+	s.Code = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *ClassificationStatus) SetReason(v string) *ClassificationStatus {
+	s.Reason = &v
 	return s
 }
 
@@ -19671,6 +19992,91 @@ func (s *CreateMembersOutput) SetUnprocessedAccounts(v []*Result) *CreateMembers
 	return s
 }
 
+// The list of detected instances of sensitive data.
+type CustomDataIdentifiersDetections struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the custom identifier that was used to detect the sensitive data.
+	Arn *string `type:"string"`
+
+	// The total number of occurrences of sensitive data that were detected.
+	Count *int64 `type:"long"`
+
+	// he name of the custom identifier that detected the sensitive data.
+	Name *string `type:"string"`
+
+	// Details about the sensitive data that was detected.
+	Occurrences *Occurrences `type:"structure"`
+}
+
+// String returns the string representation
+func (s CustomDataIdentifiersDetections) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomDataIdentifiersDetections) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CustomDataIdentifiersDetections) SetArn(v string) *CustomDataIdentifiersDetections {
+	s.Arn = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *CustomDataIdentifiersDetections) SetCount(v int64) *CustomDataIdentifiersDetections {
+	s.Count = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CustomDataIdentifiersDetections) SetName(v string) *CustomDataIdentifiersDetections {
+	s.Name = &v
+	return s
+}
+
+// SetOccurrences sets the Occurrences field's value.
+func (s *CustomDataIdentifiersDetections) SetOccurrences(v *Occurrences) *CustomDataIdentifiersDetections {
+	s.Occurrences = v
+	return s
+}
+
+// Contains an instance of sensitive data that was detected by a customer-defined
+// identifier.
+type CustomDataIdentifiersResult struct {
+	_ struct{} `type:"structure"`
+
+	// The list of detected instances of sensitive data.
+	Detections []*CustomDataIdentifiersDetections `type:"list"`
+
+	// The total number of occurrences of sensitive data.
+	TotalCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s CustomDataIdentifiersResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomDataIdentifiersResult) GoString() string {
+	return s.String()
+}
+
+// SetDetections sets the Detections field's value.
+func (s *CustomDataIdentifiersResult) SetDetections(v []*CustomDataIdentifiersDetections) *CustomDataIdentifiersResult {
+	s.Detections = v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *CustomDataIdentifiersResult) SetTotalCount(v int64) *CustomDataIdentifiersResult {
+	s.TotalCount = &v
+	return s
+}
+
 // CVSS scores from the advisory related to the vulnerability.
 type Cvss struct {
 	_ struct{} `type:"structure"`
@@ -19710,6 +20116,39 @@ func (s *Cvss) SetBaseVector(v string) *Cvss {
 // SetVersion sets the Version field's value.
 func (s *Cvss) SetVersion(v string) *Cvss {
 	s.Version = &v
+	return s
+}
+
+// Provides details about sensitive data that was detected on a resource.
+type DataClassificationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The path to the folder or file that contains the sensitive data.
+	DetailedResultsLocation *string `type:"string"`
+
+	// The details about the sensitive data that was detected on the resource.
+	Result *ClassificationResult `type:"structure"`
+}
+
+// String returns the string representation
+func (s DataClassificationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataClassificationDetails) GoString() string {
+	return s.String()
+}
+
+// SetDetailedResultsLocation sets the DetailedResultsLocation field's value.
+func (s *DataClassificationDetails) SetDetailedResultsLocation(v string) *DataClassificationDetails {
+	s.DetailedResultsLocation = &v
+	return s
+}
+
+// SetResult sets the Result field's value.
+func (s *DataClassificationDetails) SetResult(v *ClassificationResult) *DataClassificationDetails {
+	s.Result = v
 	return s
 }
 
@@ -21023,6 +21462,132 @@ func (s EnableSecurityHubOutput) String() string {
 // GoString returns the string representation
 func (s EnableSecurityHubOutput) GoString() string {
 	return s.String()
+}
+
+// In a BatchImportFindings request, finding providers use FindingProviderFields
+// to provide and update values for confidence, criticality, related findings,
+// severity, and types.
+type FindingProviderFields struct {
+	_ struct{} `type:"structure"`
+
+	// A finding's confidence. Confidence is defined as the likelihood that a finding
+	// accurately identifies the behavior or issue that it was intended to identify.
+	//
+	// Confidence is scored on a 0-100 basis using a ratio scale, where 0 means
+	// zero percent confidence and 100 means 100 percent confidence.
+	Confidence *int64 `type:"integer"`
+
+	// The level of importance assigned to the resources associated with the finding.
+	//
+	// A score of 0 means that the underlying resources have no criticality, and
+	// a score of 100 is reserved for the most critical resources.
+	Criticality *int64 `type:"integer"`
+
+	// A list of findings that are related to the current finding.
+	RelatedFindings []*RelatedFinding `type:"list"`
+
+	// The severity of a finding.
+	Severity *FindingProviderSeverity `type:"structure"`
+
+	// One or more finding types in the format of namespace/category/classifier
+	// that classify a finding.
+	//
+	// Valid namespace values are: Software and Configuration Checks | TTPs | Effects
+	// | Unusual Behaviors | Sensitive Data Identifications
+	Types []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s FindingProviderFields) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FindingProviderFields) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FindingProviderFields) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FindingProviderFields"}
+	if s.RelatedFindings != nil {
+		for i, v := range s.RelatedFindings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RelatedFindings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *FindingProviderFields) SetConfidence(v int64) *FindingProviderFields {
+	s.Confidence = &v
+	return s
+}
+
+// SetCriticality sets the Criticality field's value.
+func (s *FindingProviderFields) SetCriticality(v int64) *FindingProviderFields {
+	s.Criticality = &v
+	return s
+}
+
+// SetRelatedFindings sets the RelatedFindings field's value.
+func (s *FindingProviderFields) SetRelatedFindings(v []*RelatedFinding) *FindingProviderFields {
+	s.RelatedFindings = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *FindingProviderFields) SetSeverity(v *FindingProviderSeverity) *FindingProviderFields {
+	s.Severity = v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *FindingProviderFields) SetTypes(v []*string) *FindingProviderFields {
+	s.Types = v
+	return s
+}
+
+// The severity assigned to the finding by the finding provider.
+type FindingProviderSeverity struct {
+	_ struct{} `type:"structure"`
+
+	// The severity label assigned to the finding by the finding provider.
+	Label *string `type:"string" enum:"SeverityLabel"`
+
+	// The finding provider's original value for the severity.
+	Original *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FindingProviderSeverity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FindingProviderSeverity) GoString() string {
+	return s.String()
+}
+
+// SetLabel sets the Label field's value.
+func (s *FindingProviderSeverity) SetLabel(v string) *FindingProviderSeverity {
+	s.Label = &v
+	return s
+}
+
+// SetOriginal sets the Original field's value.
+func (s *FindingProviderSeverity) SetOriginal(v string) *FindingProviderSeverity {
+	s.Original = &v
+	return s
 }
 
 // Provides the latitude and longitude coordinates of a location.
@@ -23418,6 +23983,116 @@ func (s *NumberFilter) SetLte(v float64) *NumberFilter {
 	return s
 }
 
+// The detected occurrences of sensitive data.
+type Occurrences struct {
+	_ struct{} `type:"structure"`
+
+	// Occurrences of sensitive data detected in Microsoft Excel workbooks, comma-separated
+	// value (CSV) files, or tab-separated value (TSV) files.
+	Cells []*Cell `type:"list"`
+
+	// Occurrences of sensitive data detected in a non-binary text file or a Microsoft
+	// Word file. Non-binary text files include files such as HTML, XML, JSON, and
+	// TXT files.
+	LineRanges []*Range `type:"list"`
+
+	// Occurrences of sensitive data detected in a binary text file.
+	OffsetRanges []*Range `type:"list"`
+
+	// Occurrences of sensitive data in an Adobe Portable Document Format (PDF)
+	// file.
+	Pages []*Page `type:"list"`
+
+	// Occurrences of sensitive data in an Apache Avro object container or an Apache
+	// Parquet file.
+	Records []*Record `type:"list"`
+}
+
+// String returns the string representation
+func (s Occurrences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Occurrences) GoString() string {
+	return s.String()
+}
+
+// SetCells sets the Cells field's value.
+func (s *Occurrences) SetCells(v []*Cell) *Occurrences {
+	s.Cells = v
+	return s
+}
+
+// SetLineRanges sets the LineRanges field's value.
+func (s *Occurrences) SetLineRanges(v []*Range) *Occurrences {
+	s.LineRanges = v
+	return s
+}
+
+// SetOffsetRanges sets the OffsetRanges field's value.
+func (s *Occurrences) SetOffsetRanges(v []*Range) *Occurrences {
+	s.OffsetRanges = v
+	return s
+}
+
+// SetPages sets the Pages field's value.
+func (s *Occurrences) SetPages(v []*Page) *Occurrences {
+	s.Pages = v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *Occurrences) SetRecords(v []*Record) *Occurrences {
+	s.Records = v
+	return s
+}
+
+// An occurrence of sensitive data in an Adobe Portable Document Format (PDF)
+// file.
+type Page struct {
+	_ struct{} `type:"structure"`
+
+	// An occurrence of sensitive data detected in a non-binary text file or a Microsoft
+	// Word file. Non-binary text files include files such as HTML, XML, JSON, and
+	// TXT files.
+	LineRange *Range `type:"structure"`
+
+	// An occurrence of sensitive data detected in a binary text file.
+	OffsetRange *Range `type:"structure"`
+
+	// The page number of the page that contains the sensitive data.
+	PageNumber *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s Page) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Page) GoString() string {
+	return s.String()
+}
+
+// SetLineRange sets the LineRange field's value.
+func (s *Page) SetLineRange(v *Range) *Page {
+	s.LineRange = v
+	return s
+}
+
+// SetOffsetRange sets the OffsetRange field's value.
+func (s *Page) SetOffsetRange(v *Range) *Page {
+	s.OffsetRange = v
+	return s
+}
+
+// SetPageNumber sets the PageNumber field's value.
+func (s *Page) SetPageNumber(v int64) *Page {
+	s.PageNumber = &v
+	return s
+}
+
 // Provides an overview of the patch compliance status for an instance against
 // a selected compliance standard.
 type PatchSummary struct {
@@ -23854,6 +24529,51 @@ func (s *Product) SetProductSubscriptionResourcePolicy(v string) *Product {
 	return s
 }
 
+// Identifies where the sensitive data begins and ends.
+type Range struct {
+	_ struct{} `type:"structure"`
+
+	// The number of lines (for a line range) or characters (for an offset range)
+	// from the beginning of the file to the end of the sensitive data.
+	End *int64 `type:"long"`
+
+	// The number of lines (for a line range) or characters (for an offset range)
+	// from the beginning of the file to the end of the sensitive data.
+	Start *int64 `type:"long"`
+
+	// In the line where the sensitive data starts, the column within the line where
+	// the sensitive data starts.
+	StartColumn *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s Range) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Range) GoString() string {
+	return s.String()
+}
+
+// SetEnd sets the End field's value.
+func (s *Range) SetEnd(v int64) *Range {
+	s.End = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *Range) SetStart(v int64) *Range {
+	s.Start = &v
+	return s
+}
+
+// SetStartColumn sets the StartColumn field's value.
+func (s *Range) SetStartColumn(v int64) *Range {
+	s.StartColumn = &v
+	return s
+}
+
 // A recommendation on how to remediate the issue identified in a finding.
 type Recommendation struct {
 	_ struct{} `type:"structure"`
@@ -23886,6 +24606,42 @@ func (s *Recommendation) SetText(v string) *Recommendation {
 // SetUrl sets the Url field's value.
 func (s *Recommendation) SetUrl(v string) *Recommendation {
 	s.Url = &v
+	return s
+}
+
+// An occurrence of sensitive data in an Apache Avro object container or an
+// Apache Parquet file.
+type Record struct {
+	_ struct{} `type:"structure"`
+
+	// The path, as a JSONPath expression, to the field in the record that contains
+	// the data. If the field name is longer than 20 characters, it is truncated.
+	// If the path is longer than 250 characters, it is truncated.
+	JsonPath *string `type:"string"`
+
+	// The record index, starting from 0, for the record that contains the data.
+	RecordIndex *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s Record) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Record) GoString() string {
+	return s.String()
+}
+
+// SetJsonPath sets the JsonPath field's value.
+func (s *Record) SetJsonPath(v string) *Record {
+	s.JsonPath = &v
+	return s
+}
+
+// SetRecordIndex sets the RecordIndex field's value.
+func (s *Record) SetRecordIndex(v int64) *Record {
+	s.RecordIndex = &v
 	return s
 }
 
@@ -23971,6 +24727,9 @@ func (s *Remediation) SetRecommendation(v *Recommendation) *Remediation {
 type Resource struct {
 	_ struct{} `type:"structure"`
 
+	// Contains information about sensitive data that was detected on the resource.
+	DataClassification *DataClassificationDetails `type:"structure"`
+
 	// Additional details about the resource related to a finding.
 	Details *ResourceDetails `type:"structure"`
 
@@ -24033,6 +24792,12 @@ func (s *Resource) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataClassification sets the DataClassification field's value.
+func (s *Resource) SetDataClassification(v *DataClassificationDetails) *Resource {
+	s.DataClassification = v
+	return s
 }
 
 // SetDetails sets the Details field's value.
@@ -24244,6 +25009,9 @@ type ResourceDetails struct {
 
 	// Contains details about an Amazon Redshift cluster.
 	AwsRedshiftCluster *AwsRedshiftClusterDetails `type:"structure"`
+
+	// Details about the Amazon S3 Public Access Block configuration for an account.
+	AwsS3AccountPublicAccessBlock *AwsS3AccountPublicAccessBlockDetails `type:"structure"`
 
 	// Details about an Amazon S3 bucket related to a finding.
 	AwsS3Bucket *AwsS3BucketDetails `type:"structure"`
@@ -24500,6 +25268,12 @@ func (s *ResourceDetails) SetAwsRedshiftCluster(v *AwsRedshiftClusterDetails) *R
 	return s
 }
 
+// SetAwsS3AccountPublicAccessBlock sets the AwsS3AccountPublicAccessBlock field's value.
+func (s *ResourceDetails) SetAwsS3AccountPublicAccessBlock(v *AwsS3AccountPublicAccessBlockDetails) *ResourceDetails {
+	s.AwsS3AccountPublicAccessBlock = v
+	return s
+}
+
 // SetAwsS3Bucket sets the AwsS3Bucket field's value.
 func (s *ResourceDetails) SetAwsS3Bucket(v *AwsS3BucketDetails) *ResourceDetails {
 	s.AwsS3Bucket = v
@@ -24642,6 +25416,94 @@ func (s *Result) SetAccountId(v string) *Result {
 // SetProcessingResult sets the ProcessingResult field's value.
 func (s *Result) SetProcessingResult(v string) *Result {
 	s.ProcessingResult = &v
+	return s
+}
+
+// The list of detected instances of sensitive data.
+type SensitiveDataDetections struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of occurrences of sensitive data that were detected.
+	Count *int64 `type:"long"`
+
+	// Details about the sensitive data that was detected.
+	Occurrences *Occurrences `type:"structure"`
+
+	// The type of sensitive data that was detected. For example, the type might
+	// indicate that the data is an email address.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SensitiveDataDetections) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SensitiveDataDetections) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *SensitiveDataDetections) SetCount(v int64) *SensitiveDataDetections {
+	s.Count = &v
+	return s
+}
+
+// SetOccurrences sets the Occurrences field's value.
+func (s *SensitiveDataDetections) SetOccurrences(v *Occurrences) *SensitiveDataDetections {
+	s.Occurrences = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SensitiveDataDetections) SetType(v string) *SensitiveDataDetections {
+	s.Type = &v
+	return s
+}
+
+// Contains a detected instance of sensitive data that are based on built-in
+// identifiers.
+type SensitiveDataResult struct {
+	_ struct{} `type:"structure"`
+
+	// The category of sensitive data that was detected. For example, the category
+	// can indicate that the sensitive data involved credentials, financial information,
+	// or personal information.
+	Category *string `type:"string"`
+
+	// The list of detected instances of sensitive data.
+	Detections []*SensitiveDataDetections `type:"list"`
+
+	// The total number of occurrences of sensitive data.
+	TotalCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s SensitiveDataResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SensitiveDataResult) GoString() string {
+	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *SensitiveDataResult) SetCategory(v string) *SensitiveDataResult {
+	s.Category = &v
+	return s
+}
+
+// SetDetections sets the Detections field's value.
+func (s *SensitiveDataResult) SetDetections(v []*SensitiveDataDetections) *SensitiveDataResult {
+	s.Detections = v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *SensitiveDataResult) SetTotalCount(v int64) *SensitiveDataResult {
+	s.TotalCount = &v
 	return s
 }
 

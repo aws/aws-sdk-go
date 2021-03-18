@@ -1901,7 +1901,8 @@
         "NextMaintenanceWindowStartTime":{"shape":"TStamp"},
         "ResizeInfo":{"shape":"ResizeInfo"},
         "AvailabilityZoneRelocationStatus":{"shape":"String"},
-        "ClusterNamespaceArn":{"shape":"String"}
+        "ClusterNamespaceArn":{"shape":"String"},
+        "TotalStorageCapacityInMegaBytes":{"shape":"LongOptional"}
       },
       "wrapper":true
     },
@@ -4064,6 +4065,22 @@
         "BreachAction":{"shape":"UsageLimitBreachAction"}
       }
     },
+    "NetworkInterface":{
+      "type":"structure",
+      "members":{
+        "NetworkInterfaceId":{"shape":"String"},
+        "SubnetId":{"shape":"String"},
+        "PrivateIpAddress":{"shape":"String"},
+        "AvailabilityZone":{"shape":"String"}
+      }
+    },
+    "NetworkInterfaceList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkInterface",
+        "locationName":"NetworkInterface"
+      }
+    },
     "NodeConfigurationOption":{
       "type":"structure",
       "members":{
@@ -5519,7 +5536,9 @@
     "VpcEndpoint":{
       "type":"structure",
       "members":{
-        "VpcEndpointId":{"shape":"String"}
+        "VpcEndpointId":{"shape":"String"},
+        "VpcId":{"shape":"String"},
+        "NetworkInterfaces":{"shape":"NetworkInterfaceList"}
       }
     },
     "VpcEndpointsList":{

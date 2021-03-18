@@ -2693,13 +2693,23 @@
       "type":"list",
       "member":{"shape":"AwsRedshiftClusterVpcSecurityGroup"}
     },
+    "AwsS3AccountPublicAccessBlockDetails":{
+      "type":"structure",
+      "members":{
+        "BlockPublicAcls":{"shape":"Boolean"},
+        "BlockPublicPolicy":{"shape":"Boolean"},
+        "IgnorePublicAcls":{"shape":"Boolean"},
+        "RestrictPublicBuckets":{"shape":"Boolean"}
+      }
+    },
     "AwsS3BucketDetails":{
       "type":"structure",
       "members":{
         "OwnerId":{"shape":"NonEmptyString"},
         "OwnerName":{"shape":"NonEmptyString"},
         "CreatedAt":{"shape":"NonEmptyString"},
-        "ServerSideEncryptionConfiguration":{"shape":"AwsS3BucketServerSideEncryptionConfiguration"}
+        "ServerSideEncryptionConfiguration":{"shape":"AwsS3BucketServerSideEncryptionConfiguration"},
+        "PublicAccessBlockConfiguration":{"shape":"AwsS3AccountPublicAccessBlockDetails"}
       }
     },
     "AwsS3BucketServerSideEncryptionByDefault":{
@@ -2763,10 +2773,8 @@
         "ProductArn",
         "GeneratorId",
         "AwsAccountId",
-        "Types",
         "CreatedAt",
         "UpdatedAt",
-        "Severity",
         "Title",
         "Description",
         "Resources"
@@ -2806,7 +2814,8 @@
         "Note":{"shape":"Note"},
         "Vulnerabilities":{"shape":"VulnerabilityList"},
         "PatchSummary":{"shape":"PatchSummary"},
-        "Action":{"shape":"Action"}
+        "Action":{"shape":"Action"},
+        "FindingProviderFields":{"shape":"FindingProviderFields"}
       }
     },
     "AwsSecurityFindingFilters":{
@@ -2821,8 +2830,16 @@
         "LastObservedAt":{"shape":"DateFilterList"},
         "CreatedAt":{"shape":"DateFilterList"},
         "UpdatedAt":{"shape":"DateFilterList"},
-        "SeverityProduct":{"shape":"NumberFilterList"},
-        "SeverityNormalized":{"shape":"NumberFilterList"},
+        "SeverityProduct":{
+          "shape":"NumberFilterList",
+          "deprecated":true,
+          "deprecatedMessage":"This filter is deprecated, use FindingProviiltersSeverityOriginal instead."
+        },
+        "SeverityNormalized":{
+          "shape":"NumberFilterList",
+          "deprecated":true,
+          "deprecatedMessage":"This filter is deprecated, use SeverityLabel or FindingProviderFieldsSeverityLabel instead."
+        },
         "SeverityLabel":{"shape":"StringFilterList"},
         "Confidence":{"shape":"NumberFilterList"},
         "Criticality":{"shape":"NumberFilterList"},
@@ -2895,7 +2912,14 @@
         "NoteText":{"shape":"StringFilterList"},
         "NoteUpdatedAt":{"shape":"DateFilterList"},
         "NoteUpdatedBy":{"shape":"StringFilterList"},
-        "Keyword":{"shape":"KeywordFilterList"}
+        "Keyword":{"shape":"KeywordFilterList"},
+        "FindingProviderFieldsConfidence":{"shape":"NumberFilterList"},
+        "FindingProviderFieldsCriticality":{"shape":"NumberFilterList"},
+        "FindingProviderFieldsRelatedFindingsId":{"shape":"StringFilterList"},
+        "FindingProviderFieldsRelatedFindingsProductArn":{"shape":"StringFilterList"},
+        "FindingProviderFieldsSeverityLabel":{"shape":"StringFilterList"},
+        "FindingProviderFieldsSeverityOriginal":{"shape":"StringFilterList"},
+        "FindingProviderFieldsTypes":{"shape":"StringFilterList"}
       }
     },
     "AwsSecurityFindingIdentifier":{
@@ -3035,8 +3059,14 @@
       "type":"structure",
       "required":["Findings"],
       "members":{
-        "Findings":{"shape":"AwsSecurityFindingList"}
+        "Findings":{"shape":"BatchImportFindingsRequestFindingList"}
       }
+    },
+    "BatchImportFindingsRequestFindingList":{
+      "type":"list",
+      "member":{"shape":"AwsSecurityFinding"},
+      "max":100,
+      "min":1
     },
     "BatchImportFindingsResponse":{
       "type":"structure",
@@ -3099,6 +3129,19 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"}
     },
+    "Cell":{
+      "type":"structure",
+      "members":{
+        "Column":{"shape":"Long"},
+        "Row":{"shape":"Long"},
+        "ColumnName":{"shape":"NonEmptyString"},
+        "CellReference":{"shape":"NonEmptyString"}
+      }
+    },
+    "Cells":{
+      "type":"list",
+      "member":{"shape":"Cell"}
+    },
     "CidrBlockAssociation":{
       "type":"structure",
       "members":{
@@ -3115,6 +3158,24 @@
       "type":"structure",
       "members":{
         "CityName":{"shape":"NonEmptyString"}
+      }
+    },
+    "ClassificationResult":{
+      "type":"structure",
+      "members":{
+        "MimeType":{"shape":"NonEmptyString"},
+        "SizeClassified":{"shape":"Long"},
+        "AdditionalOccurrences":{"shape":"Boolean"},
+        "Status":{"shape":"ClassificationStatus"},
+        "SensitiveData":{"shape":"SensitiveDataResultList"},
+        "CustomDataIdentifiers":{"shape":"CustomDataIdentifiersResult"}
+      }
+    },
+    "ClassificationStatus":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"NonEmptyString"},
+        "Reason":{"shape":"NonEmptyString"}
       }
     },
     "Compliance":{
@@ -3215,6 +3276,26 @@
       "max":50,
       "min":1
     },
+    "CustomDataIdentifiersDetections":{
+      "type":"structure",
+      "members":{
+        "Count":{"shape":"Long"},
+        "Arn":{"shape":"NonEmptyString"},
+        "Name":{"shape":"NonEmptyString"},
+        "Occurrences":{"shape":"Occurrences"}
+      }
+    },
+    "CustomDataIdentifiersDetectionsList":{
+      "type":"list",
+      "member":{"shape":"CustomDataIdentifiersDetections"}
+    },
+    "CustomDataIdentifiersResult":{
+      "type":"structure",
+      "members":{
+        "Detections":{"shape":"CustomDataIdentifiersDetectionsList"},
+        "TotalCount":{"shape":"Long"}
+      }
+    },
     "Cvss":{
       "type":"structure",
       "members":{
@@ -3226,6 +3307,13 @@
     "CvssList":{
       "type":"list",
       "member":{"shape":"Cvss"}
+    },
+    "DataClassificationDetails":{
+      "type":"structure",
+      "members":{
+        "DetailedResultsLocation":{"shape":"NonEmptyString"},
+        "Result":{"shape":"ClassificationResult"}
+      }
     },
     "DateFilter":{
       "type":"structure",
@@ -3559,6 +3647,23 @@
       "type":"map",
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
+    },
+    "FindingProviderFields":{
+      "type":"structure",
+      "members":{
+        "Confidence":{"shape":"RatioScale"},
+        "Criticality":{"shape":"RatioScale"},
+        "RelatedFindings":{"shape":"RelatedFindingList"},
+        "Severity":{"shape":"FindingProviderSeverity"},
+        "Types":{"shape":"TypeList"}
+      }
+    },
+    "FindingProviderSeverity":{
+      "type":"structure",
+      "members":{
+        "Label":{"shape":"SeverityLabel"},
+        "Original":{"shape":"NonEmptyString"}
+      }
     },
     "GeoLocation":{
       "type":"structure",
@@ -4155,6 +4260,28 @@
       "type":"list",
       "member":{"shape":"NumberFilter"}
     },
+    "Occurrences":{
+      "type":"structure",
+      "members":{
+        "LineRanges":{"shape":"Ranges"},
+        "OffsetRanges":{"shape":"Ranges"},
+        "Pages":{"shape":"Pages"},
+        "Records":{"shape":"Records"},
+        "Cells":{"shape":"Cells"}
+      }
+    },
+    "Page":{
+      "type":"structure",
+      "members":{
+        "PageNumber":{"shape":"Long"},
+        "LineRange":{"shape":"Range"},
+        "OffsetRange":{"shape":"Range"}
+      }
+    },
+    "Pages":{
+      "type":"list",
+      "member":{"shape":"Page"}
+    },
     "Partition":{
       "type":"string",
       "enum":[
@@ -4244,6 +4371,18 @@
       "type":"list",
       "member":{"shape":"Product"}
     },
+    "Range":{
+      "type":"structure",
+      "members":{
+        "Start":{"shape":"Long"},
+        "End":{"shape":"Long"},
+        "StartColumn":{"shape":"Long"}
+      }
+    },
+    "Ranges":{
+      "type":"list",
+      "member":{"shape":"Range"}
+    },
     "RatioScale":{
       "type":"integer",
       "max":100,
@@ -4256,12 +4395,23 @@
         "Url":{"shape":"NonEmptyString"}
       }
     },
+    "Record":{
+      "type":"structure",
+      "members":{
+        "JsonPath":{"shape":"NonEmptyString"},
+        "RecordIndex":{"shape":"Long"}
+      }
+    },
     "RecordState":{
       "type":"string",
       "enum":[
         "ACTIVE",
         "ARCHIVED"
       ]
+    },
+    "Records":{
+      "type":"list",
+      "member":{"shape":"Record"}
     },
     "RelatedFinding":{
       "type":"structure",
@@ -4301,6 +4451,7 @@
         "Region":{"shape":"NonEmptyString"},
         "ResourceRole":{"shape":"NonEmptyString"},
         "Tags":{"shape":"FieldMap"},
+        "DataClassification":{"shape":"DataClassificationDetails"},
         "Details":{"shape":"ResourceDetails"}
       }
     },
@@ -4332,6 +4483,7 @@
         "AwsElbv2LoadBalancer":{"shape":"AwsElbv2LoadBalancerDetails"},
         "AwsElasticsearchDomain":{"shape":"AwsElasticsearchDomainDetails"},
         "AwsS3Bucket":{"shape":"AwsS3BucketDetails"},
+        "AwsS3AccountPublicAccessBlock":{"shape":"AwsS3AccountPublicAccessBlockDetails"},
         "AwsS3Object":{"shape":"AwsS3ObjectDetails"},
         "AwsSecretsManagerSecret":{"shape":"AwsSecretsManagerSecretDetails"},
         "AwsIamAccessKey":{"shape":"AwsIamAccessKeyDetails"},
@@ -4390,6 +4542,30 @@
     "SecurityGroups":{
       "type":"list",
       "member":{"shape":"NonEmptyString"}
+    },
+    "SensitiveDataDetections":{
+      "type":"structure",
+      "members":{
+        "Count":{"shape":"Long"},
+        "Type":{"shape":"NonEmptyString"},
+        "Occurrences":{"shape":"Occurrences"}
+      }
+    },
+    "SensitiveDataDetectionsList":{
+      "type":"list",
+      "member":{"shape":"SensitiveDataDetections"}
+    },
+    "SensitiveDataResult":{
+      "type":"structure",
+      "members":{
+        "Category":{"shape":"NonEmptyString"},
+        "Detections":{"shape":"SensitiveDataDetectionsList"},
+        "TotalCount":{"shape":"Long"}
+      }
+    },
+    "SensitiveDataResultList":{
+      "type":"list",
+      "member":{"shape":"SensitiveDataResult"}
     },
     "Severity":{
       "type":"structure",

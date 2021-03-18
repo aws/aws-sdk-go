@@ -11181,6 +11181,9 @@ type Cluster struct {
 	// The list of tags for the cluster.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
+	// The total storage capacity of the cluster in megabytes.
+	TotalStorageCapacityInMegaBytes *int64 `type:"long"`
+
 	// The identifier of the VPC the cluster is in, if the cluster is in a VPC.
 	VpcId *string `type:"string"`
 
@@ -11473,6 +11476,12 @@ func (s *Cluster) SetSnapshotScheduleState(v string) *Cluster {
 // SetTags sets the Tags field's value.
 func (s *Cluster) SetTags(v []*Tag) *Cluster {
 	s.Tags = v
+	return s
+}
+
+// SetTotalStorageCapacityInMegaBytes sets the TotalStorageCapacityInMegaBytes field's value.
+func (s *Cluster) SetTotalStorageCapacityInMegaBytes(v int64) *Cluster {
+	s.TotalStorageCapacityInMegaBytes = &v
 	return s
 }
 
@@ -12259,6 +12268,9 @@ type CreateClusterInput struct {
 	// The number of days that automated snapshots are retained. If the value is
 	// 0, automated snapshots are disabled. Even if automated snapshots are disabled,
 	// you can still create manual snapshots when you want with CreateClusterSnapshot.
+	//
+	// You can't disable automated snapshots for RA3 node types. Set the automated
+	// retention period from 1-35 days.
 	//
 	// Default: 1
 	//
@@ -20215,6 +20227,9 @@ type ModifyClusterInput struct {
 	// value, existing automated snapshots that fall outside of the new retention
 	// period will be immediately deleted.
 	//
+	// You can't disable automated snapshots for RA3 node types. Set the automated
+	// retention period from 1-35 days.
+	//
 	// Default: Uses existing setting.
 	//
 	// Constraints: Must be a value from 0 to 35.
@@ -21800,6 +21815,57 @@ func (s *ModifyUsageLimitOutput) SetUsageLimitId(v string) *ModifyUsageLimitOutp
 	return s
 }
 
+// Describes a network interface.
+type NetworkInterface struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zone.
+	AvailabilityZone *string `type:"string"`
+
+	// The network interface identifier.
+	NetworkInterfaceId *string `type:"string"`
+
+	// The IPv4 address of the network interface within the subnet.
+	PrivateIpAddress *string `type:"string"`
+
+	// The subnet identifier.
+	SubnetId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkInterface) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterface) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NetworkInterface) SetAvailabilityZone(v string) *NetworkInterface {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *NetworkInterface) SetNetworkInterfaceId(v string) *NetworkInterface {
+	s.NetworkInterfaceId = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *NetworkInterface) SetPrivateIpAddress(v string) *NetworkInterface {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *NetworkInterface) SetSubnetId(v string) *NetworkInterface {
+	s.SubnetId = &v
+	return s
+}
+
 // A list of node configurations.
 type NodeConfigurationOption struct {
 	_ struct{} `type:"structure"`
@@ -21981,7 +22047,8 @@ type Parameter struct {
 	// The name of the parameter.
 	ParameterName *string `type:"string"`
 
-	// The value of the parameter.
+	// The value of the parameter. If ParameterName is wlm_json_configuration, then
+	// the maximum size of ParameterValue is 8000 characters.
 	ParameterValue *string `type:"string"`
 
 	// The source of the parameter value, such as "engine-default" or "user".
@@ -22990,6 +23057,9 @@ type RestoreFromClusterSnapshotInput struct {
 	// The number of days that automated snapshots are retained. If the value is
 	// 0, automated snapshots are disabled. Even if automated snapshots are disabled,
 	// you can still create manual snapshots when you want with CreateClusterSnapshot.
+	//
+	// You can't disable automated snapshots for RA3 node types. Set the automated
+	// retention period from 1-35 days.
 	//
 	// Default: The value selected for the cluster from which the snapshot was taken.
 	//
@@ -25304,9 +25374,16 @@ func (s *UsageLimit) SetUsageLimitId(v string) *UsageLimit {
 type VpcEndpoint struct {
 	_ struct{} `type:"structure"`
 
+	// One or more network interfaces of the endpoint. Also known as an interface
+	// endpoint.
+	NetworkInterfaces []*NetworkInterface `locationNameList:"NetworkInterface" type:"list"`
+
 	// The connection endpoint ID for connecting an Amazon Redshift cluster through
 	// the proxy.
 	VpcEndpointId *string `type:"string"`
+
+	// The VPC identifier that the endpoint is associated.
+	VpcId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -25319,9 +25396,21 @@ func (s VpcEndpoint) GoString() string {
 	return s.String()
 }
 
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *VpcEndpoint) SetNetworkInterfaces(v []*NetworkInterface) *VpcEndpoint {
+	s.NetworkInterfaces = v
+	return s
+}
+
 // SetVpcEndpointId sets the VpcEndpointId field's value.
 func (s *VpcEndpoint) SetVpcEndpointId(v string) *VpcEndpoint {
 	s.VpcEndpointId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *VpcEndpoint) SetVpcId(v string) *VpcEndpoint {
+	s.VpcId = &v
 	return s
 }
 
