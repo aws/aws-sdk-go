@@ -1,3 +1,5 @@
+// +build go1.7
+
 package s3manager_test
 
 import (
