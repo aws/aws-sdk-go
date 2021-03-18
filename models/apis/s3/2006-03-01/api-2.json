@@ -968,6 +968,18 @@
       "input":{"shape":"UploadPartCopyRequest"},
       "output":{"shape":"UploadPartCopyOutput"},
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/mpUploadUploadPartCopy.html"
+    },
+    "WriteGetObjectResponse":{
+      "name":"WriteGetObjectResponse",
+      "http":{
+        "method":"POST",
+        "requestUri":"/WriteGetObjectResponse"
+      },
+      "input":{"shape":"WriteGetObjectResponseRequest"},
+      "authtype":"v4-unsigned-body",
+      "endpoint":{
+        "hostPrefix":"{RequestRoute}."
+      }
     }
   },
   "shapes":{
@@ -2580,6 +2592,7 @@
         "Message":{"shape":"Message"}
       }
     },
+    "ErrorCode":{"type":"string"},
     "ErrorDocument":{
       "type":"structure",
       "required":["Key"],
@@ -2587,6 +2600,7 @@
         "Key":{"shape":"ObjectKey"}
       }
     },
+    "ErrorMessage":{"type":"string"},
     "Errors":{
       "type":"list",
       "member":{"shape":"Error"},
@@ -3584,6 +3598,7 @@
         }
       }
     },
+    "GetObjectResponseStatusCode":{"type":"integer"},
     "GetObjectRetentionOutput":{
       "type":"structure",
       "members":{
@@ -6740,6 +6755,8 @@
         "Enabled":{"shape":"EnableRequestProgress"}
       }
     },
+    "RequestRoute":{"type":"string"},
+    "RequestToken":{"type":"string"},
     "ResponseCacheControl":{"type":"string"},
     "ResponseContentDisposition":{"type":"string"},
     "ResponseContentEncoding":{"type":"string"},
@@ -7555,6 +7572,196 @@
       }
     },
     "WebsiteRedirectLocation":{"type":"string"},
+    "WriteGetObjectResponseRequest":{
+      "type":"structure",
+      "required":[
+        "RequestRoute",
+        "RequestToken"
+      ],
+      "members":{
+        "RequestRoute":{
+          "shape":"RequestRoute",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-request-route"
+        },
+        "RequestToken":{
+          "shape":"RequestToken",
+          "location":"header",
+          "locationName":"x-amz-request-token"
+        },
+        "Body":{
+          "shape":"Body",
+          "streaming":true
+        },
+        "StatusCode":{
+          "shape":"GetObjectResponseStatusCode",
+          "location":"header",
+          "locationName":"x-amz-fwd-status"
+        },
+        "ErrorCode":{
+          "shape":"ErrorCode",
+          "location":"header",
+          "locationName":"x-amz-fwd-error-code"
+        },
+        "ErrorMessage":{
+          "shape":"ErrorMessage",
+          "location":"header",
+          "locationName":"x-amz-fwd-error-message"
+        },
+        "AcceptRanges":{
+          "shape":"AcceptRanges",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-accept-ranges"
+        },
+        "CacheControl":{
+          "shape":"CacheControl",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Cache-Control"
+        },
+        "ContentDisposition":{
+          "shape":"ContentDisposition",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Content-Disposition"
+        },
+        "ContentEncoding":{
+          "shape":"ContentEncoding",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Content-Encoding"
+        },
+        "ContentLanguage":{
+          "shape":"ContentLanguage",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Content-Language"
+        },
+        "ContentLength":{
+          "shape":"ContentLength",
+          "location":"header",
+          "locationName":"Content-Length"
+        },
+        "ContentRange":{
+          "shape":"ContentRange",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Content-Range"
+        },
+        "ContentType":{
+          "shape":"ContentType",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Content-Type"
+        },
+        "DeleteMarker":{
+          "shape":"DeleteMarker",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-delete-marker"
+        },
+        "ETag":{
+          "shape":"ETag",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-ETag"
+        },
+        "Expires":{
+          "shape":"Expires",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Expires"
+        },
+        "Expiration":{
+          "shape":"Expiration",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-expiration"
+        },
+        "LastModified":{
+          "shape":"LastModified",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-Last-Modified"
+        },
+        "MissingMeta":{
+          "shape":"MissingMeta",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-missing-meta"
+        },
+        "Metadata":{
+          "shape":"Metadata",
+          "location":"headers",
+          "locationName":"x-amz-meta-"
+        },
+        "ObjectLockMode":{
+          "shape":"ObjectLockMode",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-object-lock-mode"
+        },
+        "ObjectLockLegalHoldStatus":{
+          "shape":"ObjectLockLegalHoldStatus",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-object-lock-legal-hold"
+        },
+        "ObjectLockRetainUntilDate":{
+          "shape":"ObjectLockRetainUntilDate",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-object-lock-retain-until-date"
+        },
+        "PartsCount":{
+          "shape":"PartsCount",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-mp-parts-count"
+        },
+        "ReplicationStatus":{
+          "shape":"ReplicationStatus",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-replication-status"
+        },
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-request-charged"
+        },
+        "Restore":{
+          "shape":"Restore",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-restore"
+        },
+        "ServerSideEncryption":{
+          "shape":"ServerSideEncryption",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-server-side-encryption"
+        },
+        "SSECustomerAlgorithm":{
+          "shape":"SSECustomerAlgorithm",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-server-side-encryption-customer-algorithm"
+        },
+        "SSEKMSKeyId":{
+          "shape":"SSEKMSKeyId",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "SSECustomerKeyMD5":{
+          "shape":"SSECustomerKeyMD5",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-server-side-encryption-customer-key-MD5"
+        },
+        "StorageClass":{
+          "shape":"StorageClass",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-storage-class"
+        },
+        "TagCount":{
+          "shape":"TagCount",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-tagging-count"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-version-id"
+        },
+        "BucketKeyEnabled":{
+          "shape":"BucketKeyEnabled",
+          "location":"header",
+          "locationName":"x-amz-fwd-header-x-amz-server-side-encryption-bucket-key-enabled"
+        }
+      },
+      "payload":"Body"
+    },
     "Years":{"type":"integer"}
   }
 }

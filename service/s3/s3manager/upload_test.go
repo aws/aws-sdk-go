@@ -1253,6 +1253,58 @@ func TestUploadBufferStrategy(t *testing.T) {
 	}
 }
 
+func TestUploaderValidARN(t *testing.T) {
+	cases := map[string]struct {
+		input   s3manager.UploadInput
+		wantErr bool
+	}{
+		"standard bucket": {
+			input: s3manager.UploadInput{
+				Bucket: aws.String("test-bucket"),
+				Key:    aws.String("test-key"),
+				Body:   bytes.NewReader([]byte("test body content")),
+			},
+		},
+		"accesspoint": {
+			input: s3manager.UploadInput{
+				Bucket: aws.String("arn:aws:s3:us-west-2:123456789012:accesspoint/myap"),
+				Key:    aws.String("test-key"),
+				Body:   bytes.NewReader([]byte("test body content")),
+			},
+		},
+		"outpost accesspoint": {
+			input: s3manager.UploadInput{
+				Bucket: aws.String("arn:aws:s3-outposts:us-west-2:012345678901:outpost/op-1234567890123456/accesspoint/myaccesspoint"),
+				Key:    aws.String("test-key"),
+				Body:   bytes.NewReader([]byte("test body content")),
+			},
+		},
+		"s3-object-lambda accesspoint": {
+			input: s3manager.UploadInput{
+				Bucket: aws.String("arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint/myap"),
+				Key:    aws.String("test-key"),
+				Body:   bytes.NewReader([]byte("test body content")),
+			},
+			wantErr: true,
+		},
+	}
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			client, _, _ := loggingSvc(nil)
+			client.Config.Region = aws.String("us-west-2")
+			client.ClientInfo.SigningRegion = "us-west-2"
+
+			uploader := s3manager.NewUploaderWithClient(client)
+
+			_, err := uploader.Upload(&tt.input)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("err: %v, wantErr: %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
 type mockS3UploadServer struct {
 	*http.ServeMux
 

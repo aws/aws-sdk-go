@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/http/httptest"
 	"strings"
 	"testing"
 
@@ -34,6 +35,96 @@ func TestEndpoint(t *testing.T) {
 			},
 			expectedEndpoint:      "https://bucketname.beta.example.com",
 			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Object Lambda with no UseARNRegion flag set": {
+			bucket: "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedEndpoint:      "https://myap-123456789012.s3-object-lambda.us-west-2.amazonaws.com",
+			expectedSigningName:   "s3-object-lambda",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Object Lambda with UseARNRegion flag set": {
+			bucket: "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myap-123456789012.s3-object-lambda.us-east-1.amazonaws.com",
+			expectedSigningName:   "s3-object-lambda",
+			expectedSigningRegion: "us-east-1",
+		},
+		"Object Lambda with Cross-Region error": {
+			bucket: "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedErr: "client region does not match provided ARN region",
+		},
+		"Object Lambda Pseudo-Region with UseARNRegion flag set": {
+			bucket: "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region:         aws.String("aws-global"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myap-123456789012.s3-object-lambda.us-east-1.amazonaws.com",
+			expectedSigningRegion: "us-east-1",
+			expectedSigningName:   "s3-object-lambda",
+		},
+		"Object Lambda Cross-Region DualStack error": {
+			bucket: "arn:aws:s3-object-lambda:us-east-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				UseDualStack:   aws.Bool(true),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "client configured for S3 Dual-stack but is not supported with resource ARN",
+		},
+		"Object Lambda Cross-Partition error": {
+			bucket: "arn:aws-cn:s3-object-lambda:cn-north-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "client partition does not match provided ARN partition",
+		},
+		"Object Lambda FIPS Pseudo-Region": {
+			bucket: "arn:aws-us-gov:s3-object-lambda:us-gov-west-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region: aws.String("fips-us-gov-west-1"),
+			},
+			expectedEndpoint:      "https://myap-123456789012.s3-object-lambda-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningRegion: "us-gov-west-1",
+			expectedSigningName:   "s3-object-lambda",
+		},
+		"Object Lambda FIPS Pseudo-Region with UseARNRegion flag set": {
+			bucket: "arn:aws-us-gov:s3-object-lambda:us-gov-west-1:123456789012:accesspoint/myap",
+			config: &aws.Config{
+				Region:         aws.String("fips-us-gov-west-1"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myap-123456789012.s3-object-lambda-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningRegion: "us-gov-west-1",
+			expectedSigningName:   "s3-object-lambda",
+		},
+		"Object Lambda with Accelerate": {
+			bucket: "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:myendpoint",
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				S3UseAccelerate: aws.Bool(true),
+			},
+			expectedErr: "client configured for S3 Accelerate but is not supported with resource ARN",
+		},
+		"Object Lambda with Custom Endpoint": {
+			bucket: "arn:aws:s3-object-lambda:us-west-2:123456789012:accesspoint:myendpoint",
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("my-domain.com"),
+			},
+			expectedEndpoint:      "https://myendpoint-123456789012.my-domain.com",
+			expectedSigningName:   "s3-object-lambda",
 			expectedSigningRegion: "us-west-2",
 		},
 		"AccessPoint with custom endpoint url": {
@@ -533,6 +624,301 @@ func TestEndpoint(t *testing.T) {
 				t.Errorf("expected err %q, but got nil", c.expectedErr)
 			} else if len(c.expectedErr) != 0 && err != nil && !strings.Contains(err.Error(), c.expectedErr) {
 				t.Errorf("expected %v, got %v", c.expectedErr, err.Error())
+			}
+		})
+	}
+}
+
+func TestWriteGetObjectResponse_UpdateEndpoint(t *testing.T) {
+	cases := map[string]struct {
+		config                *aws.Config
+		expectedEndpoint      string
+		expectedSigningRegion string
+		expectedSigningName   string
+		expectedErr           string
+	}{
+		"standard endpoint": {
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedEndpoint:      "https://test-route.s3-object-lambda.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3-object-lambda",
+		},
+		"fips endpoint": {
+			config: &aws.Config{
+				Region: aws.String("fips-us-gov-west-1"),
+			},
+			expectedEndpoint:      "https://test-route.s3-object-lambda-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningRegion: "us-gov-west-1",
+			expectedSigningName:   "s3-object-lambda",
+		},
+		"duakstack endpoint": {
+			config: &aws.Config{
+				Region:       aws.String("us-west-2"),
+				UseDualStack: aws.Bool(true),
+			},
+			expectedErr: "client configured for dualstack but not supported for operation",
+		},
+		"accelerate endpoint": {
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				S3UseAccelerate: aws.Bool(true),
+			},
+			expectedErr: "client configured for accelerate but not supported for operation",
+		},
+		"custom endpoint": {
+			config: &aws.Config{
+				Region:   aws.String("us-west-2"),
+				Endpoint: aws.String("https://my-domain.com"),
+			},
+			expectedEndpoint:      "https://test-route.my-domain.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3-object-lambda",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			sess := unit.Session.Copy(c.config)
+
+			svc := New(sess)
+
+			var req *request.Request
+			req, _ = svc.WriteGetObjectResponseRequest(&WriteGetObjectResponseInput{
+				RequestRoute: aws.String("test-route"),
+				RequestToken: aws.String("test-token"),
+			})
+
+			req.Handlers.Send.Clear()
+			req.Handlers.Send.PushBack(func(r *request.Request) {
+				defer func() {
+					r.HTTPResponse = &http.Response{
+						StatusCode:    200,
+						ContentLength: 0,
+						Body:          ioutil.NopCloser(bytes.NewReader(nil)),
+					}
+				}()
+				if len(c.expectedErr) != 0 {
+					return
+				}
+
+				endpoint := fmt.Sprintf("%s://%s", r.HTTPRequest.URL.Scheme, r.HTTPRequest.URL.Host)
+				if e, a := c.expectedEndpoint, endpoint; e != a {
+					t.Errorf("expected %v, got %v", e, a)
+				}
+
+				if e, a := c.expectedSigningName, r.ClientInfo.SigningName; e != a {
+					t.Errorf("expected %v, got %v", e, a)
+				}
+				if e, a := c.expectedSigningRegion, r.ClientInfo.SigningRegion; e != a {
+					t.Errorf("expected %v, got %v", e, a)
+				}
+			})
+			err := req.Send()
+			if len(c.expectedErr) == 0 && err != nil {
+				t.Errorf("expected no error but got: %v", err)
+			} else if len(c.expectedErr) != 0 && err == nil {
+				t.Errorf("expected err %q, but got nil", c.expectedErr)
+			} else if len(c.expectedErr) != 0 && err != nil && !strings.Contains(err.Error(), c.expectedErr) {
+				t.Errorf("expected %v, got %v", c.expectedErr, err.Error())
+			}
+		})
+	}
+}
+
+type readSeeker struct {
+	br *bytes.Reader
+}
+
+func (r *readSeeker) Read(p []byte) (int, error) {
+	return r.br.Read(p)
+}
+
+func (r *readSeeker) Seek(offset int64, whence int) (int64, error) {
+	return r.br.Seek(offset, whence)
+}
+
+type readOnlyReader struct {
+	br *bytes.Reader
+}
+
+func (r *readOnlyReader) Read(p []byte) (int, error) {
+	return r.br.Read(p)
+}
+
+type lenReader struct {
+	br *bytes.Reader
+}
+
+func (r *lenReader) Read(p []byte) (int, error) {
+	return r.br.Read(p)
+}
+
+func (r *lenReader) Len() int {
+	return r.br.Len()
+}
+
+func TestWriteGetObjectResponse(t *testing.T) {
+	cases := map[string]struct {
+		Handler func(*testing.T) http.Handler
+		Input   WriteGetObjectResponseInput
+	}{
+		"Content-Length seekable": {
+			Handler: func(t *testing.T) http.Handler {
+				return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+					expectedInput := []byte("test input")
+
+					if len(request.TransferEncoding) != 0 {
+						t.Errorf("expect no transfer-encoding")
+					}
+
+					if e, a := fmt.Sprintf("%d", len(expectedInput)), request.Header.Get("Content-Length"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					if e, a := "UNSIGNED-PAYLOAD", request.Header.Get("X-Amz-Content-Sha256"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					all, err := ioutil.ReadAll(request.Body)
+					if err != nil {
+						t.Errorf("expect no error, got %v", err)
+					}
+					if !bytes.Equal(all, expectedInput) {
+						t.Error("input did not match expected")
+					}
+					writer.WriteHeader(200)
+				})
+			},
+			Input: WriteGetObjectResponseInput{
+				RequestRoute: aws.String("route"),
+				RequestToken: aws.String("token"),
+				Body:         &readSeeker{br: bytes.NewReader([]byte("test input"))},
+			},
+		},
+		"Content-Length Len Interface": {
+			Handler: func(t *testing.T) http.Handler {
+				return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+					expectedInput := []byte("test input")
+
+					if len(request.TransferEncoding) != 0 {
+						t.Errorf("expect no transfer-encoding")
+					}
+
+					if e, a := fmt.Sprintf("%d", len(expectedInput)), request.Header.Get("Content-Length"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					if e, a := "UNSIGNED-PAYLOAD", request.Header.Get("X-Amz-Content-Sha256"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					all, err := ioutil.ReadAll(request.Body)
+					if err != nil {
+						t.Errorf("expect no error, got %v", err)
+					}
+					if !bytes.Equal(all, expectedInput) {
+						t.Error("input did not match expected")
+					}
+					writer.WriteHeader(200)
+				})
+			},
+			Input: WriteGetObjectResponseInput{
+				RequestRoute: aws.String("route"),
+				RequestToken: aws.String("token"),
+				Body:         aws.ReadSeekCloser(&lenReader{bytes.NewReader([]byte("test input"))}),
+			},
+		},
+		"Content-Length Input Parameter": {
+			Handler: func(t *testing.T) http.Handler {
+				return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+					expectedInput := []byte("test input")
+
+					if len(request.TransferEncoding) != 0 {
+						t.Errorf("expect no transfer-encoding")
+					}
+
+					if e, a := fmt.Sprintf("%d", len(expectedInput)), request.Header.Get("Content-Length"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					if e, a := "UNSIGNED-PAYLOAD", request.Header.Get("X-Amz-Content-Sha256"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					all, err := ioutil.ReadAll(request.Body)
+					if err != nil {
+						t.Errorf("expect no error, got %v", err)
+					}
+					if !bytes.Equal(all, expectedInput) {
+						t.Error("input did not match expected")
+					}
+					writer.WriteHeader(200)
+				})
+			},
+			Input: WriteGetObjectResponseInput{
+				RequestRoute:  aws.String("route"),
+				RequestToken:  aws.String("token"),
+				Body:          aws.ReadSeekCloser(&readOnlyReader{bytes.NewReader([]byte("test input"))}),
+				ContentLength: aws.Int64(10),
+			},
+		},
+		"Content-Length Not Provided": {
+			Handler: func(t *testing.T) http.Handler {
+				return http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+					expectedInput := []byte("test input")
+
+					encoding := ""
+					if len(request.TransferEncoding) == 1 {
+						encoding = request.TransferEncoding[0]
+					}
+					if encoding != "chunked" {
+						t.Errorf("expect transfer-encoding chunked, got %v", encoding)
+					}
+
+					if e, a := "", request.Header.Get("Content-Length"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					if e, a := "UNSIGNED-PAYLOAD", request.Header.Get("X-Amz-Content-Sha256"); e != a {
+						t.Errorf("expect %v, got %v", e, a)
+					}
+
+					all, err := ioutil.ReadAll(request.Body)
+					if err != nil {
+						t.Errorf("expect no error, got %v", err)
+					}
+					if !bytes.Equal(all, expectedInput) {
+						t.Error("input did not match expected")
+					}
+					writer.WriteHeader(200)
+				})
+			},
+			Input: WriteGetObjectResponseInput{
+				RequestRoute: aws.String("route"),
+				RequestToken: aws.String("token"),
+				Body:         aws.ReadSeekCloser(&readOnlyReader{bytes.NewReader([]byte("test input"))}),
+			},
+		},
+	}
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			server := httptest.NewServer(tt.Handler(t))
+			defer server.Close()
+
+			sess := unit.Session.Copy(&aws.Config{
+				Region:                    aws.String("us-west-2"),
+				Endpoint:                  &server.URL,
+				DisableEndpointHostPrefix: aws.Bool(true),
+			})
+
+			client := New(sess)
+
+			_, err := client.WriteGetObjectResponse(&tt.Input)
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
 			}
 		})
 	}
