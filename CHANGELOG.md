@@ -1,3 +1,12 @@
+Release v1.38.1 (2021-03-19)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * X2gd instances are the next generation of memory-optimized instances powered by AWS-designed, Arm-based AWS Graviton2 processors.
+* `service/sagemaker`: Updates service API and documentation
+  * Adding authentication support for pulling images stored in private Docker registries to build containers for real-time inference.
+
 Release v1.38.0 (2021-03-18)
 ===
 
