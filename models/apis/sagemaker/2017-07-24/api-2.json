@@ -8430,7 +8430,8 @@
       "type":"structure",
       "required":["RepositoryAccessMode"],
       "members":{
-        "RepositoryAccessMode":{"shape":"RepositoryAccessMode"}
+        "RepositoryAccessMode":{"shape":"RepositoryAccessMode"},
+        "RepositoryAuthConfig":{"shape":"RepositoryAuthConfig"}
       }
     },
     "ImageContainerImage":{
@@ -12487,6 +12488,19 @@
         "Platform",
         "Vpc"
       ]
+    },
+    "RepositoryAuthConfig":{
+      "type":"structure",
+      "required":["RepositoryCredentialsProviderArn"],
+      "members":{
+        "RepositoryCredentialsProviderArn":{"shape":"RepositoryCredentialsProviderArn"}
+      }
+    },
+    "RepositoryCredentialsProviderArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":".*"
     },
     "ResolvedAttributes":{
       "type":"structure",

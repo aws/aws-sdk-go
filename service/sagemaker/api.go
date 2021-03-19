@@ -51052,6 +51052,13 @@ type ImageConfig struct {
 	//
 	// RepositoryAccessMode is a required field
 	RepositoryAccessMode *string `type:"string" required:"true" enum:"RepositoryAccessMode"`
+
+	// (Optional) Specifies an authentication configuration for the private docker
+	// registry where your model image is hosted. Specify a value for this property
+	// only if you specified Vpc as the value for the RepositoryAccessMode field,
+	// and the private Docker registry where the model image is hosted requires
+	// authentication.
+	RepositoryAuthConfig *RepositoryAuthConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -51070,6 +51077,11 @@ func (s *ImageConfig) Validate() error {
 	if s.RepositoryAccessMode == nil {
 		invalidParams.Add(request.NewErrParamRequired("RepositoryAccessMode"))
 	}
+	if s.RepositoryAuthConfig != nil {
+		if err := s.RepositoryAuthConfig.Validate(); err != nil {
+			invalidParams.AddNested("RepositoryAuthConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -51080,6 +51092,12 @@ func (s *ImageConfig) Validate() error {
 // SetRepositoryAccessMode sets the RepositoryAccessMode field's value.
 func (s *ImageConfig) SetRepositoryAccessMode(v string) *ImageConfig {
 	s.RepositoryAccessMode = &v
+	return s
+}
+
+// SetRepositoryAuthConfig sets the RepositoryAuthConfig field's value.
+func (s *ImageConfig) SetRepositoryAuthConfig(v *RepositoryAuthConfig) *ImageConfig {
+	s.RepositoryAuthConfig = v
 	return s
 }
 
@@ -64274,6 +64292,12 @@ type OutputConfig struct {
 	// and highly recommended for CPU compilations. For any other cases, it is optional
 	// to specify CompilerOptions.
 	//
+	//    * DTYPE: Specifies the data type for the input. When compiling for ml_*
+	//    (except for ml_inf) instances using PyTorch framework, provide the data
+	//    type (dtype) of the model's input. "float32" is used if "DTYPE" is not
+	//    specified. Options for data type are: float32: Use either "float" or "float32".
+	//    int64: Use either "int64" or "long". For example, {"dtype" : "float32"}.
+	//
 	//    * CPU: Compilation for CPU supports the following compiler options. mcpu:
 	//    CPU micro-architecture. For example, {'mcpu': 'skylake-avx512'} mattr:
 	//    CPU flags. For example, {'mattr': ['+neon', '+vfpv4']}
@@ -67861,6 +67885,56 @@ func (s *RenderingError) SetCode(v string) *RenderingError {
 // SetMessage sets the Message field's value.
 func (s *RenderingError) SetMessage(v string) *RenderingError {
 	s.Message = &v
+	return s
+}
+
+// Specifies an authentication configuration for the private docker registry
+// where your model image is hosted. Specify a value for this property only
+// if you specified Vpc as the value for the RepositoryAccessMode field of the
+// ImageConfig object that you passed to a call to CreateModel and the private
+// Docker registry where the model image is hosted requires authentication.
+type RepositoryAuthConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an AWS Lambda function that provides credentials
+	// to authenticate to the private Docker registry where your model image is
+	// hosted. For information about how to create an AWS Lambda function, see Create
+	// a Lambda function with the console (https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html)
+	// in the AWS Lambda Developer Guide.
+	//
+	// RepositoryCredentialsProviderArn is a required field
+	RepositoryCredentialsProviderArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RepositoryAuthConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RepositoryAuthConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RepositoryAuthConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RepositoryAuthConfig"}
+	if s.RepositoryCredentialsProviderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryCredentialsProviderArn"))
+	}
+	if s.RepositoryCredentialsProviderArn != nil && len(*s.RepositoryCredentialsProviderArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryCredentialsProviderArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRepositoryCredentialsProviderArn sets the RepositoryCredentialsProviderArn field's value.
+func (s *RepositoryAuthConfig) SetRepositoryCredentialsProviderArn(v string) *RepositoryAuthConfig {
+	s.RepositoryCredentialsProviderArn = &v
 	return s
 }
 
