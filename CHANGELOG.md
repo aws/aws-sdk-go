@@ -1,3 +1,14 @@
+Release v1.38.2 (2021-03-22)
+===
+
+### Service Client Updates
+* `service/codeartifact`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for UEFI boot on selected AMD- and Intel-based EC2 instances.
+* `service/macie2`: Updates service API and documentation
+* `service/redshift`: Updates service API and documentation
+  * Added support to enable AQUA in Amazon Redshift clusters.
+
 Release v1.38.1 (2021-03-19)
 ===
 

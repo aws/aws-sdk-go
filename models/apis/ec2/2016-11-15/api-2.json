@@ -5626,6 +5626,27 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BootModeType":{
+      "type":"string",
+      "enum":[
+        "legacy-bios",
+        "uefi"
+      ]
+    },
+    "BootModeTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"BootModeType",
+        "locationName":"item"
+      }
+    },
+    "BootModeValues":{
+      "type":"string",
+      "enum":[
+        "legacy-bios",
+        "uefi"
+      ]
+    },
     "BundleId":{"type":"string"},
     "BundleIdStringList":{
       "type":"list",
@@ -7834,8 +7855,8 @@
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
-        "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"}
       }
     },
     "CreateLocalGatewayRouteResult":{
@@ -18068,6 +18089,10 @@
         "VirtualizationType":{
           "shape":"VirtualizationType",
           "locationName":"virtualizationType"
+        },
+        "BootMode":{
+          "shape":"BootModeValues",
+          "locationName":"bootMode"
         }
       }
     },
@@ -18105,6 +18130,10 @@
         "SriovNetSupport":{
           "shape":"AttributeValue",
           "locationName":"sriovNetSupport"
+        },
+        "BootMode":{
+          "shape":"AttributeValue",
+          "locationName":"bootMode"
         }
       }
     },
@@ -18117,7 +18146,8 @@
         "launchPermission",
         "productCodes",
         "blockDeviceMapping",
-        "sriovNetSupport"
+        "sriovNetSupport",
+        "bootMode"
       ]
     },
     "ImageDiskContainer":{
@@ -18958,6 +18988,10 @@
         "EnclaveOptions":{
           "shape":"EnclaveOptions",
           "locationName":"enclaveOptions"
+        },
+        "BootMode":{
+          "shape":"BootModeValues",
+          "locationName":"bootMode"
         }
       }
     },
@@ -20289,6 +20323,10 @@
         "AutoRecoverySupported":{
           "shape":"AutoRecoveryFlag",
           "locationName":"autoRecoverySupported"
+        },
+        "SupportedBootModes":{
+          "shape":"BootModeTypeList",
+          "locationName":"supportedBootModes"
         }
       }
     },
@@ -25538,7 +25576,8 @@
         "VirtualizationType":{
           "shape":"String",
           "locationName":"virtualizationType"
-        }
+        },
+        "BootMode":{"shape":"BootModeValues"}
       }
     },
     "RegisterImageResult":{

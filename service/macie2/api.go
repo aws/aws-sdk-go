@@ -3215,6 +3215,111 @@ func (c *Macie2) GetFindingsFilterWithContext(ctx aws.Context, input *GetFinding
 	return out, req.Send()
 }
 
+const opGetFindingsPublicationConfiguration = "GetFindingsPublicationConfiguration"
+
+// GetFindingsPublicationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetFindingsPublicationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFindingsPublicationConfiguration for more information on using the GetFindingsPublicationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFindingsPublicationConfigurationRequest method.
+//    req, resp := client.GetFindingsPublicationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindingsPublicationConfiguration
+func (c *Macie2) GetFindingsPublicationConfigurationRequest(input *GetFindingsPublicationConfigurationInput) (req *request.Request, output *GetFindingsPublicationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetFindingsPublicationConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/findings-publication-configuration",
+	}
+
+	if input == nil {
+		input = &GetFindingsPublicationConfigurationInput{}
+	}
+
+	output = &GetFindingsPublicationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFindingsPublicationConfiguration API operation for Amazon Macie 2.
+//
+// Retrieves the configuration settings for publishing findings to AWS Security
+// Hub.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation GetFindingsPublicationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Provides information about an error that occurred due to a syntax error in
+//   a request.
+//
+//   * InternalServerException
+//   Provides information about an error that occurred due to an unknown internal
+//   server error, exception, or failure.
+//
+//   * ServiceQuotaExceededException
+//   Provides information about an error that occurred due to one or more service
+//   quotas for an account.
+//
+//   * AccessDeniedException
+//   Provides information about an error that occurred due to insufficient access
+//   to a specified resource.
+//
+//   * ResourceNotFoundException
+//   Provides information about an error that occurred because a specified resource
+//   wasn't found.
+//
+//   * ThrottlingException
+//   Provides information about an error that occurred because too many requests
+//   were sent during a certain amount of time.
+//
+//   * ConflictException
+//   Provides information about an error that occurred due to a versioning conflict
+//   for a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/GetFindingsPublicationConfiguration
+func (c *Macie2) GetFindingsPublicationConfiguration(input *GetFindingsPublicationConfigurationInput) (*GetFindingsPublicationConfigurationOutput, error) {
+	req, out := c.GetFindingsPublicationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetFindingsPublicationConfigurationWithContext is the same as GetFindingsPublicationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFindingsPublicationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) GetFindingsPublicationConfigurationWithContext(ctx aws.Context, input *GetFindingsPublicationConfigurationInput, opts ...request.Option) (*GetFindingsPublicationConfigurationOutput, error) {
+	req, out := c.GetFindingsPublicationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetInvitationsCount = "GetInvitationsCount"
 
 // GetInvitationsCountRequest generates a "aws/request.Request" representing the
@@ -5215,6 +5320,112 @@ func (c *Macie2) PutClassificationExportConfiguration(input *PutClassificationEx
 // for more information on using Contexts.
 func (c *Macie2) PutClassificationExportConfigurationWithContext(ctx aws.Context, input *PutClassificationExportConfigurationInput, opts ...request.Option) (*PutClassificationExportConfigurationOutput, error) {
 	req, out := c.PutClassificationExportConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutFindingsPublicationConfiguration = "PutFindingsPublicationConfiguration"
+
+// PutFindingsPublicationConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutFindingsPublicationConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutFindingsPublicationConfiguration for more information on using the PutFindingsPublicationConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutFindingsPublicationConfigurationRequest method.
+//    req, resp := client.PutFindingsPublicationConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/PutFindingsPublicationConfiguration
+func (c *Macie2) PutFindingsPublicationConfigurationRequest(input *PutFindingsPublicationConfigurationInput) (req *request.Request, output *PutFindingsPublicationConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutFindingsPublicationConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/findings-publication-configuration",
+	}
+
+	if input == nil {
+		input = &PutFindingsPublicationConfigurationInput{}
+	}
+
+	output = &PutFindingsPublicationConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutFindingsPublicationConfiguration API operation for Amazon Macie 2.
+//
+// Updates the configuration settings for publishing findings to AWS Security
+// Hub.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation PutFindingsPublicationConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Provides information about an error that occurred due to a syntax error in
+//   a request.
+//
+//   * InternalServerException
+//   Provides information about an error that occurred due to an unknown internal
+//   server error, exception, or failure.
+//
+//   * ServiceQuotaExceededException
+//   Provides information about an error that occurred due to one or more service
+//   quotas for an account.
+//
+//   * AccessDeniedException
+//   Provides information about an error that occurred due to insufficient access
+//   to a specified resource.
+//
+//   * ResourceNotFoundException
+//   Provides information about an error that occurred because a specified resource
+//   wasn't found.
+//
+//   * ThrottlingException
+//   Provides information about an error that occurred because too many requests
+//   were sent during a certain amount of time.
+//
+//   * ConflictException
+//   Provides information about an error that occurred due to a versioning conflict
+//   for a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/PutFindingsPublicationConfiguration
+func (c *Macie2) PutFindingsPublicationConfiguration(input *PutFindingsPublicationConfigurationInput) (*PutFindingsPublicationConfigurationOutput, error) {
+	req, out := c.PutFindingsPublicationConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutFindingsPublicationConfigurationWithContext is the same as PutFindingsPublicationConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutFindingsPublicationConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) PutFindingsPublicationConfigurationWithContext(ctx aws.Context, input *PutFindingsPublicationConfigurationInput, opts ...request.Option) (*PutFindingsPublicationConfigurationOutput, error) {
+	req, out := c.PutFindingsPublicationConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9275,8 +9486,9 @@ type EnableMacieInput struct {
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
 	// for an account. This includes publishing updates to AWS Security Hub and
-	// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
-	// are:
+	// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	// The status of an Amazon Macie account. Valid values are:
@@ -10488,6 +10700,49 @@ func (s *GetFindingsOutput) SetFindings(v []*Finding) *GetFindingsOutput {
 	return s
 }
 
+type GetFindingsPublicationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFindingsPublicationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFindingsPublicationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Provides information about the current configuration settings for publishing
+// findings to AWS Security Hub automatically.
+type GetFindingsPublicationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies configuration settings that determine which findings are published
+	// to AWS Security Hub automatically. For information about how Macie publishes
+	// findings to Security Hub, see Amazon Macie integration with Security Hub
+	// (https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html)
+	// in the Amazon Macie User Guide.
+	SecurityHubConfiguration *SecurityHubConfiguration `locationName:"securityHubConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFindingsPublicationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFindingsPublicationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityHubConfiguration sets the SecurityHubConfiguration field's value.
+func (s *GetFindingsPublicationConfigurationOutput) SetSecurityHubConfiguration(v *SecurityHubConfiguration) *GetFindingsPublicationConfigurationOutput {
+	s.SecurityHubConfiguration = v
+	return s
+}
+
 type GetInvitationsCountInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10549,8 +10804,9 @@ type GetMacieSessionOutput struct {
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
 	// for an account. This includes publishing updates to AWS Security Hub and
-	// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
-	// are:
+	// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	ServiceRole *string `locationName:"serviceRole" type:"string"`
@@ -12767,6 +13023,72 @@ func (s *PutClassificationExportConfigurationOutput) SetConfiguration(v *Classif
 	return s
 }
 
+// Specifies configuration settings for publishing findings to AWS Security
+// Hub automatically.
+type PutFindingsPublicationConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// Specifies configuration settings that determine which findings are published
+	// to AWS Security Hub automatically. For information about how Macie publishes
+	// findings to Security Hub, see Amazon Macie integration with Security Hub
+	// (https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html)
+	// in the Amazon Macie User Guide.
+	SecurityHubConfiguration *SecurityHubConfiguration `locationName:"securityHubConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s PutFindingsPublicationConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutFindingsPublicationConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutFindingsPublicationConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutFindingsPublicationConfigurationInput"}
+	if s.SecurityHubConfiguration != nil {
+		if err := s.SecurityHubConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SecurityHubConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutFindingsPublicationConfigurationInput) SetClientToken(v string) *PutFindingsPublicationConfigurationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetSecurityHubConfiguration sets the SecurityHubConfiguration field's value.
+func (s *PutFindingsPublicationConfigurationInput) SetSecurityHubConfiguration(v *SecurityHubConfiguration) *PutFindingsPublicationConfigurationInput {
+	s.SecurityHubConfiguration = v
+	return s
+}
+
+type PutFindingsPublicationConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutFindingsPublicationConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutFindingsPublicationConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 // Provides details about the location of an occurrence of sensitive data in
 // an Adobe Portable Document Format file, Microsoft Word document, or non-binary
 // text file.
@@ -13399,6 +13721,59 @@ func (s *Scoping) SetExcludes(v *JobScopingBlock) *Scoping {
 // SetIncludes sets the Includes field's value.
 func (s *Scoping) SetIncludes(v *JobScopingBlock) *Scoping {
 	s.Includes = v
+	return s
+}
+
+// Specifies configuration settings that determine which findings are published
+// to AWS Security Hub automatically. For information about how Macie publishes
+// findings to Security Hub, see Amazon Macie integration with Security Hub
+// (https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html)
+// in the Amazon Macie User Guide.
+type SecurityHubConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// PublishClassificationFindings is a required field
+	PublishClassificationFindings *bool `locationName:"publishClassificationFindings" type:"boolean" required:"true"`
+
+	// PublishPolicyFindings is a required field
+	PublishPolicyFindings *bool `locationName:"publishPolicyFindings" type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s SecurityHubConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecurityHubConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SecurityHubConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SecurityHubConfiguration"}
+	if s.PublishClassificationFindings == nil {
+		invalidParams.Add(request.NewErrParamRequired("PublishClassificationFindings"))
+	}
+	if s.PublishPolicyFindings == nil {
+		invalidParams.Add(request.NewErrParamRequired("PublishPolicyFindings"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPublishClassificationFindings sets the PublishClassificationFindings field's value.
+func (s *SecurityHubConfiguration) SetPublishClassificationFindings(v bool) *SecurityHubConfiguration {
+	s.PublishClassificationFindings = &v
+	return s
+}
+
+// SetPublishPolicyFindings sets the PublishPolicyFindings field's value.
+func (s *SecurityHubConfiguration) SetPublishPolicyFindings(v bool) *SecurityHubConfiguration {
+	s.PublishPolicyFindings = &v
 	return s
 }
 
@@ -14446,8 +14821,9 @@ type UpdateMacieSessionInput struct {
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
 	// for an account. This includes publishing updates to AWS Security Hub and
-	// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
-	// are:
+	// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
 
 	// The status of an Amazon Macie account. Valid values are:
@@ -15248,8 +15624,9 @@ func FindingCategory_Values() []string {
 
 // The frequency with which Amazon Macie publishes updates to policy findings
 // for an account. This includes publishing updates to AWS Security Hub and
-// Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values
-// are:
+// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
+// in the Amazon Macie User Guide. Valid values are:
 const (
 	// FindingPublishingFrequencyFifteenMinutes is a FindingPublishingFrequency enum value
 	FindingPublishingFrequencyFifteenMinutes = "FIFTEEN_MINUTES"

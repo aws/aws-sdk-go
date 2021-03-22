@@ -1,6 +1,6 @@
 {
   "version" : "2.0",
-  "service" : "<p>Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automates the discovery of sensitive data, such as PII and intellectual property, to provide you with insight into the data that your organization stores in AWS. Macie also provides an inventory of your Amazon S3 buckets, which it continually monitors for you. If Macie detects sensitive data or potential data access issues, it generates detailed findings for you to review and act upon as necessary.</p>",
+  "service" : "<p>Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS. Macie automates the discovery of sensitive data, such as PII and intellectual property, to provide you with insight into the data that your organization stores in AWS. Macie also provides an inventory of your Amazon S3 buckets, which it continually monitors foryou. If Macie detects sensitive data or potential data access issues, it generates detailed findings for you to review and act upon as necessary.</p>",
   "operations" : {
     "AcceptInvitation" : "<p>Accepts an Amazon Macie membership invitation that was received from a specific account.</p>",
     "BatchGetCustomDataIdentifiers" : "<p>Retrieves information about one or more custom data identifiers.</p>",
@@ -32,6 +32,7 @@
     "GetFindingStatistics" : " <p>Retrieves (queries) aggregated statistical data about findings.</p>",
     "GetFindings" : "<p>Retrieves the details of one or more findings.</p>",
     "GetFindingsFilter" : "<p>Retrieves the criteria and other settings for a findings filter.</p>",
+    "GetFindingsPublicationConfiguration" : "<p>Retrieves the configuration settings for publishing findings to AWS Security Hub.</p>",
     "GetInvitationsCount" : "<p>Retrieves the count of Amazon Macie membership invitations that were received by an account.</p>",
     "GetMacieSession" : "<p>Retrieves the current status and configuration settings for an Amazon Macie account.</p>",
     "GetMasterAccount" : "<p>(Deprecated) Retrieves information about the Amazon Macie administrator account for an account. This operation has been replaced by the <link  linkend=\"GetAdministratorAccount\">GetAdministratorAccount</link> operation.</p>",
@@ -47,6 +48,7 @@
     "ListOrganizationAdminAccounts" : "<p>Retrieves information about the delegated Amazon Macie administrator account for an AWS organization.</p>",
     "ListTagsForResource" : "<p>Retrieves the tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for storing data classification results.</p>",
+    "PutFindingsPublicationConfiguration" : "<p>Updates the configuration settings for publishing findings to AWS Security Hub.</p>",
     "TagResource" : "<p>Adds or updates one or more tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "TestCustomDataIdentifier" : "<p>Tests a custom data identifier.</p>",
     "UntagResource" : "<p>Removes one or more tags (keys and values) from a classification job, custom data identifier, findings filter, or member account.</p>",
@@ -481,7 +483,7 @@
       }
     },
     "FindingPublishingFrequency" : {
-      "base" : "<p>The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). Valid values are:</p>",
+      "base" : "<p>The frequency with which Amazon Macie publishes updates to policy findings for an account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html\">Monitoring and processing findings</a> in the <i>Amazon Macie User Guide</i>. Valid values are:</p>",
       "refs" : {
         "EnableMacieRequest$FindingPublishingFrequency" : "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).",
         "GetMacieSessionResponse$FindingPublishingFrequency" : "<p>The frequency with which Macie publishes updates to policy findings for the account. This includes publishing updates to AWS Security Hub and Amazon EventBridge (formerly called Amazon CloudWatch Events).</p>",
@@ -552,6 +554,10 @@
     },
     "GetFindingsFilterResponse" : {
       "base" : "<p>Provides information about the criteria and other settings for a findings filter.</p>",
+      "refs" : { }
+    },
+    "GetFindingsPublicationConfigurationResponse" : {
+      "base" : "<p>Provides information about the current configuration settings for publishing findings to AWS Security Hub automatically.</p>",
       "refs" : { }
     },
     "GetFindingsRequest" : {
@@ -701,7 +707,7 @@
       "refs" : {
         "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job or, if it's a one-time job, you paused the job and didn't resume it within 30 days.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume it within 30 days of pausing it, the job or job run will expire and be cancelled, depending on the job's type. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
         "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job or, if it's a one-time job, you paused the job and didn't resume it within 30 days.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but additional processing would exceed the monthly sensitive data discovery quota for your account or one or more member accounts that the job analyzes data for.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you paused the job while it had a status of RUNNING and you don't resume it within 30 days of pausing it, the job or job run will expire and be cancelled, depending on the job's type. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>",
-        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. This value is valid only if the job's current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p> <p>If you specify this value and the job's current status is RUNNING, Amazon Macie immediately begins to stop all processing tasks for the job. You can't resume or restart a job after you cancel it.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job's current status is USER_PAUSED.</p> <p>If you paused the job while it was actively running and you specify this value less than 30 days after you paused the job, Macie immediately resumes processing from the point where you paused the job. Otherwise, Macie resumes the job according to the schedule and other settings for the job.</p></li> <li><p>USER_PAUSED - Pauses the job temporarily. This value is valid only if the job's current status is IDLE or RUNNING. If you specify this value and the job's current status is RUNNING, Macie immediately begins to pause all processing tasks for the job.</p> <p>If you pause a one-time job and you don't resume it within 30 days, the job expires and Macie cancels the job. If you pause a recurring job when its status is RUNNING and you don't resume it within 30 days, the job run expires and Macie cancels the run. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>"
+        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. This value is valid only if the job's current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p> <p>If you specify this value and the job's current status is RUNNING, Amazon Macie immediately begins to stop all processing tasks for the job. You can't resume or restart a job after you cancel it.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job's current status is USER_PAUSED.</p> <p>If you paused the job while it was actively running and you specify this value less than 30 days after you paused the job, Macie immediately resumes processing from the point where you paused the job. Otherwise, Macie resumes the job according to the schedule and other settings for the job.</p></li> <li><p>USER_PAUSED - Pauses the job temporarily. This value is valid only if the job's current status is IDLE, PAUSED, or RUNNING. If you specify this value and the job's current status is RUNNING, Macie immediately begins to pause all processing tasks for the job.</p> <p>If you pause a one-time job and you don't resume it within 30 days, the job expires and Macie cancels the job. If you pause a recurring job when its status is RUNNING and you don't resume it within 30 days, the job run expires and Macie cancels the run. To check the expiration date, refer to the UserPausedDetails.jobExpiresAt property.</p></li></ul>"
       }
     },
     "JobSummary" : {
@@ -822,7 +828,7 @@
     "MacieStatus" : {
       "base" : "<p>The status of an Amazon Macie account. Valid values are:</p>",
       "refs" : {
-        "EnableMacieRequest$Status" : "<p>Specifies the status for the account. To enable Amazon Macie and start all Macie activities for the account, set this value to ENABLED.</p>",
+        "EnableMacieRequest$Status" : "<p>Specifies the new status for the account. To enable Amazon Macie and start all Macie activities for the account, set this value to ENABLED.</p>",
         "GetMacieSessionResponse$Status" : "<p>The current status of the Macie account. Possible values are: PAUSED, the account is enabled but all Macie activities are suspended (paused) for the account; and, ENABLED, the account is enabled and all Macie activities are enabled for the account.</p>",
         "UpdateMacieSessionRequest$Status" : "<p>Specifies a new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.</p>",
         "UpdateMemberSessionRequest$Status" : "<p>Specifies the new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.</p>"
@@ -898,6 +904,10 @@
       "base" : "<p>Provides information about updated settings for storing data classification results.</p>",
       "refs" : { }
     },
+    "PutFindingsPublicationConfigurationRequest" : {
+      "base" : "<p>Specifies configuration settings for publishing findings to AWS Security Hub automatically.</p>",
+      "refs" : { }
+    },
     "Range" : {
       "base" : "<p>Provides details about the location of an occurrence of sensitive data in an Adobe Portable Document Format file, Microsoft Word document, or non-binary text file.</p>",
       "refs" : {
@@ -909,7 +919,7 @@
     "Ranges" : {
       "base" : "<p>Provides details about the location of occurrences of sensitive data in an Adobe Portable Document Format file, Microsoft Word document, or non-binary text file.</p>",
       "refs" : {
-        "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a Microsoft Word document or non-binary text file, such as an HTML, JSON, TXT, or XML file. Each object specifies the line that contains the data, and the position of the data on that line.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the locations of: data in unstructured sections of an otherwise structured file, such as a comment in a file; and, data in a malformed file that Amazon Macie analyzes as plain text.</p>",
+        "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a Microsoft Word document or non-binary text file, such as an HTML, JSON, TXT, or XML file. Each object specifies the line that contains the data, and the position of the data on that line.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the locations of data in: unstructured sections of an otherwise structured file, such as a comment in a file; a malformed file that Amazon Macie analyzes as plain text; and, a CSV or TSV file that has any column names that contain sensitive data.</p>",
         "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the beginning of the file.</p> <p>This value is typically null. For binary text files, Amazon Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
       }
     },
@@ -996,6 +1006,13 @@
       "base" : "<p>Specifies one or more property- and tag-based conditions that refine the scope of a classification job. These conditions define criteria that determine which objects a job analyzes. Exclude conditions take precedence over include conditions.</p>",
       "refs" : {
         "S3JobDefinition$Scoping" : "<p>The property- and tag-based conditions that determine which objects to include or exclude from the analysis.</p>"
+      }
+    },
+    "SecurityHubConfiguration" : {
+      "base" : "<p>Specifies configuration settings that determine which findings are published to AWS Security Hub automatically. For information about how Macie publishes findings to Security Hub, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html\">Amazon Macie integration with Security Hub</a> in the <i>Amazon Macie User Guide</i>.</p>",
+      "refs" : {
+        "GetFindingsPublicationConfigurationResponse$SecurityHubConfiguration" : "<p>The configuration settings that determine which findings are published to AWS Security Hub.</p>",
+        "PutFindingsPublicationConfigurationRequest$SecurityHubConfiguration" : "<p>The configuration settings that determine which findings to publish to AWS Security Hub.</p>"
       }
     },
     "SensitiveData" : {
@@ -1319,6 +1336,8 @@
         "ReplicationDetails$Replicated" : "<p>Specifies whether the bucket is configured to replicate one or more objects to any destination.</p>",
         "ReplicationDetails$ReplicatedExternally" : "<p>Specifies whether the bucket is configured to replicate one or more objects to an AWS account that isn't part of the same Amazon Macie organization.</p>",
         "S3Object$PublicAccess" : "<p>Specifies whether the object is publicly accessible due to the combination of permissions settings that apply to the object.</p>",
+        "SecurityHubConfiguration$PublishClassificationFindings" : "<p>Specifies whether to publish sensitive data findings to AWS Security Hub. If you set this value to true, Amazon Macie automatically publishes all sensitive data findings that weren't suppressed by a findings filter. The default value is false.</p>",
+        "SecurityHubConfiguration$PublishPolicyFindings" : "<p>Specifies whether to publish policy findings to AWS Security Hub. If you set this value to true, Amazon Macie automatically publishes all new and updated policy findings that weren't suppressed by a findings filter. The default value is true.</p>",
         "ServiceLimit$IsServiceLimited" : "<p>Specifies whether the account has met the quota that corresponds to the metric specified by the UsageByAccount.type field in the response.</p>",
         "SessionContextAttributes$MfaAuthenticated" : "<p>Specifies whether the credentials were authenticated with a multi-factor authentication (MFA) device.</p>",
         "UpdateOrganizationConfigurationRequest$AutoEnable" : "<p>Specifies whether to enable Amazon Macie automatically for each account, when the account is added to the AWS organization.</p>"
@@ -1348,7 +1367,7 @@
         "ListClassificationJobsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListCustomDataIdentifiersRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
-        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie doesn't run the job that month. Macie runs the job only during months that have the specified day. For example, if this value is 31 and a month has only 30 days, Macie doesn’t run the job that month. To run the job every month, specify a value that’s less than 29.</p>",
+        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie doesn't run the job that month. Macie runs the job only during months that have the specified day. For example, if this value is 31 and a month has only 30 days, Macie doesn't run the job that month. To run the job every month, specify a value that's less than 29.</p>",
         "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of instances of sample text that matched the detection criteria specified in the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
@@ -1605,7 +1624,7 @@
         "BucketServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the AWS Key Management Service (AWS KMS) customer master key (CMK) that's used by default to encrypt objects that are added to the bucket. This value is null if the bucket uses an Amazon S3 managed key to encrypt new objects or the bucket doesn't encrypt new objects by default.</p>",
         "BucketSortCriteria$AttributeName" : "<p>The name of the bucket property to sort the results by. This value can be one of the following properties that Amazon Macie defines as bucket metadata: accountId, bucketName, classifiableObjectCount, classifiableSizeInBytes, objectCount, or sizeInBytes.</p>",
         "Cell$CellReference" : "<p>The location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel workbook. This value is null for CSV and TSV files.</p>",
-        "Cell$ColumnName" : "<p>The name of the column that contains the data, if available.</p>",
+        "Cell$ColumnName" : "<p>The name of the column that contains the data, if available. This value is also null if Amazon Macie detects sensitive data in the name of any column in the file.</p>",
         "ClassificationDetails$DetailedResultsLocation" : "<p>The path to the folder or file (in Amazon S3) that contains the corresponding sensitive data discovery result for the finding. If a finding applies to a large archive or compressed file, this value is the path to a folder. Otherwise, this value is the path to a file.</p>",
         "ClassificationDetails$JobArn" : "<p>The Amazon Resource Name (ARN) of the classification job that produced the finding.</p>",
         "ClassificationDetails$JobId" : "<p>The unique identifier for the classification job that produced the finding.</p>",
@@ -1716,7 +1735,8 @@
         "Member$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
         "Member$Email" : "<p>The email address for the account.</p>",
         "Member$MasterAccountId" : "<p>(Deprecated) The AWS account ID for the administrator account. This property has been replaced by the administratorAccountId property and is retained only for backward compatibility.</p>",
-        "Record$JsonPath" : "<p>The path, as a JSONPath expression, to the field in the record that contains the data.</p> <p>If the name of an element exceeds 20 characters, Amazon Macie truncates the name by removing characters from the beginning of the name. If the resulting full path exceeds 250 characters, Macie also truncates the path, starting with the first element in the path, until the path contains 250 or fewer characters.</p>",
+        "PutFindingsPublicationConfigurationRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
+        "Record$JsonPath" : "<p>The path, as a JSONPath expression, to the field in the record that contains the data. If Amazon Macie detects sensitive data in the name of any element in the path, Macie omits this field.</p> <p>If the name of an element exceeds 20 characters, Macie truncates the name by removing characters from the beginning of the name. If the resulting full path exceeds 250 characters, Macie also truncates the path, starting with the first element in the path, until the path contains 250 or fewer characters.</p>",
         "ResourceNotFoundException$Message" : "<p>The explanation of the error that occurred.</p>",
         "S3Bucket$Arn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "S3Bucket$Name" : "<p>The name of the bucket.</p>",
