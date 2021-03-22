@@ -671,8 +671,8 @@ func (c *CodeArtifact) DeletePackageVersionsRequest(input *DeletePackageVersions
 // be restored in your repository. If you want to remove a package version from
 // your repository and be able to restore it later, set its status to Archived.
 // Archived packages cannot be downloaded from a repository and don't show up
-// with list package APIs (for example, ListackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)
-// ), but you can restore them using UpdatePackageVersionsStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html) .
+// with list package APIs (for example, ListackageVersions (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html)),
+// but you can restore them using UpdatePackageVersionsStatus (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1885,8 +1885,6 @@ func (c *CodeArtifact) GetRepositoryEndpointRequest(input *GetRepositoryEndpoint
 //    * pypi
 //
 //    * maven
-//
-//    * nuget
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3857,8 +3855,6 @@ type AssociateExternalConnectionInput struct {
 	//
 	//    * public:maven-commonsware - for the CommonsWare Android repository.
 	//
-	//    * public:nuget-org - for the NuGet Gallery.
-	//
 	// ExternalConnection is a required field
 	ExternalConnection *string `location:"querystring" locationName:"external-connection" type:"string" required:"true"`
 
@@ -4047,8 +4043,6 @@ type CopyPackageVersionsInput struct {
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
 	//
-	//    * nuget: A NuGet package.
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -4065,9 +4059,6 @@ type CopyPackageVersionsInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -4375,7 +4366,7 @@ type CreateRepositoryInput struct {
 	// A description of the created repository.
 	Description *string `locationName:"description" type:"string"`
 
-	// The domain that contains the created repository.
+	// The name of the domain that contains the created repository.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -4714,8 +4705,6 @@ type DeletePackageVersionsInput struct {
 	//
 	//    * maven
 	//
-	//    * nuget
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -4727,9 +4716,6 @@ type DeletePackageVersionsInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -5196,8 +5182,6 @@ type DescribePackageVersionInput struct {
 	//
 	//    * maven
 	//
-	//    * nuget
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -5209,9 +5193,6 @@ type DescribePackageVersionInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -5589,8 +5570,6 @@ type DisposePackageVersionsInput struct {
 	//
 	//    * maven
 	//
-	//    * nuget
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -5602,9 +5581,6 @@ type DisposePackageVersionsInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -6139,8 +6115,8 @@ type GetPackageVersionAssetInput struct {
 	// Asset is a required field
 	Asset *string `location:"querystring" locationName:"asset" min:"1" type:"string" required:"true"`
 
-	// The domain that contains the repository that contains the package version
-	// with the requested asset.
+	// The name of the domain that contains the repository that contains the package
+	// version with the requested asset.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -6158,8 +6134,6 @@ type GetPackageVersionAssetInput struct {
 	//
 	//    * maven
 	//
-	//    * nuget
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -6171,9 +6145,6 @@ type GetPackageVersionAssetInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -6384,8 +6355,6 @@ type GetPackageVersionReadmeInput struct {
 	//
 	//    * maven
 	//
-	//    * nuget
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -6397,9 +6366,6 @@ type GetPackageVersionReadmeInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -6525,8 +6491,6 @@ type GetPackageVersionReadmeOutput struct {
 	//    * pypi
 	//
 	//    * maven
-	//
-	//    * nuget
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -6537,9 +6501,6 @@ type GetPackageVersionReadmeOutput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
@@ -6622,8 +6583,6 @@ type GetRepositoryEndpointInput struct {
 	//    * pypi
 	//
 	//    * maven
-	//
-	//    * nuget
 	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
@@ -7010,8 +6969,6 @@ type ListPackageVersionAssetsInput struct {
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
 	//
-	//    * nuget: A NuGet package.
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -7026,9 +6983,6 @@ type ListPackageVersionAssetsInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -7185,9 +7139,6 @@ type ListPackageVersionAssetsOutput struct {
 	//
 	//    * A Python package does not contain a corresponding component, so Python
 	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
-	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -7258,8 +7209,8 @@ func (s *ListPackageVersionAssetsOutput) SetVersionRevision(v string) *ListPacka
 type ListPackageVersionDependenciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain that contains the repository that contains the requested package
-	// version dependencies.
+	// The name of the domain that contains the repository that contains the requested
+	// package version dependencies.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -7278,8 +7229,6 @@ type ListPackageVersionDependenciesInput struct {
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
 	//
-	//    * nuget: A NuGet package.
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -7291,9 +7240,6 @@ type ListPackageVersionDependenciesInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -7436,8 +7382,6 @@ type ListPackageVersionDependenciesOutput struct {
 	//    * pypi
 	//
 	//    * maven
-	//
-	//    * nuget
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -7448,9 +7392,6 @@ type ListPackageVersionDependenciesOutput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
@@ -7542,8 +7483,6 @@ type ListPackageVersionsInput struct {
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
 	//
-	//    * nuget: A NuGet package.
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -7558,9 +7497,6 @@ type ListPackageVersionsInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -7728,8 +7664,6 @@ type ListPackageVersionsOutput struct {
 	//    * pypi
 	//
 	//    * maven
-	//
-	//    * nuget
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -7740,9 +7674,6 @@ type ListPackageVersionsOutput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
@@ -7806,8 +7737,8 @@ func (s *ListPackageVersionsOutput) SetVersions(v []*PackageVersionSummary) *Lis
 type ListPackagesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain that contains the repository that contains the requested list
-	// of packages.
+	// The name of the domain that contains the repository that contains the requested
+	// list of packages.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -7824,8 +7755,6 @@ type ListPackagesInput struct {
 	//
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
-	//
-	//    * nuget: A NuGet package.
 	Format *string `location:"querystring" locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The maximum number of results to return per page.
@@ -7839,9 +7768,6 @@ type ListPackagesInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 
@@ -8301,9 +8227,6 @@ type PackageDependency struct {
 	//
 	//    * A Python package does not contain a corresponding component, so Python
 	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
-	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
 	// The name of the package that this package depends on.
@@ -8362,8 +8285,6 @@ type PackageSummary struct {
 	//    * pypi
 	//
 	//    * maven
-	//
-	//    * nuget
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The namespace of the package. The package component that specifies its namespace
@@ -8374,9 +8295,6 @@ type PackageSummary struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
@@ -8430,8 +8348,6 @@ type PackageVersionDescription struct {
 	//
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
-	//
-	//    * nuget: A NuGet package.
 	Format *string `locationName:"format" type:"string" enum:"PackageFormat"`
 
 	// The homepage associated with the package.
@@ -8448,9 +8364,6 @@ type PackageVersionDescription struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `locationName:"namespace" min:"1" type:"string"`
 
@@ -9024,8 +8937,6 @@ type RepositoryExternalConnectionInfo struct {
 	//
 	//    * maven: A Maven package that contains compiled code in a distributable
 	//    format, such as a JAR file.
-	//
-	//    * nuget: A NuGet package.
 	PackageFormat *string `locationName:"packageFormat" type:"string" enum:"PackageFormat"`
 
 	// The status of the external connection of a repository. There is one valid
@@ -9614,8 +9525,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdatePackageVersionsStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The domain that contains the repository that contains the package versions
-	// with a status to be updated.
+	// The name of the domain that contains the repository that contains the package
+	// versions with a status to be updated.
 	//
 	// Domain is a required field
 	Domain *string `location:"querystring" locationName:"domain" min:"2" type:"string" required:"true"`
@@ -9638,8 +9549,6 @@ type UpdatePackageVersionsStatusInput struct {
 	//
 	//    * maven
 	//
-	//    * nuget
-	//
 	// Format is a required field
 	Format *string `location:"querystring" locationName:"format" type:"string" required:"true" enum:"PackageFormat"`
 
@@ -9651,9 +9560,6 @@ type UpdatePackageVersionsStatusInput struct {
 	//    * The namespace of an npm package is its scope.
 	//
 	//    * A Python package does not contain a corresponding component, so Python
-	//    packages do not have a namespace.
-	//
-	//    * A NuGet package does not contain a corresponding component, so NuGet
 	//    packages do not have a namespace.
 	Namespace *string `location:"querystring" locationName:"namespace" min:"1" type:"string"`
 

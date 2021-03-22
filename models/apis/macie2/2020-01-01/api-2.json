@@ -1121,6 +1121,43 @@
         }
       ]
     },
+    "GetFindingsPublicationConfiguration": {
+      "name": "GetFindingsPublicationConfiguration",
+      "http": {
+        "method": "GET",
+        "requestUri": "/findings-publication-configuration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetFindingsPublicationConfigurationRequest"
+      },
+      "output": {
+        "shape": "GetFindingsPublicationConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "GetInvitationsCount": {
       "name": "GetInvitationsCount",
       "http": {
@@ -1629,6 +1666,43 @@
       },
       "output": {
         "shape": "PutClassificationExportConfigurationResponse"
+      },
+      "errors": [
+        {
+          "shape": "ValidationException"
+        },
+        {
+          "shape": "InternalServerException"
+        },
+        {
+          "shape": "ServiceQuotaExceededException"
+        },
+        {
+          "shape": "AccessDeniedException"
+        },
+        {
+          "shape": "ResourceNotFoundException"
+        },
+        {
+          "shape": "ThrottlingException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "PutFindingsPublicationConfiguration": {
+      "name": "PutFindingsPublicationConfiguration",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/findings-publication-configuration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "PutFindingsPublicationConfigurationRequest"
+      },
+      "output": {
+        "shape": "PutFindingsPublicationConfigurationResponse"
       },
       "errors": [
         {
@@ -3746,6 +3820,19 @@
         }
       }
     },
+    "GetFindingsPublicationConfigurationRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "GetFindingsPublicationConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "securityHubConfiguration": {
+          "shape": "SecurityHubConfiguration",
+          "locationName": "securityHubConfiguration"
+        }
+      }
+    },
     "GetFindingsRequest": {
       "type": "structure",
       "members": {
@@ -4765,6 +4852,24 @@
         }
       }
     },
+    "PutFindingsPublicationConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "clientToken": {
+          "shape": "__string",
+          "locationName": "clientToken",
+          "idempotencyToken": true
+        },
+        "securityHubConfiguration": {
+          "shape": "SecurityHubConfiguration",
+          "locationName": "securityHubConfiguration"
+        }
+      }
+    },
+    "PutFindingsPublicationConfigurationResponse": {
+      "type": "structure",
+      "members": {}
+    },
     "Range": {
       "type": "structure",
       "members": {
@@ -5038,6 +5143,23 @@
           "locationName": "includes"
         }
       }
+    },
+    "SecurityHubConfiguration": {
+      "type": "structure",
+      "members": {
+        "publishClassificationFindings": {
+          "shape": "__boolean",
+          "locationName": "publishClassificationFindings"
+        },
+        "publishPolicyFindings": {
+          "shape": "__boolean",
+          "locationName": "publishPolicyFindings"
+        }
+      },
+      "required": [
+        "publishPolicyFindings",
+        "publishClassificationFindings"
+      ]
     },
     "SensitiveData": {
       "type": "list",

@@ -183,6 +183,10 @@ type Macie2API interface {
 	GetFindingsFilterWithContext(aws.Context, *macie2.GetFindingsFilterInput, ...request.Option) (*macie2.GetFindingsFilterOutput, error)
 	GetFindingsFilterRequest(*macie2.GetFindingsFilterInput) (*request.Request, *macie2.GetFindingsFilterOutput)
 
+	GetFindingsPublicationConfiguration(*macie2.GetFindingsPublicationConfigurationInput) (*macie2.GetFindingsPublicationConfigurationOutput, error)
+	GetFindingsPublicationConfigurationWithContext(aws.Context, *macie2.GetFindingsPublicationConfigurationInput, ...request.Option) (*macie2.GetFindingsPublicationConfigurationOutput, error)
+	GetFindingsPublicationConfigurationRequest(*macie2.GetFindingsPublicationConfigurationInput) (*request.Request, *macie2.GetFindingsPublicationConfigurationOutput)
+
 	GetInvitationsCount(*macie2.GetInvitationsCountInput) (*macie2.GetInvitationsCountOutput, error)
 	GetInvitationsCountWithContext(aws.Context, *macie2.GetInvitationsCountInput, ...request.Option) (*macie2.GetInvitationsCountOutput, error)
 	GetInvitationsCountRequest(*macie2.GetInvitationsCountInput) (*request.Request, *macie2.GetInvitationsCountOutput)
@@ -266,6 +270,10 @@ type Macie2API interface {
 	PutClassificationExportConfiguration(*macie2.PutClassificationExportConfigurationInput) (*macie2.PutClassificationExportConfigurationOutput, error)
 	PutClassificationExportConfigurationWithContext(aws.Context, *macie2.PutClassificationExportConfigurationInput, ...request.Option) (*macie2.PutClassificationExportConfigurationOutput, error)
 	PutClassificationExportConfigurationRequest(*macie2.PutClassificationExportConfigurationInput) (*request.Request, *macie2.PutClassificationExportConfigurationOutput)
+
+	PutFindingsPublicationConfiguration(*macie2.PutFindingsPublicationConfigurationInput) (*macie2.PutFindingsPublicationConfigurationOutput, error)
+	PutFindingsPublicationConfigurationWithContext(aws.Context, *macie2.PutFindingsPublicationConfigurationInput, ...request.Option) (*macie2.PutFindingsPublicationConfigurationOutput, error)
+	PutFindingsPublicationConfigurationRequest(*macie2.PutFindingsPublicationConfigurationInput) (*request.Request, *macie2.PutFindingsPublicationConfigurationOutput)
 
 	TagResource(*macie2.TagResourceInput) (*macie2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *macie2.TagResourceInput, ...request.Option) (*macie2.TagResourceOutput, error)
