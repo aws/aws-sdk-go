@@ -597,9 +597,10 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 // locations. Fleets that are created in the following AWS Regions support multiple
 // locations: us-east-1 (N. Virginia), us-west-2 (Oregon), eu-central-1 (Frankfurt),
 // eu-west-1 (Ireland), ap-southeast-2 (Sydney), ap-northeast-1 (Tokyo), and
-// ap-northeast-2 (Seoul). Fleets that created in other GameLift Regions can
-// have instances in the fleet Region only. All instances deployed to fleet
-// locations use the same configuration.
+// ap-northeast-2 (Seoul). Fleets that are created in other GameLift Regions
+// can deploy instances in the fleet's home Region only. All fleet instances
+// use the same configuration regardless of location; however, you can adjust
+// capacity settings and turn auto-scaling on/off for each location.
 //
 // To create a fleet, choose the hardware for your instances, specify a game
 // server build or Realtime script to deploy, and provide a runtime configuration
@@ -1190,11 +1191,15 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 //
 // To create a new queue, provide a name, timeout value, and a list of destinations.
 // Optionally, specify a sort configuration and/or a filter, and define a set
-// of latency cap policies.
+// of latency cap policies. You can also include the ARN for an Amazon Simple
+// Notification Service (SNS) topic to receive notifications of game session
+// placement activity. Notifications using SNS or CloudWatch events is the preferred
+// way to track placement activity.
 //
 // If successful, a new GameSessionQueue object is returned with an assigned
-// queue ARN. New game session requests, which are submitted to queue with StartGameSessionPlacement
-// or StartMatchmaking, reference a queue's name or ARN.
+// queue ARN. New game session requests, which are submitted to the queue with
+// StartGameSessionPlacement or StartMatchmaking, reference a queue's name or
+// ARN.
 //
 // Learn more
 //
@@ -1230,6 +1235,10 @@ func (c *GameLift) CreateGameSessionQueueRequest(input *CreateGameSessionQueueIn
 //   * LimitExceededException
 //   The requested operation would cause the resource to exceed the allowed service
 //   limit. Resolve the issue before retrying.
+//
+//   * NotFoundException
+//   A service resource associated with the request could not be found. Clients
+//   should not retry such requests.
 //
 //   * TaggingFailedException
 //   The requested tagging operation did not succeed. This may be due to invalid
@@ -1319,10 +1328,10 @@ func (c *GameLift) CreateMatchmakingConfigurationRequest(input *CreateMatchmakin
 // game session queue to use when starting a game session for the match.
 //
 // In addition, you must set up an Amazon Simple Notification Service (SNS)
-// to receive matchmaking notifications, and provide the topic ARN in the matchmaking
-// configuration. An alternative method, continuously polling ticket status
-// with DescribeMatchmaking, is only suitable for games in development with
-// low matchmaking usage.
+// topic to receive matchmaking notifications. Provide the topic ARN in the
+// matchmaking configuration. An alternative method, continuously polling ticket
+// status with DescribeMatchmaking, is only suitable for games in development
+// with low matchmaking usage.
 //
 // Learn more
 //
@@ -14409,6 +14418,10 @@ func (s *CreateGameSessionOutput) SetGameSession(v *GameSession) *CreateGameSess
 type CreateGameSessionQueueInput struct {
 	_ struct{} `type:"structure"`
 
+	// Information to be added to all events that are related to this game session
+	// queue.
+	CustomEventData *string `type:"string"`
+
 	// A list of fleets and/or fleet aliases that can be used to fulfill game session
 	// placement requests in the queue. Destinations are identified by either a
 	// fleet ARN or a fleet alias ARN, and are listed in order of placement preference.
@@ -14424,6 +14437,10 @@ type CreateGameSessionQueueInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// An SNS topic ARN that is set up to receive game session placement notifications.
+	// See Setting up notifications for game session placement (https://docs.aws.amazon.com/gamelift/latest/developerguide/queue-notification.html).
+	NotificationTarget *string `type:"string"`
 
 	// A set of policies that act as a sliding cap on player latency. FleetIQ works
 	// to deliver low latency for most players in a game session. These policies
@@ -14511,6 +14528,12 @@ func (s *CreateGameSessionQueueInput) Validate() error {
 	return nil
 }
 
+// SetCustomEventData sets the CustomEventData field's value.
+func (s *CreateGameSessionQueueInput) SetCustomEventData(v string) *CreateGameSessionQueueInput {
+	s.CustomEventData = &v
+	return s
+}
+
 // SetDestinations sets the Destinations field's value.
 func (s *CreateGameSessionQueueInput) SetDestinations(v []*GameSessionQueueDestination) *CreateGameSessionQueueInput {
 	s.Destinations = v
@@ -14526,6 +14549,12 @@ func (s *CreateGameSessionQueueInput) SetFilterConfiguration(v *FilterConfigurat
 // SetName sets the Name field's value.
 func (s *CreateGameSessionQueueInput) SetName(v string) *CreateGameSessionQueueInput {
 	s.Name = &v
+	return s
+}
+
+// SetNotificationTarget sets the NotificationTarget field's value.
+func (s *CreateGameSessionQueueInput) SetNotificationTarget(v string) *CreateGameSessionQueueInput {
+	s.NotificationTarget = &v
 	return s
 }
 
@@ -14655,7 +14684,9 @@ type CreateMatchmakingConfigurationInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// An SNS topic ARN that is set up to receive matchmaking notifications.
+	// An SNS topic ARN that is set up to receive matchmaking notifications. See
+	// Setting up notifications for matchmaking (https://docs.aws.amazon.com/gamelift/latest/flexmatchguide/match-notification.html)
+	// for more information.
 	NotificationTarget *string `type:"string"`
 
 	// The maximum duration, in seconds, that a matchmaking ticket can remain in
@@ -21180,6 +21211,10 @@ func (s *GameSessionPlacement) SetStatus(v string) *GameSessionPlacement {
 type GameSessionQueue struct {
 	_ struct{} `type:"structure"`
 
+	// Information that is added to all events that are related to this game session
+	// queue.
+	CustomEventData *string `type:"string"`
+
 	// A list of fleets and/or fleet aliases that can be used to fulfill game session
 	// placement requests in the queue. Destinations are identified by either a
 	// fleet ARN or a fleet alias ARN, and are listed in order of placement preference.
@@ -21200,6 +21235,10 @@ type GameSessionQueue struct {
 	// A descriptive label that is associated with game session queue. Queue names
 	// must be unique within each Region.
 	Name *string `min:"1" type:"string"`
+
+	// An SNS topic ARN that is set up to receive game session placement notifications.
+	// See Setting up notifications for game session placement (https://docs.aws.amazon.com/gamelift/latest/developerguide/queue-notification.html).
+	NotificationTarget *string `type:"string"`
 
 	// A set of policies that act as a sliding cap on player latency. FleetIQ works
 	// to deliver low latency for most players in a game session. These policies
@@ -21231,6 +21270,12 @@ func (s GameSessionQueue) GoString() string {
 	return s.String()
 }
 
+// SetCustomEventData sets the CustomEventData field's value.
+func (s *GameSessionQueue) SetCustomEventData(v string) *GameSessionQueue {
+	s.CustomEventData = &v
+	return s
+}
+
 // SetDestinations sets the Destinations field's value.
 func (s *GameSessionQueue) SetDestinations(v []*GameSessionQueueDestination) *GameSessionQueue {
 	s.Destinations = v
@@ -21252,6 +21297,12 @@ func (s *GameSessionQueue) SetGameSessionQueueArn(v string) *GameSessionQueue {
 // SetName sets the Name field's value.
 func (s *GameSessionQueue) SetName(v string) *GameSessionQueue {
 	s.Name = &v
+	return s
+}
+
+// SetNotificationTarget sets the NotificationTarget field's value.
+func (s *GameSessionQueue) SetNotificationTarget(v string) *GameSessionQueue {
+	s.NotificationTarget = &v
 	return s
 }
 
@@ -27994,6 +28045,10 @@ func (s *UpdateGameSessionOutput) SetGameSession(v *GameSession) *UpdateGameSess
 type UpdateGameSessionQueueInput struct {
 	_ struct{} `type:"structure"`
 
+	// Information to be added to all events that are related to this game session
+	// queue.
+	CustomEventData *string `type:"string"`
+
 	// A list of fleets and/or fleet aliases that can be used to fulfill game session
 	// placement requests in the queue. Destinations are identified by either a
 	// fleet ARN or a fleet alias ARN, and are listed in order of placement preference.
@@ -28012,6 +28067,10 @@ type UpdateGameSessionQueueInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// An SNS topic ARN that is set up to receive game session placement notifications.
+	// See Setting up notifications for game session placement (https://docs.aws.amazon.com/gamelift/latest/developerguide/queue-notification.html).
+	NotificationTarget *string `type:"string"`
 
 	// A set of policies that act as a sliding cap on player latency. FleetIQ works
 	// to deliver low latency for most players in a game session. These policies
@@ -28081,6 +28140,12 @@ func (s *UpdateGameSessionQueueInput) Validate() error {
 	return nil
 }
 
+// SetCustomEventData sets the CustomEventData field's value.
+func (s *UpdateGameSessionQueueInput) SetCustomEventData(v string) *UpdateGameSessionQueueInput {
+	s.CustomEventData = &v
+	return s
+}
+
 // SetDestinations sets the Destinations field's value.
 func (s *UpdateGameSessionQueueInput) SetDestinations(v []*GameSessionQueueDestination) *UpdateGameSessionQueueInput {
 	s.Destinations = v
@@ -28096,6 +28161,12 @@ func (s *UpdateGameSessionQueueInput) SetFilterConfiguration(v *FilterConfigurat
 // SetName sets the Name field's value.
 func (s *UpdateGameSessionQueueInput) SetName(v string) *UpdateGameSessionQueueInput {
 	s.Name = &v
+	return s
+}
+
+// SetNotificationTarget sets the NotificationTarget field's value.
+func (s *UpdateGameSessionQueueInput) SetNotificationTarget(v string) *UpdateGameSessionQueueInput {
+	s.NotificationTarget = &v
 	return s
 }
 

@@ -161,6 +161,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
         {"shape":"TaggingFailedException"}
       ]
     },
@@ -1814,6 +1815,8 @@
         "Destinations":{"shape":"GameSessionQueueDestinationList"},
         "FilterConfiguration":{"shape":"FilterConfiguration"},
         "PriorityConfiguration":{"shape":"PriorityConfiguration"},
+        "CustomEventData":{"shape":"QueueCustomEventData"},
+        "NotificationTarget":{"shape":"QueueSnsArnStringModel"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -3238,7 +3241,9 @@
         "PlayerLatencyPolicies":{"shape":"PlayerLatencyPolicyList"},
         "Destinations":{"shape":"GameSessionQueueDestinationList"},
         "FilterConfiguration":{"shape":"FilterConfiguration"},
-        "PriorityConfiguration":{"shape":"PriorityConfiguration"}
+        "PriorityConfiguration":{"shape":"PriorityConfiguration"},
+        "CustomEventData":{"shape":"QueueCustomEventData"},
+        "NotificationTarget":{"shape":"QueueSnsArnStringModel"}
       }
     },
     "GameSessionQueueArn":{
@@ -4062,6 +4067,18 @@
       "type":"list",
       "member":{"shape":"ArnStringModel"}
     },
+    "QueueCustomEventData":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
+    "QueueSnsArnStringModel":{
+      "type":"string",
+      "max":300,
+      "min":0,
+      "pattern":"[a-zA-Z0-9:_-]*(\\.fifo)?"
+    },
     "RegisterGameServerInput":{
       "type":"structure",
       "required":[
@@ -4703,7 +4720,9 @@
         "PlayerLatencyPolicies":{"shape":"PlayerLatencyPolicyList"},
         "Destinations":{"shape":"GameSessionQueueDestinationList"},
         "FilterConfiguration":{"shape":"FilterConfiguration"},
-        "PriorityConfiguration":{"shape":"PriorityConfiguration"}
+        "PriorityConfiguration":{"shape":"PriorityConfiguration"},
+        "CustomEventData":{"shape":"QueueCustomEventData"},
+        "NotificationTarget":{"shape":"QueueSnsArnStringModel"}
       }
     },
     "UpdateGameSessionQueueOutput":{

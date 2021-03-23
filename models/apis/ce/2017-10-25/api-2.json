@@ -585,8 +585,23 @@
         "Name":{"shape":"CostCategoryName"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
-        "ProcessingStatus":{"shape":"CostCategoryProcessingStatusList"}
+        "ProcessingStatus":{"shape":"CostCategoryProcessingStatusList"},
+        "DefaultValue":{"shape":"CostCategoryValue"}
       }
+    },
+    "CostCategoryInheritedValueDimension":{
+      "type":"structure",
+      "members":{
+        "DimensionName":{"shape":"CostCategoryInheritedValueDimensionName"},
+        "DimensionKey":{"shape":"GenericString"}
+      }
+    },
+    "CostCategoryInheritedValueDimensionName":{
+      "type":"string",
+      "enum":[
+        "LINKED_ACCOUNT_NAME",
+        "TAG"
+      ]
     },
     "CostCategoryMaxResults":{
       "type":"integer",
@@ -595,7 +610,7 @@
     },
     "CostCategoryName":{
       "type":"string",
-      "max":255,
+      "max":50,
       "min":1,
       "pattern":"^(?! )[\\p{L}\\p{N}\\p{Z}-_]*(?<! )$"
     },
@@ -623,7 +638,8 @@
         "EffectiveEnd":{"shape":"ZonedDateTime"},
         "NumberOfRules":{"shape":"NonNegativeInteger"},
         "ProcessingStatus":{"shape":"CostCategoryProcessingStatusList"},
-        "Values":{"shape":"CostCategoryValuesList"}
+        "Values":{"shape":"CostCategoryValuesList"},
+        "DefaultValue":{"shape":"CostCategoryValue"}
       }
     },
     "CostCategoryReferencesList":{
@@ -632,14 +648,19 @@
     },
     "CostCategoryRule":{
       "type":"structure",
-      "required":[
-        "Value",
-        "Rule"
-      ],
       "members":{
         "Value":{"shape":"CostCategoryValue"},
-        "Rule":{"shape":"Expression"}
+        "Rule":{"shape":"Expression"},
+        "InheritedValue":{"shape":"CostCategoryInheritedValueDimension"},
+        "Type":{"shape":"CostCategoryRuleType"}
       }
+    },
+    "CostCategoryRuleType":{
+      "type":"string",
+      "enum":[
+        "REGULAR",
+        "INHERITED_VALUE"
+      ]
     },
     "CostCategoryRuleVersion":{
       "type":"string",
@@ -664,7 +685,7 @@
     },
     "CostCategoryValue":{
       "type":"string",
-      "max":255,
+      "max":50,
       "min":1,
       "pattern":"^(?! )[\\p{L}\\p{N}\\p{Z}-_]*(?<! )$"
     },
@@ -764,7 +785,8 @@
       "members":{
         "Name":{"shape":"CostCategoryName"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
-        "Rules":{"shape":"CostCategoryRulesList"}
+        "Rules":{"shape":"CostCategoryRulesList"},
+        "DefaultValue":{"shape":"CostCategoryValue"}
       }
     },
     "CreateCostCategoryDefinitionResponse":{
@@ -2340,7 +2362,8 @@
       "members":{
         "CostCategoryArn":{"shape":"Arn"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
-        "Rules":{"shape":"CostCategoryRulesList"}
+        "Rules":{"shape":"CostCategoryRulesList"},
+        "DefaultValue":{"shape":"CostCategoryValue"}
       }
     },
     "UpdateCostCategoryDefinitionResponse":{

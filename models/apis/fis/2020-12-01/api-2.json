@@ -432,7 +432,7 @@
     },
     "ExperimentActionParameter":{
       "type":"string",
-      "max":64,
+      "max":1024,
       "pattern":"[\\S]+"
     },
     "ExperimentActionParameterMap":{
@@ -636,7 +636,7 @@
     },
     "ExperimentTemplateActionParameter":{
       "type":"string",
-      "max":64,
+      "max":1024,
       "pattern":"[\\S]+"
     },
     "ExperimentTemplateActionParameterMap":{
