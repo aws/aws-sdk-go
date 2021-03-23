@@ -1124,22 +1124,6 @@
         {"shape":"DependentServiceUnavailableFault"}
       ]
     },
-    "ModifyAquaConfiguration":{
-      "name":"ModifyAquaConfiguration",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ModifyAquaInputMessage"},
-      "output":{
-        "shape":"ModifyAquaOutputMessage",
-        "resultWrapper":"ModifyAquaConfigurationResult"
-      },
-      "errors":[
-        {"shape":"ClusterNotFoundFault"},
-        {"shape":"UnsupportedOperationFault"}
-      ]
-    },
     "ModifyCluster":{
       "name":"ModifyCluster",
       "http":{
@@ -1665,29 +1649,6 @@
         "resize-cluster"
       ]
     },
-    "AquaConfiguration":{
-      "type":"structure",
-      "members":{
-        "AquaStatus":{"shape":"AquaStatus"},
-        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"}
-      }
-    },
-    "AquaConfigurationStatus":{
-      "type":"string",
-      "enum":[
-        "enabled",
-        "disabled",
-        "auto"
-      ]
-    },
-    "AquaStatus":{
-      "type":"string",
-      "enum":[
-        "enabled",
-        "disabled",
-        "applying"
-      ]
-    },
     "AssociatedClusterList":{
       "type":"list",
       "member":{
@@ -1941,8 +1902,7 @@
         "ResizeInfo":{"shape":"ResizeInfo"},
         "AvailabilityZoneRelocationStatus":{"shape":"String"},
         "ClusterNamespaceArn":{"shape":"String"},
-        "TotalStorageCapacityInMegaBytes":{"shape":"LongOptional"},
-        "AquaConfiguration":{"shape":"AquaConfiguration"}
+        "TotalStorageCapacityInMegaBytes":{"shape":"LongOptional"}
       },
       "wrapper":true
     },
@@ -2441,8 +2401,7 @@
         "IamRoles":{"shape":"IamRoleArnList"},
         "MaintenanceTrackName":{"shape":"String"},
         "SnapshotScheduleIdentifier":{"shape":"String"},
-        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
-        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"}
+        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -3895,20 +3854,6 @@
         "high-performance"
       ]
     },
-    "ModifyAquaInputMessage":{
-      "type":"structure",
-      "required":["ClusterIdentifier"],
-      "members":{
-        "ClusterIdentifier":{"shape":"String"},
-        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"}
-      }
-    },
-    "ModifyAquaOutputMessage":{
-      "type":"structure",
-      "members":{
-        "AquaConfiguration":{"shape":"AquaConfiguration"}
-      }
-    },
     "ModifyClusterDbRevisionMessage":{
       "type":"structure",
       "required":[
@@ -4594,8 +4539,7 @@
         "MaintenanceTrackName":{"shape":"String"},
         "SnapshotScheduleIdentifier":{"shape":"String"},
         "NumberOfNodes":{"shape":"IntegerOptional"},
-        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
-        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"}
+        "AvailabilityZoneRelocation":{"shape":"BooleanOptional"}
       }
     },
     "RestoreFromClusterSnapshotResult":{

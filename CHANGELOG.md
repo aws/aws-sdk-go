@@ -1,3 +1,16 @@
+Release v1.38.3 (2021-03-23)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/fis`: Updates service API
+* `service/gamelift`: Updates service API and documentation
+  * GameLift adds support for using event notifications to monitor game session placements. Specify an SNS topic or use CloudWatch Events to track activity for a game session queue.
+* `service/iam`: Updates service documentation
+  * Documentation updates for IAM operations and descriptions.
+* `service/redshift`: Updates service API and documentation
+  * Removed APIs to control AQUA on clusters.
+
 Release v1.38.2 (2021-03-22)
 ===
 

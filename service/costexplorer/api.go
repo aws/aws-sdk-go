@@ -3397,6 +3397,9 @@ type CostCategory struct {
 	// CostCategoryArn is a required field
 	CostCategoryArn *string `min:"20" type:"string" required:"true"`
 
+	// The default value for the cost category.
+	DefaultValue *string `min:"1" type:"string"`
+
 	// The Cost Category's effective end date.
 	EffectiveEnd *string `min:"20" type:"string"`
 
@@ -3443,6 +3446,12 @@ func (s *CostCategory) SetCostCategoryArn(v string) *CostCategory {
 	return s
 }
 
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *CostCategory) SetDefaultValue(v string) *CostCategory {
+	s.DefaultValue = &v
+	return s
+}
+
 // SetEffectiveEnd sets the EffectiveEnd field's value.
 func (s *CostCategory) SetEffectiveEnd(v string) *CostCategory {
 	s.EffectiveEnd = &v
@@ -3476,6 +3485,49 @@ func (s *CostCategory) SetRuleVersion(v string) *CostCategory {
 // SetRules sets the Rules field's value.
 func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 	s.Rules = v
+	return s
+}
+
+// When creating or updating a cost category, you can define the CostCategoryRule
+// rule type as INHERITED_VALUE. This rule type adds the flexibility of defining
+// a rule that dynamically inherits the cost category value from the dimension
+// value defined by CostCategoryInheritedValueDimension. For example, if you
+// wanted to dynamically group costs based on the value of a specific tag key,
+// you would first choose an inherited value rule type, then choose the tag
+// dimension and specify the tag key to use.
+type CostCategoryInheritedValueDimension struct {
+	_ struct{} `type:"structure"`
+
+	// The key to extract cost category values.
+	DimensionKey *string `type:"string"`
+
+	// The name of dimension for which to group costs.
+	//
+	// If you specify LINKED_ACCOUNT_NAME, the cost category value will be based
+	// on account name. If you specify TAG, the cost category value will be based
+	// on the value of the specified tag key.
+	DimensionName *string `type:"string" enum:"CostCategoryInheritedValueDimensionName"`
+}
+
+// String returns the string representation
+func (s CostCategoryInheritedValueDimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategoryInheritedValueDimension) GoString() string {
+	return s.String()
+}
+
+// SetDimensionKey sets the DimensionKey field's value.
+func (s *CostCategoryInheritedValueDimension) SetDimensionKey(v string) *CostCategoryInheritedValueDimension {
+	s.DimensionKey = &v
+	return s
+}
+
+// SetDimensionName sets the DimensionName field's value.
+func (s *CostCategoryInheritedValueDimension) SetDimensionName(v string) *CostCategoryInheritedValueDimension {
+	s.DimensionName = &v
 	return s
 }
 
@@ -3524,6 +3576,9 @@ type CostCategoryReference struct {
 	// The unique identifier for your Cost Category.
 	CostCategoryArn *string `min:"20" type:"string"`
 
+	// The default value for the cost category.
+	DefaultValue *string `min:"1" type:"string"`
+
 	// The Cost Category's effective end date.
 	EffectiveEnd *string `min:"20" type:"string"`
 
@@ -3557,6 +3612,12 @@ func (s CostCategoryReference) GoString() string {
 // SetCostCategoryArn sets the CostCategoryArn field's value.
 func (s *CostCategoryReference) SetCostCategoryArn(v string) *CostCategoryReference {
 	s.CostCategoryArn = &v
+	return s
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *CostCategoryReference) SetDefaultValue(v string) *CostCategoryReference {
+	s.DefaultValue = &v
 	return s
 }
 
@@ -3602,6 +3663,10 @@ func (s *CostCategoryReference) SetValues(v []*string) *CostCategoryReference {
 type CostCategoryRule struct {
 	_ struct{} `type:"structure"`
 
+	// The value the line item will be categorized as, if the line item contains
+	// the matched dimension.
+	InheritedValue *CostCategoryInheritedValueDimension `type:"structure"`
+
 	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
 	// object used to categorize costs. This supports dimensions, tags, and nested
 	// expressions. Currently the only dimensions supported are LINKED_ACCOUNT,
@@ -3615,14 +3680,19 @@ type CostCategoryRule struct {
 	// on whether you're using the console or API/JSON editor. For a detailed comparison,
 	// see Term Comparisons (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-cost-categories.html#cost-categories-terms)
 	// in the AWS Billing and Cost Management User Guide.
-	//
-	// Rule is a required field
-	Rule *Expression `type:"structure" required:"true"`
+	Rule *Expression `type:"structure"`
 
-	// The value a line item will be categorized as, if it matches the rule.
-	//
-	// Value is a required field
-	Value *string `min:"1" type:"string" required:"true"`
+	// You can define the CostCategoryRule rule type as either REGULAR or INHERITED_VALUE.
+	// The INHERITED_VALUE rule type adds the flexibility of defining a rule that
+	// dynamically inherits the cost category value from the dimension value defined
+	// by CostCategoryInheritedValueDimension. For example, if you wanted to dynamically
+	// group costs based on the value of a specific tag key, you would first choose
+	// an inherited value rule type, then choose the tag dimension and specify the
+	// tag key to use.
+	Type *string `type:"string" enum:"CostCategoryRuleType"`
+
+	// The default value for the cost category.
+	Value *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -3638,12 +3708,6 @@ func (s CostCategoryRule) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CostCategoryRule) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CostCategoryRule"}
-	if s.Rule == nil {
-		invalidParams.Add(request.NewErrParamRequired("Rule"))
-	}
-	if s.Value == nil {
-		invalidParams.Add(request.NewErrParamRequired("Value"))
-	}
 	if s.Value != nil && len(*s.Value) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
 	}
@@ -3659,9 +3723,21 @@ func (s *CostCategoryRule) Validate() error {
 	return nil
 }
 
+// SetInheritedValue sets the InheritedValue field's value.
+func (s *CostCategoryRule) SetInheritedValue(v *CostCategoryInheritedValueDimension) *CostCategoryRule {
+	s.InheritedValue = v
+	return s
+}
+
 // SetRule sets the Rule field's value.
 func (s *CostCategoryRule) SetRule(v *Expression) *CostCategoryRule {
 	s.Rule = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CostCategoryRule) SetType(v string) *CostCategoryRule {
+	s.Type = &v
 	return s
 }
 
@@ -4098,6 +4174,9 @@ func (s *CreateAnomalySubscriptionOutput) SetSubscriptionArn(v string) *CreateAn
 type CreateCostCategoryDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The default value for the cost category.
+	DefaultValue *string `min:"1" type:"string"`
+
 	// The unique name of the Cost Category.
 	//
 	// Name is a required field
@@ -4128,6 +4207,9 @@ func (s CreateCostCategoryDefinitionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCostCategoryDefinitionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCostCategoryDefinitionInput"}
+	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -4158,6 +4240,12 @@ func (s *CreateCostCategoryDefinitionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *CreateCostCategoryDefinitionInput) SetDefaultValue(v string) *CreateCostCategoryDefinitionInput {
+	s.DefaultValue = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -12412,6 +12500,9 @@ type UpdateCostCategoryDefinitionInput struct {
 	// CostCategoryArn is a required field
 	CostCategoryArn *string `min:"20" type:"string" required:"true"`
 
+	// The default value for the cost category.
+	DefaultValue *string `min:"1" type:"string"`
+
 	// The rule schema version in this particular Cost Category.
 	//
 	// RuleVersion is a required field
@@ -12443,6 +12534,9 @@ func (s *UpdateCostCategoryDefinitionInput) Validate() error {
 	if s.CostCategoryArn != nil && len(*s.CostCategoryArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("CostCategoryArn", 20))
 	}
+	if s.DefaultValue != nil && len(*s.DefaultValue) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DefaultValue", 1))
+	}
 	if s.RuleVersion == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleVersion"))
 	}
@@ -12472,6 +12566,12 @@ func (s *UpdateCostCategoryDefinitionInput) Validate() error {
 // SetCostCategoryArn sets the CostCategoryArn field's value.
 func (s *UpdateCostCategoryDefinitionInput) SetCostCategoryArn(v string) *UpdateCostCategoryDefinitionInput {
 	s.CostCategoryArn = &v
+	return s
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *UpdateCostCategoryDefinitionInput) SetDefaultValue(v string) *UpdateCostCategoryDefinitionInput {
+	s.DefaultValue = &v
 	return s
 }
 
@@ -12634,6 +12734,38 @@ func Context_Values() []string {
 		ContextCostAndUsage,
 		ContextReservations,
 		ContextSavingsPlans,
+	}
+}
+
+const (
+	// CostCategoryInheritedValueDimensionNameLinkedAccountName is a CostCategoryInheritedValueDimensionName enum value
+	CostCategoryInheritedValueDimensionNameLinkedAccountName = "LINKED_ACCOUNT_NAME"
+
+	// CostCategoryInheritedValueDimensionNameTag is a CostCategoryInheritedValueDimensionName enum value
+	CostCategoryInheritedValueDimensionNameTag = "TAG"
+)
+
+// CostCategoryInheritedValueDimensionName_Values returns all elements of the CostCategoryInheritedValueDimensionName enum
+func CostCategoryInheritedValueDimensionName_Values() []string {
+	return []string{
+		CostCategoryInheritedValueDimensionNameLinkedAccountName,
+		CostCategoryInheritedValueDimensionNameTag,
+	}
+}
+
+const (
+	// CostCategoryRuleTypeRegular is a CostCategoryRuleType enum value
+	CostCategoryRuleTypeRegular = "REGULAR"
+
+	// CostCategoryRuleTypeInheritedValue is a CostCategoryRuleType enum value
+	CostCategoryRuleTypeInheritedValue = "INHERITED_VALUE"
+)
+
+// CostCategoryRuleType_Values returns all elements of the CostCategoryRuleType enum
+func CostCategoryRuleType_Values() []string {
+	return []string{
+		CostCategoryRuleTypeRegular,
+		CostCategoryRuleTypeInheritedValue,
 	}
 }
 

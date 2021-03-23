@@ -407,10 +407,6 @@ type RedshiftAPI interface {
 	GetReservedNodeExchangeOfferingsPages(*redshift.GetReservedNodeExchangeOfferingsInput, func(*redshift.GetReservedNodeExchangeOfferingsOutput, bool) bool) error
 	GetReservedNodeExchangeOfferingsPagesWithContext(aws.Context, *redshift.GetReservedNodeExchangeOfferingsInput, func(*redshift.GetReservedNodeExchangeOfferingsOutput, bool) bool, ...request.Option) error
 
-	ModifyAquaConfiguration(*redshift.ModifyAquaConfigurationInput) (*redshift.ModifyAquaConfigurationOutput, error)
-	ModifyAquaConfigurationWithContext(aws.Context, *redshift.ModifyAquaConfigurationInput, ...request.Option) (*redshift.ModifyAquaConfigurationOutput, error)
-	ModifyAquaConfigurationRequest(*redshift.ModifyAquaConfigurationInput) (*request.Request, *redshift.ModifyAquaConfigurationOutput)
-
 	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 	ModifyClusterWithContext(aws.Context, *redshift.ModifyClusterInput, ...request.Option) (*redshift.ModifyClusterOutput, error)
 	ModifyClusterRequest(*redshift.ModifyClusterInput) (*request.Request, *redshift.ModifyClusterOutput)
