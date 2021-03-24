@@ -15117,6 +15117,15 @@
         "default"
       ]
     },
+    "EfaInfo":{
+      "type":"structure",
+      "members":{
+        "MaximumEfaInterfaces":{
+          "shape":"MaximumEfaInterfaces",
+          "locationName":"maximumEfaInterfaces"
+        }
+      }
+    },
     "EfaSupportedFlag":{"type":"boolean"},
     "EgressOnlyInternetGateway":{
       "type":"structure",
@@ -22109,6 +22118,7 @@
     "MaxNetworkInterfaces":{"type":"integer"},
     "MaxResults":{"type":"integer"},
     "MaximumBandwidthInMbps":{"type":"integer"},
+    "MaximumEfaInterfaces":{"type":"integer"},
     "MaximumIops":{"type":"integer"},
     "MaximumNetworkCards":{"type":"integer"},
     "MaximumThroughputInMBps":{"type":"double"},
@@ -23675,6 +23685,10 @@
         "EfaSupported":{
           "shape":"EfaSupportedFlag",
           "locationName":"efaSupported"
+        },
+        "EfaInfo":{
+          "shape":"EfaInfo",
+          "locationName":"efaInfo"
         }
       }
     },

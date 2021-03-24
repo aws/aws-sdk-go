@@ -9192,7 +9192,8 @@ type CreateGroupInput struct {
 	// Information about a group version.
 	InitialVersion *GroupVersion `type:"structure"`
 
-	Name *string `type:"string"`
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
 
 	// The key-value pair for the resource tag.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -9206,6 +9207,19 @@ func (s CreateGroupInput) String() string {
 // GoString returns the string representation
 func (s CreateGroupInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGroupInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAmznClientToken sets the AmznClientToken field's value.

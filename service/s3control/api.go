@@ -3696,6 +3696,12 @@ func (c *S3Control) ListStorageLensConfigurationsRequest(input *ListStorageLensC
 		Name:       opListStorageLensConfigurations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/v20180820/storagelens",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3747,6 +3753,58 @@ func (c *S3Control) ListStorageLensConfigurationsWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListStorageLensConfigurationsPages iterates over the pages of a ListStorageLensConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStorageLensConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStorageLensConfigurations operation.
+//    pageNum := 0
+//    err := client.ListStorageLensConfigurationsPages(params,
+//        func(page *s3control.ListStorageLensConfigurationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Control) ListStorageLensConfigurationsPages(input *ListStorageLensConfigurationsInput, fn func(*ListStorageLensConfigurationsOutput, bool) bool) error {
+	return c.ListStorageLensConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStorageLensConfigurationsPagesWithContext same as ListStorageLensConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListStorageLensConfigurationsPagesWithContext(ctx aws.Context, input *ListStorageLensConfigurationsInput, fn func(*ListStorageLensConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStorageLensConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStorageLensConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStorageLensConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutAccessPointConfigurationForObjectLambda = "PutAccessPointConfigurationForObjectLambda"
@@ -5368,13 +5426,8 @@ type CreateAccessPointInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 
-	// The PublicAccessBlock configuration that you want to apply to this Amazon
-	// S3 account. You can enable the configuration options in any combination.
-	// For more information about when Amazon S3 considers a bucket or object public,
-	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
-	// in the Amazon Simple Storage Service Developer Guide.
-	//
-	// This is not supported for Amazon S3 on Outposts.
+	// The PublicAccessBlock configuration that you want to apply to the access
+	// point.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 
 	// If you include this field, Amazon S3 restricts access to this access point
@@ -11090,6 +11143,7 @@ type ObjectLambdaTransformationConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// A container for the action of an Object Lambda Access Point configuration.
+	// Valid input is GetObject.
 	//
 	// Actions is a required field
 	Actions []*string `locationNameList:"Action" type:"list" required:"true"`

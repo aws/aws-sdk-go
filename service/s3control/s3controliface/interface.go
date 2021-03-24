@@ -220,6 +220,9 @@ type S3ControlAPI interface {
 	ListStorageLensConfigurationsWithContext(aws.Context, *s3control.ListStorageLensConfigurationsInput, ...request.Option) (*s3control.ListStorageLensConfigurationsOutput, error)
 	ListStorageLensConfigurationsRequest(*s3control.ListStorageLensConfigurationsInput) (*request.Request, *s3control.ListStorageLensConfigurationsOutput)
 
+	ListStorageLensConfigurationsPages(*s3control.ListStorageLensConfigurationsInput, func(*s3control.ListStorageLensConfigurationsOutput, bool) bool) error
+	ListStorageLensConfigurationsPagesWithContext(aws.Context, *s3control.ListStorageLensConfigurationsInput, func(*s3control.ListStorageLensConfigurationsOutput, bool) bool, ...request.Option) error
+
 	PutAccessPointConfigurationForObjectLambda(*s3control.PutAccessPointConfigurationForObjectLambdaInput) (*s3control.PutAccessPointConfigurationForObjectLambdaOutput, error)
 	PutAccessPointConfigurationForObjectLambdaWithContext(aws.Context, *s3control.PutAccessPointConfigurationForObjectLambdaInput, ...request.Option) (*s3control.PutAccessPointConfigurationForObjectLambdaOutput, error)
 	PutAccessPointConfigurationForObjectLambdaRequest(*s3control.PutAccessPointConfigurationForObjectLambdaInput) (*request.Request, *s3control.PutAccessPointConfigurationForObjectLambdaOutput)

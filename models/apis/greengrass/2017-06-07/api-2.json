@@ -2184,7 +2184,8 @@
         "tags" : {
           "shape" : "Tags"
         }
-      }
+      },
+      "required" : [ "Name" ]
     },
     "CreateGroupResponse" : {
       "type" : "structure",
