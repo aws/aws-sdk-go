@@ -19465,8 +19465,10 @@ type CreateActivationInput struct {
 	// Do not enter personally identifiable information in this field.
 	Description *string `type:"string"`
 
-	// The date by which this activation request should expire. The default value
-	// is 24 hours.
+	// The date by which this activation request should expire, in timestamp format,
+	// such as "2021-07-07T00:00:00". You can specify a date up to 30 days in advance.
+	// If you don't provide an expiration date, the activation code expires in 24
+	// hours.
 	ExpirationDate *time.Time `type:"timestamp"`
 
 	// The Amazon Identity and Access Management (IAM) role that you want to assign
@@ -45158,6 +45160,14 @@ type ResourceDataSyncSource struct {
 	// sync source of this type can synchronize data from AWS Organizations.
 	AwsOrganizationsSource *ResourceDataSyncAwsOrganizationsSource `type:"structure"`
 
+	// When you create a resource data sync, if you choose one of the AWS Organizations
+	// options, then Systems Manager automatically enables all OpsData sources in
+	// the selected AWS Regions for all AWS accounts in your organization (or in
+	// the selected organization units). For more information, see About multiple
+	// account and Region resource data syncs (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html)
+	// in the AWS Systems Manager User Guide.
+	EnableAllOpsDataSources *bool `type:"boolean"`
+
 	// Whether to automatically synchronize and aggregate data from new AWS Regions
 	// when those Regions come online.
 	IncludeFutureRegions *bool `type:"boolean"`
@@ -45215,6 +45225,12 @@ func (s *ResourceDataSyncSource) SetAwsOrganizationsSource(v *ResourceDataSyncAw
 	return s
 }
 
+// SetEnableAllOpsDataSources sets the EnableAllOpsDataSources field's value.
+func (s *ResourceDataSyncSource) SetEnableAllOpsDataSources(v bool) *ResourceDataSyncSource {
+	s.EnableAllOpsDataSources = &v
+	return s
+}
+
 // SetIncludeFutureRegions sets the IncludeFutureRegions field's value.
 func (s *ResourceDataSyncSource) SetIncludeFutureRegions(v bool) *ResourceDataSyncSource {
 	s.IncludeFutureRegions = &v
@@ -45252,6 +45268,14 @@ type ResourceDataSyncSourceWithState struct {
 	// The field name in SyncSource for the ResourceDataSyncAwsOrganizationsSource
 	// type.
 	AwsOrganizationsSource *ResourceDataSyncAwsOrganizationsSource `type:"structure"`
+
+	// When you create a resource data sync, if you choose one of the AWS Organizations
+	// options, then Systems Manager automatically enables all OpsData sources in
+	// the selected AWS Regions for all AWS accounts in your organization (or in
+	// the selected organization units). For more information, see About multiple
+	// account and Region resource data syncs (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html)
+	// in the AWS Systems Manager User Guide.
+	EnableAllOpsDataSources *bool `type:"boolean"`
 
 	// Whether to automatically synchronize and aggregate data from new AWS Regions
 	// when those Regions come online.
@@ -45294,6 +45318,12 @@ func (s ResourceDataSyncSourceWithState) GoString() string {
 // SetAwsOrganizationsSource sets the AwsOrganizationsSource field's value.
 func (s *ResourceDataSyncSourceWithState) SetAwsOrganizationsSource(v *ResourceDataSyncAwsOrganizationsSource) *ResourceDataSyncSourceWithState {
 	s.AwsOrganizationsSource = v
+	return s
+}
+
+// SetEnableAllOpsDataSources sets the EnableAllOpsDataSources field's value.
+func (s *ResourceDataSyncSourceWithState) SetEnableAllOpsDataSources(v bool) *ResourceDataSyncSourceWithState {
+	s.EnableAllOpsDataSources = &v
 	return s
 }
 
@@ -47898,6 +47928,9 @@ type Target struct {
 	// User-defined criteria that maps to Key. For example, if you specified tag:ServerRole,
 	// you could specify value:WebServer to run a command on instances that include
 	// EC2 tags of ServerRole,WebServer.
+	//
+	// Depending on the type of Target, the maximum number of values for a Key might
+	// be lower than the global maximum of 50.
 	Values []*string `type:"list"`
 }
 

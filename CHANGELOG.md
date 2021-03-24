@@ -1,3 +1,20 @@
+Release v1.38.4 (2021-03-24)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * maximumEfaInterfaces added to DescribeInstanceTypes API
+* `service/greengrass`: Updates service API
+  * Updated the parameters to make name required for CreateGroup API.
+* `service/route53`: Updates service documentation
+  * Documentation updates for route53
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3
+* `service/s3control`: Updates service documentation and paginators
+  * Documentation updates for s3-control
+* `service/ssm`: Updates service API and documentation
+  * This release allows SSM Explorer customers to enable OpsData sources across their organization when creating a resource data sync.
+
 Release v1.38.3 (2021-03-23)
 ===
 

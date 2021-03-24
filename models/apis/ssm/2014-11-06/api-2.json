@@ -2665,7 +2665,7 @@
     "AutomationParameterValueList":{
       "type":"list",
       "member":{"shape":"AutomationParameterValue"},
-      "max":10,
+      "max":50,
       "min":0
     },
     "AutomationStepNotFoundException":{
@@ -8707,6 +8707,7 @@
       "max":64,
       "min":1
     },
+    "ResourceDataSyncEnableAllOpsDataSources":{"type":"boolean"},
     "ResourceDataSyncIncludeFutureRegions":{"type":"boolean"},
     "ResourceDataSyncInvalidConfigurationException":{
       "type":"structure",
@@ -8817,7 +8818,8 @@
         "SourceType":{"shape":"ResourceDataSyncSourceType"},
         "AwsOrganizationsSource":{"shape":"ResourceDataSyncAwsOrganizationsSource"},
         "SourceRegions":{"shape":"ResourceDataSyncSourceRegionList"},
-        "IncludeFutureRegions":{"shape":"ResourceDataSyncIncludeFutureRegions"}
+        "IncludeFutureRegions":{"shape":"ResourceDataSyncIncludeFutureRegions"},
+        "EnableAllOpsDataSources":{"shape":"ResourceDataSyncEnableAllOpsDataSources"}
       }
     },
     "ResourceDataSyncSourceRegion":{
@@ -8841,7 +8843,8 @@
         "AwsOrganizationsSource":{"shape":"ResourceDataSyncAwsOrganizationsSource"},
         "SourceRegions":{"shape":"ResourceDataSyncSourceRegionList"},
         "IncludeFutureRegions":{"shape":"ResourceDataSyncIncludeFutureRegions"},
-        "State":{"shape":"ResourceDataSyncState"}
+        "State":{"shape":"ResourceDataSyncState"},
+        "EnableAllOpsDataSources":{"shape":"ResourceDataSyncEnableAllOpsDataSources"}
       }
     },
     "ResourceDataSyncState":{

@@ -2555,7 +2555,7 @@
       "base": null,
       "refs": {
         "Activation$ExpirationDate": "<p>The date when this activation can no longer be used to register managed instances.</p>",
-        "CreateActivationRequest$ExpirationDate": "<p>The date by which this activation request should expire. The default value is 24 hours.</p>"
+        "CreateActivationRequest$ExpirationDate": "<p>The date by which this activation request should expire, in timestamp format, such as \"2021-07-07T00:00:00\". You can specify a date up to 30 days in advance. If you don't provide an expiration date, the activation code expires in 24 hours.</p>"
       }
     },
     "FailedCreateAssociation": {
@@ -6415,6 +6415,13 @@
         "ResourceDataSyncDestinationDataSharing$DestinationDataSharingType": "<p>The sharing data type. Only <code>Organization</code> is supported.</p>"
       }
     },
+    "ResourceDataSyncEnableAllOpsDataSources": {
+      "base": null,
+      "refs": {
+        "ResourceDataSyncSource$EnableAllOpsDataSources": "<p>When you create a resource data sync, if you choose one of the AWS Organizations options, then Systems Manager automatically enables all OpsData sources in the selected AWS Regions for all AWS accounts in your organization (or in the selected organization units). For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html\">About multiple account and Region resource data syncs</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+        "ResourceDataSyncSourceWithState$EnableAllOpsDataSources": "<p>When you create a resource data sync, if you choose one of the AWS Organizations options, then Systems Manager automatically enables all OpsData sources in the selected AWS Regions for all AWS accounts in your organization (or in the selected organization units). For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html\">About multiple account and Region resource data syncs</a> in the <i>AWS Systems Manager User Guide</i>.</p>"
+      }
+    },
     "ResourceDataSyncIncludeFutureRegions": {
       "base": null,
       "refs": {
@@ -7459,7 +7466,7 @@
     "TargetValues": {
       "base": null,
       "refs": {
-        "Target$Values": "<p>User-defined criteria that maps to <code>Key</code>. For example, if you specified <code>tag:ServerRole</code>, you could specify <code>value:WebServer</code> to run a command on instances that include EC2 tags of <code>ServerRole,WebServer</code>. </p>"
+        "Target$Values": "<p>User-defined criteria that maps to <code>Key</code>. For example, if you specified <code>tag:ServerRole</code>, you could specify <code>value:WebServer</code> to run a command on instances that include EC2 tags of <code>ServerRole,WebServer</code>. </p> <p>Depending on the type of <code>Target</code>, the maximum number of values for a <code>Key</code> might be lower than the global maximum of 50.</p>"
       }
     },
     "Targets": {

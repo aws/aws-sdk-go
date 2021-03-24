@@ -1225,7 +1225,7 @@
     "ObjectLambdaTransformationConfigurationActionsList": {
       "base": null,
       "refs": {
-        "ObjectLambdaTransformationConfiguration$Actions": "<p>A container for the action of an Object Lambda Access Point configuration.</p>"
+        "ObjectLambdaTransformationConfiguration$Actions": "<p>A container for the action of an Object Lambda Access Point configuration. Valid input is <code>GetObject</code>.</p>"
       }
     },
     "ObjectLambdaTransformationConfigurationsList": {
@@ -1291,7 +1291,7 @@
     "PublicAccessBlockConfiguration": {
       "base": "<p>The <code>PublicAccessBlock</code> configuration that you want to apply to this Amazon S3 account. You can enable the configuration options in any combination. For more information about when Amazon S3 considers a bucket or object public, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status\">The Meaning of \"Public\"</a> in the <i>Amazon Simple Storage Service Developer Guide</i>.</p> <p>This is not supported for Amazon S3 on Outposts.</p>",
       "refs": {
-        "CreateAccessPointRequest$PublicAccessBlockConfiguration": null,
+        "CreateAccessPointRequest$PublicAccessBlockConfiguration": "<p> The <code>PublicAccessBlock</code> configuration that you want to apply to the access point. </p>",
         "GetAccessPointForObjectLambdaResult$PublicAccessBlockConfiguration": "<p>Configuration to block all public access. This setting is turned on and can not be edited. </p>",
         "GetAccessPointResult$PublicAccessBlockConfiguration": null,
         "GetPublicAccessBlockOutput$PublicAccessBlockConfiguration": "<p>The <code>PublicAccessBlock</code> configuration currently in effect for this AWS account.</p>",
