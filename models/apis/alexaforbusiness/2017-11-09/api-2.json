@@ -1762,6 +1762,7 @@
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"},
+        "DataRetentionOptIn":{"shape":"Boolean"},
         "MeetingRoomConfiguration":{"shape":"CreateMeetingRoomConfiguration"},
         "Tags":{"shape":"TagList"}
       }
@@ -3066,6 +3067,7 @@
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"},
+        "DataRetentionOptIn":{"shape":"Boolean"},
         "AddressBookArn":{"shape":"Arn"},
         "MeetingRoomConfiguration":{"shape":"MeetingRoomConfiguration"}
       }
@@ -4047,6 +4049,7 @@
         "SetupModeDisabled":{"shape":"Boolean"},
         "MaxVolumeLimit":{"shape":"MaxVolumeLimit"},
         "PSTNEnabled":{"shape":"Boolean"},
+        "DataRetentionOptIn":{"shape":"Boolean"},
         "MeetingRoomConfiguration":{"shape":"UpdateMeetingRoomConfiguration"}
       }
     },

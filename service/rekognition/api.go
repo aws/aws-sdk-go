@@ -61,6 +61,15 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 // If the source image contains multiple faces, the service detects the largest
 // face and compares it with each face detected in the target image.
 //
+// CompareFaces uses machine learning algorithms, which are probabilistic. A
+// false negative is an incorrect prediction that a face in the target image
+// has a low similarity confidence score when compared to the face in the source
+// image. To reduce the probability of false negatives, we recommend that you
+// compare the target image against multiple source images. If you plan to use
+// CompareFaces to make a decision that impacts an individual's rights, privacy,
+// or access to services, we recommend that you pass the result to a human for
+// review and further validation before taking action.
+//
 // You pass the input and target images either as base64-encoded image bytes
 // or as references to images in an Amazon S3 bucket. If you use the AWS CLI
 // to call Amazon Rekognition operations, passing image bytes isn't supported.
@@ -121,8 +130,9 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 //   Amazon Rekognition is unable to access the S3 object specified in the request.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -248,6 +258,11 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 //
 //   * ResourceAlreadyExistsException
 //   A collection with the specified ID already exists.
+//
+//   * ServiceQuotaExceededException
+//   The size of the collection or tag list exceeds the allowed limit. For more
+//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+//   Guide.
 //
 func (c *Rekognition) CreateCollection(input *CreateCollectionInput) (*CreateCollectionOutput, error) {
 	req, out := c.CreateCollectionRequest(input)
@@ -473,6 +488,11 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
 //
+//   * ServiceQuotaExceededException
+//   The size of the collection or tag list exceeds the allowed limit. For more
+//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+//   Guide.
+//
 func (c *Rekognition) CreateProjectVersion(input *CreateProjectVersionInput) (*CreateProjectVersionOutput, error) {
 	req, out := c.CreateProjectVersionRequest(input)
 	return out, req.Send()
@@ -588,6 +608,11 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
 //   this limit, contact Amazon Rekognition.
+//
+//   * ServiceQuotaExceededException
+//   The size of the collection or tag list exceeds the allowed limit. For more
+//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+//   Guide.
 //
 func (c *Rekognition) CreateStreamProcessor(input *CreateStreamProcessorInput) (*CreateStreamProcessorOutput, error) {
 	req, out := c.CreateStreamProcessorRequest(input)
@@ -1724,8 +1749,9 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
@@ -1853,8 +1879,9 @@ func (c *Rekognition) DetectFacesRequest(input *DetectFacesInput) (req *request.
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2022,8 +2049,9 @@ func (c *Rekognition) DetectLabelsRequest(input *DetectLabelsInput) (req *reques
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2137,8 +2165,9 @@ func (c *Rekognition) DetectModerationLabelsRequest(input *DetectModerationLabel
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2278,8 +2307,9 @@ func (c *Rekognition) DetectProtectiveEquipmentRequest(input *DetectProtectiveEq
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -2410,8 +2440,9 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -4187,8 +4218,9 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -4211,8 +4243,9 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //   The provided image format is not supported.
 //
 //   * ServiceQuotaExceededException
-//   The size of the collection exceeds the allowed limit. For more information,
-//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The size of the collection or tag list exceeds the allowed limit. For more
+//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+//   Guide.
 //
 func (c *Rekognition) IndexFaces(input *IndexFacesInput) (*IndexFacesOutput, error) {
 	req, out := c.IndexFacesRequest(input)
@@ -4711,6 +4744,101 @@ func (c *Rekognition) ListStreamProcessorsPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Rekognition.
+//
+// Returns a list of tags in an Amazon Rekognition collection, stream processor,
+// or Custom Labels model.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRecognizeCelebrities = "RecognizeCelebrities"
 
 // RecognizeCelebritiesRequest generates a "aws/request.Request" representing the
@@ -4803,8 +4931,9 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 //   The provided image format is not supported.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -5055,8 +5184,9 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 //   the API operation again.
 //
 //   * ImageTooLargeException
-//   The input image size exceeds the allowed limit. For more information, see
-//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//   The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+//   the image size or resolution exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -6507,6 +6637,204 @@ func (c *Rekognition) StopStreamProcessorWithContext(ctx aws.Context, input *Sto
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Rekognition.
+//
+// Adds one or more key-value tags to an Amazon Rekognition collection, stream
+// processor, or Custom Labels model. For more information, see Tagging AWS
+// Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * ServiceQuotaExceededException
+//   The size of the collection or tag list exceeds the allowed limit. For more
+//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+//   Guide.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Rekognition.
+//
+// Removes one or more tags from an Amazon Rekognition collection, stream processor,
+// or Custom Labels model.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The collection specified in the request cannot be found.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+func (c *Rekognition) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You are not authorized to perform the action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -7369,6 +7697,9 @@ type CreateCollectionInput struct {
 	//
 	// CollectionId is a required field
 	CollectionId *string `min:"1" type:"string" required:"true"`
+
+	// A set of tags (key-value pairs) that you want to attach to the collection.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -7400,6 +7731,12 @@ func (s *CreateCollectionInput) Validate() error {
 // SetCollectionId sets the CollectionId field's value.
 func (s *CreateCollectionInput) SetCollectionId(v string) *CreateCollectionInput {
 	s.CollectionId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCollectionInput) SetTags(v map[string]*string) *CreateCollectionInput {
+	s.Tags = v
 	return s
 }
 
@@ -7525,6 +7862,9 @@ type CreateProjectVersionInput struct {
 	// ProjectArn is a required field
 	ProjectArn *string `min:"20" type:"string" required:"true"`
 
+	// A set of tags (key-value pairs) that you want to attach to the model.
+	Tags map[string]*string `type:"map"`
+
 	// The dataset to use for testing.
 	//
 	// TestingData is a required field
@@ -7609,6 +7949,12 @@ func (s *CreateProjectVersionInput) SetProjectArn(v string) *CreateProjectVersio
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateProjectVersionInput) SetTags(v map[string]*string) *CreateProjectVersionInput {
+	s.Tags = v
+	return s
+}
+
 // SetTestingData sets the TestingData field's value.
 func (s *CreateProjectVersionInput) SetTestingData(v *TestingData) *CreateProjectVersionInput {
 	s.TestingData = v
@@ -7683,6 +8029,9 @@ type CreateStreamProcessorInput struct {
 	//
 	// Settings is a required field
 	Settings *StreamProcessorSettings `type:"structure" required:"true"`
+
+	// A set of tags (key-value pairs) that you want to attach to the stream processor.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -7755,6 +8104,12 @@ func (s *CreateStreamProcessorInput) SetRoleArn(v string) *CreateStreamProcessor
 // SetSettings sets the Settings field's value.
 func (s *CreateStreamProcessorInput) SetSettings(v *StreamProcessorSettings) *CreateStreamProcessorInput {
 	s.Settings = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStreamProcessorInput) SetTags(v map[string]*string) *CreateStreamProcessorInput {
+	s.Tags = v
 	return s
 }
 
@@ -9338,9 +9693,9 @@ type DetectionFilter struct {
 	// relative to the video frame width.
 	MinBoundingBoxWidth *float64 `type:"float"`
 
-	// Sets confidence of word detection. Words with detection confidence below
-	// this will be excluded from the result. Values should be between 0.5 and 1
-	// as Text in Video will not return any result below 0.5.
+	// Sets the confidence of word detection. Words with detection confidence below
+	// this will be excluded from the result. Values should be between 50 and 100
+	// as Text in Video will not return any result below 50.
 	MinConfidence *float64 `type:"float"`
 }
 
@@ -11701,8 +12056,9 @@ func (s *ImageQuality) SetSharpness(v float64) *ImageQuality {
 	return s
 }
 
-// The input image size exceeds the allowed limit. For more information, see
-// Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+// The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+// the image size or resolution exceeds the allowed limit. For more information,
+// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 type ImageTooLargeException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12802,6 +13158,71 @@ func (s *ListStreamProcessorsOutput) SetNextToken(v string) *ListStreamProcessor
 // SetStreamProcessors sets the StreamProcessors field's value.
 func (s *ListStreamProcessorsOutput) SetStreamProcessors(v []*StreamProcessor) *ListStreamProcessorsOutput {
 	s.StreamProcessors = v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the model, collection, or stream processor
+	// that contains the tags that you want a list of.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of key-value tags assigned to the resource.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -14571,8 +14992,9 @@ func (s *SegmentTypeInfo) SetType(v string) *SegmentTypeInfo {
 	return s
 }
 
-// The size of the collection exceeds the allowed limit. For more information,
-// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+// The size of the collection or tag list exceeds the allowed limit. For more
+// information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+// Guide.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16357,6 +16779,76 @@ func (s *Sunglasses) SetValue(v bool) *Sunglasses {
 	return s
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the model, collection, or stream processor
+	// that you want to assign the tags to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+
+	// The key-value tags to assign to the resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Information about a technical cue segment. For more information, see SegmentDetection.
 type TechnicalCueSegment struct {
 	_ struct{} `type:"structure"`
@@ -16806,6 +17298,76 @@ func (s *UnindexedFace) SetFaceDetail(v *FaceDetail) *UnindexedFace {
 func (s *UnindexedFace) SetReasons(v []*string) *UnindexedFace {
 	s.Reasons = v
 	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the model, collection, or stream processor
+	// that you want to remove the tags from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"20" type:"string" required:"true"`
+
+	// A list of the tags that you want to remove.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the Amazon S3 bucket location of the validation data for a model

@@ -11016,6 +11016,9 @@ type CreateProfileInput struct {
 	// The user-specified token that is used during the creation of a profile.
 	ClientRequestToken *string `min:"10" type:"string" idempotencyToken:"true"`
 
+	// Whether data retention of the profile is enabled.
+	DataRetentionOptIn *bool `type:"boolean"`
+
 	// The distance unit to be used by devices in the profile.
 	//
 	// DistanceUnit is a required field
@@ -11138,6 +11141,12 @@ func (s *CreateProfileInput) SetAddress(v string) *CreateProfileInput {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateProfileInput) SetClientRequestToken(v string) *CreateProfileInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataRetentionOptIn sets the DataRetentionOptIn field's value.
+func (s *CreateProfileInput) SetDataRetentionOptIn(v bool) *CreateProfileInput {
+	s.DataRetentionOptIn = &v
 	return s
 }
 
@@ -16154,6 +16163,9 @@ type Profile struct {
 	// The ARN of the address book.
 	AddressBookArn *string `type:"string"`
 
+	// Whether data retention of the profile is enabled.
+	DataRetentionOptIn *bool `type:"boolean"`
+
 	// The distance unit of a room profile.
 	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
 
@@ -16211,6 +16223,12 @@ func (s *Profile) SetAddress(v string) *Profile {
 // SetAddressBookArn sets the AddressBookArn field's value.
 func (s *Profile) SetAddressBookArn(v string) *Profile {
 	s.AddressBookArn = &v
+	return s
+}
+
+// SetDataRetentionOptIn sets the DataRetentionOptIn field's value.
+func (s *Profile) SetDataRetentionOptIn(v bool) *Profile {
+	s.DataRetentionOptIn = &v
 	return s
 }
 
@@ -20540,6 +20558,9 @@ type UpdateProfileInput struct {
 	// The updated address for the room profile.
 	Address *string `min:"1" type:"string"`
 
+	// Whether data retention of the profile is enabled.
+	DataRetentionOptIn *bool `type:"boolean"`
+
 	// The updated distance unit for the room profile.
 	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
 
@@ -20619,6 +20640,12 @@ func (s *UpdateProfileInput) Validate() error {
 // SetAddress sets the Address field's value.
 func (s *UpdateProfileInput) SetAddress(v string) *UpdateProfileInput {
 	s.Address = &v
+	return s
+}
+
+// SetDataRetentionOptIn sets the DataRetentionOptIn field's value.
+func (s *UpdateProfileInput) SetDataRetentionOptIn(v bool) *UpdateProfileInput {
+	s.DataRetentionOptIn = &v
 	return s
 }
 

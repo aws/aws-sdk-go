@@ -231,6 +231,10 @@ type RekognitionAPI interface {
 	ListStreamProcessorsPages(*rekognition.ListStreamProcessorsInput, func(*rekognition.ListStreamProcessorsOutput, bool) bool) error
 	ListStreamProcessorsPagesWithContext(aws.Context, *rekognition.ListStreamProcessorsInput, func(*rekognition.ListStreamProcessorsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*rekognition.ListTagsForResourceInput) (*rekognition.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *rekognition.ListTagsForResourceInput, ...request.Option) (*rekognition.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*rekognition.ListTagsForResourceInput) (*request.Request, *rekognition.ListTagsForResourceOutput)
+
 	RecognizeCelebrities(*rekognition.RecognizeCelebritiesInput) (*rekognition.RecognizeCelebritiesOutput, error)
 	RecognizeCelebritiesWithContext(aws.Context, *rekognition.RecognizeCelebritiesInput, ...request.Option) (*rekognition.RecognizeCelebritiesOutput, error)
 	RecognizeCelebritiesRequest(*rekognition.RecognizeCelebritiesInput) (*request.Request, *rekognition.RecognizeCelebritiesOutput)
@@ -290,6 +294,14 @@ type RekognitionAPI interface {
 	StopStreamProcessor(*rekognition.StopStreamProcessorInput) (*rekognition.StopStreamProcessorOutput, error)
 	StopStreamProcessorWithContext(aws.Context, *rekognition.StopStreamProcessorInput, ...request.Option) (*rekognition.StopStreamProcessorOutput, error)
 	StopStreamProcessorRequest(*rekognition.StopStreamProcessorInput) (*request.Request, *rekognition.StopStreamProcessorOutput)
+
+	TagResource(*rekognition.TagResourceInput) (*rekognition.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *rekognition.TagResourceInput, ...request.Option) (*rekognition.TagResourceOutput, error)
+	TagResourceRequest(*rekognition.TagResourceInput) (*request.Request, *rekognition.TagResourceOutput)
+
+	UntagResource(*rekognition.UntagResourceInput) (*rekognition.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *rekognition.UntagResourceInput, ...request.Option) (*rekognition.UntagResourceOutput, error)
+	UntagResourceRequest(*rekognition.UntagResourceInput) (*request.Request, *rekognition.UntagResourceOutput)
 
 	WaitUntilProjectVersionRunning(*rekognition.DescribeProjectVersionsInput) error
 	WaitUntilProjectVersionRunningWithContext(aws.Context, *rekognition.DescribeProjectVersionsInput, ...request.WaiterOption) error

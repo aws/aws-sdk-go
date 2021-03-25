@@ -106,6 +106,8 @@ func ExampleRekognition_CreateCollection_shared00() {
 				fmt.Println(rekognition.ErrCodeProvisionedThroughputExceededException, aerr.Error())
 			case rekognition.ErrCodeResourceAlreadyExistsException:
 				fmt.Println(rekognition.ErrCodeResourceAlreadyExistsException, aerr.Error())
+			case rekognition.ErrCodeServiceQuotaExceededException:
+				fmt.Println(rekognition.ErrCodeServiceQuotaExceededException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

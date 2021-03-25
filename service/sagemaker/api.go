@@ -3767,6 +3767,8 @@ func (c *SageMaker) CreateTrainingJobRequest(input *CreateTrainingJobInput) (req
 //    to set a time limit for training. Use MaxWaitTimeInSeconds to specify
 //    how long you are willing to wait for a managed spot training job to complete.
 //
+//    * Environment - The environment variables to set in the Docker container.
+//
 // For more information about Amazon SageMaker, see How It Works (https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -28520,7 +28522,13 @@ type CreateDomainInput struct {
 	// AuthMode is a required field
 	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
 
-	// The default user settings.
+	// The default settings to use to create a user profile when UserSettings isn't
+	// specified in the call to the CreateUserProfile (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html)
+	// API.
+	//
+	// SecurityGroups is aggregated when specified in both calls. For all other
+	// settings in UserSettings, the values specified in CreateUserProfile take
+	// precedence over those specified in CreateDomain.
 	//
 	// DefaultUserSettings is a required field
 	DefaultUserSettings *UserSettings `type:"structure" required:"true"`
@@ -28547,7 +28555,8 @@ type CreateDomainInput struct {
 
 	// Tags to associated with the Domain. Each tag consists of a key and an optional
 	// value. Tag keys must be unique per resource. Tags are searchable using the
-	// Search API.
+	// Search (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html)
+	// API.
 	Tags []*Tag `type:"list"`
 
 	// The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
@@ -32865,6 +32874,9 @@ type CreateTrainingJobInput struct {
 	// have network access.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
+	// The environment variables to set in the Docker container.
+	Environment map[string]*string `type:"map"`
+
 	// Associates a SageMaker job as a trial component with an experiment and trial.
 	// Specified when you call the following APIs:
 	//
@@ -33152,6 +33164,12 @@ func (s *CreateTrainingJobInput) SetEnableManagedSpotTraining(v bool) *CreateTra
 // SetEnableNetworkIsolation sets the EnableNetworkIsolation field's value.
 func (s *CreateTrainingJobInput) SetEnableNetworkIsolation(v bool) *CreateTrainingJobInput {
 	s.EnableNetworkIsolation = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateTrainingJobInput) SetEnvironment(v map[string]*string) *CreateTrainingJobInput {
+	s.Environment = v
 	return s
 }
 
@@ -39690,8 +39708,8 @@ type DescribeDomainOutput struct {
 	// The creation time.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// Settings which are applied to all UserProfiles in this domain, if settings
-	// are not explicitly specified in a given UserProfile.
+	// Settings which are applied to UserProfiles in this domain if settings are
+	// not explicitly specified in a given UserProfile.
 	DefaultUserSettings *UserSettings `type:"structure"`
 
 	// The domain's Amazon Resource Name (ARN).
@@ -44272,6 +44290,9 @@ type DescribeTrainingJobOutput struct {
 	// have network access.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
+	// The environment variables to set in the Docker container.
+	Environment map[string]*string `type:"map"`
+
 	// Associates a SageMaker job as a trial component with an experiment and trial.
 	// Specified when you call the following APIs:
 	//
@@ -44545,6 +44566,12 @@ func (s *DescribeTrainingJobOutput) SetEnableManagedSpotTraining(v bool) *Descri
 // SetEnableNetworkIsolation sets the EnableNetworkIsolation field's value.
 func (s *DescribeTrainingJobOutput) SetEnableNetworkIsolation(v bool) *DescribeTrainingJobOutput {
 	s.EnableNetworkIsolation = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DescribeTrainingJobOutput) SetEnvironment(v map[string]*string) *DescribeTrainingJobOutput {
+	s.Environment = v
 	return s
 }
 
@@ -52098,7 +52125,8 @@ type LabelingJobDataSource struct {
 	// The Amazon S3 location of the input data objects.
 	S3DataSource *LabelingJobS3DataSource `type:"structure"`
 
-	// An Amazon SNS data source used for streaming labeling jobs.
+	// An Amazon SNS data source used for streaming labeling jobs. To learn more,
+	// see Send Data to a Streaming Labeling Job (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-labeling-job.html#sms-streaming-how-it-works-send-data).
 	SnsDataSource *LabelingJobSnsDataSource `type:"structure"`
 }
 
@@ -52314,20 +52342,17 @@ type LabelingJobOutputConfig struct {
 	// The AWS Key Management Service ID of the key used to encrypt the output data,
 	// if any.
 	//
-	// If you use a KMS key ID or an alias of your master key, the Amazon SageMaker
-	// execution role must include permissions to call kms:Encrypt. If you don't
-	// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
-	// S3 for your role's account. Amazon SageMaker uses server-side encryption
-	// with KMS-managed keys for LabelingJobOutputConfig. If you use a bucket policy
-	// with an s3:PutObject permission that only allows objects with server-side
-	// encryption, set the condition key of s3:x-amz-server-side-encryption to "aws:kms".
-	// For more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
-	// in the Amazon Simple Storage Service Developer Guide.
+	// If you provide your own KMS key ID, you must add the required permissions
+	// to your KMS key described in Encrypt Output Data and Storage Volume with
+	// AWS KMS (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-permission.html#sms-security-kms-permissions).
 	//
-	// The KMS key policy must grant permission to the IAM role that you specify
-	// in your CreateLabelingJob request. For more information, see Using Key Policies
-	// in AWS KMS (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
-	// in the AWS Key Management Service Developer Guide.
+	// If you don't provide a KMS key ID, Amazon SageMaker uses the default AWS
+	// KMS key for Amazon S3 for your role's account to encrypt your output data.
+	//
+	// If you use a bucket policy with an s3:PutObject permission that only allows
+	// objects with server-side encryption, set the condition key of s3:x-amz-server-side-encryption
+	// to "aws:kms". For more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
+	// in the Amazon Simple Storage Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
 	// The Amazon S3 location to write output data.
@@ -52337,11 +52362,11 @@ type LabelingJobOutputConfig struct {
 
 	// An Amazon Simple Notification Service (Amazon SNS) output topic ARN.
 	//
-	// When workers complete labeling tasks, Ground Truth will send labeling task
-	// output data to the SNS output topic you specify here.
+	// If you provide an SnsTopicArn in OutputConfig, when workers complete labeling
+	// tasks, Ground Truth will send labeling task output data to the SNS output
+	// topic you specify here.
 	//
-	// You must provide a value for this parameter if you provide an Amazon SNS
-	// input topic in SnsDataSource in InputConfig.
+	// To learn more, see Receive Output Data from a Streaming Labeling Job (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-labeling-job.html#sms-streaming-how-it-works-output-data).
 	SnsTopicArn *string `type:"string"`
 }
 
@@ -52386,18 +52411,27 @@ func (s *LabelingJobOutputConfig) SetSnsTopicArn(v string) *LabelingJobOutputCon
 	return s
 }
 
-// Provides configuration information for labeling jobs.
+// Configure encryption on the storage volume attached to the ML compute instance
+// used to run automated data labeling model training and inference.
 type LabelingJobResourceConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
 	// encrypt data on the storage volume attached to the ML compute instance(s)
-	// that run the training job. The VolumeKmsKeyId can be any of the following
-	// formats:
+	// that run the training and inference jobs used for automated data labeling.
 	//
-	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	// You can only specify a VolumeKmsKeyId when you create a labeling job with
+	// automated data labeling enabled using the API operation CreateLabelingJob.
+	// You cannot specify an AWS KMS customer managed CMK to encrypt the storage
+	// volume used for automated data labeling model training and inference when
+	// you create a labeling job using the console. To learn more, see Output Data
+	// and Storage Volume Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html).
 	//
-	//    * // Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	// The VolumeKmsKeyId can be any of the following formats:
+	//
+	//    * KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	VolumeKmsKeyId *string `type:"string"`
 }
 
@@ -52480,9 +52514,6 @@ type LabelingJobSnsDataSource struct {
 	// The Amazon SNS input topic Amazon Resource Name (ARN). Specify the ARN of
 	// the input topic you will use to send new data objects to a streaming labeling
 	// job.
-	//
-	// If you specify an input topic for SnsTopicArn in InputConfig, you must specify
-	// a value for SnsTopicArn in OutputConfig.
 	//
 	// SnsTopicArn is a required field
 	SnsTopicArn *string `type:"string" required:"true"`
@@ -69312,10 +69343,11 @@ func (s *ServiceCatalogProvisioningDetails) SetProvisioningParameters(v []*Provi
 	return s
 }
 
-// Specifies options when sharing an Amazon SageMaker Studio notebook. These
-// settings are specified as part of DefaultUserSettings when the CreateDomain
-// API is called, and as part of UserSettings when the CreateUserProfile API
-// is called.
+// Specifies options for sharing SageMaker Studio notebooks. These settings
+// are specified as part of DefaultUserSettings when the CreateDomain (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html)
+// API is called, and as part of UserSettings when the CreateUserProfile (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html)
+// API is called. When SharingSettings is not specified, notebook sharing isn't
+// allowed.
 type SharingSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -70922,6 +70954,9 @@ type TrainingJob struct {
 	// VPC they run in.
 	EnableNetworkIsolation *bool `type:"boolean"`
 
+	// The environment variables to set in the Docker container.
+	Environment map[string]*string `type:"map"`
+
 	// Associates a SageMaker job as a trial component with an experiment and trial.
 	// Specified when you call the following APIs:
 	//
@@ -71164,6 +71199,12 @@ func (s *TrainingJob) SetEnableManagedSpotTraining(v bool) *TrainingJob {
 // SetEnableNetworkIsolation sets the EnableNetworkIsolation field's value.
 func (s *TrainingJob) SetEnableNetworkIsolation(v bool) *TrainingJob {
 	s.EnableNetworkIsolation = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *TrainingJob) SetEnvironment(v map[string]*string) *TrainingJob {
+	s.Environment = v
 	return s
 }
 
@@ -76403,8 +76444,9 @@ func (s *UserProfileDetails) SetUserProfileName(v string) *UserProfileDetails {
 }
 
 // A collection of settings that apply to users of Amazon SageMaker Studio.
-// These settings are specified when the CreateUserProfile API is called, and
-// as DefaultUserSettings when the CreateDomain API is called.
+// These settings are specified when the CreateUserProfile (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html)
+// API is called, and as DefaultUserSettings when the CreateDomain (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html)
+// API is called.
 //
 // SecurityGroups is aggregated when specified in both calls. For all other
 // settings in UserSettings, the values specified in CreateUserProfile take
@@ -76433,7 +76475,7 @@ type UserSettings struct {
 	// one less than the maximum number shown.
 	SecurityGroups []*string `type:"list"`
 
-	// The sharing settings.
+	// Specifies options for sharing SageMaker Studio notebooks.
 	SharingSettings *SharingSettings `type:"structure"`
 
 	// The TensorBoard app settings.
@@ -77325,6 +77367,15 @@ const (
 
 	// AutoMLJobSecondaryStatusCandidateDefinitionsGenerated is a AutoMLJobSecondaryStatus enum value
 	AutoMLJobSecondaryStatusCandidateDefinitionsGenerated = "CandidateDefinitionsGenerated"
+
+	// AutoMLJobSecondaryStatusGeneratingExplainabilityReport is a AutoMLJobSecondaryStatus enum value
+	AutoMLJobSecondaryStatusGeneratingExplainabilityReport = "GeneratingExplainabilityReport"
+
+	// AutoMLJobSecondaryStatusCompleted is a AutoMLJobSecondaryStatus enum value
+	AutoMLJobSecondaryStatusCompleted = "Completed"
+
+	// AutoMLJobSecondaryStatusExplainabilityError is a AutoMLJobSecondaryStatus enum value
+	AutoMLJobSecondaryStatusExplainabilityError = "ExplainabilityError"
 )
 
 // AutoMLJobSecondaryStatus_Values returns all elements of the AutoMLJobSecondaryStatus enum
@@ -77340,6 +77391,9 @@ func AutoMLJobSecondaryStatus_Values() []string {
 		AutoMLJobSecondaryStatusMaxAutoMljobRuntimeReached,
 		AutoMLJobSecondaryStatusStopping,
 		AutoMLJobSecondaryStatusCandidateDefinitionsGenerated,
+		AutoMLJobSecondaryStatusGeneratingExplainabilityReport,
+		AutoMLJobSecondaryStatusCompleted,
+		AutoMLJobSecondaryStatusExplainabilityError,
 	}
 }
 
