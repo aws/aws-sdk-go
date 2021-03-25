@@ -3409,32 +3409,32 @@
       ]
     },
     "CaptionRectangle": {
-       "type": "structure",
-       "members": {
-         "Height": {
-           "shape": "__doubleMin0Max100",
-           "locationName": "height"
-         },
-         "LeftOffset": {
-           "shape": "__doubleMin0Max100",
-           "locationName": "leftOffset"
-         },
-         "TopOffset": {
-           "shape": "__doubleMin0Max100",
-           "locationName": "topOffset"
-         },
-         "Width": {
-           "shape": "__doubleMin0Max100",
-           "locationName": "width"
-         }
-       },
-       "required": [
-         "TopOffset",
-         "Height",
-         "Width",
-         "LeftOffset"
+      "type": "structure",
+      "members": {
+        "Height": {
+          "shape": "__doubleMin0Max100",
+          "locationName": "height"
+        },
+        "LeftOffset": {
+          "shape": "__doubleMin0Max100",
+          "locationName": "leftOffset"
+        },
+        "TopOffset": {
+          "shape": "__doubleMin0Max100",
+          "locationName": "topOffset"
+        },
+        "Width": {
+          "shape": "__doubleMin0Max100",
+          "locationName": "width"
+        }
+      },
+      "required": [
+        "TopOffset",
+        "Height",
+        "Width",
+        "LeftOffset"
       ]
-    }, 
+    },
     "CaptionSelector": {
       "type": "structure",
       "members": {
@@ -5599,7 +5599,7 @@
         "CopyrightHolder": {
           "shape": "__stringMax1000",
           "locationName": "copyrightHolder"
-        }, 
+        },
         "FontFamily": {
           "shape": "__string",
           "locationName": "fontFamily"
@@ -11524,7 +11524,7 @@
         "OutputRectangle": {
           "shape": "CaptionRectangle",
           "locationName": "outputRectangle"
-        }, 
+        },
         "PageNumber": {
           "shape": "__string",
           "locationName": "pageNumber"
@@ -11685,7 +11685,7 @@
         "TargetRegion": {
           "shape": "__string",
           "locationName": "targetRegion"
-        }, 
+        },
         "TransferType": {
           "shape": "InputDeviceTransferType",
           "locationName": "transferType"
@@ -12408,6 +12408,10 @@
           "shape": "VideoSelectorColorSpace",
           "locationName": "colorSpace"
         },
+        "ColorSpaceSettings": {
+          "shape": "VideoSelectorColorSpaceSettings",
+          "locationName": "colorSpaceSettings"
+        },
         "ColorSpaceUsage": {
           "shape": "VideoSelectorColorSpaceUsage",
           "locationName": "colorSpaceUsage"
@@ -12422,9 +12426,20 @@
       "type": "string",
       "enum": [
         "FOLLOW",
+        "HDR10",
+        "HLG_2020",
         "REC_601",
         "REC_709"
       ]
+    },
+    "VideoSelectorColorSpaceSettings": {
+      "type": "structure",
+      "members": {
+        "Hdr10Settings": {
+          "shape": "Hdr10Settings",
+          "locationName": "hdr10Settings"
+        }
+      }
     },
     "VideoSelectorColorSpaceUsage": {
       "type": "string",
@@ -12529,7 +12544,7 @@
     },
     "__doubleMin0Max100": {
       "type": "double"
-    }, 
+    },
     "__doubleMin1": {
       "type": "double"
     },
@@ -13101,7 +13116,7 @@
     "__stringMax1000": {
       "type": "string",
       "max": 1000
-    }, 
+    },
     "__stringMax256": {
       "type": "string",
       "max": 256

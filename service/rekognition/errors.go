@@ -32,8 +32,9 @@ const (
 	// ErrCodeImageTooLargeException for service response error code
 	// "ImageTooLargeException".
 	//
-	// The input image size exceeds the allowed limit. For more information, see
-	// Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+	// The input image size exceeds the allowed limit. If you are calling DetectProtectiveEquipment,
+	// the image size or resolution exceeds the allowed limit. For more information,
+	// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 	ErrCodeImageTooLargeException = "ImageTooLargeException"
 
 	// ErrCodeInternalServerError for service response error code
@@ -112,8 +113,9 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// The size of the collection exceeds the allowed limit. For more information,
-	// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+	// The size of the collection or tag list exceeds the allowed limit. For more
+	// information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
+	// Guide.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code

@@ -396,6 +396,7 @@
         "CreateMeetingRoomConfiguration$RoomUtilizationMetricsEnabled": "<p>Whether room utilization metrics are enabled or not.</p>",
         "CreateProfileRequest$SetupModeDisabled": "<p>Whether room profile setup is enabled.</p>",
         "CreateProfileRequest$PSTNEnabled": "<p>Whether PSTN calling is enabled.</p>",
+        "CreateProfileRequest$DataRetentionOptIn": "<p>Whether data retention of the profile is enabled.</p>",
         "CreateRequireCheckIn$Enabled": "<p>Whether require check in is enabled or not.</p>",
         "EndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
         "InstantBooking$Enabled": "<p>Whether instant booking is enabled or not.</p>",
@@ -403,6 +404,7 @@
         "Profile$IsDefault": "<p>Retrieves if the profile is default or not.</p>",
         "Profile$SetupModeDisabled": "<p>The setup mode of a room profile.</p>",
         "Profile$PSTNEnabled": "<p>The PSTN setting of a room profile.</p>",
+        "Profile$DataRetentionOptIn": "<p>Whether data retention of the profile is enabled.</p>",
         "ProfileData$IsDefault": "<p>Retrieves if the profile data is default or not.</p>",
         "RequireCheckIn$Enabled": "<p>Whether require check in is enabled or not.</p>",
         "UpdateEndOfMeetingReminder$Enabled": "<p>Whether an end of meeting reminder is enabled or not.</p>",
@@ -411,6 +413,7 @@
         "UpdateProfileRequest$IsDefault": "<p>Sets the profile as default if selected. If this is missing, no update is done to the default status.</p>",
         "UpdateProfileRequest$SetupModeDisabled": "<p>Whether the setup mode of the profile is enabled.</p>",
         "UpdateProfileRequest$PSTNEnabled": "<p>Whether the PSTN setting of the room profile is enabled.</p>",
+        "UpdateProfileRequest$DataRetentionOptIn": "<p>Whether data retention of the profile is enabled.</p>",
         "UpdateRequireCheckIn$Enabled": "<p>Whether require check in is enabled or not.</p>"
       }
     },

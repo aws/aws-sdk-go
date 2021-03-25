@@ -3292,7 +3292,10 @@
         "Stopped",
         "MaxAutoMLJobRuntimeReached",
         "Stopping",
-        "CandidateDefinitionsGenerated"
+        "CandidateDefinitionsGenerated",
+        "GeneratingExplainabilityReport",
+        "Completed",
+        "ExplainabilityError"
       ]
     },
     "AutoMLJobStatus":{
@@ -4918,7 +4921,8 @@
         "TensorBoardOutputConfig":{"shape":"TensorBoardOutputConfig"},
         "ExperimentConfig":{"shape":"ExperimentConfig"},
         "ProfilerConfig":{"shape":"ProfilerConfig"},
-        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"}
+        "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
+        "Environment":{"shape":"TrainingEnvironmentMap"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -6846,7 +6850,8 @@
         "ProfilerConfig":{"shape":"ProfilerConfig"},
         "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
         "ProfilerRuleEvaluationStatuses":{"shape":"ProfilerRuleEvaluationStatuses"},
-        "ProfilingStatus":{"shape":"ProfilingStatus"}
+        "ProfilingStatus":{"shape":"ProfilingStatus"},
+        "Environment":{"shape":"TrainingEnvironmentMap"}
       }
     },
     "DescribeTransformJobRequest":{
@@ -13465,6 +13470,22 @@
         "CANARY"
       ]
     },
+    "TrainingEnvironmentKey":{
+      "type":"string",
+      "max":512,
+      "pattern":"[a-zA-Z_][a-zA-Z0-9_]*"
+    },
+    "TrainingEnvironmentMap":{
+      "type":"map",
+      "key":{"shape":"TrainingEnvironmentKey"},
+      "value":{"shape":"TrainingEnvironmentValue"},
+      "max":48
+    },
+    "TrainingEnvironmentValue":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\S\\s]*"
+    },
     "TrainingInputMode":{
       "type":"string",
       "enum":[
@@ -13561,6 +13582,7 @@
         "DebugRuleConfigurations":{"shape":"DebugRuleConfigurations"},
         "TensorBoardOutputConfig":{"shape":"TensorBoardOutputConfig"},
         "DebugRuleEvaluationStatuses":{"shape":"DebugRuleEvaluationStatuses"},
+        "Environment":{"shape":"TrainingEnvironmentMap"},
         "Tags":{"shape":"TagList"}
       }
     },

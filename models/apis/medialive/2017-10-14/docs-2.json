@@ -532,11 +532,11 @@
       }
     },
     "CaptionRectangle": {
-       "base": "Caption Rectangle",
-       "refs": {
-         "TeletextSourceSettings$OutputRectangle": "Optionally defines a region where TTML style captions will be displayed"
+      "base": "Caption Rectangle",
+      "refs": {
+        "TeletextSourceSettings$OutputRectangle": "Optionally defines a region where TTML style captions will be displayed"
       }
-    }, 
+    },
     "CaptionSelector": {
       "base": "Output groups for this Live Event. Output groups contain information about where streams should be distributed.",
       "refs": {
@@ -1320,7 +1320,8 @@
     "Hdr10Settings": {
       "base": "Hdr10 Settings",
       "refs": {
-        "H265ColorSpaceSettings$Hdr10Settings": null
+        "H265ColorSpaceSettings$Hdr10Settings": null,
+        "VideoSelectorColorSpaceSettings$Hdr10Settings": null
       }
     },
     "HlsAdMarkers": {
@@ -3206,6 +3207,12 @@
         "VideoSelector$ColorSpace": "Specifies the color space of an input. This setting works in tandem with colorSpaceUsage and a video description's colorSpaceSettingsChoice to determine if any conversion will be performed."
       }
     },
+    "VideoSelectorColorSpaceSettings": {
+      "base": "Video Selector Color Space Settings",
+      "refs": {
+        "VideoSelector$ColorSpaceSettings": "Color space settings"
+      }
+    },
     "VideoSelectorColorSpaceUsage": {
       "base": "Video Selector Color Space Usage",
       "refs": {
@@ -3308,7 +3315,7 @@
         "CaptionRectangle$TopOffset": "See the description in leftOffset.\nFor topOffset, specify the position of the top edge of the rectangle, as a percentage of the underlying frame height, and relative to the top edge of the frame. For example, \\\"10\\\" means the measurement is 10% of the underlying frame height. The rectangle top edge starts at that position from the top edge of the frame.\nThis field corresponds to tts:origin - Y in the TTML standard.",
         "CaptionRectangle$Width": "See the description in leftOffset.\nFor width, specify the entire width of the rectangle as a percentage of the underlying frame width. For example, \\\"80\\\" means the rectangle width is 80% of the underlying frame width. The leftOffset and rectangleWidth must add up to 100% or less.\nThis field corresponds to tts:extent - X in the TTML standard."
       }
-    }, 
+    },
     "__doubleMin1": {
       "base": null,
       "refs": {
@@ -4364,7 +4371,7 @@
       "refs": {
         "EbuTtDDestinationSettings$CopyrightHolder": "Applies only if you plan to convert these source captions to EBU-TT-D or TTML in an output. Complete this field if you want to include the name of the copyright holder in the copyright metadata tag in the TTML"
       }
-    }, 
+    },
     "__stringMax256": {
       "base": null,
       "refs": {

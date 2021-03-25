@@ -1,3 +1,18 @@
+Release v1.38.5 (2021-03-25)
+===
+
+### Service Client Updates
+* `service/alexaforbusiness`: Updates service API and documentation
+* `service/lookoutmetrics`: Adds new service
+* `service/medialive`: Updates service API and documentation
+  * EML now supports handling HDR10 and HLG 2020 color space from a Link input.
+* `service/rekognition`: Updates service API and documentation
+  * "This release introduces AWS tagging support for Amazon Rekognition collections, stream processors, and Custom Label models."
+* `service/sagemaker`: Updates service API and documentation
+  * This feature allows customer to specify the environment variables in their CreateTrainingJob requests.
+* `service/sqs`: Updates service documentation
+  * Documentation updates for Amazon SQS
+
 Release v1.38.4 (2021-03-24)
 ===
 

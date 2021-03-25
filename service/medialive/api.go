@@ -26893,6 +26893,9 @@ type VideoSelector struct {
 	// if any conversion will be performed.
 	ColorSpace *string `locationName:"colorSpace" type:"string" enum:"VideoSelectorColorSpace"`
 
+	// Color space settings
+	ColorSpaceSettings *VideoSelectorColorSpaceSettings `locationName:"colorSpaceSettings" type:"structure"`
+
 	// Applies only if colorSpace is a value other than follow. This field controls
 	// how the value in the colorSpace field will be used. fallback means that when
 	// the input does include color space data, that data will be used, but when
@@ -26923,6 +26926,12 @@ func (s *VideoSelector) SetColorSpace(v string) *VideoSelector {
 	return s
 }
 
+// SetColorSpaceSettings sets the ColorSpaceSettings field's value.
+func (s *VideoSelector) SetColorSpaceSettings(v *VideoSelectorColorSpaceSettings) *VideoSelector {
+	s.ColorSpaceSettings = v
+	return s
+}
+
 // SetColorSpaceUsage sets the ColorSpaceUsage field's value.
 func (s *VideoSelector) SetColorSpaceUsage(v string) *VideoSelector {
 	s.ColorSpaceUsage = &v
@@ -26932,6 +26941,30 @@ func (s *VideoSelector) SetColorSpaceUsage(v string) *VideoSelector {
 // SetSelectorSettings sets the SelectorSettings field's value.
 func (s *VideoSelector) SetSelectorSettings(v *VideoSelectorSettings) *VideoSelector {
 	s.SelectorSettings = v
+	return s
+}
+
+// Video Selector Color Space Settings
+type VideoSelectorColorSpaceSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Hdr10 Settings
+	Hdr10Settings *Hdr10Settings `locationName:"hdr10Settings" type:"structure"`
+}
+
+// String returns the string representation
+func (s VideoSelectorColorSpaceSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VideoSelectorColorSpaceSettings) GoString() string {
+	return s.String()
+}
+
+// SetHdr10Settings sets the Hdr10Settings field's value.
+func (s *VideoSelectorColorSpaceSettings) SetHdr10Settings(v *Hdr10Settings) *VideoSelectorColorSpaceSettings {
+	s.Hdr10Settings = v
 	return s
 }
 
@@ -32067,6 +32100,12 @@ const (
 	// VideoSelectorColorSpaceFollow is a VideoSelectorColorSpace enum value
 	VideoSelectorColorSpaceFollow = "FOLLOW"
 
+	// VideoSelectorColorSpaceHdr10 is a VideoSelectorColorSpace enum value
+	VideoSelectorColorSpaceHdr10 = "HDR10"
+
+	// VideoSelectorColorSpaceHlg2020 is a VideoSelectorColorSpace enum value
+	VideoSelectorColorSpaceHlg2020 = "HLG_2020"
+
 	// VideoSelectorColorSpaceRec601 is a VideoSelectorColorSpace enum value
 	VideoSelectorColorSpaceRec601 = "REC_601"
 
@@ -32078,6 +32117,8 @@ const (
 func VideoSelectorColorSpace_Values() []string {
 	return []string{
 		VideoSelectorColorSpaceFollow,
+		VideoSelectorColorSpaceHdr10,
+		VideoSelectorColorSpaceHlg2020,
 		VideoSelectorColorSpaceRec601,
 		VideoSelectorColorSpaceRec709,
 	}
