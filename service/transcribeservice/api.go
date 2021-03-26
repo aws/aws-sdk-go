@@ -6163,7 +6163,10 @@ type Settings struct {
 
 	// Set to mask to remove filtered text from the transcript and replace it with
 	// three asterisks ("***") as placeholder text. Set to remove to remove filtered
-	// text from the transcript without using placeholder text.
+	// text from the transcript without using placeholder text. Set to tag to mark
+	// the word in the transcription output that matches the vocabulary filter.
+	// When you set the filter method to tag, the words matching your vocabulary
+	// filter are not masked or removed.
 	VocabularyFilterMethod *string `type:"string" enum:"VocabularyFilterMethod"`
 
 	// The name of the vocabulary filter to use when transcribing the audio. The
@@ -8040,6 +8043,9 @@ const (
 
 	// VocabularyFilterMethodMask is a VocabularyFilterMethod enum value
 	VocabularyFilterMethodMask = "mask"
+
+	// VocabularyFilterMethodTag is a VocabularyFilterMethod enum value
+	VocabularyFilterMethodTag = "tag"
 )
 
 // VocabularyFilterMethod_Values returns all elements of the VocabularyFilterMethod enum
@@ -8047,6 +8053,7 @@ func VocabularyFilterMethod_Values() []string {
 	return []string{
 		VocabularyFilterMethodRemove,
 		VocabularyFilterMethodMask,
+		VocabularyFilterMethodTag,
 	}
 }
 

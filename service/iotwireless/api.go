@@ -5107,8 +5107,8 @@ type AssociateAwsAccountWithPartnerAccountInput struct {
 	// Sidewalk is a required field
 	Sidewalk *SidewalkAccountInfo `type:"structure" required:"true"`
 
-	// The tags attached to the specified resource. Tags are metadata that can be
-	// used to manage a resource
+	// The tags to attach to the specified resource. Tags are metadata that you
+	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -5514,8 +5514,8 @@ type CreateDestinationInput struct {
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
 
-	// The tags to attach to the new destination. Tags are metadata that can be
-	// used to manage a resource.
+	// The tags to attach to the new destination. Tags are metadata that you can
+	// use to manage a resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -5656,8 +5656,8 @@ type CreateDeviceProfileInput struct {
 	// The name of the new resource.
 	Name *string `type:"string"`
 
-	// The tags to attach to the new device profile Tags are metadata that can be
-	// used to manage a resource.
+	// The tags to attach to the new device profile. Tags are metadata that you
+	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -5770,8 +5770,8 @@ type CreateServiceProfileInput struct {
 	// The name of the new resource.
 	Name *string `type:"string"`
 
-	// The tags to attach to the new service profile. Tags are metadata that can
-	// be used to manage a resource.
+	// The tags to attach to the new service profile. Tags are metadata that you
+	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -5887,6 +5887,10 @@ type CreateWirelessDeviceInput struct {
 	// The name of the new resource.
 	Name *string `type:"string"`
 
+	// The tags to attach to the new wireless device. Tags are metadata that you
+	// can use to manage a resource.
+	Tags []*Tag `type:"list"`
+
 	// The wireless device type.
 	//
 	// Type is a required field
@@ -5914,6 +5918,16 @@ func (s *CreateWirelessDeviceInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5949,6 +5963,12 @@ func (s *CreateWirelessDeviceInput) SetLoRaWAN(v *LoRaWANDevice) *CreateWireless
 // SetName sets the Name field's value.
 func (s *CreateWirelessDeviceInput) SetName(v string) *CreateWirelessDeviceInput {
 	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWirelessDeviceInput) SetTags(v []*Tag) *CreateWirelessDeviceInput {
+	s.Tags = v
 	return s
 }
 
@@ -6010,8 +6030,8 @@ type CreateWirelessGatewayInput struct {
 	// The name of the new resource.
 	Name *string `type:"string"`
 
-	// The tags to attach to the new wireless gateway. Tags are metadata that can
-	// be used to manage a resource.
+	// The tags to attach to the new wireless gateway. Tags are metadata that you
+	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -6132,8 +6152,8 @@ type CreateWirelessGatewayTaskDefinitionInput struct {
 	// The name of the new resource.
 	Name *string `min:"1" type:"string"`
 
-	// The tags attached to the specified resource. Tags are metadata that can be
-	// used to manage a resource
+	// The tags to attach to the specified resource. Tags are metadata that you
+	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
 
 	// Information about the gateways to update.
@@ -8600,7 +8620,7 @@ func (s *ListServiceProfilesOutput) SetServiceProfileList(v []*ServiceProfile) *
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource for which to list tags.
+	// The ARN of the resource for which you want to list tags.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"1" type:"string" required:"true"`
@@ -8641,8 +8661,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The tags attached to the specified resource. Tags are metadata that can be
-	// used to manage a resource
+	// The tags to attach to the specified resource. Tags are metadata that you
+	// can use to manage a resource.
 	Tags []*Tag `type:"list"`
 }
 
@@ -10440,7 +10460,7 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// Adds to or modifies the tags of the given resource. Tags are metadata that
-	// can be used to manage a resource.
+	// you can use to manage a resource.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`

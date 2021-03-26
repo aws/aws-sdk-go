@@ -1277,7 +1277,8 @@
       "type":"string",
       "enum":[
         "remove",
-        "mask"
+        "mask",
+        "tag"
       ]
     },
     "VocabularyFilterName":{
