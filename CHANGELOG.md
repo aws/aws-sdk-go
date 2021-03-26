@@ -1,3 +1,10 @@
+Release v1.38.6 (2021-03-25)
+===
+
+### Service Client Updates
+* `service/lookoutmetrics`: Fixes handling of API requests.
+  * Fix SDK's serialization of request to include expected Content-Type header.
+
 Release v1.38.5 (2021-03-25)
 ===
 
