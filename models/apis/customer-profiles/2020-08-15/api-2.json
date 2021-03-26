@@ -525,6 +525,32 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"\\S+"
+    },
+    "BucketPrefix":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "ConnectorOperator":{
+      "type":"structure",
+      "members":{
+        "Marketo":{"shape":"MarketoConnectorOperator"},
+        "S3":{"shape":"S3ConnectorOperator"},
+        "Salesforce":{"shape":"SalesforceConnectorOperator"},
+        "ServiceNow":{"shape":"ServiceNowConnectorOperator"},
+        "Zendesk":{"shape":"ZendeskConnectorOperator"}
+      }
+    },
+    "ConnectorProfileName":{
+      "type":"string",
+      "max":256,
+      "pattern":"[\\w/!@#+=.-]+"
+    },
     "CreateDomainRequest":{
       "type":"structure",
       "required":[
@@ -599,6 +625,19 @@
       "members":{
         "ProfileId":{"shape":"uuid"}
       }
+    },
+    "DataPullMode":{
+      "type":"string",
+      "enum":[
+        "Incremental",
+        "Complete"
+      ]
+    },
+    "Date":{"type":"timestamp"},
+    "DatetimeTypeFieldName":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
     },
     "DeleteDomainRequest":{
       "type":"structure",
@@ -737,6 +776,11 @@
         "Message":{"shape":"message"}
       }
     },
+    "DestinationField":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
     "DomainList":{
       "type":"list",
       "member":{"shape":"ListDomainItem"}
@@ -768,6 +812,34 @@
     "FieldNameList":{
       "type":"list",
       "member":{"shape":"name"}
+    },
+    "FlowDefinition":{
+      "type":"structure",
+      "required":[
+        "FlowName",
+        "KmsArn",
+        "SourceFlowConfig",
+        "Tasks",
+        "TriggerConfig"
+      ],
+      "members":{
+        "Description":{"shape":"FlowDescription"},
+        "FlowName":{"shape":"FlowName"},
+        "KmsArn":{"shape":"KmsArn"},
+        "SourceFlowConfig":{"shape":"SourceFlowConfig"},
+        "Tasks":{"shape":"Tasks"},
+        "TriggerConfig":{"shape":"TriggerConfig"}
+      }
+    },
+    "FlowDescription":{
+      "type":"string",
+      "max":2048,
+      "pattern":"[\\w!@#\\-.?,\\s]*"
+    },
+    "FlowName":{
+      "type":"string",
+      "max":256,
+      "pattern":"[a-zA-Z0-9][\\w!@#.-]+"
     },
     "Gender":{
       "type":"string",
@@ -900,6 +972,12 @@
         "Keys":{"shape":"KeyMap"}
       }
     },
+    "IncrementalPullConfig":{
+      "type":"structure",
+      "members":{
+        "DatetimeTypeFieldName":{"shape":"DatetimeTypeFieldName"}
+      }
+    },
     "IntegrationList":{
       "type":"list",
       "member":{"shape":"ListIntegrationItem"}
@@ -917,6 +995,12 @@
       "type":"map",
       "key":{"shape":"name"},
       "value":{"shape":"ObjectTypeKeyList"}
+    },
+    "KmsArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws:kms:.*:[0-9]+:.*"
     },
     "ListAccountIntegrationsRequest":{
       "type":"structure",
@@ -1155,6 +1239,39 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "MarketoConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "LESS_THAN",
+        "GREATER_THAN",
+        "BETWEEN",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
+      ]
+    },
+    "MarketoSourceProperties":{
+      "type":"structure",
+      "required":["Object"],
+      "members":{
+        "Object":{"shape":"Object"}
+      }
+    },
+    "Object":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
+    },
     "ObjectTypeField":{
       "type":"structure",
       "members":{
@@ -1173,6 +1290,25 @@
     "ObjectTypeKeyList":{
       "type":"list",
       "member":{"shape":"ObjectTypeKey"}
+    },
+    "OperatorPropertiesKeys":{
+      "type":"string",
+      "enum":[
+        "VALUE",
+        "VALUES",
+        "DATA_TYPE",
+        "UPPER_BOUND",
+        "LOWER_BOUND",
+        "SOURCE_DATA_TYPE",
+        "DESTINATION_DATA_TYPE",
+        "VALIDATION_ACTION",
+        "MASK_VALUE",
+        "MASK_LENGTH",
+        "TRUNCATE_LENGTH",
+        "MATH_OPERATION_FIELDS_ORDER",
+        "CONCAT_FORMAT",
+        "SUBFIELD_CATEGORY_MAP"
+      ]
     },
     "PartyType":{
       "type":"string",
@@ -1225,11 +1361,15 @@
       "type":"list",
       "member":{"shape":"ListProfileObjectTypeTemplateItem"}
     },
+    "Property":{
+      "type":"string",
+      "max":2048,
+      "pattern":".+"
+    },
     "PutIntegrationRequest":{
       "type":"structure",
       "required":[
         "DomainName",
-        "Uri",
         "ObjectTypeName"
       ],
       "members":{
@@ -1240,7 +1380,8 @@
         },
         "Uri":{"shape":"string1To255"},
         "ObjectTypeName":{"shape":"typeName"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "FlowDefinition":{"shape":"FlowDefinition"}
       }
     },
     "PutIntegrationResponse":{
@@ -1340,6 +1481,100 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "S3ConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "LESS_THAN",
+        "GREATER_THAN",
+        "BETWEEN",
+        "LESS_THAN_OR_EQUAL_TO",
+        "GREATER_THAN_OR_EQUAL_TO",
+        "EQUAL_TO",
+        "NOT_EQUAL_TO",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
+      ]
+    },
+    "S3SourceProperties":{
+      "type":"structure",
+      "required":["BucketName"],
+      "members":{
+        "BucketName":{"shape":"BucketName"},
+        "BucketPrefix":{"shape":"BucketPrefix"}
+      }
+    },
+    "SalesforceConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "LESS_THAN",
+        "CONTAINS",
+        "GREATER_THAN",
+        "BETWEEN",
+        "LESS_THAN_OR_EQUAL_TO",
+        "GREATER_THAN_OR_EQUAL_TO",
+        "EQUAL_TO",
+        "NOT_EQUAL_TO",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
+      ]
+    },
+    "SalesforceSourceProperties":{
+      "type":"structure",
+      "required":["Object"],
+      "members":{
+        "Object":{"shape":"Object"},
+        "EnableDynamicFieldUpdate":{"shape":"boolean"},
+        "IncludeDeletedRecords":{"shape":"boolean"}
+      }
+    },
+    "ScheduleExpression":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
+    "ScheduleOffset":{
+      "type":"long",
+      "max":36000,
+      "min":0
+    },
+    "ScheduledTriggerProperties":{
+      "type":"structure",
+      "required":["ScheduleExpression"],
+      "members":{
+        "ScheduleExpression":{"shape":"ScheduleExpression"},
+        "DataPullMode":{"shape":"DataPullMode"},
+        "ScheduleStartTime":{"shape":"Date"},
+        "ScheduleEndTime":{"shape":"Date"},
+        "Timezone":{"shape":"Timezone"},
+        "ScheduleOffset":{
+          "shape":"ScheduleOffset",
+          "box":true
+        },
+        "FirstExecutionFrom":{"shape":"Date"}
+      }
+    },
     "SearchProfilesRequest":{
       "type":"structure",
       "required":[
@@ -1372,6 +1607,76 @@
       "members":{
         "Items":{"shape":"ProfileList"},
         "NextToken":{"shape":"token"}
+      }
+    },
+    "ServiceNowConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "CONTAINS",
+        "LESS_THAN",
+        "GREATER_THAN",
+        "BETWEEN",
+        "LESS_THAN_OR_EQUAL_TO",
+        "GREATER_THAN_OR_EQUAL_TO",
+        "EQUAL_TO",
+        "NOT_EQUAL_TO",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
+      ]
+    },
+    "ServiceNowSourceProperties":{
+      "type":"structure",
+      "required":["Object"],
+      "members":{
+        "Object":{"shape":"Object"}
+      }
+    },
+    "SourceConnectorProperties":{
+      "type":"structure",
+      "members":{
+        "Marketo":{"shape":"MarketoSourceProperties"},
+        "S3":{"shape":"S3SourceProperties"},
+        "Salesforce":{"shape":"SalesforceSourceProperties"},
+        "ServiceNow":{"shape":"ServiceNowSourceProperties"},
+        "Zendesk":{"shape":"ZendeskSourceProperties"}
+      }
+    },
+    "SourceConnectorType":{
+      "type":"string",
+      "enum":[
+        "Salesforce",
+        "Marketo",
+        "Zendesk",
+        "Servicenow",
+        "S3"
+      ]
+    },
+    "SourceFields":{
+      "type":"list",
+      "member":{"shape":"stringTo2048"}
+    },
+    "SourceFlowConfig":{
+      "type":"structure",
+      "required":[
+        "ConnectorType",
+        "SourceConnectorProperties"
+      ],
+      "members":{
+        "ConnectorProfileName":{"shape":"ConnectorProfileName"},
+        "ConnectorType":{"shape":"SourceConnectorType"},
+        "IncrementalPullConfig":{"shape":"IncrementalPullConfig"},
+        "SourceConnectorProperties":{"shape":"SourceConnectorProperties"}
       }
     },
     "StandardIdentifier":{
@@ -1436,6 +1741,41 @@
       "type":"string",
       "max":256
     },
+    "Task":{
+      "type":"structure",
+      "required":[
+        "SourceFields",
+        "TaskType"
+      ],
+      "members":{
+        "ConnectorOperator":{"shape":"ConnectorOperator"},
+        "DestinationField":{"shape":"DestinationField"},
+        "SourceFields":{"shape":"SourceFields"},
+        "TaskProperties":{"shape":"TaskPropertiesMap"},
+        "TaskType":{"shape":"TaskType"}
+      }
+    },
+    "TaskPropertiesMap":{
+      "type":"map",
+      "key":{"shape":"OperatorPropertiesKeys"},
+      "value":{"shape":"Property"}
+    },
+    "TaskType":{
+      "type":"string",
+      "enum":[
+        "Arithmetic",
+        "Filter",
+        "Map",
+        "Mask",
+        "Merge",
+        "Truncate",
+        "Validate"
+      ]
+    },
+    "Tasks":{
+      "type":"list",
+      "member":{"shape":"Task"}
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -1443,6 +1783,33 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "Timezone":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
+    "TriggerConfig":{
+      "type":"structure",
+      "required":["TriggerType"],
+      "members":{
+        "TriggerType":{"shape":"TriggerType"},
+        "TriggerProperties":{"shape":"TriggerProperties"}
+      }
+    },
+    "TriggerProperties":{
+      "type":"structure",
+      "members":{
+        "Scheduled":{"shape":"ScheduledTriggerProperties"}
+      }
+    },
+    "TriggerType":{
+      "type":"string",
+      "enum":[
+        "Scheduled",
+        "Event",
+        "OnDemand"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -1563,6 +1930,32 @@
         "ProfileId":{"shape":"uuid"}
       }
     },
+    "ZendeskConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "GREATER_THAN",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
+      ]
+    },
+    "ZendeskSourceProperties":{
+      "type":"structure",
+      "required":["Object"],
+      "members":{
+        "Object":{"shape":"Object"}
+      }
+    },
     "boolean":{"type":"boolean"},
     "encryptionKey":{
       "type":"string",
@@ -1609,6 +2002,11 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "stringTo2048":{
+      "type":"string",
+      "max":2048,
+      "pattern":".*"
     },
     "stringifiedJson":{
       "type":"string",

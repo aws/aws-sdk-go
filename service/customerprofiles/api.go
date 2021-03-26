@@ -2987,6 +2987,60 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ConnectorOperator struct {
+	_ struct{} `type:"structure"`
+
+	Marketo *string `type:"string" enum:"MarketoConnectorOperator"`
+
+	S3 *string `type:"string" enum:"S3ConnectorOperator"`
+
+	Salesforce *string `type:"string" enum:"SalesforceConnectorOperator"`
+
+	ServiceNow *string `type:"string" enum:"ServiceNowConnectorOperator"`
+
+	Zendesk *string `type:"string" enum:"ZendeskConnectorOperator"`
+}
+
+// String returns the string representation
+func (s ConnectorOperator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConnectorOperator) GoString() string {
+	return s.String()
+}
+
+// SetMarketo sets the Marketo field's value.
+func (s *ConnectorOperator) SetMarketo(v string) *ConnectorOperator {
+	s.Marketo = &v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *ConnectorOperator) SetS3(v string) *ConnectorOperator {
+	s.S3 = &v
+	return s
+}
+
+// SetSalesforce sets the Salesforce field's value.
+func (s *ConnectorOperator) SetSalesforce(v string) *ConnectorOperator {
+	s.Salesforce = &v
+	return s
+}
+
+// SetServiceNow sets the ServiceNow field's value.
+func (s *ConnectorOperator) SetServiceNow(v string) *ConnectorOperator {
+	s.ServiceNow = &v
+	return s
+}
+
+// SetZendesk sets the Zendesk field's value.
+func (s *ConnectorOperator) SetZendesk(v string) *ConnectorOperator {
+	s.Zendesk = &v
+	return s
+}
+
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4073,6 +4127,121 @@ func (s *DomainStats) SetTotalSize(v int64) *DomainStats {
 	return s
 }
 
+type FlowDefinition struct {
+	_ struct{} `type:"structure"`
+
+	Description *string `type:"string"`
+
+	// FlowName is a required field
+	FlowName *string `type:"string" required:"true"`
+
+	// KmsArn is a required field
+	KmsArn *string `min:"20" type:"string" required:"true"`
+
+	// SourceFlowConfig is a required field
+	SourceFlowConfig *SourceFlowConfig `type:"structure" required:"true"`
+
+	// Tasks is a required field
+	Tasks []*Task `type:"list" required:"true"`
+
+	// TriggerConfig is a required field
+	TriggerConfig *TriggerConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s FlowDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FlowDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FlowDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FlowDefinition"}
+	if s.FlowName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowName"))
+	}
+	if s.KmsArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsArn"))
+	}
+	if s.KmsArn != nil && len(*s.KmsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsArn", 20))
+	}
+	if s.SourceFlowConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFlowConfig"))
+	}
+	if s.Tasks == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tasks"))
+	}
+	if s.TriggerConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("TriggerConfig"))
+	}
+	if s.SourceFlowConfig != nil {
+		if err := s.SourceFlowConfig.Validate(); err != nil {
+			invalidParams.AddNested("SourceFlowConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tasks != nil {
+		for i, v := range s.Tasks {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tasks", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.TriggerConfig != nil {
+		if err := s.TriggerConfig.Validate(); err != nil {
+			invalidParams.AddNested("TriggerConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *FlowDefinition) SetDescription(v string) *FlowDefinition {
+	s.Description = &v
+	return s
+}
+
+// SetFlowName sets the FlowName field's value.
+func (s *FlowDefinition) SetFlowName(v string) *FlowDefinition {
+	s.FlowName = &v
+	return s
+}
+
+// SetKmsArn sets the KmsArn field's value.
+func (s *FlowDefinition) SetKmsArn(v string) *FlowDefinition {
+	s.KmsArn = &v
+	return s
+}
+
+// SetSourceFlowConfig sets the SourceFlowConfig field's value.
+func (s *FlowDefinition) SetSourceFlowConfig(v *SourceFlowConfig) *FlowDefinition {
+	s.SourceFlowConfig = v
+	return s
+}
+
+// SetTasks sets the Tasks field's value.
+func (s *FlowDefinition) SetTasks(v []*Task) *FlowDefinition {
+	s.Tasks = v
+	return s
+}
+
+// SetTriggerConfig sets the TriggerConfig field's value.
+func (s *FlowDefinition) SetTriggerConfig(v *TriggerConfig) *FlowDefinition {
+	s.TriggerConfig = v
+	return s
+}
+
 type GetDomainInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4637,6 +4806,28 @@ func (s *GetProfileObjectTypeTemplateOutput) SetSourceObject(v string) *GetProfi
 // SetTemplateId sets the TemplateId field's value.
 func (s *GetProfileObjectTypeTemplateOutput) SetTemplateId(v string) *GetProfileObjectTypeTemplateOutput {
 	s.TemplateId = &v
+	return s
+}
+
+type IncrementalPullConfig struct {
+	_ struct{} `type:"structure"`
+
+	DatetimeTypeFieldName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s IncrementalPullConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IncrementalPullConfig) GoString() string {
+	return s.String()
+}
+
+// SetDatetimeTypeFieldName sets the DatetimeTypeFieldName field's value.
+func (s *IncrementalPullConfig) SetDatetimeTypeFieldName(v string) *IncrementalPullConfig {
+	s.DatetimeTypeFieldName = &v
 	return s
 }
 
@@ -5623,6 +5814,42 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type MarketoSourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Object is a required field
+	Object *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MarketoSourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MarketoSourceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MarketoSourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MarketoSourceProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObject sets the Object field's value.
+func (s *MarketoSourceProperties) SetObject(v string) *MarketoSourceProperties {
+	s.Object = &v
+	return s
+}
+
 // Represents a field in a ProfileObjectType.
 type ObjectTypeField struct {
 	_ struct{} `type:"structure"`
@@ -5950,6 +6177,8 @@ type PutIntegrationInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
+	FlowDefinition *FlowDefinition `type:"structure"`
+
 	// The name of the profile object type.
 	//
 	// ObjectTypeName is a required field
@@ -5959,9 +6188,7 @@ type PutIntegrationInput struct {
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The URI of the S3 bucket or any other type of data source.
-	//
-	// Uri is a required field
-	Uri *string `min:"1" type:"string" required:"true"`
+	Uri *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -5992,11 +6219,13 @@ func (s *PutIntegrationInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
-	if s.Uri == nil {
-		invalidParams.Add(request.NewErrParamRequired("Uri"))
-	}
 	if s.Uri != nil && len(*s.Uri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+	if s.FlowDefinition != nil {
+		if err := s.FlowDefinition.Validate(); err != nil {
+			invalidParams.AddNested("FlowDefinition", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6008,6 +6237,12 @@ func (s *PutIntegrationInput) Validate() error {
 // SetDomainName sets the DomainName field's value.
 func (s *PutIntegrationInput) SetDomainName(v string) *PutIntegrationInput {
 	s.DomainName = &v
+	return s
+}
+
+// SetFlowDefinition sets the FlowDefinition field's value.
+func (s *PutIntegrationInput) SetFlowDefinition(v *FlowDefinition) *PutIntegrationInput {
+	s.FlowDefinition = v
 	return s
 }
 
@@ -6547,6 +6782,189 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type S3SourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
+
+	BucketPrefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s S3SourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3SourceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3SourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3SourceProperties"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3SourceProperties) SetBucketName(v string) *S3SourceProperties {
+	s.BucketName = &v
+	return s
+}
+
+// SetBucketPrefix sets the BucketPrefix field's value.
+func (s *S3SourceProperties) SetBucketPrefix(v string) *S3SourceProperties {
+	s.BucketPrefix = &v
+	return s
+}
+
+type SalesforceSourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	EnableDynamicFieldUpdate *bool `type:"boolean"`
+
+	IncludeDeletedRecords *bool `type:"boolean"`
+
+	// Object is a required field
+	Object *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SalesforceSourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SalesforceSourceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceSourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceSourceProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableDynamicFieldUpdate sets the EnableDynamicFieldUpdate field's value.
+func (s *SalesforceSourceProperties) SetEnableDynamicFieldUpdate(v bool) *SalesforceSourceProperties {
+	s.EnableDynamicFieldUpdate = &v
+	return s
+}
+
+// SetIncludeDeletedRecords sets the IncludeDeletedRecords field's value.
+func (s *SalesforceSourceProperties) SetIncludeDeletedRecords(v bool) *SalesforceSourceProperties {
+	s.IncludeDeletedRecords = &v
+	return s
+}
+
+// SetObject sets the Object field's value.
+func (s *SalesforceSourceProperties) SetObject(v string) *SalesforceSourceProperties {
+	s.Object = &v
+	return s
+}
+
+type ScheduledTriggerProperties struct {
+	_ struct{} `type:"structure"`
+
+	DataPullMode *string `type:"string" enum:"DataPullMode"`
+
+	FirstExecutionFrom *time.Time `type:"timestamp"`
+
+	ScheduleEndTime *time.Time `type:"timestamp"`
+
+	// ScheduleExpression is a required field
+	ScheduleExpression *string `type:"string" required:"true"`
+
+	ScheduleOffset *int64 `type:"long"`
+
+	ScheduleStartTime *time.Time `type:"timestamp"`
+
+	Timezone *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ScheduledTriggerProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduledTriggerProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduledTriggerProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduledTriggerProperties"}
+	if s.ScheduleExpression == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScheduleExpression"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataPullMode sets the DataPullMode field's value.
+func (s *ScheduledTriggerProperties) SetDataPullMode(v string) *ScheduledTriggerProperties {
+	s.DataPullMode = &v
+	return s
+}
+
+// SetFirstExecutionFrom sets the FirstExecutionFrom field's value.
+func (s *ScheduledTriggerProperties) SetFirstExecutionFrom(v time.Time) *ScheduledTriggerProperties {
+	s.FirstExecutionFrom = &v
+	return s
+}
+
+// SetScheduleEndTime sets the ScheduleEndTime field's value.
+func (s *ScheduledTriggerProperties) SetScheduleEndTime(v time.Time) *ScheduledTriggerProperties {
+	s.ScheduleEndTime = &v
+	return s
+}
+
+// SetScheduleExpression sets the ScheduleExpression field's value.
+func (s *ScheduledTriggerProperties) SetScheduleExpression(v string) *ScheduledTriggerProperties {
+	s.ScheduleExpression = &v
+	return s
+}
+
+// SetScheduleOffset sets the ScheduleOffset field's value.
+func (s *ScheduledTriggerProperties) SetScheduleOffset(v int64) *ScheduledTriggerProperties {
+	s.ScheduleOffset = &v
+	return s
+}
+
+// SetScheduleStartTime sets the ScheduleStartTime field's value.
+func (s *ScheduledTriggerProperties) SetScheduleStartTime(v time.Time) *ScheduledTriggerProperties {
+	s.ScheduleStartTime = &v
+	return s
+}
+
+// SetTimezone sets the Timezone field's value.
+func (s *ScheduledTriggerProperties) SetTimezone(v string) *ScheduledTriggerProperties {
+	s.Timezone = &v
+	return s
+}
+
 type SearchProfilesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6678,6 +7096,200 @@ func (s *SearchProfilesOutput) SetNextToken(v string) *SearchProfilesOutput {
 	return s
 }
 
+type ServiceNowSourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Object is a required field
+	Object *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ServiceNowSourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceNowSourceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceNowSourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceNowSourceProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObject sets the Object field's value.
+func (s *ServiceNowSourceProperties) SetObject(v string) *ServiceNowSourceProperties {
+	s.Object = &v
+	return s
+}
+
+type SourceConnectorProperties struct {
+	_ struct{} `type:"structure"`
+
+	Marketo *MarketoSourceProperties `type:"structure"`
+
+	S3 *S3SourceProperties `type:"structure"`
+
+	Salesforce *SalesforceSourceProperties `type:"structure"`
+
+	ServiceNow *ServiceNowSourceProperties `type:"structure"`
+
+	Zendesk *ZendeskSourceProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s SourceConnectorProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceConnectorProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceConnectorProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceConnectorProperties"}
+	if s.Marketo != nil {
+		if err := s.Marketo.Validate(); err != nil {
+			invalidParams.AddNested("Marketo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Salesforce != nil {
+		if err := s.Salesforce.Validate(); err != nil {
+			invalidParams.AddNested("Salesforce", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServiceNow != nil {
+		if err := s.ServiceNow.Validate(); err != nil {
+			invalidParams.AddNested("ServiceNow", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Zendesk != nil {
+		if err := s.Zendesk.Validate(); err != nil {
+			invalidParams.AddNested("Zendesk", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMarketo sets the Marketo field's value.
+func (s *SourceConnectorProperties) SetMarketo(v *MarketoSourceProperties) *SourceConnectorProperties {
+	s.Marketo = v
+	return s
+}
+
+// SetS3 sets the S3 field's value.
+func (s *SourceConnectorProperties) SetS3(v *S3SourceProperties) *SourceConnectorProperties {
+	s.S3 = v
+	return s
+}
+
+// SetSalesforce sets the Salesforce field's value.
+func (s *SourceConnectorProperties) SetSalesforce(v *SalesforceSourceProperties) *SourceConnectorProperties {
+	s.Salesforce = v
+	return s
+}
+
+// SetServiceNow sets the ServiceNow field's value.
+func (s *SourceConnectorProperties) SetServiceNow(v *ServiceNowSourceProperties) *SourceConnectorProperties {
+	s.ServiceNow = v
+	return s
+}
+
+// SetZendesk sets the Zendesk field's value.
+func (s *SourceConnectorProperties) SetZendesk(v *ZendeskSourceProperties) *SourceConnectorProperties {
+	s.Zendesk = v
+	return s
+}
+
+type SourceFlowConfig struct {
+	_ struct{} `type:"structure"`
+
+	ConnectorProfileName *string `type:"string"`
+
+	// ConnectorType is a required field
+	ConnectorType *string `type:"string" required:"true" enum:"SourceConnectorType"`
+
+	IncrementalPullConfig *IncrementalPullConfig `type:"structure"`
+
+	// SourceConnectorProperties is a required field
+	SourceConnectorProperties *SourceConnectorProperties `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SourceFlowConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceFlowConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceFlowConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceFlowConfig"}
+	if s.ConnectorType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorType"))
+	}
+	if s.SourceConnectorProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceConnectorProperties"))
+	}
+	if s.SourceConnectorProperties != nil {
+		if err := s.SourceConnectorProperties.Validate(); err != nil {
+			invalidParams.AddNested("SourceConnectorProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorProfileName sets the ConnectorProfileName field's value.
+func (s *SourceFlowConfig) SetConnectorProfileName(v string) *SourceFlowConfig {
+	s.ConnectorProfileName = &v
+	return s
+}
+
+// SetConnectorType sets the ConnectorType field's value.
+func (s *SourceFlowConfig) SetConnectorType(v string) *SourceFlowConfig {
+	s.ConnectorType = &v
+	return s
+}
+
+// SetIncrementalPullConfig sets the IncrementalPullConfig field's value.
+func (s *SourceFlowConfig) SetIncrementalPullConfig(v *IncrementalPullConfig) *SourceFlowConfig {
+	s.IncrementalPullConfig = v
+	return s
+}
+
+// SetSourceConnectorProperties sets the SourceConnectorProperties field's value.
+func (s *SourceFlowConfig) SetSourceConnectorProperties(v *SourceConnectorProperties) *SourceFlowConfig {
+	s.SourceConnectorProperties = v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6750,6 +7362,78 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type Task struct {
+	_ struct{} `type:"structure"`
+
+	ConnectorOperator *ConnectorOperator `type:"structure"`
+
+	DestinationField *string `type:"string"`
+
+	// SourceFields is a required field
+	SourceFields []*string `type:"list" required:"true"`
+
+	TaskProperties map[string]*string `type:"map"`
+
+	// TaskType is a required field
+	TaskType *string `type:"string" required:"true" enum:"TaskType"`
+}
+
+// String returns the string representation
+func (s Task) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Task) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Task) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Task"}
+	if s.SourceFields == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFields"))
+	}
+	if s.TaskType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectorOperator sets the ConnectorOperator field's value.
+func (s *Task) SetConnectorOperator(v *ConnectorOperator) *Task {
+	s.ConnectorOperator = v
+	return s
+}
+
+// SetDestinationField sets the DestinationField field's value.
+func (s *Task) SetDestinationField(v string) *Task {
+	s.DestinationField = &v
+	return s
+}
+
+// SetSourceFields sets the SourceFields field's value.
+func (s *Task) SetSourceFields(v []*string) *Task {
+	s.SourceFields = v
+	return s
+}
+
+// SetTaskProperties sets the TaskProperties field's value.
+func (s *Task) SetTaskProperties(v map[string]*string) *Task {
+	s.TaskProperties = v
+	return s
+}
+
+// SetTaskType sets the TaskType field's value.
+func (s *Task) SetTaskType(v string) *Task {
+	s.TaskType = &v
+	return s
+}
+
 // You exceeded the maximum number of requests.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -6804,6 +7488,92 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type TriggerConfig struct {
+	_ struct{} `type:"structure"`
+
+	TriggerProperties *TriggerProperties `type:"structure"`
+
+	// TriggerType is a required field
+	TriggerType *string `type:"string" required:"true" enum:"TriggerType"`
+}
+
+// String returns the string representation
+func (s TriggerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TriggerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TriggerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TriggerConfig"}
+	if s.TriggerType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TriggerType"))
+	}
+	if s.TriggerProperties != nil {
+		if err := s.TriggerProperties.Validate(); err != nil {
+			invalidParams.AddNested("TriggerProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTriggerProperties sets the TriggerProperties field's value.
+func (s *TriggerConfig) SetTriggerProperties(v *TriggerProperties) *TriggerConfig {
+	s.TriggerProperties = v
+	return s
+}
+
+// SetTriggerType sets the TriggerType field's value.
+func (s *TriggerConfig) SetTriggerType(v string) *TriggerConfig {
+	s.TriggerType = &v
+	return s
+}
+
+type TriggerProperties struct {
+	_ struct{} `type:"structure"`
+
+	Scheduled *ScheduledTriggerProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s TriggerProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TriggerProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TriggerProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TriggerProperties"}
+	if s.Scheduled != nil {
+		if err := s.Scheduled.Validate(); err != nil {
+			invalidParams.AddNested("Scheduled", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetScheduled sets the Scheduled field's value.
+func (s *TriggerProperties) SetScheduled(v *ScheduledTriggerProperties) *TriggerProperties {
+	s.Scheduled = v
+	return s
 }
 
 type UntagResourceInput struct {
@@ -7431,6 +8201,58 @@ func (s *UpdateProfileOutput) SetProfileId(v string) *UpdateProfileOutput {
 	return s
 }
 
+type ZendeskSourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Object is a required field
+	Object *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ZendeskSourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZendeskSourceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ZendeskSourceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ZendeskSourceProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObject sets the Object field's value.
+func (s *ZendeskSourceProperties) SetObject(v string) *ZendeskSourceProperties {
+	s.Object = &v
+	return s
+}
+
+const (
+	// DataPullModeIncremental is a DataPullMode enum value
+	DataPullModeIncremental = "Incremental"
+
+	// DataPullModeComplete is a DataPullMode enum value
+	DataPullModeComplete = "Complete"
+)
+
+// DataPullMode_Values returns all elements of the DataPullMode enum
+func DataPullMode_Values() []string {
+	return []string{
+		DataPullModeIncremental,
+		DataPullModeComplete,
+	}
+}
+
 const (
 	// FieldContentTypeString is a FieldContentType enum value
 	FieldContentTypeString = "STRING"
@@ -7480,6 +8302,142 @@ func Gender_Values() []string {
 }
 
 const (
+	// MarketoConnectorOperatorProjection is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorProjection = "PROJECTION"
+
+	// MarketoConnectorOperatorLessThan is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorLessThan = "LESS_THAN"
+
+	// MarketoConnectorOperatorGreaterThan is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorGreaterThan = "GREATER_THAN"
+
+	// MarketoConnectorOperatorBetween is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorBetween = "BETWEEN"
+
+	// MarketoConnectorOperatorAddition is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorAddition = "ADDITION"
+
+	// MarketoConnectorOperatorMultiplication is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// MarketoConnectorOperatorDivision is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorDivision = "DIVISION"
+
+	// MarketoConnectorOperatorSubtraction is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// MarketoConnectorOperatorMaskAll is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorMaskAll = "MASK_ALL"
+
+	// MarketoConnectorOperatorMaskFirstN is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// MarketoConnectorOperatorMaskLastN is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// MarketoConnectorOperatorValidateNonNull is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// MarketoConnectorOperatorValidateNonZero is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// MarketoConnectorOperatorValidateNonNegative is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// MarketoConnectorOperatorValidateNumeric is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+
+	// MarketoConnectorOperatorNoOp is a MarketoConnectorOperator enum value
+	MarketoConnectorOperatorNoOp = "NO_OP"
+)
+
+// MarketoConnectorOperator_Values returns all elements of the MarketoConnectorOperator enum
+func MarketoConnectorOperator_Values() []string {
+	return []string{
+		MarketoConnectorOperatorProjection,
+		MarketoConnectorOperatorLessThan,
+		MarketoConnectorOperatorGreaterThan,
+		MarketoConnectorOperatorBetween,
+		MarketoConnectorOperatorAddition,
+		MarketoConnectorOperatorMultiplication,
+		MarketoConnectorOperatorDivision,
+		MarketoConnectorOperatorSubtraction,
+		MarketoConnectorOperatorMaskAll,
+		MarketoConnectorOperatorMaskFirstN,
+		MarketoConnectorOperatorMaskLastN,
+		MarketoConnectorOperatorValidateNonNull,
+		MarketoConnectorOperatorValidateNonZero,
+		MarketoConnectorOperatorValidateNonNegative,
+		MarketoConnectorOperatorValidateNumeric,
+		MarketoConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// OperatorPropertiesKeysValue is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysValue = "VALUE"
+
+	// OperatorPropertiesKeysValues is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysValues = "VALUES"
+
+	// OperatorPropertiesKeysDataType is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysDataType = "DATA_TYPE"
+
+	// OperatorPropertiesKeysUpperBound is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysUpperBound = "UPPER_BOUND"
+
+	// OperatorPropertiesKeysLowerBound is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysLowerBound = "LOWER_BOUND"
+
+	// OperatorPropertiesKeysSourceDataType is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysSourceDataType = "SOURCE_DATA_TYPE"
+
+	// OperatorPropertiesKeysDestinationDataType is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysDestinationDataType = "DESTINATION_DATA_TYPE"
+
+	// OperatorPropertiesKeysValidationAction is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysValidationAction = "VALIDATION_ACTION"
+
+	// OperatorPropertiesKeysMaskValue is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysMaskValue = "MASK_VALUE"
+
+	// OperatorPropertiesKeysMaskLength is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysMaskLength = "MASK_LENGTH"
+
+	// OperatorPropertiesKeysTruncateLength is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysTruncateLength = "TRUNCATE_LENGTH"
+
+	// OperatorPropertiesKeysMathOperationFieldsOrder is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysMathOperationFieldsOrder = "MATH_OPERATION_FIELDS_ORDER"
+
+	// OperatorPropertiesKeysConcatFormat is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysConcatFormat = "CONCAT_FORMAT"
+
+	// OperatorPropertiesKeysSubfieldCategoryMap is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysSubfieldCategoryMap = "SUBFIELD_CATEGORY_MAP"
+)
+
+// OperatorPropertiesKeys_Values returns all elements of the OperatorPropertiesKeys enum
+func OperatorPropertiesKeys_Values() []string {
+	return []string{
+		OperatorPropertiesKeysValue,
+		OperatorPropertiesKeysValues,
+		OperatorPropertiesKeysDataType,
+		OperatorPropertiesKeysUpperBound,
+		OperatorPropertiesKeysLowerBound,
+		OperatorPropertiesKeysSourceDataType,
+		OperatorPropertiesKeysDestinationDataType,
+		OperatorPropertiesKeysValidationAction,
+		OperatorPropertiesKeysMaskValue,
+		OperatorPropertiesKeysMaskLength,
+		OperatorPropertiesKeysTruncateLength,
+		OperatorPropertiesKeysMathOperationFieldsOrder,
+		OperatorPropertiesKeysConcatFormat,
+		OperatorPropertiesKeysSubfieldCategoryMap,
+	}
+}
+
+const (
 	// PartyTypeIndividual is a PartyType enum value
 	PartyTypeIndividual = "INDIVIDUAL"
 
@@ -7496,6 +8454,306 @@ func PartyType_Values() []string {
 		PartyTypeIndividual,
 		PartyTypeBusiness,
 		PartyTypeOther,
+	}
+}
+
+const (
+	// S3ConnectorOperatorProjection is a S3ConnectorOperator enum value
+	S3ConnectorOperatorProjection = "PROJECTION"
+
+	// S3ConnectorOperatorLessThan is a S3ConnectorOperator enum value
+	S3ConnectorOperatorLessThan = "LESS_THAN"
+
+	// S3ConnectorOperatorGreaterThan is a S3ConnectorOperator enum value
+	S3ConnectorOperatorGreaterThan = "GREATER_THAN"
+
+	// S3ConnectorOperatorBetween is a S3ConnectorOperator enum value
+	S3ConnectorOperatorBetween = "BETWEEN"
+
+	// S3ConnectorOperatorLessThanOrEqualTo is a S3ConnectorOperator enum value
+	S3ConnectorOperatorLessThanOrEqualTo = "LESS_THAN_OR_EQUAL_TO"
+
+	// S3ConnectorOperatorGreaterThanOrEqualTo is a S3ConnectorOperator enum value
+	S3ConnectorOperatorGreaterThanOrEqualTo = "GREATER_THAN_OR_EQUAL_TO"
+
+	// S3ConnectorOperatorEqualTo is a S3ConnectorOperator enum value
+	S3ConnectorOperatorEqualTo = "EQUAL_TO"
+
+	// S3ConnectorOperatorNotEqualTo is a S3ConnectorOperator enum value
+	S3ConnectorOperatorNotEqualTo = "NOT_EQUAL_TO"
+
+	// S3ConnectorOperatorAddition is a S3ConnectorOperator enum value
+	S3ConnectorOperatorAddition = "ADDITION"
+
+	// S3ConnectorOperatorMultiplication is a S3ConnectorOperator enum value
+	S3ConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// S3ConnectorOperatorDivision is a S3ConnectorOperator enum value
+	S3ConnectorOperatorDivision = "DIVISION"
+
+	// S3ConnectorOperatorSubtraction is a S3ConnectorOperator enum value
+	S3ConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// S3ConnectorOperatorMaskAll is a S3ConnectorOperator enum value
+	S3ConnectorOperatorMaskAll = "MASK_ALL"
+
+	// S3ConnectorOperatorMaskFirstN is a S3ConnectorOperator enum value
+	S3ConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// S3ConnectorOperatorMaskLastN is a S3ConnectorOperator enum value
+	S3ConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// S3ConnectorOperatorValidateNonNull is a S3ConnectorOperator enum value
+	S3ConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// S3ConnectorOperatorValidateNonZero is a S3ConnectorOperator enum value
+	S3ConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// S3ConnectorOperatorValidateNonNegative is a S3ConnectorOperator enum value
+	S3ConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// S3ConnectorOperatorValidateNumeric is a S3ConnectorOperator enum value
+	S3ConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+
+	// S3ConnectorOperatorNoOp is a S3ConnectorOperator enum value
+	S3ConnectorOperatorNoOp = "NO_OP"
+)
+
+// S3ConnectorOperator_Values returns all elements of the S3ConnectorOperator enum
+func S3ConnectorOperator_Values() []string {
+	return []string{
+		S3ConnectorOperatorProjection,
+		S3ConnectorOperatorLessThan,
+		S3ConnectorOperatorGreaterThan,
+		S3ConnectorOperatorBetween,
+		S3ConnectorOperatorLessThanOrEqualTo,
+		S3ConnectorOperatorGreaterThanOrEqualTo,
+		S3ConnectorOperatorEqualTo,
+		S3ConnectorOperatorNotEqualTo,
+		S3ConnectorOperatorAddition,
+		S3ConnectorOperatorMultiplication,
+		S3ConnectorOperatorDivision,
+		S3ConnectorOperatorSubtraction,
+		S3ConnectorOperatorMaskAll,
+		S3ConnectorOperatorMaskFirstN,
+		S3ConnectorOperatorMaskLastN,
+		S3ConnectorOperatorValidateNonNull,
+		S3ConnectorOperatorValidateNonZero,
+		S3ConnectorOperatorValidateNonNegative,
+		S3ConnectorOperatorValidateNumeric,
+		S3ConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// SalesforceConnectorOperatorProjection is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorProjection = "PROJECTION"
+
+	// SalesforceConnectorOperatorLessThan is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorLessThan = "LESS_THAN"
+
+	// SalesforceConnectorOperatorContains is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorContains = "CONTAINS"
+
+	// SalesforceConnectorOperatorGreaterThan is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorGreaterThan = "GREATER_THAN"
+
+	// SalesforceConnectorOperatorBetween is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorBetween = "BETWEEN"
+
+	// SalesforceConnectorOperatorLessThanOrEqualTo is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorLessThanOrEqualTo = "LESS_THAN_OR_EQUAL_TO"
+
+	// SalesforceConnectorOperatorGreaterThanOrEqualTo is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorGreaterThanOrEqualTo = "GREATER_THAN_OR_EQUAL_TO"
+
+	// SalesforceConnectorOperatorEqualTo is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorEqualTo = "EQUAL_TO"
+
+	// SalesforceConnectorOperatorNotEqualTo is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorNotEqualTo = "NOT_EQUAL_TO"
+
+	// SalesforceConnectorOperatorAddition is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorAddition = "ADDITION"
+
+	// SalesforceConnectorOperatorMultiplication is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// SalesforceConnectorOperatorDivision is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorDivision = "DIVISION"
+
+	// SalesforceConnectorOperatorSubtraction is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// SalesforceConnectorOperatorMaskAll is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorMaskAll = "MASK_ALL"
+
+	// SalesforceConnectorOperatorMaskFirstN is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// SalesforceConnectorOperatorMaskLastN is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// SalesforceConnectorOperatorValidateNonNull is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// SalesforceConnectorOperatorValidateNonZero is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// SalesforceConnectorOperatorValidateNonNegative is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// SalesforceConnectorOperatorValidateNumeric is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+
+	// SalesforceConnectorOperatorNoOp is a SalesforceConnectorOperator enum value
+	SalesforceConnectorOperatorNoOp = "NO_OP"
+)
+
+// SalesforceConnectorOperator_Values returns all elements of the SalesforceConnectorOperator enum
+func SalesforceConnectorOperator_Values() []string {
+	return []string{
+		SalesforceConnectorOperatorProjection,
+		SalesforceConnectorOperatorLessThan,
+		SalesforceConnectorOperatorContains,
+		SalesforceConnectorOperatorGreaterThan,
+		SalesforceConnectorOperatorBetween,
+		SalesforceConnectorOperatorLessThanOrEqualTo,
+		SalesforceConnectorOperatorGreaterThanOrEqualTo,
+		SalesforceConnectorOperatorEqualTo,
+		SalesforceConnectorOperatorNotEqualTo,
+		SalesforceConnectorOperatorAddition,
+		SalesforceConnectorOperatorMultiplication,
+		SalesforceConnectorOperatorDivision,
+		SalesforceConnectorOperatorSubtraction,
+		SalesforceConnectorOperatorMaskAll,
+		SalesforceConnectorOperatorMaskFirstN,
+		SalesforceConnectorOperatorMaskLastN,
+		SalesforceConnectorOperatorValidateNonNull,
+		SalesforceConnectorOperatorValidateNonZero,
+		SalesforceConnectorOperatorValidateNonNegative,
+		SalesforceConnectorOperatorValidateNumeric,
+		SalesforceConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// ServiceNowConnectorOperatorProjection is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorProjection = "PROJECTION"
+
+	// ServiceNowConnectorOperatorContains is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorContains = "CONTAINS"
+
+	// ServiceNowConnectorOperatorLessThan is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorLessThan = "LESS_THAN"
+
+	// ServiceNowConnectorOperatorGreaterThan is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorGreaterThan = "GREATER_THAN"
+
+	// ServiceNowConnectorOperatorBetween is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorBetween = "BETWEEN"
+
+	// ServiceNowConnectorOperatorLessThanOrEqualTo is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorLessThanOrEqualTo = "LESS_THAN_OR_EQUAL_TO"
+
+	// ServiceNowConnectorOperatorGreaterThanOrEqualTo is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorGreaterThanOrEqualTo = "GREATER_THAN_OR_EQUAL_TO"
+
+	// ServiceNowConnectorOperatorEqualTo is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorEqualTo = "EQUAL_TO"
+
+	// ServiceNowConnectorOperatorNotEqualTo is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorNotEqualTo = "NOT_EQUAL_TO"
+
+	// ServiceNowConnectorOperatorAddition is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorAddition = "ADDITION"
+
+	// ServiceNowConnectorOperatorMultiplication is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// ServiceNowConnectorOperatorDivision is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorDivision = "DIVISION"
+
+	// ServiceNowConnectorOperatorSubtraction is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// ServiceNowConnectorOperatorMaskAll is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorMaskAll = "MASK_ALL"
+
+	// ServiceNowConnectorOperatorMaskFirstN is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// ServiceNowConnectorOperatorMaskLastN is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// ServiceNowConnectorOperatorValidateNonNull is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// ServiceNowConnectorOperatorValidateNonZero is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// ServiceNowConnectorOperatorValidateNonNegative is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// ServiceNowConnectorOperatorValidateNumeric is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+
+	// ServiceNowConnectorOperatorNoOp is a ServiceNowConnectorOperator enum value
+	ServiceNowConnectorOperatorNoOp = "NO_OP"
+)
+
+// ServiceNowConnectorOperator_Values returns all elements of the ServiceNowConnectorOperator enum
+func ServiceNowConnectorOperator_Values() []string {
+	return []string{
+		ServiceNowConnectorOperatorProjection,
+		ServiceNowConnectorOperatorContains,
+		ServiceNowConnectorOperatorLessThan,
+		ServiceNowConnectorOperatorGreaterThan,
+		ServiceNowConnectorOperatorBetween,
+		ServiceNowConnectorOperatorLessThanOrEqualTo,
+		ServiceNowConnectorOperatorGreaterThanOrEqualTo,
+		ServiceNowConnectorOperatorEqualTo,
+		ServiceNowConnectorOperatorNotEqualTo,
+		ServiceNowConnectorOperatorAddition,
+		ServiceNowConnectorOperatorMultiplication,
+		ServiceNowConnectorOperatorDivision,
+		ServiceNowConnectorOperatorSubtraction,
+		ServiceNowConnectorOperatorMaskAll,
+		ServiceNowConnectorOperatorMaskFirstN,
+		ServiceNowConnectorOperatorMaskLastN,
+		ServiceNowConnectorOperatorValidateNonNull,
+		ServiceNowConnectorOperatorValidateNonZero,
+		ServiceNowConnectorOperatorValidateNonNegative,
+		ServiceNowConnectorOperatorValidateNumeric,
+		ServiceNowConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// SourceConnectorTypeSalesforce is a SourceConnectorType enum value
+	SourceConnectorTypeSalesforce = "Salesforce"
+
+	// SourceConnectorTypeMarketo is a SourceConnectorType enum value
+	SourceConnectorTypeMarketo = "Marketo"
+
+	// SourceConnectorTypeZendesk is a SourceConnectorType enum value
+	SourceConnectorTypeZendesk = "Zendesk"
+
+	// SourceConnectorTypeServicenow is a SourceConnectorType enum value
+	SourceConnectorTypeServicenow = "Servicenow"
+
+	// SourceConnectorTypeS3 is a SourceConnectorType enum value
+	SourceConnectorTypeS3 = "S3"
+)
+
+// SourceConnectorType_Values returns all elements of the SourceConnectorType enum
+func SourceConnectorType_Values() []string {
+	return []string{
+		SourceConnectorTypeSalesforce,
+		SourceConnectorTypeMarketo,
+		SourceConnectorTypeZendesk,
+		SourceConnectorTypeServicenow,
+		SourceConnectorTypeS3,
 	}
 }
 
@@ -7524,5 +8782,125 @@ func StandardIdentifier_Values() []string {
 		StandardIdentifierSecondary,
 		StandardIdentifierLookupOnly,
 		StandardIdentifierNewOnly,
+	}
+}
+
+const (
+	// TaskTypeArithmetic is a TaskType enum value
+	TaskTypeArithmetic = "Arithmetic"
+
+	// TaskTypeFilter is a TaskType enum value
+	TaskTypeFilter = "Filter"
+
+	// TaskTypeMap is a TaskType enum value
+	TaskTypeMap = "Map"
+
+	// TaskTypeMask is a TaskType enum value
+	TaskTypeMask = "Mask"
+
+	// TaskTypeMerge is a TaskType enum value
+	TaskTypeMerge = "Merge"
+
+	// TaskTypeTruncate is a TaskType enum value
+	TaskTypeTruncate = "Truncate"
+
+	// TaskTypeValidate is a TaskType enum value
+	TaskTypeValidate = "Validate"
+)
+
+// TaskType_Values returns all elements of the TaskType enum
+func TaskType_Values() []string {
+	return []string{
+		TaskTypeArithmetic,
+		TaskTypeFilter,
+		TaskTypeMap,
+		TaskTypeMask,
+		TaskTypeMerge,
+		TaskTypeTruncate,
+		TaskTypeValidate,
+	}
+}
+
+const (
+	// TriggerTypeScheduled is a TriggerType enum value
+	TriggerTypeScheduled = "Scheduled"
+
+	// TriggerTypeEvent is a TriggerType enum value
+	TriggerTypeEvent = "Event"
+
+	// TriggerTypeOnDemand is a TriggerType enum value
+	TriggerTypeOnDemand = "OnDemand"
+)
+
+// TriggerType_Values returns all elements of the TriggerType enum
+func TriggerType_Values() []string {
+	return []string{
+		TriggerTypeScheduled,
+		TriggerTypeEvent,
+		TriggerTypeOnDemand,
+	}
+}
+
+const (
+	// ZendeskConnectorOperatorProjection is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorProjection = "PROJECTION"
+
+	// ZendeskConnectorOperatorGreaterThan is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorGreaterThan = "GREATER_THAN"
+
+	// ZendeskConnectorOperatorAddition is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorAddition = "ADDITION"
+
+	// ZendeskConnectorOperatorMultiplication is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// ZendeskConnectorOperatorDivision is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorDivision = "DIVISION"
+
+	// ZendeskConnectorOperatorSubtraction is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// ZendeskConnectorOperatorMaskAll is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorMaskAll = "MASK_ALL"
+
+	// ZendeskConnectorOperatorMaskFirstN is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// ZendeskConnectorOperatorMaskLastN is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// ZendeskConnectorOperatorValidateNonNull is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// ZendeskConnectorOperatorValidateNonZero is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// ZendeskConnectorOperatorValidateNonNegative is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// ZendeskConnectorOperatorValidateNumeric is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+
+	// ZendeskConnectorOperatorNoOp is a ZendeskConnectorOperator enum value
+	ZendeskConnectorOperatorNoOp = "NO_OP"
+)
+
+// ZendeskConnectorOperator_Values returns all elements of the ZendeskConnectorOperator enum
+func ZendeskConnectorOperator_Values() []string {
+	return []string{
+		ZendeskConnectorOperatorProjection,
+		ZendeskConnectorOperatorGreaterThan,
+		ZendeskConnectorOperatorAddition,
+		ZendeskConnectorOperatorMultiplication,
+		ZendeskConnectorOperatorDivision,
+		ZendeskConnectorOperatorSubtraction,
+		ZendeskConnectorOperatorMaskAll,
+		ZendeskConnectorOperatorMaskFirstN,
+		ZendeskConnectorOperatorMaskLastN,
+		ZendeskConnectorOperatorValidateNonNull,
+		ZendeskConnectorOperatorValidateNonZero,
+		ZendeskConnectorOperatorValidateNonNegative,
+		ZendeskConnectorOperatorValidateNumeric,
+		ZendeskConnectorOperatorNoOp,
 	}
 }

@@ -2423,6 +2423,39 @@
       "max":5,
       "min":1
     },
+    "SageMakerPipelineParameter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"SageMakerPipelineParameterName"},
+        "Value":{"shape":"SageMakerPipelineParameterValue"}
+      }
+    },
+    "SageMakerPipelineParameterList":{
+      "type":"list",
+      "member":{"shape":"SageMakerPipelineParameter"},
+      "max":200,
+      "min":0
+    },
+    "SageMakerPipelineParameterName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
+    },
+    "SageMakerPipelineParameterValue":{
+      "type":"string",
+      "max":1024
+    },
+    "SageMakerPipelineParameters":{
+      "type":"structure",
+      "members":{
+        "PipelineParameterList":{"shape":"SageMakerPipelineParameterList"}
+      }
+    },
     "ScheduleExpression":{
       "type":"string",
       "max":256
@@ -2552,6 +2585,7 @@
         "SqsParameters":{"shape":"SqsParameters"},
         "HttpParameters":{"shape":"HttpParameters"},
         "RedshiftDataParameters":{"shape":"RedshiftDataParameters"},
+        "SageMakerPipelineParameters":{"shape":"SageMakerPipelineParameters"},
         "DeadLetterConfig":{"shape":"DeadLetterConfig"},
         "RetryPolicy":{"shape":"RetryPolicy"}
       }

@@ -96,7 +96,7 @@
     "AmazonResourceName": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the resource for which to list tags.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the resource for which you want to list tags.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the resource to add tags to.</p>",
         "TooManyTagsException$ResourceName": null,
         "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource to remove tags from.</p>"
@@ -1405,14 +1405,15 @@
     "TagList": {
       "base": null,
       "refs": {
-        "AssociateAwsAccountWithPartnerAccountRequest$Tags": "<p>The tags attached to the specified resource. Tags are metadata that can be used to manage a resource</p>",
-        "CreateDestinationRequest$Tags": "<p>The tags to attach to the new destination. Tags are metadata that can be used to manage a resource.</p>",
-        "CreateDeviceProfileRequest$Tags": "<p>The tags to attach to the new device profile Tags are metadata that can be used to manage a resource.</p>",
-        "CreateServiceProfileRequest$Tags": "<p>The tags to attach to the new service profile. Tags are metadata that can be used to manage a resource.</p>",
-        "CreateWirelessGatewayRequest$Tags": "<p>The tags to attach to the new wireless gateway. Tags are metadata that can be used to manage a resource.</p>",
-        "CreateWirelessGatewayTaskDefinitionRequest$Tags": "<p>The tags attached to the specified resource. Tags are metadata that can be used to manage a resource</p>",
-        "ListTagsForResourceResponse$Tags": "<p>The tags attached to the specified resource. Tags are metadata that can be used to manage a resource</p>",
-        "TagResourceRequest$Tags": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>"
+        "AssociateAwsAccountWithPartnerAccountRequest$Tags": "<p>The tags to attach to the specified resource. Tags are metadata that you can use to manage a resource.</p>",
+        "CreateDestinationRequest$Tags": "<p>The tags to attach to the new destination. Tags are metadata that you can use to manage a resource.</p>",
+        "CreateDeviceProfileRequest$Tags": "<p>The tags to attach to the new device profile. Tags are metadata that you can use to manage a resource.</p>",
+        "CreateServiceProfileRequest$Tags": "<p>The tags to attach to the new service profile. Tags are metadata that you can use to manage a resource.</p>",
+        "CreateWirelessDeviceRequest$Tags": "<p>The tags to attach to the new wireless device. Tags are metadata that you can use to manage a resource.</p>",
+        "CreateWirelessGatewayRequest$Tags": "<p>The tags to attach to the new wireless gateway. Tags are metadata that you can use to manage a resource.</p>",
+        "CreateWirelessGatewayTaskDefinitionRequest$Tags": "<p>The tags to attach to the specified resource. Tags are metadata that you can use to manage a resource.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The tags to attach to the specified resource. Tags are metadata that you can use to manage a resource.</p>",
+        "TagResourceRequest$Tags": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that you can use to manage a resource.</p>"
       }
     },
     "TagResourceRequest": {

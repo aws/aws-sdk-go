@@ -122,6 +122,30 @@
       "refs": {
       }
     },
+    "BucketName": {
+      "base": null,
+      "refs": {
+        "S3SourceProperties$BucketName": null
+      }
+    },
+    "BucketPrefix": {
+      "base": null,
+      "refs": {
+        "S3SourceProperties$BucketPrefix": null
+      }
+    },
+    "ConnectorOperator": {
+      "base": null,
+      "refs": {
+        "Task$ConnectorOperator": null
+      }
+    },
+    "ConnectorProfileName": {
+      "base": null,
+      "refs": {
+        "SourceFlowConfig$ConnectorProfileName": null
+      }
+    },
     "CreateDomainRequest": {
       "base": null,
       "refs": {
@@ -140,6 +164,26 @@
     "CreateProfileResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DataPullMode": {
+      "base": null,
+      "refs": {
+        "ScheduledTriggerProperties$DataPullMode": null
+      }
+    },
+    "Date": {
+      "base": null,
+      "refs": {
+        "ScheduledTriggerProperties$ScheduleStartTime": null,
+        "ScheduledTriggerProperties$ScheduleEndTime": null,
+        "ScheduledTriggerProperties$FirstExecutionFrom": null
+      }
+    },
+    "DatetimeTypeFieldName": {
+      "base": null,
+      "refs": {
+        "IncrementalPullConfig$DatetimeTypeFieldName": null
       }
     },
     "DeleteDomainRequest": {
@@ -202,6 +246,12 @@
       "refs": {
       }
     },
+    "DestinationField": {
+      "base": null,
+      "refs": {
+        "Task$DestinationField": null
+      }
+    },
     "DomainList": {
       "base": null,
       "refs": {
@@ -233,6 +283,24 @@
       "base": null,
       "refs": {
         "ObjectTypeKey$FieldNames": "<p>The reference for the key name of the fields map.</p>"
+      }
+    },
+    "FlowDefinition": {
+      "base": null,
+      "refs": {
+        "PutIntegrationRequest$FlowDefinition": null
+      }
+    },
+    "FlowDescription": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$Description": null
+      }
+    },
+    "FlowName": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$FlowName": null
       }
     },
     "Gender": {
@@ -283,6 +351,12 @@
       "refs": {
       }
     },
+    "IncrementalPullConfig": {
+      "base": null,
+      "refs": {
+        "SourceFlowConfig$IncrementalPullConfig": null
+      }
+    },
     "IntegrationList": {
       "base": null,
       "refs": {
@@ -302,6 +376,12 @@
         "GetProfileObjectTypeTemplateResponse$Keys": "<p>A list of unique keys that can be used to map data to the profile.</p>",
         "PutProfileObjectTypeRequest$Keys": "<p>A list of unique keys that can be used to map data to the profile.</p>",
         "PutProfileObjectTypeResponse$Keys": "<p>A list of unique keys that can be used to map data to the profile.</p>"
+      }
+    },
+    "KmsArn": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$KmsArn": null
       }
     },
     "ListAccountIntegrationsRequest": {
@@ -404,6 +484,27 @@
       "refs": {
       }
     },
+    "MarketoConnectorOperator": {
+      "base": null,
+      "refs": {
+        "ConnectorOperator$Marketo": null
+      }
+    },
+    "MarketoSourceProperties": {
+      "base": null,
+      "refs": {
+        "SourceConnectorProperties$Marketo": null
+      }
+    },
+    "Object": {
+      "base": null,
+      "refs": {
+        "MarketoSourceProperties$Object": null,
+        "SalesforceSourceProperties$Object": null,
+        "ServiceNowSourceProperties$Object": null,
+        "ZendeskSourceProperties$Object": null
+      }
+    },
     "ObjectTypeField": {
       "base": "<p>Represents a field in a ProfileObjectType.</p>",
       "refs": {
@@ -420,6 +521,12 @@
       "base": null,
       "refs": {
         "KeyMap$value": null
+      }
+    },
+    "OperatorPropertiesKeys": {
+      "base": null,
+      "refs": {
+        "TaskPropertiesMap$key": null
       }
     },
     "PartyType": {
@@ -460,6 +567,12 @@
         "ListProfileObjectTypeTemplatesResponse$Items": "<p>The list of ListProfileObjectType template instances.</p>"
       }
     },
+    "Property": {
+      "base": null,
+      "refs": {
+        "TaskPropertiesMap$value": null
+      }
+    },
     "PutIntegrationRequest": {
       "base": null,
       "refs": {
@@ -495,6 +608,48 @@
       "refs": {
       }
     },
+    "S3ConnectorOperator": {
+      "base": null,
+      "refs": {
+        "ConnectorOperator$S3": null
+      }
+    },
+    "S3SourceProperties": {
+      "base": null,
+      "refs": {
+        "SourceConnectorProperties$S3": null
+      }
+    },
+    "SalesforceConnectorOperator": {
+      "base": null,
+      "refs": {
+        "ConnectorOperator$Salesforce": null
+      }
+    },
+    "SalesforceSourceProperties": {
+      "base": null,
+      "refs": {
+        "SourceConnectorProperties$Salesforce": null
+      }
+    },
+    "ScheduleExpression": {
+      "base": null,
+      "refs": {
+        "ScheduledTriggerProperties$ScheduleExpression": null
+      }
+    },
+    "ScheduleOffset": {
+      "base": null,
+      "refs": {
+        "ScheduledTriggerProperties$ScheduleOffset": null
+      }
+    },
+    "ScheduledTriggerProperties": {
+      "base": null,
+      "refs": {
+        "TriggerProperties$Scheduled": null
+      }
+    },
     "SearchProfilesRequest": {
       "base": null,
       "refs": {
@@ -503,6 +658,42 @@
     "SearchProfilesResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ServiceNowConnectorOperator": {
+      "base": null,
+      "refs": {
+        "ConnectorOperator$ServiceNow": null
+      }
+    },
+    "ServiceNowSourceProperties": {
+      "base": null,
+      "refs": {
+        "SourceConnectorProperties$ServiceNow": null
+      }
+    },
+    "SourceConnectorProperties": {
+      "base": null,
+      "refs": {
+        "SourceFlowConfig$SourceConnectorProperties": null
+      }
+    },
+    "SourceConnectorType": {
+      "base": null,
+      "refs": {
+        "SourceFlowConfig$ConnectorType": null
+      }
+    },
+    "SourceFields": {
+      "base": null,
+      "refs": {
+        "Task$SourceFields": null
+      }
+    },
+    "SourceFlowConfig": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$SourceFlowConfig": null
       }
     },
     "StandardIdentifier": {
@@ -575,9 +766,57 @@
         "TagMap$value": null
       }
     },
+    "Task": {
+      "base": null,
+      "refs": {
+        "Tasks$member": null
+      }
+    },
+    "TaskPropertiesMap": {
+      "base": null,
+      "refs": {
+        "Task$TaskProperties": null
+      }
+    },
+    "TaskType": {
+      "base": null,
+      "refs": {
+        "Task$TaskType": null
+      }
+    },
+    "Tasks": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$Tasks": null
+      }
+    },
     "ThrottlingException": {
       "base": "<p>You exceeded the maximum number of requests.</p>",
       "refs": {
+      }
+    },
+    "Timezone": {
+      "base": null,
+      "refs": {
+        "ScheduledTriggerProperties$Timezone": null
+      }
+    },
+    "TriggerConfig": {
+      "base": null,
+      "refs": {
+        "FlowDefinition$TriggerConfig": null
+      }
+    },
+    "TriggerProperties": {
+      "base": null,
+      "refs": {
+        "TriggerConfig$TriggerProperties": null
+      }
+    },
+    "TriggerType": {
+      "base": null,
+      "refs": {
+        "TriggerConfig$TriggerType": null
       }
     },
     "UntagResourceRequest": {
@@ -625,13 +864,27 @@
       "refs": {
       }
     },
+    "ZendeskConnectorOperator": {
+      "base": null,
+      "refs": {
+        "ConnectorOperator$Zendesk": null
+      }
+    },
+    "ZendeskSourceProperties": {
+      "base": null,
+      "refs": {
+        "SourceConnectorProperties$Zendesk": null
+      }
+    },
     "boolean": {
       "base": null,
       "refs": {
         "GetProfileObjectTypeResponse$AllowProfileCreation": "<p>Indicates whether a profile should be created when data is received if one doesn’t exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile and associate this object with the profile. If it is set to <code>TRUE</code>, and if no match is found, then the service creates a new standard profile.</p>",
         "GetProfileObjectTypeTemplateResponse$AllowProfileCreation": "<p>Indicates whether a profile should be created when data is received if one doesn’t exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile and associate this object with the profile. If it is set to <code>TRUE</code>, and if no match is found, then the service creates a new standard profile.</p>",
         "PutProfileObjectTypeRequest$AllowProfileCreation": "<p>Indicates whether a profile should be created when data is received if one doesn’t exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile and associate this object with the profile. If it is set to <code>TRUE</code>, and if no match is found, then the service creates a new standard profile.</p>",
-        "PutProfileObjectTypeResponse$AllowProfileCreation": "<p>Indicates whether a profile should be created when data is received if one doesn’t exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile and associate this object with the profile. If it is set to <code>TRUE</code>, and if no match is found, then the service creates a new standard profile.</p>"
+        "PutProfileObjectTypeResponse$AllowProfileCreation": "<p>Indicates whether a profile should be created when data is received if one doesn’t exist for an object of this type. The default is <code>FALSE</code>. If the AllowProfileCreation flag is set to <code>FALSE</code>, then the service tries to fetch a standard profile and associate this object with the profile. If it is set to <code>TRUE</code>, and if no match is found, then the service creates a new standard profile.</p>",
+        "SalesforceSourceProperties$EnableDynamicFieldUpdate": null,
+        "SalesforceSourceProperties$IncludeDeletedRecords": null
       }
     },
     "encryptionKey": {
@@ -811,6 +1064,12 @@
         "PutProfileObjectResponse$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "UpdateAttributes$key": null,
         "requestValueList$member": null
+      }
+    },
+    "stringTo2048": {
+      "base": null,
+      "refs": {
+        "SourceFields$member": null
       }
     },
     "stringifiedJson": {

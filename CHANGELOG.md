@@ -1,3 +1,14 @@
+Release v1.38.7 (2021-03-26)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Add support for SageMaker Model Builder Pipelines Targets to EventBridge
+* `service/iotwireless`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.38.6 (2021-03-25)
 ===
 
